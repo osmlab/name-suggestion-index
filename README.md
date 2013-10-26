@@ -8,7 +8,7 @@ In [iD](http://github.com/systemed/iD) we want to help suggest the most common
 names with the correct formatting and spelling. By 'correct', we only mean the 
 most common usage on OSM.
 
-This index can also be used for passing translated name values for a selected name. 
+This index can also be used for passing translated values for a selected name. 
 For example: `McDonald's` is `マクドナルド` in Japanese. The most correct way of 
 tagging this would be to use the 'on-the-ground' language in the `name=*` tag and 
 any known translations in their appropriate `name:XX` tags. So in Japan, 
@@ -22,8 +22,8 @@ and many other translated `name:XX` values are automatically filled in too.
     {
         "McDonald's": {
             "name:jp": "マクドナルド",
-            "name:ch": "",
-            "name:ab": ""
+            "name:zh": "麦当劳",
+            "name:ar": "ماكدونالدز"
         },
         "Subway": {},
         "Burger King": {}
