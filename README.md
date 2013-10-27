@@ -21,7 +21,7 @@ and many other translated `name:XX` values are automatically filled in too.
 ###Structure
     {
         "McDonald's": {
-            "name:jp": "マクドナルド",
+            "name:ja": "マクドナルド",
             "name:zh": "麦当劳",
             "name:ar": "ماكدونالدز"
         },
