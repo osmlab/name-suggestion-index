@@ -1,7 +1,5 @@
 all:
-	echo "{" > name-suggestions.json
-	sh build.sh
-	echo "}" >> name-suggestions.json
+	@node build.js
 
 clean:
 	rm -f name-suggestions.json
