@@ -34,4 +34,5 @@ function build() {
         version = '// ' + d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear() +
         ' ' + Math.round(d.getTime()/1000)  + '\n';
     fs.appendFileSync(outfile, version + JSON.stringify(data, null, 4));
+    fs.appendFileSync(outfile.split('.json')[0] + '.min.json', version + JSON.stringify(data));
 }
