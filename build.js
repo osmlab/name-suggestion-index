@@ -3,7 +3,7 @@ var fs = require('fs'),
     jsonlint = require('jsonlint');
 
 var outfile = 'name-suggestions.json',
-    keys = ['amenity', 'shop'],
+    osmKeys = ['amenity', 'shop'],
     finder = find('.'),
     files = [],
     data = {};
@@ -12,13 +12,14 @@ if (fs.existsSync(outfile)) fs.unlinkSync(outfile);
 
 finder.on('file', function (file) {
     if (file.split('.json').length > 1) {
-        if (keys.indexOf(file.split('/')[0]) != -1) {
+        if (osmKeys.indexOf(file.split('/')[0]) != -1) {
             files.push(file);
         }
     }
 });
 
 finder.on('end', function() {
+    files.sort();
     for (var i = 0; i < files.length; i++) {
         var file = files[i],
             tagCombo = file.split('.json')[0];
