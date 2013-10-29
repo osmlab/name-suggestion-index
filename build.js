@@ -3,12 +3,14 @@ var fs = require('fs'),
     jsonlint = require('jsonlint');
 
 var outfile = 'name-suggestions.json',
+    outfileMin = outfile.split('.json')[0] + '.min.json',
     osmKeys = ['amenity', 'shop'],
     finder = find('.'),
     files = [],
     data = {};
 
 if (fs.existsSync(outfile)) fs.unlinkSync(outfile);
+if (fs.existsSync(outfileMin)) fs.unlinkSync(outfileMin);
 
 finder.on('file', function (file) {
     if (file.split('.json').length > 1) {
