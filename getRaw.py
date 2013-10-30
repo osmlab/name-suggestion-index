@@ -16,10 +16,6 @@ def prep_args():
         'source',
         help='Source file to parse (.pbf, .osm.bz2, or .osm)')
     parser.add_argument(
-        '--output',
-        help='Destination file (default: output)',
-        default='output.json')
-    parser.add_argument(
         '--profile',
         action='store_true')
     return parser
@@ -71,16 +67,14 @@ def write(out):
         remove(args['output'])
 
     output = open(args['output'], 'a')
-    output.write(
-        '//' + args['source'] + '\n' +
-        json.dumps(out,
-            sort_keys=True,
-            indent=4,
+    output.write(json.dumps(out,
+        sort_keys=True,
+        indent=4,
         separators=(',', ': '))
     )
 
 args = vars(prep_args().parse_args())
-args['output'] = args['output']
+args['output'] = 'topNames.json'
 
 if args['profile']:
     print args
