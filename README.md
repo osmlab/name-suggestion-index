@@ -46,4 +46,5 @@ have only been used fifty times.
     - `apt-get update`
     - `apt-get -y install python-dev python-pip build-essential libprotobuf-dev protobuf-compiler`
     - `pip install imposm.parser`
-    <!-- todo: just make a script, ubuntu.sh -->
+
+<!-- todo: just make a script, ubuntu.sh -->

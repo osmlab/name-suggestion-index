@@ -43,7 +43,7 @@ def takeTags(tags):
     if 'name' in tags:
         for key in tags.keys():
             if key != 'name':
-                fullName = key + '/' + tags[key] + '|' + tags['name']
+                fullName = (key + '/' + tags[key] + '|' + tags['name']).encode('utf-8')
                 if fullName not in counts:
                     counts[fullName] = 1
                 counts[fullName] += 1
