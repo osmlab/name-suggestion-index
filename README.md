@@ -39,25 +39,11 @@ you're going to make edits and could preserve that order it would be nice.
 So a name that has been used a thousand time in OSM is listed above one that might 
 have only been used fifty times.
 
-<!--
-
-###What we're not doing
-We're not making a blacklist of names that, in our opinion, are 'wrong' and should 
-be replaced. We're trying to make it easier for users to converge on the most common 
-names that are actually used in OSM. Descriptive, not prescriptive. We're following 
-the usage of common names on OSM, not prescribing that certain names must match 
-exactly the way it says here or that we should set out to change 'wrong' names. 
-Just fascilitating the most common usage as described by the data. This isn't the 
-place for arguing the correctness of `Walmart` vs `Wal-mart` when the data shows 
-one is used more. If you want to change the naming of Walmart across the planet 
-to what you define as 'correct', take it elsewhere.
-
-- Should we include count somewhere? It's actually useful.
-- When compiling, is the goal a single large JSON file `suggestions.json`
-or many small json files that are named very predictably? What are the memory 
-implications?
-    - Would this be baked into iD?
-        - Are we concerned about size? Minify?
-    - It's very possibile to keep these on gh-pages and make requests to it.
-        - How is wikipedia done? Is that lag acceptable for autocomplete?
--->
+###Getting data from planet
+- `git clone https://github.com/osmlab/name-suggestion-index.git && cd name-suggestion-index`
+- [~~hack~~ download the planet](http://planet.osm.org/pbf/)
+- Ubuntu install:
+    - `apt-get update`
+    - `apt-get -y install python-dev python-pip build-essential libprotobuf-dev protobuf-compiler`
+    - `pip install imposm.parser`
+    <!-- todo: just make a script, ubuntu.sh -->

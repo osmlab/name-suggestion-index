@@ -7,6 +7,8 @@ import argparse
 from imposm.parser import OSMParser
 import json
 
+THRESHOLD = 100
+
 def prep_args():
     parser = argparse.ArgumentParser()
 
@@ -16,7 +18,7 @@ def prep_args():
     parser.add_argument(
         '--output',
         help='Destination file (default: output)',
-        default='output')
+        default='output.json')
     parser.add_argument(
         '--profile',
         action='store_true')
@@ -42,16 +44,26 @@ def takeTags(tags):
         for key in tags.keys():
             if key != 'name':
                 fullName = key + '/' + tags[key] + '|' + tags['name']
-                if fullName not in counts: counts[fullName] = 1
+                if fullName not in counts:
+                    counts[fullName] = 1
                 counts[fullName] += 1
-    # check the length of counts
-    # for every million, we clean the list, removing singular values
+                length = len(counts)
+                if length > 1000000:
+                    # will we ever have more than a million items > 5?
+                    # the correct way would be to do some type of distribution and drop the bottom x%
+                    cleanup(length)
+
+def cleanup(length):
+    copy = counts.copy()
+    for key in copy:
+        if counts[key] < 5:
+            del counts[key]
 
 def done():
-    out = {};
+    out = {}
     for key in counts:
-        if counts[key] > 100:
-            out[key] = counts[key];
+        if counts[key] > THRESHOLD:
+            out[key] = counts[key]
     write(out)
 
 def write(out):
@@ -59,9 +71,11 @@ def write(out):
         remove(args['output'])
 
     output = open(args['output'], 'a')
-    output.write(json.dumps(out,
-        sort_keys=True,
-        indent=4,
+    output.write(
+        '//' + args['source'] + '\n' +
+        json.dumps(out,
+            sort_keys=True,
+            indent=4,
         separators=(',', ': '))
     )
 
