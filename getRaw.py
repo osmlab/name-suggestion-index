@@ -91,6 +91,7 @@ if __name__ == '__main__':
         prW.enable()
 
     start = time()
+    print 'start ' + str(start)
     counts = {}
 
     p = OSMParser(
@@ -101,6 +102,9 @@ if __name__ == '__main__':
 
     p.parse(args['source'])
     done()
+    end = time()
+    print 'end: ' + str(end)
+    print 'duration: ' + str(round(end - start)) + ' seconds'
 
 if args['profile']:
     prW.disable()
