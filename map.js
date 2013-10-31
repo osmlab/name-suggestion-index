@@ -1,7 +1,9 @@
 var fs = require('fs'),
     find = require('findit'),
     mapping = require('./mapping.json'),
-    raw = require('./topNames.json');
+    raw = require('./topNames.json'),
+    canon = require('./canonical.json'),
+    revCanon = buildReverseIndex(canon);
 
 var clean = {};
 
@@ -9,30 +11,50 @@ for (var fullName in raw) {
     filterValues(fullName);
 }
 
+function buildReverseIndex(canon) {
+    var rIndex = {};
+    for (var can in revCanon) {
+        if (revCanon[can].matches) {
+            for (var i = revCanon[can].matches.length - 1; i >= 0; i--) {
+                var match = revCanon[can].matches[i];
+                rIndex[match] = can;
+            }
+        }
+    }
+    return rIndex;
+}
+
 function filterValues(fullName) {
-    fullName = fullName.split('|', 2);
-    tag = fullName[0].split('/', 2);
+    theName = fullName.split('|', 2);
+    tag = theName[0].split('/', 2);
     key = tag[0];
     value = tag[1];
-    theName = fullName[1];
+    theName = theName[1];
     if (mapping.wanted[key] &&
         mapping.wanted[key].indexOf(value) !== -1 &&
         mapping.discardedNames.indexOf(theName) == -1) {
-        set(key, value, theName);
+        if (revCanon[theName]) theName = revCanon[theName];
+        set(key, value, theName, raw[fullName]);
     }
 }
 
-function set(key, value, name) {
-    if (!clean[key]) clean[key] = {};
-    if (!clean[key][value]) clean[key][value] = {};
-    if (!clean[key][value][name]) clean[key][value][name] = '';
+function set(k, v, name, count) {
+    if (!clean[k]) clean[k] = {};
+    if (!clean[k][v]) clean[k][v] = {};
+    if (!clean[k][v][name]) clean[k][v][name] = {count: count};
+    else clean[k][v][name].count += count;
+
+    if (canon[name]) {
+        for (var tlate in canon[name].translation) {
+            clean[k][v][name][tlate] = canon[name].translation[tlate];
+        }
+    }
 }
 
-function putAway(tag, name) {
-    // put a value into the correct directory and file
-    // we bulk everything up in order to sort it
-    tag = tag.split('/', 2);
-    console.log(tag);
+function encode_utf8(string){
+    return unescape(encodeURIComponent(string));
 }
 
-console.log(clean);
+
+if (fs.existsSync('clean.json')) fs.unlinkSync('clean.json');
+fs.appendFileSync('clean.json', JSON.stringify(clean, null, 4));

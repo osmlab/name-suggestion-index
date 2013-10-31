@@ -9,24 +9,25 @@ names with the correct formatting and spelling. By 'correct', we only mean the
 most common usage on OSM.
 
 This index can also be used for passing translated values for a selected name. 
-For example: `McDonald's` is `マクドナルド` in Japanese. The most correct way of 
-tagging this would be to use the 'on-the-ground' language in the `name=*` tag and 
-any known translations in their appropriate `name:XX` tags. So in Japan, 
-`name=マクドナルド` and `name:en=McDonald's`, while in the US `name=McDonald's` and 
-`name:jp=マクドナルド`. If we grow this index to include more translations for the 
-most common names, we can automatically fill these translated name values when 
-one of the suggested values are used. So in an ideal senario, `McDonald's` is selected
-and many other translated `name:XX` values are automatically filled in too.
+For example, many mappers in Japan have used `マクドナルド` as a localized version of
+the name `McDonalds`. In this case we would prefer that the translation also be provided 
+for the native language of the name, here `name:en`. Once the translation has been mapped 
+using a suggested value with a translation will also fill in the native translated name 
+in the appropriate tag.
 
 ###Structure
     {
-        "McDonald's": {
-            "name:ja": "マクドナルド",
-            "name:zh": "麦当劳",
-            "name:ar": "ماكدونالدز"
+        "マクドナルド": {
+            "translation": {
+                "name:en": "McDonald's"
+            }
+            "matches": "マクドナルド (McDonald's)"
         },
-        "Subway": {},
-        "Burger King": {}
+        "Papa John's": 
+            matches: [
+                "Papa John's Pizza",
+                "Papa Johns"
+            ]
     }
 
 Just basic JSON. If you're not familiar with JSON, please look around at how it's done 

@@ -7,7 +7,7 @@ import argparse
 from imposm.parser import OSMParser
 import json
 
-THRESHOLD = 100
+THRESHOLD = 50
 
 def prep_args():
     parser = argparse.ArgumentParser()
@@ -39,7 +39,7 @@ def takeTags(tags):
     if 'name' in tags:
         for key in tags.keys():
             if key != 'name':
-                fullName = (key + '/' + tags[key] + '|' + tags['name']).encode('utf-8')
+                fullName = key + '/' + tags[key] + '|' + tags['name']
                 if fullName not in counts:
                     counts[fullName] = 1
                 counts[fullName] += 1
@@ -70,7 +70,8 @@ def write(out):
     output.write(json.dumps(out,
         sort_keys=True,
         indent=4,
-        separators=(',', ': '))
+        separators=(',', ': '),
+        ensure_ascii=False)
     )
 
 args = vars(prep_args().parse_args())
