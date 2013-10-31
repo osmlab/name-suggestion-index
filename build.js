@@ -1,5 +1,4 @@
 var fs = require('fs'),
-    find = require('findit'),
     mapping = require('./mapping.json'),
     raw = require('./topNames.json'),
     canon = require('./canonical.json'),
