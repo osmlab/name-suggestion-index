@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+// on hold till node-osmium is faster
 var osmium = require('/Users/aaron/libosmium/node-osmium/lib/osmium.js');
 
 var start = new Date().getTime();
@@ -55,10 +56,3 @@ handler.on('done', function() {
 
 var reader = new osmium.Reader(input_filename);
 reader.apply(handler, { "with_location_handler": false });
-// from what I understand
-    // with_location_handler determines if there is an effort made to compile the geometry
-    // true: ways go and find their node values and build wkt
-    // false: no effort is made with anything except nodes
-    // memory usage is much lower with false, it's a bit quicker too
-    // I'd love a way to specify exactly what I need for even more increased memory and performance
-        // handler.options({ "only": ['id', 'timestamp', 'tags'] })

@@ -1,41 +1,62 @@
 var fs = require('fs'),
     find = require('findit'),
-    jsonlint = require('jsonlint');
+    mapping = require('./mapping.json'),
+    raw = require('./topNames.json'),
+    canon = require('./canonical.json'),
+    revCanon = buildReverseIndex(canon);
 
-var outfile = 'name-suggestions.json',
-    outfileMin = outfile.split('.json')[0] + '.min.json',
-    osmKeys = ['amenity', 'shop'],
-    finder = find('.'),
-    files = [],
-    data = {};
+var out = {};
 
-if (fs.existsSync(outfile)) fs.unlinkSync(outfile);
-if (fs.existsSync(outfileMin)) fs.unlinkSync(outfileMin);
+for (var fullName in raw) {
+    filterValues(fullName);
+}
 
-finder.on('file', function (file) {
-    if (file.split('.json').length > 1) {
-        if (osmKeys.indexOf(file.split('/')[0]) != -1) {
-            files.push(file);
+function buildReverseIndex(canon) {
+    var rIndex = {};
+    for (var can in revCanon) {
+        if (revCanon[can].matches) {
+            for (var i = revCanon[can].matches.length - 1; i >= 0; i--) {
+                var match = revCanon[can].matches[i];
+                rIndex[match] = can;
+            }
         }
     }
-});
-
-finder.on('end', function() {
-    files.sort();
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i],
-            tagCombo = file.split('.json')[0];
-
-        file = fs.readFileSync(file, 'utf8');
-        data[tagCombo] = jsonlint.parse(file);
-    }
-    build();
-});
-
-function build() {
-    var d = new Date(),
-        version = '// ' + d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear() +
-        ' ' + Math.round(d.getTime()/1000)  + '\n';
-    fs.appendFileSync(outfile, version + JSON.stringify(data, null, 4));
-    fs.appendFileSync(outfile.split('.json')[0] + '.min.json', version + JSON.stringify(data));
+    return rIndex;
 }
+
+function filterValues(fullName) {
+    theName = fullName.split('|', 2);
+    tag = theName[0].split('/', 2);
+    key = tag[0];
+    value = tag[1];
+    theName = theName[1];
+    if (mapping.wanted[key] &&
+        mapping.wanted[key].indexOf(value) !== -1 &&
+        mapping.discardedNames.indexOf(theName) == -1) {
+        if (revCanon[theName]) theName = revCanon[theName];
+        set(key, value, theName, raw[fullName]);
+    }
+}
+
+function set(k, v, name, count) {
+    if (!out[k]) out[k] = {};
+    if (!out[k][v]) out[k][v] = {};
+    if (!out[k][v][name]) out[k][v][name] = {count: count};
+    else out[k][v][name].count += count;
+
+    if (canon[name]) {
+        for (var tlate in canon[name].translation) {
+            out[k][v][name][tlate] = canon[name].translation[tlate];
+        }
+    }
+}
+
+function encode_utf8(string){
+    return unescape(encodeURIComponent(string));
+}
+
+
+if (fs.existsSync('name-suggestions.json')) fs.unlinkSync('name-suggestions.json');
+fs.appendFileSync('name-suggestions.json', JSON.stringify(out, null, 4));
+if (fs.existsSync('name-suggestions.min.json')) fs.unlinkSync('name-suggestions.min.json');
+fs.appendFileSync('name-suggestions.min.json', JSON.stringify(out));

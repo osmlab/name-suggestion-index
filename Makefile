@@ -3,3 +3,4 @@ all:
 
 clean:
 	rm -f name-suggestions.json
+	rm -f name-suggestions.min.json
