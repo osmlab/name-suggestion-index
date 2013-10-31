@@ -6,6 +6,7 @@ from os import path, remove
 import argparse
 from imposm.parser import OSMParser
 import json
+import codecs
 
 THRESHOLD = 50
 
@@ -66,12 +67,14 @@ def write(out):
     if path.isfile(args['output']):
         remove(args['output'])
 
-    output = open(args['output'], 'a')
-    output.write(json.dumps(out,
+    outfile = codecs.open(args['output'], 'w', 'utf-8')
+    json.dump(
+        out,
+        outfile,
         sort_keys=True,
         indent=4,
         separators=(',', ': '),
-        ensure_ascii=False)
+        ensure_ascii=False
     )
 
 args = vars(prep_args().parse_args())
