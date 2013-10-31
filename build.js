@@ -12,10 +12,10 @@ for (var fullName in raw) {
 
 function buildReverseIndex(canon) {
     var rIndex = {};
-    for (var can in revCanon) {
-        if (revCanon[can].matches) {
-            for (var i = revCanon[can].matches.length - 1; i >= 0; i--) {
-                var match = revCanon[can].matches[i];
+    for (var can in canon) {
+        if (canon[can].matches) {
+            for (var i = canon[can].matches.length - 1; i >= 0; i--) {
+                var match = canon[can].matches[i];
                 rIndex[match] = can;
             }
         }
