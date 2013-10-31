@@ -36,8 +36,12 @@ been used 144 times, but has also been entered as "Papa John's Pizza" (62) and
     - `name-suggestions.json` and `name-suggestions.min.json` will be updated
 
 ###What to edit
-- `canonical.json` is a list of the most correct names, any possible similar matches to them, and any necessary translation.
-- `filter.json` determines which tag combinations are included and which names are completely ignored
+- `canonical.json` is a list of the most correct names, any possible similar matches 
+to them, and any necessary translation.
+- `filter.json` determines which tag combinations are included and which names are 
+completely ignored
+- `name-suggestions.json` and `name-suggestions.min.json` are compiled, any changes made to them 
+directly will be overwritten
 
 ###Updating topNames.json from planet
 - `git clone https://github.com/osmlab/name-suggestion-index.git && cd name-suggestion-index`

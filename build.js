@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    mapping = require('./filter.json'),
+    filter = require('./filter.json'),
     raw = require('./topNames.json'),
     canon = require('./canonical.json'),
     revCanon = buildReverseIndex(canon);
@@ -24,14 +24,14 @@ function buildReverseIndex(canon) {
 }
 
 function filterValues(fullName) {
-    theName = fullName.split('|', 2);
-    tag = theName[0].split('/', 2);
-    key = tag[0];
-    value = tag[1];
+    var theName = fullName.split('|', 2),
+        tag = theName[0].split('/', 2),
+        key = tag[0],
+        value = tag[1];
     theName = theName[1];
-    if (mapping.wanted[key] &&
-        mapping.wanted[key].indexOf(value) !== -1 &&
-        mapping.discardedNames.indexOf(theName) == -1) {
+    if (filter.wanted[key] &&
+        filter.wanted[key].indexOf(value) !== -1 &&
+        filter.discardedNames.indexOf(theName) == -1) {
         if (revCanon[theName]) theName = revCanon[theName];
         set(key, value, theName, raw[fullName]);
     }
@@ -50,12 +50,5 @@ function set(k, v, name, count) {
     }
 }
 
-function encode_utf8(string){
-    return unescape(encodeURIComponent(string));
-}
-
-
-if (fs.existsSync('name-suggestions.json')) fs.unlinkSync('name-suggestions.json');
-fs.appendFileSync('name-suggestions.json', JSON.stringify(out, null, 4));
-if (fs.existsSync('name-suggestions.min.json')) fs.unlinkSync('name-suggestions.min.json');
-fs.appendFileSync('name-suggestions.min.json', JSON.stringify(out));
+fs.writeFileSync('name-suggestions.json', JSON.stringify(out, null, 4));
+fs.writeFileSync('name-suggestions.min.json', JSON.stringify(out));
