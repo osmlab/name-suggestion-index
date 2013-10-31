@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    mapping = require('./mapping.json'),
+    mapping = require('./filter.json'),
     raw = require('./topNames.json'),
     canon = require('./canonical.json'),
     revCanon = buildReverseIndex(canon);
