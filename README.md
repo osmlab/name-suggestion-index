@@ -46,3 +46,5 @@ been used 144 times, but has also been entered as "Papa John's Pizza" (62) and
     - `apt-get update`
     - `apt-get -y install python-dev python-pip build-essential libprotobuf-dev protobuf-compiler`
     - `pip install imposm.parser`
+- `python getRaw.py yourOSMfile`
+    - results will go to `topNames.json`
