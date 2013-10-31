@@ -106,13 +106,3 @@ if args['profile']:
     ps = pstats.Stats(prW)
     ps.sort_stats('time')
     a = ps.print_stats(20)
-
-# notes:
-    # only real concern right now is the size of counts
-    # w/ planet: it will be millions long and there's no caching
-    # simplest solution would be to occasionally write to disk
-    # wipe counts, start over and append to the same file
-    # will lose minor counts in the process
-        # that's kind of the point
-        # then just filter the list occasionally?
-        # every million? remove anything == 1
