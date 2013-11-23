@@ -5,7 +5,7 @@ var fs = require('fs'),
     correctNames = buildReverseIndex(canon);
 
 var out = {},
-    names = {};
+    defined = {};
 
 for (var fullName in raw) {
     filterValues(fullName);
@@ -43,9 +43,25 @@ function set(k, v, name, count) {
     if (!out[k][v]) out[k][v] = {};
     if (!out[k][v][name]) {
         if (canon[name] && canon[name].nix_value && canon[name].nix_value == v) {
-            console.log(name + ' ' + v + ' you monster');
+            // console.log(name + ' ' + v + ' you monster');
         }
+
+        if (defined[name]) {
+            var string = name;
+            for (var i = 0; i < defined[name].length; i++) {
+                string += '\n\t in ' + defined[name][i] + ' - ';
+                var kv = defined[name][i].split('/');
+                string += out[kv[0]][kv[1]][name].count + ' times';
+            }
+            console.log(string + '\n\t and now ' + k + '/' + v + ' - ' + count + ' times');
+        }
+
         out[k][v][name] = {count: count};
+        if (defined[name]) {
+            defined[name].push(k + '/' + v);
+        } else {
+            defined[name] = [k + '/' + v];
+        }
     } else {
         out[k][v][name].count += count;
     }
