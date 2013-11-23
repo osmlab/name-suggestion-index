@@ -2,9 +2,10 @@ var fs = require('fs'),
     filter = require('./filter.json'),
     raw = require('./topNames.json'),
     canon = require('./canonical.json'),
-    revCanon = buildReverseIndex(canon);
+    correctNames = buildReverseIndex(canon);
 
-var out = {};
+var out = {},
+    names = {};
 
 for (var fullName in raw) {
     filterValues(fullName);
@@ -32,7 +33,7 @@ function filterValues(fullName) {
     if (filter.wanted[key] &&
         filter.wanted[key].indexOf(value) !== -1 &&
         filter.discardedNames.indexOf(theName) == -1) {
-        if (revCanon[theName]) theName = revCanon[theName];
+        if (correctNames[theName]) theName = correctNames[theName];
         set(key, value, theName, raw[fullName]);
     }
 }
@@ -40,12 +41,19 @@ function filterValues(fullName) {
 function set(k, v, name, count) {
     if (!out[k]) out[k] = {};
     if (!out[k][v]) out[k][v] = {};
-    if (!out[k][v][name]) out[k][v][name] = {count: count};
-    else out[k][v][name].count += count;
+    if (!out[k][v][name]) {
+        if (canon[name] && canon[name].nix_value && canon[name].nix_value == v) {
+            console.log(name + ' ' + v + ' you monster');
+        }
+        out[k][v][name] = {count: count};
+    } else {
+        out[k][v][name].count += count;
+    }
 
     if (canon[name]) {
-        for (var tlate in canon[name].translation) {
-            out[k][v][name][tlate] = canon[name].translation[tlate];
+        for (var tag in canon[name].tags) {
+            if (!out[k][v][name].tags) out[k][v][name].tags = {};
+            out[k][v][name].tags[tag] = canon[name].tags[tag];
         }
     }
 }

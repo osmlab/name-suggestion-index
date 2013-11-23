@@ -7,11 +7,9 @@ create many different spellings such as `Wal-Mart`, `WalMart`, `Walmart Supercen
 In [iD](http://github.com/systemed/iD) we want to help suggest the most common names 
 with the correct formatting and spelling.
 
-This index can also be used for passing translated values for a selected name. 
-For example, many mappers in Japan have used `マクドナルド` as a localized version of
-the name `McDonalds`. In this case we would prefer that the translation also be provided 
-for the native language of the name, in this case `name:en`. With a translation, when a 
-user uses the suggestion the translated value will also be added.
+This index can also be used for passing additional values for a selected name. 
+For example, it's known that McDonald's serves hambergers and we can use that knowledge to
+fill in `cuisine=burger` or any other tags that area always associated with that specific name.
 
 ###Contributing
 We need help finding all the 'incorrect' names in `topNames.json` and mapping them to the 
@@ -37,7 +35,7 @@ been used 144 times, but has also been entered as "Papa John's Pizza" (62) and
 
 ###What to edit
 - `canonical.json` is a list of the most correct names, any possible similar matches 
-to them, and any necessary translation.
+to them, and any known tags.
 - `filter.json` determines which tag combinations are included and which names are 
 completely ignored
 - `name-suggestions.json` and `name-suggestions.min.json` are compiled, any changes made to them 
