@@ -42,8 +42,10 @@ function set(k, v, name, count) {
     if (!out[k]) out[k] = {};
     if (!out[k][v]) out[k][v] = {};
     if (!out[k][v][name]) {
-        if (canon[name] && canon[name].nix_value && canon[name].nix_value == v) {
-            // console.log(name + ' ' + v + ' you monster');
+        if (canon[name] && canon[name].nix_value) {
+            for (var i = 0; i < canon[name].nix_value.length; i++) {
+                if (canon[name].nix_value[i] == v) return;
+            }
         }
 
         if (defined[name]) {

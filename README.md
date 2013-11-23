@@ -8,8 +8,8 @@ In [iD](http://github.com/systemed/iD) we want to help suggest the most common n
 with the correct formatting and spelling.
 
 This index can also be used for passing additional values for a selected name. 
-For example, it's known that McDonald's serves hambergers and we can use that knowledge to
-fill in `cuisine=burger` or any other tags that area always associated with that specific name.
+For example, it's known that McDonald's serves hamburgers so we can use that knowledge to
+fill in `cuisine=burger` or any other tags that are always associated with a specific name.
 
 ###Contributing
 We need help finding all the 'incorrect' names in `topNames.json` and mapping them to the 
