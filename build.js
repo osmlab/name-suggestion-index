@@ -55,7 +55,7 @@ function set(k, v, name, count) {
                 var kv = defined[name][i].split('/');
                 string += out[kv[0]][kv[1]][name].count + ' times';
             }
-            console.log(string + '\n\t and now ' + k + '/' + v + ' - ' + count + ' times');
+            console.log(string + '\n\t and ' + k + '/' + v + ' - ' + count + ' times');
         }
 
         out[k][v][name] = {count: count};

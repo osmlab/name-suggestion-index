@@ -27,7 +27,6 @@ been used 144 times, but has also been entered as "Papa John's Pizza" (62) and
     }
 
 - make necessary changes to `canonical.json` or `filter.json` ("what to edit" below)
-    - try to keep them in the same order as `topNames.json`
 - run `make`
     - this will run `build.js` against `topNames.json` using the rules defined in `filter.json` 
     and `canonical.json`
