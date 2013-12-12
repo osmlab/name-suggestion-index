@@ -51,9 +51,9 @@ directly will be overwritten
     - As root:
         - `pacman -Syy`
         - `pacman -S python python-pip protobuf setuptools python2-protobuf`
-        - curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-        - python2 get-pip.py
-        - pip2.7 install imposm.parser
-        - rm get-pip.py
+        - `curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py`
+        - `python2 get-pip.py`
+        - `pip2.7 install imposm.parser`
+        - `rm get-pip.py`
 - `python getRaw.py yourOSMfile`
     - results will go to `topNames.json`
