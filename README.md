@@ -49,7 +49,7 @@ directly will be overwritten
     - `pip install imposm.parser`
 - Arch install (As root)
     - `pacman -Syy`
-    - `pacman -S python python-pip protobuf setuptools python2-protobuf`
+    - `pacman -S python python-pip protobuf setuptools python2-protobuf nodejs`
     - `curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py`
     - `python2 get-pip.py`
     - `pip2.7 install imposm.parser`
