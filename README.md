@@ -48,6 +48,7 @@ directly will be overwritten
     - `apt-get -y install python-dev python-pip build-essential libprotobuf-dev protobuf-compiler`
     - `pip install imposm.parser`
 - Arch install (As root)
+
         - `pacman -Syy`
         - `pacman -S python python-pip protobuf setuptools python2-protobuf`
         - `curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py`
