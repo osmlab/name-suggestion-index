@@ -1,37 +1,39 @@
 #!/usr/bin/env node
 
-// on hold till node-osmium is faster
-var osmium = require('/Users/aaron/libosmium/node-osmium/lib/osmium.js');
+var osmium = require('osmium');
+var fs = require('fs');
 
 var start = new Date().getTime();
-console.log('running');
 
-if (process.argv.length != 4) {
-    console.log("Usage: " + process.argv[0] + ' ' + process.argv[1] + " OSMFILE OUTFILE");
+if (process.argv.length < 3) {
+    console.log("Usage: " + process.argv[0] + ' ' + process.argv[1] + " OSMFILE");
     process.exit(1);
 }
 
 var input_filename = process.argv[2],
-    output_filename = process.argv[3],
     handler = new osmium.Handler(),
+    output_filename = 'topNames.json',
     osmKeys = ['amenity', 'shop'],
-    counts = {};
+    counts = {},
+    THRESHOLD = 50;
 
 handler.options({"tagged_nodes_only": true});
-
 handler.on('node', takeTags);
 handler.on('way', takeTags);
-handler.on('relation', takeTags);
 
 function takeTags(entity) {
     if (entity.tags) {
-        for (var key in entity.tags) {
-            if (entity.tags.name && osmKeys.indexOf(key) != -1) {
-                var fullName = key + '/' + entity.tags[key] + '|' + entity.tags.name;
-                if (counts[fullName]) {
-                    counts[fullName] += 1;
-                } else {
-                    counts[fullName] = 1;
+        var name = entity.tags('name');
+        if (name) {
+            var tags = entity.tags();
+            for (var key in tags) {
+                if (osmKeys.indexOf(key) != -1) {
+                    var fullName = key + '/' + tags[key] + '|' + name;
+                    if (counts[fullName]) {
+                        counts[fullName] += 1;
+                    } else {
+                        counts[fullName] = 1;
+                    }
                 }
             }
         }
@@ -41,18 +43,18 @@ function takeTags(entity) {
 function done() {
     var out = {};
     for (var key in counts) {
-        if (counts[key] > 100) {
+        if (counts[key] > THRESHOLD) {
             out[key] = counts[key];
         }
     }
-    console.log('> 100: ' + Object.keys(out).length);
-    console.log(out);
+    console.error('> 100: ' + Object.keys(out).length);
+    fs.writeFileSync(output_filename,JSON.stringify(out))
 }
 
 handler.on('done', function() {
     done();
-    console.log('run time: ' + Math.round((new Date().getTime() - start)/1000));
+    console.error('run time: ' + Math.round((new Date().getTime() - start)/1000));
 });
 
-var reader = new osmium.Reader(input_filename);
+var reader = new osmium.Reader(input_filename,{node:true,way:true});
 reader.apply(handler, { "with_location_handler": false });
