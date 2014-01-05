@@ -43,9 +43,13 @@ directly will be overwritten
 ###Updating topNames.json from planet
 - `git clone https://github.com/osmlab/name-suggestion-index.git && cd name-suggestion-index`
 - [download the planet](http://planet.osm.org/pbf/)
-- Ubuntu install:
-    - `apt-get update`
-    - `apt-get -y install python-dev python-pip build-essential libprotobuf-dev protobuf-compiler`
-    - `pip install imposm.parser`
-- `python getRaw.py yourOSMfile`
-    - results will go to `topNames.json`
+    - `wget http://planet.osm.org/pbf/planet-latest.osm.pbf`
+- Ubuntu install (install recent nodejs):
+    - `sudo apt-get update`
+    - `sudo apt-get install -y python-software-properties python g++ make`
+    - `sudo add-apt-repository -y ppa:chris-lea/node.js`
+    - `sudo apt-get update`
+    - `sudo apt-get install nodejs`
+    - `npm install`
+- `node getRaw yourOSMfile`
+    - results will go in `topNames.json`
