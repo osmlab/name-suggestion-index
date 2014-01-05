@@ -15,25 +15,22 @@ var input_filename = process.argv[2],
     output_filename = 'topNames.json',
     osmKeys = ['amenity', 'shop'],
     counts = {},
-    THRESHOLD = 50;
+    THRESHOLD = process.argv[3] || 50;
 
 handler.options({"tagged_nodes_only": true});
 handler.on('node', takeTags);
 handler.on('way', takeTags);
 
 function takeTags(entity) {
-    if (entity.tags) {
-        var name = entity.tags('name');
-        if (name) {
-            var tags = entity.tags();
-            for (var key in tags) {
-                if (osmKeys.indexOf(key) != -1) {
-                    var fullName = key + '/' + tags[key] + '|' + name;
-                    if (counts[fullName]) {
-                        counts[fullName] += 1;
-                    } else {
-                        counts[fullName] = 1;
-                    }
+    if (entity.tags && entity.tags('name')) {
+        var tags = entity.tags();
+        for (var key in tags) {
+            if (osmKeys.indexOf(key) != -1) {
+                var fullName = key + '/' + tags[key] + '|' + entity.tags('name');
+                if (counts[fullName]) {
+                    counts[fullName] += 1;
+                } else {
+                    counts[fullName] = 1;
                 }
             }
         }
@@ -47,8 +44,8 @@ function done() {
             out[key] = counts[key];
         }
     }
-    console.error('> 100: ' + Object.keys(out).length);
-    fs.writeFileSync(output_filename,JSON.stringify(out))
+    console.error('> ' + THRESHOLD + ': ' + Object.keys(out).length);
+    fs.writeFileSync(output_filename, JSON.stringify(out, null, 4));
 }
 
 handler.on('done', function() {
