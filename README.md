@@ -47,9 +47,8 @@ directly will be overwritten
 - Ubuntu install (install recent nodejs):
     - `sudo apt-get update`
     - `sudo apt-get install -y python-software-properties python g++ make`
-    - `sudo add-apt-repository -y ppa:chris-lea/node.js`
-    - `sudo apt-get update`
-    - `sudo apt-get install nodejs`
+    - `sudo apt-get install nodejs npm`
+    - `sudo ln -s /usr/bin/nodejs /usr/bin/node`
     - `npm install`
 - `node getRaw yourOSMfile`
     - results will go in `topNames.json`
