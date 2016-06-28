@@ -13,7 +13,7 @@ if (process.argv.length < 3) {
 var input_filename = process.argv[2],
     handler = new osmium.Handler(),
     output_filename = 'topNames.json',
-    osmKeys = ['amenity', 'shop'],
+    osmKeys = ['amenity', 'shop', 'leisure', 'man_made', 'tourism'],
     counts = {},
     THRESHOLD = process.argv[3] || 50;
 
