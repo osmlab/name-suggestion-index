@@ -2,7 +2,8 @@ var fs = require('fs'),
     filter = require('./filter.json'),
     raw = require('./topNames.json'),
     canon = require('./canonical.json'),
-    correctNames = buildReverseIndex(canon);
+    correctNames = buildReverseIndex(canon),
+    stringify = require('json-stable-stringify');
 
 var out = {},
     defined = {};
@@ -76,5 +77,5 @@ function set(k, v, name, count) {
     }
 }
 
-fs.writeFileSync('name-suggestions.json', JSON.stringify(out, null, 4));
-fs.writeFileSync('name-suggestions.min.json', JSON.stringify(out));
+fs.writeFileSync('name-suggestions.json', stringify(out, { space: '    '}));
+fs.writeFileSync('name-suggestions.min.json', stringify(out));
