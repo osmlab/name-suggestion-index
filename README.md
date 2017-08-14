@@ -44,15 +44,18 @@ completely ignored
 - `name-suggestions.json` and `name-suggestions.min.json` are compiled, any changes made to them 
 directly will be overwritten
 
-### Updating topNames.json from planet
+### Installation
 - `git clone https://github.com/osmlab/name-suggestion-index.git && cd name-suggestion-index`
-- [download the planet](http://planet.osm.org/pbf/)
-    - `wget http://planet.osm.org/pbf/planet-latest.osm.pbf`
 - Ubuntu install (install recent nodejs):
     - `sudo apt-get update`
     - `sudo apt-get install -y python-software-properties python g++ make`
     - `sudo apt-get install nodejs npm`
     - `sudo ln -s /usr/bin/nodejs /usr/bin/node`
     - `npm install`
+
+### Updating topNames.json from planet
+- install as described above
+- [download the planet](http://planet.osm.org/pbf/)
+    - `wget http://planet.osm.org/pbf/planet-latest.osm.pbf`
 - `node getRaw yourOSMfile`
     - results will go in `topNames.json`
