@@ -7,6 +7,10 @@ many different spellings such as `Wal-Mart`, `WalMart`, `Walmart Supercenter`.
 In [iD](http://github.com/systemed/iD) we want to help suggest the most common names 
 with the correct formatting and spelling.
 
+![name-suggestion-index in use in iD](http://i.imgur.com/9p1E6S4.gif)
+
+*The name-suggestion-index is in use in iD whenever searching entering a new item via the sidebar*
+
 This index can also be used for passing additional values for a selected name. 
 For example, it's known that McDonald's serves hamburgers so we can use that knowledge to
 fill in `cuisine=burger` or other tags that are always associated with a specific name.
