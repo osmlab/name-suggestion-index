@@ -34,6 +34,10 @@ function filterValues(fullName) {
     if (filter.wanted[key] &&
         filter.wanted[key].indexOf(value) !== -1 &&
         filter.discardedNames.indexOf(theName) == -1) {
+        var len = filter.discardPatterns.length;
+        for (var i = 0; i < len; i++) { // maybe this should use regexps
+            if (theName.indexOf(filter.discardPatterns[i])>-1) return;
+        }
         if (correctNames[theName]) theName = correctNames[theName];
         set(key, value, theName, raw[fullName]);
     }
