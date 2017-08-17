@@ -11,9 +11,10 @@ var out = {},
 // convert discardedNames to lowerCase as we compare against 
 // lowerCase later on and as changing case is locale specific
 // converting in code will at least use the same locale
-var len = filter.discardedNames.length;
+var len = filter.discardedNamesOverall.length;
 for (var i = 0; i < len; i++) { 
-    filter.discardedNames[i] = filter.discardedNames[i].toLowerCase();        
+    filter.discardedNamesOverall[i] 
+       = filter.discardedNamesOverall[i].toLowerCase();        
 }
 
 for (var fullName in raw) {
@@ -39,13 +40,23 @@ function filterValues(fullName) {
         key = tag[0],
         value = tag[1];
     theName = theName[1];
+    var theNameLower = theName.toLowerCase();
     if (filter.wanted[key] &&
         filter.wanted[key].indexOf(value) !== -1 &&
-        filter.discardedNames.indexOf(theName.toLowerCase()) == -1) {
+        filter.discardedNamesOverall.indexOf(theNameLower) == -1) {
         var len = filter.discardPatterns.length;
         for (var i = 0; i < len; i++) { // maybe this should use regexps
             if (theName.indexOf(filter.discardPatterns[i])>-1) return;
         }
+        // discard any object specific names we don't want
+        if (filter.discardedNames[key] && filter.discardedNames[key][value]) {
+            var toDiscard = filter.discardedNames[key][value];
+            len = toDiscard.length;
+            for (var i = 0; i < len; i++) {
+              if (theNameLower===toDiscard[i]) return; 
+            }
+        }
+        //
         if (correctNames[theName]) theName = correctNames[theName];
         set(key, value, theName, raw[fullName]);
     }
