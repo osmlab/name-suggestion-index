@@ -8,6 +8,14 @@ var fs = require('fs'),
 var out = {},
     defined = {};
 
+// convert discardedNames to lowerCase as we compare against 
+// lowerCase later on and as changing case is locale specific
+// converting in code will at least use the same locale
+var len = filter.discardedNames.length;
+for (var i = 0; i < len; i++) { 
+    filter.discardedNames[i] = filter.discardedNames[i].toLowerCase();        
+}
+
 for (var fullName in raw) {
     filterValues(fullName);
 }
@@ -33,7 +41,7 @@ function filterValues(fullName) {
     theName = theName[1];
     if (filter.wanted[key] &&
         filter.wanted[key].indexOf(value) !== -1 &&
-        filter.discardedNames.indexOf(theName) == -1) {
+        filter.discardedNames.indexOf(theName.toLowerCase()) == -1) {
         var len = filter.discardPatterns.length;
         for (var i = 0; i < len; i++) { // maybe this should use regexps
             if (theName.indexOf(filter.discardPatterns[i])>-1) return;
