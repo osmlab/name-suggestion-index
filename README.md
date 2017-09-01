@@ -15,6 +15,8 @@ This index can also be used for passing additional values for a selected name.
 For example, it's known that McDonald's serves hamburgers so we can use that knowledge to
 fill in `cuisine=burger` or other tags that are always associated with a specific name.
 
+name-suggestion-index is also [used by Vespucci](http://vespucci.io/tutorials/name_suggestions/).
+
 ### Contributing
 We need help finding all the 'incorrect' names in `topNames.json` and mapping them to the 
 correct equivalent so the incorrect name is not suggested. By 'correct', we only mean 
