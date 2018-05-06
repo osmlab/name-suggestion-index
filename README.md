@@ -32,6 +32,17 @@ been used 144 times, but has also been entered as "Papa John's Pizza" (62) and
         ]
     }
 
+In some cases it is preferable to dicard data known to be incorrrect - for
+example, to discard McDonald's tagged as restaurants from further processing:
+
+    "McDonald's":{
+        "nix_value":[
+            "restaurant"
+        ]
+    },
+
+may be used. It ensures that McDonald's will not become listed as a possible restaurant name.
+
 - make necessary changes to `canonical.json` or `filter.json` ("what to edit" below)
 - run `make`
     - this will run `build.js` against `topNames.json` using the rules defined in `filter.json` 
