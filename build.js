@@ -1,20 +1,19 @@
-var fs = require('fs'),
-    filter = require('./filter.json'),
-    raw = require('./topNames.json'),
-    canon = require('./canonical.json'),
-    correctNames = buildReverseIndex(canon),
-    stringify = require('json-stable-stringify');
+var fs = require('fs');
+var filter = require('./filter.json');
+var raw = require('./topNames.json');
+var canon = require('./canonical.json');
+var correctNames = buildReverseIndex(canon);
+var stringify = require('json-stable-stringify');
 
-var out = {},
-    defined = {};
+var out = {};
+var defined = {};
 
-// convert discardedNames to lowerCase as we compare against 
+// convert discardedNames to lowerCase as we compare against
 // lowerCase later on and as changing case is locale specific
 // converting in code will at least use the same locale
 var len = filter.discardedNamesOverall.length;
-for (var i = 0; i < len; i++) { 
-    filter.discardedNamesOverall[i] 
-       = filter.discardedNamesOverall[i].toLowerCase();        
+for (var i = 0; i < len; i++) {
+    filter.discardedNamesOverall[i] = filter.discardedNamesOverall[i].toLowerCase();
 }
 
 for (var fullName in raw) {
@@ -35,10 +34,11 @@ function buildReverseIndex(canon) {
 }
 
 function filterValues(fullName) {
-    var theName = fullName.split('|', 2),
-        tag = theName[0].split('/', 2),
-        key = tag[0],
-        value = tag[1];
+    var theName = fullName.split('|', 2);
+    var tag = theName[0].split('/', 2);
+    var key = tag[0];
+    var value = tag[1];
+
     theName = theName[1];
     var theNameLower = theName.toLowerCase();
     if (filter.wanted[key] &&
@@ -53,7 +53,7 @@ function filterValues(fullName) {
             var toDiscard = filter.discardedNames[key][value];
             len = toDiscard.length;
             for (var i = 0; i < len; i++) {
-              if (theNameLower===toDiscard[i]) return; 
+              if (theNameLower===toDiscard[i]) return;
             }
         }
         //

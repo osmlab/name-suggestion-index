@@ -1,11 +1,12 @@
-var fs = require("fs"),
-    xmlbuilder = require('xmlbuilder')
-    suggest = require('./name-suggestions.json');
+var fs = require('fs');
+var xmlbuilder = require('xmlbuilder');
+var suggest = require('./name-suggestions.json');
 
-var presets=xmlbuilder.create('presets', {version: '1.0', encoding: 'UTF-8'})
-  .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
-  .att('author', 'Name Suggestion Index');
-var topgroup=presets.ele('group').att('name','Name Suggestion Index');
+var presets = xmlbuilder.create('presets', {version: '1.0', encoding: 'UTF-8'})
+    .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
+    .att('author', 'Name Suggestion Index');
+
+var topgroup = presets.ele('group').att('name','Name Suggestion Index');
 
 // for each name in name-suggestions.json, create a one-click
 // JOSM preset using the key and value structure from the json
@@ -31,5 +32,5 @@ for (key in suggest){
     }
 }
 
-var xmlstring=presets.end({ pretty: true })
+var xmlstring = presets.end({ pretty: true })
 fs.writeFileSync('name-suggestions.presets.xml', xmlstring);
