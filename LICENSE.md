@@ -1,4 +1,4 @@
-Copyright 2017, name-suggestion-index contributors
+Copyright 2018, name-suggestion-index contributors
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

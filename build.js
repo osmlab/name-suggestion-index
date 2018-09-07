@@ -1,31 +1,52 @@
-var fs = require('fs');
-var filter = require('./filter.json');
-var raw = require('./topNames.json');
-var canon = require('./canonical.json');
-var correctNames = buildReverseIndex(canon);
-var stringify = require('json-stable-stringify');
+const colors = require('colors/safe');
+const fs = require('fs');
+const shell = require('shelljs');
+const stringify = require('json-stringify-pretty-compact');
+
+const filter = require('./filter.json');
+const topNames = require('./topNames.json');
+const canonical = require('./canonical.json');
+const correctNames = buildReverseIndex(canonical);
 
 var out = {};
 var defined = {};
 
-// convert discardedNames to lowerCase as we compare against
-// lowerCase later on and as changing case is locale specific
-// converting in code will at least use the same locale
-var len = filter.discardedNamesOverall.length;
-for (var i = 0; i < len; i++) {
-    filter.discardedNamesOverall[i] = filter.discardedNamesOverall[i].toLowerCase();
+buildAll();
+
+
+function buildAll() {
+    console.log('building data');
+    console.time(colors.green('data built'));
+
+    // Start clean
+    shell.rm('-f', ['dist/name-suggestions.*']);
+
+    // convert discardedNames to lowerCase as we compare against
+    // lowerCase later on and as changing case is locale specific
+    // converting in code will at least use the same locale
+    var len = filter.discardedNamesOverall.length;
+    for (var i = 0; i < len; i++) {
+        filter.discardedNamesOverall[i] = filter.discardedNamesOverall[i].toLowerCase();
+    }
+
+    for (var fullName in topNames) {
+        filterValues(fullName);
+    }
+
+    // Save individual data files
+    fs.writeFileSync('dist/name-suggestions.json', prettyStringify({ names: out }));
+    fs.writeFileSync('dist/name-suggestions.min.json', JSON.stringify({ names: out }));
+
+    console.timeEnd(colors.green('data built'));
 }
 
-for (var fullName in raw) {
-    filterValues(fullName);
-}
 
-function buildReverseIndex(canon) {
+function buildReverseIndex(canonical) {
     var rIndex = {};
-    for (var can in canon) {
-        if (canon[can].matches) {
-            for (var i = canon[can].matches.length - 1; i >= 0; i--) {
-                var match = canon[can].matches[i];
+    for (var can in canonical) {
+        if (canonical[can].matches) {
+            for (var i = canonical[can].matches.length - 1; i >= 0; i--) {
+                var match = canonical[can].matches[i];
                 rIndex[match] = can;
             }
         }
@@ -58,7 +79,7 @@ function filterValues(fullName) {
         }
         //
         if (correctNames[theName]) theName = correctNames[theName];
-        set(key, value, theName, raw[fullName]);
+        set(key, value, theName, topNames[fullName]);
     }
 }
 
@@ -66,9 +87,9 @@ function set(k, v, name, count) {
     if (!out[k]) out[k] = {};
     if (!out[k][v]) out[k][v] = {};
     if (!out[k][v][name]) {
-        if (canon[name] && canon[name].nix_value) {
-            for (var i = 0; i < canon[name].nix_value.length; i++) {
-                if (canon[name].nix_value[i] == v) return;
+        if (canonical[name] && canonical[name].nix_value) {
+            for (var i = 0; i < canonical[name].nix_value.length; i++) {
+                if (canonical[name].nix_value[i] == v) return;
             }
         }
 
@@ -82,7 +103,7 @@ function set(k, v, name, count) {
             console.log(string + '\n\t and ' + k + '/' + v + ' - ' + count + ' times');
         }
 
-        out[k][v][name] = {count: count};
+        out[k][v][name] = { count: count };
         if (defined[name]) {
             defined[name].push(k + '/' + v);
         } else {
@@ -92,13 +113,10 @@ function set(k, v, name, count) {
         out[k][v][name].count += count;
     }
 
-    if (canon[name]) {
-        for (var tag in canon[name].tags) {
+    if (canonical[name]) {
+        for (var tag in canonical[name].tags) {
             if (!out[k][v][name].tags) out[k][v][name].tags = {};
-            out[k][v][name].tags[tag] = canon[name].tags[tag];
+            out[k][v][name].tags[tag] = canonical[name].tags[tag];
         }
     }
 }
-
-fs.writeFileSync('name-suggestions.json', stringify(out, { space: '    '}));
-fs.writeFileSync('name-suggestions.min.json', stringify(out));

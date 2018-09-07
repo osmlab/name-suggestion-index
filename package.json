@@ -1,27 +1,31 @@
 {
   "name": "name-suggestion-index",
   "version": "0.1.6",
-  "description": "common names used in OSM",
-  "main": "build.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/osmlab/name-suggestion-index.git"
-  },
-  "bugs": {
-    "url": "https://github.com/osmlab/name-suggestion-index/issues"
-  },
+  "license": "BSD-3-Clause",
+  "repository": "osmlab/name-suggestion-index",
+  "author": "Aaron Lidman",
+  "description": "Common names used in OSM",
   "keywords": [
-    "openstreetmap",
-    "osm",
-    "names"
+    "OpenStreetMap",
+    "OSM",
+    "names",
+    "franchises"
   ],
+  "main": "dist/index.js",
+  "module": "index.mjs",
+  "scripts": {
+    "build": "node build.js && rollup -c"
+  },
   "devDependencies": {
-    "osmium": "0.5.x",
+    "colors": "^1.1.2",
+    "json-stringify-pretty-compact": "^1.1.0",
+    "osmium": "^0.5.0",
+    "rollup": "^0.65.0",
+    "rollup-plugin-json": "^3.0.0",
+    "shelljs": "^0.8.0",
     "xmlbuilder": "^10.0.0"
   },
-  "dependencies": {
-    "json-stable-stringify": "1.0.1"
-  },
-  "author": "Aaron Lidman",
-  "license": "BSD-3-Clause"
+  "engines": {
+    "node": ">=4.0.0"
+  }
 }

@@ -70,5 +70,5 @@ directly will be overwritten
 - install as described above
 - [download the planet](http://planet.osm.org/pbf/)
     - `wget http://planet.osm.org/pbf/planet-latest.osm.pbf`
-- `node getRaw yourOSMfile`
-    - results will go in `topNames.json`
+- `node build_topNames <yourOSMfile>`
+    - results will go in `dist/topNames.json`
