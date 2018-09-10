@@ -36,14 +36,21 @@ function build() {
     var reader = new osmium.Reader(process.argv[2]);
     osmium.apply(reader, handler);
 
-    var out = {};
+    // filter
+    var filtered = {};
     for (var key in counts) {
         if (counts[key] > THRESHOLD) {
-            out[key] = counts[key];
+            filtered[key] = counts[key];
         }
     }
 
-    fs.writeFileSync('dist/topNames.json', stringify(out));
+    // sort
+    var sorted = {};
+    Object.keys(filtered).sort().forEach(function(k) {
+        sorted[k] = filtered[k];
+    });
+
+    fs.writeFileSync('dist/topNames.json', stringify(sorted));
     console.timeEnd(colors.green('data built'));
 }
 
@@ -59,7 +66,6 @@ function countTags(entity) {
 
         var fullName = key + '/' + tags[key] + '|' + name;
         counts[fullName] = (counts[fullName] || 0) + 1;
-        return;
     }
 }
 
