@@ -66,9 +66,13 @@ directly will be overwritten
     - `sudo ln -s /usr/bin/nodejs /usr/bin/node`
     - `npm install`
 
-### Updating topNames.json from planet
-- install as described above
+### Updating `topNames.json` from planet
+- install osmium commandline tool
+    `apt-get install osmium-tool` or `brew install osmium-tool` or similar
 - [download the planet](http://planet.osm.org/pbf/)
-    - `wget http://planet.osm.org/pbf/planet-latest.osm.pbf`
-- `node build_topNames <yourOSMfile>`
+    `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
+- prefilter the planet file to only include named items with keys we are looking for:
+    `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
+    `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,man_made,tourism -o wanted.osm.pbf`
+- run `node build_topNames wanted.osm.pbf`
     - results will go in `dist/topNames.json`
