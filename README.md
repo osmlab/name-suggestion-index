@@ -18,7 +18,7 @@ fill in `cuisine=burger` or other tags that are always associated with a specifi
 name-suggestion-index is also [used by Vespucci](http://vespucci.io/tutorials/name_suggestions/).
 
 ### Contributing
-We need help finding all the 'incorrect' names in `topNames.json` and mapping them to the
+We need help finding all the 'incorrect' names in `allNames.json` and mapping them to the
 correct equivalent so the incorrect name is not suggested. By 'correct', we only mean
 the most common usage on OSM. Check with `filter.json` to make sure we are using that
 tag combination and are not ignoring that name already. For example, "Papa John's" has
@@ -45,7 +45,7 @@ may be used. It ensures that McDonald's will not become listed as a possible res
 
 - make necessary changes to `canonical.json` or `filter.json` ("what to edit" below)
 - run `make`
-    - this will run `build.js` against `topNames.json` using the rules defined in `filter.json`
+    - this will run `build.js` against `allNames.json` using the rules defined in `filter.json`
     and `canonical.json`
     - `name-suggestions.json` and `name-suggestions.min.json` will be updated
 
@@ -66,7 +66,7 @@ directly will be overwritten
     - `sudo ln -s /usr/bin/nodejs /usr/bin/node`
     - `npm install`
 
-### Updating `topNames.json` from planet
+### Updating `allNames.json` from planet
 - install osmium commandline tool
     `apt-get install osmium-tool` or `brew install osmium-tool` or similar
 - [download the planet](http://planet.osm.org/pbf/)
@@ -74,5 +74,5 @@ directly will be overwritten
 - prefilter the planet file to only include named items with keys we are looking for:
     `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
     `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,man_made,tourism -o wanted.osm.pbf`
-- run `node build_topNames wanted.osm.pbf`
-    - results will go in `dist/topNames.json`
+- run `node build_allNames wanted.osm.pbf`
+    - results will go in `dist/allNames.json`

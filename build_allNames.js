@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+// This script will process a planet file and extract frequently occuring names.
+// It produces a file containing all the top names and tags: `dist/allNames.json`
+// Please see README.md for more info
+
 const colors = require('colors/safe');
 const fs = require('fs');
 const osmium = require('osmium');
@@ -8,7 +12,7 @@ const stringify = require('json-stringify-pretty-compact');
 
 if (process.argv.length < 3) {
     console.log('');
-    console.log('Usage:  node build_topNames <planet.osm>');
+    console.log('Usage:  node build_allNames <planet.osm>');
     console.log('');
     process.exit(1);
 }
@@ -21,11 +25,11 @@ build();
 
 
 function build() {
-    console.log('building topNames.json');
+    console.log('building allNames.json');
     console.time(colors.green('data built'));
 
     // Start clean
-    shell.rm('-f', ['dist/topNames.json']);
+    shell.rm('-f', ['dist/allNames.json']);
 
     var handler = new osmium.Handler();
     handler.options({ tagged_nodes_only: true });
@@ -50,7 +54,7 @@ function build() {
         sorted[k] = filtered[k];
     });
 
-    fs.writeFileSync('dist/topNames.json', stringify(sorted));
+    fs.writeFileSync('dist/allNames.json', stringify(sorted));
     console.timeEnd(colors.green('data built'));
 }
 
