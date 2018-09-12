@@ -76,12 +76,43 @@ function canonicalizeNames() {
     var canonical = require('./canonical.json');
     var rIndex = buildReverseIndex(canonical);
 
+// WIP: best = highest count
+    var best = {};
+    Object.keys(keep).forEach(function(k) {
+        var parts = k.split('|', 2);
+        var tag = parts[0];
+        var name = parts[1];
+        var count = keep[k];
+
+        var aka = rIndex[name];
+        var key = aka || name;
+        var found = best[key];
+
+        var matches = (found && found.matches) || [];
+        matches.push(k);
+
+        if (!found || found.count < count) {
+            best[key] = { count: count, k: k, tag: tag, name: key, matches: matches };
+        }
+    });
+
 // WIP: keep only matches property
     var canonical2 = {};
     Object.keys(canonical).forEach(function(k) {
         var matches = canonical[k].matches;
         if (!matches) return;
-        canonical2[k] = { matches: matches };
+
+        var b = best[k];
+if (!b) {
+console.error('ERROR - cant find best tag match for: ' + k);
+} else {
+        // var key = b.tag + '|' + b.name;
+        // canonical2[key] = { matches: matches };
+        var aka = b.matches.filter(el => el !== b.k);
+        if (aka.length) {
+            canonical2[b.k] = { aka: aka.sort() };
+        }
+}
     });
 
     fs.writeFileSync('config/canonical.json', JSON.stringify(sort(canonical2), null, 2));
