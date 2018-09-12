@@ -67,12 +67,12 @@ directly will be overwritten
     - `npm install`
 
 ### Updating `allNames.json` from planet
-- install osmium commandline tool
+- Install osmium commandline tool
     `apt-get install osmium-tool` or `brew install osmium-tool` or similar
-- [download the planet](http://planet.osm.org/pbf/)
+- [Download the planet](http://planet.osm.org/pbf/)
     `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
-- prefilter the planet file to only include named items with keys we are looking for:
+- Prefilter the planet file to only include named items with keys we are looking for:
     `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
     `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,man_made,tourism -o wanted.osm.pbf`
-- run `node build_allNames wanted.osm.pbf`
+- Run `node build_allNames wanted.osm.pbf`
     - results will go in `dist/allNames.json`

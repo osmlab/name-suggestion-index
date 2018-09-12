@@ -2,6 +2,11 @@
 
 // This script will process a planet file and extract frequently occuring names.
 // It produces a file containing all the top names and tags: `dist/allNames.json`
+//
+// `allNames.json` contains a dictionary object in the format:
+// "key/value|name": count
+// "amenity/cafe|Starbucks": 159
+//
 // Please see README.md for more info
 
 const colors = require('colors/safe');
