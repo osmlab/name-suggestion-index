@@ -1,15 +1,16 @@
 const colors = require('colors/safe');
+const diacritics = require('diacritics');
 const fs = require('fs');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
 const allNames = require('./dist/allNames.json');
 const filters = require('./config/filters.json');
+var canonical = require('./config/canonical.json');
 
 // all names start out in discard..
 var discard = Object.assign({}, allNames);
 var keep = {};
-var canonical = {};
 
 filterNames();
 mergeConfig();
@@ -34,7 +35,7 @@ function filterNames() {
     shell.rm('-f', ['dist/keepNames.json', 'dist/discardNames.json']);
 
     // filter by keepTags (move from discard -> keep)
-    filters.keepTags.forEach(function(s) {
+    filters.keepTags.forEach(s => {
         var re = new RegExp(s, 'i');
         for (var key in discard) {
             var tag = key.split('|', 2)[0];
@@ -46,7 +47,7 @@ function filterNames() {
     });
 
     // filter by discardNames (move from keep -> discard)
-    filters.discardNames.forEach(function(s) {
+    filters.discardNames.forEach(s => {
         var re = new RegExp(s, 'i');
         for (var key in keep) {
             var name = key.split('|', 2)[1];
@@ -68,39 +69,53 @@ function filterNames() {
 // `config/canonical.json`
 //
 function mergeConfig() {
-    console.log('merging config/canonical.json');
-    console.time(colors.green('config updated'));
-
-    // Read existing config.
-    var canonical;
-    try {
-        canonical = require('./config/canonical.json');
-    } catch(e) {
-        canonical = {};
-    }
-
     var rIndex = buildReverseIndex(canonical);
 
-    // First, warn about entries in `config/canonical.json` not matched to common keepNames.
-    var warned = false;
-    Object.keys(canonical).forEach(function(k) {
-        if (!keep[k] || rIndex[k]) {
-            if (!warned) {
-                console.warn(colors.yellow('Warning - uncommon entries in config/canonical.json:'));
-                warned = true;
-            }
-            if (rIndex[k]) {
-                console.warn(colors.yellow('  ' + k + ' matches ' + rIndex[k]));
-            } else {
-                console.warn(colors.yellow('  ' + k));
-            }
-        }
+    // Issue Warnings
+    var warnUncommon = [];
+    var warnMatched = [];
+    var warnDuplicate = [];
+    var seen = {};
+
+    Object.keys(canonical).forEach(k => {
+        if (!keep[k]) { warnUncommon.push(k); }
+        if (rIndex[k]) { warnMatched.push([rIndex[k], k]); }
+
+        var name = diacritics.remove(k.split('|', 2)[1].toLowerCase());
+        if (seen[name]) { warnDuplicate.push([k, seen[name]]); }
+        seen[name] = k;
     });
 
+    if (warnMatched.length) {
+        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` matched to other entries in `canonical.json`:'));
+        console.warn('To resolve these, remove the worse entry and add "matches" property on the better entry.');
+        warnMatched.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
+        ));
+    }
 
+    if (warnDuplicate.length) {
+        console.warn(colors.yellow('\nWarning - Potential duplicate names in `canonical.json`:'));
+        console.warn('To resolve these, remove the worse entry and add "matches" property on the better entry.');
+        warnDuplicate.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
+        ));
+    }
+
+    if (warnUncommon.length) {
+        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` not found in `keepNames.json`:'));
+        console.warn('These might be okay. It just means that the entry is not commonly found in OpenStreetMap.');
+        warnUncommon.forEach(w => console.warn(
+            colors.yellow('  "' + w + '"')
+        ));
+    }
+
+
+    console.log('\nmerging config/canonical.json');
+    console.time(colors.green('config updated'));
 
     // Create/update entries in `config/canonical.json`
-    Object.keys(keep).forEach(function(k) {
+    Object.keys(keep).forEach(k => {
         if (rIndex[k]) return;
 
         var obj = canonical[k];
@@ -134,27 +149,36 @@ function mergeConfig() {
 //
 function sort(obj) {
     var sorted = {};
-    Object.keys(obj).sort().forEach(function(k) {
-        sorted[k] = obj[k];
-    });
+    Object.keys(obj).sort().forEach(k => sorted[k] = obj[k]);
     return sorted;
 }
 
 
-
 function buildReverseIndex(obj) {
     var rIndex = {};
+    var warnCollisions = [];
+
     for (var key in obj) {
         if (obj[key].matches) {
             for (var i = obj[key].matches.length - 1; i >= 0; i--) {
                 var match = obj[key].matches[i];
-if (rIndex[match]) {
-console.error('ERROR - collision in canonical: ' + match);
-}
+                if (rIndex[match]) {
+                    warnCollisions.push([rIndex[match], match]);
+                    warnCollisions.push([key, match]);
+                }
                 rIndex[match] = key;
             }
         }
     }
+
+    if (warnCollisions.length) {
+        console.warn(colors.yellow('\nWarning - match name collisions in `canonical.json`:'));
+        console.warn('To resolve these, make sure multiple entries do not contain the same "matches" property.');
+        warnCollisions.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
+        ));
+    }
+
     return rIndex;
 }
 
