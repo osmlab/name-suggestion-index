@@ -4136,7 +4136,8 @@
     ],
     "tags": {
       "amenity": "bank",
-      "name": "국민은행"
+      "name": "국민은행",
+      "name:en": "Gungmin Bank"
     }
   },
   "amenity/bank|기업은행": {
@@ -4167,7 +4168,8 @@
     ],
     "tags": {
       "amenity": "bank",
-      "name": "신한은행"
+      "name": "신한은행",
+      "name:en": "Sinhan Bank"
     }
   },
   "amenity/bank|우리은행": {
@@ -4177,7 +4179,8 @@
     ],
     "tags": {
       "amenity": "bank",
-      "name": "우리은행"
+      "name": "우리은행",
+      "name:en": "Uri Bank"
     }
   },
   "amenity/bank|하나은행": {
@@ -4480,6 +4483,7 @@
     ],
     "tags": {
       "amenity": "cafe",
+      "cuisine": "donut",
       "name": "Dunkin' Donuts"
     }
   },
@@ -4588,14 +4592,8 @@
     "count": 78,
     "tags": {
       "amenity": "cafe",
+      "cuisine": "coffee_shop",
       "name": "McCafé"
-    }
-  },
-  "amenity/cafe|Panera Bread": {
-    "count": 112,
-    "tags": {
-      "amenity": "cafe",
-      "name": "Panera Bread"
     }
   },
   "amenity/cafe|Patisserie Valerie": {
@@ -4655,6 +4653,7 @@
     ],
     "tags": {
       "amenity": "cafe",
+      "cuisine": "coffee_shop",
       "name": "Starbucks"
     }
   },
@@ -4688,6 +4687,10 @@
   },
   "amenity/cafe|Tim Hortons": {
     "count": 2231,
+    "matches": [
+      "amenity/fast_food|Tim Hortons",
+      "amenity/restaurant|Tim Hortons"
+    ],
     "tags": {
       "amenity": "cafe",
       "name": "Tim Hortons"
@@ -4868,13 +4871,6 @@
       "name": "Старбакс"
     }
   },
-  "amenity/cafe|Столовая": {
-    "count": 1349,
-    "tags": {
-      "amenity": "cafe",
-      "name": "Столовая"
-    }
-  },
   "amenity/cafe|Теремок": {
     "count": 70,
     "tags": {
@@ -4970,7 +4966,8 @@
     "count": 79,
     "tags": {
       "amenity": "cafe",
-      "name": "カフェ・ド・クリエ"
+      "name": "カフェ・ド・クリエ",
+      "name:en": "Cafe de CRIE"
     }
   },
   "amenity/cafe|カフェ・ベローチェ": {
@@ -4998,7 +4995,8 @@
     "count": 608,
     "tags": {
       "amenity": "cafe",
-      "name": "スターバックス"
+      "name": "スターバックス",
+      "name:en": "Starbucks"
     }
   },
   "amenity/cafe|タリーズコーヒー": {
@@ -5012,7 +5010,8 @@
     "count": 503,
     "tags": {
       "amenity": "cafe",
-      "name": "ドトールコーヒーショップ"
+      "name": "ドトールコーヒーショップ",
+      "name:en": "Doutor"
     }
   },
   "amenity/cafe|星巴克": {
@@ -5343,16 +5342,6 @@
       "name": "BURGERFI"
     }
   },
-  "amenity/fast_food|Baskin-Robbins": {
-    "count": 176,
-    "matches": [
-      "amenity/fast_food|Baskin Robbins"
-    ],
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Baskin-Robbins"
-    }
-  },
   "amenity/fast_food|Bistro": {
     "count": 114,
     "tags": {
@@ -5398,10 +5387,12 @@
   "amenity/fast_food|Burger King": {
     "count": 7391,
     "matches": [
-      "amenity/fast_food|Burguer King"
+      "amenity/fast_food|Burguer King",
+      "amenity/restaurant|Burger King"
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Burger King"
     }
   },
@@ -5441,6 +5432,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Carl's Jr."
     }
   },
@@ -5458,6 +5450,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "chicken",
       "name": "Chick-fil-A"
     }
   },
@@ -5471,15 +5464,21 @@
   "amenity/fast_food|Chipotle": {
     "count": 708,
     "matches": [
-      "amenity/fast_food|Chipotle Mexican Grill"
+      "amenity/fast_food|Chipotle Mexican Grill",
+      "amenity/restaurant|Chipotle",
+      "amenity/restaurant|Chipotle Mexican Grill"
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "mexican",
       "name": "Chipotle"
     }
   },
   "amenity/fast_food|Chowking": {
     "count": 286,
+    "matches": [
+      "amenity/restaurant|Chowking"
+    ],
     "tags": {
       "amenity": "fast_food",
       "name": "Chowking"
@@ -5527,17 +5526,16 @@
       "name": "Culver's"
     }
   },
-  "amenity/fast_food|DQ": {
-    "count": 79,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "DQ"
-    }
-  },
   "amenity/fast_food|Dairy Queen": {
     "count": 1748,
+    "matches": [
+      "amenity/restaurant|Dairy Queen",
+      "amenity/ice_cream|Dairy Queen",
+      "amenity/fast_food|DQ"
+    ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "ice_cream",
       "name": "Dairy Queen"
     }
   },
@@ -5560,10 +5558,14 @@
     "matches": [
       "amenity/fast_food|Domino's",
       "amenity/fast_food|Dominos",
-      "amenity/fast_food|Dominos Pizza"
+      "amenity/fast_food|Dominos Pizza",
+      "amenity/restaurant|Domino's",
+      "amenity/restaurant|Dominos",
+      "amenity/restaurant|Dominos Pizza"
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "pizza",
       "name": "Domino's Pizza"
     }
   },
@@ -5574,6 +5576,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "donut",
       "name": "Dunkin' Donuts"
     }
   },
@@ -5685,13 +5688,6 @@
       "name": "Greenwich"
     }
   },
-  "amenity/fast_food|Greggs": {
-    "count": 190,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Greggs"
-    }
-  },
   "amenity/fast_food|Habib's": {
     "count": 120,
     "tags": {
@@ -5713,6 +5709,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Hardee's"
     }
   },
@@ -5737,6 +5734,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Hungry Jacks"
     }
   },
@@ -5775,6 +5773,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Jack in the Box"
     }
   },
@@ -5806,6 +5805,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "sandwich",
       "name": "Jimmy John's"
     }
   },
@@ -5819,10 +5819,12 @@
   "amenity/fast_food|KFC": {
     "count": 6509,
     "matches": [
-      "amenity/fast_food|Kentucky Fried Chicken"
+      "amenity/fast_food|Kentucky Fried Chicken",
+      "amenity/restaurant|KFC"
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "chicken",
       "name": "KFC"
     }
   },
@@ -5830,6 +5832,7 @@
     "count": 100,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "chicken;mexican",
       "name": "KFC/Taco Bell"
     }
   },
@@ -5915,6 +5918,9 @@
   },
   "amenity/fast_food|Mang Inasal": {
     "count": 157,
+    "matches": [
+      "amenity/restaurant|Mang Inasal"
+    ],
     "tags": {
       "amenity": "fast_food",
       "name": "Mang Inasal"
@@ -5932,10 +5938,14 @@
     "matches": [
       "amenity/fast_food|Mc Donald's",
       "amenity/fast_food|McDonalds",
-      "amenity/fast_food|McDonald’s"
+      "amenity/fast_food|McDonald’s",
+      "amenity/restaurant|Mc Donald's",
+      "amenity/restaurant|McDonalds",
+      "amenity/restaurant|McDonald’s"
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "McDonald's"
     }
   },
@@ -5951,16 +5961,6 @@
     "tags": {
       "amenity": "fast_food",
       "name": "Mr. Sub"
-    }
-  },
-  "amenity/fast_food|Nando's": {
-    "count": 93,
-    "matches": [
-      "amenity/fast_food|Nandos"
-    ],
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Nando's"
     }
   },
   "amenity/fast_food|New York Pizza": {
@@ -5993,26 +5993,26 @@
   },
   "amenity/fast_food|Panda Express": {
     "count": 730,
+    "matches": [
+      "amenity/restaurant|Panda Express"
+    ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "chinese",
       "name": "Panda Express"
-    }
-  },
-  "amenity/fast_food|Panera Bread": {
-    "count": 138,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Panera Bread"
     }
   },
   "amenity/fast_food|Papa John's": {
     "count": 783,
     "matches": [
       "amenity/fast_food|Papa John's Pizza",
-      "amenity/fast_food|Papa Johns"
+      "amenity/fast_food|Papa Johns",
+      "amenity/restaurant|Papa John's",
+      "amenity/restaurant|Papa John's Pizza"
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "pizza",
       "name": "Papa John's"
     }
   },
@@ -6037,17 +6037,11 @@
       "name": "Pita Pit"
     }
   },
-  "amenity/fast_food|Pizza Express": {
-    "count": 120,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Pizza Express"
-    }
-  },
   "amenity/fast_food|Pizza Hut": {
     "count": 1660,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "pizza",
       "name": "Pizza Hut"
     }
   },
@@ -6100,6 +6094,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "chicken",
       "name": "Popeye's"
     }
   },
@@ -6206,6 +6201,7 @@
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Sonic"
     }
   },
@@ -6213,6 +6209,7 @@
     "count": 64,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "coffee_shop",
       "name": "Starbucks"
     }
   },
@@ -6220,6 +6217,7 @@
     "count": 59,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Steak 'n Shake"
     }
   },
@@ -6243,8 +6241,12 @@
   },
   "amenity/fast_food|Taco Bell": {
     "count": 3406,
+    "matches": [
+      "amenity/restaurant|Taco Bell"
+    ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "mexican",
       "name": "Taco Bell"
     }
   },
@@ -6252,6 +6254,7 @@
     "count": 70,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "mexican",
       "name": "Taco Bueno"
     }
   },
@@ -6259,6 +6262,7 @@
     "count": 63,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "mexican",
       "name": "Taco Cabana"
     }
   },
@@ -6266,6 +6270,7 @@
     "count": 62,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "mexican",
       "name": "Taco Del Mar"
     }
   },
@@ -6273,6 +6278,7 @@
     "count": 171,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "mexican",
       "name": "Taco John's"
     }
   },
@@ -6280,20 +6286,15 @@
     "count": 188,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "mexican",
       "name": "Taco Time"
-    }
-  },
-  "amenity/fast_food|Tacos": {
-    "count": 92,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Tacos"
     }
   },
   "amenity/fast_food|Telepizza": {
     "count": 368,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "pizza",
       "name": "Telepizza"
     }
   },
@@ -6308,14 +6309,8 @@
     "count": 66,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "pizza",
       "name": "The Pizza Company"
-    }
-  },
-  "amenity/fast_food|Tim Hortons": {
-    "count": 554,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Tim Hortons"
     }
   },
   "amenity/fast_food|Waffle House": {
@@ -6328,24 +6323,21 @@
   "amenity/fast_food|Wendy's": {
     "count": 3471,
     "matches": [
-      "amenity/fast_food|Wendys"
+      "amenity/fast_food|Wendys",
+      "amenity/restaurant|Wendy's",
+      "amenity/fast_food|Wendy’s"
     ],
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Wendy's"
-    }
-  },
-  "amenity/fast_food|Wendy’s": {
-    "count": 54,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Wendy’s"
     }
   },
   "amenity/fast_food|Whataburger": {
     "count": 823,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Whataburger"
     }
   },
@@ -6353,6 +6345,7 @@
     "count": 190,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "White Castle"
     }
   },
@@ -6367,6 +6360,7 @@
     "count": 174,
     "tags": {
       "amenity": "fast_food",
+      "cuisine": "burger",
       "name": "Wimpy"
     }
   },
@@ -6409,7 +6403,8 @@
     "count": 518,
     "tags": {
       "amenity": "fast_food",
-      "name": "Макдоналдс"
+      "name": "Макдоналдс",
+      "name:en": "McDonald's"
     }
   },
   "amenity/fast_food|Робин Сдобин": {
@@ -6431,13 +6426,6 @@
     "tags": {
       "amenity": "fast_food",
       "name": "Стардог!s"
-    }
-  },
-  "amenity/fast_food|Столовая": {
-    "count": 636,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Столовая"
     }
   },
   "amenity/fast_food|Суши Wok": {
@@ -6500,7 +6488,8 @@
     "count": 660,
     "tags": {
       "amenity": "fast_food",
-      "name": "すき家"
+      "name": "すき家",
+      "name:en": "Sukiya"
     }
   },
   "amenity/fast_food|なか卯": {
@@ -6542,7 +6531,9 @@
     "count": 371,
     "tags": {
       "amenity": "fast_food",
-      "name": "ケンタッキーフライドチキン"
+      "cuisine": "chicken",
+      "name": "ケンタッキーフライドチキン",
+      "name:en": "KFC"
     }
   },
   "amenity/fast_food|サブウェイ": {
@@ -6570,7 +6561,9 @@
     "count": 1445,
     "tags": {
       "amenity": "fast_food",
-      "name": "マクドナルド"
+      "cuisine": "burger",
+      "name": "マクドナルド",
+      "name:en": "McDonald's"
     }
   },
   "amenity/fast_food|ミスタードーナツ": {
@@ -6584,7 +6577,8 @@
     "count": 583,
     "tags": {
       "amenity": "fast_food",
-      "name": "モスバーガー"
+      "name": "モスバーガー",
+      "name:en": "Mos Burger"
     }
   },
   "amenity/fast_food|ロッテリア": {
@@ -6633,7 +6627,8 @@
     "count": 613,
     "tags": {
       "amenity": "fast_food",
-      "name": "松屋"
+      "name": "松屋",
+      "name:en": "Matsuya"
     }
   },
   "amenity/fast_food|肯德基": {
@@ -7818,7 +7813,9 @@
     "count": 160,
     "tags": {
       "amenity": "fuel",
-      "name": "Oilibya"
+      "brand": "Oilibya",
+      "name": "Oilibya",
+      "name:ar": "أويليبيا"
     }
   },
   "amenity/fuel|Opet": {
@@ -8337,6 +8334,7 @@
     "count": 127,
     "tags": {
       "amenity": "fuel",
+      "cuisine": "burger",
       "name": "Sonic"
     }
   },
@@ -9019,7 +9017,8 @@
     "count": 839,
     "tags": {
       "amenity": "fuel",
-      "name": "出光"
+      "name": "出光",
+      "name:en": "Idemitsu"
     }
   },
   "amenity/fuel|台灣中油": {
@@ -9046,10 +9045,13 @@
   "amenity/ice_cream|Baskin-Robbins": {
     "count": 96,
     "matches": [
+      "amenity/fast_food|Baskin Robbins",
+      "amenity/fast_food|Baskin-Robbins",
       "amenity/ice_cream|Baskin Robbins"
     ],
     "tags": {
       "amenity": "ice_cream",
+      "cuisine": "ice_cream",
       "name": "Baskin-Robbins"
     }
   },
@@ -9065,13 +9067,6 @@
     "tags": {
       "amenity": "ice_cream",
       "name": "Cold Stone Creamery"
-    }
-  },
-  "amenity/ice_cream|Dairy Queen": {
-    "count": 79,
-    "tags": {
-      "amenity": "ice_cream",
-      "name": "Dairy Queen"
     }
   },
   "amenity/ice_cream|Freddo": {
@@ -9281,7 +9276,8 @@
     "matches": [
       "amenity/pharmacy|CVS Pharmacy",
       "amenity/pharmacy|CVS/Pharmacy",
-      "amenity/pharmacy|CVS/pharmacy"
+      "amenity/pharmacy|CVS/pharmacy",
+      "shop/convenience|CVS"
     ],
     "tags": {
       "amenity": "pharmacy",
@@ -10091,7 +10087,8 @@
   "amenity/pharmacy|Walgreens": {
     "count": 3464,
     "matches": [
-      "amenity/pharmacy|Walgreen's"
+      "amenity/pharmacy|Walgreen's",
+      "shop/convenience|Walgreens"
     ],
     "tags": {
       "amenity": "pharmacy",
@@ -11692,13 +11689,6 @@
       "name": "Buffalo Wild Wings"
     }
   },
-  "amenity/restaurant|Burger King": {
-    "count": 391,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Burger King"
-    }
-  },
   "amenity/restaurant|Bären": {
     "count": 78,
     "tags": {
@@ -11801,6 +11791,7 @@
     "count": 59,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "chicken",
       "name": "Chick-fil-A"
     }
   },
@@ -11870,28 +11861,11 @@
       "name": "China Wok"
     }
   },
-  "amenity/restaurant|Chipotle": {
-    "count": 270,
-    "matches": [
-      "amenity/restaurant|Chipotle Mexican Grill"
-    ],
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Chipotle"
-    }
-  },
   "amenity/restaurant|Chiquito": {
     "count": 61,
     "tags": {
       "amenity": "restaurant",
       "name": "Chiquito"
-    }
-  },
-  "amenity/restaurant|Chowking": {
-    "count": 65,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Chowking"
     }
   },
   "amenity/restaurant|Chuck E. Cheese's": {
@@ -11964,13 +11938,6 @@
       "name": "Da Vinci"
     }
   },
-  "amenity/restaurant|Dairy Queen": {
-    "count": 212,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Dairy Queen"
-    }
-  },
   "amenity/restaurant|Delphi": {
     "count": 106,
     "tags": {
@@ -12015,11 +11982,6 @@
   },
   "amenity/restaurant|Domino's Pizza": {
     "count": 342,
-    "matches": [
-      "amenity/restaurant|Domino's",
-      "amenity/restaurant|Dominos",
-      "amenity/restaurant|Dominos Pizza"
-    ],
     "tags": {
       "amenity": "restaurant",
       "name": "Domino's Pizza"
@@ -12036,6 +11998,7 @@
     "count": 116,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "donut",
       "name": "Dunkin' Donuts"
     }
   },
@@ -12239,6 +12202,7 @@
     "count": 70,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "burger",
       "name": "Hardee's"
     }
   },
@@ -12358,6 +12322,7 @@
     "count": 166,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "sandwich",
       "name": "Jimmy John's"
     }
   },
@@ -12373,13 +12338,6 @@
     "tags": {
       "amenity": "restaurant",
       "name": "Jägerhof"
-    }
-  },
-  "amenity/restaurant|KFC": {
-    "count": 441,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "KFC"
     }
   },
   "amenity/restaurant|Kantine": {
@@ -12798,13 +12756,6 @@
       "name": "Mandarin"
     }
   },
-  "amenity/restaurant|Mang Inasal": {
-    "count": 123,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Mang Inasal"
-    }
-  },
   "amenity/restaurant|Marco Polo": {
     "count": 68,
     "tags": {
@@ -12835,9 +12786,6 @@
   },
   "amenity/restaurant|McDonald's": {
     "count": 402,
-    "matches": [
-      "amenity/restaurant|McDonalds"
-    ],
     "tags": {
       "amenity": "restaurant",
       "name": "McDonald's"
@@ -12902,7 +12850,9 @@
   "amenity/restaurant|Nando's": {
     "count": 398,
     "matches": [
-      "amenity/restaurant|Nandos"
+      "amenity/restaurant|Nandos",
+      "amenity/fast_food|Nando's",
+      "amenity/fast_food|Nandos"
     ],
     "tags": {
       "amenity": "restaurant",
@@ -13021,15 +12971,12 @@
       "name": "Panda"
     }
   },
-  "amenity/restaurant|Panda Express": {
-    "count": 202,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Panda Express"
-    }
-  },
   "amenity/restaurant|Panera Bread": {
     "count": 746,
+    "matches": [
+      "amenity/fast_food|Panera Bread",
+      "amenity/cafe|Panera Bread"
+    ],
     "tags": {
       "amenity": "restaurant",
       "name": "Panera Bread"
@@ -13040,16 +12987,6 @@
     "tags": {
       "amenity": "restaurant",
       "name": "Panorama"
-    }
-  },
-  "amenity/restaurant|Papa John's": {
-    "count": 157,
-    "matches": [
-      "amenity/restaurant|Papa John's Pizza"
-    ],
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Papa John's"
     }
   },
   "amenity/restaurant|Papa Murphy's": {
@@ -13103,8 +13040,12 @@
   },
   "amenity/restaurant|Pizza Express": {
     "count": 479,
+    "matches": [
+      "amenity/fast_food|Pizza Express"
+    ],
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizza Express"
     }
   },
@@ -13112,6 +13053,7 @@
     "count": 67,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizza Factory"
     }
   },
@@ -13119,6 +13061,7 @@
     "count": 73,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizza House"
     }
   },
@@ -13126,6 +13069,7 @@
     "count": 3120,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizza Hut"
     }
   },
@@ -13133,6 +13077,7 @@
     "count": 98,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizza Ranch"
     }
   },
@@ -13140,6 +13085,7 @@
     "count": 52,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizzaria"
     }
   },
@@ -13147,6 +13093,7 @@
     "count": 79,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizzeria Italia"
     }
   },
@@ -13154,6 +13101,7 @@
     "count": 58,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizzeria Milano"
     }
   },
@@ -13161,6 +13109,7 @@
     "count": 58,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizzeria Napoli"
     }
   },
@@ -13168,6 +13117,7 @@
     "count": 89,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizzeria Roma"
     }
   },
@@ -13175,6 +13125,7 @@
     "count": 65,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "pizza",
       "name": "Pizzeria Venezia"
     }
   },
@@ -13406,6 +13357,7 @@
     "count": 97,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "burger",
       "name": "Sonic"
     }
   },
@@ -13441,6 +13393,7 @@
     "count": 74,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "coffee_shop",
       "name": "Starbucks"
     }
   },
@@ -13448,6 +13401,7 @@
     "count": 139,
     "tags": {
       "amenity": "restaurant",
+      "cuisine": "burger",
       "name": "Steak 'n Shake"
     }
   },
@@ -13495,13 +13449,6 @@
     "tags": {
       "amenity": "restaurant",
       "name": "TGI Friday's"
-    }
-  },
-  "amenity/restaurant|Taco Bell": {
-    "count": 109,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Taco Bell"
     }
   },
   "amenity/restaurant|Taj Mahal": {
@@ -13558,13 +13505,6 @@
     "tags": {
       "amenity": "restaurant",
       "name": "The Kitchen"
-    }
-  },
-  "amenity/restaurant|Tim Hortons": {
-    "count": 84,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Tim Hortons"
     }
   },
   "amenity/restaurant|Toby Carvery": {
@@ -13670,13 +13610,6 @@
     "tags": {
       "amenity": "restaurant",
       "name": "Wasabi"
-    }
-  },
-  "amenity/restaurant|Wendy's": {
-    "count": 213,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Wendy's"
     }
   },
   "amenity/restaurant|White Spot": {
@@ -13791,13 +13724,6 @@
       "name": "Планета Суши"
     }
   },
-  "amenity/restaurant|Столовая": {
-    "count": 158,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Столовая"
-    }
-  },
   "amenity/restaurant|Тануки": {
     "count": 61,
     "tags": {
@@ -13837,7 +13763,8 @@
     "count": 90,
     "tags": {
       "amenity": "restaurant",
-      "name": "すき家"
+      "name": "すき家",
+      "name:en": "Sukiya"
     }
   },
   "amenity/restaurant|はなまるうどん": {
@@ -13872,7 +13799,8 @@
     "count": 603,
     "tags": {
       "amenity": "restaurant",
-      "name": "ガスト"
+      "name": "ガスト",
+      "name:en": "Gusto"
     }
   },
   "amenity/restaurant|ココス": {
@@ -14797,13 +14725,6 @@
       "shop": "bakery"
     }
   },
-  "shop/bakery|Bäckerei Müller": {
-    "count": 76,
-    "tags": {
-      "name": "Bäckerei Müller",
-      "shop": "bakery"
-    }
-  },
   "shop/bakery|Bäckerei Schmidt": {
     "count": 114,
     "tags": {
@@ -14863,6 +14784,7 @@
   "shop/bakery|Dunkin' Donuts": {
     "count": 52,
     "tags": {
+      "cuisine": "donut",
       "name": "Dunkin' Donuts",
       "shop": "bakery"
     }
@@ -14897,6 +14819,9 @@
   },
   "shop/bakery|Greggs": {
     "count": 728,
+    "matches": [
+      "amenity/fast_food|Greggs"
+    ],
     "tags": {
       "name": "Greggs",
       "shop": "bakery"
@@ -15009,6 +14934,9 @@
   },
   "shop/bakery|Müller": {
     "count": 83,
+    "matches": [
+      "shop/bakery|Bäckerei Müller"
+    ],
     "tags": {
       "name": "Müller",
       "shop": "bakery"
@@ -15304,13 +15232,6 @@
     "count": 235,
     "tags": {
       "name": "Sally Beauty Supply",
-      "shop": "beauty"
-    }
-  },
-  "shop/beauty|The Body Shop": {
-    "count": 130,
-    "tags": {
-      "name": "The Body Shop",
       "shop": "beauty"
     }
   },
@@ -15876,6 +15797,8 @@
   "shop/car_parts|AutoZone": {
     "count": 729,
     "matches": [
+      "shop/car_repair|Auto Zone",
+      "shop/car_repair|Autozone",
       "shop/car_parts|Auto Zone",
       "shop/car_parts|Autozone"
     ],
@@ -16022,10 +15945,6 @@
   },
   "shop/car_repair|AutoZone": {
     "count": 231,
-    "matches": [
-      "shop/car_repair|Auto Zone",
-      "shop/car_repair|Autozone"
-    ],
     "tags": {
       "name": "AutoZone",
       "shop": "car_repair"
@@ -16878,13 +16797,6 @@
       "shop": "chemist"
     }
   },
-  "shop/chemist|The Body Shop": {
-    "count": 63,
-    "tags": {
-      "name": "The Body Shop",
-      "shop": "chemist"
-    }
-  },
   "shop/chemist|Tigotà": {
     "count": 51,
     "tags": {
@@ -17722,13 +17634,6 @@
     "count": 306,
     "tags": {
       "name": "Kiabi",
-      "shop": "clothes"
-    }
-  },
-  "shop/clothes|Kohl's": {
-    "count": 135,
-    "tags": {
-      "name": "Kohl's",
       "shop": "clothes"
     }
   },
@@ -18703,6 +18608,7 @@
       "shop/coffee|Starbucks Coffee"
     ],
     "tags": {
+      "cuisine": "coffee_shop",
       "name": "Starbucks",
       "shop": "coffee"
     }
@@ -19033,13 +18939,6 @@
     "count": 415,
     "tags": {
       "name": "CU",
-      "shop": "convenience"
-    }
-  },
-  "shop/convenience|CVS": {
-    "count": 147,
-    "tags": {
-      "name": "CVS",
       "shop": "convenience"
     }
   },
@@ -20275,13 +20174,6 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|Walgreens": {
-    "count": 179,
-    "tags": {
-      "name": "Walgreens",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|Wawa": {
     "count": 375,
     "tags": {
@@ -20354,15 +20246,11 @@
   },
   "shop/convenience|Żabka": {
     "count": 2189,
+    "matches": [
+      "shop/convenience|Žabka"
+    ],
     "tags": {
       "name": "Żabka",
-      "shop": "convenience"
-    }
-  },
-  "shop/convenience|Žabka": {
-    "count": 69,
-    "tags": {
-      "name": "Žabka",
       "shop": "convenience"
     }
   },
@@ -21174,6 +21062,7 @@
     "count": 790,
     "tags": {
       "name": "サンクス",
+      "name:en": "Sunkus",
       "shop": "convenience"
     }
   },
@@ -21181,6 +21070,7 @@
     "count": 951,
     "tags": {
       "name": "サークルK",
+      "name:en": "Circle K",
       "shop": "convenience"
     }
   },
@@ -21205,6 +21095,7 @@
     ],
     "tags": {
       "name": "セブン-イレブン",
+      "name:en": "7-Eleven",
       "shop": "convenience"
     }
   },
@@ -21233,6 +21124,7 @@
     "count": 5718,
     "tags": {
       "name": "ファミリーマート",
+      "name:en": "FamilyMart",
       "shop": "convenience"
     }
   },
@@ -21247,6 +21139,7 @@
     "count": 869,
     "tags": {
       "name": "ミニストップ",
+      "name:en": "MINISTOP",
       "shop": "convenience"
     }
   },
@@ -21261,6 +21154,7 @@
     "count": 5088,
     "tags": {
       "name": "ローソン",
+      "name:en": "Lawson",
       "shop": "convenience"
     }
   },
@@ -21385,6 +21279,10 @@
   },
   "shop/cosmetics|The Body Shop": {
     "count": 165,
+    "matches": [
+      "shop/beauty|The Body Shop",
+      "shop/chemist|The Body Shop"
+    ],
     "tags": {
       "name": "The Body Shop",
       "shop": "cosmetics"
@@ -21647,6 +21545,9 @@
   },
   "shop/department_store|Kohl's": {
     "count": 456,
+    "matches": [
+      "shop/clothes|Kohl's"
+    ],
     "tags": {
       "name": "Kohl's",
       "shop": "department_store"
@@ -21724,6 +21625,9 @@
   },
   "shop/department_store|Target": {
     "count": 1253,
+    "matches": [
+      "shop/supermarket|Target"
+    ],
     "tags": {
       "name": "Target",
       "shop": "department_store"
@@ -21928,7 +21832,8 @@
   "shop/doityourself|Home Depot": {
     "count": 1173,
     "matches": [
-      "shop/doityourself|The Home Depot"
+      "shop/doityourself|The Home Depot",
+      "shop/hardware|Home Depot"
     ],
     "tags": {
       "name": "Home Depot",
@@ -22230,6 +22135,9 @@
   },
   "shop/electronics|Best Buy": {
     "count": 783,
+    "matches": [
+      "shop/hifi|Best Buy"
+    ],
     "tags": {
       "name": "Best Buy",
       "shop": "electronics"
@@ -23273,13 +23181,6 @@
       "shop": "hardware"
     }
   },
-  "shop/hardware|Home Depot": {
-    "count": 155,
-    "tags": {
-      "name": "Home Depot",
-      "shop": "hardware"
-    }
-  },
   "shop/hardware|Home Hardware": {
     "count": 123,
     "tags": {
@@ -23396,13 +23297,6 @@
     "count": 64,
     "tags": {
       "name": "Bang & Olufsen",
-      "shop": "hifi"
-    }
-  },
-  "shop/hifi|Best Buy": {
-    "count": 55,
-    "tags": {
-      "name": "Best Buy",
       "shop": "hifi"
     }
   },
@@ -27669,13 +27563,6 @@
     "count": 53,
     "tags": {
       "name": "Superspar",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Target": {
-    "count": 202,
-    "tags": {
-      "name": "Target",
       "shop": "supermarket"
     }
   },
