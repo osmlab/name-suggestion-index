@@ -9,9 +9,9 @@ const filters = require('./config/filters.json');
 // all names start out in discard..
 var discard = Object.assign({}, allNames);
 var keep = {};
+var canonical = {};
 
 filterNames();
-canonicalizeNames();
 mergeConfig();
 
 
@@ -64,129 +64,66 @@ function filterNames() {
 
 
 //
-// `canonicalizeNames()`
-// This is just a fancy way of saying - pick the single best name out of the
-// many we might find in the keepNames dataset
-//
-function canonicalizeNames() {
-    console.log('canonicalizing names');
-    console.time(colors.green('names canonicalized'));
-
-// WIP: first we need to make a new canonical.json config file.
-    var canonical = require('./canonical.json');
-    var rIndex = buildReverseIndex(canonical);
-
-// WIP: best = highest count
-    var best = {};
-    Object.keys(keep).forEach(function(k) {
-        var parts = k.split('|', 2);
-        var tag = parts[0];
-        var name = parts[1];
-        var count = keep[k];
-
-        var aka = rIndex[name];
-        var key = aka || name;
-        var found = best[key];
-
-        var matches = (found && found.matches) || [];
-        matches.push(k);
-
-        if (!found || found.count < count) {
-            best[key] = { count: count, k: k, tag: tag, name: key, matches: matches };
-        }
-    });
-
-// WIP: keep only matches property
-    var canonical2 = {};
-    Object.keys(canonical).forEach(function(k) {
-        var matches = canonical[k].matches;
-        if (!matches) return;
-
-        var b = best[k];
-if (!b) {
-console.error('ERROR - cant find best tag match for: ' + k);
-} else {
-        // var key = b.tag + '|' + b.name;
-        // canonical2[key] = { matches: matches };
-        var aka = b.matches.filter(el => el !== b.k);
-        if (aka.length) {
-            canonical2[b.k] = { aka: aka.sort() };
-        }
-}
-    });
-
-    fs.writeFileSync('config/canonical.json', JSON.stringify(sort(canonical2), null, 2));
-// WIP: end
-
-    console.timeEnd(colors.green('names canonicalized'));
-
-
-    function buildReverseIndex(canonical) {
-        var rIndex = {};
-        for (var key in canonical) {
-            if (canonical[key].matches) {
-                for (var i = canonical[key].matches.length - 1; i >= 0; i--) {
-                    var match = canonical[key].matches[i];
-if (rIndex[match]) {
-console.error('ERROR - collision in canonical: ' + match);
-}
-                    rIndex[match] = key;
-                }
-            }
-        }
-        return rIndex;
-    }
-}
-
-
-//
 // mergeConfig() takes the names we are keeping and update
-// `config/names.json`
+// `config/canonical.json`
 //
 function mergeConfig() {
-    console.log('merging config/names.json');
+    console.log('merging config/canonical.json');
     console.time(colors.green('config updated'));
 
     // Read existing config.
-    var configNames;
+    var canonical;
     try {
-        configNames = require('./config/names.json');
+        canonical = require('./config/canonical.json');
     } catch(e) {
-        configNames = {};
+        canonical = {};
     }
 
-    // First, warn if deprecated entries exist in `config/names.json`.
-    // They can be removed because they no longer exist in `keepNames.json`.
+    var rIndex = buildReverseIndex(canonical);
+
+    // First, warn about entries in `config/canonical.json` not matched to common keepNames.
     var warned = false;
-    Object.keys(configNames).forEach(function(k) {
-        if (!keep[k]) {
+    Object.keys(canonical).forEach(function(k) {
+        if (!keep[k] || rIndex[k]) {
             if (!warned) {
-                console.warn(colors.yellow('Warning - Deprecated entries in config/names.json:'));
+                console.warn(colors.yellow('Warning - uncommon entries in config/canonical.json:'));
                 warned = true;
             }
-            console.warn(colors.yellow('  ' + k));
+            if (rIndex[k]) {
+                console.warn(colors.yellow('  ' + k + ' matches ' + rIndex[k]));
+            } else {
+                console.warn(colors.yellow('  ' + k));
+            }
         }
     });
 
-    // Create or update entries in `config/names.json`
-    Object.keys(keep).forEach(function(k) {
-        var parts = k.split('|', 2);
-        var tag = parts[0].split('/', 2);
-        var key = tag[0];
-        var value = tag[1];
-        var name = parts[1];
 
-        var obj = configNames[k];
+
+    // Create/update entries in `config/canonical.json`
+    Object.keys(keep).forEach(function(k) {
+        if (rIndex[k]) return;
+
+        var obj = canonical[k];
+
         if (!obj) {
+            var parts = k.split('|', 2);
+            var tag = parts[0].split('/', 2);
+            var key = tag[0];
+            var value = tag[1];
+            var name = parts[1];
+
             obj = { count: 0, tags: {} };
             obj.tags.name = name;
             obj.tags[key] = value;
         }
+
         obj.count = keep[k];
-        configNames[k] = obj;
+        obj.tags = sort(obj.tags);
+
+        canonical[k] = sort(obj);
     });
 
-    fs.writeFileSync('config/names.json', JSON.stringify(sort(configNames), null, 2));
+    fs.writeFileSync('config/canonical.json', JSON.stringify(sort(canonical), null, 2));
     console.timeEnd(colors.green('config updated'));
 }
 
@@ -201,5 +138,23 @@ function sort(obj) {
         sorted[k] = obj[k];
     });
     return sorted;
+}
+
+
+
+function buildReverseIndex(obj) {
+    var rIndex = {};
+    for (var key in obj) {
+        if (obj[key].matches) {
+            for (var i = obj[key].matches.length - 1; i >= 0; i--) {
+                var match = obj[key].matches[i];
+if (rIndex[match]) {
+console.error('ERROR - collision in canonical: ' + match);
+}
+                rIndex[match] = key;
+            }
+        }
+    }
+    return rIndex;
 }
 
