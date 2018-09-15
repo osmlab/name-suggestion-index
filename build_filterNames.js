@@ -80,21 +80,35 @@ function mergeConfig() {
     Object.keys(canonical).forEach(k => {
         if (!keep[k]) {
             canonical[k].count = 0;
-            warnUncommon.push(k);
+            if (!canonical[k].nocount) {   // suppress warning?
+                warnUncommon.push(k);
+            }
         }
+
         if (rIndex[k]) {
             warnMatched.push([rIndex[k], k]);
         }
+
         var name = diacritics.remove(k.split('|', 2)[1].toLowerCase());
-        if (seen[name]) {
-            warnDuplicate.push([k, seen[name]]);
+        var other = seen[name];
+        if (other) {
+            // suppress warning?
+            var suppress = false;
+            if (canonical[other].nomatch && canonical[other].nomatch.indexOf(k) !== -1) {
+                suppress = true;
+            } else if (canonical[k].nomatch && canonical[k].nomatch.indexOf(other) !== -1) {
+                suppress = true;
+            }
+            if (!suppress) {
+                warnDuplicate.push([k, other]);
+            }
         }
         seen[name] = k;
     });
 
     if (warnMatched.length) {
         console.warn(colors.yellow('\nWarning - Entries in `canonical.json` matched to other entries in `canonical.json`:'));
-        console.warn('To resolve these, remove the worse entry and add "matches" property on the better entry.');
+        console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
         warnMatched.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
         ));
@@ -102,7 +116,8 @@ function mergeConfig() {
 
     if (warnDuplicate.length) {
         console.warn(colors.yellow('\nWarning - Potential duplicate names in `canonical.json`:'));
-        console.warn('To resolve these, remove the worse entry and add "matches" property on the better entry.');
+        console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
+        console.warn('To suppress this warning for entries that really are different, add a "nomatch" property on both entries.');
         warnDuplicate.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
         ));
@@ -111,6 +126,7 @@ function mergeConfig() {
     if (warnUncommon.length) {
         console.warn(colors.yellow('\nWarning - Entries in `canonical.json` not found in `keepNames.json`:'));
         console.warn('These might be okay. It just means that the entry is not commonly found in OpenStreetMap.');
+        console.warn('To suppress this warning, add a "nocount" property to the entry.');
         warnUncommon.forEach(w => console.warn(
             colors.yellow('  "' + w + '"')
         ));
@@ -165,9 +181,9 @@ function buildReverseIndex(obj) {
     var warnCollisions = [];
 
     for (var key in obj) {
-        if (obj[key].matches) {
-            for (var i = obj[key].matches.length - 1; i >= 0; i--) {
-                var match = obj[key].matches[i];
+        if (obj[key].match) {
+            for (var i = obj[key].match.length - 1; i >= 0; i--) {
+                var match = obj[key].match[i];
                 if (rIndex[match]) {
                     warnCollisions.push([rIndex[match], match]);
                     warnCollisions.push([key, match]);
@@ -179,9 +195,9 @@ function buildReverseIndex(obj) {
 
     if (warnCollisions.length) {
         console.warn(colors.yellow('\nWarning - match name collisions in `canonical.json`:'));
-        console.warn('To resolve these, make sure multiple entries do not contain the same "matches" property.');
+        console.warn('To resolve these, make sure multiple entries do not contain the same "match" property.');
         warnCollisions.forEach(w => console.warn(
-            colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
+            colors.yellow('  "' + w[0] + '"') + ' -> match? -> ' + colors.yellow('"' + w[1] + '"')
         ));
     }
 
