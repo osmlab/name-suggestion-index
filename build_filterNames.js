@@ -78,11 +78,17 @@ function mergeConfig() {
     var seen = {};
 
     Object.keys(canonical).forEach(k => {
-        if (!keep[k]) { warnUncommon.push(k); }
-        if (rIndex[k]) { warnMatched.push([rIndex[k], k]); }
-
+        if (!keep[k]) {
+            canonical[k].count = 0;
+            warnUncommon.push(k);
+        }
+        if (rIndex[k]) {
+            warnMatched.push([rIndex[k], k]);
+        }
         var name = diacritics.remove(k.split('|', 2)[1].toLowerCase());
-        if (seen[name]) { warnDuplicate.push([k, seen[name]]); }
+        if (seen[name]) {
+            warnDuplicate.push([k, seen[name]]);
+        }
         seen[name] = k;
     });
 
