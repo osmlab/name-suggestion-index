@@ -78,17 +78,20 @@ function mergeConfig() {
     var seen = {};
 
     Object.keys(canonical).forEach(k => {
+        // Warn if the item is uncommon (i.e. not found in keepNames)
         if (!keep[k]) {
-            canonical[k].count = 0;
+            delete canonical[k].count;
             if (!canonical[k].nocount) {   // suppress warning?
                 warnUncommon.push(k);
             }
         }
 
+        // Warn if the item is found in rIndex (i.e. some other item matches it)
         if (rIndex[k]) {
             warnMatched.push([rIndex[k], k]);
         }
 
+        // Warn if the item appears to be a duplicate (i.e. same name)
         var name = diacritics.remove(k.split('|', 2)[1].toLowerCase());
         var other = seen[name];
         if (other) {
