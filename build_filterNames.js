@@ -171,13 +171,13 @@ function mergeConfig() {
 
 
 //
-// Returns an object with sorted keys.
-// (this is useful for file diffing)
+// Returns an object with sorted keys and sorted values.
+// (This is useful for file diffing)
 //
 function sort(obj) {
     var sorted = {};
     Object.keys(obj).sort().forEach(k => {
-        sorted[k] = obj[k];
+        sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
     });
     return sorted;
 }
