@@ -7976,19 +7976,21 @@
       "name": "Clark"
     }
   },
-  "amenity/fuel|Co-Op": {
-    "count": 80,
-    "tags": {
-      "amenity": "fuel",
-      "brand": "Co-Op",
-      "name": "Co-Op"
-    }
-  },
   "amenity/fuel|Co-op": {
     "count": 284,
+    "match": [
+      "amenity/fuel|Co-Op",
+      "amenity/fuel|Coop"
+    ],
+    "nomatch": [
+      "shop/supermarket|Co-op",
+      "shop/convenience|Co-op"
+    ],
     "tags": {
       "amenity": "fuel",
-      "brand": "Co-op",
+      "brand": "Federated Co-operatives",
+      "brand:wikidata": "Q5440676",
+      "brand:wikipedia": "en:Federated Co-operatives",
       "name": "Co-op"
     }
   },
@@ -8006,14 +8008,6 @@
       "amenity": "fuel",
       "brand": "Conoco",
       "name": "Conoco"
-    }
-  },
-  "amenity/fuel|Coop": {
-    "count": 78,
-    "tags": {
-      "amenity": "fuel",
-      "brand": "Coop",
-      "name": "Coop"
     }
   },
   "amenity/fuel|Copec": {
@@ -21578,14 +21572,6 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|COOP": {
-    "count": 492,
-    "tags": {
-      "brand": "COOP",
-      "name": "COOP",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|COOP Jednota": {
     "count": 409,
     "tags": {
@@ -21702,18 +21688,21 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|Co-Op": {
-    "count": 71,
-    "tags": {
-      "brand": "Co-Op",
-      "name": "Co-Op",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|Co-op": {
     "count": 233,
+    "match": [
+      "shop/convenience|Co-Op",
+      "shop/convenience|Coop",
+      "shop/convenience|COOP"
+    ],
+    "nomatch": [
+      "amenity/fuel|Co-op",
+      "shop/supermarket|Co-op"
+    ],
     "tags": {
-      "brand": "Co-op",
+      "brand": "Federated Co-operatives",
+      "brand:wikidata": "Q5440676",
+      "brand:wikipedia": "en:Federated Co-operatives",
       "name": "Co-op",
       "shop": "convenience"
     }
@@ -21731,14 +21720,6 @@
     "tags": {
       "brand": "Coles Express",
       "name": "Coles Express",
-      "shop": "convenience"
-    }
-  },
-  "shop/convenience|Coop": {
-    "count": 546,
-    "tags": {
-      "brand": "Coop",
-      "name": "Coop",
       "shop": "convenience"
     }
   },
@@ -22782,8 +22763,13 @@
   },
   "shop/convenience|The Co-operative Food": {
     "count": 323,
+    "nomatch": [
+      "shop/supermarket|The Co-operative Food"
+    ],
     "tags": {
       "brand": "The Co-operative Food",
+      "brand:wikidata": "Q3277439",
+      "brand:wikipedia": "en:Co-op Food",
       "name": "The Co-operative Food",
       "shop": "convenience"
     }
@@ -25592,6 +25578,8 @@
     "count": 108,
     "tags": {
       "brand": "The Co-operative Funeralcare",
+      "brand:wikidata": "Q7726521",
+      "brand:wikipedia": "en:Co-op Funeralcare",
       "name": "The Co-operative Funeralcare",
       "shop": "funeral_directors"
     }
@@ -29119,14 +29107,6 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|COOP": {
-    "count": 269,
-    "tags": {
-      "brand": "COOP",
-      "name": "COOP",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|COOP Jednota": {
     "count": 198,
     "tags": {
@@ -29266,18 +29246,22 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Co-Op": {
-    "count": 85,
-    "tags": {
-      "brand": "Co-Op",
-      "name": "Co-Op",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|Co-op": {
     "count": 406,
+    "match": [
+      "shop/supermarket|Co-Op",
+      "shop/supermarket|Coop",
+      "shop/supermarket|coop",
+      "shop/supermarket|COOP"
+    ],
+    "nomatch": [
+      "amenity/fuel|Co-op",
+      "shop/convenience|Co-op"
+    ],
     "tags": {
-      "brand": "Co-op",
+      "brand": "Federated Co-operatives",
+      "brand:wikidata": "Q5440676",
+      "brand:wikipedia": "en:Federated Co-operatives",
       "name": "Co-op",
       "shop": "supermarket"
     }
@@ -29359,17 +29343,6 @@
     "tags": {
       "brand": "Continente",
       "name": "Continente",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Coop": {
-    "count": 1649,
-    "match": [
-      "shop/supermarket|coop"
-    ],
-    "tags": {
-      "brand": "Coop",
-      "name": "Coop",
       "shop": "supermarket"
     }
   },
@@ -31297,21 +31270,19 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|The Co-operative": {
-    "count": 85,
-    "tags": {
-      "brand": "The Co-operative",
-      "name": "The Co-operative",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|The Co-operative Food": {
     "count": 1176,
     "match": [
-      "shop/supermarket|Co-operative Food"
+      "shop/supermarket|Co-operative Food",
+      "shop/supermarket|The Co-operative"
+    ],
+    "nomatch": [
+      "shop/convenience|The Co-operative Food"
     ],
     "tags": {
       "brand": "The Co-operative Food",
+      "brand:wikidata": "Q3277439",
+      "brand:wikipedia": "en:Co-op Food",
       "name": "The Co-operative Food",
       "shop": "supermarket"
     }
@@ -32437,6 +32408,8 @@
     "count": 58,
     "tags": {
       "brand": "The Co-operative Travel",
+      "brand:wikidata": "Q7726526",
+      "brand:wikipedia": "en:The Co-operative Travel",
       "name": "The Co-operative Travel",
       "shop": "travel_agency"
     }
