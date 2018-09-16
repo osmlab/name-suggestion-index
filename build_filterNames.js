@@ -84,6 +84,8 @@ function mergeConfig() {
             if (!canonical[k].nocount) {   // suppress warning?
                 warnUncommon.push(k);
             }
+        } else {
+            delete canonical[k].nocount;
         }
 
         // Warn if the item is found in rIndex (i.e. some other item matches it)
@@ -174,7 +176,9 @@ function mergeConfig() {
 //
 function sort(obj) {
     var sorted = {};
-    Object.keys(obj).sort().forEach(k => sorted[k] = obj[k]);
+    Object.keys(obj).sort().forEach(k => {
+        sorted[k] = obj[k];
+    });
     return sorted;
 }
 
