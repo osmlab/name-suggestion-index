@@ -11,6 +11,7 @@ var canonical = require('./config/canonical.json');
 // all names start out in discard..
 var discard = Object.assign({}, allNames);
 var keep = {};
+var rIndex = {};
 
 filterNames();
 mergeConfig();
@@ -69,74 +70,8 @@ function filterNames() {
 // `config/canonical.json`
 //
 function mergeConfig() {
-    var rIndex = buildReverseIndex(canonical);
-
-    // Issue Warnings
-    var warnUncommon = [];
-    var warnMatched = [];
-    var warnDuplicate = [];
-    var seen = {};
-
-    Object.keys(canonical).forEach(k => {
-        // Warn if the item is uncommon (i.e. not found in keepNames)
-        if (!keep[k]) {
-            delete canonical[k].count;
-            if (!canonical[k].nocount) {   // suppress warning?
-                warnUncommon.push(k);
-            }
-        } else {
-            delete canonical[k].nocount;
-        }
-
-        // Warn if the item is found in rIndex (i.e. some other item matches it)
-        if (rIndex[k]) {
-            warnMatched.push([rIndex[k], k]);
-        }
-
-        // Warn if the item appears to be a duplicate (i.e. same name)
-        var name = diacritics.remove(k.split('|', 2)[1].toLowerCase());
-        var other = seen[name];
-        if (other) {
-            // suppress warning?
-            var suppress = false;
-            if (canonical[other].nomatch && canonical[other].nomatch.indexOf(k) !== -1) {
-                suppress = true;
-            } else if (canonical[k].nomatch && canonical[k].nomatch.indexOf(other) !== -1) {
-                suppress = true;
-            }
-            if (!suppress) {
-                warnDuplicate.push([k, other]);
-            }
-        }
-        seen[name] = k;
-    });
-
-    if (warnMatched.length) {
-        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` matched to other entries in `canonical.json`:'));
-        console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
-        warnMatched.forEach(w => console.warn(
-            colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
-        ));
-    }
-
-    if (warnDuplicate.length) {
-        console.warn(colors.yellow('\nWarning - Potential duplicate names in `canonical.json`:'));
-        console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
-        console.warn('To suppress this warning for entries that really are different, add a "nomatch" property on both entries.');
-        warnDuplicate.forEach(w => console.warn(
-            colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
-        ));
-    }
-
-    if (warnUncommon.length) {
-        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` not found in `keepNames.json`:'));
-        console.warn('These might be okay. It just means that the entry is not commonly found in OpenStreetMap.');
-        console.warn('To suppress this warning, add a "nocount" property to the entry.');
-        warnUncommon.forEach(w => console.warn(
-            colors.yellow('  "' + w + '"')
-        ));
-    }
-
+    buildReverseIndex();
+    checkCanonical();
 
     console.log('\nmerging config/canonical.json');
     console.time(colors.green('config updated'));
@@ -183,14 +118,16 @@ function sort(obj) {
 }
 
 
-function buildReverseIndex(obj) {
-    var rIndex = {};
+//
+// Returns a reverse index to map match keys back to their original keys
+//
+function buildReverseIndex() {
     var warnCollisions = [];
 
-    for (var key in obj) {
-        if (obj[key].match) {
-            for (var i = obj[key].match.length - 1; i >= 0; i--) {
-                var match = obj[key].match[i];
+    for (var key in canonical) {
+        if (canonical[key].match) {
+            for (var i = canonical[key].match.length - 1; i >= 0; i--) {
+                var match = canonical[key].match[i];
                 if (rIndex[match]) {
                     warnCollisions.push([rIndex[match], match]);
                     warnCollisions.push([key, match]);
@@ -207,7 +144,106 @@ function buildReverseIndex(obj) {
             colors.yellow('  "' + w[0] + '"') + ' -> match? -> ' + colors.yellow('"' + w[1] + '"')
         ));
     }
-
-    return rIndex;
 }
 
+
+//
+// Checks all the entries in `canonical.json` for several kinds of issues
+//
+function checkCanonical() {
+    var warnUncommon = [];
+    var warnMatched = [];
+    var warnDuplicate = [];
+    var warnWikidata = [];
+    var warnWikipedia = [];
+    var seen = {};
+
+    Object.keys(canonical).forEach(k => {
+        // Warn if the item is uncommon (i.e. not found in keepNames)
+        if (!keep[k]) {
+            delete canonical[k].count;
+            if (!canonical[k].nocount) {   // suppress warning?
+                warnUncommon.push(k);
+            }
+        } else {
+            delete canonical[k].nocount;
+        }
+
+        // Warn if the item is found in rIndex (i.e. some other item matches it)
+        if (rIndex[k]) {
+            warnMatched.push([rIndex[k], k]);
+        }
+
+        // Warn if the item appears to be a duplicate (i.e. same name)
+        var name = diacritics.remove(k.split('|', 2)[1].toLowerCase());
+        var other = seen[name];
+        if (other) {
+            // suppress warning?
+            var suppress = false;
+            if (canonical[other].nomatch && canonical[other].nomatch.indexOf(k) !== -1) {
+                suppress = true;
+            } else if (canonical[k].nomatch && canonical[k].nomatch.indexOf(other) !== -1) {
+                suppress = true;
+            }
+            if (!suppress) {
+                warnDuplicate.push([k, other]);
+            }
+        }
+        seen[name] = k;
+
+
+        // Warn if `brand:wikidata` or `brand:wikipedia` tags look wrong
+        if (canonical[k].tags) {
+            var wd = canonical[k].tags['brand:wikidata'];
+            if (wd && !/^Q\d+$/.test(wd)) {
+                warnWikidata.push([k, wd]);
+            }
+            var wp = canonical[k].tags['brand:wikipedia'];
+            if (wp && !/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+                warnWikipedia.push([k, wp]);
+            }
+        }
+    });
+
+    if (warnMatched.length) {
+        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` matched to other entries in `canonical.json`:'));
+        console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
+        warnMatched.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
+        ));
+    }
+
+    if (warnDuplicate.length) {
+        console.warn(colors.yellow('\nWarning - Potential duplicate names in `canonical.json`:'));
+        console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
+        console.warn('To suppress this warning for entries that really are different, add a "nomatch" property on both entries.');
+        warnDuplicate.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
+        ));
+    }
+
+    if (warnUncommon.length) {
+        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` not found in `keepNames.json`:'));
+        console.warn('These might be okay. It just means that the entry is not commonly found in OpenStreetMap.');
+        console.warn('To suppress this warning, add a "nocount" property to the entry.');
+        warnUncommon.forEach(w => console.warn(
+            colors.yellow('  "' + w + '"')
+        ));
+    }
+
+    if (warnWikidata.length) {
+        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` with incorrect `brand:wikidata` format:'));
+        console.warn('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".');
+        warnWikidata.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikidata": ' + '"' + w[1] + '"'
+        ));
+    }
+
+    if (warnWikipedia.length) {
+        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` with incorrect `brand:wikipedia` format:'));
+        console.warn('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".');
+        warnWikipedia.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikipedia": ' + '"' + w[1] + '"'
+        ));
+    }
+}
