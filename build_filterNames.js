@@ -97,6 +97,32 @@ function mergeConfig() {
         var name = diacritics.remove(k.split('|', 2)[1].toLowerCase());
         var other = seen[name];
         if (other) {
+
+// one-time code to nomatch some special tags
+var nomatch = false;
+var thistag = k.split('|', 2)[0];
+var othertag = other.split('|', 2)[0];
+// var special = ['amenity/fuel', 'shop/convenience'];
+// var special = ['amenity/pharmacy', 'shop/chemist'];
+// var special = ['shop/car', 'shop/car_repair'];
+var special = ['',''];
+if ((thistag === special[0] && othertag === special[1]) || (thistag === special[1] && othertag === special[0])) {
+    if (canonical[other].nomatch) {
+        if (canonical[other].nomatch.indexOf(k) === -1) {
+            canonical[other].nomatch.push(k);
+        }
+    } else {
+        canonical[other].nomatch = [k];
+    }
+    if (canonical[k].nomatch) {
+        if (canonical[k].nomatch.indexOf(other) === -1) {
+            canonical[k].nomatch.push(other);
+        }
+    } else {
+        canonical[k].nomatch = [other];
+    }
+}
+
             // suppress warning?
             var suppress = false;
             if (canonical[other].nomatch && canonical[other].nomatch.indexOf(k) !== -1) {
