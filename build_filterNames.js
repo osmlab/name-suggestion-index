@@ -174,9 +174,9 @@ function checkCanonical() {
             warnMatched.push([rIndex[k], k]);
         }
 
-        // Warn if the item appears to be a duplicate (i.e. same name)
-        var name = diacritics.remove(k.split('|', 2)[1].toLowerCase());
-        var other = seen[name];
+        // Warn if the name appears to be a duplicate
+        var stem = stemmer(k.split('|', 2)[1]);
+        var other = seen[stem];
         if (other) {
             // suppress warning?
             var suppress = false;
@@ -189,7 +189,7 @@ function checkCanonical() {
                 warnDuplicate.push([k, other]);
             }
         }
-        seen[name] = k;
+        seen[stem] = k;
 
 
         // Warn if `brand:wikidata` or `brand:wikipedia` tags look wrong
@@ -246,4 +246,21 @@ function checkCanonical() {
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikipedia": ' + '"' + w[1] + '"'
         ));
     }
+}
+
+
+// Removes noise from the name so that we can compare
+// similar names for catching duplicates.
+function stemmer(name) {
+    var noise = [
+        /ban(k|c)(a|o)?/i,
+        /банк/i,
+        /coop/i,
+        /express/i,
+        /(gas|fuel)/i,
+        /\s/
+    ];
+
+    name = noise.reduce((acc, regex) => acc.replace(regex, ''), name);
+    return diacritics.remove(name.toLowerCase());
 }
