@@ -29,7 +29,7 @@ Building a canonical name index allows two very useful things:
 
 Currently used in:
 * iD (see above)
-* [Vespucci](http://vespucci.io/tutorials/name_suggestions/).
+* [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 * JOSM presets available
 
 
@@ -83,15 +83,15 @@ This takes a long time and a lot of disk space. It can be done occasionally by p
 You do not need to do these steps in order to contribute to the index.
 
 - Install `osmium` commandline tool
-    `apt-get install osmium-tool` or `brew install osmium-tool` or similar
+  - `apt-get install osmium-tool` or `brew install osmium-tool` or similar
 - [Download the planet](http://planet.osm.org/pbf/)
-    `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
+  - `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
-    `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
-    `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,man_made,tourism -o wanted.osm.pbf`
+  - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
+  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,man_made,tourism -o wanted.osm.pbf`
 - Run `node build_allNames wanted.osm.pbf`
-    - results will go in `dist/allNames.json`
-    - `git add dist/allNames.json && git commit -m 'Updated dist/allNames.json'`
+  - results will go in `dist/allNames.json`
+  - `git add dist/allNames.json && git commit -m 'Updated dist/allNames.json'`
 
 
 ### License
