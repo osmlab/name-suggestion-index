@@ -2,7 +2,7 @@
 
 ## name-suggestion-index
 
-Canonical common brand names found in OpenStreetMap.
+Canonical common brand names for OpenStreetMap
 
 
 ### What is it?
