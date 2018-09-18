@@ -1,73 +1,88 @@
-# Name Suggestion Index
+[![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 
-The goal of this project is to maintain a canonical list of commonly used names
-for suggesting correct spelling or formatting that might otherwise diverge from
-common usage on OSM. When editing a place name like `Walmart`, users have created
-many different spellings such as `Wal-Mart`, `WalMart`, `Walmart Supercenter`.
-In [iD](https://github.com/openstreetmap/iD) we want to help suggest the most common names
-with the correct formatting and spelling.
+## name-suggestion-index
+
+Canonical common brand names found in OpenStreetMap.
+
+
+### What is it?
+
+The goal of this project is to maintain a [canonical](https://en.wikipedia.org/wiki/Canonicalization)
+list of commonly used names for suggesting consistent spelling and tagging of features
+in OpenStreetMap.
+
+
+### How it's used
+
+When mappers create features in OpenStreetMap, they are not always consistent about how they
+name and tag things. For example, we may prefer `McDonald's` tagged as `amenity=fast_food`
+but we see many examples of other spellings (`Mc Donald's`, `McDonalds`, `McDonald’s`) and
+taggings (`amenity=restaurant`).
+
+Building a canonical name index allows two very useful things:
+- We can suggest the most "correct" way to tag things as users create them while editing.
+- We can scan the OSM data for "incorrect" features and produce lists for review and cleanup.
 
 ![name-suggestion-index in use in iD](http://i.imgur.com/9p1E6S4.gif)
 
-*The name-suggestion-index is in use in iD whenever searching entering a new item via the sidebar*
+*The name-suggestion-index is in use in iD when adding a new item*
 
-This index can also be used for passing additional values for a selected name.
-For example, it's known that McDonald's serves hamburgers so we can use that knowledge to
-fill in `cuisine=burger` or other tags that are always associated with a specific name.
+Currently used in:
+* iD (see above)
+* [Vespucci](http://vespucci.io/tutorials/name_suggestions/).
+* JOSM presets available
 
-name-suggestion-index is also [used by Vespucci](http://vespucci.io/tutorials/name_suggestions/).
 
-### Contributing
-We need help finding all the 'incorrect' names in `allNames.json` and mapping them to the
-correct equivalent so the incorrect name is not suggested. By 'correct', we only mean
-the most common usage on OSM. Check with `filter.json` to make sure we are using that
-tag combination and are not ignoring that name already. For example, "Papa John's" has
-been used 144 times, but has also been entered as "Papa John's Pizza" (62) and
-"Papa Johns" (68). Mapping them to a singular value is done in `canonical.json`:
+### Prerequisites
 
-    "Papa John's": {
-        "matches": [
-            "Papa John's Pizza",
-            "Papa Johns"
-        ]
-    }
+* [Node.js](https://nodejs.org/) version 6 or newer
+* [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
 
-In some cases it is preferable to discard data known to be incorrrect - for
-example, to discard McDonald's tagged as restaurants from further processing:
 
-    "McDonald's":{
-        "nix_value":[
-            "restaurant"
-        ]
-    },
+### Installing
 
-may be used. It ensures that McDonald's will not become listed as a possible restaurant name.
+* Clone this project, for example:
+  `git clone git@github.com:osmlab/name-suggestion-index.git`
+* `cd` into the project folder,
+* Run `npm install` to install libraries
 
-- make necessary changes to `canonical.json` or `filter.json` ("what to edit" below)
-- run `make`
-    - this will run `build.js` against `allNames.json` using the rules defined in `filter.json`
-    and `canonical.json`
-    - `name-suggestions.json` and `name-suggestions.min.json` will be updated
 
-### What to edit
-- `config/canonical.json` is a list of the most correct names, any possible similar matches
-to them, and any known tags.
-- `config/filter.json` determines which tag combinations are included and which names are
-completely ignored
-- `dist/name-suggestions.json` and `dist/name-suggestions.min.json` are compiled, any changes made to them
-directly will be overwritten
+### About the index
 
-### Installation
-- `git clone https://github.com/osmlab/name-suggestion-index.git && cd name-suggestion-index`
-- Ubuntu install (install recent nodejs):
-    - `sudo apt-get update`
-    - `sudo apt-get install -y python-software-properties python g++ make`
-    - `sudo apt-get install nodejs npm`
-    - `sudo ln -s /usr/bin/nodejs /usr/bin/node`
-    - `npm install`
+#### Generated files (do not edit):
 
-### Updating `allNames.json` from planet
-- Install osmium commandline tool
+Preset files (used by OSM editors):
+* `dist/name-suggestions.json` - Name suggestion presets
+* `dist/name-suggestions.min.json` - Name suggestion presets, minified
+* `dist/name-suggestions.presets.xml` - Name suggestion presets, as JOSM-style preset XML
+
+Name lists:
+* `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
+* `dist/discardNames.json` - discarded subset of allNames
+* `dist/keepNames.json` - kept subset of allNames
+
+#### Configuration files (edit these):
+
+* `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
+* `config/canonical.json` - The main config file containing all the most correct names and tags to assign to them
+
+:point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
+
+
+### Building the index
+
+* `npm run filterNames`
+  * Regenerates `dist/keepNames.json` and `dist/discardNames.json`
+  * Any new `keepNames` not already present in `config/canonical.json` will be added to it
+  * Outputs warnings to suggest updates to `config/canonical.json`
+
+
+### Updating `dist/allNames.json` from planet
+
+This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
+You do not need to do these steps in order to contribute to the index.
+
+- Install `osmium` commandline tool
     `apt-get install osmium-tool` or `brew install osmium-tool` or similar
 - [Download the planet](http://planet.osm.org/pbf/)
     `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
@@ -76,3 +91,10 @@ directly will be overwritten
     `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,man_made,tourism -o wanted.osm.pbf`
 - Run `node build_allNames wanted.osm.pbf`
     - results will go in `dist/allNames.json`
+    - `git add dist/allNames.json && git commit -m 'Updated dist/allNames.json'`
+
+
+### License
+
+name-suggestion-index is available under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
+See the [LICENSE.md](LICENSE.md) file for more details.
