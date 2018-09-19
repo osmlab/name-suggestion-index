@@ -130,7 +130,7 @@ function mergeConfig() {
         canonical[k] = sort(obj);
     });
 
-    fs.writeFileSync('config/canonical.json', JSON.stringify(sort(canonical), null, 2));
+    fs.writeFileSync('config/canonical.json', stringify(sort(canonical), { maxLength: 50 }));
     console.timeEnd(colors.green('config updated'));
 }
 
