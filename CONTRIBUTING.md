@@ -1,5 +1,12 @@
 ## Contributing
 
+#### tl;dr
+
+:raising_hand: How to help:
+
+* `npm run filterNames` will reprocess the files and output warnings
+* Edit `config/canonical.json` to resolve the warnings
+
 :no_entry_sign: Don't edit the files in `dist/` - they are generated:
 
 * `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
@@ -12,9 +19,11 @@
 * `config/canonical.json` - Main config file containing all the most correct names and tags to assign to them
 
 
+## Background
+
 ### About OpenStreetMap
 
-[OpenStreetMap](https://openstreetmap.org) is a free, editable map of the whole world that
+:world_map: [OpenStreetMap](https://openstreetmap.org) is a free, editable map of the whole world that
 is being built by volunteers.
 
 Features on the map are defined using `tags`.  Each tag is a `key: value` pair of text strings.
@@ -27,19 +36,20 @@ For example, a McDonald's restaurant might have these tags:
 
 ### About the name-suggestion-index
 
-The goal of this project is to define the _most correct tags_ to assign to each common brand name.
+:bulb: The goal of this project is to define the _most correct tags_ to assign to each common brand name.
 This helps people contribute to OpenStreetMap, because they can pick "McDonald's" from a list
 and not need to worry about the tags being added.
 
-:point_right: `config/canonical.json` is our list of brand names and tags.
+
+### About `config/canonical.json`
+
+:point_right: `config/canonical.json` is our main list of the most correct brand names and tags.
 
 This file is created by:
 - Processing the OpenStreetMap "planet" data to extract common names -> `dist/allNames.json`
 - Filtering all the names into -> `dist/keepNames.json` and `dist/discardNames.json`
 - Merging the names we are keeping into -> `config/canonical.json` for us to decide what to do with them
 
-
-### About `config/canonical.json`
 
 Each entry looks like this:
 
