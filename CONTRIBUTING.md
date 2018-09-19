@@ -1,59 +1,89 @@
 ## Contributing
 
-Everything under `config/` you can edit:
-
-* `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
-* `config/canonical.json` - The main config file containing all the most correct names and tags to assign to them
-
-Everything under `dist/` you should not edit:
+:no_entry_sign: Don't edit the files in `dist/` - they are generated:
 
 * `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
 * `dist/discardNames.json` - discarded subset of allNames
 * `dist/keepNames.json` - kept subset of allNames
 
+:white_check_mark: Do edit the files in `config/`:
 
-### `config/filters.json`
+* `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
+* `config/canonical.json` - Main config file containing all the most correct names and tags to assign to them
 
-These are regular expressions used to filter the `allNames` into `keepNames` / `discardNames` lists.
+
+### About OpenStreetMap
+
+[OpenStreetMap](https://openstreetmap.org) is a free, editable map of the whole world that
+is being built by volunteers.
+
+Features on the map are defined using `tags`.  Each tag is a `key: value` pair of text strings.
+
+For example, a McDonald's restaurant might have these tags:
+* `amenity: fast_food`
+* `name: McDonald's`
+* ... and more tags to record its address, opening hours, and so on.
 
 
-### `config/canonical.json`
+### About the name-suggestion-index
 
-Entries look like this.
-The "key" is in the format `key/value|name`.
+The goal of this project is to define the _most correct tags_ to assign to each common brand name.
+This helps people contribute to OpenStreetMap, because they can pick "McDonald's" from a list
+and not need to worry about the tags being added.
+
+:point_right: `config/canonical.json` is our list of brand names and tags.
+
+This file is created by:
+- Processing the OpenStreetMap "planet" data to extract common names -> `dist/allNames.json`
+- Filtering all the names into -> `dist/keepNames.json` and `dist/discardNames.json`
+- Merging the names we are keeping into -> `config/canonical.json` for us to decide what to do with them
+
+
+### About `config/canonical.json`
+
+Each entry looks like this:
 
 ```js
-  "amenity/fast_food|McDonald's": {
-    "count": 19040,
+  "amenity/fast_food|McDonald's": {         // Each entry has an identifier like "key/value|name"
+    "count": 19040,                         // "count" contains the number of these we found in OpenStreetMap
     "match": [
-      "amenity/fast_food|Mc Donald's",
-      "amenity/fast_food|McDonalds",
+      "amenity/fast_food|Mc Donald's",      // Optional "match" array contains alternative
+      "amenity/fast_food|McDonalds",        //   less desirable tag-name combinations
       "amenity/restaurant|Mc Donald's",
-      "amenity/restaurant|Mc Donalds",
-      "amenity/restaurant|McDonald's",
+      "amenity/restaurant|Mc Donalds",      // For example, we prefer the name "McDonald's" and for it to be
+      "amenity/restaurant|McDonald's",      //   tagged with `amenity/fast_food` over `amenity/restaurant`
       "amenity/restaurant|McDonalds",
     ],
-    "tags": {
+    "tags": {                               // Required "tags" - OpenStreetMap tags that the item should have.
       "amenity": "fast_food",
-      "brand": "McDonald's",
-      "cuisine": "burger",
-      "name": "McDonald's"
+      "brand": "McDonald's",                // "brand" - in the local language, in this case English
+      "brand:wikidata": "Q38076",           // "brand:wikidata" - Universal Wikidata identifier
+      "brand:wikipedia": "en:McDonald's",   // "brand:wikipedia" - reference to English Wikipedia
+      "cuisine": "burger",                  // "cuisine" - says what kind of fast food is served here
+      "name": "McDonald's"                  // "name" - display name, also in the local language English
     }
   },
 ```
 
-Here are the properties that an entry can contain:
+There may also be entries for McDonald's in other languages!:
 
-* __`count`__ - (generated), if the entry is found in `keepNames` the `count` will be filled in.
-* __`countryCodes`__ - (optional) Array of [two letter country codes](https://en.wikipedia.org/wiki/ISO_31661#Current_codes) where this name is used
-* __`match`__ - Array of alternate keys which should be considered __the same__ as this entry.
-* __`tags`__ - The OpenStreetMap tags that should be set on the entry.
-  * "brand" - brand name, in the local language
-  * "brand:en" - (optional) brand name in English (if the `brand` is not in English)
-  * "brand:wikidata" - Wikidata id
-  * "brand:wikipedia" - Wikipedia page for the brand
-  * "name" - The name of the feature
-  * "operator" - (optional) - add this if the brand operates all of its stores
+```js
+  "amenity/fast_food|マクドナルド": {         // Each entry has an identifier like "key/value|name"
+    "count": 1445,
+    "countryCodes": ["jp"],                 // Optional "countryCodes": array of countries where this entry is valid
+    "tags": {
+      "amenity": "fast_food",
+      "brand": "マクドナルド",                // "brand" - in the local language, in this case Japanese
+      "brand:en": "McDonald's",             // "brand:en" - we can tag the English version too
+      "brand:wikidata": "Q38076",           // "brand:wikidata" - same Universal wikidata identifier
+      "brand:wikipedia": "ja:マクドナルド",   // "brand:wikipedia" - Reference to Japanese Wikipedia
+      "cuisine": "burger",
+      "name": "マクドナルド",                 // "name" - in the local language, in this case Japanese
+      "name:en": "McDonald's"               // "name:en" - we can tag the English version too
+    }
+  },
+```
+
 
 Properties to suppress warnings:
 * __`nomatch`__ - Array of other keys which should be considered __different__ from this entry.
@@ -62,6 +92,5 @@ Properties to suppress warnings:
 
 ### Building
 
-* Just `npm run filterNames`
-  * This will check the files for errors and make them pretty.
+* `npm run filterNames`
 
