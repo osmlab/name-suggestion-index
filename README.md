@@ -71,7 +71,7 @@ Name lists:
 
 ### Building the index
 
-* `npm run filterNames`
+* `npm run build`
   * Regenerates `dist/keepNames.json` and `dist/discardNames.json`
   * Any new `keepNames` not already present in `config/canonical.json` will be added to it
   * Outputs warnings to suggest updates to `config/canonical.json`

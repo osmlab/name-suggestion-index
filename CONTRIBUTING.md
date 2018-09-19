@@ -4,7 +4,7 @@
 
 :raising_hand: How to help:
 
-* `npm run filterNames` will reprocess the files and output warnings
+* `npm run build` will reprocess the files and output warnings
 * Edit `config/canonical.json` to resolve the warnings
 
 :no_entry_sign: Don't edit the files in `dist/` - they are generated:
@@ -105,7 +105,7 @@ Other optional properties to suppress warnings:
 ### :building_construction: Building
 
 To rebuild the index, run:
-* `npm run filterNames`
+* `npm run build`
 
 This will output a lot of warnings, which you can help fix!
 
