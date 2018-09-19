@@ -1,0 +1,30 @@
+{
+    "title": "filters.json",
+    "description": "name-suggestion-index filters",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "keepTags",
+        "discardNames"
+    ],
+    "properties": {
+        "keepTags": {
+            "description": "(required) An array of regular expressions to match OSM tag-pairs to keep.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "format": "regex"
+            }
+        },
+        "discardNames": {
+            "description": "(required) An array of regular expressions to match names to discard.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "format": "regex"
+            }
+        }
+    }
+}

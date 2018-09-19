@@ -8,6 +8,15 @@ const allNames = require('./dist/allNames.json');
 const filters = require('./config/filters.json');
 var canonical = require('./config/canonical.json');
 
+// perform JSON-schema validation
+const Validator = require('jsonschema').Validator;
+const filtersSchema = require('./schema/filters.json');
+const canonicalSchema = require('./schema/canonical.json');
+
+validateSchema('config/filters.json', filters, filtersSchema);
+validateSchema('config/canonical.json', canonical, canonicalSchema);
+
+
 // all names start out in discard..
 var discard = Object.assign({}, allNames);
 var keep = {};
@@ -15,6 +24,27 @@ var rIndex = {};
 
 filterNames();
 mergeConfig();
+
+
+
+// Perform JSON Schema validation
+function validateSchema(fileName, object, schema) {
+    var v = new Validator();
+    var validationErrors = v.validate(object, schema).errors;
+    if (validationErrors.length) {
+        console.error(colors.red('\nError - Schema validation:'));
+        console.error('  ' + colors.yellow(fileName + ': '));
+        validationErrors.forEach(e => {
+            if (e.property) {
+                console.error('  ' + colors.yellow(e.property + ' ' + e.message));
+            } else {
+                console.error('  ' + colors.yellow(e));
+            }
+        });
+        console.error();
+        process.exit(1);
+    }
+}
 
 
 //

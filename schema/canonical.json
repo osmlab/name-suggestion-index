@@ -1,0 +1,57 @@
+{
+    "title": "canonical.json",
+    "description": "name-suggestion-index canonical names",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^\\S+/\\S+|.*$": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+                "tags"
+            ],
+            "properties": {
+                "count": {
+                    "description": "(generated) Number of occurrences found in the most recent processed OSM planet file.",
+                    "type": "number"
+                },
+                "countryCodes": {
+                    "description": "(optional) Array of ISO 3166-1 alpha-2 two letter country codes in lowercase",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^[a-z]{2}$"
+                    }
+                },
+                "match": {
+                    "description": "(optional) Array of alternate keys that are the same as this entry.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^\\S+/\\S+|.*$"
+                    }
+                },
+                "nomatch": {
+                    "description": "(optional) Array of alternate keys that do not match this key, used to suppress warning about potential duplicate name.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^\\S+/\\S+|.*$"
+                    }
+                },
+                "nocount": {
+                    "type": "boolean",
+                    "description": "(optional) If true, suppress warning about uncommon name",
+                    "enum": [ true ]
+                },
+                "tags": {
+                    "description": "(required) OpenStreetMap tags to associate with this entry",
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
