@@ -5,7 +5,8 @@
 ##### :raising_hand: &nbsp; How to help:
 
 * `npm run build` will reprocess the files and output warnings
-* Edit `config/canonical.json` to resolve the warnings
+* Edit `config/canonical.json` to resolve the warnings - [show me](#thinking--resolve-warnings)
+* Edit `confic/canonical.json` to add `brand:wikidata` and `brand:wikipedia` tags - [show me](#female_detective--add-wiki-tags)
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
@@ -98,10 +99,57 @@ There may also be entries for McDonald's in other languages!
   },
 ```
 
-Other optional properties to suppress warnings:
+#### Optional properties to suppress warnings
 
-* __`nomatch`__ - Array of other keys which should be considered __different__ from this entry.
-* __`nocount`__ - Set to `true` if this entry is not found in `keepNames`
+These properties always start with `"no"`.
+
+##### `nomatch`
+
+Sometimes there are multiple different entries that use the same name.
+
+For example, "Sonic" can be either a fast food restaurant or a fuel station.
+
+We want to allow both kinds of "Sonic" to exist in the index, and we don't want
+to be warned that they are potentially duplicate, so we can add a `nomatch`
+property to each entry to suppress the "duplicate name" warning.
+
+```js
+  "amenity/fuel|Sonic": {
+    "count": 127,
+    "nomatch": ["amenity/fast_food|Sonic"],
+    ...
+  }
+  "amenity/fast_food|Sonic": {
+    "count": 1110,
+    "nomatch": ["amenity/fuel|Sonic"],
+    ...
+  }
+```
+
+##### `nocount`
+
+Sometimes a new, uncommon OpenStreetMap tag-name combination should replace an
+existing tag-name combination.
+
+For example, many Costcos are tagged as `shop=department_store` or `shop=supermarket`,
+but the new preferred tag is `shop=wholesale`.
+
+We don't want to be warned that the new correct tag is uncommon, so we add a
+`nocount` property to the entry to suppress the "uncommon name" warning.
+
+```js
+  "shop/wholesale|Costco": {
+    "nocount": true,
+    "match": [
+      "shop/department_store|Costco",
+      "shop/department_store|Costco Wholesale",
+      "shop/supermarket|Costco",
+      "shop/supermarket|Costco Wholesale"
+    ],
+    ...
+  },
+```
+
 
 &nbsp;
 
