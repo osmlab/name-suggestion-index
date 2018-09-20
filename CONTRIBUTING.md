@@ -186,7 +186,7 @@ can help with.
 
 2. Google for that brand - if you are lucky, you might find the Wikipedia page right away.
 
-![Google for Chipotle](https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_1.png)
+<img width="400px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_1.png"/>
 
 3. From the Wikipedia page URL, you can identify the `brand:wikipedia` value.
 
@@ -198,11 +198,11 @@ OpenStreetMap expects this tag to be formatted like `"en:Chipotle Mexican Grill"
 On the brand's Wikipedia page, you can also find its "Wikidata item" link.  This appears
 under the "tools" menu in the sidebar.
 
-![Chipotle Wikipedia](https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_2.png)
+<img width="400px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_2.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
-![Chipotle Wikidata](https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_3.png)
+<img width="400px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_3.png"/>
 
 5. Update `config/canonical.json`:
 
@@ -259,11 +259,11 @@ Tip: You might want to narrow you search by Googling with a `site:` filter:  `"�
 From these results, we can know that the brand is "Kappa Sushi", owned by a Japanese company
 called "Kappa Create".  We can also find the Wikipedia page.
 
-![Google for かっぱ寿司](https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_1.png)
+<img width="400px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_1.png"/>
 
 3. Google Translate can be helpful too
 
-![Google Translate for かっぱ寿司](https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_2.png)
+<img width="400px" alt="Google Translate for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_2.png"/>
 
 4. As with English brands, you can identify the `brand:wikipedia` value from the URL.
 Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
@@ -276,13 +276,13 @@ OpenStreetMap expects this tag to be formatted like `"ja:かっぱ寿司"`.
 Although I can not read Japanese, I can identify the "Wikidata item" link because
 it always appears in the sidebar and mouseover will show the Wikidata 'Q' code in the URL.
 
-![Kappa Sushi Wikipedia](https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_3.png)
+<img width="400px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_3.png"/>
 
 5. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
 Note: The Wikidata page looks a bit sparse - you can edit this too if you want to help!
 
-![Kappa Sushi Wikidata](https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_4.png)
+<img width="400px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_4.png"/>
 
 6. Update `config/canonical.json`:
 
@@ -338,5 +338,5 @@ out skel qt;
 
 As expected, the "かっぱ寿司" (Kappa Sushi) locations are all concentrated in Japan.
 
-![Overpass search for かっぱ寿司](https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/overpass.png)
+<img width="400px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/overpass.png"/>
 
