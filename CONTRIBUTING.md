@@ -122,6 +122,8 @@ Warnings mean that you need to edit `config/canonical.json`.
 The warning output gives a clue about how to fix or suppress the warning.
 If you aren't sure, just ask on GitHub!
 
+&nbsp;
+
 #### Duplicate names
 
 ```
@@ -140,6 +142,7 @@ Usually the entry which is used more frequently (indicated by "count" property)
 is the one to keep.  If you are not sure, you can also search on the
 [OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Map_Features) for tag best practices.
 
+&nbsp;
 
 #### Uncommon names
 
@@ -234,6 +237,7 @@ _(comments added for clarity - you can not actually add them to `config/canonica
 * run `npm run build`
 * if it does not fail with an error, you can submit a pull request with your changes.
 
+&nbsp;
 
 #### Example #2 - Regional / non-English brands...
 
@@ -311,6 +315,7 @@ We can add:
 
 _(comments added for clarity - you can not actually add them to `config/canonical.json`)_
 
+&nbsp;
 
 #### Using Overpass Turbo
 
