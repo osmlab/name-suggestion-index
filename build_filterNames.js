@@ -184,8 +184,10 @@ function checkCanonical() {
     var warnUncommon = [];
     var warnMatched = [];
     var warnDuplicate = [];
-    var warnWikidata = [];
-    var warnWikipedia = [];
+    var warnFormatWikidata = [];
+    var warnFormatWikipedia = [];
+    var warnMissingWikidata = [];
+    var warnMissingWikipedia = [];
     var seen = {};
 
     Object.keys(canonical).forEach(k => {
@@ -222,16 +224,18 @@ function checkCanonical() {
         seen[stem] = k;
 
 
-        // Warn if `brand:wikidata` or `brand:wikipedia` tags look wrong
-        if (canonical[k].tags) {
-            var wd = canonical[k].tags['brand:wikidata'];
-            if (wd && !/^Q\d+$/.test(wd)) {
-                warnWikidata.push([k, wd]);
-            }
-            var wp = canonical[k].tags['brand:wikipedia'];
-            if (wp && !/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-                warnWikipedia.push([k, wp]);
-            }
+        // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
+        var wd = canonical[k].tags['brand:wikidata'];
+        if (!wd) {
+            warnMissingWikidata.push(k);
+        } else if (!/^Q\d+$/.test(wd)) {
+            warnFormatWikidata.push([k, wd]);
+        }
+        var wp = canonical[k].tags['brand:wikipedia'];
+        if (!wp) {
+            warnMissingWikipedia.push(k);
+        } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+            warnFormatWikipedia.push([k, wp]);
         }
     });
 
@@ -261,18 +265,34 @@ function checkCanonical() {
         ));
     }
 
-    if (warnWikidata.length) {
+    // if (warnMissingWikidata.length) {
+    //     console.warn(colors.yellow('\nWarning - Entries in `canonical.json` missing `brand:wikidata`:'));
+    //     console.warn('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".');
+    //     warnMissingWikidata.forEach(w => console.warn(
+    //         colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikidata"'
+    //     ));
+    // }
+
+    // if (warnMissingWikipedia.length) {
+    //     console.warn(colors.yellow('\nWarning - Entries in `canonical.json` missing `brand:wikipedia`:'));
+    //     console.warn('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".');
+    //     warnMissingWikipedia.forEach(w => console.warn(
+    //         colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikipedia"'
+    //     ));
+    // }
+
+    if (warnFormatWikidata.length) {
         console.warn(colors.yellow('\nWarning - Entries in `canonical.json` with incorrect `brand:wikidata` format:'));
         console.warn('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".');
-        warnWikidata.forEach(w => console.warn(
+        warnFormatWikidata.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikidata": ' + '"' + w[1] + '"'
         ));
     }
 
-    if (warnWikipedia.length) {
+    if (warnFormatWikipedia.length) {
         console.warn(colors.yellow('\nWarning - Entries in `canonical.json` with incorrect `brand:wikipedia` format:'));
         console.warn('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".');
-        warnWikipedia.forEach(w => console.warn(
+        warnFormatWikipedia.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikipedia": ' + '"' + w[1] + '"'
         ));
     }
