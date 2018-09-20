@@ -135,7 +135,7 @@ To suppress this warning for entries that really are different, add a "nomatch" 
 
 _What it means:_  "Motel 6" exists in the index twice - as both a `tourism=hotel` (wrong)
 and a `tourism=motel` (correct). In this situation we want to:
-* Delete the entry for 'tourism/hotel|Motel 6' and
+* Delete the entry for `"tourism/hotel|Motel 6"` and
 * Add `"match": ["tourism/hotel|Motel 6"]` to the `"tourism/motel|Motel 6"` entry
 
 Usually the entry which is used more frequently (indicated by "count" property)
