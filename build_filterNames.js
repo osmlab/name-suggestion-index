@@ -253,7 +253,7 @@ function checkCanonical() {
     }
 
     if (warnUncommon.length) {
-        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` not found in `keepNames.json`:'));
+        console.warn(colors.yellow('\nWarning - Uncommon entries in `canonical.json` not found in `keepNames.json`:'));
         console.warn('These might be okay. It just means that the entry is not commonly found in OpenStreetMap.');
         console.warn('To suppress this warning, add a "nocount" property to the entry.');
         warnUncommon.forEach(w => console.warn(
