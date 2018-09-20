@@ -56,7 +56,8 @@ This file is created by:
 - Filtering all the names into -> `dist/keepNames.json` and `dist/discardNames.json`
 - Merging the names we are keeping into -> `config/canonical.json` for us to decide what to do with them
 
-Each entry looks like this:
+Each entry looks like this _(comments added for clarity)_:
+
 
 ```js
   "amenity/fast_food|McDonald's": {         // Identifier like "key/value|name"
@@ -278,7 +279,7 @@ We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
   },
 ```
 
-_(comments added for clarity - you can not actually add them to `config/canonical.json`)_
+_(comments added for clarity)_
 
 6. Rebuild and submit a pull request.
 
@@ -361,7 +362,7 @@ We can add:
   },
 ```
 
-_(comments added for clarity - you can not actually add them to `config/canonical.json`)_
+_(comments added for clarity)_
 
 &nbsp;
 
