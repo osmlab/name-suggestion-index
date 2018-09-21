@@ -5975,9 +5975,13 @@
   },
   "amenity/fast_food|Checkers": {
     "count": 123,
+    "nomatch": ["shop/supermarket|Checkers"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Checkers",
+      "brand:wikidata": "Q3419341",
+      "brand:wikipedia": "en:Checkers and Rally's",
+      "cuisine": "burger",
       "name": "Checkers"
     }
   },
@@ -6717,6 +6721,9 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "Rally's",
+      "brand:wikidata": "Q3419341",
+      "brand:wikipedia": "en:Checkers and Rally's",
+      "cuisine": "burger",
       "name": "Rally's"
     }
   },
@@ -6757,6 +6764,7 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "Smashburger",
+      "cuisine": "burger",
       "name": "Smashburger"
     }
   },
@@ -8973,7 +8981,7 @@
   },
   "amenity/fuel|Sam's Club": {
     "count": 60,
-    "nomatch": ["shop/supermarket|Sam's Club"],
+    "nomatch": ["shop/wholesale|Sam's Club"],
     "tags": {
       "amenity": "fuel",
       "brand": "Sam's Club",
@@ -27900,8 +27908,12 @@
   },
   "shop/supermarket|Checkers": {
     "count": 147,
+    "countryCodes": ["bw", "na", "za"],
+    "nomatch": ["amenity/fast_food|Checkers"],
     "tags": {
       "brand": "Checkers",
+      "brand:wikidata": "Q5089126",
+      "brand:wikipedia": "en:Checkers (supermarket chain)",
       "name": "Checkers",
       "shop": "supermarket"
     }
@@ -29642,16 +29654,40 @@
   },
   "shop/supermarket|ShopRite": {
     "count": 83,
+    "countryCodes": ["us"],
+    "nomatch": ["shop/supermarket|Shoprite"],
     "tags": {
       "brand": "ShopRite",
+      "brand:wikidata": "Q7501097",
+      "brand:wikipedia": "en:ShopRite (United States)",
       "name": "ShopRite",
       "shop": "supermarket"
     }
   },
   "shop/supermarket|Shoprite": {
     "count": 349,
+    "countryCodes": [
+      "ao",
+      "bw",
+      "cd",
+      "gh",
+      "ls",
+      "mg",
+      "mu",
+      "mw",
+      "mz",
+      "na",
+      "ng",
+      "sz",
+      "ug",
+      "za",
+      "zm"
+    ],
+    "nomatch": ["shop/supermarket|ShopRite"],
     "tags": {
       "brand": "Shoprite",
+      "brand:wikidata": "Q1857639",
+      "brand:wikipedia": "en:ShopRite (South Africa)",
       "name": "Shoprite",
       "shop": "supermarket"
     }
@@ -31462,6 +31498,7 @@
   },
   "shop/wholesale|Sam's Club": {
     "nocount": true,
+    "nomatch": ["amenity/fuel|Sam's Club"],
     "match": [
       "shop/supermarket|Sam's Club",
       "shop/department_store|Sam's Club"
