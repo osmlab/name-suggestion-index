@@ -8973,10 +8973,16 @@
   },
   "amenity/fuel|Sam's Club": {
     "count": 60,
+    "nomatch": ["shop/supermarket|Sam's Club"],
     "tags": {
       "amenity": "fuel",
       "brand": "Sam's Club",
-      "name": "Sam's Club"
+      "brand:wikidata": "Q1972120",
+      "brand:wikipedia": "en:Sam's Club",
+      "name": "Sam's Club",
+      "operator": "Walmart",
+      "operator:wikidata": "Q483551",
+      "operator:wikipedia": "en:Walmart"
     }
   },
   "amenity/fuel|Sasol": {
@@ -11142,7 +11148,9 @@
       "brand:wikipedia": "en:Walmart",
       "healthcare": "pharmacy",
       "name": "Walmart Pharmacy",
-      "operator": "Walmart"
+      "operator": "Walmart",
+      "operator:wikidata": "Q483551",
+      "operator:wikipedia": "en:Walmart"
     }
   },
   "amenity/pharmacy|Watsons": {
@@ -23372,14 +23380,6 @@
       "shop": "department_store"
     }
   },
-  "shop/department_store|Sam's Club": {
-    "count": 108,
-    "tags": {
-      "brand": "Sam's Club",
-      "name": "Sam's Club",
-      "shop": "department_store"
-    }
-  },
   "shop/department_store|Sears": {
     "count": 419,
     "tags": {
@@ -23421,6 +23421,8 @@
       "brand:wikipedia": "en:Walmart",
       "name": "Walmart",
       "operator": "Walmart",
+      "operator:wikidata": "Q483551",
+      "operator:wikipedia": "en:Walmart",
       "shop": "department_store"
     }
   },
@@ -29614,14 +29616,6 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Sam's Club": {
-    "count": 359,
-    "tags": {
-      "brand": "Sam's Club",
-      "name": "Sam's Club",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|Santa Isabel": {
     "count": 176,
     "tags": {
@@ -30030,6 +30024,8 @@
       "brand:wikipedia": "en:Walmart",
       "name": "Walmart Neighborhood Market",
       "operator": "Walmart",
+      "operator:wikidata": "Q483551",
+      "operator:wikipedia": "en:Walmart",
       "shop": "supermarket"
     }
   },
@@ -30045,6 +30041,8 @@
       "brand:wikipedia": "en:Walmart",
       "name": "Walmart Supercenter",
       "operator": "Walmart",
+      "operator:wikidata": "Q483551",
+      "operator:wikipedia": "en:Walmart",
       "shop": "supermarket"
     }
   },
@@ -31460,6 +31458,23 @@
       "name": "Costco",
       "shop": "wholesale",
       "operator": "Costco"
+    }
+  },
+  "shop/wholesale|Sam's Club": {
+    "nocount": true,
+    "match": [
+      "shop/supermarket|Sam's Club",
+      "shop/department_store|Sam's Club"
+    ],
+    "tags": {
+      "brand": "Sam's Club",
+      "brand:wikipedia": "en:Sam's Club",
+      "brand:wikidata": "Q1972120",
+      "name": "Sam's Club",
+      "operator": "Walmart",
+      "operator:wikidata": "Q483551",
+      "operator:wikipedia": "en:Walmart",
+      "shop": "wholesale"
     }
   },
   "tourism/hotel|B&B Hôtel": {
