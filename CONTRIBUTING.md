@@ -5,8 +5,9 @@
 ##### :raising_hand: &nbsp; How to help:
 
 * `npm run build` will reprocess the files and output warnings
-* Edit `config/canonical.json` to resolve the warnings - [show me](#thinking--resolve-warnings)
-* Edit `confic/canonical.json` to add `brand:wikidata` and `brand:wikipedia` tags - [show me](#female_detective--add-wiki-tags)
+* Resolve warnings - [show me](#thinking--resolve-warnings)
+* Remove generic names - [show me](#hocho--remove-generic-names)
+* Add `brand:wikidata` and `brand:wikipedia` tags - [show me](#female_detective--add-wiki-tags)
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
@@ -210,6 +211,33 @@ still tagged as `shop=department_store`. Suppressing the warning is the correct 
 
 &nbsp;
 
+### :hocho: &nbsp; Remove generic names
+
+Some of the common names in the index might not actually be brand names. We want to remove these
+generic words from the index, so they are not suggested to mappers.
+
+For example, "Универмаг" is just a Russian word for "Department store":
+
+```js
+  "shop/department_store|Универмаг": {
+    "count": 210,
+    "tags": {
+      "brand": "Универмаг",
+      "name": "Универмаг",
+      "shop": "department_store"
+    }
+  },
+```
+
+To remove this generic name:
+1. Delete the entries from `config/canonical.json`
+2. Edit `config/filters.json`. Add a regular expression matching the generic name in the `discardNames` list.
+3. Run `npm run build` - if the filter is working, the name will not be put back into `config/canonical.json`
+4. `git diff` - to make sure that the entries you wanted to discard are gone (and no others are affected)
+5. If all looks ok, submit a pull request with your changes.
+
+&nbsp;
+
 ### :female_detective: &nbsp; Add wiki tags
 
 Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that anybody
@@ -283,8 +311,8 @@ _(comments added for clarity)_
 
 6. Rebuild and submit a pull request.
 
-* run `npm run build`
-* if it does not fail with an error, you can submit a pull request with your changes.
+* Run `npm run build`
+* If it does not fail with an error, you can submit a pull request with your changes.
 
 &nbsp;
 
@@ -363,6 +391,11 @@ We can add:
 ```
 
 _(comments added for clarity)_
+
+7. Rebuild and submit a pull request.
+
+* Run `npm run build`
+* If it does not fail with an error, you can submit a pull request with your changes.
 
 &nbsp;
 
