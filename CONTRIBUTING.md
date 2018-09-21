@@ -299,7 +299,7 @@ We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
     "tags": {
       "amenity": "fast_food",
       "brand:wikidata": "Q465751",                            // added
-      "brand:wikipedia:": "en:Chipotle Mexican Grill",        // added
+      "brand:wikipedia": "en:Chipotle Mexican Grill",         // added
       "brand": "Chipotle",
       "cuisine": "mexican",
       "name": "Chipotle"
