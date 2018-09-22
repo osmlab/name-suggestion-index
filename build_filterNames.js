@@ -77,6 +77,17 @@ function filterNames() {
         }
     });
 
+    // filter by discardKeys (move from keep -> discard)
+    filters.discardKeys.forEach(s => {
+        var re = new RegExp(s, 'i');
+        for (var key in keep) {
+            if (re.test(key)) {
+                discard[key] = keep[key];
+                delete keep[key];
+            }
+        }
+    });
+
     // filter by discardNames (move from keep -> discard)
     filters.discardNames.forEach(s => {
         var re = new RegExp(s, 'i');
@@ -296,6 +307,29 @@ function checkCanonical() {
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikipedia": ' + '"' + w[1] + '"'
         ));
     }
+
+
+//WIP: gathering uncomplicated keys to add Wiki keys.
+// (no potential duplicates or tagging decisions)
+
+    // var uncomplicated = {};
+    // warnMissingWikidata.forEach(w => {
+    //     uncomplicated[w] = true;
+    // });
+    // warnMissingWikipedia.forEach(w => {
+    //     uncomplicated[w] = true;
+    // });
+    // warnDuplicate.forEach(w => {
+    //     delete uncomplicated[w[0]];
+    //     delete uncomplicated[w[1]];
+    // });
+
+    // console.warn(colors.green('\nUncomplicated cases!'));
+    // Object.keys(uncomplicated).forEach(k => {
+    //     console.log('  ' + k );
+    // });
+
+
 }
 
 
@@ -303,12 +337,15 @@ function checkCanonical() {
 // similar names for catching duplicates.
 function stemmer(name) {
     var noise = [
-        /ban(k|c)(a|o)?/i,
-        /банк/i,
-        /coop/i,
-        /express/i,
-        /(gas|fuel)/i,
-        /\s/
+        /ban(k|c)(a|o)?/ig,
+        /банк/ig,
+        /coop/ig,
+        /express/ig,
+        /(gas|fuel)/ig,
+        /wireless/ig,
+        /(shop|store)/ig,
+        /[.,\/#!$%\^&\*;:{}=\-_`~()]/g,
+        /\s/g
     ];
 
     name = noise.reduce((acc, regex) => acc.replace(regex, ''), name);

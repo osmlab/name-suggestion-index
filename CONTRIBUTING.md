@@ -231,7 +231,7 @@ For example, "Универмаг" is just a Russian word for "Department store":
 
 To remove this generic name:
 1. Delete the entries from `config/canonical.json`
-2. Edit `config/filters.json`. Add a regular expression matching the generic name in the `discardNames` list.
+2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
 3. Run `npm run build` - if the filter is working, the name will not be put back into `config/canonical.json`
 4. `git diff` - to make sure that the entries you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.
