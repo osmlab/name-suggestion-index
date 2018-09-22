@@ -653,9 +653,12 @@
   },
   "amenity/bank|Banco Estado": {
     "count": 160,
+    "match": ["amenity/bank|BancoEstado"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco Estado",
+      "brand:wikidata": "Q5718188",
+      "brand:wikipedia": "es:Banco del Estado de Chile",
       "name": "Banco Estado"
     }
   },
@@ -749,14 +752,18 @@
   },
   "amenity/bank|Banco Popular": {
     "count": 686,
+    "match": ["amenity/bank|Popular"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco Popular",
+      "brand:wikidata": "Q537259",
+      "brand:wikipedia": "es:Banco Popular Español",
       "name": "Banco Popular"
     }
   },
   "amenity/bank|Banco Popular de Ahorro": {
     "count": 58,
+    "countryCodes": ["cu"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco Popular de Ahorro",
@@ -811,6 +818,9 @@
   },
   "amenity/bank|Banco Unión": {
     "count": 52,
+    "nomatch": [
+      "amenity/money_transfer|Express Union"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Banco Unión",
@@ -911,14 +921,6 @@
       "amenity": "bank",
       "brand": "Banco do Nordeste",
       "name": "Banco do Nordeste"
-    }
-  },
-  "amenity/bank|BancoEstado": {
-    "count": 134,
-    "tags": {
-      "amenity": "bank",
-      "brand": "BancoEstado",
-      "name": "BancoEstado"
     }
   },
   "amenity/bank|Bancolombia": {
@@ -1173,9 +1175,12 @@
   },
   "amenity/bank|Bankinter": {
     "count": 167,
+    "nomatch": ["amenity/bank|Interbank"],
     "tags": {
       "amenity": "bank",
       "brand": "Bankinter",
+      "brand:wikidata": "Q806808",
+      "brand:wikipedia": "es:Bankinter",
       "name": "Bankinter"
     }
   },
@@ -1892,14 +1897,6 @@
       "name": "Eurobank"
     }
   },
-  "amenity/bank|Express Union": {
-    "count": 58,
-    "tags": {
-      "amenity": "bank",
-      "brand": "Express Union",
-      "name": "Express Union"
-    }
-  },
   "amenity/bank|FNB": {
     "count": 155,
     "tags": {
@@ -2181,19 +2178,14 @@
       "name": "ING Bank Śląski"
     }
   },
-  "amenity/bank|IberCaja": {
-    "count": 229,
-    "tags": {
-      "amenity": "bank",
-      "brand": "IberCaja",
-      "name": "IberCaja"
-    }
-  },
   "amenity/bank|Ibercaja": {
     "count": 102,
+    "match": ["amenity/bank|IberCaja"],
     "tags": {
       "amenity": "bank",
       "brand": "Ibercaja",
+      "brand:wikidata": "Q5907815",
+      "brand:wikipedia": "es:Ibercaja Banco",
       "name": "Ibercaja"
     }
   },
@@ -2215,27 +2207,27 @@
   },
   "amenity/bank|Interbank": {
     "count": 156,
+    "nomatch": ["amenity/bank|Bankinter"],
     "tags": {
       "amenity": "bank",
       "brand": "Interbank",
+      "brand:wikidata": "Q2835558",
+      "brand:wikipedia": "es:Banco Interbank",
       "name": "Interbank"
     }
   },
-  "amenity/bank|Intesa San Paolo": {
-    "count": 224,
-    "match": ["amenity/bank|Intesa Sanpaolo"],
+  "amenity/bank|Intesa Sanpaolo": {
+    "count": 128,
+    "match": [
+      "amenity/bank|Intesa San Paolo",
+      "amenity/bank|Intesa SanPaolo"
+    ],
     "tags": {
       "amenity": "bank",
-      "brand": "Intesa San Paolo",
-      "name": "Intesa San Paolo"
-    }
-  },
-  "amenity/bank|Intesa SanPaolo": {
-    "count": 75,
-    "tags": {
-      "amenity": "bank",
-      "brand": "Intesa SanPaolo",
-      "name": "Intesa SanPaolo"
+      "brand": "Intesa Sanpaolo",
+      "brand:wikidata": "Q1343118",
+      "brand:wikipedia": "it:Intesa Sanpaolo",
+      "name": "Intesa Sanpaolo"
     }
   },
   "amenity/bank|Itaú": {
@@ -2411,20 +2403,17 @@
       "name": "Liberty Bank"
     }
   },
-  "amenity/bank|Lloyds": {
-    "count": 192,
-    "tags": {
-      "amenity": "bank",
-      "brand": "Lloyds",
-      "name": "Lloyds"
-    }
-  },
   "amenity/bank|Lloyds Bank": {
     "count": 445,
-    "match": ["amenity/bank|Lloyds TSB"],
+    "match": [
+      "amenity/bank|Lloyds",
+      "amenity/bank|Lloyds TSB"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Lloyds Bank",
+      "brand:wikidata": "Q1152847",
+      "brand:wikipedia": "en:Lloyds Bank",
       "name": "Lloyds Bank"
     }
   },
@@ -2438,18 +2427,13 @@
   },
   "amenity/bank|MCB": {
     "count": 127,
+    "match": ["amenity/bank|MCB Bank"],
     "tags": {
       "amenity": "bank",
       "brand": "MCB",
+      "brand:wikidata": "Q15982510",
+      "brand:wikipedia": "ur:ایم سی بی بینک لمیٹڈ",
       "name": "MCB"
-    }
-  },
-  "amenity/bank|MCB Bank": {
-    "count": 54,
-    "tags": {
-      "amenity": "bank",
-      "brand": "MCB Bank",
-      "name": "MCB Bank"
     }
   },
   "amenity/bank|MONETA Money Bank": {
@@ -2726,19 +2710,14 @@
       "name": "PNB"
     }
   },
-  "amenity/bank|PNC": {
-    "count": 84,
-    "tags": {
-      "amenity": "bank",
-      "brand": "PNC",
-      "name": "PNC"
-    }
-  },
   "amenity/bank|PNC Bank": {
     "count": 758,
+    "match": ["amenity/bank|PNC"],
     "tags": {
       "amenity": "bank",
       "brand": "PNC Bank",
+      "brand:wikidata": "Q38928",
+      "brand:wikipedia": "en:PNC Financial Services",
       "name": "PNC Bank"
     }
   },
@@ -2805,14 +2784,6 @@
       "amenity": "bank",
       "brand": "Piraeus Bank",
       "name": "Piraeus Bank"
-    }
-  },
-  "amenity/bank|Popular": {
-    "count": 122,
-    "tags": {
-      "amenity": "bank",
-      "brand": "Popular",
-      "name": "Popular"
     }
   },
   "amenity/bank|Postbank": {
@@ -9901,6 +9872,18 @@
       "brand": "Venezia",
       "cuisine": "ice_cream",
       "name": "Venezia"
+    }
+  },
+  "amenity/money_transfer|Express Union": {
+    "nocount": true,
+    "match": ["amenity/bank|Express Union"],
+    "nomatch": ["amenity/bank|Banco Unión"],
+    "tags": {
+      "amenity": "money_transfer",
+      "brand": "Express Union",
+      "brand:wikidata": "Q3062276",
+      "brand:wikipedia": "fr:Express Union",
+      "name": "Express Union"
     }
   },
   "amenity/money_transfer|Western Union": {
