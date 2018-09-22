@@ -775,6 +775,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Banco Provincia",
+      "brand:wikidata": "Q4856209",
+      "brand:wikipedia": "es:Banco de la Provincia de Buenos Aires",
       "name": "Banco Provincia"
     }
   },
@@ -802,9 +804,12 @@
   },
   "amenity/bank|Banco Santander": {
     "count": 180,
+    "nomatch": ["amenity/bank|Santander"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco Santander",
+      "brand:wikidata": "Q6496310",
+      "brand:wikipedia": "es:Banco Santander",
       "name": "Banco Santander"
     }
   },
@@ -968,6 +973,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Bank Al Habib",
+      "brand:wikidata": "Q4034833",
+      "brand:wikipedia": "ur:بينک الحبيب لمیٹڈ",
       "name": "Bank Al Habib"
     }
   },
@@ -2025,19 +2032,14 @@
       "name": "Groupama"
     }
   },
-  "amenity/bank|HBL": {
-    "count": 73,
-    "tags": {
-      "amenity": "bank",
-      "brand": "HBL",
-      "name": "HBL"
-    }
-  },
   "amenity/bank|HBL Bank": {
     "count": 123,
+    "match": ["amenity/bank|HBL"],
     "tags": {
       "amenity": "bank",
       "brand": "HBL Bank",
+      "brand:wikidata": "Q1566843",
+      "brand:wikipedia": "ur:ایچ بی ایل پاکستان",
       "name": "HBL Bank"
     }
   },
@@ -2974,9 +2976,12 @@
     "match": [
       "amenity/bank|Santander Consumer Bank"
     ],
+    "nomatch": ["amenity/bank|Banco Santander"],
     "tags": {
       "amenity": "bank",
       "brand": "Santander",
+      "brand:wikidata": "Q5835668",
+      "brand:wikipedia": "en:Santander Bank",
       "name": "Santander"
     }
   },
@@ -2985,6 +2990,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Santander Río",
+      "brand:wikidata": "Q3385268",
+      "brand:wikipedia": "es:Banco Santander Río",
       "name": "Santander Río"
     }
   },
@@ -2993,6 +3000,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Santander Totta",
+      "brand:wikidata": "Q4854116",
+      "brand:wikipedia": "pt:Banco Santander Portugal",
       "name": "Santander Totta"
     }
   },
@@ -3264,18 +3273,13 @@
   },
   "amenity/bank|UBL": {
     "count": 56,
+    "match": ["amenity/bank|UBL Bank"],
     "tags": {
       "amenity": "bank",
       "brand": "UBL",
+      "brand:wikidata": "Q7887504",
+      "brand:wikipedia": "ur:یونائیٹڈ بینک (پاکستان)",
       "name": "UBL"
-    }
-  },
-  "amenity/bank|UBL Bank": {
-    "count": 52,
-    "tags": {
-      "amenity": "bank",
-      "brand": "UBL Bank",
-      "name": "UBL Bank"
     }
   },
   "amenity/bank|UBS": {
@@ -3356,21 +3360,23 @@
       "name": "Unicaja Banco"
     }
   },
-  "amenity/bank|Union Bank": {
-    "count": 247,
-    "match": ["amenity/bank|UnionBank"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Union Bank",
-      "name": "Union Bank"
-    }
-  },
   "amenity/bank|Union Bank of India": {
     "count": 53,
     "tags": {
       "amenity": "bank",
       "brand": "Union Bank of India",
       "name": "Union Bank of India"
+    }
+  },
+  "amenity/bank|UnionBank": {
+    "count": 90,
+    "match": ["amenity/bank|Union Bank"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "UnionBank",
+      "brand:wikidata": "Q1442804",
+      "brand:wikipedia": "en:MUFG Union Bank",
+      "name": "UnionBank"
     }
   },
   "amenity/bank|United Bank": {
@@ -3756,26 +3762,15 @@
   },
   "amenity/bank|ПриватБанк": {
     "count": 1060,
+    "match": ["amenity/bank|Приватбанк"],
     "tags": {
       "amenity": "bank",
       "brand": "ПриватБанк",
-      "name": "ПриватБанк"
-    }
-  },
-  "amenity/bank|Приватбанк": {
-    "count": 98,
-    "tags": {
-      "amenity": "bank",
-      "brand": "Приватбанк",
-      "name": "Приватбанк"
-    }
-  },
-  "amenity/bank|Приднестровский Сбербанк": {
-    "count": 66,
-    "tags": {
-      "amenity": "bank",
-      "brand": "Приднестровский Сбербанк",
-      "name": "Приднестровский Сбербанк"
+      "brand:en": "PrivatBank",
+      "brand:wikidata": "Q1515015",
+      "brand:wikipedia": "uk:ПриватБанк",
+      "name": "ПриватБанк",
+      "name:en": "PrivatBank"
     }
   },
   "amenity/bank|Приорбанк": {
@@ -3783,7 +3778,11 @@
     "tags": {
       "amenity": "bank",
       "brand": "Приорбанк",
-      "name": "Приорбанк"
+      "brand:en": "PriorBank",
+      "brand:wikidata": "Q3919658",
+      "brand:wikipedia": "be:Пріорбанк",
+      "name": "Приорбанк",
+      "name:en": "PriorBank"
     }
   },
   "amenity/bank|Промсвязьбанк": {
@@ -3844,11 +3843,18 @@
   },
   "amenity/bank|Сбербанк": {
     "count": 6955,
-    "match": ["amenity/bank|Сбербанк России"],
+    "match": [
+      "amenity/bank|Приднестровский Сбербанк",
+      "amenity/bank|Сбербанк России"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Сбербанк",
-      "name": "Сбербанк"
+      "brand:en": "Prisbank",
+      "brand:wikidata": "Q4378147",
+      "brand:wikipedia": "ru:Приднестровский Сбербанк",
+      "name": "Сбербанк",
+      "name:en": "Prisbank"
     }
   },
   "amenity/bank|Совкомбанк": {
