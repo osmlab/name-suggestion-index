@@ -17166,14 +17166,6 @@
       "shop": "chemist"
     }
   },
-  "shop/chemist|Магнит Косметик": {
-    "count": 338,
-    "tags": {
-      "brand": "Магнит Косметик",
-      "name": "Магнит Косметик",
-      "shop": "chemist"
-    }
-  },
   "shop/chemist|Мила": {
     "count": 91,
     "tags": {
@@ -21274,9 +21266,18 @@
   },
   "shop/convenience|Магнит": {
     "count": 2192,
+    "match": ["shop/supermarket|Магнит у дома"],
+    "nomatch": [
+      "shop/cosmetics|Магнит Косметик",
+      "shop/supermarket|Магнит"
+    ],
     "tags": {
       "brand": "Магнит",
+      "brand:en": "Magnit",
+      "brand:wikidata": "Q940518",
+      "brand:wikipedia": "ru:Магнит (сеть магазинов)",
       "name": "Магнит",
+      "name:en": "Magnit",
       "shop": "convenience"
     }
   },
@@ -22028,25 +22029,23 @@
   },
   "shop/cosmetics|Магнит Косметик": {
     "count": 157,
+    "countryCodes": ["ru"],
+    "match": [
+      "shop/chemist|Магнит Косметик",
+      "shop/cosmetics|Магнит косметик",
+      "shop/cosmetics|Магнит-Косметик"
+    ],
+    "nomatch": [
+      "shop/convenience|Магнит",
+      "shop/supermarket|Магнит"
+    ],
     "tags": {
       "brand": "Магнит Косметик",
+      "brand:en": "Magnit Cosmetics",
+      "brand:wikidata": "Q940518",
+      "brand:wikipedia": "ru:Магнит (сеть магазинов)",
       "name": "Магнит Косметик",
-      "shop": "cosmetics"
-    }
-  },
-  "shop/cosmetics|Магнит косметик": {
-    "count": 86,
-    "tags": {
-      "brand": "Магнит косметик",
-      "name": "Магнит косметик",
-      "shop": "cosmetics"
-    }
-  },
-  "shop/cosmetics|Магнит-Косметик": {
-    "count": 76,
-    "tags": {
-      "brand": "Магнит-Косметик",
-      "name": "Магнит-Косметик",
+      "name:en": "Magnit Cosmetics",
       "shop": "cosmetics"
     }
   },
@@ -22394,14 +22393,6 @@
     "tags": {
       "brand": "Épicerie",
       "name": "Épicerie",
-      "shop": "department_store"
-    }
-  },
-  "shop/department_store|Магнит": {
-    "count": 88,
-    "tags": {
-      "brand": "Магнит",
-      "name": "Магнит",
       "shop": "department_store"
     }
   },
@@ -29324,17 +29315,18 @@
   },
   "shop/supermarket|Магнит": {
     "count": 5084,
+    "match": ["shop/department_store|Магнит"],
+    "nomatch": [
+      "shop/convenience|Магнит",
+      "shop/cosmetics|Магнит Косметик"
+    ],
     "tags": {
       "brand": "Магнит",
+      "brand:en": "Magnit",
+      "brand:wikidata": "Q940518",
+      "brand:wikipedia": "ru:Магнит (сеть магазинов)",
       "name": "Магнит",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Магнит у дома": {
-    "count": 92,
-    "tags": {
-      "brand": "Магнит у дома",
-      "name": "Магнит у дома",
+      "name:en": "Magnit",
       "shop": "supermarket"
     }
   },
