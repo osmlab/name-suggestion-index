@@ -256,6 +256,7 @@ function checkCanonical() {
         warnMatched.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
         ));
+        console.warn('total ' + warnMatched.length);
     }
 
     if (warnDuplicate.length) {
@@ -265,6 +266,7 @@ function checkCanonical() {
         warnDuplicate.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
         ));
+        console.warn('total ' + warnDuplicate.length);
     }
 
     if (warnUncommon.length) {
@@ -274,6 +276,7 @@ function checkCanonical() {
         warnUncommon.forEach(w => console.warn(
             colors.yellow('  "' + w + '"')
         ));
+        console.warn('total ' + warnUncommon.length);
     }
 
     // if (warnMissingWikidata.length) {
@@ -282,6 +285,7 @@ function checkCanonical() {
     //     warnMissingWikidata.forEach(w => console.warn(
     //         colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikidata"'
     //     ));
+    //     console.warn('total ' + warnMissingWikidata.length);
     // }
 
     // if (warnMissingWikipedia.length) {
@@ -290,6 +294,7 @@ function checkCanonical() {
     //     warnMissingWikipedia.forEach(w => console.warn(
     //         colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikipedia"'
     //     ));
+    //     console.warn('total ' + warnMissingWikipedia.length);
     // }
 
     if (warnFormatWikidata.length) {
@@ -298,6 +303,7 @@ function checkCanonical() {
         warnFormatWikidata.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikidata": ' + '"' + w[1] + '"'
         ));
+        console.warn('total ' + warnFormatWikidata.length);
     }
 
     if (warnFormatWikipedia.length) {
@@ -306,6 +312,7 @@ function checkCanonical() {
         warnFormatWikipedia.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikipedia": ' + '"' + w[1] + '"'
         ));
+        console.warn('total ' + warnFormatWikipedia.length);
     }
 
 
