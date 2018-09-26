@@ -69,56 +69,100 @@ function nextMatch() {
 
     const name = k.split('|', 2)[1];
     const lang = 'en';
-    const searchURL = wdk.searchEntities({ search: name, lang: lang, limit: 1, format: 'json', uselang: 'en' });
-    let wd, wp;
+    const searchURL = wdk.searchEntities({
+        search: name, lang: lang, limit: 3, format: 'json', uselang: 'en'
+    });
+    let choices = [];
 
     fetch(searchURL)
         .then(response => response.json())
         .then(result => {
             if (result.search.length) {
-                entity = result.search[0];
-                console.log(colors.green(`Matched: ${entity.label} (${entity.id})`));
-                if (entity.description) {
-                    console.log(`  "${entity.description}"`);
-                }
-                return entity;
+                var queue = [];
+                result.search.forEach((entity, index) => {
+                    choices.push(entity);
+                    entity.lang = lang;
+                    queue.push(
+                        fetch(wdk.sparqlQuery(instancesSPARQL(entity)))
+                            .then(response => response.json())
+                            .then(result => getInstances(result, entity))
+                            .catch(e => console.error(colors.red(e)))
+                    );
+                    queue.push(
+                        fetch(wdk.sparqlQuery(sitelinkSPARQL(entity)))
+                            .then(response => response.json())
+                            .then(result => getSitelink(result, entity))
+                            .catch(e => console.error(colors.red(e)))
+                    );
+                });
+                return Promise.all(queue);
             }
             throw new Error(`"${name}" not found`);
         })
-        .then(entity => {
-            wd = entity.id;
-            const instancesURL = wdk.sparqlQuery(instancesSPARQL(entity));
-            const sitelinkURL = wdk.sparqlQuery(sitelinkSPARQL(entity, lang));
-            return Promise.all([
-                fetch(instancesURL)
-                    .then(response => response.json())
-                    .then(result => {
-                        const results = (result.results && result.results.bindings) || [];
-                        const instances = results.map(obj => obj.isaLabel.value);
-                        if (instances.length) {
-                            console.log(`  instance of: [${instances.join(', ')}]`);
-                        }
-                    }),
-                fetch(sitelinkURL)
-                    .then(response => response.json())
-                    .then(result => {
-                        const results = (result.results && result.results.bindings) || [];
-                        const article = results.length && results[0].article.value;
-                        if (article) {
-                            let page = decodeURIComponent(article).split('/').pop().replace(/\_/g, ' ');
-                            wp = lang + ':' + page;
-                            console.log(`  article: ${article}`);
-                        }
-                    })
-            ]);
-        })
-        .then(values => {
-            console.log(colors.magenta(`  brand:wikidata = ${wd}`));
-            console.log(colors.magenta(`  brand:wikipedia = ${wp}`));
-        })
-        .catch(err => console.error(err))
+        .then(() => showResults(choices))
+        .catch(e => console.error(colors.red(e)))
         .then(nextMatch);
 }
+
+
+function showResults(choices) {
+    choices.forEach((entity, index) => {
+        console.log(
+            colors.blue(`\n${index+1}. `),
+            colors.green(`Matched: ${entity.label} (${entity.id})`)
+        );
+
+        if (entity.description) {
+            console.log(`    "${entity.description}"`);
+        }
+        if (entity.instances) {
+            console.log(`    instance of: [${entity.instances}]`);
+        }
+        if (entity.article) {
+            console.log(`    article: ${entity.article}`);
+        }
+
+        console.log(colors.magenta(`    brand:wikidata = ${entity.id}`));
+        console.log(colors.magenta(`    brand:wikipedia = ${entity.sitelink}`));
+    });
+}
+
+
+function getInstances(result, entity) {
+    const results = (result.results && result.results.bindings) || [];
+    const instances = results.map(obj => obj.isaLabel.value);
+    if (instances.length) {
+        entity.instances = instances.join(', ');
+    }
+}
+
+function getSitelink(result, entity) {
+    const results = (result.results && result.results.bindings) || [];
+    const article = results.length && results[0].article.value;
+    if (article) {
+        let page = decodeURIComponent(article).split('/').pop().replace(/\_/g, ' ');
+        entity.article = article;
+        entity.sitelink = entity.lang + ':' + page;
+    }
+}
+
+function instancesSPARQL(entity) {
+    return `SELECT ?isa ?isaLabel WHERE {
+        wd:${entity.id} wdt:P31 ?isa.
+        SERVICE wikibase:label {
+          bd:serviceParam wikibase:language "en" .
+        }
+      }`;
+}
+
+function sitelinkSPARQL(entity) {
+    return `SELECT ?article WHERE {
+        ?article schema:about wd:${entity.id};
+                 schema:isPartOf <https://${entity.lang}.wikipedia.org/>.
+    }`;
+}
+
+
 
 
 //
@@ -151,21 +195,4 @@ function stemmer(name) {
 
     name = noise.reduce((acc, regex) => acc.replace(regex, ''), name);
     return diacritics.remove(name.toLowerCase());
-}
-
-
-function instancesSPARQL(entity) {
-    return `SELECT ?isa ?isaLabel WHERE {
-        wd:${entity.id} wdt:P31 ?isa.
-        SERVICE wikibase:label {
-          bd:serviceParam wikibase:language "en" .
-        }
-      }`;
-}
-
-function sitelinkSPARQL(entity, lang) {
-    return `SELECT ?article WHERE {
-        ?article schema:about wd:${entity.id};
-                 schema:isPartOf <https://${lang}.wikipedia.org/>.
-    }`;
 }
