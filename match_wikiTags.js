@@ -9,6 +9,8 @@ const wdk = require('wikidata-sdk');
 var canonical = require('./config/canonical.json');
 
 var toMatch = getKeysToMatch().slice(0,5);
+var total = toMatch.length;
+var count = 0;
 nextMatch();
 
 // readline.emitKeypressEvents(process.stdin);
@@ -59,38 +61,60 @@ function getKeysToMatch() {
 function nextMatch() {
     const k = toMatch.shift();
     if (!k) {
+        console.log('');
         process.exit();
     }
 
-    console.log(colors.yellow(`\nkey = ${k}`));
+    console.log(colors.yellow(`\n[${++count}/${total}]: ${k}`));
 
     const name = k.split('|', 2)[1];
-    const searchURL = wdk.searchEntities({search: name, lang: 'en', limit: 1, format: 'json'});
+    const lang = 'en';
+    const searchURL = wdk.searchEntities({ search: name, lang: lang, limit: 1, format: 'json', uselang: 'en' });
+    let wd, wp;
 
     fetch(searchURL)
         .then(response => response.json())
         .then(result => {
             if (result.search.length) {
                 entity = result.search[0];
-                console.log(colors.green(`Matched:  ${entity.label} (${entity.id})`));
+                console.log(colors.green(`Matched: ${entity.label} (${entity.id})`));
                 if (entity.description) {
-                    console.log(colors.green(`"${entity.description}"`));
+                    console.log(`  "${entity.description}"`);
                 }
                 return entity;
             }
             throw new Error(`"${name}" not found`);
         })
         .then(entity => {
-            const sparqlURL = wdk.sparqlQuery(entitySPARQL(entity));
-            return fetch(sparqlURL);
+            wd = entity.id;
+            const instancesURL = wdk.sparqlQuery(instancesSPARQL(entity));
+            const sitelinkURL = wdk.sparqlQuery(sitelinkSPARQL(entity, lang));
+            return Promise.all([
+                fetch(instancesURL)
+                    .then(response => response.json())
+                    .then(result => {
+                        const results = (result.results && result.results.bindings) || [];
+                        const instances = results.map(obj => obj.isaLabel.value);
+                        if (instances.length) {
+                            console.log(`  instance of: [${instances.join(', ')}]`);
+                        }
+                    }),
+                fetch(sitelinkURL)
+                    .then(response => response.json())
+                    .then(result => {
+                        const results = (result.results && result.results.bindings) || [];
+                        const article = results.length && results[0].article.value;
+                        if (article) {
+                            let page = decodeURIComponent(article).split('/').pop().replace(/\_/g, ' ');
+                            wp = lang + ':' + page;
+                            console.log(`  article: ${article}`);
+                        }
+                    })
+            ]);
         })
-        .then(response => response.json())
-        .then(result => {
-            const results = (result.results && result.results.bindings) || [];
-            const instances = results.map(obj => obj.isaLabel.value);
-            if (instances.length) {
-                console.log(colors.green(`instance of: [${instances.join(', ')}]`));
-            }
+        .then(values => {
+            console.log(colors.magenta(`  brand:wikidata = ${wd}`));
+            console.log(colors.magenta(`  brand:wikipedia = ${wp}`));
         })
         .catch(err => console.error(err))
         .then(nextMatch);
@@ -130,11 +154,18 @@ function stemmer(name) {
 }
 
 
-function entitySPARQL(entity) {
+function instancesSPARQL(entity) {
     return `SELECT ?isa ?isaLabel WHERE {
         wd:${entity.id} wdt:P31 ?isa.
         SERVICE wikibase:label {
           bd:serviceParam wikibase:language "en" .
         }
       }`;
+}
+
+function sitelinkSPARQL(entity, lang) {
+    return `SELECT ?article WHERE {
+        ?article schema:about wd:${entity.id};
+                 schema:isPartOf <https://${lang}.wikipedia.org/>.
+    }`;
 }
