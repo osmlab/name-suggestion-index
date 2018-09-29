@@ -220,6 +220,7 @@ function showResults(choices) {
                 obj.tags['brand:en'] = entity.label;
                 obj.tags['name:en'] = entity.label;
             }
+            obj.tags = sort(obj.tags);
 
             fs.writeFileSync('config/canonical.json', stringify(sort(canonical), { maxLength: 50 }));
 
