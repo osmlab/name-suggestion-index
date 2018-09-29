@@ -7,44 +7,32 @@ const stringify = require('json-stringify-pretty-compact');
 const wdk = require('wikidata-sdk');
 
 const MAXCHOICE = 3;      // max number of choices to consider
-const FASTFORWARD = 50;   // number to skip ahead on fast forward
 
 let canonical = require('./config/canonical.json');
-let _resolver = function() { };
-let keymap = {};   // map of keypresses -> entitys
+let _resolve = function() { };
+let _keypress = function() { };
 
 // process keypresses - https://stackoverflow.com/a/12506613/7620
 let stdin = process.stdin;
 stdin.setRawMode(true);
 stdin.resume();
 stdin.setEncoding('utf8');
-
-stdin.on('data', key => {
-    // ctrl-c (end of text)
-    if (key === '\u0003' || key === 'q') {
-        console.log('');
-        process.exit();
-    } else if (key === '\t') {
-        _resolver(FASTFORWARD);
-    } else if (key === ' ') {
-        _resolver(1);
-    } else if (keymap[key]) {
-        // update tags
-        let entity = keymap[key];
-        canonical[entity.k].tags['brand:wikidata'] = entity.id;
-        canonical[entity.k].tags['brand:wikipedia'] = entity.sitelink;
-        keymap = {};
-        fs.writeFileSync('config/canonical.json', stringify(sort(canonical), { maxLength: 50 }));
-        _resolver(1);
-    }
-});
+stdin.on('data', key => _keypress(key));
 
 
 // start matching
-let toMatch = getKeysToMatch();
-let total = toMatch.length;
-let count = 0;
-nextMatch(1);
+let _enTags = false;
+let _toMatch = getKeysToMatch();
+let _total = _toMatch.length;
+if (!_total) {
+    console.log('Nothing to match');
+    process.exit();
+}
+
+let _direction = 1;   // 1 forward, -1 backward
+let _currIndex = 0;
+let _currKey;
+nextMatch();
 
 
 function getKeysToMatch() {
@@ -75,23 +63,14 @@ function getKeysToMatch() {
 }
 
 
-function nextMatch(advance) {
-    advance = advance || 1;
-
-    let k;
-    while(advance--) {
-        k = toMatch.shift();
-        if (!k) {
-            console.log('');
-            process.exit();
-        }
-        count++;
-    }
+function nextMatch() {
+    _currIndex = clamp(_currIndex, 0, _toMatch.length - 1);
+    _currKey = _toMatch[_currIndex];
 
     clearConsole();
-    console.log(colors.yellow.bold(`[${count}/${total}]: ${k}`));
+    console.log(colors.yellow.bold(`[${_currIndex+1}/${_total}]: ${_currKey}`));
 
-    const name = k.split('|', 2)[1];
+    const name = _currKey.split('|', 2)[1];
     const lang = 'en';
     const searchURL = wdk.searchEntities({
         search: name, lang: lang, limit: MAXCHOICE, format: 'json', uselang: 'en'
@@ -107,7 +86,6 @@ function nextMatch(advance) {
             let queue = [];
             result.search.forEach((entity, index) => {
                 choices.push(entity);
-                entity.k = k;
                 entity.lang = lang;
                 queue.push(
                     fetch(wdk.sparqlQuery(instancesSPARQL(entity)))
@@ -125,12 +103,18 @@ function nextMatch(advance) {
             return Promise.all(queue);
         })
         .then(() => showResults(choices))
-        .catch(e => console.error(colors.red(e)))
-        .then(advance => nextMatch(advance));
+        .catch(e => {
+            console.error(colors.red(e));
+            _currIndex = _currIndex + _direction;
+        })
+        .then(nextMatch);
 }
 
 
 function showResults(choices) {
+    clearConsole();
+    console.log(colors.yellow.bold(`[${_currIndex+1}/${_total}]: ${_currKey}`));
+
     // only keep choices with wikidata and wikipedia tags
     choices = choices.filter(entity => entity.id && entity.sitelink);
 
@@ -138,37 +122,114 @@ function showResults(choices) {
         throw new Error(`Wiki tags not found`);
     }
 
-    keymap = {};
+    let keymap = {};
 
-    choices
-        .forEach((entity, index) => {
-            let key = '' + (index + 1);
-            keymap[key] = entity;
+    choices.forEach((entity, index) => {
+        let key = '' + (index + 1);
+        keymap[key] = entity;
 
-            console.log(
-                colors.blue.bold(`\n\'${key}\': `),
-                colors.green(`Matched: ${entity.label} (${entity.id})`)
-            );
+        console.log(
+            colors.blue.bold(`\n\'${key}\': `),
+            colors.green(`Matched: ${entity.label} (${entity.id})`)
+        );
 
-            if (entity.description) {
-                console.log(`      "${entity.description}"`);
+        if (entity.description) {
+            console.log(`      "${entity.description}"`);
+        }
+        if (entity.instances) {
+            console.log(`      instance of: [${entity.instances}]`);
+        }
+        if (entity.article) {
+            console.log(`      article: ${entity.article}`);
+        }
+
+        console.log(colors.magenta(`      brand:wikidata = ${entity.id}`));
+        console.log(colors.magenta(`      brand:wikipedia = ${entity.sitelink}`));
+        if (_enTags) {
+            console.log(colors.magenta(`      brand:en = ${entity.label}`));
+            console.log(colors.magenta(`      name:en = ${entity.label}`));
+        }
+    });
+
+    const enStatus = _enTags ? 'ON' : 'OFF';
+    console.log();
+    console.log(colors.blue.bold(`']':  Next name`));
+    console.log(colors.blue.bold(`'[':  Previous name`));
+    console.log(colors.blue.bold(`'}':  Skip to next tag`));
+    console.log(colors.blue.bold(`'{':  Skip to previous tag`));
+    console.log(colors.blue.bold(`'e':  Toggle 'en:' tags (currently ${enStatus})`));
+    console.log(colors.blue.bold(`'q':  Quit`));
+    console.log(colors.blue.bold(`\nChoose: `));
+
+    _keypress = function(key) {
+        if (key === '\u0003' || key === 'q') {    // Quit or ctrl-c (end of text)
+            console.log('');
+            process.exit();
+
+        } else if (key === ']') {    // Next
+            _direction = 1;
+            _currIndex++;
+            _resolve();
+
+        } else if (key === '[') {    // Previous
+            _direction = -1;
+            _currIndex--;
+            _resolve();
+
+        } else if (key === '}') {                   // Skip to next tag
+            let t1 = _currKey.split('|', 2)[0];
+            let t2 = t1;
+            while (t2 === t1) {  // increment past end of current tag
+                _currIndex = (_currIndex === _toMatch.length - 1) ? 0 : _currIndex + 1;
+                let k2 = _toMatch[_currIndex];
+                t2 = k2.split('|', 2)[0];
             }
-            if (entity.instances) {
-                console.log(`      instance of: [${entity.instances}]`);
+            _direction = 1;
+            _resolve();
+
+        } else if (key === '{') {                   // Skip to previous tag
+            let t1 = _currKey.split('|', 2)[0];
+            let t2 = t1;
+            while (t2 === t1) {  // decrement past beginning of current tag
+                _currIndex = (_currIndex === 0) ? _toMatch.length - 1 : _currIndex - 1;
+                let k2 = _toMatch[_currIndex];
+                t2 = k2.split('|', 2)[0];
             }
-            if (entity.article) {
-                console.log(`      article: ${entity.article}`);
+            t1 = t2;
+            while (t2 === t1) {  // decrement past beginning of previous tag
+                _currIndex = (_currIndex === 0) ? _toMatch.length - 1 : _currIndex - 1;
+                let k2 = _toMatch[_currIndex] || '';
+                t2 = k2.split('|', 2)[0];
+            }
+            // increment once
+            _currIndex = (_currIndex === _toMatch.length - 1) ? 0 : _currIndex + 1;
+            _direction = -1;
+            _resolve();
+
+        } else if (key === 'e') {                   // Toggle en: tags
+            _enTags = !_enTags;
+            _resolve();
+
+        } else if (keymap[key]) {                   // Pressed a number for a choice
+            // update tags
+            let entity = keymap[key];
+            let obj = canonical[_currKey];
+            obj.tags['brand:wikidata'] = entity.id;
+            obj.tags['brand:wikipedia'] = entity.sitelink;
+            if (_enTags) {
+                obj.tags['brand:wikidata'] = entity.label;
+                obj.tags['brand:wikipedia'] = entity.label;
             }
 
-            console.log(colors.magenta(`      brand:wikidata = ${entity.id}`));
-            console.log(colors.magenta(`      brand:wikipedia = ${entity.sitelink}`));
-        });
+            fs.writeFileSync('config/canonical.json', stringify(sort(canonical), { maxLength: 50 }));
 
-    console.log(colors.blue.bold('\n\'q\':      Quit'));
-    console.log(colors.blue.bold('\'space\':  Skip ahead 1'));
-    console.log(colors.blue.bold('\'tab\':    Skip ahead ' + FASTFORWARD));
-    console.log(colors.blue.bold('\nChoose: '));
-    return new Promise(resolve => { _resolver = resolve; });
+            _direction = 1;
+            _currIndex++;
+            _resolve();
+        }
+    }
+
+    return new Promise(resolve => { _resolve = resolve; });
 }
 
 
@@ -207,8 +268,6 @@ function sitelinkSPARQL(entity) {
 }
 
 
-
-
 //
 // Returns an object with sorted keys and sorted values.
 // (This is useful for file diffing)
@@ -219,6 +278,13 @@ function sort(obj) {
         sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
     });
     return sorted;
+}
+
+//
+// Clamp a number between min and max
+//
+function clamp(num, min, max) {
+    return Math.min(Math.max(num, min), max);
 }
 
 
