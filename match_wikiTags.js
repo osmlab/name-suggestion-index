@@ -166,7 +166,7 @@ function showResults(choices) {
             console.log('');
             process.exit();
 
-        } else if (key === ']') {    // Next
+        } else if (key === ']' || key === ' ') {    // Next
             _direction = 1;
             _currIndex++;
             _resolve();
