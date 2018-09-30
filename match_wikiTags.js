@@ -6,7 +6,7 @@ const fs = require('fs');
 const stringify = require('json-stringify-pretty-compact');
 const wdk = require('wikidata-sdk');
 
-const MAXCHOICE = 3;      // max number of choices to consider
+const MAXCHOICE = 6;      // max number of choices to consider
 
 let canonical = require('./config/canonical.json');
 let _resolve = function() { };
