@@ -29,7 +29,9 @@ if (!_total) {
     process.exit();
 }
 
-let _direction = 1;   // 1 forward, -1 backward
+let _direction = 1;      // 1 forward, -1 backward
+let _captureKeypress = false;
+let _searchString;
 let _currIndex = 0;
 let _currKey;
 nextMatch();
@@ -157,12 +159,44 @@ function showResults(choices) {
     console.log(colors.blue.bold(`'[':  Previous name`));
     console.log(colors.blue.bold(`'}':  Skip to next tag`));
     console.log(colors.blue.bold(`'{':  Skip to previous tag`));
+    console.log(colors.blue.bold(`'/':  Search for a key`));
     console.log(colors.blue.bold(`'e':  Toggle 'en:' tags (currently ${enStatus})`));
     console.log(colors.blue.bold(`'q':  Quit`));
     console.log(colors.blue.bold(`\nChoose: `));
 
     _keypress = function(key) {
-        if (key === '\u0003' || key === 'q') {    // Quit or ctrl-c (end of text)
+        if (key === '\u0003') {    // ctrl-c (end of text)
+            console.log('');
+            process.exit();
+        }
+
+        if (_captureKeypress) {
+            if (key === '\r') {            // return
+                _captureKeypress = false;
+                let origIndex = _currIndex;
+                let k;
+                let match;
+                do {
+                    _currIndex = (_currIndex === _toMatch.length - 1) ? 0 : _currIndex + 1;
+                    k = _toMatch[_currIndex];
+                    match = k.toLowerCase().includes(_searchString.toLowerCase());
+                } while (!match && _currIndex !== origIndex);
+
+                if (match) {
+                    _direction = 1;
+                    _resolve();
+                } else {
+                    console.log(`\n"${_searchString}" not found.`);
+                    console.log(colors.blue.bold(`\nChoose: `));
+                }
+            } else {                        // capture search string
+                _searchString += key;
+                process.stdout.write(key);  // echo
+            }
+            return;
+        }
+
+        if (key === 'q') {    // Quit
             console.log('');
             process.exit();
 
@@ -206,8 +240,16 @@ function showResults(choices) {
             _direction = -1;
             _resolve();
 
+        } else if (key === '/') {                   // start watching for search string
+            process.stdout.write('\nSearch?  ');
+            _captureKeypress = true;
+            _searchString = '';
+
         } else if (key === 'e') {                   // Toggle en: tags
             _enTags = !_enTags;
+            _resolve();
+
+        } else if (key === '?') {                   // ? - just refresh the screen
             _resolve();
 
         } else if (keymap[key]) {                   // Pressed a number for a choice
