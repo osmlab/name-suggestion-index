@@ -149,6 +149,8 @@ function mergeConfig() {
             obj.countryCodes = ['jp'];
         } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
             obj.countryCodes = ['kr'];
+        } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
+            obj.countryCodes = ['kr'];
         } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
             obj.countryCodes = ['kr'];
         }
