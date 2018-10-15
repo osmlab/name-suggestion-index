@@ -141,10 +141,16 @@ function mergeConfig() {
             obj.countryCodes = ['th'];
         } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
             obj.countryCodes = ['mm'];
+        } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
+            obj.countryCodes = ['kr'];
         } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
             obj.countryCodes = ['ph'];
         } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
             obj.countryCodes = ['jp'];
+        } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
+            obj.countryCodes = ['kr'];
+        } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
+            obj.countryCodes = ['kr'];
         }
 
         obj.count = keep[k];
