@@ -122,17 +122,29 @@ function mergeConfig() {
         if (rIndex[k]) return;
 
         var obj = canonical[k];
+        var parts = k.split('|', 2);
+        var tag = parts[0].split('/', 2);
+        var key = tag[0];
+        var value = tag[1];
+        var name = parts[1];
 
         if (!obj) {
-            var parts = k.split('|', 2);
-            var tag = parts[0].split('/', 2);
-            var key = tag[0];
-            var value = tag[1];
-            var name = parts[1];
-
             obj = { count: 0, tags: {} };
             obj.tags.name = name;
             obj.tags[key] = value;
+        }
+
+        // https://www.regular-expressions.info/unicode.html
+        if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
+            obj.countryCodes = ['il'];
+        } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
+            obj.countryCodes = ['th'];
+        } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
+            obj.countryCodes = ['mm'];
+        } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
+            obj.countryCodes = ['ph'];
+        } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
+            obj.countryCodes = ['jp'];
         }
 
         obj.count = keep[k];
