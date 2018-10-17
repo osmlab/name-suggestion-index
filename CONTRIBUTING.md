@@ -410,15 +410,8 @@ Overpass Turbo can show them on a map:
 Because we don't specify a bounding box, this will perform a global query.
 
 ```
-[out:json][timeout:25];
-(
-  node["name"="かっぱ寿司"]["amenity"="fast_food"];
-  way["name"="かっぱ寿司"]["amenity"="fast_food"];
-  relation["name"="かっぱ寿司"]["amenity"="fast_food"];
-);
-out body;
->;
-out skel qt;
+nwr["name"="かっぱ寿司"]["amenity"="fast_food"];
+out center;
 ```
 
 3. Click run to view the results.
