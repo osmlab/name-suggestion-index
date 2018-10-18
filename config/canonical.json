@@ -935,6 +935,7 @@
   "amenity/bank|Banco Unión": {
     "count": 52,
     "nomatch": [
+      "amenity/bank|UnionBank",
       "amenity/money_transfer|Express Union"
     ],
     "tags": {
@@ -1071,9 +1072,12 @@
   },
   "amenity/bank|Bancpost": {
     "count": 80,
+    "nomatch": ["amenity/bank|Postbank"],
     "tags": {
       "amenity": "bank",
       "brand": "Bancpost",
+      "brand:wikidata": "Q4854143",
+      "brand:wikipedia": "ro:Bancpost",
       "name": "Bancpost"
     }
   },
@@ -2725,6 +2729,7 @@
   },
   "amenity/bank|Liberty Bank": {
     "count": 53,
+    "nomatch": ["amenity/fuel|Liberty"],
     "tags": {
       "amenity": "bank",
       "brand": "Liberty Bank",
@@ -3160,6 +3165,7 @@
     "match": [
       "amenity/bank|Postbank Finanzcenter"
     ],
+    "nomatch": ["amenity/bank|Bancpost"],
     "tags": {
       "amenity": "bank",
       "brand": "Postbank",
@@ -3793,6 +3799,7 @@
   "amenity/bank|UnionBank": {
     "count": 90,
     "match": ["amenity/bank|Union Bank"],
+    "nomatch": ["amenity/bank|Banco Unión"],
     "tags": {
       "amenity": "bank",
       "brand": "UnionBank",
@@ -3900,6 +3907,9 @@
   },
   "amenity/bank|Western Union": {
     "count": 471,
+    "match": [
+      "amenity/bureau_de_change|Western Union"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Western Union",
@@ -5419,14 +5429,6 @@
       "name": "Travelex"
     }
   },
-  "amenity/bureau_de_change|Western Union": {
-    "count": 168,
-    "tags": {
-      "amenity": "bureau_de_change",
-      "brand": "Western Union",
-      "name": "Western Union"
-    }
-  },
   "amenity/cafe|85度C": {
     "count": 162,
     "tags": {
@@ -5512,17 +5514,6 @@
       "name": "Café Amazon"
     }
   },
-  "amenity/cafe|Café Central": {
-    "count": 132,
-    "match": ["amenity/cafe|Cafe Central"],
-    "tags": {
-      "amenity": "cafe",
-      "brand": "Café Central",
-      "brand:wikidata": "Q694757",
-      "brand:wikipedia": "en:Café Central",
-      "name": "Café Central"
-    }
-  },
   "amenity/cafe|Café Martínez": {
     "count": 162,
     "tags": {
@@ -5563,14 +5554,6 @@
       "brand:wikidata": "Q5039494",
       "brand:wikipedia": "en:Caribou Coffee",
       "name": "Caribou Coffee"
-    }
-  },
-  "amenity/cafe|Central": {
-    "count": 52,
-    "tags": {
-      "amenity": "cafe",
-      "brand": "Central",
-      "name": "Central"
     }
   },
   "amenity/cafe|Chatime": {
@@ -9054,18 +9037,26 @@
       "amenity/fuel|ESSO",
       "amenity/fuel|Station Esso"
     ],
-    "nomatch": ["shop/convenience|Esso"],
+    "nomatch": [
+      "amenity/fuel|Esso Express",
+      "shop/convenience|Esso"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Esso",
+      "brand:wikidata": "Q867662",
+      "brand:wikipedia": "en:Esso",
       "name": "Esso"
     }
   },
   "amenity/fuel|Esso Express": {
     "count": 199,
+    "nomatch": ["amenity/fuel|Esso"],
     "tags": {
       "amenity": "fuel",
-      "brand": "Esso Express",
+      "brand": "Esso",
+      "brand:wikidata": "Q867662",
+      "brand:wikipedia": "en:Esso",
       "name": "Esso Express"
     }
   },
@@ -9422,18 +9413,13 @@
   },
   "amenity/fuel|Kroger": {
     "count": 64,
+    "match": ["amenity/fuel|Kroger Fuel"],
     "tags": {
       "amenity": "fuel",
       "brand": "Kroger",
+      "brand:wikidata": "Q153417",
+      "brand:wikipedia": "en:Kroger",
       "name": "Kroger"
-    }
-  },
-  "amenity/fuel|Kroger Fuel": {
-    "count": 135,
-    "tags": {
-      "amenity": "fuel",
-      "brand": "Kroger Fuel",
-      "name": "Kroger Fuel"
     }
   },
   "amenity/fuel|Kum & Go": {
@@ -9464,6 +9450,7 @@
   },
   "amenity/fuel|Liberty": {
     "count": 112,
+    "nomatch": ["amenity/bank|Liberty Bank"],
     "tags": {
       "amenity": "fuel",
       "brand": "Liberty",
