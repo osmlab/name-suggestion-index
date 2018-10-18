@@ -36,6 +36,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "AIB",
+      "brand:wikidata": "Q1642179",
+      "brand:wikipedia": "en:Allied Irish Banks",
       "name": "AIB"
     }
   },
@@ -243,6 +245,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "BAC",
+      "brand:wikidata": "Q5715556",
+      "brand:wikipedia": "en:Banco de America Central",
       "name": "BAC"
     }
   },
@@ -931,6 +935,7 @@
   "amenity/bank|Banco Unión": {
     "count": 52,
     "nomatch": [
+      "amenity/bank|UnionBank",
       "amenity/money_transfer|Express Union"
     ],
     "tags": {
@@ -1067,9 +1072,12 @@
   },
   "amenity/bank|Bancpost": {
     "count": 80,
+    "nomatch": ["amenity/bank|Postbank"],
     "tags": {
       "amenity": "bank",
       "brand": "Bancpost",
+      "brand:wikidata": "Q4854143",
+      "brand:wikipedia": "ro:Bancpost",
       "name": "Bancpost"
     }
   },
@@ -1184,6 +1192,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Bank of Africa",
+      "brand:wikidata": "Q2882627",
+      "brand:wikipedia": "en:Bank of Africa Group",
       "name": "Bank of Africa"
     }
   },
@@ -1521,10 +1531,13 @@
   },
   "amenity/bank|CIBC": {
     "count": 558,
+    "countryCodes": ["ca"],
     "match": ["amenity/bank|CIBC Banking Centre"],
     "tags": {
       "amenity": "bank",
       "brand": "CIBC",
+      "brand:wikidata": "Q666694",
+      "brand:wikipedia": "en:Canadian Imperial Bank of Commerce",
       "name": "CIBC"
     }
   },
@@ -1850,6 +1863,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Comerica Bank",
+      "brand:wikidata": "Q1114148",
+      "brand:wikipedia": "en:Comerica",
       "name": "Comerica Bank"
     }
   },
@@ -2714,6 +2729,7 @@
   },
   "amenity/bank|Liberty Bank": {
     "count": 53,
+    "nomatch": ["amenity/fuel|Liberty"],
     "tags": {
       "amenity": "bank",
       "brand": "Liberty Bank",
@@ -3149,6 +3165,7 @@
     "match": [
       "amenity/bank|Postbank Finanzcenter"
     ],
+    "nomatch": ["amenity/bank|Bancpost"],
     "tags": {
       "amenity": "bank",
       "brand": "Postbank",
@@ -3222,18 +3239,13 @@
   },
   "amenity/bank|RCBC": {
     "count": 162,
+    "match": ["amenity/bank|RCBC Savings Bank"],
     "tags": {
       "amenity": "bank",
       "brand": "RCBC",
+      "brand:wikidata": "Q7339070",
+      "brand:wikipedia": "en:Rizal Commercial Banking Corporation",
       "name": "RCBC"
-    }
-  },
-  "amenity/bank|RCBC Savings Bank": {
-    "count": 87,
-    "tags": {
-      "amenity": "bank",
-      "brand": "RCBC Savings Bank",
-      "name": "RCBC Savings Bank"
     }
   },
   "amenity/bank|Rabobank": {
@@ -3394,6 +3406,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Sicoob",
+      "brand:wikidata": "Q28679754",
+      "brand:wikipedia": "pt:Sistema de Cooperativas de Crédito do Brasil",
       "name": "Sicoob"
     }
   },
@@ -3782,6 +3796,7 @@
   "amenity/bank|UnionBank": {
     "count": 90,
     "match": ["amenity/bank|Union Bank"],
+    "nomatch": ["amenity/bank|Banco Unión"],
     "tags": {
       "amenity": "bank",
       "brand": "UnionBank",
@@ -3889,6 +3904,9 @@
   },
   "amenity/bank|Western Union": {
     "count": 471,
+    "match": [
+      "amenity/bureau_de_change|Western Union"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Western Union",
@@ -5408,14 +5426,6 @@
       "name": "Travelex"
     }
   },
-  "amenity/bureau_de_change|Western Union": {
-    "count": 168,
-    "tags": {
-      "amenity": "bureau_de_change",
-      "brand": "Western Union",
-      "name": "Western Union"
-    }
-  },
   "amenity/cafe|85度C": {
     "count": 162,
     "tags": {
@@ -5501,17 +5511,6 @@
       "name": "Café Amazon"
     }
   },
-  "amenity/cafe|Café Central": {
-    "count": 132,
-    "match": ["amenity/cafe|Cafe Central"],
-    "tags": {
-      "amenity": "cafe",
-      "brand": "Café Central",
-      "brand:wikidata": "Q694757",
-      "brand:wikipedia": "en:Café Central",
-      "name": "Café Central"
-    }
-  },
   "amenity/cafe|Café Martínez": {
     "count": 162,
     "tags": {
@@ -5552,14 +5551,6 @@
       "brand:wikidata": "Q5039494",
       "brand:wikipedia": "en:Caribou Coffee",
       "name": "Caribou Coffee"
-    }
-  },
-  "amenity/cafe|Central": {
-    "count": 52,
-    "tags": {
-      "amenity": "cafe",
-      "brand": "Central",
-      "name": "Central"
     }
   },
   "amenity/cafe|Chatime": {
@@ -5663,14 +5654,6 @@
       "amenity": "cafe",
       "brand": "Eiscafe Venezia",
       "name": "Eiscafe Venezia"
-    }
-  },
-  "amenity/cafe|Eisdiele": {
-    "count": 89,
-    "tags": {
-      "amenity": "cafe",
-      "brand": "Eisdiele",
-      "name": "Eisdiele"
     }
   },
   "amenity/cafe|Espresso House": {
@@ -6136,6 +6119,10 @@
     "tags": {
       "amenity": "cafe",
       "brand": "エクセルシオール カフェ",
+      "brand:en": "EXCELSIOR CAFFÉ",
+      "brand:wikidata": "Q11289828",
+      "brand:wikipedia": "ja:エクセルシオール カフェ",
+      "cuisine": "coffee_shop",
       "name": "エクセルシオール カフェ"
     }
   },
@@ -6146,6 +6133,8 @@
       "amenity": "cafe",
       "brand": "カフェ・ド・クリエ",
       "brand:en": "Cafe de CRIE",
+      "brand:wikidata": "Q17219077",
+      "brand:wikipedia": "ja:ポッカクリエイト",
       "name": "カフェ・ド・クリエ",
       "name:en": "Cafe de CRIE"
     }
@@ -6156,7 +6145,12 @@
     "tags": {
       "amenity": "cafe",
       "brand": "カフェ・ベローチェ",
-      "name": "カフェ・ベローチェ"
+      "brand:en": "CAFFÈ VELOCE",
+      "brand:wikidata": "Q11294597",
+      "brand:wikipedia": "ja:カフェ・ベローチェ",
+      "cuisine": "coffee_shop",
+      "name": "カフェ・ベローチェ",
+      "name:en": "CAFFÈ VELOCE"
     }
   },
   "amenity/cafe|コメダ珈琲店": {
@@ -6165,7 +6159,12 @@
     "tags": {
       "amenity": "cafe",
       "brand": "コメダ珈琲店",
-      "name": "コメダ珈琲店"
+      "brand:en": "Komeda Coffee Shop",
+      "brand:wikidata": "Q11302679",
+      "brand:wikipedia": "ja:コメダ",
+      "cuisine": "coffee_shop",
+      "name": "コメダ珈琲店",
+      "name:en": "Komeda Coffee Shop"
     }
   },
   "amenity/cafe|サンマルクカフェ": {
@@ -6174,7 +6173,12 @@
     "tags": {
       "amenity": "cafe",
       "brand": "サンマルクカフェ",
-      "name": "サンマルクカフェ"
+      "brand:en": "ST.MARC CAFÉ",
+      "brand:wikidata": "Q11305989",
+      "brand:wikipedia": "ja:サンマルクホールディングス",
+      "cuisine": "coffee_shop",
+      "name": "サンマルクカフェ",
+      "name:en": "ST.MARC CAFÉ"
     }
   },
   "amenity/cafe|スターバックス": {
@@ -6211,8 +6215,11 @@
       "amenity": "cafe",
       "brand": "ドトールコーヒーショップ",
       "brand:en": "Doutor",
+      "brand:wikidata": "Q11322732",
+      "brand:wikipedia": "ja:ドトールコーヒーショップ",
+      "cuisine": "coffee_shop",
       "name": "ドトールコーヒーショップ",
-      "name:en": "Doutor"
+      "name:en": "Doutor Coffee Shop"
     }
   },
   "amenity/cafe|星巴克": {
@@ -6535,9 +6542,11 @@
   },
   "amenity/fast_food|A&W": {
     "count": 710,
+    "match": ["amenity/restaurant|A&W"],
     "tags": {
       "amenity": "fast_food",
       "brand": "A&W",
+      "cuisine": "burger",
       "name": "A&W"
     }
   },
@@ -6621,12 +6630,19 @@
       "name": "Bob's"
     }
   },
-  "amenity/fast_food|Bojangles": {
-    "count": 153,
+  "amenity/fast_food|Bojangles'": {
+    "match": [
+      "amenity/fast_food|Bojangles",
+      "amenity/restaurant|Bojangles",
+      "amenity/restaurant|Bojangles'"
+    ],
     "tags": {
       "amenity": "fast_food",
-      "brand": "Bojangles",
-      "name": "Bojangles"
+      "brand": "Bojangles'",
+      "brand:wikidata": "Q891163",
+      "brand:wikipedia": "en:Bojangles' Famous Chicken 'n Biscuits",
+      "cuisine": "chicken",
+      "name": "Bojangles'"
     }
   },
   "amenity/fast_food|Booster Juice": {
@@ -8035,7 +8051,14 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "かつや",
-      "name": "かつや"
+      "brand:en": "Katsuya",
+      "brand:wikidata": "Q2855257",
+      "brand:wikipedia": "ja:かつや",
+      "cuisine": "fried_food",
+      "name": "かつや",
+      "name:en": "Katsuya",
+      "name:ko": "카쯔야",
+      "name:zh": "吉豚屋"
     }
   },
   "amenity/fast_food|くら寿司": {
@@ -8044,7 +8067,12 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "くら寿司",
-      "name": "くら寿司"
+      "brand:en": "Kura Zushi",
+      "brand:wikidata": "Q6445491",
+      "brand:wikipedia": "ja:くらコーポレーション",
+      "cuisine": "sushi",
+      "name": "くら寿司",
+      "name:en": "Kura Zushi"
     }
   },
   "amenity/fast_food|すき家": {
@@ -8054,6 +8082,8 @@
       "amenity": "fast_food",
       "brand": "すき家",
       "brand:en": "Sukiya",
+      "brand:wikidata": "Q6137375",
+      "brand:wikipedia": "ja:すき家",
       "name": "すき家",
       "name:en": "Sukiya"
     }
@@ -8064,7 +8094,11 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "なか卯",
-      "name": "なか卯"
+      "brand:en": "Nakau",
+      "brand:wikidata": "Q11274132",
+      "brand:wikipedia": "ja:なか卯",
+      "name": "なか卯",
+      "name:en": "Nakau"
     }
   },
   "amenity/fast_food|はま寿司": {
@@ -8073,7 +8107,11 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "はま寿司",
-      "name": "はま寿司"
+      "brand:en": "Hamazushi",
+      "brand:wikidata": "Q17220385",
+      "brand:wikipedia": "ja:はま寿司",
+      "name": "はま寿司",
+      "name:en": "Hamazushi"
     }
   },
   "amenity/fast_food|ほっかほっか亭": {
@@ -8096,6 +8134,8 @@
       "amenity": "fast_food",
       "brand": "ほっともっと",
       "brand:en": "Hotto Motto",
+      "brand:wikidata": "Q10850949",
+      "brand:wikipedia": "ja:ほっともっと",
       "name": "ほっともっと",
       "name:en": "Hotto Motto"
     }
@@ -8106,7 +8146,11 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "オリジン弁当",
-      "name": "オリジン弁当"
+      "brand:en": "Origin Bentō",
+      "brand:wikidata": "Q11292632",
+      "brand:wikipedia": "ja:オリジン東秀",
+      "name": "オリジン弁当",
+      "name:en": "Origin Bentō"
     }
   },
   "amenity/fast_food|ケンタッキーフライドチキン": {
@@ -8143,7 +8187,13 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "スシロー",
-      "name": "スシロー"
+      "brand:en": "Sushiro",
+      "brand:wikidata": "Q11257037",
+      "brand:wikipedia": "ja:あきんどスシロー",
+      "cuisine": "sushi",
+      "name": "スシロー",
+      "name:en": "Sushiro",
+      "name:zh": "壽司郎"
     }
   },
   "amenity/fast_food|ピザハット": {
@@ -8222,7 +8272,13 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "丸亀製麺",
-      "name": "丸亀製麺"
+      "brand:en": "Marugame Seimen",
+      "brand:wikidata": "Q10877253",
+      "brand:wikipedia": "ja:丸亀製麺",
+      "cuisine": "noodle",
+      "name": "丸亀製麺",
+      "name:en": "Marugame Seimen",
+      "name:ko": "마루가메 제면"
     }
   },
   "amenity/fast_food|吉野家": {
@@ -8231,7 +8287,11 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "吉野家",
-      "name": "吉野家"
+      "brand:en": "Yoshinoya",
+      "brand:wikidata": "Q776272",
+      "brand:wikipedia": "ja:吉野家",
+      "name": "吉野家",
+      "name:en": "Yoshinoya"
     }
   },
   "amenity/fast_food|富士そば": {
@@ -8240,7 +8300,11 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "富士そば",
-      "name": "富士そば"
+      "brand:en": "Fuji Soba",
+      "brand:wikidata": "Q11414722",
+      "brand:wikipedia": "ja:名代富士そば",
+      "name": "富士そば",
+      "name:en": "Fuji Soba"
     }
   },
   "amenity/fast_food|幸楽苑": {
@@ -8249,7 +8313,11 @@
     "tags": {
       "amenity": "fast_food",
       "brand": "幸楽苑",
-      "name": "幸楽苑"
+      "brand:en": "Kourakuen",
+      "brand:wikidata": "Q11484003",
+      "brand:wikipedia": "ja:幸楽苑",
+      "name": "幸楽苑",
+      "name:en": "Kourakuen"
     }
   },
   "amenity/fast_food|摩斯漢堡": {
@@ -8707,6 +8775,8 @@
     "tags": {
       "amenity": "fuel",
       "brand": "Cenex",
+      "brand:wikidata": "Q5011381",
+      "brand:wikipedia": "en:CHS Inc.",
       "name": "Cenex"
     }
   },
@@ -8962,18 +9032,26 @@
       "amenity/fuel|ESSO",
       "amenity/fuel|Station Esso"
     ],
-    "nomatch": ["shop/convenience|Esso"],
+    "nomatch": [
+      "amenity/fuel|Esso Express",
+      "shop/convenience|Esso"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Esso",
+      "brand:wikidata": "Q867662",
+      "brand:wikipedia": "en:Esso",
       "name": "Esso"
     }
   },
   "amenity/fuel|Esso Express": {
     "count": 199,
+    "nomatch": ["amenity/fuel|Esso"],
     "tags": {
       "amenity": "fuel",
-      "brand": "Esso Express",
+      "brand": "Esso",
+      "brand:wikidata": "Q867662",
+      "brand:wikipedia": "en:Esso",
       "name": "Esso Express"
     }
   },
@@ -9330,18 +9408,13 @@
   },
   "amenity/fuel|Kroger": {
     "count": 64,
+    "match": ["amenity/fuel|Kroger Fuel"],
     "tags": {
       "amenity": "fuel",
       "brand": "Kroger",
+      "brand:wikidata": "Q153417",
+      "brand:wikipedia": "en:Kroger",
       "name": "Kroger"
-    }
-  },
-  "amenity/fuel|Kroger Fuel": {
-    "count": 135,
-    "tags": {
-      "amenity": "fuel",
-      "brand": "Kroger Fuel",
-      "name": "Kroger Fuel"
     }
   },
   "amenity/fuel|Kum & Go": {
@@ -9372,6 +9445,7 @@
   },
   "amenity/fuel|Liberty": {
     "count": 112,
+    "nomatch": ["amenity/bank|Liberty Bank"],
     "tags": {
       "amenity": "fuel",
       "brand": "Liberty",
@@ -13713,14 +13787,6 @@
       "name": "Casa Mia"
     }
   },
-  "amenity/restaurant|Casablanca": {
-    "count": 74,
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Casablanca",
-      "name": "Casablanca"
-    }
-  },
   "amenity/restaurant|Cheesecake Factory": {
     "count": 56,
     "tags": {
@@ -16721,6 +16787,7 @@
   },
   "shop/bakery|Steinecke": {
     "count": 286,
+    "countryCodes": ["de"],
     "tags": {
       "brand": "Steinecke",
       "name": "Steinecke",
@@ -17090,6 +17157,8 @@
     ],
     "tags": {
       "brand": "Rewe Getränkemarkt",
+      "brand:wikidata": "Q573266",
+      "brand:wikipedia": "de:Rewe Group",
       "name": "Rewe Getränkemarkt",
       "shop": "beverages"
     }
@@ -17980,6 +18049,8 @@
     "count": 555,
     "tags": {
       "brand": "Midas",
+      "brand:wikidata": "Q3312613",
+      "brand:wikipedia": "en:Midas (automotive service)",
       "name": "Midas",
       "shop": "car_repair"
     }
@@ -20410,6 +20481,8 @@
     "match": ["shop/clothes|Ross Dress for Less"],
     "tags": {
       "brand": "Ross",
+      "brand:wikidata": "Q3442791",
+      "brand:wikipedia": "en:Ross Stores",
       "name": "Ross",
       "shop": "clothes"
     }
@@ -22401,6 +22474,7 @@
   "shop/convenience|Spar": {
     "count": 1269,
     "match": ["shop/convenience|SPAR"],
+    "nomatch": ["shop/convenience|Spar Express"],
     "tags": {
       "brand": "Spar",
       "name": "Spar",
@@ -24709,18 +24783,13 @@
       "shop": "doityourself"
     }
   },
-  "shop/doityourself|Mr Bricolage": {
-    "count": 53,
-    "tags": {
-      "brand": "Mr Bricolage",
-      "name": "Mr Bricolage",
-      "shop": "doityourself"
-    }
-  },
   "shop/doityourself|Mr.Bricolage": {
     "count": 289,
+    "match": ["shop/doityourself|Mr Bricolage"],
     "tags": {
       "brand": "Mr.Bricolage",
+      "brand:wikidata": "Q3141657",
+      "brand:wikipedia": "fr:Mr Bricolage",
       "name": "Mr.Bricolage",
       "shop": "doityourself"
     }
@@ -27662,16 +27731,22 @@
   },
   "shop/optician|Synoptik": {
     "count": 60,
+    "countryCodes": ["sv"],
     "tags": {
       "brand": "Synoptik",
+      "brand:wikidata": "Q10687541",
+      "brand:wikipedia": "sv:Synoptik",
       "name": "Synoptik",
       "shop": "optician"
     }
   },
   "shop/optician|Synsam": {
     "count": 58,
+    "countryCodes": ["fi", "no", "sv"],
     "tags": {
       "brand": "Synsam",
+      "brand:wikidata": "Q12004589",
+      "brand:wikipedia": "sv:Synsam",
       "name": "Synsam",
       "shop": "optician"
     }
@@ -27871,14 +27946,6 @@
     "tags": {
       "brand": "Villarica Pawnshop",
       "name": "Villarica Pawnshop",
-      "shop": "pawnbroker"
-    }
-  },
-  "shop/pawnbroker|Ломбард": {
-    "count": 224,
-    "tags": {
-      "brand": "Ломбард",
-      "name": "Ломбард",
       "shop": "pawnbroker"
     }
   },
@@ -28838,6 +28905,8 @@
     "count": 243,
     "tags": {
       "brand": "Albert",
+      "brand:wikidata": "Q9144241",
+      "brand:wikipedia": "en:Ahold Czech Republic",
       "name": "Albert",
       "shop": "supermarket"
     }
@@ -28846,6 +28915,8 @@
     "count": 840,
     "tags": {
       "brand": "Albert Heijn",
+      "brand:wikidata": "Q1653985",
+      "brand:wikipedia": "nl:Albert Heijn (supermarkt)",
       "name": "Albert Heijn",
       "shop": "supermarket"
     }
@@ -28874,21 +28945,30 @@
   },
   "shop/supermarket|Aldi Nord": {
     "count": 269,
-    "match": ["shop/supermarket|ALDI Nord"],
+    "countryCodes": ["de"],
+    "match": [
+      "shop/supermarket|ALDI NORD",
+      "shop/supermarket|ALDI Nord"
+    ],
     "tags": {
       "brand": "Aldi Nord",
+      "brand:wikidata": "Q41171373",
+      "brand:wikipedia": "en:Aldi",
       "name": "Aldi Nord",
       "shop": "supermarket"
     }
   },
   "shop/supermarket|Aldi Süd": {
     "count": 743,
+    "countryCodes": ["de"],
     "match": [
       "shop/supermarket|ALDI SÜD",
       "shop/supermarket|ALDI Süd"
     ],
     "tags": {
       "brand": "Aldi Süd",
+      "brand:wikidata": "Q41171672",
+      "brand:wikipedia": "en:Aldi",
       "name": "Aldi Süd",
       "shop": "supermarket"
     }
@@ -29073,8 +29153,10 @@
   },
   "shop/supermarket|Bulk Barn": {
     "count": 63,
+    "countryCodes": ["ca"],
     "tags": {
       "brand": "Bulk Barn",
+      "brand:wikidata": "Q4996466",
       "name": "Bulk Barn",
       "shop": "supermarket"
     }
@@ -29741,8 +29823,11 @@
   },
   "shop/supermarket|Famila": {
     "count": 182,
+    "countryCodes": ["de", "it"],
     "tags": {
       "brand": "Famila",
+      "brand:wikidata": "Q1395108",
+      "brand:wikipedia": "de:Famila",
       "name": "Famila",
       "shop": "supermarket"
     }
@@ -30037,8 +30122,11 @@
   },
   "shop/supermarket|Hoogvliet": {
     "count": 70,
+    "countryCodes": ["nl"],
     "tags": {
       "brand": "Hoogvliet",
+      "brand:wikidata": "Q1642179",
+      "brand:wikipedia": "nl:Hoogvliet (supermarkt)",
       "name": "Hoogvliet",
       "shop": "supermarket"
     }
@@ -30124,6 +30212,8 @@
     "count": 73,
     "tags": {
       "brand": "Ingles",
+      "brand:wikidata": "Q6032595",
+      "brand:wikipedia": "en:Ingles",
       "name": "Ingles",
       "shop": "supermarket"
     }
@@ -30192,6 +30282,8 @@
     "count": 486,
     "tags": {
       "brand": "Jumbo",
+      "brand:wikidata": "Q2262314",
+      "brand:wikipedia": "en:Jumbo (supermarket)",
       "name": "Jumbo",
       "shop": "supermarket"
     }
@@ -30417,8 +30509,11 @@
   },
   "shop/supermarket|Marktkauf": {
     "count": 111,
+    "countryCodes": ["de"],
     "tags": {
       "brand": "Marktkauf",
+      "brand:wikidata": "Q1533254",
+      "brand:wikipedia": "de:Marktkauf Holding",
       "name": "Marktkauf",
       "shop": "supermarket"
     }
@@ -30642,9 +30737,12 @@
   },
   "shop/supermarket|Nahkauf": {
     "count": 254,
+    "countryCodes": ["de"],
     "match": ["shop/supermarket|nahkauf"],
     "tags": {
       "brand": "Nahkauf",
+      "brand:wikidata": "Q573266",
+      "brand:wikipedia": "en:REWE Group",
       "name": "Nahkauf",
       "shop": "supermarket"
     }
@@ -31360,6 +31458,8 @@
     "match": ["shop/supermarket|TESCO"],
     "tags": {
       "brand": "Tesco",
+      "brand:wikidata": "Q487494",
+      "brand:wikipedia": "en:Tesco",
       "name": "Tesco",
       "shop": "supermarket"
     }
@@ -31445,6 +31545,8 @@
     "count": 55,
     "tags": {
       "brand": "Tops",
+      "brand:wikidata": "Q7825137",
+      "brand:wikipedia": "en:Tops Friendly Markets",
       "name": "Tops",
       "shop": "supermarket"
     }
@@ -31453,6 +31555,9 @@
     "count": 100,
     "tags": {
       "brand": "Tottus",
+      "brand:wikidata": "Q7828510",
+      "brand:wikipedia": "en:Tottus",
+      "countryCodes": ["cl", "pe"],
       "name": "Tottus",
       "shop": "supermarket"
     }
@@ -32134,7 +32239,11 @@
     "countryCodes": ["jp"],
     "tags": {
       "brand": "バロー",
+      "brand:en": "Valor",
+      "brand:wikidata": "Q11328346",
+      "brand:wikipedia": "ja:バロー (チェーンストア)",
       "name": "バロー",
+      "name:en": "Valor",
       "shop": "supermarket"
     }
   },
@@ -32174,7 +32283,11 @@
     "countryCodes": ["jp"],
     "tags": {
       "brand": "ヨークベニマル",
+      "brand:en": "York Benimaru",
+      "brand:wikidata": "Q11346199",
+      "brand:wikipedia": "ja:ヨークベニマル",
       "name": "ヨークベニマル",
+      "name:en": "York Benimaru",
       "shop": "supermarket"
     }
   },
@@ -32230,9 +32343,14 @@
   },
   "shop/supermarket|美廉社": {
     "count": 103,
+    "countryCodes": ["tw"],
     "tags": {
       "brand": "美廉社",
+      "brand:en": "Simple Mart",
+      "brand:wikidata": "Q15914017",
+      "brand:wikipedia": "zh:美廉社",
       "name": "美廉社",
+      "name:en": "Simple Mart",
       "shop": "supermarket"
     }
   },
@@ -32286,14 +32404,6 @@
     "tags": {
       "brand": "Atelier de couture",
       "name": "Atelier de couture",
-      "shop": "tailor"
-    }
-  },
-  "shop/tailor|Änderungsschneiderei": {
-    "count": 237,
-    "tags": {
-      "brand": "Änderungsschneiderei",
-      "name": "Änderungsschneiderei",
       "shop": "tailor"
     }
   },
@@ -32414,7 +32524,12 @@
     "count": 121,
     "tags": {
       "brand": "King Jouet",
+      "brand:en": "King Toy",
+      "brand:wikidata": "Q3197009",
+      "brand:wikipedia": "fr:King Jouet",
+      "countryCodes": ["fr"],
       "name": "King Jouet",
+      "name:en": "King Toy",
       "shop": "toys"
     }
   },
@@ -32500,24 +32615,33 @@
   },
   "shop/travel_agency|D-reizen": {
     "count": 78,
+    "countryCodes": ["nl"],
     "tags": {
       "brand": "D-reizen",
+      "brand:wikidata": "Q2445498",
+      "brand:wikipedia": "nl:D-reizen",
       "name": "D-reizen",
       "shop": "travel_agency"
     }
   },
   "shop/travel_agency|DER Reisebüro": {
     "count": 63,
+    "countryCodes": ["de"],
     "tags": {
       "brand": "DER Reisebüro",
+      "brand:wikidata": "Q56729186",
+      "brand:wikipedia": "de:Deutsches Reisebüro",
       "name": "DER Reisebüro",
       "shop": "travel_agency"
     }
   },
   "shop/travel_agency|First Reisebüro": {
     "count": 60,
+    "countryCodes": ["de"],
     "tags": {
       "brand": "First Reisebüro",
+      "brand:wikidata": "Q573103",
+      "brand:wikipedia": "en:TUI Group",
       "name": "First Reisebüro",
       "shop": "travel_agency"
     }
@@ -32550,8 +32674,11 @@
   },
   "shop/travel_agency|Reiseland": {
     "count": 57,
+    "countryCodes": ["de"],
     "tags": {
       "brand": "Reiseland",
+      "brand:wikidata": "Q40387610",
+      "brand:wikipedia": "de:OTTO Reisen",
       "name": "Reiseland",
       "shop": "travel_agency"
     }
@@ -32585,6 +32712,8 @@
     "count": 344,
     "tags": {
       "brand": "Thomas Cook",
+      "brand:wikidata": "Q2141800",
+      "brand:wikipedia": "en:Thomas Cook Group",
       "name": "Thomas Cook",
       "shop": "travel_agency"
     }
@@ -33098,16 +33227,24 @@
   },
   "tourism/hotel|Best Western": {
     "count": 295,
+    "nomatch": [
+      "tourism/hotel|Best Western Plus"
+    ],
     "tags": {
       "brand": "Best Western",
+      "brand:wikidata": "Q830334",
+      "brand:wikipedia": "en:Best Western",
       "name": "Best Western",
       "tourism": "hotel"
     }
   },
   "tourism/hotel|Best Western Plus": {
     "count": 56,
+    "nomatch": ["tourism/hotel|Best Western"],
     "tags": {
-      "brand": "Best Western Plus",
+      "brand": "Best Western",
+      "brand:wikidata": "Q830334",
+      "brand:wikipedia": "en:Best Western",
       "name": "Best Western Plus",
       "tourism": "hotel"
     }
@@ -33130,26 +33267,14 @@
       "tourism": "hotel"
     }
   },
-  "tourism/hotel|Central Hotel": {
-    "count": 53,
-    "tags": {
-      "brand": "Central Hotel",
-      "name": "Central Hotel",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|City Hotel": {
-    "count": 82,
-    "tags": {
-      "brand": "City Hotel",
-      "name": "City Hotel",
-      "tourism": "hotel"
-    }
-  },
   "tourism/hotel|Comfort Inn": {
     "count": 321,
+    "match": ["tourism/motel|Comfort Inn"],
+    "nomatch": ["tourism/hotel|Comfort Suites"],
     "tags": {
       "brand": "Comfort Inn",
+      "brand:wikidata": "Q1075788",
+      "brand:wikipedia": "en:Choice Hotels",
       "name": "Comfort Inn",
       "tourism": "hotel"
     }
@@ -33158,14 +33283,19 @@
     "count": 91,
     "tags": {
       "brand": "Comfort Inn & Suites",
+      "brand:wikidata": "Q1075788",
+      "brand:wikipedia": "en:Choice Hotels",
       "name": "Comfort Inn & Suites",
       "tourism": "hotel"
     }
   },
   "tourism/hotel|Comfort Suites": {
     "count": 169,
+    "nomatch": ["tourism/hotel|Comfort Inn"],
     "tags": {
       "brand": "Comfort Suites",
+      "brand:wikidata": "Q1075788",
+      "brand:wikipedia": "en:Choice Hotels",
       "name": "Comfort Suites",
       "tourism": "hotel"
     }
@@ -33231,12 +33361,17 @@
     "count": 116,
     "tags": {
       "brand": "Extended Stay America",
+      "brand:wikidata": "Q5421850",
+      "brand:wikipedia": "en:Extended Stay America",
       "name": "Extended Stay America",
       "tourism": "hotel"
     }
   },
   "tourism/hotel|Fairfield Inn": {
     "count": 73,
+    "match": [
+      "tourism/hotel|Fairfield Inn & Suites"
+    ],
     "tags": {
       "brand": "Fairfield Inn",
       "brand:wikidata": "Q5430314",
@@ -33245,27 +33380,11 @@
       "tourism": "hotel"
     }
   },
-  "tourism/hotel|Fairfield Inn & Suites": {
-    "count": 98,
-    "tags": {
-      "brand": "Fairfield Inn & Suites",
-      "name": "Fairfield Inn & Suites",
-      "tourism": "hotel"
-    }
-  },
   "tourism/hotel|Formule 1": {
     "count": 71,
     "tags": {
       "brand": "Formule 1",
       "name": "Formule 1",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|Grand Hotel": {
-    "count": 94,
-    "tags": {
-      "brand": "Grand Hotel",
-      "name": "Grand Hotel",
       "tourism": "hotel"
     }
   },
@@ -33291,6 +33410,8 @@
     "count": 52,
     "tags": {
       "brand": "Hilton",
+      "brand:wikidata": "Q598884",
+      "brand:wikipedia": "en:Hilton Hotels & Resorts",
       "name": "Hilton",
       "tourism": "hotel"
     }
@@ -33339,22 +33460,6 @@
       "tourism": "hotel"
     }
   },
-  "tourism/hotel|Hotel Astoria": {
-    "count": 51,
-    "tags": {
-      "brand": "Hotel Astoria",
-      "name": "Hotel Astoria",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|Hotel Central": {
-    "count": 107,
-    "tags": {
-      "brand": "Hotel Central",
-      "name": "Hotel Central",
-      "tourism": "hotel"
-    }
-  },
   "tourism/hotel|Hotel Europa": {
     "count": 94,
     "tags": {
@@ -33371,43 +33476,11 @@
       "tourism": "hotel"
     }
   },
-  "tourism/hotel|Hotel Krone": {
-    "count": 57,
-    "tags": {
-      "brand": "Hotel Krone",
-      "name": "Hotel Krone",
-      "tourism": "hotel"
-    }
-  },
   "tourism/hotel|Hotel Plaza": {
     "count": 73,
     "tags": {
       "brand": "Hotel Plaza",
       "name": "Hotel Plaza",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|Hotel Post": {
-    "count": 64,
-    "tags": {
-      "brand": "Hotel Post",
-      "name": "Hotel Post",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|Hotel Victoria": {
-    "count": 81,
-    "tags": {
-      "brand": "Hotel Victoria",
-      "name": "Hotel Victoria",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|Hotel zur Post": {
-    "count": 58,
-    "tags": {
-      "brand": "Hotel zur Post",
-      "name": "Hotel zur Post",
       "tourism": "hotel"
     }
   },
@@ -33431,6 +33504,8 @@
     "count": 221,
     "tags": {
       "brand": "Ibis",
+      "brand:wikidata": "Q920166",
+      "brand:wikipedia": "en:Ibis (hotel)",
       "name": "Ibis",
       "tourism": "hotel"
     }
@@ -33449,6 +33524,8 @@
     "count": 56,
     "tags": {
       "brand": "Ibis Hotel",
+      "brand:wikidata": "Q920166",
+      "brand:wikipedia": "en:Ibis (hotel)",
       "name": "Ibis Hotel",
       "tourism": "hotel"
     }
@@ -33481,8 +33558,13 @@
   },
   "tourism/hotel|La Quinta": {
     "count": 77,
+    "match": [
+      "tourism/hotel|La Quinta Inns & Suites"
+    ],
     "tags": {
       "brand": "La Quinta",
+      "brand:wikidata": "Q6464734",
+      "brand:wikipedia": "en:La Quinta Inns & Suites",
       "name": "La Quinta",
       "tourism": "hotel"
     }
@@ -33520,14 +33602,6 @@
       "brand:wikidata": "Q420545",
       "brand:wikipedia": "en:Novotel",
       "name": "Novotel",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|Parkhotel": {
-    "count": 65,
-    "tags": {
-      "brand": "Parkhotel",
-      "name": "Parkhotel",
       "tourism": "hotel"
     }
   },
@@ -33619,6 +33693,8 @@
     "count": 86,
     "tags": {
       "brand": "Sleep Inn",
+      "brand:wikidata": "Q1075788",
+      "brand:wikipedia": "en:Choice Hotels",
       "name": "Sleep Inn",
       "tourism": "hotel"
     }
@@ -33683,14 +33759,6 @@
     "tags": {
       "brand": "Budget Inn",
       "name": "Budget Inn",
-      "tourism": "motel"
-    }
-  },
-  "tourism/motel|Comfort Inn": {
-    "count": 134,
-    "tags": {
-      "brand": "Comfort Inn",
-      "name": "Comfort Inn",
       "tourism": "motel"
     }
   },
