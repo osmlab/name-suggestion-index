@@ -278,7 +278,10 @@ OpenStreetMap expects this tag to be formatted like `"en:Chipotle Mexican Grill"
 On the brand's Wikipedia page, you can also find its "Wikidata item" link.  This appears
 under the "tools" menu in the sidebar.
 
-:point_right: protip: @maxerickson has created a user script to make copying these values even easier - see #1881
+:point_right: protip: [@maxerickson] has created a user script to make copying these values even easier - see [#1881]
+
+[#1881]: https://github.com/osmlab/name-suggestion-index/issues/1881
+[@maxerickson]: https://github.com/maxerickson
 
 <img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_2.png"/>
 
