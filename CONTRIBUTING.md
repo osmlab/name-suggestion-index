@@ -337,16 +337,12 @@ This example uses a brand "かっぱ寿司".  I don't know what that is, so I wi
 
 Tip: You might want to narrow you search by Googling with a `site:` filter:  `"かっぱ寿司 site:ja.wikipedia.org"`
 
-From these results, we can know that the brand is "Kappa Sushi", owned by a Japanese company
+From these results, we can know that the brand is "Kappazushi", owned by a Japanese company
 called "Kappa Create".  We can also find the Wikipedia page.
 
 <img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_1.png"/>
 
-3. Google Translate can be helpful too
-
-<img width="600px" alt="Google Translate for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_2.png"/>
-
-4. As with English brands, you can identify the `brand:wikipedia` value from the URL.
+3. As with English brands, you can identify the `brand:wikipedia` value from the URL.
 Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
 
 OpenStreetMap expects this tag to be formatted like `"ja:かっぱ寿司"`.
@@ -359,16 +355,16 @@ it always appears in the sidebar and mouseover will show the Wikidata 'Q' code i
 
 <img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_3.png"/>
 
-5. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
+4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
 Note: The Wikidata page looks a bit sparse - you can edit this too if you want to help!
 
 <img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_4.png"/>
 
-6. Update `config/canonical.json`:
+5. Update `config/canonical.json`:
 
 We can add:
-* `"brand:en"` and `"name:en"` tags to contain the English name "Kappa Sushi"
+* `"brand:en"` and `"name:en"` tags to contain the English name "Kappazushi"
 * `"brand:wikipedia"` and `"brand:wikidata"` tags.
 * `"cuisine": "sushi"` OpenStreetMap tag
 * `"countryCodes"` property, to indicate that this brand should only be used in Japan.
@@ -380,19 +376,19 @@ We can add:
     "tags": {
       "amenity": "fast_food",
       "brand": "かっぱ寿司",
-      "brand:en": "Kappa Sushi",            // added
+      "brand:en": "Kappazushi",            // added
       "brand:wikipedia": "ja:かっぱ寿司",     // added
       "brand:wikidata": "Q11263916",        // added
       "cuisine": "sushi",                   // added
       "name": "かっぱ寿司",
-      "name:en": "Kappa Sushi"              // added
+      "name:en": "Kappazushi"              // added
     }
   },
 ```
 
 _(comments added for clarity)_
 
-7. Rebuild and submit a pull request.
+6. Rebuild and submit a pull request.
 
 * Run `npm run build`
 * If it does not fail with an error, you can submit a pull request with your changes.
@@ -416,7 +412,7 @@ out center;
 
 3. Click run to view the results.
 
-As expected, the "かっぱ寿司" (Kappa Sushi) locations are all concentrated in Japan.
+As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
 
 <img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/overpass.png"/>
 
