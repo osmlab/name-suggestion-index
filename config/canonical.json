@@ -32980,6 +32980,7 @@
   },
   "tourism/hotel|Best Western": {
     "count": 295,
+    "match": ["tourism/motel|Best Western"],
     "nomatch": [
       "tourism/hotel|Best Western Plus"
     ],
@@ -33098,14 +33099,6 @@
       "tourism": "hotel"
     }
   },
-  "tourism/hotel|Econo Lodge": {
-    "count": 75,
-    "tags": {
-      "brand": "Econo Lodge",
-      "name": "Econo Lodge",
-      "tourism": "hotel"
-    }
-  },
   "tourism/hotel|Embassy Suites": {
     "count": 75,
     "tags": {
@@ -33187,16 +33180,24 @@
   },
   "tourism/hotel|Holiday Inn": {
     "count": 436,
+    "nomatch": [
+      "tourism/hotel|Holiday Inn Express"
+    ],
     "tags": {
       "brand": "Holiday Inn",
+      "brand:wikidata": "Q2717882",
+      "brand:wikipedia": "en:Holiday Inn",
       "name": "Holiday Inn",
       "tourism": "hotel"
     }
   },
   "tourism/hotel|Holiday Inn Express": {
     "count": 552,
+    "nomatch": ["tourism/hotel|Holiday Inn"],
     "tags": {
       "brand": "Holiday Inn Express",
+      "brand:wikidata": "Q5880423",
+      "brand:wikipedia": "en:Holiday Inn Express",
       "name": "Holiday Inn Express",
       "tourism": "hotel"
     }
@@ -33339,8 +33340,11 @@
   },
   "tourism/hotel|Quality Inn": {
     "count": 228,
+    "match": ["tourism/motel|Quality Inn"],
     "tags": {
       "brand": "Quality Inn",
+      "brand:wikidata": "Q1075788",
+      "brand:wikipedia": "en:Choice Hotels",
       "name": "Quality Inn",
       "tourism": "hotel"
     }
@@ -33456,18 +33460,13 @@
       "tourism": "hotel"
     }
   },
-  "tourism/motel|Best Western": {
-    "count": 67,
-    "tags": {
-      "brand": "Best Western",
-      "name": "Best Western",
-      "tourism": "motel"
-    }
-  },
   "tourism/motel|Econo Lodge": {
     "count": 147,
+    "match": ["tourism/hotel|Econo Lodge"],
     "tags": {
       "brand": "Econo Lodge",
+      "brand:wikidata": "Q5333330",
+      "brand:wikipedia": "en:Econo Lodge",
       "name": "Econo Lodge",
       "tourism": "motel"
     }
@@ -33480,14 +33479,6 @@
       "brand:wikidata": "Q2188884",
       "brand:wikipedia": "en:Motel 6",
       "name": "Motel 6",
-      "tourism": "motel"
-    }
-  },
-  "tourism/motel|Quality Inn": {
-    "count": 122,
-    "tags": {
-      "brand": "Quality Inn",
-      "name": "Quality Inn",
       "tourism": "motel"
     }
   },
