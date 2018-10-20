@@ -8004,6 +8004,7 @@
   "amenity/fast_food|かつや": {
     "count": 75,
     "countryCodes": ["jp"],
+    "match": ["amenity/restaurant|かつや"],
     "tags": {
       "amenity": "fast_food",
       "brand": "かつや",
@@ -8020,20 +8021,22 @@
   "amenity/fast_food|くら寿司": {
     "count": 110,
     "countryCodes": ["jp"],
+    "match": ["amenity/restaurant|くら寿司"],
     "tags": {
       "amenity": "fast_food",
       "brand": "くら寿司",
-      "brand:en": "Kura Zushi",
+      "brand:en": "Kurazushi",
       "brand:wikidata": "Q6445491",
       "brand:wikipedia": "ja:くらコーポレーション",
       "cuisine": "sushi",
       "name": "くら寿司",
-      "name:en": "Kura Zushi"
+      "name:en": "Kurazushi"
     }
   },
   "amenity/fast_food|すき家": {
     "count": 660,
     "countryCodes": ["jp"],
+    "match": ["amenity/restaurant|すき家"],
     "tags": {
       "amenity": "fast_food",
       "brand": "すき家",
@@ -8060,6 +8063,7 @@
   "amenity/fast_food|はま寿司": {
     "count": 51,
     "countryCodes": ["jp"],
+    "match": ["amenity/restaurant|はま寿司"],
     "tags": {
       "amenity": "fast_food",
       "brand": "はま寿司",
@@ -8140,6 +8144,7 @@
   "amenity/fast_food|スシロー": {
     "count": 114,
     "countryCodes": ["jp"],
+    "match": ["amenity/restaurant|スシロー"],
     "tags": {
       "amenity": "fast_food",
       "brand": "スシロー",
@@ -8222,24 +8227,10 @@
       "name:en": "Lotteria"
     }
   },
-  "amenity/fast_food|丸亀製麺": {
-    "count": 73,
-    "countryCodes": ["jp"],
-    "tags": {
-      "amenity": "fast_food",
-      "brand": "丸亀製麺",
-      "brand:en": "Marugame Seimen",
-      "brand:wikidata": "Q10877253",
-      "brand:wikipedia": "ja:丸亀製麺",
-      "cuisine": "noodle",
-      "name": "丸亀製麺",
-      "name:en": "Marugame Seimen",
-      "name:ko": "마루가메 제면"
-    }
-  },
   "amenity/fast_food|吉野家": {
     "count": 520,
     "countryCodes": ["jp"],
+    "match": ["amenity/restaurant|吉野家"],
     "tags": {
       "amenity": "fast_food",
       "brand": "吉野家",
@@ -8266,6 +8257,7 @@
   "amenity/fast_food|幸楽苑": {
     "count": 84,
     "countryCodes": ["jp"],
+    "match": ["amenity/restaurant|幸楽苑"],
     "tags": {
       "amenity": "fast_food",
       "brand": "幸楽苑",
@@ -15284,44 +15276,6 @@
       "name": "Якитория"
     }
   },
-  "amenity/restaurant|かつや": {
-    "count": 58,
-    "countryCodes": ["jp"],
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "かつや",
-      "name": "かつや"
-    }
-  },
-  "amenity/restaurant|くら寿司": {
-    "count": 52,
-    "countryCodes": ["jp"],
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "くら寿司",
-      "name": "くら寿司"
-    }
-  },
-  "amenity/restaurant|さと": {
-    "count": 52,
-    "countryCodes": ["jp"],
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "さと",
-      "name": "さと"
-    }
-  },
-  "amenity/restaurant|すき家": {
-    "count": 90,
-    "countryCodes": ["jp"],
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "すき家",
-      "brand:en": "Sukiya",
-      "name": "すき家",
-      "name:en": "Sukiya"
-    }
-  },
   "amenity/restaurant|はなまるうどん": {
     "count": 62,
     "countryCodes": ["jp"],
@@ -15329,15 +15283,6 @@
       "amenity": "restaurant",
       "brand": "はなまるうどん",
       "name": "はなまるうどん"
-    }
-  },
-  "amenity/restaurant|はま寿司": {
-    "count": 94,
-    "countryCodes": ["jp"],
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "はま寿司",
-      "name": "はま寿司"
     }
   },
   "amenity/restaurant|びっくりドンキー": {
@@ -15418,15 +15363,6 @@
       "name": "ジョリーパスタ"
     }
   },
-  "amenity/restaurant|スシロー": {
-    "count": 58,
-    "countryCodes": ["jp"],
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "スシロー",
-      "name": "スシロー"
-    }
-  },
   "amenity/restaurant|デニーズ": {
     "count": 224,
     "countryCodes": ["jp"],
@@ -15482,10 +15418,18 @@
   },
   "amenity/restaurant|丸亀製麺": {
     "count": 137,
+    "countryCodes": ["jp"],
+    "match": ["amenity/fast_food|丸亀製麺"],
     "tags": {
       "amenity": "restaurant",
       "brand": "丸亀製麺",
-      "name": "丸亀製麺"
+      "brand:en": "Marugame Seimen",
+      "brand:wikidata": "Q10877253",
+      "brand:wikipedia": "ja:丸亀製麺",
+      "cuisine": "noodle",
+      "name": "丸亀製麺",
+      "name:en": "Marugame Seimen",
+      "name:ko": "마루가메 제면"
     }
   },
   "amenity/restaurant|八方雲集": {
@@ -15496,21 +15440,18 @@
       "name": "八方雲集"
     }
   },
-  "amenity/restaurant|吉野家": {
-    "count": 92,
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "吉野家",
-      "name": "吉野家"
-    }
-  },
   "amenity/restaurant|和食さと": {
     "count": 51,
     "countryCodes": ["jp"],
+    "match": ["amenity/restaurant|さと"],
     "tags": {
       "amenity": "restaurant",
       "brand": "和食さと",
-      "name": "和食さと"
+      "brand:en": "Washoku Sato",
+      "brand:wikidata": "Q11304897",
+      "brand:wikipedia": "ja:SRSホールディングス",
+      "name": "和食さと",
+      "name:en": "Washoku Sato"
     }
   },
   "amenity/restaurant|夢庵": {
@@ -15560,14 +15501,6 @@
       "amenity": "restaurant",
       "brand": "安楽亭",
       "name": "安楽亭"
-    }
-  },
-  "amenity/restaurant|幸楽苑": {
-    "count": 53,
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "幸楽苑",
-      "name": "幸楽苑"
     }
   },
   "amenity/restaurant|日高屋": {
