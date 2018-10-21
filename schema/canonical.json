@@ -6,7 +6,7 @@
     "patternProperties": {
         "^\\S+/\\S+|.*$": {
             "type": "object",
-            "additionalProperties": true,
+            "additionalProperties": false,
             "required": [
                 "tags"
             ],
@@ -48,8 +48,16 @@
                     "enum": [ true ]
                 },
                 "tags": {
-                    "description": "(required) OpenStreetMap tags to associate with this entry",
-                    "type": "object"
+                    "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
+                    "type": "object",
+                    "properties": {
+                        "count":        { "not" : {} },
+                        "countryCodes": { "not" : {} },
+                        "match":        { "not" : {} },
+                        "nomatch":      { "not" : {} },
+                        "nocount":      { "not" : {} },
+                        "tags":         { "not" : {} }
+                    }
                 }
             }
         }

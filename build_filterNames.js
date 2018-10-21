@@ -336,27 +336,10 @@ function checkCanonical() {
     }
 
 
-//WIP: gathering uncomplicated keys to add Wiki keys.
-// (no potential duplicates or tagging decisions)
-
-    // var uncomplicated = {};
-    // warnMissingWikidata.forEach(w => {
-    //     uncomplicated[w] = true;
-    // });
-    // warnMissingWikipedia.forEach(w => {
-    //     uncomplicated[w] = true;
-    // });
-    // warnDuplicate.forEach(w => {
-    //     delete uncomplicated[w[0]];
-    //     delete uncomplicated[w[1]];
-    // });
-
-    // console.warn(colors.green('\nUncomplicated cases!'));
-    // Object.keys(uncomplicated).forEach(k => {
-    //     console.log('  ' + k );
-    // });
-
-
+    let total = Object.keys(canonical).length;
+    let hasWd = total - warnMissingWikidata.length;
+    let pct = (hasWd * 100 / total).toFixed(1);
+    console.info(colors.blue(`\nIndex completeness: ${hasWd}/${total} (${pct}%) matched to Wikidata `));
 }
 
 
