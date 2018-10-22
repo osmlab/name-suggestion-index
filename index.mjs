@@ -1,2 +1,2 @@
-import { names } from './dist/name-suggestions.json';
+import names from './dist/name-suggestions.json';
 export { names };
