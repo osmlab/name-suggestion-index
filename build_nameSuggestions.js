@@ -57,7 +57,7 @@ function buildJSON() {
 
 
 function buildXML() {
-    var presets = xmlbuilder
+    let presets = xmlbuilder
         .create('presets', { version: '1.0', encoding: 'UTF-8' })
         .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
         .att('author', 'Name Suggestion Index')
@@ -66,25 +66,25 @@ function buildXML() {
         .att('link', 'https://github.com/' + package.repository)
         .att('version', package.version);
 
-    var topgroup = presets
+    let topgroup = presets
         .ele('group')
         .att('name', 'Name Suggestion Index');
 
     // Create JOSM presets using the key and value structure from the json
     // to organize the presets into JOSM preset groups.
     for (let key in out) {
-        var keygroup = topgroup.ele('group').att('name', key);
+        let keygroup = topgroup.ele('group').att('name', key);
 
         for (let value in out[key]) {
-            var valuegroup = keygroup.ele('group').att('name', value);
+            let valuegroup = keygroup.ele('group').att('name', value);
 
             for (let name in out[key][value]) {
-                var item = valuegroup
+                let item = valuegroup
                     .ele('item')
                     .att('name', name)
                     .att('type', 'node,closedway,multipolygon');
 
-                var tags = out[key][value][name].tags;
+                let tags = out[key][value][name].tags;
                 for (let k in tags) {
                     item.ele('key').att('key', k).att('value', tags[k]);
                 }
@@ -92,6 +92,6 @@ function buildXML() {
         }
     }
 
-    var xmlstring = presets.end({ pretty: true })
+    let xmlstring = presets.end({ pretty: true })
     fs.writeFileSync('dist/name-suggestions.presets.xml', xmlstring);
 }

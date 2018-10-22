@@ -6,7 +6,7 @@ const stringify = require('json-stringify-pretty-compact');
 
 const allNames = require('./dist/allNames.json');
 const filters = require('./config/filters.json');
-var canonical = require('./config/canonical.json');
+let canonical = require('./config/canonical.json');
 
 // perform JSON-schema validation
 const Validator = require('jsonschema').Validator;
@@ -18,9 +18,9 @@ validateSchema('config/canonical.json', canonical, canonicalSchema);
 
 
 // all names start out in discard..
-var discard = Object.assign({}, allNames);
-var keep = {};
-var rIndex = {};
+let discard = Object.assign({}, allNames);
+let keep = {};
+let rIndex = {};
 
 filterNames();
 mergeConfig();
@@ -29,8 +29,8 @@ mergeConfig();
 
 // Perform JSON Schema validation
 function validateSchema(fileName, object, schema) {
-    var v = new Validator();
-    var validationErrors = v.validate(object, schema).errors;
+    let v = new Validator();
+    let validationErrors = v.validate(object, schema).errors;
     if (validationErrors.length) {
         console.error(colors.red('\nError - Schema validation:'));
         console.error('  ' + colors.yellow(fileName + ': '));
@@ -67,9 +67,9 @@ function filterNames() {
 
     // filter by keepTags (move from discard -> keep)
     filters.keepTags.forEach(s => {
-        var re = new RegExp(s, 'i');
-        for (var key in discard) {
-            var tag = key.split('|', 2)[0];
+        let re = new RegExp(s, 'i');
+        for (let key in discard) {
+            let tag = key.split('|', 2)[0];
             if (re.test(tag)) {
                 keep[key] = discard[key];
                 delete discard[key];
@@ -79,8 +79,8 @@ function filterNames() {
 
     // filter by discardKeys (move from keep -> discard)
     filters.discardKeys.forEach(s => {
-        var re = new RegExp(s, 'i');
-        for (var key in keep) {
+        let re = new RegExp(s, 'i');
+        for (let key in keep) {
             if (re.test(key)) {
                 discard[key] = keep[key];
                 delete keep[key];
@@ -90,9 +90,9 @@ function filterNames() {
 
     // filter by discardNames (move from keep -> discard)
     filters.discardNames.forEach(s => {
-        var re = new RegExp(s, 'i');
-        for (var key in keep) {
-            var name = key.split('|', 2)[1];
+        let re = new RegExp(s, 'i');
+        for (let key in keep) {
+            let name = key.split('|', 2)[1];
             if (re.test(name)) {
                 discard[key] = keep[key];
                 delete keep[key];
@@ -121,12 +121,12 @@ function mergeConfig() {
     Object.keys(keep).forEach(k => {
         if (rIndex[k]) return;
 
-        var obj = canonical[k];
-        var parts = k.split('|', 2);
-        var tag = parts[0].split('/', 2);
-        var key = tag[0];
-        var value = tag[1];
-        var name = parts[1];
+        let obj = canonical[k];
+        let parts = k.split('|', 2);
+        let tag = parts[0].split('/', 2);
+        let key = tag[0];
+        let value = tag[1];
+        let name = parts[1];
 
         if (!obj) {
             obj = { count: 0, tags: {} };
@@ -171,7 +171,7 @@ function mergeConfig() {
 // (This is useful for file diffing)
 //
 function sort(obj) {
-    var sorted = {};
+    let sorted = {};
     Object.keys(obj).sort().forEach(k => {
         sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
     });
@@ -183,12 +183,12 @@ function sort(obj) {
 // Returns a reverse index to map match keys back to their original keys
 //
 function buildReverseIndex() {
-    var warnCollisions = [];
+    let warnCollisions = [];
 
-    for (var key in canonical) {
+    for (let key in canonical) {
         if (canonical[key].match) {
-            for (var i = canonical[key].match.length - 1; i >= 0; i--) {
-                var match = canonical[key].match[i];
+            for (let i = canonical[key].match.length - 1; i >= 0; i--) {
+                let match = canonical[key].match[i];
                 if (rIndex[match]) {
                     warnCollisions.push([rIndex[match], match]);
                     warnCollisions.push([key, match]);
@@ -212,14 +212,14 @@ function buildReverseIndex() {
 // Checks all the entries in `canonical.json` for several kinds of issues
 //
 function checkCanonical() {
-    var warnUncommon = [];
-    var warnMatched = [];
-    var warnDuplicate = [];
-    var warnFormatWikidata = [];
-    var warnFormatWikipedia = [];
-    var warnMissingWikidata = [];
-    var warnMissingWikipedia = [];
-    var seen = {};
+    let warnUncommon = [];
+    let warnMatched = [];
+    let warnDuplicate = [];
+    let warnFormatWikidata = [];
+    let warnFormatWikipedia = [];
+    let warnMissingWikidata = [];
+    let warnMissingWikipedia = [];
+    let seen = {};
 
     Object.keys(canonical).forEach(k => {
         // Warn if the item is uncommon (i.e. not found in keepNames)
@@ -238,11 +238,11 @@ function checkCanonical() {
         }
 
         // Warn if the name appears to be a duplicate
-        var stem = stemmer(k.split('|', 2)[1]);
-        var other = seen[stem];
+        let stem = stemmer(k.split('|', 2)[1]);
+        let other = seen[stem];
         if (other) {
             // suppress warning?
-            var suppress = false;
+            let suppress = false;
             if (canonical[other].nomatch && canonical[other].nomatch.indexOf(k) !== -1) {
                 suppress = true;
             } else if (canonical[k].nomatch && canonical[k].nomatch.indexOf(other) !== -1) {
@@ -256,13 +256,13 @@ function checkCanonical() {
 
 
         // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
-        var wd = canonical[k].tags['brand:wikidata'];
+        let wd = canonical[k].tags['brand:wikidata'];
         if (!wd) {
             warnMissingWikidata.push(k);
         } else if (!/^Q\d+$/.test(wd)) {
             warnFormatWikidata.push([k, wd]);
         }
-        var wp = canonical[k].tags['brand:wikipedia'];
+        let wp = canonical[k].tags['brand:wikipedia'];
         if (!wp) {
             warnMissingWikipedia.push(k);
         } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
@@ -346,7 +346,7 @@ function checkCanonical() {
 // Removes noise from the name so that we can compare
 // similar names for catching duplicates.
 function stemmer(name) {
-    var noise = [
+    let noise = [
         /ban(k|c)(a|o)?/ig,
         /банк/ig,
         /coop/ig,
