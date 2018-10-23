@@ -86,6 +86,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Agrani Bank Limited অগ্রণী ব্যাংক লিমিটেড",
+      "brand:wikidata": "Q517050",
+      "brand:wikipedia": "en:Agrani Bank",
       "name": "Agrani Bank Limited অগ্রণী ব্যাংক লিমিটেড"
     }
   },
@@ -783,9 +785,12 @@
   },
   "amenity/bank|Banco Falabella": {
     "count": 60,
+    "countryCodes": ["cl", "co", "pe"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco Falabella",
+      "brand:wikidata": "Q4854088",
+      "brand:wikipedia": "en:Banco Falabella",
       "name": "Banco Falabella"
     }
   },
@@ -2632,9 +2637,11 @@
   },
   "amenity/bank|Kasa Stefczyka": {
     "count": 84,
+    "countryCodes": ["pl"],
     "tags": {
       "amenity": "bank",
       "brand": "Kasa Stefczyka",
+      "brand:wikidata": "Q57624461",
       "name": "Kasa Stefczyka"
     }
   },
@@ -2844,9 +2851,13 @@
   },
   "amenity/bank|Mibanco": {
     "count": 59,
+    "countryCodes": ["pe"],
+    "match": ["amenity/bank|MiBanco"],
     "tags": {
       "amenity": "bank",
       "brand": "Mibanco",
+      "brand:wikidata": "Q5558589",
+      "brand:wikipedia": "es:MiBanco",
       "name": "Mibanco"
     }
   },
@@ -3187,9 +3198,12 @@
   },
   "amenity/bank|Prima banka": {
     "count": 54,
+    "countryCodes": ["sk"],
     "tags": {
       "amenity": "bank",
       "brand": "Prima banka",
+      "brand:wikidata": "Q13538661",
+      "brand:wikipedia": "sk:Prima banka Slovensko",
       "name": "Prima banka"
     }
   },
@@ -3764,6 +3778,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Umpqua Bank",
+      "brand:wikidata": "Q7881772",
+      "brand:wikipedia": "en:Umpqua Holdings Corporation",
       "name": "Umpqua Bank"
     }
   },
@@ -4035,7 +4051,11 @@
     "tags": {
       "amenity": "bank",
       "brand": "Εθνική Τράπεζα",
-      "name": "Εθνική Τράπεζα"
+      "brand:en": "National Bank of Greece",
+      "brand:wikidata": "Q1816028",
+      "brand:wikipedia": "en:National Bank of Greece",
+      "name": "Εθνική Τράπεζα",
+      "name:en": "National Bank of Greece"
     }
   },
   "amenity/bank|Πειραιώς": {
@@ -4092,10 +4112,15 @@
   },
   "amenity/bank|Белагропромбанк": {
     "count": 194,
+    "countryCodes": ["by"],
     "tags": {
       "amenity": "bank",
       "brand": "Белагропромбанк",
-      "name": "Белагропромбанк"
+      "brand:en": "Belagroprom Bank",
+      "brand:wikidata": "Q1991373",
+      "brand:wikipedia": "be:Белаграпрамбанк",
+      "name": "Белагропромбанк",
+      "name:en": "Belagroprom Bank"
     }
   },
   "amenity/bank|Беларусбанк": {
@@ -8510,6 +8535,10 @@
   },
   "amenity/fuel|Asda": {
     "count": 61,
+    "nomatch": [
+      "shop/fuel|Asda",
+      "shop/supermarket|ASDA"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Asda",
@@ -9335,9 +9364,12 @@
   "amenity/fuel|Jet": {
     "count": 509,
     "match": ["amenity/fuel|JET"],
+    "nomatch": ["shop/clothes|Jet"],
     "tags": {
       "amenity": "fuel",
       "brand": "Jet",
+      "brand:wikidata": "Q568940",
+      "brand:wikipedia": "en:Jet (brand)",
       "name": "Jet"
     }
   },
@@ -15799,14 +15831,6 @@
       "shop": "beauty"
     }
   },
-  "shop/beauty|Douglas": {
-    "count": 86,
-    "tags": {
-      "brand": "Douglas",
-      "name": "Douglas",
-      "shop": "beauty"
-    }
-  },
   "shop/beauty|European Wax Center": {
     "count": 58,
     "tags": {
@@ -15833,14 +15857,6 @@
       "shop": "beauty"
     }
   },
-  "shop/beauty|Sally Beauty Supply": {
-    "count": 235,
-    "tags": {
-      "brand": "Sally Beauty Supply",
-      "name": "Sally Beauty Supply",
-      "shop": "beauty"
-    }
-  },
   "shop/beauty|Ulta Beauty": {
     "count": 82,
     "tags": {
@@ -15855,6 +15871,8 @@
     "count": 685,
     "tags": {
       "brand": "Yves Rocher",
+      "brand:wikidata": "Q28496595",
+      "brand:wikipedia": "fr:Yves Rocher (entreprise)",
       "name": "Yves Rocher",
       "shop": "beauty"
     }
@@ -17559,14 +17577,6 @@
       "shop": "chemist"
     }
   },
-  "shop/chemist|Douglas": {
-    "count": 88,
-    "tags": {
-      "brand": "Douglas",
-      "name": "Douglas",
-      "shop": "chemist"
-    }
-  },
   "shop/chemist|Drogeria Natura": {
     "count": 58,
     "countryCodes": ["pl"],
@@ -18358,6 +18368,7 @@
   },
   "shop/clothes|Engbers": {
     "count": 78,
+    "match": ["shop/clothes|engbers"],
     "tags": {
       "brand": "Engbers",
       "name": "Engbers",
@@ -18620,6 +18631,8 @@
   },
   "shop/clothes|Jet": {
     "count": 70,
+    "countryCodes": ["za"],
+    "nomatch": ["amenity/fuel|Jet"],
     "tags": {
       "brand": "Jet",
       "name": "Jet",
@@ -19756,14 +19769,6 @@
       "shop": "clothes"
     }
   },
-  "shop/clothes|engbers": {
-    "count": 52,
-    "tags": {
-      "brand": "engbers",
-      "name": "engbers",
-      "shop": "clothes"
-    }
-  },
   "shop/clothes|mister*lady": {
     "count": 87,
     "tags": {
@@ -19885,14 +19890,6 @@
       "brand:wikipedia": "de:Tchibo",
       "name": "Tchibo",
       "shop": "coffee"
-    }
-  },
-  "shop/computer|Apple Store": {
-    "count": 98,
-    "tags": {
-      "brand": "Apple Store",
-      "name": "Apple Store",
-      "shop": "computer"
     }
   },
   "shop/computer|DNS": {
@@ -22201,14 +22198,6 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|Продукти": {
-    "count": 1703,
-    "tags": {
-      "brand": "Продукти",
-      "name": "Продукти",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|Продуктовый": {
     "count": 390,
     "tags": {
@@ -22539,6 +22528,8 @@
     "tags": {
       "brand": "セイコーマート",
       "brand:en": "Seicomart",
+      "brand:wikidata": "Q11314123",
+      "brand:wikipedia": "ja:セイコーマート",
       "name": "セイコーマート",
       "name:en": "Seicomart",
       "shop": "convenience"
@@ -22567,6 +22558,8 @@
     "tags": {
       "brand": "セーブオン",
       "brand:en": "Save On",
+      "brand:wikidata": "Q11314868",
+      "brand:wikipedia": "ja:セーブオン",
       "name": "セーブオン",
       "name:en": "Save On",
       "shop": "convenience"
@@ -22603,7 +22596,10 @@
     "countryCodes": ["jp"],
     "tags": {
       "brand": "ポプラ",
+      "brand:wikidata": "Q7229380",
+      "brand:wikipedia": "ja:ポプラ (コンビニエンスストア)",
       "name": "ポプラ",
+      "name:en": "Poplar",
       "shop": "convenience"
     }
   },
@@ -22625,7 +22621,10 @@
     "countryCodes": ["jp"],
     "tags": {
       "brand": "ヤマザキショップ",
+      "brand:wikidata": "Q11345131",
+      "brand:wikipedia": "ja:ヤマザキショップ",
       "name": "ヤマザキショップ",
+      "name:en": "Yamazaki Shop",
       "shop": "convenience"
     }
   },
@@ -22634,7 +22633,9 @@
     "countryCodes": ["jp"],
     "tags": {
       "brand": "ローソン",
-      "brand:en": "Lawson",
+      "brand:en": "LAWSON",
+      "brand:wikidata": "Q1557223",
+      "brand:wikipedia": "ja:ローソン",
       "name": "ローソン",
       "name:en": "Lawson",
       "shop": "convenience"
@@ -22645,6 +22646,8 @@
     "countryCodes": ["jp"],
     "tags": {
       "brand": "ローソンストア100",
+      "brand:wikidata": "Q11350960",
+      "brand:wikipedia": "ja:ローソンストア100",
       "name": "ローソンストア100",
       "shop": "convenience"
     }
@@ -22720,14 +22723,6 @@
       "brand": "Fotocopias",
       "name": "Fotocopias",
       "shop": "copyshop"
-    }
-  },
-  "shop/cosmetics|Douglas": {
-    "count": 89,
-    "tags": {
-      "brand": "Douglas",
-      "name": "Douglas",
-      "shop": "cosmetics"
     }
   },
   "shop/cosmetics|Eva": {
@@ -23115,6 +23110,8 @@
     "count": 151,
     "tags": {
       "brand": "Marks & Spencer",
+      "brand:wikidata": "Q714491",
+      "brand:wikipedia": "en:Marks & Spencer",
       "name": "Marks & Spencer",
       "shop": "department_store"
     }
@@ -23782,8 +23779,11 @@
   },
   "shop/electronics|Apple Store": {
     "count": 66,
+    "match": ["shop/computer|Apple Store"],
     "tags": {
       "brand": "Apple Store",
+      "brand:wikidata": "Q421253",
+      "brand:wikipedia": "en:Apple Store",
       "name": "Apple Store",
       "shop": "electronics"
     }
@@ -23933,6 +23933,18 @@
       "brand:wikidata": "Q6419332",
       "brand:wikipedia": "en:Kjell & Company",
       "name": "Kjell & Company",
+      "shop": "electronics"
+    }
+  },
+  "shop/electronics|Komputronik": {
+    "nocount": true,
+    "match": ["shop/computer|Komputronik"],
+    "countryCodes": ["pl"],
+    "tags": {
+      "brand": "Komputronik",
+      "brand:wikidata": "Q11742085",
+      "brand:wikipedia": "pl:Komputronik",
+      "name": "Komputronik",
       "shop": "electronics"
     }
   },
@@ -24599,6 +24611,8 @@
     "count": 200,
     "tags": {
       "brand": "Hallmark",
+      "brand:wikidata": "Q1521910",
+      "brand:wikipedia": "en:Hallmark Cards",
       "name": "Hallmark",
       "shop": "gift"
     }
@@ -24623,20 +24637,15 @@
       "shop": "greengrocer"
     }
   },
-  "shop/greengrocer|Овощи и фрукты": {
-    "count": 97,
+  "shop/hairdresser_supply|Sally Beauty Supply": {
+    "nocount": true,
+    "match": ["shop/beauty|Sally Beauty Supply"],
     "tags": {
-      "brand": "Овощи и фрукты",
-      "name": "Овощи и фрукты",
-      "shop": "greengrocer"
-    }
-  },
-  "shop/greengrocer|Овощи-фрукты": {
-    "count": 111,
-    "tags": {
-      "brand": "Овощи-фрукты",
-      "name": "Овощи-фрукты",
-      "shop": "greengrocer"
+      "brand": "Sally Beauty Supply",
+      "brand:wikidata": "Q7405065",
+      "brand:wikipedia": "en:Sally Beauty Holdings",
+      "name": "Sally Beauty Supply",
+      "shop": "beauty"
     }
   },
   "shop/hairdresser|Camille Albane": {
@@ -24754,17 +24763,12 @@
   },
   "shop/hairdresser|Jean Louis David": {
     "count": 113,
+    "match": [
+      "shop/hairdresser|Jean-Louis David"
+    ],
     "tags": {
       "brand": "Jean Louis David",
       "name": "Jean Louis David",
-      "shop": "hairdresser"
-    }
-  },
-  "shop/hairdresser|Jean-Louis David": {
-    "count": 68,
-    "tags": {
-      "brand": "Jean-Louis David",
-      "name": "Jean-Louis David",
       "shop": "hairdresser"
     }
   },
@@ -25740,8 +25744,8 @@
     "nomatch": ["amenity/fuel|Sprint"],
     "tags": {
       "brand": "Sprint",
+      "brand:wikidata": "Q301965",
       "brand:wikipedia": "en:Sprint Corporation",
-      "brand:wkidata": "Q301965",
       "name": "Sprint",
       "shop": "mobile_phone"
     }
@@ -25751,8 +25755,8 @@
     "match": ["shop/mobile_phone|T Mobile"],
     "tags": {
       "brand": "T-Mobile",
+      "brand:wikidata": "Q327634",
       "brand:wikipedia": "en:T-Mobile",
-      "brand:wkidata": "Q327634",
       "name": "T-Mobile",
       "shop": "mobile_phone"
     }
@@ -26031,7 +26035,11 @@
     "countryCodes": ["jp"],
     "tags": {
       "brand": "ソフトバンクショップ",
+      "brand:en": "SoftBankShop",
+      "brand:wikidata": "Q11315281",
+      "brand:wikipedia": "ja:ソフトバンクショップ",
       "name": "ソフトバンクショップ",
+      "name:en": "SoftBankShop",
       "shop": "mobile_phone"
     }
   },
@@ -26425,6 +26433,8 @@
     "count": 326,
     "tags": {
       "brand": "Optic 2000",
+      "brand:wikidata": "Q3354445",
+      "brand:wikipedia": "fr:Optic 2000",
       "name": "Optic 2000",
       "shop": "optician"
     }
@@ -26704,8 +26714,15 @@
   },
   "shop/perfumery|Douglas": {
     "count": 190,
+    "match": [
+      "shop/beauty|Douglas",
+      "shop/chemist|Douglas",
+      "shop/cosmetics|Douglas"
+    ],
     "tags": {
       "brand": "Douglas",
+      "brand:wikidata": "Q2052213",
+      "brand:wikipedia": "de:Parfümerie Douglas",
       "name": "Douglas",
       "shop": "perfumery"
     }
@@ -26732,6 +26749,8 @@
     "count": 95,
     "tags": {
       "brand": "Marionnaud",
+      "brand:wikidata": "Q1129073",
+      "brand:wikipedia": "fr:Marionnaud Parfumeries",
       "name": "Marionnaud",
       "shop": "perfumery"
     }
@@ -26948,6 +26967,8 @@
     "count": 321,
     "tags": {
       "brand": "CCC",
+      "brand:wikidata": "Q11788344",
+      "brand:wikipedia": "de:CCC (Unternehmen)",
       "name": "CCC",
       "shop": "shoes"
     }
@@ -27801,6 +27822,7 @@
   "shop/supermarket|Asda": {
     "count": 261,
     "match": ["shop/supermarket|ASDA"],
+    "nomatch": ["amenity/fuel|Asda"],
     "tags": {
       "brand": "Asda",
       "name": "Asda",
@@ -28809,8 +28831,11 @@
   },
   "shop/supermarket|G20": {
     "count": 88,
+    "countryCodes": ["fr"],
     "tags": {
       "brand": "G20",
+      "brand:wikidata": "Q3504731",
+      "brand:wikipedia": "fr:Supermarchés G20",
       "name": "G20",
       "shop": "supermarket"
     }
@@ -29862,6 +29887,8 @@
     "count": 93,
     "tags": {
       "brand": "Proxi",
+      "brand:wikidata": "Q3408522",
+      "brand:wikipedia": "fr:Proxi",
       "name": "Proxi",
       "shop": "supermarket"
     }
@@ -31620,8 +31647,10 @@
   },
   "shop/travel_agency|Havas Voyages": {
     "count": 54,
+    "countryCodes": ["fr"],
     "tags": {
       "brand": "Havas Voyages",
+      "brand:wikidata": "Q57628091",
       "name": "Havas Voyages",
       "shop": "travel_agency"
     }
@@ -32326,19 +32355,14 @@
   },
   "tourism/hotel|Hampton Inn": {
     "count": 445,
+    "match": [
+      "tourism/hotel|Hampton Inn & Suites"
+    ],
     "tags": {
       "brand": "Hampton Inn",
       "brand:wikidata": "Q5646230",
       "brand:wikipedia": "en:Hampton by Hilton",
       "name": "Hampton Inn",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|Hampton Inn & Suites": {
-    "count": 149,
-    "tags": {
-      "brand": "Hampton Inn & Suites",
-      "name": "Hampton Inn & Suites",
       "tourism": "hotel"
     }
   },

@@ -3,8 +3,6 @@ const Validator = require('jsonschema').Validator;
 
 const filters = require('./config/filters.json');
 const canonical = require('./config/canonical.json');
-
-
 const filtersSchema = require('./schema/filters.json');
 const canonicalSchema = require('./schema/canonical.json');
 

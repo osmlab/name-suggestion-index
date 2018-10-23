@@ -25,7 +25,7 @@ if (process.argv.length < 3) {
 const checkKeys = ['amenity', 'shop', 'leisure', 'man_made', 'tourism'];
 const THRESHOLD = process.argv[3] || 50;
 
-var counts = {};
+let counts = {};
 build();
 
 
@@ -36,25 +36,25 @@ function build() {
     // Start clean
     shell.rm('-f', ['dist/allNames.json']);
 
-    var handler = new osmium.Handler();
+    let handler = new osmium.Handler();
     handler.options({ tagged_nodes_only: true });
     handler.on('node', countTags);
     handler.on('way', countTags);
     handler.on('relation', countTags);
 
-    var reader = new osmium.Reader(process.argv[2]);
+    let reader = new osmium.Reader(process.argv[2]);
     osmium.apply(reader, handler);
 
     // filter
-    var filtered = {};
-    for (var key in counts) {
+    let filtered = {};
+    for (let key in counts) {
         if (counts[key] > THRESHOLD) {
             filtered[key] = counts[key];
         }
     }
 
     // sort
-    var sorted = {};
+    let sorted = {};
     Object.keys(filtered).sort().forEach(function(k) {
         sorted[k] = filtered[k];
     });
@@ -65,15 +65,15 @@ function build() {
 
 
 function countTags(entity) {
-    var name = entity.tags('name');  // fast name check
+    let name = entity.tags('name');  // fast name check
     if (!name) return;
-    var tags = entity.tags();
+    let tags = entity.tags();
 
-    for (var i = 0; i < checkKeys.length; i++) {
-        var key = checkKeys[i];
+    for (let i = 0; i < checkKeys.length; i++) {
+        let key = checkKeys[i];
         if (!tags[key]) continue;
 
-        var fullName = key + '/' + tags[key] + '|' + name;
+        let fullName = key + '/' + tags[key] + '|' + name;
         counts[fullName] = (counts[fullName] || 0) + 1;
     }
 }
