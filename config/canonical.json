@@ -21710,14 +21710,6 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|Виктория": {
-    "count": 195,
-    "tags": {
-      "brand": "Виктория",
-      "name": "Виктория",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|ВкусВилл": {
     "count": 269,
     "tags": {
@@ -30820,8 +30812,16 @@
   },
   "shop/supermarket|Виктория": {
     "count": 81,
+    "countryCodes": ["ru"],
+    "match": ["shop/convenience|Виктория"],
+    "nomatch": [
+      "amenity/cafe|Виктория",
+      "shop/hairdresser|Виктория"
+    ],
     "tags": {
       "brand": "Виктория",
+      "brand:wikidata": "Q4111046",
+      "brand:wikipedia": "ru:Виктория (сеть магазинов)",
       "name": "Виктория",
       "shop": "supermarket"
     }
