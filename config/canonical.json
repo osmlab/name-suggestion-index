@@ -16089,14 +16089,6 @@
       "shop": "bicycle"
     }
   },
-  "shop/bicycle|Halfords": {
-    "count": 164,
-    "tags": {
-      "brand": "Halfords",
-      "name": "Halfords",
-      "shop": "bicycle"
-    }
-  },
   "shop/bicycle|サイクルベースあさひ": {
     "count": 105,
     "countryCodes": ["jp"],
@@ -16555,9 +16547,16 @@
   },
   "shop/car_parts|Halfords": {
     "count": 114,
+    "match": ["shop/bicycle|Halfords"],
+    "nomatch": [
+      "shop/car_repair|Halfords Autocentre"
+    ],
     "tags": {
       "brand": "Halfords",
+      "brand:wikidata": "Q3398786",
+      "brand:wikipedia": "en:Halfords",
       "name": "Halfords",
+      "service:bicycle:retail": "yes",
       "shop": "car_parts"
     }
   },
@@ -16793,14 +16792,15 @@
       "shop": "car_repair"
     }
   },
-  "shop/car_repair|Halfords": {
-    "count": 56,
-    "match": [
-      "shop/car_repair|Halfords Autocentre"
-    ],
+  "shop/car_repair|Halfords Autocentre": {
+    "count": 51,
+    "match": ["shop/car_repair|Halfords"],
+    "nomatch": ["shop/car_parts|Halfords"],
     "tags": {
-      "brand": "Halfords",
-      "name": "Halfords",
+      "brand": "Halfords Auocentre",
+      "brand:wikidata": "Q5641894",
+      "brand:wikipedia": "en:Halfords Autocentre",
+      "name": "Halfords Autocentre",
       "shop": "car_repair"
     }
   },
