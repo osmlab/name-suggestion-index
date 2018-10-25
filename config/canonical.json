@@ -3927,17 +3927,6 @@
       "name": "Wells Fargo"
     }
   },
-  "amenity/bank|Western Union": {
-    "count": 471,
-    "match": [
-      "amenity/bureau_de_change|Western Union"
-    ],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Western Union",
-      "name": "Western Union"
-    }
-  },
   "amenity/bank|Westpac": {
     "count": 349,
     "tags": {
@@ -11256,9 +11245,15 @@
   },
   "amenity/money_transfer|Western Union": {
     "count": 104,
+    "match": [
+      "amenity/bank|Western Union",
+      "amenity/bureau_de_change|Western Union"
+    ],
     "tags": {
       "amenity": "money_transfer",
       "brand": "Western Union",
+      "brand:wikidata": "Q861042",
+      "brand:wikipedia": "en:Western Union",
       "name": "Western Union"
     }
   },
