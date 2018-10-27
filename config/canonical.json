@@ -8950,9 +8950,15 @@
       "amenity/fuel|Costco Gas",
       "amenity/fuel|Costco Wholesale"
     ],
+    "nomatch": [
+      "amenity/pharmacy|Costco Pharmacy",
+      "shop/wholesale|Costco"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Costco Gasoline",
+      "brand:wikidata": "Q715583",
+      "brand:wikipedia": "en:Costco",
       "name": "Costco Gasoline"
     }
   },
@@ -11540,6 +11546,21 @@
       "brand": "Clicks",
       "healthcare": "pharmacy",
       "name": "Clicks"
+    }
+  },
+  "amenity/pharmacy|Costco Pharmacy": {
+    "nocount": true,
+    "nomatch": [
+      "shop/wholesale|Costco",
+      "amenity/fuel|Costco Gasoline"
+    ],
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "brand": "Costco Pharmacy",
+      "brand:wikidata": "Q715583",
+      "brand:wikipedia": "en:Costco",
+      "name": "Costco Pharmacy"
     }
   },
   "amenity/pharmacy|Cruz Azul": {
@@ -32264,6 +32285,10 @@
   },
   "shop/wholesale|Costco": {
     "nocount": true,
+    "nomatch": [
+      "amenity/fuel|Costco Gasoline",
+      "amenity/pharmacy|Costco Pharmacy"
+    ],
     "match": [
       "shop/department_store|Costco",
       "shop/department_store|Costco Wholesale",
