@@ -21,6 +21,7 @@ validateSchema('config/canonical.json', canonical, canonicalSchema);
 let discard = Object.assign({}, allNames);
 let keep = {};
 let rIndex = {};
+let ambiguous = {};
 
 filterNames();
 mergeConfig();
@@ -119,7 +120,7 @@ function mergeConfig() {
 
     // Create/update entries in `config/canonical.json`
     Object.keys(keep).forEach(k => {
-        if (rIndex[k]) return;
+        if (rIndex[k] || ambiguous[k]) return;
 
         let obj = canonical[k];
         let parts = k.split('|', 2);
@@ -179,21 +180,38 @@ function sort(obj) {
 }
 
 
+// Some keys contain a disambiguation mark:  "Eko~ca" vs "Eko~gr"
+// If so, we save these in an `ambiguous` object for later use
+function checkAmbiguous(k) {
+    let i = k.indexOf('~');
+    if (i !== -1) {
+        let stem = k.substring(0, i);
+        ambiguous[stem] = true;
+        return true;
+    }
+    return false;
+}
+
+
 //
 // Returns a reverse index to map match keys back to their original keys
 //
 function buildReverseIndex() {
     let warnCollisions = [];
 
-    for (let key in canonical) {
-        if (canonical[key].match) {
-            for (let i = canonical[key].match.length - 1; i >= 0; i--) {
-                let match = canonical[key].match[i];
+    for (let k in canonical) {
+        checkAmbiguous(k);
+
+        if (canonical[k].match) {
+            for (let i = canonical[k].match.length - 1; i >= 0; i--) {
+                let match = canonical[k].match[i];
+                checkAmbiguous(match);
+
                 if (rIndex[match]) {
                     warnCollisions.push([rIndex[match], match]);
-                    warnCollisions.push([key, match]);
+                    warnCollisions.push([k, match]);
                 }
-                rIndex[match] = key;
+                rIndex[match] = k;
             }
         }
     }
