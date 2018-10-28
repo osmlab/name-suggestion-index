@@ -133,6 +133,7 @@ function mergeConfig() {
             obj = { count: 0, tags: {} };
             obj.tags.name = name;
             obj.tags[key] = value;
+            canonical[k] = obj;
         }
 
         // https://www.regular-expressions.info/unicode.html
@@ -158,10 +159,9 @@ function mergeConfig() {
 
         obj.count = keep[k];
         obj.tags = sort(obj.tags);
-
-        canonical[k] = sort(obj);
     });
 
+    Object.keys(canonical).forEach(k => { canonical[k] = sort(canonical[k]) });
     fs.writeFileSync('config/canonical.json', stringify(sort(canonical), { maxLength: 50 }));
     console.timeEnd(colors.green('config updated'));
 }
