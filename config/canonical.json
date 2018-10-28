@@ -9032,16 +9032,42 @@
       "name": "Drummed Fuel"
     }
   },
-  "amenity/fuel|EKO": {
-    "count": 205,
+  "amenity/fuel|EKO~(Canada)": {
+    "nocount": true,
     "countryCodes": ["ca"],
-    "match": ["amenity/fuel|Eko"],
-    "nomatch": ["shop/supermarket|Eko"],
+    "match": ["amenity/fuel|Eko~(Canada)"],
+    "nomatch": [
+      "shop/supermarket|Eko",
+      "amenity/fuel|EKO~(Greece)"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "EKO",
       "brand:wikidata": "Q3045934",
       "brand:wikipedia": "fr:EKO",
+      "name": "EKO"
+    }
+  },
+  "amenity/fuel|EKO~(Greece)": {
+    "nocount": true,
+    "countryCodes": [
+      "gr",
+      "rs",
+      "bg",
+      "cy",
+      "me",
+      "mk"
+    ],
+    "match": ["amenity/fuel|Eko~(Greece)"],
+    "nomatch": [
+      "shop/supermarket|Eko",
+      "amenity/fuel|EKO~(Canada)"
+    ],
+    "tags": {
+      "amenity": "fuel",
+      "brand": "EKO",
+      "brand:wikidata": "Q903198",
+      "brand:wikipedia": "el:Ελληνικά Πετρέλαια",
       "name": "EKO"
     }
   },
@@ -28672,7 +28698,10 @@
     "count": 63,
     "countryCodes": ["pl"],
     "match": ["shop/supermarket|EKO"],
-    "nomatch": ["amenity/fuel|EKO"],
+    "nomatch": [
+      "amenity/fuel|EKO~(Canada)",
+      "amenity/fuel|EKO~(Greece)"
+    ],
     "tags": {
       "brand": "Eko",
       "brand:wikidata": "Q9251859",
