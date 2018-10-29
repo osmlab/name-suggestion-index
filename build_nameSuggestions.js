@@ -35,7 +35,7 @@ function buildJSON() {
         const tag = parts[0].split('/', 2);
         const key = tag[0];
         const value = tag[1];
-        const name = parts[1];
+        const name = parts[1].replace('~', ' ');
 
         if (!out[key]) {
             out[key] = {};
