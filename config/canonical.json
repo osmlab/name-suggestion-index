@@ -3833,6 +3833,7 @@
   },
   "amenity/bank|United Bank": {
     "count": 88,
+    "nomatch": ["amenity/fuel|United"],
     "tags": {
       "amenity": "bank",
       "brand": "United Bank",
@@ -10691,6 +10692,7 @@
   },
   "amenity/fuel|United": {
     "count": 221,
+    "nomatch": ["amenity/bank|United Bank"],
     "tags": {
       "amenity": "fuel",
       "brand": "United",
@@ -19254,14 +19256,6 @@
       "shop": "clothes"
     }
   },
-  "shop/clothes|PEP": {
-    "count": 51,
-    "tags": {
-      "brand": "PEP",
-      "name": "PEP",
-      "shop": "clothes"
-    }
-  },
   "shop/clothes|Palmers": {
     "count": 84,
     "tags": {
@@ -19292,8 +19286,11 @@
   },
   "shop/clothes|Pep": {
     "count": 143,
+    "match": ["shop/clothes|PEP"],
     "tags": {
       "brand": "Pep",
+      "brand:wikidata": "Q7166182",
+      "brand:wikipedia": "en:Pep (store)",
       "name": "Pep",
       "shop": "clothes"
     }
