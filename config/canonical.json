@@ -9148,9 +9148,9 @@
     "nomatch": ["amenity/fuel|Esso"],
     "tags": {
       "amenity": "fuel",
-      "brand": "Esso",
-      "brand:wikidata": "Q867662",
-      "brand:wikipedia": "en:Esso",
+      "brand": "Esso Express",
+      "brand:wikidata": "Q2350336",
+      "brand:wikipedia": "nl:Esso Express",
       "name": "Esso Express"
     }
   },
@@ -10310,19 +10310,35 @@
     "match": [
       "amenity/fuel|Posto Shell",
       "amenity/fuel|SHELL",
-      "amenity/fuel|Shell Express",
       "amenity/fuel|Shell Gas Station",
       "amenity/fuel|Shell Station",
       "amenity/fuel|Station Shell",
       "amenity/fuel|shell"
     ],
-    "nomatch": ["shop/convenience|Shell Select"],
+    "nomatch": [
+      "amenity/fuel|Shell Express",
+      "shop/convenience|Shell Select"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Shell",
       "brand:wikidata": "Q154950",
       "brand:wikipedia": "en:Royal Dutch Shell",
       "name": "Shell"
+    }
+  },
+  "amenity/fuel|Shell Express": {
+    "count": 140,
+    "nomatch": [
+      "amenity/fuel|Shell",
+      "shop/convenience|Shell Select"
+    ],
+    "tags": {
+      "amenity": "fuel",
+      "brand": "Shell Express",
+      "brand:wikidata": "Q2289188",
+      "brand:wikipedia": "nl:Shell Express",
+      "name": "Shell Express"
     }
   },
   "amenity/fuel|Sinclair": {
@@ -20568,15 +20584,6 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|Esso": {
-    "count": 276,
-    "nomatch": ["amenity/fuel|Esso"],
-    "tags": {
-      "brand": "Esso",
-      "name": "Esso",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|Express": {
     "count": 56,
     "tags": {
@@ -21289,7 +21296,10 @@
   },
   "shop/convenience|Shell Select": {
     "count": 94,
-    "nomatch": ["amenity/fuel|Shell"],
+    "nomatch": [
+      "amenity/fuel|Shell",
+      "amenity/fuel|Shell Express"
+    ],
     "tags": {
       "brand": "Shell Select",
       "brand:wikidata": "Q154950",
@@ -25380,14 +25390,6 @@
     "tags": {
       "brand": "Edicola",
       "name": "Edicola",
-      "shop": "kiosk"
-    }
-  },
-  "shop/kiosk|Esso": {
-    "count": 51,
-    "tags": {
-      "brand": "Esso",
-      "name": "Esso",
       "shop": "kiosk"
     }
   },
