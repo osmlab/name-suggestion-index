@@ -9858,6 +9858,18 @@
       "name": "Orlen"
     }
   },
+  "amenity/fuel|Oxxo": {
+    "match": ["amenity/fuel|OXXO"],
+    "nocount": true,
+    "nomatch": ["shop/convenience|Oxxo"],
+    "tags": {
+      "brand": "Oxxo",
+      "brand:wikidata": "Q1342538",
+      "brand:wikipedia": "es:Oxxo",
+      "name": "Oxxo",
+      "amenity": "fuel"
+    }
+  },
   "amenity/fuel|PSO": {
     "count": 172,
     "match": ["amenity/fuel|PSO Petrol Pump"],
@@ -21128,9 +21140,16 @@
   },
   "shop/convenience|Oxxo": {
     "count": 2412,
-    "match": ["shop/convenience|OXXO"],
+    "match": [
+      "shop/convenience|OXXO",
+      "shop/supermarket|OXXO",
+      "shop/supermarket|Oxxo"
+    ],
+    "nomatch": ["amenity/fuel|Oxxo"],
     "tags": {
       "brand": "Oxxo",
+      "brand:wikidata": "Q1342538",
+      "brand:wikipedia": "es:Oxxo",
       "name": "Oxxo",
       "shop": "convenience"
     }
@@ -29797,15 +29816,6 @@
     "tags": {
       "brand": "Olimpica",
       "name": "Olimpica",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Oxxo": {
-    "count": 222,
-    "match": ["shop/supermarket|OXXO"],
-    "tags": {
-      "brand": "Oxxo",
-      "name": "Oxxo",
       "shop": "supermarket"
     }
   },
