@@ -6624,12 +6624,30 @@
       "name": "Октябрь"
     }
   },
-  "amenity/fast_food|A&W": {
-    "count": 710,
-    "match": ["amenity/restaurant|A&W"],
+  "amenity/fast_food|A&W~(Canada)": {
+    "countryCodes": ["ca"],
+    "match": ["amenity/restaurant|A&W~(Canada)"],
+    "nocount": true,
+    "nomatch": ["amenity/fast_food|A&W~(USA)"],
     "tags": {
       "amenity": "fast_food",
       "brand": "A&W",
+      "brand:wikidata": "Q2818848",
+      "brand:wikipedia": "en:A&W (Canada)",
+      "cuisine": "burger",
+      "name": "A&W"
+    }
+  },
+  "amenity/fast_food|A&W~(USA)": {
+    "countryCodes": ["us"],
+    "match": ["amenity/restaurant|A&W~(USA)"],
+    "nocount": true,
+    "nomatch": ["amenity/fast_food|A&W~(Canada)"],
+    "tags": {
+      "amenity": "fast_food",
+      "brand": "A&W",
+      "brand:wikidata": "Q277641",
+      "brand:wikipedia": "en:A&W Restaurants",
       "cuisine": "burger",
       "name": "A&W"
     }
