@@ -152,6 +152,52 @@ We don't want to be warned that the new correct tag is uncommon, so we add a
   },
 ```
 
+&nbsp;
+
+
+#### Identical names, multiple brands
+
+Sometimes multiple brands with the same name will operate in geographically
+distinct locations.  You can modify the key to include a tilde `~` after the name
+to tell the difference between two otherwise identical brands.
+The text after the tilde can contain anything.
+
+When using a tilde `~` name:
+* You should add `"nocount": true`, as the script will not be able to determine the true count.
+* You should add `"nomatch":` properties to each name so they do not generate duplicate name warnings.
+
+
+```js
+  "shop/supermarket|Price Chopper~(Kansas City)": {
+    "countryCodes": ["us"],
+    "nocount": true,
+    "nomatch": [
+      "shop/supermarket|Price Chopper~(New York)"
+    ],
+    "tags": {
+      "brand": "Price Chopper",
+      "brand:wikidata": "Q7242572",
+      "brand:wikipedia": "en:Price Chopper (supermarket)",
+      "name": "Price Chopper",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Price Chopper~(New York)": {
+    "countryCodes": ["us"],
+    "nocount": true,
+    "nomatch": [
+      "shop/supermarket|Price Chopper~(Kansas City)"
+    ],
+    "tags": {
+      "brand": "Price Chopper",
+      "brand:wikidata": "Q7242574",
+      "brand:wikipedia": "en:Price Chopper Supermarkets",
+      "name": "Price Chopper",
+      "shop": "supermarket"
+    }
+  },
+```
+
 
 &nbsp;
 
