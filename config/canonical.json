@@ -23279,9 +23279,30 @@
       "shop": "department_store"
     }
   },
-  "shop/department_store|Target": {
-    "count": 1253,
-    "match": ["shop/supermarket|Target"],
+  "shop/department_store|Target~(Australia)": {
+    "countryCodes": ["au"],
+    "match": [
+      "shop/supermarket|Target~(Australia)"
+    ],
+    "nocount": true,
+    "nomatch": [
+      "shop/department_store|Target~(USA)"
+    ],
+    "tags": {
+      "brand": "Target",
+      "brand:wikidata": "Q7685854",
+      "brand:wikipedia": "en:Target Australia",
+      "name": "Target",
+      "shop": "department_store"
+    }
+  },
+  "shop/department_store|Target~(USA)": {
+    "countryCodes": ["us"],
+    "match": ["shop/supermarket|Target~(USA)"],
+    "nocount": true,
+    "nomatch": [
+      "shop/department_store|Target~(Australia)"
+    ],
     "tags": {
       "brand": "Target",
       "brand:wikidata": "Q1046951",
