@@ -101,6 +101,8 @@ There may also be entries for McDonald's in other languages!
   },
 ```
 
+&nbsp;
+
 #### Optional properties to suppress warnings
 
 These properties always start with `"no"`.
