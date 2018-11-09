@@ -8867,11 +8867,20 @@
       "name": "Caltex"
     }
   },
-  "amenity/fuel|Canadian Tire": {
-    "count": 196,
+  "amenity/fuel|Canadian Tire Gas+": {
+    "match": [
+      "amenity/fuel|Canadian Tire",
+      "amenity/fuel|Canadian Tire Gas Bar"
+    ],
+    "nocount": true,
+    "nomatch": [
+      "shop/department_store|Canadian Tire"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Canadian Tire",
+      "brand:wikidata": "Q1032400",
+      "brand:wikipedia": "en:Canadian Tire",
       "name": "Canadian Tire"
     }
   },
@@ -23179,8 +23188,12 @@
   },
   "shop/department_store|Canadian Tire": {
     "count": 188,
+    "match": ["shop/doityourself|Canadian Tire"],
+    "nomatch": ["amenity/fuel|Canadian Tire"],
     "tags": {
       "brand": "Canadian Tire",
+      "brand:wikidata": "Q1032400",
+      "brand:wikipedia": "en:Canadian Tire",
       "name": "Canadian Tire",
       "shop": "department_store"
     }
@@ -23594,14 +23607,6 @@
       "brand:wikidata": "Q4997829",
       "brand:wikipedia": "en:Bunnings Warehouse",
       "name": "Bunnings Warehouse",
-      "shop": "doityourself"
-    }
-  },
-  "shop/doityourself|Canadian Tire": {
-    "count": 140,
-    "tags": {
-      "brand": "Canadian Tire",
-      "name": "Canadian Tire",
       "shop": "doityourself"
     }
   },
