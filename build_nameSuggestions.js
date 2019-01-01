@@ -16,10 +16,11 @@ function buildAll() {
     console.time(colors.green('data built'));
 
     // Start clean
-    shell.rm('-f', ['dist/name-suggestions.*']);
+    shell.rm('-f', ['dist/name-suggestions.*', 'dist/taginfo.json']);
 
     buildJSON();
     buildXML();
+    buildTaginfo();
 
     console.timeEnd(colors.green('data built'));
 }
@@ -94,4 +95,48 @@ function buildXML() {
 
     let xmlstring = presets.end({ pretty: true })
     fs.writeFileSync('dist/name-suggestions.presets.xml', xmlstring);
+}
+
+
+function buildTaginfo() {
+    var taginfo = {
+        'data_format': 1,
+        'data_url': 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist/taginfo.json',
+        'project': {
+            'name': 'name-suggestion-index',
+            'description': 'Canonical common brand names for OpenStreetMap',
+            'project_url': 'https://github.com/osmlab/name-suggestion-index',
+            'doc_url': 'https://github.com/osmlab/name-suggestion-index/blob/master/README.md',
+            'icon_url': 'https://raw.githubusercontent.com/mapbox/maki/master/icons/fast-food-15.svg?sanitize=true',
+            'contact_name': 'Bryan Housel',
+            'contact_email': 'bryan@mapbox.com'
+        }
+    };
+
+    let items = {};
+    for (let key in out) {
+        for (let value in out[key]) {
+            for (let name in out[key][value]) {
+                let tags = out[key][value][name].tags;
+                for (let k in tags) {
+                    let v = tags[k];
+
+                    // skip value for most tags this project uses
+                    if (/name|brand|operator/.test(k)) {
+                        v = '*';
+                    }
+
+                    let id = k + '/' + v;
+                    items[id] = { key: k }
+
+                    if (v !== '*') {
+                        items[id].value = v;
+                    }
+               }
+            }
+        }
+    }
+
+    taginfo.tags = Object.keys(items).sort().map(k => items[k]);
+    fs.writeFileSync('dist/taginfo.json', stringify(taginfo, { maxLength: 100 }));
 }
