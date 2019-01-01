@@ -1971,6 +1971,17 @@
       "name": "Citizens Bank"
     }
   },
+  "amenity/bank|Clydesdale Bank": {
+    "countryCodes": ["gb"],
+    "nocount": true,
+    "tags": {
+      "amenity": "bank",
+      "brand": "Clydesdale Bank",
+      "brand:wikipedia": "en:Clydesdale Bank",
+      "brand:wikidata": "Q971680",
+      "name": "Clydesdale Bank"
+    }
+  },
   "amenity/bank|Columbia Bank": {
     "count": 96,
     "nomatch": ["shop/clothes|Columbia"],
@@ -10706,7 +10717,9 @@
   },
   "amenity/fuel|Sainsbury's": {
     "count": 83,
-    "countryCodes": ["uk"],
+    "countryCodes": ["gb"],
+    "match": ["amenity/fuel|Sainsburys"],
+    "nomatch": ["shop/supermarket|Sainsbury's"],
     "tags": {
       "amenity": "fuel",
       "brand": "Sainsbury's",
@@ -12029,6 +12042,8 @@
     "tags": {
       "amenity": "pharmacy",
       "brand": "Brookshire Brothers Pharmacy",
+      "brand:wikidata": "Q4975084",
+      "brand:wikipedia": "en:Brookshire Brothers",
       "healthcare": "pharmacy",
       "name": "Brookshire Brothers Pharmacy"
     }
@@ -12045,6 +12060,8 @@
     "tags": {
       "amenity": "pharmacy",
       "brand": "CVS",
+      "brand:wikidata": "Q2078880",
+      "brand:wikipedia": "en:CVS Pharmacy",
       "healthcare": "pharmacy",
       "name": "CVS"
     }
@@ -12060,9 +12077,12 @@
   },
   "amenity/pharmacy|Catena": {
     "count": 127,
+    "countryCodes": ["ro"],
     "tags": {
       "amenity": "pharmacy",
       "brand": "Catena",
+      "brand:wikidata": "Q24035728",
+      "brand:wikipedia": "ro:Farmacia Catena",
       "healthcare": "pharmacy",
       "name": "Catena"
     }
@@ -21846,8 +21866,16 @@
   },
   "shop/convenience|Sainsbury's Local": {
     "count": 213,
+    "countryCodes": ["gb"],
+    "match": [
+      "shop/convenience|Sainsburys Local",
+      "shop/supermarket|Sainsbury's Local",
+      "shop/supermarket|Sainsburys Local"
+    ],
     "tags": {
       "brand": "Sainsbury's Local",
+      "brand:wikidata": "Q13218434",
+      "brand:wikipedia": "en:Sainsbury's Local",
       "name": "Sainsbury's Local",
       "shop": "convenience"
     }
@@ -24550,6 +24578,28 @@
       "brand:wikidata": "Q2921695",
       "brand:wikipedia": "fr:Boulanger (entreprise)",
       "name": "Boulanger",
+      "shop": "electronics"
+    }
+  },
+  "shop/electronics|CeX": {
+    "countryCodes": [
+      "au",
+      "es",
+      "gb",
+      "ie",
+      "in",
+      "it",
+      "mx",
+      "nl",
+      "pl",
+      "pt"
+    ],
+    "nocount": true,
+    "tags": {
+      "brand": "CeX",
+      "brand:wikidata": "Q5055676",
+      "brand:wikipedia": "en:CeX (company)",
+      "name": "CeX",
       "shop": "electronics"
     }
   },
@@ -31112,19 +31162,14 @@
   },
   "shop/supermarket|Sainsbury's": {
     "count": 514,
+    "countryCodes": ["gb"],
     "match": ["shop/supermarket|Sainsburys"],
     "nomatch": ["amenity/fuel|Sainsbury's"],
     "tags": {
       "brand": "Sainsbury's",
+      "brand:wikidata": "Q152096",
+      "brand:wikipedia": "en:Sainsbury's",
       "name": "Sainsbury's",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Sainsbury's Local": {
-    "count": 277,
-    "tags": {
-      "brand": "Sainsbury's Local",
-      "name": "Sainsbury's Local",
       "shop": "supermarket"
     }
   },
