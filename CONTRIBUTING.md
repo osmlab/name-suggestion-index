@@ -454,10 +454,9 @@ _(comments added for clarity)_
 If it exists, we want to know about it!
 
 Some brands aren't mapped enough (50+ times) to automatically be added to the index so this
-is a valuable way to get ahead of inconsistent tagging.
+is a valuable way to get ahead of incorrect tagging.
 
-
-1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `shop=food`). Ideally you also have `wikidata` and `wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
+1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `shop=food`). Ideally you also have `brand:wikidata` and `brand:wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
 
 2. Add your new entry anywhere in `config/canonical.json` (it will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-configcanonicaljson) if you're not familiar with the syntax.
 
