@@ -23823,22 +23823,34 @@
       "shop": "department_store"
     }
   },
-  "shop/department_store|Kmart": {
-    "count": 356,
-    "tags": {
-      "brand": "Kmart",
-      "brand:wikidata": "Q1753080",
-      "brand:wikipedia": "en:Kmart",
-      "name": "Kmart",
-      "shop": "department_store"
-    }
-  },
-  "shop/department_store|Kmart": {
+  "shop/department_store|Kmart~(Australia)": {
     "countryCodes": ["au"],
+    "match": [
+      "shop/supermarket|Kmart~(Australia)"
+    ],
+    "nocount": true,
+    "nomatch": [
+      "shop/department_store|Kmart~(USA)"
+    ],
     "tags": {
       "brand": "Kmart",
       "brand:wikidata": "Q6421682",
       "brand:wikipedia": "en:Kmart Australia",
+      "name": "Kmart",
+      "shop": "department_store"
+    }
+  },
+  "shop/department_store|Kmart~(USA)": {
+    "countryCodes": ["us"],
+    "match": ["shop/supermarket|Kmart~(USA)"],
+    "nocount": true,
+    "nomatch": [
+      "shop/department_store|Kmart~(Australia)"
+    ],
+    "tags": {
+      "brand": "Kmart",
+      "brand:wikidata": "Q1753080",
+      "brand:wikipedia": "en:Kmart",
       "name": "Kmart",
       "shop": "department_store"
     }
@@ -24757,6 +24769,17 @@
       "brand:wikidata": "Q1665980",
       "brand:wikipedia": "de:Interdiscount",
       "name": "Interdiscount",
+      "shop": "electronics"
+    }
+  },
+  "shop/electronics|JB Hi-Fi": {
+    "countryCodes": ["au", "nz"],
+    "nocount": true,
+    "tags": {
+      "brand": "JB Hi-Fi",
+      "brand:wikidata": "Q3310113",
+      "brand:wikipedia": "en:JB Hi-Fi",
+      "name": "JB Hi-Fi",
       "shop": "electronics"
     }
   },
@@ -26664,6 +26687,17 @@
       "shop": "mobile_phone"
     }
   },
+  "shop/mobile_phone|Telstra": {
+    "countryCodes": ["au"],
+    "nocount": true,
+    "tags": {
+      "brand": "Telstra",
+      "brand:wikidata": "Q721162",
+      "brand:wikipedia": "en:Telstra",
+      "name": "Telstra",
+      "shop": "mobile_phone"
+    }
+  },
   "shop/mobile_phone|Telus": {
     "count": 86,
     "tags": {
@@ -27435,19 +27469,8 @@
       "shop": "outdoor"
     }
   },
-  "shop/electronics|JB Hi-Fi": {
-    "countryCodes": ["nz", "au"],
-    "nocount": true,
-    "tags": {
-      "brand": "JB Hi-Fi",
-      "brand:wikidata": "Q3310113",
-      "brand:wikipedia": "en:JB Hi-Fi",
-      "name": "JB Hi-Fi",
-      "shop": "electronics"
-    }
-  },
   "shop/outdoor|Kathmandu": {
-    "countryCodes": ["nz", "au"],
+    "countryCodes": ["au", "nz"],
     "nocount": true,
     "tags": {
       "brand": "Kathmandu",
@@ -27455,28 +27478,6 @@
       "brand:wikipedia": "en:Kathmandu (company)",
       "name": "Kathmandu",
       "shop": "outdoor"
-    }
-  },
-  "shop/mobile_phone|Telstra": {
-    "countryCodes": ["au"],
-    "nocount": true,
-    "tags": {
-      "brand": "Telstra",
-      "brand:wikidata": "Q721162",
-      "brand:wikipedia": "en:Telstra",
-      "name": "Telstra",
-      "shop": "mobile_phone"
-    }
-  },
-  "shop/tea|T2": {
-    "countryCodes": ["au"],
-    "nocount": true,
-    "tags": {
-      "brand": "T2",
-      "brand:wikidata": "Q48802134",
-      "brand:wikipedia": "en:T2 (Australian company)",
-      "name": "T2",
-      "shop": "tea"
     }
   },
   "shop/outdoor|Mountain Warehouse": {
@@ -32764,6 +32765,17 @@
       "brand:wikipedia": "ko:농협유통",
       "name": "하나로마트",
       "shop": "supermarket"
+    }
+  },
+  "shop/tea|T2": {
+    "countryCodes": ["au"],
+    "nocount": true,
+    "tags": {
+      "brand": "T2",
+      "brand:wikidata": "Q48802134",
+      "brand:wikipedia": "en:T2 (Australian company)",
+      "name": "T2",
+      "shop": "tea"
     }
   },
   "shop/ticket|Boutique Grandes Lignes": {
