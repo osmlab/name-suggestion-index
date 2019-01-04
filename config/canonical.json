@@ -11157,6 +11157,25 @@
       "name": "Turmöl"
     }
   },
+  "amenity/fuel|UDF Fuel": {
+    "match": [
+      "amenity/fuel|UDF",
+      "amenity/fuel|UDF Fuels",
+      "amenity/fuel|United Dairy Farmers"
+    ],
+    "nocount": true,
+    "nomatch": [
+      "shop/convenience|United Dairy Farmers"
+    ],
+    "tags": {
+      "amenity": "fuel",
+      "brand": "United Dairy Farmers",
+      "brand:wikidata": "Q7887677",
+      "brand:wikipedia": "en:United Dairy Farmers",
+      "name": "UDF Fuel",
+      "short_name": "UDF"
+    }
+  },
   "amenity/fuel|Ultramar": {
     "count": 631,
     "nomatch": ["shop/convenience|Ultramar"],
@@ -22205,12 +22224,24 @@
   },
   "shop/convenience|United Dairy Farmers": {
     "count": 67,
+    "match": [
+      "amenity/ice_cream|UDF",
+      "amenity/ice_cream|United Dairy Farmers",
+      "shop/convenience|UDF",
+      "shop/ice_cream|UDF",
+      "shop/ice_cream|United Dairy Farmers"
+    ],
+    "nomatch": [
+      "amenity/fuel|United Dairy Farmers"
+    ],
     "tags": {
+      "amenity": "ice_cream",
       "brand": "United Dairy Farmers",
       "brand:wikidata": "Q7887677",
       "brand:wikipedia": "en:United Dairy Farmers",
       "name": "United Dairy Farmers",
-      "shop": "convenience"
+      "shop": "convenience",
+      "short_name": "UDF"
     }
   },
   "shop/convenience|Utile": {
