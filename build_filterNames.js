@@ -237,17 +237,23 @@ function checkCanonical() {
     let warnFormatWikipedia = [];
     let warnMissingWikidata = [];
     let warnMissingWikipedia = [];
+    let warnMissingTag = [];
     let seen = {};
 
     Object.keys(canonical).forEach(k => {
+        let obj = canonical[k];
+        let parts = k.split('|', 2);
+        let tag = parts[0];
+        let name = parts[1];
+
         // Warn if the item is uncommon (i.e. not found in keepNames)
         if (!keep[k]) {
-            delete canonical[k].count;
-            if (!canonical[k].nocount) {   // suppress warning?
+            delete obj.count;
+            if (!obj.nocount) {   // suppress warning?
                 warnUncommon.push(k);
             }
         } else {
-            delete canonical[k].nocount;
+            delete obj.nocount;
         }
 
         // Warn if the item is found in rIndex (i.e. some other item matches it)
@@ -256,14 +262,14 @@ function checkCanonical() {
         }
 
         // Warn if the name appears to be a duplicate
-        let stem = stemmer(k.split('|', 2)[1]);
+        let stem = stemmer(name);
         let other = seen[stem];
         if (other) {
             // suppress warning?
             let suppress = false;
             if (canonical[other].nomatch && canonical[other].nomatch.indexOf(k) !== -1) {
                 suppress = true;
-            } else if (canonical[k].nomatch && canonical[k].nomatch.indexOf(other) !== -1) {
+            } else if (obj.nomatch && obj.nomatch.indexOf(other) !== -1) {
                 suppress = true;
             }
             if (!suppress) {
@@ -274,17 +280,32 @@ function checkCanonical() {
 
 
         // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
-        let wd = canonical[k].tags['brand:wikidata'];
+        let wd = obj.tags['brand:wikidata'];
         if (!wd) {
             warnMissingWikidata.push(k);
         } else if (!/^Q\d+$/.test(wd)) {
             warnFormatWikidata.push([k, wd]);
         }
-        let wp = canonical[k].tags['brand:wikipedia'];
+        let wp = obj.tags['brand:wikipedia'];
         if (!wp) {
             warnMissingWikipedia.push(k);
         } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
             warnFormatWikipedia.push([k, wp]);
+        }
+
+        // Warn on other missing tags
+        switch (tag) {
+            case 'amenity/fast_food':
+            case 'amenity/restaurant':
+                if (!obj.tags.cuisine) {
+                    warnMissingTag.push([k, 'cuisine']);
+                }
+                break;
+            case 'amenity/vending_machine':
+                if (!obj.tags.vending) {
+                    warnMissingTag.push([k, 'vending']);
+                }
+                break;
         }
     });
 
@@ -295,6 +316,15 @@ function checkCanonical() {
             colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
         ));
         console.warn('total ' + warnMatched.length);
+    }
+
+    if (warnMissingTag.length) {
+        console.warn(colors.yellow('\nWarning - Missing tags for entries in `canonical.json`:'));
+        console.warn('To resolve these, add the missing tag.');
+        warnMissingTag.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> missing tag? -> ' + colors.yellow('"' + w[1] + '"')
+        ));
+        console.warn('total ' + warnMissingTag.length);
     }
 
     if (warnDuplicate.length) {
@@ -352,7 +382,6 @@ function checkCanonical() {
         ));
         console.warn('total ' + warnFormatWikipedia.length);
     }
-
 
     let total = Object.keys(canonical).length;
     let hasWd = total - warnMissingWikidata.length;
