@@ -4095,10 +4095,32 @@
       "name": "Union Bank of India"
     }
   },
-  "amenity/bank|UnionBank": {
-    "count": 90,
+  "amenity/bank|UnionBank~(Philippines)": {
+    "countryCodes": ["ph"],
+    "match": [
+      "amenity/bank|Union Bank of the Philippines"
+    ],
+    "nocount": true,
+    "nomatch": [
+      "amenity/bank|Banco Unión",
+      "amenity/money_transfer|Express Union"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "UnionBank",
+      "brand:wikidata": "Q7885403",
+      "brand:wikipedia": "en:Union Bank of the Philippines",
+      "name": "UnionBank"
+    }
+  },
+  "amenity/bank|UnionBank~(USA)": {
+    "countryCodes": ["us"],
     "match": ["amenity/bank|Union Bank"],
-    "nomatch": ["amenity/bank|Banco Unión"],
+    "nocount": true,
+    "nomatch": [
+      "amenity/bank|Banco Unión",
+      "amenity/money_transfer|Express Union"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "UnionBank",
