@@ -30743,6 +30743,18 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Farm Boy": {
+    "countryCodes": ["ca"],
+    "match": ["shop/greengrocer|Farm Boy"],
+    "nocount": true,
+    "tags": {
+      "brand": "Farm Boy",
+      "brand:wikidata": "Q5435469",
+      "brand:wikipedia": "en:Farm Boy",
+      "name": "Farm Boy",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Farmfoods": {
     "count": 155,
     "tags": {
@@ -31451,6 +31463,17 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Loblaws": {
+    "countryCodes": ["ca"],
+    "nocount": true,
+    "tags": {
+      "brand": "Loblaws",
+      "brand:wikidata": "Q3257626",
+      "brand:wikipedia": "en:Loblaws",
+      "name": "Lonblaws",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Londis": {
     "count": 51,
     "tags": {
@@ -31740,11 +31763,14 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Metro": {
-    "count": 427,
-    "nomatch": ["amenity/bank|Metrobank"],
+  "shop/supermarket|Metro~(Canada)": {
+    "countryCodes": ["ca"],
+    "nocount": true,
+    "nomatch": ["shop/wholesale|Metro"],
     "tags": {
       "brand": "Metro",
+      "brand:wikidata": "Q1145669",
+      "brand:wikipedia": "en:Metro Inc.",
       "name": "Metro",
       "shop": "supermarket"
     }
@@ -33046,6 +33072,17 @@
       "brand:wikidata": "Q3249145",
       "brand:wikipedia": "en:Woolworths Supermarkets",
       "name": "Woolworths",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Your Independent Grocer": {
+    "countryCodes": ["ca"],
+    "nocount": true,
+    "tags": {
+      "brand": "Your Independent Grocer",
+      "brand:wikidata": "Q8058833",
+      "brand:wikipedia": "en:Your Independent Grocer",
+      "name": "Your Independent Grocer",
       "shop": "supermarket"
     }
   },
@@ -34636,6 +34673,21 @@
       "brand:wikidata": "Q704606",
       "brand:wikipedia": "en:Makro",
       "name": "Makro",
+      "shop": "wholesale"
+    }
+  },
+  "shop/wholesale|Metro": {
+    "match": ["shop/supermarket|Metro"],
+    "nocount": true,
+    "nomatch": [
+      "amenity/bank|Metrobank",
+      "shop/supermarket|Metro~(Canada)"
+    ],
+    "tags": {
+      "brand": "Metro",
+      "brand:wikidata": "Q13610282",
+      "brand:wikipedia": "en:Metro Cash and Carry",
+      "name": "Metro",
       "shop": "wholesale"
     }
   },
