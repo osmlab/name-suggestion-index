@@ -6159,6 +6159,7 @@
     "tags": {
       "amenity": "cafe",
       "brand": "Dutch Bros. Coffee",
+      "brand:wikidata": "Q5317253",
       "brand:wikipedia": "en:Dutch Bros. Coffee",
       "cuisine": "coffee_shop",
       "name": "Dutch Bros. Coffee"
@@ -6232,7 +6233,9 @@
       "brand:wikidata": "Q3114287",
       "brand:wikipedia": "en:McCafé",
       "cuisine": "coffee_shop",
-      "name": "McCafé"
+      "name": "McCafé",
+      "operator:wikidata": "Q38076",
+      "operator:wikipedia": "en:McDonald's"
     }
   },
   "amenity/cafe|Patisserie Valerie": {
@@ -6394,6 +6397,7 @@
     "tags": {
       "amenity": "cafe",
       "brand": "Wild Bean Cafe",
+      "brand:wikidata": "Q61804826",
       "name": "Wild Bean Cafe"
     }
   },
@@ -6915,6 +6919,7 @@
     "tags": {
       "amenity": "charging_station",
       "brand": "Blink",
+      "brand:wikidata": "Q61804688",
       "name": "Blink"
     }
   },
@@ -6928,23 +6933,30 @@
       "name": "ChargePoint"
     }
   },
-  "amenity/charging_station|E-WALD Ladestation": {
-    "count": 61,
+  "amenity/charging_station|E-WALD": {
+    "match": [
+      "amenity/charging_station|E-WALD Ladestation"
+    ],
+    "nocount": true,
     "tags": {
       "amenity": "charging_station",
-      "brand": "E-WALD Ladestation",
-      "name": "E-WALD Ladestation"
+      "brand": "E-WALD",
+      "brand:wikidata": "Q61804335",
+      "name": "E-WALD"
     }
   },
-  "amenity/charging_station|Enel - stazione di ricarica": {
-    "count": 227,
+  "amenity/charging_station|Enel": {
     "countryCodes": ["it"],
+    "match": [
+      "amenity/charging_station|Enel - stazione di ricarica"
+    ],
+    "nocount": true,
     "tags": {
       "amenity": "charging_station",
-      "brand": "Enel - stazione di ricarica",
+      "brand": "Enel",
       "brand:wikidata": "Q651222",
       "brand:wikipedia": "en:Enel",
-      "name": "Enel - stazione di ricarica"
+      "name": "Enel"
     }
   },
   "amenity/charging_station|Tesla Supercharger": {
@@ -6962,7 +6974,10 @@
     "tags": {
       "amenity": "charging_station",
       "brand": "eVgo",
-      "name": "eVgo"
+      "brand:wikidata": "Q61803820",
+      "name": "eVgo",
+      "operator:wikidata": "Q6955139",
+      "operator:wikipedia": "en:NRG Energy"
     }
   },
   "amenity/cinema|Cinema City": {
@@ -7678,6 +7693,17 @@
       "brand:wikipedia": "en:Hesburger",
       "cuisine": "burger",
       "name": "Hesburger"
+    }
+  },
+  "amenity/fast_food|Hot Dog on a Stick": {
+    "nocount": true,
+    "tags": {
+      "amenity": "fast_food",
+      "brand": "Hot Dog on a Stick",
+      "brand:wikidata": "Q5909922",
+      "brand:wikipedia": "en:Hot Dog on a Stick",
+      "cuisine": "hot_dog",
+      "name": "Hot Dog on a Stick"
     }
   },
   "amenity/fast_food|Hungry Jacks": {
@@ -14713,6 +14739,20 @@
       "name": "Cici's Pizza"
     }
   },
+  "amenity/restaurant|Claim Jumper": {
+    "nocount": true,
+    "tags": {
+      "amenity": "restaurant",
+      "brand": "Claim Jumper",
+      "brand:wikidata": "Q5125081",
+      "brand:wikipedia": "en:Claim Jumper",
+      "cuisine": "american",
+      "operator": "Landry's",
+      "operator:wikidata": "Q3217105",
+      "operator:wikipedia": "en:Landry's, Inc.",
+      "name": "Claim Jumper"
+    }
+  },
   "amenity/restaurant|Comedor": {
     "count": 98,
     "tags": {
@@ -19635,6 +19675,17 @@
       "shop": "clothes"
     }
   },
+  "shop/clothes|Armani Exchange": {
+    "nocount": true,
+    "tags": {
+      "brand": "Armani Exchange",
+      "brand:wikidata": "Q56045740",
+      "operator:wikidata": "Q2861975",
+      "operator:wikipedia": "en:Armani",
+      "name": "Armani Exchange",
+      "shop": "clothes"
+    }
+  },
   "shop/clothes|Banana Republic": {
     "count": 157,
     "tags": {
@@ -19909,14 +19960,6 @@
       "brand:wikidata": "Q5111816",
       "brand:wikipedia": "en:Christopher & Banks",
       "name": "Christopher & Banks",
-      "shop": "clothes"
-    }
-  },
-  "shop/clothes|Claire's": {
-    "count": 56,
-    "tags": {
-      "brand": "Claire's",
-      "name": "Claire's",
       "shop": "clothes"
     }
   },
@@ -20843,7 +20886,10 @@
     "count": 137,
     "tags": {
       "brand": "Only",
+      "brand:wikidata": "Q61799370",
       "name": "Only",
+      "operator:wikidata": "Q28172489",
+      "operator:wikipedia": "Bestseller (company)",
       "shop": "clothes"
     }
   },
@@ -20885,14 +20931,6 @@
       "shop": "clothes"
     }
   },
-  "shop/clothes|Outlet": {
-    "count": 85,
-    "tags": {
-      "brand": "Outlet",
-      "name": "Outlet",
-      "shop": "clothes"
-    }
-  },
   "shop/clothes|Oysho": {
     "count": 63,
     "tags": {
@@ -20904,6 +20942,7 @@
     }
   },
   "shop/clothes|PacSun": {
+    "match": ["shop/clothes|Pac Sun"],
     "nocount": true,
     "tags": {
       "brand": "PacSun",
@@ -21062,6 +21101,20 @@
       "brand:wikidata": "Q7284708",
       "brand:wikipedia": "en:Rainbow Shops",
       "name": "Rainbow",
+      "shop": "clothes"
+    }
+  },
+  "shop/clothes|Reebok": {
+    "match": [
+      "shop/shoes|Reebok",
+      "shop/sports|Reebok"
+    ],
+    "nocount": true,
+    "tags": {
+      "brand": "Reebok",
+      "brand:wikidata": "Q466183",
+      "brand:wikipedia": "en:Reebok",
+      "name": "Reebok",
       "shop": "clothes"
     }
   },
@@ -27436,8 +27489,11 @@
   },
   "shop/jewelry|Claire's": {
     "count": 151,
+    "match": ["shop/clothes|Claire's"],
     "tags": {
       "brand": "Claire's",
+      "brand:wikidata": "Q2974996",
+      "brand:wikipedia": "en:Claire's",
       "name": "Claire's",
       "shop": "jewelry"
     }
@@ -31151,7 +31207,10 @@
   },
   "shop/supermarket|Eroski": {
     "count": 288,
-    "match": ["shop/supermarket|Eroski Center"],
+    "match": [
+      "shop/supermarket|Charter",
+      "shop/supermarket|Eroski Center"
+    ],
     "tags": {
       "brand": "Eroski",
       "brand:wikidata": "Q1361349",
@@ -33923,6 +33982,9 @@
     "count": 57,
     "tags": {
       "brand": "Красный Яр",
+      "brand:en": "Krasnyj Jar",
+      "brand:wikidata": "Q1786753",
+      "brand:wikipedia": "ru:Красный Яр",
       "name": "Красный Яр",
       "shop": "supermarket"
     }
@@ -34913,7 +34975,8 @@
     "count": 1132,
     "match": [
       "shop/convenience|Dollar Tree",
-      "shop/department_store|Dollar Tree"
+      "shop/department_store|Dollar Tree",
+      "shop/supermarket|Dollar Tree"
     ],
     "tags": {
       "brand": "Dollar Tree",
