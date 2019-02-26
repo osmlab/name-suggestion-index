@@ -441,13 +441,15 @@
   },
   "amenity/bank|BCP~(Peru)": {
     "countryCodes": ["pe"],
+    "match": [
+      "amenity/bank|Banco de Crédito del Perú"
+    ],
     "nocount": true,
     "nomatch": [
       "amenity/bank|BCP~(Bolivia)",
       "amenity/bank|BCP~(France)",
       "amenity/bank|BCP~(Luxembourg)"
     ],
-    "match": ["amenity/bank|Banco de Crédito del Perú"],
     "tags": {
       "amenity": "bank",
       "brand": "BCP",
@@ -1003,28 +1005,6 @@
       "name": "Banco Nación"
     }
   },
-  "amenity/bank|Banco de la Nación~(Peru)": {
-    "nocount": true,
-    "countryCodes": ["pe"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Banco de la Nación",
-      "brand:wikidata": "Q4856206",
-      "brand:wikipedia": "en:Bank of the Nation (Peru)",
-      "name": "Banco de la Nación"
-    }
-  },	
-  "amenity/bank|Banco de la Nación~(Argentina)": {
-    "count": 182,
-    "countryCodes": ["ar"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Banco de la Nación",
-      "brand:wikidata": "Q2883376",
-      "brand:wikipedia": "en:Banco de la Nación Argentina",
-      "name": "Banco de la Nación"
-    }
-  },
   "amenity/bank|Banco Pastor": {
     "count": 74,
     "countryCodes": ["es"],
@@ -1189,6 +1169,28 @@
       "brand:wikidata": "Q517093",
       "brand:wikipedia": "es:Banco de Venezuela",
       "name": "Banco de Venezuela"
+    }
+  },
+  "amenity/bank|Banco de la Nación~(Argentina)": {
+    "countryCodes": ["ar"],
+    "nocount": true,
+    "tags": {
+      "amenity": "bank",
+      "brand": "Banco de la Nación",
+      "brand:wikidata": "Q2883376",
+      "brand:wikipedia": "en:Banco de la Nación Argentina",
+      "name": "Banco de la Nación"
+    }
+  },
+  "amenity/bank|Banco de la Nación~(Peru)": {
+    "countryCodes": ["pe"],
+    "nocount": true,
+    "tags": {
+      "amenity": "bank",
+      "brand": "Banco de la Nación",
+      "brand:wikidata": "Q4856206",
+      "brand:wikipedia": "en:Bank of the Nation (Peru)",
+      "name": "Banco de la Nación"
     }
   },
   "amenity/bank|Banco del Austro": {
@@ -7024,7 +7026,7 @@
     }
   },
   "amenity/cinema|Cineplanet": {
-    "count": 23,
+    "nocount": true,
     "tags": {
       "amenity": "cinema",
       "brand": "Cineplanet",
@@ -7346,6 +7348,22 @@
       "name": "Chicken Express"
     }
   },
+  "amenity/fast_food|China Wok": {
+    "match": [
+      "amenity/fast_food|ChinaWok",
+      "amenity/restaurant|China Wok",
+      "amenity/restaurant|ChinaWok"
+    ],
+    "nocount": true,
+    "tags": {
+      "amenity": "fast_food",
+      "brand": "China Wok",
+      "brand:wikidata": "Q5766542",
+      "brand:wikipedia": "es:China Wok",
+      "cuisine": "chinese",
+      "name": "China Wok"
+    }
+  },
   "amenity/fast_food|Chipotle": {
     "count": 708,
     "match": [
@@ -7360,23 +7378,6 @@
       "brand:wikipedia": "en:Chipotle Mexican Grill",
       "cuisine": "mexican",
       "name": "Chipotle"
-    }
-  },
-  "amenity/fast_food|China Wok": {
-    "count": 708,
-    "countryCodes": ["ec", "cl", "pe"],
-    "match": [
-      "amenity/fast_food|ChinaWok",
-      "amenity/restaurant|China Wok",
-      "amenity/restaurant|ChinaWok"
-    ],
-    "tags": {
-      "amenity": "fast_food",
-      "brand": "China Wok",
-      "brand:wikidata": "Q5766542",
-      "brand:wikipedia": "es:China Wok",
-      "cuisine": "chinese",
-      "name": "China Wok"
     }
   },
   "amenity/fast_food|Chowking": {
@@ -7474,9 +7475,11 @@
     "count": 1748,
     "match": [
       "amenity/fast_food|DQ",
-      "amenity/fast_food|DQ Grill & Chill",
       "amenity/ice_cream|Dairy Queen",
       "amenity/restaurant|Dairy Queen"
+    ],
+    "nomatch": [
+      "amenity/fast_food|DQ Grill & Chill"
     ],
     "tags": {
       "amenity": "fast_food",
@@ -12374,9 +12377,9 @@
     }
   },
   "amenity/ice_cream|D'Onofrio": {
-    "nocount": true,
     "countryCodes": ["pe"],
     "match": ["amenity/ice_cream|Donofrio"],
+    "nocount": true,
     "tags": {
       "amenity": "ice_cream",
       "brand": "D'Onofrio",
@@ -14359,9 +14362,11 @@
     }
   },
   "amenity/post_office|Serpost": {
-    "nocount": true,
     "countryCodes": ["pe"],
-    "match": ["shop/post_office|Servicios Postales del Perú"],
+    "match": [
+      "shop/post_office|Servicios Postales del Perú"
+    ],
+    "nocount": true,
     "tags": {
       "amenity": "post_office",
       "brand": "Serpost",
@@ -15433,12 +15438,12 @@
     }
   },
   "amenity/restaurant|Pardos Chicken": {
-    "nocount": true,
     "match": [
-      	"amenity/restaurant|Pardo's Chicken",
-        "amenity/fast_food|Pardos chicken",
-      	"amenity/fast_food|Pardo's Chicken"
-      ],
+      "amenity/fast_food|Pardo's Chicken",
+      "amenity/fast_food|Pardos chicken",
+      "amenity/restaurant|Pardo's Chicken"
+    ],
+    "nocount": true,
     "tags": {
       "amenity": "restaurant",
       "brand": "Pardos Chicken",
@@ -21182,8 +21187,8 @@
   },
   "shop/clothes|Puma": {
     "count": 67,
-    "nomatch": ["amenity/fuel|Puma"],
     "match": ["shop/sports|Puma"],
+    "nomatch": ["amenity/fuel|Puma"],
     "tags": {
       "brand": "Puma",
       "brand:wikidata": "Q7203029",
@@ -24551,6 +24556,19 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|ナチュラルローソン": {
+    "countryCodes": ["jp"],
+    "nocount": true,
+    "tags": {
+      "brand": "ナチュラルローソン",
+      "brand:en": "NATURAL LAWSON",
+      "brand:wikidata": "Q11323850",
+      "brand:wikipedia": "ja:ナチュラルローソン",
+      "name": "ナチュラルローソン",
+      "name:en": "Natural Lawson",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|ファミリーマート": {
     "count": 5718,
     "countryCodes": ["jp"],
@@ -24624,19 +24642,6 @@
       "brand:wikipedia": "ja:ローソンストア100",
       "name": "ローソンストア100",
       "name:en": "Lawson Store 100",
-      "shop": "convenience"
-    }
-  },
-  "shop/convenience|ナチュラルローソン": {
-    "count": 37,
-    "countryCodes": ["jp"],
-    "tags": {
-      "brand": "ナチュラルローソン",
-      "brand:en": "NATURAL LAWSON",
-      "brand:wikidata": "Q11323850",
-      "brand:wikipedia": "ja:ナチュラルローソン",
-      "name": "ナチュラルローソン",
-      "name:en": "Natural Lawson",
       "shop": "convenience"
     }
   },
@@ -25242,9 +25247,12 @@
     }
   },
   "shop/department_store|París": {
+    "countryCodes": ["cl", "pe"],
+    "match": [
+      "shop/clothes|Paris",
+      "shop/clothes|París"
+    ],
     "nocount": true,
-    "countryCodes": ["cl","pe"],
-    "match": ["shop/department_store|París","shop/clothes|París","shop/clothes|Paris"],
     "tags": {
       "brand": "París",
       "brand:wikidata": "Q20812805",
@@ -25777,9 +25785,9 @@
     }
   },
   "shop/doityourself|Promart": {
-    "nocount": true,
     "countryCodes": ["pe"],
     "match": ["shop/hardware|Promart"],
+    "nocount": true,
     "tags": {
       "brand": "Promart",
       "brand:wikidata": "Q17626095",
@@ -25808,6 +25816,20 @@
       "shop": "doityourself"
     }
   },
+  "shop/doityourself|Sodimac": {
+    "match": [
+      "shop/hardware|Sodimac",
+      "shop/hardware|Sodimac Constructor"
+    ],
+    "nocount": true,
+    "tags": {
+      "brand": "Sodimac",
+      "brand:wikidata": "Q7553274",
+      "brand:wikipedia": "es:Sodimac",
+      "name": "Sodimac",
+      "shop": "doityourself"
+    }
+  },
   "shop/doityourself|Sonderpreis Baumarkt": {
     "count": 115,
     "tags": {
@@ -25815,17 +25837,6 @@
       "brand:wikidata": "Q811530",
       "brand:wikipedia": "de:Baumarkt",
       "name": "Sonderpreis Baumarkt",
-      "shop": "doityourself"
-    }
-  },
-  "shop/doityourself|Sodimac": {
-    "nocount": true,
-    "match": [ "shop/hardware|Sodimac","shop/hardware|Sodimac Constructor"],
-    "tags": {
-      "brand": "Sodimac",
-      "brand:wikidata": "Q7553274",
-      "brand:wikipedia": "es:Sodimac",
-      "name": "Sodimac",
       "shop": "doityourself"
     }
   },
@@ -28897,6 +28908,15 @@
       "shop": "optician"
     }
   },
+  "shop/optician|GMO": {
+    "countryCodes": ["cl", "co", "ec", "pe"],
+    "nocount": true,
+    "tags": {
+      "brand": "GMO",
+      "name": "GMO",
+      "shop": "optician"
+    }
+  },
   "shop/optician|General Óptica": {
     "count": 57,
     "tags": {
@@ -28913,15 +28933,6 @@
       "brand:wikidata": "Q3113677",
       "brand:wikipedia": "fr:Grand Optical",
       "name": "Grand Optical",
-      "shop": "optician"
-    }
-  },
-  "shop/optician|GMO": {
-    "count": 34,
-    "countryCodes": ["cl","co","ec","pe"],
-    "tags": {
-      "brand": "GMO",
-      "name": "GMO",
       "shop": "optician"
     }
   },
@@ -30134,22 +30145,22 @@
       "shop": "sports"
     }
   },
-  "shop/sports|Martes Sport": {
-    "count": 68,
-    "tags": {
-      "brand": "Martes Sport",
-      "name": "Martes Sport",
-      "shop": "sports"
-    }
-  },
   "shop/sports|Marathon Sports": {
-    "nocount": true,
     "countryCodes": ["bo", "ec", "pe"],
+    "nocount": true,
     "tags": {
       "brand": "Marathon Sports",
       "brand:wikidata": "Q3027516",
       "brand:wikipedia": "es:Marathon Sports",
       "name": "Marathon Sports",
+      "shop": "sports"
+    }
+  },
+  "shop/sports|Martes Sport": {
+    "count": 68,
+    "tags": {
+      "brand": "Martes Sport",
+      "name": "Martes Sport",
       "shop": "sports"
     }
   },
@@ -32531,7 +32542,7 @@
       "operator": "Cencosud",
       "shop": "supermarket"
     }
-  }, 
+  },
   "shop/supermarket|Migros": {
     "count": 700,
     "tags": {
