@@ -447,6 +447,7 @@
       "amenity/bank|BCP~(France)",
       "amenity/bank|BCP~(Luxembourg)"
     ],
+    "match": ["amenity/bank|Banco de Crédito del Perú"],
     "tags": {
       "amenity": "bank",
       "brand": "BCP",
@@ -1002,6 +1003,28 @@
       "name": "Banco Nación"
     }
   },
+  "amenity/bank|Banco de la Nación~(Peru)": {
+    "nocount": true,
+    "countryCodes": ["pe"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Banco de la Nación",
+      "brand:wikidata": "Q4856206",
+      "brand:wikipedia": "en:Bank of the Nation (Peru)",
+      "name": "Banco de la Nación"
+    }
+  },	
+  "amenity/bank|Banco de la Nación~(Argentina)": {
+    "count": 182,
+    "countryCodes": ["ar"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Banco de la Nación",
+      "brand:wikidata": "Q2883376",
+      "brand:wikipedia": "en:Banco de la Nación Argentina",
+      "name": "Banco de la Nación"
+    }
+  },
   "amenity/bank|Banco Pastor": {
     "count": 74,
     "countryCodes": ["es"],
@@ -1166,16 +1189,6 @@
       "brand:wikidata": "Q517093",
       "brand:wikipedia": "es:Banco de Venezuela",
       "name": "Banco de Venezuela"
-    }
-  },
-  "amenity/bank|Banco de la Nación": {
-    "count": 182,
-    "tags": {
-      "amenity": "bank",
-      "brand": "Banco de la Nación",
-      "brand:wikidata": "Q2883376",
-      "brand:wikipedia": "en:Banco de la Nación Argentina",
-      "name": "Banco de la Nación"
     }
   },
   "amenity/bank|Banco del Austro": {
@@ -7010,6 +7023,19 @@
       "name": "Cinemex"
     }
   },
+  "amenity/cinema|Cineplanet": {
+    "count": 23,
+    "tags": {
+      "amenity": "cinema",
+      "brand": "Cineplanet",
+      "brand:wikidata": "Q5769680",
+      "brand:wikipedia": "es:Cineplanet",
+      "operator": "Grupo Intercorp",
+      "operator:wikidata": "Q23008916",
+      "operator:wikipedia": "es:Intercorp",
+      "name": "Cinepolis"
+    }
+  },
   "amenity/cinema|Cinepolis": {
     "count": 90,
     "match": ["amenity/cinema|Cinépolis"],
@@ -7140,6 +7166,17 @@
       "brand:wikipedia": "en:Baja Fresh",
       "cuisine": "mexican",
       "name": "Baja Fresh"
+    }
+  },
+  "amenity/fast_food|Bembos": {
+    "nocount": true,
+    "tags": {
+      "amenity": "fast_food",
+      "brand": "Bembos",
+      "brand:wikidata": "Q466971",
+      "brand:wikipedia": "en:Bembos",
+      "cuisine": "burger",
+      "name": "Bembos"
     }
   },
   "amenity/fast_food|Bob's": {
@@ -7323,6 +7360,23 @@
       "brand:wikipedia": "en:Chipotle Mexican Grill",
       "cuisine": "mexican",
       "name": "Chipotle"
+    }
+  },
+  "amenity/fast_food|China Wok": {
+    "count": 708,
+    "countryCodes": ["ec", "cl", "pe"],
+    "match": [
+      "amenity/fast_food|ChinaWok",
+      "amenity/restaurant|China Wok",
+      "amenity/restaurant|ChinaWok"
+    ],
+    "tags": {
+      "amenity": "fast_food",
+      "brand": "China Wok",
+      "brand:wikidata": "Q5766542",
+      "brand:wikipedia": "es:China Wok",
+      "cuisine": "chinese",
+      "name": "China Wok"
     }
   },
   "amenity/fast_food|Chowking": {
@@ -12319,6 +12373,19 @@
       "name": "Cold Stone Creamery"
     }
   },
+  "amenity/ice_cream|D'Onofrio": {
+    "nocount": true,
+    "countryCodes": ["pe"],
+    "match": ["amenity/ice_cream|Donofrio"],
+    "tags": {
+      "amenity": "ice_cream",
+      "brand": "D'Onofrio",
+      "brand:wikidata": "Q5203166",
+      "brand:wikipedia": "es:D'Onofrio",
+      "cuisine": "ice_cream",
+      "name": "D'Onofrio"
+    }
+  },
   "amenity/ice_cream|Freddo": {
     "count": 52,
     "tags": {
@@ -14291,6 +14358,18 @@
       "name": "Poste Italiane"
     }
   },
+  "amenity/post_office|Serpost": {
+    "nocount": true,
+    "countryCodes": ["pe"],
+    "match": ["shop/post_office|Servicios Postales del Perú"],
+    "tags": {
+      "amenity": "post_office",
+      "brand": "Serpost",
+      "brand:wikidata": "Q19521863",
+      "brand:wikipedia": "en:Servicios Postales del Perú",
+      "name": "Serpost"
+    }
+  },
   "amenity/post_office|Servientrega": {
     "count": 129,
     "tags": {
@@ -15351,6 +15430,22 @@
       "brand:wikipedia": "en:P. F. Chang's China Bistro",
       "cuisine": "asian",
       "name": "P.F. Chang's"
+    }
+  },
+  "amenity/restaurant|Pardos Chicken": {
+    "nocount": true,
+    "match": [
+      	"amenity/restaurant|Pardo's Chicken",
+        "amenity/fast_food|Pardos chicken",
+      	"amenity/fast_food|Pardo's Chicken"
+      ],
+    "tags": {
+      "amenity": "restaurant",
+      "brand": "Pardos Chicken",
+      "brand:wikidata": "Q17624435",
+      "brand:wikipedia": "en:Pardos chicken",
+      "cuisine": "peruvian",
+      "name": "Pardos Chicken"
     }
   },
   "amenity/restaurant|Parrilla": {
@@ -21088,8 +21183,11 @@
   "shop/clothes|Puma": {
     "count": 67,
     "nomatch": ["amenity/fuel|Puma"],
+    "match": ["shop/sports|Puma"],
     "tags": {
       "brand": "Puma",
+      "brand:wikidata": "Q7203029",
+      "brand:wikipedia": "en:Puma (brand)",
       "name": "Puma",
       "shop": "clothes"
     }
@@ -24521,9 +24619,24 @@
     "countryCodes": ["jp"],
     "tags": {
       "brand": "ローソンストア100",
+      "brand:en": "LAWSON STORE 100",
       "brand:wikidata": "Q11350960",
       "brand:wikipedia": "ja:ローソンストア100",
       "name": "ローソンストア100",
+      "name:en": "Lawson Store 100",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|ナチュラルローソン": {
+    "count": 37,
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "ナチュラルローソン",
+      "brand:en": "NATURAL LAWSON",
+      "brand:wikidata": "Q11323850",
+      "brand:wikipedia": "ja:ナチュラルローソン",
+      "name": "ナチュラルローソン",
+      "name:en": "Natural Lawson",
       "shop": "convenience"
     }
   },
@@ -25118,6 +25231,28 @@
       "shop": "department_store"
     }
   },
+  "shop/department_store|Oechsle": {
+    "nocount": true,
+    "tags": {
+      "brand": "Oechsle",
+      "brand:wikidata": "Q6049096",
+      "brand:wikipedia": "es:Oechsle",
+      "name": "Oechsle",
+      "shop": "department_store"
+    }
+  },
+  "shop/department_store|París": {
+    "nocount": true,
+    "countryCodes": ["cl","pe"],
+    "match": ["shop/department_store|París","shop/clothes|París","shop/clothes|Paris"],
+    "tags": {
+      "brand": "París",
+      "brand:wikidata": "Q20812805",
+      "brand:wikipedia": "en:París (retail store)",
+      "name": "París",
+      "shop": "department_store"
+    }
+  },
   "shop/department_store|Ripley": {
     "count": 54,
     "tags": {
@@ -25641,6 +25776,18 @@
       "shop": "doityourself"
     }
   },
+  "shop/doityourself|Promart": {
+    "nocount": true,
+    "countryCodes": ["pe"],
+    "match": ["shop/hardware|Promart"],
+    "tags": {
+      "brand": "Promart",
+      "brand:wikidata": "Q17626095",
+      "brand:wikipedia": "en:Promart",
+      "name": "Promart",
+      "shop": "doityourself"
+    }
+  },
   "shop/doityourself|Rona": {
     "count": 85,
     "tags": {
@@ -25668,6 +25815,17 @@
       "brand:wikidata": "Q811530",
       "brand:wikipedia": "de:Baumarkt",
       "name": "Sonderpreis Baumarkt",
+      "shop": "doityourself"
+    }
+  },
+  "shop/doityourself|Sodimac": {
+    "nocount": true,
+    "match": [ "shop/hardware|Sodimac","shop/hardware|Sodimac Constructor"],
+    "tags": {
+      "brand": "Sodimac",
+      "brand:wikidata": "Q7553274",
+      "brand:wikipedia": "es:Sodimac",
+      "name": "Sodimac",
       "shop": "doityourself"
     }
   },
@@ -28758,6 +28916,15 @@
       "shop": "optician"
     }
   },
+  "shop/optician|GMO": {
+    "count": 34,
+    "countryCodes": ["cl","co","ec","pe"],
+    "tags": {
+      "brand": "GMO",
+      "name": "GMO",
+      "shop": "optician"
+    }
+  },
   "shop/optician|Générale d'Optique": {
     "count": 122,
     "tags": {
@@ -29972,6 +30139,17 @@
     "tags": {
       "brand": "Martes Sport",
       "name": "Martes Sport",
+      "shop": "sports"
+    }
+  },
+  "shop/sports|Marathon Sports": {
+    "nocount": true,
+    "countryCodes": ["bo", "ec", "pe"],
+    "tags": {
+      "brand": "Marathon Sports",
+      "brand:wikidata": "Q3027516",
+      "brand:wikipedia": "es:Marathon Sports",
+      "name": "Marathon Sports",
       "shop": "sports"
     }
   },
@@ -32341,6 +32519,19 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Metro~(Peru)": {
+    "countryCodes": ["pe"],
+    "nocount": true,
+    "nomatch": ["shop/wholesale|Metro"],
+    "tags": {
+      "brand": "Metro",
+      "brand:wikidata": "Q16640217",
+      "brand:wikipedia": "en:Tiendas Metro",
+      "name": "Metro",
+      "operator": "Cencosud",
+      "shop": "supermarket"
+    }
+  }, 
   "shop/supermarket|Migros": {
     "count": 700,
     "tags": {
