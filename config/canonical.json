@@ -6342,6 +6342,7 @@
     "countryCodes": ["jp"],
     "match": ["amenity/cafe|プロント"],
     "nocount": true,
+    "nomatch": ["shop/convenience|Coop Pronto"],
     "tags": {
       "amenity": "cafe",
       "brand": "PRONTO",
@@ -7150,6 +7151,21 @@
       "brand:wikidata": "Q5120901",
       "brand:wikipedia": "en:Cineworld",
       "name": "Cineworld"
+    }
+  },
+  "amenity/cinema|MOVIX": {
+    "countryCodes": ["jp"],
+    "nocount": true,
+    "tags": {
+      "amenity": "cinema",
+      "brand": "MOVIX",
+      "brand:wikidata": "Q11532184",
+      "brand:wikipedia": "ja:松竹マルチプレックスシアターズ",
+      "operator": "株式会社松竹マルチプレックスシアターズ",
+      "operator:en": "Shochiku Multiplex Theatres, Ltd.",
+      "name": "MOVIX",
+      "official_name": "松竹マルチプレックスシアターズ",
+      "official_name:en": "Shochiku Multiplex Theatres"
     }
   },
   "amenity/cinema|Odeon": {
@@ -9127,6 +9143,7 @@
   "amenity/fast_food|ほっともっと": {
     "count": 244,
     "countryCodes": ["jp"],
+    "nomatch": ["shop/deli|ほっともっと"],
     "tags": {
       "amenity": "fast_food",
       "brand": "ほっともっと",
@@ -17388,6 +17405,7 @@
   "shop/baby_goods|西松屋": {
     "count": 65,
     "countryCodes": ["jp"],
+    "nomatch": ["shop/clothes|西松屋"],
     "tags": {
       "brand": "西松屋",
       "brand:en": "Nishimatsuya Chain",
@@ -22448,6 +22466,19 @@
       "shop": "clothes"
     }
   },
+  "shop/clothes|ライトオン": {
+    "countryCodes": ["jp"],
+    "nocount": true,
+    "tags": {
+      "brand": "ライトオン",
+      "brand:en": "Right-on",
+      "brand:wikidata": "Q11346416",
+      "brand:wikipedia": "ja:ライトオン",
+      "name": "ライトオン",
+      "name:en": "Right-on",
+      "shop": "clothes"
+    }
+  },
   "shop/clothes|ワークマン": {
     "count": 103,
     "countryCodes": ["jp"],
@@ -22476,8 +22507,13 @@
   },
   "shop/clothes|西松屋": {
     "count": 153,
+    "nomatch": ["shop/baby_goods|西松屋"],
     "tags": {
       "brand": "西松屋",
+      "brand:en": "Nishimatsuya Chain",
+      "brand:wikidata": "Q11628761",
+      "brand:wikipedia": "ja:西松屋",
+      "clothes": "children",
       "name": "西松屋",
       "shop": "clothes"
     }
@@ -23027,6 +23063,7 @@
   },
   "shop/convenience|Coop Pronto": {
     "count": 55,
+    "nomatch": ["amenity/cafe|Pronto"],
     "tags": {
       "brand": "Coop Pronto",
       "brand:wikidata": "Q1129777",
@@ -25574,6 +25611,7 @@
   "shop/deli|ほっともっと": {
     "count": 72,
     "countryCodes": ["jp"],
+    "nomatch": ["shop/fast_food|ほっともっと"],
     "tags": {
       "brand": "ほっともっと",
       "brand:en": "Hotto Motto",
