@@ -1200,6 +1200,7 @@
   },
   "amenity/bank|Banco de la Nación~(Argentina)": {
     "countryCodes": ["ar"],
+    "nocount": true,
     "tags": {
       "amenity": "bank",
       "brand": "Banco de la Nación",
@@ -8106,17 +8107,11 @@
       "name": "Max"
     }
   },
-  "amenity/fast_food|Mc Donalds": {
-    "count": 54,
-    "tags": {
-      "amenity": "fast_food",
-      "name": "Mc Donalds"
-    }
-  },
   "amenity/fast_food|McDonald's": {
     "count": 19651,
     "match": [
       "amenity/fast_food|Mc Donald's",
+      "amenity/fast_food|Mc Donalds",
       "amenity/fast_food|McDonalds",
       "amenity/fast_food|McDonald’s",
       "amenity/restaurant|Mc Donald's",
@@ -11562,6 +11557,7 @@
       "amenity/fuel|Posto Shell",
       "amenity/fuel|SHELL",
       "amenity/fuel|Shell Gas Station",
+      "amenity/fuel|Shell Petrol Station",
       "amenity/fuel|Shell Station",
       "amenity/fuel|Station Shell",
       "amenity/fuel|shell"
@@ -11590,13 +11586,6 @@
       "brand:wikidata": "Q2289188",
       "brand:wikipedia": "nl:Shell Express",
       "name": "Shell Express"
-    }
-  },
-  "amenity/fuel|Shell Petrol Station": {
-    "count": 63,
-    "tags": {
-      "amenity": "fuel",
-      "name": "Shell Petrol Station"
     }
   },
   "amenity/fuel|Sinclair": {
@@ -14957,7 +14946,9 @@
     "count": 530,
     "match": [
       "amenity/post_office|UPS",
-      "amenity/post_office|UPS Store"
+      "amenity/post_office|UPS Store",
+      "shop/copyshop|The UPS Store",
+      "shop/copyshop|UPS Store"
     ],
     "tags": {
       "amenity": "post_office",
@@ -15150,6 +15141,7 @@
       "amenity/restaurant|Applebee's Bar and Grill",
       "amenity/restaurant|Applebee's Grill + Bar",
       "amenity/restaurant|Applebee's Grill and Bar",
+      "amenity/restaurant|Applebee's Neighborhood Grill & Bar",
       "amenity/restaurant|Applebees",
       "amenity/restaurant|Applebees Bar & Grill",
       "amenity/restaurant|Applebees Bar + Grill",
@@ -15165,13 +15157,6 @@
       "cuisine": "american",
       "name": "Applebee's",
       "official_name": "Applebee's Neighborhood Grill & Bar"
-    }
-  },
-  "amenity/restaurant|Applebee's Neighborhood Grill & Bar": {
-    "count": 1086,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Applebee's Neighborhood Grill & Bar"
     }
   },
   "amenity/restaurant|Autogrill": {
@@ -15390,13 +15375,6 @@
       "brand:wikipedia": "en:Chili's",
       "cuisine": "tex-mex",
       "name": "Chili's"
-    }
-  },
-  "amenity/restaurant|Chinese Restaurant": {
-    "count": 53,
-    "tags": {
-      "amenity": "restaurant",
-      "name": "Chinese Restaurant"
     }
   },
   "amenity/restaurant|Chiquito": {
@@ -18489,27 +18467,6 @@
       "shop": "beauty"
     }
   },
-  "shop/beauty|Salon de Coiffure Dame": {
-    "count": 128,
-    "tags": {
-      "name": "Salon de Coiffure Dame",
-      "shop": "beauty"
-    }
-  },
-  "shop/beauty|Salon de beauté dame": {
-    "count": 54,
-    "tags": {
-      "name": "Salon de beauté dame",
-      "shop": "beauty"
-    }
-  },
-  "shop/beauty|Salon de coiffure dame": {
-    "count": 118,
-    "tags": {
-      "name": "Salon de coiffure dame",
-      "shop": "beauty"
-    }
-  },
   "shop/beauty|Ulta": {
     "count": 51,
     "tags": {"name": "Ulta", "shop": "beauty"}
@@ -19653,29 +19610,9 @@
       "shop": "car_repair"
     }
   },
-  "shop/car_repair|Garage Auto": {
-    "count": 125,
-    "tags": {
-      "name": "Garage Auto",
-      "shop": "car_repair"
-    }
-  },
-  "shop/car_repair|Garage Moto": {
-    "count": 61,
-    "tags": {
-      "name": "Garage Moto",
-      "shop": "car_repair"
-    }
-  },
-  "shop/car_repair|Garage auto": {
-    "count": 118,
-    "tags": {
-      "name": "Garage auto",
-      "shop": "car_repair"
-    }
-  },
   "shop/car_repair|Goodyear": {
     "count": 139,
+    "match": ["shop/tyres|Goodyear"],
     "tags": {
       "brand": "Goodyear",
       "brand:wikidata": "Q620875",
@@ -23323,6 +23260,7 @@
       "shop/convenience|7-eleven",
       "shop/convenience|7/11",
       "shop/convenience|7Eleven",
+      "shop/convenience|7eleven",
       "shop/convenience|Seven Eleven",
       "shop/supermarket|7-Eleven"
     ],
@@ -23332,13 +23270,6 @@
       "brand:wikidata": "Q259340",
       "brand:wikipedia": "en:7-Eleven",
       "name": "7-Eleven",
-      "shop": "convenience"
-    }
-  },
-  "shop/convenience|7eleven": {
-    "count": 51,
-    "tags": {
-      "name": "7eleven",
       "shop": "convenience"
     }
   },
@@ -26150,20 +26081,6 @@
       "shop": "copyshop"
     }
   },
-  "shop/copyshop|The UPS Store": {
-    "count": 51,
-    "tags": {
-      "name": "The UPS Store",
-      "shop": "copyshop"
-    }
-  },
-  "shop/copyshop|UPS Store": {
-    "count": 51,
-    "tags": {
-      "name": "UPS Store",
-      "shop": "copyshop"
-    }
-  },
   "shop/cosmetics|Eva": {
     "count": 54,
     "tags": {
@@ -28246,20 +28163,6 @@
       "shop": "frozen_food"
     }
   },
-  "shop/fuel|Dépot de Gaz": {
-    "count": 111,
-    "tags": {
-      "name": "Dépot de Gaz",
-      "shop": "fuel"
-    }
-  },
-  "shop/fuel|Dépôt de Gaz": {
-    "count": 59,
-    "tags": {
-      "name": "Dépôt de Gaz",
-      "shop": "fuel"
-    }
-  },
   "shop/funeral_directors|The Co-operative Funeralcare": {
     "count": 120,
     "tags": {
@@ -28676,13 +28579,6 @@
       "shop": "gift"
     }
   },
-  "shop/gift|Souvenir Shop": {
-    "count": 51,
-    "tags": {
-      "name": "Souvenir Shop",
-      "shop": "gift"
-    }
-  },
   "shop/gift|Wereldwinkel": {
     "count": 51,
     "tags": {
@@ -28850,13 +28746,6 @@
       "shop": "hairdresser"
     }
   },
-  "shop/hairdresser|Hairdresser": {
-    "count": 51,
-    "tags": {
-      "name": "Hairdresser",
-      "shop": "hairdresser"
-    }
-  },
   "shop/hairdresser|Hairkiller": {
     "count": 75,
     "countryCodes": ["at", "de", "lu"],
@@ -28918,27 +28807,6 @@
     "tags": {
       "brand": "Marco Aldany",
       "name": "Marco Aldany",
-      "shop": "hairdresser"
-    }
-  },
-  "shop/hairdresser|Salon de Coiffure Homme": {
-    "count": 64,
-    "tags": {
-      "name": "Salon de Coiffure Homme",
-      "shop": "hairdresser"
-    }
-  },
-  "shop/hairdresser|Salon de coiffure homme": {
-    "count": 107,
-    "tags": {
-      "name": "Salon de coiffure homme",
-      "shop": "hairdresser"
-    }
-  },
-  "shop/hairdresser|Salão de Beleza": {
-    "count": 61,
-    "tags": {
-      "name": "Salão de Beleza",
       "shop": "hairdresser"
     }
   },
@@ -30515,13 +30383,6 @@
     "tags": {
       "name": "Orange Money",
       "shop": "money_transfer"
-    }
-  },
-  "shop/motorcycle_repair|Garage moto": {
-    "count": 73,
-    "tags": {
-      "name": "Garage moto",
-      "shop": "motorcycle_repair"
     }
   },
   "shop/motorcycle|Harley-Davidson": {
@@ -35582,13 +35443,6 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Super Market": {
-    "count": 52,
-    "tags": {
-      "name": "Super Market",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|Super One Foods": {
     "nocount": true,
     "tags": {
@@ -37381,10 +37235,6 @@
       "name": "Express Oil Change & Tire Engineers",
       "shop": "tyres"
     }
-  },
-  "shop/tyres|Goodyear": {
-    "count": 52,
-    "tags": {"name": "Goodyear", "shop": "tyres"}
   },
   "shop/tyres|Les Schwab Tire Center": {
     "count": 87,
