@@ -1,6 +1,6 @@
 const colors = require('colors/safe');
 const diacritics = require('diacritics');
-const fs = require('fs');
+const fs = require('fs-extra');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
@@ -164,6 +164,9 @@ function mergeConfig() {
     Object.keys(canonical).forEach(k => { canonical[k] = sort(canonical[k]) });
     fs.writeFileSync('config/canonical.json', stringify(sort(canonical), { maxLength: 50 }));
     console.timeEnd(colors.green('config updated'));
+
+    // hoo boy
+    splitCanonical();
 }
 
 
@@ -407,4 +410,38 @@ function stemmer(name) {
 
     name = noise.reduce((acc, regex) => acc.replace(regex, ''), name);
     return diacritics.remove(name.toLowerCase());
+}
+
+
+
+function splitCanonical() {
+    console.log(colors.blue('\nSplitting canonical!'));
+    let dict = {};
+
+    // populate K-V dictionary
+    Object.keys(canonical).forEach(k => {
+        let parts = k.split('|', 2);
+        let tag = parts[0].split('/', 2);
+        let key = tag[0];
+        let value = tag[1];
+
+        dict[key] = dict[key] || {};
+        dict[key][value] = dict[key][value] || {};
+        dict[key][value][k] = canonical[k];
+    });
+
+    Object.keys(dict).forEach(k => {
+        let obj = dict[k];
+        Object.keys(obj).forEach(v => {
+            let file = `brands/${k}/${v}.json`;
+            try {
+                console.log(colors.yellow(file));
+                fs.ensureFileSync(file);
+                fs.writeFileSync(file, stringify(sort(dict[k][v]), { maxLength: 50 }));
+            } catch (err) {
+                console.error(err.message);
+                process.exit(1);
+            }
+        });
+    });
 }
