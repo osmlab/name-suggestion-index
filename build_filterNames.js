@@ -1,24 +1,26 @@
 const colors = require('colors/safe');
-const diacritics = require('diacritics');
+const fileTree = require('./lib/file_tree');
 const fs = require('fs-extra');
 const glob = require('glob');
 const shell = require('shelljs');
+const sort = require('./lib/sort');
+const stemmer = require('./lib/stemmer');
 const stringify = require('json-stringify-pretty-compact');
+const validate = require('./lib/validate');
 
-const allNames = require('./dist/allNames.json');
 const filters = require('./config/filters.json');
+const allNames = require('./dist/allNames.json');
 
 // switch here
 let brands = require('./config/canonical.json');
 // let brands = readTree('brands');
 
-// perform JSON-schema validation
-const Validator = require('jsonschema').Validator;
+
+// Validate JSON-schema
 const filtersSchema = require('./schema/filters.json');
 const entriesSchema = require('./schema/entries.json');
-
-validateSchema('config/filters.json', filters, filtersSchema);
-validateSchema('config/entries.json', brands, entriesSchema);
+validate('config/filters.json', filters, filtersSchema);
+validate('config/canonical.json', brands, entriesSchema);
 
 
 // all names start out in discard..
@@ -29,27 +31,7 @@ let ambiguous = {};
 
 filterNames();
 mergeBrands();
-writeTree('brands', brands);
-
-
-// Perform JSON Schema validation
-function validateSchema(fileName, object, schema) {
-    let v = new Validator();
-    let validationErrors = v.validate(object, schema).errors;
-    if (validationErrors.length) {
-        console.error(colors.red('\nError - Schema validation:'));
-        console.error('  ' + colors.yellow(fileName + ': '));
-        validationErrors.forEach(e => {
-            if (e.property) {
-                console.error('  ' + colors.yellow(e.property + ' ' + e.message));
-            } else {
-                console.error('  ' + colors.yellow(e));
-            }
-        });
-        console.error();
-        process.exit(1);
-    }
-}
+fileTree.write('brands', brands);
 
 
 //
@@ -162,24 +144,10 @@ function mergeBrands() {
         }
 
         obj.count = keep[k];
-        obj.tags = sort(obj.tags);
     });
 
     Object.keys(brands).forEach(k => { brands[k] = sort(brands[k]) });
     console.timeEnd(colors.green('brands merged'));
-}
-
-
-//
-// Returns an object with sorted keys and sorted values.
-// (This is useful for file diffing)
-//
-function sort(obj) {
-    let sorted = {};
-    Object.keys(obj).sort().forEach(k => {
-        sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
-    });
-    return sorted;
 }
 
 
@@ -390,85 +358,4 @@ function checkBrands() {
     let hasWd = total - warnMissingWikidata.length;
     let pct = (hasWd * 100 / total).toFixed(1);
     console.info(colors.blue(`\nIndex completeness: ${hasWd}/${total} (${pct}%) matched to Wikidata `));
-}
-
-
-// Removes noise from the name so that we can compare
-// similar names for catching duplicates.
-function stemmer(name) {
-    let noise = [
-        /ban(k|c)(a|o)?/ig,
-        /банк/ig,
-        /coop/ig,
-        /express/ig,
-        /(gas|fuel)/ig,
-        /wireless/ig,
-        /(shop|store)/ig,
-        /[.,\/#!$%\^&\*;:{}=\-_`~()]/g,
-        /\s/g
-    ];
-
-    name = noise.reduce((acc, regex) => acc.replace(regex, ''), name);
-    return diacritics.remove(name.toLowerCase());
-}
-
-
-
-function readTree(tree) {
-    console.log('\nreading ' + tree);
-    console.time(colors.green(tree + ' loaded'));
-
-    let obj = {};
-    glob.sync(__dirname + `/${tree}/**/*.json`).forEach(function(file) {
-        let contents = fs.readFileSync(file, 'utf8');
-        let json;
-        try {
-            json = JSON.parse(contents);
-        } catch (jsonParseError) {
-            console.error(colors.red('Error - ' + jsonParseError.message + ' reading:'));
-            console.error('  ' + colors.yellow(file));
-            process.exit(1);
-        }
-
-        Object.keys(json).forEach(k => { obj[k] = json[k]; });
-    });
-
-    console.timeEnd(colors.green(tree + ' loaded'));
-    return obj;
-}
-
-
-function writeTree(tree, obj) {
-    console.log('\nwriting ' + tree);
-    console.time(colors.green(tree + ' updated'));
-    let dict = {};
-
-    // populate K-V dictionary
-    Object.keys(obj).forEach(k => {
-        let parts = k.split('|', 2);
-        let tag = parts[0].split('/', 2);
-        let key = tag[0];
-        let value = tag[1];
-
-        dict[key] = dict[key] || {};
-        dict[key][value] = dict[key][value] || {};
-        dict[key][value][k] = obj[k];
-    });
-
-    Object.keys(dict).forEach(k => {
-        let entry = dict[k];
-        Object.keys(entry).forEach(v => {
-            let file = __dirname + `/${tree}/${k}/${v}.json`;
-            try {
-                fs.ensureFileSync(file);
-                fs.writeFileSync(file, stringify(sort(dict[k][v]), { maxLength: 50 }));
-            } catch (err) {
-                console.error(colors.red('Error - ' + err.message + ' writing:'));
-                console.error('  ' + colors.yellow(file));
-                process.exit(1);
-            }
-        });
-    });
-
-    console.timeEnd(colors.green(tree + ' updated'));
 }
