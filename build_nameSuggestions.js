@@ -6,10 +6,7 @@ const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 const xmlbuilder = require('xmlbuilder');
 
-// switch here
-let brands = require('./config/canonical.json');
-// let brands = readTree('brands');
-
+let brands = fileTree.read('brands');
 let out = {};
 
 buildAll();

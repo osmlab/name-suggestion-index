@@ -11,16 +11,12 @@ const validate = require('./lib/validate');
 const filters = require('./config/filters.json');
 const allNames = require('./dist/allNames.json');
 
-// switch here
-let brands = require('./config/canonical.json');
-// let brands = readTree('brands');
+let brands = fileTree.read('brands');
 
 
 // Validate JSON-schema
 const filtersSchema = require('./schema/filters.json');
-const entriesSchema = require('./schema/entries.json');
 validate('config/filters.json', filters, filtersSchema);
-validate('config/canonical.json', brands, entriesSchema);
 
 
 // all names start out in discard..

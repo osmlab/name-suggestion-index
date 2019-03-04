@@ -16,10 +16,15 @@
 * `dist/discardNames.json` - discarded subset of allNames
 * `dist/keepNames.json` - kept subset of allNames
 
-##### :white_check_mark: &nbsp; Do edit the files in `config/`:
+##### :white_check_mark: &nbsp; Do edit the files in `config/` and `brands/`:
 
-* `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
-* `config/canonical.json` - Main config file containing all the most correct names and tags to assign to them
+* `config/*`
+  * `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
+* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `brands/amenity/*.json`
+  * `brands/leisure/*.json`
+  * `brands/shop/*.json`
+  * `brands/tourism/*.json`
 
 &nbsp;
 
@@ -49,17 +54,26 @@ and not need to worry about the tags being added.
 
 &nbsp;
 
-### :card_file_box: &nbsp; About `config/canonical.json`
+### :card_file_box: &nbsp; About the brand files
 
-__`config/canonical.json` is our main list of the most correct names and tags.__
+__The `brands/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
 
-This file is created by:
+These files are created by:
 - Processing the OpenStreetMap "planet" data to extract common names -> `dist/allNames.json`
 - Filtering all the names into -> `dist/keepNames.json` and `dist/discardNames.json`
-- Merging the names we are keeping into -> `config/canonical.json` for us to decide what to do with them
+- Merging the names we are keeping into -> `brands/**/*.json` files for us to decide what to do with them
 
-Each entry looks like this _(comments added for clarity)_:
+The files are organized by OpenStreetMap tag:
+* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `brands/amenity/*.json`
+  * `brands/leisure/*.json`
+  * `brands/shop/*.json`
+  * `brands/tourism/*.json`
 
+
+Each brand entry looks like this _(comments added for clarity)_:
+
+In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|McDonald's": {         // Identifier like "key/value|name"
@@ -217,7 +231,7 @@ This will output a lot of warnings, which you can help fix!
 
 ### :thinking: &nbsp; Resolve warnings
 
-Warnings mean that you need to edit `config/canonical.json`.
+Warnings mean that you need to edit files under `brands/*`.
 The warning output gives a clue about how to fix or suppress the warning.
 If you aren't sure, just ask on GitHub!
 
@@ -226,7 +240,7 @@ If you aren't sure, just ask on GitHub!
 #### Duplicate names
 
 ```
-Warning - Potential duplicate names in `canonical.json`:
+Warning - Potential duplicate brand names:
 To resolve these, remove the worse entry and add "match" property on the better entry.
 To suppress this warning for entries that really are different, add a "nomatch" property on both entries.
   "tourism/motel|Motel 6" -> duplicates? -> "tourism/hotel|Motel 6"
@@ -246,7 +260,7 @@ is the one to keep.  If you are not sure, you can also search on the
 #### Uncommon names
 
 ```
-Warning - Uncommon entries in `canonical.json` not found in `keepNames.json`:
+Warning - Uncommon brand not found in `keepNames.json`:
 These might be okay. It just means that the entry is not commonly found in OpenStreetMap.
 To suppress this warning, add a "nocount" property to the entry.
   "shop/wholesale|Costco"
@@ -279,9 +293,9 @@ For example, "Универмаг" is just a Russian word for "Department store":
 ```
 
 To remove this generic name:
-1. Delete the entries from `config/canonical.json`
+1. Delete the entries from the appropriate file, in this case `brands/shop/department_store.json`
 2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
-3. Run `npm run build` - if the filter is working, the name will not be put back into `config/canonical.json`
+3. Run `npm run build` - if the filter is working, the name will not be put back into `brands/shop/department_store.json`
 4. `git diff` - to make sure that the entries you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.
 
@@ -294,7 +308,9 @@ can help with.
 
 #### Example #1 - Worldwide / English brands...
 
-1. Find an entry in `config/canonical.json` that is missing these tags:
+1. Find an entry in a brand file that is missing these tags:
+
+In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|Chipotle": {
@@ -338,7 +354,7 @@ under the "tools" menu in the sidebar.
 
 <img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_3.png"/>
 
-5. Update `config/canonical.json`:
+5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
 We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
 
@@ -374,7 +390,9 @@ _(comments added for clarity)_
 
 This example uses a brand "かっぱ寿司".  I don't know what that is, so I will do some research.
 
-1. Find an entry in `config/canonical.json`:
+1. Find an entry in a brand file that is missing these tags:
+
+In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|かっぱ寿司": {
@@ -415,7 +433,7 @@ Note: The Wikidata page looks a bit sparse - you can edit this too if you want t
 
 <img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_4.png"/>
 
-5. Update `config/canonical.json`:
+5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
 We can add:
 * `"brand:en"` and `"name:en"` tags to contain the English name "Kappazushi"
@@ -458,13 +476,13 @@ is a valuable way to get ahead of incorrect tagging.
 
 1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `shop=food`). Ideally you also have `brand:wikidata` and `brand:wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
 
-2. Add your new entry anywhere in `config/canonical.json` (it will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-configcanonicaljson) if you're not familiar with the syntax.
+2. Add your new entry anywhere into the appropriate file under `brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
 
 3. Add the `"nocount": true` key to your new entry as this will suppress the warnings that it doesn't appear often in OSM.
 
 4. If the brand only has locations in a known set of countries add the `"countryCodes": []` key to your new entry. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
 
-5. If instances of this brand are commonly mistagged add the `"match": []` key to list these. Again, refer to [here](#card_file_box--about-configcanonicaljson) for syntax.
+5. If instances of this brand are commonly mistagged add the `"match": []` key to list these. Again, refer to [here](#card_file_box--about-the-brand-files) for syntax.
 
 6. Run `npm run build` and resolve any [duplicate name warnings](#thinking--resolve-warnings).
 

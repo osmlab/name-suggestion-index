@@ -8,9 +8,7 @@ const wdk = require('wikidata-sdk');
 
 const MAXCHOICE = 6;      // max number of choices to consider
 
-// switch here
-let brands = require('./config/canonical.json');
-// let brands = readTree('brands');
+let brands = fileTree.read('brands');
 
 let _resolve = function() { };
 let _keypress = function() { };

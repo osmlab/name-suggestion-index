@@ -64,8 +64,13 @@ Name lists:
 
 #### Configuration files (edit these):
 
-* `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
-* `config/canonical.json` - The main config file containing all the most correct names and tags to assign to them
+* `config/*`
+  * `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
+* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `brands/amenity/*.json`
+  * `brands/leisure/*.json`
+  * `brands/shop/*.json`
+  * `brands/tourism/*.json`
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
@@ -74,8 +79,8 @@ Name lists:
 
 * `npm run build`
   * Regenerates `dist/keepNames.json` and `dist/discardNames.json`
-  * Any new `keepNames` not already present in `config/canonical.json` will be added to it
-  * Outputs warnings to suggest updates to `config/canonical.json`
+  * Any new `keepNames` not already present in the index will be added to it
+  * Outputs warnings to suggest updates to `brands/**/*.json`
 
 
 ### Updating `dist/allNames.json` from planet
