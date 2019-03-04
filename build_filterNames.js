@@ -1,20 +1,22 @@
 const colors = require('colors/safe');
-const diacritics = require('diacritics');
-const fs = require('fs');
+const fileTree = require('./lib/file_tree');
+const fs = require('fs-extra');
+const glob = require('glob');
 const shell = require('shelljs');
+const sort = require('./lib/sort');
+const stemmer = require('./lib/stemmer');
 const stringify = require('json-stringify-pretty-compact');
+const validate = require('./lib/validate');
 
-const allNames = require('./dist/allNames.json');
 const filters = require('./config/filters.json');
-let canonical = require('./config/canonical.json');
+const allNames = require('./dist/allNames.json');
 
-// perform JSON-schema validation
-const Validator = require('jsonschema').Validator;
+let brands = fileTree.read('brands');
+
+
+// Validate JSON-schema
 const filtersSchema = require('./schema/filters.json');
-const canonicalSchema = require('./schema/canonical.json');
-
-validateSchema('config/filters.json', filters, filtersSchema);
-validateSchema('config/canonical.json', canonical, canonicalSchema);
+validate('config/filters.json', filters, filtersSchema);
 
 
 // all names start out in discard..
@@ -24,28 +26,8 @@ let rIndex = {};
 let ambiguous = {};
 
 filterNames();
-mergeConfig();
-
-
-
-// Perform JSON Schema validation
-function validateSchema(fileName, object, schema) {
-    let v = new Validator();
-    let validationErrors = v.validate(object, schema).errors;
-    if (validationErrors.length) {
-        console.error(colors.red('\nError - Schema validation:'));
-        console.error('  ' + colors.yellow(fileName + ': '));
-        validationErrors.forEach(e => {
-            if (e.property) {
-                console.error('  ' + colors.yellow(e.property + ' ' + e.message));
-            } else {
-                console.error('  ' + colors.yellow(e));
-            }
-        });
-        console.error();
-        process.exit(1);
-    }
-}
+mergeBrands();
+fileTree.write('brands', brands);
 
 
 //
@@ -60,7 +42,7 @@ function validateSchema(fileName, object, schema) {
 // "shop/coffee|Starbucks": 8284
 //
 function filterNames() {
-    console.log('filtering names');
+    console.log('\nfiltering names');
     console.time(colors.green('names filtered'));
 
     // Start clean
@@ -108,21 +90,21 @@ function filterNames() {
 
 
 //
-// mergeConfig() takes the names we are keeping and update
-// `config/canonical.json`
+// mergeBrands() takes the brand names we are keeping
+// and updates the files under `/brands/**/*.json`
 //
-function mergeConfig() {
-    buildReverseIndex();
-    checkCanonical();
+function mergeBrands() {
+    buildReverseIndex(brands);
+    checkBrands();
 
-    console.log('\nmerging config/canonical.json');
-    console.time(colors.green('config updated'));
+    console.log('\nmerging brands');
+    console.time(colors.green('brands merged'));
 
-    // Create/update entries in `config/canonical.json`
+    // Create/update entries
     Object.keys(keep).forEach(k => {
         if (rIndex[k] || ambiguous[k]) return;
 
-        let obj = canonical[k];
+        let obj = brands[k];
         let parts = k.split('|', 2);
         let tag = parts[0].split('/', 2);
         let key = tag[0];
@@ -133,7 +115,7 @@ function mergeConfig() {
             obj = { count: 0, tags: {} };
             obj.tags.name = name;
             obj.tags[key] = value;
-            canonical[k] = obj;
+            brands[k] = obj;
         }
 
         // https://www.regular-expressions.info/unicode.html
@@ -158,25 +140,10 @@ function mergeConfig() {
         }
 
         obj.count = keep[k];
-        obj.tags = sort(obj.tags);
     });
 
-    Object.keys(canonical).forEach(k => { canonical[k] = sort(canonical[k]) });
-    fs.writeFileSync('config/canonical.json', stringify(sort(canonical), { maxLength: 50 }));
-    console.timeEnd(colors.green('config updated'));
-}
-
-
-//
-// Returns an object with sorted keys and sorted values.
-// (This is useful for file diffing)
-//
-function sort(obj) {
-    let sorted = {};
-    Object.keys(obj).sort().forEach(k => {
-        sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
-    });
-    return sorted;
+    Object.keys(brands).forEach(k => { brands[k] = sort(brands[k]) });
+    console.timeEnd(colors.green('brands merged'));
 }
 
 
@@ -196,15 +163,15 @@ function checkAmbiguous(k) {
 //
 // Returns a reverse index to map match keys back to their original keys
 //
-function buildReverseIndex() {
+function buildReverseIndex(obj) {
     let warnCollisions = [];
 
-    for (let k in canonical) {
+    for (let k in obj) {
         checkAmbiguous(k);
 
-        if (canonical[k].match) {
-            for (let i = canonical[k].match.length - 1; i >= 0; i--) {
-                let match = canonical[k].match[i];
+        if (obj[k].match) {
+            for (let i = obj[k].match.length - 1; i >= 0; i--) {
+                let match = obj[k].match[i];
                 checkAmbiguous(match);
 
                 if (rIndex[match]) {
@@ -217,7 +184,7 @@ function buildReverseIndex() {
     }
 
     if (warnCollisions.length) {
-        console.warn(colors.yellow('\nWarning - match name collisions in `canonical.json`:'));
+        console.warn(colors.yellow('\nWarning - match name collisions'));
         console.warn('To resolve these, make sure multiple entries do not contain the same "match" property.');
         warnCollisions.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> match? -> ' + colors.yellow('"' + w[1] + '"')
@@ -227,9 +194,9 @@ function buildReverseIndex() {
 
 
 //
-// Checks all the entries in `canonical.json` for several kinds of issues
+// Checks all the brands for several kinds of issues
 //
-function checkCanonical() {
+function checkBrands() {
     let warnUncommon = [];
     let warnMatched = [];
     let warnDuplicate = [];
@@ -240,8 +207,8 @@ function checkCanonical() {
     let warnMissingTag = [];
     let seen = {};
 
-    Object.keys(canonical).forEach(k => {
-        let obj = canonical[k];
+    Object.keys(brands).forEach(k => {
+        let obj = brands[k];
         let parts = k.split('|', 2);
         let tag = parts[0];
         let name = parts[1];
@@ -267,7 +234,7 @@ function checkCanonical() {
         if (other) {
             // suppress warning?
             let suppress = false;
-            if (canonical[other].nomatch && canonical[other].nomatch.indexOf(k) !== -1) {
+            if (brands[other].nomatch && brands[other].nomatch.indexOf(k) !== -1) {
                 suppress = true;
             } else if (obj.nomatch && obj.nomatch.indexOf(other) !== -1) {
                 suppress = true;
@@ -310,7 +277,7 @@ function checkCanonical() {
     });
 
     if (warnMatched.length) {
-        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` matched to other entries in `canonical.json`:'));
+        console.warn(colors.yellow('\nWarning - Brands matched to other brands:'));
         console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
         warnMatched.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
@@ -319,7 +286,7 @@ function checkCanonical() {
     }
 
     if (warnMissingTag.length) {
-        console.warn(colors.yellow('\nWarning - Missing tags for entries in `canonical.json`:'));
+        console.warn(colors.yellow('\nWarning - Missing tags for brands:'));
         console.warn('To resolve these, add the missing tag.');
         warnMissingTag.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> missing tag? -> ' + colors.yellow('"' + w[1] + '"')
@@ -328,7 +295,7 @@ function checkCanonical() {
     }
 
     if (warnDuplicate.length) {
-        console.warn(colors.yellow('\nWarning - Potential duplicate names in `canonical.json`:'));
+        console.warn(colors.yellow('\nWarning - Potential duplicate brand names:'));
         console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
         console.warn('To suppress this warning for entries that really are different, add a "nomatch" property on both entries.');
         warnDuplicate.forEach(w => console.warn(
@@ -338,7 +305,7 @@ function checkCanonical() {
     }
 
     if (warnUncommon.length) {
-        console.warn(colors.yellow('\nWarning - Uncommon entries in `canonical.json` not found in `keepNames.json`:'));
+        console.warn(colors.yellow('\nWarning - Uncommon brand not found in `keepNames.json`:'));
         console.warn('These might be okay. It just means that the entry is not commonly found in OpenStreetMap.');
         console.warn('To suppress this warning, add a "nocount" property to the entry.');
         warnUncommon.forEach(w => console.warn(
@@ -348,7 +315,7 @@ function checkCanonical() {
     }
 
     // if (warnMissingWikidata.length) {
-    //     console.warn(colors.yellow('\nWarning - Entries in `canonical.json` missing `brand:wikidata`:'));
+    //     console.warn(colors.yellow('\nWarning - Brand missing `brand:wikidata`:'));
     //     console.warn('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".');
     //     warnMissingWikidata.forEach(w => console.warn(
     //         colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikidata"'
@@ -357,7 +324,7 @@ function checkCanonical() {
     // }
 
     // if (warnMissingWikipedia.length) {
-    //     console.warn(colors.yellow('\nWarning - Entries in `canonical.json` missing `brand:wikipedia`:'));
+    //     console.warn(colors.yellow('\nWarning - Brand missing `brand:wikipedia`:'));
     //     console.warn('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".');
     //     warnMissingWikipedia.forEach(w => console.warn(
     //         colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikipedia"'
@@ -366,7 +333,7 @@ function checkCanonical() {
     // }
 
     if (warnFormatWikidata.length) {
-        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` with incorrect `brand:wikidata` format:'));
+        console.warn(colors.yellow('\nWarning - Brand with incorrect `brand:wikidata` format:'));
         console.warn('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".');
         warnFormatWikidata.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikidata": ' + '"' + w[1] + '"'
@@ -375,7 +342,7 @@ function checkCanonical() {
     }
 
     if (warnFormatWikipedia.length) {
-        console.warn(colors.yellow('\nWarning - Entries in `canonical.json` with incorrect `brand:wikipedia` format:'));
+        console.warn(colors.yellow('\nWarning - Brand with incorrect `brand:wikipedia` format:'));
         console.warn('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".');
         warnFormatWikipedia.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikipedia": ' + '"' + w[1] + '"'
@@ -383,28 +350,8 @@ function checkCanonical() {
         console.warn('total ' + warnFormatWikipedia.length);
     }
 
-    let total = Object.keys(canonical).length;
+    let total = Object.keys(brands).length;
     let hasWd = total - warnMissingWikidata.length;
     let pct = (hasWd * 100 / total).toFixed(1);
     console.info(colors.blue(`\nIndex completeness: ${hasWd}/${total} (${pct}%) matched to Wikidata `));
-}
-
-
-// Removes noise from the name so that we can compare
-// similar names for catching duplicates.
-function stemmer(name) {
-    let noise = [
-        /ban(k|c)(a|o)?/ig,
-        /банк/ig,
-        /coop/ig,
-        /express/ig,
-        /(gas|fuel)/ig,
-        /wireless/ig,
-        /(shop|store)/ig,
-        /[.,\/#!$%\^&\*;:{}=\-_`~()]/g,
-        /\s/g
-    ];
-
-    name = noise.reduce((acc, regex) => acc.replace(regex, ''), name);
-    return diacritics.remove(name.toLowerCase());
 }

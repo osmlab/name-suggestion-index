@@ -1,11 +1,12 @@
 const colors = require('colors/safe');
+const fileTree = require('./lib/file_tree');
 const fs = require('fs');
 const package = require('./package.json');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 const xmlbuilder = require('xmlbuilder');
 
-const canonical = require('./config/canonical.json');
+let brands = fileTree.read('brands');
 let out = {};
 
 buildAll();
@@ -27,8 +28,8 @@ function buildAll() {
 
 
 function buildJSON() {
-    Object.keys(canonical).forEach(k => {
-        const obj = canonical[k];
+    Object.keys(brands).forEach(k => {
+        const obj = brands[k];
         const wd = obj.tags['brand:wikidata'];
         if (!wd || !/^Q\d+$/.test(wd)) return;   // wikidata tag missing or looks wrong..
 
