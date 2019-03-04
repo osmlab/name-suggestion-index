@@ -8,7 +8,9 @@ const stringify = require('json-stringify-pretty-compact');
 const allNames = require('./dist/allNames.json');
 const filters = require('./config/filters.json');
 
-let brands = readTree('brands');
+// switch here
+let brands = require('./config/canonical.json');
+// let brands = readTree('brands');
 
 // perform JSON-schema validation
 const Validator = require('jsonschema').Validator;
