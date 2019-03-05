@@ -8,19 +8,29 @@ const stemmer = require('./lib/stemmer');
 const stringify = require('json-stringify-pretty-compact');
 const validate = require('./lib/validate');
 
-const filters = require('./config/filters.json');
-const allNames = require('./dist/allNames.json');
 
+// Load and check filters.json
+let filters = require('./config/filters.json');
+const filtersSchema = require('./schema/filters.json');
+validate('config/filters.json', filters, filtersSchema);  // validate JSON-schema
+
+// Lowercase and sort the filters for consistency
+filters = {
+    keepTags: filters.keepTags.map(s => s.toLowerCase()).sort(),
+    discardKeys: filters.discardKeys.map(s => s.toLowerCase()).sort(),
+    discardNames: filters.discardNames.map(s => s.toLowerCase()).sort()
+};
+
+fs.writeFileSync('config/filters.json', stringify(filters));
+
+
+// Load and check brand files
 let brands = fileTree.read('brands');
 
-
-// Validate JSON-schema
-const filtersSchema = require('./schema/filters.json');
-validate('config/filters.json', filters, filtersSchema);
-
-
 // all names start out in discard..
+const allNames = require('./dist/allNames.json');
 let discard = Object.assign({}, allNames);
+
 let keep = {};
 let rIndex = {};
 let ambiguous = {};
