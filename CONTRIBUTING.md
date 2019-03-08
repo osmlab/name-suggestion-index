@@ -107,12 +107,13 @@ There may also be entries for McDonald's in other languages!
       "amenity": "fast_food",
       "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
       "brand:en": "McDonald's",             // `brand:en` - For non-English brands, tag the English version too
+      "brand:ja": "マクドナルド",             // `brand:ja` - Add at least one `brand:xx` tag that matches `brand`
       "brand:wikidata": "Q38076",           // `brand:wikidata` - Same Universal wikidata identifier
       "brand:wikipedia": "ja:マクドナルド",   // `brand:wikipedia` - Reference to Japanese Wikipedia
       "cuisine": "burger",
       "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
       "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
-      "name:ja": "マクドナルド",              // `name:ja` - include at least one `name:xx` tag that matches `name`
+      "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
     }
   },
 ```
@@ -438,7 +439,7 @@ Note: The Wikidata page looks a bit sparse - you can edit this too if you want t
 
 We can add:
 * `"brand:en"` and `"name:en"` tags to contain the English name "Kappazushi"
-* `"name:ja"` tag, to make it clear which language the `name` tag is in
+* `"name:ja"` and `"brand:ja"` tags to contain the local name "かっぱ寿司"
 * `"brand:wikipedia"` and `"brand:wikidata"` tags
 * `"cuisine": "sushi"` OpenStreetMap tag
 * `"countryCodes"` property, to indicate that this brand should only be used in Japan.
@@ -451,6 +452,7 @@ We can add:
       "amenity": "fast_food",
       "brand": "かっぱ寿司",
       "brand:en": "Kappazushi",            // added
+      "brand:ja": "かっぱ寿司",            // added
       "brand:wikipedia": "ja:かっぱ寿司",     // added
       "brand:wikidata": "Q11263916",        // added
       "cuisine": "sushi",                   // added
