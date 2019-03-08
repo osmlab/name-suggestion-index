@@ -34,6 +34,16 @@ Currently used in:
 * JOSM presets available
 
 
+### Participate!
+
+* Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
+* See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
+
+We're always looking for help!  If you have any questions or want to reach out to a maintainer, ping `bhousel` on:
+* [OpenStreetMap US Slack](https://slack.openstreetmap.us/)
+(`#poi` or `#general` channels)
+
+
 ### Prerequisites
 
 * [Node.js](https://nodejs.org/) version 6 or newer
