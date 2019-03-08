@@ -94,7 +94,7 @@ You do not need to do these steps in order to contribute to the index.
   - `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
-  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,man_made,tourism -o wanted.osm.pbf`
+  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism -o wanted.osm.pbf`
 - Run `node build_allNames wanted.osm.pbf`
   - results will go in `dist/allNames.json`
   - `git add dist/allNames.json && git commit -m 'Updated dist/allNames.json'`
