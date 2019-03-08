@@ -112,6 +112,7 @@ There may also be entries for McDonald's in other languages!
       "cuisine": "burger",
       "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
       "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
+      "name:ja": "マクドナルド",              // `name:ja` - include at least one `name:xx` tag that matches `name`
     }
   },
 ```
@@ -437,7 +438,8 @@ Note: The Wikidata page looks a bit sparse - you can edit this too if you want t
 
 We can add:
 * `"brand:en"` and `"name:en"` tags to contain the English name "Kappazushi"
-* `"brand:wikipedia"` and `"brand:wikidata"` tags.
+* `"name:ja"` tag, to make it clear which language the `name` tag is in
+* `"brand:wikipedia"` and `"brand:wikidata"` tags
 * `"cuisine": "sushi"` OpenStreetMap tag
 * `"countryCodes"` property, to indicate that this brand should only be used in Japan.
 
@@ -453,7 +455,8 @@ We can add:
       "brand:wikidata": "Q11263916",        // added
       "cuisine": "sushi",                   // added
       "name": "かっぱ寿司",
-      "name:en": "Kappazushi"              // added
+      "name:en": "Kappazushi",              // added
+      "name:ja": "かっぱ寿司"               // added
     }
   },
 ```
