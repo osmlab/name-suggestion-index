@@ -121,13 +121,23 @@ function mergeBrands() {
         let value = tag[1];
         let name = parts[1];
 
-        if (!obj) {
+        if (!obj) {   // a new entry!
             obj = { count: 0, tags: {} };
+            obj.tags.brand = name;
             obj.tags.name = name;
             obj.tags[key] = value;
+
+            // set a few sensibile defaults
+            if (key === 'amenity' && value === 'cafe') {
+                obj.tags.cuisine = 'coffee_shop';
+            } else if (key === 'amenity' && value === 'pharmacy') {
+                obj.tags.healthcare = 'pharmacy';
+            }
+
             brands[k] = obj;
         }
 
+        // Force `countryCode`, if the name can only be reasonably read in one country.
         // https://www.regular-expressions.info/unicode.html
         if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
             obj.countryCodes = ['il'];
