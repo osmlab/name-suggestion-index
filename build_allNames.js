@@ -22,7 +22,7 @@ if (process.argv.length < 3) {
     process.exit(1);
 }
 
-const checkKeys = ['amenity', 'shop', 'leisure', 'man_made', 'tourism'];
+const checkKeys = ['amenity', 'shop', 'leisure', 'tourism'];
 const THRESHOLD = process.argv[3] || 50;
 
 let counts = {};
@@ -77,4 +77,3 @@ function countTags(entity) {
         counts[fullName] = (counts[fullName] || 0) + 1;
     }
 }
-
