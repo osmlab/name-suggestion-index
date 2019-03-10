@@ -38,6 +38,7 @@ function buildJSON() {
         const key = tag[0];
         const value = tag[1];
         const name = parts[1].replace('~', ' ');
+        const countryCodes = obj.countryCodes;
 
         if (!out[key]) {
             out[key] = {};
@@ -50,6 +51,9 @@ function buildJSON() {
             count: obj.count,
             tags: obj.tags
         };
+        if (countryCodes != null) {
+            out[key][value][name]["countryCodes"] = countryCodes;
+        }
     });
 
     // Save individual data files
