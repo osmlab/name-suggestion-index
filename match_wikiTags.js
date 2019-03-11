@@ -2,7 +2,6 @@ const clearConsole = require('clear');
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
 const fileTree = require('./lib/file_tree');
-const sort = require('./lib/sort');
 const stemmer = require('./lib/stemmer');
 const wdk = require('wikidata-sdk');
 

@@ -19,6 +19,7 @@
   "scripts": {
     "dist": "node build_nameSuggestions.js && rollup -c",
     "build": "node build_filterNames",
+    "logos": "node fetch_logos",
     "wikimatch": "node match_wikiTags",
     "test": "node validate"
   },
@@ -38,6 +39,7 @@
   },
   "optionalDependencies": {
     "osmium": "^0.5.7",
+    "twitter": "^1.7.1",
     "wikidata-sdk": "^5.15.0"
   },
   "engines": {
