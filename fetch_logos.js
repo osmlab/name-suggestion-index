@@ -66,13 +66,13 @@ function doFetch(index) {
 
     let currURL = _urls[index];
 
-    console.log(colors.yellow.bold(`batch ${index+1}/${_urls.length}`));
+    console.log(colors.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
 
     fetch(currURL)
         .then(response => response.json())
         .then(processEntities)
         .catch(e => console.error(colors.red(e)))
-        .then(delay(500))
+        .then(() => delay(500))
         .then(() => { doFetch(++index); });
 }
 
@@ -114,7 +114,6 @@ function processEntities(result) {
                         .catch(e => {
                             console.error(colors.red(`Error: Twitter username @${value} for ${qid}: ` + JSON.stringify(e)))
                         })
-                        .then(delay(500))
                 );
             }
         }
@@ -138,6 +137,12 @@ function processEntities(result) {
         // P3836 - Pintrest ID
     });
 
+    // check Twitter rate limit status
+    // https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
+    if (queue.length > 0 && twitterAPI) {
+        queue.unshift(twitterRateLimit(queue.length));
+    }
+
     return Promise.all(queue);
 }
 
@@ -151,6 +156,26 @@ function finish() {
     });
 
     fileTree.write('brands', _brands);  // save updates
+}
+
+
+function twitterRateLimit(need) {
+    let now = Date.now() / 1000;
+    return twitterAPI.get('application/rate_limit_status', { resources: 'users' })
+        .then(result => {
+            let stat = result.resources.users['/users/show/:id'];
+            let resetSec = Math.ceil(stat.reset - now);
+            console.log(colors.green.bold(`Twitter rate status: fetching ${need}, remaining ${stat.remaining}, resets in ${resetSec} seconds...`));
+            if (need > stat.remaining) {
+                console.log(colors.blue(`Twitter rate limit exceeded, pausing for ${resetSec} seconds...`));
+                return resetSec;
+            }
+            return 0;
+        })
+        .then(sec => delay(sec * 1000))
+        .catch(e => {
+            console.error(colors.red(`Error: Twitter rate limit: ` + JSON.stringify(e)))
+        });
 }
 
 
