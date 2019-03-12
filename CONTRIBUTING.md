@@ -9,6 +9,7 @@
 * Remove generic names - [show me](#hocho--remove-generic-names)
 * Add `brand:wikidata` and `brand:wikipedia` tags - [show me](#female_detective--add-wiki-tags)
 * Add missing brands - [show me](#convenience_store--add-missing-brands)
+* Edit Wikidata - [show me](#memo--edit-wikidata)
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
@@ -253,7 +254,7 @@ and a `tourism=motel` (correct). In this situation we want to:
 * Delete the entry for `"tourism/hotel|Motel 6"` and
 * Add `"match": ["tourism/hotel|Motel 6"]` to the `"tourism/motel|Motel 6"` entry
 
-Usually the entry which is used more frequently (indicated by "count" property)
+Usually the entry used more frequently (indicated by "count" property)
 is the one to keep.  If you are not sure, you can also search on the
 [OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Map_Features) for tag best practices.
 
@@ -295,7 +296,7 @@ For example, "Универмаг" is just a Russian word for "Department store":
 ```
 
 To remove this generic name:
-1. Delete the entries from the appropriate file, in this case `brands/shop/department_store.json`
+1. Delete the item from the appropriate file, in this case `brands/shop/department_store.json`
 2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
 3. Run `npm run build` - if the filter is working, the name will not be put back into `brands/shop/department_store.json`
 4. `git diff` - to make sure that the entries you wanted to discard are gone (and no others are affected)
@@ -305,8 +306,7 @@ To remove this generic name:
 
 ### :female_detective: &nbsp; Add wiki tags
 
-Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that anybody
-can help with.
+Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that anybody can help with.
 
 #### Example #1 - Worldwide / English brands...
 
@@ -513,4 +513,17 @@ out center;
 As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
 
 <img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/overpass.png"/>
+
+&nbsp;
+
+### :memo: &nbsp; Edit Wikidata
+
+Editing brand pages on Wikidata is something that anybody can do.  It helps not just our project, but anybody who uses this data for other purposes too!  You can read more about contributing to Wikidata [here](https://www.wikidata.org/wiki/Wikidata:Contribute).
+
+- Add Wikidata entries for brands that don't yet have them.
+- Improve the labels and descriptions on the Wikidata entries.
+- Translate the labels and descriptions to more languages.
+- Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
+
+<img width="600px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/wikidata.gif"/>
 
