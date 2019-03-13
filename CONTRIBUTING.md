@@ -11,6 +11,11 @@
 * Add missing brands - [show me](#convenience_store--add-missing-brands)
 * Edit Wikidata - [show me](#memo--edit-wikidata)
 
+Tip: You can browse the index at
+http://osmlab.github.io/name-suggestion-index/brands/index.html
+to see which brands are missing Wikidata links or logos.
+
+
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
 * `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap

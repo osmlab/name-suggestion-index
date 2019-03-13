@@ -93,6 +93,19 @@ Name lists:
   * Outputs warnings to suggest updates to `brands/**/*.json`
 
 
+### Other commands
+
+* `npm run logos` - Find brand logos by searching wikidata
+* `npm run docs` - Updates the index summary pages
+
+
+### Browse the index
+
+You can browse the index at
+http://osmlab.github.io/name-suggestion-index/brands/index.html
+to see which brands are missing Wikidata links or logos.
+
+
 ### Updating `dist/allNames.json` from planet
 
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
