@@ -62,7 +62,8 @@ function generateIndex(tree, dict) {
         Object.keys(entry).forEach(v => {
             let href = `${k}/${v}.html`;
             let count = Object.keys(dict[k][v]).length;
-            body += `<div class="child"><a href="${href}">${k}/${v} (${count})</a></div>`;
+            body += `
+<div class="child"><a href="${href}">${k}/${v} (${count})</a></div>`;
         });
     });
 
@@ -101,14 +102,14 @@ function generatePage(tree, dict, k, v) {
         let tags = entry.tags || {};
         let logos = entry.logos || {};
 
-        body +=
-            '<tr>' +
-            '<td><h3>' + tags.name + '</h3><pre>\'' + name + '\'</pre></td>' +
-            '<td>' + wd(tags['brand:wikidata']) + '</td>' +
-            '<td>' + img(logos.wikidata) + '</td>' +
-            '<td>' + img(logos.facebook) + '</td>' +
-            '<td>' + img(logos.twitter) + '</td>' +
-            '</tr>';
+        body += `
+<tr>
+<td><h3>` + anchor(name) + ` ${tags.name}</h3><pre>'${name}'</pre></td>
+<td>` + wd(tags['brand:wikidata']) + `</td>
+<td>` + img(logos.wikidata) + `</td>
+<td>` + img(logos.facebook) + `</td>
+<td>` + img(logos.twitter) + `</td>
+</tr>`;
     });
 
     body += `
@@ -120,12 +121,27 @@ function generatePage(tree, dict, k, v) {
 }
 
 
+function anchor(name) {
+    let slug = slugify(name);
+    return `<a id="${slug}" href="#${slug}"/>#</a>`;
+}
 function img(src) {
     return src ? `<img src="${src}"/>` : '';
 }
 function wd(qid) {
     return qid ? `<a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a>` : '';
 }
+
+function slugify(text)
+{
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
 
 function writeHTML(file, head, body) {
     let contents = `<!DOCTYPE html>
