@@ -333,7 +333,7 @@ In `brands/amenity/fast_food.json`:
 
 2. Google for that brand - if you are lucky, you might find the Wikipedia page right away.
 
-<img width="600px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_1.png"/>
+<img width="600px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_1.png"/>
 
 3. From the Wikipedia page URL, you can identify the `brand:wikipedia` value.
 
@@ -350,11 +350,11 @@ under the "tools" menu in the sidebar.
 [#1881]: https://github.com/osmlab/name-suggestion-index/issues/1881
 [@maxerickson]: https://github.com/maxerickson
 
-<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_2.png"/>
+<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_2.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
-<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_3.png"/>
+<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_3.png"/>
 
 5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
@@ -414,7 +414,7 @@ Tip: You might want to narrow you search by Googling with a `site:` filter:  `"�
 From these results, we can know that the brand is "Kappazushi", owned by a Japanese company
 called "Kappa Create".  We can also find the Wikipedia page.
 
-<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_1.png"/>
+<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_1.png"/>
 
 3. As with English brands, you can identify the `brand:wikipedia` value from the URL.
 Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
@@ -427,13 +427,13 @@ OpenStreetMap expects this tag to be formatted like `"ja:かっぱ寿司"`.
 Although I can not read Japanese, I can identify the "Wikidata item" link because
 it always appears in the sidebar and mouseover will show the Wikidata 'Q' code in the URL.
 
-<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_3.png"/>
+<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_3.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
 Note: The Wikidata page looks a bit sparse - you can edit this too if you want to help!
 
-<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_4.png"/>
+<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_4.png"/>
 
 5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
@@ -512,7 +512,7 @@ out center;
 
 As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
 
-<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/overpass.png"/>
+<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/overpass.png"/>
 
 &nbsp;
 
@@ -525,5 +525,5 @@ Editing brand pages on Wikidata is something that anybody can do.  It helps not 
 - Translate the labels and descriptions to more languages.
 - Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
 
-<img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/wikidata.gif"/>
+<img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata.gif"/>
 
