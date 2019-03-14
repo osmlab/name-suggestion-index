@@ -13,10 +13,10 @@
 <div class="instructions">Some things you can do here:
 <ul>
 <li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
-<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to the index.
+<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to our project, or filter it out if it is not a brand.<br/>
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
-<li>If a record with a <code>'brand:wikidata'</code> tag is missing logos, click the Wikidata link and edit the
-Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames, and this index will pick up the logos later.</li>
+<li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
+You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
 </ul>
 </div>
 
@@ -26,16 +26,18 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 <th>Name / ID</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata</th>
-<th>Wikidata logo</th>
-<th>Facebook</th>
-<th>Twitter</th>
+<th>Wikidata ID</th>
+<th>Wikidata Description</th>
+<th class="logo">Wikidata Logo</th>
+<th class="logo">Facebook</th>
+<th class="logo">Twitter</th>
 </tr>
 <thead>
 <tbody>
 <tr>
 <td><h3 class="slug" id="amenitysocial_centreamerican-legion"><a href="#amenitysocial_centreamerican-legion"/>#</a><span class="anchor">American Legion</span></h3>
-  <pre>'amenity/social_centre|American Legion'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22social_centre%22%5D%5B%22name%22=%22American%20Legion%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/social_centre|American Legion'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22social_centre%22%5D%5B%22name%22=%22American%20Legion%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>< 50</td>
 <td class="tags"><pre class="tags">
@@ -46,13 +48,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "American Legion"
 "social_centre:for": "veterans"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q468865">Q468865</a></td>
-<td></td>
-<td><img src="https://graph.facebook.com/americanlegionhq/picture?type=square"/></td>
-<td><img src="https://pbs.twimg.com/profile_images/868454951663669248/k4fRs-k3_bigger.jpg"/></td>
+<td><h3>American Legion</h3><span>"U.S. war veterans organization"</span></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/americanlegionhq/picture?type=square"/></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/868454951663669248/k4fRs-k3_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitysocial_centreodd-fellow"><a href="#amenitysocial_centreodd-fellow"/>#</a><span class="anchor">Odd Fellow</span></h3>
-  <pre>'amenity/social_centre|Odd Fellow'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22social_centre%22%5D%5B%22name%22=%22Odd%20Fellow%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/social_centre|Odd Fellow'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22social_centre%22%5D%5B%22name%22=%22Odd%20Fellow%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>81</td>
 <td class="tags"><pre class="tags">
@@ -60,9 +64,10 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "brand": "Odd Fellow"
 "name": "Odd Fellow"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 </tbody>
 </table>

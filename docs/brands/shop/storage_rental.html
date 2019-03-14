@@ -13,10 +13,10 @@
 <div class="instructions">Some things you can do here:
 <ul>
 <li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
-<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to the index.
+<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to our project, or filter it out if it is not a brand.<br/>
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
-<li>If a record with a <code>'brand:wikidata'</code> tag is missing logos, click the Wikidata link and edit the
-Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames, and this index will pick up the logos later.</li>
+<li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
+You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
 </ul>
 </div>
 
@@ -26,16 +26,18 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 <th>Name / ID</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata</th>
-<th>Wikidata logo</th>
-<th>Facebook</th>
-<th>Twitter</th>
+<th>Wikidata ID</th>
+<th>Wikidata Description</th>
+<th class="logo">Wikidata Logo</th>
+<th class="logo">Facebook</th>
+<th class="logo">Twitter</th>
 </tr>
 <thead>
 <tbody>
 <tr>
 <td><h3 class="slug" id="shopstorage_rentalextra-space-storage"><a href="#shopstorage_rentalextra-space-storage"/>#</a><span class="anchor">Extra Space Storage</span></h3>
-  <pre>'shop/storage_rental|Extra Space Storage'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22storage_rental%22%5D%5B%22name%22=%22Extra%20Space%20Storage%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'shop/storage_rental|Extra Space Storage'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22storage_rental%22%5D%5B%22name%22=%22Extra%20Space%20Storage%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>< 50</td>
 <td class="tags"><pre class="tags">
@@ -45,13 +47,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "Extra Space Storage"
 "shop": "storage_rental"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q5422162">Q5422162</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Extra Space Storage</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="shopstorage_rentalpublic-storage"><a href="#shopstorage_rentalpublic-storage"/>#</a><span class="anchor">Public Storage</span></h3>
-  <pre>'shop/storage_rental|Public Storage'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22storage_rental%22%5D%5B%22name%22=%22Public%20Storage%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'shop/storage_rental|Public Storage'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22storage_rental%22%5D%5B%22name%22=%22Public%20Storage%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>204</td>
 <td class="tags"><pre class="tags">
@@ -61,9 +65,10 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "Public Storage"
 "shop": "storage_rental"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q1156045">Q1156045</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FPublic%20Storage%20logo.svg&width=100"/></td>
-<td></td>
-<td></td>
+<td><h3>Public Storage</h3><span>"company"</span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FPublic%20Storage%20logo.svg&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 </tbody>
 </table>

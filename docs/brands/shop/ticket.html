@@ -13,10 +13,10 @@
 <div class="instructions">Some things you can do here:
 <ul>
 <li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
-<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to the index.
+<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to our project, or filter it out if it is not a brand.<br/>
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
-<li>If a record with a <code>'brand:wikidata'</code> tag is missing logos, click the Wikidata link and edit the
-Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames, and this index will pick up the logos later.</li>
+<li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
+You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
 </ul>
 </div>
 
@@ -26,16 +26,18 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 <th>Name / ID</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata</th>
-<th>Wikidata logo</th>
-<th>Facebook</th>
-<th>Twitter</th>
+<th>Wikidata ID</th>
+<th>Wikidata Description</th>
+<th class="logo">Wikidata Logo</th>
+<th class="logo">Facebook</th>
+<th class="logo">Twitter</th>
 </tr>
 <thead>
 <tbody>
 <tr>
 <td><h3 class="slug" id="shopticketboutique-grandes-lignes"><a href="#shopticketboutique-grandes-lignes"/>#</a><span class="anchor">Boutique Grandes Lignes</span></h3>
-  <pre>'shop/ticket|Boutique Grandes Lignes'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22ticket%22%5D%5B%22name%22=%22Boutique%20Grandes%20Lignes%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'shop/ticket|Boutique Grandes Lignes'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22ticket%22%5D%5B%22name%22=%22Boutique%20Grandes%20Lignes%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>< 50</td>
 <td class="tags"><pre class="tags">
@@ -45,13 +47,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "Boutique Grandes Lignes"
 "shop": "ticket"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q13646">Q13646</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FLogo%20SNCF%202011.svg&width=100"/></td>
-<td><img src="https://graph.facebook.com/SNCFOFFICIEL/picture?type=square"/></td>
-<td><img src="https://pbs.twimg.com/profile_images/829331568082690048/we6jTkGG_bigger.jpg"/></td>
+<td><h3>SNCF</h3><span>"national state-owned railway company of France"</span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FLogo%20SNCF%202011.svg&width=100"/></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/SNCFOFFICIEL/picture?type=square"/></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/829331568082690048/we6jTkGG_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="shopticketdb-reisezentrum"><a href="#shopticketdb-reisezentrum"/>#</a><span class="anchor">DB Reisezentrum</span></h3>
-  <pre>'shop/ticket|DB Reisezentrum'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22ticket%22%5D%5B%22name%22=%22DB%20Reisezentrum%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'shop/ticket|DB Reisezentrum'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22ticket%22%5D%5B%22name%22=%22DB%20Reisezentrum%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>52</td>
 <td class="tags"><pre class="tags">
@@ -59,13 +63,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "DB Reisezentrum"
 "shop": "ticket"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="shopticketguichet-transilien"><a href="#shopticketguichet-transilien"/>#</a><span class="anchor">Guichet Transilien</span></h3>
-  <pre>'shop/ticket|Guichet Transilien'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22ticket%22%5D%5B%22name%22=%22Guichet%20Transilien%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'shop/ticket|Guichet Transilien'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22shop%22=%22ticket%22%5D%5B%22name%22=%22Guichet%20Transilien%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>253</td>
 <td class="tags"><pre class="tags">
@@ -75,9 +81,10 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "Guichet Transilien"
 "shop": "ticket"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q389554">Q389554</a></td>
-<td></td>
-<td></td>
-<td><img src="https://pbs.twimg.com/profile_images/776102546045865984/-NPGF3eG_bigger.jpg"/></td>
+<td><h3>Transilien</h3><span>"railway and brand name"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/776102546045865984/-NPGF3eG_bigger.jpg"/></td>
 </tr>
 </tbody>
 </table>

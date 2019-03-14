@@ -1,13 +1,78 @@
 const colors = require('colors/safe');
+const fetch = require('node-fetch');
 const fileTree = require('./lib/file_tree');
 const fs = require('fs-extra');
 const shell = require('shelljs');
 const sort = require('./lib/sort');
+const wdk = require('wikidata-sdk');
 
 // Load and check brand files
-let brands = fileTree.read('brands');
+let _brands = fileTree.read('brands');
 
-writeDocs('brands', brands);
+let _toFetch = gatherQIDs(_brands);
+let _qids = Object.keys(_toFetch);
+if (!_qids.length) {
+    console.log('Nothing to fetch');
+    process.exit();
+}
+
+// split into several wikidata requests
+let _urls = wdk.getManyEntities({
+    ids: _qids, languages: ['en'], props: ['labels', 'descriptions'], format: 'json'
+});
+
+console.log(colors.green.bold(`\nFetching Wikidata details`));
+doFetch(0);
+
+
+function gatherQIDs(brands) {
+    let toFetch = {};
+    Object.keys(brands).forEach(k => {
+        const qid = brands[k].tags['brand:wikidata'];
+        if (qid && /^Q\d+$/.test(qid)) {
+            toFetch[qid] = toFetch[qid] || [];
+            toFetch[qid].push(k);
+        }
+    });
+
+    return toFetch;
+}
+
+
+function doFetch(index) {
+    if (index >= _urls.length) {
+        return writeDocs('brands', _brands);
+    }
+
+    let currURL = _urls[index];
+    console.log(colors.yellow.bold(`Batch ${index+1}/${_urls.length}`));
+
+    fetch(currURL)
+        .then(response => response.json())
+        .then(processEntities)
+        .catch(e => console.error(colors.red(e)))
+        .then(() => delay(250))
+        .then(() => { doFetch(++index); });
+}
+
+
+function processEntities(result) {
+    Object.keys(result.entities).forEach(qid => {
+        let entity = result.entities[qid];
+        let label = entity.labels && entity.labels.en && entity.labels.en.value;
+        let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
+        let brandKeys = _toFetch[qid];
+        brandKeys.forEach(k => {
+            _brands[k].wdLabel = label;
+            _brands[k].wdDescription = description;
+        });
+    });
+}
+
+
+function delay(msec) {
+    return new Promise((resolve) => setTimeout(resolve, msec));
+}
 
 
 function writeDocs(tree, obj) {
@@ -99,10 +164,10 @@ function generatePage(tree, dict, k, v) {
 <div class="instructions">Some things you can do here:
 <ul>
 <li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
-<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to the index.
+<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to our project, or filter it out if it is not a brand.<br/>
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
-<li>If a record with a <code>'brand:wikidata'</code> tag is missing logos, click the Wikidata link and edit the
-Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames, and this index will pick up the logos later.</li>
+<li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
+You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
 </ul>
 </div>
 
@@ -112,10 +177,11 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 <th>Name / ID</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata</th>
-<th>Wikidata logo</th>
-<th>Facebook</th>
-<th>Twitter</th>
+<th>Wikidata ID</th>
+<th>Wikidata Description</th>
+<th class="logo">Wikidata Logo</th>
+<th class="logo">Facebook</th>
+<th class="logo">Twitter</th>
 </tr>
 <thead>
 <tbody>`;
@@ -124,20 +190,25 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
         let entry = dict[k][v][name];
         let count = entry.count || '< 50';
         let tags = entry.tags || {};
+        let label = entry.wdLabel || '';
+        let description = entry.wdDescription || '';
+        if (description) { description = `"${description}"`; }
         let logos = entry.logos || {};
         let slug = slugify(name);
 
         body += `
 <tr>
 <td><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
-  <pre>'${name}'</pre>` + overpass(k, v, tags.name) + `
+  <div class="nsikey"><pre>'${name}'</pre></div>
+  <div class="viewlink">` + overpass(k, v, tags.name) + `</div>
 </td>
 <td>${count}</td>
 <td class="tags"><pre class="tags">` + displayTags(tags) + `</pre></td>
 <td>` + wd(tags['brand:wikidata']) + `</td>
-<td>` + img(logos.wikidata) + `</td>
-<td>` + img(logos.facebook) + `</td>
-<td>` + img(logos.twitter) + `</td>
+<td><h3>${label}</h3><span>${description}</span></td>
+<td class="logo">` + logo(logos.wikidata) + `</td>
+<td class="logo">` + logo(logos.facebook) + `</td>
+<td class="logo">` + logo(logos.twitter) + `</td>
 </tr>`;
     });
 
@@ -160,8 +231,8 @@ out skel qt;`);
     return `<a target="_blank" href="${href}"/>View on Overpass Turbo</a>`;
 }
 
-function img(src) {
-    return src ? `<img src="${src}"/>` : '';
+function logo(src) {
+    return src ? `<img class="logo" src="${src}"/>` : '';
 }
 
 function wd(qid) {

@@ -13,10 +13,10 @@
 <div class="instructions">Some things you can do here:
 <ul>
 <li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
-<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to the index.
+<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to our project, or filter it out if it is not a brand.<br/>
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
-<li>If a record with a <code>'brand:wikidata'</code> tag is missing logos, click the Wikidata link and edit the
-Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames, and this index will pick up the logos later.</li>
+<li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
+You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
 </ul>
 </div>
 
@@ -26,16 +26,18 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 <th>Name / ID</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata</th>
-<th>Wikidata logo</th>
-<th>Facebook</th>
-<th>Twitter</th>
+<th>Wikidata ID</th>
+<th>Wikidata Description</th>
+<th class="logo">Wikidata Logo</th>
+<th class="logo">Facebook</th>
+<th class="logo">Twitter</th>
 </tr>
 <thead>
 <tbody>
 <tr>
 <td><h3 class="slug" id="amenitycafe85c"><a href="#amenitycafe85c"/>#</a><span class="anchor">85度C</span></h3>
-  <pre>'amenity/cafe|85度C'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%2285%E5%BA%A6C%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|85度C'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%2285%E5%BA%A6C%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>185</td>
 <td class="tags"><pre class="tags">
@@ -48,13 +50,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "85度C"
 "name:en": "85C Bakery Cafe"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q4644852">Q4644852</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>85C Bakery Cafe</h3><span>"Taiwanese chain of coffee shops and self-serve bakeries"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafebarista"><a href="#amenitycafebarista"/>#</a><span class="anchor">Barista</span></h3>
-  <pre>'amenity/cafe|Barista'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Barista%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Barista'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Barista%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>68</td>
 <td class="tags"><pre class="tags">
@@ -65,13 +69,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Barista"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q644735">Q644735</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FBarista%20Lavazza%20logo.svg&width=100"/></td>
-<td></td>
-<td></td>
+<td><h3>Barista</h3><span>"company"</span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FBarista%20Lavazza%20logo.svg&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafebonafide"><a href="#amenitycafebonafide"/>#</a><span class="anchor">Bonafide</span></h3>
-  <pre>'amenity/cafe|Bonafide'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Bonafide%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Bonafide'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Bonafide%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>71</td>
 <td class="tags"><pre class="tags">
@@ -80,13 +86,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Bonafide"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecafe-coffee-day"><a href="#amenitycafecafe-coffee-day"/>#</a><span class="anchor">Cafe Coffee Day</span></h3>
-  <pre>'amenity/cafe|Cafe Coffee Day'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Cafe%20Coffee%20Day%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Cafe Coffee Day'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Cafe%20Coffee%20Day%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>279</td>
 <td class="tags"><pre class="tags">
@@ -97,13 +105,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Cafe Coffee Day"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q5017235">Q5017235</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Café Coffee Day</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecafe-express"><a href="#amenitycafecafe-express"/>#</a><span class="anchor">Cafe Express</span></h3>
-  <pre>'amenity/cafe|Cafe Express'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Cafe%20Express%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Cafe Express'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Cafe%20Express%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>61</td>
 <td class="tags"><pre class="tags">
@@ -112,13 +122,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Cafe Express"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecaff-nero"><a href="#amenitycafecaff-nero"/>#</a><span class="anchor">Caffè Nero</span></h3>
-  <pre>'amenity/cafe|Caffè Nero'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caff%C3%A8%20Nero%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Caffè Nero'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caff%C3%A8%20Nero%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>300</td>
 <td class="tags"><pre class="tags">
@@ -129,13 +141,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Caffè Nero"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q675808">Q675808</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FCafe%C3%A8%20Nero.jpg&width=100"/></td>
-<td></td>
-<td><img src="https://pbs.twimg.com/profile_images/1057675352519127040/d98c8otP_bigger.jpg"/></td>
+<td><h3>Caffè Nero</h3><span>"European style coffee house brand with its headquarters in London"</span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FCafe%C3%A8%20Nero.jpg&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/1057675352519127040/d98c8otP_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecaf-amazon"><a href="#amenitycafecaf-amazon"/>#</a><span class="anchor">Café Amazon</span></h3>
-  <pre>'amenity/cafe|Café Amazon'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caf%C3%A9%20Amazon%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Café Amazon'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caf%C3%A9%20Amazon%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>266</td>
 <td class="tags"><pre class="tags">
@@ -146,13 +160,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Café Amazon"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q43247503">Q43247503</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Café Amazon</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecaf-express"><a href="#amenitycafecaf-express"/>#</a><span class="anchor">Café Express</span></h3>
-  <pre>'amenity/cafe|Café Express'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caf%C3%A9%20Express%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Café Express'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caf%C3%A9%20Express%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>189</td>
 <td class="tags"><pre class="tags">
@@ -161,13 +177,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Café Express"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecaf-martnez"><a href="#amenitycafecaf-martnez"/>#</a><span class="anchor">Café Martínez</span></h3>
-  <pre>'amenity/cafe|Café Martínez'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caf%C3%A9%20Mart%C3%ADnez%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Café Martínez'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caf%C3%A9%20Mart%C3%ADnez%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>162</td>
 <td class="tags"><pre class="tags">
@@ -178,13 +196,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Café Martínez"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q16540032">Q16540032</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecappuccino"><a href="#amenitycafecappuccino"/>#</a><span class="anchor">Cappuccino</span></h3>
-  <pre>'amenity/cafe|Cappuccino'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Cappuccino%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Cappuccino'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Cappuccino%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>52</td>
 <td class="tags"><pre class="tags">
@@ -193,13 +213,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Cappuccino"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecaribou-coffee"><a href="#amenitycafecaribou-coffee"/>#</a><span class="anchor">Caribou Coffee</span></h3>
-  <pre>'amenity/cafe|Caribou Coffee'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caribou%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Caribou Coffee'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Caribou%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>210</td>
 <td class="tags"><pre class="tags">
@@ -210,13 +232,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Caribou Coffee"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q5039494">Q5039494</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Caribou Coffee</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafechatime"><a href="#amenitycafechatime"/>#</a><span class="anchor">Chatime</span></h3>
-  <pre>'amenity/cafe|Chatime'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Chatime%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Chatime'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Chatime%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>71</td>
 <td class="tags"><pre class="tags">
@@ -227,13 +251,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Chatime"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q16829306">Q16829306</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Chatime</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecoffee-bean"><a href="#amenitycafecoffee-bean"/>#</a><span class="anchor">Coffee Bean</span></h3>
-  <pre>'amenity/cafe|Coffee Bean'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Bean%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Coffee Bean'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Bean%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>55</td>
 <td class="tags"><pre class="tags">
@@ -242,13 +268,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Coffee Bean"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecoffee-culture"><a href="#amenitycafecoffee-culture"/>#</a><span class="anchor">Coffee Culture</span></h3>
-  <pre>'amenity/cafe|Coffee Culture'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Culture%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Coffee Culture'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Culture%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>51</td>
 <td class="tags"><pre class="tags">
@@ -257,13 +285,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Coffee Culture"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecoffee-fellows"><a href="#amenitycafecoffee-fellows"/>#</a><span class="anchor">Coffee Fellows</span></h3>
-  <pre>'amenity/cafe|Coffee Fellows'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Fellows%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Coffee Fellows'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Fellows%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>99</td>
 <td class="tags"><pre class="tags">
@@ -274,13 +304,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Coffee Fellows"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q23461429">Q23461429</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Coffee Fellows</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecoffee-house"><a href="#amenitycafecoffee-house"/>#</a><span class="anchor">Coffee House</span></h3>
-  <pre>'amenity/cafe|Coffee House'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20House%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Coffee House'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20House%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>88</td>
 <td class="tags"><pre class="tags">
@@ -291,13 +323,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Coffee House"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q11855430">Q11855430</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Coffee House</h3><span>"Finnish company chain"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecoffee-island"><a href="#amenitycafecoffee-island"/>#</a><span class="anchor">Coffee Island</span></h3>
-  <pre>'amenity/cafe|Coffee Island'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Island%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Coffee Island'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Island%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>86</td>
 <td class="tags"><pre class="tags">
@@ -308,13 +342,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Coffee Island"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q60867333">Q60867333</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Coffee Island</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecoffee-time"><a href="#amenitycafecoffee-time"/>#</a><span class="anchor">Coffee Time</span></h3>
-  <pre>'amenity/cafe|Coffee Time'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Time%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Coffee Time'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Coffee%20Time%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>137</td>
 <td class="tags"><pre class="tags">
@@ -325,13 +361,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Coffee Time"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q5140932">Q5140932</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Coffee Time</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecosta"><a href="#amenitycafecosta"/>#</a><span class="anchor">Costa</span></h3>
-  <pre>'amenity/cafe|Costa'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Costa%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Costa'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Costa%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>1086</td>
 <td class="tags"><pre class="tags">
@@ -342,13 +380,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Costa"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q608845">Q608845</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FCosta%20Coffee%20Logo%20white%20on%20red.png&width=100"/></td>
-<td><img src="https://graph.facebook.com/costacoffee/picture?type=square"/></td>
-<td><img src="https://pbs.twimg.com/profile_images/1061947908487045120/XbTGtO_n_bigger.jpg"/></td>
+<td><h3>Costa Coffee</h3><span>"British multinational coffeehouse company"</span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FCosta%20Coffee%20Logo%20white%20on%20red.png&width=100"/></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/costacoffee/picture?type=square"/></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/1061947908487045120/XbTGtO_n_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafecountry-style"><a href="#amenitycafecountry-style"/>#</a><span class="anchor">Country Style</span></h3>
-  <pre>'amenity/cafe|Country Style'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Country%20Style%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Country Style'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Country%20Style%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>68</td>
 <td class="tags"><pre class="tags">
@@ -359,13 +399,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Country Style"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q5177435">Q5177435</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Country Style</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafedolce-vita"><a href="#amenitycafedolce-vita"/>#</a><span class="anchor">Dolce Vita</span></h3>
-  <pre>'amenity/cafe|Dolce Vita'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Dolce%20Vita%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Dolce Vita'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Dolce%20Vita%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>58</td>
 <td class="tags"><pre class="tags">
@@ -374,13 +416,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Dolce Vita"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafedutch-bros-coffee"><a href="#amenitycafedutch-bros-coffee"/>#</a><span class="anchor">Dutch Bros. Coffee</span></h3>
-  <pre>'amenity/cafe|Dutch Bros. Coffee'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Dutch%20Bros.%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Dutch Bros. Coffee'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Dutch%20Bros.%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>< 50</td>
 <td class="tags"><pre class="tags">
@@ -391,13 +435,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Dutch Bros. Coffee"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q5317253">Q5317253</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Dutch Bros. Coffee</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafeespresso-house"><a href="#amenitycafeespresso-house"/>#</a><span class="anchor">Espresso House</span></h3>
-  <pre>'amenity/cafe|Espresso House'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Espresso%20House%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Espresso House'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Espresso%20House%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>182</td>
 <td class="tags"><pre class="tags">
@@ -408,13 +454,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Espresso House"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q10489162">Q10489162</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Espresso House</h3><span>"Swedish coffeehouse chain"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafehavanna"><a href="#amenitycafehavanna"/>#</a><span class="anchor">Havanna</span></h3>
-  <pre>'amenity/cafe|Havanna'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Havanna%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Havanna'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Havanna%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>93</td>
 <td class="tags"><pre class="tags">
@@ -425,13 +473,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Havanna"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q2900869">Q2900869</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FHavanna%20textlogo.png&width=100"/></td>
-<td></td>
-<td></td>
+<td><h3>Havanna</h3><span></span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FHavanna%20textlogo.png&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafeinsomnia"><a href="#amenitycafeinsomnia"/>#</a><span class="anchor">Insomnia</span></h3>
-  <pre>'amenity/cafe|Insomnia'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Insomnia%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Insomnia'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Insomnia%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>57</td>
 <td class="tags"><pre class="tags">
@@ -442,13 +492,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Insomnia"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q6038271">Q6038271</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Insomnia Coffee Company</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafejoe-the-juice"><a href="#amenitycafejoe-the-juice"/>#</a><span class="anchor">Joe & The Juice</span></h3>
-  <pre>'amenity/cafe|Joe & The Juice'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Joe%20&%20The%20Juice%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Joe & The Juice'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Joe%20&%20The%20Juice%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>79</td>
 <td class="tags"><pre class="tags">
@@ -459,13 +511,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Joe & The Juice"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q26221514">Q26221514</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Joe & The Juice</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafele-pain-quotidien"><a href="#amenitycafele-pain-quotidien"/>#</a><span class="anchor">Le Pain Quotidien</span></h3>
-  <pre>'amenity/cafe|Le Pain Quotidien'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Le%20Pain%20Quotidien%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Le Pain Quotidien'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Le%20Pain%20Quotidien%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>78</td>
 <td class="tags"><pre class="tags">
@@ -476,13 +530,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Le Pain Quotidien"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q2046903">Q2046903</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Le Pain Quotidien</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafemado"><a href="#amenitycafemado"/>#</a><span class="anchor">Mado</span></h3>
-  <pre>'amenity/cafe|Mado'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Mado%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Mado'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Mado%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>58</td>
 <td class="tags"><pre class="tags">
@@ -493,13 +549,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Mado"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q17116336">Q17116336</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Mado</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafemccaf"><a href="#amenitycafemccaf"/>#</a><span class="anchor">McCafé</span></h3>
-  <pre>'amenity/cafe|McCafé'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22McCaf%C3%A9%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|McCafé'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22McCaf%C3%A9%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>82</td>
 <td class="tags"><pre class="tags">
@@ -512,13 +570,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "operator:wikidata": "Q38076"
 "operator:wikipedia": "en:McDonald's"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q3114287">Q3114287</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FMcCaf%C3%A9%20logo.svg&width=100"/></td>
-<td></td>
-<td></td>
+<td><h3>McCafé</h3><span></span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FMcCaf%C3%A9%20logo.svg&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafemikel"><a href="#amenitycafemikel"/>#</a><span class="anchor">Mikel</span></h3>
-  <pre>'amenity/cafe|Mikel'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Mikel%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Mikel'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Mikel%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>55</td>
 <td class="tags"><pre class="tags">
@@ -527,13 +587,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Mikel"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafepatisserie-valerie"><a href="#amenitycafepatisserie-valerie"/>#</a><span class="anchor">Patisserie Valerie</span></h3>
-  <pre>'amenity/cafe|Patisserie Valerie'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Patisserie%20Valerie%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Patisserie Valerie'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Patisserie%20Valerie%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>59</td>
 <td class="tags"><pre class="tags">
@@ -544,13 +606,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Patisserie Valerie"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q22101966">Q22101966</a></td>
-<td></td>
-<td></td>
-<td><img src="https://pbs.twimg.com/profile_images/1105457594724945922/GK2bp50f_bigger.png"/></td>
+<td><h3>Patisserie Valerie</h3><span>"Cafés chain in the United Kingdom"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/1105457594724945922/GK2bp50f_bigger.png"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafepeets-coffee"><a href="#amenitycafepeets-coffee"/>#</a><span class="anchor">Peet's Coffee</span></h3>
-  <pre>'amenity/cafe|Peet's Coffee'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Peet's%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Peet's Coffee'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Peet's%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>71</td>
 <td class="tags"><pre class="tags">
@@ -561,13 +625,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Peet's Coffee"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q1094101">Q1094101</a></td>
-<td></td>
-<td></td>
-<td><img src="https://pbs.twimg.com/profile_images/992434236694003712/WK9W-PIP_bigger.jpg"/></td>
+<td><h3>Peet's Coffee & Tea</h3><span>"company"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/992434236694003712/WK9W-PIP_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafeprime"><a href="#amenitycafeprime"/>#</a><span class="anchor">Prime</span></h3>
-  <pre>'amenity/cafe|Prime'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Prime%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Prime'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Prime%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>64</td>
 <td class="tags"><pre class="tags">
@@ -576,13 +642,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Prime"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafepronto"><a href="#amenitycafepronto"/>#</a><span class="anchor">Pronto</span></h3>
-  <pre>'amenity/cafe|Pronto'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Pronto%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Pronto'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Pronto%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>< 50</td>
 <td class="tags"><pre class="tags">
@@ -597,13 +665,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "operator": "株式会社 プロントコーポレーション"
 "operator:en": "PRONTO Corporation"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q11336224">Q11336224</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Pronto Corporation</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafepumpkin"><a href="#amenitycafepumpkin"/>#</a><span class="anchor">Pumpkin</span></h3>
-  <pre>'amenity/cafe|Pumpkin'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Pumpkin%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Pumpkin'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Pumpkin%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>< 50</td>
 <td class="tags"><pre class="tags">
@@ -614,13 +684,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Pumpkin"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q27825961">Q27825961</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Pumpkin Café Shop</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafesecond-cup"><a href="#amenitycafesecond-cup"/>#</a><span class="anchor">Second Cup</span></h3>
-  <pre>'amenity/cafe|Second Cup'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Second%20Cup%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Second Cup'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Second%20Cup%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>236</td>
 <td class="tags"><pre class="tags">
@@ -631,13 +703,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Second Cup"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q862180">Q862180</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FSecond%20cup%20logo15.png&width=100"/></td>
-<td></td>
-<td></td>
+<td><h3>Second Cup</h3><span>"company"</span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FSecond%20cup%20logo15.png&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafesegafredo"><a href="#amenitycafesegafredo"/>#</a><span class="anchor">Segafredo</span></h3>
-  <pre>'amenity/cafe|Segafredo'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Segafredo%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Segafredo'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Segafredo%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>108</td>
 <td class="tags"><pre class="tags">
@@ -648,13 +722,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Segafredo"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q21282762">Q21282762</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FSegafredo%20Zanetti%20logo.svg&width=100"/></td>
-<td></td>
-<td></td>
+<td><h3>Segafredo Zanetti</h3><span></span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FSegafredo%20Zanetti%20logo.svg&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafestarbucks"><a href="#amenitycafestarbucks"/>#</a><span class="anchor">Starbucks</span></h3>
-  <pre>'amenity/cafe|Starbucks'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Starbucks%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Starbucks'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Starbucks%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>9139</td>
 <td class="tags"><pre class="tags">
@@ -665,13 +741,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Starbucks"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q37158">Q37158</a></td>
-<td></td>
-<td><img src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
-<td><img src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
+<td><h3>Starbucks</h3><span>"American multinational coffee company"</span></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafethe-coffee-bean-tea-leaf"><a href="#amenitycafethe-coffee-bean-tea-leaf"/>#</a><span class="anchor">The Coffee Bean & Tea Leaf</span></h3>
-  <pre>'amenity/cafe|The Coffee Bean & Tea Leaf'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22The%20Coffee%20Bean%20&%20Tea%20Leaf%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|The Coffee Bean & Tea Leaf'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22The%20Coffee%20Bean%20&%20Tea%20Leaf%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>157</td>
 <td class="tags"><pre class="tags">
@@ -682,13 +760,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "The Coffee Bean & Tea Leaf"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q1141384">Q1141384</a></td>
-<td></td>
-<td></td>
-<td><img src="https://pbs.twimg.com/profile_images/795705145224871936/EgPtlFnT_bigger.jpg"/></td>
+<td><h3>The Coffee Bean & Tea Leaf</h3><span>"An international coffee and tea shop chain based in Los Angeles, California, United States"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/795705145224871936/EgPtlFnT_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafethe-coffee-club"><a href="#amenitycafethe-coffee-club"/>#</a><span class="anchor">The Coffee Club</span></h3>
-  <pre>'amenity/cafe|The Coffee Club'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22The%20Coffee%20Club%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|The Coffee Club'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22The%20Coffee%20Club%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>101</td>
 <td class="tags"><pre class="tags">
@@ -699,13 +779,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "The Coffee Club"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q7726599">Q7726599</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>The Coffee Club</h3><span>"cafe chain"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafetim-hortons"><a href="#amenitycafetim-hortons"/>#</a><span class="anchor">Tim Hortons</span></h3>
-  <pre>'amenity/cafe|Tim Hortons'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Tim%20Hortons%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Tim Hortons'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Tim%20Hortons%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>2399</td>
 <td class="tags"><pre class="tags">
@@ -716,13 +798,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Tim Hortons"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q175106">Q175106</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FTim%20Hortons%20Logo.svg&width=100"/></td>
-<td></td>
-<td></td>
+<td><h3>Tim Hortons</h3><span>"Canadian fast casual restaurant chain"</span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2FTim%20Hortons%20Logo.svg&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafetravelers-coffee"><a href="#amenitycafetravelers-coffee"/>#</a><span class="anchor">Traveler's Coffee</span></h3>
-  <pre>'amenity/cafe|Traveler's Coffee'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Traveler's%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Traveler's Coffee'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Traveler's%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>74</td>
 <td class="tags"><pre class="tags">
@@ -733,13 +817,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Traveler's Coffee"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q4051716">Q4051716</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Traveler's Coffee</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafewaynes-coffee"><a href="#amenitycafewaynes-coffee"/>#</a><span class="anchor">Wayne's Coffee</span></h3>
-  <pre>'amenity/cafe|Wayne's Coffee'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Wayne's%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Wayne's Coffee'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Wayne's%20Coffee%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>53</td>
 <td class="tags"><pre class="tags">
@@ -750,13 +836,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Wayne's Coffee"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q2637272">Q2637272</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Wayne's Coffee</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafewild-bean-cafe"><a href="#amenitycafewild-bean-cafe"/>#</a><span class="anchor">Wild Bean Cafe</span></h3>
-  <pre>'amenity/cafe|Wild Bean Cafe'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Wild%20Bean%20Cafe%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Wild Bean Cafe'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22Wild%20Bean%20Cafe%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>61</td>
 <td class="tags"><pre class="tags">
@@ -766,13 +854,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Wild Bean Cafe"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q61804826">Q61804826</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Wild Bean Cafe</h3><span>"Multinational coffee brand operated BP"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Берёзка</span></h3>
-  <pre>'amenity/cafe|Берёзка'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%91%D0%B5%D1%80%D1%91%D0%B7%D0%BA%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Берёзка'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%91%D0%B5%D1%80%D1%91%D0%B7%D0%BA%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>57</td>
 <td class="tags"><pre class="tags">
@@ -781,13 +871,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Берёзка"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Виктория</span></h3>
-  <pre>'amenity/cafe|Виктория'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%92%D0%B8%D0%BA%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Виктория'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%92%D0%B8%D0%BA%D1%82%D0%BE%D1%80%D0%B8%D1%8F%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>59</td>
 <td class="tags"><pre class="tags">
@@ -796,13 +888,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Виктория"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Встреча</span></h3>
-  <pre>'amenity/cafe|Встреча'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%92%D1%81%D1%82%D1%80%D0%B5%D1%87%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Встреча'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%92%D1%81%D1%82%D1%80%D0%B5%D1%87%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>103</td>
 <td class="tags"><pre class="tags">
@@ -811,13 +905,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Встреча"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Гурман</span></h3>
-  <pre>'amenity/cafe|Гурман'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%93%D1%83%D1%80%D0%BC%D0%B0%D0%BD%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Гурман'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%93%D1%83%D1%80%D0%BC%D0%B0%D0%BD%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>58</td>
 <td class="tags"><pre class="tags">
@@ -826,13 +922,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Гурман"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Даблби</span></h3>
-  <pre>'amenity/cafe|Даблби'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%94%D0%B0%D0%B1%D0%BB%D0%B1%D0%B8%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Даблби'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%94%D0%B0%D0%B1%D0%BB%D0%B1%D0%B8%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>69</td>
 <td class="tags"><pre class="tags">
@@ -841,13 +939,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Даблби"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Жемчужина</span></h3>
-  <pre>'amenity/cafe|Жемчужина'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%96%D0%B5%D0%BC%D1%87%D1%83%D0%B6%D0%B8%D0%BD%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Жемчужина'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%96%D0%B5%D0%BC%D1%87%D1%83%D0%B6%D0%B8%D0%BD%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>53</td>
 <td class="tags"><pre class="tags">
@@ -856,13 +956,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Жемчужина"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Лакомка</span></h3>
-  <pre>'amenity/cafe|Лакомка'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%9B%D0%B0%D0%BA%D0%BE%D0%BC%D0%BA%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Лакомка'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%9B%D0%B0%D0%BA%D0%BE%D0%BC%D0%BA%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>68</td>
 <td class="tags"><pre class="tags">
@@ -871,13 +973,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Лакомка"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Оазис</span></h3>
-  <pre>'amenity/cafe|Оазис'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%9E%D0%B0%D0%B7%D0%B8%D1%81%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Оазис'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%9E%D0%B0%D0%B7%D0%B8%D1%81%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>66</td>
 <td class="tags"><pre class="tags">
@@ -888,13 +992,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "Оазис"
 "name:en": "Oasis"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Пельменная</span></h3>
-  <pre>'amenity/cafe|Пельменная'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%9F%D0%B5%D0%BB%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Пельменная'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%9F%D0%B5%D0%BB%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>84</td>
 <td class="tags"><pre class="tags">
@@ -903,13 +1009,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Пельменная"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Рандеву</span></h3>
-  <pre>'amenity/cafe|Рандеву'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A0%D0%B0%D0%BD%D0%B4%D0%B5%D0%B2%D1%83%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Рандеву'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A0%D0%B0%D0%BD%D0%B4%D0%B5%D0%B2%D1%83%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>62</td>
 <td class="tags"><pre class="tags">
@@ -918,13 +1026,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Рандеву"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Сказка</span></h3>
-  <pre>'amenity/cafe|Сказка'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A1%D0%BA%D0%B0%D0%B7%D0%BA%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Сказка'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A1%D0%BA%D0%B0%D0%B7%D0%BA%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>78</td>
 <td class="tags"><pre class="tags">
@@ -933,13 +1043,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Сказка"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Смак</span></h3>
-  <pre>'amenity/cafe|Смак'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A1%D0%BC%D0%B0%D0%BA%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Смак'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A1%D0%BC%D0%B0%D0%BA%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>65</td>
 <td class="tags"><pre class="tags">
@@ -950,13 +1062,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "Смак"
 "name:en": "Taste"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Старбакс</span></h3>
-  <pre>'amenity/cafe|Старбакс'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A1%D1%82%D0%B0%D1%80%D0%B1%D0%B0%D0%BA%D1%81%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Старбакс'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A1%D1%82%D0%B0%D1%80%D0%B1%D0%B0%D0%BA%D1%81%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>71</td>
 <td class="tags"><pre class="tags">
@@ -969,13 +1083,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "Старбакс"
 "name:en": "Starbucks"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q37158">Q37158</a></td>
-<td></td>
-<td><img src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
-<td><img src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
+<td><h3>Starbucks</h3><span>"American multinational coffee company"</span></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Транзит</span></h3>
-  <pre>'amenity/cafe|Транзит'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A2%D1%80%D0%B0%D0%BD%D0%B7%D0%B8%D1%82%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Транзит'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A2%D1%80%D0%B0%D0%BD%D0%B7%D0%B8%D1%82%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>51</td>
 <td class="tags"><pre class="tags">
@@ -984,13 +1100,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Транзит"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Фортуна</span></h3>
-  <pre>'amenity/cafe|Фортуна'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A4%D0%BE%D1%80%D1%82%D1%83%D0%BD%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Фортуна'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A4%D0%BE%D1%80%D1%82%D1%83%D0%BD%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>56</td>
 <td class="tags"><pre class="tags">
@@ -999,13 +1117,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Фортуна"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Хуторок</span></h3>
-  <pre>'amenity/cafe|Хуторок'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A5%D1%83%D1%82%D0%BE%D1%80%D0%BE%D0%BA%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Хуторок'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A5%D1%83%D1%82%D0%BE%D1%80%D0%BE%D0%BA%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>70</td>
 <td class="tags"><pre class="tags">
@@ -1014,13 +1134,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Хуторок"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Шашлычная</span></h3>
-  <pre>'amenity/cafe|Шашлычная'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A8%D0%B0%D1%88%D0%BB%D1%8B%D1%87%D0%BD%D0%B0%D1%8F%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Шашлычная'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A8%D0%B0%D1%88%D0%BB%D1%8B%D1%87%D0%BD%D0%B0%D1%8F%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>166</td>
 <td class="tags"><pre class="tags">
@@ -1029,13 +1151,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Шашлычная"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Шоколадница</span></h3>
-  <pre>'amenity/cafe|Шоколадница'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A8%D0%BE%D0%BA%D0%BE%D0%BB%D0%B0%D0%B4%D0%BD%D0%B8%D1%86%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Шоколадница'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A8%D0%BE%D0%BA%D0%BE%D0%BB%D0%B0%D0%B4%D0%BD%D0%B8%D1%86%D0%B0%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>327</td>
 <td class="tags"><pre class="tags">
@@ -1048,13 +1172,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "Шоколадница"
 "name:en": "Chocolate"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q30891188">Q30891188</a></td>
-<td><img src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2F%D0%A8%D0%BE%D0%BA%D0%BE%20%D0%BB%D0%BE%D0%B3%D0%BE%202014-02-24%2013-26.jpg&width=100"/></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"><img class="logo" src="https://commons.wikimedia.org/w/index.php?title=Special%3ARedirect%2Ffile%2F%D0%A8%D0%BE%D0%BA%D0%BE%20%D0%BB%D0%BE%D0%B3%D0%BE%202014-02-24%2013-26.jpg&width=100"/></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">Штолле</span></h3>
-  <pre>'amenity/cafe|Штолле'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A8%D1%82%D0%BE%D0%BB%D0%BB%D0%B5%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|Штолле'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D0%A8%D1%82%D0%BE%D0%BB%D0%BB%D0%B5%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>58</td>
 <td class="tags"><pre class="tags">
@@ -1063,13 +1189,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "cuisine": "coffee_shop"
 "name": "Штолле"</pre></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">ארומה</span></h3>
-  <pre>'amenity/cafe|ארומה'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D7%90%D7%A8%D7%95%D7%9E%D7%94%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|ארומה'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%D7%90%D7%A8%D7%95%D7%9E%D7%94%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>70</td>
 <td class="tags"><pre class="tags">
@@ -1084,13 +1212,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "Aroma Espresso Bar"
 "name:he": "ארומה"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q2909872">Q2909872</a></td>
-<td></td>
-<td></td>
-<td><img src="https://pbs.twimg.com/profile_images/685142792/22652_260580577421_260578287421_3292057_2769906_n_bigger.jpg"/></td>
+<td><h3>Aroma Espresso Bar</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/685142792/22652_260580577421_260578287421_3292057_2769906_n_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">คาเฟ่ อเมซอน</span></h3>
-  <pre>'amenity/cafe|คาเฟ่ อเมซอน'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E0%B8%84%E0%B8%B2%E0%B9%80%E0%B8%9F%E0%B9%88%20%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%8B%E0%B8%AD%E0%B8%99%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|คาเฟ่ อเมซอน'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E0%B8%84%E0%B8%B2%E0%B9%80%E0%B8%9F%E0%B9%88%20%E0%B8%AD%E0%B9%80%E0%B8%A1%E0%B8%8B%E0%B8%AD%E0%B8%99%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>58</td>
 <td class="tags"><pre class="tags">
@@ -1105,13 +1235,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "Café Amazon"
 "name:th": "คาเฟ่ อเมซอน"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q43247503">Q43247503</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Café Amazon</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">エクセルシオール カフェ</span></h3>
-  <pre>'amenity/cafe|エクセルシオール カフェ'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%A8%E3%82%AF%E3%82%BB%E3%83%AB%E3%82%B7%E3%82%AA%E3%83%BC%E3%83%AB%20%E3%82%AB%E3%83%95%E3%82%A7%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|エクセルシオール カフェ'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%A8%E3%82%AF%E3%82%BB%E3%83%AB%E3%82%B7%E3%82%AA%E3%83%BC%E3%83%AB%20%E3%82%AB%E3%83%95%E3%82%A7%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>63</td>
 <td class="tags"><pre class="tags">
@@ -1125,13 +1257,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "エクセルシオール カフェ"
 "name:ja": "エクセルシオール カフェ"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q11289828">Q11289828</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Excelsior Caffé</h3><span>"coffeehouse chain in Japan"</span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">カフェ・ド・クリエ</span></h3>
-  <pre>'amenity/cafe|カフェ・ド・クリエ'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%AB%E3%83%95%E3%82%A7%E3%83%BB%E3%83%89%E3%83%BB%E3%82%AF%E3%83%AA%E3%82%A8%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|カフェ・ド・クリエ'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%AB%E3%83%95%E3%82%A7%E3%83%BB%E3%83%89%E3%83%BB%E3%82%AF%E3%83%AA%E3%82%A8%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>80</td>
 <td class="tags"><pre class="tags">
@@ -1146,13 +1280,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "Cafe de CRIE"
 "name:ja": "カフェ・ド・クリエ"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q17219077">Q17219077</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Pokka Create</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">カフェ・ベローチェ</span></h3>
-  <pre>'amenity/cafe|カフェ・ベローチェ'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%AB%E3%83%95%E3%82%A7%E3%83%BB%E3%83%99%E3%83%AD%E3%83%BC%E3%83%81%E3%82%A7%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|カフェ・ベローチェ'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%AB%E3%83%95%E3%82%A7%E3%83%BB%E3%83%99%E3%83%AD%E3%83%BC%E3%83%81%E3%82%A7%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>110</td>
 <td class="tags"><pre class="tags">
@@ -1167,13 +1303,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "CAFFÈ VELOCE"
 "name:ja": "カフェ・ベローチェ"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q11294597">Q11294597</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">コメダ珈琲店</span></h3>
-  <pre>'amenity/cafe|コメダ珈琲店'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%B3%E3%83%A1%E3%83%80%E7%8F%88%E7%90%B2%E5%BA%97%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|コメダ珈琲店'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%B3%E3%83%A1%E3%83%80%E7%8F%88%E7%90%B2%E5%BA%97%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>253</td>
 <td class="tags"><pre class="tags">
@@ -1188,13 +1326,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "Komeda Coffee Shop"
 "name:ja": "コメダ珈琲店"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q11302679">Q11302679</a></td>
-<td></td>
-<td><img src="https://graph.facebook.com/komeda.coffee/picture?type=square"/></td>
-<td></td>
+<td><h3>Komeda</h3><span>"coffee shop franchiser"</span></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/komeda.coffee/picture?type=square"/></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">サンマルクカフェ</span></h3>
-  <pre>'amenity/cafe|サンマルクカフェ'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%B5%E3%83%B3%E3%83%9E%E3%83%AB%E3%82%AF%E3%82%AB%E3%83%95%E3%82%A7%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|サンマルクカフェ'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%B5%E3%83%B3%E3%83%9E%E3%83%AB%E3%82%AF%E3%82%AB%E3%83%95%E3%82%A7%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>165</td>
 <td class="tags"><pre class="tags">
@@ -1209,13 +1349,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "ST.MARC CAFÉ"
 "name:ja": "サンマルクカフェ"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q11305989">Q11305989</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>Saint Marc Holdings</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">スターバックス</span></h3>
-  <pre>'amenity/cafe|スターバックス'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|スターバックス'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>635</td>
 <td class="tags"><pre class="tags">
@@ -1230,13 +1372,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "Starbucks"
 "name:ja": "スターバックス"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q37158">Q37158</a></td>
-<td></td>
-<td><img src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
-<td><img src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
+<td><h3>Starbucks</h3><span>"American multinational coffee company"</span></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">タリーズコーヒー</span></h3>
-  <pre>'amenity/cafe|タリーズコーヒー'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%BF%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|タリーズコーヒー'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%82%BF%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>275</td>
 <td class="tags"><pre class="tags">
@@ -1251,13 +1395,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "Tully's Coffee"
 "name:ja": "タリーズコーヒー"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q3541983">Q3541983</a></td>
-<td></td>
-<td></td>
-<td><img src="https://pbs.twimg.com/profile_images/1079584745/logo_bigger.jpg"/></td>
+<td><h3>Tully's Coffee</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/1079584745/logo_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">ドトールコーヒーショップ</span></h3>
-  <pre>'amenity/cafe|ドトールコーヒーショップ'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%83%89%E3%83%88%E3%83%BC%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|ドトールコーヒーショップ'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E3%83%89%E3%83%88%E3%83%BC%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>510</td>
 <td class="tags"><pre class="tags">
@@ -1272,13 +1418,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "Doutor Coffee Shop"
 "name:ja": "ドトールコーヒーショップ"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q11322732">Q11322732</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3>DOUTOR COFFEE SHOP</h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">星巴克</span></h3>
-  <pre>'amenity/cafe|星巴克'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E6%98%9F%E5%B7%B4%E5%85%8B%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|星巴克'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E6%98%9F%E5%B7%B4%E5%85%8B%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>289</td>
 <td class="tags"><pre class="tags">
@@ -1291,13 +1439,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "星巴克"
 "name:en": "Starbucks"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q37158">Q37158</a></td>
-<td></td>
-<td><img src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
-<td><img src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
+<td><h3>Starbucks</h3><span>"American multinational coffee company"</span></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">珈琲館</span></h3>
-  <pre>'amenity/cafe|珈琲館'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E7%8F%88%E7%90%B2%E9%A4%A8%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|珈琲館'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%E7%8F%88%E7%90%B2%E9%A4%A8%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>< 50</td>
 <td class="tags"><pre class="tags">
@@ -1310,13 +1460,15 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name": "珈琲館"
 "name:en": "Kohikan"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q11573290">Q11573290</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td><h3></h3><span></span></td>
+<td class="logo"></td>
+<td class="logo"></td>
+<td class="logo"></td>
 </tr>
 <tr>
 <td><h3 class="slug" id="amenitycafe"><a href="#amenitycafe"/>#</a><span class="anchor">스타벅스</span></h3>
-  <pre>'amenity/cafe|스타벅스'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
+  <div class="nsikey"><pre>'amenity/cafe|스타벅스'</pre></div>
+  <div class="viewlink"><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22cafe%22%5D%5B%22name%22=%22%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a></div>
 </td>
 <td>103</td>
 <td class="tags"><pre class="tags">
@@ -1331,9 +1483,10 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 "name:en": "Starbucks"
 "name:ko": "스타벅스"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q37158">Q37158</a></td>
-<td></td>
-<td><img src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
-<td><img src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
+<td><h3>Starbucks</h3><span>"American multinational coffee company"</span></td>
+<td class="logo"></td>
+<td class="logo"><img class="logo" src="https://graph.facebook.com/Starbucks/picture?type=square"/></td>
+<td class="logo"><img class="logo" src="https://pbs.twimg.com/profile_images/968173455580397568/Qe0pSZTk_bigger.jpg"/></td>
 </tr>
 </tbody>
 </table>
