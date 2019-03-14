@@ -51,7 +51,7 @@ function generateIndex(tree, dict) {
     let head = `
 <meta charset='utf-8'>
 <title>${tree}</title>
-<link rel='stylesheet' href='./style.css'>`;
+<link rel='stylesheet' href='../style.css'>`;
 
     let body = `
 <h1>${tree}/</h1>
@@ -70,7 +70,6 @@ function generateIndex(tree, dict) {
 </div>`;
 
     writeHTML(`./docs/${tree}/index.html`, head, body);
-    writeCSS(`./docs/${tree}/style.css`);
 }
 
 
@@ -78,7 +77,7 @@ function generatePage(tree, dict, k, v) {
     let head = `
 <meta charset='utf-8'>
 <title>${k}/${v}</title>
-<link rel='stylesheet' href='../style.css'>`;
+<link rel='stylesheet' href='../../style.css'>`;
 
     let body = `
 <h2>${tree}/${k}/${v}</h2>
@@ -140,8 +139,7 @@ function wd(qid) {
     return qid ? `<a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a>` : '';
 }
 
-function slugify(text)
-{
+function slugify(text) {
   return text.toString().toLowerCase()
     .replace(/\s+/g, '-')           // Replace spaces with -
     .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
@@ -172,92 +170,3 @@ ${body}
     }
 }
 
-
-function writeCSS(file) {
-    let contents = `
-html, body {
-    width: 100%;
-    height: 100%;
-}
-
-body {
-  font: normal 12px/1.6667 "-apple-system", BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-    "Fira Sans", "Droid Sans", "Helvetica Neue", "Arial",
-    sans-serif;
-  margin: 0;
-  padding: 0 20px;
-  color: #333;
-  font-size: 14px;
-}
-
-div.container {
-  display: flex;
-  flex-flow: row wrap;
-}
-div.child {
-  display: flex;
-  flex: 0 0 250px;
-  padding: 5px;
-}
-
-.nav {
-  margin-top: 10px;
-}
-
-table.summary {
-  border: 1px solid #000;
-  text-align: left;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-table.summary th {
-  position: sticky;
-  top: -1px;
-  background: #ddd;
-  border: 1px solid #000;
-  padding: 3px 5px;
-  font-size: 15px;
-  font-weight: bold;
-  color: #000;
-}
-table.summary td {
-  border: 1px solid #000;
-  padding: 3px 5px;
-}
-table.summary tbody td {
-  font-size: 13px;
-  max-height: 100px;
-}
-a {
-  text-decoration: none;
-}
-a:hover {
-  color: #597be7;
-}
-:focus {
-  outline-color: transparent;
-  outline-style: none;
-}
-tbody h3.slug::before {
-  display: block;
-  content: " ";
-  margin-top: -50px;
-  height: 50px;
-  visibility: hidden;
-  pointer-events: none;
-}
-tbody span.anchor {
-  margin: 0 5px;
-}
-`;
-
-    try {
-        fs.ensureFileSync(file);
-        fs.writeFileSync(file, contents);
-    } catch (err) {
-        console.error(colors.red('Error - ' + err.message + ' writing:'));
-        console.error('  ' + colors.yellow(file));
-        process.exit(1);
-    }
-}
