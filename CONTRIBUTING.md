@@ -344,7 +344,7 @@ In `brands/amenity/fast_food.json`:
 
 OpenStreetMap expects this tag to be formatted like `"en:Chipotle Mexican Grill"`.
 * Copy the page name from the URL.
-* Add the language prefix "en:".
+* Add the language prefix - "en:" for the English Wikipedia.
 * Replace the underscores '_' with spaces.
 
 On the brand's Wikipedia page, you can also find its "Wikidata item" link.  This appears
