@@ -133,7 +133,7 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
   <pre>'${name}'</pre>` + overpass(k, v, tags.name) + `
 </td>
 <td>${count}</td>
-<td><pre class="tags">` + displayTags(tags) + `</pre></td>
+<td class="tags"><pre class="tags">` + displayTags(tags) + `</pre></td>
 <td>` + wd(tags['brand:wikidata']) + `</td>
 <td>` + img(logos.wikidata) + `</td>
 <td>` + img(logos.facebook) + `</td>
