@@ -111,8 +111,9 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 <tr>
 <th>name</th>
 <th>count</th>
-<th>brand:wikidata</th>
-<th>wikicommons logo</th>
+<th>tags</th>
+<th>wikidata</th>
+<th>wikidata logo</th>
 <th>facebook</th>
 <th>twitter</th>
 </tr>
@@ -132,6 +133,7 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
   <pre>'${name}'</pre>` + overpass(k, v, tags.name) + `
 </td>
 <td>${count}</td>
+<td><pre class="tags">` + displayTags(tags) + `</pre></td>
 <td>` + wd(tags['brand:wikidata']) + `</td>
 <td>` + img(logos.wikidata) + `</td>
 <td>` + img(logos.facebook) + `</td>
@@ -164,6 +166,15 @@ function img(src) {
 
 function wd(qid) {
     return qid ? `<a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a>` : '';
+}
+
+function displayTags(tags) {
+    let result = '';
+    Object.keys(tags).forEach(k => {
+        result += `
+"${k}": "${tags[k]}"`;
+    });
+    return result;
 }
 
 function slugify(text) {

@@ -12,7 +12,7 @@
 <a class="nav" href="../index.html">↑ Back to top</a>
 <div class="instructions">Some things you can do here:
 <ul>
-<li>Click the "View on Overpass Turbo" link to see where this name is used in OpenStreetMap.</li>
+<li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
 <li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to the index.
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
 <li>If a record with a <code>'brand:wikidata'</code> tag is missing logos, click the Wikidata link and edit the
@@ -25,8 +25,9 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
 <tr>
 <th>name</th>
 <th>count</th>
-<th>brand:wikidata</th>
-<th>wikicommons logo</th>
+<th>tags</th>
+<th>wikidata</th>
+<th>wikidata logo</th>
 <th>facebook</th>
 <th>twitter</th>
 </tr>
@@ -37,6 +38,13 @@ Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames
   <pre>'amenity/dentist|Aspen Dental'</pre><a target="_blank" href="https://overpass-turbo.eu/?Q=%5Bout:json%5D%5Btimeout:25%5D;%0A(nwr%5B%22amenity%22=%22dentist%22%5D%5B%22name%22=%22Aspen%20Dental%22%5D;);%0Aout%20body;%0A%3E;%0Aout%20skel%20qt;&R"/>View on Overpass Turbo</a>
 </td>
 <td>< 50</td>
+<td><pre class="tags">
+"amenity": "dentist"
+"brand": "Aspen Dental"
+"brand:wikidata": "Q4807808"
+"brand:wikipedia": "en:Aspen Dental"
+"healthcare": "dentist"
+"name": "Aspen Dental"</pre></td>
 <td><a target="_blank" href="https://www.wikidata.org/wiki/Q4807808">Q4807808</a></td>
 <td></td>
 <td></td>
