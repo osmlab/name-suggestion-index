@@ -51,8 +51,7 @@ function generateIndex(tree, dict) {
     let head = `
 <meta charset='utf-8'>
 <title>${tree}</title>
-<link rel='stylesheet' href='./style.css'>
-`;
+<link rel='stylesheet' href='./style.css'>`;
 
     let body = `
 <h1>${tree}/</h1>
@@ -79,8 +78,7 @@ function generatePage(tree, dict, k, v) {
     let head = `
 <meta charset='utf-8'>
 <title>${k}/${v}</title>
-<link rel='stylesheet' href='../style.css'>
-`;
+<link rel='stylesheet' href='../style.css'>`;
 
     let body = `
 <h2>${tree}/${k}/${v}</h2>
@@ -101,10 +99,13 @@ function generatePage(tree, dict, k, v) {
         let entry = dict[k][v][name];
         let tags = entry.tags || {};
         let logos = entry.logos || {};
+        let slug = slugify(name);
 
         body += `
 <tr>
-<td><h3>` + anchor(name) + ` ${tags.name}</h3><pre>'${name}'</pre>` + overpass(k, v, tags.name) + `</td>
+<td><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
+  <pre>'${name}'</pre>` + overpass(k, v, tags.name) + `
+</td>
 <td>` + wd(tags['brand:wikidata']) + `</td>
 <td>` + img(logos.wikidata) + `</td>
 <td>` + img(logos.facebook) + `</td>
@@ -129,11 +130,6 @@ out body;
 out skel qt;`);
     let href = `https://overpass-turbo.eu/?Q=${q}&R`;
     return `<a target="_blank" href="${href}"/>View on Overpass Turbo</a>`;
-}
-
-function anchor(name) {
-    let slug = slugify(name);
-    return `<a id="${slug}" href="#${slug}"/>#</a>`;
 }
 
 function img(src) {
@@ -195,6 +191,16 @@ body {
   font-size: 14px;
 }
 
+div.container {
+  display: flex;
+  flex-flow: row wrap;
+}
+div.child {
+  display: flex;
+  flex: 0 0 250px;
+  padding: 5px;
+}
+
 .nav {
   margin-top: 10px;
 }
@@ -223,15 +229,26 @@ table.summary tbody td {
   font-size: 13px;
   max-height: 100px;
 }
-
-div.container {
-  display: flex;
-  flex-flow: row wrap;
+a {
+  text-decoration: none;
 }
-div.child {
-  display: flex;
-  flex: 0 0 250px;
-  padding: 5px;
+a:hover {
+  color: #597be7;
+}
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+tbody h3.slug::before {
+  display: block;
+  content: " ";
+  margin-top: -50px;
+  height: 50px;
+  visibility: hidden;
+  pointer-events: none;
+}
+tbody span.anchor {
+  margin: 0 5px;
 }
 `;
 

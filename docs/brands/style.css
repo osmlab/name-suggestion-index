@@ -15,6 +15,16 @@ body {
   font-size: 14px;
 }
 
+div.container {
+  display: flex;
+  flex-flow: row wrap;
+}
+div.child {
+  display: flex;
+  flex: 0 0 250px;
+  padding: 5px;
+}
+
 .nav {
   margin-top: 10px;
 }
@@ -43,13 +53,24 @@ table.summary tbody td {
   font-size: 13px;
   max-height: 100px;
 }
-
-div.container {
-  display: flex;
-  flex-flow: row wrap;
+a {
+  text-decoration: none;
 }
-div.child {
-  display: flex;
-  flex: 0 0 250px;
-  padding: 5px;
+a:hover {
+  color: #597be7;
+}
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+tbody h3.slug::before {
+  display: block;
+  content: " ";
+  margin-top: -50px;
+  height: 50px;
+  visibility: hidden;
+  pointer-events: none;
+}
+tbody span.anchor {
+  margin: 0 5px;
 }
