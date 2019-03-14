@@ -104,7 +104,7 @@ function generatePage(tree, dict, k, v) {
 
         body += `
 <tr>
-<td><h3>` + anchor(name) + ` ${tags.name}</h3><pre>'${name}'</pre></td>
+<td><h3>` + anchor(name) + ` ${tags.name}</h3><pre>'${name}'</pre>` + overpass(k, v, tags.name) + `</td>
 <td>` + wd(tags['brand:wikidata']) + `</td>
 <td>` + img(logos.wikidata) + `</td>
 <td>` + img(logos.facebook) + `</td>
@@ -121,13 +121,25 @@ function generatePage(tree, dict, k, v) {
 }
 
 
+function overpass(k, v, name) {
+    let q = encodeURI(`[out:json][timeout:25];
+(nwr["${k}"="${v}"]["name"="${name}"];);
+out body;
+>;
+out skel qt;`);
+    let href = `https://overpass-turbo.eu/?Q=${q}&R`;
+    return `<a target="_blank" href="${href}"/>View on Overpass Turbo</a>`;
+}
+
 function anchor(name) {
     let slug = slugify(name);
     return `<a id="${slug}" href="#${slug}"/>#</a>`;
 }
+
 function img(src) {
     return src ? `<img src="${src}"/>` : '';
 }
+
 function wd(qid) {
     return qid ? `<a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a>` : '';
 }
