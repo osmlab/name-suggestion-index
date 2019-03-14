@@ -55,7 +55,21 @@ function generateIndex(tree, dict) {
 
     let body = `
 <h1>${tree}/</h1>
+<div class="instructions"><span class="hi">👋</span>Hi! This project is called <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/">name-suggestion-index</a>.<br/>
+<br/>
+We've collected a list of common business names from <a target="_blank" href="https://www.openstreetmap.org">OpenStreetMap</a>,
+and we're matching them all to their preferred tags, including a <code>'brand:wikidata'</code> tag.<br/>
+<br/>
+This tag is pretty special because we can use it to link features in OpenStreetMap to records in
+<a target="_blank" href="https://www.wikidata.org">Wikidata</a>, a free and open knowledge database.
+<br/>
+You can help us by adding brands to the index, matching brands to Wikidata identifiers, or by improving the brands' Wikidata pages.<br/>
+<br/>
+See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.<br/>
+</div>
+
 <div class="container">`;
+
     Object.keys(dict).forEach(k => {
         let entry = dict[k];
         Object.keys(entry).forEach(v => {
@@ -82,10 +96,21 @@ function generatePage(tree, dict, k, v) {
     let body = `
 <h2>${tree}/${k}/${v}</h2>
 <a class="nav" href="../index.html">↑ Back to top</a>
+<div class="instructions">Some things you can do here:
+<ul>
+<li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
+<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to the index.
+See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
+<li>If a record with a <code>'brand:wikidata'</code> tag is missing logos, click the Wikidata link and edit the
+Wikidata page. You can add the brand's Facebook, Instagram, or Twitter usernames, and this index will pick up the logos later.</li>
+</ul>
+</div>
+
 <table class="summary">
 <thead>
 <tr>
 <th>name</th>
+<th>count</th>
 <th>brand:wikidata</th>
 <th>wikicommons logo</th>
 <th>facebook</th>
@@ -96,6 +121,7 @@ function generatePage(tree, dict, k, v) {
 
     Object.keys(dict[k][v]).forEach(name => {
         let entry = dict[k][v][name];
+        let count = entry.count || '< 50';
         let tags = entry.tags || {};
         let logos = entry.logos || {};
         let slug = slugify(name);
@@ -105,6 +131,7 @@ function generatePage(tree, dict, k, v) {
 <td><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
   <pre>'${name}'</pre>` + overpass(k, v, tags.name) + `
 </td>
+<td>${count}</td>
 <td>` + wd(tags['brand:wikidata']) + `</td>
 <td>` + img(logos.wikidata) + `</td>
 <td>` + img(logos.facebook) + `</td>
