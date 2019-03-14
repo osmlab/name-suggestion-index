@@ -180,8 +180,8 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <th>Wikidata ID</th>
 <th>Wikidata Description</th>
 <th class="logo">Wikidata Logo</th>
-<th class="logo">Facebook</th>
-<th class="logo">Twitter</th>
+<th class="logo">Facebook Logo</th>
+<th class="logo">Twitter Logo</th>
 </tr>
 <thead>
 <tbody>`;
