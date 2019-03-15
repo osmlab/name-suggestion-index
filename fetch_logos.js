@@ -30,7 +30,6 @@ try {
 let _brands = fileTree.read('brands');
 let _toFetch = gatherQIDs(_brands);
 let _qids = Object.keys(_toFetch);
-_qids = ['Q779722'];
 let _total = _qids.length;
 if (!_total) {
     console.log('Nothing to fetch');
