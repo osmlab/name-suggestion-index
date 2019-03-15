@@ -34,6 +34,13 @@ Currently used in:
 * JOSM presets available
 
 
+### Browse the index
+
+You can browse the index at
+http://osmlab.github.io/name-suggestion-index/brands/index.html
+to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+
+
 ### Participate!
 
 * Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
@@ -97,13 +104,6 @@ Name lists:
 
 * `npm run logos` - Find brand logos by searching wikidata
 * `npm run docs` - Updates the index summary pages
-
-
-### Browse the index
-
-You can browse the index at
-http://osmlab.github.io/name-suggestion-index/brands/index.html
-to see which brands are missing Wikidata links or logos.
 
 
 ### Updating `dist/allNames.json` from planet

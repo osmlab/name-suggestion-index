@@ -13,7 +13,7 @@
 
 Tip: You can browse the index at
 http://osmlab.github.io/name-suggestion-index/brands/index.html
-to see which brands are missing Wikidata links or logos.
+to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
@@ -513,6 +513,10 @@ nwr["name"="かっぱ寿司"]["amenity"="fast_food"];
 out center;
 ```
 
+Tip: The browsable index at http://osmlab.github.io/name-suggestion-index/brands/index.html
+can open Overpass Turbo with the query already set up for you.
+
+
 3. Click run to view the results.
 
 As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
@@ -529,6 +533,9 @@ Editing brand pages on Wikidata is something that anybody can do.  It helps not 
 - Improve the labels and descriptions on the Wikidata entries.
 - Translate the labels and descriptions to more languages.
 - Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
+
+Tip: The browsable index at http://osmlab.github.io/name-suggestion-index/brands/index.html
+can show you where the Wikidata information is missing or incomplete.
 
 <img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata.gif"/>
 
