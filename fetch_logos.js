@@ -30,6 +30,7 @@ try {
 let _brands = fileTree.read('brands');
 let _toFetch = gatherQIDs(_brands);
 let _qids = Object.keys(_toFetch);
+_qids = ['Q779722'];
 let _total = _qids.length;
 if (!_total) {
     console.log('Nothing to fetch');
@@ -42,7 +43,8 @@ let _urls = wdk.getManyEntities({
 });
 
 let _logos = {};
-doFetch(0);
+let _errors = [];
+doFetch().then(finish);
 
 
 function gatherQIDs(brands) {
@@ -60,20 +62,24 @@ function gatherQIDs(brands) {
 
 
 function doFetch(index) {
+    index = index || 0;
     if (index >= _urls.length) {
-        return finish();
+        return Promise.resolve();
     }
 
     let currURL = _urls[index];
 
     console.log(colors.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
 
-    fetch(currURL)
+    return fetch(currURL)
         .then(response => response.json())
-        .then(processEntities)
-        .catch(e => console.error(colors.red(e)))
+        .then(result => processEntities(result))
+        .catch(e => {
+            _errors.push(e);
+            console.error(colors.red(e))
+        })
         .then(() => delay(500))
-        .then(() => { doFetch(++index); });
+        .then(() => doFetch(++index));
 }
 
 
@@ -84,50 +90,44 @@ function processEntities(result) {
         let entity = result.entities[qid];
         if (!entity.claims) return;
 
-        let claim, value;
+        let value;
 
-        // P154 - Commons Logo  (often not square)
-        if (entity.claims.P154) {
-            claim = entity.claims.P154[0];
-            value = claim.mainsnak.datavalue.value;
-            if (value) {
-                _logos[qid] = _logos[qid] || {};
-                _logos[qid].wikidata = 'https://commons.wikimedia.org/w/index.php?' +
-                    utilQsString({ title: `Special:Redirect/file/${value}`, width: 100 });
-            }
+        // P154 - Commons Logo (often not square)
+        value = getClaimValue(entity, 'P154');
+        if (value) {
+            _logos[qid] = _logos[qid] || {};
+            _logos[qid].wikidata = 'https://commons.wikimedia.org/w/index.php?' +
+                utilQsString({ title: `Special:Redirect/file/${value}`, width: 100 });
         }
 
         // P2002 - Twitter username
-        if (entity.claims.P2002) {
-            // https://developer.twitter.com/en/docs/accounts-and-users/user-profile-images-and-banners.html
-            // https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
-            // rate limit: 900calls / 15min
-            claim = entity.claims.P2002[0];
-            value = claim.mainsnak.datavalue.value;
-            if (value && twitterAPI) {
-                _logos[qid] = _logos[qid] || {};
-                queue.push(
-                    twitterAPI.get('users/show', { screen_name: value })
-                        .then(user => {
-                            _logos[qid].twitter = user.profile_image_url_https.replace('_normal', '_bigger');
-                        })
-                        .catch(e => {
-                            console.error(colors.red(`Error: Twitter username @${value} for ${qid}: ` + JSON.stringify(e)))
-                        })
-                );
-            }
+        // https://developer.twitter.com/en/docs/accounts-and-users/user-profile-images-and-banners.html
+        // https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
+        // rate limit: 900calls / 15min
+        value = getClaimValue(entity, 'P2002');
+        if (value && twitterAPI) {
+            _logos[qid] = _logos[qid] || {};
+            queue.push(
+                twitterAPI
+                    .get('users/show', { screen_name: value })
+                    .then(user => {
+                        _logos[qid].twitter = user.profile_image_url_https.replace('_normal', '_bigger');
+                    })
+                    .catch(e => {
+                        let msg = `Error: Twitter username @${value} for ${qid}: ` + JSON.stringify(e);
+                        _errors.push(msg);
+                        console.error(colors.red(msg));
+                    })
+            );
         }
 
         // P2013 - Facebook ID
         // P2003 - Instagram ID
-        if (entity.claims.P2013 || entity.claims.P2003) {
-            // https://developers.facebook.com/docs/graph-api/reference/user/picture/
-            claim = (entity.claims.P2013 || entity.claims.P2003)[0];
-            value = claim.mainsnak.datavalue.value;
-            if (value) {
-                _logos[qid] = _logos[qid] || {};
-                _logos[qid].facebook = `https://graph.facebook.com/${value}/picture?type=square`;
-            }
+        // https://developers.facebook.com/docs/graph-api/reference/user/picture/
+        value = getClaimValue(entity, 'P2013') || getClaimValue(entity, 'P2003');
+        if (value) {
+            _logos[qid] = _logos[qid] || {};
+            _logos[qid].facebook = `https://graph.facebook.com/${value}/picture?type=square`;
         }
 
         // others we may want to add someday
@@ -147,6 +147,27 @@ function processEntities(result) {
 }
 
 
+// Get the claim value, considering any claim rank..
+//   - disregard any claims with "deprecated" rank
+//   - accept immediately any claim with "preferred" rank
+//   - return the latest claim with "normal" rank
+function getClaimValue(entity, prop) {
+    if (!entity.claims) return;
+    if (!entity.claims[prop]) return;
+
+    let value, c;
+    for (let i = 0; i < entity.claims[prop].length; i++) {
+        c = entity.claims[prop][i];
+        if (c.rank === 'deprecated') continue;
+        if (c.mainsnak.snaktype !== 'value') continue;
+
+        value = c.mainsnak.datavalue.value;
+        if (c.rank === 'preferred') return value;  // return immediately
+    }
+    return value;
+}
+
+
 function finish() {
     // merge in the latest logos that were collected..
     Object.keys(_logos).forEach(qid => {
@@ -156,12 +177,18 @@ function finish() {
     });
 
     fileTree.write('brands', _brands);  // save updates
+
+    if (_errors.length) {
+        console.log(colors.yellow.bold(`\nError Summary:`));
+        _errors.forEach(msg => console.error(colors.red(msg)));
+    }
 }
 
 
 function twitterRateLimit(need) {
     let now = Date.now() / 1000;
-    return twitterAPI.get('application/rate_limit_status', { resources: 'users' })
+    return twitterAPI
+        .get('application/rate_limit_status', { resources: 'users' })
         .then(result => {
             let stat = result.resources.users['/users/show/:id'];
             let resetSec = Math.ceil(stat.reset - now);
