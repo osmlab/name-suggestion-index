@@ -259,10 +259,11 @@ and a `tourism=motel` (correct). In this situation we want to:
 * Delete the entry for `"tourism/hotel|Motel 6"` and
 * Add `"match": ["tourism/hotel|Motel 6"]` to the `"tourism/motel|Motel 6"` entry
 
-Usually the entry used more frequently (indicated by "count" property)
-is the one to keep.  If you are not sure, you can also search on the
-[OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Map_Features) for tag best practices.
+Local knowledge, existing tagging (indicated by "count" property), information at Wikipedia page or company's website, [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) help in deciding which entry should be kept.
 
+If situation is unclear one may contact [local community](https://community.osm.be/) and ask for help.
+
+Note that in some cases both entries should be kept - for example given brand may really operate both superkarkets and convenience stores under the same name. In that case it is necessary to use `nomatch`.
 &nbsp;
 
 #### Uncommon names
