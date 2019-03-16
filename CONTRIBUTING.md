@@ -259,7 +259,7 @@ and a `tourism=motel` (correct). In this situation we want to:
 * Delete the entry for `"tourism/hotel|Motel 6"` and
 * Add `"match": ["tourism/hotel|Motel 6"]` to the `"tourism/motel|Motel 6"` entry
 
-Local knowledge, existing tagging (indicated by "count" property), information at Wikipedia page or company's website, [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) help in deciding which entry should be kept.
+Local knowledge, existing tagging (indicated by the `count` property), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding which entry should be kept.
 
 If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
 
