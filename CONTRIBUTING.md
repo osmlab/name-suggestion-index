@@ -12,7 +12,7 @@
 * Edit Wikidata - [show me](#memo--edit-wikidata)
 
 Tip: You can browse the index at
-http://osmlab.github.io/name-suggestion-index/brands/index.html
+[http://osmlab.github.io/name-suggestion-index/brands/index.html](http://osmlab.github.io/name-suggestion-index/brands/index.html)
 to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
