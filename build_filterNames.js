@@ -244,6 +244,7 @@ function checkBrands() {
     let warnFormatWikipedia = [];
     let warnMissingWikidata = [];
     let warnMissingWikipedia = [];
+    let warnMissingLogos = [];
     let warnMissingTag = [];
     let seen = {};
 
@@ -298,6 +299,11 @@ function checkBrands() {
             warnMissingWikipedia.push(k);
         } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
             warnFormatWikipedia.push([k, wp]);
+        }
+
+        // Warn on missing logo
+        if (!obj.logos) {
+            warnMissingLogos.push(k);
         }
 
         // Warn on other missing tags
@@ -372,6 +378,15 @@ function checkBrands() {
     //     console.warn('total ' + warnMissingWikipedia.length);
     // }
 
+    // if (warnMissingLogos.length) {
+    //     console.warn(colors.yellow('\nWarning - Brand missing `logos`:'));
+    //     console.warn('To resolve these, update the brands' entries on wikidata.org, then `npm run logos`.');
+    //     warnMissingLogos.forEach(w => console.warn(
+    //         colors.yellow('  "' + w + '"') + ' -> missing -> "logos"'
+    //     ));
+    //     console.warn('total ' + warnMissingLogos.length);
+    // }
+
     if (warnFormatWikidata.length) {
         console.warn(colors.yellow('\nWarning - Brand with incorrect `brand:wikidata` format:'));
         console.warn('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".');
@@ -392,6 +407,11 @@ function checkBrands() {
 
     let total = Object.keys(brands).length;
     let hasWd = total - warnMissingWikidata.length;
-    let pct = (hasWd * 100 / total).toFixed(1);
-    console.info(colors.blue(`\nIndex completeness: ${hasWd}/${total} (${pct}%) matched to Wikidata `));
+    let pctWd = (hasWd * 100 / total).toFixed(1);
+    let hasLogos = total - warnMissingLogos.length;
+    let pctLogos = (hasLogos * 100 / total).toFixed(1);
+    console.info(colors.blue.bold(`\nIndex completeness:`));
+    console.info(colors.blue.bold(`  ${total} entries total.`));
+    console.info(colors.blue.bold(`  ${hasWd} (${pctWd}%) with a 'brand:wikidata' tag.`));
+    console.info(colors.blue.bold(`  ${hasLogos} (${pctLogos}%) with a logo.`));
 }
