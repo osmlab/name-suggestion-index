@@ -57,10 +57,10 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|ABC": {
-    "count": 829,
+  "shop/convenience|ABC~(Hawaii)": {
     "countryCodes": ["us"],
     "match": ["shop/convenience|Abc"],
+    "nocount": true,
     "nomatch": ["amenity/fuel|ABC"],
     "tags": {
       "brand": "ABC",
@@ -1624,9 +1624,14 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|abc": {
-    "count": 442,
+  "shop/convenience|abc~(Poland)": {
     "countryCodes": ["pl"],
+    "match": [
+      "shop/convenience|ABC",
+      "shop/convenience|Abc"
+    ],
+    "nocount": true,
+    "nomatch": ["amenity/fuel|ABC"],
     "tags": {
       "brand": "abc",
       "brand:wikidata": "Q11683985",
