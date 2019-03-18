@@ -76,8 +76,9 @@ Preset files (used by OSM editors):
 
 Name lists:
 * `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/discardNames.json` - discarded subset of allNames
-* `dist/keepNames.json` - kept subset of allNames
+* `dist/discardNames.json` - subset of allNames we are discarding
+* `dist/keepNames.json` - subset of allNames we are keeping
+* `dist/wikidata.json` - cached brand data fetched from Wikidata
 
 #### Configuration files (edit these):
 
@@ -102,7 +103,7 @@ Name lists:
 
 ### Other commands
 
-* `npm run logos` - Find brand logos by searching wikidata
+* `npm run wikidata` - Fetch useful data from Wikidata - labels, descriptions, logos, etc.
 * `npm run docs` - Updates the index summary pages
 
 

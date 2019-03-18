@@ -110,11 +110,11 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <table class="summary">
 <thead>
 <tr>
-<th>Name / ID</th>
+<th>Name<br/>ID</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata ID</th>
-<th>Wikidata Description</th>
+<th>Wikidata QID</th>
+<th>Wikidata Description<br/>Website</th>
 <th class="logo">Wikidata Logo</th>
 <th class="logo">Facebook Logo</th>
 <th class="logo">Twitter Logo</th>
@@ -133,19 +133,21 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
         let label = wikidata.label || '';
         let description = wikidata.description || '';
         if (description) { description = `"${description}"`; }
-        let identites = wikidata.identites || {};
+        let identities = wikidata.identities || {};
         let logos = wikidata.logos || {};
 
         body += `
 <tr>
 <td><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
   <div class="nsikey"><pre>'${name}'</pre></div>
-  <div class="viewlink">` + overpass(k, v, tags.name) + `</div>
+  <div class="viewlink">` + overpassLink(k, v, tags.name) + `</div>
 </td>
 <td>${count}</td>
 <td class="tags"><pre class="tags">` + displayTags(tags) + `</pre></td>
-<td>` + wd(tags['brand:wikidata']) + `</td>
-<td><h3>${label}</h3><span>${description}</span></td>
+<td>` + wdLink(tags['brand:wikidata']) + `</td>
+<td><h3>${label}</h3>
+  <span>${description}</span><br/>` + siteLink(identities.website) + `
+</td>
 <td class="logo">` + logo(logos.wikidata) + `</td>
 <td class="logo">` + logo(logos.facebook) + `</td>
 <td class="logo">` + logo(logos.twitter) + `</td>
@@ -161,7 +163,7 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 }
 
 
-function overpass(k, v, name) {
+function overpassLink(k, v, name) {
     let q = encodeURI(`[out:json][timeout:25];
 (nwr["${k}"="${v}"]["name"="${name}"];);
 out body;
@@ -175,8 +177,12 @@ function logo(src) {
     return src ? `<img class="logo" src="${src}"/>` : '';
 }
 
-function wd(qid) {
+function wdLink(qid) {
     return qid ? `<a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a>` : '';
+}
+
+function siteLink(href) {
+    return href ? `<div class="viewlink"><a target="_blank" href="${href}">${href}</a></div>` : '';
 }
 
 function displayTags(tags) {

@@ -19,8 +19,9 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
 * `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/discardNames.json` - discarded subset of allNames
-* `dist/keepNames.json` - kept subset of allNames
+* `dist/discardNames.json` - subset of allNames we are discarding
+* `dist/keepNames.json` - subset of allNames we are keeping
+* `dist/wikidata.json` - cached brand data fetched from Wikidata
 
 ##### :white_check_mark: &nbsp; Do edit the files in `config/` and `brands/`:
 
