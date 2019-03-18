@@ -4,76 +4,11 @@ const fileTree = require('./lib/file_tree');
 const fs = require('fs-extra');
 const shell = require('shelljs');
 const sort = require('./lib/sort');
-const wdk = require('wikidata-sdk');
 
-// Load and check brand files
-let _brands = fileTree.read('brands');
+const _brands = fileTree.read('brands');
+const _wikidata = require('./dist/wikidata.json');
 
-let _toFetch = gatherQIDs(_brands);
-let _qids = Object.keys(_toFetch);
-if (!_qids.length) {
-    console.log('Nothing to fetch');
-    process.exit();
-}
-
-// split into several wikidata requests
-let _urls = wdk.getManyEntities({
-    ids: _qids, languages: ['en'], props: ['labels', 'descriptions'], format: 'json'
-});
-
-console.log(colors.green.bold(`\nFetching Wikidata details`));
-doFetch(0);
-
-
-function gatherQIDs(brands) {
-    let toFetch = {};
-    Object.keys(brands).forEach(k => {
-        const qid = brands[k].tags['brand:wikidata'];
-        if (qid && /^Q\d+$/.test(qid)) {
-            toFetch[qid] = toFetch[qid] || [];
-            toFetch[qid].push(k);
-        }
-    });
-
-    return toFetch;
-}
-
-
-function doFetch(index) {
-    if (index >= _urls.length) {
-        return writeDocs('brands', _brands);
-    }
-
-    let currURL = _urls[index];
-    console.log(colors.yellow.bold(`Batch ${index+1}/${_urls.length}`));
-
-    fetch(currURL)
-        .then(response => response.json())
-        .then(processEntities)
-        .catch(e => console.error(colors.red(e)))
-        .then(() => delay(250))
-        .then(() => { doFetch(++index); });
-}
-
-
-function processEntities(result) {
-    Object.keys(result.entities).forEach(qid => {
-        let entity = result.entities[qid];
-        let label = entity.labels && entity.labels.en && entity.labels.en.value;
-        let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
-        let brandKeys = _toFetch[qid];
-        brandKeys.forEach(k => {
-            _brands[k].wdLabel = label;
-            _brands[k].wdDescription = description;
-        });
-    });
-}
-
-
-function delay(msec) {
-    return new Promise((resolve) => setTimeout(resolve, msec));
-}
-
+writeDocs('brands', _brands)
 
 function writeDocs(tree, obj) {
     console.log('\nwriting ' + tree);
@@ -188,14 +123,18 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <tbody>`;
 
     Object.keys(dict[k][v]).forEach(name => {
+        let slug = slugify(name);
         let entry = dict[k][v][name];
         let count = entry.count || '< 50';
         let tags = entry.tags || {};
-        let label = entry.wdLabel || '';
-        let description = entry.wdDescription || '';
+
+        let qid = tags['brand:wikidata'];
+        let wikidata = _wikidata[qid] || {};
+        let label = wikidata.label || '';
+        let description = wikidata.description || '';
         if (description) { description = `"${description}"`; }
-        let logos = entry.logos || {};
-        let slug = slugify(name);
+        let identites = wikidata.identites || {};
+        let logos = wikidata.logos || {};
 
         body += `
 <tr>
