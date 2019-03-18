@@ -9,6 +9,9 @@ const stringify = require('json-stringify-pretty-compact');
 const validate = require('./lib/validate');
 
 
+// Load cached wikidata
+const _wikidata = require('./dist/wikidata.json');
+
 // Load and check filters.json
 let filters = require('./config/filters.json');
 const filtersSchema = require('./schema/filters.json');
@@ -302,7 +305,7 @@ function checkBrands() {
         }
 
         // Warn on missing logo
-        if (!obj.logos) {
+        if (!(wd && _wikidata[wd] && _wikidata[wd].logos)) {
             warnMissingLogos.push(k);
         }
 

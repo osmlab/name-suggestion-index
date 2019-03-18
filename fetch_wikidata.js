@@ -1,6 +1,9 @@
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
 const fileTree = require('./lib/file_tree');
+const fs = require('fs-extra');
+const sort = require('./lib/sort');
+const stringify = require('json-stringify-pretty-compact');
 const wdk = require('wikidata-sdk');
 
 // If you want to fetch Twitter logos, sign up for
@@ -28,8 +31,8 @@ try {
 
 // what to fetch
 let _brands = fileTree.read('brands');
-let _toFetch = gatherQIDs(_brands);
-let _qids = Object.keys(_toFetch);
+let _wikidata = gatherQIDs(_brands);
+let _qids = Object.keys(_wikidata);
 let _total = _qids.length;
 if (!_total) {
     console.log('Nothing to fetch');
@@ -38,25 +41,28 @@ if (!_total) {
 
 // split into several wikidata requests
 let _urls = wdk.getManyEntities({
-    ids: _qids, languages: ['en'], props: ['info', 'claims'], format: 'json'
+    ids: _qids,
+    languages: ['en'],
+    props: ['info', 'labels', 'descriptions', 'claims'],
+    format: 'json'
 });
 
-let _logos = {};
 let _errors = [];
 doFetch().then(finish);
 
 
 function gatherQIDs(brands) {
-    let toFetch = {};
+    let wikidata = {};
     Object.keys(brands).forEach(k => {
-        const qid = brands[k].tags['brand:wikidata'];
-        if (qid && /^Q\d+$/.test(qid)) {
-            toFetch[qid] = toFetch[qid] || [];
-            toFetch[qid].push(k);
-        }
+        ['brand:wikidata', 'operator:wikidata'].forEach(t => {
+            let qid = brands[k].tags[t];
+            if (qid && /^Q\d+$/.test(qid)) {
+                wikidata[qid] = {};
+            }
+        });
     });
 
-    return toFetch;
+    return wikidata;
 }
 
 
@@ -86,54 +92,81 @@ function processEntities(result) {
     let queue = [];
 
     Object.keys(result.entities).forEach(qid => {
+        let target = _wikidata[qid];
         let entity = result.entities[qid];
-        if (!entity.claims) return;
+        let label = entity.labels && entity.labels.en && entity.labels.en.value;
+        let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
 
-        let value;
+        if (label) {
+            target.label = label;
+        }
+        if (description) {
+            target.description = description;
+        }
+
+        // process claims below here
+        if (!entity.claims) return;
+        target.logos = {};
+        target.identities = {};
+
+        let wikidataLogo = getClaimValue(entity, 'P154');
+        let brandWebsite = getClaimValue(entity, 'P856');
+        let twitterUser = getClaimValue(entity, 'P2002');
+        let facebookUser = getClaimValue(entity, 'P2013');
+        let instagramUser = getClaimValue(entity, 'P2003');
+        // others we may want to add someday
+        // P2397 - YouTube ID
+        // P2677 - LinkedIn ID
+        // P3267 - Flickr ID
+        // P3836 - Pintrest ID
 
         // P154 - Commons Logo (often not square)
-        value = getClaimValue(entity, 'P154');
-        if (value) {
-            _logos[qid] = _logos[qid] || {};
-            _logos[qid].wikidata = 'https://commons.wikimedia.org/w/index.php?' +
-                utilQsString({ title: `Special:Redirect/file/${value}`, width: 100 });
+        if (wikidataLogo) {
+            target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
+                utilQsString({ title: `Special:Redirect/file/${wikidataLogo}`, width: 100 });
+        }
+
+        // P856 - brand website
+        if (brandWebsite) {
+            target.identities.website = brandWebsite;
         }
 
         // P2002 - Twitter username
         // https://developer.twitter.com/en/docs/accounts-and-users/user-profile-images-and-banners.html
         // https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
         // rate limit: 900calls / 15min
-        value = getClaimValue(entity, 'P2002');
-        if (value && twitterAPI) {
-            _logos[qid] = _logos[qid] || {};
-            queue.push(
-                twitterAPI
-                    .get('users/show', { screen_name: value })
-                    .then(user => {
-                        _logos[qid].twitter = user.profile_image_url_https.replace('_normal', '_bigger');
-                    })
-                    .catch(e => {
-                        let msg = `Error: Twitter username @${value} for ${qid}: ` + JSON.stringify(e);
-                        _errors.push(msg);
-                        console.error(colors.red(msg));
-                    })
-            );
+        if (twitterUser) {
+            target.identities.twitter = twitterUser;
+            if (twitterAPI) {
+                queue.push(
+                    twitterAPI
+                        .get('users/show', { screen_name: twitterUser })
+                        .then(user => {
+                            target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
+                        })
+                        .catch(e => {
+                            let msg = `Error: Twitter username @${twitterUser} for ${qid}: ` + JSON.stringify(e);
+                            _errors.push(msg);
+                            console.error(colors.red(msg));
+                        })
+                );
+            }
         }
 
         // P2013 - Facebook ID
         // P2003 - Instagram ID
         // https://developers.facebook.com/docs/graph-api/reference/user/picture/
-        value = getClaimValue(entity, 'P2013') || getClaimValue(entity, 'P2003');
-        if (value) {
-            _logos[qid] = _logos[qid] || {};
-            _logos[qid].facebook = `https://graph.facebook.com/${value}/picture?type=square`;
+        if (facebookUser) {
+            target.identities.facebook = facebookUser;
+        }
+        if (instagramUser) {
+            target.identities.instagram = instagramUser;
+        }
+        let username = facebookUser || instagramUser;
+        if (username) {
+            target.logos.facebook = `https://graph.facebook.com/${username}/picture?type=square`;
         }
 
-        // others we may want to add someday
-        // P2397 - YouTube ID
-        // P2677 - LinkedIn ID
-        // P3267 - Flickr ID
-        // P3836 - Pintrest ID
     });
 
     // check Twitter rate limit status
@@ -168,14 +201,26 @@ function getClaimValue(entity, prop) {
 
 
 function finish() {
-    // merge in the latest logos that were collected..
-    Object.keys(_logos).forEach(qid => {
-        _toFetch[qid].forEach(k => {
-            _brands[k].logos = Object.assign((_brands[k].logos || {}), _logos[qid]);
+    console.log('\nwriting wikidata.json');
+    console.time(colors.green('wikidata.json updated'));
+
+    Object.keys(_wikidata).forEach(qid => {
+        let target = _wikidata[qid];
+
+        ['identities', 'logos'].forEach(prop => {
+            if (target[prop] && Object.keys(target[prop]).length) {
+                target[prop] = sort(target[prop]);
+            } else {
+                delete target[prop];
+            }
         });
+
+        _wikidata[qid] = sort(target);
     });
 
-    fileTree.write('brands', _brands);  // save updates
+
+    fs.writeFileSync('dist/wikidata.json', stringify(sort(_wikidata)));
+    console.timeEnd(colors.green('wikidata.json updated'));
 
     if (_errors.length) {
         console.log(colors.yellow.bold(`\nError Summary:`));
