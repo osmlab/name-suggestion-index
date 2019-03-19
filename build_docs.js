@@ -64,6 +64,7 @@ This tag is pretty special because we can use it to link features in OpenStreetM
 <a target="_blank" href="https://www.wikidata.org">Wikidata</a>, a free and open knowledge database.
 <br/>
 You can help us by adding brands to the index, matching brands to Wikidata identifiers, or by improving the brands' Wikidata pages.<br/>
+Each category below displays counts of (brands "complete" with a logo / brands total).<br/>
 <br/>
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.<br/>
 </div>
