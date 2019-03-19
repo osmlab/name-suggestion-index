@@ -1639,8 +1639,12 @@
       "name": "Texas Chicken"
     }
   },
-  "amenity/fast_food|Thai Express": {
-    "count": 92,
+  "amenity/fast_food|Thai Express~(Singapore)": {
+    "countryCodes": ["sg"],
+    "nocount": true,
+    "nomatch": [
+      "amenity/fast_food|Thaï Express~(North America)"
+    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Thai Express",
@@ -1648,6 +1652,24 @@
       "brand:wikipedia": "en:Thai Express",
       "cuisine": "thai",
       "name": "Thai Express"
+    }
+  },
+  "amenity/fast_food|Thaï Express~(North America)": {
+    "countryCodes": ["ca", "us"],
+    "match": [
+      "amenity/fast_food|Thai Express~(North America)"
+    ],
+    "nocount": true,
+    "nomatch": [
+      "amenity/fast_food|Thai Express~(Singapore)"
+    ],
+    "tags": {
+      "amenity": "fast_food",
+      "brand": "Thaï Express",
+      "brand:wikidata": "Q7711610",
+      "brand:wikipedia": "en:Thaï Express",
+      "cuisine": "thai",
+      "name": "Thaï Express"
     }
   },
   "amenity/fast_food|The Habit Burger Grill": {
