@@ -74,9 +74,23 @@ See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blo
         let entry = dict[k];
         Object.keys(entry).forEach(v => {
             let href = `${k}/${v}.html`;
-            let count = Object.keys(dict[k][v]).length;
+            let keys = Object.keys(dict[k][v]);
+            let complete = 0;
+            let count = keys.length;
+
+            keys.forEach(name => {
+                let entry = dict[k][v][name];
+                let tags = entry.tags || {};
+                let qid = tags['brand:wikidata'];
+                let wikidata = _wikidata[qid] || {};
+                let logos = wikidata.logos || {};
+                if (Object.keys(logos).length) {
+                    complete++;
+                }
+            });
+
             body += `
-<div class="child"><a href="${href}">${k}/${v} (${count})</a></div>`;
+<div class="child"><a href="${href}">${k}/${v} (${complete}/${count})</a></div>`;
         });
     });
 

@@ -113,8 +113,8 @@ function processEntities(result) {
         let brandWebsite = getClaimValue(entity, 'P856');
         let twitterUser = getClaimValue(entity, 'P2002');
         let facebookUser = getClaimValue(entity, 'P2013');
-        let instagramUser = getClaimValue(entity, 'P2003');
         // others we may want to add someday
+        // P2003 - Instagram ID
         // P2397 - YouTube ID
         // P2677 - LinkedIn ID
         // P3267 - Flickr ID
@@ -154,19 +154,11 @@ function processEntities(result) {
         }
 
         // P2013 - Facebook ID
-        // P2003 - Instagram ID
         // https://developers.facebook.com/docs/graph-api/reference/user/picture/
         if (facebookUser) {
             target.identities.facebook = facebookUser;
+            target.logos.facebook = `https://graph.facebook.com/${facebookUser}/picture?type=square`;
         }
-        if (instagramUser) {
-            target.identities.instagram = instagramUser;
-        }
-        let username = facebookUser || instagramUser;
-        if (username) {
-            target.logos.facebook = `https://graph.facebook.com/${username}/picture?type=square`;
-        }
-
     });
 
     // check Twitter rate limit status
