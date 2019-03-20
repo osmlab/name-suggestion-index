@@ -89,7 +89,7 @@ function doFetch(index) {
 
 
 function processEntities(result) {
-    let queue = [];
+    let twitterQueue = [];
 
     Object.keys(result.entities).forEach(qid => {
         let target = _wikidata[qid];
@@ -132,25 +132,9 @@ function processEntities(result) {
         }
 
         // P2002 - Twitter username
-        // https://developer.twitter.com/en/docs/accounts-and-users/user-profile-images-and-banners.html
-        // https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
-        // rate limit: 900calls / 15min
         if (twitterUser) {
             target.identities.twitter = twitterUser;
-            if (twitterAPI) {
-                queue.push(
-                    twitterAPI
-                        .get('users/show', { screen_name: twitterUser })
-                        .then(user => {
-                            target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
-                        })
-                        .catch(e => {
-                            let msg = `Error: Twitter username @${twitterUser} for ${qid}: ` + JSON.stringify(e);
-                            _errors.push(msg);
-                            console.error(colors.red(msg));
-                        })
-                );
-            }
+            twitterQueue.push({ qid: qid, username: twitterUser });
         }
 
         // P2013 - Facebook ID
@@ -161,13 +145,14 @@ function processEntities(result) {
         }
     });
 
-    // check Twitter rate limit status
-    // https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
-    if (queue.length > 0 && twitterAPI) {
-        queue.unshift(twitterRateLimit(queue.length));
+    if (twitterAPI && twitterQueue.length > 0) {
+        return checkTwitterRateLimit(twitterQueue.length)
+            .then(() => Promise.all(
+                twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username))
+            ));
+    } else {
+        return Promise.resolve();
     }
-
-    return Promise.all(queue);
 }
 
 
@@ -221,29 +206,64 @@ function finish() {
 }
 
 
-function twitterRateLimit(need) {
-    let now = Date.now() / 1000;
+// check Twitter rate limit status
+// https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
+// rate limit: 900calls / 15min
+function checkTwitterRateLimit(need) {
     return twitterAPI
         .get('application/rate_limit_status', { resources: 'users' })
         .then(result => {
-            let stat = result.resources.users['/users/show/:id'];
-            let resetSec = Math.ceil(stat.reset - now);
-            console.log(colors.green.bold(`Twitter rate status: fetching ${need}, remaining ${stat.remaining}, resets in ${resetSec} seconds...`));
-            if (need > stat.remaining) {
-                console.log(colors.blue(`Twitter rate limit exceeded, pausing for ${resetSec} seconds...`));
-                return resetSec;
+            let now = Date.now() / 1000;
+            let stats = result.resources.users['/users/show/:id'];
+            let resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
+            console.log(colors.green.bold(`Twitter rate status: need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
+            if (need > stats.remaining) {
+                let delaySec = clamp(resetSec, 10, 60);
+                console.log(colors.blue(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
+                return delaySec;
+            } else {
+                return 0;
             }
-            return 0;
         })
-        .then(sec => delay(sec * 1000))
+        .then(sec => {
+            if (sec > 0) {
+                return delay(sec * 1000)
+                    .then(() => checkTwitterRateLimit(need));
+            } else {
+                return Promise.resolve();
+            }
+        })
         .catch(e => {
             console.error(colors.red(`Error: Twitter rate limit: ` + JSON.stringify(e)))
         });
 }
 
 
+// https://developer.twitter.com/en/docs/accounts-and-users/user-profile-images-and-banners.html
+// https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
+function fetchTwitterUserDetails(qid, username) {
+    let target = _wikidata[qid];
+    return twitterAPI
+        .get('users/show', { screen_name: username })
+        .then(user => {
+            target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
+        })
+        .catch(e => {
+            let msg = `Error: Twitter username @${username} for ${qid}: ` + JSON.stringify(e);
+            _errors.push(msg);
+            console.error(colors.red(msg));
+        });
+}
+
+
 function delay(msec) {
     return new Promise((resolve) => setTimeout(resolve, msec));
+}
+
+
+// Clamp a number between min and max
+function clamp(num, min, max) {
+    return Math.min(Math.max(num, min), max);
 }
 
 
