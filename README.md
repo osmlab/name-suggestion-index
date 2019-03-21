@@ -75,15 +75,15 @@ Preset files (used by OSM editors):
 * `dist/name-suggestions.presets.xml` - Name suggestion presets, as JOSM-style preset XML
 
 Name lists:
-* `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/discardNames.json` - subset of allNames we are discarding
-* `dist/keepNames.json` - subset of allNames we are keeping
-* `dist/wikidata.json` - cached brand data fetched from Wikidata
+* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
+* `dist/names_discard.json` - subset of `names_all` we are discarding
+* `dist/names_keep.json` - subset of `names_all` we are keeping
+* `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
 #### Configuration files (edit these):
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
+  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `discardNames`
 * `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`
@@ -96,9 +96,9 @@ Name lists:
 ### Building the index
 
 * `npm run build`
-  * Regenerates `dist/keepNames.json` and `dist/discardNames.json`
-  * Any new `keepNames` not already present in the index will be added to it
-  * Outputs warnings to suggest updates to `brands/**/*.json`
+  * Regenerates `dist/names_keep.json` and `dist/names_discard.json`
+  * Any new entries from `names_keep` not already present in the index will be added to it
+  * Outputs many warnings to suggest updates to `brands/**/*.json`
 
 
 ### Other commands
@@ -107,7 +107,7 @@ Name lists:
 * `npm run docs` - Updates the index summary pages
 
 
-### Updating `dist/allNames.json` from planet
+### Updating `dist/names_all.json` from planet
 
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
 You do not need to do these steps in order to contribute to the index.
@@ -119,9 +119,9 @@ You do not need to do these steps in order to contribute to the index.
 - Prefilter the planet file to only include named items with keys we are looking for:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
   - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism -o wanted.osm.pbf`
-- Run `node build_allNames wanted.osm.pbf`
-  - results will go in `dist/allNames.json`
-  - `git add dist/allNames.json && git commit -m 'Updated dist/allNames.json'`
+- Run `node build_names_all wanted.osm.pbf`
+  - results will go in `dist/names_all.json`
+  - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
 
 
 ### License

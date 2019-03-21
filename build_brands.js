@@ -31,8 +31,8 @@ fs.writeFileSync('config/filters.json', stringify(filters));
 let brands = fileTree.read('brands');
 
 // all names start out in discard..
-const allNames = require('./dist/allNames.json');
-let discard = Object.assign({}, allNames);
+const allnames = require('./dist/names_all.json');
+let discard = Object.assign({}, allnames);
 
 let keep = {};
 let rIndex = {};
@@ -44,13 +44,13 @@ fileTree.write('brands', brands);
 
 
 //
-// `filterNames()` will process a `dist/allNames.json` file,
+// `filterNames()` will process a `dist/names_all.json` file,
 // splitting the data up into 2 files:
 //
-// `dist/keepNames.json` - candidates for suggestion presets
-// `dist/discardNames.json` - everything else
+// `dist/names_keep.json` - candidates for suggestion presets
+// `dist/names_discard.json` - everything else
 //
-// The file format is identical to the `allNames.json` file:
+// The file format is identical to the `names_all.json` file:
 // "key/value|name": count
 // "shop/coffee|Starbucks": 8284
 //
@@ -59,7 +59,7 @@ function filterNames() {
     console.time(colors.green('names filtered'));
 
     // Start clean
-    shell.rm('-f', ['dist/keepNames.json', 'dist/discardNames.json']);
+    shell.rm('-f', ['dist/names_keep.json', 'dist/names_discard.json']);
 
     // filter by keepTags (move from discard -> keep)
     filters.keepTags.forEach(s => {
@@ -96,8 +96,8 @@ function filterNames() {
         }
     });
 
-    fs.writeFileSync('dist/discardNames.json', stringify(sort(discard)));
-    fs.writeFileSync('dist/keepNames.json', stringify(sort(keep)));
+    fs.writeFileSync('dist/names_discard.json', stringify(sort(discard)));
+    fs.writeFileSync('dist/names_keep.json', stringify(sort(keep)));
     console.timeEnd(colors.green('names filtered'));
 }
 
@@ -257,7 +257,7 @@ function checkBrands() {
         let tag = parts[0];
         let name = parts[1];
 
-        // Warn if the item is uncommon (i.e. not found in keepNames)
+        // Warn if the item is uncommon (i.e. not found in names_keep)
         if (!keep[k]) {
             delete obj.count;
             if (!obj.nocount) {   // suppress warning?
@@ -354,7 +354,7 @@ function checkBrands() {
     }
 
     if (warnUncommon.length) {
-        console.warn(colors.yellow('\nWarning - Uncommon brand not found in `keepNames.json`:'));
+        console.warn(colors.yellow('\nWarning - Uncommon brand not found in `names_keep.json`:'));
         console.warn('These might be okay. It just means that the entry is not commonly found in OpenStreetMap.');
         console.warn('To suppress this warning, add a "nocount" property to the entry.');
         warnUncommon.forEach(w => console.warn(
@@ -383,7 +383,7 @@ function checkBrands() {
 
     // if (warnMissingLogos.length) {
     //     console.warn(colors.yellow('\nWarning - Brand missing `logos`:'));
-    //     console.warn('To resolve these, update the brands' entries on wikidata.org, then `npm run logos`.');
+    //     console.warn('To resolve these, update the brands' entries on wikidata.org, then `npm run wikidata`.');
     //     warnMissingLogos.forEach(w => console.warn(
     //         colors.yellow('  "' + w + '"') + ' -> missing -> "logos"'
     //     ));

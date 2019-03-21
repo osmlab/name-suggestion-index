@@ -17,12 +17,12 @@
   "main": "dist/index.js",
   "module": "index.mjs",
   "scripts": {
-    "dist": "node build_nameSuggestions.js && rollup -c",
-    "build": "node build_filterNames",
+    "dist": "node build_dist.js && rollup -c",
+    "build": "node build_brands",
     "docs": "node build_docs",
-    "logos": "node fetch_wikidata",
+    "logos": "node build_wikidata",
     "test": "node validate",
-    "wikidata": "node fetch_wikidata",
+    "wikidata": "node build_wikidata",
     "wikimatch": "node match_wikiTags"
   },
   "devDependencies": {

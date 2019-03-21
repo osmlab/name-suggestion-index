@@ -196,7 +196,7 @@ function finish() {
     });
 
 
-    fs.writeFileSync('dist/wikidata.json', stringify(sort(_wikidata)));
+    fs.writeFileSync('dist/wikidata.json', stringify({ wikidata: sort(_wikidata) }));
     console.timeEnd(colors.green('wikidata.json updated'));
 
     if (_errors.length) {

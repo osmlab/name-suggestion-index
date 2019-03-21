@@ -19,6 +19,12 @@ function buildAll() {
     // Start clean
     shell.rm('-f', ['dist/name-suggestions.*', 'dist/taginfo.json']);
 
+    // copy `filters.json`
+    shell.cp('-f', 'config/filters.json', 'dist/filters.json');
+
+    // write `brands.json` as a single file
+    fs.writeFileSync('dist/brands.json', stringify({ brands: brands }));
+
     buildJSON();
     buildXML();
     buildTaginfo();

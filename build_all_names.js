@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 // This script will process a planet file and extract frequently occuring names.
-// It produces a file containing all the top names and tags: `dist/allNames.json`
+// It produces a file containing all the top names and tags: `dist/names_all.json`
 //
-// `allNames.json` contains a dictionary object in the format:
+// `names_all.json` contains a dictionary object in the format:
 // "key/value|name": count
 // "amenity/cafe|Starbucks": 159
 //
@@ -13,11 +13,12 @@ const colors = require('colors/safe');
 const fs = require('fs');
 const osmium = require('osmium');
 const shell = require('shelljs');
+const sort = require('./lib/sort');
 const stringify = require('json-stringify-pretty-compact');
 
 if (process.argv.length < 3) {
     console.log('');
-    console.log('Usage:  node build_allNames <planet.osm>');
+    console.log('Usage:  node build_all_names <planet.osm>');
     console.log('');
     process.exit(1);
 }
@@ -30,11 +31,11 @@ build();
 
 
 function build() {
-    console.log('building allNames.json');
+    console.log('building names_all.json');
     console.time(colors.green('data built'));
 
     // Start clean
-    shell.rm('-f', ['dist/allNames.json']);
+    shell.rm('-f', ['dist/names_all.json']);
 
     let handler = new osmium.Handler();
     handler.options({ tagged_nodes_only: true });
@@ -53,13 +54,7 @@ function build() {
         }
     }
 
-    // sort
-    let sorted = {};
-    Object.keys(filtered).sort().forEach(function(k) {
-        sorted[k] = filtered[k];
-    });
-
-    fs.writeFileSync('dist/allNames.json', stringify(sorted));
+    fs.writeFileSync('dist/names_all.json', stringify(sort(filtered)));
     console.timeEnd(colors.green('data built'));
 }
 

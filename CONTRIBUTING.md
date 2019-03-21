@@ -18,15 +18,15 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
-* `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/discardNames.json` - subset of allNames we are discarding
-* `dist/keepNames.json` - subset of allNames we are keeping
-* `dist/wikidata.json` - cached brand data fetched from Wikidata
+* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
+* `dist/names_discard.json` - subset of `names_all` we are discarding
+* `dist/names_keep.json` - subset of `names_all` we are keeping
+* `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
 ##### :white_check_mark: &nbsp; Do edit the files in `config/` and `brands/`:
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
+  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
 * `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`
@@ -65,10 +65,10 @@ and not need to worry about the tags being added.
 
 __The `brands/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
 
-These files are created by:
-- Processing the OpenStreetMap "planet" data to extract common names -> `dist/allNames.json`
-- Filtering all the names into -> `dist/keepNames.json` and `dist/discardNames.json`
-- Merging the names we are keeping into -> `brands/**/*.json` files for us to decide what to do with them
+These files are created by a several step process:
+- Process the OpenStreetMap "planet" data to extract common names -> `dist/names_all.json`
+- Filter all the names into -> `dist/names_keep.json` and `dist/names_discard.json`
+- Merge the names we are keeping into -> `brands/**/*.json` files for us to decide what to do with them
 
 The files are organized by OpenStreetMap tag:
 * `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
@@ -270,7 +270,7 @@ Note that in some cases both entries should be kept - for example, a given brand
 #### Uncommon names
 
 ```
-Warning - Uncommon brand not found in `keepNames.json`:
+Warning - Uncommon brand not found in `names_keep.json`:
 These might be okay. It just means that the entry is not commonly found in OpenStreetMap.
 To suppress this warning, add a "nocount" property to the entry.
   "shop/wholesale|Costco"

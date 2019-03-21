@@ -6,7 +6,7 @@ const shell = require('shelljs');
 const sort = require('./lib/sort');
 
 const _brands = fileTree.read('brands');
-const _wikidata = require('./dist/wikidata.json');
+const _wikidata = require('./dist/wikidata.json').wikidata;
 
 writeDocs('brands', _brands)
 
