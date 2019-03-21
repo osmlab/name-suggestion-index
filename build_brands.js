@@ -10,7 +10,7 @@ const validate = require('./lib/validate');
 
 
 // Load cached wikidata
-const _wikidata = require('./dist/wikidata.json');
+const _wikidata = require('./dist/wikidata.json').wikidata;
 
 // Load and check filters.json
 let filters = require('./config/filters.json');
@@ -305,7 +305,8 @@ function checkBrands() {
         }
 
         // Warn on missing logo
-        if (!(wd && _wikidata[wd] && _wikidata[wd].logos)) {
+        let logos = (wd && _wikidata[wd] && _wikidata[wd].logos) || {};
+        if (!Object.keys(logos).length) {
             warnMissingLogos.push(k);
         }
 
