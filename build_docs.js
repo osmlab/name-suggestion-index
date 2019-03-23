@@ -184,7 +184,7 @@ function overpassLink(k, v, name) {
 out body;
 >;
 out skel qt;`);
-    let href = `https://overpass-turbo.eu/?Q=${q}&R`;
+    let href = `https://overpass-turbo.eu/?Q=${q.replace(`&`, `%26`)}&R`;
     return `<a target="_blank" href="${href}"/>View on Overpass Turbo</a>`;
 }
 
