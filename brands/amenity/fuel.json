@@ -169,6 +169,17 @@
       "name": "Asda"
     }
   },
+  "amenity/fuel|Atem": {
+    "countryCodes": ["br"],
+    "match": ["amenity/fuel|Posto Atem"],
+    "nocount": true,
+    "tags": {
+      "amenity": "fuel",
+      "brand": "Atem",
+      "brand:wikidata": "Q62332255",
+      "name": "Atem"
+    }
+  },
   "amenity/fuel|Auchan": {
     "count": 101,
     "nomatch": ["shop/supermarket|Auchan"],
@@ -850,17 +861,6 @@
       "brand:wikidata": "Q14628080",
       "brand:wikipedia": "nl:Firezone",
       "name": "Firezone"
-    }
-  },
-  "amenity/fuel|Flying J": {
-    "count": 76,
-    "countryCodes": ["ca", "us"],
-    "tags": {
-      "amenity": "fuel",
-      "brand": "Flying J",
-      "brand:wikidata": "Q1434601",
-      "brand:wikipedia": "en:Pilot Flying J",
-      "name": "Flying J"
     }
   },
   "amenity/fuel|Flying V": {
@@ -1837,9 +1837,16 @@
   },
   "amenity/fuel|Pilot": {
     "count": 125,
+    "countryCodes": ["ca", "us"],
+    "match": [
+      "amenity/fuel|Flying J",
+      "amenity/fuel|Pilot Flying J"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Pilot",
+      "brand:wikidata": "Q1434601",
+      "brand:wikipedia": "en:Pilot Flying J",
       "name": "Pilot"
     }
   },
@@ -1854,14 +1861,6 @@
       "name": "Pioneer"
     }
   },
-  "amenity/fuel|Posto Atem": {
-    "count": 80,
-    "tags": {
-      "amenity": "fuel",
-      "brand": "Posto Atem",
-      "name": "Posto Atem"
-    }
-  },
   "amenity/fuel|Preem": {
     "count": 267,
     "tags": {
@@ -1872,11 +1871,23 @@
       "name": "Preem"
     }
   },
-  "amenity/fuel|Primax": {
-    "count": 437,
+  "amenity/fuel|Primax~(Ecuador)": {
+    "countryCodes": ["ec"],
+    "nocount": true,
     "tags": {
       "amenity": "fuel",
       "brand": "Primax",
+      "brand:wikidata": "Q62332857",
+      "name": "Primax"
+    }
+  },
+  "amenity/fuel|Primax~(Peru)": {
+    "countryCodes": ["pe"],
+    "nocount": true,
+    "tags": {
+      "amenity": "fuel",
+      "brand": "Primax",
+      "brand:wikidata": "Q62332638",
       "name": "Primax"
     }
   },
