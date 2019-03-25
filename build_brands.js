@@ -126,19 +126,26 @@ function mergeBrands() {
 
         if (!obj) {   // a new entry!
             obj = { count: 0, tags: {} };
+            brands[k] = obj;
+
+            // assign default tags - new entries
             obj.tags.brand = name;
             obj.tags.name = name;
             obj.tags[key] = value;
-
-            // set a few sensibile defaults
             if (key === 'amenity' && value === 'cafe') {
                 obj.tags.cuisine = 'coffee_shop';
-            } else if (key === 'amenity' && value === 'pharmacy') {
-                obj.tags.healthcare = 'pharmacy';
             }
-
-            brands[k] = obj;
         }
+
+        // assign default tags - new or existing entries
+        if (key === 'amenity' && value === 'cafe') {
+            if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
+        } else if (key === 'amenity' && value === 'fast_food') {
+            if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
+        } else if (key === 'amenity' && value === 'pharmacy') {
+            if (!obj.tags.healthcare) obj.tags.healthcare = 'pharmacy';
+        }
+
 
         // Force `countryCode`, and duplicate `name:xx` and `brand:xx` tags
         // if the name can only be reasonably read in one country.
