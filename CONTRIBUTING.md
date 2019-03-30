@@ -264,7 +264,7 @@ Local knowledge, existing tagging (indicated by the `count` property), informati
 
 If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
 
-Note that in some cases both entries should be kept - for example, a given brand may really operate both superkarkets and convenience stores under the same name. In that case it is necessary to use the `nomatch` property.
+Note that in some cases both entries should be kept - for example, a given brand may really operate both supermarkets and convenience stores under the same name. In that case it is necessary to use the `nomatch` property.
 &nbsp;
 
 #### Uncommon names
