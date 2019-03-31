@@ -141,7 +141,7 @@ function processEntities(result) {
         // https://developers.facebook.com/docs/graph-api/reference/user/picture/
         if (facebookUser) {
             target.identities.facebook = facebookUser;
-            target.logos.facebook = `https://graph.facebook.com/${facebookUser}/picture?type=square`;
+            target.logos.facebook = `https://graph.facebook.com/${facebookUser}/picture?type=large`;
         }
     });
 
