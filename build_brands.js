@@ -332,14 +332,13 @@ function checkBrands() {
         switch (tag) {
             case 'amenity/fast_food':
             case 'amenity/restaurant':
-                if (!obj.tags.cuisine) {
-                    warnMissingTag.push([k, 'cuisine']);
-                }
+                if (!obj.tags.cuisine) { warnMissingTag.push([k, 'cuisine']); }
                 break;
             case 'amenity/vending_machine':
-                if (!obj.tags.vending) {
-                    warnMissingTag.push([k, 'vending']);
-                }
+                if (!obj.tags.vending) { warnMissingTag.push([k, 'vending']); }
+                break;
+            case 'shop/beauty':
+                if (!obj.tags.beauty) { warnMissingTag.push([k, 'beauty']); }
                 break;
         }
     });
