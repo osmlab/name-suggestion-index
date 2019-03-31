@@ -133,9 +133,6 @@ function mergeBrands() {
             obj.tags.brand = name;
             obj.tags.name = name;
             obj.tags[key] = value;
-            if (key === 'amenity' && value === 'cafe') {
-                obj.tags.cuisine = 'coffee_shop';
-            }
         }
 
         obj.count = keep[k];
@@ -154,6 +151,7 @@ function mergeBrands() {
         // assign default tags - new or existing entries
         if (key === 'amenity' && value === 'cafe') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
+            if (!obj.tags.cuisine) obj.tags.cuisine = 'coffee_shop';
         } else if (key === 'amenity' && value === 'fast_food') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
         } else if (key === 'amenity' && value === 'pharmacy') {
