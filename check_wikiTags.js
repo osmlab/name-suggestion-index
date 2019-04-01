@@ -123,14 +123,14 @@ function processEntities(result) {
 
 
         // Check whether the linked Wikipedia article of the Wikidata entity is the correct one
-        if (wikipedia.brand) {
+        if (wikipedia.brand && wikidata.brand == qid) {
             let correct = correctSitelink(wikipedia.brand, entity.sitelinks);
             if (correct) {
                 _wrongLink.push([target, qid, 'brand:wikidata', wikipedia.brand, correct]);
             }
         }
 
-        if (wikipedia.operator) {
+        if (wikipedia.operator && wikidata.operator == qid) {
             let correct = correctSitelink(wikipedia.operator, entity.sitelinks);
             if (correct) {
                 _wrongLink.push([target, qid, 'operator:wikidata', wikipedia.operator, correct]);
