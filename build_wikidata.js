@@ -9,23 +9,34 @@ const wdk = require('wikidata-sdk');
 // If you want to fetch Twitter logos, sign up for
 // API credentials at https://apps.twitter.com/
 // and put them into `config/secrets.json`
-let twitterAPI;
+let twitterAPIs = [];
+let _twitterAPIIndex = 0;
 try {
-    // `config/secrets.json` should contain:
-    // {
+    // `config/secrets.json` can contain a single secret object,
+    // or an array of secret objects like:
+    // [{
     //   "twitter_consumer_key": "",
     //   "twitter_consumer_secret": "",
     //   "twitter_access_token_key": "",
     //   "twitter_access_token_secret": ""
-    // }
+    // }, {
+    //   "twitter_consumer_key": "",
+    //   "twitter_consumer_secret": "",
+    //   "twitter_access_token_key": "",
+    //   "twitter_access_token_secret": ""
+    // }]
     const Twitter = require('twitter');
-    const secrets = require('./config/secrets.json');
-    twitterAPI = new Twitter({
-        consumer_key: secrets.twitter_consumer_key,
-        consumer_secret: secrets.twitter_consumer_secret,
-        access_token_key: secrets.twitter_access_token_key,
-        access_token_secret: secrets.twitter_access_token_secret
-    });
+    let secrets = require('./config/secrets.json');
+    secrets = [].concat(secrets);
+
+    twitterAPIs = secrets.map(s => {
+        return new Twitter({
+            consumer_key: s.twitter_consumer_key,
+            consumer_secret: s.twitter_consumer_secret,
+            access_token_key: s.twitter_access_token_key,
+            access_token_secret: s.twitter_access_token_secret
+        });
+    })
 } catch(err) { /* ignore */ }
 
 
@@ -145,7 +156,7 @@ function processEntities(result) {
         }
     });
 
-    if (twitterAPI && twitterQueue.length > 0) {
+    if (twitterAPIs.length && twitterQueue.length) {
         return checkTwitterRateLimit(twitterQueue.length)
             .then(() => Promise.all(
                 twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username))
@@ -210,13 +221,17 @@ function finish() {
 // https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
 // rate limit: 900calls / 15min
 function checkTwitterRateLimit(need) {
+    _twitterAPIIndex = (_twitterAPIIndex + 1) % twitterAPIs.length;
+    let twitterAPI = twitterAPIs[_twitterAPIIndex];
+    let which = twitterAPIs.length > 1 ? (' ' + (_twitterAPIIndex + 1)) : '';
+
     return twitterAPI
         .get('application/rate_limit_status', { resources: 'users' })
         .then(result => {
             let now = Date.now() / 1000;
             let stats = result.resources.users['/users/show/:id'];
             let resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
-            console.log(colors.green.bold(`Twitter rate status: need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
+            console.log(colors.green.bold(`Twitter rate status${which}: need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
             if (need > stats.remaining) {
                 let delaySec = clamp(resetSec, 10, 60);
                 console.log(colors.blue(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
@@ -243,6 +258,8 @@ function checkTwitterRateLimit(need) {
 // https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
 function fetchTwitterUserDetails(qid, username) {
     let target = _wikidata[qid];
+    let twitterAPI = twitterAPIs[_twitterAPIIndex];
+
     return twitterAPI
         .get('users/show', { screen_name: username })
         .then(user => {
