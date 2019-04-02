@@ -160,7 +160,7 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <td>${count}</td>
 <td class="tags"><pre class="tags">` + displayTags(tags) + `</pre></td>
 <td>` + wdLink(tags['brand:wikidata']) + `</td>
-<td><h3>${label}</h3>
+<td class="wikidata"><h3>${label}</h3>
   <span>${description}</span><br/>` + siteLink(identities.website) + `
 </td>
 <td class="logo">` + logo(logos.wikidata) + `</td>
