@@ -113,11 +113,11 @@ function processEntities(result) {
 
         // If there is a Wikidata entity specified but no Wikipedia article,
         // try to find a matching article from all possible sitelinks
-        if (wikidata.brand && !wikipedia.brand && entity.sitelinks && sitelinks.length) {
+        if (wikidata.brand && !wikipedia.brand && wikidata.brand == qid && sitelinks.length) {
             _foundSitelink.push([target, qid, 'brand:wikidata', sitelinks.join(', ')])
         }
 
-        if (wikidata.operator && !wikipedia.operator && entity.sitelinks && sitelinks.length) {
+        if (wikidata.operator && !wikipedia.operator && wikidata.operator == qid  && sitelinks.length) {
             _foundSitelink.push([target, qid, 'operator:wikidata', sitelinks.join(', ')]);
         }
 
