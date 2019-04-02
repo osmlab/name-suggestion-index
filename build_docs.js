@@ -153,7 +153,7 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 
         body += `
 <tr>
-<td><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
+<td class="namesuggest"><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
   <div class="nsikey"><pre>'${name}'</pre></div>
   <div class="viewlink">` + overpassLink(k, v, tags.name) + `</div>
 </td>
