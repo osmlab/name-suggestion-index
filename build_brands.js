@@ -114,6 +114,7 @@ function mergeBrands() {
     console.time(colors.green('brands merged'));
 
     // Create/update entries
+    // First, entries in keepnames (i.e. counted entries)
     Object.keys(keep).forEach(k => {
         if (rIndex[k] || ambiguous[k]) return;
 
@@ -132,20 +133,30 @@ function mergeBrands() {
             obj.tags.brand = name;
             obj.tags.name = name;
             obj.tags[key] = value;
-            if (key === 'amenity' && value === 'cafe') {
-                obj.tags.cuisine = 'coffee_shop';
-            }
         }
+
+        obj.count = keep[k];
+    });
+
+
+    // now process all brands
+    Object.keys(brands).forEach(k => {
+        let obj = brands[k];
+        let parts = k.split('|', 2);
+        let tag = parts[0].split('/', 2);
+        let key = tag[0];
+        let value = tag[1];
+        let name = parts[1];
 
         // assign default tags - new or existing entries
         if (key === 'amenity' && value === 'cafe') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
+            if (!obj.tags.cuisine) obj.tags.cuisine = 'coffee_shop';
         } else if (key === 'amenity' && value === 'fast_food') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
         } else if (key === 'amenity' && value === 'pharmacy') {
             if (!obj.tags.healthcare) obj.tags.healthcare = 'pharmacy';
         }
-
 
         // Force `countryCode`, and duplicate `name:xx` and `brand:xx` tags
         // if the name can only be reasonably read in one country.
@@ -189,10 +200,10 @@ function mergeBrands() {
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
         }
 
-        obj.count = keep[k];
-    });
+        brands[k] = sort(brands[k])
 
-    Object.keys(brands).forEach(k => { brands[k] = sort(brands[k]) });
+     });
+
     console.timeEnd(colors.green('brands merged'));
 }
 
@@ -321,14 +332,13 @@ function checkBrands() {
         switch (tag) {
             case 'amenity/fast_food':
             case 'amenity/restaurant':
-                if (!obj.tags.cuisine) {
-                    warnMissingTag.push([k, 'cuisine']);
-                }
+                if (!obj.tags.cuisine) { warnMissingTag.push([k, 'cuisine']); }
                 break;
             case 'amenity/vending_machine':
-                if (!obj.tags.vending) {
-                    warnMissingTag.push([k, 'vending']);
-                }
+                if (!obj.tags.vending) { warnMissingTag.push([k, 'vending']); }
+                break;
+            case 'shop/beauty':
+                if (!obj.tags.beauty) { warnMissingTag.push([k, 'beauty']); }
                 break;
         }
     });
