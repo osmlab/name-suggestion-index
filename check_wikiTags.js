@@ -27,8 +27,7 @@ let _urls = wdk.getManyEntities({
     languages: ['en'],
     props: ['info', 'sitelinks'],
     format: 'json',
-    // TODO: not yet supported, see https://github.com/maxlath/wikidata-sdk/pull/56
-    // redirects: false
+    redirects: false
 });
 
 process.stdout.write('\nchecking and validating');
@@ -72,8 +71,7 @@ function doFetch(index) {
         return Promise.resolve();
     }
 
-    // TODO: the 'redirects' parameter can be removed once https://github.com/maxlath/wikidata-sdk/pull/56 is merged
-    let currURL = `${_urls[index]}&redirects=no`;
+    let currURL = _urls[index];
 
     process.stdout.write('.');
 
