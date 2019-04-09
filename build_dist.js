@@ -45,6 +45,11 @@ function buildJSON() {
         const value = tag[1];
         const name = parts[1].replace('~', ' ');
         const countryCodes = obj.countryCodes;
+        const notExisting = obj.notExisting;
+
+        if (notExisting === true) {
+            return;
+        }
 
         if (!out[key]) {
             out[key] = {};

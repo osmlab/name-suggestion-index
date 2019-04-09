@@ -51,6 +51,15 @@
                     "description": "(optional) If true, suppress warning about uncommon name",
                     "enum": [ true ]
                 },
+                "notExisting": {
+                    "type": "boolean",
+                    "description": "(optional) If true, it means that entry represents no longer existing entity",
+                    "enum": [ true ]
+                },
+                "notExistingDescription": {
+                    "type": "string",
+                    "description": "(optional) Description why entry represents no longer existing entity"
+                },
                 "tags": {
                     "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
                     "type": "object",

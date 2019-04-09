@@ -541,3 +541,65 @@ can show you where the Wikidata information is missing or incomplete.
 
 <img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata.gif"/>
 
+### Mark brands as no longer existing
+
+Brands may disappear over time. To aboid cluttering suggestion lists with defunct brands and to allow flagging likely outdated entries it is possible to mark brands as no longer existing. For example following entry has `"notExisting": true` and `notExistingDescription` fields.
+
+```js
+  "shop/toys|Toys R Us~(partial closure)": {
+    "countryCodes": ["au", "us"],
+    "match": ["shop/toys|Toys \"R\" Us"],
+    "nocount": true,
+    "notExisting": true,
+    "notExistingDescription": "There are no Toys R Us branded toy shops in USA and Australia - see https://www.cnn.com/2019/02/11/business/toys-r-us-return/index.html",
+    "tags": {
+      "brand": "Toys R Us",
+      "brand:wikidata": "Q696334",
+      "brand:wikipedia": "en:Toys \"R\" Us",
+      "name": "Toys R Us",
+      "shop": "toys"
+    }
+  },
+```
+
+Note that thanks to `countryCodes` it is possible to have also entry describing that `Toys R Us` continues to function in other countries:
+
+```js
+  "shop/toys|Toys R Us": {
+    "count": 240,
+    "countryCodes": [
+      "ae",
+      "at",
+      "bh",
+      "ca",
+      "ch",
+      "cn",
+      "de",
+      "es",
+      "fr",
+      "il",
+      "jp",
+      "kw",
+      "my",
+      "nl",
+      "no",
+      "ph",
+      "pl",
+      "pt",
+      "qa",
+      "sa",
+      "se",
+      "sg",
+      "th",
+      "za"
+    ],
+    "match": ["shop/toys|Toys \"R\" Us"],
+    "tags": {
+      "brand": "Toys R Us",
+      "brand:wikidata": "Q696334",
+      "brand:wikipedia": "en:Toys \"R\" Us",
+      "name": "Toys R Us",
+      "shop": "toys"
+    }
+  },
+```
