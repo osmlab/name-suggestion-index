@@ -528,15 +528,22 @@
       "name": "Classic"
     }
   },
-  "amenity/fuel|Co-op": {
-    "count": 295,
+  "amenity/fuel|Co-op~(Canada)": {
+    "countryCodes": ["ca"],
     "match": [
-      "amenity/fuel|Co-Op",
-      "amenity/fuel|Coop"
+      "amenity/fuel|COOP~(Canada)",
+      "amenity/fuel|Co-Op~(Canada)",
+      "amenity/fuel|Coop~(Canada)",
+      "amenity/fuel|coop~(Canada)"
     ],
+    "nocount": true,
     "nomatch": [
-      "shop/convenience|Co-op",
-      "shop/supermarket|Co-op"
+      "shop/convenience|Co-op~(Canada)",
+      "shop/convenience|Coop~(Schweiz)",
+      "shop/convenience|The Co-operative Food~(UK)",
+      "shop/supermarket|Co-op~(Canada)",
+      "shop/supermarket|Coop~(Schweiz)",
+      "shop/supermarket|The Co-operative Food~(UK)"
     ],
     "tags": {
       "amenity": "fuel",
