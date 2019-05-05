@@ -2,6 +2,7 @@ const colors = require('colors/safe');
 const fetch = require('node-fetch');
 const fileTree = require('./lib/file_tree');
 const fs = require('fs-extra');
+const namesKeep = require('./dist/names_keep.json');
 const shell = require('shelljs');
 const sort = require('./lib/sort');
 
@@ -140,7 +141,7 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
     Object.keys(dict[k][v]).forEach(name => {
         let slug = slugify(name);
         let entry = dict[k][v][name];
-        let count = entry.count || '< 50';
+        let count = namesKeep[name] || '< 50';
         let tags = entry.tags || {};
 
         let qid = tags['brand:wikidata'];

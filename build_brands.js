@@ -114,7 +114,7 @@ function mergeBrands() {
     console.time(colors.green('brands merged'));
 
     // Create/update entries
-    // First, entries in keepnames (i.e. counted entries)
+    // First, entries in namesKeep (i.e. counted entries)
     Object.keys(keep).forEach(k => {
         if (rIndex[k] || ambiguous[k]) return;
 
@@ -126,7 +126,7 @@ function mergeBrands() {
         let name = parts[1];
 
         if (!obj) {   // a new entry!
-            obj = { count: 0, tags: {} };
+            obj = { tags: {} };
             brands[k] = obj;
 
             // assign default tags - new entries
@@ -134,8 +134,6 @@ function mergeBrands() {
             obj.tags.name = name;
             obj.tags[key] = value;
         }
-
-        obj.count = keep[k];
     });
 
 
@@ -258,7 +256,6 @@ function buildReverseIndex(obj) {
 // Checks all the brands for several kinds of issues
 //
 function checkBrands() {
-    let warnUncommon = [];
     let warnMatched = [];
     let warnDuplicate = [];
     let warnFormatWikidata = [];
@@ -274,16 +271,6 @@ function checkBrands() {
         let parts = k.split('|', 2);
         let tag = parts[0];
         let name = parts[1];
-
-        // Warn if the item is uncommon (i.e. not found in names_keep)
-        if (!keep[k]) {
-            delete obj.count;
-            if (!obj.nocount) {   // suppress warning?
-                warnUncommon.push(k);
-            }
-        } else {
-            delete obj.nocount;
-        }
 
         // Warn if the item is found in rIndex (i.e. some other item matches it)
         if (rIndex[k]) {
@@ -369,16 +356,6 @@ function checkBrands() {
             colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
         ));
         console.warn('total ' + warnDuplicate.length);
-    }
-
-    if (warnUncommon.length) {
-        console.warn(colors.yellow('\nWarning - Uncommon brand not found in `names_keep.json`:'));
-        console.warn('These might be okay. It just means that the entry is not commonly found in OpenStreetMap.');
-        console.warn('To suppress this warning, add a "nocount" property to the entry.');
-        warnUncommon.forEach(w => console.warn(
-            colors.yellow('  "' + w + '"')
-        ));
-        console.warn('total ' + warnUncommon.length);
     }
 
     // if (warnMissingWikidata.length) {

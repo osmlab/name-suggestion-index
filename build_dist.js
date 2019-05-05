@@ -1,6 +1,7 @@
 const colors = require('colors/safe');
 const fileTree = require('./lib/file_tree');
 const fs = require('fs');
+const namesKeep = require('./dist/names_keep.json');
 const package = require('./package.json');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
@@ -44,7 +45,6 @@ function buildJSON() {
         const key = tag[0];
         const value = tag[1];
         const name = parts[1].replace('~', ' ');
-        const countryCodes = obj.countryCodes;
 
         if (!out[key]) {
             out[key] = {};
@@ -53,13 +53,17 @@ function buildJSON() {
             out[key][value] = {};
         }
 
-        out[key][value][name] = {
-            count: obj.count,
-            tags: obj.tags
-        };
-        if (countryCodes != null) {
-            out[key][value][name]["countryCodes"] = countryCodes;
+        out[key][value][name] = {};
+
+        if (namesKeep[k]) {
+            out[key][value][name].count = namesKeep[k];
         }
+
+        if (obj.countryCodes) {
+            out[key][value][name].countryCodes = obj.countryCodes;
+        }
+
+        out[key][value][name].tags = obj.tags;
     });
 
     // Save individual data files

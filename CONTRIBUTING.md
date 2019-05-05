@@ -84,7 +84,6 @@ In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|McDonald's": {         // Identifier like "key/value|name"
-    "count": 19040,                         // `count` - generated # of these that we found in OpenStreetMap
     "match": [
       "amenity/fast_food|Mc Donald's",      // Optional `match` array
       "amenity/fast_food|McDonalds",        //   Contains less-desirable variations to ignore.
@@ -108,7 +107,6 @@ There may also be entries for McDonald's in other languages!
 
 ```js
   "amenity/fast_food|マクドナルド": {         // Identifier like "key/value|name"
-    "count": 1445,
     "countryCodes": ["jp"],                 // Optional `countryCodes` - array of countries where this entry is used
     "tags": {
       "amenity": "fast_food",
@@ -143,39 +141,13 @@ property to each entry to suppress the "duplicate name" warning.
 
 ```js
   "amenity/fuel|Sonic": {
-    "count": 127,
     "nomatch": ["amenity/fast_food|Sonic"],
     ...
   }
   "amenity/fast_food|Sonic": {
-    "count": 1110,
     "nomatch": ["amenity/fuel|Sonic"],
     ...
   }
-```
-
-##### `nocount`
-
-Sometimes a new, uncommon OpenStreetMap tag-name combination should replace an
-existing tag-name combination.
-
-For example, many Costcos are tagged as `shop=department_store` or `shop=supermarket`,
-but the new preferred tag is `shop=wholesale`.
-
-We don't want to be warned that the new correct tag is uncommon, so we add a
-`nocount` property to the entry to suppress the "uncommon name" warning.
-
-```js
-  "shop/wholesale|Costco": {
-    "nocount": true,
-    "match": [
-      "shop/department_store|Costco",
-      "shop/department_store|Costco Wholesale",
-      "shop/supermarket|Costco",
-      "shop/supermarket|Costco Wholesale"
-    ],
-    ...
-  },
 ```
 
 &nbsp;
@@ -189,14 +161,12 @@ to tell the difference between two otherwise identical brands.
 The text after the tilde can contain anything.
 
 When using a tilde `~` name:
-* You should add `"nocount": true`, as the script will not be able to determine the true count.
 * You should add `"nomatch":` properties to each name so they do not generate duplicate name warnings.
 
 
 ```js
   "shop/supermarket|Price Chopper~(Kansas City)": {
     "countryCodes": ["us"],
-    "nocount": true,
     "nomatch": [
       "shop/supermarket|Price Chopper~(New York)"
     ],
@@ -210,7 +180,6 @@ When using a tilde `~` name:
   },
   "shop/supermarket|Price Chopper~(New York)": {
     "countryCodes": ["us"],
-    "nocount": true,
     "nomatch": [
       "shop/supermarket|Price Chopper~(Kansas City)"
     ],
@@ -260,27 +229,11 @@ and a `tourism=motel` (correct). In this situation we want to:
 * Delete the entry for `"tourism/hotel|Motel 6"` and
 * Add `"match": ["tourism/hotel|Motel 6"]` to the `"tourism/motel|Motel 6"` entry
 
-Local knowledge, existing tagging (indicated by the `count` property), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding which entry should be kept.
+Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding which entry should be kept.
 
 If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
 
 Note that in some cases both entries should be kept - for example, a given brand may really operate both supermarkets and convenience stores under the same name. In that case it is necessary to use the `nomatch` property.
-&nbsp;
-
-#### Uncommon names
-
-```
-Warning - Uncommon brand not found in `names_keep.json`:
-These might be okay. It just means that the entry is not commonly found in OpenStreetMap.
-To suppress this warning, add a "nocount" property to the entry.
-  "shop/wholesale|Costco"
-```
-
-_What it means:_  This warning can occur if the index contains an entry that is not common in OpenStreetMap.
-Either replace it with a more common tag, or add `"nocount": true` to suppress the warning.
-
-(In this situation, `shop=wholesale` is a new preferred tag, but most existing Costcos were
-still tagged as `shop=department_store`. Suppressing the warning is the correct thing to do).
 
 &nbsp;
 
@@ -293,7 +246,6 @@ For example, "Универмаг" is just a Russian word for "Department store":
 
 ```js
   "shop/department_store|Универмаг": {
-    "count": 210,
     "tags": {
       "brand": "Универмаг",
       "name": "Универмаг",
@@ -323,7 +275,6 @@ In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|Chipotle": {
-    "count": 708,
     "match": [
       "amenity/fast_food|Chipotle Mexican Grill",
       "amenity/restaurant|Chipotle",
@@ -369,7 +320,6 @@ We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
 
 ```js
   "amenity/fast_food|Chipotle": {
-    "count": 708,
     "match": [
       "amenity/fast_food|Chipotle Mexican Grill",
       "amenity/restaurant|Chipotle",
@@ -405,7 +355,6 @@ In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|かっぱ寿司": {
-    "count": 91,
     "tags": {
       "amenity": "fast_food",
       "brand": "かっぱ寿司",
@@ -453,7 +402,6 @@ We can add:
 
 ```js
   "amenity/fast_food|かっぱ寿司": {
-    "count": 91,
     "countryCodes": ["jp"],                // added
     "tags": {
       "amenity": "fast_food",
@@ -490,13 +438,11 @@ is a valuable way to get ahead of incorrect tagging.
 
 2. Add your new entry anywhere into the appropriate file under `brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
 
-3. Add the `"nocount": true` key to your new entry as this will suppress the warnings that it doesn't appear often in OSM.
+3. If the brand only has locations in a known set of countries add the `"countryCodes": []` key to your new entry. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
 
-4. If the brand only has locations in a known set of countries add the `"countryCodes": []` key to your new entry. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
+4. If instances of this brand are commonly mistagged add the `"match": []` key to list these. Again, refer to [here](#card_file_box--about-the-brand-files) for syntax.
 
-5. If instances of this brand are commonly mistagged add the `"match": []` key to list these. Again, refer to [here](#card_file_box--about-the-brand-files) for syntax.
-
-6. Run `npm run build` and resolve any [duplicate name warnings](#thinking--resolve-warnings).
+5. Run `npm run build` and resolve any [duplicate name warnings](#thinking--resolve-warnings).
 
 &nbsp;
 
