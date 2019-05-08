@@ -112,14 +112,15 @@ Name lists:
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
 You do not need to do these steps in order to contribute to the index.
 
-- Install `osmium` commandline tool
+- Install `osmium` commandline tool and node package globally (may only work on some environments)
   - `apt-get install osmium-tool` or `brew install osmium-tool` or similar
+  - `npm install -g osmium`
 - [Download the planet](http://planet.osm.org/pbf/)
   - `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
   - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism -o wanted.osm.pbf`
-- Run `node build_names_all wanted.osm.pbf`
+- Run `node build_all_names wanted.osm.pbf`
   - results will go in `dist/names_all.json`
   - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
 
