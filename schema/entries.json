@@ -29,6 +29,24 @@
                         "pattern": "^\\S+/\\S+|.*$"
                     }
                 },
+                "matchNames": {
+                    "description": "(optional) An array of regular expressions to match less desired names",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "format": "regex"
+                    }
+                },
+                "matchTags": {
+                    "description": "(optional) An array of regular expressions to match less-desired tag-pairs.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "format": "regex"
+                    }
+                },
                 "nomatch": {
                     "description": "(optional) Array of alternate keys that do not match this key, used to suppress warning about potential duplicate name.",
                     "type": "array",
