@@ -12,6 +12,8 @@ let _wrongFormat = [];
 let _deleted = [];
 let _foundSitelink = [];
 let _wrongLink = [];
+let _missingInstance = [];
+let _missingReferences = [];
 
 let _wikidata = gatherQIDs(_brands);
 let _qids = Object.keys(_wikidata);
@@ -25,7 +27,7 @@ if (!_total) {
 let _urls = wdk.getManyEntities({
     ids: _qids,
     languages: ['en'],
-    props: ['info', 'sitelinks'],
+    props: ['info', 'claims', 'sitelinks'],
     format: 'json',
     redirects: false
 });
@@ -103,36 +105,40 @@ function processEntities(result) {
           operator: entry.tags['operator:wikipedia']
         }
 
-        // Wikidata entity was either deleted or is a redirect
-        if (typeof entity.missing !== 'undefined') {
-            _deleted.push([target, qid, wikidata.brand == qid ? 'brand:wikidata' : 'operator:wikidata']);
-        }
+        let tag = wikidata.brand == qid ? 'brand' : 'operator';
 
+        // Wikidata entity was either deleted or is a redirect
+        if (entity.missing) {
+            _deleted.push([target, qid, `${tag}:wikidata`]);
+        }
 
         // If there is a Wikidata entity specified but no Wikipedia article,
         // try to find a matching article from all possible sitelinks
-        if (wikidata.brand && !wikipedia.brand && wikidata.brand == qid && sitelinks.length) {
-            _foundSitelink.push([target, qid, 'brand:wikidata', sitelinks.join(', ')])
+        if (!wikipedia[tag] && sitelinks.length) {
+            _foundSitelink.push([target, qid, `${tag}:wikidata`, sitelinks.join(', ')]);
         }
 
-        if (wikidata.operator && !wikipedia.operator && wikidata.operator == qid  && sitelinks.length) {
-            _foundSitelink.push([target, qid, 'operator:wikidata', sitelinks.join(', ')]);
-        }
-
-
-        // Check whether the linked Wikipedia article of the Wikidata entity is the correct one
-        if (wikipedia.brand && wikidata.brand == qid) {
-            let correct = correctSitelink(wikipedia.brand, entity.sitelinks);
+        if (wikipedia[tag]) {
+            // Check whether the linked Wikipedia article of the Wikidata entity is the correct one
+            let correct = correctSitelink(wikipedia[tag], entity.sitelinks);
             if (correct) {
-                _wrongLink.push([target, qid, 'brand:wikidata', wikipedia.brand, correct]);
+                _wrongLink.push([target, qid, `${tag}:wikidata`, wikipedia[tag], correct]);
             }
         }
 
-        if (wikipedia.operator && wikidata.operator == qid) {
-            let correct = correctSitelink(wikipedia.operator, entity.sitelinks);
-            if (correct) {
-                _wrongLink.push([target, qid, 'operator:wikidata', wikipedia.operator, correct]);
-            }
+        // Entries without any sitelinks have a high risk of being deleted
+        if (!sitelinks.length) {
+          // Warn if there are no instance claims and no sitelinks
+          let instance = entity.claims && entity.claims.P31;
+          if (!instance) {
+              _missingInstance.push([target, qid, `${tag}:wikidata`]);
+          }
+
+          // Warn if there are no references and no sitelinks
+          let references = getReferences(entity);
+          if (!references.length) {
+              _missingReferences.push([target, qid, `${tag}:wikidata`]);
+          }
         }
     });
     return Promise.resolve();
@@ -163,6 +169,19 @@ function getSitelinks(entity) {
       });
   }
   return sitelinks;
+}
+
+function getReferences(entity) {
+    let references = [];
+    let claims = wdk.simplify.claims(entity.claims, {
+        keepReferences: true
+    });
+    Object.keys(claims).forEach(claim => {
+        claims[claim].forEach(value => {
+          references = references.concat(value.references);
+        });
+    });
+    return references;
 }
 
 
@@ -205,6 +224,24 @@ function finish() {
         _wrongLink.sort();
         _wrongLink.forEach(msg => console.warn(
           `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is not linked to ${colors.red.bold(msg[3])} but to ${colors.green.bold(msg[4])}`
+        ));
+    }
+
+    if (_missingInstance.length) {
+        console.warn(colors.yellow.bold(`\nWarning - Missing sitelink and instance claim (P31) which might lead to a deletion in the future:`));
+        console.warn('To resolve these, add an instance claim (P31) or a sitelink to the Wikidata item');
+        _missingInstance.sort();
+        _missingInstance.forEach(msg => console.warn(
+          `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is missing a sitelink and an instance claim (P31)`
+        ));
+    }
+
+    if (_missingReferences.length) {
+        console.warn(colors.yellow.bold(`\nWarning - Missing sitelink and external references which might lead to a deletion in the future:`));
+        console.warn('To resolve these, add a reference to an external source or a sitelink to the Wikidata item');
+        _missingReferences.sort();
+        _missingReferences.forEach(msg => console.warn(
+          `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is missing a sitelink and a reference`
         ));
     }
 }
