@@ -77,9 +77,7 @@
     }
   },
   "amenity/post_office|DHL": {
-    "match": [
-      "amenity/post_office|DHL Paketshop"
-    ],
+    "matchNames": ["dhl paketshop"],
     "tags": {
       "amenity": "post_office",
       "brand": "DHL",
@@ -100,9 +98,9 @@
   },
   "amenity/post_office|Deutsche Post": {
     "countryCodes": ["de"],
-    "match": [
-      "amenity/post_office|Deutsche Post AG",
-      "amenity/post_office|Deutsche Post Filiale"
+    "matchNames": [
+      "deutsche post ag",
+      "deutsche post filiale"
     ],
     "tags": {
       "amenity": "post_office",
@@ -132,10 +130,7 @@
     }
   },
   "amenity/post_office|Hermes Paketshop": {
-    "match": [
-      "amenity/post_office|Hermes",
-      "amenity/post_office|Hermes PaketShop"
-    ],
+    "matchNames": ["hermes"],
     "tags": {
       "amenity": "post_office",
       "brand": "Hermes Paketshop",
@@ -146,7 +141,7 @@
   },
   "amenity/post_office|LBC": {
     "countryCodes": ["ph"],
-    "match": ["amenity/post_office|LBC Express"],
+    "matchNames": ["lbc express"],
     "tags": {
       "amenity": "post_office",
       "brand": "LBC",
@@ -181,7 +176,7 @@
     }
   },
   "amenity/post_office|Oficina de Correos": {
-    "match": ["amenity/post_office|Correos"],
+    "matchNames": ["correos"],
     "tags": {
       "amenity": "post_office",
       "brand": "Oficina de Correos",
@@ -209,7 +204,8 @@
   },
   "amenity/post_office|PostalAnnex": {
     "countryCodes": ["us"],
-    "match": ["shop/post_office|Postal Annex"],
+    "matchNames": ["postal annex"],
+    "matchTags": ["shop/post_office"],
     "tags": {
       "amenity": "post_office",
       "brand": "PostalAnnex",
@@ -229,9 +225,8 @@
   },
   "amenity/post_office|Serpost": {
     "countryCodes": ["pe"],
-    "match": [
-      "shop/post_office|Servicios Postales del Perú"
-    ],
+    "matchNames": ["servicios postales del perú"],
+    "matchTags": ["shop/post_office"],
     "tags": {
       "amenity": "post_office",
       "brand": "Serpost",
@@ -258,12 +253,8 @@
     }
   },
   "amenity/post_office|The UPS Store": {
-    "match": [
-      "amenity/post_office|UPS",
-      "amenity/post_office|UPS Store",
-      "shop/copyshop|The UPS Store",
-      "shop/copyshop|UPS Store"
-    ],
+    "matchNames": ["ups", "ups store"],
+    "matchTags": ["shop/copyshop"],
     "tags": {
       "amenity": "post_office",
       "brand": "The UPS Store",
@@ -274,11 +265,11 @@
   },
   "amenity/post_office|US Post Office": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/post_office|U.S. Post Office",
-      "amenity/post_office|USPS",
-      "amenity/post_office|United States Post Office",
-      "amenity/post_office|United States Postal Service"
+    "matchNames": [
+      "u.s. post office",
+      "united states post office",
+      "united states postal service",
+      "usps"
     ],
     "tags": {
       "amenity": "post_office",
@@ -301,7 +292,7 @@
   },
   "amenity/post_office|Белпошта": {
     "countryCodes": ["by"],
-    "match": ["amenity/post_office|Белпочта"],
+    "matchNames": ["белпочта"],
     "tags": {
       "amenity": "post_office",
       "brand": "Белпошта",

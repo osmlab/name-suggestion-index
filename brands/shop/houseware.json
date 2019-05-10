@@ -1,8 +1,6 @@
 {
   "shop/houseware|Bed Bath & Beyond": {
-    "match": [
-      "shop/department_store|Bed Bath & Beyond"
-    ],
+    "matchTags": ["shop/department_store"],
     "tags": {
       "brand": "Bed Bath & Beyond",
       "brand:wikidata": "Q813782",
@@ -31,11 +29,7 @@
     }
   },
   "shop/houseware|HomeGoods": {
-    "match": [
-      "shop/houseware|Home Goods",
-      "shop/interior_decoration|Home Goods",
-      "shop/interior_decoration|HomeGoods"
-    ],
+    "matchNames": ["home goods"],
     "tags": {
       "brand": "HomeGoods",
       "brand:wikidata": "Q5887941",
@@ -45,7 +39,7 @@
     }
   },
   "shop/houseware|Lagerhaus": {
-    "match": ["shop/doityourself|Lagerhaus"],
+    "matchTags": ["shop/doityourself"],
     "tags": {
       "brand": "Lagerhaus",
       "brand:wikidata": "Q10553211",
@@ -97,11 +91,12 @@
   },
   "shop/houseware|Tuesday Morning": {
     "countryCodes": ["us"],
-    "match": [
-      "shop/convenience|Tuesday Morning",
-      "shop/department_store|Tuesday Morning",
-      "shop/gift|Tuesday Morning",
-      "shop/variety_store|Tuesday Morninig"
+    "matchNames": ["tuesday morninig"],
+    "matchTags": [
+      "shop/convenience",
+      "shop/department_store",
+      "shop/gift",
+      "shop/variety_store"
     ],
     "tags": {
       "brand": "Tuesday Morning",
@@ -123,15 +118,11 @@
   },
   "shop/houseware|World Market": {
     "countryCodes": ["us"],
-    "match": [
-      "shop/department_store|Cost Plus",
-      "shop/department_store|World Market",
-      "shop/furniture|Cost Plus",
-      "shop/furniture|World Market",
-      "shop/interior_decoration|Cost Plus",
-      "shop/interior_decoration|World Market",
-      "shop/supermarket|Cost Plus",
-      "shop/supermarket|World Market"
+    "matchNames": ["cost plus"],
+    "matchTags": [
+      "shop/department_store",
+      "shop/furniture",
+      "shop/supermarket"
     ],
     "tags": {
       "brand": "World Market",

@@ -9,10 +9,7 @@
     }
   },
   "amenity/fuel|7-Eleven": {
-    "match": [
-      "amenity/fuel|7 Eleven",
-      "amenity/fuel|7-11"
-    ],
+    "matchNames": ["7 eleven", "7-11"],
     "nomatch": ["shop/convenience|7-Eleven"],
     "tags": {
       "amenity": "fuel",
@@ -87,7 +84,6 @@
     }
   },
   "amenity/fuel|Agip": {
-    "match": ["amenity/fuel|AGIP"],
     "tags": {
       "amenity": "fuel",
       "brand": "Agip",
@@ -134,11 +130,10 @@
   },
   "amenity/fuel|Aral": {
     "countryCodes": ["de"],
-    "match": [
-      "amenity/fuel|ARAL",
-      "amenity/fuel|Aral Tankstelle",
-      "shop/convenience|Aral",
-      "shop/kiosk|Aral"
+    "matchNames": ["aral tankstelle"],
+    "matchTags": [
+      "shop/convenience",
+      "shop/kiosk"
     ],
     "tags": {
       "amenity": "fuel",
@@ -149,7 +144,6 @@
     }
   },
   "amenity/fuel|Arco": {
-    "match": ["amenity/fuel|ARCO"],
     "tags": {
       "amenity": "fuel",
       "brand": "Arco",
@@ -175,7 +169,7 @@
   },
   "amenity/fuel|Atem": {
     "countryCodes": ["br"],
-    "match": ["amenity/fuel|Posto Atem"],
+    "matchNames": ["posto atem"],
     "tags": {
       "amenity": "fuel",
       "brand": "Atem",
@@ -204,10 +198,7 @@
     }
   },
   "amenity/fuel|Avia": {
-    "match": [
-      "amenity/fuel|AVIA",
-      "amenity/fuel|Station Avia"
-    ],
+    "matchNames": ["station avia"],
     "tags": {
       "amenity": "fuel",
       "brand": "Avia",
@@ -263,10 +254,6 @@
     }
   },
   "amenity/fuel|BP": {
-    "match": [
-      "amenity/fuel|Bp",
-      "amenity/fuel|bp"
-    ],
     "nomatch": ["shop/convenience|BP Shop"],
     "tags": {
       "amenity": "fuel",
@@ -278,10 +265,10 @@
   },
   "amenity/fuel|BR": {
     "countryCodes": ["br"],
-    "match": [
-      "amenity/fuel|BR Petrobras",
-      "amenity/fuel|Petrobras",
-      "amenity/fuel|Posto BR"
+    "matchNames": [
+      "br petrobras",
+      "petrobras",
+      "posto br"
     ],
     "tags": {
       "amenity": "fuel",
@@ -331,7 +318,6 @@
   },
   "amenity/fuel|CAMPSA": {
     "countryCodes": ["es"],
-    "match": ["amenity/fuel|Campsa"],
     "tags": {
       "amenity": "fuel",
       "brand": "CAMPSA",
@@ -341,7 +327,6 @@
     }
   },
   "amenity/fuel|CEPSA": {
-    "match": ["amenity/fuel|Cepsa"],
     "tags": {
       "amenity": "fuel",
       "brand": "CEPSA",
@@ -360,9 +345,9 @@
     }
   },
   "amenity/fuel|Canadian Tire Gas+": {
-    "match": [
-      "amenity/fuel|Canadian Tire",
-      "amenity/fuel|Canadian Tire Gas Bar"
+    "matchNames": [
+      "canadian tire",
+      "canadian tire gas bar"
     ],
     "nomatch": [
       "shop/department_store|Canadian Tire"
@@ -395,7 +380,7 @@
     }
   },
   "amenity/fuel|Casey's General Store": {
-    "match": ["amenity/fuel|Casey's"],
+    "matchNames": ["casey's"],
     "nomatch": [
       "shop/convenience|Casey's General Store"
     ],
@@ -425,9 +410,7 @@
   },
   "amenity/fuel|Ceypetco": {
     "countryCodes": ["lk"],
-    "match": [
-      "amenity/fuel|Lanka Filling Station"
-    ],
+    "matchNames": ["lanka filling station"],
     "tags": {
       "amenity": "fuel",
       "brand": "Ceypetco",
@@ -484,12 +467,7 @@
   },
   "amenity/fuel|Co-op~(Canada)": {
     "countryCodes": ["ca"],
-    "match": [
-      "amenity/fuel|COOP~(Canada)",
-      "amenity/fuel|Co-Op~(Canada)",
-      "amenity/fuel|Coop~(Canada)",
-      "amenity/fuel|coop~(Canada)"
-    ],
+    "matchNames": ["coop~(canada)"],
     "nomatch": [
       "shop/convenience|Co-op~(Canada)",
       "shop/convenience|Coop~(Schweiz)",
@@ -556,10 +534,10 @@
     }
   },
   "amenity/fuel|Costco Gasoline": {
-    "match": [
-      "amenity/fuel|Costco",
-      "amenity/fuel|Costco Gas",
-      "amenity/fuel|Costco Wholesale"
+    "matchNames": [
+      "costco",
+      "costco gas",
+      "costco wholesale"
     ],
     "nomatch": [
       "amenity/pharmacy|Costco Pharmacy",
@@ -662,7 +640,6 @@
   },
   "amenity/fuel|EKO~(Canada)": {
     "countryCodes": ["ca"],
-    "match": ["amenity/fuel|Eko~(Canada)"],
     "nomatch": [
       "amenity/fuel|EKO~(Greece)",
       "shop/supermarket|Eko"
@@ -684,10 +661,7 @@
       "mk",
       "rs"
     ],
-    "match": [
-      "amenity/fuel|Eko~(Greece)",
-      "amenity/fuel|ΕΚΟ"
-    ],
+    "matchNames": ["εκο"],
     "nomatch": [
       "amenity/fuel|EKO~(Canada)",
       "shop/supermarket|Eko"
@@ -702,7 +676,6 @@
   },
   "amenity/fuel|ENEOS": {
     "countryCodes": ["jp"],
-    "match": ["amenity/fuel|Eneos"],
     "tags": {
       "amenity": "fuel",
       "brand": "ENEOS",
@@ -730,10 +703,6 @@
     }
   },
   "amenity/fuel|Eni": {
-    "match": [
-      "amenity/fuel|ENI",
-      "amenity/fuel|eni"
-    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Eni",
@@ -743,7 +712,6 @@
     }
   },
   "amenity/fuel|Erg": {
-    "match": ["amenity/fuel|ERG"],
     "tags": {
       "amenity": "fuel",
       "brand": "Erg",
@@ -753,10 +721,7 @@
     }
   },
   "amenity/fuel|Esso": {
-    "match": [
-      "amenity/fuel|ESSO",
-      "amenity/fuel|Station Esso"
-    ],
+    "matchNames": ["station esso"],
     "nomatch": [
       "amenity/fuel|Esso Express",
       "shop/convenience|Esso"
@@ -799,7 +764,7 @@
     }
   },
   "amenity/fuel|Fas Gas": {
-    "match": ["amenity/fuel|Fas Gas Plus"],
+    "matchNames": ["fas gas plus"],
     "tags": {
       "amenity": "fuel",
       "brand": "Fas Gas",
@@ -838,7 +803,6 @@
     }
   },
   "amenity/fuel|GALP": {
-    "match": ["amenity/fuel|Galp"],
     "tags": {
       "amenity": "fuel",
       "brand": "GALP",
@@ -920,7 +884,7 @@
     }
   },
   "amenity/fuel|H-E-B Fuel": {
-    "match": ["amenity/fuel|H-E-B Gas"],
+    "matchNames": ["h-e-b gas"],
     "nomatch": ["shop/supermarket|H-E-B"],
     "tags": {
       "amenity": "fuel",
@@ -932,7 +896,6 @@
   },
   "amenity/fuel|HEM": {
     "countryCodes": ["de"],
-    "match": ["amenity/fuel|Hem"],
     "tags": {
       "amenity": "fuel",
       "brand": "HEM",
@@ -942,10 +905,10 @@
     }
   },
   "amenity/fuel|HP": {
-    "match": [
-      "amenity/fuel|H P",
-      "amenity/fuel|HP Petrol Pump",
-      "amenity/fuel|Hindustan Petroleum"
+    "matchNames": [
+      "h p",
+      "hindustan petroleum",
+      "hp petrol pump"
     ],
     "tags": {
       "amenity": "fuel",
@@ -1049,7 +1012,7 @@
     }
   },
   "amenity/fuel|Intermarché": {
-    "match": ["amenity/fuel|Intermarché Super"],
+    "matchNames": ["intermarché super"],
     "nomatch": ["shop/supermarket|Intermarché"],
     "tags": {
       "amenity": "fuel",
@@ -1061,7 +1024,7 @@
   },
   "amenity/fuel|Ipiranga": {
     "countryCodes": ["br"],
-    "match": ["amenity/fuel|Posto Ipiranga"],
+    "matchNames": ["posto ipiranga"],
     "tags": {
       "amenity": "fuel",
       "brand": "Ipiranga",
@@ -1082,7 +1045,7 @@
   },
   "amenity/fuel|JA-SS": {
     "countryCodes": ["jp"],
-    "match": ["amenity/fuel|JA"],
+    "matchNames": ["ja"],
     "tags": {
       "amenity": "fuel",
       "brand": "JA-SS",
@@ -1092,7 +1055,6 @@
     }
   },
   "amenity/fuel|Jet": {
-    "match": ["amenity/fuel|JET"],
     "nomatch": ["shop/clothes|Jet"],
     "tags": {
       "amenity": "fuel",
@@ -1129,7 +1091,7 @@
     }
   },
   "amenity/fuel|Kroger": {
-    "match": ["amenity/fuel|Kroger Fuel"],
+    "matchNames": ["kroger fuel"],
     "nomatch": ["shop/supermarket|Kroger"],
     "tags": {
       "amenity": "fuel",
@@ -1206,10 +1168,6 @@
     }
   },
   "amenity/fuel|Lukoil": {
-    "match": [
-      "amenity/fuel|LUKOIL",
-      "amenity/fuel|LukOil"
-    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Lukoil",
@@ -1220,7 +1178,6 @@
   },
   "amenity/fuel|MEROIL": {
     "countryCodes": ["es"],
-    "match": ["amenity/fuel|Meroil"],
     "tags": {
       "amenity": "fuel",
       "brand": "MEROIL",
@@ -1229,7 +1186,6 @@
     }
   },
   "amenity/fuel|MOL": {
-    "match": ["amenity/fuel|Mol"],
     "tags": {
       "amenity": "fuel",
       "brand": "MOL",
@@ -1318,7 +1274,7 @@
     }
   },
   "amenity/fuel|Mobil": {
-    "match": ["amenity/fuel|Mobile"],
+    "matchNames": ["mobile"],
     "nomatch": ["shop/convenience|Mobil Mart"],
     "tags": {
       "amenity": "fuel",
@@ -1429,18 +1385,17 @@
     }
   },
   "amenity/fuel|Oilibya": {
-    "match": [
-      "amenity/fuel|OLIBYA",
-      "amenity/fuel|OLYBIA",
-      "amenity/fuel|OiLibya",
-      "amenity/fuel|Oil Liby",
-      "amenity/fuel|Oil Lybia",
-      "amenity/fuel|OilLibia",
-      "amenity/fuel|OilLibya",
-      "amenity/fuel|OilLybia",
-      "amenity/fuel|Oilibia",
-      "amenity/fuel|Oilibiya",
-      "amenity/fuel|Oilybia"
+    "matchNames": [
+      "oil liby",
+      "oil lybia",
+      "oilibia",
+      "oilibiya",
+      "oillibia",
+      "oillibya",
+      "oillybia",
+      "oilybia",
+      "olibya",
+      "olybia"
     ],
     "tags": {
       "amenity": "fuel",
@@ -1479,7 +1434,6 @@
     }
   },
   "amenity/fuel|Oxxo": {
-    "match": ["amenity/fuel|OXXO"],
     "nomatch": ["shop/convenience|Oxxo"],
     "tags": {
       "amenity": "fuel",
@@ -1490,7 +1444,7 @@
     }
   },
   "amenity/fuel|PSO": {
-    "match": ["amenity/fuel|PSO Petrol Pump"],
+    "matchNames": ["pso petrol pump"],
     "tags": {
       "amenity": "fuel",
       "brand": "PSO",
@@ -1501,7 +1455,7 @@
   },
   "amenity/fuel|PT": {
     "countryCodes": ["th"],
-    "match": ["amenity/fuel|P T"],
+    "matchNames": ["p t"],
     "tags": {
       "amenity": "fuel",
       "brand": "PT",
@@ -1510,7 +1464,7 @@
     }
   },
   "amenity/fuel|PTT": {
-    "match": ["amenity/fuel|P T T"],
+    "matchNames": ["p t t"],
     "tags": {
       "amenity": "fuel",
       "brand": "PTT",
@@ -1548,7 +1502,6 @@
     }
   },
   "amenity/fuel|Pemex": {
-    "match": ["amenity/fuel|PEMEX"],
     "tags": {
       "amenity": "fuel",
       "brand": "Pemex",
@@ -1575,7 +1528,7 @@
   },
   "amenity/fuel|Petro-Canada": {
     "countryCodes": ["ca"],
-    "match": ["amenity/fuel|Petro Canada"],
+    "matchNames": ["petro canada"],
     "nomatch": ["shop/convenience|Petro-Canada"],
     "tags": {
       "amenity": "fuel",
@@ -1595,7 +1548,7 @@
   },
   "amenity/fuel|PetroPerú": {
     "countryCodes": ["pe"],
-    "match": ["amenity/fuel|Petroperu"],
+    "matchNames": ["petroperu"],
     "tags": {
       "amenity": "fuel",
       "brand": "PetroPerú",
@@ -1680,7 +1633,6 @@
     }
   },
   "amenity/fuel|Petronor": {
-    "match": ["amenity/fuel|PETRONOR"],
     "tags": {
       "amenity": "fuel",
       "brand": "Petronor",
@@ -1710,10 +1662,7 @@
   },
   "amenity/fuel|Pilot": {
     "countryCodes": ["ca", "us"],
-    "match": [
-      "amenity/fuel|Flying J",
-      "amenity/fuel|Pilot Flying J"
-    ],
+    "matchNames": ["flying j", "pilot flying j"],
     "tags": {
       "amenity": "fuel",
       "brand": "Pilot",
@@ -1819,7 +1768,7 @@
     }
   },
   "amenity/fuel|QuikTrip": {
-    "match": ["amenity/fuel|QT"],
+    "matchNames": ["qt"],
     "nomatch": ["shop/convenience|QuikTrip"],
     "tags": {
       "amenity": "fuel",
@@ -1830,7 +1779,7 @@
     }
   },
   "amenity/fuel|RaceTrac": {
-    "match": ["amenity/fuel|Race Trac"],
+    "matchNames": ["race trac"],
     "tags": {
       "amenity": "fuel",
       "brand": "RaceTrac",
@@ -1848,7 +1797,6 @@
     }
   },
   "amenity/fuel|Repsol": {
-    "match": ["amenity/fuel|REPSOL"],
     "tags": {
       "amenity": "fuel",
       "brand": "Repsol",
@@ -1924,7 +1872,7 @@
   },
   "amenity/fuel|Sainsbury's": {
     "countryCodes": ["gb"],
-    "match": ["amenity/fuel|Sainsburys"],
+    "matchNames": ["sainsburys"],
     "nomatch": ["shop/supermarket|Sainsbury's"],
     "tags": {
       "amenity": "fuel",
@@ -1958,7 +1906,7 @@
   },
   "amenity/fuel|Sea Oil": {
     "countryCodes": ["ph"],
-    "match": ["amenity/fuel|Seaoil"],
+    "matchNames": ["seaoil"],
     "tags": {
       "amenity": "fuel",
       "brand": "Sea Oil",
@@ -1978,14 +1926,12 @@
     }
   },
   "amenity/fuel|Shell": {
-    "match": [
-      "amenity/fuel|Posto Shell",
-      "amenity/fuel|SHELL",
-      "amenity/fuel|Shell Gas Station",
-      "amenity/fuel|Shell Petrol Station",
-      "amenity/fuel|Shell Station",
-      "amenity/fuel|Station Shell",
-      "amenity/fuel|shell"
+    "matchNames": [
+      "posto shell",
+      "shell gas station",
+      "shell petrol station",
+      "shell station",
+      "station shell"
     ],
     "nomatch": [
       "amenity/fuel|Shell Express",
@@ -2024,7 +1970,7 @@
   },
   "amenity/fuel|Sinopec": {
     "countryCodes": ["cn"],
-    "match": ["amenity/fuel|Sinopec Fuel"],
+    "matchNames": ["sinopec fuel"],
     "tags": {
       "amenity": "fuel",
       "brand": "Sinopec",
@@ -2117,10 +2063,7 @@
     }
   },
   "amenity/fuel|Station Service E. Leclerc": {
-    "match": [
-      "amenity/fuel|E. Leclerc",
-      "shop/gas|Station Service E. Leclerc"
-    ],
+    "matchNames": ["e. leclerc"],
     "tags": {
       "amenity": "fuel",
       "brand": "E.Leclerc",
@@ -2287,10 +2230,7 @@
     }
   },
   "amenity/fuel|Total": {
-    "match": [
-      "amenity/fuel|Station Total",
-      "amenity/fuel|TOTAL"
-    ],
+    "matchNames": ["station total"],
     "nomatch": ["shop/convenience|Total"],
     "tags": {
       "amenity": "fuel",
@@ -2310,7 +2250,7 @@
     }
   },
   "amenity/fuel|TotalErg": {
-    "match": ["amenity/fuel|Total Erg"],
+    "matchNames": ["total erg"],
     "tags": {
       "amenity": "fuel",
       "brand": "TotalErg",
@@ -2341,10 +2281,10 @@
   },
   "amenity/fuel|UDF Fuel": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fuel|UDF",
-      "amenity/fuel|UDF Fuels",
-      "amenity/fuel|United Dairy Farmers"
+    "matchNames": [
+      "udf",
+      "udf fuels",
+      "united dairy farmers"
     ],
     "nomatch": [
       "shop/convenience|United Dairy Farmers"
@@ -2369,7 +2309,7 @@
     }
   },
   "amenity/fuel|United": {
-    "match": ["amenity/fuel|United Petroleum"],
+    "matchNames": ["united petroleum"],
     "nomatch": ["amenity/bank|United Bank"],
     "tags": {
       "amenity": "fuel",
@@ -2520,7 +2460,6 @@
   },
   "amenity/fuel|bft": {
     "countryCodes": ["de"],
-    "match": ["amenity/fuel|BFT"],
     "tags": {
       "amenity": "fuel",
       "brand": "bft",
@@ -2581,7 +2520,7 @@
     }
   },
   "amenity/fuel|Газпромнефть": {
-    "match": ["amenity/fuel|Газпром"],
+    "matchNames": ["газпром"],
     "tags": {
       "amenity": "fuel",
       "brand": "Газпромнефть",
@@ -2592,7 +2531,7 @@
   },
   "amenity/fuel|Гелиос": {
     "countryCodes": ["kz"],
-    "match": ["amenity/fuel|Helios"],
+    "matchNames": ["helios"],
     "tags": {
       "amenity": "fuel",
       "brand": "Гелиос",
@@ -2635,7 +2574,7 @@
     }
   },
   "amenity/fuel|Лукойл": {
-    "match": ["amenity/fuel|Лукоил"],
+    "matchNames": ["лукоил"],
     "nomatch": ["shop/convenience|Лукойл"],
     "tags": {
       "amenity": "fuel",
@@ -2990,7 +2929,7 @@
   },
   "amenity/fuel|台灣中油": {
     "countryCodes": ["tw"],
-    "match": ["amenity/fuel|中油"],
+    "matchNames": ["中油"],
     "tags": {
       "amenity": "fuel",
       "brand": "台灣中油",
@@ -3003,7 +2942,7 @@
   },
   "amenity/fuel|昭和シェル": {
     "countryCodes": ["jp"],
-    "match": ["amenity/fuel|昭和シェル石油"],
+    "matchNames": ["昭和シェル石油"],
     "tags": {
       "amenity": "fuel",
       "brand": "昭和シェル",
