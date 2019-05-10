@@ -23,9 +23,11 @@ filters = {
     discardKeys: filters.discardKeys.map(s => s.toLowerCase()).sort(),
     discardNames: filters.discardNames.map(s => s.toLowerCase()).sort()
 };
-
 fs.writeFileSync('config/filters.json', stringify(filters));
 
+
+// Load and check matchGroups.json
+const matchGroups = require('./config/matchGroups.json').matchGroups;
 
 // Load and check brand files
 let brands = fileTree.read('brands');
@@ -145,6 +147,45 @@ function mergeBrands() {
         let key = tag[0];
         let value = tag[1];
         let name = parts[1];
+
+
+//--------------
+// is this tag in a matchgroup?
+// each map group is an equivalence class for tag matching
+let matchGroup;
+for (let mgkey in matchGroups) {
+    let group = matchGroups[mgkey];
+    if (group.some(t => t === parts[0])) {
+        matchGroup = group;
+        break;
+    }
+}
+
+//--------------
+// rewrite `match`
+let matchNames = new Set();
+let matchTags = new Set();
+delete obj.matchNames;
+delete obj.matchTags;
+
+let match = obj.match || [];
+match.forEach(mk => {
+    let mparts = mk.split('|', 2);
+    let mname = mparts[1].toLowerCase();
+
+    if (mname !== name.toLowerCase()) {
+        matchNames.add(mname);
+    }
+    if (mparts[0] !== parts[0]) {
+        if (!matchGroup || !matchGroup.some(val => val === mparts[0])) {
+            matchTags.add(mparts[0]);
+        }
+    }
+});
+if (matchNames.size) obj.matchNames = Array.from(matchNames);
+if (matchTags.size) obj.matchTags = Array.from(matchTags);
+delete obj.match;  // bye
+//--------------
 
         // assign default tags - new or existing entries
         if (key === 'amenity' && value === 'cafe') {
