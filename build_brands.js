@@ -128,13 +128,15 @@ function mergeBrands() {
         let name = parts[1];
 
         if (!obj) {   // a new entry!
-            obj = { tags: {} };
-            brands[k] = obj;
+// console.log(`new entry for ${k}`);
+// out for now until we replace rindex
+    //         obj = { tags: {} };
+    //         brands[k] = obj;
 
-            // assign default tags - new entries
-            obj.tags.brand = name;
-            obj.tags.name = name;
-            obj.tags[key] = value;
+    //         // assign default tags - new entries
+    //         obj.tags.brand = name;
+    //         obj.tags.name = name;
+    //         obj.tags[key] = value;
         }
     });
 
@@ -152,39 +154,39 @@ function mergeBrands() {
 //--------------
 // is this tag in a matchgroup?
 // each map group is an equivalence class for tag matching
-let matchGroup;
-for (let mgkey in matchGroups) {
-    let group = matchGroups[mgkey];
-    if (group.some(t => t === parts[0])) {
-        matchGroup = group;
-        break;
-    }
-}
+// let matchGroup;
+// for (let mgkey in matchGroups) {
+//     let group = matchGroups[mgkey];
+//     if (group.some(t => t === parts[0])) {
+//         matchGroup = group;
+//         break;
+//     }
+// }
 
 //--------------
 // rewrite `match`
-let matchNames = new Set();
-let matchTags = new Set();
-delete obj.matchNames;
-delete obj.matchTags;
+// let matchNames = new Set();
+// let matchTags = new Set();
+// delete obj.matchNames;
+// delete obj.matchTags;
 
-let match = obj.match || [];
-match.forEach(mk => {
-    let mparts = mk.split('|', 2);
-    let mname = mparts[1].toLowerCase();
+// let match = obj.match || [];
+// match.forEach(mk => {
+//     let mparts = mk.split('|', 2);
+//     let mname = mparts[1].toLowerCase();
 
-    if (mname !== name.toLowerCase()) {
-        matchNames.add(mname);
-    }
-    if (mparts[0] !== parts[0]) {
-        if (!matchGroup || !matchGroup.some(val => val === mparts[0])) {
-            matchTags.add(mparts[0]);
-        }
-    }
-});
-if (matchNames.size) obj.matchNames = Array.from(matchNames);
-if (matchTags.size) obj.matchTags = Array.from(matchTags);
-delete obj.match;  // bye
+//     if (mname !== name.toLowerCase()) {
+//         matchNames.add(mname);
+//     }
+//     if (mparts[0] !== parts[0]) {
+//         if (!matchGroup || !matchGroup.some(val => val === mparts[0])) {
+//             matchTags.add(mparts[0]);
+//         }
+//     }
+// });
+// if (matchNames.size) obj.matchNames = Array.from(matchNames);
+// if (matchTags.size) obj.matchTags = Array.from(matchTags);
+// delete obj.match;  // bye
 //--------------
 
         // assign default tags - new or existing entries
