@@ -21,7 +21,7 @@
                     }
                 },
                 "match": {
-                    "description": "(optional) Array of alternate keys that are the same as this entry.",
+                    "description": "(optional) DEPRECATED Array of alternate keys that are the same as this entry.",
                     "type": "array",
                     "uniqueItems": true,
                     "items": {
@@ -39,12 +39,12 @@
                     }
                 },
                 "matchTags": {
-                    "description": "(optional) An array of regular expressions to match less-desired tag-pairs.",
+                    "description": "(optional) An array of alternate but less-desired tag-pairs.",
                     "type": "array",
                     "uniqueItems": true,
                     "items": {
                         "type": "string",
-                        "format": "regex"
+                        "pattern": "^\\S+/\\S+$"
                     }
                 },
                 "nomatch": {
