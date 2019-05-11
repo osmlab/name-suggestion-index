@@ -108,7 +108,7 @@ function processEntities(result) {
         let tag = wikidata.brand == qid ? 'brand' : 'operator';
 
         // Wikidata entity was either deleted or is a redirect
-        if (entity.missing) {
+        if (entity.missing == '') {
             _deleted.push([target, qid, `${tag}:wikidata`]);
         }
 
