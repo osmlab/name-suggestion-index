@@ -114,6 +114,7 @@ function filterNames() {
 // Some keys contain a disambiguation mark:
 //    "amenity/fuel|EKO~(Canada)" vs "amenity/fuel|EKO~(Greece)"
 // If so, we save these in an `_ambiguousKeys` object for later use
+// Note that kvn is lowercase and we do case insensitive compares
 function checkAmbiguous(kvnlower) {
     let i = kvnlower.indexOf('~');
     if (i !== -1) {
@@ -124,12 +125,15 @@ function checkAmbiguous(kvnlower) {
     return false;
 }
 
+// Create an index of all the names -> kvn for fast matching
+// Note that kvn is lowercase and we do case insensitive compares
 function buildMatchIndex(brands) {
     Object.keys(brands).forEach(kvn => {
+        let obj = brands[kvn];
+
         let kvnlower = kvn.toLowerCase();
         if (checkAmbiguous(kvnlower)) return;
 
-        let obj = brands[kvn];
         let parts = kvnlower.split('|', 2);
         let match_kv = [parts[0]].concat(obj.matchTags || []);
         let match_n = [parts[1]].concat(obj.matchNames || []);
@@ -141,7 +145,7 @@ function buildMatchIndex(brands) {
                 if (!_matchIndex[kv]) {
                     _matchIndex[kv] = {};
                 }
-                _matchIndex[kv][n] = kvn;
+                _matchIndex[kv][n] = kvnlower;
             });
         });
     });
@@ -164,17 +168,17 @@ function matchKey(kvn) {
 
     // look in match groups
     for (let mgkey in matchGroups) {
-        let group = matchGroups[mgkey];
+        let matchGroup = matchGroups[mgkey];
         let match = null;
         let inGroup = false;
 
-        for (let i = 0; i < group.length; i++) {
-            let matchkv = group[i].toLowerCase();
+        for (let i = 0; i < matchGroup.length; i++) {
+            let otherkv = matchGroup[i].toLowerCase();
             if (!inGroup) {
-                inGroup = (kv === matchkv);
+                inGroup = (otherkv === kv);
             }
             if (!match) {
-                match = _matchIndex[kv][n];
+                match = _matchIndex[otherkv] && _matchIndex[otherkv][n];
             }
             if (match && inGroup) {
                 return match;
@@ -204,14 +208,13 @@ function mergeBrands() {
     // Create/update entries
     // First, entries in namesKeep (i.e. counted entries)
     Object.keys(_keep).forEach(kvn => {
+// console.log(`check ${kvn}`);
         let kvnlower = kvn.toLowerCase();
         if (_ambiguousKeys[kvnlower]) return;    // don't touch these
 
         var mkvn = matchKey(kvnlower);
-        if (mkvn !== kvnlower) {
-            console.log(' ' + kvnlower + ' -> ' + mkvn);
-            return;  // matches a different kvn
-        }
+// console.log(`kvnlower = ${kvnlower}     mkvn = ${mkvn}`);
+        if (mkvn) return;  // already in the index
 
         let obj = brands[kvn];
         let parts = kvn.split('|', 2);
@@ -221,7 +224,7 @@ function mergeBrands() {
         let name = parts[1];
 
         if (!obj) {   // a new entry!
-console.log(`new entry for ${kvn}`);
+console.log(`new entry for ${kvn}\n\n`);
 // out for now until we replace rindex
     //         obj = { tags: {} };
     //         brands[k] = obj;
