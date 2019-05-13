@@ -1,4 +1,5 @@
 const colors = require('colors/safe');
+const diacritics = require('diacritics');
 const fileTree = require('./lib/file_tree');
 const fs = require('fs-extra');
 const glob = require('glob');
@@ -35,21 +36,19 @@ let brands = fileTree.read('brands');
 // all names start out in _discard..
 const allnames = require('./dist/names_all.json');
 let _discard = Object.assign({}, allnames);
-
 let _keep = {};
-// let rIndex = {};
-let _ambiguousKeys = {};
+let _ambiguous = {};
 let _matchIndex = {};
 
+
 filterNames();
+buildMatchIndex(brands);
+checkBrands();
 mergeBrands();
 fileTree.write('brands', brands);
 
 
-// In this file, we use `kvn` to refer to a name-suggestion-index key
-// `key/value|name`
 
-//
 // `filterNames()` will process a `dist/names_all.json` file,
 // splitting the data up into 2 files:
 //
@@ -70,11 +69,11 @@ function filterNames() {
     // filter by keepTags (move from _discard -> _keep)
     filters.keepTags.forEach(s => {
         let re = new RegExp(s, 'i');
-        for (let kvn in _discard) {
-            let tag = kvn.split('|', 2)[0];
+        for (let kvnd in _discard) {
+            let tag = kvnd.split('|', 2)[0];
             if (re.test(tag)) {
-                _keep[kvn] = _discard[kvn];
-                delete _discard[kvn];
+                _keep[kvnd] = _discard[kvnd];
+                delete _discard[kvnd];
             }
         }
     });
@@ -82,10 +81,10 @@ function filterNames() {
     // filter by discardKeys (move from _keep -> _discard)
     filters.discardKeys.forEach(s => {
         let re = new RegExp(s, 'i');
-        for (let kvn in _keep) {
-            if (re.test(kvn)) {
-                _discard[kvn] = _keep[kvn];
-                delete _keep[kvn];
+        for (let kvnd in _keep) {
+            if (re.test(kvnd)) {
+                _discard[kvnd] = _keep[kvnd];
+                delete _keep[kvnd];
             }
         }
     });
@@ -93,11 +92,11 @@ function filterNames() {
     // filter by discardNames (move from _keep -> _discard)
     filters.discardNames.forEach(s => {
         let re = new RegExp(s, 'i');
-        for (let kvn in _keep) {
-            let name = kvn.split('|', 2)[1];
+        for (let kvnd in _keep) {
+            let name = kvnd.split('|', 2)[1];
             if (re.test(name)) {
-                _discard[kvn] = _keep[kvn];
-                delete _keep[kvn];
+                _discard[kvnd] = _keep[kvnd];
+                delete _keep[kvnd];
             }
         }
     });
@@ -110,77 +109,115 @@ function filterNames() {
 
 //--------------BEGIN MATCHER  (to extract)
 
-
-// Some keys contain a disambiguation mark:
-//    "amenity/fuel|EKO~(Canada)" vs "amenity/fuel|EKO~(Greece)"
-// If so, we save these in an `_ambiguousKeys` object for later use
-// Note that kvn is lowercase and we do case insensitive compares
-function checkAmbiguous(kvnlower) {
-    let i = kvnlower.indexOf('~');
-    if (i !== -1) {
-        let stem = kvnlower.substring(0, i);
-        _ambiguousKeys[stem] = true;
-        return true;
-    }
-    return false;
+// remove spaces, punctuation, diacritics
+function simplify(str) {
+    return diacritics.remove(
+        str.replace(/[\s\-=_!"#%&'*{},.\/:;?\(\)\[\]@\\$\^*+<>~`\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g,'')
+            .toLowerCase()
+    );
 }
 
-// Create an index of all the names -> kvn for fast matching
-// Note that kvn is lowercase and we do case insensitive compares
+// toParts - split a name-suggestion-index key into parts
+// {
+//   kvnd:  "shop/department_store|Target~(USA)"
+//   kvn:   "shop/department_store|Target"
+//   kv:    "shop/department_store"
+//   k:     "shop"
+//   v:     "department_store"
+//   n:     "Target"
+//   d:     "(USA)"
+// }
+function toParts(kvnd) {
+    let result = {};
+    result.kvnd = kvnd;
+
+    let kvndparts = kvnd.split('~', 2);
+    if (kvndparts.length > 1) result.d = kvndparts[1];
+
+    result.kvn = kvndparts[0];
+    let kvnparts = result.kvn.split('|', 2);
+    if (kvnparts.length > 1) result.n = kvnparts[1];
+
+    result.kv = kvnparts[0];
+    let kvparts = result.kv.split('/', 2);
+    result.k = kvparts[0];
+    result.v = kvparts[1];
+
+    result.nsimple = simplify(result.n);
+    result.kvnsimple = result.kv + '|' + result.nsimple;
+    return result;
+}
+
+
+// Create an index of all the keys/simplenames for fast matching
 function buildMatchIndex(brands) {
-    Object.keys(brands).forEach(kvn => {
-        let obj = brands[kvn];
+    Object.keys(brands).forEach(kvnd => {
+        let obj = brands[kvnd];
+        let parts = toParts(kvnd);
 
-        let kvnlower = kvn.toLowerCase();
-        if (checkAmbiguous(kvnlower)) return;
+        let matchTags = (obj.matchTags || []).map(s => s.toLowerCase());
+        let matchNames = (obj.matchNames || []).map(simplify);
+        let nomatches = (obj.nomatch || []).map(kvnd => toParts(kvnd).kvnsimple);
 
-        let parts = kvnlower.split('|', 2);
-        let match_kv = [parts[0]].concat(obj.matchTags || []);
-        let match_n = [parts[1]].concat(obj.matchNames || []);
-        let nomatches = (obj.nomatch || []).map(s => s.toLowerCase());
+        let match_kv = [parts.kv].concat(matchTags);
+        let match_nsimple = [parts.nsimple].concat(matchNames);
 
         match_kv.forEach(kv => {
-            match_n.forEach(n => {
-                if (nomatches.some(s => s === `{kv}{n}`)) return;  // should prob be a warning
-                if (!_matchIndex[kv]) {
-                    _matchIndex[kv] = {};
+            match_nsimple.forEach(nsimple => {
+                let test = `${kv}${nsimple}`;
+                if (nomatches.some(s => s === test)) {
+                    console.log(` WARNING match/nomatch conflict for ${test}!`);
+                    return;
                 }
-                _matchIndex[kv][n] = kvnlower;
+
+                if (parts.d) {
+                    if (!_ambiguous[kv]) _ambiguous[kv] = {};
+                    _ambiguous[kv][nsimple] = parts.kvnsimple;
+                } else {
+                    if (!_matchIndex[kv]) _matchIndex[kv] = {};
+                    _matchIndex[kv][nsimple] = parts.kvnsimple;
+                }
             });
         });
     });
 }
 
-// pass key/value|name
-function matchKey(kvn) {
-    let kvnlower = kvn.toLowerCase();
-    let kvnparts = kvnlower.split('|', 2);
-    let kv = kvnparts[0];
-    let n = kvnparts[1];
+
+// pass a parts object
+function matchKey(parts) {
+    let results = new Set();
+    let match = null;
+    let inGroup = false;
+
+    // we currently return a single garbage match for ambiguous
+    match = _ambiguous[parts.kv] && _ambiguous[parts.kv][parts.nsimple];
+    if (match) return match + '~?';
 
     // try to return an exact match
-    let match = _matchIndex[kv][n];
+    match = _matchIndex[parts.kv] && _matchIndex[parts.kv][parts.nsimple];
     if (match) return match;
 
-    let kvparts = kv.split('/', 2);
-    let k = kvparts[0];
-    let v = kvparts[1];
-
     // look in match groups
-    for (let mgkey in matchGroups) {
-        let matchGroup = matchGroups[mgkey];
-        let match = null;
-        let inGroup = false;
+    for (let mg in matchGroups) {
+        let matchGroup = matchGroups[mg];
+        match = null;
+        inGroup = false;
 
         for (let i = 0; i < matchGroup.length; i++) {
             let otherkv = matchGroup[i].toLowerCase();
             if (!inGroup) {
-                inGroup = (otherkv === kv);
+                inGroup = (otherkv === parts.kv);
             }
             if (!match) {
-                match = _matchIndex[otherkv] && _matchIndex[otherkv][n];
+                // we currently return a single garbage match for ambiguous
+                match = _ambiguous[otherkv] && _ambiguous[otherkv][parts.nsimple];
+                if (match) match = match + '~?';
             }
-            if (match && inGroup) {
+            if (!match) {
+                match = _matchIndex[otherkv] && _matchIndex[otherkv][parts.nsimple];
+            }
+
+            if (inGroup && match) {
                 return match;
             }
         }
@@ -192,39 +229,25 @@ function matchKey(kvn) {
 //-------------- END MATCHER  (to extract)
 
 
-
 //
 // mergeBrands() takes the brand names we are keeping
 // and updates the files under `/brands/**/*.json`
 //
 function mergeBrands() {
-    // buildReverseIndex(brands);
-    buildMatchIndex(brands);
-    checkBrands();
-
     console.log('\nmerging brands');
     console.time(colors.green('brands merged'));
 
     // Create/update entries
     // First, entries in namesKeep (i.e. counted entries)
-    Object.keys(_keep).forEach(kvn => {
-// console.log(`check ${kvn}`);
-        let kvnlower = kvn.toLowerCase();
-        if (_ambiguousKeys[kvnlower]) return;    // don't touch these
+    Object.keys(_keep).forEach(kvnd => {
+        let obj = brands[kvnd];
+        let parts = toParts(kvnd);
 
-        var mkvn = matchKey(kvnlower);
-// console.log(`kvnlower = ${kvnlower}     mkvn = ${mkvn}`);
-        if (mkvn) return;  // already in the index
-
-        let obj = brands[kvn];
-        let parts = kvn.split('|', 2);
-        let tag = parts[0].split('/', 2);
-        let key = tag[0];
-        let value = tag[1];
-        let name = parts[1];
+        var m = matchKey(parts);
+        if (m) return;  // already in the index
 
         if (!obj) {   // a new entry!
-console.log(`new entry for ${kvn}\n\n`);
+console.log(`new entry for ${kvnd}\n\n`);
 // out for now until we replace rindex
     //         obj = { tags: {} };
     //         brands[k] = obj;
@@ -238,52 +261,13 @@ console.log(`new entry for ${kvn}\n\n`);
 
 
     // now process all brands
-    Object.keys(brands).forEach(kvn => {
-        let obj = brands[kvn];
-        let parts = kvn.split('|', 2);
-        let tag = parts[0].split('/', 2);
-        let key = tag[0];
-        let value = tag[1];
-        let name = parts[1];
+    Object.keys(brands).forEach(kvnd => {
+        let obj = brands[kvnd];
+        let parts = toParts(kvnd);
 
-
-//--------------
-// is this tag in a matchgroup?
-// each map group is an equivalence class for tag matching
-// let matchGroup;
-// for (let mgkey in matchGroups) {
-//     let group = matchGroups[mgkey];
-//     if (group.some(t => t === parts[0])) {
-//         matchGroup = group;
-//         break;
-//     }
-// }
-
-//--------------
-// rewrite `match`
-// let matchNames = new Set();
-// let matchTags = new Set();
-// delete obj.matchNames;
-// delete obj.matchTags;
-
-// let match = obj.match || [];
-// match.forEach(mk => {
-//     let mparts = mk.split('|', 2);
-//     let mname = mparts[1].toLowerCase();
-
-//     if (mname !== name.toLowerCase()) {
-//         matchNames.add(mname);
-//     }
-//     if (mparts[0] !== parts[0]) {
-//         if (!matchGroup || !matchGroup.some(val => val === mparts[0])) {
-//             matchTags.add(mparts[0]);
-//         }
-//     }
-// });
-// if (matchNames.size) obj.matchNames = Array.from(matchNames);
-// if (matchTags.size) obj.matchTags = Array.from(matchTags);
-// delete obj.match;  // bye
-//--------------
+        let key = parts.k;
+        let value = parts.v;
+        let name = parts.n;
 
         // assign default tags - new or existing entries
         if (key === 'amenity' && value === 'cafe') {
@@ -337,46 +321,13 @@ console.log(`new entry for ${kvn}\n\n`);
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
         }
 
-        brands[kvn] = sort(brands[kvn])
+        brands[kvnd] = sort(brands[kvnd])
 
      });
 
     console.timeEnd(colors.green('brands merged'));
 }
 
-
-
-// //
-// // Returns a reverse index to map match keys back to their original keys
-// //
-// function buildReverseIndex(obj) {
-//     let warnCollisions = [];
-
-//     for (let k in obj) {
-//         checkAmbiguous(k);
-
-//         if (obj[k].match) {
-//             for (let i = obj[k].match.length - 1; i >= 0; i--) {
-//                 let match = obj[k].match[i];
-//                 checkAmbiguous(match);
-
-//                 if (rIndex[match]) {
-//                     warnCollisions.push([rIndex[match], match]);
-//                     warnCollisions.push([k, match]);
-//                 }
-//                 rIndex[match] = k;
-//             }
-//         }
-//     }
-
-//     if (warnCollisions.length) {
-//         console.warn(colors.yellow('\nWarning - match name collisions'));
-//         console.warn('To resolve these, make sure multiple entries do not contain the same "match" property.');
-//         warnCollisions.forEach(w => console.warn(
-//             colors.yellow('  "' + w[0] + '"') + ' -> match? -> ' + colors.yellow('"' + w[1] + '"')
-//         ));
-//     }
-// }
 
 
 //
@@ -393,9 +344,9 @@ function checkBrands() {
     let warnMissingTag = [];
     let seen = {};
 
-    Object.keys(brands).forEach(kvn => {
-        let obj = brands[kvn];
-        let parts = kvn.split('|', 2);
+    Object.keys(brands).forEach(kvnd => {
+        let obj = brands[kvnd];
+        let parts = kvnd.split('|', 2);
         let tag = parts[0];
         let name = parts[1];
 
@@ -410,49 +361,49 @@ function checkBrands() {
         if (other) {
             // suppress warning?
             let suppress = false;
-            if (brands[other].nomatch && brands[other].nomatch.indexOf(kvn) !== -1) {
+            if (brands[other].nomatch && brands[other].nomatch.indexOf(kvnd) !== -1) {
                 suppress = true;
             } else if (obj.nomatch && obj.nomatch.indexOf(other) !== -1) {
                 suppress = true;
             }
             if (!suppress) {
-                warnDuplicate.push([kvn, other]);
+                warnDuplicate.push([kvnd, other]);
             }
         }
-        seen[stem] = kvn;
+        seen[stem] = kvnd;
 
 
         // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
         let wd = obj.tags['brand:wikidata'];
         if (!wd) {
-            warnMissingWikidata.push(kvn);
+            warnMissingWikidata.push(kvnd);
         } else if (!/^Q\d+$/.test(wd)) {
-            warnFormatWikidata.push([kvn, wd]);
+            warnFormatWikidata.push([kvnd, wd]);
         }
         let wp = obj.tags['brand:wikipedia'];
         if (!wp) {
-            warnMissingWikipedia.push(kvn);
+            warnMissingWikipedia.push(kvnd);
         } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-            warnFormatWikipedia.push([kvn, wp]);
+            warnFormatWikipedia.push([kvnd, wp]);
         }
 
         // Warn on missing logo
         let logos = (wd && _wikidata[wd] && _wikidata[wd].logos) || {};
         if (!Object.keys(logos).length) {
-            warnMissingLogos.push(kvn);
+            warnMissingLogos.push(kvnd);
         }
 
         // Warn on other missing tags
         switch (tag) {
             case 'amenity/fast_food':
             case 'amenity/restaurant':
-                if (!obj.tags.cuisine) { warnMissingTag.push([kvn, 'cuisine']); }
+                if (!obj.tags.cuisine) { warnMissingTag.push([kvnd, 'cuisine']); }
                 break;
             case 'amenity/vending_machine':
-                if (!obj.tags.vending) { warnMissingTag.push([kvn, 'vending']); }
+                if (!obj.tags.vending) { warnMissingTag.push([kvnd, 'vending']); }
                 break;
             case 'shop/beauty':
-                if (!obj.tags.beauty) { warnMissingTag.push([kvn, 'beauty']); }
+                if (!obj.tags.beauty) { warnMissingTag.push([kvnd, 'beauty']); }
                 break;
         }
     });
