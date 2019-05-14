@@ -1,5 +1,4 @@
 const colors = require('colors/safe');
-const diacritics = require('diacritics');
 const fs = require('fs');
 const namesKeep = require('./dist/names_keep.json');
 const package = require('./package.json');
@@ -23,8 +22,9 @@ function buildAll() {
     // Start clean
     shell.rm('-f', ['dist/name-suggestions.*', 'dist/taginfo.json']);
 
-    // copy `filters.json`
+    // copy some project config files into `/dist`
     shell.cp('-f', 'config/filters.json', 'dist/filters.json');
+    shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
 
     // write `brands.json` as a single file
     fs.writeFileSync('dist/brands.json', stringify({ brands: brands }));

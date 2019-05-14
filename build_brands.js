@@ -6,7 +6,7 @@ const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
 const fileTree = require('./lib/file_tree.js');
-const matcher = require('./lib/matcher.js');
+const matcher = require('./lib/matcher.js')();
 const sort = require('./lib/sort.js');
 const stemmer = require('./lib/stemmer.js');
 const toParts = require('./lib/to_parts.js');
