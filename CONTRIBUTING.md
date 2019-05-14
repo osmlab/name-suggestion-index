@@ -364,7 +364,7 @@ _(comments added for clarity)_
 6. Rebuild and submit a pull request.
 
 * Run `npm run build`
-* If it does not fail with an error, you can submit a pull request with your changes.
+* If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
 
 &nbsp;
 
@@ -446,7 +446,7 @@ _(comments added for clarity)_
 6. Rebuild and submit a pull request.
 
 * Run `npm run build`
-* If it does not fail with an error, you can submit a pull request with your changes.
+* If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
 
 &nbsp;
 
