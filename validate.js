@@ -6,4 +6,4 @@ validate('config/filters.json', filters, filtersSchema);
 
 // reading a fileTree will also validate its contents
 const fileTree = require('./lib/file_tree');
-const brands = fileTree.read('brands');
+fileTree.read('brands');

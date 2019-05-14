@@ -1,7 +1,5 @@
 const colors = require('colors/safe');
-const diacritics = require('diacritics');
 const fs = require('fs-extra');
-const glob = require('glob');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
@@ -191,7 +189,7 @@ function mergeBrands() {
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
         }
 
-        brands[kvnd] = sort(brands[kvnd])
+        brands[kvnd] = sort(brands[kvnd]);
 
      });
 

@@ -1,5 +1,4 @@
 const colors = require('colors/safe');
-const fetch = require('node-fetch');
 const fileTree = require('./lib/file_tree');
 const fs = require('fs-extra');
 const namesKeep = require('./dist/names_keep.json');
@@ -9,7 +8,7 @@ const sort = require('./lib/sort');
 const _brands = fileTree.read('brands');
 const _wikidata = require('./dist/wikidata.json').wikidata;
 
-writeDocs('brands', _brands)
+writeDocs('brands', _brands);
 
 
 function writeDocs(tree, obj) {

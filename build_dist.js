@@ -1,7 +1,7 @@
 const colors = require('colors/safe');
 const fs = require('fs');
 const namesKeep = require('./dist/names_keep.json');
-const package = require('./package.json');
+const packageJSON = require('./package.json');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 const xmlbuilder = require('xmlbuilder');
@@ -76,9 +76,9 @@ function buildXML() {
         .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
         .att('author', 'Name Suggestion Index')
         .att('shortdescription', 'Name Suggestion Index')
-        .att('description', package.description)
-        .att('link', 'https://github.com/' + package.repository)
-        .att('version', package.version);
+        .att('description', packageJSON.description)
+        .att('link', 'https://github.com/' + packageJSON.repository)
+        .att('version', packageJSON.version);
 
     let topgroup = presets
         .ele('group')
@@ -106,7 +106,7 @@ function buildXML() {
         }
     }
 
-    let xmlstring = presets.end({ pretty: true })
+    let xmlstring = presets.end({ pretty: true });
     fs.writeFileSync('dist/name-suggestions.presets.xml', xmlstring);
 }
 
@@ -140,7 +140,7 @@ function buildTaginfo() {
                     }
 
                     let id = k + '/' + v;
-                    items[id] = { key: k }
+                    items[id] = { key: k };
 
                     if (v !== '*') {
                         items[id].value = v;

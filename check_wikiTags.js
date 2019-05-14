@@ -7,7 +7,6 @@ const wdk = require('wikidata-sdk');
 let _brands = fileTree.read('brands');
 
 let _errors = [];
-
 let _wrongFormat = [];
 let _deleted = [];
 let _foundSitelink = [];
@@ -83,7 +82,7 @@ function doFetch(index) {
         .then(result => processEntities(result))
         .catch(e => {
             _errors.push(e);
-            console.error(colors.red(e))
+            console.error(colors.red(e));
         })
         .then(() => delay(500))
         .then(() => doFetch(++index));
@@ -98,18 +97,18 @@ function processEntities(result) {
         let sitelinks = getSitelinks(entity);
 
         let wikidata = {
-          brand: entry.tags['brand:wikidata'],
-          operator: entry.tags['operator:wikidata']
-        }
+            brand: entry.tags['brand:wikidata'],
+            operator: entry.tags['operator:wikidata']
+        };
         let wikipedia = {
-          brand: entry.tags['brand:wikipedia'],
-          operator: entry.tags['operator:wikipedia']
-        }
+            brand: entry.tags['brand:wikipedia'],
+            operator: entry.tags['operator:wikipedia']
+        };
 
-        let tag = wikidata.brand == qid ? 'brand' : 'operator';
+        let tag = wikidata.brand === qid ? 'brand' : 'operator';
 
         // Wikidata entity was either deleted or is a redirect
-        if (entity.missing == '') {
+        if (entity.missing === '') {
             _deleted.push([target, qid, `${tag}:wikidata`]);
         }
 

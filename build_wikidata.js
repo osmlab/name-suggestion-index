@@ -36,8 +36,8 @@ try {
             access_token_key: s.twitter_access_token_key,
             access_token_secret: s.twitter_access_token_secret
         });
-    })
-} catch(err) { /* ignore */ }
+    });
+} catch (err) { /* ignore */ }
 
 
 // what to fetch
@@ -92,7 +92,7 @@ function doFetch(index) {
         .then(result => processEntities(result))
         .catch(e => {
             _errors.push(e);
-            console.error(colors.red(e))
+            console.error(colors.red(e));
         })
         .then(() => delay(500))
         .then(() => doFetch(++index));
@@ -249,7 +249,7 @@ function checkTwitterRateLimit(need) {
             }
         })
         .catch(e => {
-            console.error(colors.red(`Error: Twitter rate limit: ` + JSON.stringify(e)))
+            console.error(colors.red(`Error: Twitter rate limit: ` + JSON.stringify(e)));
         });
 }
 
