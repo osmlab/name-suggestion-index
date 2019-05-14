@@ -107,7 +107,7 @@ function filterNames() {
 }
 
 
-//--------------BEGIN MATCHER  (to extract)
+//--------------BEGIN MATCHER  (todo extract to /lib)
 
 // remove spaces, punctuation, diacritics
 function simplify(str) {
@@ -173,6 +173,7 @@ function buildMatchIndex(brands) {
                 }
 
                 if (parts.d) {
+                    // fixme: multiple will clobber over the single entry (ok for now)
                     if (!_ambiguous[kv]) _ambiguous[kv] = {};
                     _ambiguous[kv][nsimple] = parts.kvnsimple;
                 } else {
@@ -191,7 +192,7 @@ function matchKey(parts) {
     let match = null;
     let inGroup = false;
 
-    // we currently return a single garbage match for ambiguous
+    // fixme: we currently return a single garbage match for ambiguous
     match = _ambiguous[parts.kv] && _ambiguous[parts.kv][parts.nsimple];
     if (match) return match + '~?';
 
@@ -211,7 +212,7 @@ function matchKey(parts) {
                 inGroup = (otherkv === parts.kv);
             }
             if (!match) {
-                // we currently return a single garbage match for ambiguous
+                // fixme: we currently return a single garbage match for ambiguous
                 match = _ambiguous[otherkv] && _ambiguous[otherkv][parts.nsimple];
                 if (match) match = match + '~?';
             }
@@ -249,15 +250,13 @@ function mergeBrands() {
         if (m) return;  // already in the index
 
         if (!obj) {   // a new entry!
-console.log(`new entry for ${kvnd}\n\n`);
-// out for now until we replace rindex
-    //         obj = { tags: {} };
-    //         brands[k] = obj;
+            obj = { tags: {} };
+            brands[kvnd] = obj;
 
-    //         // assign default tags - new entries
-    //         obj.tags.brand = name;
-    //         obj.tags.name = name;
-    //         obj.tags[key] = value;
+            // assign default tags - new entries
+            obj.tags.brand = parts.n;
+            obj.tags.name = parts.n;
+            obj.tags[parts.k] = parts.v;
         }
     });
 
@@ -267,57 +266,53 @@ console.log(`new entry for ${kvnd}\n\n`);
         let obj = brands[kvnd];
         let parts = toParts(kvnd);
 
-        let key = parts.k;
-        let value = parts.v;
-        let name = parts.n;
-
         // assign default tags - new or existing entries
-        if (key === 'amenity' && value === 'cafe') {
+        if (parts.k === 'amenity' && parts.v === 'cafe') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
             if (!obj.tags.cuisine) obj.tags.cuisine = 'coffee_shop';
-        } else if (key === 'amenity' && value === 'fast_food') {
+        } else if (parts.k === 'amenity' && parts.v === 'fast_food') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
-        } else if (key === 'amenity' && value === 'pharmacy') {
+        } else if (parts.k === 'amenity' && parts.v === 'pharmacy') {
             if (!obj.tags.healthcare) obj.tags.healthcare = 'pharmacy';
         }
 
         // Force `countryCode`, and duplicate `name:xx` and `brand:xx` tags
         // if the name can only be reasonably read in one country.
         // https://www.regular-expressions.info/unicode.html
-        if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
+        if (/[\u0590-\u05FF]/.test(parts.n)) {          // Hebrew
             obj.countryCodes = ['il'];
             // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
             if (obj.tags.name) { obj.tags['name:he'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:he'] = obj.tags.brand; }
-        } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
+        } else if (/[\u0E00-\u0E7F]/.test(parts.n)) {   // Thai
             obj.countryCodes = ['th'];
             if (obj.tags.name) { obj.tags['name:th'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:th'] = obj.tags.brand; }
-        } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
+        } else if (/[\u1000-\u109F]/.test(parts.n)) {   // Myanmar
             obj.countryCodes = ['mm'];
             if (obj.tags.name) { obj.tags['name:my'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:my'] = obj.tags.brand; }
-        } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
+        } else if (/[\u1100-\u11FF]/.test(parts.n)) {   // Hangul
             obj.countryCodes = ['kr'];
             if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-        } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
+        } else if (/[\u1700-\u171F]/.test(parts.n)) {   // Tagalog
             obj.countryCodes = ['ph'];
             if (obj.tags.name) { obj.tags['name:tl'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:tl'] = obj.tags.brand; }
-        } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
+        } else if (/[\u3040-\u30FF]/.test(parts.n)) {   // Hirgana or Katakana
             obj.countryCodes = ['jp'];
             if (obj.tags.name) { obj.tags['name:ja'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ja'] = obj.tags.brand; }
-        } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
+        } else if (/[\u3130-\u318F]/.test(parts.n)) {   // Hangul
             obj.countryCodes = ['kr'];
             if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-        } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
+        } else if (/[\uA960-\uA97F]/.test(parts.n)) {   // Hangul
             obj.countryCodes = ['kr'];
             if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-        } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
+        } else if (/[\uAC00-\uD7AF]/.test(parts.n)) {   // Hangul
             obj.countryCodes = ['kr'];
             if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
@@ -329,7 +324,6 @@ console.log(`new entry for ${kvnd}\n\n`);
 
     console.timeEnd(colors.green('brands merged'));
 }
-
 
 
 //

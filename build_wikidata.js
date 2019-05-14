@@ -64,9 +64,9 @@ doFetch().then(finish);
 
 function gatherQIDs(brands) {
     let wikidata = {};
-    Object.keys(brands).forEach(k => {
+    Object.keys(brands).forEach(kvnd => {
         ['brand:wikidata', 'operator:wikidata'].forEach(t => {
-            let qid = brands[k].tags[t];
+            let qid = brands[kvnd].tags[t];
             if (qid && /^Q\d+$/.test(qid)) {
                 wikidata[qid] = {};
             }
