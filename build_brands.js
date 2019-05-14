@@ -1,13 +1,16 @@
 const colors = require('colors/safe');
 const diacritics = require('diacritics');
-const fileTree = require('./lib/file_tree');
 const fs = require('fs-extra');
 const glob = require('glob');
 const shell = require('shelljs');
-const sort = require('./lib/sort');
-const stemmer = require('./lib/stemmer');
 const stringify = require('json-stringify-pretty-compact');
-const validate = require('./lib/validate');
+
+const fileTree = require('./lib/file_tree.js');
+const matcher = require('./lib/matcher.js');
+const sort = require('./lib/sort.js');
+const stemmer = require('./lib/stemmer.js');
+const toParts = require('./lib/to_parts.js');
+const validate = require('./lib/validate.js');
 
 
 // Load cached wikidata
@@ -27,9 +30,6 @@ filters = {
 fs.writeFileSync('config/filters.json', stringify(filters));
 
 
-// Load and check matchGroups.json
-const matchGroups = require('./config/matchGroups.json').matchGroups;
-
 // Load and check brand files
 let brands = fileTree.read('brands');
 
@@ -37,12 +37,10 @@ let brands = fileTree.read('brands');
 const allnames = require('./dist/names_all.json');
 let _discard = Object.assign({}, allnames);
 let _keep = {};
-let _ambiguous = {};
-let _matchIndex = {};
 
 
 filterNames();
-buildMatchIndex(brands);
+matcher.buildMatchIndex(brands);
 checkBrands();
 mergeBrands();
 fileTree.write('brands', brands);
@@ -107,131 +105,6 @@ function filterNames() {
 }
 
 
-//--------------BEGIN MATCHER  (todo extract to /lib)
-
-// remove spaces, punctuation, diacritics
-function simplify(str) {
-    return diacritics.remove(
-        str.replace(/[\s\-=_!"#%&'*{},.\/:;?\(\)\[\]@\\$\^*+<>~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g,'')
-            .toLowerCase()
-    );
-}
-
-// toParts - split a name-suggestion-index key into parts
-// {
-//   kvnd:        "amenity/fast_food|Thaï Express~(North America)",
-//   kvn:         "amenity/fast_food|Thaï Express",
-//   kv:          "amenity/fast_food",
-//   k:           "amenity",
-//   v:           "fast_food",
-//   n:           "Thaï Express",
-//   d:           "(North America)",
-//   nsimple:     "thaiexpress",
-//   kvnnsimple:  "amenity/fast_food|thaiexpress"
-// }
-function toParts(kvnd) {
-    let parts = {};
-    parts.kvnd = kvnd;
-
-    let kvndparts = kvnd.split('~', 2);
-    if (kvndparts.length > 1) parts.d = kvndparts[1];
-
-    parts.kvn = kvndparts[0];
-    let kvnparts = parts.kvn.split('|', 2);
-    if (kvnparts.length > 1) parts.n = kvnparts[1];
-
-    parts.kv = kvnparts[0];
-    let kvparts = parts.kv.split('/', 2);
-    parts.k = kvparts[0];
-    parts.v = kvparts[1];
-
-    parts.nsimple = simplify(parts.n);
-    parts.kvnsimple = parts.kv + '|' + parts.nsimple;
-    return parts;
-}
-
-
-// Create an index of all the keys/simplenames for fast matching
-function buildMatchIndex(brands) {
-    Object.keys(brands).forEach(kvnd => {
-        let obj = brands[kvnd];
-        let parts = toParts(kvnd);
-
-        let matchTags = (obj.matchTags || []).map(s => s.toLowerCase());
-        let matchNames = (obj.matchNames || []).map(simplify);
-        let nomatches = (obj.nomatch || []).map(kvnd => toParts(kvnd).kvnsimple);
-
-        let match_kv = [parts.kv].concat(matchTags);
-        let match_nsimple = [parts.nsimple].concat(matchNames);
-
-        match_kv.forEach(kv => {
-            match_nsimple.forEach(nsimple => {
-                let test = `${kv}${nsimple}`;
-                if (nomatches.some(s => s === test)) {
-                    console.log(` WARNING match/nomatch conflict for ${test}!`);
-                    return;
-                }
-
-                if (parts.d) {
-                    // fixme: multiple will clobber over the single entry (ok for now)
-                    if (!_ambiguous[kv]) _ambiguous[kv] = {};
-                    _ambiguous[kv][nsimple] = parts.kvnsimple;
-                } else {
-                    if (!_matchIndex[kv]) _matchIndex[kv] = {};
-                    _matchIndex[kv][nsimple] = parts.kvnsimple;
-                }
-            });
-        });
-    });
-}
-
-
-// pass a parts object
-function matchKey(parts) {
-    let results = new Set();
-    let match = null;
-    let inGroup = false;
-
-    // fixme: we currently return a single garbage match for ambiguous
-    match = _ambiguous[parts.kv] && _ambiguous[parts.kv][parts.nsimple];
-    if (match) return match + '~?';
-
-    // try to return an exact match
-    match = _matchIndex[parts.kv] && _matchIndex[parts.kv][parts.nsimple];
-    if (match) return match;
-
-    // look in match groups
-    for (let mg in matchGroups) {
-        let matchGroup = matchGroups[mg];
-        match = null;
-        inGroup = false;
-
-        for (let i = 0; i < matchGroup.length; i++) {
-            let otherkv = matchGroup[i].toLowerCase();
-            if (!inGroup) {
-                inGroup = (otherkv === parts.kv);
-            }
-            if (!match) {
-                // fixme: we currently return a single garbage match for ambiguous
-                match = _ambiguous[otherkv] && _ambiguous[otherkv][parts.nsimple];
-                if (match) match = match + '~?';
-            }
-            if (!match) {
-                match = _matchIndex[otherkv] && _matchIndex[otherkv][parts.nsimple];
-            }
-
-            if (inGroup && match) {
-                return match;
-            }
-        }
-    }
-
-    return null;
-}
-
-//-------------- END MATCHER  (to extract)
-
-
 //
 // mergeBrands() takes the brand names we are keeping
 // and updates the files under `/brands/**/*.json`
@@ -246,7 +119,7 @@ function mergeBrands() {
         let obj = brands[kvnd];
         let parts = toParts(kvnd);
 
-        var m = matchKey(parts);
+        var m = matcher.matchKey(parts);
         if (m) return;  // already in the index
 
         if (!obj) {   // a new entry!
