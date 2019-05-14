@@ -297,7 +297,7 @@ function checkBrands() {
 
     if (warnDuplicate.length) {
         console.warn(colors.yellow('\nWarning - Potential duplicate brand names:'));
-        console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
+        console.warn('To resolve these, remove the worse entry and add "matchNames"/"matchTags" properties on the better entry.');
         console.warn('To suppress this warning for entries that really are different, add a "nomatch" property on both entries.');
         warnDuplicate.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
