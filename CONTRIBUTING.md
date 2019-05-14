@@ -27,6 +27,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 
 * `config/*`
   * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
+  * `config/match_groups.json`- Groups of tag pairs that are considered equal when matching
 * `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`
@@ -84,14 +85,6 @@ In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|McDonald's": {         // Identifier like "key/value|name"
-    "match": [
-      "amenity/fast_food|Mc Donald's",      // Optional `match` array
-      "amenity/fast_food|McDonalds",        //   Contains less-desirable variations to ignore.
-      "amenity/restaurant|Mc Donald's",     //   (we want to keep only "amenity/fast_food|McDonald's")
-      "amenity/restaurant|Mc Donalds",      //
-      "amenity/restaurant|McDonald's",      //
-      "amenity/restaurant|McDonalds",       //
-    ],
     "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
       "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
       "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
@@ -125,13 +118,47 @@ There may also be entries for McDonald's in other languages!
 
 &nbsp;
 
-#### Optional properties to suppress warnings
+#### Optional properties
 
-These properties always start with `"no"`.
+##### `matchNames`/`matchTags`
+
+Sometimes a single brand will have different tags in OpenStreetMap.
+
+For example, we prefer "Bed Bath & Beyond" to be tagged as `shop/houseware`.
+However we also need to recognize:
+- less-preferred name spellings like "Bed Bath and Beyond"
+- less-preferred tag pairs like `shop/department_store`
+
+Rather than adding every possible alternative to the index, we can use
+`matchNames` and `matchTags` properties to ignore less-preferred alternatives.
+
+```js
+  "shop/houseware|Bed Bath & Beyond": {
+    "matchNames": ["bed bath and beyond"],     // also match these alternate spellings
+    "matchTags": ["shop/department_store"],    // also match these alternate taggings
+    "tags": {
+      "brand": "Bed Bath & Beyond",
+      "brand:wikidata": "Q813782",
+      "brand:wikipedia": "en:Bed Bath & Beyond",
+      "name": "Bed Bath & Beyond",
+      "shop": "houseware"
+    }
+  },
+```
+
+The matching code also has some useful automatic behaviors:
+
+- Names are always matched case insensitive, with spaces and punctuation removed.
+You do not need to add `matchNames` properties for simple name variations.
+
+- Some tags are assigned to _match groups_ (defined in `config/match_groups.json`).
+You don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
+and vice versa. Tags in a match group will match any other tags in the same match group.
+
 
 ##### `nomatch`
 
-Sometimes there are multiple different entries that use the same name.
+Sometimes there are multiple _different_ entries that use the same name.
 
 For example, "Sonic" can be either a fast food restaurant or a fuel station.
 
@@ -143,11 +170,11 @@ property to each entry to suppress the "duplicate name" warning.
   "amenity/fuel|Sonic": {
     "nomatch": ["amenity/fast_food|Sonic"],
     ...
-  }
+  },
   "amenity/fast_food|Sonic": {
     "nomatch": ["amenity/fuel|Sonic"],
     ...
-  }
+  },
 ```
 
 &nbsp;
@@ -219,21 +246,25 @@ If you aren't sure, just ask on GitHub!
 
 ```
 Warning - Potential duplicate brand names:
-To resolve these, remove the worse entry and add "match" property on the better entry.
+To resolve these, remove the worse entry and add "matchNames"/"matchTags" properties on the better entry.
 To suppress this warning for entries that really are different, add a "nomatch" property on both entries.
-  "tourism/motel|Motel 6" -> duplicates? -> "tourism/hotel|Motel 6"
+  "shop/supermarket|Carrefour" -> duplicates? -> "amenity/fuel|Carrefour"
+  "shop/supermarket|VinMart" -> duplicates? -> "shop/department_store|VinMart"
 ```
 
-_What it means:_  "Motel 6" exists in the index twice - as both a `tourism=hotel` (wrong)
-and a `tourism=motel` (correct). In this situation we want to:
-* Delete the entry for `"tourism/hotel|Motel 6"` and
-* Add `"match": ["tourism/hotel|Motel 6"]` to the `"tourism/motel|Motel 6"` entry
+_What it means:_  These names are commonly tagged differently in OpenStreetMap.  This might be ok, but it might be a mistake.
 
-Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding which entry should be kept.
+For "VinMart" we really prefer for it to be tagged as a supermarket.  It's a single brand frequently mistagged.
+* Add `"matchTags": ["shop/department_store"]` to the (preferred) `"shop/supermarket|VinMart"` entry
+* Delete the (not preferred) entry for `"shop/department_store|VinMart"`
+
+For "Carrefour" we know that can be both a supermarket and a fuel station.  It's two different things.
+* Add `"nomatch": ["shop/supermarket|Carrefour"]` to the `"amenity/fuel|Carrefour"` entry
+* Add `"nomatch": ["amenity/fuel|Carrefour"]` to the `"shop/supermarket|Carrefour"` entry
+
+Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding whether to match or nomatch these duplicates.
 
 If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
-
-Note that in some cases both entries should be kept - for example, a given brand may really operate both supermarkets and convenience stores under the same name. In that case it is necessary to use the `nomatch` property.
 
 &nbsp;
 
@@ -275,11 +306,7 @@ In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|Chipotle": {
-    "match": [
-      "amenity/fast_food|Chipotle Mexican Grill",
-      "amenity/restaurant|Chipotle",
-      "amenity/restaurant|Chipotle Mexican Grill"
-    ],
+    "matchNames": ["chipotle mexican grill"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Chipotle",
@@ -320,11 +347,7 @@ We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
 
 ```js
   "amenity/fast_food|Chipotle": {
-    "match": [
-      "amenity/fast_food|Chipotle Mexican Grill",
-      "amenity/restaurant|Chipotle",
-      "amenity/restaurant|Chipotle Mexican Grill"
-    ],
+    "matchNames": ["chipotle mexican grill"],
     "tags": {
       "amenity": "fast_food",
       "brand:wikidata": "Q465751",                            // added
@@ -440,7 +463,7 @@ is a valuable way to get ahead of incorrect tagging.
 
 3. If the brand only has locations in a known set of countries add the `"countryCodes": []` key to your new entry. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
 
-4. If instances of this brand are commonly mistagged add the `"match": []` key to list these. Again, refer to [here](#card_file_box--about-the-brand-files) for syntax.
+4. If instances of this brand are commonly mistagged add the `"matchNames": []` key to list these. Again, refer to [here](#card_file_box--about-the-brand-files) for syntax.
 
 5. Run `npm run build` and resolve any [duplicate name warnings](#thinking--resolve-warnings).
 
