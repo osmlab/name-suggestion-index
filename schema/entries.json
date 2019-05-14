@@ -20,15 +20,6 @@
                         "pattern": "^[a-z]{2}$"
                     }
                 },
-                "match": {
-                    "description": "(optional) DEPRECATED Array of alternate keys that are the same as this entry.",
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "pattern": "^\\S+/\\S+|.*$"
-                    }
-                },
                 "matchNames": {
                     "description": "(optional) An array of alternate but less-desired names.",
                     "type": "array",
@@ -60,7 +51,8 @@
                     "type": "object",
                     "properties": {
                         "countryCodes": { "not" : {} },
-                        "match":        { "not" : {} },
+                        "matchNames":   { "not" : {} },
+                        "matchTags":    { "not" : {} },
                         "nomatch":      { "not" : {} },
                         "tags":         { "not" : {} }
                     }
