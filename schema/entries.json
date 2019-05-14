@@ -21,12 +21,29 @@
                     }
                 },
                 "match": {
-                    "description": "(optional) Array of alternate keys that are the same as this entry.",
+                    "description": "(optional) DEPRECATED Array of alternate keys that are the same as this entry.",
                     "type": "array",
                     "uniqueItems": true,
                     "items": {
                         "type": "string",
                         "pattern": "^\\S+/\\S+|.*$"
+                    }
+                },
+                "matchNames": {
+                    "description": "(optional) An array of alternate but less-desired names.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "matchTags": {
+                    "description": "(optional) An array of alternate but less-desired tag-pairs.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^\\S+/\\S+$"
                     }
                 },
                 "nomatch": {

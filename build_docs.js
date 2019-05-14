@@ -11,6 +11,7 @@ const _wikidata = require('./dist/wikidata.json').wikidata;
 
 writeDocs('brands', _brands)
 
+
 function writeDocs(tree, obj) {
     console.log('\nwriting ' + tree);
     console.time(colors.green(tree + ' written'));
@@ -20,18 +21,18 @@ function writeDocs(tree, obj) {
     shell.rm('-rf', ['docs/brands']);
 
     // populate K-V dictionary
-    Object.keys(obj).forEach(k => {
-        let parts = k.split('|', 2);
-        let tag = parts[0].split('/', 2);
-        let key = tag[0];
-        let value = tag[1];
+    Object.keys(obj).forEach(kvnd => {
+        let kvndparts = kvnd.split('|', 2);
+        let kvparts = kvndparts[0].split('/', 2);
+        let k = kvparts[0];
+        let v = kvparts[1];
 
-        dict[key] = dict[key] || {};
-        dict[key][value] = dict[key][value] || {};
-        dict[key][value][k] = sort(obj[k]);
+        dict[k] = dict[k] || {};
+        dict[k][v] = dict[k][v] || {};
+        dict[k][v][kvnd] = sort(obj[kvnd]);
 
-        if (dict[key][value][k].tags) {
-            dict[key][value][k].tags = sort(obj[k].tags);
+        if (dict[k][v][kvnd].tags) {
+            dict[k][v][kvnd].tags = sort(obj[kvnd].tags);
         }
     });
 
@@ -80,8 +81,8 @@ See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blo
             let complete = 0;
             let count = keys.length;
 
-            keys.forEach(name => {
-                let entry = dict[k][v][name];
+            keys.forEach(kvnd => {
+                let entry = dict[k][v][kvnd];
                 let tags = entry.tags || {};
                 let qid = tags['brand:wikidata'];
                 let wikidata = _wikidata[qid] || {};
@@ -138,10 +139,10 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <thead>
 <tbody>`;
 
-    Object.keys(dict[k][v]).forEach(name => {
-        let slug = slugify(name);
-        let entry = dict[k][v][name];
-        let count = namesKeep[name] || '< 50';
+    Object.keys(dict[k][v]).forEach(kvnd => {
+        let slug = slugify(kvnd);
+        let entry = dict[k][v][kvnd];
+        let count = namesKeep[kvnd] || '< 50';
         let tags = entry.tags || {};
 
         let qid = tags['brand:wikidata'];
@@ -155,7 +156,7 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
         body += `
 <tr>
 <td class="namesuggest"><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
-  <div class="nsikey"><pre>'${name}'</pre></div>
+  <div class="nsikey"><pre>'${kvnd}'</pre></div>
   <div class="viewlink">` + overpassLink(k, v, tags.name) + `</div>
 </td>
 <td>${count}</td>
@@ -179,9 +180,9 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 }
 
 
-function overpassLink(k, v, name) {
+function overpassLink(k, v, n) {
     let q = encodeURIComponent(`[out:json][timeout:25];
-(nwr["${k}"="${v}"]["name"="${name}"];);
+(nwr["${k}"="${v}"]["name"="${n}"];);
 out body;
 >;
 out skel qt;`);

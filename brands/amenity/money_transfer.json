@@ -1,7 +1,7 @@
 {
   "amenity/money_transfer|Express Union": {
     "countryCodes": ["td"],
-    "match": ["amenity/bank|Express Union"],
+    "matchTags": ["amenity/bank"],
     "nomatch": [
       "amenity/bank|Banco Unión",
       "amenity/bank|UnionBank"
@@ -15,7 +15,6 @@
     }
   },
   "amenity/money_transfer|Orange Money": {
-    "match": ["shop/money_transfer|Orange Money"],
     "tags": {
       "amenity": "money_transfer",
       "brand": "Orange Money",
@@ -25,9 +24,7 @@
     }
   },
   "amenity/money_transfer|Western Union": {
-    "match": [
-      "amenity/bureau_de_change|Western Union"
-    ],
+    "matchTags": ["amenity/bureau_de_change"],
     "nomatch": ["amenity/bank|Western Union"],
     "tags": {
       "amenity": "money_transfer",

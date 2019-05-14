@@ -34,10 +34,7 @@
     }
   },
   "amenity/vending_machine|DHL Packstation": {
-    "match": [
-      "amenity/post_box|Packstation",
-      "amenity/vending_machine|Packstation"
-    ],
+    "matchTags": ["amenity/post_box"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "Packstation",
@@ -152,7 +149,7 @@
   },
   "amenity/vending_machine|Ключ здоровья": {
     "countryCodes": ["ru"],
-    "match": ["shop/water|Ключ здоровья"],
+    "matchTags": ["shop/water"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "Ключ здоровья",
@@ -162,7 +159,8 @@
   },
   "amenity/vending_machine|コカ・コーラ": {
     "countryCodes": ["jp"],
-    "match": ["shop/vending_machine|コカコーラ"],
+    "matchNames": ["コカコーラ"],
+    "matchTags": ["shop/vending_machine"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "コカ・コーラ",
@@ -182,9 +180,8 @@
   },
   "amenity/vending_machine|ポッカサッポロ": {
     "countryCodes": ["jp"],
-    "match": [
-      "shop/vending_machine|POKKA SAPPORO"
-    ],
+    "matchNames": ["pokka sapporo"],
+    "matchTags": ["shop/vending_machine"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "ポッカサッポロ",

@@ -1,7 +1,6 @@
 {
   "amenity/fast_food|A&W~(Canada)": {
     "countryCodes": ["ca"],
-    "match": ["amenity/restaurant|A&W~(Canada)"],
     "nomatch": ["amenity/fast_food|A&W~(USA)"],
     "tags": {
       "amenity": "fast_food",
@@ -15,7 +14,6 @@
   },
   "amenity/fast_food|A&W~(USA)": {
     "countryCodes": ["us"],
-    "match": ["amenity/restaurant|A&W~(USA)"],
     "nomatch": ["amenity/fast_food|A&W~(Canada)"],
     "tags": {
       "amenity": "fast_food",
@@ -62,10 +60,6 @@
   },
   "amenity/fast_food|Au Bon Pain": {
     "countryCodes": ["in", "th", "us"],
-    "match": [
-      "amenity/cafe|Au Bon Pain",
-      "amenity/restaurant|Au Bon Pain"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Au Bon Pain",
@@ -77,11 +71,7 @@
     }
   },
   "amenity/fast_food|Auntie Anne's": {
-    "match": [
-      "amenity/fast_food|Auntie Annes",
-      "amenity/restaurant|Auntie Anne's",
-      "shop/bakery|Auntie Anne's"
-    ],
+    "matchTags": ["shop/bakery"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Auntie Anne's",
@@ -129,11 +119,6 @@
   },
   "amenity/fast_food|Bojangles'": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Bojangles",
-      "amenity/restaurant|Bojangles",
-      "amenity/restaurant|Bojangles'"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Bojangles'",
@@ -157,7 +142,6 @@
     }
   },
   "amenity/fast_food|Boston Market": {
-    "match": ["amenity/restaurant|Boston Market"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Boston Market",
@@ -170,7 +154,7 @@
   },
   "amenity/fast_food|Braum's": {
     "countryCodes": ["us"],
-    "match": ["shop/dairy|Braum's"],
+    "matchTags": ["shop/dairy"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Braum's",
@@ -183,10 +167,7 @@
     }
   },
   "amenity/fast_food|Burger King": {
-    "match": [
-      "amenity/fast_food|Burguer King",
-      "amenity/restaurant|Burger King"
-    ],
+    "matchNames": ["burguer king"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Burger King",
@@ -211,7 +192,6 @@
   },
   "amenity/fast_food|BurgerFi": {
     "countryCodes": ["us"],
-    "match": ["amenity/fast_food|BURGERFI"],
     "tags": {
       "amenity": "fast_food",
       "brand": "BurgerFi",
@@ -224,7 +204,6 @@
   },
   "amenity/fast_food|Captain D's": {
     "countryCodes": ["us"],
-    "match": ["amenity/restaurant|Captain D's"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Captain D's",
@@ -236,10 +215,6 @@
     }
   },
   "amenity/fast_food|Carl's Jr.": {
-    "match": [
-      "amenity/fast_food|Carl's Jr",
-      "amenity/fast_food|Carls Jr."
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Carl's Jr.",
@@ -263,11 +238,6 @@
     }
   },
   "amenity/fast_food|Chick-fil-A": {
-    "match": [
-      "amenity/fast_food|Chick-Fil-A",
-      "amenity/restaurant|Chick-Fil-A",
-      "amenity/restaurant|Chick-fil-A"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Chick-fil-A",
@@ -290,11 +260,6 @@
     }
   },
   "amenity/fast_food|China Wok": {
-    "match": [
-      "amenity/fast_food|ChinaWok",
-      "amenity/restaurant|China Wok",
-      "amenity/restaurant|ChinaWok"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "China Wok",
@@ -306,11 +271,7 @@
     }
   },
   "amenity/fast_food|Chipotle": {
-    "match": [
-      "amenity/fast_food|Chipotle Mexican Grill",
-      "amenity/restaurant|Chipotle",
-      "amenity/restaurant|Chipotle Mexican Grill"
-    ],
+    "matchNames": ["chipotle mexican grill"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Chipotle",
@@ -335,7 +296,6 @@
     }
   },
   "amenity/fast_food|Chowking": {
-    "match": ["amenity/restaurant|Chowking"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Chowking",
@@ -358,12 +318,10 @@
     }
   },
   "amenity/fast_food|Cinnabon": {
-    "match": [
-      "amenity/cafe|Cinnabon",
-      "amenity/restaurant|Cinnabon",
-      "shop/bakery|Cinnabon",
-      "shop/confectionery|Cinnabon",
-      "shop/pastry|Cinnabon"
+    "matchTags": [
+      "shop/bakery",
+      "shop/confectionery",
+      "shop/pastry"
     ],
     "tags": {
       "amenity": "fast_food",
@@ -378,7 +336,6 @@
   },
   "amenity/fast_food|CoCo壱番屋": {
     "countryCodes": ["cn", "jp"],
-    "match": ["amenity/restaurant|CoCo壱番屋"],
     "tags": {
       "amenity": "fast_food",
       "brand": "CoCo壱番屋",
@@ -435,11 +392,7 @@
     }
   },
   "amenity/fast_food|Dairy Queen": {
-    "match": [
-      "amenity/fast_food|DQ",
-      "amenity/ice_cream|Dairy Queen",
-      "amenity/restaurant|Dairy Queen"
-    ],
+    "matchNames": ["dq"],
     "nomatch": [
       "amenity/fast_food|DQ Grill & Chill"
     ],
@@ -489,15 +442,7 @@
     }
   },
   "amenity/fast_food|Domino's Pizza": {
-    "match": [
-      "amenity/fast_food|Domino's",
-      "amenity/fast_food|Dominos",
-      "amenity/fast_food|Dominos Pizza",
-      "amenity/restaurant|Domino's",
-      "amenity/restaurant|Domino's Pizza",
-      "amenity/restaurant|Dominos",
-      "amenity/restaurant|Dominos Pizza"
-    ],
+    "matchNames": ["dominos"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Domino's Pizza",
@@ -509,14 +454,8 @@
     }
   },
   "amenity/fast_food|Dunkin' Donuts": {
-    "match": [
-      "amenity/cafe|Dunkin Donuts",
-      "amenity/cafe|Dunkin' Donuts",
-      "amenity/fast_food|Dunkin Donuts",
-      "amenity/restaurant|Dunkin Donuts",
-      "amenity/restaurant|Dunkin' Donuts",
-      "shop/bakery|Dunkin' Donuts"
-    ],
+    "matchNames": ["dunkin doughnuts"],
+    "matchTags": ["shop/bakery"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Dunkin' Donuts",
@@ -529,12 +468,10 @@
   },
   "amenity/fast_food|Einstein Bros. Bagels": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Einstein Bros Bagels",
-      "amenity/fast_food|Einstein Brothers Bagels",
-      "amenity/restaurant|Einstein Bros Bagels",
-      "amenity/restaurant|Einstein Bros. Bagels",
-      "amenity/restaurant|Einstein Brothers Bagels"
+    "matchNames": [
+      "einstein bros",
+      "einstein brothers",
+      "einstein brothers bagels"
     ],
     "tags": {
       "amenity": "fast_food",
@@ -591,9 +528,6 @@
     }
   },
   "amenity/fast_food|Firehouse Subs": {
-    "match": [
-      "amenity/restaurant|Firehouse Subs"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Firehouse Subs",
@@ -605,10 +539,7 @@
     }
   },
   "amenity/fast_food|Five Guys": {
-    "match": [
-      "amenity/fast_food|Five Guys Burgers and Fries",
-      "amenity/restaurant|Five Guys"
-    ],
+    "matchNames": ["five guys burgers and fries"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Five Guys",
@@ -621,8 +552,8 @@
     }
   },
   "amenity/fast_food|Freddy's": {
-    "match": [
-      "amenity/fast_food|Freddy's Frozen Custard & Steakburgers"
+    "matchNames": [
+      "freddy's frozen custard & steakburgers"
     ],
     "tags": {
       "amenity": "fast_food",
@@ -648,7 +579,6 @@
   },
   "amenity/fast_food|Gabriel Pizza": {
     "countryCodes": ["ca"],
-    "match": ["amenity/restaurant|Gabriel Pizza"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Gabriel Pizza",
@@ -715,11 +645,6 @@
     }
   },
   "amenity/fast_food|Hardee's": {
-    "match": [
-      "amenity/fast_food|Hardees",
-      "amenity/restaurant|Hardee's",
-      "amenity/restaurant|Hardees"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Hardee's",
@@ -767,15 +692,7 @@
   },
   "amenity/fast_food|Hungry Howie's": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Hungry Howie's Pizza",
-      "amenity/fast_food|Hungry Howies",
-      "amenity/fast_food|Hungry Howies Pizza",
-      "amenity/restaurant|Hungry Howie's",
-      "amenity/restaurant|Hungry Howie's Pizza",
-      "amenity/restaurant|Hungry Howies",
-      "amenity/restaurant|Hungry Howies Pizza"
-    ],
+    "matchNames": ["hungry howies pizza"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Hungry Howie's",
@@ -788,7 +705,6 @@
   },
   "amenity/fast_food|Hungry Jacks": {
     "countryCodes": ["au"],
-    "match": ["amenity/fast_food|Hungry Jack's"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Hungry Jacks",
@@ -811,9 +727,6 @@
     }
   },
   "amenity/fast_food|Jack in the Box": {
-    "match": [
-      "amenity/fast_food|Jack In The Box"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Jack in the Box",
@@ -825,7 +738,6 @@
     }
   },
   "amenity/fast_food|Jamba Juice": {
-    "match": ["amenity/cafe|Jamba Juice"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Jamba Juice",
@@ -837,11 +749,7 @@
     }
   },
   "amenity/fast_food|Jersey Mike's Subs": {
-    "match": [
-      "amenity/fast_food|Jersey Mike's",
-      "amenity/restaurant|Jersey Mike's",
-      "amenity/restaurant|Jersey Mike's Subs"
-    ],
+    "matchNames": ["jersey mikes"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Jersey Mike's Subs",
@@ -853,11 +761,7 @@
     }
   },
   "amenity/fast_food|Jimmy John's": {
-    "match": [
-      "amenity/fast_food|Jimmy Johns",
-      "amenity/restaurant|Jimmy John's",
-      "amenity/restaurant|Jimmy Johns"
-    ],
+    "matchNames": ["jimmy johns"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Jimmy John's",
@@ -892,10 +796,7 @@
     }
   },
   "amenity/fast_food|KFC": {
-    "match": [
-      "amenity/fast_food|Kentucky Fried Chicken",
-      "amenity/restaurant|KFC"
-    ],
+    "matchNames": ["kentucky fried chicken"],
     "tags": {
       "amenity": "fast_food",
       "brand": "KFC",
@@ -930,7 +831,6 @@
     }
   },
   "amenity/fast_food|Krispy Kreme": {
-    "match": ["amenity/cafe|Krispy Kreme"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Krispy Kreme",
@@ -954,14 +854,7 @@
     }
   },
   "amenity/fast_food|Little Caesars": {
-    "match": [
-      "amenity/fast_food|Little Caesar's",
-      "amenity/fast_food|Little Caesars Pizza",
-      "amenity/restaurant|Little Caesar's",
-      "amenity/restaurant|Little Caesar's Pizza",
-      "amenity/restaurant|Little Caesars",
-      "amenity/restaurant|Little Caesars Pizza"
-    ],
+    "matchNames": ["little caesars pizza"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Little Caesars",
@@ -996,7 +889,6 @@
   },
   "amenity/fast_food|Mang Inasal": {
     "countryCodes": ["ph"],
-    "match": ["amenity/restaurant|Mang Inasal"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Mang Inasal",
@@ -1027,17 +919,6 @@
     }
   },
   "amenity/fast_food|McDonald's": {
-    "match": [
-      "amenity/fast_food|Mc Donald's",
-      "amenity/fast_food|Mc Donalds",
-      "amenity/fast_food|McDonalds",
-      "amenity/fast_food|McDonald’s",
-      "amenity/restaurant|Mc Donald's",
-      "amenity/restaurant|Mc Donalds",
-      "amenity/restaurant|McDonald's",
-      "amenity/restaurant|McDonalds",
-      "amenity/restaurant|McDonald’s"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "McDonald's",
@@ -1072,9 +953,6 @@
     }
   },
   "amenity/fast_food|Moe's Southwest Grill": {
-    "match": [
-      "amenity/restaurant|Moe's Southwest Grill"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Moe's Southwest Grill",
@@ -1109,7 +987,6 @@
     }
   },
   "amenity/fast_food|Nordsee": {
-    "match": ["amenity/restaurant|Nordsee"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Nordsee",
@@ -1155,9 +1032,7 @@
   },
   "amenity/fast_food|Pal's": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Pal's Sudden Service"
-    ],
+    "matchNames": ["pals sudden service"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Pal's",
@@ -1181,10 +1056,7 @@
     }
   },
   "amenity/fast_food|Panda Express": {
-    "match": [
-      "amenity/restaurant|Panda",
-      "amenity/restaurant|Panda Express"
-    ],
+    "matchNames": ["panda"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Panda Express",
@@ -1196,10 +1068,6 @@
     }
   },
   "amenity/fast_food|Panera Bread": {
-    "match": [
-      "amenity/cafe|Panera Bread",
-      "amenity/restaurant|Panera Bread"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Panera Bread",
@@ -1211,11 +1079,10 @@
     }
   },
   "amenity/fast_food|Papa John's": {
-    "match": [
-      "amenity/fast_food|Papa John's Pizza",
-      "amenity/fast_food|Papa Johns",
-      "amenity/restaurant|Papa John's",
-      "amenity/restaurant|Papa John's Pizza"
+    "matchNames": [
+      "papa john",
+      "papa john pizza",
+      "papa johns pizza"
     ],
     "tags": {
       "amenity": "fast_food",
@@ -1228,7 +1095,11 @@
     }
   },
   "amenity/fast_food|Papa Murphy's": {
-    "match": ["amenity/restaurant|Papa Murphy's"],
+    "matchNames": [
+      "papa murphy",
+      "papa murphy pizza",
+      "papa murphys pizza"
+    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Papa Murphy's",
@@ -1242,7 +1113,6 @@
   },
   "amenity/fast_food|Penn Station": {
     "countryCodes": ["us"],
-    "match": ["amenity/restaurant|Penn Station"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Penn Station",
@@ -1255,13 +1125,12 @@
   },
   "amenity/fast_food|Philly Pretzel Factory": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Philly Soft Pretzel Factory",
-      "amenity/restaurant|Philly Pretzel Factory",
-      "amenity/restaurant|Philly Soft Pretzel Factory",
-      "shop/bakery|Philly Pretzel Factory",
-      "shop/bakery|Philly Soft Pretzel Factory"
+    "matchNames": [
+      "philadelphia pretzel factory",
+      "philadelphia soft pretzel factory",
+      "philly soft pretzel factory"
     ],
+    "matchTags": ["shop/bakery"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Philly Pretzel Factory",
@@ -1305,7 +1174,6 @@
     }
   },
   "amenity/fast_food|Pizza Hut Express": {
-    "match": ["amenity/fast_food|Pizza Hut"],
     "nomatch": ["amenity/restaurant|Pizza Hut"],
     "tags": {
       "amenity": "fast_food",
@@ -1349,7 +1217,6 @@
     }
   },
   "amenity/fast_food|Pollo Campero": {
-    "match": ["amenity/restaurant|Pollo Campero"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Pollo Campero",
@@ -1394,10 +1261,7 @@
     }
   },
   "amenity/fast_food|Popeyes": {
-    "match": [
-      "amenity/fast_food|Popeye's",
-      "amenity/fast_food|Popeyes Louisiana Kitchen"
-    ],
+    "matchNames": ["popeyes louisiana kitchen"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Popeyes",
@@ -1421,10 +1285,6 @@
     }
   },
   "amenity/fast_food|Pret A Manger": {
-    "match": [
-      "amenity/cafe|Pret A Manger",
-      "amenity/cafe|Pret a Manger"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Pret A Manger",
@@ -1436,11 +1296,7 @@
     }
   },
   "amenity/fast_food|Qdoba": {
-    "match": [
-      "amenity/fast_food|Qdoba Mexican Grill",
-      "amenity/restaurant|Qdoba",
-      "amenity/restaurant|Qdoba Mexican Grill"
-    ],
+    "matchNames": ["qdoba mexican grill"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Qdoba",
@@ -1464,10 +1320,7 @@
     }
   },
   "amenity/fast_food|Quiznos": {
-    "match": [
-      "amenity/fast_food|Quizno's",
-      "amenity/fast_food|Quiznos Sub"
-    ],
+    "matchNames": ["quiznos sub", "quiznos subs"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Quiznos",
@@ -1480,8 +1333,8 @@
   },
   "amenity/fast_food|Raising Cane's": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Raising Cane's Chicken Fingers"
+    "matchNames": [
+      "raising canes chicken fingers"
     ],
     "tags": {
       "amenity": "fast_food",
@@ -1530,9 +1383,7 @@
   },
   "amenity/fast_food|Schlotzsky's": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Schlotzsky's Deli"
-    ],
+    "matchNames": ["schlotzskys deli"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Schlotzsky's",
@@ -1589,11 +1440,7 @@
     }
   },
   "amenity/fast_food|Sonic": {
-    "match": [
-      "amenity/fast_food|Sonic Drive In",
-      "amenity/fast_food|Sonic Drive-In",
-      "amenity/restaurant|Sonic"
-    ],
+    "matchNames": ["sonic drive in"],
     "nomatch": ["amenity/fuel|Sonic"],
     "tags": {
       "amenity": "fast_food",
@@ -1617,12 +1464,7 @@
     }
   },
   "amenity/fast_food|Subway": {
-    "match": [
-      "amenity/cafe|Subway",
-      "amenity/fast_food|SubWay",
-      "amenity/fast_food|Subway Sandwiches",
-      "amenity/restaurant|Subway"
-    ],
+    "matchNames": ["subway sandwiches"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Subway",
@@ -1635,7 +1477,6 @@
   },
   "amenity/fast_food|Supermac's": {
     "countryCodes": ["gb", "ie"],
-    "match": ["amenity/fast_food|Supermacs"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Supermac's",
@@ -1658,7 +1499,6 @@
     }
   },
   "amenity/fast_food|Taco Bell": {
-    "match": ["amenity/restaurant|Taco Bell"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Taco Bell",
@@ -1738,7 +1578,6 @@
     }
   },
   "amenity/fast_food|Telepizza": {
-    "match": ["amenity/restaurant|Telepizza"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Telepizza",
@@ -1775,9 +1614,7 @@
   },
   "amenity/fast_food|Thaï Express~(North America)": {
     "countryCodes": ["ca", "us"],
-    "match": [
-      "amenity/fast_food|Thai Express~(North America)"
-    ],
+    "matchNames": ["thai express"],
     "nomatch": [
       "amenity/fast_food|Thai Express~(Singapore)"
     ],
@@ -1793,12 +1630,9 @@
   },
   "amenity/fast_food|The Habit Burger Grill": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Habit Burger",
-      "amenity/fast_food|The Habit Burger",
-      "amenity/restaurant|Habit Burger",
-      "amenity/restaurant|The Habit Burger",
-      "amenity/restaurant|The Habit Burger Grill"
+    "matchNames": [
+      "habit burger",
+      "the habit burger"
     ],
     "tags": {
       "amenity": "fast_food",
@@ -1823,11 +1657,6 @@
   },
   "amenity/fast_food|Togo's": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Togos",
-      "amenity/restaurant|Togo's",
-      "amenity/restaurant|Togos"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Togo's",
@@ -1852,11 +1681,6 @@
     }
   },
   "amenity/fast_food|Wendy's": {
-    "match": [
-      "amenity/fast_food|Wendys",
-      "amenity/fast_food|Wendy’s",
-      "amenity/restaurant|Wendy's"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Wendy's",
@@ -1879,7 +1703,6 @@
     }
   },
   "amenity/fast_food|Which Wich?": {
-    "match": ["amenity/fast_food|Which Wich"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Which Wich?",
@@ -1914,7 +1737,6 @@
     }
   },
   "amenity/fast_food|Wimpy": {
-    "match": ["amenity/restaurant|Wimpy"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Wimpy",
@@ -1939,11 +1761,6 @@
   },
   "amenity/fast_food|Zaxby's": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Zaxbys",
-      "amenity/restaurant|Zaxby's",
-      "amenity/restaurant|Zaxbys"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Zaxby's",
@@ -1956,7 +1773,7 @@
   },
   "amenity/fast_food|immergrün": {
     "countryCodes": ["de"],
-    "match": ["amenity/fast_food|Immergün"],
+    "matchNames": ["immergün"],
     "tags": {
       "amenity": "fast_food",
       "brand": "immergrün",
@@ -2024,7 +1841,6 @@
     }
   },
   "amenity/fast_food|Папа Джонс": {
-    "match": ["amenity/cafe|Папа Джонс"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Папа Джонс",
@@ -2050,9 +1866,6 @@
   },
   "amenity/fast_food|Русский Аппетит": {
     "countryCodes": ["ru"],
-    "match": [
-      "amenity/fast_food|Русский аппетит"
-    ],
     "tags": {
       "amenity": "fast_food",
       "brand": "Русский Аппетит",
@@ -2091,10 +1904,7 @@
     }
   },
   "amenity/fast_food|Теремок": {
-    "match": [
-      "amenity/cafe|Теремок",
-      "shop/convenience|Теремок"
-    ],
+    "matchTags": ["shop/convenience"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Теремок",
@@ -2171,7 +1981,6 @@
   },
   "amenity/fast_food|かつや": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|かつや"],
     "tags": {
       "amenity": "fast_food",
       "brand": "かつや",
@@ -2190,7 +1999,6 @@
   },
   "amenity/fast_food|くら寿司": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|くら寿司"],
     "tags": {
       "amenity": "fast_food",
       "brand": "くら寿司",
@@ -2207,7 +2015,6 @@
   },
   "amenity/fast_food|すき家": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|すき家"],
     "tags": {
       "amenity": "fast_food",
       "brand": "すき家",
@@ -2240,7 +2047,6 @@
   },
   "amenity/fast_food|はま寿司": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|はま寿司"],
     "tags": {
       "amenity": "fast_food",
       "brand": "はま寿司",
@@ -2354,7 +2160,6 @@
   },
   "amenity/fast_food|スシロー": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|スシロー"],
     "tags": {
       "amenity": "fast_food",
       "brand": "スシロー",
@@ -2372,7 +2177,6 @@
   },
   "amenity/fast_food|ドミノ・ピザ": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|ドミノ・ピザ"],
     "tags": {
       "amenity": "fast_food",
       "brand": "ドミノ・ピザ",
@@ -2405,7 +2209,7 @@
   },
   "amenity/fast_food|ピザ・カリフォルニア": {
     "countryCodes": ["jp"],
-    "match": ["amenity/fast_food|ピザ カリフォルニア"],
+    "matchNames": ["ピザ カリフォルニア"],
     "tags": {
       "amenity": "fast_food",
       "brand": "ピザ・カリフォルニア",
@@ -2502,7 +2306,6 @@
   },
   "amenity/fast_food|ラーメン二郎": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|ラーメン二郎"],
     "tags": {
       "amenity": "fast_food",
       "brand": "ラーメン二郎",
@@ -2535,7 +2338,6 @@
   },
   "amenity/fast_food|吉野家": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|吉野家"],
     "tags": {
       "amenity": "fast_food",
       "brand": "吉野家",
@@ -2568,7 +2370,6 @@
   },
   "amenity/fast_food|幸楽苑": {
     "countryCodes": ["jp"],
-    "match": ["amenity/restaurant|幸楽苑"],
     "tags": {
       "amenity": "fast_food",
       "brand": "幸楽苑",
@@ -2606,7 +2407,6 @@
     }
   },
   "amenity/fast_food|日高屋": {
-    "match": ["amenity/restaurant|日高屋"],
     "tags": {
       "amenity": "fast_food",
       "brand": "日高屋",

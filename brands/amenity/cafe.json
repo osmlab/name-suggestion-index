@@ -36,7 +36,6 @@
     }
   },
   "amenity/cafe|Cafe Coffee Day": {
-    "match": ["amenity/cafe|Café Coffee Day"],
     "tags": {
       "amenity": "cafe",
       "brand": "Cafe Coffee Day",
@@ -48,10 +47,7 @@
     }
   },
   "amenity/cafe|Caffè Nero": {
-    "match": [
-      "amenity/cafe|Cafe Nero",
-      "amenity/cafe|Caffe Nero"
-    ],
+    "matchNames": ["cafe nero"],
     "tags": {
       "amenity": "cafe",
       "brand": "Caffè Nero",
@@ -63,11 +59,6 @@
     }
   },
   "amenity/cafe|Café Amazon": {
-    "match": [
-      "amenity/cafe|Cafe Amazon",
-      "shop/coffee|Cafe Amazon",
-      "shop/coffee|Café Amazon"
-    ],
     "tags": {
       "amenity": "cafe",
       "brand": "Café Amazon",
@@ -194,7 +185,7 @@
     }
   },
   "amenity/cafe|Costa": {
-    "match": ["amenity/cafe|Costa Coffee"],
+    "matchNames": ["costa coffee"],
     "tags": {
       "amenity": "cafe",
       "brand": "Costa",
@@ -227,16 +218,9 @@
   },
   "amenity/cafe|Dutch Bros. Coffee": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/cafe|Dutch Bro's",
-      "amenity/cafe|Dutch Brother's",
-      "amenity/cafe|Dutch Brothers",
-      "amenity/fast_food|Dutch Bro's",
-      "amenity/fast_food|Dutch Brother's",
-      "amenity/fast_food|Dutch Brothers",
-      "shop/coffee|Dutch Bro's",
-      "shop/coffee|Dutch Brother's",
-      "shop/coffee|Dutch Brothers"
+    "matchNames": [
+      "dutch bros",
+      "dutch brothers"
     ],
     "tags": {
       "amenity": "cafe",
@@ -363,7 +347,11 @@
   },
   "amenity/cafe|Peet's Coffee": {
     "countryCodes": ["us"],
-    "match": ["amenity/cafe|Peet's Coffee & Tea"],
+    "matchNames": [
+      "peets",
+      "peets coffee & tea",
+      "peets coffee and tea"
+    ],
     "tags": {
       "amenity": "cafe",
       "brand": "Peet's Coffee",
@@ -387,7 +375,7 @@
   },
   "amenity/cafe|Pronto": {
     "countryCodes": ["jp"],
-    "match": ["amenity/cafe|プロント"],
+    "matchNames": ["プロント"],
     "nomatch": ["shop/convenience|Coop Pronto"],
     "tags": {
       "amenity": "cafe",
@@ -402,9 +390,9 @@
   },
   "amenity/cafe|Pumpkin": {
     "countryCodes": ["gb"],
-    "match": [
-      "amenity/cafe|Pumpkin Cafe Shop",
-      "amenity/cafe|Pumpkin Café Shop"
+    "matchNames": [
+      "pumpkin cafe",
+      "pumpkin cafe shop"
     ],
     "tags": {
       "amenity": "cafe",
@@ -439,19 +427,7 @@
     }
   },
   "amenity/cafe|Starbucks": {
-    "match": [
-      "amenity/cafe|Starbuck's",
-      "amenity/cafe|Starbucks Coffee",
-      "amenity/fast_food|Starbuck's",
-      "amenity/fast_food|Starbucks",
-      "amenity/fast_food|Starbucks Coffee",
-      "amenity/restaurant|Starbuck's",
-      "amenity/restaurant|Starbucks",
-      "amenity/restaurant|Starbucks Coffee",
-      "shop/coffee|Starbuck's",
-      "shop/coffee|Starbucks",
-      "shop/coffee|Starbucks Coffee"
-    ],
+    "matchNames": ["starbucks coffee"],
     "tags": {
       "amenity": "cafe",
       "brand": "Starbucks",
@@ -485,10 +461,6 @@
     }
   },
   "amenity/cafe|Tim Hortons": {
-    "match": [
-      "amenity/fast_food|Tim Hortons",
-      "amenity/restaurant|Tim Hortons"
-    ],
     "tags": {
       "amenity": "cafe",
       "brand": "Tim Hortons",
@@ -653,7 +625,7 @@
   },
   "amenity/cafe|Шоколадница": {
     "countryCodes": ["ru"],
-    "match": ["amenity/cafe|Шоколад"],
+    "matchNames": ["шоколад"],
     "tags": {
       "amenity": "cafe",
       "brand": "Шоколадница",

@@ -1,11 +1,13 @@
 const colors = require('colors/safe');
-const fileTree = require('./lib/file_tree');
 const fs = require('fs');
 const namesKeep = require('./dist/names_keep.json');
 const package = require('./package.json');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 const xmlbuilder = require('xmlbuilder');
+
+const fileTree = require('./lib/file_tree.js');
+const toParts = require('./lib/to_parts.js');
 
 let brands = fileTree.read('brands');
 let out = {};
@@ -20,8 +22,9 @@ function buildAll() {
     // Start clean
     shell.rm('-f', ['dist/name-suggestions.*', 'dist/taginfo.json']);
 
-    // copy `filters.json`
+    // copy some project config files into `/dist`
     shell.cp('-f', 'config/filters.json', 'dist/filters.json');
+    shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
 
     // write `brands.json` as a single file
     fs.writeFileSync('dist/brands.json', stringify({ brands: brands }));
@@ -35,35 +38,30 @@ function buildAll() {
 
 
 function buildJSON() {
-    Object.keys(brands).forEach(k => {
-        const obj = brands[k];
+    Object.keys(brands).forEach(kvnd => {
+        const obj = brands[kvnd];
+
         const wd = obj.tags['brand:wikidata'];
         if (!wd || !/^Q\d+$/.test(wd)) return;   // wikidata tag missing or looks wrong..
 
-        const parts = k.split('|', 2);
-        const tag = parts[0].split('/', 2);
-        const key = tag[0];
-        const value = tag[1];
-        const name = parts[1].replace('~', ' ');
+        const parts = toParts(kvnd);
+        const k = parts.k;
+        const v = parts.v;
+        const n = parts.n + ' ' + parts.d;
 
-        if (!out[key]) {
-            out[key] = {};
-        }
-        if (!out[key][value]) {
-            out[key][value] = {};
-        }
+        if (!out[k])    out[k] = {};
+        if (!out[k][v]) out[k][v] = {};
+        out[k][v][n] = {};
 
-        out[key][value][name] = {};
-
-        if (namesKeep[k]) {
-            out[key][value][name].count = namesKeep[k];
+        if (namesKeep[kvnd]) {
+            out[k][v][n].count = namesKeep[kvnd];
         }
 
         if (obj.countryCodes) {
-            out[key][value][name].countryCodes = obj.countryCodes;
+            out[k][v][n].countryCodes = obj.countryCodes;
         }
 
-        out[key][value][name].tags = obj.tags;
+        out[k][v][n].tags = obj.tags;
     });
 
     // Save individual data files

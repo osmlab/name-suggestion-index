@@ -39,14 +39,14 @@ doFetch().then(finish);
 
 function gatherQIDs(brands) {
     let wikidata = {};
-    Object.keys(brands).forEach(k => {
+    Object.keys(brands).forEach(kvnd => {
         ['brand:wikidata', 'operator:wikidata'].forEach(t => {
-            let qid = brands[k].tags[t];
+            let qid = brands[kvnd].tags[t];
             if (qid) {
                 if (/^Q\d+$/.test(qid)) {
-                    wikidata[qid] = k;
+                    wikidata[qid] = kvnd;
                 } else {
-                    _wrongFormat.push([k, qid, t]);
+                    _wrongFormat.push([kvnd, qid, t]);
                 }
             }
         });
@@ -56,15 +56,16 @@ function gatherQIDs(brands) {
 
 // Additionally check for wrong formatted Wikipedia values
 function checkWikipedia(brands) {
-    Object.keys(brands).forEach(k => {
+    Object.keys(brands).forEach(kvnd => {
         ['brand:wikipedia', 'operator:wikipedia'].forEach(t => {
-            let wp = brands[k].tags[t];
+            let wp = brands[kvnd].tags[t];
             if (wp && !/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-                _wrongFormat.push([k, wp, t]);
+                _wrongFormat.push([kvnd, wp, t]);
             }
         });
     });
 }
+
 
 function doFetch(index) {
     index = index || 0;

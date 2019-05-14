@@ -1,12 +1,16 @@
 const colors = require('colors/safe');
-const fileTree = require('./lib/file_tree');
+const diacritics = require('diacritics');
 const fs = require('fs-extra');
 const glob = require('glob');
 const shell = require('shelljs');
-const sort = require('./lib/sort');
-const stemmer = require('./lib/stemmer');
 const stringify = require('json-stringify-pretty-compact');
-const validate = require('./lib/validate');
+
+const fileTree = require('./lib/file_tree.js');
+const matcher = require('./lib/matcher.js')();
+const sort = require('./lib/sort.js');
+const stemmer = require('./lib/stemmer.js');
+const toParts = require('./lib/to_parts.js');
+const validate = require('./lib/validate.js');
 
 
 // Load cached wikidata
@@ -23,27 +27,26 @@ filters = {
     discardKeys: filters.discardKeys.map(s => s.toLowerCase()).sort(),
     discardNames: filters.discardNames.map(s => s.toLowerCase()).sort()
 };
-
 fs.writeFileSync('config/filters.json', stringify(filters));
 
 
 // Load and check brand files
 let brands = fileTree.read('brands');
 
-// all names start out in discard..
+// all names start out in _discard..
 const allnames = require('./dist/names_all.json');
-let discard = Object.assign({}, allnames);
+let _discard = Object.assign({}, allnames);
+let _keep = {};
 
-let keep = {};
-let rIndex = {};
-let ambiguous = {};
 
 filterNames();
+matcher.buildMatchIndex(brands);
+checkBrands();
 mergeBrands();
 fileTree.write('brands', brands);
 
 
-//
+
 // `filterNames()` will process a `dist/names_all.json` file,
 // splitting the data up into 2 files:
 //
@@ -61,43 +64,43 @@ function filterNames() {
     // Start clean
     shell.rm('-f', ['dist/names_keep.json', 'dist/names_discard.json']);
 
-    // filter by keepTags (move from discard -> keep)
+    // filter by keepTags (move from _discard -> _keep)
     filters.keepTags.forEach(s => {
         let re = new RegExp(s, 'i');
-        for (let key in discard) {
-            let tag = key.split('|', 2)[0];
+        for (let kvnd in _discard) {
+            let tag = kvnd.split('|', 2)[0];
             if (re.test(tag)) {
-                keep[key] = discard[key];
-                delete discard[key];
+                _keep[kvnd] = _discard[kvnd];
+                delete _discard[kvnd];
             }
         }
     });
 
-    // filter by discardKeys (move from keep -> discard)
+    // filter by discardKeys (move from _keep -> _discard)
     filters.discardKeys.forEach(s => {
         let re = new RegExp(s, 'i');
-        for (let key in keep) {
-            if (re.test(key)) {
-                discard[key] = keep[key];
-                delete keep[key];
+        for (let kvnd in _keep) {
+            if (re.test(kvnd)) {
+                _discard[kvnd] = _keep[kvnd];
+                delete _keep[kvnd];
             }
         }
     });
 
-    // filter by discardNames (move from keep -> discard)
+    // filter by discardNames (move from _keep -> _discard)
     filters.discardNames.forEach(s => {
         let re = new RegExp(s, 'i');
-        for (let key in keep) {
-            let name = key.split('|', 2)[1];
+        for (let kvnd in _keep) {
+            let name = kvnd.split('|', 2)[1];
             if (re.test(name)) {
-                discard[key] = keep[key];
-                delete keep[key];
+                _discard[kvnd] = _keep[kvnd];
+                delete _keep[kvnd];
             }
         }
     });
 
-    fs.writeFileSync('dist/names_discard.json', stringify(sort(discard)));
-    fs.writeFileSync('dist/names_keep.json', stringify(sort(keep)));
+    fs.writeFileSync('dist/names_discard.json', stringify(sort(_discard)));
+    fs.writeFileSync('dist/names_keep.json', stringify(sort(_keep)));
     console.timeEnd(colors.green('names filtered'));
 }
 
@@ -107,98 +110,88 @@ function filterNames() {
 // and updates the files under `/brands/**/*.json`
 //
 function mergeBrands() {
-    buildReverseIndex(brands);
-    checkBrands();
-
     console.log('\nmerging brands');
     console.time(colors.green('brands merged'));
 
     // Create/update entries
     // First, entries in namesKeep (i.e. counted entries)
-    Object.keys(keep).forEach(k => {
-        if (rIndex[k] || ambiguous[k]) return;
+    Object.keys(_keep).forEach(kvnd => {
+        let obj = brands[kvnd];
+        let parts = toParts(kvnd);
 
-        let obj = brands[k];
-        let parts = k.split('|', 2);
-        let tag = parts[0].split('/', 2);
-        let key = tag[0];
-        let value = tag[1];
-        let name = parts[1];
+        var m = matcher.matchParts(parts);
+        if (m) return;  // already in the index
 
         if (!obj) {   // a new entry!
             obj = { tags: {} };
-            brands[k] = obj;
+            brands[kvnd] = obj;
 
             // assign default tags - new entries
-            obj.tags.brand = name;
-            obj.tags.name = name;
-            obj.tags[key] = value;
+            obj.tags.brand = parts.n;
+            obj.tags.name = parts.n;
+            obj.tags[parts.k] = parts.v;
         }
     });
 
 
     // now process all brands
-    Object.keys(brands).forEach(k => {
-        let obj = brands[k];
-        let parts = k.split('|', 2);
-        let tag = parts[0].split('/', 2);
-        let key = tag[0];
-        let value = tag[1];
-        let name = parts[1];
+    Object.keys(brands).forEach(kvnd => {
+        let obj = brands[kvnd];
+        let parts = toParts(kvnd);
 
         // assign default tags - new or existing entries
-        if (key === 'amenity' && value === 'cafe') {
+        if (parts.k === 'amenity' && parts.v === 'cafe') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
             if (!obj.tags.cuisine) obj.tags.cuisine = 'coffee_shop';
-        } else if (key === 'amenity' && value === 'fast_food') {
+        } else if (parts.k === 'amenity' && parts.v === 'fast_food') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
-        } else if (key === 'amenity' && value === 'pharmacy') {
+        } else if (parts.k === 'amenity' && parts.v === 'pharmacy') {
             if (!obj.tags.healthcare) obj.tags.healthcare = 'pharmacy';
         }
 
         // Force `countryCode`, and duplicate `name:xx` and `brand:xx` tags
         // if the name can only be reasonably read in one country.
         // https://www.regular-expressions.info/unicode.html
-        if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
+        if (/[\u0590-\u05FF]/.test(parts.n)) {          // Hebrew
             obj.countryCodes = ['il'];
             // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
             if (obj.tags.name) { obj.tags['name:he'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:he'] = obj.tags.brand; }
-        } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
+        } else if (/[\u0E00-\u0E7F]/.test(parts.n)) {   // Thai
             obj.countryCodes = ['th'];
             if (obj.tags.name) { obj.tags['name:th'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:th'] = obj.tags.brand; }
-        } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
+        } else if (/[\u1000-\u109F]/.test(parts.n)) {   // Myanmar
             obj.countryCodes = ['mm'];
             if (obj.tags.name) { obj.tags['name:my'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:my'] = obj.tags.brand; }
-        } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
+        } else if (/[\u1100-\u11FF]/.test(parts.n)) {   // Hangul
             obj.countryCodes = ['kr'];
             if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-        } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
+        } else if (/[\u1700-\u171F]/.test(parts.n)) {   // Tagalog
             obj.countryCodes = ['ph'];
             if (obj.tags.name) { obj.tags['name:tl'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:tl'] = obj.tags.brand; }
-        } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
+        } else if (/[\u3040-\u30FF]/.test(parts.n)) {   // Hirgana or Katakana
             obj.countryCodes = ['jp'];
             if (obj.tags.name) { obj.tags['name:ja'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ja'] = obj.tags.brand; }
-        } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
+        } else if (/[\u3130-\u318F]/.test(parts.n)) {   // Hangul
             obj.countryCodes = ['kr'];
             if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-        } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
+        } else if (/[\uA960-\uA97F]/.test(parts.n)) {   // Hangul
             obj.countryCodes = ['kr'];
             if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-        } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
+        } else if (/[\uAC00-\uD7AF]/.test(parts.n)) {   // Hangul
             obj.countryCodes = ['kr'];
             if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
             if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
         }
 
-        brands[k] = sort(brands[k])
+        brands[kvnd] = sort(brands[kvnd])
 
      });
 
@@ -206,57 +199,11 @@ function mergeBrands() {
 }
 
 
-// Some keys contain a disambiguation mark:  "Eko~ca" vs "Eko~gr"
-// If so, we save these in an `ambiguous` object for later use
-function checkAmbiguous(k) {
-    let i = k.indexOf('~');
-    if (i !== -1) {
-        let stem = k.substring(0, i);
-        ambiguous[stem] = true;
-        return true;
-    }
-    return false;
-}
-
-
-//
-// Returns a reverse index to map match keys back to their original keys
-//
-function buildReverseIndex(obj) {
-    let warnCollisions = [];
-
-    for (let k in obj) {
-        checkAmbiguous(k);
-
-        if (obj[k].match) {
-            for (let i = obj[k].match.length - 1; i >= 0; i--) {
-                let match = obj[k].match[i];
-                checkAmbiguous(match);
-
-                if (rIndex[match]) {
-                    warnCollisions.push([rIndex[match], match]);
-                    warnCollisions.push([k, match]);
-                }
-                rIndex[match] = k;
-            }
-        }
-    }
-
-    if (warnCollisions.length) {
-        console.warn(colors.yellow('\nWarning - match name collisions'));
-        console.warn('To resolve these, make sure multiple entries do not contain the same "match" property.');
-        warnCollisions.forEach(w => console.warn(
-            colors.yellow('  "' + w[0] + '"') + ' -> match? -> ' + colors.yellow('"' + w[1] + '"')
-        ));
-    }
-}
-
-
 //
 // Checks all the brands for several kinds of issues
 //
 function checkBrands() {
-    let warnMatched = [];
+    // let warnMatched = [];
     let warnDuplicate = [];
     let warnFormatWikidata = [];
     let warnFormatWikipedia = [];
@@ -266,16 +213,16 @@ function checkBrands() {
     let warnMissingTag = [];
     let seen = {};
 
-    Object.keys(brands).forEach(k => {
-        let obj = brands[k];
-        let parts = k.split('|', 2);
+    Object.keys(brands).forEach(kvnd => {
+        let obj = brands[kvnd];
+        let parts = kvnd.split('|', 2);
         let tag = parts[0];
         let name = parts[1];
 
-        // Warn if the item is found in rIndex (i.e. some other item matches it)
-        if (rIndex[k]) {
-            warnMatched.push([rIndex[k], k]);
-        }
+        // // Warn if the item is found in rIndex (i.e. some other item matches it)
+        // if (rIndex[k]) {
+        //     warnMatched.push([rIndex[k], k]);
+        // }
 
         // Warn if the name appears to be a duplicate
         let stem = stemmer(name);
@@ -283,61 +230,61 @@ function checkBrands() {
         if (other) {
             // suppress warning?
             let suppress = false;
-            if (brands[other].nomatch && brands[other].nomatch.indexOf(k) !== -1) {
+            if (brands[other].nomatch && brands[other].nomatch.indexOf(kvnd) !== -1) {
                 suppress = true;
             } else if (obj.nomatch && obj.nomatch.indexOf(other) !== -1) {
                 suppress = true;
             }
             if (!suppress) {
-                warnDuplicate.push([k, other]);
+                warnDuplicate.push([kvnd, other]);
             }
         }
-        seen[stem] = k;
+        seen[stem] = kvnd;
 
 
         // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
         let wd = obj.tags['brand:wikidata'];
         if (!wd) {
-            warnMissingWikidata.push(k);
+            warnMissingWikidata.push(kvnd);
         } else if (!/^Q\d+$/.test(wd)) {
-            warnFormatWikidata.push([k, wd]);
+            warnFormatWikidata.push([kvnd, wd]);
         }
         let wp = obj.tags['brand:wikipedia'];
         if (!wp) {
-            warnMissingWikipedia.push(k);
+            warnMissingWikipedia.push(kvnd);
         } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-            warnFormatWikipedia.push([k, wp]);
+            warnFormatWikipedia.push([kvnd, wp]);
         }
 
         // Warn on missing logo
         let logos = (wd && _wikidata[wd] && _wikidata[wd].logos) || {};
         if (!Object.keys(logos).length) {
-            warnMissingLogos.push(k);
+            warnMissingLogos.push(kvnd);
         }
 
         // Warn on other missing tags
         switch (tag) {
             case 'amenity/fast_food':
             case 'amenity/restaurant':
-                if (!obj.tags.cuisine) { warnMissingTag.push([k, 'cuisine']); }
+                if (!obj.tags.cuisine) { warnMissingTag.push([kvnd, 'cuisine']); }
                 break;
             case 'amenity/vending_machine':
-                if (!obj.tags.vending) { warnMissingTag.push([k, 'vending']); }
+                if (!obj.tags.vending) { warnMissingTag.push([kvnd, 'vending']); }
                 break;
             case 'shop/beauty':
-                if (!obj.tags.beauty) { warnMissingTag.push([k, 'beauty']); }
+                if (!obj.tags.beauty) { warnMissingTag.push([kvnd, 'beauty']); }
                 break;
         }
     });
 
-    if (warnMatched.length) {
-        console.warn(colors.yellow('\nWarning - Brands matched to other brands:'));
-        console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
-        warnMatched.forEach(w => console.warn(
-            colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
-        ));
-        console.warn('total ' + warnMatched.length);
-    }
+    // if (warnMatched.length) {
+    //     console.warn(colors.yellow('\nWarning - Brands matched to other brands:'));
+    //     console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
+    //     warnMatched.forEach(w => console.warn(
+    //         colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
+    //     ));
+    //     console.warn('total ' + warnMatched.length);
+    // }
 
     if (warnMissingTag.length) {
         console.warn(colors.yellow('\nWarning - Missing tags for brands:'));
