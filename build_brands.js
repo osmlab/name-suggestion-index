@@ -119,7 +119,7 @@ function mergeBrands() {
         let obj = brands[kvnd];
         let parts = toParts(kvnd);
 
-        var m = matcher.matchKey(parts);
+        var m = matcher.matchParts(parts);
         if (m) return;  // already in the index
 
         if (!obj) {   // a new entry!
