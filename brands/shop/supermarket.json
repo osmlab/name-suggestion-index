@@ -2929,9 +2929,12 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|ShopRite": {
+  "shop/supermarket|ShopRite~(USA)": {
     "countryCodes": ["us"],
-    "nomatch": ["shop/supermarket|Shoprite"],
+    "nomatch": [
+      "shop/supermarket|Shoprite~(Africa)",
+      "shop/supermarket|Shoprite~(Isle of Man)"
+    ],
     "tags": {
       "brand": "ShopRite",
       "brand:wikidata": "Q7501097",
@@ -2940,18 +2943,7 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Shoprite~(Isle of Man)": {
-    "countryCodes": ["im"],
-    "nomatch": ["shop/supermarket|ShopRite"],
-    "tags": {
-      "brand": "Shoprite",
-      "brand:wikidata": "Q7501242",
-      "brand:wikipedia": "en:Shoprite (Isle of Man)",
-      "name": "Shoprite",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Shoprite~(global)": {
+  "shop/supermarket|Shoprite~(Africa)": {
     "countryCodes": [
       "ao",
       "bw",
@@ -2969,11 +2961,28 @@
       "za",
       "zm"
     ],
-    "nomatch": ["shop/supermarket|ShopRite"],
+    "nomatch": [
+      "shop/supermarket|ShopRite~(USA)",
+      "shop/supermarket|Shoprite~(Isle of Man)"
+    ],
     "tags": {
       "brand": "Shoprite",
       "brand:wikidata": "Q1857639",
       "brand:wikipedia": "en:Shoprite (South Africa)",
+      "name": "Shoprite",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Shoprite~(Isle of Man)": {
+    "countryCodes": ["im"],
+    "nomatch": [
+      "shop/supermarket|ShopRite~(USA)",
+      "shop/supermarket|Shoprite~(Africa)"
+    ],
+    "tags": {
+      "brand": "Shoprite",
+      "brand:wikidata": "Q7501242",
+      "brand:wikipedia": "en:Shoprite (Isle of Man)",
       "name": "Shoprite",
       "shop": "supermarket"
     }

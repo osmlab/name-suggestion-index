@@ -138,12 +138,12 @@ function mergeBrands() {
         let parts = toParts(kvnd);
 
         // assign default tags - new or existing entries
-        if (parts.k === 'amenity' && parts.v === 'cafe') {
+        if (parts.kv === 'amenity/cafe') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
             if (!obj.tags.cuisine) obj.tags.cuisine = 'coffee_shop';
-        } else if (parts.k === 'amenity' && parts.v === 'fast_food') {
+        } else if (parts.kv === 'amenity/fast_food') {
             if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
-        } else if (parts.k === 'amenity' && parts.v === 'pharmacy') {
+        } else if (parts.kv === 'amenity/pharmacy') {
             if (!obj.tags.healthcare) obj.tags.healthcare = 'pharmacy';
         }
 
@@ -201,7 +201,7 @@ function mergeBrands() {
 // Checks all the brands for several kinds of issues
 //
 function checkBrands() {
-    // let warnMatched = [];
+    let warnMatched = [];
     let warnDuplicate = [];
     let warnFormatWikidata = [];
     let warnFormatWikipedia = [];
@@ -213,31 +213,32 @@ function checkBrands() {
 
     Object.keys(brands).forEach(kvnd => {
         let obj = brands[kvnd];
-        let parts = kvnd.split('|', 2);
-        let tag = parts[0];
-        let name = parts[1];
+        let parts = toParts(kvnd);
 
-        // // Warn if the item is found in rIndex (i.e. some other item matches it)
-        // if (rIndex[k]) {
-        //     warnMatched.push([rIndex[k], k]);
-        // }
+        if (!parts.d) {  // ignore ambiguous entries for these
+            // Warn if some other item matches this item
+            var m = matcher.matchParts(parts);
+            if (m && m !== parts.kvnsimple) {
+                warnMatched.push([m, kvnd]);
+            }
 
-        // Warn if the name appears to be a duplicate
-        let stem = stemmer(name);
-        let other = seen[stem];
-        if (other) {
-            // suppress warning?
-            let suppress = false;
-            if (brands[other].nomatch && brands[other].nomatch.indexOf(kvnd) !== -1) {
-                suppress = true;
-            } else if (obj.nomatch && obj.nomatch.indexOf(other) !== -1) {
-                suppress = true;
+            // Warn if the name appears to be a duplicate
+            let stem = stemmer(parts.n);
+            let other = seen[stem];
+            if (other) {
+                // suppress warning?
+                let suppress = false;
+                if (brands[other].nomatch && brands[other].nomatch.indexOf(kvnd) !== -1) {
+                    suppress = true;
+                } else if (obj.nomatch && obj.nomatch.indexOf(other) !== -1) {
+                    suppress = true;
+                }
+                if (!suppress) {
+                    warnDuplicate.push([kvnd, other]);
+                }
             }
-            if (!suppress) {
-                warnDuplicate.push([kvnd, other]);
-            }
+            seen[stem] = kvnd;
         }
-        seen[stem] = kvnd;
 
 
         // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
@@ -261,7 +262,7 @@ function checkBrands() {
         }
 
         // Warn on other missing tags
-        switch (tag) {
+        switch (parts.kv) {
             case 'amenity/fast_food':
             case 'amenity/restaurant':
                 if (!obj.tags.cuisine) { warnMissingTag.push([kvnd, 'cuisine']); }
@@ -275,14 +276,14 @@ function checkBrands() {
         }
     });
 
-    // if (warnMatched.length) {
-    //     console.warn(colors.yellow('\nWarning - Brands matched to other brands:'));
-    //     console.warn('To resolve these, remove the worse entry and add "match" property on the better entry.');
-    //     warnMatched.forEach(w => console.warn(
-    //         colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
-    //     ));
-    //     console.warn('total ' + warnMatched.length);
-    // }
+    if (warnMatched.length) {
+        console.warn(colors.yellow('\nWarning - Brands matched to other brands:'));
+        console.warn('To resolve these, check that "matchNames"/"matchTags" properties do not match to a real entry.');
+        warnMatched.forEach(w => console.warn(
+            colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
+        ));
+        console.warn('total ' + warnMatched.length);
+    }
 
     if (warnMissingTag.length) {
         console.warn(colors.yellow('\nWarning - Missing tags for brands:'));
