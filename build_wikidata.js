@@ -168,6 +168,7 @@ function processEntities(result) {
 
 
 // Get the claim value, considering any claim rank..
+//   - disregard any claimes with an end date qualifier in the past
 //   - disregard any claims with "deprecated" rank
 //   - accept immediately any claim with "preferred" rank
 //   - return the latest claim with "normal" rank
@@ -175,11 +176,25 @@ function getClaimValue(entity, prop) {
     if (!entity.claims) return;
     if (!entity.claims[prop]) return;
 
-    let value, c;
+    let value;
     for (let i = 0; i < entity.claims[prop].length; i++) {
-        c = entity.claims[prop][i];
+        let c = entity.claims[prop][i];
         if (c.rank === 'deprecated') continue;
         if (c.mainsnak.snaktype !== 'value') continue;
+
+        // skip if we find an end time qualifier - P582
+        let ended = false;
+        let qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
+        for (let j = 0; j < qualifiers.length; j++) {
+            let q = qualifiers[j];
+            if (q.snaktype !== 'value') continue;
+            let enddate = wdk.wikidataTimeToDateObject(q.datavalue.value.time);
+            if (new Date() > enddate) {
+                ended = true;
+                break;
+            }
+        }
+        if (ended) continue;
 
         value = c.mainsnak.datavalue.value;
         if (c.rank === 'preferred') return value;  // return immediately
