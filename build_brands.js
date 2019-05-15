@@ -201,7 +201,7 @@ function mergeBrands() {
 // Checks all the brands for several kinds of issues
 //
 function checkBrands() {
-    let warnMatched = [];
+    let warnMatched = matcher.getWarnings();
     let warnDuplicate = [];
     let warnFormatWikidata = [];
     let warnFormatWikipedia = [];
