@@ -218,8 +218,8 @@ function checkBrands() {
         if (!parts.d) {  // ignore ambiguous entries for these
             // Warn if some other item matches this item
             var m = matcher.matchParts(parts);
-            if (m && m !== parts.kvnsimple) {
-                warnMatched.push([m, kvnd]);
+            if (m && m.kvnd !== kvnd) {
+                warnMatched.push([m.kvnd, kvnd]);
             }
 
             // Warn if the name appears to be a duplicate

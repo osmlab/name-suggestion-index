@@ -54,14 +54,6 @@
       "name": "Apotek Hjärtat"
     }
   },
-  "amenity/pharmacy|BENU": {
-    "tags": {
-      "amenity": "pharmacy",
-      "brand": "BENU",
-      "healthcare": "pharmacy",
-      "name": "BENU"
-    }
-  },
   "amenity/pharmacy|Bartell Drugs": {
     "countryCodes": ["us"],
     "tags": {
@@ -772,8 +764,11 @@
       "name": "Panvel"
     }
   },
-  "amenity/pharmacy|PharmaSave": {
+  "amenity/pharmacy|PharmaSave~(Australia)": {
     "countryCodes": ["au"],
+    "nomatch": [
+      "amenity/pharmacy|Pharmasave~(Canada)"
+    ],
     "tags": {
       "amenity": "pharmacy",
       "brand": "PharmaSave",
@@ -812,8 +807,11 @@
       "name": "Pharmaprix"
     }
   },
-  "amenity/pharmacy|Pharmasave": {
+  "amenity/pharmacy|Pharmasave~(Canada)": {
     "countryCodes": ["ca"],
+    "nomatch": [
+      "amenity/pharmacy|Pharmasave~(Australia)"
+    ],
     "tags": {
       "amenity": "pharmacy",
       "brand": "Pharmasave",
@@ -1135,7 +1133,6 @@
     }
   },
   "amenity/pharmacy|Будь здоров": {
-    "matchNames": ["будь здоров!"],
     "tags": {
       "amenity": "pharmacy",
       "brand": "Будь здоров",

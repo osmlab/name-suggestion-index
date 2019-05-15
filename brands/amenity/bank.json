@@ -1142,7 +1142,6 @@
   },
   "amenity/bank|Banco Estado": {
     "countryCodes": ["cl"],
-    "matchNames": ["bancoestado"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco Estado",
@@ -2168,9 +2167,10 @@
       "name": "Caisse d'Épargne"
     }
   },
-  "amenity/bank|Caixa Econômica Federal": {
+  "amenity/bank|Caixa Econômica Federal~(Brazil)": {
     "countryCodes": ["br"],
     "matchNames": ["caixa", "caixabank"],
+    "nomatch": ["amenity/bank|Caixabank~(Spain)"],
     "tags": {
       "amenity": "bank",
       "brand": "Caixa Econômica Federal",
@@ -2188,8 +2188,11 @@
       "name": "Caixa Geral de Depósitos"
     }
   },
-  "amenity/bank|Caixabank": {
+  "amenity/bank|Caixabank~(Spain)": {
     "countryCodes": ["es"],
+    "nomatch": [
+      "amenity/bank|Caixa Econômica Federal~(Brazil)"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Caixabank",
@@ -2399,13 +2402,6 @@
       "brand:wikidata": "Q26299",
       "brand:wikipedia": "en:China Construction Bank",
       "name": "China Construction Bank"
-    }
-  },
-  "amenity/bank|Chinabank": {
-    "tags": {
-      "amenity": "bank",
-      "brand": "Chinabank",
-      "name": "Chinabank"
     }
   },
   "amenity/bank|Citibank": {
@@ -3266,7 +3262,6 @@
     }
   },
   "amenity/bank|Intesa Sanpaolo": {
-    "matchNames": ["intesa san paolo"],
     "tags": {
       "amenity": "bank",
       "brand": "Intesa Sanpaolo",
@@ -4030,10 +4025,8 @@
   "amenity/bank|Raiffeisenbank": {
     "matchNames": [
       "raiffeisen",
-      "raiffeisen bank",
       "raiffeisenkasse"
     ],
-    "matchTags": ["amenity/fuel"],
     "nomatch": ["amenity/fuel|Raiffeisen"],
     "tags": {
       "amenity": "bank",
