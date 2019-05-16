@@ -277,8 +277,15 @@ function checkBrands() {
     });
 
     if (warnMatched.length) {
-        console.warn(colors.yellow('\nWarning - Brands matched to other brands:'));
-        console.warn('To resolve these, check that "matchNames"/"matchTags" properties do not match to a real entry.');
+        console.warn(colors.yellow('\nWarning - Brands match other brands:'));
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
+        console.warn(colors.gray('If the brands are the different, add a disambiguator after the name, like `~(USA)` vs `~(Canada)`'));
+        console.warn(colors.gray('If the brands are the same, remove extra `matchTags` or `matchNames`.  Remember:'));
+        console.warn(colors.gray('- Name matching ignores letter case, punctuation, spacing, and diacritical marks (é vs e). '));
+        console.warn(colors.gray('  No need to add `matchNames` for variations in these.'));
+        console.warn(colors.gray('- Tag matching automatically includes other similar tags in the same match group.'));
+        console.warn(colors.gray('  No need to add `matchTags` for similar tags.  see `config/match_groups.json`'));
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
         warnMatched.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
         ));
@@ -287,7 +294,9 @@ function checkBrands() {
 
     if (warnMissingTag.length) {
         console.warn(colors.yellow('\nWarning - Missing tags for brands:'));
-        console.warn('To resolve these, add the missing tag.');
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
+        console.warn(colors.gray('To resolve these, add the missing tag.'));
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
         warnMissingTag.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> missing tag? -> ' + colors.yellow('"' + w[1] + '"')
         ));
@@ -296,8 +305,10 @@ function checkBrands() {
 
     if (warnDuplicate.length) {
         console.warn(colors.yellow('\nWarning - Potential duplicate brand names:'));
-        console.warn('To resolve these, remove the worse entry and add "matchNames"/"matchTags" properties on the better entry.');
-        console.warn('To suppress this warning for entries that really are different, add a "nomatch" property on both entries.');
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
+        console.warn(colors.gray('To resolve these, remove the worse entry and add `matchNames`/`matchTags` properties on the better entry.'));
+        console.warn(colors.gray('To suppress this warning for entries that really are different, add a `nomatch` property on both entries.'));
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
         warnDuplicate.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
         ));
@@ -306,7 +317,9 @@ function checkBrands() {
 
     // if (warnMissingWikidata.length) {
     //     console.warn(colors.yellow('\nWarning - Brand missing `brand:wikidata`:'));
-    //     console.warn('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".');
+    //     console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    //     console.warn(colors.gray('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".'));
+    //     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     //     warnMissingWikidata.forEach(w => console.warn(
     //         colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikidata"'
     //     ));
@@ -315,7 +328,9 @@ function checkBrands() {
 
     // if (warnMissingWikipedia.length) {
     //     console.warn(colors.yellow('\nWarning - Brand missing `brand:wikipedia`:'));
-    //     console.warn('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".');
+    //     console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    //     console.warn(colors.gray('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".'));
+    //     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     //     warnMissingWikipedia.forEach(w => console.warn(
     //         colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikipedia"'
     //     ));
@@ -324,7 +339,9 @@ function checkBrands() {
 
     // if (warnMissingLogos.length) {
     //     console.warn(colors.yellow('\nWarning - Brand missing `logos`:'));
-    //     console.warn('To resolve these, update the brands' entries on wikidata.org, then `npm run wikidata`.');
+    //     console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    //     console.warn(colors.gray('To resolve these, update the brands' entries on wikidata.org, then `npm run wikidata`.'));
+    //     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     //     warnMissingLogos.forEach(w => console.warn(
     //         colors.yellow('  "' + w + '"') + ' -> missing -> "logos"'
     //     ));
@@ -333,7 +350,9 @@ function checkBrands() {
 
     if (warnFormatWikidata.length) {
         console.warn(colors.yellow('\nWarning - Brand with incorrect `brand:wikidata` format:'));
-        console.warn('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".');
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
+        console.warn(colors.gray('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".'));
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
         warnFormatWikidata.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikidata": ' + '"' + w[1] + '"'
         ));
@@ -342,7 +361,9 @@ function checkBrands() {
 
     if (warnFormatWikipedia.length) {
         console.warn(colors.yellow('\nWarning - Brand with incorrect `brand:wikipedia` format:'));
-        console.warn('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".');
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
+        console.warn(colors.gray('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".'));
+        console.warn(colors.gray('--------------------------------------------------------------------------------'));
         warnFormatWikipedia.forEach(w => console.warn(
             colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikipedia": ' + '"' + w[1] + '"'
         ));
