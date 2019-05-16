@@ -150,8 +150,11 @@
       "takeaway": "yes"
     }
   },
-  "amenity/cafe|Coffee House": {
+  "amenity/cafe|Coffee House~(Finland)": {
     "countryCodes": ["fi"],
+    "nomatch": [
+      "amenity/cafe|The Coffee House~(Vietnam)"
+    ],
     "tags": {
       "amenity": "cafe",
       "brand": "Coffee House",
@@ -209,7 +212,7 @@
   },
   "amenity/cafe|Cộng Cà Phê": {
     "countryCodes": ["kr", "vn"],
-    "matchNames": ["cong", "cong ca phe", "cộng"],
+    "matchNames": ["cong"],
     "tags": {
       "amenity": "cafe",
       "brand": "Cộng Cà Phê",
@@ -487,9 +490,12 @@
       "takeaway": "yes"
     }
   },
-  "amenity/cafe|The Coffee House": {
+  "amenity/cafe|The Coffee House~(Vietnam)": {
     "countryCodes": ["vn"],
     "matchNames": ["coffee house"],
+    "nomatch": [
+      "amenity/cafe|Coffee House~(Finland)"
+    ],
     "tags": {
       "amenity": "cafe",
       "brand": "The Coffee House",
@@ -525,10 +531,7 @@
   },
   "amenity/cafe|Trung Nguyên Coffee": {
     "countryCodes": ["vn"],
-    "matchNames": [
-      "trung nguyen",
-      "trung nguyên"
-    ],
+    "matchNames": ["trung nguyen"],
     "tags": {
       "amenity": "cafe",
       "brand": "Trung Nguyên",
