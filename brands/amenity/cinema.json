@@ -188,14 +188,31 @@
       "name": "The Space Cinema"
     }
   },
-  "amenity/cinema|Vue": {
-    "countryCodes": ["gb", "ie", "nl", "tw"],
+  "amenity/cinema|Vue~(IrelandAndUK)": {
+    "countryCodes": ["gb", "ie"],
     "matchNames": ["vue cinema"],
+    "nomatch": [
+      "amenity/cinema|Vue~(Netherlands)"
+    ],
     "tags": {
       "amenity": "cinema",
-      "brand": "Vue International",
+      "brand": "Vue",
       "brand:wikidata": "Q2535134",
       "brand:wikipedia": "en:Vue Cinemas",
+      "name": "Vue"
+    }
+  },
+  "amenity/cinema|Vue~(Netherlands)": {
+    "countryCodes": ["nl"],
+    "matchNames": ["vue cinema"],
+    "nomatch": [
+      "amenity/cinema|Vue~(IrelandAndUK)"
+    ],
+    "tags": {
+      "amenity": "cinema",
+      "brand": "Vue",
+      "brand:wikidata": "Q2421690",
+      "brand:wikipedia": "nl:Vue (bioscoopketen)",
       "name": "Vue"
     }
   },
