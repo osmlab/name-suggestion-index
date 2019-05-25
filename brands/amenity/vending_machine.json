@@ -1,14 +1,26 @@
 {
+  "amenity/vending_machine|Amazon Locker": {
+    "countryCodes": ["de", "us"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "Amazon Locker",
+      "brand:wikidata": "Q16974764",
+      "brand:wikipedia": "en:Amazon Locker",
+      "name": "Amazon Locker",
+      "vending": "parcel_pickup"
+    }
+  },
   "amenity/vending_machine|Automat ŚKUP": {
-    "count": 111,
     "tags": {
       "amenity": "vending_machine",
       "brand": "Automat ŚKUP",
-      "name": "Automat ŚKUP"
+      "brand:wikidata": "Q24945427",
+      "brand:wikipedia": "pl:Śląska Karta Usług Publicznych",
+      "name": "Automat ŚKUP",
+      "vending": "public_transport_tickets"
     }
   },
   "amenity/vending_machine|BKK-automata": {
-    "count": 123,
     "tags": {
       "amenity": "vending_machine",
       "brand": "BKK-automata",
@@ -16,30 +28,44 @@
     }
   },
   "amenity/vending_machine|DHL Packstation": {
-    "count": 71,
-    "match": [
-      "amenity/vending_machine|Packstation"
-    ],
+    "matchTags": ["amenity/post_box"],
     "tags": {
       "amenity": "vending_machine",
-      "brand": "DHL",
-      "brand:wikidata": "Q489815",
-      "brand:wikipedia": "en:DHL Express",
+      "brand": "Packstation",
+      "brand:wikidata": "Q1766703",
+      "brand:wikipedia": "en:Packstation",
       "name": "DHL Packstation",
       "operator": "DHL",
+      "operator:wikidata": "Q489815",
+      "operator:wikipedia": "en:DHL Express",
       "vending": "parcel_pickup;parcel_mail_in"
     }
   },
+  "amenity/vending_machine|DHL Paketbox": {
+    "countryCodes": ["de"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "Paketbox",
+      "brand:wikidata": "Q2046604",
+      "brand:wikipedia": "de:Paketbox",
+      "name": "DHL Paketbox",
+      "operator": "DHL",
+      "operator:wikidata": "Q489815",
+      "operator:wikipedia": "de:DHL",
+      "vending": "parcel_mail_in"
+    }
+  },
   "amenity/vending_machine|Dog-Station": {
-    "count": 190,
+    "countryCodes": ["at", "de", "dk"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "Dog-Station",
-      "name": "Dog-Station"
+      "brand:wikidata": "Q63720061",
+      "name": "Dog-Station",
+      "vending": "excrement_bags"
     }
   },
   "amenity/vending_machine|KKM": {
-    "count": 85,
     "countryCodes": ["pl"],
     "tags": {
       "amenity": "vending_machine",
@@ -49,16 +75,8 @@
       "vending": "public_transport_tickets"
     }
   },
-  "amenity/vending_machine|Milchtankstelle": {
-    "count": 60,
-    "tags": {
-      "amenity": "vending_machine",
-      "brand": "Milchtankstelle",
-      "name": "Milchtankstelle"
-    }
-  },
   "amenity/vending_machine|Paczkomat InPost": {
-    "count": 219,
+    "countryCodes": ["pl"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "InPost",
@@ -68,71 +86,102 @@
       "vending": "parcel_pickup;parcel_mail_in"
     }
   },
-  "amenity/vending_machine|Paketbox": {
-    "count": 52,
-    "tags": {
-      "amenity": "vending_machine",
-      "name": "Paketbox"
-    }
-  },
-  "amenity/vending_machine|ParkPlus": {
-    "count": 56,
+  "amenity/vending_machine|ParkPlus~(Calgary)": {
     "tags": {
       "amenity": "vending_machine",
       "brand": "ParkPlus",
-      "name": "ParkPlus"
+      "brand:wikidata": "Q63719595",
+      "name": "ParkPlus",
+      "vending": "parking_tickets"
     }
   },
   "amenity/vending_machine|Redbox": {
-    "count": 157,
     "tags": {
       "amenity": "vending_machine",
       "brand": "Redbox",
       "brand:wikidata": "Q7305489",
       "brand:wikipedia": "en:Redbox",
-      "name": "Redbox"
+      "name": "Redbox",
+      "vending": "dvd"
     }
   },
   "amenity/vending_machine|Robidog": {
-    "count": 129,
+    "countryCodes": ["ch"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "Robidog",
       "brand:wikidata": "Q2159689",
       "brand:wikipedia": "de:Robidog",
-      "name": "Robidog"
+      "name": "Robidog",
+      "vending": "excrement_bags"
     }
   },
   "amenity/vending_machine|Tobaccoland": {
-    "count": 99,
+    "countryCodes": ["de"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "Tobaccoland",
       "brand:wikidata": "Q1439872",
       "brand:wikipedia": "de:Tobaccoland Automatengesellschaft",
-      "name": "Tobaccoland"
+      "name": "Tobaccoland",
+      "vending": "cigarettes"
     }
   },
   "amenity/vending_machine|VVO Fahrausweise": {
-    "count": 129,
+    "countryCodes": ["de"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "VVO Fahrausweise",
       "name": "VVO Fahrausweise",
       "operator": "Verkehrsverbund Oberelbe",
       "operator:wikidata": "Q1426445",
-      "operator:wikipedia": "en:Verkehrsverbund Oberelbe"
+      "operator:wikipedia": "en:Verkehrsverbund Oberelbe",
+      "vending": "public_transport_tickets"
     }
   },
   "amenity/vending_machine|Ключ здоровья": {
-    "count": 131,
     "countryCodes": ["ru"],
-    "match": ["shop/water|Ключ здоровья"],
+    "matchTags": ["shop/water"],
     "tags": {
       "amenity": "vending_machine",
       "brand": "Ключ здоровья",
       "name": "Ключ здоровья",
       "vending": "water"
+    }
+  },
+  "amenity/vending_machine|コカ・コーラ": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "コカ・コーラ",
+      "brand:en": "Coca-Cola",
+      "brand:ja": "コカ・コーラ",
+      "brand:wikidata": "Q2813",
+      "brand:wikipedia": "ja:コカ・コーラ",
+      "drink": "cola",
+      "name": "コカ・コーラ",
+      "name:en": "Coca-Cola",
+      "name:ja": "コカ・コーラ",
+      "operator": "Coca Cola Japan Co., Ltd.",
+      "operator:wikidata": "Q11506438",
+      "operator:wikipedia": "ja:日本コカ・コーラ",
+      "vending": "drinks"
+    }
+  },
+  "amenity/vending_machine|ポッカサッポロ": {
+    "countryCodes": ["jp"],
+    "matchNames": ["pokka sapporo"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "ポッカサッポロ",
+      "brand:en": "Pokka Sapporo",
+      "brand:ja": "ポッカサッポロ",
+      "brand:wikidata": "Q7208665",
+      "brand:wikipedia": "ja:ポッカサッポロフード&ビバレッジ",
+      "name": "ポッカサッポロ",
+      "name:en": "Pokka Sapporo",
+      "name:ja": "ポッカサッポロ",
+      "vending": "water;food"
     }
   }
 }

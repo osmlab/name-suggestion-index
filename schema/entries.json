@@ -11,10 +11,6 @@
                 "tags"
             ],
             "properties": {
-                "count": {
-                    "description": "(generated) Number of occurrences found in the most recent processed OSM planet file.",
-                    "type": "number"
-                },
                 "countryCodes": {
                     "description": "(optional) Array of ISO 3166-1 alpha-2 two letter country codes in lowercase",
                     "type": "array",
@@ -24,13 +20,21 @@
                         "pattern": "^[a-z]{2}$"
                     }
                 },
-                "match": {
-                    "description": "(optional) Array of alternate keys that are the same as this entry.",
+                "matchNames": {
+                    "description": "(optional) An array of alternate but less-desired names.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "matchTags": {
+                    "description": "(optional) An array of alternate but less-desired tag-pairs.",
                     "type": "array",
                     "uniqueItems": true,
                     "items": {
                         "type": "string",
-                        "pattern": "^\\S+/\\S+|.*$"
+                        "pattern": "^\\S+/\\S+$"
                     }
                 },
                 "nomatch": {
@@ -42,20 +46,14 @@
                         "pattern": "^\\S+/\\S+|.*$"
                     }
                 },
-                "nocount": {
-                    "type": "boolean",
-                    "description": "(optional) If true, suppress warning about uncommon name",
-                    "enum": [ true ]
-                },
                 "tags": {
                     "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
                     "type": "object",
                     "properties": {
-                        "count":        { "not" : {} },
                         "countryCodes": { "not" : {} },
-                        "match":        { "not" : {} },
+                        "matchNames":   { "not" : {} },
+                        "matchTags":    { "not" : {} },
                         "nomatch":      { "not" : {} },
-                        "nocount":      { "not" : {} },
                         "tags":         { "not" : {} }
                     }
                 }

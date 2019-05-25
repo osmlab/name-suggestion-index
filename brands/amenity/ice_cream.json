@@ -1,11 +1,5 @@
 {
   "amenity/ice_cream|Baskin-Robbins": {
-    "count": 130,
-    "match": [
-      "amenity/fast_food|Baskin Robbins",
-      "amenity/fast_food|Baskin-Robbins",
-      "amenity/ice_cream|Baskin Robbins"
-    ],
     "tags": {
       "amenity": "ice_cream",
       "brand": "Baskin-Robbins",
@@ -16,12 +10,7 @@
     }
   },
   "amenity/ice_cream|Ben & Jerry's": {
-    "count": 58,
-    "match": [
-      "amenity/ice_cream|Ben & Jerrys",
-      "amenity/ice_cream|Ben and Jerry's",
-      "amenity/ice_cream|Ben and Jerrys"
-    ],
+    "matchNames": ["ben and jerrys"],
     "tags": {
       "amenity": "ice_cream",
       "brand": "Ben & Jerry's",
@@ -32,11 +21,7 @@
     }
   },
   "amenity/ice_cream|Cold Stone Creamery": {
-    "count": 117,
-    "match": [
-      "amenity/fast_food|Cold Stone Creamery",
-      "amenity/restaurant|Cold Stone Creamery"
-    ],
+    "matchNames": ["cold stone"],
     "tags": {
       "amenity": "ice_cream",
       "brand": "Cold Stone Creamery",
@@ -48,8 +33,6 @@
   },
   "amenity/ice_cream|D'Onofrio": {
     "countryCodes": ["pe"],
-    "match": ["amenity/ice_cream|Donofrio"],
-    "nocount": true,
     "tags": {
       "amenity": "ice_cream",
       "brand": "D'Onofrio",
@@ -60,7 +43,6 @@
     }
   },
   "amenity/ice_cream|Freddo": {
-    "count": 54,
     "tags": {
       "amenity": "ice_cream",
       "brand": "Freddo",
@@ -70,10 +52,22 @@
       "name": "Freddo"
     }
   },
+  "amenity/ice_cream|Graeter's": {
+    "countryCodes": ["us"],
+    "matchNames": ["greaters"],
+    "tags": {
+      "amenity": "ice_cream",
+      "brand": "Graeter's",
+      "brand:wikidata": "Q5592430",
+      "brand:wikipedia": "en:Graeter's",
+      "cuisine": "ice_cream",
+      "name": "Graeter's",
+      "takeaway": "yes"
+    }
+  },
   "amenity/ice_cream|Grido": {
-    "count": 269,
     "countryCodes": ["ar"],
-    "match": ["amenity/ice_cream|Grido Helado"],
+    "matchNames": ["grido helado"],
     "tags": {
       "amenity": "ice_cream",
       "brand": "Grido",
@@ -84,20 +78,34 @@
     }
   },
   "amenity/ice_cream|La Michoacana": {
-    "count": 63,
     "tags": {
       "amenity": "ice_cream",
+      "brand": "La Michoacana",
       "name": "La Michoacana"
+    }
+  },
+  "amenity/ice_cream|Ralph's Italian Ices": {
+    "countryCodes": ["us"],
+    "matchNames": [
+      "ralphs famous italian ices",
+      "ralphs famous italian ices & ice cream",
+      "ralphs famous italian ices and ice cream",
+      "ralphs italian ice",
+      "ralphs italian ices & ice cream",
+      "ralphs italian ices and ice cream"
+    ],
+    "tags": {
+      "amenity": "ice_cream",
+      "brand": "Ralph's Italian Ices",
+      "brand:wikidata": "Q62576909",
+      "cuisine": "ice_cream",
+      "name": "Ralph's Italian Ices",
+      "official_name": "Ralph's Famous Italian Ices"
     }
   },
   "amenity/ice_cream|Rita's Italian Ice": {
     "countryCodes": ["us"],
-    "match": [
-      "amenity/fast_food|Rita's Italian Ice",
-      "amenity/fast_food|Rita's Water Ice",
-      "amenity/ice_cream|Rita's Water Ice"
-    ],
-    "nocount": true,
+    "matchNames": ["rita's water ice"],
     "tags": {
       "amenity": "ice_cream",
       "brand": "Rita's Italian Ice",
@@ -108,19 +116,11 @@
     }
   },
   "amenity/ice_cream|sweetFrog": {
-    "match": [
-      "amenity/cafe|SweetFrog",
-      "amenity/fast_food|Sweet Frog",
-      "amenity/fast_food|Sweet Frog Frozen Yogurt",
-      "amenity/fast_food|SweetFrog",
-      "amenity/ice_cream|Sweet Frog",
-      "amenity/ice_cream|Sweet Frog Frozen Yogurt",
-      "amenity/ice_cream|SweetFrog",
-      "amenity/ice_cream|sweetFrog Premium Frozen Yogurt",
-      "amenity/restaurant|Sweet Frog",
-      "amenity/restaurant|Sweetfrog"
+    "countryCodes": ["us"],
+    "matchNames": [
+      "sweetfrog frozen yogurt",
+      "sweetfrog premium frozen yogurt"
     ],
-    "nocount": true,
     "tags": {
       "amenity": "ice_cream",
       "brand": "sweetFrog",
@@ -132,19 +132,17 @@
   },
   "amenity/ice_cream|サーティワンアイスクリーム": {
     "countryCodes": ["jp"],
-    "nocount": true,
     "tags": {
       "amenity": "ice_cream",
       "brand": "バスキン・ロビンス",
       "brand:en": "Baskin-Robbins",
-      "brand:wikidata": "Q11280824",
-      "brand:wikipedia": "ja:サーティワンアイスクリーム",
+      "brand:ja": "バスキン・ロビンス",
+      "brand:wikidata": "Q584601",
+      "brand:wikipedia": "ja:バスキン・ロビンス",
       "cuisine": "ice_cream",
       "name": "サーティワンアイスクリーム",
       "name:en": "Baskin-Robbins",
-      "official_name:en": "31 Ice Cream",
-      "operator": "B-R サーティワン アイスクリーム株式会社",
-      "operator:en": "B-R 31 Ice Cream Co., Ltd."
+      "name:ja": "サーティワンアイスクリーム"
     }
   }
 }

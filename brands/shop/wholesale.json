@@ -1,6 +1,6 @@
 {
   "shop/wholesale|BJ's Wholesale Club": {
-    "nocount": true,
+    "matchTags": ["shop/department_store"],
     "tags": {
       "brand": "BJ's Wholesale Club",
       "brand:wikidata": "Q4835754",
@@ -11,13 +11,8 @@
     }
   },
   "shop/wholesale|Costco": {
-    "count": 64,
-    "match": [
-      "shop/department_store|Costco",
-      "shop/department_store|Costco Wholesale",
-      "shop/supermarket|Costco",
-      "shop/supermarket|Costco Wholesale"
-    ],
+    "matchNames": ["costco wholesale"],
+    "matchTags": ["shop/department_store"],
     "nomatch": [
       "amenity/fuel|Costco Gasoline",
       "amenity/pharmacy|Costco Pharmacy"
@@ -32,8 +27,7 @@
     }
   },
   "shop/wholesale|Makro": {
-    "match": ["shop/supermarket|Makro"],
-    "nocount": true,
+    "matchTags": ["shop/department_store"],
     "tags": {
       "brand": "Makro",
       "brand:wikidata": "Q704606",
@@ -43,8 +37,7 @@
     }
   },
   "shop/wholesale|Metro": {
-    "match": ["shop/supermarket|Metro"],
-    "nocount": true,
+    "matchTags": ["shop/department_store"],
     "nomatch": [
       "amenity/bank|Metrobank",
       "shop/supermarket|Metro~(Canada)"
@@ -58,11 +51,7 @@
     }
   },
   "shop/wholesale|Sam's Club": {
-    "match": [
-      "shop/department_store|Sam's Club",
-      "shop/supermarket|Sam's Club"
-    ],
-    "nocount": true,
+    "matchTags": ["shop/department_store"],
     "nomatch": ["amenity/fuel|Sam's Club"],
     "tags": {
       "brand": "Sam's Club",
@@ -77,18 +66,16 @@
   },
   "shop/wholesale|コストコ": {
     "countryCodes": ["jp"],
-    "match": [
-      "shop/department_store|コストコ",
-      "shop/supermarket|コストコ"
-    ],
-    "nocount": true,
+    "matchTags": ["shop/department_store"],
     "tags": {
       "brand": "コストコ",
       "brand:en": "Costco",
+      "brand:ja": "コストコ",
       "brand:wikidata": "Q715583",
       "brand:wikipedia": "ja:コストコ",
       "name": "コストコ",
       "name:en": "Costco",
+      "name:ja": "コストコ",
       "operator": "コストコホールセールジャパン株式会社",
       "operator:en": "Costco Wholesale Japan Co., Ltd.",
       "shop": "wholesale"

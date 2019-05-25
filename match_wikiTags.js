@@ -2,7 +2,6 @@ const clearConsole = require('clear');
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
 const fileTree = require('./lib/file_tree');
-const sort = require('./lib/sort');
 const stemmer = require('./lib/stemmer');
 const wdk = require('wikidata-sdk');
 
@@ -87,7 +86,7 @@ function nextMatch() {
                 throw new Error(`"${name}" not found`);
             }
             let queue = [];
-            result.search.forEach((entity, index) => {
+            result.search.forEach((entity) => {
                 choices.push(entity);
                 entity.lang = lang;
                 queue.push(
@@ -270,7 +269,7 @@ function showResults(choices) {
             _currIndex++;
             _resolve();
         }
-    }
+    };
 
     return new Promise(resolve => { _resolve = resolve; });
 }
