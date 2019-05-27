@@ -518,6 +518,7 @@ Social media accounts may be used to automatically fetch logos, what is used by 
 Entries without matching Wikipedia article must have some references by independent sources. For our entries usually the easiest one to add is something in form of "this shop brand had N shops on some specific date".
 
 <img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata_references.gif"/>
+<!--See https://www.wikidata.org/w/index.php?title=Wikidata:Administrators%27_noticeboard&oldid=941582891#Entries_that_should_be_now_fixed for discussion on Wikidata-->
 
 #### Creating Wikidata entries
 
