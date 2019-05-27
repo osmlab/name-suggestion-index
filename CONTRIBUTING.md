@@ -518,8 +518,8 @@ Social media accounts may be used to automatically fetch logos, what is used by 
 Entries without matching Wikipedia article must have some references by independent sources. For our entries usually the easiest one to add is something in form of "this shop brand had N shops on some specific date".
 
 <img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata_references.gif"/>
+<!--See https://www.wikidata.org/w/index.php?title=Wikidata:Administrators%27_noticeboard&oldid=941582891#Entries_that_should_be_now_fixed for discussion on Wikidata-->
 
 #### Creating Wikidata entries
 
-For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is meandatory to add some external identifier or references (see section above with animation showing how it can be done).
-
+For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is mandatory to add some external identifier or references (see section above with animation showing how it can be done).
