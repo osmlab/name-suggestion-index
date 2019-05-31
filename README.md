@@ -89,6 +89,7 @@ Name lists:
   * `brands/leisure/*.json`
   * `brands/shop/*.json`
   * `brands/tourism/*.json`
+  * `brands/office/*.json`
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
@@ -119,7 +120,7 @@ You do not need to do these steps in order to contribute to the index.
   - `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
-  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism -o wanted.osm.pbf`
+  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
 - Run `node build_all_names wanted.osm.pbf`
   - results will go in `dist/names_all.json`
   - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
