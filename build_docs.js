@@ -181,8 +181,8 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 
 
 function overpassLink(k, v, n) {
-    let q = encodeURIComponent(`[out:json][timeout:25];
-(nwr["${k}"="${v}"]["name"="${n}"];);
+    let q = encodeURIComponent(`[out:json][timeout:60];
+(nwr["${k}"="${v}"]["name"~"\\\\b${n}\\\\b",i];);
 out body;
 >;
 out skel qt;`);
