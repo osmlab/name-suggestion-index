@@ -160,12 +160,6 @@ function processEntities(result) {
             target.identities.youtube = youtubeUser;
         }
 
-        // P2677 - LinkedIn ID
-        let linkedinUser = getClaimValue(entity, 'P2677');
-        if (linkedinUser) {
-            target.identities.linkedin = linkedinUser;
-        }
-
         // P2984 - Snapchat ID
         let snapchatUser = getClaimValue(entity, 'P2984');
         if (snapchatUser) {
@@ -182,6 +176,12 @@ function processEntities(result) {
         let pinterestUser = getClaimValue(entity, 'P3836');
         if (pinterestUser) {
             target.identities.pinterest = pinterestUser;
+        }
+
+        // P4264 - LinkedIn Company ID
+        let linkedinUser = getClaimValue(entity, 'P4264');
+        if (linkedinUser) {
+            target.identities.linkedin = linkedinUser;
         }
     });
 
