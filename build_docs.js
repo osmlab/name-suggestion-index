@@ -130,7 +130,7 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <th>Name<br/>ID<br/>Countries</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata Name/Description<br/>Official Website</th>
+<th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
 <th class="logo">Commons Logo</th>
 <th class="logo">Facebook Logo</th>
 <th class="logo">Twitter Logo</th>
@@ -166,6 +166,7 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
   <span>${description}</span><br/>
 ` + wdLink(tags['brand:wikidata']) + `
 ` + siteLink(identities.website) + `
+` + socialLinks(identities) + `
 </td>
 <td class="logo">` + logo(logos.wikidata) + `</td>
 <td class="logo">` + logo(logos.facebook) + `</td>
@@ -209,6 +210,46 @@ function siteLink(href) {
     return href ? `<div class="viewlink"><a target="_blank" href="${href}">${href}</a></div>` : '';
 }
 
+function socialLinks(identities) {
+    let links = [];
+    let href;
+
+    if (identities.facebook) {
+        href = `https://www.facebook.com/` + identities.facebook;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-facebook-square"></i></a>`);
+    }
+    if (identities.twitter) {
+        href = `https://twitter.com/` + identities.twitter;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-twitter-square"></i></a>`);
+    }
+    if (identities.instagram) {
+        href = `https://www.instagram.com/` + identities.instagram;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-instagram"></i></a>`);
+    }
+    if (identities.pinterest) {
+        href = `https://www.pinterest.com/` + identities.pinterest;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-pinterest-square"></i></a>`);
+    }
+    if (identities.youtube) {
+        href = `https://www.youtube.com/channel/` + identities.youtube;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-youtube-square"></i></a>`);
+    }
+    if (identities.vk) {
+        href = `https://vk.com/` + identities.vk;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-vk"></i></a>`);
+    }
+    if (identities.snapchat) {
+        href = `https://www.snapchat.com/add/` + identities.snapchat;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-snapchat-square"></i></a>`);
+    }
+    if (identities.linkedin) {
+        href = `https://www.linkedin.com/company/` + identities.linkedin;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-linkedin"></i></a>`);
+    }
+
+    return links.length ? '<div class="sociallinks">' + links.join('') + '</div>' : '';
+}
+
 function displayTags(tags) {
     let result = '';
     Object.keys(tags).forEach(k => {
@@ -233,6 +274,7 @@ function writeHTML(file, head, body) {
 <html>
 <head>
 ${head}
+<script src="https://kit.fontawesome.com/c772610440.js"></script>
 </head>
 <body>
 ${body}
