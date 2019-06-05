@@ -127,12 +127,11 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <table class="summary">
 <thead>
 <tr>
-<th>Name<br/>ID</th>
+<th>Name<br/>ID<br/>Countries</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata QID</th>
-<th>Wikidata Description<br/>Website</th>
-<th class="logo">Wikidata Logo</th>
+<th>Wikidata Name/Description<br/>Official Website</th>
+<th class="logo">Commons Logo</th>
 <th class="logo">Facebook Logo</th>
 <th class="logo">Twitter Logo</th>
 </tr>
@@ -157,13 +156,16 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <tr>
 <td class="namesuggest"><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
   <div class="nsikey"><pre>'${kvnd}'</pre></div>
+  <div class="countries">` + countries(entry.countryCodes) + `</div>
   <div class="viewlink">` + overpassLink(k, v, tags.name) + `</div>
 </td>
-<td>${count}</td>
+<td class="count">${count}</td>
 <td class="tags"><pre class="tags">` + displayTags(tags) + `</pre></td>
-<td>` + wdLink(tags['brand:wikidata']) + `</td>
-<td class="wikidata"><h3>${label}</h3>
-  <span>${description}</span><br/>` + siteLink(identities.website) + `
+<td class="wikidata">
+  <h3>${label}</h3>
+  <span>${description}</span><br/>
+` + wdLink(tags['brand:wikidata']) + `
+` + siteLink(identities.website) + `
 </td>
 <td class="logo">` + logo(logos.wikidata) + `</td>
 <td class="logo">` + logo(logos.facebook) + `</td>
@@ -190,12 +192,17 @@ out skel qt;`);
     return `<a target="_blank" href="${href}"/>View on Overpass Turbo</a>`;
 }
 
+function countries(countryCodes) {
+    let cclist = (countryCodes || []).join(', ');
+    return cclist ? `🌐 <code>${cclist}</code>` : '';
+}
+
 function logo(src) {
     return src ? `<img class="logo" src="${src}"/>` : '';
 }
 
 function wdLink(qid) {
-    return qid ? `<a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a>` : '';
+    return qid ? `<div class="viewlink"><a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a></div>` : '';
 }
 
 function siteLink(href) {
