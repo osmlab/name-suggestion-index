@@ -117,7 +117,7 @@ You do not need to do these steps in order to contribute to the index.
   - `apt-get install osmium-tool` or `brew install osmium-tool` or similar
   - `npm install -g osmium`
 - [Download the planet](http://planet.osm.org/pbf/)
-  - `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
+  - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
   - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
