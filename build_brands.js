@@ -273,6 +273,9 @@ function checkBrands() {
             case 'shop/beauty':
                 if (!obj.tags.beauty) { warnMissingTag.push([kvnd, 'beauty']); }
                 break;
+            case 'shop/clothes':
+                if (!obj.tags.clothes) { warnMissingTag.push([kvnd, 'clothes']); }
+                break;
         }
     });
 
