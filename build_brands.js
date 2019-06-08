@@ -147,6 +147,19 @@ function mergeBrands() {
             if (!obj.tags.healthcare) obj.tags.healthcare = 'pharmacy';
         }
 
+        // remove unneded names, matched automatically - see #2732
+        if (obj.matchNames !== undefined) {
+            if (obj.tags.alt_name) {
+                obj.matchNames = obj.matchNames.filter(item => item !== obj.tags.alt_name)
+            }
+            if (obj.tags.official_name) {
+                obj.matchNames = obj.matchNames.filter(item => item !== obj.tags.official_name)
+            }
+            if (obj.tags.short_name) {
+                obj.matchNames = obj.matchNames.filter(item => item !== obj.tags.short_name)
+            }
+        }
+
         // Force `countryCode`, and duplicate `name:xx` and `brand:xx` tags
         // if the name can only be reasonably read in one country.
         // https://www.regular-expressions.info/unicode.html
