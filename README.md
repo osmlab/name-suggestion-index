@@ -13,6 +13,13 @@ list of commonly used names for suggesting consistent spelling and tagging of fe
 in OpenStreetMap.
 
 
+### Browse the index
+
+You can browse the index at
+http://osmlab.github.io/name-suggestion-index/brands/index.html
+to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+
+
 ### How it's used
 
 When mappers create features in OpenStreetMap, they are not always consistent about how they
@@ -32,13 +39,6 @@ Currently used in:
 * iD (see above)
 * [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 * JOSM presets available
-
-
-### Browse the index
-
-You can browse the index at
-http://osmlab.github.io/name-suggestion-index/brands/index.html
-to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
 ### Participate!
