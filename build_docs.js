@@ -122,6 +122,8 @@ See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blo
 <li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
 You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
 </ul>
+
+This page is generated from a <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/brands/${k}/${v}.json">data file</a> created by name-suggestion-index contributors.
 </div>
 
 <table class="summary">
