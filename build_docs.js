@@ -4,6 +4,7 @@ const fs = require('fs-extra');
 const namesKeep = require('./dist/names_keep.json');
 const shell = require('shelljs');
 const sort = require('./lib/sort');
+const countryList = require('country-list');
 
 const _brands = fileTree.read('brands');
 const _wikidata = require('./dist/wikidata.json').wikidata;
@@ -12,6 +13,7 @@ writeDocs('brands', _brands);
 
 
 function writeDocs(tree, obj) {
+    adjustCountryCodesData();
     console.log('\nwriting ' + tree);
     console.time(colors.green(tree + ' written'));
     let dict = {};
@@ -35,27 +37,130 @@ function writeDocs(tree, obj) {
         }
     });
 
-    generateIndex(tree, dict);
+    generateIndexOfCountryIndexes(tree);
+    generateIndexes(tree, dict);
 
     Object.keys(dict).forEach(k => {
         let entry = dict[k];
         Object.keys(entry).forEach(v => {
-            generatePage(tree, dict, k, v);
+            generatePages(tree, dict, k, v);
         });
     });
-
     console.timeEnd(colors.green(tree + ' written'));
 }
 
+function generateIndexes(tree, dict) {
+    generateGlobalIndex(tree, dict);
+    relevantCountryCodes().forEach(countryCode => {
+        generateCountryIndex(tree, dict, countryCode);
+    });
+}
 
-function generateIndex(tree, dict) {
-    let head = `
-<meta charset='utf-8'>
-<title>${tree}</title>
-<link rel='stylesheet' href='../style.css'>`;
 
+function generatePages(tree, dict, k, v) {
+    generateGlobalPage(tree, dict, k, v);
+    relevantCountryCodes().forEach(countryCode => {
+        generateCountryPage(tree, dict, k, v, countryCode);
+    });
+}
+
+
+function adjustCountryCodesData() {
+    countryList.overwrite([{
+        code: 'TW',
+        name: 'Taiwan'
+      },
+      {
+        code: 'VN',
+        name: 'Vietnam'
+      },
+      {
+        code: 'LA',
+        name: 'Laos'
+      },
+      {
+        code: 'VE',
+        name: 'Venezuela'
+      }
+    ]);
+}
+
+function generateIndexOfCountryIndexes(tree) {
     let body = `
-<h1>${tree}/</h1>
+<h1>List of local lists</h1>
+<div class="instructions"><span class="hi">👋</span>Hi! This project is called <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/">name-suggestion-index</a>.<br/>
+<br/>
+We've collected a list of common business names from <a target="_blank" href="https://www.openstreetmap.org">OpenStreetMap</a>.<br/>
+<br/>
+Verification by people familiar with their local area is very helpful. To make this easier there are lists of brands limited to area with specific country codes.<br/>
+<br/>
+See also <a href="index.html">full index</a>.<br/>
+<br/>
+See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.<br/>
+</div>
+<br/>`;
+    relevantCountryCodes().forEach(countryCode => {
+        body += `<div class="child"><a href="index-${countryCode}.html">${countryCode} - ${getCountryName(countryCode)}</a></div>`;
+    });
+    writeHTML(`./docs/${tree}/index-countries.html`, prefixHTML('List of regional lists', '../style.css'), body);
+}
+
+function relevantCountryCodes() {
+    let codes = countryList.getCodes();
+    codes = codes.map(countryCode => countryCode.toLowerCase());
+    let excluded = ["im"];
+    return codes.filter(countryCode => excluded.includes(countryCode) === false);
+}
+
+function getCountryName(countryCode) {
+    return countryList.getName(countryCode.toUpperCase());
+}
+
+function generateGlobalIndex(tree, dict) {
+    let body = indexIntroduction(`${tree}/`);
+
+    body += `
+
+<div class="container">`;
+    Object.keys(dict).forEach(k => {
+        let entry = dict[k];
+        Object.keys(entry).forEach(v => {
+            body += indexEntryAsHTML(dict, k, v);
+        });
+    });
+
+    body += `
+</div>`;
+
+    writeHTML(`./docs/${tree}/index.html`, prefixHTML(tree, '../style.css'), body);
+}
+
+function generateCountryIndex(tree, dict, countryCode) {
+    let body = indexIntroduction(`${tree}/ ${countryLimitationLabel(countryCode)}`);
+
+    body += `
+
+<div class="container">`;
+    Object.keys(dict).forEach(k => {
+        let entry = dict[k];
+        Object.keys(entry).forEach(v => {
+            body += countryIndexEntryAsHTML(dict, k, v, countryCode);
+        });
+    });
+
+    body += `
+</div>`;
+
+    writeHTML(`./docs/${tree}/index-${countryCode}.html`, prefixHTML(`${tree}-${countryCode}`, '../style.css'), body);
+}
+
+function countryLimitationLabel(countryCode) {
+    return `(limited to ${countryCode} - ${getCountryName(countryCode)})`;
+}
+
+function indexIntroduction(title) {
+    return `
+<h1>${title}</h1>
 <div class="instructions"><span class="hi">👋</span>Hi! This project is called <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/">name-suggestion-index</a>.<br/>
 <br/>
 We've collected a list of common business names from <a target="_blank" href="https://www.openstreetmap.org">OpenStreetMap</a>,
@@ -65,67 +170,127 @@ This tag is pretty special because we can use it to link features in OpenStreetM
 <a target="_blank" href="https://www.wikidata.org">Wikidata</a>, a free and open knowledge database.
 <br/>
 You can help us by adding brands to the index, matching brands to Wikidata identifiers, or by improving the brands' Wikidata pages.<br/>
-Each category below displays counts of (brands "complete" with a wikdata link and a logo / brands total).<br/>
+Each category below displays counts of (brands "complete" with a wikidata link and a logo / brands total).<br/>
+<br/>
+There is also <a href="index-countries.html">overview allowing to view data for specific country</a>.<br/>
 <br/>
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.<br/>
-</div>
+</div>`;
+}
 
-<div class="container">`;
+function countryIndexEntryAsHTML(dict, k, v, countryCode) {
+    let href = `${k}/${v}-${countryCode}.html`;
+    let keys = Object.keys(dict[k][v]);
+    let complete = 0;
+    let count = 0;
 
-    Object.keys(dict).forEach(k => {
-        let entry = dict[k];
-        Object.keys(entry).forEach(v => {
-            let href = `${k}/${v}.html`;
-            let keys = Object.keys(dict[k][v]);
-            let complete = 0;
-            let count = keys.length;
-
-            keys.forEach(kvnd => {
-                let entry = dict[k][v][kvnd];
-                let tags = entry.tags || {};
-                let qid = tags['brand:wikidata'];
-                let wikidata = _wikidata[qid] || {};
-                let logos = wikidata.logos || {};
-                if (Object.keys(logos).length) {
-                    complete++;
-                }
-            });
-
-            body += `
-<div class="child"><a href="${href}">${k}/${v} (${complete}/${count})</a></div>`;
-        });
+    keys.forEach(kvnd => {
+        let entry = dict[k][v][kvnd];
+        let countries = entry.countryCodes;
+        if (countries === undefined || countries.indexOf(countryCode) !== -1) {
+            let tags = entry.tags || {};
+            let qid = tags['brand:wikidata'];
+            let wikidata = _wikidata[qid] || {};
+            let logos = wikidata.logos || {};
+            if (Object.keys(logos).length) {
+                complete++;
+                count++;
+            } else {
+                count++;
+            }
+        }
     });
 
-    body += `
-</div>`;
+    if (count === 0){
+        return ``;
+    }
 
-    writeHTML(`./docs/${tree}/index.html`, head, body);
+    return `
+<div class="child"><a href="${href}">${k}/${v} (${complete}/${count})</a></div>`;
 }
 
 
-function generatePage(tree, dict, k, v) {
-    let head = `
-<meta charset='utf-8'>
-<title>${k}/${v}</title>
-<link rel='stylesheet' href='../../style.css'>`;
+function indexEntryAsHTML(dict, k, v) {
+    let href = `${k}/${v}.html`;
+    let keys = Object.keys(dict[k][v]);
+    let complete = 0;
+    let count = keys.length;
 
+    keys.forEach(kvnd => {
+        let entry = dict[k][v][kvnd];
+        let tags = entry.tags || {};
+        let qid = tags['brand:wikidata'];
+        let wikidata = _wikidata[qid] || {};
+        let logos = wikidata.logos || {};
+        if (Object.keys(logos).length) {
+            complete++;
+        }
+    });
+
+    return `
+<div class="child"><a href="${href}">${k}/${v} (${complete}/${count})</a></div>`;
+}
+
+
+function generateGlobalPage(tree, dict, k, v) {
     let body = `
 <h2>${tree}/${k}/${v}</h2>
 <a class="nav" href="../index.html">↑ Back to top</a>
-<div class="instructions">Some things you can do here:
-<ul>
-<li>Is a brand name missing or something is incorrect? <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/issues">Open an issue</a> or pull request to add it!</li>
-<li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
-<li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to our project, or filter it out if it is not a brand.<br/>
-See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
-<li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
-You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
-</ul>
+`;
+    body += instructionsHTML(k, v);
+    body += entryListAsHTML(dict[k][v]);
 
-This page is generated from a <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/brands/${k}/${v}.json">data file</a> created by name-suggestion-index contributors.
-</div>
+    writeHTML(`./docs/${tree}/${k}/${v}.html`, prefixHTML(`${k}/${v}`, '../../style.css'), body);
+}
 
-<table class="summary">
+function generateCountryPage(tree, dict, k, v, countryCode) {
+    let body = `
+<h2>${tree}/${k}/${v} ${countryLimitationLabel(countryCode)}</h2>
+<a class="nav" href="../index-${countryCode}.html">↑ Back to top</a>
+`;
+    body += instructionsHTML(k, v);
+    body += entryListAsHTML(entriesForTagWithinCountry(dict, k, v, countryCode));
+
+    writeHTML(`./docs/${tree}/${k}/${v}-${countryCode}.html`, prefixHTML(`/${k}/${v}/${countryCode}`, '../../style.css'), body);
+}
+
+function entriesForTagWithinCountry(dict, k, v, countryCode) {
+    let filteredEntries = [];
+    Object.keys(dict[k][v]).forEach(kvnd => {
+        let entry = dict[k][v][kvnd];
+        let countries = entry.countryCodes;
+        if (countries === undefined || countries.indexOf(countryCode) !== -1) {
+            filteredEntries.push(entry);
+        }
+    });
+    return filteredEntries;
+}
+
+function prefixHTML(title, cssPath) {
+    return `
+    <meta charset='utf-8'>
+    <title>${title}</title>
+    <link rel='stylesheet' href='${cssPath}'>`;
+}
+
+function instructionsHTML(k, v) {
+    return `<div class="instructions">
+    Some things you can do here:
+    <ul>
+    <li>Is a brand name missing or something is incorrect? <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/issues">Open an issue</a> or pull request to add it!</li>
+    <li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
+    <li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to our project, or filter it out if it is not a brand.<br/>
+    See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
+    <li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
+    You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
+    </ul>
+    This page is generated from a <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/brands/${k}/${v}.json">data file</a> created by name-suggestion-index contributors.
+    </div>
+`;
+}
+
+function entryListAsHTML(dict) {
+    let body = `<table class="summary">
 <thead>
 <tr>
 <th>Name<br/>ID<br/>Countries</th>
@@ -139,9 +304,9 @@ This page is generated from a <a target="_blank" href="https://github.com/osmlab
 <thead>
 <tbody>`;
 
-    Object.keys(dict[k][v]).forEach(kvnd => {
+    Object.keys(dict).forEach(kvnd => {
         let slug = slugify(kvnd);
-        let entry = dict[k][v][kvnd];
+        let entry = dict[kvnd];
         let count = namesKeep[kvnd] || '< 50';
         let tags = entry.tags || {};
 
@@ -158,7 +323,7 @@ This page is generated from a <a target="_blank" href="https://github.com/osmlab
 <td class="namesuggest"><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
   <div class="nsikey"><pre>'${kvnd}'</pre></div>
   <div class="countries">` + countries(entry.countryCodes) + `</div>
-  <div class="viewlink">` + overpassLink(k, v, tags.name) + `</div>
+  <div class="viewlink">` + overpassLink("k", "v", tags.name) + `</div>
 </td>
 <td class="count">${count}</td>
 <td class="tags"><pre class="tags">` + displayTags(tags) + `</pre></td>
@@ -177,12 +342,9 @@ This page is generated from a <a target="_blank" href="https://github.com/osmlab
 
     body += `
 </tbody>
-</table>
-</div>`;
-
-    writeHTML(`./docs/${tree}/${k}/${v}.html`, head, body);
+</table>`;
+    return body;
 }
-
 
 function overpassLink(k, v, n) {
     let q = encodeURIComponent(`[out:json][timeout:60];
