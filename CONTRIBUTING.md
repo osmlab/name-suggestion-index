@@ -8,17 +8,31 @@
 * Resolve warnings - [show me](#thinking--resolve-warnings)
 * Remove generic names - [show me](#hocho--remove-generic-names)
 * Add `brand:wikidata` and `brand:wikipedia` tags - [show me](#female_detective--add-wiki-tags)
+* Add missing brands - [show me](#convenience_store--add-missing-brands)
+* Edit Wikidata - [show me](#memo--edit-wikidata)
+
+Tip: You can browse the index at
+[http://osmlab.github.io/name-suggestion-index/brands/index.html](http://osmlab.github.io/name-suggestion-index/brands/index.html)
+to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
-* `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/discardNames.json` - discarded subset of allNames
-* `dist/keepNames.json` - kept subset of allNames
+* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
+* `dist/names_discard.json` - subset of `names_all` we are discarding
+* `dist/names_keep.json` - subset of `names_all` we are keeping
+* `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
-##### :white_check_mark: &nbsp; Do edit the files in `config/`:
+##### :white_check_mark: &nbsp; Do edit the files in `config/` and `brands/`:
 
-* `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
-* `config/canonical.json` - Main config file containing all the most correct names and tags to assign to them
+* `config/*`
+  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
+  * `config/match_groups.json`- Groups of tag pairs that are considered equal when matching
+* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `brands/amenity/*.json`
+  * `brands/leisure/*.json`
+  * `brands/shop/*.json`
+  * `brands/tourism/*.json`
 
 &nbsp;
 
@@ -48,29 +62,29 @@ and not need to worry about the tags being added.
 
 &nbsp;
 
-### :card_file_box: &nbsp; About `config/canonical.json`
+### :card_file_box: &nbsp; About the brand files
 
-__`config/canonical.json` is our main list of the most correct names and tags.__
+__The `brands/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
 
-This file is created by:
-- Processing the OpenStreetMap "planet" data to extract common names -> `dist/allNames.json`
-- Filtering all the names into -> `dist/keepNames.json` and `dist/discardNames.json`
-- Merging the names we are keeping into -> `config/canonical.json` for us to decide what to do with them
+These files are created by a several step process:
+- Process the OpenStreetMap "planet" data to extract common names -> `dist/names_all.json`
+- Filter all the names into -> `dist/names_keep.json` and `dist/names_discard.json`
+- Merge the names we are keeping into -> `brands/**/*.json` files for us to decide what to do with them
 
-Each entry looks like this _(comments added for clarity)_:
+The files are organized by OpenStreetMap tag:
+* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `brands/amenity/*.json`
+  * `brands/leisure/*.json`
+  * `brands/shop/*.json`
+  * `brands/tourism/*.json`
 
+
+Each brand entry looks like this _(comments added for clarity)_:
+
+In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|McDonald's": {         // Identifier like "key/value|name"
-    "count": 19040,                         // `count` - generated # of these that we found in OpenStreetMap
-    "match": [
-      "amenity/fast_food|Mc Donald's",      // Optional `match` array
-      "amenity/fast_food|McDonalds",        //   Contains less-desirable variations to ignore.
-      "amenity/restaurant|Mc Donald's",     //   (we want to keep only "amenity/fast_food|McDonald's")
-      "amenity/restaurant|Mc Donalds",      //
-      "amenity/restaurant|McDonald's",      //
-      "amenity/restaurant|McDonalds",       //
-    ],
     "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
       "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
       "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
@@ -86,30 +100,65 @@ There may also be entries for McDonald's in other languages!
 
 ```js
   "amenity/fast_food|マクドナルド": {         // Identifier like "key/value|name"
-    "count": 1445,
     "countryCodes": ["jp"],                 // Optional `countryCodes` - array of countries where this entry is used
     "tags": {
       "amenity": "fast_food",
       "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
       "brand:en": "McDonald's",             // `brand:en` - For non-English brands, tag the English version too
+      "brand:ja": "マクドナルド",             // `brand:ja` - Add at least one `brand:xx` tag that matches `brand`
       "brand:wikidata": "Q38076",           // `brand:wikidata` - Same Universal wikidata identifier
       "brand:wikipedia": "ja:マクドナルド",   // `brand:wikipedia` - Reference to Japanese Wikipedia
       "cuisine": "burger",
       "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
       "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
+      "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
     }
   },
 ```
 
 &nbsp;
 
-#### Optional properties to suppress warnings
+#### Optional properties
 
-These properties always start with `"no"`.
+##### `matchNames`/`matchTags`
+
+Sometimes a single brand will have different tags in OpenStreetMap.
+
+For example, we prefer "Bed Bath & Beyond" to be tagged as `shop/houseware`.
+However we also need to recognize:
+- less-preferred name spellings like "Bed Bath and Beyond"
+- less-preferred tag pairs like `shop/department_store`
+
+Rather than adding every possible alternative to the index, we can use
+`matchNames` and `matchTags` properties to ignore less-preferred alternatives.
+
+```js
+  "shop/houseware|Bed Bath & Beyond": {
+    "matchNames": ["bed bath and beyond"],     // also match these alternate spellings
+    "matchTags": ["shop/department_store"],    // also match these alternate taggings
+    "tags": {
+      "brand": "Bed Bath & Beyond",
+      "brand:wikidata": "Q813782",
+      "brand:wikipedia": "en:Bed Bath & Beyond",
+      "name": "Bed Bath & Beyond",
+      "shop": "houseware"
+    }
+  },
+```
+
+The matching code also has some useful automatic behaviors:
+
+- Names are always matched case insensitive, with spaces and punctuation removed.
+You do not need to add `matchNames` properties for simple name variations.
+
+- Some tags are assigned to _match groups_ (defined in `config/match_groups.json`).
+You don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
+and vice versa. Tags in a match group will match any other tags in the same match group.
+
 
 ##### `nomatch`
 
-Sometimes there are multiple different entries that use the same name.
+Sometimes there are multiple _different_ entries that use the same name.
 
 For example, "Sonic" can be either a fast food restaurant or a fuel station.
 
@@ -119,37 +168,11 @@ property to each entry to suppress the "duplicate name" warning.
 
 ```js
   "amenity/fuel|Sonic": {
-    "count": 127,
     "nomatch": ["amenity/fast_food|Sonic"],
     ...
-  }
+  },
   "amenity/fast_food|Sonic": {
-    "count": 1110,
     "nomatch": ["amenity/fuel|Sonic"],
-    ...
-  }
-```
-
-##### `nocount`
-
-Sometimes a new, uncommon OpenStreetMap tag-name combination should replace an
-existing tag-name combination.
-
-For example, many Costcos are tagged as `shop=department_store` or `shop=supermarket`,
-but the new preferred tag is `shop=wholesale`.
-
-We don't want to be warned that the new correct tag is uncommon, so we add a
-`nocount` property to the entry to suppress the "uncommon name" warning.
-
-```js
-  "shop/wholesale|Costco": {
-    "nocount": true,
-    "match": [
-      "shop/department_store|Costco",
-      "shop/department_store|Costco Wholesale",
-      "shop/supermarket|Costco",
-      "shop/supermarket|Costco Wholesale"
-    ],
     ...
   },
 ```
@@ -165,14 +188,12 @@ to tell the difference between two otherwise identical brands.
 The text after the tilde can contain anything.
 
 When using a tilde `~` name:
-* You should add `"nocount": true`, as the script will not be able to determine the true count.
 * You should add `"nomatch":` properties to each name so they do not generate duplicate name warnings.
 
 
 ```js
   "shop/supermarket|Price Chopper~(Kansas City)": {
     "countryCodes": ["us"],
-    "nocount": true,
     "nomatch": [
       "shop/supermarket|Price Chopper~(New York)"
     ],
@@ -186,7 +207,6 @@ When using a tilde `~` name:
   },
   "shop/supermarket|Price Chopper~(New York)": {
     "countryCodes": ["us"],
-    "nocount": true,
     "nomatch": [
       "shop/supermarket|Price Chopper~(Kansas City)"
     ],
@@ -216,7 +236,7 @@ This will output a lot of warnings, which you can help fix!
 
 ### :thinking: &nbsp; Resolve warnings
 
-Warnings mean that you need to edit `config/canonical.json`.
+Warnings mean that you need to edit files under `brands/*`.
 The warning output gives a clue about how to fix or suppress the warning.
 If you aren't sure, just ask on GitHub!
 
@@ -225,37 +245,26 @@ If you aren't sure, just ask on GitHub!
 #### Duplicate names
 
 ```
-Warning - Potential duplicate names in `canonical.json`:
-To resolve these, remove the worse entry and add "match" property on the better entry.
+Warning - Potential duplicate brand names:
+To resolve these, remove the worse entry and add "matchNames"/"matchTags" properties on the better entry.
 To suppress this warning for entries that really are different, add a "nomatch" property on both entries.
-  "tourism/motel|Motel 6" -> duplicates? -> "tourism/hotel|Motel 6"
+  "shop/supermarket|Carrefour" -> duplicates? -> "amenity/fuel|Carrefour"
+  "shop/supermarket|VinMart" -> duplicates? -> "shop/department_store|VinMart"
 ```
 
-_What it means:_  "Motel 6" exists in the index twice - as both a `tourism=hotel` (wrong)
-and a `tourism=motel` (correct). In this situation we want to:
-* Delete the entry for `"tourism/hotel|Motel 6"` and
-* Add `"match": ["tourism/hotel|Motel 6"]` to the `"tourism/motel|Motel 6"` entry
+_What it means:_  These names are commonly tagged differently in OpenStreetMap.  This might be ok, but it might be a mistake.
 
-Usually the entry which is used more frequently (indicated by "count" property)
-is the one to keep.  If you are not sure, you can also search on the
-[OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Map_Features) for tag best practices.
+For "VinMart" we really prefer for it to be tagged as a supermarket.  It's a single brand frequently mistagged.
+* Add `"matchTags": ["shop/department_store"]` to the (preferred) `"shop/supermarket|VinMart"` entry
+* Delete the (not preferred) entry for `"shop/department_store|VinMart"`
 
-&nbsp;
+For "Carrefour" we know that can be both a supermarket and a fuel station.  It's two different things.
+* Add `"nomatch": ["shop/supermarket|Carrefour"]` to the `"amenity/fuel|Carrefour"` entry
+* Add `"nomatch": ["amenity/fuel|Carrefour"]` to the `"shop/supermarket|Carrefour"` entry
 
-#### Uncommon names
+Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding whether to match or nomatch these duplicates.
 
-```
-Warning - Uncommon entries in `canonical.json` not found in `keepNames.json`:
-These might be okay. It just means that the entry is not commonly found in OpenStreetMap.
-To suppress this warning, add a "nocount" property to the entry.
-  "shop/wholesale|Costco"
-```
-
-_What it means:_  This warning can occur if the index contains an entry that is not common in OpenStreetMap.
-Either replace it with a more common tag, or add `"nocount": true` to suppress the warning.
-
-(In this situation, `shop=wholesale` is a new preferred tag, but most existing Costcos were
-still tagged as `shop=department_store`. Suppressing the warning is the correct thing to do).
+If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
 
 &nbsp;
 
@@ -268,7 +277,6 @@ For example, "Универмаг" is just a Russian word for "Department store":
 
 ```js
   "shop/department_store|Универмаг": {
-    "count": 210,
     "tags": {
       "brand": "Универмаг",
       "name": "Универмаг",
@@ -278,9 +286,9 @@ For example, "Универмаг" is just a Russian word for "Department store":
 ```
 
 To remove this generic name:
-1. Delete the entries from `config/canonical.json`
+1. Delete the item from the appropriate file, in this case `brands/shop/department_store.json`
 2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
-3. Run `npm run build` - if the filter is working, the name will not be put back into `config/canonical.json`
+3. Run `npm run build` - if the filter is working, the name will not be put back into `brands/shop/department_store.json`
 4. `git diff` - to make sure that the entries you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.
 
@@ -288,21 +296,17 @@ To remove this generic name:
 
 ### :female_detective: &nbsp; Add wiki tags
 
-Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that anybody
-can help with.
+Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that anybody can help with.
 
 #### Example #1 - Worldwide / English brands...
 
-1. Find an entry in `config/canonical.json` that is missing these tags:
+1. Find an entry in a brand file that is missing these tags:
+
+In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|Chipotle": {
-    "count": 708,
-    "match": [
-      "amenity/fast_food|Chipotle Mexican Grill",
-      "amenity/restaurant|Chipotle",
-      "amenity/restaurant|Chipotle Mexican Grill"
-    ],
+    "matchNames": ["chipotle mexican grill"],
     "tags": {
       "amenity": "fast_food",
       "brand": "Chipotle",
@@ -314,13 +318,13 @@ can help with.
 
 2. Google for that brand - if you are lucky, you might find the Wikipedia page right away.
 
-<img width="600px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_1.png"/>
+<img width="600px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_1.png"/>
 
 3. From the Wikipedia page URL, you can identify the `brand:wikipedia` value.
 
 OpenStreetMap expects this tag to be formatted like `"en:Chipotle Mexican Grill"`.
 * Copy the page name from the URL.
-* Add the language prefix "en:".
+* Add the language prefix - "en:" for the English Wikipedia.
 * Replace the underscores '_' with spaces.
 
 On the brand's Wikipedia page, you can also find its "Wikidata item" link.  This appears
@@ -331,24 +335,19 @@ under the "tools" menu in the sidebar.
 [#1881]: https://github.com/osmlab/name-suggestion-index/issues/1881
 [@maxerickson]: https://github.com/maxerickson
 
-<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_2.png"/>
+<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_2.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
-<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/chipotle_3.png"/>
+<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_3.png"/>
 
-5. Update `config/canonical.json`:
+5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
 We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
 
 ```js
   "amenity/fast_food|Chipotle": {
-    "count": 708,
-    "match": [
-      "amenity/fast_food|Chipotle Mexican Grill",
-      "amenity/restaurant|Chipotle",
-      "amenity/restaurant|Chipotle Mexican Grill"
-    ],
+    "matchNames": ["chipotle mexican grill"],
     "tags": {
       "amenity": "fast_food",
       "brand:wikidata": "Q465751",                            // added
@@ -365,7 +364,7 @@ _(comments added for clarity)_
 6. Rebuild and submit a pull request.
 
 * Run `npm run build`
-* If it does not fail with an error, you can submit a pull request with your changes.
+* If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
 
 &nbsp;
 
@@ -373,11 +372,12 @@ _(comments added for clarity)_
 
 This example uses a brand "かっぱ寿司".  I don't know what that is, so I will do some research.
 
-1. Find an entry in `config/canonical.json`:
+1. Find an entry in a brand file that is missing these tags:
+
+In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|かっぱ寿司": {
-    "count": 91,
     "tags": {
       "amenity": "fast_food",
       "brand": "かっぱ寿司",
@@ -393,7 +393,7 @@ Tip: You might want to narrow you search by Googling with a `site:` filter:  `"�
 From these results, we can know that the brand is "Kappazushi", owned by a Japanese company
 called "Kappa Create".  We can also find the Wikipedia page.
 
-<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_1.png"/>
+<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_1.png"/>
 
 3. As with English brands, you can identify the `brand:wikipedia` value from the URL.
 Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
@@ -406,35 +406,37 @@ OpenStreetMap expects this tag to be formatted like `"ja:かっぱ寿司"`.
 Although I can not read Japanese, I can identify the "Wikidata item" link because
 it always appears in the sidebar and mouseover will show the Wikidata 'Q' code in the URL.
 
-<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_3.png"/>
+<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_3.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
 Note: The Wikidata page looks a bit sparse - you can edit this too if you want to help!
 
-<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/kappa_4.png"/>
+<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_4.png"/>
 
-5. Update `config/canonical.json`:
+5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
 We can add:
 * `"brand:en"` and `"name:en"` tags to contain the English name "Kappazushi"
-* `"brand:wikipedia"` and `"brand:wikidata"` tags.
+* `"name:ja"` and `"brand:ja"` tags to contain the local name "かっぱ寿司"
+* `"brand:wikipedia"` and `"brand:wikidata"` tags
 * `"cuisine": "sushi"` OpenStreetMap tag
 * `"countryCodes"` property, to indicate that this brand should only be used in Japan.
 
 ```js
   "amenity/fast_food|かっぱ寿司": {
-    "count": 91,
     "countryCodes": ["jp"],                // added
     "tags": {
       "amenity": "fast_food",
       "brand": "かっぱ寿司",
       "brand:en": "Kappazushi",            // added
+      "brand:ja": "かっぱ寿司",            // added
       "brand:wikipedia": "ja:かっぱ寿司",     // added
       "brand:wikidata": "Q11263916",        // added
       "cuisine": "sushi",                   // added
       "name": "かっぱ寿司",
-      "name:en": "Kappazushi"              // added
+      "name:en": "Kappazushi",              // added
+      "name:ja": "かっぱ寿司"               // added
     }
   },
 ```
@@ -444,7 +446,26 @@ _(comments added for clarity)_
 6. Rebuild and submit a pull request.
 
 * Run `npm run build`
-* If it does not fail with an error, you can submit a pull request with your changes.
+* If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
+
+&nbsp;
+
+### :convenience_store: &nbsp; Add missing brands
+
+If it exists, we want to know about it!
+
+Some brands aren't mapped enough (50+ times) to automatically be added to the index so this
+is a valuable way to get ahead of incorrect tagging.
+
+1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `shop=food`). Ideally you also have `brand:wikidata` and `brand:wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
+
+2. Add your new entry anywhere into the appropriate file under `brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
+
+3. If the brand only has locations in a known set of countries add the `"countryCodes": []` key to your new entry. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
+
+4. If instances of this brand are commonly mistagged add the `"matchNames": []` key to list these. Again, refer to [here](#card_file_box--about-the-brand-files) for syntax.
+
+5. Run `npm run build` and resolve any [duplicate name warnings](#thinking--resolve-warnings).
 
 &nbsp;
 
@@ -463,9 +484,42 @@ nwr["name"="かっぱ寿司"]["amenity"="fast_food"];
 out center;
 ```
 
+Tip: The browsable index at http://osmlab.github.io/name-suggestion-index/brands/index.html
+can open Overpass Turbo with the query already set up for you.
+
+
 3. Click run to view the results.
 
 As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
 
-<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/overpass.png"/>
+<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/overpass.png"/>
 
+&nbsp;
+
+### :memo: &nbsp; Edit Wikidata
+
+Editing brand pages on Wikidata is something that anybody can do.  It helps not just our project, but anybody who uses this data for other purposes too!  You can read more about contributing to Wikidata [here](https://www.wikidata.org/wiki/Wikidata:Contribute).
+
+- Add Wikidata entries for brands that don't yet have them.
+- Improve the labels and descriptions on the Wikidata entries.
+- Translate the labels and descriptions to more languages.
+- Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
+
+Tip: The browsable index at http://osmlab.github.io/name-suggestion-index/brands/index.html
+can show you where the Wikidata information is missing or incomplete.
+
+#### Adding properties to Wikidata
+
+Social media accounts may be used to automatically fetch logos, what is used by iD
+<img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata.gif"/>
+
+#### Adding references to Wikidata
+
+Entries without matching Wikipedia article must have some references by independent sources. For our entries usually the easiest one to add is something in form of "this shop brand had N shops on some specific date".
+
+<img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata_references.gif"/>
+<!--See https://www.wikidata.org/w/index.php?title=Wikidata:Administrators%27_noticeboard&oldid=941582891#Entries_that_should_be_now_fixed for discussion on Wikidata-->
+
+#### Creating Wikidata entries
+
+For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is mandatory to add some external identifier or references (see section above with animation showing how it can be done).

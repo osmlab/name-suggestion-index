@@ -13,6 +13,13 @@ list of commonly used names for suggesting consistent spelling and tagging of fe
 in OpenStreetMap.
 
 
+### Browse the index
+
+You can browse the index at
+http://osmlab.github.io/name-suggestion-index/brands/index.html
+to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+
+
 ### How it's used
 
 When mappers create features in OpenStreetMap, they are not always consistent about how they
@@ -24,7 +31,7 @@ Building a canonical name index allows two very useful things:
 - We can suggest the most "correct" way to tag things as users create them while editing.
 - We can scan the OSM data for "incorrect" features and produce lists for review and cleanup.
 
-![name-suggestion-index in use in iD](http://i.imgur.com/9p1E6S4.gif)
+<img width="1017px" alt="Name Suggestion Index in use in iD" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/nsi-in-iD.gif"/>
 
 *The name-suggestion-index is in use in iD when adding a new item*
 
@@ -32,6 +39,16 @@ Currently used in:
 * iD (see above)
 * [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 * JOSM presets available
+
+
+### Participate!
+
+* Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
+* See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
+
+We're always looking for help!  If you have any questions or want to reach out to a maintainer, ping `bhousel` on:
+* [OpenStreetMap US Slack](https://slack.openstreetmap.us/)
+(`#poi` or `#general` channels)
 
 
 ### Prerequisites
@@ -58,14 +75,21 @@ Preset files (used by OSM editors):
 * `dist/name-suggestions.presets.xml` - Name suggestion presets, as JOSM-style preset XML
 
 Name lists:
-* `dist/allNames.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/discardNames.json` - discarded subset of allNames
-* `dist/keepNames.json` - kept subset of allNames
+* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
+* `dist/names_discard.json` - subset of `names_all` we are discarding
+* `dist/names_keep.json` - subset of `names_all` we are keeping
+* `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
 #### Configuration files (edit these):
 
-* `config/filters.json`- Regular expressions used to filter `allNames` into `keepNames` / `discardNames`
-* `config/canonical.json` - The main config file containing all the most correct names and tags to assign to them
+* `config/*`
+  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `discardNames`
+* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `brands/amenity/*.json`
+  * `brands/leisure/*.json`
+  * `brands/shop/*.json`
+  * `brands/tourism/*.json`
+  * `brands/office/*.json`
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
@@ -73,26 +97,33 @@ Name lists:
 ### Building the index
 
 * `npm run build`
-  * Regenerates `dist/keepNames.json` and `dist/discardNames.json`
-  * Any new `keepNames` not already present in `config/canonical.json` will be added to it
-  * Outputs warnings to suggest updates to `config/canonical.json`
+  * Regenerates `dist/names_keep.json` and `dist/names_discard.json`
+  * Any new entries from `names_keep` not already present in the index will be added to it
+  * Outputs many warnings to suggest updates to `brands/**/*.json`
 
 
-### Updating `dist/allNames.json` from planet
+### Other commands
+
+* `npm run wikidata` - Fetch useful data from Wikidata - labels, descriptions, logos, etc.
+* `npm run docs` - Updates the index summary pages
+* `npm run` - Lists other available tools
+
+### Updating `dist/names_all.json` from planet
 
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
 You do not need to do these steps in order to contribute to the index.
 
-- Install `osmium` commandline tool
+- Install `osmium` commandline tool and node package globally (may only work on some environments)
   - `apt-get install osmium-tool` or `brew install osmium-tool` or similar
+  - `npm install -g osmium`
 - [Download the planet](http://planet.osm.org/pbf/)
-  - `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
+  - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
-  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,man_made,tourism -o wanted.osm.pbf`
-- Run `node build_allNames wanted.osm.pbf`
-  - results will go in `dist/allNames.json`
-  - `git add dist/allNames.json && git commit -m 'Updated dist/allNames.json'`
+  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
+- Run `node build_all_names wanted.osm.pbf`
+  - results will go in `dist/names_all.json`
+  - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
 
 
 ### License

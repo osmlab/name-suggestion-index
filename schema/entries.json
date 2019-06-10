@@ -1,0 +1,63 @@
+{
+    "title": "entries schema",
+    "description": "name-suggestion-index entries",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^\\S+/\\S+|.*$": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "tags"
+            ],
+            "properties": {
+                "countryCodes": {
+                    "description": "(optional) Array of ISO 3166-1 alpha-2 two letter country codes in lowercase",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^[a-z]{2}$"
+                    }
+                },
+                "matchNames": {
+                    "description": "(optional) An array of alternate but less-desired names.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "matchTags": {
+                    "description": "(optional) An array of alternate but less-desired tag-pairs.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^\\S+/\\S+$"
+                    }
+                },
+                "nomatch": {
+                    "description": "(optional) Array of alternate keys that do not match this key, used to suppress warning about potential duplicate name.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^\\S+/\\S+|.*$"
+                    }
+                },
+                "tags": {
+                    "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
+                    "type": "object",
+                    "properties": {
+                        "countryCodes": { "not" : {} },
+                        "matchNames":   { "not" : {} },
+                        "matchTags":    { "not" : {} },
+                        "nomatch":      { "not" : {} },
+                        "tags":         { "not" : {} }
+                    }
+                }
+            }
+        }
+    }
+}
