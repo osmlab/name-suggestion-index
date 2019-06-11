@@ -122,6 +122,15 @@ function showResults(choices) {
     // only keep choices with wikidata and wikipedia tags
     choices = choices.filter(entity => entity.id && entity.sitelink);
 
+    // primitive filtering to throw out unwanted types
+    // note that it likely would be better to travel upwards
+    // entity structure and ban "building" that would should
+    // ban also "stadium" and "embankment dam"
+    let banned = ["film", "town", "national park", "human", "taxon", "stadium", "embankment dam"];
+    banned.forEach((bannedType) => {
+        choices = choices.filter(entity => entity.instances.includes(bannedType) == false);
+    });
+
     if (!choices.length) {
         throw new Error(`Wiki tags not found`);
     }
