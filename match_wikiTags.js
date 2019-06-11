@@ -128,7 +128,7 @@ function showResults(choices) {
     // ban also "stadium" and "embankment dam"
     let banned = ["film", "town", "national park", "human", "taxon", "stadium", "embankment dam"];
     banned.forEach((bannedType) => {
-        choices = choices.filter(entity => entity.instances.includes(bannedType) == false);
+        choices = choices.filter(entity => entity.instances.includes(bannedType) === false);
     });
 
     if (!choices.length) {
