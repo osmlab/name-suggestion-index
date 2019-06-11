@@ -113,9 +113,9 @@ Name lists:
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
 You do not need to do these steps in order to contribute to the index.
 
-- Install `osmium` commandline tool and node package globally (may only work on some environments)
+- Install `osmium` commandline tool and node package (may only be available on some environments)
   - `apt-get install osmium-tool` or `brew install osmium-tool` or similar
-  - `npm install -g osmium`
+  - `npm install --no-save osmium`
 - [Download the planet](http://planet.osm.org/pbf/)
   - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
