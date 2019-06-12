@@ -171,7 +171,7 @@ This page is generated from a <a target="_blank" href="https://github.com/osmlab
 ` + socialLinks(identities) + `
 </td>
 <td class="logo">` + logo(logos.wikidata) + `</td>
-<td class="logo">` + logo(logos.facebook) + `</td>
+<td class="logo">` + fblogo(identities.facebook, logos.facebook) + `</td>
 <td class="logo">` + logo(logos.twitter) + `</td>
 </tr>`;
     });
@@ -198,6 +198,10 @@ out skel qt;`);
 function countries(countryCodes) {
     let cclist = (countryCodes || []).join(', ');
     return cclist ? `🌐 <code>${cclist}</code>` : '';
+}
+
+function fblogo(username, src) {
+    return (username && !src) ? 'Profile restricted' : logo(src);
 }
 
 function logo(src) {
