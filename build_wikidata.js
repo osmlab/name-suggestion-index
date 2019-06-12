@@ -88,7 +88,10 @@ function doFetch(index) {
     console.log(colors.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
 
     return fetch(currURL)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+            return response.json();
+        })
         .then(result => processEntities(result))
         .catch(e => {
             _errors.push(e);
@@ -101,6 +104,7 @@ function doFetch(index) {
 
 function processEntities(result) {
     let twitterQueue = [];
+    let facebookQueue = [];
 
     Object.keys(result.entities).forEach(qid => {
         let target = _wikidata[qid];
@@ -147,11 +151,10 @@ function processEntities(result) {
         }
 
         // P2013 - Facebook ID
-        // https://developers.facebook.com/docs/graph-api/reference/user/picture/
         let facebookUser = getClaimValue(entity, 'P2013');
         if (facebookUser) {
             target.identities.facebook = facebookUser;
-            target.logos.facebook = `https://graph.facebook.com/${facebookUser}/picture?type=large`;
+            facebookQueue.push({ qid: qid, username: facebookUser });    // queue logo fetch
         }
 
         // P2397 - YouTube ID
@@ -189,9 +192,14 @@ function processEntities(result) {
         return checkTwitterRateLimit(twitterQueue.length)
             .then(() => Promise.all(
                 twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username))
+            ))
+            .then(() => Promise.all(
+                facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username))
             ));
     } else {
-        return Promise.resolve();
+        return Promise.all(
+            facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username))
+        );
     }
 }
 
@@ -311,6 +319,29 @@ function fetchTwitterUserDetails(qid, username) {
         })
         .catch(e => {
             let msg = `Error: Twitter username @${username} for ${qid}: ` + JSON.stringify(e);
+            _errors.push(msg);
+            console.error(colors.red(msg));
+        });
+}
+
+
+// https://developers.facebook.com/docs/graph-api/reference/user/picture/
+function fetchFacebookLogo(qid, username) {
+    let target = _wikidata[qid];
+    let logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
+
+    return fetch(logoURL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.status + ' ' + response.statusText);
+            }
+            if (response.headers.get('content-md5') !== 'OMs/UjwLoIRaoKN19eGYeQ==') {  // question-mark image #2750
+                target.logos.facebook = logoURL;
+            }
+            return true;
+        })
+        .catch(e => {
+            let msg = `Error: Facebook username @${username} for ${qid}: ` + e;
             _errors.push(msg);
             console.error(colors.red(msg));
         });
