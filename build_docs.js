@@ -7,7 +7,7 @@ const sort = require('./lib/sort');
 
 const _brands = fileTree.read('brands');
 const _wikidata = require('./dist/wikidata.json').wikidata;
-const _now = new Date().toUTCString();
+const _now = new Date().toDateString();
 
 writeDocs('brands', _brands);
 
