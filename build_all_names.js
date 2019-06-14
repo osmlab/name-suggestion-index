@@ -23,10 +23,9 @@ if (process.argv.length < 3) {
     process.exit(1);
 }
 
-const checkKeys = ['amenity', 'shop', 'leisure', 'tourism'];
+const checkKeys = ['amenity', 'shop', 'leisure', 'tourism', 'office'];
 const THRESHOLD = process.argv[3] || 50;
 
-let counts = {};
 build();
 
 
@@ -36,39 +35,44 @@ function build() {
 
     // Start clean
     shell.rm('-f', ['dist/names_all.json']);
+    let all = {};
 
-    let handler = new osmium.Handler();
-    handler.options({ tagged_nodes_only: true });
-    handler.on('node', countTags);
-    handler.on('way', countTags);
-    handler.on('relation', countTags);
+    // process one key at a time to reduce memory footprint
+    checkKeys.forEach(k => {
+        // count
+        console.log(` counting ${k}`);
+        let counted = {};
+        let handler = new osmium.Handler();
+        handler.options({ tagged_nodes_only: true });
+        handler.on('node', countEntity);
+        handler.on('way', countEntity);
+        handler.on('relation', countEntity);
 
-    let reader = new osmium.Reader(process.argv[2]);
-    osmium.apply(reader, handler);
+        let reader = new osmium.Reader(process.argv[2]);
+        osmium.apply(reader, handler);
 
-    // filter
-    let filtered = {};
-    for (let key in counts) {
-        if (counts[key] > THRESHOLD) {
-            filtered[key] = counts[key];
+        // filter
+        console.log(` filtering ${k}`);
+        for (let kvn in counted) {
+            if (counted[kvn] > THRESHOLD) {
+                all[kvn] = counted[kvn];  // keep
+            }
         }
-    }
 
-    fs.writeFileSync('dist/names_all.json', stringify(sort(filtered)));
+        function countEntity(entity) {
+            let n = entity.tags('name');
+            if (!n) return;
+
+            let v = entity.tags(k);
+            if (!v) return;
+
+            let kvn = `${k}/${v}|${n}`;
+            counted[kvn] = (counted[kvn] || 0) + 1;
+        }
+    });
+
+
+    fs.writeFileSync('dist/names_all.json', stringify(sort(all)));
     console.timeEnd(colors.green('data built'));
 }
 
-
-function countTags(entity) {
-    let name = entity.tags('name');  // fast name check
-    if (!name) return;
-    let tags = entity.tags();
-
-    for (let i = 0; i < checkKeys.length; i++) {
-        let key = checkKeys[i];
-        if (!tags[key]) continue;
-
-        let fullName = key + '/' + tags[key] + '|' + name;
-        counts[fullName] = (counts[fullName] || 0) + 1;
-    }
-}

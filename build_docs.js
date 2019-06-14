@@ -7,7 +7,7 @@ const sort = require('./lib/sort');
 
 const _brands = fileTree.read('brands');
 const _wikidata = require('./dist/wikidata.json').wikidata;
-const _now = new Date().toUTCString();
+const _now = new Date().toDateString();
 
 writeDocs('brands', _brands);
 
@@ -115,24 +115,25 @@ function generatePage(tree, dict, k, v) {
 <a class="nav" href="../index.html">↑ Back to top</a>
 <div class="instructions">Some things you can do here:
 <ul>
-<li>Is a brand name missing? <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/issues">Open an issue</a> or pull request to add it!</li>
+<li>Is a brand name missing or something is incorrect? <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/issues">Open an issue</a> or pull request to add it!</li>
 <li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
 <li>If a record is missing a <code>'brand:wikidata'</code> tag, you can do the research to add it to our project, or filter it out if it is not a brand.<br/>
 See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.</li>
 <li>If a record with a <code>'brand:wikidata'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
 You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later.</li>
 </ul>
+
+This page is generated from a <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/brands/${k}/${v}.json">data file</a> created by name-suggestion-index contributors.
 </div>
 
 <table class="summary">
 <thead>
 <tr>
-<th>Name<br/>ID</th>
+<th>Name<br/>ID<br/>Countries</th>
 <th>Count</th>
 <th>OpenStreetMap Tags</th>
-<th>Wikidata QID</th>
-<th>Wikidata Description<br/>Website</th>
-<th class="logo">Wikidata Logo</th>
+<th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
+<th class="logo">Commons Logo</th>
 <th class="logo">Facebook Logo</th>
 <th class="logo">Twitter Logo</th>
 </tr>
@@ -157,16 +158,20 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 <tr>
 <td class="namesuggest"><h3 class="slug" id="${slug}"><a href="#${slug}"/>#</a><span class="anchor">${tags.name}</span></h3>
   <div class="nsikey"><pre>'${kvnd}'</pre></div>
+  <div class="countries">` + countries(entry.countryCodes) + `</div>
   <div class="viewlink">` + overpassLink(k, v, tags.name) + `</div>
 </td>
-<td>${count}</td>
+<td class="count">${count}</td>
 <td class="tags"><pre class="tags">` + displayTags(tags) + `</pre></td>
-<td>` + wdLink(tags['brand:wikidata']) + `</td>
-<td class="wikidata"><h3>${label}</h3>
-  <span>${description}</span><br/>` + siteLink(identities.website) + `
+<td class="wikidata">
+  <h3>${label}</h3>
+  <span>${description}</span><br/>
+` + wdLink(tags['brand:wikidata']) + `
+` + siteLink(identities.website) + `
+` + socialLinks(identities) + `
 </td>
 <td class="logo">` + logo(logos.wikidata) + `</td>
-<td class="logo">` + logo(logos.facebook) + `</td>
+<td class="logo">` + fblogo(identities.facebook, logos.facebook) + `</td>
 <td class="logo">` + logo(logos.twitter) + `</td>
 </tr>`;
     });
@@ -181,8 +186,8 @@ You can add the brand's Facebook, Instagram, or Twitter usernames, and this proj
 
 
 function overpassLink(k, v, n) {
-    let q = encodeURIComponent(`[out:json][timeout:25];
-(nwr["${k}"="${v}"]["name"="${n}"];);
+    let q = encodeURIComponent(`[out:json][timeout:60];
+(nwr["${k}"="${v}"]["name"~"\\\\b${n}\\\\b",i];);
 out body;
 >;
 out skel qt;`);
@@ -190,16 +195,65 @@ out skel qt;`);
     return `<a target="_blank" href="${href}"/>View on Overpass Turbo</a>`;
 }
 
+function countries(countryCodes) {
+    let cclist = (countryCodes || []).join(', ');
+    return cclist ? `🌐 <code>${cclist}</code>` : '';
+}
+
+function fblogo(username, src) {
+    return (username && !src) ? 'Profile restricted' : logo(src);
+}
+
 function logo(src) {
     return src ? `<img class="logo" src="${src}"/>` : '';
 }
 
 function wdLink(qid) {
-    return qid ? `<a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a>` : '';
+    return qid ? `<div class="viewlink"><a target="_blank" href="https://www.wikidata.org/wiki/${qid}">${qid}</a></div>` : '';
 }
 
 function siteLink(href) {
     return href ? `<div class="viewlink"><a target="_blank" href="${href}">${href}</a></div>` : '';
+}
+
+function socialLinks(identities) {
+    let links = [];
+    let href;
+
+    if (identities.facebook) {
+        href = `https://www.facebook.com/` + identities.facebook;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-facebook-square"></i></a>`);
+    }
+    if (identities.twitter) {
+        href = `https://twitter.com/` + identities.twitter;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-twitter-square"></i></a>`);
+    }
+    if (identities.instagram) {
+        href = `https://www.instagram.com/` + identities.instagram;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-instagram"></i></a>`);
+    }
+    if (identities.pinterest) {
+        href = `https://www.pinterest.com/` + identities.pinterest;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-pinterest-square"></i></a>`);
+    }
+    if (identities.youtube) {
+        href = `https://www.youtube.com/channel/` + identities.youtube;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-youtube-square"></i></a>`);
+    }
+    if (identities.vk) {
+        href = `https://vk.com/` + identities.vk;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-vk"></i></a>`);
+    }
+    if (identities.snapchat) {
+        href = `https://www.snapchat.com/add/` + identities.snapchat;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-snapchat-square"></i></a>`);
+    }
+    if (identities.linkedin) {
+        href = `https://www.linkedin.com/company/` + identities.linkedin;
+        links.push(`<a target="_blank" href="${href}"><i class="fab fa-lg fa-linkedin"></i></a>`);
+    }
+
+    return links.length ? '<div class="sociallinks">' + links.join('') + '</div>' : '';
 }
 
 function displayTags(tags) {
@@ -226,6 +280,7 @@ function writeHTML(file, head, body) {
 <html>
 <head>
 ${head}
+<script src="https://kit.fontawesome.com/c772610440.js"></script>
 </head>
 <body>
 ${body}

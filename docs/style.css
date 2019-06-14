@@ -1,6 +1,6 @@
 html, body {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -12,6 +12,7 @@ body {
   padding: 0 20px;
   color: #333;
   font-size: 14px;
+  overflow-x: hidden;
 }
 
 a {
@@ -54,14 +55,14 @@ pre {
 }
 
 div.container {
-  display: flex;
-  flex-flow: row wrap;
   margin-top: 20px;
+
+  -webkit-columns: 10 250px;
+     -moz-columns: 10 250px;
+          columns: 10 250px;
 }
 
 div.child {
-  display: flex;
-  flex: 0 0 250px;
   padding: 2px 5px;
 }
 
@@ -77,6 +78,7 @@ div.child {
   max-width: 75px !important;
   max-height: 75px !important;
   vertical-align: middle !important;
+  text-align: center;
 }
 
 table.summary {
@@ -116,28 +118,64 @@ tbody .anchor {
   margin: 0 5px;
 }
 tbody .nsikey,
+tbody .countries,
+tbody .sociallinks,
 tbody .viewlink {
   padding-top: 10px;
 }
 tbody td.namesuggest {
-  max-width: 250px;
+  max-width: 280px;
 }
 tbody .nsikey {
   overflow-x: auto;
 }
+tbody .countries {
+  overflow-x: auto;
+  font-size: 12px;
+}
+tbody .countries code {
+  background: unset;
+  font-size: 12px;
+}
 tbody td.tags {
-  max-width: 250px;
+  max-width: 280px;
   overflow-x: auto;
 }
 tbody pre.tags {
   font-size: 10px;
 }
 tbody td.wikidata {
-  max-width: 250px;
+  max-width: 320px;
 }
 tbody td.wikidata div.viewlink {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sociallinks svg.fa-instagram,
+.sociallinks svg.fa-vk {
+  color: white;
+  background: black;
+  border-radius: 3px;
+  height: 0.9em;
+  margin-bottom: 0.05em;
+  width: 0.95em;
+}
+
+.sociallinks a svg.fa-instagram,
+.sociallinks a svg.fa-vk,
+.sociallinks a:visited svg.fa-instagram,
+.sociallinks a:visited svg.fa-vk {
+  color: white;
+  background: #67e;
+}
+.sociallinks a:hover svg.fa-instagram,
+.sociallinks a:hover svg.fa-vk {
+  color: white;
+  background: #56a;
+}
+.sociallinks a {
+  margin: 0 2px;
 }
 
 .timestamp {
