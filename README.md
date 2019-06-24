@@ -13,6 +13,13 @@ list of commonly used names for suggesting consistent spelling and tagging of fe
 in OpenStreetMap.
 
 
+### Browse the index
+
+You can browse the index at
+http://osmlab.github.io/name-suggestion-index/brands/index.html
+to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+
+
 ### How it's used
 
 When mappers create features in OpenStreetMap, they are not always consistent about how they
@@ -32,13 +39,6 @@ Currently used in:
 * iD (see above)
 * [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 * JOSM presets available
-
-
-### Browse the index
-
-You can browse the index at
-http://osmlab.github.io/name-suggestion-index/brands/index.html
-to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
 ### Participate!
@@ -89,6 +89,7 @@ Name lists:
   * `brands/leisure/*.json`
   * `brands/shop/*.json`
   * `brands/tourism/*.json`
+  * `brands/office/*.json`
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
@@ -112,14 +113,14 @@ Name lists:
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
 You do not need to do these steps in order to contribute to the index.
 
-- Install `osmium` commandline tool and node package globally (may only work on some environments)
+- Install `osmium` commandline tool and node package (may only be available on some environments)
   - `apt-get install osmium-tool` or `brew install osmium-tool` or similar
-  - `npm install -g osmium`
+  - `npm install --no-save osmium`
 - [Download the planet](http://planet.osm.org/pbf/)
-  - `curl -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
+  - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
-  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism -o wanted.osm.pbf`
+  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
 - Run `node build_all_names wanted.osm.pbf`
   - results will go in `dist/names_all.json`
   - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`

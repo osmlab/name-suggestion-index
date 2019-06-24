@@ -47,7 +47,7 @@ function buildJSON() {
         const parts = toParts(kvnd);
         const k = parts.k;
         const v = parts.v;
-        const n = parts.n + ' ' + parts.d;
+        const n = parts.n + (parts.d !== undefined ? ' ' + parts.d : "");
 
         if (!out[k])    out[k] = {};
         if (!out[k][v]) out[k][v] = {};

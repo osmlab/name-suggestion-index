@@ -41,14 +41,16 @@ function getKeysToMatch() {
     let tryMatch = {};
     let seen = {};
     Object.keys(brands).forEach(k => {
-        // if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
+        // if `brand:wikidata` and `brand:wikipedia` tags are missing or look wrong..
+        // when one tag is present then silent overwritting
+        // or showing again false positives is flustrating
+        // note that wikicheck will detect such cases
         const wd = brands[k].tags['brand:wikidata'];
         if (!wd || !/^Q\d+$/.test(wd)) {
-            tryMatch[k] = true;
-        }
-        const wp = brands[k].tags['brand:wikipedia'];
-        if (!wp || !/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-            tryMatch[k] = true;
+            const wp = brands[k].tags['brand:wikipedia'];
+            if (!wp || !/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+                tryMatch[k] = true;
+            }
         }
 
         // ...but skip if the name appears to be a duplicate
@@ -119,6 +121,15 @@ function showResults(choices) {
 
     // only keep choices with wikidata and wikipedia tags
     choices = choices.filter(entity => entity.id && entity.sitelink);
+
+    // primitive filtering to throw out unwanted types
+    // note that it likely would be better to travel upwards
+    // entity structure and ban "building" that would should
+    // ban also "stadium" and "embankment dam"
+    let banned = ["film", "town", "national park", "human", "taxon", "stadium", "embankment dam"];
+    banned.forEach((bannedType) => {
+        choices = choices.filter(entity => entity.instances.includes(bannedType) === false);
+    });
 
     if (!choices.length) {
         throw new Error(`Wiki tags not found`);

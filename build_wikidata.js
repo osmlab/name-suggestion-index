@@ -88,7 +88,10 @@ function doFetch(index) {
     console.log(colors.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
 
     return fetch(currURL)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+            return response.json();
+        })
         .then(result => processEntities(result))
         .catch(e => {
             _errors.push(e);
@@ -101,6 +104,7 @@ function doFetch(index) {
 
 function processEntities(result) {
     let twitterQueue = [];
+    let facebookQueue = [];
 
     Object.keys(result.entities).forEach(qid => {
         let target = _wikidata[qid];
@@ -120,39 +124,67 @@ function processEntities(result) {
         target.logos = {};
         target.identities = {};
 
-        let wikidataLogo = getClaimValue(entity, 'P154');
-        let brandWebsite = getClaimValue(entity, 'P856');
-        let twitterUser = getClaimValue(entity, 'P2002');
-        let facebookUser = getClaimValue(entity, 'P2013');
-        // others we may want to add someday
-        // P2003 - Instagram ID
-        // P2397 - YouTube ID
-        // P2677 - LinkedIn ID
-        // P3267 - Flickr ID
-        // P3836 - Pintrest ID
-
         // P154 - Commons Logo (often not square)
+        let wikidataLogo = getClaimValue(entity, 'P154');
         if (wikidataLogo) {
             target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
                 utilQsString({ title: `Special:Redirect/file/${wikidataLogo}`, width: 100 });
         }
 
-        // P856 - brand website
-        if (brandWebsite) {
-            target.identities.website = brandWebsite;
+        // P856 - official website
+        let officialWebsite = getClaimValue(entity, 'P856');
+        if (officialWebsite) {
+            target.identities.website = officialWebsite;
         }
 
         // P2002 - Twitter username
+        let twitterUser = getClaimValue(entity, 'P2002');
         if (twitterUser) {
             target.identities.twitter = twitterUser;
-            twitterQueue.push({ qid: qid, username: twitterUser });
+            twitterQueue.push({ qid: qid, username: twitterUser });    // queue logo fetch
+        }
+
+        // P2003 - Instagram ID
+        let instagramUser = getClaimValue(entity, 'P2003');
+        if (instagramUser) {
+            target.identities.instagram = instagramUser;
         }
 
         // P2013 - Facebook ID
-        // https://developers.facebook.com/docs/graph-api/reference/user/picture/
+        let facebookUser = getClaimValue(entity, 'P2013');
         if (facebookUser) {
             target.identities.facebook = facebookUser;
-            target.logos.facebook = `https://graph.facebook.com/${facebookUser}/picture?type=large`;
+            facebookQueue.push({ qid: qid, username: facebookUser });    // queue logo fetch
+        }
+
+        // P2397 - YouTube ID
+        let youtubeUser = getClaimValue(entity, 'P2397');
+        if (youtubeUser) {
+            target.identities.youtube = youtubeUser;
+        }
+
+        // P2984 - Snapchat ID
+        let snapchatUser = getClaimValue(entity, 'P2984');
+        if (snapchatUser) {
+            target.identities.snapchat = snapchatUser;
+        }
+
+        // P3185 - VK ID
+        let vkUser = getClaimValue(entity, 'P3185');
+        if (vkUser) {
+            target.identities.vk = vkUser;
+        }
+
+        // P3836 - Pinterest ID
+        let pinterestUser = getClaimValue(entity, 'P3836');
+        if (pinterestUser) {
+            target.identities.pinterest = pinterestUser;
+        }
+
+        // P4264 - LinkedIn Company ID
+        let linkedinUser = getClaimValue(entity, 'P4264');
+        if (linkedinUser) {
+            target.identities.linkedin = linkedinUser;
         }
     });
 
@@ -160,9 +192,14 @@ function processEntities(result) {
         return checkTwitterRateLimit(twitterQueue.length)
             .then(() => Promise.all(
                 twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username))
+            ))
+            .then(() => Promise.all(
+                facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username))
             ));
     } else {
-        return Promise.resolve();
+        return Promise.all(
+            facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username))
+        );
     }
 }
 
@@ -282,6 +319,29 @@ function fetchTwitterUserDetails(qid, username) {
         })
         .catch(e => {
             let msg = `Error: Twitter username @${username} for ${qid}: ` + JSON.stringify(e);
+            _errors.push(msg);
+            console.error(colors.red(msg));
+        });
+}
+
+
+// https://developers.facebook.com/docs/graph-api/reference/user/picture/
+function fetchFacebookLogo(qid, username) {
+    let target = _wikidata[qid];
+    let logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
+
+    return fetch(logoURL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.status + ' ' + response.statusText);
+            }
+            if (response.headers.get('content-md5') !== 'OMs/UjwLoIRaoKN19eGYeQ==') {  // question-mark image #2750
+                target.logos.facebook = logoURL;
+            }
+            return true;
+        })
+        .catch(e => {
+            let msg = `Error: Facebook username @${username} for ${qid}: ` + e;
             _errors.push(msg);
             console.error(colors.red(msg));
         });

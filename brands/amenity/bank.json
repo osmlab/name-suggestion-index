@@ -82,6 +82,7 @@
     }
   },
   "amenity/bank|AXA": {
+    "nomatch": ["office/insurance|AXA"],
     "tags": {
       "amenity": "bank",
       "brand": "AXA",
@@ -116,6 +117,17 @@
       "brand:wikidata": "Q27926559",
       "brand:wikipedia": "en:Addiko Bank",
       "name": "Addiko Bank"
+    }
+  },
+  "amenity/bank|Affinity Credit Union": {
+    "countryCodes": ["ca"],
+    "matchNames": ["affinity"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Affinity Credit Union",
+      "brand:wikidata": "Q4688969",
+      "brand:wikipedia": "en:Affinity Credit Union",
+      "name": "Affinity Credit Union"
     }
   },
   "amenity/bank|Agrani Bank Limited অগ্রণী ব্যাংক লিমিটেড": {
@@ -171,6 +183,16 @@
       "name": "Akbank"
     }
   },
+  "amenity/bank|Aktia": {
+    "countryCodes": ["fi"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Aktia",
+      "brand:wikidata": "Q11850417",
+      "brand:wikipedia": "fi:Aktia",
+      "name": "Aktia"
+    }
+  },
   "amenity/bank|Alior Bank": {
     "countryCodes": ["pl"],
     "tags": {
@@ -221,6 +243,17 @@
       "operator": "Hellenic Financial Stability Fund",
       "operator:wikidata": "Q19903317",
       "operator:wikipedia": "en:Hellenic Financial Stability Fund"
+    }
+  },
+  "amenity/bank|America First Credit Union": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "America First Credit Union",
+      "brand:wikidata": "Q4742758",
+      "brand:wikipedia": "en:America First Credit Union",
+      "name": "America First Credit Union",
+      "short_name": "AFCU"
     }
   },
   "amenity/bank|Andhra Bank": {
@@ -606,6 +639,7 @@
     }
   },
   "amenity/bank|BMCE Bank": {
+    "countryCodes": ["ma"],
     "matchNames": ["bmce"],
     "tags": {
       "amenity": "bank",
@@ -727,6 +761,7 @@
     }
   },
   "amenity/bank|BNP Paribas Fortis": {
+    "countryCodes": ["be"],
     "tags": {
       "amenity": "bank",
       "brand": "BNP Paribas Fortis",
@@ -746,10 +781,7 @@
     }
   },
   "amenity/bank|BPI": {
-    "matchNames": [
-      "bank of the philippine islands",
-      "bpi family savings bank"
-    ],
+    "matchNames": ["bpi family savings bank"],
     "tags": {
       "amenity": "bank",
       "brand": "BPI",
@@ -1062,16 +1094,6 @@
       "official_name:es": "Banco Agrario de Colombia"
     }
   },
-  "amenity/bank|Banco Agrario de Colombia": {
-    "countryCodes": ["co"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Banco Agrario de Colombia",
-      "brand:wikidata": "Q20013358",
-      "brand:wikipedia": "en:Banco Agrario de Colombia",
-      "name": "Banco Agrario de Colombia"
-    }
-  },
   "amenity/bank|Banco Azteca": {
     "tags": {
       "amenity": "bank",
@@ -1095,9 +1117,13 @@
     "tags": {
       "amenity": "bank",
       "brand": "Banco BPM",
+      "brand:en": "BPM Bank",
+      "brand:es": "Banco BPM",
       "brand:wikidata": "Q27331643",
       "brand:wikipedia": "en:Banco BPM",
-      "name": "Banco BPM"
+      "name": "Banco BPM",
+      "name:en": "BPM Bank",
+      "name:es": "Banco BPM"
     }
   },
   "amenity/bank|Banco Caja Social": {
@@ -1136,8 +1162,12 @@
     "tags": {
       "amenity": "bank",
       "brand": "Banco Continental",
+      "brand:en": "Continental Bank",
+      "brand:es": "Banco Continental",
       "brand:wikidata": "Q62054564",
-      "name": "Banco Continental"
+      "name": "Banco Continental",
+      "name:en": "Continental Bank",
+      "name:es": "Banco Continental"
     }
   },
   "amenity/bank|Banco Continental~(Peru)": {
@@ -1206,6 +1236,7 @@
     }
   },
   "amenity/bank|Banco G&T Continental": {
+    "countryCodes": ["gt", "sv"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco G&T Continental",
@@ -1214,7 +1245,8 @@
       "brand:wikidata": "Q5717949",
       "brand:wikipedia": "es:Banco GYT Continental, S.A.",
       "name": "Banco G&T Continental",
-      "name:en": "G&T Continental Bank"
+      "name:en": "G&T Continental Bank",
+      "name:es": "Banco G&T Continental"
     }
   },
   "amenity/bank|Banco General": {
@@ -1306,7 +1338,7 @@
       "amenity": "bank",
       "brand": "Banco Nación",
       "brand:en": "Nation Bank",
-      "brand:es": "Nation Bank",
+      "brand:es": "Banco Nación",
       "brand:wikidata": "Q2883376",
       "brand:wikipedia": "en:Banco de la Nación Argentina",
       "name": "Banco Nación",
@@ -1354,7 +1386,7 @@
     }
   },
   "amenity/bank|Banco Popular": {
-    "countryCodes": ["pr", "us", "vi"],
+    "countryCodes": ["us", "vi"],
     "matchNames": ["popular"],
     "tags": {
       "amenity": "bank",
@@ -1448,7 +1480,8 @@
       "brand:wikipedia": "es:Banco Santander",
       "name": "Banco Santander",
       "name:en": "Santander Bank",
-      "name:es": "Banco Santander"
+      "name:es": "Banco Santander",
+      "official_name": "Santander Group"
     }
   },
   "amenity/bank|Banco Sol~(Angola)": {
@@ -1456,9 +1489,11 @@
     "tags": {
       "amenity": "bank",
       "brand": "Banco Sol",
+      "brand:en": "Sol Bank",
       "brand:pt": "Banco Sol",
       "brand:wikidata": "Q62118744",
       "name": "Banco Sol",
+      "name:en": "Sol Bank",
       "name:pt": "Banco Sol"
     }
   },
@@ -1467,9 +1502,11 @@
     "tags": {
       "amenity": "bank",
       "brand": "Banco Sol",
+      "brand:en": "Sol Bank",
       "brand:pt": "Banco Sol",
       "brand:wikidata": "Q62118746",
       "name": "Banco Sol",
+      "name:en": "Sol Bank",
       "name:pt": "Banco Sol"
     }
   },
@@ -1482,16 +1519,28 @@
     "tags": {
       "amenity": "bank",
       "brand": "Banco Unión",
-      "name": "Banco Unión"
+      "brand:en": "Union Bank",
+      "brand:es": "Banco Unión",
+      "name": "Banco Unión",
+      "name:en": "Union Bank",
+      "name:es": "Banco Unión"
     }
   },
   "amenity/bank|Banco de Bogotá": {
+    "countryCodes": ["co"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco de Bogotá",
+      "brand:en": "Bank of Bogota",
+      "brand:es": "Banco de Bogotá",
       "brand:wikidata": "Q4854122",
       "brand:wikipedia": "es:Banco de Bogotá",
-      "name": "Banco de Bogotá"
+      "name": "Banco de Bogotá",
+      "name:en": "Bank of Bogota",
+      "name:es": "Banco de Bogotá",
+      "operator": "Grupo Aval",
+      "operator:wikidata": "Q2053387",
+      "operator:wikipedia": "en:Grupo Aval"
     }
   },
   "amenity/bank|Banco de Chile": {
@@ -1499,27 +1548,41 @@
     "tags": {
       "amenity": "bank",
       "brand": "Banco de Chile",
+      "brand:en": "Bank of Chile",
+      "brand:es": "Banco de Chile",
       "brand:wikidata": "Q2882085",
       "brand:wikipedia": "es:Banco de Chile",
-      "name": "Banco de Chile"
+      "name": "Banco de Chile",
+      "name:en": "Bank of Chile",
+      "name:es": "Banco de Chile"
     }
   },
   "amenity/bank|Banco de Desarrollo Banrural": {
+    "countryCodes": ["gt"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco de Desarrollo Banrural",
+      "brand:en": "Bank of Banrural Development",
+      "brand:es": "Banco de Desarrollo Banrural",
       "brand:wikidata": "Q5719130",
       "brand:wikipedia": "es:Banrural",
-      "name": "Banco de Desarrollo Banrural"
+      "name": "Banco de Desarrollo Banrural",
+      "name:en": "Bank of Banrural Development",
+      "name:es": "Banco de Desarrollo Banrural"
     }
   },
   "amenity/bank|Banco de Fomento Angola (BFA)": {
+    "countryCodes": ["ao"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco de Fomento Angola (BFA)",
+      "brand:en": "Angola Development Bank (BFA)",
+      "brand:es": "Banco de Fomento Angola (BFA)",
       "brand:wikidata": "Q806197",
       "brand:wikipedia": "de:Banco de Fomento Angola",
-      "name": "Banco de Fomento Angola (BFA)"
+      "name": "Banco de Fomento Angola (BFA)",
+      "name:en": "Angola Development Bank (BFA)",
+      "name:es": "Banco de Fomento Angola (BFA)"
     }
   },
   "amenity/bank|Banco de Occidente": {
@@ -1532,6 +1595,7 @@
     }
   },
   "amenity/bank|Banco de Venezuela": {
+    "countryCodes": ["ve"],
     "matchNames": ["de venezuela"],
     "tags": {
       "amenity": "bank",
@@ -1591,6 +1655,7 @@
     }
   },
   "amenity/bank|Banco do Brasil": {
+    "countryCodes": ["br"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco do Brasil",
@@ -1650,6 +1715,7 @@
     }
   },
   "amenity/bank|Bangkok Bank": {
+    "countryCodes": ["th"],
     "tags": {
       "amenity": "bank",
       "brand": "Bangkok Bank",
@@ -1669,6 +1735,7 @@
     }
   },
   "amenity/bank|Bank Alfalah": {
+    "countryCodes": ["pk"],
     "tags": {
       "amenity": "bank",
       "brand": "Bank Alfalah",
@@ -1678,6 +1745,7 @@
     }
   },
   "amenity/bank|Bank Austria": {
+    "countryCodes": ["at"],
     "tags": {
       "amenity": "bank",
       "brand": "Bank Austria",
@@ -1727,6 +1795,7 @@
     }
   },
   "amenity/bank|Bank Muamalat": {
+    "countryCodes": ["id", "my"],
     "tags": {
       "amenity": "bank",
       "brand": "Bank Muamalat",
@@ -1766,6 +1835,7 @@
     }
   },
   "amenity/bank|Bank of America": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "Bank of America",
@@ -1784,6 +1854,7 @@
     }
   },
   "amenity/bank|Bank of Ceylon": {
+    "countryCodes": ["lk"],
     "tags": {
       "amenity": "bank",
       "brand": "Bank of Ceylon",
@@ -1792,16 +1863,8 @@
       "name": "Bank of Ceylon"
     }
   },
-  "amenity/bank|Bank of China": {
-    "tags": {
-      "amenity": "bank",
-      "brand": "Bank of China",
-      "brand:wikidata": "Q790068",
-      "brand:wikipedia": "en:Bank of China",
-      "name": "Bank of China"
-    }
-  },
   "amenity/bank|Bank of Commerce": {
+    "countryCodes": ["ph"],
     "tags": {
       "amenity": "bank",
       "brand": "Bank of Commerce",
@@ -1811,6 +1874,7 @@
     }
   },
   "amenity/bank|Bank of Cyprus": {
+    "countryCodes": ["cy", "gr"],
     "tags": {
       "amenity": "bank",
       "brand": "Bank of Cyprus",
@@ -1829,6 +1893,7 @@
     }
   },
   "amenity/bank|Bank of Ireland": {
+    "countryCodes": ["gb", "ie"],
     "tags": {
       "amenity": "bank",
       "brand": "Bank of Ireland",
@@ -1845,15 +1910,6 @@
       "brand:wikidata": "Q2004304",
       "brand:wikipedia": "en:Bank of Maharashtra",
       "name": "Bank of Maharashtra"
-    }
-  },
-  "amenity/bank|Bank of Montreal": {
-    "tags": {
-      "amenity": "bank",
-      "brand": "Bank of Montreal",
-      "brand:wikidata": "Q806693",
-      "brand:wikipedia": "en:Bank of Montreal",
-      "name": "Bank of Montreal"
     }
   },
   "amenity/bank|Bank of New Zealand": {
@@ -1897,6 +1953,7 @@
     }
   },
   "amenity/bank|Bankinter": {
+    "countryCodes": ["es", "pt"],
     "nomatch": ["amenity/bank|Interbank"],
     "tags": {
       "amenity": "bank",
@@ -1999,9 +2056,12 @@
     }
   },
   "amenity/bank|Bcc": {
+    "countryCodes": ["it"],
     "tags": {
       "amenity": "bank",
       "brand": "Bcc",
+      "brand:wikidata": "Q25060394",
+      "brand:wikipedia": "en:Banca di Credito Cooperativo di Roma",
       "name": "Bcc"
     }
   },
@@ -2078,6 +2138,7 @@
     }
   },
   "amenity/bank|CBAO": {
+    "countryCodes": ["sn"],
     "tags": {
       "amenity": "bank",
       "brand": "CBAO",
@@ -2117,6 +2178,7 @@
     }
   },
   "amenity/bank|CIC": {
+    "countryCodes": ["fr"],
     "tags": {
       "amenity": "bank",
       "brand": "CIC",
@@ -2136,6 +2198,7 @@
     }
   },
   "amenity/bank|CIMB Bank": {
+    "countryCodes": ["my"],
     "tags": {
       "amenity": "bank",
       "brand": "CIMB Bank",
@@ -2162,6 +2225,16 @@
       "brand:wikidata": "Q2931752",
       "brand:wikipedia": "fr:CNEP-Banque",
       "name": "CNEP"
+    }
+  },
+  "amenity/bank|CRDB Bank": {
+    "countryCodes": ["tz"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "CRDB Bank",
+      "brand:wikidata": "Q5013848",
+      "brand:wikipedia": "en:CRDB Bank",
+      "name": "CRDB Bank"
     }
   },
   "amenity/bank|Caisse Desjardins": {
@@ -2196,6 +2269,7 @@
     }
   },
   "amenity/bank|Caixa Geral de Depósitos": {
+    "countryCodes": ["es", "fr", "pt"],
     "tags": {
       "amenity": "bank",
       "brand": "Caixa Geral de Depósitos",
@@ -2238,6 +2312,7 @@
     }
   },
   "amenity/bank|Caja Rural": {
+    "countryCodes": ["es"],
     "tags": {
       "amenity": "bank",
       "brand": "Caja Rural",
@@ -2277,6 +2352,7 @@
     }
   },
   "amenity/bank|Canara Bank": {
+    "countryCodes": ["in"],
     "tags": {
       "amenity": "bank",
       "brand": "Canara Bank",
@@ -2426,16 +2502,44 @@
       "brand": "Citibank",
       "brand:wikidata": "Q857063",
       "brand:wikipedia": "en:Citibank",
-      "name": "Citibank"
+      "name": "Citibank",
+      "short_name": "Citi"
     }
   },
-  "amenity/bank|Citizens Bank": {
+  "amenity/bank|Citizens Bank~(Eastern USA)": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "Citizens Bank",
-      "brand:wikidata": "Q25209674",
-      "brand:wikipedia": "en:Citizens Bank (South Bend, Indiana)",
-      "name": "Citizens Bank"
+      "brand:wikidata": "Q5122694",
+      "brand:wikipedia": "en:Citizens Financial Group",
+      "name": "Citizens Bank",
+      "short_name": "Citizens"
+    }
+  },
+  "amenity/bank|Citizens Bank~(Kentucky)": {
+    "countryCodes": ["us"],
+    "tags": {
+      "alt_name": "Citizens Bank of Kentucky",
+      "amenity": "bank",
+      "brand": "Citizens Bank",
+      "brand:wikidata": "Q5122711",
+      "brand:wikipedia": "en:Citizens National Bank (Eastern Kentucky)",
+      "name": "Citizens Bank",
+      "official_name": "Citizens National Bank",
+      "short_name": "Citizens"
+    }
+  },
+  "amenity/bank|Citizens Bank~(Nepal)": {
+    "countryCodes": ["np"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Citizens Bank International",
+      "brand:wikidata": "Q13186934",
+      "brand:wikipedia": "en:Citizens Bank International",
+      "name": "Citizens Bank",
+      "official_name": "Citizens Bank International Ltd.",
+      "short_name": "Citizens"
     }
   },
   "amenity/bank|City National Bank~(California)": {
@@ -2454,7 +2558,7 @@
       "amenity": "bank",
       "brand": "City National Bank",
       "brand:wikidata": "Q16958644",
-      "brand:wikipedia": "en:City National Bank (Florida)",
+      "brand:wikipedia": "en:City National Bank of Florida",
       "name": "City National Bank",
       "official_name": "City National Bank of Florida"
     }
@@ -2467,6 +2571,21 @@
       "brand:wikidata": "Q971680",
       "brand:wikipedia": "en:Clydesdale Bank",
       "name": "Clydesdale Bank"
+    }
+  },
+  "amenity/bank|Coast Capital Savings": {
+    "countryCodes": ["ca"],
+    "matchNames": [
+      "coast capital",
+      "coast capital savings credit union"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Coast Capital Savings",
+      "brand:wikidata": "Q5138088",
+      "brand:wikipedia": "en:Coast Capital Savings",
+      "name": "Coast Capital Savings",
+      "official_name": "Coast Capital Savings Federal Credit Union"
     }
   },
   "amenity/bank|Columbia Bank~(New Jersey)": {
@@ -2531,6 +2650,7 @@
     }
   },
   "amenity/bank|Commerzbank": {
+    "countryCodes": ["de"],
     "tags": {
       "amenity": "bank",
       "brand": "Commerzbank",
@@ -2579,6 +2699,7 @@
     }
   },
   "amenity/bank|Credicoop": {
+    "countryCodes": ["ar"],
     "tags": {
       "amenity": "bank",
       "brand": "Credicoop",
@@ -2588,6 +2709,7 @@
     }
   },
   "amenity/bank|Credit Suisse": {
+    "countryCodes": ["ch"],
     "tags": {
       "amenity": "bank",
       "brand": "Credit Suisse",
@@ -2655,6 +2777,7 @@
     }
   },
   "amenity/bank|Crédit du Nord": {
+    "countryCodes": ["fr"],
     "tags": {
       "amenity": "bank",
       "brand": "Crédit du Nord",
@@ -2664,6 +2787,7 @@
     }
   },
   "amenity/bank|Crédito Agrícola": {
+    "countryCodes": ["pt"],
     "tags": {
       "amenity": "bank",
       "brand": "Crédito Agrícola",
@@ -2672,16 +2796,15 @@
       "name": "Crédito Agrícola"
     }
   },
-  "amenity/bank|Cбербанк": {
-    "tags": {
-      "amenity": "bank",
-      "brand": "Cбербанк",
-      "brand:wikidata": "Q205012",
-      "brand:wikipedia": "en:Sberbank of Russia",
-      "name": "Cбербанк"
-    }
-  },
   "amenity/bank|Danske Bank": {
+    "countryCodes": [
+      "dk",
+      "fi",
+      "gb",
+      "lt",
+      "no",
+      "se"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Danske Bank",
@@ -2725,6 +2848,23 @@
       "brand:wikidata": "Q66048",
       "brand:wikipedia": "en:Deutsche Bank",
       "name": "Deutsche Bank"
+    }
+  },
+  "amenity/bank|Dollar Bank": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/car_rental|Dollar",
+      "shop/variety_store|Dollar General",
+      "shop/variety_store|Dollar Tree",
+      "shop/variety_store|Dollarama",
+      "shop/variety_store|Family Dollar"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Dollar Bank",
+      "brand:wikidata": "Q5289205",
+      "brand:wikipedia": "en:Dollar Bank",
+      "name": "Dollar Bank"
     }
   },
   "amenity/bank|Dubai Islamic Bank": {
@@ -2776,6 +2916,7 @@
     }
   },
   "amenity/bank|Emirates NBD": {
+    "countryCodes": ["ae"],
     "tags": {
       "amenity": "bank",
       "brand": "Emirates NBD",
@@ -2894,7 +3035,15 @@
       "name": "Eurobank"
     }
   },
-  "amenity/bank|FNB": {
+  "amenity/bank|FNB~(South Africa)": {
+    "countryCodes": [
+      "bw",
+      "mz",
+      "na",
+      "us",
+      "za",
+      "zm"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "FNB",
@@ -2956,7 +3105,7 @@
   },
   "amenity/bank|Fifth Third Bank": {
     "countryCodes": ["us"],
-    "matchNames": ["5/3", "5/3 bank"],
+    "matchNames": ["5/3"],
     "tags": {
       "amenity": "bank",
       "brand": "Fifth Third Bank",
@@ -2967,6 +3116,7 @@
     }
   },
   "amenity/bank|Finansbank": {
+    "countryCodes": ["tr"],
     "tags": {
       "amenity": "bank",
       "brand": "Finansbank",
@@ -2977,7 +3127,6 @@
   },
   "amenity/bank|First Bank~(Western USA)": {
     "countryCodes": ["us"],
-    "matchNames": ["1stbank"],
     "tags": {
       "amenity": "bank",
       "brand": "First Bank",
@@ -2987,12 +3136,25 @@
       "short_name": "1STBank"
     }
   },
-  "amenity/bank|First Citizens Bank": {
+  "amenity/bank|First Citizens Bank~(Trinidad and Tobago)": {
+    "countryCodes": ["bb", "tt"],
+    "matchNames": ["1st citizens bank"],
     "tags": {
       "amenity": "bank",
       "brand": "First Citizens Bank",
       "brand:wikidata": "Q5452734",
       "brand:wikipedia": "en:First Citizens Bank (Trinidad and Tobago)",
+      "name": "First Citizens Bank"
+    }
+  },
+  "amenity/bank|First Citizens Bank~(USA)": {
+    "countryCodes": ["us"],
+    "matchNames": ["1st citizens bank"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "First Citizens Bank",
+      "brand:wikidata": "Q5452733",
+      "brand:wikipedia": "en:First Citizens BancShares",
       "name": "First Citizens Bank"
     }
   },
@@ -3017,7 +3179,7 @@
       "name": "First Midwest Bank"
     }
   },
-  "amenity/bank|First National Bank": {
+  "amenity/bank|First National Bank~(USA)": {
     "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
@@ -3028,10 +3190,22 @@
     }
   },
   "amenity/bank|First State Bank": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "First State Bank",
       "name": "First State Bank"
+    }
+  },
+  "amenity/bank|First West Credit Union": {
+    "countryCodes": ["ca"],
+    "tags": {
+      "alt_name": "First West",
+      "amenity": "bank",
+      "brand": "First West Credit Union",
+      "brand:wikidata": "Q5454073",
+      "brand:wikipedia": "en:First West Credit Union",
+      "name": "First West Credit Union"
     }
   },
   "amenity/bank|Frost Bank": {
@@ -3045,13 +3219,19 @@
     }
   },
   "amenity/bank|Fulton Bank": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "Fulton Bank",
-      "name": "Fulton Bank"
+      "brand:wikidata": "Q16976594",
+      "name": "Fulton Bank",
+      "operator": "Fulton Financial Corporation",
+      "operator:wikidata": "Q5508431",
+      "operator:wikipedia": "en:Fulton Financial Corporation"
     }
   },
   "amenity/bank|GCB Bank": {
+    "countryCodes": ["gh"],
     "tags": {
       "amenity": "bank",
       "brand": "GCB Bank",
@@ -3097,6 +3277,23 @@
       "brand:wikidata": "Q9267646",
       "brand:wikipedia": "pl:Getin Bank",
       "name": "Getin Bank"
+    }
+  },
+  "amenity/bank|Golden 1 Credit Union": {
+    "countryCodes": ["us"],
+    "matchNames": [
+      "golden 1",
+      "golden one",
+      "golden one credit union",
+      "the golden 1 credit union",
+      "the golden one credit union"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Golden 1 Credit Union",
+      "brand:wikidata": "Q7736976",
+      "brand:wikipedia": "en:Golden 1 Credit Union",
+      "name": "Golden 1 Credit Union"
     }
   },
   "amenity/bank|Great Western Bank": {
@@ -3157,6 +3354,7 @@
     }
   },
   "amenity/bank|Halifax": {
+    "countryCodes": ["gb"],
     "tags": {
       "amenity": "bank",
       "brand": "Halifax",
@@ -3175,6 +3373,13 @@
     }
   },
   "amenity/bank|Handelsbanken": {
+    "countryCodes": [
+      "dk",
+      "fi",
+      "gb",
+      "no",
+      "se"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Handelsbanken",
@@ -3193,6 +3398,7 @@
     }
   },
   "amenity/bank|Hong Leong Bank": {
+    "countryCodes": ["my"],
     "tags": {
       "amenity": "bank",
       "brand": "Hong Leong Bank",
@@ -3212,6 +3418,7 @@
     }
   },
   "amenity/bank|Huntington Bank": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "Huntington Bank",
@@ -3221,6 +3428,7 @@
     }
   },
   "amenity/bank|HypoVereinsbank": {
+    "countryCodes": ["de"],
     "tags": {
       "amenity": "bank",
       "brand": "HypoVereinsbank",
@@ -3239,6 +3447,7 @@
     }
   },
   "amenity/bank|ICICI Bank": {
+    "countryCodes": ["ca", "gb", "in"],
     "tags": {
       "amenity": "bank",
       "brand": "ICICI Bank",
@@ -3288,6 +3497,7 @@
     }
   },
   "amenity/bank|Indian Bank": {
+    "countryCodes": ["in"],
     "tags": {
       "amenity": "bank",
       "brand": "Indian Bank",
@@ -3297,6 +3507,7 @@
     }
   },
   "amenity/bank|Indian Overseas Bank": {
+    "countryCodes": ["in"],
     "tags": {
       "amenity": "bank",
       "brand": "Indian Overseas Bank",
@@ -3322,6 +3533,16 @@
       "brand:wikidata": "Q1343118",
       "brand:wikipedia": "it:Intesa Sanpaolo",
       "name": "Intesa Sanpaolo"
+    }
+  },
+  "amenity/bank|Investors Bank": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Investors Bank",
+      "brand:wikidata": "Q15109896",
+      "brand:wikipedia": "en:Investors Bank",
+      "name": "Investors Bank"
     }
   },
   "amenity/bank|Itaú~(Brazil)": {
@@ -3361,10 +3582,14 @@
   "amenity/bank|Janata Bank Limited জনতা ব্যাংক লিমিটেড": {
     "tags": {
       "amenity": "bank",
-      "brand": "Janata Bank Limited জনতা ব্যাংক লিমিটেড",
+      "brand": "জনতা ব্যাংক লিমিটেড",
+      "brand:bn": "জনতা ব্যাংক লিমিটেড",
+      "brand:en": "Janata Bank Limited",
       "brand:wikidata": "Q3347028",
       "brand:wikipedia": "en:Janata Bank",
-      "name": "Janata Bank Limited জনতা ব্যাংক লিমিটেড"
+      "name": "জনতা ব্যাংক লিমিটেড",
+      "name:bn": "জনতা ব্যাংক লিমিটেড",
+      "name:en": "Janata Bank Limited"
     }
   },
   "amenity/bank|Jyske Bank": {
@@ -3388,6 +3613,7 @@
     }
   },
   "amenity/bank|KBC": {
+    "countryCodes": ["be", "ie"],
     "tags": {
       "amenity": "bank",
       "brand": "KBC",
@@ -3397,6 +3623,7 @@
     }
   },
   "amenity/bank|KBZ Bank": {
+    "countryCodes": ["mm"],
     "tags": {
       "amenity": "bank",
       "brand": "KBZ Bank",
@@ -3469,10 +3696,13 @@
     "tags": {
       "amenity": "bank",
       "brand": "Kuveyt Türk",
+      "brand:wikidata": "Q6036058",
+      "brand:wikipedia": "tr:Kuveyt Türk",
       "name": "Kuveyt Türk"
     }
   },
   "amenity/bank|LCL": {
+    "countryCodes": ["fr"],
     "tags": {
       "amenity": "bank",
       "brand": "LCL",
@@ -3482,6 +3712,7 @@
     }
   },
   "amenity/bank|La Banque Postale": {
+    "countryCodes": ["fr"],
     "tags": {
       "amenity": "bank",
       "brand": "La Banque Postale",
@@ -3508,6 +3739,17 @@
       "brand:wikidata": "Q12052386",
       "brand:wikipedia": "en:Laboral Kutxa",
       "name": "Laboral Kutxa"
+    }
+  },
+  "amenity/bank|Lake Michigan Credit Union": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Lake Michigan Credit Union",
+      "brand:wikidata": "Q6476906",
+      "brand:wikipedia": "en:Lake Michigan Credit Union",
+      "name": "Lake Michigan Credit Union",
+      "short_name": "LMCU"
     }
   },
   "amenity/bank|Landbank": {
@@ -3554,6 +3796,7 @@
     }
   },
   "amenity/bank|Lloyds Bank": {
+    "countryCodes": ["gb", "im"],
     "matchNames": ["lloyds", "lloyds tsb"],
     "tags": {
       "amenity": "bank",
@@ -3564,6 +3807,7 @@
     }
   },
   "amenity/bank|M&T Bank": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "M&T Bank",
@@ -3593,6 +3837,7 @@
     }
   },
   "amenity/bank|Macro": {
+    "countryCodes": ["ar"],
     "tags": {
       "amenity": "bank",
       "brand": "Macro",
@@ -3629,10 +3874,38 @@
       "name": "Mercantil"
     }
   },
-  "amenity/bank|Metrobank": {
+  "amenity/bank|Meridian Credit Union": {
+    "countryCodes": ["ca"],
+    "tags": {
+      "alt_name": "Meridian",
+      "amenity": "bank",
+      "brand": "Meridian Credit Union",
+      "brand:wikidata": "Q6819303",
+      "brand:wikipedia": "en:Meridian Credit Union",
+      "name": "Meridian Credit Union"
+    }
+  },
+  "amenity/bank|Metro Bank~(UK)": {
+    "countryCodes": ["gb"],
+    "nomatch": [
+      "amenity/bank|Metrobank~(Philippines)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Metro Bank",
+      "brand:wikidata": "Q6824499",
+      "brand:wikipedia": "en:Metro Bank (United Kingdom)",
+      "name": "Metro Bank"
+    }
+  },
+  "amenity/bank|Metrobank~(Philippines)": {
+    "countryCodes": ["ph"],
+    "nomatch": ["amenity/bank|Metro Bank~(UK)"],
     "tags": {
       "amenity": "bank",
       "brand": "Metrobank",
+      "brand:wikidata": "Q1925799",
+      "brand:wikipedia": "en:Metrobank (Philippines)",
       "name": "Metrobank"
     }
   },
@@ -3647,6 +3920,7 @@
     }
   },
   "amenity/bank|MidFirst Bank": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "MidFirst Bank",
@@ -3680,6 +3954,7 @@
     }
   },
   "amenity/bank|Monte dei Paschi di Siena": {
+    "countryCodes": ["it"],
     "tags": {
       "amenity": "bank",
       "brand": "Monte dei Paschi di Siena",
@@ -3689,12 +3964,23 @@
     }
   },
   "amenity/bank|Montepio": {
+    "countryCodes": ["pt"],
     "tags": {
       "amenity": "bank",
       "brand": "Montepio",
       "brand:wikidata": "Q1946091",
       "brand:wikipedia": "en:Montepio (bank)",
       "name": "Montepio"
+    }
+  },
+  "amenity/bank|Mountain America Credit Union": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Mountain America Credit Union",
+      "brand:wikidata": "Q6924862",
+      "brand:wikipedia": "en:Mountain America Credit Union",
+      "name": "Mountain America Credit Union"
     }
   },
   "amenity/bank|NAB": {
@@ -3718,6 +4004,7 @@
     }
   },
   "amenity/bank|NatWest": {
+    "countryCodes": ["gb", "gg"],
     "tags": {
       "amenity": "bank",
       "brand": "NatWest",
@@ -3738,6 +4025,7 @@
     }
   },
   "amenity/bank|Nationwide": {
+    "countryCodes": ["gb"],
     "nomatch": ["office/insurance|Nationwide"],
     "tags": {
       "amenity": "bank",
@@ -3748,6 +4036,7 @@
     }
   },
   "amenity/bank|Navy Federal Credit Union": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "Navy Federal Credit Union",
@@ -3775,6 +4064,7 @@
     }
   },
   "amenity/bank|Novo Banco": {
+    "countryCodes": ["es", "pt"],
     "tags": {
       "amenity": "bank",
       "brand": "Novo Banco",
@@ -3804,6 +4094,7 @@
     }
   },
   "amenity/bank|Oberbank": {
+    "countryCodes": ["at", "cz", "de", "hu"],
     "tags": {
       "amenity": "bank",
       "brand": "Oberbank",
@@ -3813,6 +4104,7 @@
     }
   },
   "amenity/bank|Occidental de Descuento": {
+    "countryCodes": ["ve"],
     "tags": {
       "amenity": "bank",
       "brand": "Occidental de Descuento",
@@ -3887,7 +4179,6 @@
   },
   "amenity/bank|PNB": {
     "countryCodes": ["ph"],
-    "matchNames": ["philippine national bank"],
     "tags": {
       "amenity": "bank",
       "brand": "PNB",
@@ -3898,6 +4189,7 @@
     }
   },
   "amenity/bank|PNC Bank": {
+    "countryCodes": ["us"],
     "matchNames": ["pnc"],
     "tags": {
       "amenity": "bank",
@@ -3908,6 +4200,7 @@
     }
   },
   "amenity/bank|PSBank": {
+    "countryCodes": ["ph"],
     "tags": {
       "amenity": "bank",
       "brand": "PSBank",
@@ -3917,6 +4210,7 @@
     }
   },
   "amenity/bank|Panin Bank": {
+    "countryCodes": ["id"],
     "tags": {
       "amenity": "bank",
       "brand": "Panin Bank",
@@ -3945,6 +4239,18 @@
       "name": "Pekao SA"
     }
   },
+  "amenity/bank|PenFed Credit Union": {
+    "countryCodes": ["us"],
+    "tags": {
+      "alt_name": "Pentagon Federal Credit Union",
+      "amenity": "bank",
+      "brand": "PenFed Credit Union",
+      "brand:wikidata": "Q3374885",
+      "brand:wikipedia": "en:Pentagon Federal Credit Union",
+      "name": "PenFed Credit Union",
+      "short_name": "PenFed"
+    }
+  },
   "amenity/bank|People's United Bank": {
     "countryCodes": ["us"],
     "tags": {
@@ -3965,6 +4271,13 @@
     }
   },
   "amenity/bank|Piraeus Bank": {
+    "countryCodes": [
+      "bg",
+      "cy",
+      "gr",
+      "ro",
+      "ua"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Piraeus Bank",
@@ -4041,8 +4354,7 @@
     "matchNames": [
       "rbc financial group",
       "rbc royal bank",
-      "royal bank",
-      "royal bank of canada"
+      "royal bank"
     ],
     "tags": {
       "amenity": "bank",
@@ -4054,7 +4366,7 @@
     }
   },
   "amenity/bank|RBS": {
-    "matchNames": ["royal bank of scotland"],
+    "countryCodes": ["gb", "je", "ro"],
     "tags": {
       "amenity": "bank",
       "brand": "RBS",
@@ -4077,6 +4389,13 @@
     }
   },
   "amenity/bank|Rabobank": {
+    "countryCodes": [
+      "au",
+      "id",
+      "nl",
+      "nz",
+      "us"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Rabobank",
@@ -4086,6 +4405,7 @@
     }
   },
   "amenity/bank|Raiffeisen Polbank": {
+    "countryCodes": ["de", "pl"],
     "tags": {
       "amenity": "bank",
       "brand": "Raiffeisen Polbank",
@@ -4103,6 +4423,8 @@
     "tags": {
       "amenity": "bank",
       "brand": "Raiffeisenbank",
+      "brand:wikidata": "Q24282825",
+      "brand:wikipedia": "cs:Raiffeisenbank",
       "name": "Raiffeisenbank"
     }
   },
@@ -4120,16 +4442,48 @@
     "tags": {
       "amenity": "bank",
       "brand": "Republic Bank",
+      "name": "Republic Bank"
+    }
+  },
+  "amenity/bank|Republic Bank (Eastern Caribbean)": {
+    "countryCodes": ["bb", "gd", "gy", "tt"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Republic Bank",
       "brand:wikidata": "Q7314386",
       "brand:wikipedia": "en:Republic Bank",
       "name": "Republic Bank"
     }
   },
+  "amenity/bank|Republic Bank (USA)": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Republic Bank",
+      "brand:wikidata": "Q7314387",
+      "brand:wikipedia": "en:Republic Bank & Trust Company",
+      "name": "Republic Bank",
+      "official_name": "Republic Bank & Trust Company"
+    }
+  },
   "amenity/bank|República": {
+    "countryCodes": ["uy"],
     "tags": {
       "amenity": "bank",
       "brand": "República",
+      "brand:wikidata": "Q4077337",
+      "brand:wikipedia": "en:Banco de la República Oriental del Uruguay",
       "name": "República"
+    }
+  },
+  "amenity/bank|S-Pankki": {
+    "countryCodes": ["fi"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "S-Pankki",
+      "brand:wikidata": "Q7387053",
+      "brand:wikipedia": "fi:S-Pankki",
+      "name": "S-Pankki"
     }
   },
   "amenity/bank|SC제일은행": {
@@ -4138,11 +4492,20 @@
       "amenity": "bank",
       "brand": "SC제일은행",
       "brand:ko": "SC제일은행",
+      "brand:wikidata": "Q625531",
+      "brand:wikipedia": "en:Standard Chartered Korea",
       "name": "SC제일은행",
       "name:ko": "SC제일은행"
     }
   },
   "amenity/bank|SEB": {
+    "countryCodes": [
+      "de",
+      "ee",
+      "lt",
+      "lv",
+      "se"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "SEB",
@@ -4170,6 +4533,13 @@
       "brand:wikidata": "Q1857899",
       "brand:wikipedia": "en:De Volksbank",
       "name": "SNS Bank"
+    }
+  },
+  "amenity/bank|Sacombank": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "Sacombank",
+      "name": "Sacombank"
     }
   },
   "amenity/bank|Sampath Bank": {
@@ -4204,6 +4574,7 @@
     }
   },
   "amenity/bank|Santander Totta": {
+    "countryCodes": ["pt"],
     "tags": {
       "amenity": "bank",
       "brand": "Santander Totta",
@@ -4231,12 +4602,46 @@
     }
   },
   "amenity/bank|Security Bank": {
+    "countryCodes": ["ph"],
     "tags": {
       "amenity": "bank",
       "brand": "Security Bank",
       "brand:wikidata": "Q7444945",
       "brand:wikipedia": "en:Security Bank",
       "name": "Security Bank"
+    }
+  },
+  "amenity/bank|Security Service Federal Credit Union": {
+    "countryCodes": ["us"],
+    "matchNames": ["security service fcu"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Security Service Federal Credit Union",
+      "brand:wikidata": "Q7444993",
+      "brand:wikipedia": "en:Security Service Federal Credit Union",
+      "name": "Security Service Federal Credit Union",
+      "short_name": "SSFCU"
+    }
+  },
+  "amenity/bank|Service Credit Union": {
+    "countryCodes": ["de", "us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Service Credit Union",
+      "brand:wikidata": "Q7455675",
+      "brand:wikipedia": "en:Service Credit Union",
+      "name": "Service Credit Union"
+    }
+  },
+  "amenity/bank|Servus Credit Union": {
+    "countryCodes": ["ca"],
+    "tags": {
+      "alt_name": "Servus",
+      "amenity": "bank",
+      "brand": "Servus Credit Union",
+      "brand:wikidata": "Q2274396",
+      "brand:wikipedia": "en:Servus Credit Union",
+      "name": "Servus Credit Union"
     }
   },
   "amenity/bank|Seylan Bank": {
@@ -4250,6 +4655,7 @@
     }
   },
   "amenity/bank|Siam Commercial Bank": {
+    "countryCodes": ["th"],
     "tags": {
       "amenity": "bank",
       "brand": "Siam Commercial Bank",
@@ -4269,6 +4675,7 @@
     }
   },
   "amenity/bank|Sicredi": {
+    "countryCodes": ["br"],
     "tags": {
       "amenity": "bank",
       "brand": "Sicredi",
@@ -4306,7 +4713,18 @@
       "name": "Société Générale"
     }
   },
+  "amenity/bank|Société Marseillaise de Crédit": {
+    "countryCodes": ["fr"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Société Marseillaise de Crédit",
+      "brand:wikidata": "Q3488479",
+      "brand:wikipedia": "fr:Société marseillaise de crédit",
+      "name": "Société Marseillaise de Crédit"
+    }
+  },
   "amenity/bank|Sonali Bank": {
+    "countryCodes": ["bd"],
     "matchNames": [
       "sonali bank limited",
       "sonali bank limited সোনালী ব্যাংক লিমিটেড"
@@ -4340,6 +4758,7 @@
     }
   },
   "amenity/bank|Sparda-Bank": {
+    "countryCodes": ["at", "de"],
     "tags": {
       "amenity": "bank",
       "brand": "Sparda-Bank",
@@ -4385,7 +4804,19 @@
       "name": "State Bank of India"
     }
   },
+  "amenity/bank|State Employees Credit Union": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "State Employees Credit Union",
+      "brand:wikidata": "Q7603196",
+      "brand:wikipedia": "en:State Employees Credit Union",
+      "name": "State Employees Credit Union",
+      "short_name": "SECU"
+    }
+  },
   "amenity/bank|Summit Bank": {
+    "countryCodes": ["pk"],
     "tags": {
       "amenity": "bank",
       "brand": "Summit Bank",
@@ -4416,6 +4847,7 @@
     }
   },
   "amenity/bank|Swedbank": {
+    "countryCodes": ["ee", "lt", "lv", "se"],
     "tags": {
       "amenity": "bank",
       "brand": "Swedbank",
@@ -4425,6 +4857,7 @@
     }
   },
   "amenity/bank|Syndicate Bank": {
+    "countryCodes": ["in"],
     "tags": {
       "amenity": "bank",
       "brand": "Syndicate Bank",
@@ -4434,6 +4867,7 @@
     }
   },
   "amenity/bank|TCF Bank": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "TCF Bank",
@@ -4443,6 +4877,7 @@
     }
   },
   "amenity/bank|TD Bank": {
+    "countryCodes": ["ca", "us"],
     "tags": {
       "amenity": "bank",
       "brand": "TD Bank",
@@ -4462,6 +4897,7 @@
     }
   },
   "amenity/bank|TEB": {
+    "countryCodes": ["tr"],
     "tags": {
       "amenity": "bank",
       "brand": "TEB",
@@ -4471,6 +4907,7 @@
     }
   },
   "amenity/bank|TSB": {
+    "countryCodes": ["gb"],
     "tags": {
       "amenity": "bank",
       "brand": "TSB",
@@ -4480,6 +4917,7 @@
     }
   },
   "amenity/bank|Takarékszövetkezet": {
+    "countryCodes": ["hu"],
     "tags": {
       "amenity": "bank",
       "brand": "Takarékszövetkezet",
@@ -4489,6 +4927,7 @@
     }
   },
   "amenity/bank|Targobank": {
+    "countryCodes": ["de", "es"],
     "tags": {
       "amenity": "bank",
       "brand": "Targobank",
@@ -4498,6 +4937,7 @@
     }
   },
   "amenity/bank|Tatra banka": {
+    "countryCodes": ["sk"],
     "tags": {
       "amenity": "bank",
       "brand": "Tatra banka",
@@ -4535,6 +4975,7 @@
     }
   },
   "amenity/bank|UBI Banca": {
+    "countryCodes": ["it"],
     "tags": {
       "amenity": "bank",
       "brand": "UBI Banca",
@@ -4585,6 +5026,30 @@
       "name": "UCPB"
     }
   },
+  "amenity/bank|UIB": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "UIB",
+      "brand:wikidata": "Q18636687",
+      "brand:wikipedia": "en:United Industrial Bank",
+      "name": "UIB"
+    }
+  },
+  "amenity/bank|UNI": {
+    "countryCodes": ["ca"],
+    "matchNames": [
+      "caisse populaire",
+      "caisse populaire acadienne"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "UNI",
+      "brand:wikidata": "Q2933348",
+      "brand:wikipedia": "fr:UNI Coopération financière",
+      "name": "UNI",
+      "official_name": "UNI Coopération financière"
+    }
+  },
   "amenity/bank|UOB": {
     "tags": {
       "amenity": "bank",
@@ -4594,7 +5059,18 @@
       "name": "UOB"
     }
   },
+  "amenity/bank|USAA": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "USAA",
+      "brand:wikidata": "Q7865722",
+      "brand:wikipedia": "en:USAA",
+      "name": "USAA",
+      "official_name": "United Services Automobile Association"
+    }
+  },
   "amenity/bank|Ulster Bank": {
+    "countryCodes": ["gb", "ie"],
     "tags": {
       "amenity": "bank",
       "brand": "Ulster Bank",
@@ -4633,7 +5109,8 @@
       "brand": "Unicaja Banco",
       "brand:wikidata": "Q2543704",
       "brand:wikipedia": "en:Unicaja",
-      "name": "Unicaja Banco"
+      "name": "Unicaja Banco",
+      "short_name": "Unicaja"
     }
   },
   "amenity/bank|Union Bank of India": {
@@ -4700,7 +5177,20 @@
       "name": "Vakıfbank"
     }
   },
+  "amenity/bank|Vancity": {
+    "countryCodes": ["ca"],
+    "matchNames": ["vancouver city savings"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Vancity",
+      "brand:wikidata": "Q7914085",
+      "brand:wikipedia": "en:Vancity",
+      "name": "Vancity",
+      "official_name": "Vancouver City Savings Credit Union"
+    }
+  },
   "amenity/bank|Veneto Banca": {
+    "countryCodes": ["it"],
     "tags": {
       "amenity": "bank",
       "brand": "Veneto Banca",
@@ -4719,26 +5209,18 @@
       "name": "Vijaya Bank"
     }
   },
-  "amenity/bank|Volksbank": {
-    "tags": {
-      "amenity": "bank",
-      "brand": "Volksbank",
-      "brand:wikidata": "Q695110",
-      "brand:wikipedia": "en:Volksbank",
-      "name": "Volksbank"
-    }
-  },
   "amenity/bank|Volksbank Köln Bonn eG": {
+    "countryCodes": ["de"],
     "tags": {
       "amenity": "bank",
       "brand": "Volksbank Köln Bonn eG",
       "brand:wikidata": "Q41680844",
       "brand:wikipedia": "de:Volksbank Köln Bonn",
-      "name": "Volksbank",
-      "official_name": "Volksbank Köln Bonn eG"
+      "name": "Volksbank Köln Bonn eG"
     }
   },
   "amenity/bank|VÚB": {
+    "countryCodes": ["sk"],
     "tags": {
       "amenity": "bank",
       "brand": "VÚB",
@@ -4758,6 +5240,7 @@
     }
   },
   "amenity/bank|Wells Fargo": {
+    "countryCodes": ["us"],
     "matchNames": ["wells fargo bank"],
     "tags": {
       "amenity": "bank",
@@ -4809,6 +5292,7 @@
     }
   },
   "amenity/bank|Yorkshire Building Society": {
+    "countryCodes": ["gb"],
     "tags": {
       "amenity": "bank",
       "brand": "Yorkshire Building Society",
@@ -4854,7 +5338,29 @@
       "name": "mBank"
     }
   },
+  "amenity/bank|st.george": {
+    "countryCodes": ["au"],
+    "matchNames": ["st.george bank"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "st.george",
+      "brand:wikidata": "Q1606050",
+      "brand:wikipedia": "en:St.George Bank",
+      "name": "st.george"
+    }
+  },
+  "amenity/bank|Ålandsbanken": {
+    "countryCodes": ["fi"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Ålandsbanken",
+      "brand:wikidata": "Q4349236",
+      "brand:wikipedia": "sv:Ålandsbanken",
+      "name": "Ålandsbanken"
+    }
+  },
   "amenity/bank|ČSOB": {
+    "countryCodes": ["cz", "sk"],
     "tags": {
       "amenity": "bank",
       "brand": "ČSOB",
@@ -4898,6 +5404,7 @@
     }
   },
   "amenity/bank|Πειραιώς": {
+    "countryCodes": ["gr"],
     "tags": {
       "amenity": "bank",
       "brand": "Πειραιώς",
@@ -4919,9 +5426,12 @@
     }
   },
   "amenity/bank|А-Банк": {
+    "countryCodes": ["ua"],
     "tags": {
       "amenity": "bank",
       "brand": "А-Банк",
+      "brand:wikidata": "Q28705400",
+      "brand:wikipedia": "uk:А-Банк",
       "name": "А-Банк"
     }
   },
@@ -4935,6 +5445,7 @@
     }
   },
   "amenity/bank|Альфа-Банк": {
+    "countryCodes": ["by", "kz", "ru", "ua"],
     "tags": {
       "amenity": "bank",
       "brand": "Альфа-Банк",
@@ -4948,16 +5459,21 @@
     }
   },
   "amenity/bank|БПС-Сбербанк": {
+    "countryCodes": ["by"],
     "tags": {
       "amenity": "bank",
       "brand": "БПС-Сбербанк",
+      "brand:wikidata": "Q2074915",
+      "brand:wikipedia": "be:БПС-Сбербанк",
       "name": "БПС-Сбербанк"
     }
   },
   "amenity/bank|Банк Дабрабыт": {
+    "countryCodes": ["by"],
     "tags": {
       "amenity": "bank",
       "brand": "Банк Дабрабыт",
+      "brand:wikidata": "Q63981850",
       "name": "Банк Дабрабыт"
     }
   },
@@ -4988,6 +5504,7 @@
     }
   },
   "amenity/bank|Беларусбанк": {
+    "countryCodes": ["by"],
     "tags": {
       "amenity": "bank",
       "brand": "Беларусбанк",
@@ -5021,6 +5538,7 @@
     }
   },
   "amenity/bank|ВТБ": {
+    "countryCodes": ["ru", "ua"],
     "matchNames": ["втб банк москвы"],
     "tags": {
       "amenity": "bank",
@@ -5110,6 +5628,7 @@
     }
   },
   "amenity/bank|ОТП Банк": {
+    "countryCodes": ["ru", "ua"],
     "tags": {
       "amenity": "bank",
       "brand": "ОТП Банк",
@@ -5168,6 +5687,7 @@
     }
   },
   "amenity/bank|Почта Банк": {
+    "countryCodes": ["ru"],
     "tags": {
       "amenity": "bank",
       "brand": "Почта Банк",
@@ -5179,10 +5699,14 @@
     }
   },
   "amenity/bank|Пощенска банка": {
+    "countryCodes": ["bg"],
     "tags": {
       "amenity": "bank",
       "brand": "Пощенска банка",
-      "name": "Пощенска банка"
+      "brand:wikidata": "Q7234083",
+      "brand:wikipedia": "bg:Пощенска банка",
+      "name": "Пощенска банка",
+      "name:en": "Postbank"
     }
   },
   "amenity/bank|ПриватБанк": {
@@ -5194,6 +5718,21 @@
       "brand:wikipedia": "uk:ПриватБанк",
       "name": "ПриватБанк",
       "name:en": "PrivatBank"
+    }
+  },
+  "amenity/bank|Приднестровский Сбербанк": {
+    "countryCodes": ["md"],
+    "matchNames": ["приднестровский cбербанк"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Приднестровский Сбербанк",
+      "brand:en": "Pridnestrovian Savings Bank",
+      "brand:ru": "Приднестровский Сбербанк",
+      "brand:wikidata": "Q4378147",
+      "brand:wikipedia": "ru:Приднестровский Сбербанк",
+      "name": "Приднестровский Сбербанк",
+      "name:en": "Pridnestrovian Savings Bank",
+      "name:ru": "Приднестровский Сбербанк"
     }
   },
   "amenity/bank|Приорбанк": {
@@ -5209,6 +5748,7 @@
     }
   },
   "amenity/bank|Промсвязьбанк": {
+    "countryCodes": ["ru"],
     "tags": {
       "amenity": "bank",
       "brand": "Промсвязьбанк",
@@ -5220,6 +5760,7 @@
     }
   },
   "amenity/bank|РНКБ": {
+    "countryCodes": ["ru", "ua"],
     "tags": {
       "amenity": "bank",
       "brand": "РНКБ",
@@ -5253,6 +5794,7 @@
     }
   },
   "amenity/bank|Росбанк": {
+    "countryCodes": ["ru"],
     "tags": {
       "amenity": "bank",
       "brand": "Росбанк",
@@ -5264,6 +5806,7 @@
     }
   },
   "amenity/bank|Россельхозбанк": {
+    "countryCodes": ["ru"],
     "tags": {
       "amenity": "bank",
       "brand": "Россельхозбанк",
@@ -5287,18 +5830,22 @@
     }
   },
   "amenity/bank|Сбербанк": {
+    "countryCodes": ["kz", "ru"],
     "matchNames": [
-      "приднестровский сбербанк",
+      "cбербанк",
+      "cбербанк россии",
       "сбербанк россии"
     ],
     "tags": {
       "amenity": "bank",
       "brand": "Сбербанк",
-      "brand:en": "Prisbank",
-      "brand:wikidata": "Q4378147",
-      "brand:wikipedia": "ru:Приднестровский Сбербанк",
+      "brand:en": "Sberbank",
+      "brand:ru": "Сбербанк",
+      "brand:wikidata": "Q205012",
+      "brand:wikipedia": "en:Sberbank of Russia",
       "name": "Сбербанк",
-      "name:en": "Prisbank"
+      "name:en": "Sberbank",
+      "name:ru": "Сбербанк"
     }
   },
   "amenity/bank|Совкомбанк": {
@@ -5326,6 +5873,7 @@
     }
   },
   "amenity/bank|Укргазбанк": {
+    "countryCodes": ["ua"],
     "tags": {
       "amenity": "bank",
       "brand": "Укргазбанк",
@@ -5371,6 +5919,7 @@
     }
   },
   "amenity/bank|Хоум Кредит": {
+    "countryCodes": ["ru"],
     "tags": {
       "amenity": "bank",
       "brand": "Хоум Кредит",
@@ -5379,6 +5928,49 @@
       "brand:wikipedia": "en:Home Credit & Finance Bank",
       "name": "Хоум Кредит",
       "name:en": "Home Credit & Finance Bank"
+    }
+  },
+  "amenity/bank|בנק אגוד": {
+    "countryCodes": ["il"],
+    "tags": {
+      "alt_name:en": "Bank Igud",
+      "amenity": "bank",
+      "brand": "בנק אגוד",
+      "brand:en": "Union Bank of Israel",
+      "brand:he": "בנק אגוד",
+      "brand:wikidata": "Q2903265",
+      "brand:wikipedia": "en:Union Bank of Israel",
+      "name": "בנק אגוד",
+      "name:en": "Union Bank of Israel",
+      "name:he": "בנק אגוד"
+    }
+  },
+  "amenity/bank|בנק אוצר החייל": {
+    "countryCodes": ["il"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "בנק אוצר החייל",
+      "brand:en": "Bank Otsar Ha-Hayal",
+      "brand:he": "בנק אוצר החייל",
+      "brand:wikidata": "Q2900674",
+      "brand:wikipedia": "en:Bank Otsar Ha-Hayal",
+      "name": "בנק אוצר החייל",
+      "name:en": "Bank Otsar Ha-Hayal",
+      "name:he": "בנק אוצר החייל"
+    }
+  },
+  "amenity/bank|בנק דיסקונט": {
+    "countryCodes": ["il"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "בנק דיסקונט לישראל",
+      "brand:en": "Israel Discount Bank",
+      "brand:he": "בנק דיסקונט לישראל",
+      "brand:wikidata": "Q250362",
+      "brand:wikipedia": "en:Israel Discount Bank",
+      "name": "בנק דיסקונט",
+      "name:en": "Bank Discount",
+      "name:he": "בנק דיסקונט"
     }
   },
   "amenity/bank|בנק הפועלים": {
@@ -5395,6 +5987,34 @@
       "name:he": "בנק הפועלים"
     }
   },
+  "amenity/bank|בנק יהד": {
+    "countryCodes": ["il"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "בנק יהד",
+      "brand:en": "Bank Yahav",
+      "brand:he": "בנק יהד",
+      "brand:wikidata": "Q7187611",
+      "brand:wikipedia": "he:בנק יהב",
+      "name": "בנק יהד",
+      "name:en": "Bank Yahav",
+      "name:he": "בנק יהד"
+    }
+  },
+  "amenity/bank|בנק ירושלים": {
+    "countryCodes": ["il"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "בנק ירושלים",
+      "brand:en": "Bank of Jerusalem",
+      "brand:he": "בנק ירושלים",
+      "brand:wikidata": "Q2900227",
+      "brand:wikipedia": "en:Bank of Jerusalem",
+      "name": "בנק ירושלים",
+      "name:en": "Bank of Jerusalem",
+      "name:he": "בנק ירושלים"
+    }
+  },
   "amenity/bank|בנק לאומי": {
     "countryCodes": ["il"],
     "tags": {
@@ -5407,6 +6027,48 @@
       "name": "בנק לאומי",
       "name:en": "Bank Leumi",
       "name:he": "בנק לאומי"
+    }
+  },
+  "amenity/bank|בנק מסד": {
+    "countryCodes": ["il"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "בנק מסד",
+      "brand:en": "Bank Massad",
+      "brand:he": "בנק מסד",
+      "brand:wikidata": "Q7187667",
+      "brand:wikipedia": "en:Bank Massad",
+      "name": "בנק מסד",
+      "name:en": "Bank Massad",
+      "name:he": "בנק מסד"
+    }
+  },
+  "amenity/bank|הבנק הבינלאומי": {
+    "countryCodes": ["il"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "הבנק הבינלאומי",
+      "brand:en": "First International Bank of Israel",
+      "brand:he": "הבנק הבינלאומי",
+      "brand:wikidata": "Q2777497",
+      "brand:wikipedia": "en:First International Bank of Israel",
+      "name": "הבנק הבינלאומי",
+      "name:en": "First International Bank of Israel",
+      "name:he": "הבנק הבינלאומי"
+    }
+  },
+  "amenity/bank|מזרחי טפחות": {
+    "countryCodes": ["il"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "מזרחי טפחות",
+      "brand:en": "Mizrahi-Tefahot",
+      "brand:he": "מזרחי טפחות",
+      "brand:wikidata": "Q2777129",
+      "brand:wikipedia": "en:Bank Mizrahi-Tefahot",
+      "name": "בנק מזרחי טפחות",
+      "name:en": "Bank Mizrahi-Tefahot",
+      "name:he": "בנק מזרחי טפחות"
     }
   },
   "amenity/bank|بانک آینده": {
@@ -5547,6 +6209,7 @@
     }
   },
   "amenity/bank|بانک صادرات": {
+    "countryCodes": ["ir"],
     "matchNames": ["بانک صادرات ایران", "صادرات"],
     "tags": {
       "amenity": "bank",
@@ -5664,6 +6327,54 @@
       "brand:wikipedia": "en:Post Bank of Iran",
       "name": "پست بانک",
       "name:en": "Post Bank of Iran"
+    }
+  },
+  "amenity/bank|অগ্রণী ব্যাংক লিমিটেড": {
+    "countryCodes": ["bd"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "অগ্রণী ব্যাংক লিমিটেড",
+      "brand:wikidata": "Q517050",
+      "brand:wikipedia": "en:Agrani Bank",
+      "name": "অগ্রণী ব্যাংক লিমিটেড",
+      "name:en": "Agrani Bank"
+    }
+  },
+  "amenity/bank|গ্রামীণ ব্যাংক": {
+    "countryCodes": ["bd"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "গ্রামীণ ব্যাংক",
+      "brand:wikidata": "Q188567",
+      "brand:wikipedia": "en:Grameen Bank",
+      "name": "গ্রামীণ ব্যাংক",
+      "name:en": "Grameen Bank"
+    }
+  },
+  "amenity/bank|জনতা ব্যাংক লিমিটেড": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "জনতা ব্যাংক লিমিটেড",
+      "name": "জনতা ব্যাংক লিমিটেড"
+    }
+  },
+  "amenity/bank|বাংলাদেশ কৃষি ব্যাংক": {
+    "countryCodes": ["bd"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "বাংলাদেশ কৃষি ব্যাংক",
+      "brand:wikidata": "Q16345932",
+      "brand:wikipedia": "en:Bangladesh Krishi Bank",
+      "name": "বাংলাদেশ কৃষি ব্যাংক",
+      "name:en": "Bangladesh Krishi Bank"
+    }
+  },
+  "amenity/bank|সোনালী ব্যাংক লিমিটেড": {
+    "countryCodes": ["bd"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "সোনালী ব্যাংক লিমিটেড",
+      "name": "সোনালী ব্যাংক লিমিটেড"
     }
   },
   "amenity/bank|ธนาคารกรุงเทพ": {
@@ -5814,6 +6525,24 @@
       "name:en": "Shanghai Commercial and Savings Bank"
     }
   },
+  "amenity/bank|上海浦东发展银行": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "上海浦东发展银行",
+      "name": "上海浦东发展银行"
+    }
+  },
+  "amenity/bank|东亚银行": {
+    "countryCodes": ["cn"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "东亚银行",
+      "brand:wikidata": "Q806679",
+      "brand:wikipedia": "en:Bank of East Asia",
+      "name": "东亚银行",
+      "name:en": "Bank of East Asia"
+    }
+  },
   "amenity/bank|中信银行": {
     "countryCodes": ["cn"],
     "tags": {
@@ -5825,7 +6554,15 @@
       "name": "中信银行"
     }
   },
+  "amenity/bank|中国光大银行": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "中国光大银行",
+      "name": "中国光大银行"
+    }
+  },
   "amenity/bank|中国农业银行": {
+    "countryCodes": ["cn"],
     "tags": {
       "amenity": "bank",
       "brand": "中国农业银行",
@@ -5837,6 +6574,7 @@
     }
   },
   "amenity/bank|中国工商银行": {
+    "countryCodes": ["cn"],
     "tags": {
       "amenity": "bank",
       "brand": "中国工商银行",
@@ -5859,7 +6597,20 @@
       "name:en": "China Construction Bank"
     }
   },
+  "amenity/bank|中国民生银行": {
+    "countryCodes": ["cn"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "中国民生银行",
+      "brand:en": "China Minsheng Bank",
+      "brand:wikidata": "Q911543",
+      "brand:wikipedia": "en:China Minsheng Bank",
+      "name": "中国民生银行",
+      "name:en": "China Minsheng Bank"
+    }
+  },
   "amenity/bank|中国邮政储蓄银行": {
+    "countryCodes": ["cn"],
     "tags": {
       "amenity": "bank",
       "brand": "中国邮政储蓄银行",
@@ -5871,6 +6622,7 @@
     }
   },
   "amenity/bank|中国银行": {
+    "countryCodes": ["cn"],
     "tags": {
       "amenity": "bank",
       "brand": "中国银行",
@@ -5922,7 +6674,7 @@
       "brand": "京都中央信用金庫",
       "brand:en": "Kyoto Chuo Shinkin Bank",
       "brand:wikidata": "Q11374844",
-      "brand:wikipedia": "jp:京都中央信用金庫",
+      "brand:wikipedia": "ja:京都中央信用金庫",
       "name": "京都中央信用金庫",
       "name:en": "Kyoto Chuo Shinkin Bank"
     }
@@ -5964,12 +6716,20 @@
     }
   },
   "amenity/bank|农业银行": {
+    "countryCodes": ["cn"],
     "tags": {
       "amenity": "bank",
       "brand": "农业银行",
       "brand:wikidata": "Q26298",
       "brand:wikipedia": "zh:中国农业银行",
       "name": "农业银行"
+    }
+  },
+  "amenity/bank|北京银行": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "北京银行",
+      "name": "北京银行"
     }
   },
   "amenity/bank|北洋銀行": {
@@ -6093,9 +6853,12 @@
     }
   },
   "amenity/bank|常陽銀行": {
+    "countryCodes": ["jp"],
     "tags": {
       "amenity": "bank",
       "brand": "常陽銀行",
+      "brand:wikidata": "Q6297774",
+      "brand:wikipedia": "en:Joyo Bank",
       "name": "常陽銀行"
     }
   },
@@ -6143,6 +6906,22 @@
       "brand:wikipedia": "ja:日本銀行",
       "name": "日本銀行",
       "name:en": "Bank of Japan"
+    }
+  },
+  "amenity/bank|東亞銀行": {
+    "countryCodes": ["hk"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "東亞銀行",
+      "brand:en": "Bank of East Asia",
+      "brand:wikidata": "Q806679",
+      "brand:wikipedia": "zh:東亞銀行",
+      "brand:zh-Hans": "东亚银行",
+      "brand:zh-Hant": "東亞銀行",
+      "name": "東亞銀行 BEA",
+      "name:en": "Bank of East Asia",
+      "name:zh-Hans": "东亚银行",
+      "name:zh-Hant": "東亞銀行"
     }
   },
   "amenity/bank|板信商業銀行": {

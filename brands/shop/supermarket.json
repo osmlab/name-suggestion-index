@@ -14,7 +14,7 @@
     "matchNames": ["99 ranch", "ranch 99"],
     "tags": {
       "brand": "99 Ranch Market",
-      "brand:wikidata": "Q3600279",
+      "brand:wikidata": "Q4646307",
       "brand:wikipedia": "en:99 Ranch Market",
       "cuisine": "asian",
       "name": "99 Ranch Market",
@@ -105,6 +105,7 @@
   },
   "shop/supermarket|Albertsons": {
     "countryCodes": ["us"],
+    "matchNames": ["albertsons supermarket"],
     "tags": {
       "brand": "Albertsons",
       "brand:wikidata": "Q4712282",
@@ -227,21 +228,22 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|BI-LO": {
+    "countryCodes": ["us"],
+    "tags": {
+      "brand": "BI-LO",
+      "brand:wikidata": "Q4835620",
+      "brand:wikipedia": "en:BI-LO (United States)",
+      "name": "BI-LO",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|BM": {
+    "countryCodes": ["es"],
     "tags": {
       "brand": "BM",
       "brand:wikidata": "Q62073462",
       "name": "BM",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Bi-Lo": {
-    "countryCodes": ["au", "us"],
-    "tags": {
-      "brand": "Bi-Lo",
-      "brand:wikidata": "Q4835622",
-      "brand:wikipedia": "en:BI-LO (Australia)",
-      "name": "Bi-Lo",
       "shop": "supermarket"
     }
   },
@@ -459,8 +461,26 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Cargills Food City": {
+  "shop/supermarket|Cardenas": {
+    "countryCodes": ["us"],
+    "matchNames": [
+      "mi pueblo",
+      "mi pueblo food center"
+    ],
+    "tags": {
+      "brand": "Cardenas",
+      "brand:wikidata": "Q64149543",
+      "brand:wikipedia": "en:Cardenas (supermarket)",
+      "cuisine": "latin_american",
+      "name": "Cardenas",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Cargills Food City~(Sri Lanka)": {
     "countryCodes": ["lk"],
+    "nomatch": [
+      "shop/supermarket|Food City~(USA)"
+    ],
     "tags": {
       "brand": "Cargills Food City",
       "brand:wikidata": "Q58353955",
@@ -473,8 +493,7 @@
   "shop/supermarket|Carrefour": {
     "nomatch": [
       "amenity/fuel|Carrefour",
-      "shop/convenience|Carrefour Express",
-      "shop/supermarket|Carrefour Express"
+      "shop/convenience|Carrefour Express"
     ],
     "tags": {
       "brand": "Carrefour",
@@ -488,6 +507,7 @@
     }
   },
   "shop/supermarket|Carrefour City": {
+    "countryCodes": ["be", "fr"],
     "matchTags": ["shop/convenience"],
     "tags": {
       "brand": "Carrefour City",
@@ -513,20 +533,8 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Carrefour Express": {
-    "tags": {
-      "brand": "Carrefour Express",
-      "brand:wikidata": "Q2940190",
-      "brand:wikipedia": "fr:Carrefour Express",
-      "name": "Carrefour Express",
-      "operator": "Groupe Carrefour",
-      "operator:wikidata": "Q3117359",
-      "operator:wikipedia": "fr:Groupe Carrefour",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|Carrefour Market": {
-    "nomatch": ["shop/fuel|Carrefour Market"],
+    "nomatch": ["amenity/fuel|Carrefour Market"],
     "tags": {
       "brand": "Carrefour Market",
       "brand:wikidata": "Q2689639",
@@ -563,6 +571,7 @@
     }
   },
   "shop/supermarket|Centre Commercial E. Leclerc": {
+    "countryCodes": ["fr", "pl"],
     "tags": {
       "brand": "Centre Commercial E. Leclerc",
       "brand:wikidata": "Q1273376",
@@ -660,11 +669,11 @@
     }
   },
   "shop/supermarket|Comercial Mexicana": {
-    "countryCodes": ["mx", "us"],
+    "countryCodes": ["mx"],
     "tags": {
       "brand": "Comercial Mexicana",
       "brand:wikidata": "Q2985173",
-      "brand:wikipedia": "en:Comercial Mexicana",
+      "brand:wikipedia": "es:Comercial Mexicana",
       "name": "Comercial Mexicana",
       "shop": "supermarket"
     }
@@ -911,6 +920,7 @@
     }
   },
   "shop/supermarket|Despensa Familiar": {
+    "countryCodes": ["gt", "hn", "sv"],
     "tags": {
       "brand": "Despensa Familiar",
       "brand:wikidata": "Q61994849",
@@ -990,6 +1000,7 @@
     }
   },
   "shop/supermarket|Dunnes Stores": {
+    "countryCodes": ["gb", "ie"],
     "tags": {
       "brand": "Dunnes Stores",
       "brand:wikidata": "Q1266203",
@@ -1196,6 +1207,7 @@
     }
   },
   "shop/supermarket|Food 4 Less": {
+    "countryCodes": ["us"],
     "tags": {
       "brand": "Food 4 Less",
       "brand:wikidata": "Q5465282",
@@ -1213,11 +1225,15 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Food City": {
+  "shop/supermarket|Food City~(USA)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "shop/supermarket|Cargills Food City~(Sri Lanka)"
+    ],
     "tags": {
       "brand": "Food City",
-      "brand:wikidata": "Q5465306",
-      "brand:wikipedia": "en:Food City (Canada)",
+      "brand:wikidata": "Q16981107",
+      "brand:wikipedia": "en:Food City (K-VA-T)",
       "name": "Food City",
       "shop": "supermarket"
     }
@@ -1232,7 +1248,7 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|FoodLand~(US)": {
+  "shop/supermarket|FoodLand~(USA)": {
     "countryCodes": ["us"],
     "nomatch": [
       "shop/supermarket|Foodland~(Australia)",
@@ -1263,7 +1279,7 @@
     "nomatch": [
       "shop/supermarket|Foodland~(Canada)",
       "shop/supermarket|Foodland~(Hawaii)",
-      "shop/supermarket|Foodland~(US)"
+      "shop/supermarket|Foodland~(USA)"
     ],
     "tags": {
       "brand": "Foodland",
@@ -1278,7 +1294,7 @@
     "nomatch": [
       "shop/supermarket|Foodland~(Australia)",
       "shop/supermarket|Foodland~(Hawaii)",
-      "shop/supermarket|Foodland~(US)"
+      "shop/supermarket|Foodland~(USA)"
     ],
     "tags": {
       "brand": "Foodland",
@@ -1293,7 +1309,7 @@
     "nomatch": [
       "shop/supermarket|Foodland~(Australia)",
       "shop/supermarket|Foodland~(Canada)",
-      "shop/supermarket|Foodland~(US)"
+      "shop/supermarket|Foodland~(USA)"
     ],
     "tags": {
       "brand": "Foodland",
@@ -1313,6 +1329,13 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Four Square": {
+    "tags": {
+      "brand": "Four Square",
+      "name": "Four Square",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Fred Meyer": {
     "countryCodes": ["us"],
     "matchTags": ["shop/department_store"],
@@ -1324,10 +1347,29 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Fresh": {
+    "tags": {
+      "brand": "Fresh",
+      "brand:wikidata": "Q50737403",
+      "brand:wikipedia": "sk:Fresh",
+      "name": "Fresh",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Fresh Market": {
     "tags": {
       "brand": "Fresh Market",
       "name": "Fresh Market",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Fresh Thyme": {
+    "countryCodes": ["us"],
+    "matchNames": ["fresh thyme farmers market"],
+    "tags": {
+      "brand": "Fresh Thyme",
+      "brand:wikidata": "Q64132791",
+      "name": "Fresh Thyme",
       "shop": "supermarket"
     }
   },
@@ -1375,17 +1417,9 @@
     "countryCodes": ["br"],
     "tags": {
       "brand": "GBarbosa",
-      "brand:website": "http://www.gbarbosa.com.br",
       "brand:wikidata": "Q10287817",
       "brand:wikipedia": "pt:GBarbosa",
       "name": "GBarbosa",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|GS25": {
-    "tags": {
-      "brand": "GS25",
-      "name": "GS25",
       "shop": "supermarket"
     }
   },
@@ -1399,14 +1433,6 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Giant": {
-    "nomatch": ["shop/bicycle|Giant"],
-    "tags": {
-      "brand": "Giant",
-      "name": "Giant",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|Giant Eagle": {
     "countryCodes": ["us"],
     "tags": {
@@ -1414,6 +1440,28 @@
       "brand:wikidata": "Q1522721",
       "brand:wikipedia": "en:Giant Eagle",
       "name": "Giant Eagle",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Giant~(Carlisle)": {
+    "countryCodes": ["us"],
+    "nomatch": ["shop/bicycle|Giant"],
+    "tags": {
+      "brand": "Giant",
+      "brand:wikidata": "Q5558332",
+      "brand:wikipedia": "en:Giant Food Stores",
+      "name": "Giant",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Giant~(Landover)": {
+    "countryCodes": ["us"],
+    "nomatch": ["shop/bicycle|Giant"],
+    "tags": {
+      "brand": "Giant",
+      "brand:wikidata": "Q5558336",
+      "brand:wikipedia": "en:Giant Food (Landover)",
+      "name": "Giant",
       "shop": "supermarket"
     }
   },
@@ -1452,6 +1500,7 @@
       "brand:wikidata": "Q5609934",
       "brand:wikipedia": "en:Grocery Outlet",
       "name": "Grocery Outlet",
+      "official_name": "Grocery Outlet Bargain Market",
       "shop": "supermarket"
     }
   },
@@ -1509,6 +1558,16 @@
       "brand:wikidata": "Q1548713",
       "brand:wikipedia": "de:HIT Handelsgruppe",
       "name": "HIT",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|HalpaHalli": {
+    "countryCodes": ["ee", "fi", "ru"],
+    "tags": {
+      "brand": "HalpaHalli",
+      "brand:wikidata": "Q11861256",
+      "brand:wikipedia": "fi:HalpaHalli",
+      "name": "HalpaHalli",
       "shop": "supermarket"
     }
   },
@@ -1662,6 +1721,7 @@
     }
   },
   "shop/supermarket|IGA": {
+    "countryCodes": ["au", "ca", "us"],
     "tags": {
       "brand": "IGA",
       "brand:wikidata": "Q3146662",
@@ -1676,13 +1736,6 @@
       "brand:wikidata": "Q721810",
       "brand:wikipedia": "en:Iceland (supermarket)",
       "name": "Iceland",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Indomaret": {
-    "tags": {
-      "brand": "Indomaret",
-      "name": "Indomaret",
       "shop": "supermarket"
     }
   },
@@ -1755,16 +1808,6 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Joker": {
-    "countryCodes": ["no"],
-    "tags": {
-      "brand": "Joker",
-      "brand:wikidata": "Q716328",
-      "brand:wikipedia": "en:Joker (store)",
-      "name": "Joker",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|Jumbo": {
     "tags": {
       "brand": "Jumbo",
@@ -1784,7 +1827,36 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|K-Citymarket": {
+    "countryCodes": ["fi"],
+    "tags": {
+      "brand": "K-Citymarket",
+      "brand:wikidata": "Q11868561",
+      "brand:wikipedia": "fi:K-Citymarket",
+      "name": "K-Citymarket",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|K-Supermarket": {
+    "countryCodes": ["fi"],
+    "tags": {
+      "brand": "K-Supermarket",
+      "brand:wikidata": "Q5408668",
+      "brand:wikipedia": "fi:K-Supermarket",
+      "name": "K-Supermarket",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Kaufland": {
+    "countryCodes": [
+      "bg",
+      "cz",
+      "de",
+      "hr",
+      "pl",
+      "ro",
+      "sk"
+    ],
     "tags": {
       "brand": "Kaufland",
       "brand:wikidata": "Q685967",
@@ -1800,6 +1872,16 @@
       "brand:wikidata": "Q6412065",
       "brand:wikipedia": "en:King Soopers",
       "name": "King Soopers",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Kings": {
+    "countryCodes": ["us"],
+    "tags": {
+      "brand": "Kings",
+      "brand:wikidata": "Q6412914",
+      "brand:wikipedia": "en:Kings Food Markets",
+      "name": "Kings",
       "shop": "supermarket"
     }
   },
@@ -1821,7 +1903,28 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Konzum": {
+  "shop/supermarket|Konzum~(Balkans)": {
+    "countryCodes": ["ba", "hr", "rs"],
+    "nomatch": [
+      "shop/convenience|Konzum~(Balkans)",
+      "shop/convenience|Konzum~(Czechia)",
+      "shop/supermarket|Konzum~(Czechia)"
+    ],
+    "tags": {
+      "brand": "Konzum",
+      "brand:wikidata": "Q518563",
+      "brand:wikipedia": "hr:Konzum",
+      "name": "Konzum",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Konzum~(Czechia)": {
+    "countryCodes": ["cz", "sk"],
+    "nomatch": [
+      "shop/convenience|Konzum~(Balkans)",
+      "shop/convenience|Konzum~(Czechia)",
+      "shop/supermarket|Konzum~(Balkans)"
+    ],
     "tags": {
       "brand": "Konzum",
       "name": "Konzum",
@@ -1829,6 +1932,7 @@
     }
   },
   "shop/supermarket|Kroger": {
+    "matchNames": ["krogers"],
     "nomatch": ["amenity/fuel|Kroger"],
     "tags": {
       "brand": "Kroger",
@@ -1855,6 +1959,32 @@
       "brand:wikidata": "Q6135985",
       "brand:wikipedia": "es:La Anónima",
       "name": "La Anónima",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|La Comer": {
+    "countryCodes": ["mx"],
+    "tags": {
+      "brand": "La Comer",
+      "brand:wikidata": "Q26765126",
+      "brand:wikipedia": "es:La Comer",
+      "name": "La Comer",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|La Michoacana Meat Market": {
+    "countryCodes": ["us"],
+    "matchNames": ["la michoacana"],
+    "tags": {
+      "brand": "La Michoacana Meat Market",
+      "brand:en": "La Michoacana Meat Market",
+      "brand:es": "La Michoacana",
+      "brand:wikidata": "Q6463872",
+      "brand:wikipedia": "en:La Michoacana Meat Market",
+      "cuisine": "latin_american",
+      "name": "La Michoacana Meat Market",
+      "name:en": "La Michoacana Meat Market",
+      "name:es": "La Michoacana",
       "shop": "supermarket"
     }
   },
@@ -1998,6 +2128,11 @@
   },
   "shop/supermarket|Lowe's Market": {
     "countryCodes": ["us"],
+    "nomatch": [
+      "shop/clothes|Lowes",
+      "shop/doityourself|Lowe's",
+      "shop/supermarket|Lowes Foods"
+    ],
     "tags": {
       "brand": "Lowe's Market",
       "brand:wikidata": "Q6693107",
@@ -2008,6 +2143,11 @@
   },
   "shop/supermarket|Lowes Foods": {
     "countryCodes": ["us"],
+    "nomatch": [
+      "shop/clothes|Lowes",
+      "shop/doityourself|Lowe's",
+      "shop/supermarket|Lowe's Market"
+    ],
     "tags": {
       "brand": "Lowes Foods",
       "brand:wikidata": "Q6693991",
@@ -2672,6 +2812,16 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Prisma": {
+    "countryCodes": ["ee", "fi", "ru"],
+    "tags": {
+      "brand": "Prisma",
+      "brand:wikidata": "Q12047031",
+      "brand:wikipedia": "fi:Prisma (kauppaketju)",
+      "name": "Prisma",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Prix": {
     "countryCodes": ["it"],
     "matchNames": ["prix quality"],
@@ -2872,13 +3022,13 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|S-Market": {
+  "shop/supermarket|S-market": {
     "countryCodes": ["fi"],
     "tags": {
-      "brand": "S-Market",
+      "brand": "S-market",
       "brand:wikidata": "Q11891613",
       "brand:wikipedia": "fi:S-market",
-      "name": "S-Market",
+      "name": "S-market",
       "shop": "supermarket"
     }
   },
@@ -2914,6 +3064,7 @@
     }
   },
   "shop/supermarket|Save-A-Lot": {
+    "countryCodes": ["us"],
     "tags": {
       "brand": "Save-A-Lot",
       "brand:wikidata": "Q7427972",
@@ -3133,6 +3284,8 @@
     }
   },
   "shop/supermarket|Stop & Shop": {
+    "countryCodes": ["us"],
+    "matchNames": ["stop and shop"],
     "tags": {
       "brand": "Stop & Shop",
       "brand:wikidata": "Q3658429",
@@ -3403,6 +3556,7 @@
       "brand:wikidata": "Q7825137",
       "brand:wikipedia": "en:Tops Friendly Markets",
       "name": "Tops",
+      "official_name": "Tops Friendly Markets",
       "shop": "supermarket"
     }
   },
@@ -3632,13 +3786,13 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Winn Dixie": {
+  "shop/supermarket|Winn-Dixie": {
     "countryCodes": ["us"],
     "tags": {
-      "brand": "Winn Dixie",
+      "brand": "Winn-Dixie",
       "brand:wikidata": "Q1264366",
       "brand:wikipedia": "en:Winn-Dixie",
-      "name": "Winn Dixie",
+      "name": "Winn-Dixie",
       "shop": "supermarket"
     }
   },
@@ -3710,10 +3864,12 @@
     "countryCodes": ["gr"],
     "tags": {
       "brand": "ΑΒ Βασιλόπουλος",
+      "brand:el": "ΑΒ Βασιλόπουλος",
       "brand:en": "AB Vassilopoulos",
       "brand:wikidata": "Q4721807",
       "brand:wikipedia": "el:Άλφα Βήτα Βασιλόπουλος",
       "name": "ΑΒ Βασιλόπουλος",
+      "name:el": "ΑΒ Βασιλόπουλος",
       "name:en": "AB Vassilopoulos",
       "shop": "supermarket"
     }
@@ -3722,10 +3878,12 @@
     "countryCodes": ["gr"],
     "tags": {
       "brand": "Γαλαξίας",
+      "brand:el": "Γαλαξίας",
       "brand:en": "Galaxias",
       "brand:wikidata": "Q5518063",
       "brand:wikipedia": "el:Γαλαξίας (σούπερ μάρκετ)",
       "name": "Γαλαξίας",
+      "name:el": "Γαλαξίας",
       "name:en": "Galaxias",
       "shop": "supermarket"
     }
@@ -3734,10 +3892,12 @@
     "countryCodes": ["gr"],
     "tags": {
       "brand": "Μασούτης",
+      "brand:el": "Μασούτης",
       "brand:en": "Masoutis",
       "brand:wikidata": "Q6783887",
       "brand:wikipedia": "en:Masoutis",
       "name": "Μασούτης",
+      "name:el": "Μασούτης",
       "name:en": "Masoutis",
       "shop": "supermarket"
     }
@@ -3746,10 +3906,12 @@
     "countryCodes": ["gr"],
     "tags": {
       "brand": "Σκλαβενίτης",
+      "brand:el": "Σκλαβενίτης",
       "brand:en": "Sklavenitis",
       "brand:wikidata": "Q7536037",
       "brand:wikipedia": "el:Σκλαβενίτης",
       "name": "Σκλαβενίτης",
+      "name:el": "Σκλαβενίτης",
       "name:en": "Sklavenitis",
       "shop": "supermarket"
     }
@@ -3811,6 +3973,7 @@
     }
   },
   "shop/supermarket|Ашан": {
+    "countryCodes": ["ru", "ua"],
     "tags": {
       "brand": "Ашан",
       "brand:en": "Auchan",
@@ -3822,6 +3985,7 @@
     }
   },
   "shop/supermarket|Байрам": {
+    "countryCodes": ["ru"],
     "tags": {
       "brand": "Байрам",
       "name": "Байрам",
@@ -3933,6 +4097,7 @@
     }
   },
   "shop/supermarket|Евроопт": {
+    "countryCodes": ["by"],
     "matchNames": ["евроопт market"],
     "matchTags": ["shop/convenience"],
     "tags": {
@@ -3948,6 +4113,7 @@
     }
   },
   "shop/supermarket|Евроопт Super": {
+    "countryCodes": ["by"],
     "tags": {
       "brand": "Евроопт Super",
       "name": "Евроопт Super",
@@ -3955,6 +4121,7 @@
     }
   },
   "shop/supermarket|Караван": {
+    "countryCodes": ["ru", "ua"],
     "tags": {
       "brand": "Караван",
       "name": "Караван",
@@ -3981,6 +4148,7 @@
     }
   },
   "shop/supermarket|Кировский": {
+    "countryCodes": ["ru"],
     "matchTags": ["shop/convenience"],
     "tags": {
       "brand": "Кировский",
@@ -4046,6 +4214,7 @@
     }
   },
   "shop/supermarket|Магнит у дома": {
+    "countryCodes": ["ru"],
     "tags": {
       "brand": "Магнит у дома",
       "name": "Магнит у дома",
@@ -4076,6 +4245,7 @@
     }
   },
   "shop/supermarket|Мираторг": {
+    "countryCodes": ["ru"],
     "tags": {
       "brand": "Мираторг",
       "name": "Мираторг",
@@ -4168,6 +4338,7 @@
     }
   },
   "shop/supermarket|Рублёвский": {
+    "countryCodes": ["by"],
     "tags": {
       "brand": "Рублёвский",
       "name": "Рублёвский",
@@ -4259,6 +4430,13 @@
       "brand:wikidata": "Q57979368",
       "name": "Эдельвейс",
       "name:en": "Edelveis",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|سوبر ماركت": {
+    "tags": {
+      "brand": "سوبر ماركت",
+      "name": "سوبر ماركت",
       "shop": "supermarket"
     }
   },
@@ -4554,6 +4732,7 @@
     }
   },
   "shop/supermarket|頂好超市": {
+    "countryCodes": ["tw"],
     "tags": {
       "brand": "頂好超市",
       "brand:en": "Wellcome",
