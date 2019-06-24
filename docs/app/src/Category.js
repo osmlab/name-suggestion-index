@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import CategoryInstructions from "./CategoryInstructions";
 
 
-export default (props) => {
+export default function Category(props) {
   const tree = props.match.params.tree;
   const k = props.match.params.k;
   const v = props.match.params.v;
@@ -43,4 +43,4 @@ export default (props) => {
     </table>
     </>
   );
-}
+};

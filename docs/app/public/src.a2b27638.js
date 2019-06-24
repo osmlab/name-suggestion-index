@@ -31046,13 +31046,13 @@ module.exports = _slicedToArray;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = CategoryInstructions;
 
 var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = function _default() {
+function CategoryInstructions() {
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
     className: "instructions"
   }, "Some things you can do here:", _react.default.createElement("ul", null, _react.default.createElement("li", null, "Is a brand name missing or something is incorrect? ", _react.default.createElement("a", {
@@ -31062,16 +31062,16 @@ var _default = function _default() {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md"
   }, "CONTRIBUTING.md"), " for more info."), _react.default.createElement("li", null, "If a record with a ", _react.default.createElement("code", null, "'brand:wikidata'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", _react.default.createElement("br", null), "You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later."))));
-};
+}
 
-exports.default = _default;
+;
 },{"react":"../../node_modules/react/index.js"}],"src/Category.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = Category;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -31081,7 +31081,7 @@ var _CategoryInstructions = _interopRequireDefault(require("./CategoryInstructio
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = function _default(props) {
+function Category(props) {
   var tree = props.match.params.tree;
   var k = props.match.params.k;
   var v = props.match.params.v;
@@ -31110,22 +31110,22 @@ var _default = function _default(props) {
   }), _react.default.createElement("td", {
     className: "logo"
   })))));
-};
+}
 
-exports.default = _default;
+;
 },{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./CategoryInstructions":"src/CategoryInstructions.js"}],"src/Footer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = Footer;
 
 var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = function _default() {
+function Footer() {
   function ghCornerImage() {
     return {
       __html: "\n        <svg width=\"80\" height=\"80\" viewBox=\"0 0 250 250\" style=\"fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;\" aria-hidden=\"true\"><path d=\"M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z\"></path><path d=\"M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2\" fill=\"currentColor\" style=\"transform-origin: 130px 106px;\" class=\"octo-arm\"></path><path d=\"M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z\" fill=\"currentColor\" class=\"octo-body\"></path></svg>\n      "
@@ -31149,22 +31149,22 @@ var _default = function _default() {
   })), _react.default.createElement("style", {
     dangerouslySetInnerHTML: ghCornerStyle()
   })));
-};
+}
 
-exports.default = _default;
+;
 },{"react":"../../node_modules/react/index.js"}],"src/OverviewInstructions.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = OverviewInstructions;
 
 var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = function _default() {
+function OverviewInstructions() {
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
     className: "instructions"
   }, _react.default.createElement("span", {
@@ -31182,16 +31182,16 @@ var _default = function _default() {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md"
   }, "CONTRIBUTING.md"), " for more info.", _react.default.createElement("br", null)));
-};
+}
 
-exports.default = _default;
+;
 },{"react":"../../node_modules/react/index.js"}],"src/Overview.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = Overview;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -31201,7 +31201,7 @@ var _OverviewInstructions = _interopRequireDefault(require("./OverviewInstructio
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = function _default(props) {
+function Overview(props) {
   var tree = props.match.params.tree;
   var k = 'amenity';
   var v = 'bank';
@@ -31210,16 +31210,16 @@ var _default = function _default(props) {
   }, _react.default.createElement(_reactRouterDom.Link, {
     to: [tree, k, v].join('/')
   }, [k, v].join('/'))));
-};
+}
 
-exports.default = _default;
+;
 },{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./OverviewInstructions":"src/OverviewInstructions.js"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = App;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -31248,7 +31248,7 @@ var NAMES = "".concat(DIST, "/names_keep.json");
 var BRANDS = "".concat(DIST, "/brands.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.json");
 
-var _default = function _default() {
+function App() {
   var tree = 'brands';
 
   var _useFetch = useFetch(NAMES),
@@ -31414,9 +31414,9 @@ var _default = function _default() {
     });
     return sorted;
   }
-};
+}
 
-exports.default = _default;
+;
 },{"@babel/runtime/regenerator":"../../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../../node_modules/@babel/runtime/helpers/asyncToGenerator.js","@babel/runtime/helpers/extends":"../../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./Category":"src/Category.js","./Footer":"src/Footer.js","./Overview":"src/Overview.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 

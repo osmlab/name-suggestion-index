@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export default () => {
+export default function Footer() {
   function ghCornerImage() {
     return  {
       __html: `
@@ -27,4 +27,4 @@ export default () => {
     </div>
     </>
   );
-}
+};

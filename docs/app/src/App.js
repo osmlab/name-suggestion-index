@@ -11,7 +11,7 @@ const BRANDS = `${DIST}/brands.json`;
 const WIKIDATA = `${DIST}/wikidata.json`;
 
 
-export default () => {
+export default function App() {
   const tree = 'brands';
   const [names, namesLoading] = useFetch(NAMES);
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);

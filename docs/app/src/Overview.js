@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import OverviewInstructions from "./OverviewInstructions";
 
 
-export default (props) => {
+export default function Overview(props) {
   const tree = props.match.params.tree;
   const k = 'amenity';
   const v = 'bank';
@@ -18,4 +18,4 @@ export default (props) => {
     </div>
     </>
   );
-}
+};
