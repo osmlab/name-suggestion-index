@@ -3,7 +3,7 @@ import React from "react";
 
 export default () => (
   <>
-  <div class="instructions">Some things you can do here:
+  <div className="instructions">Some things you can do here:
   <ul>
   <li>Is a brand name missing or something is incorrect? <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/issues">Open an issue</a> or pull request to add it!</li>
   <li>Click the "View on Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>

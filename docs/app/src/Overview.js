@@ -13,7 +13,7 @@ export default (props) => {
     <>
     <h1>{tree}/</h1>
     <OverviewInstructions />
-    <div class="container">
+    <div className="container">
     <Link to={ [tree,k,v].join('/') }>{ [k,v].join('/') }</Link>
     </div>
     </>

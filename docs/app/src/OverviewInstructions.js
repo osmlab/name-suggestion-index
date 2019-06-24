@@ -3,7 +3,7 @@ import React from "react";
 
 export default () => (
   <>
-  <div class="instructions"><span class="hi">👋</span>Hi! This project is called <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/">name-suggestion-index</a>.<br/>
+  <div className="instructions"><span className="hi">👋</span>Hi! This project is called <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/">name-suggestion-index</a>.<br/>
   <br/>
   We've collected a list of common business names from <a target="_blank" href="https://www.openstreetmap.org">OpenStreetMap</a>,
   and we're matching them all to their preferred tags, including a <code>'brand:wikidata'</code> tag.<br/>

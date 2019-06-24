@@ -19,8 +19,8 @@ export default () => {
 
   return (
     <>
-    <div class="footer">
-    <a href="https://github.com/osmlab/name-suggestion-index/" class="github-corner" aria-label="View on GitHub">
+    <div className="footer">
+    <a href="https://github.com/osmlab/name-suggestion-index/" className="github-corner" aria-label="View on GitHub">
     <div dangerouslySetInnerHTML={ghCornerImage()} />
     </a>
     <style dangerouslySetInnerHTML={ghCornerStyle()} />

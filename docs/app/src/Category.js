@@ -15,28 +15,28 @@ export default (props) => {
     <Link to={"/" + tree}>↑ Back to top</Link>
     <CategoryInstructions />
 
-    <table class="summary">
+    <table className="summary">
     <thead>
     <tr>
     <th>Name<br/>ID<br/>Countries</th>
     <th>Count</th>
     <th>OpenStreetMap Tags</th>
     <th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
-    <th class="logo">Commons Logo</th>
-    <th class="logo">Facebook Logo</th>
-    <th class="logo">Twitter Logo</th>
+    <th className="logo">Commons Logo</th>
+    <th className="logo">Facebook Logo</th>
+    <th className="logo">Twitter Logo</th>
     </tr>
     </thead>
 
     <tbody>
     <tr>
-    <td class="namesuggest"></td>
-    <td class="count"></td>
-    <td class="tags"></td>
-    <td class="wikidata"></td>
-    <td class="logo"></td>
-    <td class="logo"></td>
-    <td class="logo"></td>
+    <td className="namesuggest"></td>
+    <td className="count"></td>
+    <td className="tags"></td>
+    <td className="wikidata"></td>
+    <td className="logo"></td>
+    <td className="logo"></td>
+    <td className="logo"></td>
     </tr>
     </tbody>
 
