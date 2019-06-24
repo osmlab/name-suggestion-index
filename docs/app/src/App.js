@@ -14,12 +14,12 @@ const WIKIDATA = `${DIST}/wikidata.json`;
 export default () => {
   const tree = 'brands';
   const [names, namesLoading] = useFetch(NAMES);
-  const [brands, brandsLoading] = useFetch(BRANDS);
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
+  const [dict, dictLoading] = useBrands(BRANDS);
 
   const appData = {
     names: names,
-    brands: brands,
+    dict: dict,
     wikidata: wikidata
   };
 
@@ -33,9 +33,11 @@ export default () => {
     </>
   );
 
+
   function useFetch(url) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+
     async function fetchUrl() {
       const response = await fetch(url);
       const json = await response.json();
@@ -44,7 +46,52 @@ export default () => {
     }
 
     useEffect(() => { fetchUrl(); }, []);
-
     return [data, loading];
   }
+
+
+  // same as useFetch, but process brand data into a k-v dict
+  function useBrands(url) {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    async function fetchUrl() {
+      const response = await fetch(url);
+      const json = await response.json();
+      let obj = json.brands;
+      let dict = {};
+
+      // populate K-V dictionary
+      Object.keys(obj).forEach(kvnd => {
+        let kvndparts = kvnd.split('|', 2);
+        let kvparts = kvndparts[0].split('/', 2);
+        let k = kvparts[0];
+        let v = kvparts[1];
+
+        dict[k] = dict[k] || {};
+        dict[k][v] = dict[k][v] || {};
+        dict[k][v][kvnd] = sort(obj[kvnd]);
+
+        if (dict[k][v][kvnd].tags) {
+          dict[k][v][kvnd].tags = sort(obj[kvnd].tags);
+        }
+      });
+
+      setData(dict);
+      setLoading(false);
+    }
+
+    useEffect(() => { fetchUrl(); }, []);
+    return [data, loading];
+  }
+
+
+  function sort(obj) {
+    let sorted = {};
+    Object.keys(obj).sort().forEach(k => {
+      sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
+    });
+    return sorted;
+  }
+
 };

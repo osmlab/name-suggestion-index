@@ -31256,19 +31256,19 @@ var _default = function _default() {
       names = _useFetch2[0],
       namesLoading = _useFetch2[1];
 
-  var _useFetch3 = useFetch(BRANDS),
+  var _useFetch3 = useFetch(WIKIDATA),
       _useFetch4 = (0, _slicedToArray2.default)(_useFetch3, 2),
-      brands = _useFetch4[0],
-      brandsLoading = _useFetch4[1];
+      wikidata = _useFetch4[0],
+      wikidataLoading = _useFetch4[1];
 
-  var _useFetch5 = useFetch(WIKIDATA),
-      _useFetch6 = (0, _slicedToArray2.default)(_useFetch5, 2),
-      wikidata = _useFetch6[0],
-      wikidataLoading = _useFetch6[1];
+  var _useBrands = useBrands(BRANDS),
+      _useBrands2 = (0, _slicedToArray2.default)(_useBrands, 2),
+      dict = _useBrands2[0],
+      dictLoading = _useBrands2[1];
 
   var appData = {
     names: names,
-    brands: brands,
+    dict: dict,
     wikidata: wikidata
   };
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
@@ -31335,6 +31335,84 @@ var _default = function _default() {
       fetchUrl();
     }, []);
     return [data, loading];
+  } // same as useFetch, but process brand data into a k-v dict
+
+
+  function useBrands(url) {
+    var _useState5 = (0, _react.useState)([]),
+        _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+        data = _useState6[0],
+        setData = _useState6[1];
+
+    var _useState7 = (0, _react.useState)(true),
+        _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
+        loading = _useState8[0],
+        setLoading = _useState8[1];
+
+    function fetchUrl() {
+      return _fetchUrl2.apply(this, arguments);
+    }
+
+    function _fetchUrl2() {
+      _fetchUrl2 = (0, _asyncToGenerator2.default)(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee2() {
+        var response, json, obj, dict;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return fetch(url);
+
+              case 2:
+                response = _context2.sent;
+                _context2.next = 5;
+                return response.json();
+
+              case 5:
+                json = _context2.sent;
+                obj = json.brands;
+                dict = {}; // populate K-V dictionary
+
+                Object.keys(obj).forEach(function (kvnd) {
+                  var kvndparts = kvnd.split('|', 2);
+                  var kvparts = kvndparts[0].split('/', 2);
+                  var k = kvparts[0];
+                  var v = kvparts[1];
+                  dict[k] = dict[k] || {};
+                  dict[k][v] = dict[k][v] || {};
+                  dict[k][v][kvnd] = sort(obj[kvnd]);
+
+                  if (dict[k][v][kvnd].tags) {
+                    dict[k][v][kvnd].tags = sort(obj[kvnd].tags);
+                  }
+                });
+                setData(dict);
+                setLoading(false);
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+      return _fetchUrl2.apply(this, arguments);
+    }
+
+    (0, _react.useEffect)(function () {
+      fetchUrl();
+    }, []);
+    return [data, loading];
+  }
+
+  function sort(obj) {
+    var sorted = {};
+    Object.keys(obj).sort().forEach(function (k) {
+      sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
+    });
+    return sorted;
   }
 };
 
