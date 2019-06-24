@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default () => (
   <>
   <div class="instructions"><span class="hi">👋</span>Hi! This project is called <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/">name-suggestion-index</a>.<br/>
