@@ -31065,7 +31065,181 @@ function CategoryInstructions() {
 }
 
 ;
-},{"react":"../../node_modules/react/index.js"}],"src/Category.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js"}],"src/CategoryRow.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = CategoryRow;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CategoryRow(props) {
+  var data = props.data;
+
+  if (data.isLoading()) {
+    return;
+  }
+
+  var kvnd = props.kvnd;
+  var entry = props.entry;
+  var k = props.k;
+  var v = props.v;
+  var slug = slugify(kvnd);
+  var count = data.names[kvnd] || '< 50';
+  var tags = entry.tags || {};
+  var qid = tags['brand:wikidata'];
+  var wd = data.wikidata[qid] || {};
+  var label = wd.label || '';
+  var description = wd.description ? '"' + wd.description + '"' : '';
+  var identities = wd.identities || {};
+  var logos = wd.logos || {};
+  return _react.default.createElement("tr", null, _react.default.createElement("td", {
+    className: "namesuggest"
+  }, _react.default.createElement("h3", {
+    className: "slug",
+    id: slug
+  }, _react.default.createElement(_reactRouterDom.Link, {
+    to: "#".concat(slug)
+  }, "#"), _react.default.createElement("span", {
+    className: "anchor"
+  }, tags.name)), _react.default.createElement("div", {
+    className: "nsikey"
+  }, _react.default.createElement("pre", null, "'", kvnd, "'")), _react.default.createElement("div", {
+    className: "countries"
+  }, countries(entry.countryCodes)), _react.default.createElement("div", {
+    className: "viewlink"
+  }, overpassLink(k, v, tags.name))), _react.default.createElement("td", {
+    className: "count"
+  }, count), _react.default.createElement("td", {
+    className: "tags"
+  }, _react.default.createElement("pre", {
+    className: "tags"
+  }, displayTags(tags))), _react.default.createElement("td", {
+    className: "wikidata"
+  }, _react.default.createElement("h3", null, label), _react.default.createElement("span", null, description), _react.default.createElement("br", null), wdLink(tags['brand:wikidata']), siteLink(identities.website), socialLinks(identities)), _react.default.createElement("td", {
+    className: "logo"
+  }, logo(logos.wikidata)), _react.default.createElement("td", {
+    className: "logo"
+  }, fblogo(identities.facebook, logos.facebook)), _react.default.createElement("td", {
+    className: "logo"
+  }, logo(logos.twitter)));
+
+  function countries(countryCodes) {
+    var cclist = (countryCodes || []).join(', ');
+    return cclist && _react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", _react.default.createElement("code", null, cclist));
+  }
+
+  function overpassLink(k, v, n) {
+    var q = encodeURIComponent("[out:json][timeout:60];\n(nwr[\"".concat(k, "\"=\"").concat(v, "\"][\"name\"=\"").concat(n, "\"];);\nout body;\n>;\nout skel qt;"));
+    var href = "https://overpass-turbo.eu/?Q=".concat(q, "&R");
+    return _react.default.createElement(_reactRouterDom.Link, {
+      target: "_blank",
+      to: href
+    }, "View on Overpass Turbo");
+  }
+
+  function fblogo(username, src) {
+    return username && !src ? _react.default.createElement("span", null, "Profile restricted") : logo(src);
+  }
+
+  function logo(src) {
+    return src && _react.default.createElement("img", {
+      className: "logo",
+      src: src
+    });
+  }
+
+  function wdLink(qid) {
+    var href = 'https://www.wikidata.org/wiki/' + qid;
+    return qid && _react.default.createElement("div", {
+      className: "viewlink"
+    }, _react.default.createElement(_reactRouterDom.Link, {
+      target: "_blank",
+      to: href
+    }, qid));
+  }
+
+  function siteLink(href) {
+    return href && _react.default.createElement("div", {
+      className: "viewlink"
+    }, _react.default.createElement(_reactRouterDom.Link, {
+      target: "_blank",
+      to: href
+    }, href));
+  }
+
+  function socialLinks(identities) {
+    var links = [];
+    var href;
+
+    if (identities.facebook) {
+      href = 'https://www.facebook.com/' + identities.facebook;
+      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-facebook-square\"></i></a>"));
+    }
+
+    if (identities.twitter) {
+      href = 'https://twitter.com/' + identities.twitter;
+      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-twitter-square\"></i></a>"));
+    }
+
+    if (identities.instagram) {
+      href = 'https://www.instagram.com/' + identities.instagram;
+      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-instagram\"></i></a>"));
+    }
+
+    if (identities.pinterest) {
+      href = 'https://www.pinterest.com/' + identities.pinterest;
+      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-pinterest-square\"></i></a>"));
+    }
+
+    if (identities.youtube) {
+      href = 'https://www.youtube.com/channel/' + identities.youtube;
+      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-youtube-square\"></i></a>"));
+    }
+
+    if (identities.vk) {
+      href = 'https://vk.com/' + identities.vk;
+      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-vk\"></i></a>"));
+    }
+
+    if (identities.snapchat) {
+      href = 'https://www.snapchat.com/add/' + identities.snapchat;
+      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-snapchat-square\"></i></a>"));
+    }
+
+    if (identities.linkedin) {
+      href = 'https://www.linkedin.com/company/' + identities.linkedin;
+      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-linkedin\"></i></a>"));
+    }
+
+    return links.length ? '<div className="sociallinks">' + links.join('') + '</div>' : '';
+  }
+
+  function displayTags(tags) {
+    var result = '';
+    Object.keys(tags).forEach(function (k) {
+      result += "\n\"".concat(k, "\": \"").concat(tags[k], "\"");
+    });
+    return result;
+  }
+
+  function slugify(text) {
+    return text.toString().toLowerCase().replace(/\s+/g, '-') // Replace spaces with -
+    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/^-+/, '') // Trim - from start of text
+    .replace(/-+$/, ''); // Trim - from end of text
+  }
+}
+
+;
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"src/Category.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31073,11 +31247,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Category;
 
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
 var _react = _interopRequireDefault(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
 var _CategoryInstructions = _interopRequireDefault(require("./CategoryInstructions"));
+
+var _CategoryRow = _interopRequireDefault(require("./CategoryRow"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31085,6 +31263,33 @@ function Category(props) {
   var tree = props.match.params.tree;
   var k = props.match.params.k;
   var v = props.match.params.v;
+  var data = props.data;
+
+  if (data.isLoading()) {
+    return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
+      to: "/" + tree
+    }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("div", {
+      className: "summary"
+    }, "Please wait..."));
+  }
+
+  var entries = data.dict[k][v];
+
+  if (!entries) {
+    return _react.default.createElement("div", null, "No entries for ", k, "/", v, ".");
+  }
+
+  var rows = Object.keys(entries).map(function (kvnd) {
+    var entry = entries[kvnd];
+    return _react.default.createElement(_CategoryRow.default, (0, _extends2.default)({
+      key: kvnd
+    }, props, {
+      entry: entry,
+      kvnd: kvnd,
+      k: k,
+      v: v
+    }));
+  });
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
     to: "/" + tree
   }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("table", {
@@ -31095,25 +31300,11 @@ function Category(props) {
     className: "logo"
   }, "Facebook Logo"), _react.default.createElement("th", {
     className: "logo"
-  }, "Twitter Logo"))), _react.default.createElement("tbody", null, _react.default.createElement("tr", null, _react.default.createElement("td", {
-    className: "namesuggest"
-  }), _react.default.createElement("td", {
-    className: "count"
-  }), _react.default.createElement("td", {
-    className: "tags"
-  }), _react.default.createElement("td", {
-    className: "wikidata"
-  }), _react.default.createElement("td", {
-    className: "logo"
-  }), _react.default.createElement("td", {
-    className: "logo"
-  }), _react.default.createElement("td", {
-    className: "logo"
-  })))));
+  }, "Twitter Logo"))), _react.default.createElement("tbody", null, rows)));
 }
 
 ;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./CategoryInstructions":"src/CategoryInstructions.js"}],"src/Footer.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/extends":"../../node_modules/@babel/runtime/helpers/extends.js","react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./CategoryInstructions":"src/CategoryInstructions.js","./CategoryRow":"src/CategoryRow.js"}],"src/Footer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31203,21 +31394,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Overview(props) {
   var tree = props.match.params.tree;
-  var wikidata = props.wikidata.wikidata;
-  var dict = props.dict;
+  var data = props.data;
+
+  if (data.isLoading()) {
+    return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, tree, "/"), _react.default.createElement(_OverviewInstructions.default, null), _react.default.createElement("div", {
+      className: "container"
+    }, "Please wait..."));
+  }
+
   var items = [];
-  Object.keys(dict).forEach(function (k) {
-    var entry = dict[k];
+  Object.keys(data.dict).forEach(function (k) {
+    var entry = data.dict[k];
     Object.keys(entry).forEach(function (v) {
       var kv = "".concat(k, "/").concat(v);
-      var keys = Object.keys(dict[k][v]);
+      var keys = Object.keys(data.dict[k][v]);
       var complete = 0;
       var count = keys.length;
       keys.forEach(function (kvnd) {
-        var entry = dict[k][v][kvnd];
+        var entry = data.dict[k][v][kvnd];
         var tags = entry.tags || {};
         var qid = tags['brand:wikidata'];
-        var wd = wikidata[qid] || {};
+        var wd = data.wikidata[qid] || {};
         var logos = wd.logos || {};
 
         if (Object.keys(logos).length) {
@@ -31292,20 +31489,27 @@ function App() {
       dictLoading = _useBrands2[1];
 
   var appData = {
+    isLoading: function isLoading() {
+      return namesLoading || wikidataLoading || dictLoading;
+    },
     names: names,
     dict: dict,
-    wikidata: wikidata
+    wikidata: wikidata.wikidata
   };
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/:tree",
     render: function render(routeProps) {
-      return _react.default.createElement(_Overview.default, (0, _extends2.default)({}, routeProps, appData));
+      return _react.default.createElement(_Overview.default, (0, _extends2.default)({}, routeProps, {
+        data: appData
+      }));
     }
   }), _react.default.createElement(_reactRouterDom.Route, {
     path: "/:tree/:k/:v",
     render: function render(routeProps) {
-      return _react.default.createElement(_Category.default, (0, _extends2.default)({}, routeProps, appData));
+      return _react.default.createElement(_Category.default, (0, _extends2.default)({}, routeProps, {
+        data: appData
+      }));
     }
   })), _react.default.createElement(_Footer.default, null));
 

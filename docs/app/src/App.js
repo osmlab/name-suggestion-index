@@ -18,16 +18,17 @@ export default function App() {
   const [dict, dictLoading] = useBrands(BRANDS);
 
   const appData = {
+    isLoading: () => (namesLoading || wikidataLoading || dictLoading),
     names: names,
     dict: dict,
-    wikidata: wikidata
+    wikidata: wikidata.wikidata
   };
 
   return (
     <>
     <Switch>
-      <Route exact path="/:tree" render={ routeProps => <Overview {...routeProps} {...appData} /> } />
-      <Route path="/:tree/:k/:v" render={ routeProps => <Category {...routeProps} {...appData} /> } />
+      <Route exact path="/:tree" render={ routeProps => <Overview {...routeProps} data={appData} /> } />
+      <Route path="/:tree/:k/:v" render={ routeProps => <Category {...routeProps} data={appData} /> } />
     </Switch>
     <Footer />
     </>

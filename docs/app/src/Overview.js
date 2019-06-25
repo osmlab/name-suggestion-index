@@ -6,23 +6,34 @@ import OverviewInstructions from "./OverviewInstructions";
 
 export default function Overview(props) {
   const tree = props.match.params.tree;
-  const wikidata = props.wikidata.wikidata;
-  const dict = props.dict;
-  const items = [];
+  const data = props.data;
 
-  Object.keys(dict).forEach(k => {
-    let entry = dict[k];
+  if (data.isLoading()) {
+    return (
+      <>
+      <h1>{tree}/</h1>
+      <OverviewInstructions />
+      <div className="container">
+      Please wait...
+      </div>
+      </>
+    );
+  }
+
+  const items = [];
+  Object.keys(data.dict).forEach(k => {
+    let entry = data.dict[k];
     Object.keys(entry).forEach(v => {
       let kv = `${k}/${v}`;
-      let keys = Object.keys(dict[k][v]);
+      let keys = Object.keys(data.dict[k][v]);
       let complete = 0;
       let count = keys.length;
 
       keys.forEach(kvnd => {
-          let entry = dict[k][v][kvnd];
+          let entry = data.dict[k][v][kvnd];
           let tags = entry.tags || {};
           let qid = tags['brand:wikidata'];
-          let wd = wikidata[qid] || {};
+          let wd = data.wikidata[qid] || {};
           let logos = wd.logos || {};
           if (Object.keys(logos).length) {
               complete++;
