@@ -31203,13 +31203,38 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Overview(props) {
   var tree = props.match.params.tree;
-  var k = 'amenity';
-  var v = 'bank';
+  var wikidata = props.wikidata.wikidata;
+  var dict = props.dict;
+  var items = [];
+  Object.keys(dict).forEach(function (k) {
+    var entry = dict[k];
+    Object.keys(entry).forEach(function (v) {
+      var kv = "".concat(k, "/").concat(v);
+      var keys = Object.keys(dict[k][v]);
+      var complete = 0;
+      var count = keys.length;
+      keys.forEach(function (kvnd) {
+        var entry = dict[k][v][kvnd];
+        var tags = entry.tags || {};
+        var qid = tags['brand:wikidata'];
+        var wd = wikidata[qid] || {};
+        var logos = wd.logos || {};
+
+        if (Object.keys(logos).length) {
+          complete++;
+        }
+      });
+      items.push(_react.default.createElement("div", {
+        key: kv,
+        className: "child"
+      }, _react.default.createElement(_reactRouterDom.Link, {
+        to: "".concat(tree, "/").concat(kv)
+      }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
+    });
+  });
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, tree, "/"), _react.default.createElement(_OverviewInstructions.default, null), _react.default.createElement("div", {
     className: "container"
-  }, _react.default.createElement(_reactRouterDom.Link, {
-    to: [tree, k, v].join('/')
-  }, [k, v].join('/'))));
+  }, items));
 }
 
 ;
