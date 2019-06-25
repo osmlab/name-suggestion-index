@@ -105,7 +105,6 @@ Name lists:
 ### Other commands
 
 * `npm run wikidata` - Fetch useful data from Wikidata - labels, descriptions, logos, etc.
-* `npm run docs` - Updates the index summary pages
 * `npm run` - Lists other available tools
 
 ### Updating `dist/names_all.json` from planet
