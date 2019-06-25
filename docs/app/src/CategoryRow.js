@@ -1,5 +1,7 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+
+import CategoryRowSocialLinks from "./CategoryRowSocialLinks";
 
 
 export default function CategoryRow(props) {
@@ -41,7 +43,7 @@ export default function CategoryRow(props) {
       <span>{description}</span><br/>
       { wdLink(tags['brand:wikidata']) }
       { siteLink(identities.website) }
-      { socialLinks(identities) }
+      <CategoryRowSocialLinks {...identities} />
     </td>
     <td className="logo">{ logo(logos.wikidata) }</td>
     <td className="logo">{ fblogo(identities.facebook, logos.facebook) }</td>
@@ -97,46 +99,6 @@ out skel qt;`);
       <Link target="_blank" to={href}>{href}</Link>
       </div>
     );
-  }
-
-  function socialLinks(identities) {
-    let links = [];
-    let href;
-
-    if (identities.facebook) {
-      href = 'https://www.facebook.com/' + identities.facebook;
-      links.push(`<a target="_blank" href="${href}"><i className="fab fa-lg fa-facebook-square"></i></a>`);
-    }
-    if (identities.twitter) {
-      href = 'https://twitter.com/' + identities.twitter;
-      links.push(`<a target="_blank" href="${href}"><i className="fab fa-lg fa-twitter-square"></i></a>`);
-    }
-    if (identities.instagram) {
-      href = 'https://www.instagram.com/' + identities.instagram;
-      links.push(`<a target="_blank" href="${href}"><i className="fab fa-lg fa-instagram"></i></a>`);
-    }
-    if (identities.pinterest) {
-      href = 'https://www.pinterest.com/' + identities.pinterest;
-      links.push(`<a target="_blank" href="${href}"><i className="fab fa-lg fa-pinterest-square"></i></a>`);
-    }
-    if (identities.youtube) {
-      href = 'https://www.youtube.com/channel/' + identities.youtube;
-      links.push(`<a target="_blank" href="${href}"><i className="fab fa-lg fa-youtube-square"></i></a>`);
-    }
-    if (identities.vk) {
-      href = 'https://vk.com/' + identities.vk;
-      links.push(`<a target="_blank" href="${href}"><i className="fab fa-lg fa-vk"></i></a>`);
-    }
-    if (identities.snapchat) {
-      href = 'https://www.snapchat.com/add/' + identities.snapchat;
-      links.push(`<a target="_blank" href="${href}"><i className="fab fa-lg fa-snapchat-square"></i></a>`);
-    }
-    if (identities.linkedin) {
-      href = 'https://www.linkedin.com/company/' + identities.linkedin;
-      links.push(`<a target="_blank" href="${href}"><i className="fab fa-lg fa-linkedin"></i></a>`);
-    }
-
-    return links.length ? '<div className="sociallinks">' + links.join('') + '</div>' : '';
   }
 
   function displayTags(tags) {

@@ -31065,7 +31065,119 @@ function CategoryInstructions() {
 }
 
 ;
-},{"react":"../../node_modules/react/index.js"}],"src/CategoryRow.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js"}],"src/CategoryRowSocialLinks.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = CategoryRowSocialitems;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CategoryRowSocialitems(props) {
+  var items = [];
+  var href;
+
+  if (props.facebook) {
+    href = 'https://www.facebook.com/' + props.facebook;
+    items.push(_react.default.createElement(_reactRouterDom.Link, {
+      key: "facebook",
+      target: "_blank",
+      to: href
+    }, _react.default.createElement("i", {
+      className: "fab fa-lg fa-facebook-square"
+    })));
+  }
+
+  if (props.twitter) {
+    href = 'https://twitter.com/' + props.twitter;
+    items.push(_react.default.createElement(_reactRouterDom.Link, {
+      key: "twitter",
+      target: "_blank",
+      to: href
+    }, _react.default.createElement("i", {
+      className: "fab fa-lg fa-twitter-square"
+    })));
+  }
+
+  if (props.instagram) {
+    href = 'https://www.instagram.com/' + props.instagram;
+    items.push(_react.default.createElement(_reactRouterDom.Link, {
+      key: "instagram",
+      target: "_blank",
+      to: href
+    }, _react.default.createElement("i", {
+      className: "fab fa-lg fa-instagram"
+    })));
+  }
+
+  if (props.pinterest) {
+    href = 'https://www.pinterest.com/' + props.pinterest;
+    items.push(_react.default.createElement(_reactRouterDom.Link, {
+      key: "pinterest",
+      target: "_blank",
+      to: href
+    }, _react.default.createElement("i", {
+      className: "fab fa-lg fa-pinterest-square"
+    })));
+  }
+
+  if (props.youtube) {
+    href = 'https://www.youtube.com/channel/' + props.youtube;
+    items.push(_react.default.createElement(_reactRouterDom.Link, {
+      key: "youtube",
+      target: "_blank",
+      to: href
+    }, _react.default.createElement("i", {
+      className: "fab fa-lg fa-youtube-square"
+    })));
+  }
+
+  if (props.vk) {
+    href = 'https://vk.com/' + props.vk;
+    items.push(_react.default.createElement(_reactRouterDom.Link, {
+      key: "vk",
+      target: "_blank",
+      to: href
+    }, _react.default.createElement("i", {
+      className: "fab fa-lg fa-vk"
+    })));
+  }
+
+  if (props.snapchat) {
+    href = 'https://www.snapchat.com/add/' + props.snapchat;
+    items.push(_react.default.createElement(_reactRouterDom.Link, {
+      key: "snapchat",
+      target: "_blank",
+      to: href
+    }, _react.default.createElement("i", {
+      className: "fab fa-lg fa-snapchat-square"
+    })));
+  }
+
+  if (props.linkedin) {
+    href = 'https://www.linkedin.com/company/' + props.linkedin;
+    items.push(_react.default.createElement(_reactRouterDom.Link, {
+      key: "linkedin",
+      target: "_blank",
+      to: href
+    }, _react.default.createElement("i", {
+      className: "fab fa-lg fa-linkedin"
+    })));
+  }
+
+  return !!items.length && _react.default.createElement("div", {
+    className: "sociallinks"
+  }, items);
+}
+
+;
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"src/CategoryRow.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31076,6 +31188,8 @@ exports.default = CategoryRow;
 var _react = _interopRequireDefault(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
+
+var _CategoryRowSocialLinks = _interopRequireDefault(require("./CategoryRowSocialLinks"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31122,7 +31236,7 @@ function CategoryRow(props) {
     className: "tags"
   }, displayTags(tags))), _react.default.createElement("td", {
     className: "wikidata"
-  }, _react.default.createElement("h3", null, label), _react.default.createElement("span", null, description), _react.default.createElement("br", null), wdLink(tags['brand:wikidata']), siteLink(identities.website), socialLinks(identities)), _react.default.createElement("td", {
+  }, _react.default.createElement("h3", null, label), _react.default.createElement("span", null, description), _react.default.createElement("br", null), wdLink(tags['brand:wikidata']), siteLink(identities.website), _react.default.createElement(_CategoryRowSocialLinks.default, identities)), _react.default.createElement("td", {
     className: "logo"
   }, logo(logos.wikidata)), _react.default.createElement("td", {
     className: "logo"
@@ -31174,53 +31288,6 @@ function CategoryRow(props) {
     }, href));
   }
 
-  function socialLinks(identities) {
-    var links = [];
-    var href;
-
-    if (identities.facebook) {
-      href = 'https://www.facebook.com/' + identities.facebook;
-      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-facebook-square\"></i></a>"));
-    }
-
-    if (identities.twitter) {
-      href = 'https://twitter.com/' + identities.twitter;
-      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-twitter-square\"></i></a>"));
-    }
-
-    if (identities.instagram) {
-      href = 'https://www.instagram.com/' + identities.instagram;
-      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-instagram\"></i></a>"));
-    }
-
-    if (identities.pinterest) {
-      href = 'https://www.pinterest.com/' + identities.pinterest;
-      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-pinterest-square\"></i></a>"));
-    }
-
-    if (identities.youtube) {
-      href = 'https://www.youtube.com/channel/' + identities.youtube;
-      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-youtube-square\"></i></a>"));
-    }
-
-    if (identities.vk) {
-      href = 'https://vk.com/' + identities.vk;
-      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-vk\"></i></a>"));
-    }
-
-    if (identities.snapchat) {
-      href = 'https://www.snapchat.com/add/' + identities.snapchat;
-      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-snapchat-square\"></i></a>"));
-    }
-
-    if (identities.linkedin) {
-      href = 'https://www.linkedin.com/company/' + identities.linkedin;
-      links.push("<a target=\"_blank\" href=\"".concat(href, "\"><i className=\"fab fa-lg fa-linkedin\"></i></a>"));
-    }
-
-    return links.length ? '<div className="sociallinks">' + links.join('') + '</div>' : '';
-  }
-
   function displayTags(tags) {
     var result = '';
     Object.keys(tags).forEach(function (k) {
@@ -31239,7 +31306,7 @@ function CategoryRow(props) {
 }
 
 ;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"src/Category.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./CategoryRowSocialLinks":"src/CategoryRowSocialLinks.js"}],"src/Category.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31264,19 +31331,21 @@ function Category(props) {
   var k = props.match.params.k;
   var v = props.match.params.v;
   var data = props.data;
+  var entries = data.dict && data.dict[k] && data.dict[k][v];
+  var message;
 
   if (data.isLoading()) {
+    message = "Loading, please wait...";
+  } else if (!entries) {
+    message = "No entries for ".concat(k, "/").concat(v, ".");
+  }
+
+  if (message) {
     return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
       to: "/" + tree
     }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("div", {
       className: "summary"
-    }, "Please wait..."));
-  }
-
-  var entries = data.dict[k][v];
-
-  if (!entries) {
-    return _react.default.createElement("div", null, "No entries for ", k, "/", v, ".");
+    }, message));
   }
 
   var rows = Object.keys(entries).map(function (kvnd) {
@@ -31395,11 +31464,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Overview(props) {
   var tree = props.match.params.tree;
   var data = props.data;
+  var message;
 
   if (data.isLoading()) {
+    message = "Loading, please wait...";
+  } else if (tree !== 'brands') {
+    // only one supported for now
+    message = "No entries for ".concat(tree, ".");
+  }
+
+  if (message) {
     return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, tree, "/"), _react.default.createElement(_OverviewInstructions.default, null), _react.default.createElement("div", {
       className: "container"
-    }, "Please wait..."));
+    }, message));
   }
 
   var items = [];
@@ -31425,7 +31502,7 @@ function Overview(props) {
         key: kv,
         className: "child"
       }, _react.default.createElement(_reactRouterDom.Link, {
-        to: "".concat(tree, "/").concat(kv)
+        to: "/".concat(tree, "/").concat(kv)
       }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
     });
   });
@@ -31505,6 +31582,15 @@ function App() {
       }));
     }
   }), _react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
+    path: "/:tree/:k",
+    render: function render(routeProps) {
+      return _react.default.createElement(_Overview.default, (0, _extends2.default)({}, routeProps, {
+        data: appData
+      }));
+    }
+  }), _react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
     path: "/:tree/:k/:v",
     render: function render(routeProps) {
       return _react.default.createElement(_Category.default, (0, _extends2.default)({}, routeProps, {

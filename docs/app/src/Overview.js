@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import OverviewInstructions from "./OverviewInstructions";
 
@@ -8,13 +8,20 @@ export default function Overview(props) {
   const tree = props.match.params.tree;
   const data = props.data;
 
+  let message;
   if (data.isLoading()) {
+    message = "Loading, please wait...";
+  } else if (tree !== 'brands') {     // only one supported for now
+    message = `No entries for ${tree}.`;
+  }
+
+  if (message) {
     return (
       <>
       <h1>{tree}/</h1>
       <OverviewInstructions />
       <div className="container">
-      Please wait...
+      {message}
       </div>
       </>
     );
@@ -42,7 +49,7 @@ export default function Overview(props) {
 
       items.push(
         <div key={kv} className="child">
-        <Link to={`${tree}/${kv}`}>{`${kv} (${complete}/${count})`}</Link>
+        <Link to={`/${tree}/${kv}`}>{`${kv} (${complete}/${count})`}</Link>
         </div>
       );
 

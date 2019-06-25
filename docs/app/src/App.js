@@ -5,7 +5,7 @@ import Category from "./Category";
 import Footer from "./Footer";
 import Overview from "./Overview";
 
-const DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist"
+const DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist";
 const NAMES = `${DIST}/names_keep.json`;
 const BRANDS = `${DIST}/brands.json`;
 const WIKIDATA = `${DIST}/wikidata.json`;
@@ -28,7 +28,8 @@ export default function App() {
     <>
     <Switch>
       <Route exact path="/:tree" render={ routeProps => <Overview {...routeProps} data={appData} /> } />
-      <Route path="/:tree/:k/:v" render={ routeProps => <Category {...routeProps} data={appData} /> } />
+      <Route exact path="/:tree/:k" render={ routeProps => <Overview {...routeProps} data={appData} /> } />
+      <Route exact path="/:tree/:k/:v" render={ routeProps => <Category {...routeProps} data={appData} /> } />
     </Switch>
     <Footer />
     </>

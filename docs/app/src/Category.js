@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import CategoryInstructions from "./CategoryInstructions";
 import CategoryRow from "./CategoryRow";
@@ -10,24 +10,25 @@ export default function Category(props) {
   const k = props.match.params.k;
   const v = props.match.params.v;
   const data = props.data;
+  const entries = data.dict && data.dict[k] && data.dict[k][v];
 
+  let message;
   if (data.isLoading()) {
+    message = "Loading, please wait...";
+  } else if (!entries) {
+    message = `No entries for ${k}/${v}.`;
+  }
+
+  if (message) {
     return (
       <>
       <h2>{tree}/{k}/{v}</h2>
       <Link to={"/" + tree}>↑ Back to top</Link>
       <CategoryInstructions />
       <div className="summary">
-      Please wait...
+      {message}
       </div>
       </>
-    );
-  }
-
-  const entries = data.dict[k][v];
-  if (!entries) {
-    return (
-      <div>No entries for {k}/{v}.</div>
     );
   }
 
