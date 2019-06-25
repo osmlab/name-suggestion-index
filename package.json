@@ -5,6 +5,7 @@
   "repository": "osmlab/name-suggestion-index",
   "author": "Bryan Housel <bryan@mapbox.com>",
   "description": "Canonical common brand names for OpenStreetMap",
+  "homepage": "http://osmlab.github.io/name-suggestion-index/brands",
   "keywords": [
     "OpenStreetMap",
     "OSM",
@@ -18,6 +19,8 @@
   "module": "index.mjs",
   "scripts": {
     "dist": "node build_dist.js && rollup -c",
+    "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --out-dir docs",
+    "docstart": "parcel serve ./app/index.html --no-source-maps --no-hmr --no-autoinstall --out-dir docs",
     "build": "node build_brands",
     "lint": "eslint *.js lib/*.js",
     "logos": "node build_wikidata",
@@ -25,9 +28,7 @@
     "validate": "node validate",
     "wikicheck": "node check_wikiTags",
     "wikidata": "node build_wikidata",
-    "wikimatch": "node match_wikiTags",
-    "startdoc": "parcel serve ./docs/app/index.html --no-source-maps --no-hmr --no-autoinstall --out-dir docs/app/public",
-    "builddoc": "parcel build ./docs/app/index.html --no-source-maps --no-content-hash --out-dir docs/app/public"
+    "wikimatch": "node match_wikiTags"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

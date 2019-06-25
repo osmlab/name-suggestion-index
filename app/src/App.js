@@ -16,6 +16,7 @@ export default function App() {
   const [names, namesLoading] = useFetch(NAMES);
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
   const [dict, dictLoading] = useBrands(BRANDS);
+  const pathroot = process.env.PUBLIC_URL || '';
 
   const appData = {
     isLoading: () => (namesLoading || wikidataLoading || dictLoading),
@@ -27,9 +28,9 @@ export default function App() {
   return (
     <>
     <Switch>
-      <Route exact path="/:tree" render={ routeProps => <Overview {...routeProps} data={appData} /> } />
-      <Route exact path="/:tree/:k" render={ routeProps => <Overview {...routeProps} data={appData} /> } />
-      <Route exact path="/:tree/:k/:v" render={ routeProps => <Category {...routeProps} data={appData} /> } />
+      <Route exact path={ pathroot + '/:tree' } render={ routeProps => <Overview {...routeProps} data={appData} /> } />
+      <Route exact path={ pathroot + '/:tree/:k' } render={ routeProps => <Overview {...routeProps} data={appData} /> } />
+      <Route exact path={ pathroot + '/:tree/:k/:v' } render={ routeProps => <Category {...routeProps} data={appData} /> } />
     </Switch>
     <Footer />
     </>
