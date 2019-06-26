@@ -5849,7 +5849,9 @@ function Footer() {
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
     className: "footer"
-  }, _react.default.createElement("a", {
+  }, _react.default.createElement("div", {
+    class: "timestamp"
+  }, "\xA0"), _react.default.createElement("a", {
     href: "https://github.com/osmlab/name-suggestion-index/",
     className: "github-corner",
     "aria-label": "View on GitHub"
