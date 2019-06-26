@@ -16,7 +16,7 @@ in OpenStreetMap.
 ### Browse the index
 
 You can browse the index at
-http://osmlab.github.io/name-suggestion-index/brands
+http://osmlab.github.io/name-suggestion-index
 to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 

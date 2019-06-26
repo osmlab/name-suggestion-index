@@ -12,7 +12,7 @@
 * Edit Wikidata - [show me](#memo--edit-wikidata)
 
 Tip: You can browse the index at
-[http://osmlab.github.io/name-suggestion-index/brands](http://osmlab.github.io/name-suggestion-index/brands)
+[http://osmlab.github.io/name-suggestion-index](http://osmlab.github.io/name-suggestion-index)
 to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
@@ -484,7 +484,7 @@ nwr["name"="かっぱ寿司"]["amenity"="fast_food"];
 out center;
 ```
 
-Tip: The browsable index at http://osmlab.github.io/name-suggestion-index/brands
+Tip: The browsable index at http://osmlab.github.io/name-suggestion-index
 can open Overpass Turbo with the query already set up for you.
 
 
@@ -505,7 +505,7 @@ Editing brand pages on Wikidata is something that anybody can do.  It helps not 
 - Translate the labels and descriptions to more languages.
 - Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
 
-Tip: The browsable index at http://osmlab.github.io/name-suggestion-index/brands
+Tip: The browsable index at http://osmlab.github.io/name-suggestion-index
 can show you where the Wikidata information is missing or incomplete.
 
 #### Adding properties to Wikidata
