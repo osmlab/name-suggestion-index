@@ -19,8 +19,8 @@
   "module": "index.mjs",
   "scripts": {
     "dist": "node build_dist.js && rollup -c",
-    "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --out-dir docs",
-    "docstart": "parcel serve ./app/index.html --no-source-maps --no-hmr --no-autoinstall --out-dir docs",
+    "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --no-minify --public-url ./ --out-dir docs",
+    "docstart": "parcel serve ./app/index.html --no-source-maps --no-hmr --no-autoinstall --public-url ./ --out-dir docs",
     "build": "node build_brands",
     "lint": "eslint *.js lib/*.js",
     "logos": "node build_wikidata",
