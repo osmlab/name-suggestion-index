@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/whatwg-fetch/fetch.js":[function(require,module,exports) {
+})({"MCp7":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -660,7 +660,7 @@ if (!self.fetch) {
   self.Request = Request;
   self.Response = Response;
 }
-},{}],"../node_modules/object-assign/index.js":[function(require,module,exports) {
+},{}],"J4Nk":[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -1168,7 +1168,7 @@ var X = {
 },
     Z = Y && X || Y;
 module.exports = Z.default || Z;
-},{"object-assign":"../node_modules/object-assign/index.js"}],"1n8/":[function(require,module,exports) {
+},{"object-assign":"J4Nk"}],"1n8/":[function(require,module,exports) {
 'use strict';
 
 if ("production" === 'production') {
@@ -1479,7 +1479,7 @@ x("38"):void 0;return Si(a,b,c,!1,d)},unmountComponentAtNode:function(a){Qi(a)?v
 X;X=!0;try{ki(a)}finally{(X=b)||W||Yh(1073741823,!1)}},__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{Events:[Ia,Ja,Ka,Ba.injectEventPluginsByName,pa,Qa,function(a){ya(a,Pa)},Eb,Fb,Dd,Da]}};function Ui(a,b){Qi(a)?void 0:x("299","unstable_createRoot");return new Pi(a,!0,null!=b&&!0===b.hydrate)}
 (function(a){var b=a.findFiberByHostInstance;return Te(n({},a,{overrideProps:null,currentDispatcherRef:Tb.ReactCurrentDispatcher,findHostInstanceByFiber:function(a){a=hd(a);return null===a?null:a.stateNode},findFiberByHostInstance:function(a){return b?b(a):null}}))})({findFiberByHostInstance:Ha,bundleType:0,version:"16.8.6",rendererPackageName:"react-dom"});var Wi={default:Vi},Xi=Wi&&Vi||Wi;module.exports=Xi.default||Xi;
 
-},{"react":"1n8/","object-assign":"../node_modules/object-assign/index.js","scheduler":"MDSO"}],"NKHc":[function(require,module,exports) {
+},{"react":"1n8/","object-assign":"J4Nk","scheduler":"MDSO"}],"NKHc":[function(require,module,exports) {
 'use strict';
 
 function checkDCE() {
@@ -1517,7 +1517,7 @@ if ("production" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.production.min.js":"i17t"}],"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":[function(require,module,exports) {
+},{"./cjs/react-dom.production.min.js":"i17t"}],"S11h":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1530,7 +1530,7 @@ function _inheritsLoose(subClass, superClass) {
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
 }
-},{}],"../node_modules/mini-create-react-context/node_modules/@babel/runtime/helpers/inheritsLoose.js":[function(require,module,exports) {
+},{}],"nWHr":[function(require,module,exports) {
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
@@ -1538,7 +1538,7 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 module.exports = _inheritsLoose;
-},{}],"../node_modules/prop-types/lib/ReactPropTypesSecret.js":[function(require,module,exports) {
+},{}],"Asjh":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -1618,7 +1618,7 @@ module.exports = function() {
   return ReactPropTypes;
 };
 
-},{"./lib/ReactPropTypesSecret":"../node_modules/prop-types/lib/ReactPropTypesSecret.js"}],"5D9O":[function(require,module,exports) {
+},{"./lib/ReactPropTypesSecret":"Asjh"}],"5D9O":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -1637,7 +1637,7 @@ if ("production" !== 'production') {
   // http://fb.me/prop-types-in-prod
   module.exports = require('./factoryWithThrowingShims')();
 }
-},{"./factoryWithThrowingShims":"wVGV"}],"../node_modules/gud/index.js":[function(require,module,exports) {
+},{"./factoryWithThrowingShims":"wVGV"}],"bHnc":[function(require,module,exports) {
 var global = arguments[3];
 'use strict';
 
@@ -1866,7 +1866,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
 var index = _react.default.createContext || createReactContext;
 var _default = index;
 exports.default = _default;
-},{"react":"1n8/","@babel/runtime/helpers/inheritsLoose":"../node_modules/mini-create-react-context/node_modules/@babel/runtime/helpers/inheritsLoose.js","prop-types":"5D9O","gud":"../node_modules/gud/index.js","tiny-warning":"sIbj"}],"../node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
+},{"react":"1n8/","@babel/runtime/helpers/inheritsLoose":"nWHr","prop-types":"5D9O","gud":"bHnc","tiny-warning":"sIbj"}],"SpjQ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1891,7 +1891,7 @@ function _extends() {
 
   return _extends.apply(this, arguments);
 }
-},{}],"../node_modules/resolve-pathname/index.js":[function(require,module,exports) {
+},{}],"7YO4":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1967,7 +1967,7 @@ function resolvePathname(to) {
 
 var _default = resolvePathname;
 exports.default = _default;
-},{}],"../node_modules/value-equal/index.js":[function(require,module,exports) {
+},{}],"t+Vk":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2967,12 +2967,12 @@ function createMemoryHistory(props) {
   };
   return history;
 }
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","resolve-pathname":"../node_modules/resolve-pathname/index.js","value-equal":"../node_modules/value-equal/index.js","tiny-warning":"sIbj","tiny-invariant":"1bfQ"}],"../node_modules/path-to-regexp/node_modules/isarray/index.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","resolve-pathname":"7YO4","value-equal":"t+Vk","tiny-warning":"sIbj","tiny-invariant":"1bfQ"}],"WQ3f":[function(require,module,exports) {
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],"../node_modules/path-to-regexp/index.js":[function(require,module,exports) {
+},{}],"Tvs4":[function(require,module,exports) {
 var isarray = require('isarray')
 
 /**
@@ -3400,7 +3400,7 @@ function pathToRegexp (path, keys, options) {
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
 
-},{"isarray":"../node_modules/path-to-regexp/node_modules/isarray/index.js"}],"RsE0":[function(require,module,exports) {
+},{"isarray":"WQ3f"}],"RsE0":[function(require,module,exports) {
 /** @license React v16.8.6
  * react-is.production.min.js
  *
@@ -3425,7 +3425,7 @@ if ("production" === 'production') {
 } else {
   module.exports = require('./cjs/react-is.development.js');
 }
-},{"./cjs/react-is.production.min.js":"RsE0"}],"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
+},{"./cjs/react-is.production.min.js":"RsE0"}],"3Vab":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3447,7 +3447,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   return target;
 }
-},{}],"../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js":[function(require,module,exports) {
+},{}],"89El":[function(require,module,exports) {
 'use strict';
 
 /**
@@ -4312,7 +4312,7 @@ if ("production" !== "production") {
     global[key] = "esm";
   }
 }
-},{"mini-create-react-context":"f/Iz","@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"1n8/","prop-types":"5D9O","tiny-warning":"sIbj","history":"/Wop","tiny-invariant":"1bfQ","path-to-regexp":"../node_modules/path-to-regexp/index.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","react-is":"H1RQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","hoist-non-react-statics":"../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"}],"/uc1":[function(require,module,exports) {
+},{"mini-create-react-context":"f/Iz","@babel/runtime/helpers/esm/inheritsLoose":"S11h","react":"1n8/","prop-types":"5D9O","tiny-warning":"sIbj","history":"/Wop","tiny-invariant":"1bfQ","path-to-regexp":"Tvs4","@babel/runtime/helpers/esm/extends":"SpjQ","react-is":"H1RQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"3Vab","hoist-non-react-statics":"89El"}],"/uc1":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4602,7 +4602,7 @@ if ("production" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"1n8/","react-router":"LI7H","history":"/Wop","prop-types":"5D9O","tiny-warning":"sIbj","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"1bfQ"}],"../node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/inheritsLoose":"S11h","react":"1n8/","react-router":"LI7H","history":"/Wop","prop-types":"5D9O","tiny-warning":"sIbj","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"3Vab","tiny-invariant":"1bfQ"}],"QVnC":[function(require,module,exports) {
 var global = arguments[3];
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -5326,7 +5326,7 @@ var global = arguments[3];
   })() || Function("return this")()
 );
 
-},{}],"../node_modules/regenerator-runtime/runtime-module.js":[function(require,module,exports) {
+},{}],"QYzI":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -5365,10 +5365,10 @@ if (hadRuntime) {
   }
 }
 
-},{"./runtime":"../node_modules/regenerator-runtime/runtime.js"}],"../node_modules/@babel/runtime/regenerator/index.js":[function(require,module,exports) {
+},{"./runtime":"QVnC"}],"PMvg":[function(require,module,exports) {
 module.exports = require("regenerator-runtime");
 
-},{"regenerator-runtime":"../node_modules/regenerator-runtime/runtime-module.js"}],"../node_modules/@babel/runtime/helpers/asyncToGenerator.js":[function(require,module,exports) {
+},{"regenerator-runtime":"QYzI"}],"agGE":[function(require,module,exports) {
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
     var info = gen[key](arg);
@@ -5406,7 +5406,7 @@ function _asyncToGenerator(fn) {
 }
 
 module.exports = _asyncToGenerator;
-},{}],"../node_modules/@babel/runtime/helpers/extends.js":[function(require,module,exports) {
+},{}],"3dLy":[function(require,module,exports) {
 function _extends() {
   module.exports = _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -5426,13 +5426,13 @@ function _extends() {
 }
 
 module.exports = _extends;
-},{}],"../node_modules/@babel/runtime/helpers/arrayWithHoles.js":[function(require,module,exports) {
+},{}],"OUZ9":[function(require,module,exports) {
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
 
 module.exports = _arrayWithHoles;
-},{}],"../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":[function(require,module,exports) {
+},{}],"9vK/":[function(require,module,exports) {
 function _iterableToArrayLimit(arr, i) {
   var _arr = [];
   var _n = true;
@@ -5460,13 +5460,13 @@ function _iterableToArrayLimit(arr, i) {
 }
 
 module.exports = _iterableToArrayLimit;
-},{}],"../node_modules/@babel/runtime/helpers/nonIterableRest.js":[function(require,module,exports) {
+},{}],"Rom6":[function(require,module,exports) {
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance");
 }
 
 module.exports = _nonIterableRest;
-},{}],"../node_modules/@babel/runtime/helpers/slicedToArray.js":[function(require,module,exports) {
+},{}],"69HE":[function(require,module,exports) {
 var arrayWithHoles = require("./arrayWithHoles");
 
 var iterableToArrayLimit = require("./iterableToArrayLimit");
@@ -5478,7 +5478,7 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
-},{"./arrayWithHoles":"../node_modules/@babel/runtime/helpers/arrayWithHoles.js","./iterableToArrayLimit":"../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js","./nonIterableRest":"../node_modules/@babel/runtime/helpers/nonIterableRest.js"}],"src/CategoryInstructions.js":[function(require,module,exports) {
+},{"./arrayWithHoles":"OUZ9","./iterableToArrayLimit":"9vK/","./nonIterableRest":"Rom6"}],"6M1E":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5503,7 +5503,7 @@ function CategoryInstructions() {
 }
 
 ;
-},{"react":"1n8/"}],"src/CategoryRowSocialLinks.js":[function(require,module,exports) {
+},{"react":"1n8/"}],"hON6":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5615,7 +5615,7 @@ function CategoryRowSocialitems(props) {
 }
 
 ;
-},{"react":"1n8/","react-router-dom":"/uc1"}],"src/CategoryRow.js":[function(require,module,exports) {
+},{"react":"1n8/","react-router-dom":"/uc1"}],"VkWy":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5641,8 +5641,19 @@ function CategoryRow(props) {
   var kvnd = props.kvnd;
   var entry = props.entry;
   var k = props.k;
-  var v = props.v;
-  var slug = slugify(kvnd);
+  var v = props.v; // if there was a hash, re-scroll to it..
+  // (browser may have tried this already on initial render before data was there)
+
+  var hash = props.location.hash;
+
+  if (hash) {
+    window.setTimeout(function () {
+      window.location.hash = '';
+      window.location.hash = hash;
+    }, 10);
+  }
+
+  var slug = slugify(kvnd.split('|')[1]);
   var count = data.names[kvnd] || '< 50';
   var tags = entry.tags || {};
   var qid = tags['brand:wikidata'];
@@ -5656,8 +5667,8 @@ function CategoryRow(props) {
   }, _react.default.createElement("h3", {
     className: "slug",
     id: slug
-  }, _react.default.createElement(_reactRouterDom.Link, {
-    to: "#".concat(slug)
+  }, _react.default.createElement("a", {
+    href: "#".concat(slug)
   }, "#"), _react.default.createElement("span", {
     className: "anchor"
   }, tags.name)), _react.default.createElement("div", {
@@ -5744,7 +5755,7 @@ function CategoryRow(props) {
 }
 
 ;
-},{"react":"1n8/","react-router-dom":"/uc1","./CategoryRowSocialLinks":"src/CategoryRowSocialLinks.js"}],"src/Category.js":[function(require,module,exports) {
+},{"react":"1n8/","react-router-dom":"/uc1","./CategoryRowSocialLinks":"hON6"}],"aR8z":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5765,10 +5776,10 @@ var _CategoryRow = _interopRequireDefault(require("./CategoryRow"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Category(props) {
-  var tree = props.match.params.tree;
-  var k = props.match.params.k;
-  var v = props.match.params.v;
+  var tree = props.tree;
   var data = props.data;
+  var k = props.k;
+  var v = props.v;
   var entries = data.dict && data.dict[k] && data.dict[k][v];
   var message;
 
@@ -5780,7 +5791,7 @@ function Category(props) {
 
   if (message) {
     return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
-      to: "/" + tree
+      to: "index.html"
     }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("div", {
       className: "summary"
     }, message));
@@ -5798,7 +5809,7 @@ function Category(props) {
     }));
   });
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
-    to: "/" + tree
+    to: "index.html"
   }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("table", {
     className: "summary"
   }, _react.default.createElement("thead", null, _react.default.createElement("tr", null, _react.default.createElement("th", null, "Name", _react.default.createElement("br", null), "ID", _react.default.createElement("br", null), "Countries"), _react.default.createElement("th", null, "Count"), _react.default.createElement("th", null, "OpenStreetMap Tags"), _react.default.createElement("th", null, "Wikidata Name/Description", _react.default.createElement("br", null), "Official Website", _react.default.createElement("br", null), "Social Links"), _react.default.createElement("th", {
@@ -5811,7 +5822,7 @@ function Category(props) {
 }
 
 ;
-},{"@babel/runtime/helpers/extends":"../node_modules/@babel/runtime/helpers/extends.js","react":"1n8/","react-router-dom":"/uc1","./CategoryInstructions":"src/CategoryInstructions.js","./CategoryRow":"src/CategoryRow.js"}],"src/Footer.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/extends":"3dLy","react":"1n8/","react-router-dom":"/uc1","./CategoryInstructions":"6M1E","./CategoryRow":"VkWy"}],"WwFW":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5850,7 +5861,7 @@ function Footer() {
 }
 
 ;
-},{"react":"1n8/"}],"src/OverviewInstructions.js":[function(require,module,exports) {
+},{"react":"1n8/"}],"Z8lg":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5883,7 +5894,7 @@ function OverviewInstructions() {
 }
 
 ;
-},{"react":"1n8/"}],"src/Overview.js":[function(require,module,exports) {
+},{"react":"1n8/"}],"BUKF":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5900,7 +5911,7 @@ var _OverviewInstructions = _interopRequireDefault(require("./OverviewInstructio
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Overview(props) {
-  var tree = props.match.params.tree;
+  var tree = props.tree;
   var data = props.data;
   var message;
 
@@ -5940,7 +5951,7 @@ function Overview(props) {
         key: kv,
         className: "child"
       }, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/".concat(tree, "/").concat(kv)
+        to: "index.html?k=".concat(k, "&v=").concat(v)
       }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
     });
   });
@@ -5950,7 +5961,7 @@ function Overview(props) {
 }
 
 ;
-},{"react":"1n8/","react-router-dom":"/uc1","./OverviewInstructions":"src/OverviewInstructions.js"}],"FLHj":[function(require,module,exports) {
+},{"react":"1n8/","react-router-dom":"/uc1","./OverviewInstructions":"Z8lg"}],"FLHj":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5986,8 +5997,6 @@ var BRANDS = "".concat(DIST, "/brands.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.json");
 
 function App() {
-  var tree = 'brands';
-
   var _useFetch = useFetch(NAMES),
       _useFetch2 = (0, _slicedToArray2.default)(_useFetch, 2),
       names = _useFetch2[0],
@@ -6013,28 +6022,21 @@ function App() {
     wikidata: wikidata.wikidata
   };
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
-    exact: true,
-    path: pathroot + '/:tree',
+    path: "/",
     render: function render(routeProps) {
-      return _react.default.createElement(_Overview.default, (0, _extends2.default)({}, routeProps, {
-        data: appData
-      }));
-    }
-  }), _react.default.createElement(_reactRouterDom.Route, {
-    exact: true,
-    path: pathroot + '/:tree/:k',
-    render: function render(routeProps) {
-      return _react.default.createElement(_Overview.default, (0, _extends2.default)({}, routeProps, {
-        data: appData
-      }));
-    }
-  }), _react.default.createElement(_reactRouterDom.Route, {
-    exact: true,
-    path: pathroot + '/:tree/:k/:v',
-    render: function render(routeProps) {
-      return _react.default.createElement(_Category.default, (0, _extends2.default)({}, routeProps, {
-        data: appData
-      }));
+      var params = parseParams(routeProps.location.search);
+
+      if (params.k && params.v) {
+        return _react.default.createElement(_Category.default, (0, _extends2.default)({}, routeProps, params, {
+          tree: "brands",
+          data: appData
+        }));
+      } else {
+        return _react.default.createElement(_Overview.default, (0, _extends2.default)({}, routeProps, {
+          tree: "brands",
+          data: appData
+        }));
+      }
     }
   })), _react.default.createElement(_Footer.default, null));
 
@@ -6161,6 +6163,22 @@ function App() {
     return [data, loading];
   }
 
+  function parseParams(str) {
+    if (str.charAt(0) === '?') {
+      str = str.slice(1);
+    }
+
+    return str.split('&').reduce(function (obj, pair) {
+      var parts = pair.split('=');
+
+      if (parts.length === 2) {
+        obj[parts[0]] = null === parts[1] ? '' : decodeURIComponent(parts[1]);
+      }
+
+      return obj;
+    }, {});
+  }
+
   function sort(obj) {
     var sorted = {};
     Object.keys(obj).sort().forEach(function (k) {
@@ -6171,7 +6189,7 @@ function App() {
 }
 
 ;
-},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","@babel/runtime/helpers/extends":"../node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"1n8/","react-router-dom":"/uc1","./Category":"src/Category.js","./Footer":"src/Footer.js","./Overview":"src/Overview.js"}],"src/index.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"PMvg","@babel/runtime/helpers/asyncToGenerator":"agGE","@babel/runtime/helpers/extends":"3dLy","@babel/runtime/helpers/slicedToArray":"69HE","react":"1n8/","react-router-dom":"/uc1","./Category":"aR8z","./Footer":"WwFW","./Overview":"BUKF"}],"H99C":[function(require,module,exports) {
 "use strict";
 
 require("whatwg-fetch");
@@ -6187,4 +6205,4 @@ var _App = _interopRequireDefault(require("./App"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom.default.render(_react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_App.default, null)), document.getElementById("root"));
-},{"whatwg-fetch":"../node_modules/whatwg-fetch/fetch.js","react":"1n8/","react-dom":"NKHc","react-router-dom":"/uc1","./App":"FLHj"}]},{},["src/index.js"], null)
+},{"whatwg-fetch":"MCp7","react":"1n8/","react-dom":"NKHc","react-router-dom":"/uc1","./App":"FLHj"}]},{},["H99C"], null)

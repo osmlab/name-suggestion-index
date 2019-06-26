@@ -12,7 +12,6 @@ const WIKIDATA = `${DIST}/wikidata.json`;
 
 
 export default function App() {
-  const tree = 'brands';
   const [names, namesLoading] = useFetch(NAMES);
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
   const [dict, dictLoading] = useBrands(BRANDS);
@@ -28,9 +27,18 @@ export default function App() {
   return (
     <>
     <Switch>
-      <Route exact path={ pathroot + '/:tree' } render={ routeProps => <Overview {...routeProps} data={appData} /> } />
-      <Route exact path={ pathroot + '/:tree/:k' } render={ routeProps => <Overview {...routeProps} data={appData} /> } />
-      <Route exact path={ pathroot + '/:tree/:k/:v' } render={ routeProps => <Category {...routeProps} data={appData} /> } />
+      <Route path="/" render={ routeProps => {
+        const params = parseParams(routeProps.location.search);
+        if (params.k && params.v) {
+          return (
+            <Category {...routeProps} {...params} tree='brands' data={appData} />
+          );
+        } else {
+          return (
+            <Overview {...routeProps} tree='brands' data={appData} />
+          );
+        }
+      } }/>
     </Switch>
     <Footer />
     </>
@@ -88,6 +96,19 @@ export default function App() {
     return [data, loading];
   }
 
+
+  function parseParams(str) {
+    if (str.charAt(0) === '?') {
+      str = str.slice(1);
+    }
+    return str.split('&').reduce((obj, pair) => {
+      let parts = pair.split('=');
+      if (parts.length === 2) {
+          obj[parts[0]] = (null === parts[1]) ? '' : decodeURIComponent(parts[1]);
+      }
+      return obj;
+    }, {});
+  }
 
   function sort(obj) {
     let sorted = {};

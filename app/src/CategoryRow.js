@@ -15,7 +15,17 @@ export default function CategoryRow(props) {
   const k = props.k;
   const v = props.v;
 
-  const slug = slugify(kvnd);
+  // if there was a hash, re-scroll to it..
+  // (browser may have tried this already on initial render before data was there)
+  const hash = props.location.hash;
+  if (hash) {
+    window.setTimeout(() => {
+      window.location.hash = '';
+      window.location.hash = hash;
+    },10);
+  }
+
+  const slug = slugify(kvnd.split('|')[1]);
   const count = data.names[kvnd] || '< 50';
   const tags = entry.tags || {};
   const qid = tags['brand:wikidata'];
@@ -29,7 +39,7 @@ export default function CategoryRow(props) {
     <tr>
     <td className="namesuggest">
       <h3 className="slug" id={slug}>
-        <Link to={`#${slug}`}>#</Link>
+        <a href={`#${slug}`}>#</a>
         <span className="anchor">{tags.name}</span>
       </h3>
       <div className="nsikey"><pre>'{kvnd}'</pre></div>

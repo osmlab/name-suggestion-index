@@ -5,7 +5,7 @@ import OverviewInstructions from "./OverviewInstructions";
 
 
 export default function Overview(props) {
-  const tree = props.match.params.tree;
+  const tree = props.tree;
   const data = props.data;
 
   let message;
@@ -49,7 +49,7 @@ export default function Overview(props) {
 
       items.push(
         <div key={kv} className="child">
-        <Link to={`/${tree}/${kv}`}>{`${kv} (${complete}/${count})`}</Link>
+        <Link to={`index.html?k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
         </div>
       );
 

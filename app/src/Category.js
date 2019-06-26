@@ -6,10 +6,10 @@ import CategoryRow from "./CategoryRow";
 
 
 export default function Category(props) {
-  const tree = props.match.params.tree;
-  const k = props.match.params.k;
-  const v = props.match.params.v;
+  const tree = props.tree;
   const data = props.data;
+  const k = props.k;
+  const v = props.v;
   const entries = data.dict && data.dict[k] && data.dict[k][v];
 
   let message;
@@ -23,7 +23,7 @@ export default function Category(props) {
     return (
       <>
       <h2>{tree}/{k}/{v}</h2>
-      <Link to={"/" + tree}>↑ Back to top</Link>
+      <Link to="index.html">↑ Back to top</Link>
       <CategoryInstructions />
       <div className="summary">
       {message}
@@ -42,7 +42,7 @@ export default function Category(props) {
   return (
     <>
     <h2>{tree}/{k}/{v}</h2>
-    <Link to={"/" + tree}>↑ Back to top</Link>
+    <Link to="index.html">↑ Back to top</Link>
     <CategoryInstructions />
 
     <table className="summary">
