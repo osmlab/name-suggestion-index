@@ -5610,7 +5610,7 @@ function CategoryRowSocialitems(props) {
   }
 
   return !!items.length && _react.default.createElement("div", {
-    className: "socialas"
+    className: "sociallinks"
   }, items);
 }
 
