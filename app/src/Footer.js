@@ -23,7 +23,7 @@ export default function Footer() {
     <div class="timestamp">
      &nbsp;{/*<span class="stat">✓</span><span class="message">generated ${_now}</span>*/}
     </div>
-    <a href="https://github.com/osmlab/name-suggestion-index/" className="github-corner" aria-label="View on GitHub">
+    <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/" className="github-corner" aria-label="View on GitHub">
     <div dangerouslySetInnerHTML={ghCornerImage()} />
     </a>
     <style dangerouslySetInnerHTML={ghCornerStyle()} />

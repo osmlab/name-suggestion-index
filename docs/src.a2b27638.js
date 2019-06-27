@@ -5523,10 +5523,10 @@ function CategoryRowSocialitems(props) {
 
   if (props.facebook) {
     href = 'https://www.facebook.com/' + props.facebook;
-    items.push(_react.default.createElement(_reactRouterDom.Link, {
+    items.push(_react.default.createElement("a", {
       key: "facebook",
       target: "_blank",
-      to: href
+      href: href
     }, _react.default.createElement("i", {
       className: "fab fa-lg fa-facebook-square"
     })));
@@ -5534,10 +5534,10 @@ function CategoryRowSocialitems(props) {
 
   if (props.twitter) {
     href = 'https://twitter.com/' + props.twitter;
-    items.push(_react.default.createElement(_reactRouterDom.Link, {
+    items.push(_react.default.createElement("a", {
       key: "twitter",
       target: "_blank",
-      to: href
+      href: href
     }, _react.default.createElement("i", {
       className: "fab fa-lg fa-twitter-square"
     })));
@@ -5545,10 +5545,10 @@ function CategoryRowSocialitems(props) {
 
   if (props.instagram) {
     href = 'https://www.instagram.com/' + props.instagram;
-    items.push(_react.default.createElement(_reactRouterDom.Link, {
+    items.push(_react.default.createElement("a", {
       key: "instagram",
       target: "_blank",
-      to: href
+      href: href
     }, _react.default.createElement("i", {
       className: "fab fa-lg fa-instagram"
     })));
@@ -5556,10 +5556,10 @@ function CategoryRowSocialitems(props) {
 
   if (props.pinterest) {
     href = 'https://www.pinterest.com/' + props.pinterest;
-    items.push(_react.default.createElement(_reactRouterDom.Link, {
+    items.push(_react.default.createElement("a", {
       key: "pinterest",
       target: "_blank",
-      to: href
+      href: href
     }, _react.default.createElement("i", {
       className: "fab fa-lg fa-pinterest-square"
     })));
@@ -5567,10 +5567,10 @@ function CategoryRowSocialitems(props) {
 
   if (props.youtube) {
     href = 'https://www.youtube.com/channel/' + props.youtube;
-    items.push(_react.default.createElement(_reactRouterDom.Link, {
+    items.push(_react.default.createElement("a", {
       key: "youtube",
       target: "_blank",
-      to: href
+      href: href
     }, _react.default.createElement("i", {
       className: "fab fa-lg fa-youtube-square"
     })));
@@ -5578,10 +5578,10 @@ function CategoryRowSocialitems(props) {
 
   if (props.vk) {
     href = 'https://vk.com/' + props.vk;
-    items.push(_react.default.createElement(_reactRouterDom.Link, {
+    items.push(_react.default.createElement("a", {
       key: "vk",
       target: "_blank",
-      to: href
+      href: href
     }, _react.default.createElement("i", {
       className: "fab fa-lg fa-vk"
     })));
@@ -5589,10 +5589,10 @@ function CategoryRowSocialitems(props) {
 
   if (props.snapchat) {
     href = 'https://www.snapchat.com/add/' + props.snapchat;
-    items.push(_react.default.createElement(_reactRouterDom.Link, {
+    items.push(_react.default.createElement("a", {
       key: "snapchat",
       target: "_blank",
-      to: href
+      href: href
     }, _react.default.createElement("i", {
       className: "fab fa-lg fa-snapchat-square"
     })));
@@ -5600,17 +5600,17 @@ function CategoryRowSocialitems(props) {
 
   if (props.linkedin) {
     href = 'https://www.linkedin.com/company/' + props.linkedin;
-    items.push(_react.default.createElement(_reactRouterDom.Link, {
+    items.push(_react.default.createElement("a", {
       key: "linkedin",
       target: "_blank",
-      to: href
+      href: href
     }, _react.default.createElement("i", {
       className: "fab fa-lg fa-linkedin"
     })));
   }
 
   return !!items.length && _react.default.createElement("div", {
-    className: "sociallinks"
+    className: "socialas"
   }, items);
 }
 
@@ -5701,9 +5701,9 @@ function CategoryRow(props) {
   function overpassLink(k, v, n) {
     var q = encodeURIComponent("[out:json][timeout:60];\n(nwr[\"".concat(k, "\"=\"").concat(v, "\"][\"name\"=\"").concat(n, "\"];);\nout body;\n>;\nout skel qt;"));
     var href = "https://overpass-turbo.eu/?Q=".concat(q, "&R");
-    return _react.default.createElement(_reactRouterDom.Link, {
+    return _react.default.createElement("a", {
       target: "_blank",
-      to: href
+      href: href
     }, "View on Overpass Turbo");
   }
 
@@ -5722,18 +5722,18 @@ function CategoryRow(props) {
     var href = 'https://www.wikidata.org/wiki/' + qid;
     return qid && _react.default.createElement("div", {
       className: "viewlink"
-    }, _react.default.createElement(_reactRouterDom.Link, {
+    }, _react.default.createElement("a", {
       target: "_blank",
-      to: href
+      href: href
     }, qid));
   }
 
   function siteLink(href) {
     return href && _react.default.createElement("div", {
       className: "viewlink"
-    }, _react.default.createElement(_reactRouterDom.Link, {
+    }, _react.default.createElement("a", {
       target: "_blank",
-      to: href
+      href: href
     }, href));
   }
 
@@ -5852,6 +5852,7 @@ function Footer() {
   }, _react.default.createElement("div", {
     class: "timestamp"
   }, "\xA0"), _react.default.createElement("a", {
+    target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/",
     className: "github-corner",
     "aria-label": "View on GitHub"

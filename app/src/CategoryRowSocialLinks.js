@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { a } from "react-router-dom";
 
 
 export default function CategoryRowSocialitems(props) {
@@ -9,54 +9,54 @@ export default function CategoryRowSocialitems(props) {
   if (props.facebook) {
     href = 'https://www.facebook.com/' + props.facebook;
     items.push(
-      <Link key='facebook' target="_blank" to={href}><i className="fab fa-lg fa-facebook-square"></i></Link>
+      <a key='facebook' target="_blank" href={href}><i className="fab fa-lg fa-facebook-square"></i></a>
     );
   }
   if (props.twitter) {
     href = 'https://twitter.com/' + props.twitter;
     items.push(
-      <Link key='twitter' target="_blank" to={href}><i className="fab fa-lg fa-twitter-square"></i></Link>
+      <a key='twitter' target="_blank" href={href}><i className="fab fa-lg fa-twitter-square"></i></a>
     );
   }
   if (props.instagram) {
     href = 'https://www.instagram.com/' + props.instagram;
     items.push(
-      <Link key='instagram' target="_blank" to={href}><i className="fab fa-lg fa-instagram"></i></Link>
+      <a key='instagram' target="_blank" href={href}><i className="fab fa-lg fa-instagram"></i></a>
     );
   }
   if (props.pinterest) {
     href = 'https://www.pinterest.com/' + props.pinterest;
     items.push(
-      <Link key='pinterest' target="_blank" to={href}><i className="fab fa-lg fa-pinterest-square"></i></Link>
+      <a key='pinterest' target="_blank" href={href}><i className="fab fa-lg fa-pinterest-square"></i></a>
     );
   }
   if (props.youtube) {
     href = 'https://www.youtube.com/channel/' + props.youtube;
     items.push(
-      <Link key='youtube' target="_blank" to={href}><i className="fab fa-lg fa-youtube-square"></i></Link>
+      <a key='youtube' target="_blank" href={href}><i className="fab fa-lg fa-youtube-square"></i></a>
     );
   }
   if (props.vk) {
     href = 'https://vk.com/' + props.vk;
     items.push(
-      <Link key='vk' target="_blank" to={href}><i className="fab fa-lg fa-vk"></i></Link>
+      <a key='vk' target="_blank" href={href}><i className="fab fa-lg fa-vk"></i></a>
     );
   }
   if (props.snapchat) {
     href = 'https://www.snapchat.com/add/' + props.snapchat;
     items.push(
-      <Link key='snapchat' target="_blank" to={href}><i className="fab fa-lg fa-snapchat-square"></i></Link>
+      <a key='snapchat' target="_blank" href={href}><i className="fab fa-lg fa-snapchat-square"></i></a>
     );
   }
   if (props.linkedin) {
     href = 'https://www.linkedin.com/company/' + props.linkedin;
     items.push(
-      <Link key='linkedin' target="_blank" to={href}><i className="fab fa-lg fa-linkedin"></i></Link>
+      <a key='linkedin' target="_blank" href={href}><i className="fab fa-lg fa-linkedin"></i></a>
     );
   }
 
   return !!items.length && (
-    <div className="sociallinks">
+    <div className="socialas">
     {items}
     </div>
   );

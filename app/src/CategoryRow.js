@@ -80,7 +80,7 @@ out body;
 out skel qt;`);
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
     return (
-      <Link target="_blank" to={href}>View on Overpass Turbo</Link>
+      <a target="_blank" href={href}>View on Overpass Turbo</a>
     );
   }
 
@@ -98,7 +98,7 @@ out skel qt;`);
     const href = 'https://www.wikidata.org/wiki/' + qid;
     return qid && (
       <div className="viewlink">
-      <Link target="_blank" to={href}>{qid}</Link>
+      <a target="_blank" href={href}>{qid}</a>
       </div>
     );
   }
@@ -106,7 +106,7 @@ out skel qt;`);
   function siteLink(href) {
     return href && (
       <div className="viewlink">
-      <Link target="_blank" to={href}>{href}</Link>
+      <a target="_blank" href={href}>{href}</a>
       </div>
     );
   }
