@@ -16,7 +16,7 @@ in OpenStreetMap.
 ### Browse the index
 
 You can browse the index at
-http://osmlab.github.io/name-suggestion-index/brands/index.html
+http://osmlab.github.io/name-suggestion-index
 to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
@@ -105,7 +105,6 @@ Name lists:
 ### Other commands
 
 * `npm run wikidata` - Fetch useful data from Wikidata - labels, descriptions, logos, etc.
-* `npm run docs` - Updates the index summary pages
 * `npm run` - Lists other available tools
 
 ### Updating `dist/names_all.json` from planet
