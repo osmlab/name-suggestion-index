@@ -32,6 +32,16 @@ export default function Overview(props) {
     let entry = data.dict[k];
     Object.keys(entry).forEach(v => {
       let kv = `${k}/${v}`;
+
+      // pick an icon for this category
+      let icon_url = data.icons[kv];
+      if (!icon_url) {   // fallback to key only
+        icon_url = data.icons[k];
+      }
+      if (!icon_url) {   // fallback to shop icon
+        icon_url = data.icons.shop;
+      }
+
       let keys = Object.keys(data.dict[k][v]);
       let complete = 0;
       let count = keys.length;
@@ -48,7 +58,8 @@ export default function Overview(props) {
       });
 
       items.push(
-        <div key={kv} className="child">
+        <div key={kv} className="category">
+        <img className="icon" src={icon_url} />
         <Link to={`index.html?k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
         </div>
       );
