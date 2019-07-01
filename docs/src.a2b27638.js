@@ -5965,7 +5965,7 @@ function Overview(props) {
       });
       items.push(_react.default.createElement("div", {
         key: kv,
-        className: "child"
+        className: "category"
       }, _react.default.createElement("img", {
         className: "icon",
         src: icon_url
