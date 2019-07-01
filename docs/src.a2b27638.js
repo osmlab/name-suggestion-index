@@ -5780,6 +5780,7 @@ function Category(props) {
   var data = props.data;
   var k = props.k;
   var v = props.v;
+  var kv = "".concat(k, "/").concat(v);
   var entries = data.dict && data.dict[k] && data.dict[k][v];
   var message;
 
@@ -5795,6 +5796,19 @@ function Category(props) {
     }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("div", {
       className: "summary"
     }, message));
+  } // pick an icon for this category
+
+
+  var icon_url = data.icons[kv];
+
+  if (!icon_url) {
+    // fallback to key only
+    icon_url = data.icons[k];
+  }
+
+  if (!icon_url) {
+    // fallback to shop icon
+    icon_url = data.icons.shop;
   }
 
   var rows = Object.keys(entries).map(function (kvnd) {
@@ -5808,7 +5822,10 @@ function Category(props) {
       v: v
     }));
   });
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, _react.default.createElement("img", {
+    className: "icon",
+    src: icon_url
+  }), tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
     to: "index.html"
   }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("table", {
     className: "summary"
@@ -5950,8 +5967,8 @@ function Overview(props) {
       }
 
       var keys = Object.keys(data.dict[k][v]);
-      var complete = 0;
       var count = keys.length;
+      var complete = 0;
       keys.forEach(function (kvnd) {
         var entry = data.dict[k][v][kvnd];
         var tags = entry.tags || {};

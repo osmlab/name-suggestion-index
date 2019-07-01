@@ -31,7 +31,7 @@ export default function Overview(props) {
   Object.keys(data.dict).forEach(k => {
     let entry = data.dict[k];
     Object.keys(entry).forEach(v => {
-      let kv = `${k}/${v}`;
+      const kv = `${k}/${v}`;
 
       // pick an icon for this category
       let icon_url = data.icons[kv];
@@ -42,16 +42,16 @@ export default function Overview(props) {
         icon_url = data.icons.shop;
       }
 
-      let keys = Object.keys(data.dict[k][v]);
+      const keys = Object.keys(data.dict[k][v]);
+      const count = keys.length;
       let complete = 0;
-      let count = keys.length;
 
       keys.forEach(kvnd => {
-          let entry = data.dict[k][v][kvnd];
-          let tags = entry.tags || {};
-          let qid = tags['brand:wikidata'];
-          let wd = data.wikidata[qid] || {};
-          let logos = wd.logos || {};
+          const entry = data.dict[k][v][kvnd];
+          const tags = entry.tags || {};
+          const qid = tags['brand:wikidata'];
+          const wd = data.wikidata[qid] || {};
+          const logos = wd.logos || {};
           if (Object.keys(logos).length) {
               complete++;
           }
