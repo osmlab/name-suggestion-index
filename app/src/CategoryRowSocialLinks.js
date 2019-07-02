@@ -56,7 +56,7 @@ export default function CategoryRowSocialitems(props) {
   }
 
   return !!items.length && (
-    <div className="socialas">
+    <div className="sociallinks">
     {items}
     </div>
   );

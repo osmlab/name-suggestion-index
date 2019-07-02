@@ -21,6 +21,7 @@
   },
   "amenity/post_office|Canada Post": {
     "countryCodes": ["ca"],
+    "nomatch": ["amenity/post_box|Canada Post"],
     "tags": {
       "amenity": "post_office",
       "brand": "Canada Post",
@@ -94,8 +95,7 @@
       "brand": "DHL",
       "brand:wikidata": "Q489815",
       "brand:wikipedia": "en:DHL Express",
-      "name": "DHL",
-      "operator": "DHL"
+      "name": "DHL"
     }
   },
   "amenity/post_office|DPD Paketshop": {
@@ -133,6 +133,7 @@
     }
   },
   "amenity/post_office|FedEx": {
+    "nomatch": ["amenity/post_box|FedEx"],
     "tags": {
       "amenity": "post_office",
       "brand": "FedEx",
@@ -268,14 +269,16 @@
   },
   "amenity/post_office|The UPS Store": {
     "countryCodes": ["ca", "us"],
-    "matchNames": ["ups", "ups store"],
+    "matchNames": ["ups store"],
     "matchTags": ["shop/copyshop"],
+    "nomatch": ["amenity/post_box|UPS"],
     "tags": {
       "amenity": "post_office",
       "brand": "The UPS Store",
       "brand:wikidata": "Q7771029",
       "brand:wikipedia": "en:The UPS Store",
-      "name": "The UPS Store"
+      "name": "The UPS Store",
+      "short_name": "UPS"
     }
   },
   "amenity/post_office|United States Post Office": {
@@ -291,9 +294,7 @@
       "brand": "United States Post Office",
       "brand:wikidata": "Q668687",
       "brand:wikipedia": "en:United States Postal Service",
-      "name": "United States Post Office",
-      "operator": "USPS",
-      "operator:wikidata": "Q668687"
+      "name": "United States Post Office"
     }
   },
   "amenity/post_office|ΕΛΤΑ": {

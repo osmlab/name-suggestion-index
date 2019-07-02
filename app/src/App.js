@@ -5,22 +5,28 @@ import Category from "./Category";
 import Footer from "./Footer";
 import Overview from "./Overview";
 
+// Load the name-suggestion-index data files
 const DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist";
 const NAMES = `${DIST}/names_keep.json`;
 const BRANDS = `${DIST}/brands.json`;
 const WIKIDATA = `${DIST}/wikidata.json`;
+
+// We can use iD's taginfo file to pick icons
+const TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/master/data/taginfo.json";
 
 
 export default function App() {
   const [names, namesLoading] = useFetch(NAMES);
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
   const [dict, dictLoading] = useBrands(BRANDS);
+  const [icons, iconsLoading] = useTaginfo(TAGINFO);
   const pathroot = process.env.PUBLIC_URL || '';
 
   const appData = {
-    isLoading: () => (namesLoading || wikidataLoading || dictLoading),
+    isLoading: () => (namesLoading || wikidataLoading || dictLoading || iconsLoading),
     names: names,
     dict: dict,
+    icons: icons,
     wikidata: wikidata.wikidata
   };
 
@@ -89,6 +95,35 @@ export default function App() {
       });
 
       setData(dict);
+      setLoading(false);
+    }
+
+    useEffect(() => { fetchUrl(); }, []);
+    return [data, loading];
+  }
+
+  // same as useFetch, but process taginfo file to retrieve icon urls
+  function useTaginfo(url) {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    async function fetchUrl() {
+      const response = await fetch(url);
+      const json = await response.json();
+      let tags = json.tags;
+      let icons = {};
+
+      // populate icons
+      tags.forEach(tag => {
+        if (!tag.icon_url || !tag.key) return;
+        let kv = tag.key;
+        if (tag.value) {
+          kv += '/' + tag.value;
+        }
+        icons[kv] = tag.icon_url;
+      });
+
+      setData(icons);
       setLoading(false);
     }
 

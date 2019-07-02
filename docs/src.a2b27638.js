@@ -5610,7 +5610,7 @@ function CategoryRowSocialitems(props) {
   }
 
   return !!items.length && _react.default.createElement("div", {
-    className: "socialas"
+    className: "sociallinks"
   }, items);
 }
 
@@ -5780,6 +5780,7 @@ function Category(props) {
   var data = props.data;
   var k = props.k;
   var v = props.v;
+  var kv = "".concat(k, "/").concat(v);
   var entries = data.dict && data.dict[k] && data.dict[k][v];
   var message;
 
@@ -5795,6 +5796,19 @@ function Category(props) {
     }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("div", {
       className: "summary"
     }, message));
+  } // pick an icon for this category
+
+
+  var icon_url = data.icons[kv];
+
+  if (!icon_url) {
+    // fallback to key only
+    icon_url = data.icons[k];
+  }
+
+  if (!icon_url) {
+    // fallback to shop icon
+    icon_url = data.icons.shop;
   }
 
   var rows = Object.keys(entries).map(function (kvnd) {
@@ -5808,7 +5822,10 @@ function Category(props) {
       v: v
     }));
   });
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, _react.default.createElement("img", {
+    className: "icon",
+    src: icon_url
+  }), tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
     to: "index.html"
   }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("table", {
     className: "summary"
@@ -5935,10 +5952,23 @@ function Overview(props) {
   Object.keys(data.dict).forEach(function (k) {
     var entry = data.dict[k];
     Object.keys(entry).forEach(function (v) {
-      var kv = "".concat(k, "/").concat(v);
+      var kv = "".concat(k, "/").concat(v); // pick an icon for this category
+
+      var icon_url = data.icons[kv];
+
+      if (!icon_url) {
+        // fallback to key only
+        icon_url = data.icons[k];
+      }
+
+      if (!icon_url) {
+        // fallback to shop icon
+        icon_url = data.icons.shop;
+      }
+
       var keys = Object.keys(data.dict[k][v]);
-      var complete = 0;
       var count = keys.length;
+      var complete = 0;
       keys.forEach(function (kvnd) {
         var entry = data.dict[k][v][kvnd];
         var tags = entry.tags || {};
@@ -5952,8 +5982,11 @@ function Overview(props) {
       });
       items.push(_react.default.createElement("div", {
         key: kv,
-        className: "child"
-      }, _react.default.createElement(_reactRouterDom.Link, {
+        className: "category"
+      }, _react.default.createElement("img", {
+        className: "icon",
+        src: icon_url
+      }), _react.default.createElement(_reactRouterDom.Link, {
         to: "index.html?k=".concat(k, "&v=").concat(v)
       }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
     });
@@ -5994,10 +6027,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Load the name-suggestion-index data files
 var DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist";
 var NAMES = "".concat(DIST, "/names_keep.json");
 var BRANDS = "".concat(DIST, "/brands.json");
-var WIKIDATA = "".concat(DIST, "/wikidata.json");
+var WIKIDATA = "".concat(DIST, "/wikidata.json"); // We can use iD's taginfo file to pick icons
+
+var TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/master/data/taginfo.json";
 
 function App() {
   var _useFetch = useFetch(NAMES),
@@ -6015,13 +6051,19 @@ function App() {
       dict = _useBrands2[0],
       dictLoading = _useBrands2[1];
 
+  var _useTaginfo = useTaginfo(TAGINFO),
+      _useTaginfo2 = (0, _slicedToArray2.default)(_useTaginfo, 2),
+      icons = _useTaginfo2[0],
+      iconsLoading = _useTaginfo2[1];
+
   var pathroot = undefined || '';
   var appData = {
     isLoading: function isLoading() {
-      return namesLoading || wikidataLoading || dictLoading;
+      return namesLoading || wikidataLoading || dictLoading || iconsLoading;
     },
     names: names,
     dict: dict,
+    icons: icons,
     wikidata: wikidata.wikidata
   };
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
@@ -6158,6 +6200,73 @@ function App() {
         }, _callee2);
       }));
       return _fetchUrl2.apply(this, arguments);
+    }
+
+    (0, _react.useEffect)(function () {
+      fetchUrl();
+    }, []);
+    return [data, loading];
+  } // same as useFetch, but process taginfo file to retrieve icon urls
+
+
+  function useTaginfo(url) {
+    var _useState9 = (0, _react.useState)([]),
+        _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
+        data = _useState10[0],
+        setData = _useState10[1];
+
+    var _useState11 = (0, _react.useState)(true),
+        _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
+        loading = _useState12[0],
+        setLoading = _useState12[1];
+
+    function fetchUrl() {
+      return _fetchUrl3.apply(this, arguments);
+    }
+
+    function _fetchUrl3() {
+      _fetchUrl3 = (0, _asyncToGenerator2.default)(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee3() {
+        var response, json, tags, icons;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return fetch(url);
+
+              case 2:
+                response = _context3.sent;
+                _context3.next = 5;
+                return response.json();
+
+              case 5:
+                json = _context3.sent;
+                tags = json.tags;
+                icons = {}; // populate icons
+
+                tags.forEach(function (tag) {
+                  if (!tag.icon_url || !tag.key) return;
+                  var kv = tag.key;
+
+                  if (tag.value) {
+                    kv += '/' + tag.value;
+                  }
+
+                  icons[kv] = tag.icon_url;
+                });
+                setData(icons);
+                setLoading(false);
+
+              case 11:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+      return _fetchUrl3.apply(this, arguments);
     }
 
     (0, _react.useEffect)(function () {
