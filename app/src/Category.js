@@ -10,6 +10,7 @@ export default function Category(props) {
   const data = props.data;
   const k = props.k;
   const v = props.v;
+  const kv = `${k}/${v}`;
   const entries = data.dict && data.dict[k] && data.dict[k][v];
 
   let message;
@@ -32,6 +33,15 @@ export default function Category(props) {
     );
   }
 
+  // pick an icon for this category
+  let icon_url = data.icons[kv];
+  if (!icon_url) {   // fallback to key only
+    icon_url = data.icons[k];
+  }
+  if (!icon_url) {   // fallback to shop icon
+    icon_url = data.icons.shop;
+  }
+
   const rows = Object.keys(entries).map(kvnd => {
     const entry = entries[kvnd];
     return (
@@ -41,7 +51,7 @@ export default function Category(props) {
 
   return (
     <>
-    <h2>{tree}/{k}/{v}</h2>
+    <h2><img className="icon" src={icon_url} />{tree}/{k}/{v}</h2>
     <Link to="index.html">↑ Back to top</Link>
     <CategoryInstructions />
 
