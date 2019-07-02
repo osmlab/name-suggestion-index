@@ -15,6 +15,7 @@ body {
   overflow-x: hidden;
 }
 
+/* global styles */
 a {
   text-decoration: none;
 }
@@ -54,14 +55,6 @@ pre {
   margin: 0;
 }
 
-div.container {
-  margin-top: 20px;
-
-  -webkit-columns: 10 250px;
-     -moz-columns: 10 250px;
-          columns: 10 250px;
-}
-
 img.icon {
   width: 1.1em;
   height: 1.1em;
@@ -70,10 +63,74 @@ img.icon {
   vertical-align: text-bottom;
 }
 
+/* forms */
+textarea,
+input[type=text] {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  text-overflow: ellipsis;
+}
+
+button {
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+    background-color: #ececec;
+}
+button:focus,
+button.active {
+    background: #7092ff;
+}
+
+textarea:focus,
+input:focus {
+  background-color: #f1f1f1;
+}
+
+
+/* Filters */
+.filters {
+  display: inline-block;
+  border: 1px solid #bbe;
+  border-radius: 4px;
+  padding: 10px;
+  max-width: 1000px;
+  background: #eef;
+}
+.filters .filterby {
+  margin: 8px;
+  font-weight: bold;
+}
+.filters .field {
+  margin: 0 10px;
+}
+.filters .field label {
+  margin: 0 5px;
+}
+.filters .field button.clearFilters {
+  margin-left: 15px;
+}
+
+/* Overview Page */
+div.container {
+  margin-top: 20px;
+
+  -webkit-columns: 10 250px;
+     -moz-columns: 10 250px;
+          columns: 10 250px;
+}
 div.category {
   padding: 2px 5px;
 }
 
+
+/* Category Pages */
 .nav {
   margin-top: 5px;
 }

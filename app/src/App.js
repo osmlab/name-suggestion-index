@@ -16,14 +16,16 @@ const TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/master/data/
 
 
 export default function App() {
+  const [filters, setFilters] = useState({});
   const [names, namesLoading] = useFetch(NAMES);
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
   const [dict, dictLoading] = useBrands(BRANDS);
   const [icons, iconsLoading] = useTaginfo(TAGINFO);
-  const pathroot = process.env.PUBLIC_URL || '';
 
   const appData = {
     isLoading: () => (namesLoading || wikidataLoading || dictLoading || iconsLoading),
+    filters: filters,
+    setFilters: setFilters,
     names: names,
     dict: dict,
     icons: icons,
@@ -69,7 +71,7 @@ export default function App() {
 
   // same as useFetch, but process brand data into a k-v dict
   function useBrands(url) {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
 
     async function fetchUrl() {
@@ -104,7 +106,7 @@ export default function App() {
 
   // same as useFetch, but process taginfo file to retrieve icon urls
   function useTaginfo(url) {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
 
     async function fetchUrl() {

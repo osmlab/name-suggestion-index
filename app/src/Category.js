@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import CategoryInstructions from "./CategoryInstructions";
 import CategoryRow from "./CategoryRow";
+import Filters from "./Filters";
 
 
 export default function Category(props) {
@@ -26,6 +27,7 @@ export default function Category(props) {
       <h2>{tree}/{k}/{v}</h2>
       <Link to="index.html">↑ Back to top</Link>
       <CategoryInstructions />
+      <Filters data={data} />
       <div className="summary">
       {message}
       </div>
@@ -42,8 +44,22 @@ export default function Category(props) {
     icon_url = data.icons.shop;
   }
 
+  // filters
+  const n = ((data.filters && data.filters.n) || '').toLowerCase();
+  const c = ((data.filters && data.filters.c) || '').toLowerCase();
+
   const rows = Object.keys(entries).map(kvnd => {
     const entry = entries[kvnd];
+
+    // apply filters
+    if (n) {
+      if (kvnd.toLowerCase().indexOf(n) === -1) return;  // reject
+    }
+    if (c) {
+      const codes = (entry.countryCodes || []);
+      if (codes.length && codes.every((code) => (code.indexOf(c) === -1))) return;  // reject
+    }
+
     return (
       <CategoryRow key={kvnd} {...props} entry={entry} kvnd={kvnd} k={k} v={v} />
     );
@@ -54,6 +70,7 @@ export default function Category(props) {
     <h2><img className="icon" src={icon_url} />{tree}/{k}/{v}</h2>
     <Link to="index.html">↑ Back to top</Link>
     <CategoryInstructions />
+    <Filters data={data} />
 
     <table className="summary">
     <thead>
