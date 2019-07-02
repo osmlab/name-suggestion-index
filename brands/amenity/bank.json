@@ -625,7 +625,7 @@
     }
   },
   "amenity/bank|BMO": {
-    "countryCodes": ["ca", "us"],
+    "countryCodes": ["ca"],
     "matchNames": ["bmo bank of montreal"],
     "tags": {
       "amenity": "bank",
@@ -4536,7 +4536,23 @@
       "name": "Sberbank"
     }
   },
-  "amenity/bank|Scotiabank": {
+  "amenity/bank|Scotiabank~(Québec)": {
+    "countryCodes": ["ca"],
+    "matchNames": ["Scotia"],
+    "nomatch": ["amenity/bank|Scotiabank"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Banque Scotia",
+      "brand:wikidata": "Q451476",
+      "brand:wikipedia": "fr:Banque Scotia",
+      "name": "Banque Scotia"
+    }
+  },
+  "amenity/bank|Scotiabank~(non-Québec)": {
+    "matchNames": ["Scotia"],
+    "nomatch": [
+      "amenity/bank|Scotiabank~(Québec)"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Scotiabank",
@@ -4831,7 +4847,7 @@
     }
   },
   "amenity/bank|TD Bank": {
-    "countryCodes": ["ca", "us"],
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "TD Bank",
@@ -4878,6 +4894,16 @@
       "brand:wikidata": "Q30324674",
       "brand:wikipedia": "en:TakarékBank",
       "name": "Takarékszövetkezet"
+    }
+  },
+  "amenity/bank|Tangerine": {
+    "countryCodes": ["ca"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Tangerine",
+      "brand:wikidata": "Q15238797",
+      "brand:wikipedia": "en:Tangerine Bank",
+      "name": "Tangerine"
     }
   },
   "amenity/bank|Targobank": {
