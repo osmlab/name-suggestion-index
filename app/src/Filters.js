@@ -5,8 +5,8 @@ export default function Filters(props) {
   const filters = props.data.filters;
   const setFilters = props.data.setFilters;
 
-  const n = filters.n || '';
-  const c = filters.c || '';
+  const tt = filters.tt || '';
+  const cc = filters.cc || '';
 
   return (
     <div className="filters">
@@ -15,20 +15,20 @@ export default function Filters(props) {
     <span className="filterby">Filter by</span>
 
     <span className="field">
-    <label for="n">Name:</label>
-    <input type="text" id="n" name="n" autocorrect="off" size="15"
-      value={n} onChange={filtersChanged} />
+      <label for="tt">Tag Text:</label>
+      <input type="text" id="tt" name="tt" autocorrect="off" size="15"
+        value={tt} onChange={filtersChanged} />
     </span>
 
     <span className="field">
-    <label for="c">Country Code:</label>
-    <input type="text" id="c" name="c" autocorrect="off" maxlength="2" size="2"
-      value={c} onChange={filtersChanged} />
+      <label for="cc">Country Code:</label>
+      <input type="text" id="cc" name="cc" autocorrect="off" maxlength="2" size="2"
+        value={cc} onChange={filtersChanged} />
     </span>
 
     <span className="field">
-    <button className="clearFilters" name="clearFilters"
-      onClick={clearFilters}>Clear</button>
+      <button className="clearFilters" name="clearFilters"
+        onClick={clearFilters}>Clear</button>
     </span>
 
     </div>

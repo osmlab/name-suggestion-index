@@ -5639,7 +5639,10 @@ function CategoryRow(props) {
   var kvnd = props.kvnd;
   var entry = props.entry;
   var k = props.k;
-  var v = props.v; // if there was a hash, re-scroll to it..
+  var v = props.v; // filters
+
+  var tt = (data.filters && data.filters.tt || '').toLowerCase();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase(); // if there was a hash, re-scroll to it..
   // (browser may have tried this already on initial render before data was there)
 
   var hash = props.location.hash;
@@ -5680,8 +5683,9 @@ function CategoryRow(props) {
   }, count), _react.default.createElement("td", {
     className: "tags"
   }, _react.default.createElement("pre", {
-    className: "tags"
-  }, displayTags(tags))), _react.default.createElement("td", {
+    className: "tags",
+    dangerouslySetInnerHTML: highlight(tt, displayTags(tags))
+  })), _react.default.createElement("td", {
     className: "wikidata"
   }, _react.default.createElement("h3", null, label), _react.default.createElement("span", null, description), _react.default.createElement("br", null), wdLink(tags['brand:wikidata']), siteLink(identities.website), _react.default.createElement(_CategoryRowSocialLinks.default, identities)), _react.default.createElement("td", {
     className: "logo"
@@ -5693,7 +5697,22 @@ function CategoryRow(props) {
 
   function countries(countryCodes) {
     var cclist = (countryCodes || []).join(', ');
-    return cclist && _react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", _react.default.createElement("code", null, cclist));
+    return cclist && _react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", _react.default.createElement("code", {
+      dangerouslySetInnerHTML: highlight(cc, cclist)
+    }));
+  }
+
+  function highlight(needle, haystack) {
+    var html = haystack;
+
+    if (needle) {
+      var re = new RegExp('\(' + needle + '\)', 'gi');
+      html = html.replace(re, '<mark>$1</mark>');
+    }
+
+    return {
+      __html: html
+    };
   }
 
   function overpassLink(k, v, n) {
@@ -5768,8 +5787,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Filters(props) {
   var filters = props.data.filters;
   var setFilters = props.data.setFilters;
-  var n = filters.n || '';
-  var c = filters.c || '';
+  var tt = filters.tt || '';
+  var cc = filters.cc || '';
   return _react.default.createElement("div", {
     className: "filters"
   }, _react.default.createElement("span", {
@@ -5781,27 +5800,27 @@ function Filters(props) {
   }, "Filter by"), _react.default.createElement("span", {
     className: "field"
   }, _react.default.createElement("label", {
-    for: "n"
-  }, "Name:"), _react.default.createElement("input", {
+    for: "tt"
+  }, "Tag Text:"), _react.default.createElement("input", {
     type: "text",
-    id: "n",
-    name: "n",
+    id: "tt",
+    name: "tt",
     autocorrect: "off",
     size: "15",
-    value: n,
+    value: tt,
     onChange: filtersChanged
   })), _react.default.createElement("span", {
     className: "field"
   }, _react.default.createElement("label", {
-    for: "c"
+    for: "cc"
   }, "Country Code:"), _react.default.createElement("input", {
     type: "text",
-    id: "c",
-    name: "c",
+    id: "cc",
+    name: "cc",
     autocorrect: "off",
     maxlength: "2",
     size: "2",
-    value: c,
+    value: cc,
     onChange: filtersChanged
   })), _react.default.createElement("span", {
     className: "field"
@@ -5894,19 +5913,22 @@ function Category(props) {
   } // filters
 
 
-  var n = (data.filters && data.filters.n || '').toLowerCase();
-  var c = (data.filters && data.filters.c || '').toLowerCase();
+  var tt = (data.filters && data.filters.tt || '').toLowerCase();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase();
   var rows = Object.keys(entries).map(function (kvnd) {
     var entry = entries[kvnd]; // apply filters
 
-    if (n) {
-      if (kvnd.toLowerCase().indexOf(n) === -1) return; // reject
+    if (tt) {
+      var tags = Object.entries(entry.tags);
+      if (tags.length && tags.every(function (pair) {
+        return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
+      })) return; // reject
     }
 
-    if (c) {
+    if (cc) {
       var codes = entry.countryCodes || [];
       if (codes.length && codes.every(function (code) {
-        return code.indexOf(c) === -1;
+        return code.toLowerCase().indexOf(cc) === -1;
       })) return; // reject
     }
 
@@ -6035,8 +6057,8 @@ function Overview(props) {
   var tree = props.tree;
   var data = props.data; // filters
 
-  var n = (data.filters && data.filters.n || '').toLowerCase();
-  var c = (data.filters && data.filters.c || '').toLowerCase();
+  var tt = (data.filters && data.filters.tt || '').toLowerCase();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase();
   var message;
 
   if (data.isLoading()) {
@@ -6078,14 +6100,18 @@ function Overview(props) {
       keys.forEach(function (kvnd) {
         var entry = data.dict[k][v][kvnd]; // apply filters
 
-        if (n) {
-          if (kvnd.toLowerCase().indexOf(n) === -1) return; // reject
+        if (tt) {
+          var _tags = Object.entries(entry.tags);
+
+          if (_tags.length && _tags.every(function (pair) {
+            return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
+          })) return; // reject
         }
 
-        if (c) {
+        if (cc) {
           var codes = entry.countryCodes || [];
           if (codes.length && codes.every(function (code) {
-            return code.indexOf(c) === -1;
+            return code.toLowerCase().indexOf(cc) === -1;
           })) return; // reject
         }
 

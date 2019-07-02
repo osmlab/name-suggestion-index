@@ -10,8 +10,8 @@ export default function Overview(props) {
   const data = props.data;
 
   // filters
-  const n = ((data.filters && data.filters.n) || '').toLowerCase();
-  const c = ((data.filters && data.filters.c) || '').toLowerCase();
+  const tt = ((data.filters && data.filters.tt) || '').toLowerCase();
+  const cc = ((data.filters && data.filters.cc) || '').toLowerCase();
 
 
   let message;
@@ -57,12 +57,17 @@ export default function Overview(props) {
           const entry = data.dict[k][v][kvnd];
 
           // apply filters
-          if (n) {
-            if (kvnd.toLowerCase().indexOf(n) === -1) return;  // reject
+          if (tt) {
+            const tags = Object.entries(entry.tags);
+            if (tags.length && tags.every(
+              (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
+            )) return;  // reject
           }
-          if (c) {
+          if (cc) {
             const codes = (entry.countryCodes || []);
-            if (codes.length && codes.every((code) => (code.indexOf(c) === -1))) return;  // reject
+            if (codes.length && codes.every(
+              (code) => (code.toLowerCase().indexOf(cc) === -1)
+            )) return;  // reject
           }
 
           const tags = entry.tags || {};

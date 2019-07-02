@@ -15,6 +15,10 @@ export default function CategoryRow(props) {
   const k = props.k;
   const v = props.v;
 
+  // filters
+  const tt = ((data.filters && data.filters.tt) || '').toLowerCase();
+  const cc = ((data.filters && data.filters.cc) || '').toLowerCase();
+
   // if there was a hash, re-scroll to it..
   // (browser may have tried this already on initial render before data was there)
   const hash = props.location.hash;
@@ -47,7 +51,7 @@ export default function CategoryRow(props) {
       <div className="viewlink">{ overpassLink(k, v, tags.name) }</div>
     </td>
     <td className="count">{count}</td>
-    <td className="tags"><pre className="tags">{ displayTags(tags) }</pre></td>
+    <td className="tags"><pre className="tags" dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
     <td className="wikidata">
       <h3>{label}</h3>
       <span>{description}</span><br/>
@@ -67,10 +71,22 @@ export default function CategoryRow(props) {
     return cclist && (
       <>
       🌐
-      <code>{cclist}</code>
+      <code dangerouslySetInnerHTML={ highlight(cc, cclist) } />
       </>
     );
   }
+
+
+  function highlight(needle, haystack) {
+    let html = haystack;
+    if (needle) {
+      let re = new RegExp('\(' + needle + '\)', 'gi');
+      html = html.replace(re, '<mark>$1</mark>');
+
+    }
+    return  { __html: html };
+  }
+
 
   function overpassLink(k, v, n) {
     const q = encodeURIComponent(`[out:json][timeout:60];
@@ -88,6 +104,7 @@ out skel qt;`);
     return (username && !src) ? <span>Profile restricted</span> : logo(src);
   }
 
+
   function logo(src) {
     return src && (
       <img className="logo" src={src}/>
@@ -103,6 +120,7 @@ out skel qt;`);
     );
   }
 
+
   function siteLink(href) {
     return href && (
       <div className="viewlink">
@@ -110,6 +128,7 @@ out skel qt;`);
       </div>
     );
   }
+
 
   function displayTags(tags) {
     let result = '';
@@ -119,6 +138,7 @@ out skel qt;`);
     });
     return result;
   }
+
 
   function slugify(text) {
     return text.toString().toLowerCase()
