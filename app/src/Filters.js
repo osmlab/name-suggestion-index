@@ -9,9 +9,10 @@ export default function Filters(props) {
 
   const tt = filters.tt || '';
   const cc = filters.cc || '';
+  const klass = "filters" + ((tt.trim() || cc.trim()) ? " active" : "");
 
   return (
-    <div className="filters">
+    <div className={klass}>
 
     <span className="icon"><FontAwesomeIcon icon={faFilter} /></span>
     <span className="filterby">Filter by</span>

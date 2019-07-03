@@ -18403,8 +18403,9 @@ function Filters(props) {
   var setFilters = props.data.setFilters;
   var tt = filters.tt || '';
   var cc = filters.cc || '';
+  var klass = "filters" + (tt.trim() || cc.trim() ? " active" : "");
   return _react.default.createElement("div", {
-    className: "filters"
+    className: klass
   }, _react.default.createElement("span", {
     className: "icon"
   }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {

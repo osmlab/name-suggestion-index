@@ -83,7 +83,7 @@ export default function Overview(props) {
         }
       });
 
-      let klass = "category" + (!count ? " hide" : "");
+      const klass = "category" + (!count ? " hide" : "");
       items.push(
         <div key={kv} className={klass} >
         <img className="icon" src={icon_url} />
