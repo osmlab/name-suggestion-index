@@ -1,8 +1,7 @@
 import React from "react";
-import { a } from "react-router-dom";
 
 
-export default function CategoryRowSocialitems(props) {
+export default function CategoryRowSocialLinks(props) {
   let items = [];
   let href;
 

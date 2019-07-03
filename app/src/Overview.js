@@ -2,11 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import OverviewInstructions from "./OverviewInstructions";
+import Filters from "./Filters";
 
 
 export default function Overview(props) {
   const tree = props.tree;
   const data = props.data;
+
+  // filters
+  const tt = ((data.filters && data.filters.tt) || '').toLowerCase();
+  const cc = ((data.filters && data.filters.cc) || '').toLowerCase();
+
 
   let message;
   if (data.isLoading()) {
@@ -20,6 +26,7 @@ export default function Overview(props) {
       <>
       <h1>{tree}/</h1>
       <OverviewInstructions />
+      <Filters data={data} />
       <div className="container">
       {message}
       </div>
@@ -43,26 +50,44 @@ export default function Overview(props) {
       }
 
       const keys = Object.keys(data.dict[k][v]);
-      const count = keys.length;
+      let count = 0;
       let complete = 0;
 
       keys.forEach(kvnd => {
           const entry = data.dict[k][v][kvnd];
+
+          // apply filters
+          if (tt) {
+            const tags = Object.entries(entry.tags);
+            if (tags.length && tags.every(
+              (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
+            )) return;  // reject
+          }
+          if (cc) {
+            const codes = (entry.countryCodes || []);
+            if (codes.length && codes.every(
+              (code) => (code.toLowerCase().indexOf(cc) === -1)
+            )) return;  // reject
+          }
+
           const tags = entry.tags || {};
           const qid = tags['brand:wikidata'];
           const wd = data.wikidata[qid] || {};
           const logos = wd.logos || {};
+          count++;
           if (Object.keys(logos).length) {
               complete++;
           }
       });
 
-      items.push(
-        <div key={kv} className="category">
-        <img className="icon" src={icon_url} />
-        <Link to={`index.html?k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
-        </div>
-      );
+      if (count) {
+        items.push(
+          <div key={kv} className="category">
+          <img className="icon" src={icon_url} />
+          <Link to={`index.html?k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
+          </div>
+        );
+      }
 
     });
   });
@@ -71,6 +96,7 @@ export default function Overview(props) {
     <>
     <h1>{tree}/</h1>
     <OverviewInstructions />
+    <Filters data={data} />
     <div className="container">
     {items}
     </div>

@@ -5509,15 +5509,13 @@ function CategoryInstructions() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = CategoryRowSocialitems;
+exports.default = CategoryRowSocialLinks;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function CategoryRowSocialitems(props) {
+function CategoryRowSocialLinks(props) {
   var items = [];
   var href;
 
@@ -5615,7 +5613,7 @@ function CategoryRowSocialitems(props) {
 }
 
 ;
-},{"react":"1n8/","react-router-dom":"/uc1"}],"VkWy":[function(require,module,exports) {
+},{"react":"1n8/"}],"VkWy":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5641,7 +5639,10 @@ function CategoryRow(props) {
   var kvnd = props.kvnd;
   var entry = props.entry;
   var k = props.k;
-  var v = props.v; // if there was a hash, re-scroll to it..
+  var v = props.v; // filters
+
+  var tt = (data.filters && data.filters.tt || '').toLowerCase();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase(); // if there was a hash, re-scroll to it..
   // (browser may have tried this already on initial render before data was there)
 
   var hash = props.location.hash;
@@ -5682,8 +5683,9 @@ function CategoryRow(props) {
   }, count), _react.default.createElement("td", {
     className: "tags"
   }, _react.default.createElement("pre", {
-    className: "tags"
-  }, displayTags(tags))), _react.default.createElement("td", {
+    className: "tags",
+    dangerouslySetInnerHTML: highlight(tt, displayTags(tags))
+  })), _react.default.createElement("td", {
     className: "wikidata"
   }, _react.default.createElement("h3", null, label), _react.default.createElement("span", null, description), _react.default.createElement("br", null), wdLink(tags['brand:wikidata']), siteLink(identities.website), _react.default.createElement(_CategoryRowSocialLinks.default, identities)), _react.default.createElement("td", {
     className: "logo"
@@ -5695,7 +5697,22 @@ function CategoryRow(props) {
 
   function countries(countryCodes) {
     var cclist = (countryCodes || []).join(', ');
-    return cclist && _react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", _react.default.createElement("code", null, cclist));
+    return cclist && _react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", _react.default.createElement("code", {
+      dangerouslySetInnerHTML: highlight(cc, cclist)
+    }));
+  }
+
+  function highlight(needle, haystack) {
+    var html = haystack;
+
+    if (needle) {
+      var re = new RegExp('\(' + needle + '\)', 'gi');
+      html = html.replace(re, '<mark>$1</mark>');
+    }
+
+    return {
+      __html: html
+    };
   }
 
   function overpassLink(k, v, n) {
@@ -5755,7 +5772,87 @@ function CategoryRow(props) {
 }
 
 ;
-},{"react":"1n8/","react-router-dom":"/uc1","./CategoryRowSocialLinks":"hON6"}],"aR8z":[function(require,module,exports) {
+},{"react":"1n8/","react-router-dom":"/uc1","./CategoryRowSocialLinks":"hON6"}],"JFTQ":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Filters;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Filters(props) {
+  var filters = props.data.filters;
+  var setFilters = props.data.setFilters;
+  var tt = filters.tt || '';
+  var cc = filters.cc || '';
+  return _react.default.createElement("div", {
+    className: "filters"
+  }, _react.default.createElement("span", {
+    className: "icon"
+  }, _react.default.createElement("i", {
+    className: "fas fa-lg fa-filter"
+  })), _react.default.createElement("span", {
+    className: "filterby"
+  }, "Filter by"), _react.default.createElement("span", {
+    className: "field"
+  }, _react.default.createElement("label", {
+    for: "tt"
+  }, "Tag Text:"), _react.default.createElement("input", {
+    type: "text",
+    id: "tt",
+    name: "tt",
+    autocorrect: "off",
+    size: "15",
+    value: tt,
+    onChange: filtersChanged
+  })), _react.default.createElement("span", {
+    className: "field"
+  }, _react.default.createElement("label", {
+    for: "cc"
+  }, "Country Code:"), _react.default.createElement("input", {
+    type: "text",
+    id: "cc",
+    name: "cc",
+    autocorrect: "off",
+    maxlength: "2",
+    size: "2",
+    value: cc,
+    onChange: filtersChanged
+  })), _react.default.createElement("span", {
+    className: "field"
+  }, _react.default.createElement("button", {
+    className: "clearFilters",
+    name: "clearFilters",
+    onClick: clearFilters
+  }, "Clear")));
+
+  function filtersChanged(event) {
+    var f = Object.assign({}, filters); // shallow copy
+
+    var val = (event.target.value || '').trim();
+
+    if (val) {
+      f[event.target.name] = val;
+    } else {
+      delete f[event.target.name];
+    }
+
+    setFilters(f);
+  }
+
+  function clearFilters(event) {
+    event.preventDefault();
+    event.target.blur();
+    setFilters({});
+  }
+}
+
+;
+},{"react":"1n8/"}],"aR8z":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5772,6 +5869,8 @@ var _reactRouterDom = require("react-router-dom");
 var _CategoryInstructions = _interopRequireDefault(require("./CategoryInstructions"));
 
 var _CategoryRow = _interopRequireDefault(require("./CategoryRow"));
+
+var _Filters = _interopRequireDefault(require("./Filters"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5793,7 +5892,9 @@ function Category(props) {
   if (message) {
     return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
       to: "index.html"
-    }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("div", {
+    }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
+      data: data
+    }), _react.default.createElement("div", {
       className: "summary"
     }, message));
   } // pick an icon for this category
@@ -5809,10 +5910,28 @@ function Category(props) {
   if (!icon_url) {
     // fallback to shop icon
     icon_url = data.icons.shop;
-  }
+  } // filters
 
+
+  var tt = (data.filters && data.filters.tt || '').toLowerCase();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase();
   var rows = Object.keys(entries).map(function (kvnd) {
-    var entry = entries[kvnd];
+    var entry = entries[kvnd]; // apply filters
+
+    if (tt) {
+      var tags = Object.entries(entry.tags);
+      if (tags.length && tags.every(function (pair) {
+        return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
+      })) return; // reject
+    }
+
+    if (cc) {
+      var codes = entry.countryCodes || [];
+      if (codes.length && codes.every(function (code) {
+        return code.toLowerCase().indexOf(cc) === -1;
+      })) return; // reject
+    }
+
     return _react.default.createElement(_CategoryRow.default, (0, _extends2.default)({
       key: kvnd
     }, props, {
@@ -5827,7 +5946,9 @@ function Category(props) {
     src: icon_url
   }), tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
     to: "index.html"
-  }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement("table", {
+  }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
+    data: data
+  }), _react.default.createElement("table", {
     className: "summary"
   }, _react.default.createElement("thead", null, _react.default.createElement("tr", null, _react.default.createElement("th", null, "Name", _react.default.createElement("br", null), "ID", _react.default.createElement("br", null), "Countries"), _react.default.createElement("th", null, "Count"), _react.default.createElement("th", null, "OpenStreetMap Tags"), _react.default.createElement("th", null, "Wikidata Name/Description", _react.default.createElement("br", null), "Official Website", _react.default.createElement("br", null), "Social Links"), _react.default.createElement("th", {
     className: "logo"
@@ -5839,7 +5960,7 @@ function Category(props) {
 }
 
 ;
-},{"@babel/runtime/helpers/extends":"3dLy","react":"1n8/","react-router-dom":"/uc1","./CategoryInstructions":"6M1E","./CategoryRow":"VkWy"}],"WwFW":[function(require,module,exports) {
+},{"@babel/runtime/helpers/extends":"3dLy","react":"1n8/","react-router-dom":"/uc1","./CategoryInstructions":"6M1E","./CategoryRow":"VkWy","./Filters":"JFTQ"}],"WwFW":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5928,11 +6049,16 @@ var _reactRouterDom = require("react-router-dom");
 
 var _OverviewInstructions = _interopRequireDefault(require("./OverviewInstructions"));
 
+var _Filters = _interopRequireDefault(require("./Filters"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Overview(props) {
   var tree = props.tree;
-  var data = props.data;
+  var data = props.data; // filters
+
+  var tt = (data.filters && data.filters.tt || '').toLowerCase();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase();
   var message;
 
   if (data.isLoading()) {
@@ -5943,7 +6069,9 @@ function Overview(props) {
   }
 
   if (message) {
-    return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, tree, "/"), _react.default.createElement(_OverviewInstructions.default, null), _react.default.createElement("div", {
+    return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, tree, "/"), _react.default.createElement(_OverviewInstructions.default, null), _react.default.createElement(_Filters.default, {
+      data: data
+    }), _react.default.createElement("div", {
       className: "container"
     }, message));
   }
@@ -5967,37 +6095,59 @@ function Overview(props) {
       }
 
       var keys = Object.keys(data.dict[k][v]);
-      var count = keys.length;
+      var count = 0;
       var complete = 0;
       keys.forEach(function (kvnd) {
-        var entry = data.dict[k][v][kvnd];
+        var entry = data.dict[k][v][kvnd]; // apply filters
+
+        if (tt) {
+          var _tags = Object.entries(entry.tags);
+
+          if (_tags.length && _tags.every(function (pair) {
+            return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
+          })) return; // reject
+        }
+
+        if (cc) {
+          var codes = entry.countryCodes || [];
+          if (codes.length && codes.every(function (code) {
+            return code.toLowerCase().indexOf(cc) === -1;
+          })) return; // reject
+        }
+
         var tags = entry.tags || {};
         var qid = tags['brand:wikidata'];
         var wd = data.wikidata[qid] || {};
         var logos = wd.logos || {};
+        count++;
 
         if (Object.keys(logos).length) {
           complete++;
         }
       });
-      items.push(_react.default.createElement("div", {
-        key: kv,
-        className: "category"
-      }, _react.default.createElement("img", {
-        className: "icon",
-        src: icon_url
-      }), _react.default.createElement(_reactRouterDom.Link, {
-        to: "index.html?k=".concat(k, "&v=").concat(v)
-      }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
+
+      if (count) {
+        items.push(_react.default.createElement("div", {
+          key: kv,
+          className: "category"
+        }, _react.default.createElement("img", {
+          className: "icon",
+          src: icon_url
+        }), _react.default.createElement(_reactRouterDom.Link, {
+          to: "index.html?k=".concat(k, "&v=").concat(v)
+        }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
+      }
     });
   });
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, tree, "/"), _react.default.createElement(_OverviewInstructions.default, null), _react.default.createElement("div", {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, tree, "/"), _react.default.createElement(_OverviewInstructions.default, null), _react.default.createElement(_Filters.default, {
+    data: data
+  }), _react.default.createElement("div", {
     className: "container"
   }, items));
 }
 
 ;
-},{"react":"1n8/","react-router-dom":"/uc1","./OverviewInstructions":"Z8lg"}],"FLHj":[function(require,module,exports) {
+},{"react":"1n8/","react-router-dom":"/uc1","./OverviewInstructions":"Z8lg","./Filters":"JFTQ"}],"FLHj":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6036,6 +6186,11 @@ var WIKIDATA = "".concat(DIST, "/wikidata.json"); // We can use iD's taginfo fil
 var TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/master/data/taginfo.json";
 
 function App() {
+  var _useState = (0, _react.useState)({}),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      filters = _useState2[0],
+      setFilters = _useState2[1];
+
   var _useFetch = useFetch(NAMES),
       _useFetch2 = (0, _slicedToArray2.default)(_useFetch, 2),
       names = _useFetch2[0],
@@ -6056,11 +6211,12 @@ function App() {
       icons = _useTaginfo2[0],
       iconsLoading = _useTaginfo2[1];
 
-  var pathroot = undefined || '';
   var appData = {
     isLoading: function isLoading() {
       return namesLoading || wikidataLoading || dictLoading || iconsLoading;
     },
+    filters: filters,
+    setFilters: setFilters,
     names: names,
     dict: dict,
     icons: icons,
@@ -6086,15 +6242,15 @@ function App() {
   })), _react.default.createElement(_Footer.default, null));
 
   function useFetch(url) {
-    var _useState = (0, _react.useState)([]),
-        _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-        data = _useState2[0],
-        setData = _useState2[1];
-
-    var _useState3 = (0, _react.useState)(true),
+    var _useState3 = (0, _react.useState)([]),
         _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
-        loading = _useState4[0],
-        setLoading = _useState4[1];
+        data = _useState4[0],
+        setData = _useState4[1];
+
+    var _useState5 = (0, _react.useState)(true),
+        _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+        loading = _useState6[0],
+        setLoading = _useState6[1];
 
     function fetchUrl() {
       return _fetchUrl.apply(this, arguments);
@@ -6140,15 +6296,15 @@ function App() {
 
 
   function useBrands(url) {
-    var _useState5 = (0, _react.useState)([]),
-        _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
-        data = _useState6[0],
-        setData = _useState6[1];
-
-    var _useState7 = (0, _react.useState)(true),
+    var _useState7 = (0, _react.useState)({}),
         _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
-        loading = _useState8[0],
-        setLoading = _useState8[1];
+        data = _useState8[0],
+        setData = _useState8[1];
+
+    var _useState9 = (0, _react.useState)(true),
+        _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
+        loading = _useState10[0],
+        setLoading = _useState10[1];
 
     function fetchUrl() {
       return _fetchUrl2.apply(this, arguments);
@@ -6210,15 +6366,15 @@ function App() {
 
 
   function useTaginfo(url) {
-    var _useState9 = (0, _react.useState)([]),
-        _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
-        data = _useState10[0],
-        setData = _useState10[1];
-
-    var _useState11 = (0, _react.useState)(true),
+    var _useState11 = (0, _react.useState)({}),
         _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
-        loading = _useState12[0],
-        setLoading = _useState12[1];
+        data = _useState12[0],
+        setData = _useState12[1];
+
+    var _useState13 = (0, _react.useState)(true),
+        _useState14 = (0, _slicedToArray2.default)(_useState13, 2),
+        loading = _useState14[0],
+        setLoading = _useState14[1];
 
     function fetchUrl() {
       return _fetchUrl3.apply(this, arguments);
