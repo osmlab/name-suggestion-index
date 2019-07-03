@@ -45,8 +45,8 @@ export default function Category(props) {
   }
 
   // filters
-  const tt = ((data.filters && data.filters.tt) || '').toLowerCase();
-  const cc = ((data.filters && data.filters.cc) || '').toLowerCase();
+  const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
+  const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
 
   const rows = Object.keys(entries).map(kvnd => {
     let entry = entries[kvnd];

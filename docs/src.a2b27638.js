@@ -5641,8 +5641,8 @@ function CategoryRow(props) {
   var k = props.k;
   var v = props.v; // filters
 
-  var tt = (data.filters && data.filters.tt || '').toLowerCase();
-  var cc = (data.filters && data.filters.cc || '').toLowerCase(); // if there was a hash, re-scroll to it..
+  var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase().trim(); // if there was a hash, re-scroll to it..
   // (browser may have tried this already on initial render before data was there)
 
   var hash = props.location.hash;
@@ -5835,7 +5835,7 @@ function Filters(props) {
   function filtersChanged(event) {
     var f = Object.assign({}, filters); // shallow copy
 
-    var val = (event.target.value || '').trim();
+    var val = event.target.value || '';
 
     if (val) {
       f[event.target.name] = val;
@@ -5915,8 +5915,8 @@ function Category(props) {
   } // filters
 
 
-  var tt = (data.filters && data.filters.tt || '').toLowerCase();
-  var cc = (data.filters && data.filters.cc || '').toLowerCase();
+  var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var rows = Object.keys(entries).map(function (kvnd) {
     var entry = entries[kvnd]; // apply filters
 
@@ -6059,8 +6059,8 @@ function Overview(props) {
   var tree = props.tree;
   var data = props.data; // filters
 
-  var tt = (data.filters && data.filters.tt || '').toLowerCase();
-  var cc = (data.filters && data.filters.cc || '').toLowerCase();
+  var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
+  var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var message;
 
   if (data.isLoading()) {
