@@ -40,7 +40,7 @@ export default function CategoryRow(props) {
   const logos = wd.logos || {};
 
   return (
-    <tr>
+    <tr className={entry.filtered ? "hide" : null} >
     <td className="namesuggest">
       <h3 className="slug" id={slug}>
         <a href={`#${slug}`}>#</a>

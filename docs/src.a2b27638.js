@@ -5663,7 +5663,9 @@ function CategoryRow(props) {
   var description = wd.description ? '"' + wd.description + '"' : '';
   var identities = wd.identities || {};
   var logos = wd.logos || {};
-  return _react.default.createElement("tr", null, _react.default.createElement("td", {
+  return _react.default.createElement("tr", {
+    className: entry.filtered ? "hide" : null
+  }, _react.default.createElement("td", {
     className: "namesuggest"
   }, _react.default.createElement("h3", {
     className: "slug",
@@ -5920,16 +5922,16 @@ function Category(props) {
 
     if (tt) {
       var tags = Object.entries(entry.tags);
-      if (tags.length && tags.every(function (pair) {
+      entry.filtered = tags.length && tags.every(function (pair) {
         return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
-      })) return; // reject
-    }
-
-    if (cc) {
+      });
+    } else if (cc) {
       var codes = entry.countryCodes || [];
-      if (codes.length && codes.every(function (code) {
+      entry.filtered = codes.length && codes.every(function (code) {
         return code.toLowerCase().indexOf(cc) === -1;
-      })) return; // reject
+      });
+    } else {
+      delete entry.filtered;
     }
 
     return _react.default.createElement(_CategoryRow.default, (0, _extends2.default)({
@@ -6103,40 +6105,41 @@ function Overview(props) {
         if (tt) {
           var _tags = Object.entries(entry.tags);
 
-          if (_tags.length && _tags.every(function (pair) {
+          entry.filtered = _tags.length && _tags.every(function (pair) {
             return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
-          })) return; // reject
-        }
-
-        if (cc) {
+          });
+        } else if (cc) {
           var codes = entry.countryCodes || [];
-          if (codes.length && codes.every(function (code) {
+          entry.filtered = codes.length && codes.every(function (code) {
             return code.toLowerCase().indexOf(cc) === -1;
-          })) return; // reject
+          });
+        } else {
+          delete entry.filtered;
         }
 
         var tags = entry.tags || {};
         var qid = tags['brand:wikidata'];
         var wd = data.wikidata[qid] || {};
         var logos = wd.logos || {};
-        count++;
 
-        if (Object.keys(logos).length) {
-          complete++;
+        if (!entry.filtered) {
+          count++;
+
+          if (Object.keys(logos).length) {
+            complete++;
+          }
         }
       });
-
-      if (count) {
-        items.push(_react.default.createElement("div", {
-          key: kv,
-          className: "category"
-        }, _react.default.createElement("img", {
-          className: "icon",
-          src: icon_url
-        }), _react.default.createElement(_reactRouterDom.Link, {
-          to: "index.html?k=".concat(k, "&v=").concat(v)
-        }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
-      }
+      var klass = "category" + (!count ? " hide" : "");
+      items.push(_react.default.createElement("div", {
+        key: kv,
+        className: klass
+      }, _react.default.createElement("img", {
+        className: "icon",
+        src: icon_url
+      }), _react.default.createElement(_reactRouterDom.Link, {
+        to: "index.html?k=".concat(k, "&v=").concat(v)
+      }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
     });
   });
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h1", null, tree, "/"), _react.default.createElement(_OverviewInstructions.default, null), _react.default.createElement(_Filters.default, {

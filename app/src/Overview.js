@@ -54,40 +54,42 @@ export default function Overview(props) {
       let complete = 0;
 
       keys.forEach(kvnd => {
-          const entry = data.dict[k][v][kvnd];
+        let entry = data.dict[k][v][kvnd];
 
-          // apply filters
-          if (tt) {
-            const tags = Object.entries(entry.tags);
-            if (tags.length && tags.every(
-              (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
-            )) return;  // reject
-          }
-          if (cc) {
-            const codes = (entry.countryCodes || []);
-            if (codes.length && codes.every(
-              (code) => (code.toLowerCase().indexOf(cc) === -1)
-            )) return;  // reject
-          }
+        // apply filters
+        if (tt) {
+          const tags = Object.entries(entry.tags);
+          entry.filtered = (tags.length && tags.every(
+            (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
+          ));
+        } else if (cc) {
+          const codes = (entry.countryCodes || []);
+          entry.filtered = (codes.length && codes.every(
+            (code) => (code.toLowerCase().indexOf(cc) === -1)
+          ));
+        } else {
+          delete entry.filtered;
+        }
 
-          const tags = entry.tags || {};
-          const qid = tags['brand:wikidata'];
-          const wd = data.wikidata[qid] || {};
-          const logos = wd.logos || {};
+        const tags = entry.tags || {};
+        const qid = tags['brand:wikidata'];
+        const wd = data.wikidata[qid] || {};
+        const logos = wd.logos || {};
+        if (!entry.filtered) {
           count++;
           if (Object.keys(logos).length) {
-              complete++;
+            complete++;
           }
+        }
       });
 
-      if (count) {
-        items.push(
-          <div key={kv} className="category">
-          <img className="icon" src={icon_url} />
-          <Link to={`index.html?k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
-          </div>
-        );
-      }
+      let klass = "category" + (!count ? " hide" : "");
+      items.push(
+        <div key={kv} className={klass} >
+        <img className="icon" src={icon_url} />
+        <Link to={`index.html?k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
+        </div>
+      );
 
     });
   });
