@@ -45,24 +45,25 @@ export default function Category(props) {
   }
 
   // filters
-  const tt = ((data.filters && data.filters.tt) || '').toLowerCase();
-  const cc = ((data.filters && data.filters.cc) || '').toLowerCase();
+  const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
+  const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
 
   const rows = Object.keys(entries).map(kvnd => {
-    const entry = entries[kvnd];
+    let entry = entries[kvnd];
 
     // apply filters
     if (tt) {
       const tags = Object.entries(entry.tags);
-      if (tags.length && tags.every(
+      entry.filtered = (tags.length && tags.every(
         (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
-      )) return;  // reject
-    }
-    if (cc) {
+      ));
+    } else if (cc) {
       const codes = (entry.countryCodes || []);
-      if (codes.length && codes.every(
+      entry.filtered = (codes.length && codes.every(
         (code) => (code.toLowerCase().indexOf(cc) === -1)
-      )) return;  // reject
+      ));
+    } else {
+      delete entry.filtered;
     }
 
     return (

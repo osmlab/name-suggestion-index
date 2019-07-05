@@ -16,8 +16,8 @@ export default function CategoryRow(props) {
   const v = props.v;
 
   // filters
-  const tt = ((data.filters && data.filters.tt) || '').toLowerCase();
-  const cc = ((data.filters && data.filters.cc) || '').toLowerCase();
+  const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
+  const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
 
   // if there was a hash, re-scroll to it..
   // (browser may have tried this already on initial render before data was there)
@@ -40,7 +40,7 @@ export default function CategoryRow(props) {
   const logos = wd.logos || {};
 
   return (
-    <tr>
+    <tr className={entry.filtered ? "hide" : null} >
     <td className="namesuggest">
       <h3 className="slug" id={slug}>
         <a href={`#${slug}`}>#</a>

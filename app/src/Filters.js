@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Filters(props) {
@@ -7,11 +9,12 @@ export default function Filters(props) {
 
   const tt = filters.tt || '';
   const cc = filters.cc || '';
+  const klass = "filters" + ((tt.trim() || cc.trim()) ? " active" : "");
 
   return (
-    <div className="filters">
+    <div className={klass}>
 
-    <span className="icon"><i className="fas fa-lg fa-filter"></i></span>
+    <span className="icon"><FontAwesomeIcon icon={faFilter} /></span>
     <span className="filterby">Filter by</span>
 
     <span className="field">
@@ -37,7 +40,7 @@ export default function Filters(props) {
 
   function filtersChanged(event) {
     let f = Object.assign({}, filters);  // shallow copy
-    let val = (event.target.value || '').trim();
+    let val = (event.target.value || '');
     if (val) {
       f[event.target.name] = val;
     } else {

@@ -54,6 +54,9 @@ pre {
   font-size: 12px;
   margin: 0;
 }
+.hide {
+  display: none;
+}
 
 img.icon {
   width: 1.1em;
@@ -97,11 +100,15 @@ input:focus {
 /* Filters */
 .filters {
   display: inline-block;
-  border: 1px solid #bbe;
+  background: #f6f6f6;
+  border: 1px solid #ccc;
   border-radius: 4px;
   padding: 10px;
   max-width: 1000px;
+}
+.filters.active {
   background: #eef;
+  border: 1px solid #bbe;
 }
 .filters .filterby {
   margin: 8px;
