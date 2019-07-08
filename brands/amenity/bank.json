@@ -624,9 +624,32 @@
       "official_name": "Banco Mare Nostrum"
     }
   },
-  "amenity/bank|BMO": {
-    "countryCodes": ["ca", "us"],
-    "matchNames": ["bmo bank of montreal"],
+  "amenity/bank|BMO Harris Bank~(USA)": {
+    "countryCodes": ["us"],
+    "matchNames": [
+      "BMO",
+      "BMO Bank of Montreal",
+      "BMO Harris Bank",
+      "Bank of Montreal",
+      "Harris Bank"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "BMO Harris Bank",
+      "brand:wikidata": "Q4835981",
+      "brand:wikipedia": "en:BMO Harris Bank",
+      "name": "BMO Harris Bank"
+    }
+  },
+  "amenity/bank|BMO~(Canada)": {
+    "countryCodes": ["ca"],
+    "matchNames": [
+      "BMO",
+      "BMO Bank of Montreal",
+      "BMO Banque de Montréal",
+      "Bank of Montreal",
+      "Banque de Montréal"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "BMO",
@@ -634,16 +657,6 @@
       "brand:wikipedia": "en:Bank of Montreal",
       "name": "BMO",
       "official_name": "Bank of Montreal"
-    }
-  },
-  "amenity/bank|BMO Harris Bank": {
-    "countryCodes": ["us"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "BMO Harris Bank",
-      "brand:wikidata": "Q4835981",
-      "brand:wikipedia": "en:BMO Harris Bank",
-      "name": "BMO Harris Bank"
     }
   },
   "amenity/bank|BNA~(Algeria)": {
@@ -3627,6 +3640,17 @@
       "name": "LCL"
     }
   },
+  "amenity/bank|LCNB": {
+    "countryCodes": ["us"],
+    "tags": {
+      "alt_name": "Lebanon Citizens National Bank",
+      "amenity": "bank",
+      "brand": "LCNB",
+      "brand:wikidata": "Q65095575",
+      "name": "LCNB",
+      "official_name": "LCNB National Bank"
+    }
+  },
   "amenity/bank|La Banque Postale": {
     "countryCodes": ["fr"],
     "tags": {
@@ -4184,7 +4208,16 @@
       "name": "People's United Bank"
     }
   },
-  "amenity/bank|Peoples Bank": {
+  "amenity/bank|Peoples Bank~(Kentucky)": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Peoples Bank",
+      "name": "Peoples Bank of Kentucky"
+    }
+  },
+  "amenity/bank|Peoples Bank~(Washington)": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "Peoples Bank",
@@ -4536,7 +4569,23 @@
       "name": "Sberbank"
     }
   },
-  "amenity/bank|Scotiabank": {
+  "amenity/bank|Scotiabank~(Québec)": {
+    "countryCodes": ["ca"],
+    "matchNames": ["Scotia"],
+    "nomatch": ["amenity/bank|Scotiabank"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Banque Scotia",
+      "brand:wikidata": "Q451476",
+      "brand:wikipedia": "fr:Banque Scotia",
+      "name": "Banque Scotia"
+    }
+  },
+  "amenity/bank|Scotiabank~(non-Québec)": {
+    "matchNames": ["Scotia"],
+    "nomatch": [
+      "amenity/bank|Scotiabank~(Québec)"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "Scotiabank",
@@ -4831,7 +4880,7 @@
     }
   },
   "amenity/bank|TD Bank": {
-    "countryCodes": ["ca", "us"],
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "TD Bank",
@@ -4878,6 +4927,16 @@
       "brand:wikidata": "Q30324674",
       "brand:wikipedia": "en:TakarékBank",
       "name": "Takarékszövetkezet"
+    }
+  },
+  "amenity/bank|Tangerine": {
+    "countryCodes": ["ca"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Tangerine",
+      "brand:wikidata": "Q15238797",
+      "brand:wikipedia": "en:Tangerine Bank",
+      "name": "Tangerine"
     }
   },
   "amenity/bank|Targobank": {
