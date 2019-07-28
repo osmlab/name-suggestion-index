@@ -1,0 +1,52 @@
+{
+    "title": "networks schema",
+    "description": "name-suggestion-index networks",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^\\S+/\\S+|.*$": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "countryCodes",
+                "tags"
+            ],
+            "properties": {
+                "countryCodes": {
+                    "description": "(required) Array of ISO 3166-1 alpha-2 two letter country codes in lowercase",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^[a-z]{2}$": {
+                            "oneOf": [
+                                {
+                                    "type": "boolean",
+                                    "enum": [ true ]
+                                },
+                                {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "patternProperties": {
+                                        "^[a-z]{2}$": {
+                                            "type": "boolean",
+                                            "enum": [ true ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "tags": {
+                    "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
+                    "type": "object",
+                    "properties": {
+                        "countryCodes": { "not" : {} },
+                        "tags":         { "not" : {} }
+                    },
+                    "required": ["network", "network:wikidata"]
+                }
+            }
+        }
+    }
+}
