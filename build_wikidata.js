@@ -105,6 +105,7 @@ function doFetch(index) {
 function processEntities(result) {
     let twitterQueue = [];
     let facebookQueue = [];
+    let countryCodesQueue = [];
 
     Object.keys(result.entities).forEach(qid => {
         let target = _wikidata[qid];
@@ -123,6 +124,7 @@ function processEntities(result) {
         if (!entity.claims) return;
         target.logos = {};
         target.identities = {};
+        target.dissolutions = [];
 
         // P154 - Commons Logo (often not square)
         let wikidataLogo = getClaimValue(entity, 'P154');
@@ -186,6 +188,70 @@ function processEntities(result) {
         if (linkedinUser) {
             target.identities.linkedin = linkedinUser;
         }
+
+        // P576 - Dissolution date
+        wdk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
+            let dissolution = {
+              date: item.value
+            };
+
+            if (item.qualifiers) {
+                // P17 - Countries where the brand is dissoluted
+                let countries = item.qualifiers.P17;
+                if (countries) {
+                    dissolution.countries = countries;
+                    countryCodesQueue.push({ qid: qid, index: target.dissolutions.length, countries: countries });
+                }
+
+                // P156 - followed by or P1366 - replaced by (successor)
+                let successor = item.qualifiers.P156 || item.qualifiers.P1366;
+                if (successor) {
+                    dissolution.upgrade = successor;
+                }
+            }
+
+            // P156 - followed by or P1366 - replaced by (successor)
+            // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
+            let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366');
+            // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
+            if (successor && successor.id && !dissolution.upgrade) {
+                dissolution.upgrade = [ successor.id ];
+            }
+
+            if (dissolution.upgrade) {
+                dissolution.upgrade.forEach((entity, index) => {
+                    let keys = getKeysByQid(entity);
+                    if (keys.length === 0) {
+                        // If the brand is not yet in the index, show a warning to add it
+                        let msg = `Error: ${qid}: ${target.label} should probably be replaced by ${entity}, but this entry is not yet present in the index.`;
+                        if (dissolution.countries) {
+                            msg += ' ';
+                            msg += `This applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
+                        }
+                        _errors.push(msg);
+                        console.error(colors.red(msg));
+                        dissolution.upgrade.splice(index, 1);
+                    } else if (keys.length === 1) {
+                        dissolution.upgrade[index] = keys[0];
+                    } else if (keys.length > 1) {
+                        let msg = `Error: ${qid}: ${target.label} should probably be replaced by ${entity}, but this applies to more than one entry in the index: ${JSON.stringify(keys)}.`;
+                        if (dissolution.countries) {
+                            msg += ' ';
+                            msg += `This applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
+                        }
+                        _errors.push(msg);
+                        console.error(colors.red(msg));
+                        dissolution.upgrade.splice(index, 1);
+                    }
+                });
+
+                if (dissolution.upgrade.length === 0) {
+                    delete dissolution.upgrade;
+                }
+            }
+
+            target.dissolutions.push(dissolution);
+        });
     });
 
     if (twitterAPIs.length && twitterQueue.length) {
@@ -195,11 +261,17 @@ function processEntities(result) {
             ))
             .then(() => Promise.all(
                 facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username))
+            ))
+            .then(() => Promise.all(
+                countryCodesQueue.map(obj => fetchCountryCodes(obj.qid, obj.index, obj.countries))
             ));
     } else {
         return Promise.all(
             facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username))
-        );
+        )
+        .then(() => Promise.all(
+              countryCodesQueue.map(obj => fetchCountryCodes(obj.qid, obj.index, obj.countries))
+        ));
     }
 }
 
@@ -247,9 +319,11 @@ function finish() {
     Object.keys(_wikidata).forEach(qid => {
         let target = _wikidata[qid];
 
-        ['identities', 'logos'].forEach(prop => {
+        ['identities', 'logos', 'dissolutions'].forEach(prop => {
             if (target[prop] && Object.keys(target[prop]).length) {
-                target[prop] = sort(target[prop]);
+                if (target[prop].constructor.name === 'Object') {
+                    target[prop] = sort(target[prop]);
+                }
             } else {
                 delete target[prop];
             }
@@ -262,12 +336,40 @@ function finish() {
     fs.writeFileSync('dist/wikidata.json', stringify({ wikidata: sort(_wikidata) }));
     console.timeEnd(colors.green('wikidata.json updated'));
 
+
+    console.log('\nwriting dissolved.json');
+    console.time(colors.green('dissolved.json updated'));
+
+    let dissolved = {};
+
+    Object.keys(_brands).forEach(kvnd => {
+        let qid = _brands[kvnd].tags['brand:wikidata'];
+        if (qid && _wikidata[qid].dissolutions && _wikidata[qid].dissolutions.length > 0) {
+            dissolved[kvnd] = _wikidata[qid].dissolutions;
+        }
+    });
+
+    fs.writeFileSync('dist/dissolved.json', stringify(sort(dissolved)));
+    console.timeEnd(colors.green('dissolved.json updated'));
+
+
     if (_errors.length) {
         console.log(colors.yellow.bold(`\nError Summary:`));
         _errors.forEach(msg => console.error(colors.red(msg)));
     }
 }
 
+
+// Find the key(s) of items in the index by its QID set in 'brand:wikidata'
+function getKeysByQid(qid) {
+    let result = [];
+    Object.keys(_brands).forEach(kvnd => {
+        if (_brands[kvnd].tags['brand:wikidata'] === qid) {
+            result.push(kvnd);
+        }
+    });
+    return result;
+}
 
 // check Twitter rate limit status
 // https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
@@ -347,6 +449,35 @@ function fetchFacebookLogo(qid, username) {
         });
 }
 
+// replace the reference to a country with its ISO 3166-1 alpha-2 code which is present as a claim of the entity
+function fetchCountryCodes(qid, index, countries) {
+    let target = _wikidata[qid];
+    let url = wdk.getEntities({
+      ids: countries,
+      languages: [ 'en' ],
+      props: [ 'claims' ],
+      format: 'json'
+    });
+
+    return fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            let entities = json.entities;
+            for (let entity of Object.keys(entities)) {
+              // P297 - ISO 3166-1 alpha-2 code
+              let code = entities[entity].claims.P297;
+              if (!code) {
+                  // the entity is likely not a country if no country code is present
+                  let msg = `Error: ${qid}: the linked item ${entity} does not seem to be a country because there is no country code stored as a claim.`;
+                  _errors.push(msg);
+                  console.error(colors.red(msg));
+              }
+              countries[countries.indexOf(entity)] = wdk.simplify.propertyClaims(code)[0].toLowerCase();
+              target.dissolutions[index].countries = countries;
+            }
+        });
+}
+
 
 function delay(msec) {
     return new Promise((resolve) => setTimeout(resolve, msec));
@@ -364,4 +495,3 @@ function utilQsString(obj) {
         return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
     }).join('&');
 }
-
