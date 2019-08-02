@@ -34,13 +34,6 @@
       "name": "ASK Italian"
     }
   },
-  "amenity/restaurant|Amici": {
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Amici",
-      "name": "Amici"
-    }
-  },
   "amenity/restaurant|Applebee's": {
     "matchNames": [
       "applebees bar and grill",
@@ -64,6 +57,7 @@
       "brand": "Autogrill",
       "brand:wikidata": "Q786790",
       "brand:wikipedia": "en:Autogrill",
+      "cuisine": "italian;regional",
       "name": "Autogrill"
     }
   },
@@ -320,9 +314,13 @@
     }
   },
   "amenity/restaurant|Campanile": {
+    "countryCodes": ["fr", "gb", "nl"],
     "tags": {
       "amenity": "restaurant",
       "brand": "Campanile",
+      "brand:wikidata": "Q2412064",
+      "brand:wikipedia": "fr:Campanile (chaîne d'hôtels)",
+      "cuisine": "french",
       "name": "Campanile"
     }
   },
@@ -469,6 +467,7 @@
       "brand": "Cosmo",
       "brand:wikidata": "Q5174239",
       "brand:wikipedia": "en:Cosmo (restaurant)",
+      "cuisine": "international",
       "name": "Cosmo"
     }
   },
@@ -538,13 +537,6 @@
       "brand:wikipedia": "en:Dickey's Barbecue Pit",
       "cuisine": "barbecue",
       "name": "Dickey's Barbecue Pit"
-    }
-  },
-  "amenity/restaurant|Dolce Vita": {
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Dolce Vita",
-      "name": "Dolce Vita"
     }
   },
   "amenity/restaurant|Donatos Pizza": {
@@ -752,10 +744,13 @@
       "name": "Grotto Pizza"
     }
   },
-  "amenity/restaurant|Gusto": {
+  "amenity/restaurant|Gusto~(United Kingdom)": {
+    "countryCodes": ["gb"],
     "tags": {
       "amenity": "restaurant",
       "brand": "Gusto",
+      "brand:wikidata": "Q66087781",
+      "cuisine": "italian",
       "name": "Gusto"
     }
   },
@@ -885,14 +880,6 @@
       "name": "IL Патио"
     }
   },
-  "amenity/restaurant|Il Giardino": {
-    "countryCodes": ["de", "fr", "it", "nl"],
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Il Giardino",
-      "name": "Il Giardino"
-    }
-  },
   "amenity/restaurant|Iron Skillet": {
     "countryCodes": ["us"],
     "matchNames": ["iron skillet restaurant"],
@@ -982,13 +969,6 @@
       "name": "Kelsey's"
     }
   },
-  "amenity/restaurant|Koliba": {
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Koliba",
-      "name": "Koliba"
-    }
-  },
   "amenity/restaurant|Kudu": {
     "countryCodes": ["sa"],
     "tags": {
@@ -1054,13 +1034,6 @@
       "takeaway": "yes"
     }
   },
-  "amenity/restaurant|Le Patio": {
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Le Patio",
-      "name": "Le Patio"
-    }
-  },
   "amenity/restaurant|Legal Sea Foods": {
     "countryCodes": ["us"],
     "tags": {
@@ -1070,13 +1043,6 @@
       "brand:wikipedia": "en:Legal Sea Foods",
       "cuisine": "seafood",
       "name": "Legal Sea Foods"
-    }
-  },
-  "amenity/restaurant|Lemongrass": {
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Lemongrass",
-      "name": "Lemongrass"
     }
   },
   "amenity/restaurant|Les 3 Brasseurs~(Qc,Br,Fr)": {
@@ -1113,13 +1079,6 @@
       "brand:wikipedia": "en:LongHorn Steakhouse",
       "cuisine": "steak_house",
       "name": "LongHorn Steakhouse"
-    }
-  },
-  "amenity/restaurant|Los Arcos": {
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Los Arcos",
-      "name": "Los Arcos"
     }
   },
   "amenity/restaurant|Lou Malnati's Pizzeria": {
@@ -1482,6 +1441,16 @@
       "cuisine": "american",
       "name": "Perkins",
       "official_name": "Perkins Restaurant and Bakery"
+    }
+  },
+  "amenity/restaurant|Peter Pane": {
+    "countryCodes": ["at", "de"],
+    "tags": {
+      "amenity": "restaurant",
+      "brand": "Peter Pane",
+      "brand:wikidata": "Q66084419",
+      "cuisine": "burger",
+      "name": "Peter Pane"
     }
   },
   "amenity/restaurant|Phở 24": {
@@ -1995,13 +1964,35 @@
       "name": "Village Inn"
     }
   },
-  "amenity/restaurant|Vips": {
-    "countryCodes": ["es", "mx"],
+  "amenity/restaurant|Vips~(Asia)": {
+    "countryCodes": ["cn", "kr"],
+    "tags": {
+      "amenity": "restaurant",
+      "brand": "Vips",
+      "brand:wikidata": "Q12599540",
+      "brand:wikipedia": "ko:빕스",
+      "cuisine": "salad;steak_house",
+      "name": "Vips"
+    }
+  },
+  "amenity/restaurant|Vips~(Mexico)": {
+    "countryCodes": ["mx"],
     "tags": {
       "amenity": "restaurant",
       "brand": "Vips",
       "brand:wikidata": "Q48783378",
       "brand:wikipedia": "es:Vips",
+      "cuisine": "mexican",
+      "name": "Vips"
+    }
+  },
+  "amenity/restaurant|Vips~(Spain)": {
+    "countryCodes": ["es"],
+    "tags": {
+      "amenity": "restaurant",
+      "brand": "Vips",
+      "brand:wikidata": "Q66087862",
+      "cuisine": "international",
       "name": "Vips"
     }
   },
@@ -2116,11 +2107,23 @@
       "name": "Zizzi"
     }
   },
-  "amenity/restaurant|Евразия": {
-    "countryCodes": ["ru", "ua"],
+  "amenity/restaurant|Евразия~(Russia)": {
+    "countryCodes": ["ru"],
     "tags": {
       "amenity": "restaurant",
       "brand": "Евразия",
+      "brand:wikidata": "Q66087936",
+      "cuisine": "international",
+      "name": "Евразия"
+    }
+  },
+  "amenity/restaurant|Евразия~(Ukraine)": {
+    "countryCodes": ["ua"],
+    "tags": {
+      "amenity": "restaurant",
+      "brand": "Евразия",
+      "brand:wikidata": "Q66088028",
+      "cuisine": "international",
       "name": "Евразия"
     }
   },
@@ -2152,6 +2155,8 @@
     "tags": {
       "amenity": "restaurant",
       "brand": "Якитория",
+      "brand:wikidata": "Q66088063",
+      "cuisine": "japanese;international",
       "name": "Якитория"
     }
   },
@@ -2446,6 +2451,7 @@
       "brand:wikidata": "Q28417381",
       "brand:wikipedia": "zh:八方雲集",
       "brand:zh": "八方雲集",
+      "cuisine": "chinese",
       "name": "八方雲集",
       "name:en": "Eight Way",
       "name:zh": "八方雲集"
@@ -2567,10 +2573,16 @@
     }
   },
   "amenity/restaurant|海底捞火锅": {
+    "countryCodes": ["cn"],
     "tags": {
       "amenity": "restaurant",
       "brand": "海底捞火锅",
-      "name": "海底捞火锅"
+      "brand:en": "Hai Di Lao Hot Pot",
+      "brand:wikidata": "Q5638920",
+      "brand:wikipedia": "zh:海底捞",
+      "cuisine": "chinese",
+      "name": "海底捞火锅",
+      "name:en": "Hai Di Lao Hot Pot"
     }
   },
   "amenity/restaurant|牛角": {
@@ -2621,8 +2633,11 @@
     "tags": {
       "amenity": "restaurant",
       "brand": "바다횟집",
+      "brand:en": "Bada Fish Restaurant",
       "brand:ko": "바다횟집",
+      "cuisine": "fish",
       "name": "바다횟집",
+      "name:en": "Bada Fish Restaurant",
       "name:ko": "바다횟집"
     }
   },
@@ -2631,12 +2646,13 @@
     "tags": {
       "amenity": "restaurant",
       "brand": "빕스",
-      "brand:en": "VIPS",
+      "brand:en": "Vips",
       "brand:ko": "빕스",
       "brand:wikidata": "Q12599540",
-      "brand:wikipedia": "en:VIPS (restaurant)",
+      "brand:wikipedia": "ko:빕스",
+      "cuisine": "salad;steak_house",
       "name": "빕스",
-      "name:en": "VIPS",
+      "name:en": "Vips",
       "name:ko": "빕스"
     }
   }
