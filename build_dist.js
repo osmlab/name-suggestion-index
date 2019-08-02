@@ -1,5 +1,6 @@
 const colors = require('colors/safe');
 const fs = require('fs');
+const dissolved = require('./dist/dissolved.json');
 const namesKeep = require('./dist/names_keep.json');
 const packageJSON = require('./package.json');
 const shell = require('shelljs');
@@ -43,6 +44,10 @@ function buildJSON() {
 
         const wd = obj.tags['brand:wikidata'];
         if (!wd || !/^Q\d+$/.test(wd)) return;   // wikidata tag missing or looks wrong..
+
+        if (dissolved[kvnd]) {
+            return; // brand does not exist anymore, so it should not be in the index
+        }
 
         const parts = toParts(kvnd);
         const k = parts.k;
