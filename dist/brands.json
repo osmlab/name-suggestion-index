@@ -10890,6 +10890,19 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Lee's Famous Recipe Chicken": {
+      "countryCodes": ["ca", "us"],
+      "matchNames": ["lee's"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Lee's Famous Recipe Chicken",
+        "brand:wikidata": "Q6512810",
+        "brand:wikipedia": "en:Lee's Famous Recipe Chicken",
+        "cuisine": "chicken",
+        "name": "Lee's Famous Recipe Chicken",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Lee's Sandwiches": {
       "countryCodes": ["us"],
       "tags": {
@@ -15302,6 +15315,17 @@
         "name": "Texaco"
       }
     },
+    "amenity/fuel|Thorntons": {
+      "countryCodes": ["us"],
+      "nomatch": ["shop/confectionery|Thorntons", "shop/convenience|Thorntons"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Thorntons",
+        "brand:wikidata": "Q7796584",
+        "brand:wikipedia": "en:Thorntons LLC",
+        "name": "Thorntons"
+      }
+    },
     "amenity/fuel|Tinq": {
       "countryCodes": ["nl"],
       "tags": {
@@ -19315,6 +19339,33 @@
         "name": "Offener Bücherschrank"
       }
     },
+    "amenity/recycling|Planet Aid": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Planet Aid",
+        "brand:wikidata": "Q7201055",
+        "brand:wikipedia": "en:Planet Aid",
+        "name": "Planet Aid",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes",
+        "recycling_type": "container"
+      }
+    },
+    "amenity/recycling|The Salvation Army": {
+      "countryCodes": ["us"],
+      "matchNames": ["salvation army"],
+      "nomatch": ["shop/charity|The Salvation Army"],
+      "tags": {
+        "amenity": "recycling",
+        "brand": "The Salvation Army",
+        "brand:wikidata": "Q188307",
+        "brand:wikipedia": "en:The Salvation Army",
+        "name": "The Salvation Army",
+        "recycling:clothes": "yes",
+        "recycling_type": "container"
+      }
+    },
     "amenity/restaurant|100 Montaditos": {
       "countryCodes": ["es", "it", "pt"],
       "tags": {
@@ -21963,7 +22014,7 @@
     },
     "amenity/social_centre|Eagles Lodge": {
       "countryCodes": ["us"],
-      "matchNames": ["aeries", "eagles", "foe"],
+      "matchNames": ["aeries", "eagles"],
       "tags": {
         "alt_name": "Aeries Lodge",
         "amenity": "social_centre",
@@ -21971,19 +22022,21 @@
         "brand:wikidata": "Q5493810",
         "brand:wikipedia": "en:Fraternal Order of Eagles",
         "name": "Eagles Lodge",
-        "official_name": "Fraternal Order of Eagles"
+        "official_name": "Fraternal Order of Eagles",
+        "short_name": "FOE"
       }
     },
     "amenity/social_centre|Elks Lodge": {
       "countryCodes": ["us"],
-      "matchNames": ["bpoe", "elks"],
+      "matchNames": ["elks"],
       "tags": {
         "amenity": "social_centre",
         "brand": "Benevolent and Protective Order of Elks",
         "brand:wikidata": "Q2895789",
         "brand:wikipedia": "en:Benevolent and Protective Order of Elks",
         "name": "Elks Lodge",
-        "official_name": "Benevolent and Protective Order of Elks"
+        "official_name": "Benevolent and Protective Order of Elks",
+        "short_name": "BPOE"
       }
     },
     "amenity/social_centre|Moose Lodge": {
@@ -21999,19 +22052,43 @@
       }
     },
     "amenity/social_centre|Odd Fellows Hall": {
-      "matchNames": ["ioof", "odd fellow", "odd fellows"],
+      "matchNames": ["odd fellow", "odd fellows"],
       "tags": {
         "amenity": "social_centre",
         "brand": "Independent Order of Odd Fellows",
         "brand:wikidata": "Q1425508",
         "brand:wikipedia": "en:Independent Order of Odd Fellows",
         "name": "Odd Fellows Hall",
-        "official_name": "Independent Order of Odd Fellows"
+        "official_name": "Independent Order of Odd Fellows",
+        "short_name": "IOOF"
+      }
+    },
+    "amenity/social_centre|Orioles Nest": {
+      "countryCodes": ["us"],
+      "matchNames": ["fraternal order of orioles", "oriole nest", "orioles"],
+      "tags": {
+        "amenity": "social_centre",
+        "brand": "Fraternal Order Orioles",
+        "brand:wikidata": "Q5493805",
+        "brand:wikipedia": "en:Fraternal Order Orioles",
+        "name": "Orioles Nest",
+        "official_name": "Fraternal Order Orioles",
+        "short_name": "FOO"
+      }
+    },
+    "amenity/social_centre|Royal Canadian Legion Hall": {
+      "countryCodes": ["ca"],
+      "tags": {
+        "amenity": "social_centre",
+        "brand": "Royal Canadian Legion",
+        "brand:wikidata": "Q3270231",
+        "brand:wikipedia": "en:Royal Canadian Legion",
+        "name": "Royal Canadian Legion Hall",
+        "short_name": "RCL"
       }
     },
     "amenity/social_centre|VFW Post": {
       "countryCodes": ["de", "jp", "kr", "ph", "th", "us"],
-      "matchNames": ["vfw"],
       "tags": {
         "amenity": "social_centre",
         "brand": "Veterans of Foreign Wars of the United States",
@@ -22020,6 +22097,7 @@
         "name": "VFW Post",
         "name:en": "VFW Post",
         "official_name": "Veterans of Foreign Wars of the United States",
+        "short_name": "VFW",
         "social_centre:for": "veterans"
       }
     },
@@ -23608,10 +23686,10 @@
     "office/telecommunication|Velcom": {
       "countryCodes": ["by"],
       "tags": {
-        "brand": "Velcom",
+        "brand": "velcom | A1",
         "brand:wikidata": "Q1888809",
         "brand:wikipedia": "en:Velcom",
-        "name": "Velcom",
+        "name": "velcom | A1",
         "office": "telecommunication"
       }
     },
@@ -26872,6 +26950,8 @@
       "countryCodes": ["it"],
       "tags": {
         "brand": "Acqua & Sapone",
+        "brand:wikidata": "Q51079044",
+        "brand:wikipedia": "it:Acqua & Sapone (azienda)",
         "name": "Acqua & Sapone",
         "shop": "chemist"
       }
@@ -31771,6 +31851,17 @@
         "brand:wikidata": "Q3277439",
         "brand:wikipedia": "en:Co-op Food",
         "name": "The Co-operative Food",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Thorntons": {
+      "countryCodes": ["us"],
+      "nomatch": ["amenity/fuel|Thorntons", "shop/confectionery|Thorntons"],
+      "tags": {
+        "brand": "Thorntons",
+        "brand:wikidata": "Q7796584",
+        "brand:wikipedia": "en:Thorntons LLC",
+        "name": "Thorntons",
         "shop": "convenience"
       }
     },
@@ -45220,7 +45311,7 @@
       "tags": {"brand": "Бегемотик", "name": "Бегемотик", "shop": "toys"}
     },
     "shop/toys|Детский мир": {
-      "countryCodes": ["by", "kg", "kz", "ru", "ua", "uz"],
+      "countryCodes": ["kz", "ru"],
       "tags": {
         "brand": "Детский мир",
         "brand:en": "Detskiy Mir",
