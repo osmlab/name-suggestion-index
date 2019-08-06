@@ -261,6 +261,7 @@ function finish() {
         _wrongFormat.forEach(msg => console.error(
           `${colors.yellow.bold(msg[0])}: ${colors.red.bold(msg[1])} (${colors.blue.bold(msg[2])}) is in a wrong format`
         ));
+        console.error('total ' + _wrongFormat.length);
     }
 
     if (_deletedWikidata.length) {
@@ -270,6 +271,7 @@ function finish() {
         _deletedWikidata.forEach(msg => console.error(
           `${colors.yellow.bold(msg[0])}: ${colors.red.bold(msg[1])} (${colors.blue.bold(msg[2])}) does not exist or is a redirect`
         ));
+        console.error('total ' + _deletedWikidata.length);
     }
 
     if (_deletedWikipedia.length) {
@@ -279,6 +281,7 @@ function finish() {
         _deletedWikipedia.forEach(msg => console.error(
           `${colors.yellow.bold(msg[0])}: ${colors.red.bold(msg[1])} (${msg[2]}) (${colors.blue.bold(msg[3])}) does not exist or is a redirect`
         ));
+        console.error('total ' + _deletedWikipedia.length);
     }
 
     if (_foundSitelink.length) {
@@ -288,6 +291,7 @@ function finish() {
         _foundSitelink.forEach(msg => console.warn(
           `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) has sitelinks to ${colors.green.bold(msg[3])}`
         ));
+        console.warn('total ' + _foundSitelink.length);
     }
 
     if (_wrongLink.length) {
@@ -297,6 +301,7 @@ function finish() {
         _wrongLink.forEach(msg => console.warn(
           `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is not linked to ${colors.red.bold(msg[3])} but to ${colors.green.bold(msg[4])}`
         ));
+        console.warn('total ' + _wrongLink.length);
     }
 
     if (_wrongEntity.length) {
@@ -306,6 +311,7 @@ function finish() {
         _wrongEntity.forEach(msg => console.warn(
           `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) ${colors.red.bold(msg[3])}: ${msg[4]}`
         ));
+        console.warn('total ' + _wrongEntity.length);
     }
 
     if (_missingInstance.length) {
@@ -315,6 +321,7 @@ function finish() {
         _missingInstance.forEach(msg => console.warn(
           `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is missing a sitelink and an instance claim (P31)`
         ));
+        console.warn('total ' + _missingInstance.length);
     }
 
     if (_missingReferences.length) {
@@ -324,6 +331,7 @@ function finish() {
         _missingReferences.forEach(msg => console.warn(
           `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is missing a sitelink and a reference`
         ));
+        console.warn('total ' + _missingReferences.length);
     }
 }
 
