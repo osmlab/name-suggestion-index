@@ -5220,6 +5220,9 @@
     "amenity/bank|Venezuela": {
       "tags": {"amenity": "bank", "brand": "Venezuela", "name": "Venezuela"}
     },
+    "amenity/bank|VietinBank": {
+      "tags": {"amenity": "bank", "brand": "VietinBank", "name": "VietinBank"}
+    },
     "amenity/bank|Vijaya Bank": {
       "countryCodes": ["in"],
       "tags": {
@@ -11258,6 +11261,14 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Panos": {
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Panos",
+        "name": "Panos",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Papa John's": {
       "matchNames": ["papa john", "papa john pizza", "papa johns pizza"],
       "tags": {
@@ -14958,7 +14969,7 @@
       "tags": {"amenity": "fuel", "brand": "SP", "name": "SP"}
     },
     "amenity/fuel|Safeway": {
-      "nomatch": ["shop/supermarket|Safeway"],
+      "nomatch": ["amenity/pharmacy|Safeway", "shop/supermarket|Safeway"],
       "tags": {
         "amenity": "fuel",
         "brand": "Safeway",
@@ -17436,6 +17447,18 @@
         "name": "Felicia"
       }
     },
+    "amenity/pharmacy|Fred Meyer Pharmacy": {
+      "countryCodes": ["us"],
+      "nomatch": ["shop/supermarket|Fred Meyer"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Fred Meyer",
+        "brand:wikidata": "Q5495932",
+        "brand:wikipedia": "en:Fred Meyer",
+        "healthcare": "pharmacy",
+        "name": "Fred Meyer Pharmacy"
+      }
+    },
     "amenity/pharmacy|Fybeca": {
       "countryCodes": ["ec"],
       "tags": {
@@ -17901,6 +17924,18 @@
         "brand:wikidata": "Q62663235",
         "healthcare": "pharmacy",
         "name": "Rowlands Pharmacy"
+      }
+    },
+    "amenity/pharmacy|Safeway": {
+      "countryCodes": ["us"],
+      "nomatch": ["amenity/fuel|Safeway", "shop/supermarket|Safeway"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Safeway",
+        "brand:wikidata": "Q1508234",
+        "brand:wikipedia": "en:Safeway Inc.",
+        "healthcare": "pharmacy",
+        "name": "Safeway"
       }
     },
     "amenity/pharmacy|SalcoBrand": {
@@ -22257,6 +22292,16 @@
         "vending": "public_transport_tickets"
       }
     },
+    "amenity/vending_machine|Best Buy Express": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Best Buy Express",
+        "brand:wikidata": "Q533415",
+        "name": "Best Buy Express",
+        "vending": "electronics"
+      }
+    },
     "amenity/vending_machine|Blue Rhino": {
       "countryCodes": ["us"],
       "tags": {
@@ -22851,6 +22896,17 @@
         "brand:wikipedia": "en:Snap Fitness",
         "leisure": "fitness_centre",
         "name": "Snap Fitness"
+      }
+    },
+    "leisure/fitness_centre|SoulCycle": {
+      "countryCodes": ["ca", "us"],
+      "tags": {
+        "brand": "SoulCycle",
+        "brand:wikidata": "Q17084730",
+        "brand:wikipedia": "en:SoulCycle",
+        "leisure": "fitness_centre",
+        "name": "SoulCycle",
+        "sport": "cycling"
       }
     },
     "leisure/fitness_centre|カーブス": {
@@ -23460,6 +23516,13 @@
       "tags": {
         "brand": "HUK-Coburg",
         "name": "HUK-Coburg",
+        "office": "insurance"
+      }
+    },
+    "office/insurance|Harmonie Mutuelle": {
+      "tags": {
+        "brand": "Harmonie Mutuelle",
+        "name": "Harmonie Mutuelle",
         "office": "insurance"
       }
     },
@@ -26805,6 +26868,15 @@
         "shop": "car"
       }
     },
+    "shop/car|Škoda": {
+      "tags": {
+        "brand": "Škoda",
+        "brand:wikidata": "Q29637",
+        "brand:wikipedia": "en:Škoda Auto",
+        "name": "Škoda",
+        "shop": "car"
+      }
+    },
     "shop/car|Автомир": {
       "tags": {
         "brand": "Автомир",
@@ -26813,6 +26885,16 @@
         "name": "Автомир",
         "name:en": "Autoworld",
         "name:ru": "Автомир",
+        "shop": "car"
+      }
+    },
+    "shop/car|ガリバー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ガリバー",
+        "brand:ja": "ガリバー",
+        "name": "ガリバー",
+        "name:ja": "ガリバー",
         "shop": "car"
       }
     },
@@ -28581,6 +28663,9 @@
         "name": "Indochino",
         "shop": "clothes"
       }
+    },
+    "shop/clothes|Inside": {
+      "tags": {"brand": "Inside", "name": "Inside", "shop": "clothes"}
     },
     "shop/clothes|Intimissimi": {
       "tags": {
@@ -32180,6 +32265,9 @@
         "name": "ВкусВилл",
         "shop": "convenience"
       }
+    },
+    "shop/convenience|Водолей": {
+      "tags": {"brand": "Водолей", "name": "Водолей", "shop": "convenience"}
     },
     "shop/convenience|Гастроном": {
       "tags": {"brand": "Гастроном", "name": "Гастроном", "shop": "convenience"}
@@ -35815,6 +35903,13 @@
         "shop": "garden_centre"
       }
     },
+    "shop/garden_centre|Walmart Garden Center": {
+      "tags": {
+        "brand": "Walmart Garden Center",
+        "name": "Walmart Garden Center",
+        "shop": "garden_centre"
+      }
+    },
     "shop/garden_centre|Welkoop": {
       "countryCodes": ["nl"],
       "tags": {"brand": "Welkoop", "name": "Welkoop", "shop": "garden_centre"}
@@ -36582,6 +36677,9 @@
         "name": "Sur La Table",
         "shop": "houseware"
       }
+    },
+    "shop/houseware|Tescoma": {
+      "tags": {"brand": "Tescoma", "name": "Tescoma", "shop": "houseware"}
     },
     "shop/houseware|The Container Store": {
       "countryCodes": ["us"],
@@ -43471,7 +43569,7 @@
       }
     },
     "shop/supermarket|Safeway": {
-      "nomatch": ["amenity/fuel|Safeway"],
+      "nomatch": ["amenity/fuel|Safeway", "amenity/pharmacy|Safeway"],
       "tags": {
         "brand": "Safeway",
         "brand:wikidata": "Q1508234",
@@ -46675,6 +46773,13 @@
         "brand:wikidata": "Q5890701",
         "brand:wikipedia": "en:Homewood Suites by Hilton",
         "name": "Homewood Suites",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Hotel Continental": {
+      "tags": {
+        "brand": "Hotel Continental",
+        "name": "Hotel Continental",
         "tourism": "hotel"
       }
     },
