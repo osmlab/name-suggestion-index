@@ -152,6 +152,9 @@ function showResults(choices) {
         if (entity.instances) {
             console.log(`      instance of: [${entity.instances}]`);
         }
+        if (entity.aliases) {
+            console.log(`      aliases: [${entity.aliases}]`);
+        }
         if (entity.article) {
             console.log(`      article: ${entity.article}`);
         }
