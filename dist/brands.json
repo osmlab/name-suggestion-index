@@ -14159,7 +14159,15 @@
       }
     },
     "amenity/fuel|Hy-Vee Gas": {
-      "tags": {"amenity": "fuel", "brand": "Hy-Vee Gas", "name": "Hy-Vee Gas"}
+      "countryCodes": ["us"],
+      "nomatch": ["shop/supermarket|Hy-Vee"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Hy-Vee Gas",
+        "brand:wikidata": "Q1639719",
+        "brand:wikipedia": "en:Hy-Vee",
+        "name": "Hy-Vee Gas"
+      }
     },
     "amenity/fuel|IES": {
       "countryCodes": ["it"],
@@ -15155,19 +15163,6 @@
         "name": "Sinclair"
       }
     },
-    "amenity/fuel|Sinopec": {
-      "countryCodes": ["cn"],
-      "matchNames": ["sinopec fuel"],
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Sinopec",
-        "brand:wikidata": "Q831445",
-        "brand:wikipedia": "en:Sinopec",
-        "brand:zh": "中国石化",
-        "name": "Sinopec",
-        "name:zh": "中国石化"
-      }
-    },
     "amenity/fuel|Slovnaft": {
       "countryCodes": ["cz", "pl", "sk"],
       "tags": {
@@ -16140,17 +16135,17 @@
         "name:ja": "モービル"
       }
     },
-    "amenity/fuel|中国石化": {
+    "amenity/fuel|中国石化 Sinopec": {
       "countryCodes": ["cn"],
-      "matchNames": ["中国石化 Sinopec", "中国石化加油站"],
+      "matchNames": ["Sinopec", "Sinopec fuel", "中国石化", "中国石化加油站"],
       "tags": {
         "amenity": "fuel",
-        "brand": "中国石化",
+        "brand": "中国石化 Sinopec",
         "brand:en": "Sinopec",
         "brand:wikidata": "Q831445",
         "brand:wikipedia": "en:Sinopec",
         "brand:zh": "中国石化",
-        "name": "中国石化",
+        "name": "中国石化 Sinopec",
         "name:en": "Sinopec",
         "name:zh": "中国石化"
       }
@@ -19498,6 +19493,19 @@
         "recycling_type": "container"
       }
     },
+    "amenity/recycling|Saint Vincent de Paul": {
+      "countryCodes": ["us"],
+      "matchNames": ["st vincent de paul"],
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Saint Vincent de Paul",
+        "brand:wikidata": "Q66581837",
+        "name": "Saint Vincent de Paul",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes",
+        "short_name": "SVdP"
+      }
+    },
     "amenity/recycling|The Salvation Army": {
       "countryCodes": ["us"],
       "matchNames": ["salvation army"],
@@ -19508,8 +19516,7 @@
         "brand:wikidata": "Q188307",
         "brand:wikipedia": "en:The Salvation Army",
         "name": "The Salvation Army",
-        "recycling:clothes": "yes",
-        "recycling_type": "container"
+        "recycling:clothes": "yes"
       }
     },
     "amenity/restaurant|100 Montaditos": {
@@ -27282,6 +27289,33 @@
         "shop": "charity"
       }
     },
+    "shop/charity|Saint Vincent de Paul Thrift Store": {
+      "countryCodes": ["us"],
+      "matchNames": [
+        "saint vincent de paul",
+        "saint vincent de paul society",
+        "society of saint vincent de paul",
+        "society of st vincent de paul",
+        "st vincent de paul",
+        "st vincent de paul society",
+        "st vincent de paul thrift store",
+        "svdp thrift store",
+        "the society of saint vincent de paul",
+        "the society of st vincent de paul"
+      ],
+      "matchTags": [
+        "shop/clothes",
+        "shop/department_store",
+        "shop/second_hand"
+      ],
+      "tags": {
+        "brand": "Saint Vincent de Paul Thrift Store",
+        "brand:wikidata": "Q66581837",
+        "name": "Saint Vincent de Paul Thrift Store",
+        "shop": "charity",
+        "short_name": "SVdP"
+      }
+    },
     "shop/charity|Scope": {
       "countryCodes": ["gb"],
       "tags": {
@@ -31526,8 +31560,15 @@
       }
     },
     "shop/convenience|Holiday": {
+      "countryCodes": ["us"],
       "nomatch": ["amenity/fuel|Holiday"],
-      "tags": {"brand": "Holiday", "name": "Holiday", "shop": "convenience"}
+      "tags": {
+        "brand": "Holiday",
+        "brand:wikidata": "Q5880490",
+        "brand:wikipedia": "en:Holiday Stationstores",
+        "name": "Holiday",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Hruška": {
       "nomatch": ["shop/supermarket|Hruška"],
@@ -31726,9 +31767,25 @@
         "shop": "convenience"
       }
     },
-    "shop/convenience|Londis": {
+    "shop/convenience|Londis~(Ireland)": {
+      "countryCodes": ["ie"],
+      "tags": {
+        "brand": "Londis",
+        "brand:wikidata": "Q21015800",
+        "brand:wikipedia": "en:Londis (Ireland) ",
+        "name": "Londis",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Londis~(UK)": {
       "countryCodes": ["gb"],
-      "tags": {"brand": "Londis", "name": "Londis", "shop": "convenience"}
+      "tags": {
+        "brand": "Londis",
+        "brand:wikidata": "Q21008564",
+        "brand:wikipedia": "en:Londis (United Kingdom)",
+        "name": "Londis",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|M&S Simply Food": {
       "nomatch": ["shop/supermarket|M&S Simply Food"],
@@ -32424,6 +32481,21 @@
         "name": "miniピアゴ",
         "name:en": "mini Piago",
         "name:ja": "miniピアゴ",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|uSmile 昆仑好": {
+      "countryCodes": ["cn"],
+      "matchNames": ["uSmile 便利店", "昆仑好"],
+      "matchTags": ["amenity/fuel", "shop/supermarket"],
+      "tags": {
+        "brand": "uSmile 昆仑好",
+        "brand:en": "uSmile",
+        "brand:wikidata": "Q66480830",
+        "brand:zh": "uSmile 便利店",
+        "name": "uSmile 昆仑好",
+        "name:en": "uSmile",
+        "name:zh": "uSmile 便利店",
         "shop": "convenience"
       }
     },
@@ -36515,6 +36587,15 @@
         "shop": "hairdresser"
       }
     },
+    "shop/hairdresser|Pascal Coste": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Pascal Coste",
+        "brand:wikidata": "Q66555630",
+        "name": "Pascal Coste",
+        "shop": "hairdresser"
+      }
+    },
     "shop/hairdresser|Saint Algue": {
       "tags": {
         "brand": "Saint Algue",
@@ -37652,6 +37733,8 @@
       "countryCodes": ["fr"],
       "tags": {
         "brand": "Bouygues Telecom",
+        "brand:wikidata": "Q581438",
+        "brand:wikipedia": "fr:Bouygues Telecom",
         "name": "Bouygues Telecom",
         "shop": "mobile_phone"
       }
@@ -42511,6 +42594,7 @@
     },
     "shop/supermarket|Hy-Vee": {
       "countryCodes": ["us"],
+      "nomatch": ["amenity/fuel|Hy-Vee Gas"],
       "tags": {
         "brand": "Hy-Vee",
         "brand:wikidata": "Q1639719",
@@ -42952,9 +43036,6 @@
         "shop": "supermarket"
       }
     },
-    "shop/supermarket|Londis": {
-      "tags": {"brand": "Londis", "name": "Londis", "shop": "supermarket"}
-    },
     "shop/supermarket|Lotte Mart": {
       "countryCodes": ["id", "kr"],
       "tags": {
@@ -43090,6 +43171,16 @@
         "brand:wikidata": "Q6774803",
         "brand:wikipedia": "en:Martin's Super Markets",
         "name": "Martin's Super Markets",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Masymas": {
+      "countryCodes": ["es"],
+      "tags": {
+        "brand": "Masymas",
+        "brand:wikidata": "Q6135987",
+        "brand:wikipedia": "es:Supermercados Masymas",
+        "name": "Masymas",
         "shop": "supermarket"
       }
     },
