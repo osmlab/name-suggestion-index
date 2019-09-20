@@ -3842,11 +3842,14 @@
         "name": "Liberbank"
       }
     },
-    "amenity/bank|Liberty Bank": {
+    "amenity/bank|Liberty Bank~(Connecticut)": {
+      "countryCodes": ["us"],
       "nomatch": ["amenity/fuel|Liberty"],
       "tags": {
         "amenity": "bank",
         "brand": "Liberty Bank",
+        "brand:wikidata": "Q6541584",
+        "brand:wikipedia": "en:Liberty Bank",
         "name": "Liberty Bank"
       }
     },
@@ -5307,12 +5310,14 @@
       }
     },
     "amenity/bank|UIB": {
+      "countryCodes": ["tn"],
       "tags": {
         "amenity": "bank",
         "brand": "UIB",
-        "brand:wikidata": "Q18636687",
-        "brand:wikipedia": "en:United Industrial Bank",
-        "name": "UIB"
+        "brand:wikidata": "Q3550305",
+        "brand:wikipedia": "ar:الاتحاد الدولي للبنوك",
+        "name": "UIB",
+        "official_name": "Union internationale de banques"
       }
     },
     "amenity/bank|UMB Bank": {
@@ -5644,6 +5649,7 @@
       }
     },
     "amenity/bank|Zenith Bank": {
+      "countryCodes": ["gb", "gh", "gm", "ng", "sl", "za"],
       "tags": {
         "amenity": "bank",
         "brand": "Zenith Bank",
@@ -5743,9 +5749,6 @@
         "name:en": "National Bank of Greece"
       }
     },
-    "amenity/bank|Πειραιώς": {
-      "tags": {"amenity": "bank", "brand": "Πειραιώς", "name": "Πειραιώς"}
-    },
     "amenity/bank|Τράπεζα Πειραιώς": {
       "countryCodes": ["gr"],
       "tags": {
@@ -5757,7 +5760,10 @@
         "brand:wikipedia": "en:Piraeus Bank",
         "name": "Τράπεζα Πειραιώς",
         "name:el": "Τράπεζα Πειραιώς",
-        "name:en": "Piraeus Bank"
+        "name:en": "Piraeus Bank",
+        "short_name": "Πειραιώς",
+        "short_name:el": "Πειραιώς",
+        "short_name:en": "Piraeus"
       }
     },
     "amenity/bank|А-Банк": {
@@ -5917,7 +5923,18 @@
       }
     },
     "amenity/bank|Зенит": {
-      "tags": {"amenity": "bank", "brand": "Зенит", "name": "Зенит"}
+      "countryCodes": ["ru"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "Зенит",
+        "brand:en": "Zenit",
+        "brand:ru": "Зенит",
+        "brand:wikidata": "Q4191388",
+        "brand:wikipedia": "ru:Зенит (банк)",
+        "name": "Зенит",
+        "name:en": "Zenit",
+        "name:ru": "Зенит"
+      }
     },
     "amenity/bank|Казкоммерцбанк": {
       "countryCodes": ["kz"],
@@ -19650,13 +19667,25 @@
         "name": "Australia Post"
       }
     },
-    "amenity/post_office|CTT": {
+    "amenity/post_office|CTT~(Macau)": {
       "countryCodes": ["mo"],
+      "nomatch": ["amenity/post_office|CTT~(Portugal)"],
       "tags": {
         "amenity": "post_office",
         "brand": "CTT",
         "brand:wikidata": "Q909429",
         "brand:wikipedia": "en:CTT (Macau)",
+        "name": "CTT"
+      }
+    },
+    "amenity/post_office|CTT~(Portugal)": {
+      "countryCodes": ["pt"],
+      "nomatch": ["amenity/post_office|CTT~(Macau)"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "CTT",
+        "brand:wikidata": "Q1024518",
+        "brand:wikipedia": "en:CTT Correios de Portugal, S.A.",
         "name": "CTT"
       }
     },
@@ -24538,6 +24567,16 @@
         "office": "insurance"
       }
     },
+    "office/insurance|SV SparkassenVersicherung": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "SV SparkassenVersicherung",
+        "brand:wikidata": "Q2208645",
+        "brand:wikipedia": "de:SV SparkassenVersicherung",
+        "name": "SV SparkassenVersicherung",
+        "office": "insurance"
+      }
+    },
     "office/insurance|State Farm": {
       "countryCodes": ["us"],
       "matchNames": ["state farm insurance"],
@@ -25311,6 +25350,15 @@
         "shop": "bakery"
       }
     },
+    "shop/bakery|Armbruster": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Armbruster",
+        "brand:wikidata": "Q67987954",
+        "name": "Armbruster",
+        "shop": "bakery"
+      }
+    },
     "shop/bakery|Awiteks": {
       "countryCodes": ["pl"],
       "tags": {
@@ -25402,6 +25450,7 @@
       }
     },
     "shop/bakery|Bäckerei Grimminger": {
+      "countryCodes": ["de"],
       "tags": {
         "brand": "Bäckerei Grimminger",
         "name": "Bäckerei Grimminger",
@@ -25751,6 +25800,15 @@
         "brand:wikidata": "Q3370417",
         "brand:wikipedia": "en:Paul (bakery)",
         "name": "Paul",
+        "shop": "bakery"
+      }
+    },
+    "shop/bakery|Peter's gute Backstube": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Peter's gute Backstube",
+        "brand:wikidata": "Q67987587",
+        "name": "Peter's gute Backstube",
         "shop": "bakery"
       }
     },
@@ -26577,6 +26635,16 @@
         "brand:wikidata": "Q6971094",
         "brand:wikipedia": "en:National Book Store",
         "name": "National Book Store",
+        "shop": "books"
+      }
+    },
+    "shop/books|Osiander": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Osiander",
+        "brand:wikidata": "Q1800686",
+        "brand:wikipedia": "de:Osiandersche Buchhandlung",
+        "name": "Osiander",
         "shop": "books"
       }
     },
@@ -30450,6 +30518,15 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Mustang": {
+      "tags": {
+        "brand": "Mustang",
+        "brand:wikidata": "Q221562",
+        "brand:wikipedia": "de:Mustang (Jeans)",
+        "name": "Mustang",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|NKD": {
       "countryCodes": ["at", "de", "it", "si"],
       "tags": {
@@ -30786,6 +30863,15 @@
         "brand:wikipedia": "en:Ralph Lauren Corporation",
         "name": "Polo Ralph Lauren",
         "shop": "clothes"
+      }
+    },
+    "shop/clothes|Prada": {
+      "tags": {
+        "brand": "Prada",
+        "brand:wikidata": "Q193136",
+        "brand:wikipedia": "en:Prada",
+        "name": "Prada",
+        "shop": "fashion_accessories"
       }
     },
     "shop/clothes|Primark": {
@@ -33039,6 +33125,17 @@
         "shop": "convenience"
       }
     },
+    "shop/convenience|Rewe To Go": {
+      "countryCodes": ["de"],
+      "nomatch": ["shop/supermarket|Rewe", "shop/supermarket|Rewe City"],
+      "tags": {
+        "brand": "Rewe To Go",
+        "brand:wikidata": "Q16968817",
+        "brand:wikipedia": "en:REWE",
+        "name": "Rewe To Go",
+        "shop": "convenience"
+      }
+    },
     "shop/convenience|Royal Farms": {
       "countryCodes": ["us"],
       "nomatch": ["amenity/fuel|Royal Farms"],
@@ -34837,6 +34934,7 @@
         "brand:wikidata": "Q920037",
         "brand:wikipedia": "en:J. C. Penney",
         "name": "JCPenney",
+        "official_name": "J.C. Penney Company",
         "shop": "department_store"
       }
     },
@@ -36593,24 +36691,6 @@
         "shop": "fashion_accessories"
       }
     },
-    "shop/fashion_accessories|Jimmy Choo": {
-      "tags": {
-        "brand": "Jimmy Choo",
-        "brand:wikidata": "Q5213855",
-        "brand:wikipedia": "en:Jimmy Choo Ltd",
-        "name": "Jimmy Choo",
-        "shop": "fashion_accessories"
-      }
-    },
-    "shop/fashion_accessories|Prada": {
-      "tags": {
-        "brand": "Prada",
-        "brand:wikidata": "Q193136",
-        "brand:wikipedia": "en:Prada",
-        "name": "Prada",
-        "shop": "fashion_accessories"
-      }
-    },
     "shop/fashion_accessories|Radley London": {
       "countryCodes": ["gb"],
       "tags": {
@@ -36619,15 +36699,6 @@
         "name": "Radley London",
         "shop": "fashion_accessories",
         "short_name": "Radley"
-      }
-    },
-    "shop/fashion_accessories|Salvatore Ferragamo": {
-      "tags": {
-        "brand": "Salvatore Ferragamo",
-        "brand:wikidata": "Q3946053",
-        "brand:wikipedia": "en:Salvatore Ferragamo S.p.A.",
-        "name": "Salvatore Ferragamo",
-        "shop": "fashion_accessories"
       }
     },
     "shop/fashion_accessories|Van Cleef & Arpels": {
@@ -37318,6 +37389,17 @@
     "shop/garden_centre|Welkoop": {
       "countryCodes": ["nl"],
       "tags": {"brand": "Welkoop", "name": "Welkoop", "shop": "garden_centre"}
+    },
+    "shop/garden_centre|ZG Raiffeisen": {
+      "countryCodes": ["de"],
+      "nomatch": ["amenity/fuel|ZG Raiffeisen"],
+      "tags": {
+        "brand": "ZG Raiffeisen",
+        "brand:wikidata": "Q136135",
+        "brand:wikipedia": "de:ZG Raiffeisen",
+        "name": "ZG Raiffeisen",
+        "shop": "garden_centre"
+      }
     },
     "shop/gas|Airgas": {
       "countryCodes": ["us"],
@@ -40992,6 +41074,7 @@
     },
     "shop/shoes|Belwest": {
       "countryCodes": ["by", "ru"],
+      "matchNames": ["Белвест"],
       "tags": {"brand": "Belwest", "name": "Belwest", "shop": "shoes"}
     },
     "shop/shoes|Besson Chaussures": {
@@ -41278,6 +41361,15 @@
         "shop": "shoes"
       }
     },
+    "shop/shoes|Jimmy Choo": {
+      "tags": {
+        "brand": "Jimmy Choo",
+        "brand:wikidata": "Q5213855",
+        "brand:wikipedia": "en:Jimmy Choo Ltd",
+        "name": "Jimmy Choo",
+        "shop": "fashion_accessories"
+      }
+    },
     "shop/shoes|Johnston & Murphy": {
       "countryCodes": ["ca", "us"],
       "tags": {
@@ -41366,6 +41458,17 @@
         "brand:wikidata": "Q58328872",
         "brand:wikipedia": "nl:Manfield schoenen",
         "name": "Manfield",
+        "shop": "shoes"
+      }
+    },
+    "shop/shoes|Marko": {
+      "countryCodes": ["by", "ru"],
+      "matchNames": ["Марко"],
+      "tags": {
+        "brand": "Marko",
+        "brand:wikidata": "Q67861181",
+        "name": "Marko",
+        "name:ru": "Марко",
         "shop": "shoes"
       }
     },
@@ -41501,6 +41604,16 @@
         "shop": "shoes"
       }
     },
+    "shop/shoes|Runners Point": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Runners Point",
+        "brand:wikidata": "Q2176418",
+        "brand:wikipedia": "de:Runners Point",
+        "name": "Runners Point",
+        "shop": "shoes"
+      }
+    },
     "shop/shoes|Salamander": {
       "tags": {
         "brand": "Salamander",
@@ -41508,6 +41621,15 @@
         "brand:wikipedia": "de:Salamander (Schuhe)",
         "name": "Salamander",
         "shop": "shoes"
+      }
+    },
+    "shop/shoes|Salvatore Ferragamo": {
+      "tags": {
+        "brand": "Salvatore Ferragamo",
+        "brand:wikidata": "Q3946053",
+        "brand:wikipedia": "en:Salvatore Ferragamo S.p.A.",
+        "name": "Salvatore Ferragamo",
+        "shop": "fashion_accessories"
       }
     },
     "shop/shoes|San Marina": {
@@ -41721,10 +41843,6 @@
         "name": "Éram",
         "shop": "shoes"
       }
-    },
-    "shop/shoes|Марко": {
-      "countryCodes": ["by", "ru"],
-      "tags": {"brand": "Марко", "name": "Марко", "shop": "shoes"}
     },
     "shop/shoes|ЦентрОбувь": {
       "countryCodes": ["by", "ru", "ua"],
@@ -43276,6 +43394,16 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Edeka xpress": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Edeka",
+        "brand:wikidata": "Q701755",
+        "brand:wikipedia": "en:Edeka",
+        "name": "Edeka xpress",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|Eko": {
       "countryCodes": ["pl"],
       "nomatch": ["amenity/fuel|EKO~(Canada)", "amenity/fuel|EKO~(Greece)"],
@@ -44700,7 +44828,13 @@
     "shop/supermarket|NP": {
       "matchNames": ["np-markt"],
       "nomatch": ["amenity/fuel|NP"],
-      "tags": {"brand": "NP", "name": "NP", "shop": "supermarket"}
+      "tags": {
+        "brand": "NP",
+        "brand:wikidata": "Q15836148",
+        "brand:wikipedia": "de:NP-Markt",
+        "name": "NP",
+        "shop": "supermarket"
+      }
     },
     "shop/supermarket|NTUC Fairprice": {
       "tags": {
@@ -45221,7 +45355,7 @@
     },
     "shop/supermarket|Rewe": {
       "countryCodes": ["de"],
-      "nomatch": ["shop/supermarket|Rewe City"],
+      "nomatch": ["shop/convenience|Rewe To Go", "shop/supermarket|Rewe City"],
       "tags": {
         "brand": "Rewe",
         "brand:wikidata": "Q16968817",
@@ -45232,7 +45366,7 @@
     },
     "shop/supermarket|Rewe City": {
       "countryCodes": ["de"],
-      "nomatch": ["shop/supermarket|Rewe"],
+      "nomatch": ["shop/convenience|Rewe To Go", "shop/supermarket|Rewe"],
       "tags": {
         "brand": "Rewe City",
         "brand:wikidata": "Q16968817",
@@ -46123,6 +46257,16 @@
         "brand:wikidata": "Q3172238",
         "brand:wikipedia": "en:Fakta",
         "name": "fakta",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|nah und gut": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "nah und gut",
+        "brand:wikidata": "Q701755",
+        "brand:wikipedia": "en:Edeka",
+        "name": "nah und gut",
         "shop": "supermarket"
       }
     },
@@ -47376,6 +47520,16 @@
         "trade": "agricultural_equipment"
       }
     },
+    "shop/travel_agency|Alltours": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Alltours",
+        "brand:wikidata": "Q2649481",
+        "brand:wikipedia": "de:Alltours",
+        "name": "Alltours",
+        "shop": "travel_agency"
+      }
+    },
     "shop/travel_agency|American Automobile Association": {
       "countryCodes": ["us"],
       "matchTags": ["office/travel_agent", "shop/car"],
@@ -47493,6 +47647,15 @@
         "shop": "travel_agency"
       }
     },
+    "shop/travel_agency|Neckermann Reisen": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Neckermann Reisen",
+        "brand:wikidata": "Q17300280",
+        "name": "Neckermann Reisen",
+        "shop": "travel_agency"
+      }
+    },
     "shop/travel_agency|Reiseland": {
       "countryCodes": ["de"],
       "tags": {
@@ -47550,6 +47713,25 @@
         "brand:wikidata": "Q2141800",
         "brand:wikipedia": "en:Thomas Cook Group",
         "name": "Thomas Cook",
+        "shop": "travel_agency"
+      }
+    },
+    "shop/travel_agency|Turkish Airlines": {
+      "tags": {
+        "brand": "Turkish Airlines",
+        "brand:wikidata": "Q4548",
+        "brand:wikipedia": "en:Turkish Airlines",
+        "name": "Turkish Airlines",
+        "shop": "travel_agency"
+      }
+    },
+    "shop/travel_agency|ltur": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "ltur",
+        "brand:wikidata": "Q519040",
+        "brand:wikipedia": "de:L’TUR",
+        "name": "ltur",
         "shop": "travel_agency"
       }
     },
