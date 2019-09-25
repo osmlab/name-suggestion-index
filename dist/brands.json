@@ -856,8 +856,9 @@
         "official_name": "Banca Popolare dell'Emilia Romagna"
       }
     },
-    "amenity/bank|BPI": {
+    "amenity/bank|BPI~(Global)": {
       "matchNames": ["bpi family savings bank"],
+      "nomatch": ["amenity/bank|Banco BPI~(Portugal)"],
       "tags": {
         "amenity": "bank",
         "brand": "BPI",
@@ -1157,9 +1158,9 @@
         "name:es": "Banco Azteca"
       }
     },
-    "amenity/bank|Banco BPI": {
+    "amenity/bank|Banco BPI~(Portugal)": {
       "countryCodes": ["pt"],
-      "matchNames": ["bpi"],
+      "nomatch": ["amenity/bank|BPI~(Global)"],
       "tags": {
         "amenity": "bank",
         "brand": "Branco BPI",
@@ -6966,6 +6967,18 @@
         "name:ja": "りそな銀行"
       }
     },
+    "amenity/bank|三井住友信託銀行": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "三井住友信託銀行",
+        "brand:en": "Sumitomo Mitsui Trust Bank",
+        "brand:wikidata": "Q5215421",
+        "brand:wikipedia": "jp:三井住友信託銀行",
+        "name": "三井住友信託銀行",
+        "name:en": "Sumitomo Mitsui Trust Bank"
+      }
+    },
     "amenity/bank|三井住友銀行": {
       "countryCodes": ["jp"],
       "tags": {
@@ -6979,18 +6992,17 @@
       }
     },
     "amenity/bank|三菱UFJ銀行": {
-      "tags": {"amenity": "bank", "brand": "三菱UFJ銀行", "name": "三菱UFJ銀行"}
-    },
-    "amenity/bank|三菱東京UFJ銀行": {
-      "countryCodes": ["jp"],
+      "matchNames": ["三菱東京UFJ銀行"],
       "tags": {
         "amenity": "bank",
-        "brand": "三菱東京UFJ銀行",
+        "brand": "三菱UFJ銀行",
         "brand:en": "MUFG Bank",
+        "brand:ja": "三菱UFJ銀行",
         "brand:wikidata": "Q988284",
         "brand:wikipedia": "en:MUFG Bank",
-        "name": "三菱東京UFJ銀行",
-        "name:en": "MUFG Bank"
+        "name": "三菱UFJ銀行",
+        "name:en": "MUFG Bank",
+        "name:ja": "三菱UFJ銀行"
       }
     },
     "amenity/bank|上海商業儲蓄銀行": {
@@ -7560,10 +7572,12 @@
         "amenity": "bank",
         "brand": "静岡銀行",
         "brand:en": "Shizuoka Bank",
+        "brand:ja": "静岡銀行",
         "brand:wikidata": "Q7499501",
         "brand:wikipedia": "en:Shizuoka Bank",
         "name": "静岡銀行",
-        "name:en": "Shizuoka Bank"
+        "name:en": "Shizuoka Bank",
+        "name:ja": "静岡銀行"
       }
     },
     "amenity/bank|국민은행": {
@@ -11787,6 +11801,19 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Nathan's": {
+      "countryCodes": ["us"],
+      "matchNames": ["nathans famous"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Nathan's",
+        "brand:wikidata": "Q1319505",
+        "brand:wikipedia": "en:Nathan's Famous",
+        "cuisine": "hot_dog",
+        "name": "Nathan's",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|New York Fries": {
       "countryCodes": ["ca"],
       "tags": {
@@ -11960,7 +11987,6 @@
     },
     "amenity/fast_food|Pans & Company": {
       "countryCodes": ["es", "it", "pt"],
-      "matchNames": ["pans and company"],
       "tags": {
         "amenity": "fast_food",
         "brand": "Pans & Company",
@@ -16397,8 +16423,20 @@
         "name": "din-X"
       }
     },
-    "amenity/fuel|uSmile": {
-      "tags": {"amenity": "fuel", "brand": "uSmile", "name": "uSmile"}
+    "amenity/fuel|uSmile 昆仑好": {
+      "countryCodes": ["cn"],
+      "matchNames": ["usmile", "usmile 便利店", "昆仑好"],
+      "nomatch": ["shop/convenience|uSmile 昆仑好"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "uSmile 昆仑好",
+        "brand:en": "uSmile",
+        "brand:wikidata": "Q66480830",
+        "brand:zh": "uSmile 便利店",
+        "name": "uSmile 昆仑好",
+        "name:en": "uSmile",
+        "name:zh": "uSmile 便利店"
+      }
     },
     "amenity/fuel|Авіас": {
       "countryCodes": ["ua"],
@@ -19580,6 +19618,7 @@
       "tags": {
         "amenity": "pharmacy",
         "brand": "ココカラファイン",
+        "brand:en": "Cocokara Fine",
         "brand:ja": "ココカラファイン",
         "brand:wikidata": "Q11301948",
         "brand:wikipedia": "ja:ココカラファイン",
@@ -19610,6 +19649,7 @@
       "tags": {
         "amenity": "pharmacy",
         "brand": "サンドラッグ",
+        "brand:en": "Sundrug",
         "brand:ja": "サンドラッグ",
         "brand:wikidata": "Q11305867",
         "brand:wikipedia": "ja:サンドラッグ",
@@ -19694,6 +19734,21 @@
         "name": "トモズ",
         "name:en": "Tomod's",
         "name:ja": "トモズ"
+      }
+    },
+    "amenity/pharmacy|ドラッグイレブン": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "ドラッグイレブン",
+        "brand:en": "Drug Eleven",
+        "brand:ja": "ドラッグイレブン",
+        "brand:wikidata": "Q11323075",
+        "brand:wikipedia": "ja:ドラッグイレブン",
+        "healthcare": "pharmacy",
+        "name": "ドラッグイレブン",
+        "name:en": "Drug Eleven",
+        "name:ja": "ドラッグイレブン"
       }
     },
     "amenity/pharmacy|ドラッグセイムス": {
@@ -27388,6 +27443,21 @@
         "shop": "car_parts"
       }
     },
+    "shop/car_parts|ジェームス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ジェームス",
+        "brand:en": "JMS",
+        "brand:ja": "ジェームス",
+        "brand:wikidata": "Q11309404",
+        "brand:wikipedia": "ja:ジェームス",
+        "name": "ジェームス",
+        "name:en": "JMS",
+        "name:ja": "ジェームス",
+        "official_name:en": "Joyful Motorist Shop",
+        "shop": "car_parts"
+      }
+    },
     "shop/car_parts|タイヤ館": {
       "countryCodes": ["jp"],
       "tags": {
@@ -33198,6 +33268,18 @@
         "shop": "convenience"
       }
     },
+    "shop/convenience|MrMax": {
+      "countryCodes": ["jp"],
+      "matchNames": ["ミスターマックス"],
+      "tags": {
+        "alt_name": "ミスターマックス",
+        "brand": "MrMax",
+        "brand:wikidata": "Q11342034",
+        "brand:wikipedia": "ja:ミスターマックス",
+        "name": "MrMax",
+        "shop": "convenience"
+      }
+    },
     "shop/convenience|Nasz Sklep": {
       "countryCodes": ["pl"],
       "tags": {
@@ -33814,7 +33896,8 @@
     "shop/convenience|uSmile 昆仑好": {
       "countryCodes": ["cn"],
       "matchNames": ["usmile", "usmile 便利店", "昆仑好"],
-      "matchTags": ["amenity/fuel", "shop/supermarket"],
+      "matchTags": ["shop/supermarket"],
+      "nomatch": ["amenity/fuel|uSmile 昆仑好"],
       "tags": {
         "brand": "uSmile 昆仑好",
         "brand:en": "uSmile",
@@ -34023,9 +34106,6 @@
     "shop/convenience|Мрія": {
       "countryCodes": ["ua"],
       "tags": {"brand": "Мрія", "name": "Мрія", "shop": "convenience"}
-    },
-    "shop/convenience|Родны Кут": {
-      "tags": {"brand": "Родны Кут", "name": "Родны Кут", "shop": "convenience"}
     },
     "shop/convenience|Родны кут": {
       "tags": {"brand": "Родны кут", "name": "Родны кут", "shop": "convenience"}
@@ -36039,10 +36119,25 @@
         "shop": "doityourself"
       }
     },
+    "shop/doityourself|ケーヨー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ケーヨー",
+        "brand:en": "Keiyo",
+        "brand:ja": "ケーヨー",
+        "brand:wikidata": "Q11301462",
+        "brand:wikipedia": "ja:ケーヨー",
+        "name": "ケーヨー",
+        "name:en": "Keiyo",
+        "name:ja": "ケーヨー",
+        "shop": "doityourself"
+      }
+    },
     "shop/doityourself|コメリ": {
       "countryCodes": ["jp"],
       "tags": {
         "brand": "コメリ",
+        "brand:en": "Komeri",
         "brand:ja": "コメリ",
         "brand:wikidata": "Q11302690",
         "brand:wikipedia": "ja:コメリ",
@@ -36056,6 +36151,7 @@
       "countryCodes": ["jp"],
       "tags": {
         "brand": "コーナン",
+        "brand:en": "Kohnan",
         "brand:ja": "コーナン",
         "brand:wikidata": "Q11303403",
         "brand:wikipedia": "ja:コーナン",
@@ -36069,8 +36165,12 @@
       "countryCodes": ["jp"],
       "tags": {
         "brand": "ナフコ",
+        "brand:en": "Nafco",
         "brand:ja": "ナフコ",
+        "brand:wikidata": "Q11323981",
+        "brand:wikipedia": "ja:ナフコ (ホームセンター)",
         "name": "ナフコ",
+        "name:en": "Nafco",
         "name:ja": "ナフコ",
         "shop": "doityourself"
       }
@@ -37272,15 +37372,15 @@
         "shop": "furniture"
       }
     },
-    "shop/furniture|Jerome’s Furniture": {
+    "shop/furniture|Jerome's Furniture": {
       "countryCodes": ["us"],
       "tags": {
-        "brand": "Jerome’s Furniture",
+        "brand": "Jerome's Furniture",
         "brand:wikidata": "Q16997693",
         "brand:wikipedia": "en:Jerome's",
-        "name": "Jerome’s Furniture",
+        "name": "Jerome's Furniture",
         "shop": "furniture",
-        "short_name": "Jerome’s"
+        "short_name": "Jerome's"
       }
     },
     "shop/furniture|Kwantum": {
@@ -38438,6 +38538,22 @@
       "countryCodes": ["ru"],
       "tags": {"brand": "Еврочехол", "name": "Еврочехол", "shop": "houseware"}
     },
+    "shop/houseware|京王アートマン": {
+      "countryCodes": ["jp"],
+      "matchNames": ["アートマン"],
+      "matchTags": ["shop/variety_store"],
+      "tags": {
+        "brand": "京王アートマン",
+        "brand:en": "Keio Atman",
+        "brand:ja": "京王アートマン",
+        "brand:wikidata": "Q11374580",
+        "brand:wikipedia": "ja:京王アートマン",
+        "name": "京王アートマン",
+        "name:en": "Keio Atman",
+        "name:ja": "京王アートマン",
+        "shop": "variety_store"
+      }
+    },
     "shop/interior_decoration|Centrakor": {
       "countryCodes": ["fr"],
       "matchTags": ["shop/variety_store"],
@@ -38614,6 +38730,16 @@
         "brand:wikidata": "Q5393358",
         "brand:wikipedia": "en:Ernest Jones (retailer)",
         "name": "Ernest Jones",
+        "shop": "jewelry"
+      }
+    },
+    "shop/jewelry|F.Hinds": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "F.Hinds",
+        "brand:wikidata": "Q5423915",
+        "brand:wikipedia": "en:F. Hinds",
+        "name": "F.Hinds",
         "shop": "jewelry"
       }
     },
@@ -47122,9 +47248,14 @@
     "shop/supermarket|アコレ": {
       "countryCodes": ["jp"],
       "tags": {
+        "alt_name:en": "Acolle",
         "brand": "アコレ",
+        "brand:en": "A・Colle",
         "brand:ja": "アコレ",
+        "brand:wikidata": "Q11283128",
+        "brand:wikipedia": "ja:アコレ",
         "name": "アコレ",
+        "name:en": "A・Colle",
         "name:ja": "アコレ",
         "shop": "supermarket"
       }
@@ -47190,10 +47321,33 @@
     "shop/supermarket|コープ": {
       "countryCodes": ["jp"],
       "tags": {
+        "alt_name:en": "Co-op",
         "brand": "コープ",
+        "brand:en": "CO・OP",
         "brand:ja": "コープ",
+        "brand:wikidata": "Q11508615",
+        "brand:wikipedia": "ja:日本生活協同組合連合会",
         "name": "コープ",
         "name:ja": "コープ",
+        "official_name": "日本生活協同組合連合会",
+        "official_name:en": "Japanese Consumers' Co-operative Union",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|コープこう": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Co-op Kobe",
+        "brand": "コープこう",
+        "brand:en": "CO・OP Kobe",
+        "brand:ja": "コープこう",
+        "brand:wikidata": "Q5137453",
+        "brand:wikipedia": "ja:生活協同組合コープこうべ",
+        "name": "コープこう",
+        "name:en": "CO・OP Kobe",
+        "name:ja": "コープこう",
+        "official_name": "生活協同組合コープこうべ",
+        "official_name:en": "The Consumer Co-operative Kobe",
         "shop": "supermarket"
       }
     },
@@ -47201,8 +47355,12 @@
       "countryCodes": ["jp"],
       "tags": {
         "brand": "サミット",
+        "brand:en": "Summit",
         "brand:ja": "サミット",
+        "brand:wikidata": "Q11305129",
+        "brand:wikipedia": "ja:サミット (チェーンストア)",
         "name": "サミット",
+        "name:en": "Summit",
         "name:ja": "サミット",
         "shop": "supermarket"
       }
