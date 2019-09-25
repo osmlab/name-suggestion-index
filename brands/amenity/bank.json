@@ -851,8 +851,11 @@
       "official_name": "Banca Popolare dell'Emilia Romagna"
     }
   },
-  "amenity/bank|BPI": {
+  "amenity/bank|BPI~(Global)": {
     "matchNames": ["bpi family savings bank"],
+    "nomatch": [
+      "amenity/bank|Banco BPI~(Portugal)"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "BPI",
@@ -1152,9 +1155,9 @@
       "name:es": "Banco Azteca"
     }
   },
-  "amenity/bank|Banco BPI": {
+  "amenity/bank|Banco BPI~(Portugal)": {
     "countryCodes": ["pt"],
-    "matchNames": ["bpi"],
+    "nomatch": ["amenity/bank|BPI~(Global)"],
     "tags": {
       "amenity": "bank",
       "brand": "Branco BPI",
