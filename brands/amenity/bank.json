@@ -851,8 +851,11 @@
       "official_name": "Banca Popolare dell'Emilia Romagna"
     }
   },
-  "amenity/bank|BPI": {
+  "amenity/bank|BPI~(Global)": {
     "matchNames": ["bpi family savings bank"],
+    "nomatch": [
+      "amenity/bank|Banco BPI~(Portugal)"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "BPI",
@@ -1152,9 +1155,9 @@
       "name:es": "Banco Azteca"
     }
   },
-  "amenity/bank|Banco BPI": {
+  "amenity/bank|Banco BPI~(Portugal)": {
     "countryCodes": ["pt"],
-    "matchNames": ["bpi"],
+    "nomatch": ["amenity/bank|BPI~(Global)"],
     "tags": {
       "amenity": "bank",
       "brand": "Branco BPI",
@@ -5784,6 +5787,10 @@
     }
   },
   "amenity/bank|Wings Financial Credit Union": {
+<<<<<<< HEAD
+=======
+    "countryCodes": ["us"],
+>>>>>>> master
     "tags": {
       "amenity": "bank",
       "brand": "Wings Financial Credit Union",
@@ -7081,6 +7088,18 @@
       "name:ja": "りそな銀行"
     }
   },
+  "amenity/bank|三井住友信託銀行": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "三井住友信託銀行",
+      "brand:en": "Sumitomo Mitsui Trust Bank",
+      "brand:wikidata": "Q5215421",
+      "brand:wikipedia": "jp:三井住友信託銀行",
+      "name": "三井住友信託銀行",
+      "name:en": "Sumitomo Mitsui Trust Bank"
+    }
+  },
   "amenity/bank|三井住友銀行": {
     "countryCodes": ["jp"],
     "tags": {
@@ -7094,22 +7113,17 @@
     }
   },
   "amenity/bank|三菱UFJ銀行": {
+    "matchNames": ["三菱東京UFJ銀行"],
     "tags": {
       "amenity": "bank",
       "brand": "三菱UFJ銀行",
-      "name": "三菱UFJ銀行"
-    }
-  },
-  "amenity/bank|三菱東京UFJ銀行": {
-    "countryCodes": ["jp"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "三菱東京UFJ銀行",
       "brand:en": "MUFG Bank",
+      "brand:ja": "三菱UFJ銀行",
       "brand:wikidata": "Q988284",
       "brand:wikipedia": "en:MUFG Bank",
-      "name": "三菱東京UFJ銀行",
-      "name:en": "MUFG Bank"
+      "name": "三菱UFJ銀行",
+      "name:en": "MUFG Bank",
+      "name:ja": "三菱UFJ銀行"
     }
   },
   "amenity/bank|上海商業儲蓄銀行": {
@@ -7699,10 +7713,12 @@
       "amenity": "bank",
       "brand": "静岡銀行",
       "brand:en": "Shizuoka Bank",
+      "brand:ja": "静岡銀行",
       "brand:wikidata": "Q7499501",
       "brand:wikipedia": "en:Shizuoka Bank",
       "name": "静岡銀行",
-      "name:en": "Shizuoka Bank"
+      "name:en": "Shizuoka Bank",
+      "name:ja": "静岡銀行"
     }
   },
   "amenity/bank|국민은행": {
