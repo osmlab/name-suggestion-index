@@ -4159,6 +4159,9 @@
         "name": "NAB"
       }
     },
+    "amenity/bank|NLB": {
+      "tags": {"amenity": "bank", "brand": "NLB", "name": "NLB"}
+    },
     "amenity/bank|NSB": {
       "countryCodes": ["lk"],
       "matchNames": ["national savings bank"],
@@ -4203,7 +4206,6 @@
       }
     },
     "amenity/bank|Navy Federal Credit Union": {
-      "countryCodes": ["us"],
       "tags": {
         "amenity": "bank",
         "brand": "Navy Federal Credit Union",
@@ -7074,7 +7076,7 @@
         "brand:wikidata": "Q6883178",
         "brand:wikipedia": "en:Mitsubishi UFJ Trust and Banking Corporation",
         "name": "三菱UFJ信託銀行",
-        "name:en": "Sumitomo Mitsui Banking Corporation",
+        "name:en": "Mitsubishi UFJ Trust and Banking Corporation",
         "name:ja": "三菱UFJ信託銀行"
       }
     },
@@ -8017,16 +8019,17 @@
         "takeaway": "yes"
       }
     },
-    "amenity/cafe|Beck's Coffe Shop": {
+    "amenity/cafe|Beck's Coffee Shop": {
       "countryCodes": ["jp"],
+      "matchNames": ["beck's coffe shop"],
       "tags": {
         "alt_name": "ベックス・コーヒーショップ",
         "amenity": "cafe",
-        "brand": "Beck's Coffe Shop",
+        "brand": "Beck's Coffee Shop",
         "brand:wikidata": "Q11191008",
-        "brand:wikipedia": "ja:Beck's Coffe Shop",
+        "brand:wikipedia": "ja:BECK'S COFFEE SHOP",
         "cuisine": "coffee_shop",
-        "name": "Beck's Coffe Shop",
+        "name": "Beck's Coffee Shop",
         "takeaway": "yes"
       }
     },
@@ -8199,8 +8202,18 @@
         "takeaway": "yes"
       }
     },
-    "amenity/cafe|Coffee Culture": {
-      "countryCodes": ["ca", "nz", "us"],
+    "amenity/cafe|Coffee Culture~(Canada/USA)": {
+      "countryCodes": ["ca", "us"],
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Coffee Culture",
+        "cuisine": "coffee_shop",
+        "name": "Coffee Culture",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/cafe|Coffee Culture~(New Zealand)": {
+      "countryCodes": ["nz"],
       "tags": {
         "amenity": "cafe",
         "brand": "Coffee Culture",
@@ -8533,10 +8546,12 @@
       }
     },
     "amenity/cafe|Mikel": {
-      "countryCodes": ["gr"],
+      "countryCodes": ["ae", "au", "cy", "de", "eg", "gb", "gr", "sa", "us"],
       "tags": {
         "amenity": "cafe",
         "brand": "Mikel",
+        "brand:wikidata": "Q16952021",
+        "brand:wikipedia": "el:Mikel",
         "cuisine": "coffee_shop",
         "name": "Mikel",
         "takeaway": "yes"
@@ -8812,6 +8827,17 @@
         "brand:wikidata": "Q61804826",
         "cuisine": "coffee_shop",
         "name": "Wild Bean Cafe",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/cafe|Ya Kun Kaya Toast": {
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Ya Kun Kaya Toast",
+        "brand:wikidata": "Q8046237",
+        "brand:wikipedia": "en:Ya Kun Kaya Toast",
+        "cuisine": "coffee_shop",
+        "name": "Ya Kun Kaya Toast",
         "takeaway": "yes"
       }
     },
@@ -9753,6 +9779,13 @@
         "name": "Enel X"
       }
     },
+    "amenity/charging_station|Enel x Metbus": {
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "Enel x Metbus",
+        "name": "Enel x Metbus"
+      }
+    },
     "amenity/charging_station|FLO": {
       "countryCodes": ["ca", "us"],
       "nomatch": ["shop/shoes|FLO"],
@@ -9983,6 +10016,24 @@
         "brand:wikidata": "Q5769680",
         "brand:wikipedia": "es:Cineplanet",
         "name": "Cineplanet"
+      }
+    },
+    "amenity/cinema|Cineplex": {
+      "countryCodes": ["ca"],
+      "matchNames": [
+        "cineplex cinema",
+        "cineplex cinemas",
+        "cineplex entertainment",
+        "cineplex odeon",
+        "cineplex theatre",
+        "cineplex theatres"
+      ],
+      "tags": {
+        "amenity": "cinema",
+        "brand": "Cineplex",
+        "brand:wikidata": "Q2972807",
+        "brand:wikipedia": "en:Cineplex Entertainment",
+        "name": "Cineplex"
       }
     },
     "amenity/cinema|Cineplexx": {
@@ -11103,6 +11154,22 @@
       }
     },
     "amenity/fast_food|Debonairs Pizza": {
+      "countryCodes": [
+        "ae",
+        "bw",
+        "ke",
+        "ls",
+        "mu",
+        "mw",
+        "mz",
+        "na",
+        "ng",
+        "sd",
+        "ss",
+        "sz",
+        "za",
+        "zm"
+      ],
       "matchNames": ["debonairs"],
       "tags": {
         "amenity": "fast_food",
@@ -12547,6 +12614,19 @@
         "brand:wikipedia": "en:Red Rooster",
         "cuisine": "chicken",
         "name": "Red Rooster",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|Robin's Donuts": {
+      "countryCodes": ["ca"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Robin's Donuts",
+        "brand:wikidata": "Q7352199",
+        "brand:wikipedia": "en:Robin's Donuts",
+        "cuisine": "donut",
+        "name": "Robin's Donuts",
+        "short_name": "Robin's",
         "takeaway": "yes"
       }
     },
@@ -16964,6 +17044,9 @@
         "name:en": "ADNOC"
       }
     },
+    "amenity/fuel|توتال": {
+      "tags": {"amenity": "fuel", "brand": "توتال", "name": "توتال"}
+    },
     "amenity/fuel|บางจาก": {
       "countryCodes": ["th"],
       "tags": {
@@ -17148,6 +17231,9 @@
         "name:en": "Idemitsu Kosan",
         "name:ja": "出光"
       }
+    },
+    "amenity/fuel|台塑石油": {
+      "tags": {"amenity": "fuel", "brand": "台塑石油", "name": "台塑石油"}
     },
     "amenity/fuel|台灣中油": {
       "countryCodes": ["tw"],
@@ -18768,6 +18854,14 @@
         "brand": "Kronans Apotek",
         "healthcare": "pharmacy",
         "name": "Kronans Apotek"
+      }
+    },
+    "amenity/pharmacy|Life Pharmacy": {
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Life Pharmacy",
+        "healthcare": "pharmacy",
+        "name": "Life Pharmacy"
       }
     },
     "amenity/pharmacy|Lloyds Pharmacy": {
@@ -21029,6 +21123,7 @@
         "brand:wikidata": "Q2438391",
         "brand:wikipedia": "en:Chuck E. Cheese's",
         "cuisine": "pizza",
+        "leisure": "amusement_arcade",
         "name": "Chuck E. Cheese's"
       }
     },
@@ -21143,6 +21238,7 @@
         "brand:wikidata": "Q5228205",
         "brand:wikipedia": "en:Dave & Buster's",
         "cuisine": "american",
+        "leisure": "amusement_arcade",
         "name": "Dave & Buster's"
       }
     },
@@ -23380,6 +23476,16 @@
         "name": "Elks Lodge",
         "official_name": "Benevolent and Protective Order of Elks",
         "short_name": "BPOE"
+      }
+    },
+    "amenity/social_centre|Lions Clubs International": {
+      "matchNames": ["lions club", "lions club international", "lions clubs"],
+      "tags": {
+        "amenity": "social_centre",
+        "brand": "Lions Clubs International",
+        "brand:wikidata": "Q270029",
+        "brand:wikipedia": "en:Lions Clubs International",
+        "name": "Lions Clubs International"
       }
     },
     "amenity/social_centre|Moose Lodge": {
@@ -29364,6 +29470,9 @@
         "short_name": "American Eagle"
       }
     },
+    "shop/clothes|An Phước": {
+      "tags": {"brand": "An Phước", "name": "An Phước", "shop": "clothes"}
+    },
     "shop/clothes|Ann Taylor": {
       "countryCodes": ["ca", "us"],
       "tags": {
@@ -32028,6 +32137,9 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Undiz": {
+      "tags": {"brand": "Undiz", "name": "Undiz", "shop": "clothes"}
+    },
     "shop/clothes|Uniqlo": {
       "tags": {
         "brand": "Uniqlo",
@@ -33458,6 +33570,13 @@
         "shop": "convenience"
       }
     },
+    "shop/convenience|Maisto prekės": {
+      "tags": {
+        "brand": "Maisto prekės",
+        "name": "Maisto prekės",
+        "shop": "convenience"
+      }
+    },
     "shop/convenience|Marathon": {
       "nomatch": ["amenity/fuel|Marathon"],
       "tags": {
@@ -34049,6 +34168,9 @@
       "nomatch": ["amenity/fuel|Ultramar"],
       "tags": {"brand": "Ultramar", "name": "Ultramar", "shop": "convenience"}
     },
+    "shop/convenience|United": {
+      "tags": {"brand": "United", "name": "United", "shop": "convenience"}
+    },
     "shop/convenience|United Dairy Farmers": {
       "countryCodes": ["us"],
       "matchTags": ["amenity/ice_cream", "shop/ice_cream"],
@@ -34105,9 +34227,6 @@
         "name": "Vival",
         "shop": "convenience"
       }
-    },
-    "shop/convenience|Volg": {
-      "tags": {"brand": "Volg", "name": "Volg", "shop": "convenience"}
     },
     "shop/convenience|Wawa": {
       "nomatch": ["amenity/fuel|Wawa"],
@@ -36788,6 +36907,9 @@
         "name": "Komputronik",
         "shop": "electronics"
       }
+    },
+    "shop/electronics|LG": {
+      "tags": {"brand": "LG", "name": "LG", "shop": "electronics"}
     },
     "shop/electronics|La Curacao": {
       "tags": {
@@ -40302,6 +40424,15 @@
         "shop": "money_lender"
       }
     },
+    "shop/money_lender|CashMax": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "CashMax",
+        "brand:wikidata": "Q69365478",
+        "name": "CashMax",
+        "shop": "money_lender"
+      }
+    },
     "shop/money_lender|Check Into Cash": {
       "countryCodes": ["us"],
       "tags": {
@@ -42410,6 +42541,9 @@
         "shop": "shoes"
       }
     },
+    "shop/shoes|Shoe Show": {
+      "tags": {"brand": "Shoe Show", "name": "Shoe Show", "shop": "shoes"}
+    },
     "shop/shoes|Shoe Zone": {
       "countryCodes": ["gb", "ie"],
       "tags": {
@@ -42701,6 +42835,17 @@
         "brand:wikipedia": "en:Finish Line, Inc.",
         "name": "Finish Line",
         "shop": "sports"
+      }
+    },
+    "shop/sports|Golf Galaxy": {
+      "countryCodes": ["us"],
+      "matchTags": ["shop/golf"],
+      "tags": {
+        "brand": "Golf Galaxy",
+        "brand:wikidata": "Q69364358",
+        "name": "Golf Galaxy",
+        "shop": "sports",
+        "sport": "golf"
       }
     },
     "shop/sports|Hervis": {
@@ -44866,6 +45011,9 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Ipercoop": {
+      "tags": {"brand": "Ipercoop", "name": "Ipercoop", "shop": "supermarket"}
+    },
     "shop/supermarket|Irma": {
       "countryCodes": ["dk"],
       "tags": {
@@ -45584,6 +45732,9 @@
         "name": "Morrisons",
         "shop": "supermarket"
       }
+    },
+    "shop/supermarket|My Basket": {
+      "tags": {"brand": "My Basket", "name": "My Basket", "shop": "supermarket"}
     },
     "shop/supermarket|NP": {
       "matchNames": ["np-markt"],
@@ -46827,6 +46978,7 @@
     },
     "shop/supermarket|Volg": {
       "countryCodes": ["ch", "li"],
+      "matchTags": ["shop/convenience"],
       "tags": {
         "brand": "Volg",
         "brand:wikidata": "Q2530746",
@@ -47360,6 +47512,9 @@
         "name:en": "Lenta",
         "shop": "supermarket"
       }
+    },
+    "shop/supermarket|ЛотОК": {
+      "tags": {"brand": "ЛотОК", "name": "ЛотОК", "shop": "supermarket"}
     },
     "shop/supermarket|Магазин": {
       "tags": {"brand": "Магазин", "name": "Магазин", "shop": "supermarket"}
@@ -48678,6 +48833,7 @@
     },
     "shop/tyres|Les Schwab Tire Center": {
       "countryCodes": ["us"],
+      "matchNames": ["les schwab"],
       "tags": {
         "brand": "Les Schwab Tire Center",
         "brand:wikidata": "Q6529977",
@@ -49540,6 +49696,16 @@
         "tourism": "hotel"
       }
     },
+    "tourism/hotel|Delta": {
+      "tags": {
+        "brand": "Delta",
+        "brand:wikidata": "Q5254663",
+        "brand:wikipedia": "en:Delta Hotels",
+        "name": "Delta",
+        "official_name": "Delta Hotels",
+        "tourism": "hotel"
+      }
+    },
     "tourism/hotel|DoubleTree by Hilton": {
       "tags": {
         "brand": "DoubleTree by Hilton",
@@ -49547,6 +49713,16 @@
         "brand:wikipedia": "en:DoubleTree",
         "name": "DoubleTree by Hilton",
         "short_name": "DoubleTree",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Drury Inn & Suites": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Drury Inn & Suites",
+        "brand:wikidata": "Q5309391",
+        "brand:wikipedia": "en:Drury Hotels",
+        "name": "Drury Inn & Suites",
         "tourism": "hotel"
       }
     },
@@ -49804,6 +49980,17 @@
         "tourism": "hotel"
       }
     },
+    "tourism/hotel|Meininger": {
+      "matchNames": ["hoteles meininger"],
+      "tags": {
+        "brand": "Meininger",
+        "brand:wikidata": "Q42773330",
+        "brand:wikipedia": "de:Meininger Hotel Gruppe",
+        "name": "Meininger",
+        "official_name": "Meininger Hotels",
+        "tourism": "hotel"
+      }
+    },
     "tourism/hotel|Mercure": {
       "tags": {
         "brand": "Mercure",
@@ -49989,6 +50176,16 @@
         "brand:wikidata": "Q5333330",
         "brand:wikipedia": "en:Econo Lodge",
         "name": "Econo Lodge",
+        "tourism": "motel"
+      }
+    },
+    "tourism/motel|Knights Inn": {
+      "countryCodes": ["ca", "us"],
+      "tags": {
+        "brand": "Knights Inn",
+        "brand:wikidata": "Q6422409",
+        "brand:wikipedia": "en:Knights Inn",
+        "name": "Knights Inn",
         "tourism": "motel"
       }
     },
