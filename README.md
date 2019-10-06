@@ -24,7 +24,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 
 When mappers create features in OpenStreetMap, they are not always consistent about how they
 name and tag things. For example, we may prefer `McDonald's` tagged as `amenity=fast_food`
-but we see many examples of other spellings (`Mc Donald's`, `McDonalds`, `McDonald’s`) and
+but we see many examples of other spellings (`Mc Donald's`, `McDonalds`, `McDonald’s`, `Mc`) and
 taggings (`amenity=restaurant`).
 
 Building a canonical name index allows two very useful things:
