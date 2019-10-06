@@ -3464,6 +3464,7 @@
     },
     "amenity/bank|HSBC UK~(UK)": {
       "countryCodes": ["gb"],
+      "matchNames": ["HSBC"],
       "tags": {
         "amenity": "bank",
         "brand": "HSBC UK",
@@ -8768,6 +8769,15 @@
         "takeaway": "yes"
       }
     },
+    "amenity/cafe|Toast Box": {
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Toast Box",
+        "cuisine": "coffee_shop",
+        "name": "Toast Box",
+        "takeaway": "yes"
+      }
+    },
     "amenity/cafe|Tostao’": {
       "countryCodes": ["co"],
       "tags": {
@@ -10174,6 +10184,16 @@
         "name": "Odeon"
       }
     },
+    "amenity/cinema|Pathé Gaumont": {
+      "countryCodes": ["be", "ch", "fr", "nl"],
+      "tags": {
+        "amenity": "cinema",
+        "brand": "Pathé Gaumont",
+        "brand:wikidata": "Q3060526",
+        "brand:wikipedia": "fr:Les cinémas Gaumont Pathé",
+        "name": "Pathé Gaumont"
+      }
+    },
     "amenity/cinema|Regal Cinemas": {
       "countryCodes": ["us"],
       "matchNames": ["regal cinema"],
@@ -10222,6 +10242,16 @@
         "brand:wikidata": "Q3989406",
         "brand:wikipedia": "it:The Space Cinema",
         "name": "The Space Cinema"
+      }
+    },
+    "amenity/cinema|UGC": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "amenity": "cinema",
+        "brand": "UGC",
+        "brand:wikidata": "Q1643241",
+        "brand:wikipedia": "fr:Union générale cinématographique",
+        "name": "UGC"
       }
     },
     "amenity/cinema|Vue~(IrelandAndUK)": {
@@ -11224,7 +11254,7 @@
         "brand": "Dunkin' Donuts",
         "brand:wikidata": "Q847743",
         "brand:wikipedia": "en:Dunkin' Donuts",
-        "cuisine": "donut;coffee",
+        "cuisine": "donut;coffee_shop",
         "name": "Dunkin' Donuts",
         "takeaway": "yes"
       }
@@ -11275,6 +11305,17 @@
         "brand:wikipedia": "en:Extreme Pita",
         "cuisine": "pita",
         "name": "Extreme Pita",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|Extreme Pizza": {
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Extreme Pizza",
+        "brand:wikidata": "Q5422364",
+        "brand:wikipedia": "en:Extreme Pizza",
+        "cuisine": "pizza",
+        "name": "Extreme Pizza",
         "takeaway": "yes"
       }
     },
@@ -14333,6 +14374,9 @@
         "name": "Alpet"
       }
     },
+    "amenity/fuel|Amic": {
+      "tags": {"amenity": "fuel", "brand": "Amic", "name": "Amic"}
+    },
     "amenity/fuel|Api": {
       "countryCodes": ["it"],
       "tags": {
@@ -15280,6 +15324,9 @@
         "name": "Kangaroo Express",
         "short_name": "Kangaroo"
       }
+    },
+    "amenity/fuel|Kastrati": {
+      "tags": {"amenity": "fuel", "brand": "Kastrati", "name": "Kastrati"}
     },
     "amenity/fuel|Kobil": {
       "countryCodes": ["bi", "et", "ke", "rw", "tz", "ug", "zm"],
@@ -20362,9 +20409,16 @@
     },
     "amenity/post_office|OCA": {
       "countryCodes": ["ar"],
-      "tags": {"amenity": "post_office", "brand": "OCA", "name": "OCA"}
+      "tags": {
+        "amenity": "post_office",
+        "brand": "OCA",
+        "brand:wikidata": "Q5172887",
+        "brand:wikipedia": "es:Correo OCA",
+        "name": "OCA"
+      }
     },
     "amenity/post_office|Oficina de Correos": {
+      "countryCodes": ["es"],
       "matchNames": ["correos"],
       "tags": {
         "amenity": "post_office",
@@ -21117,6 +21171,7 @@
     "amenity/restaurant|Chuck E. Cheese's": {
       "countryCodes": ["ca", "us"],
       "matchNames": ["chuck e cheese"],
+      "matchTags": ["leisure/amusement_arcade"],
       "tags": {
         "amenity": "restaurant",
         "brand": "Chuck E. Cheese's",
@@ -21232,6 +21287,7 @@
     },
     "amenity/restaurant|Dave & Buster's": {
       "countryCodes": ["us"],
+      "matchTags": ["leisure/amusement_arcade"],
       "tags": {
         "amenity": "restaurant",
         "brand": "Dave & Buster's",
@@ -21833,6 +21889,17 @@
         "diet:vegan": "only",
         "diet:vegetarian": "only",
         "name": "Loving Hut"
+      }
+    },
+    "amenity/restaurant|Luby's": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Luby's",
+        "brand:wikidata": "Q6695701",
+        "brand:wikipedia": "en:Luby's",
+        "cuisine": "american",
+        "name": "Luby's"
       }
     },
     "amenity/restaurant|Léon de Bruxelles": {
@@ -29132,6 +29199,8 @@
     },
     "shop/chemist|Savers": {
       "countryCodes": ["gb"],
+      "matchNames": ["Savers Drugstores"],
+      "nomatch": ["shop/variety_store|Savers"],
       "tags": {
         "brand": "Savers",
         "brand:wikidata": "Q7428189",
@@ -29455,6 +29524,14 @@
         "brand:wikidata": "Q4728473",
         "brand:wikipedia": "en:AllSaints",
         "name": "AllSaints",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Altar'd State": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Altar'd State",
+        "name": "Altar'd State",
         "shop": "clothes"
       }
     },
@@ -30334,6 +30411,9 @@
     "shop/clothes|Fussl": {
       "countryCodes": ["at", "de"],
       "tags": {"brand": "Fussl", "name": "Fussl", "shop": "clothes"}
+    },
+    "shop/clothes|G-Star Raw": {
+      "tags": {"brand": "G-Star Raw", "name": "G-Star Raw", "shop": "clothes"}
     },
     "shop/clothes|GU": {
       "countryCodes": ["cl", "jp", "tw"],
@@ -32888,6 +32968,9 @@
         "name": "Alfamidi",
         "shop": "convenience"
       }
+    },
+    "shop/convenience|Allsup's": {
+      "tags": {"brand": "Allsup's", "name": "Allsup's", "shop": "convenience"}
     },
     "shop/convenience|Almacén": {
       "countryCodes": ["ar", "bo", "cl", "pe", "uy"],
@@ -36920,6 +37003,9 @@
         "shop": "electronics"
       }
     },
+    "shop/electronics|MDA": {
+      "tags": {"brand": "MDA", "name": "MDA", "shop": "electronics"}
+    },
     "shop/electronics|Maplin": {
       "countryCodes": ["gb"],
       "tags": {
@@ -38173,6 +38259,7 @@
     },
     "shop/gift|Cracker Barrel": {
       "countryCodes": ["us"],
+      "nomatch": ["amenity/restaurant|Cracker Barrel"],
       "tags": {
         "brand": "Cracker Barrel",
         "brand:wikidata": "Q4492609",
@@ -39324,6 +39411,9 @@
         "name": "Swarovski",
         "shop": "jewelry"
       }
+    },
+    "shop/jewelry|Thomas Sabo": {
+      "tags": {"brand": "Thomas Sabo", "name": "Thomas Sabo", "shop": "jewelry"}
     },
     "shop/jewelry|Tiffany & Company": {
       "countryCodes": ["us"],
@@ -40993,6 +41083,15 @@
         "brand:wikidata": "Q6523209",
         "brand:wikipedia": "en:LensCrafters",
         "name": "LensCrafters",
+        "shop": "optician"
+      }
+    },
+    "shop/optician|Lenskart": {
+      "countryCodes": ["in"],
+      "tags": {
+        "brand": "Lenskart",
+        "brand:wikidata": "Q17068753",
+        "name": "Lenskart",
         "shop": "optician"
       }
     },
@@ -44228,6 +44327,26 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Dollar General Market": {
+      "countryCodes": ["us"],
+      "matchTags": ["shop/convenience", "shop/variet_store"],
+      "nomatch": [
+        "amenity/bank|Dollar Bank",
+        "amenity/car_rental|Dollar",
+        "shop/supermarket|Dollar General Market",
+        "shop/variety_store|Dollar General",
+        "shop/variety_store|Dollar Tree",
+        "shop/variety_store|Dollarama",
+        "shop/variety_store|Family Dollar"
+      ],
+      "tags": {
+        "brand": "Dollar General Market",
+        "brand:wikidata": "Q145168",
+        "brand:wikipedia": "en:Dollar General",
+        "name": "Dollar General Market",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|Dunnes Stores": {
       "countryCodes": ["gb", "ie"],
       "tags": {
@@ -45242,8 +45361,9 @@
       "tags": {
         "brand": "La Vie Claire",
         "brand:wikidata": "Q3213589",
-        "brand:wikipedia": "en:La Vie Claire (company)",
+        "brand:wikipedia": "fr:La Vie Claire",
         "name": "La Vie Claire",
+        "organic": "only",
         "shop": "supermarket"
       }
     },
@@ -46374,6 +46494,13 @@
         "brand:wikidata": "Q578387",
         "brand:wikipedia": "en:Shaw's and Star Market",
         "name": "Shaw's",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Sheng Siong": {
+      "tags": {
+        "brand": "Sheng Siong",
+        "name": "Sheng Siong",
         "shop": "supermarket"
       }
     },
@@ -48963,6 +49090,7 @@
       "nomatch": [
         "amenity/bank|Dollar Bank",
         "amenity/car_rental|Dollar",
+        "shop/supermarket|Dollar General Market",
         "shop/variety_store|Dollar Tree",
         "shop/variety_store|Dollarama",
         "shop/variety_store|Family Dollar"
@@ -49198,7 +49326,15 @@
       }
     },
     "shop/variety_store|Savers": {
-      "tags": {"brand": "Savers", "name": "Savers", "shop": "variety_store"}
+      "countryCodes": ["gb"],
+      "nomatch": ["shop/chemist|Savers"],
+      "tags": {
+        "brand": "Savers",
+        "brand:wikidata": "Q7428189",
+        "brand:wikipedia": "en:Savers (UK retailer)",
+        "name": "Savers",
+        "shop": "variety_store"
+      }
     },
     "shop/variety_store|TEDi": {
       "countryCodes": ["at", "de", "es", "hr", "si", "sk"],
@@ -49584,6 +49720,22 @@
         "tourism": "hotel"
       }
     },
+    "tourism/hotel|Baymont": {
+      "countryCodes": ["us"],
+      "matchNames": [
+        "baymont inn",
+        "baymont inn & suites",
+        "baymont inn and suites"
+      ],
+      "tags": {
+        "brand": "Baymont",
+        "brand:wikidata": "Q4874634",
+        "brand:wikipedia": "en:Baymont Inn & Suites",
+        "name": "Baymont",
+        "official_name": "Baymont by Wyndham",
+        "tourism": "hotel"
+      }
+    },
     "tourism/hotel|Best Western": {
       "nomatch": ["tourism/hotel|Best Western Plus"],
       "tags": {
@@ -49785,6 +49937,18 @@
         "brand:wikidata": "Q5646230",
         "brand:wikipedia": "en:Hampton by Hilton",
         "name": "Hampton",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Hawthorn Suites": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Hawthorn Suites",
+        "brand:wikidata": "Q5685511",
+        "brand:wikipedia": "en:Hawthorn Suites",
+        "name": "Hawthorn Suites",
+        "official_name": "Hawthorn Suites by Wyndham",
+        "short_name": "Hawthorn",
         "tourism": "hotel"
       }
     },
@@ -50000,6 +50164,23 @@
         "tourism": "hotel"
       }
     },
+    "tourism/hotel|Microtel": {
+      "countryCodes": ["ar", "ca", "mx", "ph", "us"],
+      "matchNames": [
+        "microtel by wyndham",
+        "microtel inn",
+        "microtel inn & suites",
+        "microtel inn and suites"
+      ],
+      "tags": {
+        "brand": "Microtel",
+        "brand:wikidata": "Q6840402",
+        "brand:wikipedia": "en:Microtel Inn and Suites",
+        "name": "Microtel",
+        "official_name": "Microtel Inn & Suites by Wyndham",
+        "tourism": "hotel"
+      }
+    },
     "tourism/hotel|Novotel": {
       "tags": {
         "brand": "Novotel",
@@ -50153,6 +50334,18 @@
         "brand:wikipedia": "en:W Hotels",
         "name": "W Hotels",
         "short_name": "W",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Wingate": {
+      "countryCodes": ["us"],
+      "matchNames": ["wingate inn"],
+      "tags": {
+        "brand": "Wingate",
+        "brand:wikidata": "Q8025144",
+        "brand:wikipedia": "en:Wingate by Wyndham",
+        "name": "Wingate",
+        "official_name": "Wingate by Wyndham",
         "tourism": "hotel"
       }
     },
