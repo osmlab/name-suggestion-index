@@ -510,23 +510,33 @@
   },
   "tourism/hotel|Microtel": {
     "countryCodes": [
-      "ar",
       "ca",
+      "cn",
       "mx",
       "ph",
       "us"
     ],
-    "matchNames": [
-      "microtel by wyndham",
-      "microtel inn",
-      "microtel inn & suites",
-      "microtel inn and suites"
+    "matchNames": ["microtel inn"],
+    "nomatch": [
+      "tourism/hotel|Microtel Inn & Suites"
     ],
     "tags": {
       "brand": "Microtel",
       "brand:wikidata": "Q6840402",
       "brand:wikipedia": "en:Microtel Inn and Suites",
       "name": "Microtel",
+      "official_name": "Microtel by Wyndham",
+      "tourism": "hotel"
+    }
+  },
+  "tourism/hotel|Microtel Inn & Suites": {
+    "countryCodes": ["ca", "mx", "us"],
+    "nomatch": ["tourism/hotel|Microtel"],
+    "tags": {
+      "brand": "Microtel Inn & Suites",
+      "brand:wikidata": "Q6840402",
+      "brand:wikipedia": "en:Microtel Inn and Suites",
+      "name": "Microtel Inn & Suites",
       "official_name": "Microtel Inn & Suites by Wyndham",
       "tourism": "hotel"
     }
