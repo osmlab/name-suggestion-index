@@ -1,14 +1,14 @@
 const clearConsole = require('clear');
 const colors = require('colors/safe');
-const diacritics = require('diacritics');
 const fetch = require('node-fetch');
-const fs = require('fs');
-const stringify = require('json-stringify-pretty-compact');
+const fileTree = require('./lib/file_tree');
+const stemmer = require('./lib/stemmer');
 const wdk = require('wikidata-sdk');
 
 const MAXCHOICE = 6;      // max number of choices to consider
 
-let canonical = require('./config/canonical.json');
+let brands = fileTree.read('brands');
+
 let _resolve = function() { };
 let _keypress = function() { };
 
@@ -40,15 +40,17 @@ nextMatch();
 function getKeysToMatch() {
     let tryMatch = {};
     let seen = {};
-    Object.keys(canonical).forEach(k => {
-        // if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
-        const wd = canonical[k].tags['brand:wikidata'];
+    Object.keys(brands).forEach(k => {
+        // if `brand:wikidata` and `brand:wikipedia` tags are missing or look wrong..
+        // when one tag is present then silent overwritting
+        // or showing again false positives is flustrating
+        // note that wikicheck will detect such cases
+        const wd = brands[k].tags['brand:wikidata'];
         if (!wd || !/^Q\d+$/.test(wd)) {
-            tryMatch[k] = true;
-        }
-        const wp = canonical[k].tags['brand:wikipedia'];
-        if (!wp || !/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-            tryMatch[k] = true;
+            const wp = brands[k].tags['brand:wikipedia'];
+            if (!wp || !/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+                tryMatch[k] = true;
+            }
         }
 
         // ...but skip if the name appears to be a duplicate
@@ -86,7 +88,7 @@ function nextMatch() {
                 throw new Error(`"${name}" not found`);
             }
             let queue = [];
-            result.search.forEach((entity, index) => {
+            result.search.forEach((entity) => {
                 choices.push(entity);
                 entity.lang = lang;
                 queue.push(
@@ -120,6 +122,15 @@ function showResults(choices) {
     // only keep choices with wikidata and wikipedia tags
     choices = choices.filter(entity => entity.id && entity.sitelink);
 
+    // primitive filtering to throw out unwanted types
+    // note that it likely would be better to travel upwards
+    // entity structure and ban "building" that would should
+    // ban also "stadium" and "embankment dam"
+    let banned = ["film", "town", "national park", "human", "taxon", "stadium", "embankment dam"];
+    banned.forEach((bannedType) => {
+        choices = choices.filter(entity => entity.instances.includes(bannedType) === false);
+    });
+
     if (!choices.length) {
         throw new Error(`Wiki tags not found`);
     }
@@ -140,6 +151,9 @@ function showResults(choices) {
         }
         if (entity.instances) {
             console.log(`      instance of: [${entity.instances}]`);
+        }
+        if (entity.aliases) {
+            console.log(`      aliases: [${entity.aliases}]`);
         }
         if (entity.article) {
             console.log(`      article: ${entity.article}`);
@@ -255,22 +269,21 @@ function showResults(choices) {
         } else if (keymap[key]) {                   // Pressed a number for a choice
             // update tags
             let entity = keymap[key];
-            let obj = canonical[_currKey];
+            let obj = brands[_currKey];
             obj.tags['brand:wikidata'] = entity.id;
             obj.tags['brand:wikipedia'] = entity.sitelink;
             if (_enTags) {
                 obj.tags['brand:en'] = entity.label;
                 obj.tags['name:en'] = entity.label;
             }
-            obj.tags = sort(obj.tags);
 
-            fs.writeFileSync('config/canonical.json', stringify(sort(canonical), { maxLength: 50 }));
+            fileTree.write('brands', brands);  // save updates
 
             _direction = 1;
             _currIndex++;
             _resolve();
         }
-    }
+    };
 
     return new Promise(resolve => { _resolve = resolve; });
 }
@@ -312,40 +325,8 @@ function sitelinkSPARQL(entity) {
 
 
 //
-// Returns an object with sorted keys and sorted values.
-// (This is useful for file diffing)
-//
-function sort(obj) {
-    let sorted = {};
-    Object.keys(obj).sort().forEach(k => {
-        sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
-    });
-    return sorted;
-}
-
-//
 // Clamp a number between min and max
 //
 function clamp(num, min, max) {
     return Math.min(Math.max(num, min), max);
-}
-
-
-// Removes noise from the name so that we can compare
-// similar names for catching duplicates.
-function stemmer(name) {
-    const noise = [
-        /ban(k|c)(a|o)?/ig,
-        /банк/ig,
-        /coop/ig,
-        /express/ig,
-        /(gas|fuel)/ig,
-        /wireless/ig,
-        /(shop|store)/ig,
-        /[.,\/#!$%\^&\*;:{}=\-_`~()]/g,
-        /\s/g
-    ];
-
-    name = noise.reduce((acc, regex) => acc.replace(regex, ''), name);
-    return diacritics.remove(name.toLowerCase());
 }
