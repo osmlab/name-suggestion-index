@@ -343,13 +343,6 @@
       "tourism": "hotel"
     }
   },
-  "tourism/hotel|Hotel Belvedere": {
-    "tags": {
-      "brand": "Hotel Belvedere",
-      "name": "Hotel Belvedere",
-      "tourism": "hotel"
-    }
-  },
   "tourism/hotel|Hyatt": {
     "tags": {
       "brand": "Hyatt",
@@ -435,17 +428,38 @@
       "tourism": "hotel"
     }
   },
-  "tourism/hotel|La Quinta": {
-    "countryCodes": ["us"],
-    "matchNames": [
-      "la quinta inn and suites",
-      "la quinta inns and suites"
+  "tourism/hotel|La Quinta Inn": {
+    "countryCodes": [
+      "ca",
+      "cl",
+      "co",
+      "hn",
+      "mx",
+      "us"
+    ],
+    "matchNames": ["la quinta"],
+    "nomatch": [
+      "tourism/hotel|La Quinta Inn & Suites"
     ],
     "tags": {
-      "brand": "La Quinta",
+      "brand": "La Quinta Inn",
       "brand:wikidata": "Q6464734",
       "brand:wikipedia": "en:La Quinta Inns & Suites",
-      "name": "La Quinta",
+      "name": "La Quinta Inn",
+      "official_name": "La Quinta Inn by Wyndham",
+      "tourism": "hotel"
+    }
+  },
+  "tourism/hotel|La Quinta Inn & Suites": {
+    "countryCodes": ["ca", "us"],
+    "matchNames": ["la quinta inns and suites"],
+    "nomatch": ["tourism/hotel|La Quinta Inn"],
+    "tags": {
+      "brand": "La Quinta Inn & Suites",
+      "brand:wikidata": "Q6464734",
+      "brand:wikipedia": "en:La Quinta Inns & Suites",
+      "name": "La Quinta Inn & Suites",
+      "official_name": "La Quinta Inn & Suites by Wyndham",
       "tourism": "hotel"
     }
   },
@@ -489,23 +503,33 @@
   },
   "tourism/hotel|Microtel": {
     "countryCodes": [
-      "ar",
       "ca",
+      "cn",
       "mx",
       "ph",
       "us"
     ],
-    "matchNames": [
-      "microtel by wyndham",
-      "microtel inn",
-      "microtel inn & suites",
-      "microtel inn and suites"
+    "matchNames": ["microtel inn"],
+    "nomatch": [
+      "tourism/hotel|Microtel Inn & Suites"
     ],
     "tags": {
       "brand": "Microtel",
       "brand:wikidata": "Q6840402",
       "brand:wikipedia": "en:Microtel Inn and Suites",
       "name": "Microtel",
+      "official_name": "Microtel by Wyndham",
+      "tourism": "hotel"
+    }
+  },
+  "tourism/hotel|Microtel Inn & Suites": {
+    "countryCodes": ["ca", "mx", "us"],
+    "nomatch": ["tourism/hotel|Microtel"],
+    "tags": {
+      "brand": "Microtel Inn & Suites",
+      "brand:wikidata": "Q6840402",
+      "brand:wikipedia": "en:Microtel Inn and Suites",
+      "name": "Microtel Inn & Suites",
       "official_name": "Microtel Inn & Suites by Wyndham",
       "tourism": "hotel"
     }
@@ -565,6 +589,18 @@
       "brand:wikidata": "Q1075788",
       "brand:wikipedia": "en:Choice Hotels",
       "name": "Quality Inn & Suites",
+      "tourism": "hotel"
+    }
+  },
+  "tourism/hotel|Qubus": {
+    "countryCodes": ["pl"],
+    "matchNames": ["qubus hotel"],
+    "tags": {
+      "brand": "Qubus",
+      "brand:wikidata": "Q11832868",
+      "brand:wikipedia": "pl:Qubus Hotel",
+      "name": "Qubus",
+      "official_name": "Qubus Hotel",
       "tourism": "hotel"
     }
   },
@@ -681,6 +717,13 @@
       "tourism": "hotel"
     }
   },
+  "tourism/hotel|Уют": {
+    "tags": {
+      "brand": "Уют",
+      "name": "Уют",
+      "tourism": "hotel"
+    }
+  },
   "tourism/hotel|東横イン": {
     "countryCodes": ["jp"],
     "tags": {
@@ -692,20 +735,6 @@
       "name": "東横イン",
       "name:en": "Toyoko Inn",
       "name:ja": "東横イン",
-      "tourism": "hotel"
-    }
-  },
-  "tourism/hotel|Qubus": {
-    "countryCodes": ["pl"],
-    "matchNames": [
-      "qubus hotel"
-    ],
-    "tags": {
-      "brand": "Qubus",
-      "brand:wikidata": "Q11832868",
-      "brand:wikipedia": "pl:Qubus Hotel",
-      "name": "Qubus",
-      "official_name": "Qubus Hotel",
       "tourism": "hotel"
     }
   }
