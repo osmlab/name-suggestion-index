@@ -299,6 +299,13 @@
       "name": "BR"
     }
   },
+  "amenity/fuel|Baltic Petroleum": {
+    "tags": {
+      "amenity": "fuel",
+      "brand": "Baltic Petroleum",
+      "name": "Baltic Petroleum"
+    }
+  },
   "amenity/fuel|Bangchak": {
     "countryCodes": ["th"],
     "tags": {
@@ -352,17 +359,8 @@
       "brand": "CAMPSA",
       "brand:wikidata": "Q1031623",
       "brand:wikipedia": "en:Campsa",
-      "name": "CAMPSA"
-    }
-  },
-  "amenity/fuel|CEPSA": {
-    "countryCodes": ["es", "pt"],
-    "tags": {
-      "amenity": "fuel",
-      "brand": "CEPSA",
-      "brand:wikidata": "Q608819",
-      "brand:wikipedia": "en:Cepsa",
-      "name": "CEPSA"
+      "name": "CAMPSA",
+      "official_name": "Compañía Arrendataria del Monopolio del Petróleo, S.A."
     }
   },
   "amenity/fuel|Caltex": {
@@ -431,6 +429,17 @@
       "brand:wikidata": "Q5011381",
       "brand:wikipedia": "en:CHS Inc.",
       "name": "Cenex"
+    }
+  },
+  "amenity/fuel|Cepsa": {
+    "countryCodes": ["es", "pt"],
+    "tags": {
+      "amenity": "fuel",
+      "brand": "Cepsa",
+      "brand:wikidata": "Q608819",
+      "brand:wikipedia": "en:Cepsa",
+      "name": "Cepsa",
+      "official_name": "Compañía Española de Petróleos, S.A.U."
     }
   },
   "amenity/fuel|Ceypetco": {
@@ -857,6 +866,10 @@
     }
   },
   "amenity/fuel|Gas Plus": {
+    "nomatch": [
+      "shop/mobile_phone|Plus",
+      "shop/supermarket|PLUS"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Gas Plus",
@@ -1190,7 +1203,7 @@
     }
   },
   "amenity/fuel|Kroger": {
-    "matchNames": ["kroger fuel"],
+    "matchNames": ["kroger fuel", "kroger gas"],
     "nomatch": ["shop/supermarket|Kroger"],
     "tags": {
       "amenity": "fuel",

@@ -118,6 +118,8 @@
     "countryCodes": ["es"],
     "tags": {
       "brand": "Alcampo",
+      "brand:wikidata": "Q2832081",
+      "brand:wikipedia": "es:Alcampo",
       "name": "Alcampo",
       "shop": "supermarket"
     }
@@ -305,6 +307,13 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Big-A": {
+    "tags": {
+      "brand": "Big-A",
+      "name": "Big-A",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Billa": {
     "tags": {
       "brand": "Billa",
@@ -469,6 +478,7 @@
     }
   },
   "shop/supermarket|CBA": {
+    "nomatch": ["shop/convenience|CBA"],
     "tags": {
       "brand": "CBA",
       "brand:wikidata": "Q779845",
@@ -1175,7 +1185,9 @@
   "shop/supermarket|Eroski City": {
     "countryCodes": ["es"],
     "tags": {
-      "brand": "Eroski City",
+      "brand": "Eroski",
+      "brand:wikidata": "Q1361349",
+      "brand:wikipedia": "en:Eroski",
       "name": "Eroski City",
       "shop": "supermarket"
     }
@@ -2041,7 +2053,10 @@
     }
   },
   "shop/supermarket|Kroger": {
-    "matchNames": ["krogers"],
+    "matchNames": [
+      "kroger food and drug",
+      "krogers"
+    ],
     "nomatch": ["amenity/fuel|Kroger"],
     "tags": {
       "brand": "Kroger",
@@ -2304,12 +2319,25 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|M&S Foodhall": {
+    "matchNames": ["marks & spencer foodhall"],
+    "tags": {
+      "brand": "M&S Foodhall",
+      "brand:wikidata": "Q714491",
+      "brand:wikipedia": "en:Marks & Spencer",
+      "name": "M&S Foodhall",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|M&S Simply Food": {
+    "matchNames": ["marks & spencer simply food"],
     "nomatch": [
       "shop/convenience|M&S Simply Food"
     ],
     "tags": {
       "brand": "M&S Simply Food",
+      "brand:wikidata": "Q714491",
+      "brand:wikipedia": "en:Marks & Spencer",
       "name": "M&S Simply Food",
       "shop": "supermarket"
     }
@@ -2532,6 +2560,7 @@
     }
   },
   "shop/supermarket|Mercadona": {
+    "countryCodes": ["es", "pt"],
     "tags": {
       "brand": "Mercadona",
       "brand:wikidata": "Q377705",
@@ -2830,7 +2859,10 @@
   },
   "shop/supermarket|PLUS": {
     "countryCodes": ["nl"],
-    "nomatch": ["shop/mobile_phone|Plus"],
+    "nomatch": [
+      "amenity/fuel|Gas Plus",
+      "shop/mobile_phone|Plus"
+    ],
     "tags": {
       "brand": "PLUS",
       "brand:wikidata": "Q1978981",
