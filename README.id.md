@@ -10,15 +10,18 @@ Merk umum nama canonical untuk OpenStreetMap
 
 Tujuan dari proyek ini adalah untuk mempertahankan [canonical](https://en.wikipedia.org/wiki/Canonicalization) daftar nama umum yang digunakan untuk memberi saran untuk ejaan dan fitur tagging yang konsisten di OpenStreetMap.
 
+[Tonton videonya](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html) dari ceramah kami di State of Map US 2019 untuk mempelajari lebih lanjut tentang proyek ini!
+
+
 ### Telusuri indeks
 
-Anda dapat menulusuri indeks di https://nsi.guide/ untuk melihat merk mana yang hilang dari link Wikidata, atau yang tidak komplet di halaman Wikipedia. 
+Anda dapat menulusuri indeks di https://nsi.guide/ untuk melihat merk mana yang hilang dari link Wikidata, atau yang tidak komplet di halaman Wikipedia.
 
 ### Bagaimana ini digunakan
 
 Saat fitur peta dibuat di OpenStreetMap, mereka tidak selalu konsisten tentang bagaimana mereka memberi nama dan menandai sesuatu. Contoh, kita dapat memilih kata `McDonald's` yang ditandai sebagai `amenity=fast_food` tetapi kita juga melihat banyak contoh untuk pengejaan yang lain (`Mc Donald's`, `McDonalds`, `McDonald’s`) dan menandai (`amenity=restaurant`).
 
-Membangun indeks nama canonical memungkina dua hal yang sangat berguna: 
+Membangun indeks nama canonical memungkina dua hal yang sangat berguna:
 - Kita dapat menyarankan cara yang paling "benar" untuk menandai hal-hal yang dibuat pengguna saat menyunting
 - Kita dapat memindai OSM data untuk fitur "salah" dan menhasilkan daftar untuk ditinjau dan dibersihkan
 
