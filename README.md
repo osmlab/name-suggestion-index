@@ -12,12 +12,12 @@ The goal of this project is to maintain a [canonical](https://en.wikipedia.org/w
 list of commonly used names for suggesting consistent spelling and tagging of features
 in OpenStreetMap.
 
+[Watch the video](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html) from our talk at State of the Map US 2019 to learn more about this project!
+
 
 ### Browse the index
 
-You can browse the index at
-http://osmlab.github.io/name-suggestion-index
-to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+You can browse the index at https://nsi.guide/ to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
 ### How it's used
