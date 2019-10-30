@@ -11645,7 +11645,7 @@ function CategoryRow(props) {
   function displayTags(tags) {
     var result = '';
     Object.keys(tags).forEach(function (k) {
-      result += "\n\"".concat(k, "\": \"").concat(tags[k], "\"");
+      result += "\"".concat(k, "\": \"").concat(tags[k], "\"\n");
     });
     return result;
   }
