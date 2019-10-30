@@ -53,7 +53,7 @@ We're always looking for help!  If you have any questions or want to reach out t
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/) version 6 or newer
+* [Node.js](https://nodejs.org/) version 8 or newer
 * [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
 
 
@@ -83,7 +83,7 @@ Name lists:
 #### Configuration files (edit these):
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `discardNames`
+  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
 * `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`

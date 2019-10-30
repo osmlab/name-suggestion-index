@@ -46,7 +46,7 @@ Kami selalu mencari bantuan!  Jika kaum memiliki pertanyaan atau ingin menghubun
 
 ### Prasyarat
 
-* [Node.js](https://nodejs.org/) versi 6 or terbaru
+* [Node.js](https://nodejs.org/) versi 8 or terbaru
 * [`git`](https://www.atlassian.com/git/tutorials/install-git/) untuk platform anda
 
 
@@ -76,7 +76,7 @@ Daftar nama:
 #### Konfigurasi file (sunting bagian ini):
 
 * `config/*`
-  * `config/filters.json`- Regular expressions yang digunakan untuk memfilter `names_all` ke `names_keep` / `discardNames`
+  * `config/filters.json`- Regular expressions yang digunakan untuk memfilter `names_all` ke `names_keep` / `names_discard`
 * `brands/*` - Konfirugasi file untuk  setiap jenis merk bisnis, diorganisasikan oleh tag OpenStreetMap
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`
