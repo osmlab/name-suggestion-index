@@ -19,7 +19,14 @@ export default function CategoryRow(props) {
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
   const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
 
-  const slug = encodeURI(kvnd.split('|')[1]);
+  const rowClasses = [];
+  if (entry.filtered) {
+    rowClasses.push("hide");
+  }
+  if (entry.selected) {
+    rowClasses.push("selected");
+  }
+
   const count = data.names[kvnd] || '< 50';
   const tags = entry.tags || {};
   const qid = tags['brand:wikidata'];
@@ -30,10 +37,10 @@ export default function CategoryRow(props) {
   const logos = wd.logos || {};
 
   return (
-    <tr className={entry.filtered ? "hide" : null} >
+    <tr className={rowClasses.join(' ') || null} >
     <td className="namesuggest">
-      <h3 className="slug" id={slug}>
-        <a href={`#${slug}`}>#</a>
+      <h3 className="slug" id={entry.slug}>
+        <a href={`#${entry.slug}`}>#</a>
         <span className="anchor">{tags.name}</span>
       </h3>
       <div className="nsikey"><pre>'{kvnd}'</pre></div>

@@ -11531,7 +11531,16 @@ function CategoryRow(props) {
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
-  var slug = encodeURI(kvnd.split('|')[1]);
+  var rowClasses = [];
+
+  if (entry.filtered) {
+    rowClasses.push("hide");
+  }
+
+  if (entry.selected) {
+    rowClasses.push("selected");
+  }
+
   var count = data.names[kvnd] || '< 50';
   var tags = entry.tags || {};
   var qid = tags['brand:wikidata'];
@@ -11541,14 +11550,14 @@ function CategoryRow(props) {
   var identities = wd.identities || {};
   var logos = wd.logos || {};
   return _react.default.createElement("tr", {
-    className: entry.filtered ? "hide" : null
+    className: rowClasses.join(' ') || null
   }, _react.default.createElement("td", {
     className: "namesuggest"
   }, _react.default.createElement("h3", {
     className: "slug",
-    id: slug
+    id: entry.slug
   }, _react.default.createElement("a", {
-    href: "#".concat(slug)
+    href: "#".concat(entry.slug)
   }, "#"), _react.default.createElement("span", {
     className: "anchor"
   }, tags.name)), _react.default.createElement("div", {
@@ -18477,6 +18486,7 @@ function Category(props) {
   var v = props.v;
   var kv = "".concat(k, "/").concat(v);
   var entries = data.dict && data.dict[k] && data.dict[k][v];
+  var hash = props.location.hash;
   var message;
 
   if (data.isLoading()) {
@@ -18498,8 +18508,6 @@ function Category(props) {
     // If there was a hash, scroll to it.
     // Browser may have tried this already on initial render before data was there.
     // This component will render and return the rows, so scroll to the row after a delay.
-    var hash = props.location.hash;
-
     if (hash) {
       var slug = hash.slice(1); // remove leading '#'
 
@@ -18530,7 +18538,13 @@ function Category(props) {
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var rows = Object.keys(entries).map(function (kvnd) {
-    var entry = entries[kvnd]; // apply filters
+    var entry = entries[kvnd]; // calculate slug
+
+    var nd = kvnd.split('|')[1];
+    entry.slug = encodeURI(nd); // apply selection if location hash matches slug
+
+    entry.selected = hash && hash.slice(1) === entry.slug; // remove leading '#'
+    // apply filters
 
     if (tt) {
       var tags = Object.entries(entry.tags);

@@ -13,6 +13,7 @@ export default function Category(props) {
   const v = props.v;
   const kv = `${k}/${v}`;
   const entries = data.dict && data.dict[k] && data.dict[k][v];
+  const hash = props.location.hash;
 
   let message;
   if (data.isLoading()) {
@@ -38,7 +39,6 @@ export default function Category(props) {
     // If there was a hash, scroll to it.
     // Browser may have tried this already on initial render before data was there.
     // This component will render and return the rows, so scroll to the row after a delay.
-    const hash = props.location.hash;
     if (hash) {
       const slug = hash.slice(1);  // remove leading '#'
       window.setTimeout(function() {
@@ -65,6 +65,13 @@ export default function Category(props) {
 
   const rows = Object.keys(entries).map(kvnd => {
     let entry = entries[kvnd];
+
+    // calculate slug
+    const nd = kvnd.split('|')[1];
+    entry.slug = encodeURI(nd);
+
+    // apply selection if location hash matches slug
+    entry.selected = (hash && hash.slice(1) === entry.slug);   // remove leading '#'
 
     // apply filters
     if (tt) {
