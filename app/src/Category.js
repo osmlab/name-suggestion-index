@@ -33,6 +33,21 @@ export default function Category(props) {
       </div>
       </>
     );
+
+  } else {    // re-rendering after data has finished loading..
+    // If there was a hash, scroll to it.
+    // Browser may have tried this already on initial render before data was there.
+    // This component will render and return the rows, so scroll to the row after a delay.
+    const hash = props.location.hash;
+    if (hash) {
+      const slug = hash.slice(1);  // remove leading '#'
+      window.setTimeout(function() {
+        const el = document.getElementById(slug);
+        if (el) {
+          el.scrollIntoView();
+        }
+      }, 50);
+    }
   }
 
   // pick an icon for this category

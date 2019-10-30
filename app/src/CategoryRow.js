@@ -19,17 +19,7 @@ export default function CategoryRow(props) {
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
   const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
 
-  // if there was a hash, re-scroll to it..
-  // (browser may have tried this already on initial render before data was there)
-  const hash = props.location.hash;
-  if (hash) {
-    window.setTimeout(() => {
-      window.location.hash = '';
-      window.location.hash = hash;
-    },10);
-  }
-
-  const slug = slugify(kvnd.split('|')[1]);
+  const slug = encodeURI(kvnd.split('|')[1]);
   const count = data.names[kvnd] || '< 50';
   const tags = entry.tags || {};
   const qid = tags['brand:wikidata'];
@@ -137,16 +127,6 @@ out skel qt;`);
 "${k}": "${tags[k]}"`;
     });
     return result;
-  }
-
-
-  function slugify(text) {
-    return text.toString().toLowerCase()
-      .replace(/\s+/g, '-')           // Replace spaces with -
-      .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-      .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-      .replace(/^-+/, '')             // Trim - from start of text
-      .replace(/-+$/, '');            // Trim - from end of text
   }
 
 };

@@ -11530,19 +11530,8 @@ function CategoryRow(props) {
   var v = props.v; // filters
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
-  var cc = (data.filters && data.filters.cc || '').toLowerCase().trim(); // if there was a hash, re-scroll to it..
-  // (browser may have tried this already on initial render before data was there)
-
-  var hash = props.location.hash;
-
-  if (hash) {
-    window.setTimeout(function () {
-      window.location.hash = '';
-      window.location.hash = hash;
-    }, 10);
-  }
-
-  var slug = slugify(kvnd.split('|')[1]);
+  var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
+  var slug = encodeURI(kvnd.split('|')[1]);
   var count = data.names[kvnd] || '< 50';
   var tags = entry.tags || {};
   var qid = tags['brand:wikidata'];
@@ -11650,14 +11639,6 @@ function CategoryRow(props) {
       result += "\n\"".concat(k, "\": \"").concat(tags[k], "\"");
     });
     return result;
-  }
-
-  function slugify(text) {
-    return text.toString().toLowerCase().replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-    .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, ''); // Trim - from end of text
   }
 }
 
@@ -18512,6 +18493,24 @@ function Category(props) {
     }), _react.default.createElement("div", {
       className: "summary"
     }, message));
+  } else {
+    // re-rendering after data has finished loading..
+    // If there was a hash, scroll to it.
+    // Browser may have tried this already on initial render before data was there.
+    // This component will render and return the rows, so scroll to the row after a delay.
+    var hash = props.location.hash;
+
+    if (hash) {
+      var slug = hash.slice(1); // remove leading '#'
+
+      window.setTimeout(function () {
+        var el = document.getElementById(slug);
+
+        if (el) {
+          el.scrollIntoView();
+        }
+      }, 50);
+    }
   } // pick an icon for this category
 
 
