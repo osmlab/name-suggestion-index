@@ -451,7 +451,7 @@ _(comments added for clarity)_
 
 ### :convenience_store: &nbsp; Add missing brands
 
-If it exists, we want to know about it!
+If it exists, we want to know about it!!
 
 Some brands aren't mapped enough (50+ times) to automatically be added to the index so this
 is a valuable way to get ahead of incorrect tagging.
