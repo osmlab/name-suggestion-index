@@ -33,7 +33,7 @@ Building a canonical name index allows two very useful things:
 
 <img width="1017px" alt="Name Suggestion Index in use in iD" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/nsi-in-iD.gif"/>
 
-*The name-suggestion-index is in use in iD when adding a new item*
+*The name-suggestion-index is in use in iD when adding a new item.*
 
 Currently used in:
 * iD (see above)
