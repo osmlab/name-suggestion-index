@@ -2739,8 +2739,13 @@
     }
   },
   "amenity/fuel|United": {
+    "countryCodes": ["au"],
     "matchNames": ["united petroleum"],
-    "nomatch": ["amenity/bank|United Bank"],
+    "nomatch": [
+      "amenity/bank|United Bank~(Connecticut)",
+      "amenity/bank|United Bank~(West Virginia)",
+      "shop/convenience|United"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "United",
