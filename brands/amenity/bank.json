@@ -143,17 +143,6 @@
       "name": "Affinity Credit Union"
     }
   },
-  "amenity/bank|Agrani Bank Limited অগ্রণী ব্যাংক লিমিটেড": {
-    "countryCodes": ["bd"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Agrani Bank Limited অগ্রণী ব্যাংক লিমিটেড",
-      "brand:wikidata": "Q517050",
-      "brand:wikipedia": "en:Agrani Bank",
-      "name": "Agrani Bank Limited অগ্রণী ব্যাংক লিমিটেড",
-      "name:en": "Agrani Bank Limited"
-    }
-  },
   "amenity/bank|Agribank~(USA)": {
     "countryCodes": ["us"],
     "tags": {
@@ -391,6 +380,20 @@
       "amenity": "bank",
       "brand": "BAC Credomatic",
       "name": "BAC Credomatic"
+    }
+  },
+  "amenity/bank|BAI": {
+    "countryCodes": ["ao"],
+    "matchNames": [
+      "Banco Africano de Investimentos"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "BAI",
+      "brand:wikidata": "Q806172",
+      "brand:wikipedia": "en:Banco Angolano de Investimentos",
+      "name": "BAI",
+      "official_name": "Banco Angolano de Investimentos"
     }
   },
   "amenity/bank|BAWAG PSK": {
@@ -871,6 +874,17 @@
       "brand:wikipedia": "en:Bank of Queensland",
       "name": "BOQ",
       "official_name": "Bank of Queensland"
+    }
+  },
+  "amenity/bank|BPC": {
+    "countryCodes": ["ao"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "BPC",
+      "brand:wikidata": "Q4854132",
+      "brand:wikipedia": "en:Banco de Poupança e Crédito",
+      "name": "BPC",
+      "official_name": "Banco de Poupança e Crédito"
     }
   },
   "amenity/bank|BPER Banca": {
@@ -1834,6 +1848,13 @@
       "name": "Bank Danamon"
     }
   },
+  "amenity/bank|Bank Islam": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "Bank Islam",
+      "name": "Bank Islam"
+    }
+  },
   "amenity/bank|Bank Mandiri": {
     "countryCodes": ["id"],
     "tags": {
@@ -2080,20 +2101,6 @@
       "brand:wikidata": "Q1360087",
       "brand:wikipedia": "en:Laurentian Bank of Canada",
       "name": "Banque Laurentienne"
-    }
-  },
-  "amenity/bank|Banque Nationale~(Canada)": {
-    "countryCodes": ["ca"],
-    "matchNames": [
-      "banque nationale du canada",
-      "national bank of canada"
-    ],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Banque Nationale",
-      "brand:wikidata": "Q634298",
-      "brand:wikipedia": "en:National Bank of Canada",
-      "name": "Banque Nationale"
     }
   },
   "amenity/bank|Banque Populaire~(France)": {
@@ -2352,16 +2359,6 @@
       "brand:wikidata": "Q5013848",
       "brand:wikipedia": "en:CRDB Bank",
       "name": "CRDB Bank"
-    }
-  },
-  "amenity/bank|Caisse Desjardins": {
-    "countryCodes": ["ca"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Caisse Desjardins",
-      "brand:wikidata": "Q2933350",
-      "brand:wikipedia": "en:Desjardins Group",
-      "name": "Caisse Desjardins"
     }
   },
   "amenity/bank|Caisse d'Épargne": {
@@ -2971,6 +2968,7 @@
   },
   "amenity/bank|Desjardins": {
     "countryCodes": ["ca"],
+    "matchNames": ["caisse desjardins"],
     "tags": {
       "amenity": "bank",
       "brand": "Desjardins",
@@ -4285,13 +4283,23 @@
   },
   "amenity/bank|National Bank": {
     "countryCodes": ["ca"],
+    "matchNames": [
+      "banque nationale",
+      "banque nationale du canada"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "National Bank",
+      "brand:en": "National Bank",
+      "brand:fr": "Banque Nationale",
       "brand:wikidata": "Q634298",
       "brand:wikipedia": "en:National Bank of Canada",
       "name": "National Bank",
-      "official_name": "National Bank of Canada"
+      "name:en": "National Bank",
+      "name:fr": "Banque Nationale",
+      "official_name": "National Bank of Canada",
+      "official_name:en": "National Bank of Canada",
+      "official_name:fr": "Banque Nationale du Canada"
     }
   },
   "amenity/bank|Nationwide": {
@@ -4359,7 +4367,7 @@
       "brand": "OTP",
       "brand:wikidata": "Q912778",
       "brand:wikipedia": "en:OTP Bank",
-      "name": "OTP"
+      "name": "OTP Bank"
     }
   },
   "amenity/bank|Oberbank": {
@@ -5159,6 +5167,13 @@
       "name": "Simmons Bank"
     }
   },
+  "amenity/bank|Skipton Building Society": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "Skipton Building Society",
+      "name": "Skipton Building Society"
+    }
+  },
   "amenity/bank|Slovenská sporiteľňa": {
     "countryCodes": ["sk"],
     "tags": {
@@ -5509,7 +5524,8 @@
       "brand": "UBA",
       "brand:wikidata": "Q513457",
       "brand:wikipedia": "en:United Bank for Africa",
-      "name": "UBA"
+      "name": "UBA",
+      "official_name": "United Bank for Africa"
     }
   },
   "amenity/bank|UBI Banca": {
@@ -5710,6 +5726,11 @@
   },
   "amenity/bank|United Bank~(Connecticut)": {
     "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|United Bank~(West Virginia)",
+      "amenity/fuel|United",
+      "shop/convenience|United"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "United Bank",
@@ -5717,8 +5738,13 @@
       "name": "United Bank"
     }
   },
-  "amenity/bank|United Bank~(WestVirginia)": {
+  "amenity/bank|United Bank~(West Virginia)": {
     "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|United Bank~(Connecticut)",
+      "amenity/fuel|United",
+      "shop/convenience|United"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "United Bank",
@@ -7027,14 +7053,25 @@
       "name:en": "Post Bank of Iran"
     }
   },
-  "amenity/bank|অগ্রণী ব্যাংক লিমিটেড": {
+  "amenity/bank|অগ্রণী ব্যাংক": {
     "countryCodes": ["bd"],
+    "matchNames": [
+      "agrani bank",
+      "agrani bank limited",
+      "agrani bank limited অগ্রণী ব্যাংক লিমিটেড",
+      "agrani bank ltd",
+      "agrani bank ltd অগ্রণী ব্যাংক লিমিটেড",
+      "অগ্রণী ব্যাংক লিমিটেড"
+    ],
     "tags": {
       "amenity": "bank",
-      "brand": "অগ্রণী ব্যাংক লিমিটেড",
+      "brand": "অগ্রণী ব্যাংক",
+      "brand:bn": "অগ্রণী ব্যাংক",
+      "brand:en": "Agrani Bank",
       "brand:wikidata": "Q517050",
-      "brand:wikipedia": "en:Agrani Bank",
-      "name": "অগ্রণী ব্যাংক লিমিটেড",
+      "brand:wikipedia": "bn:অগ্রণী ব্যাংক",
+      "name": "অগ্রণী ব্যাংক",
+      "name:bn": "অগ্রণী ব্যাংক",
       "name:en": "Agrani Bank"
     }
   },

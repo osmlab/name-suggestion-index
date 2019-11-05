@@ -11530,19 +11530,17 @@ function CategoryRow(props) {
   var v = props.v; // filters
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
-  var cc = (data.filters && data.filters.cc || '').toLowerCase().trim(); // if there was a hash, re-scroll to it..
-  // (browser may have tried this already on initial render before data was there)
+  var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
+  var rowClasses = [];
 
-  var hash = props.location.hash;
-
-  if (hash) {
-    window.setTimeout(function () {
-      window.location.hash = '';
-      window.location.hash = hash;
-    }, 10);
+  if (entry.filtered) {
+    rowClasses.push("hide");
   }
 
-  var slug = slugify(kvnd.split('|')[1]);
+  if (entry.selected) {
+    rowClasses.push("selected");
+  }
+
   var count = data.names[kvnd] || '< 50';
   var tags = entry.tags || {};
   var qid = tags['brand:wikidata'];
@@ -11552,14 +11550,14 @@ function CategoryRow(props) {
   var identities = wd.identities || {};
   var logos = wd.logos || {};
   return _react.default.createElement("tr", {
-    className: entry.filtered ? "hide" : null
+    className: rowClasses.join(' ') || null
   }, _react.default.createElement("td", {
     className: "namesuggest"
   }, _react.default.createElement("h3", {
     className: "slug",
-    id: slug
+    id: entry.slug
   }, _react.default.createElement("a", {
-    href: "#".concat(slug)
+    href: "#".concat(entry.slug)
   }, "#"), _react.default.createElement("span", {
     className: "anchor"
   }, tags.name)), _react.default.createElement("div", {
@@ -11647,17 +11645,9 @@ function CategoryRow(props) {
   function displayTags(tags) {
     var result = '';
     Object.keys(tags).forEach(function (k) {
-      result += "\n\"".concat(k, "\": \"").concat(tags[k], "\"");
+      result += "\"".concat(k, "\": \"").concat(tags[k], "\"\n");
     });
     return result;
-  }
-
-  function slugify(text) {
-    return text.toString().toLowerCase().replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-    .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, ''); // Trim - from end of text
   }
 }
 
@@ -18496,6 +18486,7 @@ function Category(props) {
   var v = props.v;
   var kv = "".concat(k, "/").concat(v);
   var entries = data.dict && data.dict[k] && data.dict[k][v];
+  var hash = props.location.hash;
   var message;
 
   if (data.isLoading()) {
@@ -18512,6 +18503,22 @@ function Category(props) {
     }), _react.default.createElement("div", {
       className: "summary"
     }, message));
+  } else {
+    // re-rendering after data has finished loading..
+    // If there was a hash, scroll to it.
+    // Browser may have tried this already on initial render before data was there.
+    // This component will render and return the rows, so scroll to the row after a delay.
+    if (hash) {
+      var slug = hash.slice(1); // remove leading '#'
+
+      window.setTimeout(function () {
+        var el = document.getElementById(slug);
+
+        if (el) {
+          el.scrollIntoView();
+        }
+      }, 50);
+    }
   } // pick an icon for this category
 
 
@@ -18531,7 +18538,13 @@ function Category(props) {
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var rows = Object.keys(entries).map(function (kvnd) {
-    var entry = entries[kvnd]; // apply filters
+    var entry = entries[kvnd]; // calculate slug
+
+    var nd = kvnd.split('|')[1];
+    entry.slug = encodeURI(nd); // apply selection if location hash matches slug
+
+    entry.selected = hash && hash.slice(1) === entry.slug; // remove leading '#'
+    // apply filters
 
     if (tt) {
       var tags = Object.entries(entry.tags);

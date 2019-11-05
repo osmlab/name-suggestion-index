@@ -17,6 +17,17 @@
       "tourism": "hotel"
     }
   },
+  "tourism/hotel|AmericInn": {
+    "countryCodes": ["us"],
+    "tags": {
+      "brand": "AmericInn",
+      "brand:wikidata": "Q4742493",
+      "brand:wikipedia": "en:AmericInn",
+      "name": "AmericInn",
+      "official_name": "AmericInn by Wyndham",
+      "tourism": "hotel"
+    }
+  },
   "tourism/hotel|B&B Hôtel": {
     "countryCodes": ["fr"],
     "tags": {
@@ -44,7 +55,8 @@
   },
   "tourism/hotel|Best Western": {
     "nomatch": [
-      "tourism/hotel|Best Western Plus"
+      "tourism/hotel|Best Western Plus",
+      "tourism/hotel|Best Western Premier"
     ],
     "tags": {
       "brand": "Best Western",
@@ -55,13 +67,28 @@
     }
   },
   "tourism/hotel|Best Western Plus": {
-    "countryCodes": ["ca", "us"],
-    "nomatch": ["tourism/hotel|Best Western"],
+    "nomatch": [
+      "tourism/hotel|Best Western",
+      "tourism/hotel|Best Western Premier"
+    ],
     "tags": {
-      "brand": "Best Western",
+      "brand": "Best Western Plus",
       "brand:wikidata": "Q830334",
       "brand:wikipedia": "en:Best Western",
       "name": "Best Western Plus",
+      "tourism": "hotel"
+    }
+  },
+  "tourism/hotel|Best Western Premier": {
+    "nomatch": [
+      "tourism/hotel|Best Western",
+      "tourism/hotel|Best Western Plus"
+    ],
+    "tags": {
+      "brand": "Best Western Premier",
+      "brand:wikidata": "Q830334",
+      "brand:wikipedia": "en:Best Western",
+      "name": "Best Western Premier",
       "tourism": "hotel"
     }
   },
@@ -180,13 +207,13 @@
       "tourism": "hotel"
     }
   },
-  "tourism/hotel|DoubleTree by Hilton": {
+  "tourism/hotel|DoubleTree": {
     "tags": {
-      "brand": "DoubleTree by Hilton",
+      "brand": "DoubleTree",
       "brand:wikidata": "Q2504643",
       "brand:wikipedia": "en:DoubleTree",
-      "name": "DoubleTree by Hilton",
-      "short_name": "DoubleTree",
+      "name": "DoubleTree",
+      "official_name": "DoubleTree by Hilton",
       "tourism": "hotel"
     }
   },
@@ -207,6 +234,7 @@
       "brand:wikidata": "Q5369524",
       "brand:wikipedia": "en:Embassy Suites by Hilton",
       "name": "Embassy Suites",
+      "official_name": "Embassy Suites by Hilton",
       "tourism": "hotel"
     }
   },
@@ -309,13 +337,28 @@
   },
   "tourism/hotel|Hampton": {
     "countryCodes": ["us"],
-    "matchNames": ["hampton inn and suites"],
     "tags": {
       "alt_name": "Hampton Inn",
       "brand": "Hampton",
       "brand:wikidata": "Q5646230",
       "brand:wikipedia": "en:Hampton by Hilton",
       "name": "Hampton",
+      "official_name": "Hampton by Hilton",
+      "tourism": "hotel"
+    }
+  },
+  "tourism/hotel|Hampton Inn & Suites": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "tourism/hotel|Hampton",
+      "tourism/hotel|Hampton Inn"
+    ],
+    "tags": {
+      "brand": "Hampton Inn & Suites",
+      "brand:wikidata": "Q5646230",
+      "brand:wikipedia": "en:Hampton by Hilton",
+      "name": "Hampton Inn & Suites",
+      "official_name": "Hampton Inn & Suites by Hilton",
       "tourism": "hotel"
     }
   },
@@ -400,6 +443,7 @@
       "brand:wikidata": "Q5890701",
       "brand:wikipedia": "en:Homewood Suites by Hilton",
       "name": "Homewood Suites",
+      "official_name": "Homewood Suites by Hilton",
       "tourism": "hotel"
     }
   },
@@ -802,6 +846,16 @@
       "tourism": "hotel"
     }
   },
+  "tourism/hotel|TRYP": {
+    "tags": {
+      "brand": "TRYP",
+      "brand:wikidata": "Q6153452",
+      "brand:wikipedia": "en:TRYP by Wyndham",
+      "name": "TRYP",
+      "official_name": "TRYP by Wyndham",
+      "tourism": "hotel"
+    }
+  },
   "tourism/hotel|The Ritz-Carlton": {
     "matchNames": [
       "ritz",
@@ -876,6 +930,16 @@
       "brand:wikidata": "Q7836087",
       "brand:wikipedia": "en:Travelodge",
       "name": "Travelodge",
+      "tourism": "hotel"
+    }
+  },
+  "tourism/hotel|Tru": {
+    "tags": {
+      "brand": "Tru",
+      "brand:wikidata": "Q24907770",
+      "brand:wikipedia": "en:Tru by Hilton",
+      "name": "Tru",
+      "official_name": "Tru by Hilton",
       "tourism": "hotel"
     }
   },
