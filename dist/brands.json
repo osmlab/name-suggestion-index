@@ -1847,6 +1847,9 @@
         "name": "Bank Danamon"
       }
     },
+    "amenity/bank|Bank Islam": {
+      "tags": {"amenity": "bank", "brand": "Bank Islam", "name": "Bank Islam"}
+    },
     "amenity/bank|Bank Mandiri": {
       "countryCodes": ["id"],
       "tags": {
@@ -5076,6 +5079,13 @@
         "name": "Simmons Bank"
       }
     },
+    "amenity/bank|Skipton Building Society": {
+      "tags": {
+        "amenity": "bank",
+        "brand": "Skipton Building Society",
+        "name": "Skipton Building Society"
+      }
+    },
     "amenity/bank|Slovenská sporiteľňa": {
       "countryCodes": ["sk"],
       "tags": {
@@ -5426,7 +5436,8 @@
         "brand": "UBA",
         "brand:wikidata": "Q513457",
         "brand:wikipedia": "en:United Bank for Africa",
-        "name": "UBA"
+        "name": "UBA",
+        "official_name": "United Bank for Africa"
       }
     },
     "amenity/bank|UBI Banca": {
@@ -5616,6 +5627,11 @@
     },
     "amenity/bank|United Bank~(Connecticut)": {
       "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|United Bank~(West Virginia)",
+        "amenity/fuel|United",
+        "shop/convenience|United"
+      ],
       "tags": {
         "amenity": "bank",
         "brand": "United Bank",
@@ -5623,8 +5639,13 @@
         "name": "United Bank"
       }
     },
-    "amenity/bank|United Bank~(WestVirginia)": {
+    "amenity/bank|United Bank~(West Virginia)": {
       "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|United Bank~(Connecticut)",
+        "amenity/fuel|United",
+        "shop/convenience|United"
+      ],
       "tags": {
         "amenity": "bank",
         "brand": "United Bank",
@@ -8579,6 +8600,18 @@
         "takeaway": "yes"
       }
     },
+    "amenity/cafe|Hudsons Coffee": {
+      "countryCodes": ["au", "sg"],
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Hudsons Coffee",
+        "brand:wikidata": "Q5929076",
+        "brand:wikipedia": "en:Hudsons Coffee",
+        "cuisine": "coffee_shop",
+        "name": "Hudsons Coffee",
+        "takeaway": "yes"
+      }
+    },
     "amenity/cafe|Insomnia": {
       "countryCodes": ["ie"],
       "tags": {
@@ -8661,6 +8694,18 @@
         "takeaway": "yes"
       }
     },
+    "amenity/cafe|Michel's Patisserie": {
+      "countryCodes": ["au", "cn", "id", "nz"],
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Michel's Patisserie",
+        "brand:wikidata": "Q6836235",
+        "brand:wikipedia": "en:Michel's Patisserie",
+        "cuisine": "coffee_shop",
+        "name": "Michel's Patisserie",
+        "takeaway": "yes"
+      }
+    },
     "amenity/cafe|Mikel": {
       "countryCodes": ["ae", "au", "cy", "de", "eg", "gb", "gr", "sa", "us"],
       "tags": {
@@ -8682,6 +8727,18 @@
         "brand:wikipedia": "en:Muffin Break",
         "cuisine": "coffee_shop",
         "name": "Muffin Break",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/cafe|Muzz Buzz": {
+      "countryCodes": ["au", "nz"],
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Muzz Buzz",
+        "brand:wikidata": "Q6944483",
+        "brand:wikipedia": "en:Muzz Buzz",
+        "cuisine": "coffee_shop",
+        "name": "Muzz Buzz",
         "takeaway": "yes"
       }
     },
@@ -8963,6 +9020,18 @@
         "brand:wikipedia": "en:Ya Kun Kaya Toast",
         "cuisine": "coffee_shop",
         "name": "Ya Kun Kaya Toast",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/cafe|Zarraffa's Coffee": {
+      "countryCodes": ["au"],
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Zarraffa's Coffee ",
+        "brand:wikidata": "Q8066878",
+        "brand:wikipedia": "en:Zarraffa's Coffee",
+        "cuisine": "coffee_shop",
+        "name": "Zarraffa's Coffee",
         "takeaway": "yes"
       }
     },
@@ -9889,8 +9958,13 @@
       "tags": {
         "amenity": "charging_station",
         "brand": "Circuit électrique",
-        "brand:wikidata": "Q64969699",
-        "name": "Circuit électrique"
+        "brand:en": "Electric Circuit",
+        "brand:fr": "Circuit électrique",
+        "brand:wikidata": "Q24934590",
+        "brand:wikipedia": "fr:Le Circuit électrique",
+        "name": "Circuit électrique",
+        "name:en": "Electric Circuit",
+        "name:fr": "Circuit électrique"
       }
     },
     "amenity/charging_station|E-WALD": {
@@ -9901,15 +9975,6 @@
         "brand": "E-WALD",
         "brand:wikidata": "Q61804335",
         "name": "E-WALD"
-      }
-    },
-    "amenity/charging_station|Electric Circuit": {
-      "countryCodes": ["ca"],
-      "tags": {
-        "amenity": "charging_station",
-        "brand": "Electric Circuit",
-        "brand:wikidata": "Q64969699",
-        "name": "Electric Circuit"
       }
     },
     "amenity/charging_station|Enel": {
@@ -10548,6 +10613,13 @@
     },
     "amenity/clinic|Puskesmas": {
       "tags": {"amenity": "clinic", "brand": "Puskesmas", "name": "Puskesmas"}
+    },
+    "amenity/clinic|Puskesmas Pembantu": {
+      "tags": {
+        "amenity": "clinic",
+        "brand": "Puskesmas Pembantu",
+        "name": "Puskesmas Pembantu"
+      }
     },
     "amenity/clinic|Satellite Healthcare": {
       "countryCodes": ["us"],
@@ -11768,6 +11840,18 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Harry Ramsden's": {
+      "countryCodes": ["gb", "ie"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Harry Ramsden's",
+        "brand:wikidata": "Q5671849",
+        "brand:wikipedia": "en:Harry Ramsden's",
+        "cuisine": "fish_and_chips",
+        "name": "Harry Ramsden's",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Harvey's": {
       "countryCodes": ["ca"],
       "nomatch": ["shop/furniture|Harveys"],
@@ -12334,6 +12418,18 @@
         "cuisine": "mexican",
         "name": "Moe's Southwest Grill",
         "short_name": "Moe's",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|Morley's": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Morley's",
+        "brand:wikidata": "Q21008528",
+        "brand:wikipedia": "en:Morley's",
+        "cuisine": "chicken",
+        "name": "Morley's",
         "takeaway": "yes"
       }
     },
@@ -13092,6 +13188,18 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Schnitz": {
+      "countryCodes": ["au"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Schnitz",
+        "brand:wikidata": "Q48792277",
+        "brand:wikipedia": "en:Schnitz",
+        "cuisine": "chicken",
+        "name": "Schnitz",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Shake Shack": {
       "countryCodes": ["gb", "us"],
       "tags": {
@@ -13225,6 +13333,18 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Sumo Salad": {
+      "countryCodes": ["ae", "au", "br", "nz", "sg", "us"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Sumo Salad",
+        "brand:wikidata": "Q16951700",
+        "brand:wikipedia": "en:Sumo Salad",
+        "cuisine": "salad",
+        "name": "Sumo Salad",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Supermac's": {
       "countryCodes": ["gb", "ie"],
       "tags": {
@@ -13304,6 +13424,18 @@
         "brand:wikipedia": "en:Taco John's",
         "cuisine": "mexican",
         "name": "Taco John's",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|Taco Mayo": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Taco Mayo",
+        "brand:wikidata": "Q2386946",
+        "brand:wikipedia": "en:Taco Mayo",
+        "cuisine": "tex-mex",
+        "name": "Taco Mayo",
         "takeaway": "yes"
       }
     },
@@ -13414,6 +13546,19 @@
       }
     },
     "amenity/fast_food|The Pizza Company": {
+      "countryCodes": [
+        "ae",
+        "bh",
+        "cn",
+        "jo",
+        "kh",
+        "la",
+        "mm",
+        "my",
+        "sa",
+        "th",
+        "vn"
+      ],
       "tags": {
         "alt_name": "Pizza Company",
         "amenity": "fast_food",
@@ -15046,6 +15191,7 @@
         "shop/supermarket|Carrefour"
       ],
       "tags": {
+        "amenity": "fuel",
         "brand": "Carrefour",
         "brand:wikidata": "Q217599",
         "brand:wikipedia": "fr:Carrefour (enseigne)",
@@ -16482,6 +16628,9 @@
         "name": "Pioneer"
       }
     },
+    "amenity/fuel|Power": {
+      "tags": {"amenity": "fuel", "brand": "Power", "name": "Power"}
+    },
     "amenity/fuel|Preem": {
       "countryCodes": ["pl", "se"],
       "tags": {
@@ -17152,8 +17301,13 @@
       }
     },
     "amenity/fuel|United": {
+      "countryCodes": ["au"],
       "matchNames": ["united petroleum"],
-      "nomatch": ["amenity/bank|United Bank"],
+      "nomatch": [
+        "amenity/bank|United Bank~(Connecticut)",
+        "amenity/bank|United Bank~(West Virginia)",
+        "shop/convenience|United"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "United",
@@ -19550,6 +19704,7 @@
       "countryCodes": ["au"],
       "matchNames": ["guardian pharmacies", "guardian pharmacy"],
       "tags": {
+        "amenity": "pharmacy",
         "brand": "Guardian",
         "brand:wikidata": "Q63367814",
         "healthcare": "pharmacy",
@@ -21187,6 +21342,15 @@
         "name": "MRW"
       }
     },
+    "amenity/post_office|Mail Boxes Etc.": {
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Mail Boxes Etc.",
+        "brand:wikidata": "Q1139182",
+        "brand:wikipedia": "en:Mail Boxes Etc.",
+        "name": "Mail Boxes Etc."
+      }
+    },
     "amenity/post_office|OCA": {
       "countryCodes": ["ar"],
       "tags": {
@@ -21923,6 +22087,17 @@
         "name": "Cafe Rio"
       }
     },
+    "amenity/restaurant|Café Rouge": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Café Rouge",
+        "brand:wikidata": "Q5017261",
+        "brand:wikipedia": "en:Café Rouge",
+        "cuisine": "french",
+        "name": "Café Rouge"
+      }
+    },
     "amenity/restaurant|California Pizza Kitchen": {
       "tags": {
         "amenity": "restaurant",
@@ -22079,6 +22254,17 @@
         "brand:wikipedia": "en:Coast to Coast (restaurant)",
         "cuisine": "american",
         "name": "Coast to Coast"
+      }
+    },
+    "amenity/restaurant|Copeland's": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Copeland's",
+        "brand:wikidata": "Q5168346",
+        "brand:wikipedia": "en:Copeland's",
+        "cuisine": "american",
+        "name": "Copeland's"
       }
     },
     "amenity/restaurant|Cora": {
@@ -22435,6 +22621,17 @@
         "name": "Gusto"
       }
     },
+    "amenity/restaurant|Guzman y Gomez": {
+      "countryCodes": ["au", "jp", "sg"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Guzman y Gomez",
+        "brand:wikidata": "Q23019759",
+        "brand:wikipedia": "en:Guzman y Gomez",
+        "cuisine": "mexican",
+        "name": "Guzman y Gomez"
+      }
+    },
     "amenity/restaurant|Handmade Burger Co.": {
       "countryCodes": ["gb"],
       "matchNames": ["Handmade Burger Company"],
@@ -22499,6 +22696,17 @@
         "brand:wikipedia": "fr:Hippopotamus (restaurant)",
         "cuisine": "steak_house",
         "name": "Hippopotamus"
+      }
+    },
+    "amenity/restaurant|Hog's Australia's Steakhouse": {
+      "countryCodes": ["au"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Hog's Australia's Steakhouse",
+        "brand:wikidata": "Q5876920",
+        "brand:wikipedia": "au:Hog's Australia's Steakhouse",
+        "cuisine": "steak_house",
+        "name": "Hog's Australia's Steakhouse"
       }
     },
     "amenity/restaurant|Hooters": {
@@ -22610,6 +22818,17 @@
         "name": "Jet's Pizza"
       }
     },
+    "amenity/restaurant|Jinya Ramen Bar": {
+      "countryCodes": ["ca", "us"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Jinya Ramen Bar",
+        "brand:wikidata": "Q16997755",
+        "brand:wikipedia": "en:Jinya Ramen Bar",
+        "cuisine": "ramen",
+        "name": "Jinya Ramen Bar"
+      }
+    },
     "amenity/restaurant|Joe's Crab Shack": {
       "countryCodes": ["us"],
       "tags": {
@@ -22653,6 +22872,17 @@
         "brand:wikipedia": "en:Kelseys Original Roadhouse",
         "cuisine": "american",
         "name": "Kelsey's"
+      }
+    },
+    "amenity/restaurant|Kona Grill": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Kona Grill",
+        "brand:wikidata": "Q6428706",
+        "brand:wikipedia": "en:Kona Grill",
+        "cuisine": "sushi;cocktails",
+        "name": "Kona Grill"
       }
     },
     "amenity/restaurant|Kudu": {
@@ -22833,6 +23063,17 @@
         "name": "MK Restaurants"
       }
     },
+    "amenity/restaurant|Mad Mex Fresh Mexican": {
+      "countryCodes": ["au", "nz"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Mad Mex Fresh Mexican Grill",
+        "brand:wikidata": "Q19589766",
+        "brand:wikipedia": "en:Mad Mex Fresh Mexican Grill",
+        "cuisine": "mexican",
+        "name": "Mad Mex Fresh Mexican Grill"
+      }
+    },
     "amenity/restaurant|Marco's Pizza": {
       "countryCodes": ["us"],
       "tags": {
@@ -22981,6 +23222,17 @@
         "cuisine": "pizza",
         "name": "Mountain Mike's",
         "takeaway": "yes"
+      }
+    },
+    "amenity/restaurant|Mr. Greek": {
+      "countryCodes": ["ca"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Mr. Greek",
+        "brand:wikidata": "Q6928719",
+        "brand:wikipedia": "en:Mr. Greek",
+        "cuisine": "greek",
+        "name": "Mr. Greek"
       }
     },
     "amenity/restaurant|Nando's": {
@@ -23614,6 +23866,17 @@
         "name": "The Cheesecake Factory"
       }
     },
+    "amenity/restaurant|The Counter": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "The Counter",
+        "brand:wikidata": "Q7727763",
+        "brand:wikipedia": "en:The Counter",
+        "cuisine": "burger",
+        "name": "The Counter"
+      }
+    },
     "amenity/restaurant|The Keg": {
       "countryCodes": ["ca", "us"],
       "matchNames": ["keg"],
@@ -23865,6 +24128,17 @@
         "brand:wikipedia": "en:Yard House",
         "cuisine": "american",
         "name": "Yard House"
+      }
+    },
+    "amenity/restaurant|Zambrero": {
+      "countryCodes": ["au", "ie", "nl", "th", "us"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Zambrero",
+        "brand:wikidata": "Q18636431",
+        "brand:wikipedia": "en:Zambrero",
+        "cuisine": "mexican",
+        "name": "Zambrero"
       }
     },
     "amenity/restaurant|Zizzi": {
@@ -24706,6 +24980,39 @@
         "name": "Sécuritest"
       }
     },
+    "amenity/vehicle_inspection|TÜV Hanse": {
+      "countryCodes": ["de"],
+      "tags": {
+        "amenity": "vehicle_inspection",
+        "brand": "TÜV Hanse",
+        "brand:wikidata": "Q2463537",
+        "brand:wikipedia": "de:TÜV Hanse",
+        "name": "TÜV Hanse",
+        "short_name": "TÜV"
+      }
+    },
+    "amenity/vehicle_inspection|TÜV Hessen": {
+      "countryCodes": ["de"],
+      "tags": {
+        "amenity": "vehicle_inspection",
+        "brand": "TÜV Hessen",
+        "brand:wikidata": "Q2463542",
+        "brand:wikipedia": "de:TÜV Hessen",
+        "name": "TÜV Hessen",
+        "short_name": "TÜV"
+      }
+    },
+    "amenity/vehicle_inspection|TÜV Nord": {
+      "countryCodes": ["de"],
+      "tags": {
+        "amenity": "vehicle_inspection",
+        "brand": "TÜV Nord",
+        "brand:wikidata": "Q2463547",
+        "brand:wikipedia": "de:TÜV Nord",
+        "name": "TÜV Nord",
+        "short_name": "TÜV"
+      }
+    },
     "amenity/vehicle_inspection|TÜV Rheinland": {
       "countryCodes": ["de"],
       "tags": {
@@ -24714,6 +25021,39 @@
         "brand:wikidata": "Q632391",
         "brand:wikipedia": "de:TÜV Rheinland",
         "name": "TÜV Rheinland",
+        "short_name": "TÜV"
+      }
+    },
+    "amenity/vehicle_inspection|TÜV Saarland": {
+      "countryCodes": ["de"],
+      "tags": {
+        "amenity": "vehicle_inspection",
+        "brand": "TÜV Saarland",
+        "brand:wikidata": "Q996314",
+        "brand:wikipedia": "de:TÜV Saarland",
+        "name": "TÜV Saarland",
+        "short_name": "TÜV"
+      }
+    },
+    "amenity/vehicle_inspection|TÜV Süd": {
+      "countryCodes": ["de"],
+      "tags": {
+        "amenity": "vehicle_inspection",
+        "brand": "TÜV Süd",
+        "brand:wikidata": "Q880718",
+        "brand:wikipedia": "de:TÜV Süd",
+        "name": "TÜV Süd",
+        "short_name": "TÜV"
+      }
+    },
+    "amenity/vehicle_inspection|TÜV Thüringen": {
+      "countryCodes": ["de"],
+      "tags": {
+        "amenity": "vehicle_inspection",
+        "brand": "TÜV Thüringen",
+        "brand:wikidata": "Q2463551",
+        "brand:wikipedia": "de:TÜV Thüringen",
+        "name": "TÜV Thüringen",
         "short_name": "TÜV"
       }
     },
@@ -25182,6 +25522,13 @@
         "brand:wikipedia": "en:24 Hour Fitness",
         "leisure": "fitness_centre",
         "name": "24 Hour Fitness"
+      }
+    },
+    "leisure/fitness_centre|Academia ao ar livre": {
+      "tags": {
+        "brand": "Academia ao ar livre",
+        "leisure": "fitness_centre",
+        "name": "Academia ao ar livre"
       }
     },
     "leisure/fitness_centre|Anytime Fitness": {
@@ -25834,6 +26181,13 @@
         "short_name": "Hamptons"
       }
     },
+    "office/estate_agent|Harcourts": {
+      "tags": {
+        "brand": "Harcourts",
+        "name": "Harcourts",
+        "office": "estate_agent"
+      }
+    },
     "office/estate_agent|Laforêt": {
       "countryCodes": ["fr"],
       "tags": {
@@ -25988,6 +26342,16 @@
         "brand:wikidata": "Q5343830",
         "brand:wikipedia": "en:Edward Jones Investments",
         "name": "Edward Jones",
+        "office": "financial_advisor"
+      }
+    },
+    "office/financial_advisor|TD Ameritrade": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "TD Ameritrade",
+        "brand:wikidata": "Q7669886",
+        "brand:wikipedia": "en:TD Ameritrade",
+        "name": "TD Ameritrade",
         "office": "financial_advisor"
       }
     },
@@ -27770,6 +28134,9 @@
     "shop/bakery|Кулиничі": {
       "countryCodes": ["ua"],
       "tags": {"brand": "Кулиничі", "name": "Кулиничі", "shop": "bakery"}
+    },
+    "shop/bakery|بربری": {
+      "tags": {"brand": "بربری", "name": "بربری", "shop": "bakery"}
     },
     "shop/bakery|サンジェルマン": {
       "countryCodes": ["jp"],
@@ -31793,6 +32160,16 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|French Connection": {
+      "tags": {
+        "brand": "French Connection",
+        "brand:wikidata": "Q306457",
+        "brand:wikipedia": "en:French Connection (clothing)",
+        "name": "French Connection",
+        "shop": "clothes",
+        "short_name": "FCUK"
+      }
+    },
     "shop/clothes|Fussl": {
       "countryCodes": ["at", "de"],
       "tags": {"brand": "Fussl", "name": "Fussl", "shop": "clothes"}
@@ -33027,6 +33404,16 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Pep&Co": {
+      "countryCodes": ["gb", "ie"],
+      "tags": {
+        "brand": "Pep&Co",
+        "brand:wikidata": "Q24908166",
+        "brand:wikipedia": "en:Pep&Co",
+        "name": "Pep&Co",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|Pepco": {
       "countryCodes": ["cz", "hu", "pl", "ro", "sk"],
       "matchTags": ["shop/variety_store"],
@@ -33845,6 +34232,7 @@
       "tags": {
         "brand": "Wallis",
         "brand:wikidata": "Q7963123",
+        "brand:wikipedia": "en:Wallis (retailer)",
         "name": "Wallis",
         "shop": "clothes"
       }
@@ -34830,6 +35218,15 @@
         "brand": "Daisy Mart",
         "brand:wikidata": "Q61994934",
         "name": "Daisy Mart",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Dari Mart": {
+      "tags": {
+        "brand": "Dari Mart",
+        "brand:wikidata": "Q5222675",
+        "brand:wikipedia": "en:Dari Mart",
+        "name": "Dari Mart",
         "shop": "convenience"
       }
     },
@@ -35826,7 +36223,20 @@
       "tags": {"brand": "Ultramar", "name": "Ultramar", "shop": "convenience"}
     },
     "shop/convenience|United": {
-      "tags": {"brand": "United", "name": "United", "shop": "convenience"}
+      "countryCodes": ["au"],
+      "matchNames": ["united petroleum"],
+      "nomatch": [
+        "amenity/bank|United Bank~(Connecticut)",
+        "amenity/bank|United Bank~(West Virginia)",
+        "amenity/fuel|United"
+      ],
+      "tags": {
+        "brand": "United",
+        "brand:wikidata": "Q28224393",
+        "brand:wikipedia": "en:United Petroleum",
+        "name": "United",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|United Dairy Farmers": {
       "countryCodes": ["us"],
@@ -36514,6 +36924,9 @@
         "name": "Sir Speedy",
         "shop": "copyshop"
       }
+    },
+    "shop/copyshop|Копирка": {
+      "tags": {"brand": "Копирка", "name": "Копирка", "shop": "copyshop"}
     },
     "shop/cosmetics|Aveda": {
       "countryCodes": ["us"],
@@ -37988,6 +38401,9 @@
         "name": "Karwei",
         "shop": "doityourself"
       }
+    },
+    "shop/doityourself|Lapeyre": {
+      "tags": {"brand": "Lapeyre", "name": "Lapeyre", "shop": "doityourself"}
     },
     "shop/doityourself|Leroy Merlin": {
       "tags": {
@@ -40824,24 +41240,6 @@
         "shop": "houseware"
       }
     },
-    "shop/houseware|World Market": {
-      "countryCodes": ["us"],
-      "matchNames": ["cost plus"],
-      "matchTags": [
-        "shop/department_store",
-        "shop/furniture",
-        "shop/interior_decoration",
-        "shop/supermarket"
-      ],
-      "tags": {
-        "brand": "World Market",
-        "brand:wikidata": "Q5174750",
-        "brand:wikipedia": "en:Cost Plus World Market",
-        "name": "World Market",
-        "official_name": "Cost Plus World Market",
-        "shop": "interior_decoration"
-      }
-    },
     "shop/houseware|Xenos": {
       "countryCodes": ["de", "nl"],
       "tags": {
@@ -40869,7 +41267,7 @@
         "name": "京王アートマン",
         "name:en": "Keio Atman",
         "name:ja": "京王アートマン",
-        "shop": "variety_store"
+        "shop": "houseware"
       }
     },
     "shop/interior_decoration|Centrakor": {
@@ -40914,12 +41312,8 @@
       }
     },
     "shop/interior_decoration|HomeSense": {
-      "countryCodes": ["ca"],
-      "matchTags": [
-        "shop/department_store",
-        "shop/furniture",
-        "shop/houseware"
-      ],
+      "countryCodes": ["ca", "gb", "ie", "us"],
+      "matchTags": ["shop/department_store", "shop/furniture"],
       "tags": {
         "brand": "HomeSense",
         "brand:wikidata": "Q16844433",
@@ -40960,6 +41354,23 @@
         "brand:wikipedia": "en:Ten Thousand Villages",
         "fair_trade": "only",
         "name": "Ten Thousand Villages",
+        "shop": "interior_decoration"
+      }
+    },
+    "shop/interior_decoration|World Market": {
+      "countryCodes": ["us"],
+      "matchNames": ["cost plus"],
+      "matchTags": [
+        "shop/department_store",
+        "shop/furniture",
+        "shop/supermarket"
+      ],
+      "tags": {
+        "brand": "World Market",
+        "brand:wikidata": "Q5174750",
+        "brand:wikipedia": "en:Cost Plus World Market",
+        "name": "World Market",
+        "official_name": "Cost Plus World Market",
         "shop": "interior_decoration"
       }
     },
@@ -42593,7 +43004,7 @@
         "brand:wikidata": "Q6427874",
         "brand:wikipedia": "pl:Kolporter (przedsiębiorstwo)",
         "name": "Kolporter",
-        "shop": "kiosk"
+        "shop": "newsagent"
       }
     },
     "shop/newsagent|Maison de la Presse": {
@@ -43168,6 +43579,13 @@
         "shop": "optician"
       }
     },
+    "shop/optician|Счастливый взгляд": {
+      "tags": {
+        "brand": "Счастливый взгляд",
+        "name": "Счастливый взгляд",
+        "shop": "optician"
+      }
+    },
     "shop/optician|แว่นท็อปเจริญ": {
       "countryCodes": ["th"],
       "tags": {
@@ -43176,6 +43594,16 @@
         "brand:wikidata": "Q62391732",
         "name": "แว่นท็อปเจริญ",
         "name:th": "แว่นท็อปเจริญ",
+        "shop": "optician"
+      }
+    },
+    "shop/optician|メガネの三城": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "メガネの三城",
+        "brand:ja": "メガネの三城",
+        "name": "メガネの三城",
+        "name:ja": "メガネの三城",
         "shop": "optician"
       }
     },
@@ -46658,8 +47086,11 @@
       }
     },
     "shop/supermarket|Four Square": {
+      "countryCodes": ["nz"],
       "tags": {
         "brand": "Four Square",
+        "brand:wikidata": "Q5475558",
+        "brand:wikipedia": "en:Four Square (supermarket)",
         "name": "Four Square",
         "shop": "supermarket"
       }
@@ -48702,6 +49133,17 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Supabarn": {
+      "countryCodes": ["au"],
+      "tags": {
+        "brand": "Supabarn",
+        "brand:wikidata": "Q7641883",
+        "brand:wikipedia": "en:Supabarn Supermarkets",
+        "name": "Supabarn",
+        "official_name": "Supabarn Supermarkets",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|Super 1 Foods": {
       "countryCodes": ["us"],
       "tags": {
@@ -50628,6 +51070,17 @@
         "shop": "toys"
       }
     },
+    "shop/toys|Early Learning Centre": {
+      "matchNames": ["early learning center"],
+      "tags": {
+        "alt_name": "ELC",
+        "brand": "Early Learning Centre",
+        "brand:wikidata": "Q5326681",
+        "brand:wikipedia": "en:Early Learning Centre",
+        "name": "Early Learning Centre",
+        "shop": "toys"
+      }
+    },
     "shop/toys|Hawkin's Bazaar": {
       "countryCodes": ["gb"],
       "tags": {
@@ -51234,6 +51687,15 @@
         "name": "Daiso Japan",
         "shop": "variety_store",
         "short_name": "Daiso"
+      }
+    },
+    "shop/variety_store|Dealz": {
+      "tags": {
+        "brand": "Dealz",
+        "brand:wikidata": "Q16942585",
+        "brand:wikipedia": "en:Dealz",
+        "name": "Dealz",
+        "shop": "variety_store"
       }
     },
     "shop/variety_store|Dollar General": {
@@ -51876,6 +52338,17 @@
         "tourism": "hotel"
       }
     },
+    "tourism/hotel|AmericInn": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "AmericInn",
+        "brand:wikidata": "Q4742493",
+        "brand:wikipedia": "en:AmericInn",
+        "name": "AmericInn",
+        "official_name": "AmericInn by Wyndham",
+        "tourism": "hotel"
+      }
+    },
     "tourism/hotel|B&B Hôtel": {
       "countryCodes": ["fr"],
       "tags": {
@@ -51899,7 +52372,10 @@
       }
     },
     "tourism/hotel|Best Western": {
-      "nomatch": ["tourism/hotel|Best Western Plus"],
+      "nomatch": [
+        "tourism/hotel|Best Western Plus",
+        "tourism/hotel|Best Western Premier"
+      ],
       "tags": {
         "brand": "Best Western",
         "brand:wikidata": "Q830334",
@@ -51909,13 +52385,28 @@
       }
     },
     "tourism/hotel|Best Western Plus": {
-      "countryCodes": ["ca", "us"],
-      "nomatch": ["tourism/hotel|Best Western"],
+      "nomatch": [
+        "tourism/hotel|Best Western",
+        "tourism/hotel|Best Western Premier"
+      ],
       "tags": {
-        "brand": "Best Western",
+        "brand": "Best Western Plus",
         "brand:wikidata": "Q830334",
         "brand:wikipedia": "en:Best Western",
         "name": "Best Western Plus",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Best Western Premier": {
+      "nomatch": [
+        "tourism/hotel|Best Western",
+        "tourism/hotel|Best Western Plus"
+      ],
+      "tags": {
+        "brand": "Best Western Premier",
+        "brand:wikidata": "Q830334",
+        "brand:wikipedia": "en:Best Western",
+        "name": "Best Western Premier",
         "tourism": "hotel"
       }
     },
@@ -51936,6 +52427,15 @@
         "brand:wikidata": "Q5032010",
         "brand:wikipedia": "en:Candlewood Suites",
         "name": "Candlewood Suites",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Centro Hotels": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Centro Hotels",
+        "brand:wikidata": "Q73645443",
+        "name": "Centro Hotel",
         "tourism": "hotel"
       }
     },
@@ -52034,13 +52534,13 @@
         "tourism": "hotel"
       }
     },
-    "tourism/hotel|DoubleTree by Hilton": {
+    "tourism/hotel|DoubleTree": {
       "tags": {
-        "brand": "DoubleTree by Hilton",
+        "brand": "DoubleTree",
         "brand:wikidata": "Q2504643",
         "brand:wikipedia": "en:DoubleTree",
-        "name": "DoubleTree by Hilton",
-        "short_name": "DoubleTree",
+        "name": "DoubleTree",
+        "official_name": "DoubleTree by Hilton",
         "tourism": "hotel"
       }
     },
@@ -52061,6 +52561,7 @@
         "brand:wikidata": "Q5369524",
         "brand:wikipedia": "en:Embassy Suites by Hilton",
         "name": "Embassy Suites",
+        "official_name": "Embassy Suites by Hilton",
         "tourism": "hotel"
       }
     },
@@ -52151,13 +52652,25 @@
     },
     "tourism/hotel|Hampton": {
       "countryCodes": ["us"],
-      "matchNames": ["hampton inn and suites"],
       "tags": {
         "alt_name": "Hampton Inn",
         "brand": "Hampton",
         "brand:wikidata": "Q5646230",
         "brand:wikipedia": "en:Hampton by Hilton",
         "name": "Hampton",
+        "official_name": "Hampton by Hilton",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Hampton Inn & Suites": {
+      "countryCodes": ["us"],
+      "nomatch": ["tourism/hotel|Hampton", "tourism/hotel|Hampton Inn"],
+      "tags": {
+        "brand": "Hampton Inn & Suites",
+        "brand:wikidata": "Q5646230",
+        "brand:wikipedia": "en:Hampton by Hilton",
+        "name": "Hampton Inn & Suites",
+        "official_name": "Hampton Inn & Suites by Hilton",
         "tourism": "hotel"
       }
     },
@@ -52240,6 +52753,7 @@
         "brand:wikidata": "Q5890701",
         "brand:wikipedia": "en:Homewood Suites by Hilton",
         "name": "Homewood Suites",
+        "official_name": "Homewood Suites by Hilton",
         "tourism": "hotel"
       }
     },
@@ -52321,6 +52835,15 @@
         "brand:wikidata": "Q3147425",
         "brand:wikipedia": "en:Ibis Styles",
         "name": "Ibis Styles",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Intercity Hotel": {
+      "countryCodes": ["at", "cn", "de", "nl", "om", "sa"],
+      "tags": {
+        "brand": "Intercity Hotel",
+        "brand:wikidata": "Q73642490",
+        "name": "Intercity Hotel",
         "tourism": "hotel"
       }
     },
@@ -52625,6 +53148,16 @@
         "tourism": "hotel"
       }
     },
+    "tourism/hotel|TRYP": {
+      "tags": {
+        "brand": "TRYP",
+        "brand:wikidata": "Q6153452",
+        "brand:wikipedia": "en:TRYP by Wyndham",
+        "name": "TRYP",
+        "official_name": "TRYP by Wyndham",
+        "tourism": "hotel"
+      }
+    },
     "tourism/hotel|The Ritz-Carlton": {
       "matchNames": ["ritz", "ritz carlton", "the ritz"],
       "tags": {
@@ -52683,6 +53216,26 @@
         "brand:wikidata": "Q7836087",
         "brand:wikipedia": "en:Travelodge",
         "name": "Travelodge",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Tru": {
+      "tags": {
+        "brand": "Tru",
+        "brand:wikidata": "Q24907770",
+        "brand:wikipedia": "en:Tru by Hilton",
+        "name": "Tru",
+        "official_name": "Tru by Hilton",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Van der Valk Hotel": {
+      "countryCodes": ["be", "de", "es", "fr", "nl", "us"],
+      "tags": {
+        "brand": "Van der Valk",
+        "brand:wikidata": "Q2802214",
+        "brand:wikipedia": "en:Van der Valk (company)",
+        "name": "Van der Valk Hotel",
         "tourism": "hotel"
       }
     },
