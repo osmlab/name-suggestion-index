@@ -12,12 +12,12 @@ The goal of this project is to maintain a [canonical](https://en.wikipedia.org/w
 list of commonly used names for suggesting consistent spelling and tagging of features
 in OpenStreetMap.
 
+[Watch the video](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html) from our talk at State of the Map US 2019 to learn more about this project!
+
 
 ### Browse the index
 
-You can browse the index at
-http://osmlab.github.io/name-suggestion-index
-to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+You can browse the index at https://nsi.guide/ to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
 ### How it's used
@@ -53,7 +53,7 @@ We're always looking for help!  If you have any questions or want to reach out t
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/) version 6 or newer
+* [Node.js](https://nodejs.org/) version 8 or newer
 * [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
 
 
@@ -83,7 +83,7 @@ Name lists:
 #### Configuration files (edit these):
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `discardNames`
+  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
 * `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`

@@ -274,6 +274,12 @@ function checkBrands() {
                 if (!obj.tags.beauty) { warnMissingTag.push([kvnd, 'beauty']); }
                 break;
         }
+
+        // warn if the primary tag is missing or set to the wrong value..
+        let primary = obj.tags[parts.k];
+        if (!primary || primary !== parts.v) {
+            warnMissingTag.push([kvnd, parts.k]);
+        }
     });
 
     if (warnMatched.length) {

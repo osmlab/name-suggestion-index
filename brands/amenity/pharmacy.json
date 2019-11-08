@@ -402,6 +402,14 @@
       "name": "Farmacenter"
     }
   },
+  "amenity/pharmacy|Farmaci": {
+    "tags": {
+      "amenity": "pharmacy",
+      "brand": "Farmaci",
+      "healthcare": "pharmacy",
+      "name": "Farmaci"
+    }
+  },
   "amenity/pharmacy|Farmacia Benavides": {
     "countryCodes": ["mx"],
     "tags": {
@@ -632,6 +640,7 @@
       "guardian pharmacy"
     ],
     "tags": {
+      "amenity": "pharmacy",
       "brand": "Guardian",
       "brand:wikidata": "Q63367814",
       "healthcare": "pharmacy",
@@ -1248,6 +1257,12 @@
   },
   "amenity/pharmacy|Walmart Pharmacy": {
     "countryCodes": ["ca", "us"],
+    "matchNames": ["walmart"],
+    "nomatch": [
+      "amenity/fuel|Walmart",
+      "shop/department_store|Walmart",
+      "shop/supermarket|Walmart"
+    ],
     "tags": {
       "amenity": "pharmacy",
       "brand": "Walmart",

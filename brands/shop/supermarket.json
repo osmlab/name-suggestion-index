@@ -118,6 +118,8 @@
     "countryCodes": ["es"],
     "tags": {
       "brand": "Alcampo",
+      "brand:wikidata": "Q2832081",
+      "brand:wikipedia": "es:Alcampo",
       "name": "Alcampo",
       "shop": "supermarket"
     }
@@ -152,6 +154,8 @@
     }
   },
   "shop/supermarket|Alfamart": {
+    "countryCodes": ["id", "ph"],
+    "matchTags": ["shop/convenience"],
     "tags": {
       "brand": "Alfamart",
       "brand:wikidata": "Q23745600",
@@ -300,6 +304,20 @@
       "brand:wikidata": "Q858665",
       "brand:wikipedia": "en:Big C",
       "name": "Big C",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Big Market": {
+    "tags": {
+      "brand": "Big Market",
+      "name": "Big Market",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Big-A": {
+    "tags": {
+      "brand": "Big-A",
+      "name": "Big-A",
       "shop": "supermarket"
     }
   },
@@ -467,6 +485,7 @@
     }
   },
   "shop/supermarket|CBA": {
+    "nomatch": ["shop/convenience|CBA"],
     "tags": {
       "brand": "CBA",
       "brand:wikidata": "Q779845",
@@ -1032,6 +1051,29 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Dollar General Market": {
+    "countryCodes": ["us"],
+    "matchTags": [
+      "shop/convenience",
+      "shop/variet_store"
+    ],
+    "nomatch": [
+      "amenity/bank|Dollar Bank",
+      "amenity/car_rental|Dollar",
+      "shop/supermarket|Dollar General Market",
+      "shop/variety_store|Dollar General",
+      "shop/variety_store|Dollar Tree",
+      "shop/variety_store|Dollarama",
+      "shop/variety_store|Family Dollar"
+    ],
+    "tags": {
+      "brand": "Dollar General Market",
+      "brand:wikidata": "Q145168",
+      "brand:wikipedia": "en:Dollar General",
+      "name": "Dollar General Market",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Dunnes Stores": {
     "countryCodes": ["gb", "ie"],
     "tags": {
@@ -1150,7 +1192,9 @@
   "shop/supermarket|Eroski City": {
     "countryCodes": ["es"],
     "tags": {
-      "brand": "Eroski City",
+      "brand": "Eroski",
+      "brand:wikidata": "Q1361349",
+      "brand:wikipedia": "en:Eroski",
       "name": "Eroski City",
       "shop": "supermarket"
     }
@@ -1232,16 +1276,6 @@
       "brand:wikidata": "Q5435469",
       "brand:wikipedia": "en:Farm Boy",
       "name": "Farm Boy",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Farmfoods": {
-    "countryCodes": ["gb", "sk"],
-    "tags": {
-      "brand": "Farmfoods",
-      "brand:wikidata": "Q5435841",
-      "brand:wikipedia": "en:Farmfoods",
-      "name": "Farmfoods",
       "shop": "supermarket"
     }
   },
@@ -1387,8 +1421,11 @@
     }
   },
   "shop/supermarket|Four Square": {
+    "countryCodes": ["nz"],
     "tags": {
       "brand": "Four Square",
+      "brand:wikidata": "Q5475558",
+      "brand:wikipedia": "en:Four Square (supermarket)",
       "name": "Four Square",
       "shop": "supermarket"
     }
@@ -1499,11 +1536,23 @@
   },
   "shop/supermarket|Giant Eagle": {
     "countryCodes": ["us"],
+    "matchNames": ["giant eagle supermarket"],
+    "nomatch": ["amenity/fuel|Giant Eagle"],
     "tags": {
       "brand": "Giant Eagle",
       "brand:wikidata": "Q1522721",
       "brand:wikipedia": "en:Giant Eagle",
       "name": "Giant Eagle",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Giant Hypermarket": {
+    "countryCodes": ["id", "my", "sg", "vn"],
+    "tags": {
+      "brand": "Giant Hypermarket",
+      "brand:wikidata": "Q4217013",
+      "brand:wikipedia": "en:Giant Hypermarket",
+      "name": "Giant Hypermarket",
       "shop": "supermarket"
     }
   },
@@ -1663,6 +1712,16 @@
       "brand:wikidata": "Q10521746",
       "brand:wikipedia": "sv:Hemköp",
       "name": "Hemköp",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Hero Supermarket": {
+    "countryCodes": ["id"],
+    "tags": {
+      "brand": "Hero Supermarket",
+      "brand:wikidata": "Q12485604",
+      "brand:wikipedia": "en:Hero Supermarket",
+      "name": "Hero Supermarket",
       "shop": "supermarket"
     }
   },
@@ -1996,7 +2055,10 @@
     }
   },
   "shop/supermarket|Kroger": {
-    "matchNames": ["krogers"],
+    "matchNames": [
+      "kroger food and drug",
+      "krogers"
+    ],
     "nomatch": ["amenity/fuel|Kroger"],
     "tags": {
       "brand": "Kroger",
@@ -2086,8 +2148,9 @@
     "tags": {
       "brand": "La Vie Claire",
       "brand:wikidata": "Q3213589",
-      "brand:wikipedia": "en:La Vie Claire (company)",
+      "brand:wikipedia": "fr:La Vie Claire",
       "name": "La Vie Claire",
+      "organic": "only",
       "shop": "supermarket"
     }
   },
@@ -2258,12 +2321,25 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|M&S Foodhall": {
+    "matchNames": ["marks & spencer foodhall"],
+    "tags": {
+      "brand": "M&S Foodhall",
+      "brand:wikidata": "Q714491",
+      "brand:wikipedia": "en:Marks & Spencer",
+      "name": "M&S Foodhall",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|M&S Simply Food": {
+    "matchNames": ["marks & spencer simply food"],
     "nomatch": [
       "shop/convenience|M&S Simply Food"
     ],
     "tags": {
       "brand": "M&S Simply Food",
+      "brand:wikidata": "Q714491",
+      "brand:wikipedia": "en:Marks & Spencer",
       "name": "M&S Simply Food",
       "shop": "supermarket"
     }
@@ -2486,6 +2562,7 @@
     }
   },
   "shop/supermarket|Mercadona": {
+    "countryCodes": ["es", "pt"],
     "tags": {
       "brand": "Mercadona",
       "brand:wikidata": "Q377705",
@@ -2784,7 +2861,10 @@
   },
   "shop/supermarket|PLUS": {
     "countryCodes": ["nl"],
-    "nomatch": ["shop/mobile_phone|Plus"],
+    "nomatch": [
+      "amenity/fuel|Gas Plus",
+      "shop/mobile_phone|Plus"
+    ],
     "tags": {
       "brand": "PLUS",
       "brand:wikidata": "Q1978981",
@@ -3278,6 +3358,13 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Sheng Siong": {
+    "tags": {
+      "brand": "Sheng Siong",
+      "name": "Sheng Siong",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|ShopRite~(USA)": {
     "countryCodes": ["us"],
     "nomatch": [
@@ -3483,6 +3570,17 @@
       "brand": "Suma",
       "brand:wikidata": "Q58012362",
       "name": "Suma",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Supabarn": {
+    "countryCodes": ["au"],
+    "tags": {
+      "brand": "Supabarn",
+      "brand:wikidata": "Q7641883",
+      "brand:wikipedia": "en:Supabarn Supermarkets",
+      "name": "Supabarn",
+      "official_name": "Supabarn Supermarkets",
       "shop": "supermarket"
     }
   },

@@ -19,17 +19,14 @@ export default function CategoryRow(props) {
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
   const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
 
-  // if there was a hash, re-scroll to it..
-  // (browser may have tried this already on initial render before data was there)
-  const hash = props.location.hash;
-  if (hash) {
-    window.setTimeout(() => {
-      window.location.hash = '';
-      window.location.hash = hash;
-    },10);
+  const rowClasses = [];
+  if (entry.filtered) {
+    rowClasses.push("hide");
+  }
+  if (entry.selected) {
+    rowClasses.push("selected");
   }
 
-  const slug = slugify(kvnd.split('|')[1]);
   const count = data.names[kvnd] || '< 50';
   const tags = entry.tags || {};
   const qid = tags['brand:wikidata'];
@@ -40,10 +37,10 @@ export default function CategoryRow(props) {
   const logos = wd.logos || {};
 
   return (
-    <tr className={entry.filtered ? "hide" : null} >
+    <tr className={rowClasses.join(' ') || null} >
     <td className="namesuggest">
-      <h3 className="slug" id={slug}>
-        <a href={`#${slug}`}>#</a>
+      <h3 className="slug" id={entry.slug}>
+        <a href={`#${entry.slug}`}>#</a>
         <span className="anchor">{tags.name}</span>
       </h3>
       <div className="nsikey"><pre>'{kvnd}'</pre></div>
@@ -133,20 +130,10 @@ out skel qt;`);
   function displayTags(tags) {
     let result = '';
     Object.keys(tags).forEach(k => {
-      result += `
-"${k}": "${tags[k]}"`;
+      result += `"${k}": "${tags[k]}"
+`;
     });
     return result;
-  }
-
-
-  function slugify(text) {
-    return text.toString().toLowerCase()
-      .replace(/\s+/g, '-')           // Replace spaces with -
-      .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-      .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-      .replace(/^-+/, '')             // Trim - from start of text
-      .replace(/-+$/, '');            // Trim - from end of text
   }
 
 };
