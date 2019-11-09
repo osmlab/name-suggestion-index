@@ -9,11 +9,13 @@ import Filters from "./Filters";
 export default function Category(props) {
   const tree = props.tree;
   const data = props.data;
-  const k = props.k;
-  const v = props.v;
+  const id = props.id && props.id.match(/^(\w+?)\/(\w+?)\|(.+)$/);
+  const k = id ? id[1] : props.k;
+  const v = id ? id[2] : props.v;
   const kv = `${k}/${v}`;
   const entries = data.dict && data.dict[k] && data.dict[k][v];
   const hash = props.location.hash;
+  const slug = id ? id[3] : (hash && hash.slice(1)); // remove leading '#'
 
   let message;
   if (data.isLoading()) {
@@ -36,11 +38,10 @@ export default function Category(props) {
     );
 
   } else {    // re-rendering after data has finished loading..
-    // If there was a hash, scroll to it.
+    // If there was a slug in the URL, scroll to it.
     // Browser may have tried this already on initial render before data was there.
     // This component will render and return the rows, so scroll to the row after a delay.
-    if (hash) {
-      const slug = hash.slice(1);  // remove leading '#'
+    if (slug) {
       window.setTimeout(function() {
         const el = document.getElementById(slug);
         if (el) {
@@ -70,8 +71,8 @@ export default function Category(props) {
     const nd = kvnd.split('|')[1];
     entry.slug = encodeURI(nd);
 
-    // apply selection if location hash matches slug
-    entry.selected = (hash && hash.slice(1) === entry.slug);   // remove leading '#'
+    // apply selection if slug in URL matches slug
+    entry.selected = slug === entry.slug;
 
     // apply filters
     if (tt) {
