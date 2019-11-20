@@ -44,6 +44,7 @@
     },
     "amenity/bank|AIB": {
       "countryCodes": ["gb", "ie"],
+      "matchNames": ["aib bank", "allied irish bank"],
       "tags": {
         "amenity": "bank",
         "brand": "AIB",
@@ -12299,6 +12300,17 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|LEON": {
+      "countryCodes": ["ch", "gb", "ie", "nl", "us"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "LEON",
+        "brand:wikidata": "Q6524851",
+        "brand:wikipedia": "en:Leon Restaurants",
+        "name": "LEON",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|La Belle Province": {
       "countryCodes": ["ca"],
       "tags": {
@@ -16859,14 +16871,14 @@
       }
     },
     "amenity/fuel|QuikTrip": {
-      "matchNames": ["qt"],
       "nomatch": ["shop/convenience|QuikTrip"],
       "tags": {
         "amenity": "fuel",
         "brand": "QuikTrip",
         "brand:wikidata": "Q7271953",
         "brand:wikipedia": "en:QuikTrip",
-        "name": "QuikTrip"
+        "name": "QuikTrip",
+        "short_name": "QT"
       }
     },
     "amenity/fuel|RaceTrac": {
@@ -17306,8 +17318,8 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Tesco",
-        "brand:wikidata": "Q17145596",
-        "brand:wikipedia": "en:Tesco Corporation",
+        "brand:wikidata": "Q487494",
+        "brand:wikipedia": "en:Tesco",
         "name": "Tesco"
       }
     },
@@ -21776,8 +21788,9 @@
       }
     },
     "amenity/prep_school|Mathnasium": {
-      "countryCodes": ["us"],
+      "countryCodes": ["ca", "us"],
       "matchNames": ["mathnasium learning center"],
+      "matchTags": ["office/educational_institution"],
       "tags": {
         "amenity": "prep_school",
         "brand": "Mathnasium",
@@ -22059,6 +22072,17 @@
         "name": "Black",
         "name:en": "Black",
         "name:he": "בלאק"
+      }
+    },
+    "amenity/restaurant|Black Angus": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Black Angus",
+        "brand:wikidata": "Q4920269",
+        "brand:wikipedia": "en:Black Angus Steakhouse",
+        "cuisine": "steakhouse",
+        "name": "Black Angus"
       }
     },
     "amenity/restaurant|Black Bear Diner": {
@@ -25565,6 +25589,28 @@
         "name": "VCA Animal Hospital"
       }
     },
+    "craft/cleaning|Molly Maid": {
+      "countryCodes": ["ca", "gb", "jp", "pt", "us"],
+      "tags": {
+        "brand": "Molly Maid",
+        "brand:wikidata": "Q6896624",
+        "brand:wikipedia": "en:Molly Maid",
+        "craft": "cleaning",
+        "name": "Molly Maid"
+      }
+    },
+    "craft/plumber|Mr. Rooter": {
+      "countryCodes": ["us"],
+      "tags": {
+        "alt_name": "Mister Rooter",
+        "brand": "Mr. Rooter",
+        "brand:wikidata": "Q6929145",
+        "brand:wikipedia": "en:Mr. Rooter",
+        "craft": "plumber",
+        "name": "Mr. Rooter",
+        "official_name": "Mr. Rooter Plumbing"
+      }
+    },
     "craft/signmaker|Fastsigns": {
       "countryCodes": ["ae", "ca", "cl", "gb", "ky", "mx", "sa", "us"],
       "matchTags": ["shop/sign"],
@@ -26401,6 +26447,24 @@
         "office": "estate_agent"
       }
     },
+    "office/estate_agent|John L. Scott": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "John L. Scott",
+        "brand:wikidata": "Q6243687",
+        "brand:wikipedia": "en:John L. Scott",
+        "name": "John L. Scott"
+      }
+    },
+    "office/estate_agent|Knight Frank": {
+      "tags": {
+        "brand": "Knight Frank",
+        "brand:wikidata": "Q3197998",
+        "brand:wikipedia": "en:Knight Frank",
+        "name": "Knight Frank",
+        "office": "estate_agent"
+      }
+    },
     "office/estate_agent|Laforêt": {
       "countryCodes": ["fr"],
       "tags": {
@@ -26566,6 +26630,16 @@
         "brand:wikipedia": "en:TD Ameritrade",
         "name": "TD Ameritrade",
         "office": "financial_advisor"
+      }
+    },
+    "office/insurance|A-MAX Auto Insurance": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "A-MAX Auto Insurance",
+        "brand:wikidata": "Q75767609",
+        "name": "A-MAX Auto Insurance",
+        "office": "insurance",
+        "short_name": "A-MAX"
       }
     },
     "office/insurance|AAA Insurance": {
@@ -30886,7 +30960,7 @@
       }
     },
     "shop/charity|PDSA": {
-      "countryCodes": ["uk"],
+      "countryCodes": ["gb"],
       "tags": {
         "brand": "PDSA",
         "brand:wikidata": "Q7165541",
@@ -33104,7 +33178,7 @@
       }
     },
     "shop/clothes|Loft": {
-      "matchNames": ["ann taylor loft"],
+      "matchNames": ["ann taylor loft", "the loft"],
       "tags": {
         "brand": "Loft",
         "brand:wikidata": "Q62075137",
@@ -35894,11 +35968,43 @@
       "nomatch": ["amenity/fuel|Mac's"],
       "tags": {"brand": "Mac's", "name": "Mac's", "shop": "convenience"}
     },
-    "shop/convenience|Mace": {
-      "countryCodes": ["gb", "ie"],
+    "shop/convenience|Mace~(Ireland)": {
+      "countryCodes": ["ie"],
+      "nomatch": [
+        "shop/convenience|Mace~(Northern Ireland)",
+        "shop/convenience|Mace~(UK)"
+      ],
       "tags": {
         "brand": "Mace",
-        "brand:wikidata": "Q17089386",
+        "brand:wikidata": "Q75236910",
+        "brand:wikipedia": "en:Mace (shop)",
+        "name": "Mace",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Mace~(Northern Ireland)": {
+      "countryCodes": ["gb"],
+      "nomatch": [
+        "shop/convenience|Mace~(Ireland)",
+        "shop/convenience|Mace~(UK)"
+      ],
+      "tags": {
+        "brand": "Mace",
+        "brand:wikidata": "Q75238536",
+        "brand:wikipedia": "en:Mace (shop)",
+        "name": "Mace",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Mace~(UK)": {
+      "countryCodes": ["gb"],
+      "nomatch": [
+        "shop/convenience|Mace~(Ireland)",
+        "shop/convenience|Mace~(Northern Ireland)"
+      ],
+      "tags": {
+        "brand": "Mace",
+        "brand:wikidata": "Q75240338",
         "brand:wikipedia": "en:Mace (shop)",
         "name": "Mace",
         "shop": "convenience"
@@ -36211,7 +36317,14 @@
     },
     "shop/convenience|QuikTrip": {
       "nomatch": ["amenity/fuel|QuikTrip"],
-      "tags": {"brand": "QuikTrip", "name": "QuikTrip", "shop": "convenience"}
+      "tags": {
+        "brand": "QuikTrip",
+        "brand:wikidata": "Q7271953",
+        "brand:wikipedia": "en:QuikTrip",
+        "name": "QuikTrip",
+        "shop": "convenience",
+        "short_name": "QT"
+      }
     },
     "shop/convenience|Rabat": {
       "tags": {"brand": "Rabat", "name": "Rabat", "shop": "convenience"}
@@ -37925,7 +38038,18 @@
       }
     },
     "shop/department_store|HEMA": {
-      "countryCodes": ["be", "de", "lu", "nl"],
+      "countryCodes": [
+        "ae",
+        "at",
+        "be",
+        "de",
+        "es",
+        "fr",
+        "gb",
+        "lu",
+        "nl",
+        "qa"
+      ],
       "tags": {
         "brand": "HEMA",
         "brand:wikidata": "Q903805",
@@ -39452,6 +39576,17 @@
         "shop": "electronics"
       }
     },
+    "shop/electronics|P. C. Richard & Son": {
+      "countryCodes": ["us"],
+      "matchNames": ["pc richard"],
+      "tags": {
+        "brand": "P. C. Richard & Son",
+        "brand:wikidata": "Q7117161",
+        "brand:wikipedia": "en:P. C. Richard & Son",
+        "name": "P. C. Richard & Son",
+        "shop": "electronics"
+      }
+    },
     "shop/electronics|Power": {
       "countryCodes": ["dk", "fi", "no", "se"],
       "tags": {
@@ -39516,6 +39651,16 @@
         "brand:wikidata": "Q41187",
         "brand:wikipedia": "en:Sony",
         "name": "Sony",
+        "shop": "electronics"
+      }
+    },
+    "shop/electronics|Sony Centre": {
+      "matchNames": ["sony center"],
+      "tags": {
+        "brand": "Sony Centre",
+        "brand:wikidata": "Q3437496",
+        "brand:wikipedia": "en:Sony Centre",
+        "name": "Sony Centre",
         "shop": "electronics"
       }
     },
@@ -39958,12 +40103,23 @@
     },
     "shop/frozen_food|Farmfoods": {
       "countryCodes": ["gb"],
-      "matchTags": ["shop/convenience"],
+      "matchTags": ["shop/convenience", "shop/supermarket"],
       "tags": {
         "brand": "Farmfoods",
         "brand:wikidata": "Q5435841",
         "brand:wikipedia": "en:Farmfoods",
         "name": "Farmfoods",
+        "shop": "frozen_food"
+      }
+    },
+    "shop/frozen_food|Fulton's Foods": {
+      "countryCodes": ["gb"],
+      "matchTags": ["shop/convenience", "shop/supermarket"],
+      "tags": {
+        "brand": "Fulton's Foods",
+        "brand:wikidata": "Q6112633",
+        "brand:wikipedia": "en:Fulton's Foods",
+        "name": "Fulton's Foods",
         "shop": "frozen_food"
       }
     },
@@ -40890,7 +41046,22 @@
       }
     },
     "shop/hairdresser_supply|Sally Beauty Supply": {
-      "countryCodes": ["ca", "mx", "us"],
+      "countryCodes": [
+        "be",
+        "ca",
+        "cl",
+        "de",
+        "es",
+        "fr",
+        "gb",
+        "ie",
+        "mx",
+        "nl",
+        "pe",
+        "pr",
+        "us"
+      ],
+      "matchNames": ["sally beauty"],
       "tags": {
         "brand": "Sally Beauty Supply",
         "brand:wikidata": "Q7405065",
@@ -41524,6 +41695,22 @@
         "brand:wikidata": "Q7727445",
         "brand:wikipedia": "en:The Container Store",
         "name": "The Container Store",
+        "shop": "houseware"
+      }
+    },
+    "shop/houseware|The Range": {
+      "countryCodes": ["gb", "ie"],
+      "matchTags": [
+        "shop/department_store",
+        "shop/doityourself",
+        "shop/furniture",
+        "shop/garden_centre",
+        "shop/variety_store"
+      ],
+      "tags": {
+        "brand": "The Range",
+        "brand:wikidata": "Q7759409",
+        "name": "The Range",
         "shop": "houseware"
       }
     },
@@ -44040,6 +44227,15 @@
         "brand:wikidata": "Q64357426",
         "brand:wikipedia": "en:Gander Outdoors",
         "name": "Gander Outdoors",
+        "shop": "outdoor"
+      }
+    },
+    "shop/outdoor|Go Outdoors": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Go Outdoors",
+        "brand:wikidata": "Q75293941",
+        "name": "Go Outdoors",
         "shop": "outdoor"
       }
     },
@@ -46925,7 +47121,13 @@
     },
     "shop/supermarket|Decò": {
       "countryCodes": ["it"],
-      "tags": {"brand": "Decò", "name": "Decò", "shop": "supermarket"}
+      "tags": {
+        "brand": "Decò",
+        "brand:wikidata": "Q65127915",
+        "brand:wikipedia": "it:Decò",
+        "name": "Decò",
+        "shop": "supermarket"
+      }
     },
     "shop/supermarket|Deen": {
       "countryCodes": ["nl"],
@@ -48440,6 +48642,16 @@
         "brand:wikidata": "Q1881222",
         "brand:wikipedia": "en:Maxima Group",
         "name": "Maxima XXX",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Maximarkt": {
+      "countryCodes": ["at"],
+      "tags": {
+        "brand": "Maximarkt",
+        "brand:wikidata": "Q55524814",
+        "brand:wikipedia": "de:Maximarkt",
+        "name": "Maximarkt",
         "shop": "supermarket"
       }
     },
@@ -53238,6 +53450,15 @@
         "tourism": "hotel"
       }
     },
+    "tourism/hotel|Kimpton": {
+      "tags": {
+        "brand": "Kimpton",
+        "brand:wikidata": "Q6410248",
+        "brand:wikipedia": "en:Kimpton Hotels & Restaurants",
+        "name": "Kimpton",
+        "tourism": "hotel"
+      }
+    },
     "tourism/hotel|Kyriad": {
       "countryCodes": ["fr"],
       "tags": {
@@ -53639,6 +53860,15 @@
         "brand:wikipedia": "en:Wingate by Wyndham",
         "name": "Wingate",
         "official_name": "Wingate by Wyndham",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|easyHotel": {
+      "tags": {
+        "brand": "easyHotel",
+        "brand:wikidata": "Q17011598",
+        "brand:wikipedia": "en:EasyHotel",
+        "name": "easyHotel",
         "tourism": "hotel"
       }
     },
