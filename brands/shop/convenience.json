@@ -165,6 +165,17 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Amoco": {
+    "countryCodes": ["us"],
+    "nomatch": ["amenity/fuel|Amoco"],
+    "tags": {
+      "brand": "Amoco",
+      "brand:wikidata": "Q465952",
+      "brand:wikipedia": "en:Amoco",
+      "name": "Amoco",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Aral": {
     "countryCodes": ["de"],
     "matchNames": ["aral tankstelle"],
@@ -496,6 +507,15 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Dari Mart": {
+    "tags": {
+      "brand": "Dari Mart",
+      "brand:wikidata": "Q5222675",
+      "brand:wikipedia": "en:Dari Mart",
+      "name": "Dari Mart",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Delikatesy Centrum": {
     "countryCodes": ["pl"],
     "nomatch": [
@@ -628,6 +648,20 @@
       "brand": "Hruška",
       "name": "Hruška",
       "shop": "convenience"
+    }
+  },
+  "shop/convenience|Huck's Food & Fuel": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/fuel|Huck's Food & Fuel"
+    ],
+    "tags": {
+      "brand": "Huck's Food & Fuel",
+      "brand:wikidata": "Q56276328",
+      "brand:wikipedia": "en:Huck's Food & Fuel",
+      "name": "Huck's Food & Fuel",
+      "shop": "convenience",
+      "short_name": "Huck's"
     }
   },
   "shop/convenience|Hudson": {
@@ -836,6 +870,16 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Little Waitrose": {
+    "countryCodes": ["gb", "je"],
+    "tags": {
+      "brand": "Little Waitrose",
+      "brand:wikidata": "Q771734",
+      "brand:wikipedia": "en:Waitrose & Partners",
+      "name": "Little Waitrose",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Livio": {
     "tags": {
       "brand": "Livio",
@@ -901,11 +945,43 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|Mace": {
-    "countryCodes": ["gb", "ie"],
+  "shop/convenience|Mace~(Ireland)": {
+    "countryCodes": ["ie"],
+    "nomatch": [
+      "shop/convenience|Mace~(Northern Ireland)",
+      "shop/convenience|Mace~(UK)"
+    ],
     "tags": {
       "brand": "Mace",
-      "brand:wikidata": "Q17089386",
+      "brand:wikidata": "Q75236910",
+      "brand:wikipedia": "en:Mace (shop)",
+      "name": "Mace",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|Mace~(Northern Ireland)": {
+    "countryCodes": ["gb"],
+    "nomatch": [
+      "shop/convenience|Mace~(Ireland)",
+      "shop/convenience|Mace~(UK)"
+    ],
+    "tags": {
+      "brand": "Mace",
+      "brand:wikidata": "Q75238536",
+      "brand:wikipedia": "en:Mace (shop)",
+      "name": "Mace",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|Mace~(UK)": {
+    "countryCodes": ["gb"],
+    "nomatch": [
+      "shop/convenience|Mace~(Ireland)",
+      "shop/convenience|Mace~(Northern Ireland)"
+    ],
+    "tags": {
+      "brand": "Mace",
+      "brand:wikidata": "Q75240338",
       "brand:wikipedia": "en:Mace (shop)",
       "name": "Mace",
       "shop": "convenience"
@@ -1235,6 +1311,7 @@
   },
   "shop/convenience|QuickChek": {
     "countryCodes": ["us"],
+    "nomatch": ["amenity/fuel|QuickChek"],
     "tags": {
       "brand": "QuickChek",
       "brand:wikidata": "Q7271689",
@@ -1247,8 +1324,11 @@
     "nomatch": ["amenity/fuel|QuikTrip"],
     "tags": {
       "brand": "QuikTrip",
+      "brand:wikidata": "Q7271953",
+      "brand:wikipedia": "en:QuikTrip",
       "name": "QuikTrip",
-      "shop": "convenience"
+      "shop": "convenience",
+      "short_name": "QT"
     }
   },
   "shop/convenience|Rabat": {
@@ -1266,6 +1346,16 @@
       "brand:wikidata": "Q735942",
       "brand:wikipedia": "en:RaceTrac",
       "name": "RaceTrac",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|RaceWay": {
+    "countryCodes": ["us"],
+    "nomatch": ["amenity/fuel|RaceWay"],
+    "tags": {
+      "brand": "RaceWay",
+      "brand:wikidata": "Q73039084",
+      "name": "RaceWay",
       "shop": "convenience"
     }
   },
@@ -1296,6 +1386,7 @@
   },
   "shop/convenience|Rutter's": {
     "countryCodes": ["us"],
+    "nomatch": ["amenity/fuel|Rutter's"],
     "tags": {
       "brand": "Rutter's",
       "brand:wikidata": "Q7383544",
@@ -1613,8 +1704,17 @@
     }
   },
   "shop/convenience|United": {
+    "countryCodes": ["au"],
+    "matchNames": ["united petroleum"],
+    "nomatch": [
+      "amenity/bank|United Bank~(Connecticut)",
+      "amenity/bank|United Bank~(West Virginia)",
+      "amenity/fuel|United"
+    ],
     "tags": {
       "brand": "United",
+      "brand:wikidata": "Q28224393",
+      "brand:wikipedia": "en:United Petroleum",
       "name": "United",
       "shop": "convenience"
     }
