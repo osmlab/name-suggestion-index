@@ -569,22 +569,7 @@
       "name": "Copeland's"
     }
   },
-  "amenity/restaurant|Cora": {
-    "countryCodes": ["ca"],
-    "nomatch": [
-      "amenity/restaurant|Cora~(Qc)",
-      "shop/supermarket|Cora"
-    ],
-    "tags": {
-      "amenity": "restaurant",
-      "brand": "Cora",
-      "brand:wikidata": "Q2996960",
-      "brand:wikipedia": "en:Cora (restaurant)",
-      "cuisine": "breakfast",
-      "name": "Cora"
-    }
-  },
-  "amenity/restaurant|Cora~(Qc)": {
+  "amenity/restaurant|Cora~(Quebec)": {
     "countryCodes": ["ca"],
     "nomatch": ["shop/supermarket|Cora"],
     "tags": {
@@ -592,6 +577,21 @@
       "brand": "Cora",
       "brand:wikidata": "Q2996960",
       "brand:wikipedia": "fr:Cora (chaîne de restaurants)",
+      "cuisine": "breakfast",
+      "name": "Cora"
+    }
+  },
+  "amenity/restaurant|Cora~(non-Quebec)": {
+    "countryCodes": ["ca"],
+    "nomatch": [
+      "amenity/restaurant|Cora~(Quebec)",
+      "shop/supermarket|Cora"
+    ],
+    "tags": {
+      "amenity": "restaurant",
+      "brand": "Cora",
+      "brand:wikidata": "Q2996960",
+      "brand:wikipedia": "en:Cora (restaurant)",
       "cuisine": "breakfast",
       "name": "Cora"
     }
