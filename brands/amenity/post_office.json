@@ -9,8 +9,11 @@
       "name": "Australia Post"
     }
   },
-  "amenity/post_office|CTT": {
+  "amenity/post_office|CTT~(Macau)": {
     "countryCodes": ["mo"],
+    "nomatch": [
+      "amenity/post_office|CTT~(Portugal)"
+    ],
     "tags": {
       "amenity": "post_office",
       "brand": "CTT",
@@ -19,8 +22,22 @@
       "name": "CTT"
     }
   },
+  "amenity/post_office|CTT~(Portugal)": {
+    "countryCodes": ["pt"],
+    "nomatch": [
+      "amenity/post_office|CTT~(Macau)"
+    ],
+    "tags": {
+      "amenity": "post_office",
+      "brand": "CTT",
+      "brand:wikidata": "Q1024518",
+      "brand:wikipedia": "en:CTT Correios de Portugal, S.A.",
+      "name": "CTT"
+    }
+  },
   "amenity/post_office|Canada Post": {
     "countryCodes": ["ca"],
+    "nomatch": ["amenity/post_box|Canada Post"],
     "tags": {
       "amenity": "post_office",
       "brand": "Canada Post",
@@ -93,9 +110,8 @@
       "amenity": "post_office",
       "brand": "DHL",
       "brand:wikidata": "Q489815",
-      "brand:wikipedia": "en:DHL Express",
-      "name": "DHL",
-      "operator": "DHL"
+      "brand:wikipedia": "en:DHL",
+      "name": "DHL"
     }
   },
   "amenity/post_office|DPD Paketshop": {
@@ -133,6 +149,7 @@
     }
   },
   "amenity/post_office|FedEx": {
+    "nomatch": ["amenity/post_box|FedEx"],
     "tags": {
       "amenity": "post_office",
       "brand": "FedEx",
@@ -173,6 +190,13 @@
     }
   },
   "amenity/post_office|MRW": {
+    "countryCodes": [
+      "ad",
+      "es",
+      "gi",
+      "pt",
+      "ve"
+    ],
     "tags": {
       "amenity": "post_office",
       "brand": "MRW",
@@ -181,15 +205,27 @@
       "name": "MRW"
     }
   },
+  "amenity/post_office|Mail Boxes Etc.": {
+    "tags": {
+      "amenity": "post_office",
+      "brand": "Mail Boxes Etc.",
+      "brand:wikidata": "Q1139182",
+      "brand:wikipedia": "en:Mail Boxes Etc.",
+      "name": "Mail Boxes Etc."
+    }
+  },
   "amenity/post_office|OCA": {
     "countryCodes": ["ar"],
     "tags": {
       "amenity": "post_office",
       "brand": "OCA",
+      "brand:wikidata": "Q5172887",
+      "brand:wikipedia": "es:Correo OCA",
       "name": "OCA"
     }
   },
   "amenity/post_office|Oficina de Correos": {
+    "countryCodes": ["es"],
     "matchNames": ["correos"],
     "tags": {
       "amenity": "post_office",
@@ -200,6 +236,7 @@
     }
   },
   "amenity/post_office|PTT": {
+    "nomatch": ["amenity/fuel|PTT"],
     "tags": {
       "amenity": "post_office",
       "brand": "PTT",
@@ -216,6 +253,16 @@
       "name": "Poczta Polska"
     }
   },
+  "amenity/post_office|Post Office~(UK)": {
+    "countryCodes": ["gb"],
+    "tags": {
+      "amenity": "post_office",
+      "brand": "Post Office",
+      "brand:wikidata": "Q1783168",
+      "brand:wikipedia": "en:Post Office Ltd",
+      "name": "Post Office"
+    }
+  },
   "amenity/post_office|PostalAnnex": {
     "countryCodes": ["us"],
     "matchTags": ["shop/post_office"],
@@ -224,6 +271,13 @@
       "brand": "PostalAnnex",
       "brand:wikidata": "Q61960357",
       "name": "PostalAnnex"
+    }
+  },
+  "amenity/post_office|Postbank Finanzcenter": {
+    "tags": {
+      "amenity": "post_office",
+      "brand": "Postbank Finanzcenter",
+      "name": "Postbank Finanzcenter"
     }
   },
   "amenity/post_office|Poste Italiane": {
@@ -267,14 +321,16 @@
   },
   "amenity/post_office|The UPS Store": {
     "countryCodes": ["ca", "us"],
-    "matchNames": ["ups", "ups store"],
+    "matchNames": ["ups store"],
     "matchTags": ["shop/copyshop"],
+    "nomatch": ["amenity/post_box|UPS"],
     "tags": {
       "amenity": "post_office",
       "brand": "The UPS Store",
       "brand:wikidata": "Q7771029",
       "brand:wikipedia": "en:The UPS Store",
-      "name": "The UPS Store"
+      "name": "The UPS Store",
+      "short_name": "UPS"
     }
   },
   "amenity/post_office|United States Post Office": {
@@ -283,16 +339,15 @@
       "united states postal service",
       "us post office",
       "us postal service",
-      "usps"
+      "usps",
+      "usps post office"
     ],
     "tags": {
       "amenity": "post_office",
       "brand": "United States Post Office",
       "brand:wikidata": "Q668687",
       "brand:wikipedia": "en:United States Postal Service",
-      "name": "United States Post Office",
-      "operator": "USPS",
-      "operator:wikidata": "Q668687"
+      "name": "United States Post Office"
     }
   },
   "amenity/post_office|ΕΛΤΑ": {
@@ -335,10 +390,10 @@
   "amenity/post_office|Нова Пошта": {
     "countryCodes": ["ua"],
     "matchNames": [
-      "Нова Пошта №1",
-      "Нова Пошта №2",
-      "Нова Пошта №3",
-      "Нова Пошта №4"
+      "нова пошта №1",
+      "нова пошта №2",
+      "нова пошта №3",
+      "нова пошта №4"
     ],
     "tags": {
       "amenity": "post_office",
@@ -359,7 +414,7 @@
     }
   },
   "amenity/post_office|СДЭК": {
-    "countryCodes": ["ru", "ua"],
+    "countryCodes": ["ru"],
     "tags": {
       "amenity": "post_office",
       "brand": "СДЭК",

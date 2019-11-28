@@ -5,11 +5,6 @@
       "99 cent only stores",
       "99 cents only"
     ],
-    "matchTags": [
-      "shop/convenience",
-      "shop/department_store",
-      "shop/supermarket"
-    ],
     "tags": {
       "brand": "99 Cents Only Stores",
       "brand:wikidata": "Q4646294",
@@ -24,15 +19,22 @@
       "be",
       "de",
       "fr",
+      "lu",
       "nl",
       "pl"
     ],
-    "matchTags": ["shop/supermarket"],
     "tags": {
       "brand": "Action",
       "brand:wikidata": "Q2634111",
       "brand:wikipedia": "nl:Action (winkel)",
       "name": "Action",
+      "shop": "variety_store"
+    }
+  },
+  "shop/variety_store|B&M": {
+    "tags": {
+      "brand": "B&M",
+      "name": "B&M",
       "shop": "variety_store"
     }
   },
@@ -56,13 +58,6 @@
       "shop": "variety_store"
     }
   },
-  "shop/variety_store|D10150": {
-    "tags": {
-      "brand": "D10150",
-      "name": "D10150",
-      "shop": "variety_store"
-    }
-  },
   "shop/variety_store|D9150": {
     "tags": {
       "brand": "D9150",
@@ -71,7 +66,6 @@
     }
   },
   "shop/variety_store|D9300": {
-    "countryCodes": ["br"],
     "tags": {
       "brand": "D9300",
       "name": "D9300",
@@ -83,17 +77,30 @@
     "tags": {
       "brand": "Daiso",
       "brand:wikidata": "Q866991",
+      "brand:wikipedia": "en:Daiso",
       "name": "Daiso Japan",
       "shop": "variety_store",
       "short_name": "Daiso"
     }
   },
+  "shop/variety_store|Dealz": {
+    "tags": {
+      "brand": "Dealz",
+      "brand:wikidata": "Q16942585",
+      "brand:wikipedia": "en:Dealz",
+      "name": "Dealz",
+      "shop": "variety_store"
+    }
+  },
   "shop/variety_store|Dollar General": {
     "countryCodes": ["us"],
-    "matchTags": [
-      "shop/convenience",
-      "shop/department_store",
-      "shop/supermarket"
+    "nomatch": [
+      "amenity/bank|Dollar Bank",
+      "amenity/car_rental|Dollar",
+      "shop/supermarket|Dollar General Market",
+      "shop/variety_store|Dollar Tree",
+      "shop/variety_store|Dollarama",
+      "shop/variety_store|Family Dollar"
     ],
     "tags": {
       "brand": "Dollar General",
@@ -105,10 +112,12 @@
   },
   "shop/variety_store|Dollar Tree": {
     "countryCodes": ["ca", "us"],
-    "matchTags": [
-      "shop/convenience",
-      "shop/department_store",
-      "shop/supermarket"
+    "nomatch": [
+      "amenity/bank|Dollar Bank",
+      "amenity/car_rental|Dollar",
+      "shop/variety_store|Dollar General",
+      "shop/variety_store|Dollarama",
+      "shop/variety_store|Family Dollar"
     ],
     "tags": {
       "brand": "Dollar Tree",
@@ -120,10 +129,12 @@
   },
   "shop/variety_store|Dollarama": {
     "countryCodes": ["ca"],
-    "matchTags": [
-      "shop/convenience",
-      "shop/department_store",
-      "shop/supermarket"
+    "nomatch": [
+      "amenity/bank|Dollar Bank",
+      "amenity/car_rental|Dollar",
+      "shop/variety_store|Dollar General",
+      "shop/variety_store|Dollar Tree",
+      "shop/variety_store|Family Dollar"
     ],
     "tags": {
       "brand": "Dollarama",
@@ -145,10 +156,12 @@
   },
   "shop/variety_store|Family Dollar": {
     "countryCodes": ["us"],
-    "matchTags": [
-      "shop/convenience",
-      "shop/department_store",
-      "shop/supermarket"
+    "nomatch": [
+      "amenity/bank|Dollar Bank",
+      "amenity/car_rental|Dollar",
+      "shop/variety_store|Dollar General",
+      "shop/variety_store|Dollar Tree",
+      "shop/variety_store|Dollarama"
     ],
     "tags": {
       "brand": "Family Dollar",
@@ -201,12 +214,27 @@
   },
   "shop/variety_store|Home Bargains": {
     "countryCodes": ["gb"],
-    "matchTags": ["shop/supermarket"],
     "tags": {
       "brand": "Home Bargains",
       "brand:wikidata": "Q5888229",
       "brand:wikipedia": "en:Home Bargains",
       "name": "Home Bargains",
+      "shop": "variety_store"
+    }
+  },
+  "shop/variety_store|M9": {
+    "tags": {
+      "brand": "M9",
+      "name": "M9",
+      "shop": "variety_store"
+    }
+  },
+  "shop/variety_store|Miniso": {
+    "tags": {
+      "brand": "Miniso",
+      "brand:wikidata": "Q20732498",
+      "brand:wikipedia": "en:Miniso",
+      "name": "Miniso",
       "shop": "variety_store"
     }
   },
@@ -228,6 +256,28 @@
       "brand:wikipedia": "fr:Noz",
       "name": "NOZ",
       "shop": "variety_store"
+    }
+  },
+  "shop/variety_store|Ocean State Job Lot": {
+    "countryCodes": ["us"],
+    "tags": {
+      "brand": "Ocean State Job Lot",
+      "brand:wikidata": "Q7076076",
+      "brand:wikipedia": "en:Ocean State Job Lot",
+      "name": "Ocean State Job Lot",
+      "shop": "variety_store",
+      "short_name": "Job Lot"
+    }
+  },
+  "shop/variety_store|Ollie's Bargain Outlet": {
+    "countryCodes": ["us"],
+    "tags": {
+      "brand": "Ollie's Bargain Outlet",
+      "brand:wikidata": "Q7088304",
+      "brand:wikipedia": "en:Ollie's Bargain Outlet",
+      "name": "Ollie's Bargain Outlet",
+      "shop": "variety_store",
+      "short_name": "Ollie's"
     }
   },
   "shop/variety_store|Poundland": {
@@ -267,6 +317,17 @@
       "brand:wikidata": "Q7368644",
       "brand:wikipedia": "en:Roses (store)",
       "name": "Roses",
+      "shop": "variety_store"
+    }
+  },
+  "shop/variety_store|Savers": {
+    "countryCodes": ["gb"],
+    "nomatch": ["shop/chemist|Savers"],
+    "tags": {
+      "brand": "Savers",
+      "brand:wikidata": "Q7428189",
+      "brand:wikipedia": "en:Savers (UK retailer)",
+      "name": "Savers",
       "shop": "variety_store"
     }
   },
@@ -352,7 +413,6 @@
   },
   "shop/variety_store|ダイレックス": {
     "countryCodes": ["jp"],
-    "matchTags": ["shop/supermarket"],
     "tags": {
       "brand": "ダイレックス",
       "brand:en": "Direx",
@@ -367,7 +427,6 @@
   },
   "shop/variety_store|トライアル": {
     "countryCodes": ["jp"],
-    "matchTags": ["shop/supermarket"],
     "tags": {
       "brand": "トライアル",
       "brand:en": "Trial",
@@ -382,7 +441,6 @@
   },
   "shop/variety_store|ドン・キホーテ": {
     "countryCodes": ["jp"],
-    "matchTags": ["shop/supermarket"],
     "tags": {
       "brand": "ドン・キホーテ",
       "brand:en": "Don Quijote",

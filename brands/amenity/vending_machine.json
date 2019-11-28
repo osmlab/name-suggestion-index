@@ -10,6 +10,17 @@
       "vending": "parcel_pickup"
     }
   },
+  "amenity/vending_machine|AmeriGas": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "AmeriGas",
+      "brand:wikidata": "Q23130318",
+      "fuel:lpg": "yes",
+      "name": "AmeriGas",
+      "vending": "gas"
+    }
+  },
   "amenity/vending_machine|Automat ŚKUP": {
     "countryCodes": ["pl"],
     "tags": {
@@ -32,6 +43,47 @@
       "vending": "public_transport_tickets"
     }
   },
+  "amenity/vending_machine|Best Buy Express": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "shop/electronics|Best Buy",
+      "shop/mobile_phone|Best Buy Mobile"
+    ],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "Best Buy Express",
+      "brand:wikidata": "Q533415",
+      "name": "Best Buy Express",
+      "vending": "electronics"
+    }
+  },
+  "amenity/vending_machine|Blue Rhino": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "Blue Rhino",
+      "brand:wikidata": "Q65681213",
+      "fuel:lpg": "yes",
+      "name": "Blue Rhino",
+      "vending": "gas"
+    }
+  },
+  "amenity/vending_machine|CVS Pharmacy": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/pharmacy|CVS Pharmacy",
+      "shop/chemist|CVS Pharmacy"
+    ],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "CVS Pharmacy",
+      "brand:wikidata": "Q2078880",
+      "brand:wikipedia": "en:CVS Pharmacy",
+      "name": "CVS Pharmacy",
+      "short_name": "CVS",
+      "vending": "chemist"
+    }
+  },
   "amenity/vending_machine|DHL Packstation": {
     "countryCodes": ["de"],
     "matchTags": ["amenity/post_box"],
@@ -41,9 +93,6 @@
       "brand:wikidata": "Q1766703",
       "brand:wikipedia": "en:Packstation",
       "name": "DHL Packstation",
-      "operator": "DHL",
-      "operator:wikidata": "Q489815",
-      "operator:wikipedia": "en:DHL Express",
       "vending": "parcel_pickup;parcel_mail_in"
     }
   },
@@ -55,9 +104,6 @@
       "brand:wikidata": "Q2046604",
       "brand:wikipedia": "de:Paketbox",
       "name": "DHL Paketbox",
-      "operator": "DHL",
-      "operator:wikidata": "Q489815",
-      "operator:wikipedia": "de:DHL",
       "vending": "parcel_mail_in"
     }
   },
@@ -71,6 +117,16 @@
       "vending": "excrement_bags"
     }
   },
+  "amenity/vending_machine|Home City Ice": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "Home City Ice",
+      "brand:wikidata": "Q5888287",
+      "name": "Home City Ice",
+      "vending": "ice_cubes"
+    }
+  },
   "amenity/vending_machine|KKM": {
     "countryCodes": ["pl"],
     "tags": {
@@ -79,6 +135,19 @@
       "brand:wikidata": "Q57515549",
       "name": "KKM",
       "vending": "public_transport_tickets"
+    }
+  },
+  "amenity/vending_machine|Ozon Box": {
+    "countryCodes": ["ru"],
+    "matchNames": ["постамат ozon box"],
+    "matchTags": ["amenity/post_box"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "Ozon Box",
+      "brand:wikidata": "Q2365235",
+      "brand:wikipedia": "ru:Ozon.ru",
+      "name": "Ozon Box",
+      "vending": "parcel_pickup"
     }
   },
   "amenity/vending_machine|Paczkomat InPost": {
@@ -110,7 +179,18 @@
       "brand:wikidata": "Q7305489",
       "brand:wikipedia": "en:Redbox",
       "name": "Redbox",
-      "vending": "dvd"
+      "vending": "movies"
+    }
+  },
+  "amenity/vending_machine|Reddy Ice": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "vending_machine",
+      "brand": "Reddy Ice",
+      "brand:wikidata": "Q7305666",
+      "brand:wikipedia": "en:Reddy Ice",
+      "name": "Reddy Ice",
+      "vending": "ice_cubes"
     }
   },
   "amenity/vending_machine|Robidog": {
@@ -129,7 +209,8 @@
     "tags": {
       "amenity": "vending_machine",
       "brand": "Schlauchomat",
-      "name": "Schlauchomat"
+      "name": "Schlauchomat",
+      "vending": "bicycle_tube"
     }
   },
   "amenity/vending_machine|Smartpost": {
@@ -141,9 +222,6 @@
       "brand:wikidata": "Q7543889",
       "brand:wikipedia": "fi:SmartPOST",
       "name": "Smartpost",
-      "operator": "Posti Group",
-      "operator:wikidata": "Q843453",
-      "operator:wikipedia": "fi:Posti Group",
       "vending": "parcel_pickup;parcel_mail_in"
     }
   },
@@ -164,9 +242,6 @@
       "amenity": "vending_machine",
       "brand": "VVO Fahrausweise",
       "name": "VVO Fahrausweise",
-      "operator": "Verkehrsverbund Oberelbe",
-      "operator:wikidata": "Q1426445",
-      "operator:wikipedia": "en:Verkehrsverbund Oberelbe",
       "vending": "public_transport_tickets"
     }
   },
@@ -193,9 +268,6 @@
       "name": "コカ・コーラ",
       "name:en": "Coca-Cola",
       "name:ja": "コカ・コーラ",
-      "operator": "Coca Cola Japan Co., Ltd.",
-      "operator:wikidata": "Q11506438",
-      "operator:wikipedia": "ja:日本コカ・コーラ",
       "vending": "drinks"
     }
   },

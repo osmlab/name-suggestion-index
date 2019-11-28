@@ -3,6 +3,7 @@
     "countryCodes": ["sk"],
     "tags": {
       "brand": "101 Drogerie",
+      "brand:wikidata": "Q67197464",
       "name": "101 Drogerie",
       "shop": "chemist"
     }
@@ -19,6 +20,8 @@
     "countryCodes": ["it"],
     "tags": {
       "brand": "Acqua & Sapone",
+      "brand:wikidata": "Q51079044",
+      "brand:wikipedia": "it:Acqua & Sapone (azienda)",
       "name": "Acqua & Sapone",
       "shop": "chemist"
     }
@@ -34,9 +37,11 @@
     }
   },
   "shop/chemist|Boots": {
+    "countryCodes": ["gb"],
     "nomatch": ["amenity/pharmacy|Boots"],
     "tags": {
       "brand": "Boots",
+      "brand:wikidata": "Q6123139",
       "name": "Boots",
       "shop": "chemist"
     }
@@ -51,12 +56,19 @@
       "shop": "chemist"
     }
   },
-  "shop/chemist|CVS": {
-    "nomatch": ["amenity/pharmacy|CVS"],
+  "shop/chemist|CVS Pharmacy": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/pharmacy|CVS Pharmacy",
+      "amenity/vending_machine|CVS Pharmacy"
+    ],
     "tags": {
-      "brand": "CVS",
-      "name": "CVS",
-      "shop": "chemist"
+      "brand": "CVS Pharmacy",
+      "brand:wikidata": "Q2078880",
+      "brand:wikipedia": "en:CVS Pharmacy",
+      "name": "CVS Pharmacy",
+      "shop": "chemist",
+      "short_name": "CVS"
     }
   },
   "shop/chemist|Clarel": {
@@ -104,6 +116,17 @@
       "shop": "chemist"
     }
   },
+  "shop/chemist|Longs Drugs~(Hawaii)": {
+    "countryCodes": ["us"],
+    "tags": {
+      "brand": "Longs Drugs",
+      "brand:wikidata": "Q16931196",
+      "brand:wikipedia": "en:Longs Drugs",
+      "name": "Longs Drugs",
+      "shop": "chemist",
+      "short_name": "Longs"
+    }
+  },
   "shop/chemist|Matas": {
     "countryCodes": ["dk"],
     "tags": {
@@ -131,10 +154,19 @@
       "shop": "chemist"
     }
   },
+  "shop/chemist|Natura": {
+    "tags": {
+      "brand": "Natura",
+      "name": "Natura",
+      "shop": "chemist"
+    }
+  },
   "shop/chemist|Rite Aid": {
     "nomatch": ["amenity/pharmacy|Rite Aid"],
     "tags": {
       "brand": "Rite Aid",
+      "brand:wikidata": "Q3433273",
+      "brand:wikipedia": "en:Rite Aid",
       "name": "Rite Aid",
       "shop": "chemist"
     }
@@ -151,16 +183,24 @@
   },
   "shop/chemist|Savers": {
     "countryCodes": ["gb"],
+    "matchNames": ["savers drugstores"],
+    "nomatch": ["shop/variety_store|Savers"],
     "tags": {
       "brand": "Savers",
+      "brand:wikidata": "Q7428189",
+      "brand:wikipedia": "en:Savers (UK retailer)",
       "name": "Savers",
+      "official_name": "Savers Health & Beauty",
       "shop": "chemist"
     }
   },
   "shop/chemist|Superdrug": {
+    "countryCodes": ["gb"],
     "nomatch": ["amenity/pharmacy|Superdrug"],
     "tags": {
       "brand": "Superdrug",
+      "brand:wikidata": "Q7643261",
+      "brand:wikipedia": "en:Superdrug",
       "name": "Superdrug",
       "shop": "chemist"
     }
@@ -212,9 +252,6 @@
       "brand:wikidata": "Q7974785",
       "brand:wikipedia": "en:Watsons",
       "name": "Watsons",
-      "operator": "A.S. Watson Group",
-      "operator:wikidata": "Q4647401",
-      "operator:wikipedia": "en:A.S. Watson Group",
       "shop": "chemist"
     }
   },
@@ -240,14 +277,6 @@
       "brand:wikidata": "Q266572",
       "brand:wikipedia": "en:Dm-drogerie markt",
       "name": "dm",
-      "shop": "chemist"
-    }
-  },
-  "shop/chemist|Бытовая химия": {
-    "countryCodes": ["by", "ru", "ua"],
-    "tags": {
-      "brand": "Бытовая химия",
-      "name": "Бытовая химия",
       "shop": "chemist"
     }
   },

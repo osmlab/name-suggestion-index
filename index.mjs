@@ -11,6 +11,6 @@ import stemmer from './lib/stemmer.js';
 import toParts from './lib/to_parts.js';
 
 export {
-    brands, filters, matchGroups, wikidata,
-    matcher, simplify, stemmer, toParts
+  brands, filters, matchGroups, wikidata,
+  matcher, simplify, stemmer, toParts
 };
