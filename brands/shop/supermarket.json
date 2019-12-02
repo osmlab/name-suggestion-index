@@ -1543,7 +1543,6 @@
   "shop/supermarket|Giant Eagle": {
     "countryCodes": ["us"],
     "matchNames": ["giant eagle supermarket"],
-    "nomatch": ["amenity/fuel|Giant Eagle"],
     "tags": {
       "brand": "Giant Eagle",
       "brand:wikidata": "Q1522721",
@@ -1564,7 +1563,11 @@
   },
   "shop/supermarket|Giant~(Carlisle)": {
     "countryCodes": ["us"],
-    "nomatch": ["shop/bicycle|Giant"],
+    "nomatch": [
+      "amenity/fuel|Giant~(Carlisle)",
+      "shop/bicycle|Giant",
+      "shop/supermarket|Giant~(Landover)"
+    ],
     "tags": {
       "brand": "Giant",
       "brand:wikidata": "Q5558332",
@@ -1575,7 +1578,11 @@
   },
   "shop/supermarket|Giant~(Landover)": {
     "countryCodes": ["us"],
-    "nomatch": ["shop/bicycle|Giant"],
+    "nomatch": [
+      "amenity/fuel|Giant~(Carlisle)",
+      "shop/bicycle|Giant",
+      "shop/supermarket|Giant~(Carlisle)"
+    ],
     "tags": {
       "brand": "Giant",
       "brand:wikidata": "Q5558336",

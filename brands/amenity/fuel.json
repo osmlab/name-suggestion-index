@@ -1016,7 +1016,10 @@
   },
   "amenity/fuel|GetGo": {
     "countryCodes": ["us"],
-    "matchNames": ["giant eagle fuel"],
+    "matchNames": [
+      "giant eagle",
+      "giant eagle fuel"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "GetGo",
@@ -1025,11 +1028,18 @@
       "name": "GetGo"
     }
   },
-  "amenity/fuel|Giant": {
-    "nomatch": ["shop/bicycle|Giant"],
+  "amenity/fuel|Giant~(Carlisle)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "shop/bicycle|Giant",
+      "shop/supermarket|Giant~(Carlisle)",
+      "shop/supermarket|Giant~(Landover)"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Giant",
+      "brand:wikidata": "Q5558332",
+      "brand:wikipedia": "en:Giant Food Stores",
       "name": "Giant"
     }
   },
