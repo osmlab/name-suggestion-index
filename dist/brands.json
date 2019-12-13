@@ -371,20 +371,13 @@
         "name": "Axis Bank"
       }
     },
-    "amenity/bank|BAC": {
-      "tags": {
-        "amenity": "bank",
-        "brand": "BAC",
-        "brand:wikidata": "Q5715556",
-        "brand:wikipedia": "en:Banco de América Central",
-        "name": "BAC",
-        "official_name": "Banco de America Central"
-      }
-    },
     "amenity/bank|BAC Credomatic": {
+      "matchNames": ["bac"],
       "tags": {
         "amenity": "bank",
         "brand": "BAC Credomatic",
+        "brand:wikidata": "Q5715556",
+        "brand:wikipedia": "en:BAC Credomatic",
         "name": "BAC Credomatic"
       }
     },
@@ -1755,6 +1748,13 @@
         "brand:wikidata": "Q806205",
         "brand:wikipedia": "en:Banco di Sardegna",
         "name": "Banco di Sardegna"
+      }
+    },
+    "amenity/bank|Banco di Sicilia": {
+      "tags": {
+        "amenity": "bank",
+        "brand": "Banco di Sicilia",
+        "name": "Banco di Sicilia"
       }
     },
     "amenity/bank|Banco do Brasil": {
@@ -8196,6 +8196,15 @@
         "takeaway": "yes"
       }
     },
+    "amenity/cafe|Aroma": {
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Aroma",
+        "cuisine": "coffee_shop",
+        "name": "Aroma",
+        "takeaway": "yes"
+      }
+    },
     "amenity/cafe|Aroma Espresso Bar": {
       "countryCodes": ["ca", "kz", "ro", "ua", "us"],
       "nomatch": ["amenity/cafe|Aroma"],
@@ -8723,7 +8732,7 @@
       }
     },
     "amenity/cafe|Jamaica Blue": {
-      "countryCodes": ["ae", "au", "cn", "my", "nz", "sg", "uk"],
+      "countryCodes": ["ae", "au", "cn", "gb", "my", "nz", "sg"],
       "tags": {
         "amenity": "cafe",
         "brand": "Jamaica Blue",
@@ -8817,7 +8826,7 @@
       }
     },
     "amenity/cafe|Muffin Break": {
-      "countryCodes": ["au", "in", "nz", "uk"],
+      "countryCodes": ["au", "gb", "in", "nz"],
       "tags": {
         "amenity": "cafe",
         "brand": "Muffin Break",
@@ -10645,6 +10654,18 @@
     "amenity/clinic|Aid Post": {
       "tags": {"amenity": "clinic", "brand": "Aid Post", "name": "Aid Post"}
     },
+    "amenity/clinic|Asepeyo": {
+      "countryCodes": ["es"],
+      "nomatch": ["office/insurance|Asepeyo"],
+      "tags": {
+        "amenity": "clinic",
+        "brand": "Asepeyo",
+        "brand:wikidata": "Q11906879",
+        "brand:wikipedia": "es:Asepeyo",
+        "healthcare": "clinic",
+        "name": "Asepeyo"
+      }
+    },
     "amenity/clinic|CityMD": {
       "countryCodes": ["us"],
       "tags": {
@@ -10785,13 +10806,6 @@
         "healthcare": "clinic",
         "name": "ZoomCare",
         "urgent_care": "yes"
-      }
-    },
-    "amenity/clinic|Детская поликлиника": {
-      "tags": {
-        "amenity": "clinic",
-        "brand": "Детская поликлиника",
-        "name": "Детская поликлиника"
       }
     },
     "amenity/clinic|درمانگاه": {
@@ -11113,6 +11127,18 @@
         "brand:wikipedia": "en:Biscuitville",
         "cuisine": "american;breakfast",
         "name": "Biscuitville",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|Blackjack Pizza": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Blackjack Pizza",
+        "brand:wikidata": "Q4923061",
+        "brand:wikipedia": "en:Blackjack Pizza",
+        "cuisine": "pizza",
+        "name": "Blackjack Pizza",
         "takeaway": "yes"
       }
     },
@@ -13789,6 +13815,18 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Upper Crust": {
+      "countryCodes": ["de", "dk", "eg", "es", "fi", "gb", "ie", "no", "se"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Upper Crust",
+        "brand:wikidata": "Q7898585",
+        "brand:wikipedia": "en:Upper Crust (restaurant chain)",
+        "cuisine": "sandwich",
+        "name": "Upper Crust",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Valentine": {
       "countryCodes": ["ca"],
       "tags": {
@@ -13835,6 +13873,16 @@
         "cuisine": "seafood",
         "name": "Wahoo's Fish Taco",
         "short_name": "Wahoo's",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|Waikiki Poke": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Waikiki Poke",
+        "cuisine": "hawaiian",
+        "name": "Waikiki Poke",
         "takeaway": "yes"
       }
     },
@@ -15914,6 +15962,7 @@
     },
     "amenity/fuel|GetGo": {
       "countryCodes": ["us"],
+      "matchNames": ["giant eagle", "giant eagle fuel"],
       "tags": {
         "amenity": "fuel",
         "brand": "GetGo",
@@ -15922,20 +15971,19 @@
         "name": "GetGo"
       }
     },
-    "amenity/fuel|Giant": {
-      "nomatch": ["shop/bicycle|Giant"],
-      "tags": {"amenity": "fuel", "brand": "Giant", "name": "Giant"}
-    },
-    "amenity/fuel|Giant Eagle": {
+    "amenity/fuel|Giant~(Carlisle)": {
       "countryCodes": ["us"],
-      "matchNames": ["giant eagle fuel"],
-      "nomatch": ["shop/supermarket|Giant Eagle"],
+      "nomatch": [
+        "shop/bicycle|Giant",
+        "shop/supermarket|Giant~(Carlisle)",
+        "shop/supermarket|Giant~(Landover)"
+      ],
       "tags": {
         "amenity": "fuel",
-        "brand": "Giant Eagle",
-        "brand:wikidata": "Q1522721",
-        "brand:wikipedia": "en:Giant Eagle",
-        "name": "Giant Eagle"
+        "brand": "Giant",
+        "brand:wikidata": "Q5558332",
+        "brand:wikipedia": "en:Giant Food Stores",
+        "name": "Giant"
       }
     },
     "amenity/fuel|Global": {
@@ -16220,6 +16268,15 @@
         "brand:wikidata": "Q22906119",
         "brand:wikipedia": "en:KenolKobil",
         "name": "Kobil"
+      }
+    },
+    "amenity/fuel|Krist": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Krist",
+        "brand:wikidata": "Q77885501",
+        "name": "Krist"
       }
     },
     "amenity/fuel|Kroger": {
@@ -18079,6 +18136,9 @@
         "name:en": "ADNOC"
       }
     },
+    "amenity/fuel|اينوك": {
+      "tags": {"amenity": "fuel", "brand": "اينوك", "name": "اينوك"}
+    },
     "amenity/fuel|توتال": {
       "tags": {"amenity": "fuel", "brand": "توتال", "name": "توتال"}
     },
@@ -18376,13 +18436,6 @@
         "name": "Детская больница"
       }
     },
-    "amenity/hospital|Детская поликлиника": {
-      "tags": {
-        "amenity": "hospital",
-        "brand": "Детская поликлиника",
-        "name": "Детская поликлиника"
-      }
-    },
     "amenity/hospital|Медпункт": {
       "tags": {"amenity": "hospital", "brand": "Медпункт", "name": "Медпункт"}
     },
@@ -18463,6 +18516,7 @@
         "de",
         "es",
         "fr",
+        "gb",
         "gr",
         "ie",
         "it",
@@ -18474,7 +18528,6 @@
         "pt",
         "qa",
         "re",
-        "uk",
         "us"
       ],
       "tags": {
@@ -18770,6 +18823,34 @@
         "cuisine": "frozen_yogurt",
         "name": "Yogurtland",
         "takeaway": "yes"
+      }
+    },
+    "amenity/ice_cream|smöoy": {
+      "countryCodes": [
+        "ao",
+        "ci",
+        "cn",
+        "dz",
+        "ec",
+        "es",
+        "fr",
+        "gb",
+        "gn",
+        "it",
+        "ma",
+        "pa",
+        "pe",
+        "pt",
+        "re",
+        "sa"
+      ],
+      "tags": {
+        "amenity": "ice_cream",
+        "brand": "smöoy",
+        "brand:wikidata": "Q21573945",
+        "brand:wikipedia": "es:Smöoy",
+        "name": "smöoy",
+        "official_name": "Softy Cream"
       }
     },
     "amenity/ice_cream|sweetFrog": {
@@ -19706,14 +19787,6 @@
         "name": "Farmacenter"
       }
     },
-    "amenity/pharmacy|Farmaci": {
-      "tags": {
-        "amenity": "pharmacy",
-        "brand": "Farmaci",
-        "healthcare": "pharmacy",
-        "name": "Farmaci"
-      }
-    },
     "amenity/pharmacy|Farmacia Benavides": {
       "countryCodes": ["mx"],
       "tags": {
@@ -20587,15 +20660,6 @@
         "healthcare": "pharmacy",
         "name": "Ziko Apteka",
         "short_name": "Ziko"
-      }
-    },
-    "amenity/pharmacy|Φαρμακειο": {
-      "countryCodes": ["cy", "gr"],
-      "tags": {
-        "amenity": "pharmacy",
-        "brand": "Φαρμακειο",
-        "healthcare": "pharmacy",
-        "name": "Φαρμακειο"
       }
     },
     "amenity/pharmacy|А-мега": {
@@ -22702,7 +22766,7 @@
         "brand": "Frankie & Benny's",
         "brand:wikidata": "Q5490892",
         "brand:wikipedia": "en:Frankie & Benny's",
-        "cuisine": "italian",
+        "cuisine": "american",
         "name": "Frankie & Benny's"
       }
     },
@@ -24532,8 +24596,12 @@
       "tags": {
         "amenity": "restaurant",
         "brand": "とんでん",
+        "brand:en": "Tonden",
         "brand:ja": "とんでん",
+        "brand:wikidata": "Q11273585",
+        "brand:wikipedia": "jp:とんでん",
         "name": "とんでん",
+        "name:en": "Tonden",
         "name:ja": "とんでん"
       }
     },
@@ -25926,7 +25994,7 @@
       }
     },
     "leisure/fitness_centre|Fit4less~(UK)": {
-      "countryCodes": ["uk"],
+      "countryCodes": ["gb"],
       "tags": {
         "brand": "Fit4less",
         "brand:wikidata": "Q64821053",
@@ -26447,6 +26515,7 @@
         "eg",
         "es",
         "fr",
+        "gb",
         "ie",
         "in",
         "jm",
@@ -26462,8 +26531,7 @@
         "pk",
         "pr",
         "pt",
-        "sg",
-        "uk"
+        "sg"
       ],
       "tags": {
         "brand": "Naturgy",
@@ -26843,6 +26911,17 @@
         "office": "insurance"
       }
     },
+    "office/insurance|Asepeyo": {
+      "countryCodes": ["es"],
+      "nomatch": ["amenity/clinic|Asepeyo"],
+      "tags": {
+        "brand": "Asepeyo",
+        "brand:wikidata": "Q11906879",
+        "brand:wikipedia": "es:Asepeyo",
+        "name": "Asepeyo",
+        "office": "insurance"
+      }
+    },
     "office/insurance|Assu 2000": {
       "countryCodes": ["fr"],
       "tags": {"brand": "Assu 2000", "name": "Assu 2000", "office": "insurance"}
@@ -26854,6 +26933,17 @@
         "brand:wikidata": "Q791179",
         "brand:wikipedia": "en:Aviva",
         "name": "Aviva",
+        "office": "insurance"
+      }
+    },
+    "office/insurance|BGV": {
+      "countryCodes": ["de"],
+      "tags": {
+        "alt_name": "Badische Versicherungen",
+        "brand": "BGV",
+        "brand:wikidata": "Q795911",
+        "brand:wikipedia": "de:BGV / Badische Versicherungen",
+        "name": "BGV",
         "office": "insurance"
       }
     },
@@ -26945,6 +27035,16 @@
         "brand:wikidata": "Q1344573",
         "brand:wikipedia": "lb:Foyer",
         "name": "Foyer",
+        "office": "insurance"
+      }
+    },
+    "office/insurance|Fremap": {
+      "countryCodes": ["es"],
+      "tags": {
+        "brand": "Fremap",
+        "brand:wikidata": "Q5869232",
+        "brand:wikipedia": "es:Fremap",
+        "name": "Fremap",
         "office": "insurance"
       }
     },
@@ -27121,7 +27221,7 @@
       }
     },
     "office/insurance|Ocaso": {
-      "countryCodes": ["es", "uk"],
+      "countryCodes": ["es", "gb"],
       "matchNames": ["ocaso seguros", "seguros ocaso"],
       "tags": {
         "brand": "Ocaso",
@@ -27235,6 +27335,16 @@
         "brand:wikidata": "Q7833457",
         "brand:wikipedia": "en:Tranquilidade",
         "name": "Tranquilidade",
+        "office": "insurance"
+      }
+    },
+    "office/insurance|Württembergische": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Württembergische",
+        "brand:wikidata": "Q1412465",
+        "brand:wikipedia": "de:Württembergische Versicherung",
+        "name": "Württembergische",
         "office": "insurance"
       }
     },
@@ -27927,8 +28037,11 @@
       }
     },
     "shop/bakery|Back-Factory": {
+      "countryCodes": ["de"],
       "tags": {
         "brand": "Back-Factory",
+        "brand:wikidata": "Q21200483",
+        "brand:wikipedia": "de:Back-Factory",
         "name": "Back-Factory",
         "shop": "bakery"
       }
@@ -28516,15 +28629,6 @@
         "shop": "bakery"
       }
     },
-    "shop/bakery|Upper Crust": {
-      "tags": {
-        "brand": "Upper Crust",
-        "brand:wikidata": "Q7898585",
-        "brand:wikipedia": "en:Upper Crust (restaurant chain)",
-        "name": "Upper Crust",
-        "shop": "bakery"
-      }
-    },
     "shop/bakery|Wiener Feinbäcker": {
       "countryCodes": ["de"],
       "tags": {
@@ -28761,6 +28865,7 @@
       }
     },
     "shop/beauty|Yves Rocher": {
+      "matchNames": ["ив роше"],
       "matchTags": ["shop/chemist", "shop/cosmetics"],
       "tags": {
         "beauty": "cosmetics",
@@ -28992,6 +29097,16 @@
     "shop/beverages|茶湯會": {
       "countryCodes": ["tw"],
       "tags": {"brand": "茶湯會", "name": "茶湯會", "shop": "beverages"}
+    },
+    "shop/bicycle|Cycle Republic": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Cycle Republic",
+        "brand:wikidata": "Q65042920",
+        "brand:wikipedia": "en:Cycle Republic",
+        "name": "Cycle Republic",
+        "shop": "bicycle"
+      }
     },
     "shop/bicycle|Evans Cycles": {
       "countryCodes": ["gb"],
@@ -29774,6 +29889,17 @@
         "name:en": "Hanamasa Meat",
         "name:ja": "肉のハナマサ",
         "shop": "butcher"
+      }
+    },
+    "shop/camera|Jessops": {
+      "countryCodes": ["gb"],
+      "matchTags": ["shop/electronics", "shop/photo"],
+      "tags": {
+        "brand": "Jessops",
+        "brand:wikidata": "Q3191701",
+        "brand:wikipedia": "en:Jessops",
+        "name": "Jessops",
+        "shop": "camera"
       }
     },
     "shop/candles|Yankee Candle": {
@@ -32050,6 +32176,16 @@
         "brand:wikidata": "Q65947984",
         "clothes": "women",
         "name": "Bootlegger",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Boux Avenue": {
+      "tags": {
+        "brand": "Boux Avenue",
+        "brand:wikidata": "Q4950489",
+        "brand:wikipedia": "en:Boux Avenue",
+        "clothes": "underwear",
+        "name": "Boux Avenue",
         "shop": "clothes"
       }
     },
@@ -34435,6 +34571,15 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|T.M.Lewin": {
+      "tags": {
+        "brand": "T.M.Lewin",
+        "brand:wikidata": "Q16933755",
+        "brand:wikipedia": "en:T. M. Lewin",
+        "name": "T.M.Lewin",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|Takko": {
       "countryCodes": ["at", "cz", "de", "hu", "nl"],
       "matchNames": ["takko fashion"],
@@ -34945,6 +35090,17 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Women'secret": {
+      "matchNames": ["women's secret"],
+      "tags": {
+        "brand": "Women'secret",
+        "brand:wikidata": "Q16648226",
+        "brand:wikipedia": "es:Women'secret",
+        "clothes": "underwear;women",
+        "name": "Women'secret",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|Woolworths": {
       "countryCodes": ["za"],
       "nomatch": ["shop/supermarket|Woolworths"],
@@ -35109,8 +35265,12 @@
       "countryCodes": ["jp"],
       "tags": {
         "brand": "コナカ",
+        "brand:en": "Konaka",
         "brand:ja": "コナカ",
+        "brand:wikidata": "Q11302278",
+        "brand:wikipedia": "jp:コナカ",
         "name": "コナカ",
+        "name:en": "Konaka",
         "name:ja": "コナカ",
         "shop": "clothes"
       }
@@ -35477,9 +35637,10 @@
       "countryCodes": ["nl"],
       "tags": {
         "brand": "Albert Heijn to go",
-        "brand:wikidata": "Q1653985",
+        "brand:wikidata": "Q77971185",
         "brand:wikipedia": "en:Albert Heijn",
         "name": "Albert Heijn to go",
+        "official_name": "AH to go",
         "shop": "convenience"
       }
     },
@@ -35505,10 +35666,6 @@
     },
     "shop/convenience|Allsup's": {
       "tags": {"brand": "Allsup's", "name": "Allsup's", "shop": "convenience"}
-    },
-    "shop/convenience|Almacén": {
-      "countryCodes": ["ar", "bo", "cl", "pe", "uy"],
-      "tags": {"brand": "Almacén", "name": "Almacén", "shop": "convenience"}
     },
     "shop/convenience|AmeriStop": {
       "countryCodes": ["us"],
@@ -36164,6 +36321,7 @@
     },
     "shop/convenience|Little Waitrose": {
       "countryCodes": ["gb", "je"],
+      "nomatch": ["shop/convenience|Waitrose", "shop/supermarket|Waitrose"],
       "tags": {
         "brand": "Little Waitrose",
         "brand:wikidata": "Q771734",
@@ -36471,8 +36629,13 @@
       }
     },
     "shop/convenience|One Stop": {
-      "countryCodes": ["gb", "us"],
-      "tags": {"brand": "One Stop", "name": "One Stop", "shop": "convenience"}
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "One Stop",
+        "brand:wikidata": "Q65954217",
+        "name": "One Stop",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Orlen": {
       "nomatch": ["amenity/fuel|Orlen"],
@@ -36958,6 +37121,20 @@
         "brand:wikidata": "Q7937525",
         "brand:wikipedia": "en:Vival (shop)",
         "name": "Vival",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Waitrose": {
+      "countryCodes": ["gb", "je"],
+      "nomatch": [
+        "shop/convenience|Little Waitrose",
+        "shop/supermarket|Waitrose"
+      ],
+      "tags": {
+        "brand": "Waitrose",
+        "brand:wikidata": "Q771734",
+        "brand:wikipedia": "en:Waitrose & Partners",
+        "name": "Waitrose",
         "shop": "convenience"
       }
     },
@@ -37620,6 +37797,15 @@
       "countryCodes": ["ru", "ua"],
       "tags": {"brand": "Eva", "name": "Eva", "shop": "cosmetics"}
     },
+    "shop/cosmetics|Jurlique": {
+      "tags": {
+        "brand": "Jurlique",
+        "brand:wikidata": "Q17008691",
+        "brand:wikipedia": "en:Jurlique",
+        "name": "Jurlique",
+        "shop": "cosmetics"
+      }
+    },
     "shop/cosmetics|KIKO Milano": {
       "countryCodes": ["be", "de", "es", "fr", "gb", "nl"],
       "matchNames": ["kiko"],
@@ -37755,14 +37941,6 @@
         "shop": "cosmetics"
       }
     },
-    "shop/cosmetics|Vente de Cosmétique": {
-      "countryCodes": ["ci"],
-      "tags": {
-        "brand": "Vente de Cosmétique",
-        "name": "Vente de Cosmétique",
-        "shop": "cosmetics"
-      }
-    },
     "shop/cosmetics|bareMinerals": {
       "countryCodes": ["au", "ca", "dk", "gb", "ie", "us"],
       "tags": {
@@ -37771,9 +37949,6 @@
         "name": "bareMinerals",
         "shop": "cosmetics"
       }
-    },
-    "shop/cosmetics|Ив Роше": {
-      "tags": {"brand": "Ив Роше", "name": "Ив Роше", "shop": "cosmetics"}
     },
     "shop/cosmetics|Л'Этуаль": {
       "countryCodes": ["ru"],
@@ -39572,6 +39747,16 @@
         "shop": "electronics"
       }
     },
+    "shop/electronics|Coolblue": {
+      "countryCodes": ["be", "nl"],
+      "tags": {
+        "brand": "Coolblue",
+        "brand:wikidata": "Q4992516",
+        "brand:wikipedia": "en:Coolblue",
+        "name": "Coolblue",
+        "shop": "electronics"
+      }
+    },
     "shop/electronics|Currys": {
       "countryCodes": ["gb", "ie"],
       "tags": {
@@ -40306,6 +40491,17 @@
         "shop": "florist"
       }
     },
+    "shop/florist|Holland Blumen Mark": {
+      "countryCodes": ["at"],
+      "matchNames": ["holland blumen"],
+      "tags": {
+        "brand": "Holland Blumen Mark",
+        "brand:wikidata": "Q1624739",
+        "brand:wikipedia": "de:Holland Blumen Mark",
+        "name": "Holland Blumen Mark",
+        "shop": "florist"
+      }
+    },
     "shop/florist|Interflora": {
       "countryCodes": ["fr", "gb", "no", "se"],
       "tags": {
@@ -40885,6 +41081,8 @@
     "shop/furniture|Roche Bobois": {
       "tags": {
         "brand": "Roche Bobois",
+        "brand:wikidata": "Q3437504",
+        "brand:wikipedia": "fr:Roche Bobois",
         "name": "Roche Bobois",
         "shop": "furniture"
       }
@@ -41467,6 +41665,9 @@
         "name": "Klipp",
         "shop": "hairdresser"
       }
+    },
+    "shop/hairdresser|Magicuts": {
+      "tags": {"brand": "Magicuts", "name": "Magicuts", "shop": "hairdresser"}
     },
     "shop/hairdresser|Marco Aldany": {
       "tags": {
@@ -42431,7 +42632,13 @@
       }
     },
     "shop/jewelry|Thomas Sabo": {
-      "tags": {"brand": "Thomas Sabo", "name": "Thomas Sabo", "shop": "jewelry"}
+      "tags": {
+        "brand": "Thomas Sabo",
+        "brand:wikidata": "Q13415716",
+        "brand:wikipedia": "en:Thomas Sabo",
+        "name": "Thomas Sabo",
+        "shop": "jewelry"
+      }
     },
     "shop/jewelry|Tiffany & Company": {
       "countryCodes": ["us"],
@@ -43371,6 +43578,17 @@
         "shop": "mobile_phone"
       }
     },
+    "shop/mobile_phone|lifecell": {
+      "matchNames": ["магазин lifecell"],
+      "matchTags": ["shop/telecommunication"],
+      "tags": {
+        "brand": "lifecell",
+        "brand:wikidata": "Q1936895",
+        "brand:wikipedia": "uk:Lifecell",
+        "name": "lifecell",
+        "shop": "mobile_phone"
+      }
+    },
     "shop/mobile_phone|Алло": {
       "countryCodes": ["md", "ua"],
       "tags": {
@@ -43514,10 +43732,15 @@
     },
     "shop/mobile_phone|ワイモバイル": {
       "countryCodes": ["jp"],
+      "matchNames": ["ymobile, y!mobile"],
       "tags": {
         "brand": "ワイモバイル",
+        "brand:en": "Ymobile",
         "brand:ja": "ワイモバイル",
+        "brand:wikidata": "Q5322556",
+        "brand:wikipedia": "ja:ワイモバイル",
         "name": "ワイモバイル",
+        "name:en": "Ymobile",
         "name:ja": "ワイモバイル",
         "shop": "mobile_phone"
       }
@@ -44262,6 +44485,16 @@
         "shop": "optician"
       }
     },
+    "shop/optician|Optical Express": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Optical Express",
+        "brand:wikidata": "Q7098810",
+        "brand:wikipedia": "en:Optical Express",
+        "name": "Optical Express",
+        "shop": "optician"
+      }
+    },
     "shop/optician|Opticalia": {
       "tags": {
         "brand": "Opticalia",
@@ -44376,9 +44609,6 @@
         "name": "Warby Parker",
         "shop": "optician"
       }
-    },
-    "shop/optician|Óptica": {
-      "tags": {"brand": "Óptica", "name": "Óptica", "shop": "optician"}
     },
     "shop/optician|Люксоптика": {
       "tags": {"brand": "Люксоптика", "name": "Люксоптика", "shop": "optician"}
@@ -45021,6 +45251,15 @@
         "shop": "pet"
       }
     },
+    "shop/photo|Kamera Express": {
+      "countryCodes": ["be", "de", "nl"],
+      "tags": {
+        "brand": "Kamera Express",
+        "brand:wikidata": "Q77976400",
+        "name": "Kamera Express",
+        "shop": "photo"
+      }
+    },
     "shop/photo|Kodak Express": {
       "matchNames": ["kodak"],
       "tags": {
@@ -45052,6 +45291,15 @@
         "name:en": "Kitamura Camera",
         "name:ja": "カメラのキタムラ",
         "shop": "photo"
+      }
+    },
+    "shop/pottery|Sargadelos": {
+      "tags": {
+        "brand": "Sargadelos",
+        "brand:wikidata": "Q12390201",
+        "brand:wikipedia": "gl:Grupo Sargadelos",
+        "name": "Sargadelos",
+        "shop": "pottery"
       }
     },
     "shop/printer_ink|Cartridge World": {
@@ -45230,9 +45478,9 @@
       }
     },
     "shop/shoes|Christian Louboutin": {
-      "countryCodes": ["gb"],
       "tags": {
         "brand": "Christian Louboutin",
+        "brand:wikidata": "Q23681835",
         "name": "Christian Louboutin",
         "shop": "shoes"
       }
@@ -46313,8 +46561,8 @@
       "matchNames": ["sportsdirect.com"],
       "tags": {
         "brand": "Sports Direct",
-        "brand:wikidata": "Q2913554",
-        "brand:wikipedia": "en:Sports Direct",
+        "brand:wikidata": "Q7579661",
+        "brand:wikipedia": "en:SportsDirect.com",
         "name": "Sports Direct",
         "shop": "sports"
       }
@@ -46637,6 +46885,16 @@
         "brand:wikidata": "Q1653985",
         "brand:wikipedia": "nl:Albert Heijn (supermarkt)",
         "name": "Albert Heijn",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Albert Heijn XL": {
+      "countryCodes": ["nl"],
+      "tags": {
+        "brand": "Albert Heijn XL",
+        "brand:wikidata": "Q78163765",
+        "brand:wikipedia": "nl:Albert Heijn (supermarkt)",
+        "name": "Albert Heijn XL",
         "shop": "supermarket"
       }
     },
@@ -47009,6 +47267,17 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|CAP-Markt": {
+      "countryCodes": ["de"],
+      "matchNames": ["cap"],
+      "tags": {
+        "brand": "CAP",
+        "brand:wikidata": "Q1022827",
+        "brand:wikipedia": "de:CAP (Markt)",
+        "name": "CAP-Markt",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|CBA": {
       "nomatch": ["shop/convenience|CBA"],
       "tags": {
@@ -47365,7 +47634,14 @@
     },
     "shop/supermarket|Covirán": {
       "countryCodes": ["es", "pt"],
-      "tags": {"brand": "Covirán", "name": "Covirán", "shop": "supermarket"}
+      "tags": {
+        "brand": "Covirán",
+        "brand:wikidata": "Q61070539",
+        "brand:wikipedia": "eu:Covirán",
+        "name": "Covirán",
+        "name:pt": "Coviran",
+        "shop": "supermarket"
+      }
     },
     "shop/supermarket|Crai": {
       "countryCodes": ["ch", "it"],
@@ -47594,7 +47870,7 @@
       "tags": {
         "brand": "E-Center",
         "brand:wikidata": "Q701755",
-        "brand:wikipedia": "en:Edeka",
+        "brand:wikipedia": "de:Edeka",
         "name": "E-Center",
         "shop": "supermarket"
       }
@@ -47635,7 +47911,7 @@
       "tags": {
         "brand": "Edeka",
         "brand:wikidata": "Q701755",
-        "brand:wikipedia": "en:Edeka",
+        "brand:wikipedia": "de:Edeka",
         "name": "Edeka",
         "shop": "supermarket"
       }
@@ -47645,7 +47921,7 @@
       "tags": {
         "brand": "Edeka",
         "brand:wikidata": "Q701755",
-        "brand:wikipedia": "en:Edeka",
+        "brand:wikipedia": "de:Edeka",
         "name": "Edeka xpress",
         "shop": "supermarket"
       }
@@ -48035,7 +48311,6 @@
     "shop/supermarket|Giant Eagle": {
       "countryCodes": ["us"],
       "matchNames": ["giant eagle supermarket"],
-      "nomatch": ["amenity/fuel|Giant Eagle"],
       "tags": {
         "brand": "Giant Eagle",
         "brand:wikidata": "Q1522721",
@@ -48056,7 +48331,11 @@
     },
     "shop/supermarket|Giant~(Carlisle)": {
       "countryCodes": ["us"],
-      "nomatch": ["shop/bicycle|Giant"],
+      "nomatch": [
+        "amenity/fuel|Giant~(Carlisle)",
+        "shop/bicycle|Giant",
+        "shop/supermarket|Giant~(Landover)"
+      ],
       "tags": {
         "brand": "Giant",
         "brand:wikidata": "Q5558332",
@@ -48067,7 +48346,11 @@
     },
     "shop/supermarket|Giant~(Landover)": {
       "countryCodes": ["us"],
-      "nomatch": ["shop/bicycle|Giant"],
+      "nomatch": [
+        "amenity/fuel|Giant~(Carlisle)",
+        "shop/bicycle|Giant",
+        "shop/supermarket|Giant~(Carlisle)"
+      ],
       "tags": {
         "brand": "Giant",
         "brand:wikidata": "Q5558336",
@@ -49825,6 +50108,8 @@
     "shop/supermarket|Sheng Siong": {
       "tags": {
         "brand": "Sheng Siong",
+        "brand:wikidata": "Q3481878",
+        "brand:wikipedia": "en:Sheng Siong",
         "name": "Sheng Siong",
         "shop": "supermarket"
       }
@@ -50211,6 +50496,8 @@
       "nomatch": ["shop/convenience|Tesco Lotus Express"],
       "tags": {
         "brand": "Tesco Lotus",
+        "brand:wikidata": "Q2378901",
+        "brand:wikipedia": "th:เทสโก้ โลตัส",
         "name": "Tesco Lotus",
         "shop": "supermarket"
       }
@@ -50474,6 +50761,10 @@
     },
     "shop/supermarket|Waitrose": {
       "countryCodes": ["gb", "je"],
+      "nomatch": [
+        "shop/convenience|Little Waitrose",
+        "shop/convenience|Waitrose"
+      ],
       "tags": {
         "brand": "Waitrose",
         "brand:wikidata": "Q771734",
@@ -50642,7 +50933,7 @@
       "tags": {
         "brand": "nah und gut",
         "brand:wikidata": "Q701755",
-        "brand:wikipedia": "en:Edeka",
+        "brand:wikipedia": "de:Edeka",
         "name": "nah und gut",
         "shop": "supermarket"
       }
@@ -51839,13 +52130,6 @@
         "shop": "telecommunication"
       }
     },
-    "shop/telecommunication|Магазин lifecell": {
-      "tags": {
-        "brand": "Магазин lifecell",
-        "name": "Магазин lifecell",
-        "shop": "telecommunication"
-      }
-    },
     "shop/telecommunication|Ростелеком": {
       "countryCodes": ["ru"],
       "tags": {
@@ -52503,6 +52787,16 @@
         "shop": "tyres"
       }
     },
+    "shop/tyres|Pneuhage": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Pneuhage",
+        "brand:wikidata": "Q2099972",
+        "brand:wikipedia": "de:Pneuhage",
+        "name": "Pneuhage",
+        "shop": "tyres"
+      }
+    },
     "shop/tyres|Tire Discounters": {
       "countryCodes": ["us"],
       "tags": {
@@ -52712,6 +53006,7 @@
     },
     "shop/variety_store|Flying Tiger Copenhagen": {
       "matchNames": ["tgr", "tiger"],
+      "matchTags": ["shop/gift"],
       "tags": {
         "brand": "Flying Tiger Copenhagen",
         "brand:wikidata": "Q2786319",
@@ -52976,7 +53271,7 @@
       }
     },
     "shop/video_games|Game": {
-      "countryCodes": ["gb"],
+      "countryCodes": ["es", "gb"],
       "tags": {
         "brand": "Game",
         "brand:wikidata": "Q5519813",
@@ -53356,6 +53651,15 @@
         "brand": "Centro Hotels",
         "brand:wikidata": "Q73645443",
         "name": "Centro Hotel",
+        "tourism": "hotel"
+      }
+    },
+    "tourism/hotel|Clarion": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Clarion",
+        "brand:wikidata": "Q78165540",
+        "name": "Clarion",
         "tourism": "hotel"
       }
     },
