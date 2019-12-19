@@ -291,6 +291,13 @@ function checkBrands() {
         warnFormatTag.push([kvnd, `${osmkey} = ${val}`]);
       }
     });
+    // Warn if user put `wikidata`/`wikipedia` instead of `brand:wikidata`/`brand:wikipedia`
+    ['wikipedia', 'wikidata'].forEach(osmkey => {
+      let val = obj.tags[osmkey];
+      if (val) {
+        warnFormatTag.push([kvnd, `${osmkey} = ${val}`]);
+      }
+    });
   });
 
   if (warnMatched.length) {
@@ -321,7 +328,7 @@ function checkBrands() {
   }
 
   if (warnFormatTag.length) {
-    console.warn(colors.yellow('\nWarning - Unusual characters in OpenStreetMap tag:'));
+    console.warn(colors.yellow('\nWarning - Unusual OpenStreetMap tag:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     console.warn(colors.gray('To resolve these, make sure the OpenStreetMap tag is correct.'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
