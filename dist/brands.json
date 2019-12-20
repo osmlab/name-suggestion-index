@@ -8517,6 +8517,8 @@
       "tags": {
         "amenity": "cafe",
         "brand": "Coffee Like",
+        "brand:wikidata": "Q55662627",
+        "brand:wikipedia": "ru:Coffee Like",
         "cuisine": "coffee_shop",
         "name": "Coffee Like",
         "takeaway": "yes"
@@ -9530,7 +9532,6 @@
     },
     "amenity/cafe|エクセルシオール カフェ": {
       "countryCodes": ["jp"],
-      "matchNames": ["エクセルシオール・カフェ"],
       "tags": {
         "amenity": "cafe",
         "brand": "エクセルシオール カフェ",
@@ -10862,9 +10863,6 @@
         "name": "ZoomCare",
         "urgent_care": "yes"
       }
-    },
-    "amenity/clinic|درمانگاه": {
-      "tags": {"amenity": "clinic", "brand": "درمانگاه", "name": "درمانگاه"}
     },
     "amenity/dentist|Aspen Dental": {
       "countryCodes": ["us"],
@@ -22014,33 +22012,6 @@
         "name": "Walkabout"
       }
     },
-    "amenity/pub|白木屋": {
-      "countryCodes": ["jp"],
-      "tags": {
-        "amenity": "pub",
-        "brand": "白木屋",
-        "brand:en": "Shirokiya",
-        "brand:ja": "白木屋",
-        "name": "白木屋",
-        "name:en": "Shirokiya",
-        "name:ja": "白木屋",
-        "wikidata": "Q489746",
-        "wikipedia": "白木屋 (居酒屋)"
-      }
-    },
-    "amenity/pub|魚民": {
-      "countryCodes": ["jp"],
-      "tags": {
-        "amenity": "pub",
-        "brand": "魚民",
-        "brand:en": "Uotami",
-        "brand:ja": "魚民",
-        "name": "魚民",
-        "name:en": "Uotami",
-        "name:ja": "魚民",
-        "wikidata": "Q11673981"
-      }
-    },
     "amenity/public_bookcase|Little Free Library": {
       "tags": {
         "amenity": "public_bookcase",
@@ -30141,14 +30112,6 @@
         "short_name": "KOI"
       }
     },
-    "shop/car_parts|Lubrificantes": {
-      "countryCodes": ["ao"],
-      "tags": {
-        "brand": "Lubrificantes",
-        "name": "Lubrificantes",
-        "shop": "car_parts"
-      }
-    },
     "shop/car_parts|NAPA Auto Parts": {
       "countryCodes": ["ca", "mx", "us"],
       "matchNames": ["napa"],
@@ -30390,6 +30353,15 @@
         "shop": "car_repair"
       }
     },
+    "shop/car_repair|F1 Autocentre": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "F1 Autocentre",
+        "brand:wikidata": "Q79239635",
+        "name": "F1 Autocentre",
+        "shop": "car_repair"
+      }
+    },
     "shop/car_repair|Feu Vert": {
       "countryCodes": ["fr"],
       "tags": {
@@ -30414,6 +30386,8 @@
     "shop/car_repair|First Stop": {
       "tags": {
         "brand": "First Stop",
+        "brand:wikidata": "Q3072965",
+        "brand:wikipedia": "fr:First Stop",
         "name": "First Stop",
         "shop": "car_repair"
       }
@@ -30453,7 +30427,7 @@
       "matchNames": ["halfords"],
       "nomatch": ["shop/car_parts|Halfords"],
       "tags": {
-        "brand": "Halfords Auocentre",
+        "brand": "Halfords Autocentre",
         "brand:wikidata": "Q5641894",
         "brand:wikipedia": "en:Halfords Autocentre",
         "name": "Halfords Autocentre",
@@ -31270,13 +31244,18 @@
         "shop": "car"
       }
     },
-    "shop/car|トヨタカローラ": {
+    "shop/car|トヨタ": {
       "countryCodes": ["jp"],
+      "matchNames": ["トヨタカローラ", "トヨタ自動車"],
       "tags": {
-        "brand": "トヨタカローラ",
-        "brand:ja": "トヨタカローラ",
-        "name": "トヨタカローラ",
-        "name:ja": "トヨタカローラ",
+        "brand": "トヨタ",
+        "brand:en": "Toyota",
+        "brand:ja": "トヨタ",
+        "brand:wikidata": "Q53268",
+        "brand:wikipedia": "ja:トヨタ自動車",
+        "name": "トヨタ",
+        "name:en": "Toyota",
+        "name:ja": "トヨタ",
         "shop": "car"
       }
     },
@@ -31302,6 +31281,15 @@
         "brand:wikidata": "Q5045782",
         "brand:wikipedia": "en:Carpetright",
         "name": "Carpetright",
+        "shop": "carpet"
+      }
+    },
+    "shop/carpet|Tapi Carpets": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Tapi Carpets",
+        "brand:wikidata": "Q79223951",
+        "name": "Tapi Carpets",
         "shop": "carpet"
       }
     },
@@ -31374,6 +31362,17 @@
         "brand:wikidata": "Q5583655",
         "brand:wikipedia": "en:Goodwill Industries",
         "name": "Goodwill",
+        "shop": "charity"
+      }
+    },
+    "shop/charity|Humana": {
+      "matchNames": ["humana people to people"],
+      "matchTags": ["shop/clothes", "shop/second_hand"],
+      "tags": {
+        "brand": "Humana",
+        "brand:wikidata": "Q1636581",
+        "brand:wikipedia": "de:Humana People to People",
+        "name": "Humana",
         "shop": "charity"
       }
     },
@@ -31692,6 +31691,7 @@
       "countryCodes": ["gb"],
       "matchNames": ["savers drugstores"],
       "matchTags": ["shop/variety_store"],
+      "nomatch": ["shop/second_hand|Savers"],
       "tags": {
         "brand": "Savers",
         "brand:wikidata": "Q7428189",
@@ -31937,6 +31937,16 @@
         "brand:wikipedia": "en:Purdy's Chocolates",
         "name": "Purdys Chocolatier",
         "shop": "chocolate"
+      }
+    },
+    "shop/clothes|A Pea in the Pod": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "A Pea in the Pod",
+        "brand:wikidata": "Q79051737",
+        "clothes": "maternity",
+        "name": "A Pea in the Pod",
+        "shop": "clothes"
       }
     },
     "shop/clothes|AOKI": {
@@ -32510,8 +32520,14 @@
       }
     },
     "shop/clothes|Carlings": {
-      "countryCodes": ["fi", "no", "se"],
-      "tags": {"brand": "Carlings", "name": "Carlings", "shop": "clothes"}
+      "countryCodes": ["at", "fi", "no", "se"],
+      "tags": {
+        "brand": "Carlings",
+        "brand:wikidata": "Q10443115",
+        "brand:wikipedia": "no:Carlings",
+        "name": "Carlings",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|Caroll": {
       "countryCodes": ["ch", "fr"],
@@ -32637,7 +32653,14 @@
       }
     },
     "shop/clothes|Citi Trends": {
-      "tags": {"brand": "Citi Trends", "name": "Citi Trends", "shop": "clothes"}
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Citi Trends",
+        "brand:wikidata": "Q5122438",
+        "brand:wikipedia": "en:Citi Trends",
+        "name": "Citi Trends",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|City Gear": {
       "countryCodes": ["us"],
@@ -32677,8 +32700,14 @@
       }
     },
     "shop/clothes|Colloseum": {
-      "countryCodes": ["at", "de"],
-      "tags": {"brand": "Colloseum", "name": "Colloseum", "shop": "clothes"}
+      "countryCodes": ["at", "cz", "de", "gr", "lv", "pl", "ru", "sk"],
+      "tags": {
+        "brand": "Colloseum",
+        "brand:wikidata": "Q15794685",
+        "brand:wikipedia": "de:Colloseum",
+        "name": "Colloseum",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|Columbia": {
       "nomatch": ["amenity/bank|Columbia Bank"],
@@ -32763,6 +32792,16 @@
         "brand:wikidata": "Q83750",
         "brand:wikipedia": "en:Desigual",
         "name": "Desigual",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Destination Maternity": {
+      "countryCodes": ["ca", "us"],
+      "tags": {
+        "brand": "Destination Maternity",
+        "brand:wikidata": "Q79051770",
+        "clothes": "maternity",
+        "name": "Destination Maternity",
         "shop": "clothes"
       }
     },
@@ -33059,7 +33098,14 @@
       }
     },
     "shop/clothes|G-Star Raw": {
-      "tags": {"brand": "G-Star Raw", "name": "G-Star Raw", "shop": "clothes"}
+      "matchNames": ["g-star"],
+      "tags": {
+        "brand": "G-Star Raw",
+        "brand:wikidata": "Q1484081",
+        "brand:wikipedia": "en:G-Star Raw",
+        "name": "G-Star Raw",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|GU": {
       "countryCodes": ["cl", "jp", "tw"],
@@ -33283,7 +33329,13 @@
       }
     },
     "shop/clothes|House": {
-      "tags": {"brand": "House", "name": "House", "shop": "clothes"}
+      "tags": {
+        "brand": "House",
+        "brand:wikidata": "Q9294202",
+        "brand:wikipedia": "pl:House (marka)",
+        "name": "House",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|Hugo Boss": {
       "tags": {
@@ -33294,9 +33346,6 @@
         "shop": "clothes",
         "short_name": "Boss"
       }
-    },
-    "shop/clothes|Humana": {
-      "tags": {"brand": "Humana", "name": "Humana", "shop": "clothes"}
     },
     "shop/clothes|Hunkemöller": {
       "countryCodes": ["at", "be", "de", "dk", "es", "lu", "nl"],
@@ -33601,7 +33650,13 @@
       }
     },
     "shop/clothes|Koton": {
-      "tags": {"brand": "Koton", "name": "Koton", "shop": "clothes"}
+      "tags": {
+        "brand": "Koton",
+        "brand:wikidata": "Q6063877",
+        "brand:wikipedia": "tr:Koton",
+        "name": "Koton",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|LC Waikiki": {
       "tags": {
@@ -33797,7 +33852,13 @@
     },
     "shop/clothes|MS Mode": {
       "countryCodes": ["be", "de", "fr", "lu", "nl"],
-      "tags": {"brand": "MS Mode", "name": "MS Mode", "shop": "clothes"}
+      "tags": {
+        "brand": "MS Mode",
+        "brand:wikidata": "Q6718117",
+        "brand:wikipedia": "nl:MS Mode",
+        "name": "MS Mode",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|Mackage": {
       "tags": {"brand": "Mackage", "name": "Mackage", "shop": "clothes"}
@@ -33869,6 +33930,8 @@
       "countryCodes": ["by", "kz", "ru"],
       "tags": {
         "brand": "Mark Formelle",
+        "brand:wikidata": "Q25381083",
+        "brand:wikipedia": "ru:Mark Formelle",
         "name": "Mark Formelle",
         "shop": "clothes"
       }
@@ -33975,6 +34038,7 @@
       "tags": {"brand": "Mim", "name": "Mim", "shop": "clothes"}
     },
     "shop/clothes|Minimax": {
+      "countryCodes": ["by"],
       "tags": {"brand": "Minimax", "name": "Minimax", "shop": "clothes"}
     },
     "shop/clothes|Miss Etam": {
@@ -34029,6 +34093,7 @@
       "countryCodes": ["ca", "us"],
       "tags": {
         "brand": "Motherhood Maternity",
+        "brand:wikidata": "Q79051139",
         "clothes": "maternity",
         "name": "Motherhood Maternity",
         "shop": "clothes"
@@ -34076,7 +34141,13 @@
       }
     },
     "shop/clothes|Napapijri": {
-      "tags": {"brand": "Napapijri", "name": "Napapijri", "shop": "clothes"}
+      "tags": {
+        "brand": "Napapijri",
+        "brand:wikidata": "Q2782017",
+        "brand:wikipedia": "en:Napapijri",
+        "name": "Napapijri",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|Nautica": {
       "tags": {
@@ -34306,6 +34377,7 @@
     },
     "shop/clothes|Pep&Co": {
       "countryCodes": ["gb", "ie"],
+      "nomatch": ["shop/clothes|Pepco"],
       "tags": {
         "brand": "Pep&Co",
         "brand:wikidata": "Q24908166",
@@ -34317,6 +34389,7 @@
     "shop/clothes|Pepco": {
       "countryCodes": ["cz", "hu", "pl", "ro", "sk"],
       "matchTags": ["shop/variety_store"],
+      "nomatch": ["shop/clothes|Pep&Co"],
       "tags": {
         "brand": "Pepco",
         "brand:wikidata": "Q11815580",
@@ -34326,7 +34399,13 @@
       }
     },
     "shop/clothes|Pepe Jeans": {
-      "tags": {"brand": "Pepe Jeans", "name": "Pepe Jeans", "shop": "clothes"}
+      "tags": {
+        "brand": "Pepe Jeans",
+        "brand:wikidata": "Q426992",
+        "brand:wikipedia": "en:Pepe Jeans",
+        "name": "Pepe Jeans",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|Petit Bateau": {
       "countryCodes": ["be", "de", "fr", "gb", "it", "lu"],
@@ -34352,6 +34431,8 @@
       "countryCodes": ["it"],
       "tags": {
         "brand": "Piazza Italia",
+        "brand:wikidata": "Q3902241",
+        "brand:wikipedia": "it:Piazza Italia (azienda)",
         "name": "Piazza Italia",
         "shop": "clothes"
       }
@@ -34572,6 +34653,8 @@
     "shop/clothes|Scotch & Soda": {
       "tags": {
         "brand": "Scotch & Soda",
+        "brand:wikidata": "Q17141914",
+        "brand:wikipedia": "en:Scotch and Soda (clothing)",
         "name": "Scotch & Soda",
         "shop": "clothes"
       }
@@ -34586,6 +34669,7 @@
       }
     },
     "shop/clothes|Select": {
+      "countryCodes": ["gb"],
       "nomatch": ["shop/convenience|Select"],
       "tags": {"brand": "Select", "name": "Select", "shop": "clothes"}
     },
@@ -34812,7 +34896,13 @@
       }
     },
     "shop/clothes|The Kooples": {
-      "tags": {"brand": "The Kooples", "name": "The Kooples", "shop": "clothes"}
+      "tags": {
+        "brand": "The Kooples",
+        "brand:wikidata": "Q3521493",
+        "brand:wikipedia": "fr:The Kooples",
+        "name": "The Kooples",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|The North Face": {
       "tags": {
@@ -34856,7 +34946,7 @@
       }
     },
     "shop/clothes|Tillys": {
-      "countryCodes": ["tr"],
+      "countryCodes": ["us"],
       "tags": {
         "brand": "Tillys",
         "brand:wikidata": "Q7802889",
@@ -39759,6 +39849,17 @@
         "shop": "dry_cleaning"
       }
     },
+    "shop/dry_cleaning|Johnsons": {
+      "countryCodes": ["gb"],
+      "matchNames": ["johnson", "johnsons cleaners"],
+      "tags": {
+        "brand": "Johnsons",
+        "brand:wikidata": "Q6268527",
+        "brand:wikipedia": "en:Johnsons Cleaners UK",
+        "name": "Johnsons",
+        "shop": "dry_cleaning"
+      }
+    },
     "shop/dry_cleaning|Martinizing Dry Cleaning": {
       "tags": {
         "brand": "Martinizing Dry Cleaning",
@@ -40641,6 +40742,16 @@
         "shop": "fashion_accessories"
       }
     },
+    "shop/flooring|Floor & Decor": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Floor & Decor",
+        "brand:wikidata": "Q56280964",
+        "brand:wikipedia": "en:Floor & Decor",
+        "name": "Floor & Decor",
+        "shop": "flooring"
+      }
+    },
     "shop/florist|Blume 2000": {
       "countryCodes": ["de"],
       "tags": {
@@ -41406,6 +41517,16 @@
         "shop": "garden_centre"
       }
     },
+    "shop/garden_centre|Dobbies": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Dobbies",
+        "brand:wikidata": "Q5286529",
+        "brand:wikipedia": "en:Dobbies Garden Centres",
+        "name": "Dobbies",
+        "shop": "garden_centre"
+      }
+    },
     "shop/garden_centre|Gamm Vert": {
       "countryCodes": ["fr"],
       "tags": {
@@ -41471,6 +41592,16 @@
         "brand": "Welkoop",
         "brand:wikidata": "Q72799253",
         "name": "Welkoop",
+        "shop": "garden_centre"
+      }
+    },
+    "shop/garden_centre|Wyevale": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Wyevale",
+        "brand:wikidata": "Q7735819",
+        "brand:wikipedia": "en:Wyevale Garden Centres",
+        "name": "Wyevale",
         "shop": "garden_centre"
       }
     },
@@ -45539,6 +45670,17 @@
     },
     "shop/seafood|Рыба": {
       "tags": {"brand": "Рыба", "name": "Рыба", "shop": "seafood"}
+    },
+    "shop/second_hand|Savers": {
+      "countryCodes": ["au", "ca", "us"],
+      "nomatch": ["shop/chemist|Savers"],
+      "tags": {
+        "brand": "Savers",
+        "brand:wikidata": "Q7428188",
+        "brand:wikipedia": "en:Savers",
+        "name": "Savers",
+        "shop": "second_hand"
+      }
     },
     "shop/second_hand|Value Village": {
       "countryCodes": ["ca", "us"],
@@ -52475,7 +52617,6 @@
     },
     "shop/tool_hire|HSS Hire": {
       "countryCodes": ["gb", "ie"],
-      "matchTags": ["shop/diy", "shop/hardware"],
       "tags": {
         "brand": "HSS Hire",
         "brand:wikidata": "Q5636000",
