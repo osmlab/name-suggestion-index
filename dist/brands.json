@@ -37,8 +37,8 @@
       "tags": {
         "amenity": "bank",
         "brand": "ABSA",
-        "brand:wikidata": "Q331688",
-        "brand:wikipedia": "en:ABSA Group Limited",
+        "brand:wikidata": "Q58641733",
+        "brand:wikipedia": "en:Absa Group Limited",
         "name": "ABSA"
       }
     },
@@ -674,7 +674,7 @@
         "amenity": "bank",
         "brand": "BIAT",
         "brand:wikidata": "Q690739",
-        "brand:wikipedia": "fr:Banque Internationale Arabe de Tunisie",
+        "brand:wikipedia": "fr:Banque internationale arabe de Tunisie",
         "name": "BIAT",
         "official_name": "Banque internationale arabe de Tunisie",
         "official_name:en": "Arab International Bank of Tunisia",
@@ -1868,7 +1868,14 @@
       }
     },
     "amenity/bank|Bank Islam": {
-      "tags": {"amenity": "bank", "brand": "Bank Islam", "name": "Bank Islam"}
+      "countryCodes": ["my"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "Bank Islam",
+        "brand:wikidata": "Q4115279",
+        "brand:wikipedia": "en:Bank Islam Malaysia",
+        "name": "Bank Islam"
+      }
     },
     "amenity/bank|Bank Mandiri": {
       "countryCodes": ["id"],
@@ -2123,7 +2130,7 @@
         "amenity": "bank",
         "brand": "Banque Populaire",
         "brand:wikidata": "Q846647",
-        "brand:wikipedia": "fr:Banque Populaire",
+        "brand:wikipedia": "fr:Banque populaire",
         "name": "Banque Populaire"
       }
     },
@@ -3670,7 +3677,7 @@
         "amenity": "bank",
         "brand": "Ibercaja",
         "brand:wikidata": "Q5907815",
-        "brand:wikipedia": "es:Ibercaja",
+        "brand:wikipedia": "es:Ibercaja (banco)",
         "name": "Ibercaja"
       }
     },
@@ -4119,7 +4126,6 @@
         "amenity": "bank",
         "brand": "Mibanco",
         "brand:wikidata": "Q5558589",
-        "brand:wikipedia": "es:MiBanco",
         "name": "Mibanco"
       }
     },
@@ -4973,7 +4979,7 @@
         "amenity": "bank",
         "brand": "Santander Río",
         "brand:wikidata": "Q3385268",
-        "brand:wikipedia": "es:Banco Santander Río",
+        "brand:wikipedia": "es:Banco Santander (Argentina)",
         "name": "Santander Río"
       }
     },
@@ -16264,6 +16270,7 @@
       }
     },
     "amenity/fuel|Irving": {
+      "countryCodes": ["ca", "us"],
       "nomatch": ["shop/convenience|Irving"],
       "tags": {
         "amenity": "fuel",
@@ -16710,6 +16717,7 @@
       }
     },
     "amenity/fuel|Orlen": {
+      "countryCodes": ["lt", "pl"],
       "nomatch": ["shop/convenience|Orlen"],
       "tags": {
         "amenity": "fuel",
@@ -22214,6 +22222,18 @@
         "official_name": "Big Boy Restaurant & Bakery"
       }
     },
+    "amenity/restaurant|Bill's": {
+      "countryCodes": ["gb"],
+      "matchTags": ["amenity/bar", "amenity/pub"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Bill's",
+        "brand:wikidata": "Q47012702",
+        "brand:wikipedia": "en:Bill's",
+        "cuisine": "british",
+        "name": "Bill's"
+      }
+    },
     "amenity/restaurant|Black": {
       "countryCodes": ["il"],
       "tags": {
@@ -22414,6 +22434,17 @@
         "cuisine": "wings",
         "name": "Buffalo Wings & Rings",
         "takeaway": "yes"
+      }
+    },
+    "amenity/restaurant|Byron": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Byron",
+        "brand:wikidata": "Q16828673",
+        "brand:wikipedia": "en:Byron Hamburgers",
+        "cuisine": "burger",
+        "name": "Byron"
       }
     },
     "amenity/restaurant|Cafe Rio": {
@@ -26272,6 +26303,15 @@
         "name": "Virgin Active"
       }
     },
+    "leisure/fitness_centre|Xercise4Less": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Xercise4Less",
+        "brand:wikidata": "Q79244612",
+        "leisure": "fitness_centre",
+        "name": "Xercise4Less"
+      }
+    },
     "leisure/fitness_centre|エニタイムフィットネス": {
       "countryCodes": ["jp"],
       "tags": {
@@ -29679,6 +29719,16 @@
         "shop": "books"
       }
     },
+    "shop/books|WHSmith": {
+      "nomatch": ["shop/newsagent|WHSmith"],
+      "tags": {
+        "brand": "WHSmith",
+        "brand:wikidata": "Q1548712",
+        "brand:wikipedia": "en:WHSmith",
+        "name": "WHSmith",
+        "shop": "books"
+      }
+    },
     "shop/books|Waterstones": {
       "countryCodes": ["be", "gb", "ie", "je", "nl"],
       "tags": {
@@ -30933,7 +30983,6 @@
       "tags": {
         "brand": "Jaguar",
         "brand:wikidata": "Q26742231",
-        "brand:wikipedia": "en:Jaguar Cars",
         "name": "Jaguar",
         "shop": "car"
       }
@@ -30973,8 +31022,7 @@
     "shop/car|Land Rover": {
       "tags": {
         "brand": "Land Rover",
-        "brand:wikidata": "Q35907",
-        "brand:wikipedia": "en:Land Rover",
+        "brand:wikidata": "Q26777551",
         "name": "Land Rover",
         "shop": "car"
       }
@@ -31527,6 +31575,16 @@
     },
     "shop/charity|Vinnies": {
       "tags": {"brand": "Vinnies", "name": "Vinnies", "shop": "charity"}
+    },
+    "shop/charity|YMCA": {
+      "nomatch": ["leisure/sports_centre|YMCA"],
+      "tags": {
+        "brand": "YMCA",
+        "brand:wikidata": "Q157169",
+        "brand:wikipedia": "en:YMCA",
+        "name": "YMCA",
+        "shop": "charity"
+      }
     },
     "shop/chemist|101 Drogerie": {
       "countryCodes": ["sk"],
@@ -32113,6 +32171,15 @@
     },
     "shop/clothes|An Phước": {
       "tags": {"brand": "An Phước", "name": "An Phước", "shop": "clothes"}
+    },
+    "shop/clothes|Animal": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Animal",
+        "brand:wikidata": "Q4764749",
+        "name": "Animal",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|Ann Taylor": {
       "countryCodes": ["ca", "us"],
@@ -35919,7 +35986,14 @@
       }
     },
     "shop/convenience|Allsup's": {
-      "tags": {"brand": "Allsup's", "name": "Allsup's", "shop": "convenience"}
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Allsup's",
+        "brand:wikidata": "Q4733292",
+        "brand:wikipedia": "en:Allsup's",
+        "name": "Allsup's",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|AmeriStop": {
       "countryCodes": ["us"],
@@ -36022,7 +36096,13 @@
     },
     "shop/convenience|CU": {
       "countryCodes": ["kr"],
-      "tags": {"brand": "CU", "name": "CU", "shop": "convenience"}
+      "tags": {
+        "brand": "CU",
+        "brand:wikidata": "Q12580836",
+        "brand:wikipedia": "ko:CU (편의점)",
+        "name": "CU",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Carrefour Express": {
       "matchTags": ["shop/supermarket"],
@@ -36250,6 +36330,7 @@
       }
     },
     "shop/convenience|Dari Mart": {
+      "countryCodes": ["us"],
       "tags": {
         "brand": "Dari Mart",
         "brand:wikidata": "Q5222675",
@@ -36371,6 +36452,7 @@
       }
     },
     "shop/convenience|Hruška": {
+      "countryCodes": ["cz"],
       "nomatch": ["shop/supermarket|Hruška"],
       "tags": {"brand": "Hruška", "name": "Hruška", "shop": "convenience"}
     },
@@ -36434,8 +36516,15 @@
       }
     },
     "shop/convenience|Irving": {
+      "countryCodes": ["ca", "us"],
       "nomatch": ["amenity/fuel|Irving"],
-      "tags": {"brand": "Irving", "name": "Irving", "shop": "convenience"}
+      "tags": {
+        "brand": "Irving",
+        "brand:wikidata": "Q1673286",
+        "brand:wikipedia": "en:Irving Oil",
+        "name": "Irving",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Jacksons": {
       "countryCodes": ["us"],
@@ -36538,9 +36627,14 @@
       }
     },
     "shop/convenience|La Vie Claire": {
+      "countryCodes": ["fr"],
+      "nomatch": ["shop/supermarket|La Vie Claire"],
       "tags": {
         "brand": "La Vie Claire",
+        "brand:wikidata": "Q3213589",
+        "brand:wikipedia": "fr:La Vie Claire",
         "name": "La Vie Claire",
+        "organic": "only",
         "shop": "convenience"
       }
     },
@@ -36618,6 +36712,7 @@
       }
     },
     "shop/convenience|Lonia": {
+      "countryCodes": ["hr"],
       "tags": {"brand": "Lonia", "name": "Lonia", "shop": "convenience"}
     },
     "shop/convenience|M&S Simply Food": {
@@ -36632,8 +36727,15 @@
       }
     },
     "shop/convenience|Mac's": {
+      "countryCodes": ["ca"],
       "nomatch": ["amenity/fuel|Mac's"],
-      "tags": {"brand": "Mac's", "name": "Mac's", "shop": "convenience"}
+      "tags": {
+        "brand": "Mac's",
+        "brand:wikidata": "Q4043527",
+        "brand:wikipedia": "en:Mac's Convenience Stores",
+        "name": "Mac's",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Mace~(Ireland)": {
       "countryCodes": ["ie"],
@@ -36695,8 +36797,15 @@
       }
     },
     "shop/convenience|Maverik": {
+      "countryCodes": ["us"],
       "nomatch": ["amenity/fuel|Maverik"],
-      "tags": {"brand": "Maverik", "name": "Maverik", "shop": "convenience"}
+      "tags": {
+        "brand": "Maverik",
+        "brand:wikidata": "Q64149010",
+        "brand:wikipedia": "en:Maverik, Inc.",
+        "name": "Maverik",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Maxikiosco": {
       "countryCodes": ["ar", "uy"],
@@ -36728,7 +36837,15 @@
       }
     },
     "shop/convenience|Mercator": {
-      "tags": {"brand": "Mercator", "name": "Mercator", "shop": "convenience"}
+      "countryCodes": ["ba", "hr", "me", "rs", "si"],
+      "nomatch": ["shop/supermarket|Mercator"],
+      "tags": {
+        "brand": "Mercator",
+        "brand:wikidata": "Q738412",
+        "brand:wikipedia": "en:Mercator (retail)",
+        "name": "Mercator",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Migrolino": {
       "countryCodes": ["ch"],
@@ -36842,7 +36959,13 @@
     },
     "shop/convenience|OK Market": {
       "countryCodes": ["cl"],
-      "tags": {"brand": "OK Market", "name": "OK Market", "shop": "convenience"}
+      "tags": {
+        "brand": "OK Market",
+        "brand:wikidata": "Q6047736",
+        "brand:wikipedia": "es:OK Market",
+        "name": "OK Market",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|OK便利店": {
       "countryCodes": ["cn", "hk", "mo"],
@@ -36892,8 +37015,15 @@
       }
     },
     "shop/convenience|Orlen": {
+      "countryCodes": ["pl"],
       "nomatch": ["amenity/fuel|Orlen"],
-      "tags": {"brand": "Orlen", "name": "Orlen", "shop": "convenience"}
+      "tags": {
+        "brand": "Orlen",
+        "brand:wikidata": "Q971649",
+        "brand:wikipedia": "en:PKN Orlen",
+        "name": "Orlen",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Oxxo": {
       "matchTags": ["shop/supermarket"],
@@ -36999,6 +37129,7 @@
       }
     },
     "shop/convenience|Rabat": {
+      "countryCodes": ["pl"],
       "tags": {"brand": "Rabat", "name": "Rabat", "shop": "convenience"}
     },
     "shop/convenience|RaceTrac": {
@@ -37199,7 +37330,13 @@
     },
     "shop/convenience|Sunoco": {
       "nomatch": ["amenity/fuel|Sunoco"],
-      "tags": {"brand": "Sunoco", "name": "Sunoco", "shop": "convenience"}
+      "tags": {
+        "brand": "Sunoco",
+        "brand:wikidata": "Q1423218",
+        "brand:wikipedia": "en:Sunoco",
+        "name": "Sunoco",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Supérette": {
       "tags": {"brand": "Supérette", "name": "Supérette", "shop": "convenience"}
@@ -37238,7 +37375,13 @@
     },
     "shop/convenience|Texaco": {
       "nomatch": ["amenity/fuel|Texaco"],
-      "tags": {"brand": "Texaco", "name": "Texaco", "shop": "convenience"}
+      "tags": {
+        "brand": "Texaco",
+        "brand:wikidata": "Q775060",
+        "brand:wikipedia": "en:Texaco",
+        "name": "Texaco",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|The Co-operative Food~(UK)": {
       "countryCodes": ["gb"],
@@ -37289,7 +37432,13 @@
     },
     "shop/convenience|Total": {
       "nomatch": ["amenity/fuel|Total"],
-      "tags": {"brand": "Total", "name": "Total", "shop": "convenience"}
+      "tags": {
+        "brand": "Total",
+        "brand:wikidata": "Q154037",
+        "brand:wikipedia": "fr:Total (entreprise)",
+        "name": "Total",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Turkey Hill": {
       "nomatch": ["amenity/fuel|Turkey Hill"],
@@ -37303,7 +37452,13 @@
     },
     "shop/convenience|Ultramar": {
       "nomatch": ["amenity/fuel|Ultramar"],
-      "tags": {"brand": "Ultramar", "name": "Ultramar", "shop": "convenience"}
+      "tags": {
+        "brand": "Ultramar",
+        "brand:wikidata": "Q3548078",
+        "brand:wikipedia": "en:Ultramar",
+        "name": "Ultramar",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|United": {
       "countryCodes": ["au"],
@@ -37354,7 +37509,13 @@
     },
     "shop/convenience|Valero": {
       "nomatch": ["amenity/fuel|Valero"],
-      "tags": {"brand": "Valero", "name": "Valero", "shop": "convenience"}
+      "tags": {
+        "brand": "Valero",
+        "brand:wikidata": "Q1283291",
+        "brand:wikipedia": "en:Valero Energy",
+        "name": "Valero",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|VinMart+": {
       "countryCodes": ["vn"],
@@ -44414,13 +44575,8 @@
       }
     },
     "shop/newsagent|WHSmith": {
-      "countryCodes": ["gb"],
-      "matchTags": [
-        "shop/books",
-        "shop/convenience",
-        "shop/kiosk",
-        "shop/stationery"
-      ],
+      "matchTags": ["shop/convenience", "shop/kiosk", "shop/stationery"],
+      "nomatch": ["shop/books|WHSmith"],
       "tags": {
         "brand": "WHSmith",
         "brand:wikidata": "Q1548712",
@@ -44842,6 +44998,15 @@
         "name": "Pearle Vision",
         "shop": "optician",
         "short_name": "Pearle"
+      }
+    },
+    "shop/optician|Scrivens": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Scrivens",
+        "brand:wikidata": "Q79424133",
+        "name": "Scrivens",
+        "shop": "optician"
       }
     },
     "shop/optician|Silmäasema": {
@@ -45380,6 +45545,17 @@
         "brand": "Perfumania",
         "brand:wikidata": "Q72983916",
         "name": "Perfumania",
+        "shop": "perfumery"
+      }
+    },
+    "shop/perfumery|The Perfume Shop": {
+      "countryCodes": ["gb"],
+      "matchTags": ["shop/beauty", "shop/cosmetics"],
+      "tags": {
+        "brand": "The Perfume Shop",
+        "brand:wikidata": "Q7756719",
+        "brand:wikipedia": "en:The Perfume Shop",
+        "name": "The Perfume Shop",
         "shop": "perfumery"
       }
     },
@@ -48893,6 +49069,7 @@
       }
     },
     "shop/supermarket|Hruška": {
+      "countryCodes": ["cz"],
       "nomatch": ["shop/convenience|Hruška"],
       "tags": {"brand": "Hruška", "name": "Hruška", "shop": "supermarket"}
     },
@@ -49245,6 +49422,7 @@
     },
     "shop/supermarket|La Vie Claire": {
       "countryCodes": ["fr"],
+      "nomatch": ["shop/convenience|La Vie Claire"],
       "tags": {
         "brand": "La Vie Claire",
         "brand:wikidata": "Q3213589",
@@ -49658,7 +49836,8 @@
       }
     },
     "shop/supermarket|Mercator": {
-      "countryCodes": ["ba", "hz", "me", "rs", "si"],
+      "countryCodes": ["ba", "hr", "me", "rs", "si"],
+      "nomatch": ["shop/convenience|Mercator"],
       "tags": {
         "brand": "Mercator",
         "brand:wikidata": "Q738412",
