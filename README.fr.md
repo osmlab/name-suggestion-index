@@ -31,30 +31,30 @@ La construction d'un index de nom canonique permet deux choses très utiles:
 - Nous pouvons suggérer la manière la plus "correcte" d'étiqueter les choses lorsque les utilisateurs les créent pendant l'édition.
 - Nous pouvons analyser les données OSM pour les fonctionnalités "incorrectes" et produire des listes pour révision et nettoyage.
 
-<img width = "1017px" alt = "Index de suggestion de noms utilisé dans iD" src = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/nsi-in-iD .gif "/>
+<img width="1017px" alt="Index de suggestion de noms utilisé dans iD" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/nsi-in-iD.gif"/>
 
 * L'index de suggestion de nom est utilisé dans iD lors de l'ajout d'un nouvel élément *
 
 Actuellement utilisé dans:
 * iD (voir ci-dessus)
-* [Vespucci] (http://vespucci.io/tutorials/name_suggestions/)
+* [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 * Présélections JOSM disponibles
 
 
 ### Participer!
 
-* Lisez le projet [Code de conduite] (CODE_OF_CONDUCT.md) et n'oubliez pas d'être gentils les uns envers les autres.
-* Voir [CONTRIBUTING.md] (CONTRIBUTING.md) pour savoir comment contribuer à cet index.
+* Lisez le projet [Code de conduite](CODE_OF_CONDUCT.md) et n'oubliez pas d'être gentils les uns envers les autres.
+* Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour savoir comment contribuer à cet index.
 
 Nous cherchons toujours de l'aide! Si vous avez des questions ou souhaitez contacter un responsable, envoyez une requête ping à `bhousel` sur:
-* [OpenStreetMap US Slack] (https://slack.openstreetmap.us/)
+* [OpenStreetMap US Slack](https://slack.openstreetmap.us/)
 (Chaînes `# poi` ou` # general`)
 
 
 ### Conditions préalables
 
-* [Node.js] (https://nodejs.org/) version 8 ou plus récente
-* [`git`] (https://www.atlassian.com/git/tutorials/install-git/) pour votre plateforme
+* [Node.js](https://nodejs.org/) version 8 ou plus récente
+* [`git`](https://www.atlassian.com/git/tutorials/install-git/) pour votre plateforme
 
 
 ### Installation
@@ -84,7 +84,7 @@ Listes de noms:
   * `marques / tourisme / *. json`
   * `marques / bureau / *. json`
 
-: point_right: Voir [CONTRIBUTING.md] (CONTRIBUTING.md) pour savoir comment contribuer à cet index.
+: point_right: Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour savoir comment contribuer à cet index.
 
 
 ### Création de l'index
@@ -108,7 +108,7 @@ Vous n'avez pas besoin de suivre ces étapes pour contribuer à l'index.
 - Installer l'outil de ligne de commande `osmium` et le package de nœuds (peut être disponible uniquement dans certains environnements)
   - `apt-get install osmium-tool` ou` brew install osmium-tool` ou similaire
   - `npm install --no-save osmium`
-- [Télécharger la planète] (http://planet.osm.org/pbf/)
+- [Télécharger la planète](http://planet.osm.org/pbf/)
   - `curl -L -o planet-latest.osm.pbf https: // planet.openstreetmap.org / pbf / planet-latest.osm.pbf»
 - Préfiltrez le fichier planète pour inclure uniquement les éléments nommés avec les clés que nous recherchons:
   - `balises osmium-filtre planet-latest.osm.pbf -R nom -o nommé.osm.pbf`
@@ -118,5 +118,5 @@ f`
    - les résultats iront dans `dist / names_all.json`
    - `git add dist / names_all.json && git commit -m 'Dist / names_all.json mis à jour' '
 ### Licence
-nom-suggestion-index est disponible sous la [licence BSD à 3 clauses] (https://opensource.org/licenses/BSD-3-Clause).
-Voir le fichier [LICENSE.md] (LICENSE.md) pour plus de détails.
+nom-suggestion-index est disponible sous la [licence BSD à 3 clauses](https://opensource.org/licenses/BSD-3-Clause).
+Voir le fichier [LICENSE.md](LICENSE.md) pour plus de détails.
