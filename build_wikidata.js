@@ -113,9 +113,23 @@ function processEntities(result) {
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
     let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
 
+    if (entity.hasOwnProperty('missing')) {
+      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        colors.red('  Entity was deleted.');
+      _errors.push(msg);
+      console.error(msg);
+      return;
+    }
+
     if (label) {
       target.label = label;
+    } else {
+      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        colors.red('  Entity missing English label.');
+      _errors.push(msg);
+      console.error(msg);
     }
+
     if (description) {
       target.description = description;
     }
@@ -127,64 +141,64 @@ function processEntities(result) {
     target.dissolutions = [];
 
     // P154 - Commons Logo (often not square)
-    let wikidataLogo = getClaimValue(entity, 'P154');
+    const wikidataLogo = getClaimValue(entity, 'P154');
     if (wikidataLogo) {
       target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
         utilQsString({ title: `Special:Redirect/file/${wikidataLogo}`, width: 100 });
     }
 
     // P856 - official website
-    let officialWebsite = getClaimValue(entity, 'P856');
+    const officialWebsite = getClaimValue(entity, 'P856');
     if (officialWebsite) {
       target.identities.website = officialWebsite;
     }
 
     // P2002 - Twitter username
-    let twitterUser = getClaimValue(entity, 'P2002');
+    const twitterUser = getClaimValue(entity, 'P2002');
     if (twitterUser) {
       target.identities.twitter = twitterUser;
       twitterQueue.push({ qid: qid, username: twitterUser });    // queue logo fetch
     }
 
     // P2003 - Instagram ID
-    let instagramUser = getClaimValue(entity, 'P2003');
+    const instagramUser = getClaimValue(entity, 'P2003');
     if (instagramUser) {
       target.identities.instagram = instagramUser;
     }
 
     // P2013 - Facebook ID
-    let facebookUser = getClaimValue(entity, 'P2013');
+    const facebookUser = getClaimValue(entity, 'P2013');
     if (facebookUser) {
       target.identities.facebook = facebookUser;
       facebookQueue.push({ qid: qid, username: facebookUser });    // queue logo fetch
     }
 
     // P2397 - YouTube ID
-    let youtubeUser = getClaimValue(entity, 'P2397');
+    const youtubeUser = getClaimValue(entity, 'P2397');
     if (youtubeUser) {
       target.identities.youtube = youtubeUser;
     }
 
     // P2984 - Snapchat ID
-    let snapchatUser = getClaimValue(entity, 'P2984');
+    const snapchatUser = getClaimValue(entity, 'P2984');
     if (snapchatUser) {
       target.identities.snapchat = snapchatUser;
     }
 
     // P3185 - VK ID
-    let vkUser = getClaimValue(entity, 'P3185');
+    const vkUser = getClaimValue(entity, 'P3185');
     if (vkUser) {
       target.identities.vk = vkUser;
     }
 
     // P3836 - Pinterest ID
-    let pinterestUser = getClaimValue(entity, 'P3836');
+    const pinterestUser = getClaimValue(entity, 'P3836');
     if (pinterestUser) {
       target.identities.pinterest = pinterestUser;
     }
 
     // P4264 - LinkedIn Company ID
-    let linkedinUser = getClaimValue(entity, 'P4264');
+    const linkedinUser = getClaimValue(entity, 'P4264');
     if (linkedinUser) {
       target.identities.linkedin = linkedinUser;
     }
@@ -221,21 +235,23 @@ function processEntities(result) {
           let keys = getKeysByQid(entity);
           if (keys.length === 0) {
             // If the brand is not yet in the index, show a warning to add it
-            let msg = `Error: ${qid}: ${target.label} should probably be replaced by ${entity}, but this entry is not yet present in the index.`;
+            let msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+              colors.red(`  ${target.label} should probably be replaced by ${entity}, but this entry is not yet present in the index.`);
             if (dissolution.countries) {
-              msg += ' ';
-              msg += `This applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
+              msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
             }
             _errors.push(msg);
-            console.error(colors.red(msg));
+            console.error(msg);
             dissolution.upgrade.splice(index, 1);
+
           } else if (keys.length === 1) {
             dissolution.upgrade[index] = keys[0];
+
           } else if (keys.length > 1) {
-            let msg = `Error: ${qid}: ${target.label} should probably be replaced by ${entity}, but this applies to more than one entry in the index: ${JSON.stringify(keys)}.`;
+            let msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+              colors.red(`  ${target.label} should probably be replaced by ${entity}, but this applies to more than one entry in the index: ${JSON.stringify(keys)}.`);
             if (dissolution.countries) {
-              msg += ' ';
-              msg += `This applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
+              msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
             }
             _errors.push(msg);
             console.error(colors.red(msg));
@@ -391,7 +407,7 @@ function checkTwitterRateLimit(need) {
       }
     })
     .catch(e => {
-      console.error(colors.red(`Error: Twitter rate limit: ` + JSON.stringify(e)));
+      console.error(colors.blue(`Error: Twitter rate limit: ` + JSON.stringify(e)));
     });
 }
 
@@ -408,7 +424,8 @@ function fetchTwitterUserDetails(qid, username) {
       target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
     })
     .catch(e => {
-      let msg = `Error: Twitter username @${username} for ${qid}: ` + JSON.stringify(e);
+      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        colors.red(`  Twitter username @${username}: ${JSON.stringify(e)}`);
       _errors.push(msg);
       console.error(colors.red(msg));
     });
@@ -431,7 +448,8 @@ function fetchFacebookLogo(qid, username) {
       return true;
     })
     .catch(e => {
-      let msg = `Error: Facebook username @${username} for ${qid}: ` + e;
+      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        colors.red(`  Facebook username @${username}: ${e}`);
       _errors.push(msg);
       console.error(colors.red(msg));
     });
@@ -457,7 +475,7 @@ function fetchCountryCodes(qid, index, countries) {
         let code = entities[entity].claims.P297;
         if (!code) {
           // the entity is likely not a country if no country code is present
-          let msg = `Error: ${qid}: the linked item ${entity} does not seem to be a country because there is no country code stored as a claim.`;
+          let msg = `Error: https://www.wikidata.org/wiki/${qid}\n\tThe linked item ${entity} does not seem to be a country because there is no country code stored as a claim.`;
           _errors.push(msg);
           console.error(colors.red(msg));
         }
