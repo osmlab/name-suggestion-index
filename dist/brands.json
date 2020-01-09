@@ -2380,7 +2380,7 @@
         "amenity": "bank",
         "brand": "Caisse d'Épargne",
         "brand:wikidata": "Q1547738",
-        "brand:wikipedia": "en:Groupe Caisse d'Épargne",
+        "brand:wikipedia": "fr:Caisse d'épargne (banque)",
         "name": "Caisse d'Épargne"
       }
     },
@@ -17017,7 +17017,7 @@
       }
     },
     "amenity/fuel|Petron": {
-      "countryCodes": ["ph"],
+      "countryCodes": ["my", "ph"],
       "tags": {
         "amenity": "fuel",
         "brand": "Petron",
@@ -17634,7 +17634,15 @@
       }
     },
     "amenity/fuel|Tesco": {
-      "nomatch": ["shop/convenience|Tesco"],
+      "nomatch": [
+        "shop/convenience|Tesco",
+        "shop/convenience|Tesco Express",
+        "shop/convenience|Tesco Lotus Express",
+        "shop/supermarket|Tesco",
+        "shop/supermarket|Tesco Extra",
+        "shop/supermarket|Tesco Lotus",
+        "shop/supermarket|Tesco Metro"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "Tesco",
@@ -30913,7 +30921,7 @@
       "tags": {
         "brand": "Renault",
         "brand:wikidata": "Q6686",
-        "brand:wikipedia": "en:Renault",
+        "brand:wikipedia": "fr:Renault",
         "name": "Renault",
         "shop": "car_repair"
       }
@@ -31453,7 +31461,7 @@
       "tags": {
         "brand": "Renault",
         "brand:wikidata": "Q6686",
-        "brand:wikipedia": "en:Renault",
+        "brand:wikipedia": "fr:Renault",
         "name": "Renault",
         "shop": "car"
       }
@@ -37688,7 +37696,15 @@
       "tags": {"brand": "Słoneczko", "name": "Słoneczko", "shop": "convenience"}
     },
     "shop/convenience|Tesco": {
-      "nomatch": ["amenity/fuel|Tesco", "shop/convenience|Tesco Express"],
+      "nomatch": [
+        "amenity/fuel|Tesco",
+        "shop/convenience|Tesco Express",
+        "shop/convenience|Tesco Lotus Express",
+        "shop/supermarket|Tesco",
+        "shop/supermarket|Tesco Extra",
+        "shop/supermarket|Tesco Lotus",
+        "shop/supermarket|Tesco Metro"
+      ],
       "tags": {
         "brand": "Tesco",
         "brand:wikidata": "Q487494",
@@ -37698,7 +37714,15 @@
       }
     },
     "shop/convenience|Tesco Express": {
-      "nomatch": ["amenity/fuel|Tesco"],
+      "nomatch": [
+        "amenity/fuel|Tesco",
+        "shop/convenience|Tesco",
+        "shop/convenience|Tesco Lotus Express",
+        "shop/supermarket|Tesco",
+        "shop/supermarket|Tesco Extra",
+        "shop/supermarket|Tesco Lotus",
+        "shop/supermarket|Tesco Metro"
+      ],
       "tags": {
         "brand": "Tesco Express",
         "brand:wikidata": "Q487494",
@@ -37709,6 +37733,15 @@
     },
     "shop/convenience|Tesco Lotus Express": {
       "countryCodes": ["th"],
+      "nomatch": [
+        "amenity/fuel|Tesco",
+        "shop/convenience|Tesco",
+        "shop/convenience|Tesco Express",
+        "shop/supermarket|Tesco",
+        "shop/supermarket|Tesco Extra",
+        "shop/supermarket|Tesco Lotus",
+        "shop/supermarket|Tesco Metro"
+      ],
       "tags": {
         "brand": "Tesco Lotus Express",
         "name": "Tesco Lotus Express",
@@ -39840,7 +39873,7 @@
       "tags": {
         "brand": "Brico Dépôt",
         "brand:wikidata": "Q2889702",
-        "brand:wikipedia": "en:Brico Dépôt",
+        "brand:wikipedia": "fr:Brico Dépôt",
         "name": "Brico Dépôt",
         "shop": "doityourself"
       }
@@ -49449,7 +49482,7 @@
       "tags": {
         "brand": "Géant Casino",
         "brand:wikidata": "Q1380537",
-        "brand:wikipedia": "en:Géant Casino",
+        "brand:wikipedia": "fr:Enseignes du groupe Casino",
         "name": "Géant Casino",
         "shop": "supermarket"
       }
@@ -49949,7 +49982,7 @@
       "tags": {
         "brand": "Leader Price",
         "brand:wikidata": "Q2181426",
-        "brand:wikipedia": "en:Leader Price",
+        "brand:wikipedia": "fr:Leader Price",
         "name": "Leader Price",
         "shop": "supermarket"
       }
@@ -51506,8 +51539,13 @@
     },
     "shop/supermarket|Tesco": {
       "nomatch": [
+        "amenity/fuel|Tesco",
+        "shop/convenience|Tesco",
         "shop/convenience|Tesco Express",
-        "shop/supermarket|Tesco Express"
+        "shop/convenience|Tesco Lotus Express",
+        "shop/supermarket|Tesco Extra",
+        "shop/supermarket|Tesco Lotus",
+        "shop/supermarket|Tesco Metro"
       ],
       "tags": {
         "brand": "Tesco",
@@ -51517,16 +51555,16 @@
         "shop": "supermarket"
       }
     },
-    "shop/supermarket|Tesco Express": {
-      "tags": {
-        "brand": "Tesco Express",
-        "brand:wikidata": "Q487494",
-        "brand:wikipedia": "en:Tesco",
-        "name": "Tesco Express",
-        "shop": "supermarket"
-      }
-    },
     "shop/supermarket|Tesco Extra": {
+      "nomatch": [
+        "amenity/fuel|Tesco",
+        "shop/convenience|Tesco",
+        "shop/convenience|Tesco Express",
+        "shop/convenience|Tesco Lotus Express",
+        "shop/supermarket|Tesco",
+        "shop/supermarket|Tesco Lotus",
+        "shop/supermarket|Tesco Metro"
+      ],
       "tags": {
         "brand": "Tesco Extra",
         "brand:wikidata": "Q25172225",
@@ -51537,7 +51575,15 @@
     },
     "shop/supermarket|Tesco Lotus": {
       "countryCodes": ["th"],
-      "nomatch": ["shop/convenience|Tesco Lotus Express"],
+      "nomatch": [
+        "amenity/fuel|Tesco",
+        "shop/convenience|Tesco",
+        "shop/convenience|Tesco Express",
+        "shop/convenience|Tesco Lotus Express",
+        "shop/supermarket|Tesco",
+        "shop/supermarket|Tesco Extra",
+        "shop/supermarket|Tesco Metro"
+      ],
       "tags": {
         "brand": "Tesco Lotus",
         "brand:wikidata": "Q2378901",
@@ -51548,6 +51594,15 @@
     },
     "shop/supermarket|Tesco Metro": {
       "countryCodes": ["gb"],
+      "nomatch": [
+        "amenity/fuel|Tesco",
+        "shop/convenience|Tesco",
+        "shop/convenience|Tesco Express",
+        "shop/convenience|Tesco Lotus Express",
+        "shop/supermarket|Tesco",
+        "shop/supermarket|Tesco Extra",
+        "shop/supermarket|Tesco Lotus"
+      ],
       "tags": {
         "brand": "Tesco Metro",
         "brand:wikidata": "Q57551648",
