@@ -71,7 +71,7 @@ function gatherQIDs(brands) {
       const tags = brands[kvnd].tags;
       const qid = tags[wdtag];
       if (qid && /^Q\d+$/.test(qid)) {
-        _ennames[qid] = tags['name:en'] || tags['name'];
+        _ennames[qid] = tags['name:en'] || tags.name;
         _wikidata[qid] = {};
       }
     });
