@@ -42,7 +42,10 @@ try {
 
 // what to fetch
 let _brands = fileTree.read('brands');
-let _wikidata = gatherQIDs(_brands);
+let _ennames = {};
+let _wikidata = {};
+gatherQIDs(_brands);
+
 let _qids = Object.keys(_wikidata);
 let _total = _qids.length;
 if (!_total) {
@@ -63,17 +66,16 @@ doFetch().then(finish);
 
 
 function gatherQIDs(brands) {
-  let wikidata = {};
   Object.keys(brands).forEach(kvnd => {
-    ['brand:wikidata', 'operator:wikidata'].forEach(t => {
-      let qid = brands[kvnd].tags[t];
+    ['brand:wikidata', 'operator:wikidata'].forEach(wdtag => {
+      const tags = brands[kvnd].tags;
+      const qid = tags[wdtag];
       if (qid && /^Q\d+$/.test(qid)) {
-        wikidata[qid] = {};
+        _ennames[qid] = tags['name:en'] || tags['name'];
+        _wikidata[qid] = {};
       }
     });
   });
-
-  return wikidata;
 }
 
 
@@ -115,7 +117,7 @@ function processEntities(result) {
 
     if (entity.hasOwnProperty('missing')) {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red('  Entity was deleted.');
+        colors.red(`  Entity for "${_ennames[qid]}" was deleted.`);
       _errors.push(msg);
       console.error(msg);
       return;
@@ -125,7 +127,7 @@ function processEntities(result) {
       target.label = label;
     } else {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red('  Entity missing English label.');
+        colors.red(`  Entity for "${_ennames[qid]}" missing English label.`);
       _errors.push(msg);
       console.error(msg);
     }
