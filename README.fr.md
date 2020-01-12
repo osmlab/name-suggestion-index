@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/osmlab/name-suggestion-index.svg?branch=master)](https://travis-ci.org/osmlab/name-suggestion-index)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 
-## nom-suggestion-index 
-#### TODO: nom-suggestion-index or index de nom-suggestion?
+## name-suggestion-index
+
 Noms de marque communs canoniques pour OpenStreetMap.
 
 
@@ -23,9 +23,9 @@ Vous pouvez parcourir l'index à https://nsi.guide/ pour voir quelles marques ma
 ### Comment il est utilisé
 
 Lorsque les mappeurs créent des fonctionnalités dans OpenStreetMap, ils ne sont pas toujours cohérents sur la façon dont ils
-nommez et étiquetez les choses. Par exemple, nous pouvons préférer `McDonald's` étiqueté comme` amenity = fast_food`
-mais nous voyons de nombreux exemples d'autres orthographes («Mc Donald's», «McDonalds», «McDonald's») et
-étiquetages (`amenity = restaurant`).
+nommez et étiquetez les choses. Par exemple, nous pouvons préférer `McDonald's` étiqueté comme `amenity=fast_food`
+mais nous voyons de nombreux exemples d'autres orthographes (`Mc Donald's`, `McDonalds`, `McDonald’s`) et
+étiquetages (`amenity=restaurant`).
 
 La construction d'un index de nom canonique permet deux choses très utiles:
 - Nous pouvons suggérer la manière la plus "correcte" d'étiqueter les choses lorsque les utilisateurs les créent pendant l'édition.
@@ -48,7 +48,7 @@ Actuellement utilisé dans:
 
 Nous cherchons toujours de l'aide! Si vous avez des questions ou souhaitez contacter un responsable, envoyez une requête ping à `bhousel` sur:
 * [OpenStreetMap US Slack](https://slack.openstreetmap.us/)
-(Chaînes `# poi` ou` # general`)
+(Chaînes `#poi` ou `#general`)
 
 
 ### Conditions préalables
@@ -60,39 +60,46 @@ Nous cherchons toujours de l'aide! Si vous avez des questions ou souhaitez conta
 ### Installation
 
 * Clonez ce projet, par exemple:
-  `git clone git@github.com: osmlab / nom-suggestion-index.git»
+  `git clone git@github.com:osmlab/name-suggestion-index.git`
 * `cd` dans le dossier du projet,
 * Exécutez `npm install` pour installer les bibliothèques
-### À propos de l'index
-#### Fichiers générés (ne pas modifier):
-Fichiers prédéfinis (utilisés par les éditeurs OSM):
-* `dist / name-suggestions.json` - Préréglages de suggestion de nom
-* `dist / name-suggestions.min.json` - Préréglages de suggestion de nom, minifiés
-* `dist / name-suggestions.presets.xml` - Préréglages de suggestion de nom, comme XML prédéfini de style JOSM
-Listes de noms:
-* `dist / names_all.json` - tous les noms et balises fréquents collectés depuis OpenStreetMap
-* `dist / names_discard.json` - sous-ensemble de` names_all` que nous éliminons
-* `dist / names_keep.json` - sous-ensemble de` names_all` que nous conservons
-* `dist / wikidata.json` - données de marque en cache récupérées à partir de Wikidata
-#### Fichiers de configuration (modifiez-les):
-* `config / *`
-  * `config / filters.json` - Expressions régulières utilisées pour filtrer` names_all` dans `names_keep` /` names_discard`
-* `marques / *` - Fichiers de configuration pour chaque type d'entreprise de marque, organisés par balise OpenStreetMap
-  * `marques / équipement / *. json`
-  * `marques / loisirs / *. json`
-  * `marques / boutique / *. json`
-  * `marques / tourisme / *. json`
-  * `marques / bureau / *. json`
 
-: point_right: Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour savoir comment contribuer à cet index.
+
+### À propos de l'index
+
+#### Fichiers générés (ne pas modifier):
+
+Fichiers prédéfinis (utilisés par les éditeurs OSM):
+* `dist/name-suggestions.json` - Préréglages de suggestion de nom
+* `dist/name-suggestions.min.json` - Préréglages de suggestion de nom, minifiés
+* `dist/name-suggestions.presets.xml` - Préréglages de suggestion de nom, comme XML prédéfini de style JOSM
+
+Listes de noms:
+* `dist/names_all.json` - tous les noms et balises fréquents collectés depuis OpenStreetMap
+* `dist/names_discard.json` - sous-ensemble de `names_all` que nous éliminons
+* `dist/names_keep.json` - sous-ensemble de `names_all` que nous conservons
+* `dist/wikidata.json` - données de marque en cache récupérées à partir de Wikidata
+
+#### Fichiers de configuration (modifiez-les):
+
+* `config/*`
+  * `config/filters.json` - Expressions régulières utilisées pour filtrer `names_all` dans `names_keep`/`names_discard`
+* `brands/*` - Fichiers de configuration pour chaque type d'entreprise de marque, organisés par balise OpenStreetMap
+  * `brands/amenity/*.json`
+  * `brands/leisure/*.json`
+  * `brands/shop/*.json`
+  * `brands/tourism/*.json`
+  * `brands/office/*.json`
+
+:point_right: Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour savoir comment contribuer à cet index.
 
 
 ### Création de l'index
 
 * `npm run build`
-  * Régénère `dist / names_keep.json` et` dist / names_discard.json`
+  * Régénère `dist/names_keep.json` et `dist/names_discard.json`
   * Toutes les nouvelles entrées de `names_keep` qui ne sont pas déjà présentes dans l'index y seront ajoutées
-  * Génère de nombreux avertissements pour suggérer des mises à jour de `marques / ** / *. Json`
+  * Génère de nombreux avertissements pour suggérer des mises à jour de `brands/**/*.json`
 
 
 ### Autres commandes
@@ -100,23 +107,25 @@ Listes de noms:
 * `npm run wikidata` - Récupère les données utiles de Wikidata - étiquettes, descriptions, logos, etc.
 * `npm run` - Liste les autres outils disponibles
 
-### Mise à jour de `dist / names_all.json` depuis la planète
+### Mise à jour de `dist/names_all.json` depuis la planète
 
 Cela prend beaucoup de temps et beaucoup d'espace disque. Cela peut être fait occasionnellement par les responsables du projet.
 Vous n'avez pas besoin de suivre ces étapes pour contribuer à l'index.
 
 - Installer l'outil de ligne de commande `osmium` et le package de nœuds (peut être disponible uniquement dans certains environnements)
-  - `apt-get install osmium-tool` ou` brew install osmium-tool` ou similaire
+  - `apt-get install osmium-tool` ou `brew install osmium-tool` ou similaire
   - `npm install --no-save osmium`
 - [Télécharger la planète](http://planet.osm.org/pbf/)
-  - `curl -L -o planet-latest.osm.pbf https: // planet.openstreetmap.org / pbf / planet-latest.osm.pbf»
+  - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Préfiltrez le fichier planète pour inclure uniquement les éléments nommés avec les clés que nous recherchons:
-  - `balises osmium-filtre planet-latest.osm.pbf -R nom -o nommé.osm.pbf`
-  - `balises osmium-filtre nommé.osm.pbf -R commodité, boutique, loisirs, tourisme, bureau -o Want.osm.pbf»
-- Exécutez `node build_all_names wanted.osm.pb
-f`
-   - les résultats iront dans `dist / names_all.json`
-   - `git add dist / names_all.json && git commit -m 'Dist / names_all.json mis à jour' '
+  - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
+  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
+- Exécutez `node build_all_names wanted.osm.pbf`
+   - les résultats iront dans `dist/names_all.json`
+  - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
+
+
 ### Licence
+
 nom-suggestion-index est disponible sous la [licence BSD à 3 clauses](https://opensource.org/licenses/BSD-3-Clause).
 Voir le fichier [LICENSE.md](LICENSE.md) pour plus de détails.
