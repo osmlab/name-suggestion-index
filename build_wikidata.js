@@ -115,7 +115,7 @@ function processEntities(result) {
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
     let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
 
-    if (entity.hasOwnProperty('missing')) {
+    if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
         colors.red(`  Entity for "${_ennames[qid]}" was deleted.`);
       _errors.push(msg);
