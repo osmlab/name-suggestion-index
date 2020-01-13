@@ -355,7 +355,7 @@ function finish() {
     }
   });
 
-  fs.writeFileSync('dist/dissolved.json', stringify(sort(dissolved)));
+  fs.writeFileSync('dist/dissolved.json', stringify(sort(dissolved), { maxLength: 100 }));
   console.timeEnd(colors.green('dissolved.json updated'));
 
 
