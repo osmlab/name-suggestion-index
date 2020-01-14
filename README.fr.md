@@ -53,7 +53,7 @@ Nous cherchons toujours de l'aide! Si vous avez des questions ou souhaitez conta
 
 ### Conditions préalables
 
-* [Node.js](https://nodejs.org/) version 8 ou plus récente
+* [Node.js](https://nodejs.org/) version 10 ou plus récente
 * [`git`](https://www.atlassian.com/git/tutorials/install-git/) pour votre plateforme
 
 
