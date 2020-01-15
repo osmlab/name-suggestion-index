@@ -53,7 +53,7 @@ We're always looking for help!  If you have any questions or want to reach out t
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/) version 8 or newer
+* [Node.js](https://nodejs.org/) version 10 or newer
 * [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
 
 
