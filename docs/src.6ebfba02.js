@@ -18789,8 +18789,8 @@ function Overview(props) {
           }
         }
       });
-      var incomplete = complete === count;
-      var klass = "category" + (!count || inc && incomplete ? " hide" : "");
+      var completeCategory = complete === count;
+      var klass = "category" + (!count || inc && !completeCategory ? " hide" : "");
       items.push(_react.default.createElement("div", {
         key: kv,
         className: klass

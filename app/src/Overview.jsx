@@ -87,8 +87,8 @@ export default function Overview(props) {
         }
       });
 
-      let incomplete = (complete === count);
-      const klass = "category" + ((!count || (inc && incomplete)) ? " hide" : "");
+      let completeCategory = (complete === count);
+      const klass = "category" + ((!count || (inc && !completeCategory)) ? " hide" : "");
       items.push(
         <div key={kv} className={klass} >
         <img className="icon" src={icon_url} />
