@@ -18393,7 +18393,8 @@ function Filters(props) {
   var setFilters = props.data.setFilters;
   var tt = filters.tt || '';
   var cc = filters.cc || '';
-  var klass = "filters" + (tt.trim() || cc.trim() ? " active" : "");
+  var inc = !!filters.inc;
+  var klass = "filters" + (tt.trim() || cc.trim() || inc ? " active" : "");
   return _react.default.createElement("div", {
     className: klass
   }, _react.default.createElement("span", {
@@ -18429,6 +18430,16 @@ function Filters(props) {
     onChange: filtersChanged
   })), _react.default.createElement("span", {
     className: "field"
+  }, _react.default.createElement("label", {
+    for: "inc"
+  }, "Incomplete:"), _react.default.createElement("input", {
+    type: "checkbox",
+    id: "inc",
+    name: "inc",
+    checked: inc,
+    onChange: filtersChanged
+  })), _react.default.createElement("span", {
+    className: "field"
   }, _react.default.createElement("button", {
     className: "clearFilters",
     name: "clearFilters",
@@ -18438,7 +18449,13 @@ function Filters(props) {
   function filtersChanged(event) {
     var f = Object.assign({}, filters); // shallow copy
 
-    var val = event.target.value || '';
+    var val;
+
+    if (event.target.type === 'checkbox') {
+      val = event.target.checked;
+    } else {
+      val = event.target.value || '';
+    }
 
     if (val) {
       f[event.target.name] = val;
@@ -18538,6 +18555,7 @@ function Category(props) {
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
+  var inc = !!(data.filters && data.filters.inc);
   var rows = Object.keys(entries).map(function (kvnd) {
     var entry = entries[kvnd]; // calculate slug
 
@@ -18558,6 +18576,16 @@ function Category(props) {
       });
     } else {
       delete entry.filtered;
+    }
+
+    if (!entry.filtered) {
+      var _tags = entry.tags || {};
+
+      var qid = _tags['brand:wikidata'];
+      var wd = data.wikidata[qid] || {};
+      var logos = wd.logos || {};
+      var hasLogo = Object.keys(logos).length;
+      entry.filtered = inc && hasLogo;
     }
 
     return _react.default.createElement(_CategoryRow.default, (0, _extends2.default)({
@@ -18687,6 +18715,7 @@ function Overview(props) {
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
+  var inc = !!(data.filters && data.filters.inc);
   var message;
 
   if (data.isLoading()) {
@@ -18753,10 +18782,15 @@ function Overview(props) {
 
           if (Object.keys(logos).length) {
             complete++;
+
+            if (inc) {
+              entry.filtered = true;
+            }
           }
         }
       });
-      var klass = "category" + (!count ? " hide" : "");
+      var incomplete = complete === count;
+      var klass = "category" + (!count || inc && incomplete ? " hide" : "");
       items.push(_react.default.createElement("div", {
         key: kv,
         className: klass

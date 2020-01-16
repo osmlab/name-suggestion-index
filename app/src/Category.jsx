@@ -63,6 +63,7 @@ export default function Category(props) {
   // filters
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
   const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
+  const inc = !!(data.filters && data.filters.inc);
 
   const rows = Object.keys(entries).map(kvnd => {
     let entry = entries[kvnd];
@@ -87,6 +88,15 @@ export default function Category(props) {
       ));
     } else {
       delete entry.filtered;
+    }
+
+    if (!entry.filtered) {
+      const tags = entry.tags || {};
+      const qid = tags['brand:wikidata'];
+      const wd = data.wikidata[qid] || {};
+      const logos = wd.logos || {};
+      const hasLogo = Object.keys(logos).length;
+      entry.filtered = (inc && hasLogo);
     }
 
     return (
