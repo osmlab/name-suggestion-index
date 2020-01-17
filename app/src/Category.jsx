@@ -28,7 +28,7 @@ export default function Category(props) {
     return (
       <>
       <h2>{tree}/{k}/{v}</h2>
-      <Link to="index.html">↑ Back to top</Link>
+      <Link to="index.html">↑ Back to overview</Link>
       <CategoryInstructions />
       <Filters data={data} />
       <div className="summary">
@@ -107,7 +107,7 @@ export default function Category(props) {
   return (
     <>
     <h2><img className="icon" src={icon_url} />{tree}/{k}/{v}</h2>
-    <Link to="index.html">↑ Back to top</Link>
+    <Link to="index.html">↑ Back to overview</Link>
     <CategoryInstructions />
     <Filters data={data} />
 

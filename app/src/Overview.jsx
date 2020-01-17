@@ -87,8 +87,8 @@ export default function Overview(props) {
         }
       });
 
-      let completeCategory = (complete === count);
-      const klass = "category" + ((!count || (inc && !completeCategory)) ? " hide" : "");
+      let isComplete = (complete === count);
+      const klass = "category" + ((!count || (inc && isComplete)) ? " hide" : "");
       items.push(
         <div key={kv} className={klass} >
         <img className="icon" src={icon_url} />

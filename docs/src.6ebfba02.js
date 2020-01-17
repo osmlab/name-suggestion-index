@@ -18518,7 +18518,7 @@ function Category(props) {
   if (message) {
     return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
       to: "index.html"
-    }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
+    }, "\u2191 Back to overview"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
       data: data
     }), _react.default.createElement("div", {
       className: "summary"
@@ -18602,7 +18602,7 @@ function Category(props) {
     src: icon_url
   }), tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
     to: "index.html"
-  }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
+  }, "\u2191 Back to overview"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
     data: data
   }), _react.default.createElement("table", {
     className: "summary"
@@ -18684,7 +18684,7 @@ function OverviewInstructions() {
   }, "OpenStreetMap"), ", and we're matching them all to their preferred tags, including a ", _react.default.createElement("code", null, "'brand:wikidata'"), " tag.", _react.default.createElement("br", null), _react.default.createElement("br", null), "This tag is pretty special because we can use it to link features in OpenStreetMap to records in ", _react.default.createElement("a", {
     target: "_blank",
     href: "https://www.wikidata.org"
-  }, "Wikidata"), ", a free and open knowledge database.", _react.default.createElement("br", null), "You can help us by adding brands to the index, matching brands to Wikidata identifiers, or by improving the brands' Wikidata pages.", _react.default.createElement("br", null), "Each category below displays counts of (brands \"complete\" with a wikdata link and a logo / brands total).", _react.default.createElement("br", null), _react.default.createElement("br", null), "See ", _react.default.createElement("a", {
+  }, "Wikidata"), ", a free and open knowledge database.", _react.default.createElement("br", null), "You can help us by adding brands to the index, matching brands to Wikidata identifiers, or improving the brands' Wikidata pages.", _react.default.createElement("br", null), _react.default.createElement("br", null), "Below is a list of categories used by OpenStreetMap. Each category displays a count of brands ", _react.default.createElement("strong", null, "\"(complete / total)\""), ", where \"complete\" means the brands have been matched to a Wikidata identifier and a logo.", _react.default.createElement("br", null), _react.default.createElement("br", null), "See ", _react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md"
   }, "CONTRIBUTING.md"), " for more info.", _react.default.createElement("br", null)));
@@ -18789,8 +18789,8 @@ function Overview(props) {
           }
         }
       });
-      var completeCategory = complete === count;
-      var klass = "category" + (!count || inc && !completeCategory ? " hide" : "");
+      var isComplete = complete === count;
+      var klass = "category" + (!count || inc && isComplete ? " hide" : "");
       items.push(_react.default.createElement("div", {
         key: kv,
         className: klass
