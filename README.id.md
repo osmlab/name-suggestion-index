@@ -30,7 +30,7 @@ Membangun indeks nama canonical memungkina dua hal yang sangat berguna:
 *name-suggestion-index saat digunakan di ID untuk menambahkan item baru*
 
 Saat ini digunakan di:
-* ID (lihat dibawah)
+* iD (lihat dibawah)
 * [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 * Preset JOSM yang tersedia
 
@@ -46,7 +46,7 @@ Kami selalu mencari bantuan!  Jika kaum memiliki pertanyaan atau ingin menghubun
 
 ### Prasyarat
 
-* [Node.js](https://nodejs.org/) versi 8 or terbaru
+* [Node.js](https://nodejs.org/) versi 10 or terbaru
 * [`git`](https://www.atlassian.com/git/tutorials/install-git/) untuk platform anda
 
 

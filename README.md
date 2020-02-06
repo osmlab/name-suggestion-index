@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/osmlab/name-suggestion-index.svg?branch=master)](https://travis-ci.org/osmlab/name-suggestion-index)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
+[![Greenkeeper badge](https://badges.greenkeeper.io/osmlab/name-suggestion-index.svg)](https://greenkeeper.io/)
 
 ## name-suggestion-index
 
@@ -53,7 +54,7 @@ We're always looking for help!  If you have any questions or want to reach out t
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/) version 8 or newer
+* [Node.js](https://nodejs.org/) version 10 or newer
 * [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
 
 
@@ -105,7 +106,8 @@ Name lists:
 ### Other commands
 
 * `npm run wikidata` - Fetch useful data from Wikidata - labels, descriptions, logos, etc.
-* `npm run` - Lists other available tools
+* `npm run dist` - Rebuild and minify the generated files in the `dist/` folder.
+* `npm run` - Lists other available commands
 
 ### Updating `dist/names_all.json` from planet
 

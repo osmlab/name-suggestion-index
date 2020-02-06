@@ -12,6 +12,7 @@ export default function Overview(props) {
   // filters
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
   const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
+  const inc = !!(data.filters && data.filters.inc);
 
 
   let message;
@@ -79,11 +80,15 @@ export default function Overview(props) {
           count++;
           if (Object.keys(logos).length) {
             complete++;
+            if (inc) {
+              entry.filtered = true;
+            }
           }
         }
       });
 
-      const klass = "category" + (!count ? " hide" : "");
+      let isComplete = (complete === count);
+      const klass = "category" + ((!count || (inc && isComplete)) ? " hide" : "");
       items.push(
         <div key={kv} className={klass} >
         <img className="icon" src={icon_url} />

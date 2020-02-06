@@ -9,7 +9,8 @@ export default function Filters(props) {
 
   const tt = filters.tt || '';
   const cc = filters.cc || '';
-  const klass = "filters" + ((tt.trim() || cc.trim()) ? " active" : "");
+  const inc = !!filters.inc;
+  const klass = "filters" + ((tt.trim() || cc.trim() || inc) ? " active" : "");
 
   return (
     <div className={klass}>
@@ -30,6 +31,12 @@ export default function Filters(props) {
     </span>
 
     <span className="field">
+      <label for="inc">Incomplete:</label>
+      <input type="checkbox" id="inc" name="inc"
+        checked={inc} onChange={filtersChanged} />
+    </span>
+
+    <span className="field">
       <button className="clearFilters" name="clearFilters"
         onClick={clearFilters}>Clear</button>
     </span>
@@ -40,7 +47,14 @@ export default function Filters(props) {
 
   function filtersChanged(event) {
     let f = Object.assign({}, filters);  // shallow copy
-    let val = (event.target.value || '');
+
+    let val;
+    if (event.target.type === 'checkbox') {
+      val = event.target.checked;
+    } else {
+      val = (event.target.value || '');
+    }
+
     if (val) {
       f[event.target.name] = val;
     } else {
