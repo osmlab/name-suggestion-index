@@ -39,7 +39,7 @@ Building a canonical name index allows two very useful things:
 Currently used in:
 * iD (see above)
 * [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
-* JOSM presets available
+* [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) available
 
 
 ### Participate!
