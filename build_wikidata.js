@@ -1,10 +1,15 @@
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
-const fileTree = require('./lib/file_tree');
+const fileTree = require('./lib/file_tree.js');
 const fs = require('fs-extra');
-const sort = require('./lib/sort');
+const sort = require('./lib/sort.js');
 const stringify = require('json-stringify-pretty-compact');
-const wdk = require('wikidata-sdk');
+
+const wbk = require('wikibase-sdk')({
+  instance: 'https://www.wikidata.org',
+  sparqlEndpoint: 'https://query.wikidata.org/sparql'
+});
+
 
 // If you want to fetch Twitter logos, sign up for
 // API credentials at https://apps.twitter.com/
@@ -54,7 +59,7 @@ if (!_total) {
 }
 
 // split into several wikidata requests
-let _urls = wdk.getManyEntities({
+let _urls = wbk.getManyEntities({
   ids: _qids,
   languages: ['en'],
   props: ['info', 'labels', 'descriptions', 'claims'],
@@ -206,7 +211,7 @@ function processEntities(result) {
     }
 
     // P576 - Dissolution date
-    wdk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
+    wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
       let dissolution = { date: item.value };
 
       if (item.qualifiers) {
@@ -303,7 +308,7 @@ function getClaimValue(entity, prop) {
     for (let j = 0; j < qualifiers.length; j++) {
       let q = qualifiers[j];
       if (q.snaktype !== 'value') continue;
-      let enddate = wdk.wikidataTimeToDateObject(q.datavalue.value.time);
+      let enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
       if (new Date() > enddate) {
         ended = true;
         break;
@@ -461,7 +466,7 @@ function fetchFacebookLogo(qid, username) {
 // replace the reference to a country with its ISO 3166-1 alpha-2 code which is present as a claim of the entity
 function fetchCountryCodes(qid, index, countries) {
   let target = _wikidata[qid];
-  let url = wdk.getEntities({
+  let url = wbk.getEntities({
     ids: countries,
     languages: ['en'],
     props: ['claims'],
@@ -481,7 +486,7 @@ function fetchCountryCodes(qid, index, countries) {
           _errors.push(msg);
           console.error(colors.red(msg));
         }
-        countries[countries.indexOf(entity)] = wdk.simplify.propertyClaims(code)[0].toLowerCase();
+        countries[countries.indexOf(entity)] = wbk.simplify.propertyClaims(code)[0].toLowerCase();
         target.dissolutions[index].countries = countries;
       }
     });
