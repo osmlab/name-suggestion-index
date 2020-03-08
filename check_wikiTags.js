@@ -1,8 +1,12 @@
 const clearConsole = require('clear');
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
-const fileTree = require('./lib/file_tree');
-const wdk = require('wikidata-sdk');
+const fileTree = require('./lib/file_tree.js');
+
+const wbk = require('wikibase-sdk')({
+  instance: 'https://www.wikidata.org',
+  sparqlEndpoint: 'https://query.wikidata.org/sparql'
+});
 
 let _brands = fileTree.read('brands');
 
@@ -19,7 +23,7 @@ let _missingReferences = [];
 let _data = gatherData(_brands);
 
 let _urls = {
-  wikidata: wdk.getManyEntities({
+  wikidata: wbk.getManyEntities({
     ids: Object.keys(_data.wikidata),
     languages: ['en'],
     props: ['info', 'claims', 'sitelinks'],
@@ -129,7 +133,7 @@ function checkWikidata(result) {
     let entry = _brands[target];
 
     let sitelinks = getSitelinks(entity);
-    let claims = wdk.simplify.claims(entity.claims, { keepReferences: true });
+    let claims = wbk.simplify.claims(entity.claims, { keepReferences: true });
     let instance = entity.claims && entity.claims.P31;
 
     let tag = entry.tags['brand:wikidata'] === qid ? 'brand' : 'operator';

@@ -37,7 +37,7 @@ export default function App() {
     <Switch>
       <Route path="/" render={ routeProps => {
         const params = parseParams(routeProps.location.search);
-        if (params.k && params.v) {
+        if ((params.k && params.v) || params.id) {
           return (
             <Category {...routeProps} {...params} tree='brands' data={appData} />
           );

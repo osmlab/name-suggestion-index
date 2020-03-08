@@ -65,9 +65,9 @@ function filterNames() {
 
   // filter by keepTags (move from _discard -> _keep)
   filters.keepTags.forEach(s => {
-    let re = new RegExp(s, 'i');
+    const re = new RegExp(s, 'i');
     for (let kvnd in _discard) {
-      let tag = kvnd.split('|', 2)[0];
+      const tag = kvnd.split('|', 2)[0];
       if (re.test(tag)) {
         _keep[kvnd] = _discard[kvnd];
         delete _discard[kvnd];
@@ -77,7 +77,7 @@ function filterNames() {
 
   // filter by discardKeys (move from _keep -> _discard)
   filters.discardKeys.forEach(s => {
-    let re = new RegExp(s, 'i');
+    const re = new RegExp(s, 'i');
     for (let kvnd in _keep) {
       if (re.test(kvnd)) {
         _discard[kvnd] = _keep[kvnd];
@@ -88,9 +88,9 @@ function filterNames() {
 
   // filter by discardNames (move from _keep -> _discard)
   filters.discardNames.forEach(s => {
-    let re = new RegExp(s, 'i');
+    const re = new RegExp(s, 'i');
     for (let kvnd in _keep) {
-      let name = kvnd.split('|', 2)[1];
+      const name = kvnd.split('|', 2)[1];
       if (re.test(name)) {
         _discard[kvnd] = _keep[kvnd];
         delete _keep[kvnd];
@@ -115,15 +115,14 @@ function mergeBrands() {
   // Create/update entries
   // First, entries in namesKeep (i.e. counted entries)
   Object.keys(_keep).forEach(kvnd => {
-    let obj = brands[kvnd];
-    let parts = toParts(kvnd);
-
-    var m = matcher.matchParts(parts);
+    const parts = toParts(kvnd);
+    const m = matcher.matchParts(parts);
     if (m) return;  // already in the index
 
+    let obj = brands[kvnd];
     if (!obj) {   // a new entry!
       obj = { tags: {} };
-      brands[kvnd] = obj;
+      brands[kvnd] = obj;  // insert
 
       // assign default tags - new entries
       obj.tags.brand = parts.n;
@@ -135,8 +134,8 @@ function mergeBrands() {
 
   // now process all brands
   Object.keys(brands).forEach(kvnd => {
-    let obj = brands[kvnd];
-    let parts = toParts(kvnd);
+    const obj = brands[kvnd];
+    const parts = toParts(kvnd);
 
     // assign default tags - new or existing entries
     if (parts.kv === 'amenity/cafe') {
@@ -216,19 +215,19 @@ function checkBrands() {
   let seen = {};
 
   Object.keys(brands).forEach(kvnd => {
-    let obj = brands[kvnd];
-    let parts = toParts(kvnd);
+    const obj = brands[kvnd];
+    const parts = toParts(kvnd);
 
     if (!parts.d) {  // ignore ambiguous entries for these
       // Warn if some other item matches this item
-      var m = matcher.matchParts(parts);
+      const m = matcher.matchParts(parts);
       if (m && m.kvnd !== kvnd) {
         warnMatched.push([m.kvnd, kvnd]);
       }
 
       // Warn if the name appears to be a duplicate
-      let stem = stemmer(parts.n);
-      let other = seen[stem];
+      const stem = stemmer(parts.n);
+      const other = seen[stem];
       if (other) {
         // suppress warning?
         let suppress = false;
@@ -245,13 +244,13 @@ function checkBrands() {
     }
 
     // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
-    let wd = obj.tags['brand:wikidata'];
+    const wd = obj.tags['brand:wikidata'];
     if (!wd) {
       warnMissingWikidata.push(kvnd);
     } else if (!/^Q\d+$/.test(wd)) {
       warnFormatWikidata.push([kvnd, wd]);
     }
-    let wp = obj.tags['brand:wikipedia'];
+    const wp = obj.tags['brand:wikipedia'];
     if (!wp) {
       warnMissingWikipedia.push(kvnd);
     } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
@@ -259,7 +258,7 @@ function checkBrands() {
     }
 
     // Warn on missing logo
-    let logos = (wd && _wikidata[wd] && _wikidata[wd].logos) || {};
+    const logos = (wd && _wikidata[wd] && _wikidata[wd].logos) || {};
     if (!Object.keys(logos).length) {
       warnMissingLogos.push(kvnd);
     }
@@ -279,15 +278,22 @@ function checkBrands() {
     }
 
     // warn if the primary tag is missing or set to the wrong value..
-    let primary = obj.tags[parts.k];
+    const primary = obj.tags[parts.k];
     if (!primary || primary !== parts.v) {
       warnMissingTag.push([kvnd, parts.k]);
     }
 
     // Warn if OSM tags contain odd punctuation or spacing..
     ['cuisine', 'vending', 'beauty'].forEach(osmkey => {
-      let val = obj.tags[osmkey];
+      const val = obj.tags[osmkey];
       if (val && oddPunctuation.test(val)) {
+        warnFormatTag.push([kvnd, `${osmkey} = ${val}`]);
+      }
+    });
+    // Warn if user put `wikidata`/`wikipedia` instead of `brand:wikidata`/`brand:wikipedia`
+    ['wikipedia', 'wikidata'].forEach(osmkey => {
+      const val = obj.tags[osmkey];
+      if (val) {
         warnFormatTag.push([kvnd, `${osmkey} = ${val}`]);
       }
     });
@@ -321,7 +327,7 @@ function checkBrands() {
   }
 
   if (warnFormatTag.length) {
-    console.warn(colors.yellow('\nWarning - Unusual characters in OpenStreetMap tag:'));
+    console.warn(colors.yellow('\nWarning - Unusual OpenStreetMap tag:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     console.warn(colors.gray('To resolve these, make sure the OpenStreetMap tag is correct.'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
@@ -398,11 +404,11 @@ function checkBrands() {
     console.warn('total ' + warnFormatWikipedia.length);
   }
 
-  let total = Object.keys(brands).length;
-  let hasWd = total - warnMissingWikidata.length;
-  let pctWd = (hasWd * 100 / total).toFixed(1);
-  let hasLogos = total - warnMissingLogos.length;
-  let pctLogos = (hasLogos * 100 / total).toFixed(1);
+  const total = Object.keys(brands).length;
+  const hasWd = total - warnMissingWikidata.length;
+  const pctWd = (hasWd * 100 / total).toFixed(1);
+  const hasLogos = total - warnMissingLogos.length;
+  const pctLogos = (hasLogos * 100 / total).toFixed(1);
 
   console.info(colors.blue.bold(`\nIndex completeness:`));
   console.info(colors.blue.bold(`  ${total} entries total.`));

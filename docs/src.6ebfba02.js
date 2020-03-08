@@ -1168,7 +1168,7 @@ var X = {
 },
     Z = Y && X || Y;
 module.exports = Z.default || Z;
-},{"object-assign":"J4Nk"}],"1n8/":[function(require,module,exports) {
+},{"object-assign":"J4Nk"}],"n8MK":[function(require,module,exports) {
 'use strict';
 
 if ("production" === 'production') {
@@ -1176,7 +1176,7 @@ if ("production" === 'production') {
 } else {
   module.exports = require('./cjs/react.development.js');
 }
-},{"./cjs/react.production.min.js":"awqi"}],"5IvP":[function(require,module,exports) {
+},{"./cjs/react.production.min.js":"awqi"}],"IvPb":[function(require,module,exports) {
 var global = arguments[3];
 /** @license React v0.13.6
  * scheduler.production.min.js
@@ -1208,7 +1208,7 @@ if ("production" === 'production') {
 } else {
   module.exports = require('./cjs/scheduler.development.js');
 }
-},{"./cjs/scheduler.production.min.js":"5IvP"}],"i17t":[function(require,module,exports) {
+},{"./cjs/scheduler.production.min.js":"IvPb"}],"i17t":[function(require,module,exports) {
 /** @license React v16.8.6
  * react-dom.production.min.js
  *
@@ -1479,7 +1479,7 @@ x("38"):void 0;return Si(a,b,c,!1,d)},unmountComponentAtNode:function(a){Qi(a)?v
 X;X=!0;try{ki(a)}finally{(X=b)||W||Yh(1073741823,!1)}},__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{Events:[Ia,Ja,Ka,Ba.injectEventPluginsByName,pa,Qa,function(a){ya(a,Pa)},Eb,Fb,Dd,Da]}};function Ui(a,b){Qi(a)?void 0:x("299","unstable_createRoot");return new Pi(a,!0,null!=b&&!0===b.hydrate)}
 (function(a){var b=a.findFiberByHostInstance;return Te(n({},a,{overrideProps:null,currentDispatcherRef:Tb.ReactCurrentDispatcher,findHostInstanceByFiber:function(a){a=hd(a);return null===a?null:a.stateNode},findFiberByHostInstance:function(a){return b?b(a):null}}))})({findFiberByHostInstance:Ha,bundleType:0,version:"16.8.6",rendererPackageName:"react-dom"});var Wi={default:Vi},Xi=Wi&&Vi||Wi;module.exports=Xi.default||Xi;
 
-},{"react":"1n8/","object-assign":"J4Nk","scheduler":"MDSO"}],"NKHc":[function(require,module,exports) {
+},{"react":"n8MK","object-assign":"J4Nk","scheduler":"MDSO"}],"NKHc":[function(require,module,exports) {
 'use strict';
 
 function checkDCE() {
@@ -1618,7 +1618,7 @@ module.exports = function() {
   return ReactPropTypes;
 };
 
-},{"./lib/ReactPropTypesSecret":"Asjh"}],"5D9O":[function(require,module,exports) {
+},{"./lib/ReactPropTypesSecret":"Asjh"}],"D9Od":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -1675,7 +1675,7 @@ function warning(condition, message) {
 
 var _default = warning;
 exports.default = _default;
-},{}],"f/Iz":[function(require,module,exports) {
+},{}],"fIzv":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1866,7 +1866,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
 var index = _react.default.createContext || createReactContext;
 var _default = index;
 exports.default = _default;
-},{"react":"1n8/","@babel/runtime/helpers/inheritsLoose":"nWHr","prop-types":"5D9O","gud":"bHnc","tiny-warning":"sIbj"}],"SpjQ":[function(require,module,exports) {
+},{"react":"n8MK","@babel/runtime/helpers/inheritsLoose":"nWHr","prop-types":"D9Od","gud":"bHnc","tiny-warning":"sIbj"}],"SpjQ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1891,7 +1891,7 @@ function _extends() {
 
   return _extends.apply(this, arguments);
 }
-},{}],"7YO4":[function(require,module,exports) {
+},{}],"YO4S":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1967,7 +1967,7 @@ function resolvePathname(to) {
 
 var _default = resolvePathname;
 exports.default = _default;
-},{}],"t+Vk":[function(require,module,exports) {
+},{}],"tVk0":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2012,7 +2012,7 @@ function valueEqual(a, b) {
 
 var _default = valueEqual;
 exports.default = _default;
-},{}],"1bfQ":[function(require,module,exports) {
+},{}],"bfQg":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2036,7 +2036,7 @@ function invariant(condition, message) {
 
 var _default = invariant;
 exports.default = _default;
-},{}],"/Wop":[function(require,module,exports) {
+},{}],"Wop6":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2967,7 +2967,7 @@ function createMemoryHistory(props) {
   };
   return history;
 }
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","resolve-pathname":"7YO4","value-equal":"t+Vk","tiny-warning":"sIbj","tiny-invariant":"1bfQ"}],"WQ3f":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","resolve-pathname":"YO4S","value-equal":"tVk0","tiny-warning":"sIbj","tiny-invariant":"bfQg"}],"WQ3f":[function(require,module,exports) {
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
@@ -3425,7 +3425,7 @@ if ("production" === 'production') {
 } else {
   module.exports = require('./cjs/react-is.development.js');
 }
-},{"./cjs/react-is.production.min.js":"RsE0"}],"3Vab":[function(require,module,exports) {
+},{"./cjs/react-is.production.min.js":"RsE0"}],"Vabl":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3447,7 +3447,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   return target;
 }
-},{}],"89El":[function(require,module,exports) {
+},{}],"ElIr":[function(require,module,exports) {
 'use strict';
 
 /**
@@ -4312,7 +4312,7 @@ if ("production" !== "production") {
     global[key] = "esm";
   }
 }
-},{"mini-create-react-context":"f/Iz","@babel/runtime/helpers/esm/inheritsLoose":"S11h","react":"1n8/","prop-types":"5D9O","tiny-warning":"sIbj","history":"/Wop","tiny-invariant":"1bfQ","path-to-regexp":"Tvs4","@babel/runtime/helpers/esm/extends":"SpjQ","react-is":"H1RQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"3Vab","hoist-non-react-statics":"89El"}],"/uc1":[function(require,module,exports) {
+},{"mini-create-react-context":"fIzv","@babel/runtime/helpers/esm/inheritsLoose":"S11h","react":"n8MK","prop-types":"D9Od","tiny-warning":"sIbj","history":"Wop6","tiny-invariant":"bfQg","path-to-regexp":"Tvs4","@babel/runtime/helpers/esm/extends":"SpjQ","react-is":"H1RQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"Vabl","hoist-non-react-statics":"ElIr"}],"uc19":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4602,7 +4602,7 @@ if ("production" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"@babel/runtime/helpers/esm/inheritsLoose":"S11h","react":"1n8/","react-router":"LI7H","history":"/Wop","prop-types":"5D9O","tiny-warning":"sIbj","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"3Vab","tiny-invariant":"1bfQ"}],"QVnC":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/inheritsLoose":"S11h","react":"n8MK","react-router":"LI7H","history":"Wop6","prop-types":"D9Od","tiny-warning":"sIbj","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"Vabl","tiny-invariant":"bfQg"}],"QVnC":[function(require,module,exports) {
 var global = arguments[3];
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -5406,7 +5406,7 @@ function _asyncToGenerator(fn) {
 }
 
 module.exports = _asyncToGenerator;
-},{}],"3dLy":[function(require,module,exports) {
+},{}],"dLyZ":[function(require,module,exports) {
 function _extends() {
   module.exports = _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -5432,7 +5432,7 @@ function _arrayWithHoles(arr) {
 }
 
 module.exports = _arrayWithHoles;
-},{}],"9vK/":[function(require,module,exports) {
+},{}],"vKPt":[function(require,module,exports) {
 function _iterableToArrayLimit(arr, i) {
   var _arr = [];
   var _n = true;
@@ -5466,7 +5466,7 @@ function _nonIterableRest() {
 }
 
 module.exports = _nonIterableRest;
-},{}],"69HE":[function(require,module,exports) {
+},{}],"HETk":[function(require,module,exports) {
 var arrayWithHoles = require("./arrayWithHoles");
 
 var iterableToArrayLimit = require("./iterableToArrayLimit");
@@ -5478,7 +5478,7 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
-},{"./arrayWithHoles":"OUZ9","./iterableToArrayLimit":"9vK/","./nonIterableRest":"Rom6"}],"6M1E":[function(require,module,exports) {
+},{"./arrayWithHoles":"OUZ9","./iterableToArrayLimit":"vKPt","./nonIterableRest":"Rom6"}],"jpgZ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5503,7 +5503,7 @@ function CategoryInstructions() {
 }
 
 ;
-},{"react":"1n8/"}],"T/2w":[function(require,module,exports) {
+},{"react":"n8MK"}],"T2ws":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -8367,7 +8367,7 @@ FontAwesomeIcon.defaultProps = {
   transform: null
 };
 var convertCurry = convert.bind(null, _react.default.createElement);
-},{"@fortawesome/fontawesome-svg-core":"T/2w","prop-types":"5D9O","react":"1n8/"}],"XFr7":[function(require,module,exports) {
+},{"@fortawesome/fontawesome-svg-core":"T2ws","prop-types":"D9Od","react":"n8MK"}],"XFr7":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11379,7 +11379,7 @@ var _iconsCache = {
   faZhihu: faZhihu
 };
 exports.fab = _iconsCache;
-},{}],"hON6":[function(require,module,exports) {
+},{}],"GZ5J":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11501,7 +11501,7 @@ function CategoryRowSocialLinks(props) {
 }
 
 ;
-},{"react":"1n8/","@fortawesome/react-fontawesome":"O6gX","@fortawesome/free-brands-svg-icons":"XFr7"}],"VkWy":[function(require,module,exports) {
+},{"react":"n8MK","@fortawesome/react-fontawesome":"O6gX","@fortawesome/free-brands-svg-icons":"XFr7"}],"b69n":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11652,7 +11652,7 @@ function CategoryRow(props) {
 }
 
 ;
-},{"react":"1n8/","react-router-dom":"/uc1","./CategoryRowSocialLinks":"hON6"}],"lmHt":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","./CategoryRowSocialLinks":"GZ5J"}],"lmHt":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18372,7 +18372,7 @@ var _iconsCache = {
   faYinYang: faYinYang
 };
 exports.fas = _iconsCache;
-},{}],"JFTQ":[function(require,module,exports) {
+},{}],"z2FW":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18393,7 +18393,8 @@ function Filters(props) {
   var setFilters = props.data.setFilters;
   var tt = filters.tt || '';
   var cc = filters.cc || '';
-  var klass = "filters" + (tt.trim() || cc.trim() ? " active" : "");
+  var inc = !!filters.inc;
+  var klass = "filters" + (tt.trim() || cc.trim() || inc ? " active" : "");
   return _react.default.createElement("div", {
     className: klass
   }, _react.default.createElement("span", {
@@ -18429,6 +18430,16 @@ function Filters(props) {
     onChange: filtersChanged
   })), _react.default.createElement("span", {
     className: "field"
+  }, _react.default.createElement("label", {
+    for: "inc"
+  }, "Incomplete:"), _react.default.createElement("input", {
+    type: "checkbox",
+    id: "inc",
+    name: "inc",
+    checked: inc,
+    onChange: filtersChanged
+  })), _react.default.createElement("span", {
+    className: "field"
   }, _react.default.createElement("button", {
     className: "clearFilters",
     name: "clearFilters",
@@ -18438,7 +18449,13 @@ function Filters(props) {
   function filtersChanged(event) {
     var f = Object.assign({}, filters); // shallow copy
 
-    var val = event.target.value || '';
+    var val;
+
+    if (event.target.type === 'checkbox') {
+      val = event.target.checked;
+    } else {
+      val = event.target.value || '';
+    }
 
     if (val) {
       f[event.target.name] = val;
@@ -18457,7 +18474,7 @@ function Filters(props) {
 }
 
 ;
-},{"react":"1n8/","@fortawesome/react-fontawesome":"O6gX","@fortawesome/free-solid-svg-icons":"lmHt"}],"aR8z":[function(require,module,exports) {
+},{"react":"n8MK","@fortawesome/react-fontawesome":"O6gX","@fortawesome/free-solid-svg-icons":"lmHt"}],"vBRt":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18482,11 +18499,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Category(props) {
   var tree = props.tree;
   var data = props.data;
-  var k = props.k;
-  var v = props.v;
+  var id = props.id && props.id.match(/^(\w+?)\/(\w+?)\|(.+)$/);
+  var k = id ? id[1] : props.k;
+  var v = id ? id[2] : props.v;
   var kv = "".concat(k, "/").concat(v);
   var entries = data.dict && data.dict[k] && data.dict[k][v];
   var hash = props.location.hash;
+  var slug = id ? id[3] : hash && hash.slice(1); // remove leading '#'
+
   var message;
 
   if (data.isLoading()) {
@@ -18498,19 +18518,17 @@ function Category(props) {
   if (message) {
     return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("h2", null, tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
       to: "index.html"
-    }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
+    }, "\u2191 Back to overview"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
       data: data
     }), _react.default.createElement("div", {
       className: "summary"
     }, message));
   } else {
     // re-rendering after data has finished loading..
-    // If there was a hash, scroll to it.
+    // If there was a slug in the URL, scroll to it.
     // Browser may have tried this already on initial render before data was there.
     // This component will render and return the rows, so scroll to the row after a delay.
-    if (hash) {
-      var slug = hash.slice(1); // remove leading '#'
-
+    if (slug) {
       window.setTimeout(function () {
         var el = document.getElementById(slug);
 
@@ -18537,14 +18555,14 @@ function Category(props) {
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
+  var inc = !!(data.filters && data.filters.inc);
   var rows = Object.keys(entries).map(function (kvnd) {
     var entry = entries[kvnd]; // calculate slug
 
     var nd = kvnd.split('|')[1];
-    entry.slug = encodeURI(nd); // apply selection if location hash matches slug
+    entry.slug = encodeURI(nd); // apply selection if slug in URL matches slug
 
-    entry.selected = hash && hash.slice(1) === entry.slug; // remove leading '#'
-    // apply filters
+    entry.selected = slug === entry.slug; // apply filters
 
     if (tt) {
       var tags = Object.entries(entry.tags);
@@ -18558,6 +18576,16 @@ function Category(props) {
       });
     } else {
       delete entry.filtered;
+    }
+
+    if (!entry.filtered) {
+      var _tags = entry.tags || {};
+
+      var qid = _tags['brand:wikidata'];
+      var wd = data.wikidata[qid] || {};
+      var logos = wd.logos || {};
+      var hasLogo = Object.keys(logos).length;
+      entry.filtered = inc && hasLogo;
     }
 
     return _react.default.createElement(_CategoryRow.default, (0, _extends2.default)({
@@ -18574,7 +18602,7 @@ function Category(props) {
     src: icon_url
   }), tree, "/", k, "/", v), _react.default.createElement(_reactRouterDom.Link, {
     to: "index.html"
-  }, "\u2191 Back to top"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
+  }, "\u2191 Back to overview"), _react.default.createElement(_CategoryInstructions.default, null), _react.default.createElement(_Filters.default, {
     data: data
   }), _react.default.createElement("table", {
     className: "summary"
@@ -18588,7 +18616,7 @@ function Category(props) {
 }
 
 ;
-},{"@babel/runtime/helpers/extends":"3dLy","react":"1n8/","react-router-dom":"/uc1","./CategoryInstructions":"6M1E","./CategoryRow":"VkWy","./Filters":"JFTQ"}],"WwFW":[function(require,module,exports) {
+},{"@babel/runtime/helpers/extends":"dLyZ","react":"n8MK","react-router-dom":"uc19","./CategoryInstructions":"jpgZ","./CategoryRow":"b69n","./Filters":"z2FW"}],"jutB":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18630,7 +18658,7 @@ function Footer() {
 }
 
 ;
-},{"react":"1n8/"}],"Z8lg":[function(require,module,exports) {
+},{"react":"n8MK"}],"Oxty":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18656,14 +18684,14 @@ function OverviewInstructions() {
   }, "OpenStreetMap"), ", and we're matching them all to their preferred tags, including a ", _react.default.createElement("code", null, "'brand:wikidata'"), " tag.", _react.default.createElement("br", null), _react.default.createElement("br", null), "This tag is pretty special because we can use it to link features in OpenStreetMap to records in ", _react.default.createElement("a", {
     target: "_blank",
     href: "https://www.wikidata.org"
-  }, "Wikidata"), ", a free and open knowledge database.", _react.default.createElement("br", null), "You can help us by adding brands to the index, matching brands to Wikidata identifiers, or by improving the brands' Wikidata pages.", _react.default.createElement("br", null), "Each category below displays counts of (brands \"complete\" with a wikdata link and a logo / brands total).", _react.default.createElement("br", null), _react.default.createElement("br", null), "See ", _react.default.createElement("a", {
+  }, "Wikidata"), ", a free and open knowledge database.", _react.default.createElement("br", null), "You can help us by adding brands to the index, matching brands to Wikidata identifiers, or improving the brands' Wikidata pages.", _react.default.createElement("br", null), _react.default.createElement("br", null), "Below is a list of categories used by OpenStreetMap. Each category displays a count of brands ", _react.default.createElement("strong", null, "\"(complete / total)\""), ", where \"complete\" means the brands have been matched to a Wikidata identifier and a logo.", _react.default.createElement("br", null), _react.default.createElement("br", null), "See ", _react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md"
   }, "CONTRIBUTING.md"), " for more info.", _react.default.createElement("br", null)));
 }
 
 ;
-},{"react":"1n8/"}],"BUKF":[function(require,module,exports) {
+},{"react":"n8MK"}],"RzVt":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18687,6 +18715,7 @@ function Overview(props) {
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
+  var inc = !!(data.filters && data.filters.inc);
   var message;
 
   if (data.isLoading()) {
@@ -18753,10 +18782,15 @@ function Overview(props) {
 
           if (Object.keys(logos).length) {
             complete++;
+
+            if (inc) {
+              entry.filtered = true;
+            }
           }
         }
       });
-      var klass = "category" + (!count ? " hide" : "");
+      var isComplete = complete === count;
+      var klass = "category" + (!count || inc && isComplete ? " hide" : "");
       items.push(_react.default.createElement("div", {
         key: kv,
         className: klass
@@ -18776,7 +18810,7 @@ function Overview(props) {
 }
 
 ;
-},{"react":"1n8/","react-router-dom":"/uc1","./OverviewInstructions":"Z8lg","./Filters":"JFTQ"}],"FLHj":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","./OverviewInstructions":"Oxty","./Filters":"z2FW"}],"vmSA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18856,7 +18890,7 @@ function App() {
     render: function render(routeProps) {
       var params = parseParams(routeProps.location.search);
 
-      if (params.k && params.v) {
+      if (params.k && params.v || params.id) {
         return _react.default.createElement(_Category.default, (0, _extends2.default)({}, routeProps, params, {
           tree: "brands",
           data: appData
@@ -19086,7 +19120,7 @@ function App() {
 }
 
 ;
-},{"@babel/runtime/regenerator":"PMvg","@babel/runtime/helpers/asyncToGenerator":"agGE","@babel/runtime/helpers/extends":"3dLy","@babel/runtime/helpers/slicedToArray":"69HE","react":"1n8/","react-router-dom":"/uc1","./Category":"aR8z","./Footer":"WwFW","./Overview":"BUKF"}],"H99C":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"PMvg","@babel/runtime/helpers/asyncToGenerator":"agGE","@babel/runtime/helpers/extends":"dLyZ","@babel/runtime/helpers/slicedToArray":"HETk","react":"n8MK","react-router-dom":"uc19","./Category":"vBRt","./Footer":"jutB","./Overview":"RzVt"}],"c2Qt":[function(require,module,exports) {
 "use strict";
 
 require("whatwg-fetch");
@@ -19102,4 +19136,4 @@ var _App = _interopRequireDefault(require("./App"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom.default.render(_react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_App.default, null)), document.getElementById("root"));
-},{"whatwg-fetch":"MCp7","react":"1n8/","react-dom":"NKHc","react-router-dom":"/uc1","./App":"FLHj"}]},{},["H99C"], null)
+},{"whatwg-fetch":"MCp7","react":"n8MK","react-dom":"NKHc","react-router-dom":"uc19","./App":"vmSA"}]},{},["c2Qt"], null)

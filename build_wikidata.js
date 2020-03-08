@@ -1,10 +1,15 @@
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
-const fileTree = require('./lib/file_tree');
+const fileTree = require('./lib/file_tree.js');
 const fs = require('fs-extra');
-const sort = require('./lib/sort');
+const sort = require('./lib/sort.js');
 const stringify = require('json-stringify-pretty-compact');
-const wdk = require('wikidata-sdk');
+
+const wbk = require('wikibase-sdk')({
+  instance: 'https://www.wikidata.org',
+  sparqlEndpoint: 'https://query.wikidata.org/sparql'
+});
+
 
 // If you want to fetch Twitter logos, sign up for
 // API credentials at https://apps.twitter.com/
@@ -42,7 +47,10 @@ try {
 
 // what to fetch
 let _brands = fileTree.read('brands');
-let _wikidata = gatherQIDs(_brands);
+let _ennames = {};
+let _wikidata = {};
+gatherQIDs(_brands);
+
 let _qids = Object.keys(_wikidata);
 let _total = _qids.length;
 if (!_total) {
@@ -51,7 +59,7 @@ if (!_total) {
 }
 
 // split into several wikidata requests
-let _urls = wdk.getManyEntities({
+let _urls = wbk.getManyEntities({
   ids: _qids,
   languages: ['en'],
   props: ['info', 'labels', 'descriptions', 'claims'],
@@ -63,17 +71,16 @@ doFetch().then(finish);
 
 
 function gatherQIDs(brands) {
-  let wikidata = {};
   Object.keys(brands).forEach(kvnd => {
-    ['brand:wikidata', 'operator:wikidata'].forEach(t => {
-      let qid = brands[kvnd].tags[t];
+    ['brand:wikidata', 'operator:wikidata'].forEach(wdtag => {
+      const tags = brands[kvnd].tags;
+      const qid = tags[wdtag];
       if (qid && /^Q\d+$/.test(qid)) {
-        wikidata[qid] = {};
+        _ennames[qid] = tags['name:en'] || tags.name;
+        _wikidata[qid] = {};
       }
     });
   });
-
-  return wikidata;
 }
 
 
@@ -113,9 +120,23 @@ function processEntities(result) {
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
     let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
 
+    if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
+      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        colors.red(`  Entity for "${_ennames[qid]}" was deleted.`);
+      _errors.push(msg);
+      console.error(msg);
+      return;
+    }
+
     if (label) {
       target.label = label;
+    } else {
+      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        colors.red(`  Entity for "${_ennames[qid]}" missing English label.`);
+      _errors.push(msg);
+      console.error(msg);
     }
+
     if (description) {
       target.description = description;
     }
@@ -127,70 +148,70 @@ function processEntities(result) {
     target.dissolutions = [];
 
     // P154 - Commons Logo (often not square)
-    let wikidataLogo = getClaimValue(entity, 'P154');
+    const wikidataLogo = getClaimValue(entity, 'P154');
     if (wikidataLogo) {
       target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
         utilQsString({ title: `Special:Redirect/file/${wikidataLogo}`, width: 100 });
     }
 
     // P856 - official website
-    let officialWebsite = getClaimValue(entity, 'P856');
+    const officialWebsite = getClaimValue(entity, 'P856');
     if (officialWebsite) {
       target.identities.website = officialWebsite;
     }
 
     // P2002 - Twitter username
-    let twitterUser = getClaimValue(entity, 'P2002');
+    const twitterUser = getClaimValue(entity, 'P2002');
     if (twitterUser) {
       target.identities.twitter = twitterUser;
       twitterQueue.push({ qid: qid, username: twitterUser });    // queue logo fetch
     }
 
     // P2003 - Instagram ID
-    let instagramUser = getClaimValue(entity, 'P2003');
+    const instagramUser = getClaimValue(entity, 'P2003');
     if (instagramUser) {
       target.identities.instagram = instagramUser;
     }
 
     // P2013 - Facebook ID
-    let facebookUser = getClaimValue(entity, 'P2013');
+    const facebookUser = getClaimValue(entity, 'P2013');
     if (facebookUser) {
       target.identities.facebook = facebookUser;
       facebookQueue.push({ qid: qid, username: facebookUser });    // queue logo fetch
     }
 
     // P2397 - YouTube ID
-    let youtubeUser = getClaimValue(entity, 'P2397');
+    const youtubeUser = getClaimValue(entity, 'P2397');
     if (youtubeUser) {
       target.identities.youtube = youtubeUser;
     }
 
     // P2984 - Snapchat ID
-    let snapchatUser = getClaimValue(entity, 'P2984');
+    const snapchatUser = getClaimValue(entity, 'P2984');
     if (snapchatUser) {
       target.identities.snapchat = snapchatUser;
     }
 
     // P3185 - VK ID
-    let vkUser = getClaimValue(entity, 'P3185');
+    const vkUser = getClaimValue(entity, 'P3185');
     if (vkUser) {
       target.identities.vk = vkUser;
     }
 
     // P3836 - Pinterest ID
-    let pinterestUser = getClaimValue(entity, 'P3836');
+    const pinterestUser = getClaimValue(entity, 'P3836');
     if (pinterestUser) {
       target.identities.pinterest = pinterestUser;
     }
 
     // P4264 - LinkedIn Company ID
-    let linkedinUser = getClaimValue(entity, 'P4264');
+    const linkedinUser = getClaimValue(entity, 'P4264');
     if (linkedinUser) {
       target.identities.linkedin = linkedinUser;
     }
 
     // P576 - Dissolution date
-    wdk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
+    wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
       let dissolution = { date: item.value };
 
       if (item.qualifiers) {
@@ -221,21 +242,23 @@ function processEntities(result) {
           let keys = getKeysByQid(entity);
           if (keys.length === 0) {
             // If the brand is not yet in the index, show a warning to add it
-            let msg = `Error: ${qid}: ${target.label} should probably be replaced by ${entity}, but this entry is not yet present in the index.`;
+            let msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+              colors.red(`  ${target.label} should probably be replaced by ${entity}, but this entry is not yet present in the index.`);
             if (dissolution.countries) {
-              msg += ' ';
-              msg += `This applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
+              msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
             }
             _errors.push(msg);
-            console.error(colors.red(msg));
+            console.error(msg);
             dissolution.upgrade.splice(index, 1);
+
           } else if (keys.length === 1) {
             dissolution.upgrade[index] = keys[0];
+
           } else if (keys.length > 1) {
-            let msg = `Error: ${qid}: ${target.label} should probably be replaced by ${entity}, but this applies to more than one entry in the index: ${JSON.stringify(keys)}.`;
+            let msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+              colors.red(`  ${target.label} should probably be replaced by ${entity}, but this applies to more than one entry in the index: ${JSON.stringify(keys)}.`);
             if (dissolution.countries) {
-              msg += ' ';
-              msg += `This applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
+              msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
             }
             _errors.push(msg);
             console.error(colors.red(msg));
@@ -285,7 +308,7 @@ function getClaimValue(entity, prop) {
     for (let j = 0; j < qualifiers.length; j++) {
       let q = qualifiers[j];
       if (q.snaktype !== 'value') continue;
-      let enddate = wdk.wikidataTimeToDateObject(q.datavalue.value.time);
+      let enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
       if (new Date() > enddate) {
         ended = true;
         break;
@@ -337,7 +360,7 @@ function finish() {
     }
   });
 
-  fs.writeFileSync('dist/dissolved.json', stringify(sort(dissolved)));
+  fs.writeFileSync('dist/dissolved.json', stringify(sort(dissolved), { maxLength: 100 }));
   console.timeEnd(colors.green('dissolved.json updated'));
 
 
@@ -391,7 +414,7 @@ function checkTwitterRateLimit(need) {
       }
     })
     .catch(e => {
-      console.error(colors.red(`Error: Twitter rate limit: ` + JSON.stringify(e)));
+      console.error(colors.blue(`Error: Twitter rate limit: ` + JSON.stringify(e)));
     });
 }
 
@@ -408,7 +431,8 @@ function fetchTwitterUserDetails(qid, username) {
       target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
     })
     .catch(e => {
-      let msg = `Error: Twitter username @${username} for ${qid}: ` + JSON.stringify(e);
+      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        colors.red(`  Twitter username @${username}: ${JSON.stringify(e)}`);
       _errors.push(msg);
       console.error(colors.red(msg));
     });
@@ -431,7 +455,8 @@ function fetchFacebookLogo(qid, username) {
       return true;
     })
     .catch(e => {
-      let msg = `Error: Facebook username @${username} for ${qid}: ` + e;
+      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        colors.red(`  Facebook username @${username}: ${e}`);
       _errors.push(msg);
       console.error(colors.red(msg));
     });
@@ -441,7 +466,7 @@ function fetchFacebookLogo(qid, username) {
 // replace the reference to a country with its ISO 3166-1 alpha-2 code which is present as a claim of the entity
 function fetchCountryCodes(qid, index, countries) {
   let target = _wikidata[qid];
-  let url = wdk.getEntities({
+  let url = wbk.getEntities({
     ids: countries,
     languages: ['en'],
     props: ['claims'],
@@ -457,11 +482,11 @@ function fetchCountryCodes(qid, index, countries) {
         let code = entities[entity].claims.P297;
         if (!code) {
           // the entity is likely not a country if no country code is present
-          let msg = `Error: ${qid}: the linked item ${entity} does not seem to be a country because there is no country code stored as a claim.`;
+          let msg = `Error: https://www.wikidata.org/wiki/${qid}\n\tThe linked item ${entity} does not seem to be a country because there is no country code stored as a claim.`;
           _errors.push(msg);
           console.error(colors.red(msg));
         }
-        countries[countries.indexOf(entity)] = wdk.simplify.propertyClaims(code)[0].toLowerCase();
+        countries[countries.indexOf(entity)] = wbk.simplify.propertyClaims(code)[0].toLowerCase();
         target.dissolutions[index].countries = countries;
       }
     });
