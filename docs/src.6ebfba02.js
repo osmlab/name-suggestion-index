@@ -19084,7 +19084,7 @@ var NAMES = "".concat(DIST, "/names_keep.json");
 var BRANDS = "".concat(DIST, "/brands.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.json"); // We can use iD's taginfo file to pick icons
 
-var TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/release/data/taginfo.json";
+var TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json";
 
 function App() {
   var _useState = (0, _react.useState)({}),
