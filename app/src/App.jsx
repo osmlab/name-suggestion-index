@@ -12,7 +12,7 @@ const BRANDS = `${DIST}/brands.json`;
 const WIKIDATA = `${DIST}/wikidata.json`;
 
 // We can use iD's taginfo file to pick icons
-const TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/release/data/taginfo.json";
+const TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json";
 
 
 export default function App() {
