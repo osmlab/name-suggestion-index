@@ -507,8 +507,10 @@ Tip: The browsable index at https://nsi.guide/ can show you where the Wikidata i
 
 #### Adding properties to Wikidata
 
-Social media accounts may be used to automatically fetch logos, what is used by iD
+Social media accounts may be used to automatically fetch logos, which are used by the iD Editor.
 <img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata.gif"/>
+
+Social media links are often displayed on the official web site of a brand, making them easy to find. When adding an entry for a social media account, it might be worth checking if that account has a "verified badge", and if it does, this can be added via the "add qualifier" option, using "has quality" along with "verified badge".
 
 #### Adding references to Wikidata
 

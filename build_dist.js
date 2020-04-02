@@ -5,7 +5,7 @@ const namesKeep = require('./dist/names_keep.json');
 const packageJSON = require('./package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
-const xmlbuilder = require('xmlbuilder');
+const xmlbuilder2 = require('xmlbuilder2');
 
 const fileTree = require('./lib/file_tree.js');
 const toParts = require('./lib/to_parts.js');
@@ -107,8 +107,8 @@ function buildJSON() {
 
 
 function buildXML() {
-  let presets = xmlbuilder
-    .create('presets', { version: '1.0', encoding: 'UTF-8' })
+  let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
+  let presets = root.ele('presets')
     .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
     .att('author', 'Name Suggestion Index')
     .att('shortdescription', 'Name Suggestion Index')
@@ -142,8 +142,8 @@ function buildXML() {
     }
   }
 
-  let xmlstring = presets.end({ pretty: true });
-  fs.writeFileSync('dist/name-suggestions.presets.xml', xmlstring);
+  fs.writeFileSync('dist/name-suggestions.presets.xml', root.end({ prettyPrint: true }));
+  fs.writeFileSync('dist/name-suggestions.presets.min.xml', root.end());
 }
 
 
