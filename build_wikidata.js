@@ -331,7 +331,7 @@ function finish() {
   let origWikidata;
   try {
     origWikidata = require('./dist/wikidata.json').wikidata;
-  } catch { 
+  } catch (err) { 
     origWikidata = {};
   }
 
