@@ -311,17 +311,17 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|Casino": {
-    "tags": {
-      "brand": "Casino",
-      "name": "Casino",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|Casino Shop": {
     "countryCodes": ["fr"],
+    "nomatch": [
+      "amenity/fuel|Casino",
+      "shop/convenience|Le Petit Casino",
+      "shop/supermarket|Casino",
+      "shop/supermarket|Géant Casino"
+    ],
     "tags": {
       "brand": "Casino Shop",
+      "brand:wikidata": "Q89029601",
       "name": "Casino Shop",
       "shop": "convenience"
     }
@@ -402,15 +402,39 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Co-op Food": {
+    "countryCodes": ["gb"],
+    "matchNames": [
+      "coop",
+      "cooperative food",
+      "the co-operative food",
+      "the cooperative"
+    ],
+    "nomatch": [
+      "amenity/fuel|Co-op~(Canada)",
+      "shop/convenience|Co-op~(Canada)",
+      "shop/convenience|Coop~(Schweiz)",
+      "shop/supermarket|Co-op Food",
+      "shop/supermarket|Co-op~(Canada)",
+      "shop/supermarket|Coop~(Schweiz)"
+    ],
+    "tags": {
+      "brand": "Co-op Food",
+      "brand:wikidata": "Q3277439",
+      "brand:wikipedia": "en:Co-op Food",
+      "name": "Co-op Food",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Co-op~(Canada)": {
     "countryCodes": ["ca"],
     "nomatch": [
       "amenity/fuel|Co-op~(Canada)",
+      "shop/convenience|Co-op Food",
       "shop/convenience|Coop~(Schweiz)",
-      "shop/convenience|The Co-operative Food~(UK)",
+      "shop/supermarket|Co-op Food",
       "shop/supermarket|Co-op~(Canada)",
-      "shop/supermarket|Coop~(Schweiz)",
-      "shop/supermarket|The Co-operative Food~(UK)"
+      "shop/supermarket|Coop~(Schweiz)"
     ],
     "tags": {
       "brand": "Federated Co-operatives",
@@ -424,7 +448,17 @@
     "countryCodes": ["fr"],
     "tags": {
       "brand": "CocciMarket",
+      "brand:wikidata": "Q90020480",
       "name": "CocciMarket",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|CocciMarket City": {
+    "countryCodes": ["fr"],
+    "tags": {
+      "brand": "CocciMarket City",
+      "brand:wikidata": "Q90020481",
+      "name": "CocciMarket City",
       "shop": "convenience"
     }
   },
@@ -443,8 +477,12 @@
     }
   },
   "shop/convenience|Conoco": {
+    "countryCodes": ["us"],
+    "nomatch": ["amenity/fuel|Conoco"],
     "tags": {
       "brand": "Conoco",
+      "brand:wikidata": "Q1126518",
+      "brand:wikipedia": "en:Conoco",
       "name": "Conoco",
       "shop": "convenience"
     }
@@ -475,10 +513,8 @@
     "nomatch": [
       "amenity/fuel|Co-op~(Canada)",
       "shop/convenience|Co-op~(Canada)",
-      "shop/convenience|The Co-operative Food~(UK)",
       "shop/supermarket|Co-op~(Canada)",
-      "shop/supermarket|Coop~(Schweiz)",
-      "shop/supermarket|The Co-operative Food~(UK)"
+      "shop/supermarket|Coop~(Schweiz)"
     ],
     "tags": {
       "brand": "Coop",
@@ -881,6 +917,7 @@
   },
   "shop/convenience|Kwik Shop": {
     "countryCodes": ["us"],
+    "nomatch": ["amenity/fuel|Kwik Shop"],
     "tags": {
       "brand": "Kwik Shop",
       "brand:wikidata": "Q6450417",
@@ -918,6 +955,22 @@
       "brand:wikidata": "Q1557223",
       "brand:wikipedia": "en:Lawson (store)",
       "name": "Lawson",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|Le Petit Casino": {
+    "countryCodes": ["fr"],
+    "matchNames": ["petit casino"],
+    "nomatch": [
+      "amenity/fuel|Casino",
+      "shop/convenience|Casino Shop",
+      "shop/supermarket|Casino",
+      "shop/supermarket|Géant Casino"
+    ],
+    "tags": {
+      "brand": "Le Petit Casino",
+      "brand:wikidata": "Q89029249",
+      "name": "Le Petit Casino",
       "shop": "convenience"
     }
   },
@@ -1178,6 +1231,17 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Milk-Agro": {
+    "countryCodes": ["sk"],
+    "matchNames": ["Milk Agro"],
+    "nomatch": ["shop/supermarket|Milk-Agro"],
+    "tags": {
+      "brand": "Milk-Agro",
+      "brand:wikidata": "Q64173785",
+      "name": "Milk-Agro",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Mini Mix": {
     "countryCodes": [
       "at",
@@ -1239,6 +1303,15 @@
       "brand:wikidata": "Q3088656",
       "brand:wikipedia": "en:Mobil",
       "name": "Mobil Mart",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|Monop'": {
+    "countryCodes": ["fr"],
+    "tags": {
+      "brand": "Monop'",
+      "brand:wikidata": "Q89913683",
+      "name": "Monop'",
       "shop": "convenience"
     }
   },
@@ -1392,15 +1465,6 @@
     "tags": {
       "brand": "Panier Sympa",
       "name": "Panier Sympa",
-      "shop": "convenience"
-    }
-  },
-  "shop/convenience|Petit Casino": {
-    "countryCodes": ["fr"],
-    "matchTags": ["shop/supermarket"],
-    "tags": {
-      "brand": "Petit Casino",
-      "name": "Petit Casino",
       "shop": "convenience"
     }
   },
@@ -1826,30 +1890,6 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|The Co-operative Food~(UK)": {
-    "countryCodes": ["gb"],
-    "matchNames": [
-      "coop",
-      "coop food",
-      "cooperative food",
-      "the cooperative"
-    ],
-    "nomatch": [
-      "amenity/fuel|Co-op~(Canada)",
-      "shop/convenience|Co-op~(Canada)",
-      "shop/convenience|Coop~(Schweiz)",
-      "shop/supermarket|Co-op~(Canada)",
-      "shop/supermarket|Coop~(Schweiz)",
-      "shop/supermarket|The Co-operative Food~(UK)"
-    ],
-    "tags": {
-      "brand": "The Co-operative Food",
-      "brand:wikidata": "Q3277439",
-      "brand:wikipedia": "en:Co-op Food",
-      "name": "The Co-operative Food",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|Thorntons": {
     "countryCodes": ["us"],
     "nomatch": [
@@ -2017,6 +2057,13 @@
       "brand:wikidata": "Q7937525",
       "brand:wikipedia": "en:Vival (shop)",
       "name": "Vival",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|Votre Marché": {
+    "tags": {
+      "brand": "Votre Marché",
+      "name": "Votre Marché",
       "shop": "convenience"
     }
   },
@@ -2440,6 +2487,13 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Фермер": {
+    "tags": {
+      "brand": "Фермер",
+      "name": "Фермер",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Ярче": {
     "countryCodes": ["ru"],
     "tags": {
@@ -2479,7 +2533,6 @@
   },
   "shop/convenience|コミュニティ・ストア": {
     "countryCodes": ["jp"],
-    "matchNames": ["コミュニティストア"],
     "tags": {
       "brand": "コミュニティ・ストア",
       "brand:en": "Community Store",
@@ -2583,6 +2636,7 @@
   },
   "shop/convenience|デイリーヤマザキ": {
     "countryCodes": ["jp"],
+    "matchNames": ["デイリーストア"],
     "tags": {
       "brand": "デイリーヤマザキ",
       "brand:en": "Daily Yamazaki",
@@ -2611,6 +2665,7 @@
   },
   "shop/convenience|ファミリーマート": {
     "countryCodes": ["jp"],
+    "matchNames": ["ファミマ"],
     "tags": {
       "brand": "ファミリーマート",
       "brand:en": "FamilyMart",

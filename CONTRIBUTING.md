@@ -121,38 +121,41 @@ There may also be entries for McDonald's in other languages!
 
 ##### `matchNames`/`matchTags`
 
-Sometimes a single brand will have different tags in OpenStreetMap.
+Brands are often tagged inconsistently in OpenStreetMap.  For example, some mappers write "International House of Pancakes" and others write "IHOP".
 
-For example, we prefer "Bed Bath & Beyond" to be tagged as `shop/houseware`.
-However we also need to recognize:
-- less-preferred name spellings like "Bed Bath and Beyond"
-- less-preferred tag pairs like `shop/department_store`
+This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate entries out of the index and is used in the iD editor to help suggest tag improvements. 
 
-Rather than adding every possible alternative to the index, we can use
-`matchNames` and `matchTags` properties to ignore less-preferred alternatives.
+`matchNames` and `matchTags` properties can be used to list the less-preferred alternatives.
 
 ```js
-  "shop/houseware|Bed Bath & Beyond": {
-    "matchNames": ["bed bath and beyond"],     // also match these alternate spellings
-    "matchTags": ["shop/department_store"],    // also match these alternate taggings
+  "amenity/fast_food|Honey Baked Ham": {          // match this tag and name
+    "countryCodes": ["us"],
+    "matchNames": ["honey baked ham company"],    // also match these names
+    "matchTags": ["shop/butcher", "shop/deli"],   // also match these tags
     "tags": {
-      "brand": "Bed Bath & Beyond",
-      "brand:wikidata": "Q813782",
-      "brand:wikipedia": "en:Bed Bath & Beyond",
-      "name": "Bed Bath & Beyond",
-      "shop": "houseware"
+      "alt_name": "HoneyBaked Ham",
+      "amenity": "fast_food",
+      "brand": "Honey Baked Ham",
+      "brand:wikidata": "Q5893363",
+      "brand:wikipedia": "en:The Honey Baked Ham Company",
+      "cuisine": "american",
+      "name": "Honey Baked Ham",
+      "official_name": "The Honey Baked Ham Company"
     }
   },
 ```
 
-The matching code also has some useful automatic behaviors:
+:point_right: The matcher code also has some useful automatic behaviors...
 
-- Names are always matched case insensitive, with spaces and punctuation removed.
-You do not need to add `matchNames` properties for simple name variations.
+You don't need to add `matchNames` for:
+- Name variations in capitalization, punctuation, spacing (the middots common in Japanese names count as punctuation, so "V・ドラッグ" already matches "vドラッグ")
+- Name variations that already appear in the `name`, `alt_name`, `short_name`, `official_name` tags
+- Name variations in diacritic marks (e.g. "Häagen-Dazs" already matches "Haagen-Dazs")
+- Name variations in `&` vs. `and`
 
-- Some tags are assigned to _match groups_ (defined in `config/match_groups.json`).
-You don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
-and vice versa. Tags in a match group will match any other tags in the same match group.
+You don't need to add `matchTags` for:
+- Tags assigned to _match groups_ (defined in `config/match_groups.json`). For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
+and vice versa. _Tags in a match group will automatically match any other tags in the same match group._
 
 
 ##### `nomatch`

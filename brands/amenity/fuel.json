@@ -573,9 +573,17 @@
     }
   },
   "amenity/fuel|Casino": {
+    "countryCodes": ["fr"],
+    "nomatch": [
+      "shop/convenience|Casino Shop",
+      "shop/convenience|Le Petit Casino",
+      "shop/supermarket|Casino",
+      "shop/supermarket|Géant Casino"
+    ],
     "tags": {
       "amenity": "fuel",
       "brand": "Casino",
+      "brand:wikidata": "Q89029184",
       "name": "Casino"
     }
   },
@@ -701,6 +709,7 @@
   },
   "amenity/fuel|Conoco": {
     "countryCodes": ["us"],
+    "nomatch": ["shop/convenience|Conoco"],
     "tags": {
       "amenity": "fuel",
       "brand": "Conoco",
@@ -1500,6 +1509,17 @@
       "amenity": "fuel",
       "brand": "Kwik Fill",
       "name": "Kwik Fill"
+    }
+  },
+  "amenity/fuel|Kwik Shop": {
+    "countryCodes": ["us"],
+    "nomatch": ["shop/convenience|Kwik Shop"],
+    "tags": {
+      "amenity": "fuel",
+      "brand": "Kwik Shop",
+      "brand:wikidata": "Q6450417",
+      "brand:wikipedia": "en:Kwik Shop",
+      "name": "Kwik Shop"
     }
   },
   "amenity/fuel|Kwik Trip": {
@@ -3649,7 +3669,6 @@
   },
   "amenity/fuel|コスモ": {
     "countryCodes": ["jp"],
-    "matchNames": ["cosmo", "コスモ石油"],
     "nomatch": ["amenity/restaurant|Cosmo"],
     "tags": {
       "amenity": "fuel",

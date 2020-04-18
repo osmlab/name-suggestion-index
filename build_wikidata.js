@@ -11,6 +11,7 @@ const wbk = require('wikibase-sdk')({
 });
 
 
+
 // If you want to fetch Twitter logos, sign up for
 // API credentials at https://apps.twitter.com/
 // and put them into `config/secrets.json`
@@ -298,17 +299,17 @@ function getClaimValue(entity, prop) {
 
   let value;
   for (let i = 0; i < entity.claims[prop].length; i++) {
-    let c = entity.claims[prop][i];
+    const c = entity.claims[prop][i];
     if (c.rank === 'deprecated') continue;
     if (c.mainsnak.snaktype !== 'value') continue;
 
     // skip if we find an end time qualifier - P582
     let ended = false;
-    let qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
+    const qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
     for (let j = 0; j < qualifiers.length; j++) {
-      let q = qualifiers[j];
+      const q = qualifiers[j];
       if (q.snaktype !== 'value') continue;
-      let enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
+      const enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
       if (new Date() > enddate) {
         ended = true;
         break;
@@ -327,9 +328,30 @@ function finish() {
   console.log('\nwriting wikidata.json');
   console.time(colors.green('wikidata.json updated'));
 
+  let origWikidata;
+  try {
+    origWikidata = require('./dist/wikidata.json').wikidata;
+  } catch (err) { 
+    origWikidata = {};
+  }
+
+
   Object.keys(_wikidata).forEach(qid => {
     let target = _wikidata[qid];
 
+    // if we haven't been able to access the Twitter API, don't overwrite the Twitter data - #3569
+    if (!twitterAPIs.length) {
+      const origTarget = origWikidata[qid];
+      ['identities', 'logos'].forEach(prop => {
+        const origTwitter = origTarget && origTarget[prop] && origTarget[prop].twitter;
+        if (origTwitter) {
+          target[prop] = target[prop] || {};
+          target[prop].twitter = origTwitter;
+        }
+      });
+    }
+
+    // sort the properties that we are keeping..
     ['identities', 'logos', 'dissolutions'].forEach(prop => {
       if (target[prop] && Object.keys(target[prop]).length) {
         if (target[prop].constructor.name === 'Object') {
@@ -387,18 +409,18 @@ function getKeysByQid(qid) {
 // rate limit: 900calls / 15min
 function checkTwitterRateLimit(need) {
   _twitterAPIIndex = (_twitterAPIIndex + 1) % twitterAPIs.length;
-  let twitterAPI = twitterAPIs[_twitterAPIIndex];
-  let which = twitterAPIs.length > 1 ? (' ' + (_twitterAPIIndex + 1)) : '';
+  const twitterAPI = twitterAPIs[_twitterAPIIndex];
+  const which = twitterAPIs.length > 1 ? (' ' + (_twitterAPIIndex + 1)) : '';
 
   return twitterAPI
     .get('application/rate_limit_status', { resources: 'users' })
     .then(result => {
-      let now = Date.now() / 1000;
-      let stats = result.resources.users['/users/show/:id'];
-      let resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
+      const now = Date.now() / 1000;
+      const stats = result.resources.users['/users/show/:id'];
+      const resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
       console.log(colors.green.bold(`Twitter rate status${which}: need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
       if (need > stats.remaining) {
-        let delaySec = clamp(resetSec, 10, 60);
+        const delaySec = clamp(resetSec, 10, 60);
         console.log(colors.blue(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
         return delaySec;
       } else {
@@ -422,8 +444,8 @@ function checkTwitterRateLimit(need) {
 // https://developer.twitter.com/en/docs/accounts-and-users/user-profile-images-and-banners.html
 // https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
 function fetchTwitterUserDetails(qid, username) {
-  let target = _wikidata[qid];
-  let twitterAPI = twitterAPIs[_twitterAPIIndex];
+  const target = _wikidata[qid];
+  const twitterAPI = twitterAPIs[_twitterAPIIndex];
 
   return twitterAPI
     .get('users/show', { screen_name: username })
