@@ -311,17 +311,17 @@
       "shop": "convenience"
     }
   },
-  "shop/convenience|Casino": {
-    "tags": {
-      "brand": "Casino",
-      "name": "Casino",
-      "shop": "convenience"
-    }
-  },
   "shop/convenience|Casino Shop": {
     "countryCodes": ["fr"],
+    "nomatch": [
+      "amenity/fuel|Casino",
+      "shop/convenience|Le Petit Casino",
+      "shop/supermarket|Casino",
+      "shop/supermarket|Géant Casino"
+    ],
     "tags": {
       "brand": "Casino Shop",
+      "brand:wikidata": "Q89029601",
       "name": "Casino Shop",
       "shop": "convenience"
     }
@@ -477,8 +477,12 @@
     }
   },
   "shop/convenience|Conoco": {
+    "countryCodes": ["us"],
+    "nomatch": ["amenity/fuel|Conoco"],
     "tags": {
       "brand": "Conoco",
+      "brand:wikidata": "Q1126518",
+      "brand:wikipedia": "en:Conoco",
       "name": "Conoco",
       "shop": "convenience"
     }
@@ -954,6 +958,22 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Le Petit Casino": {
+    "countryCodes": ["fr"],
+    "matchNames": ["petit casino"],
+    "nomatch": [
+      "amenity/fuel|Casino",
+      "shop/convenience|Casino Shop",
+      "shop/supermarket|Casino",
+      "shop/supermarket|Géant Casino"
+    ],
+    "tags": {
+      "brand": "Le Petit Casino",
+      "brand:wikidata": "Q89029249",
+      "name": "Le Petit Casino",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Lewiatan": {
     "countryCodes": ["pl"],
     "nomatch": ["shop/supermarket|Lewiatan"],
@@ -1211,6 +1231,16 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Milk-Agro": {
+    "countryCodes": ["sk"],
+    "nomatch": ["shop/supermarket|Milk-Agro"],
+    "tags": {
+      "brand": "Milk-Agro",
+      "brand:wikidata": "Q64173785",
+      "name": "Milk-Agro",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Mini Mix": {
     "countryCodes": [
       "at",
@@ -1272,6 +1302,15 @@
       "brand:wikidata": "Q3088656",
       "brand:wikipedia": "en:Mobil",
       "name": "Mobil Mart",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|Monop'": {
+    "countryCodes": ["fr"],
+    "tags": {
+      "brand": "Monop'",
+      "brand:wikidata": "Q89913683",
+      "name": "Monop'",
       "shop": "convenience"
     }
   },
@@ -1425,15 +1464,6 @@
     "tags": {
       "brand": "Panier Sympa",
       "name": "Panier Sympa",
-      "shop": "convenience"
-    }
-  },
-  "shop/convenience|Petit Casino": {
-    "countryCodes": ["fr"],
-    "matchTags": ["shop/supermarket"],
-    "tags": {
-      "brand": "Petit Casino",
-      "name": "Petit Casino",
       "shop": "convenience"
     }
   },
@@ -2029,6 +2059,13 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Votre Marché": {
+    "tags": {
+      "brand": "Votre Marché",
+      "name": "Votre Marché",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Waitrose": {
     "countryCodes": ["gb", "je"],
     "nomatch": [
@@ -2449,6 +2486,13 @@
       "shop": "convenience"
     }
   },
+  "shop/convenience|Фермер": {
+    "tags": {
+      "brand": "Фермер",
+      "name": "Фермер",
+      "shop": "convenience"
+    }
+  },
   "shop/convenience|Ярче": {
     "countryCodes": ["ru"],
     "tags": {
@@ -2591,6 +2635,7 @@
   },
   "shop/convenience|デイリーヤマザキ": {
     "countryCodes": ["jp"],
+    "matchNames": ["デイリーストア"],
     "tags": {
       "brand": "デイリーヤマザキ",
       "brand:en": "Daily Yamazaki",
