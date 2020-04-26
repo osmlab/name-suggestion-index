@@ -45,7 +45,7 @@ export default function CategoryRow(props) {
       </h3>
       <div className="nsikey"><pre>'{kvnd}'</pre></div>
       <div className="countries">{ countries(entry.countryCodes) }</div>
-      <div className="viewlink">{ overpassLink(k, v, tags.name) }</div>
+      <div className="viewlink">{ overpassLink(k, v, tags.name, tags['brand:wikidata']) }</div>
     </td>
     <td className="count">{count}</td>
     <td className="tags"><pre className="tags" dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -85,15 +85,32 @@ export default function CategoryRow(props) {
   }
 
 
-  function overpassLink(k, v, n) {
-    const q = encodeURIComponent(`[out:json][timeout:60];
-(nwr["${k}"="${v}"]["name"="${n}"];);
+  function overpassLink(k, v, n, w) {
+    // Build Overpass Turbo link:
+    const q = encodeURIComponent(`[out:json][timeout:100];
+(nwr["name"="${n}"];);
+{{style:
+node[name=${n}],
+way[name=${n}],
+relation[name=${n}]
+{ color:red; fill-color:red; }
+node[${k}=${v}][name=${n}],
+way[${k}=${v}][name=${n}],
+relation[${k}=${v}][name=${n}]
+{ color:yellow; fill-color:yellow; }
+node[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
+way[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
+relation[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}]
+{ color:green; fill-color:green; }
+}}
 out body;
 >;
 out skel qt;`);
+    
+    // Create Overpass Turbo link:
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
     return (
-      <a target="_blank" href={href}>View on Overpass Turbo</a>
+      <a target="_blank" href={href} title="View ${n} via Overpass Turbo">View ${n} via Overpass Turbo</a>
     );
   }
 
