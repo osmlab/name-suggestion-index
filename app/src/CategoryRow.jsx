@@ -89,6 +89,10 @@ export default function CategoryRow(props) {
     // Build Overpass Turbo link:
     const q = encodeURIComponent(`[out:json][timeout:100];
 (nwr["name"="${n}"];);
+out body;
+>;
+out skel qt;
+
 {{style:
 node[name=${n}],
 way[name=${n}],
@@ -102,10 +106,7 @@ node[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
 way[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
 relation[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}]
 { color:green; fill-color:green; }
-}}
-out body;
->;
-out skel qt;`);
+}}`);
     
     // Create Overpass Turbo link:
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
