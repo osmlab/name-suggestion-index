@@ -445,10 +445,22 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|BonArea": {
+    "countryCodes": ["es"],
+    "tags": {
+      "brand": "Bon Area",
+      "brand:wikidata": "Q11924743",
+      "brand:wikipedia": "ca:Grup Alimentari Guissona",
+      "name": "Bon Area",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Bonpreu": {
     "countryCodes": ["es"],
     "tags": {
       "brand": "Bonpreu",
+      "brand:wikidata": "Q11924747",
+      "brand:wikipedia": "ca:Grup Bon Preu",
       "name": "Bonpreu",
       "shop": "supermarket"
     }
@@ -667,8 +679,16 @@
     }
   },
   "shop/supermarket|Casino": {
+    "countryCodes": ["fr"],
+    "nomatch": [
+      "amenity/fuel|Casino",
+      "shop/convenience|Casino Shop",
+      "shop/convenience|Le Petit Casino",
+      "shop/supermarket|Géant Casino"
+    ],
     "tags": {
       "brand": "Casino",
+      "brand:wikidata": "Q89029184",
       "name": "Casino",
       "shop": "supermarket"
     }
@@ -737,21 +757,63 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Co-op Food": {
+    "countryCodes": ["gb"],
+    "matchNames": [
+      "coop",
+      "cooperative food",
+      "the co-operative food",
+      "the cooperative"
+    ],
+    "nomatch": [
+      "amenity/fuel|Co-op~(Canada)",
+      "shop/convenience|Co-op Food",
+      "shop/convenience|Co-op~(Canada)",
+      "shop/convenience|Coop~(Schweiz)",
+      "shop/supermarket|Co-op~(Canada)",
+      "shop/supermarket|Coop~(Schweiz)"
+    ],
+    "tags": {
+      "brand": "Co-op Food",
+      "brand:wikidata": "Q3277439",
+      "brand:wikipedia": "en:Co-op Food",
+      "name": "Co-op Food",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Co-op~(Canada)": {
     "countryCodes": ["ca"],
     "nomatch": [
       "amenity/fuel|Co-op~(Canada)",
+      "shop/convenience|Co-op Food",
       "shop/convenience|Co-op~(Canada)",
       "shop/convenience|Coop~(Schweiz)",
-      "shop/convenience|The Co-operative Food~(UK)",
-      "shop/supermarket|Coop~(Schweiz)",
-      "shop/supermarket|The Co-operative Food~(UK)"
+      "shop/supermarket|Co-op Food",
+      "shop/supermarket|Coop~(Schweiz)"
     ],
     "tags": {
       "brand": "Federated Co-operatives",
       "brand:wikidata": "Q5440676",
       "brand:wikipedia": "en:Federated Co-operatives",
       "name": "Co-op",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Coccinelle Express": {
+    "countryCodes": ["fr"],
+    "tags": {
+      "brand": "Coccinelle Express",
+      "brand:wikidata": "Q90020479",
+      "name": "Coccinelle Express",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Coccinelle Supermarché": {
+    "countryCodes": ["fr"],
+    "tags": {
+      "brand": "Coccinelle Supermarché",
+      "brand:wikidata": "Q90020459",
+      "name": "Coccinelle Supermarché",
       "shop": "supermarket"
     }
   },
@@ -855,6 +917,16 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Coop Eesti": {
+    "countryCodes": ["ee"],
+    "tags": {
+      "brand": "Coop Eesti",
+      "brand:wikidata": "Q12361460",
+      "brand:wikipedia": "ee:Coop Eesti",
+      "name": "Coop",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Coop Konsum": {
     "countryCodes": ["se"],
     "tags": {
@@ -873,15 +945,22 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Cooperativa Obrera": {
+    "tags": {
+      "brand": "Cooperativa Obrera",
+      "name": "Cooperativa Obrera",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Coop~(Schweiz)": {
     "countryCodes": ["ch"],
     "nomatch": [
       "amenity/fuel|Co-op~(Canada)",
+      "shop/convenience|Co-op Food",
       "shop/convenience|Co-op~(Canada)",
       "shop/convenience|Coop~(Schweiz)",
-      "shop/convenience|The Co-operative Food~(UK)",
-      "shop/supermarket|Co-op~(Canada)",
-      "shop/supermarket|The Co-operative Food~(UK)"
+      "shop/supermarket|Co-op Food",
+      "shop/supermarket|Co-op~(Canada)"
     ],
     "tags": {
       "brand": "Coop",
@@ -961,6 +1040,16 @@
       "brand:wikidata": "Q5191916",
       "brand:wikipedia": "en:Cub Foods",
       "name": "Cub Foods",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Côté Nature": {
+    "countryCodes": ["fr"],
+    "tags": {
+      "brand": "Côté Nature",
+      "brand:wikidata": "Q90016283",
+      "name": "Côté Nature",
+      "organic": "only",
       "shop": "supermarket"
     }
   },
@@ -1732,10 +1821,15 @@
   },
   "shop/supermarket|Géant Casino": {
     "countryCodes": ["cg", "fr"],
+    "nomatch": [
+      "amenity/fuel|Casino",
+      "shop/convenience|Casino Shop",
+      "shop/convenience|Le Petit Casino",
+      "shop/supermarket|Casino"
+    ],
     "tags": {
       "brand": "Géant Casino",
       "brand:wikidata": "Q1380537",
-      "brand:wikipedia": "fr:Enseignes du groupe Casino",
       "name": "Géant Casino",
       "shop": "supermarket"
     }
@@ -1943,7 +2037,6 @@
   },
   "shop/supermarket|ICA Maxi": {
     "countryCodes": ["no", "se"],
-    "matchNames": ["maxi"],
     "nomatch": [
       "shop/supermarket|ICA",
       "shop/supermarket|ICA Kvantum"
@@ -2284,6 +2377,16 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|La Sirena": {
+    "countryCodes": ["es"],
+    "tags": {
+      "brand": "La Sirena",
+      "brand:wikidata": "Q21034458",
+      "brand:wikipedia": "ca:La Sirena",
+      "name": "La Sirena",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|La Vie Claire": {
     "countryCodes": ["fr"],
     "nomatch": ["shop/convenience|La Vie Claire"],
@@ -2512,6 +2615,31 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|MEGAドン・キホーテ": {
+    "countryCodes": ["jp"],
+    "matchNames": ["メガ・ドン・キホーテ"],
+    "matchTags": [
+      "amenity/general",
+      "amenity/retail",
+      "amenity/variety_store"
+    ],
+    "nomatch": ["amenity/variety_store|ドン・キホーテ"],
+    "tags": {
+      "brand": "ドン・キホーテ",
+      "brand:en": "Don Quijote",
+      "brand:ja": "ドン・キホーテ",
+      "brand:wikidata": "Q1185381",
+      "brand:wikipedia": "ja:ドン・キホーテ (企業)",
+      "name": "MEGAドン・キホーテ",
+      "name:en": "MEGA Don Quijote",
+      "name:ja": "MEGAドン・キホーテ",
+      "opening_hours": "24/7",
+      "shop": "supermarket",
+      "short_name": "MEGAドンキ",
+      "short_name:en": "MegaDonki",
+      "short_name:ja": "MEGAドンキ"
+    }
+  },
   "shop/supermarket|MPREIS": {
     "countryCodes": ["at", "it"],
     "tags": {
@@ -2595,16 +2723,6 @@
       "brand:wikidata": "Q513977",
       "brand:wikipedia": "en:Match (supermarket)",
       "name": "Match",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Maxi": {
-    "countryCodes": ["ca"],
-    "tags": {
-      "brand": "Maxi",
-      "brand:wikidata": "Q3302441",
-      "brand:wikipedia": "fr:Maxi (supermarché)",
-      "name": "Maxi",
       "shop": "supermarket"
     }
   },
@@ -2852,6 +2970,16 @@
       "brand:wikidata": "Q48844636",
       "brand:wikipedia": "pl:Mila (sieć sklepów)",
       "name": "Mila",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Milk-Agro": {
+    "countryCodes": ["sk"],
+    "nomatch": ["shop/convenience|Milk-Agro"],
+    "tags": {
+      "brand": "Milk-Agro",
+      "brand:wikidata": "Q64173785",
+      "name": "Milk-Agro",
       "shop": "supermarket"
     }
   },
@@ -3112,6 +3240,7 @@
   },
   "shop/supermarket|Okay": {
     "countryCodes": ["be"],
+    "nomatch": ["shop/electronics|Okay"],
     "tags": {
       "brand": "Okay",
       "brand:wikidata": "Q2159701",
@@ -3539,8 +3668,8 @@
     "countryCodes": ["ee", "lt", "lv"],
     "tags": {
       "brand": "Rimi",
-      "brand:wikidata": "Q7334456",
-      "brand:wikipedia": "en:Rimi (Norway)",
+      "brand:wikidata": "Q3741108",
+      "brand:wikipedia": "en:Rimi Baltic",
       "name": "Rimi",
       "shop": "supermarket"
     }
@@ -3616,6 +3745,16 @@
       "brand:wikidata": "Q7431920",
       "brand:wikipedia": "en:Schnucks",
       "name": "Schnucks",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Selver": {
+    "countryCodes": ["ee"],
+    "tags": {
+      "brand": "Selver",
+      "brand:wikidata": "Q3771177",
+      "brand:wikipedia": "en:Selver",
+      "name": "Selver",
       "shop": "supermarket"
     }
   },
@@ -3736,6 +3875,16 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Smatch": {
+    "countryCodes": ["be", "lu"],
+    "tags": {
+      "brand": "Smatch",
+      "brand:wikidata": "Q5185959",
+      "brand:wikipedia": "fr:Smatch",
+      "name": "Smatch",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|Smith's": {
     "countryCodes": ["ca", "us"],
     "nomatch": ["amenity/fuel|Smith's"],
@@ -3764,6 +3913,16 @@
       "brand:wikidata": "Q735562",
       "brand:wikipedia": "en:Soriana",
       "name": "Soriana",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Sorli Discau": {
+    "countryCodes": ["es"],
+    "tags": {
+      "brand": "Sorli Discau",
+      "brand:wikidata": "Q21034458",
+      "brand:wikipedia": "ca:Sorli",
+      "name": "Sorli Discau",
       "shop": "supermarket"
     }
   },
@@ -3913,6 +4072,15 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|Super del Norte": {
+    "countryCodes": ["mx"],
+    "tags": {
+      "brand": "Super del Norte",
+      "brand:wikidata": "Q88388513",
+      "name": "Super del Norte",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|SuperBrugsen": {
     "countryCodes": ["dk"],
     "tags": {
@@ -3930,6 +4098,16 @@
       "brand:wikidata": "Q7642081",
       "brand:wikipedia": "en:SuperValu (Ireland)",
       "name": "SuperValu",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|SuperVerd": {
+    "countryCodes": ["es"],
+    "tags": {
+      "brand": "Superverd",
+      "brand:wikidata": "Q11950546",
+      "brand:wikipedia": "ca:Superverd",
+      "name": "Superverd",
       "shop": "supermarket"
     }
   },
@@ -4065,30 +4243,6 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|The Co-operative Food~(UK)": {
-    "countryCodes": ["gb"],
-    "matchNames": [
-      "coop",
-      "coop food",
-      "cooperative food",
-      "the cooperative"
-    ],
-    "nomatch": [
-      "amenity/fuel|Co-op~(Canada)",
-      "shop/convenience|Co-op~(Canada)",
-      "shop/convenience|Coop~(Schweiz)",
-      "shop/convenience|The Co-operative Food~(UK)",
-      "shop/supermarket|Co-op~(Canada)",
-      "shop/supermarket|Coop~(Schweiz)"
-    ],
-    "tags": {
-      "brand": "The Co-operative Food",
-      "brand:wikidata": "Q3277439",
-      "brand:wikipedia": "en:Co-op Food",
-      "name": "The Co-operative Food",
-      "shop": "supermarket"
-    }
-  },
   "shop/supermarket|The Food Warehouse": {
     "countryCodes": ["gb"],
     "tags": {
@@ -4097,7 +4251,7 @@
       "name": "The Food Warehouse",
       "shop": "supermarket"
     }
-  },  
+  },
   "shop/supermarket|The Fresh Market": {
     "countryCodes": ["us"],
     "matchNames": ["fresh market"],
@@ -5217,6 +5371,20 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|ゆめタウン": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "ゆめタウン",
+      "brand:en": "YouMe Town",
+      "brand:ja": "ゆめタウン",
+      "brand:wikidata": "Q11280900",
+      "brand:wikipedia": "ja:ゆめタウン",
+      "name": "ゆめタウン",
+      "name:en": "YouMe Town",
+      "name:ja": "ゆめタウン",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|アコレ": {
     "countryCodes": ["jp"],
     "tags": {
@@ -5232,6 +5400,19 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|アピタ": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "アピタ",
+      "brand:en": "APITA",
+      "brand:ja": "アピタ",
+      "brand:wikidata": "Q55384637",
+      "name": "アピタ",
+      "name:en": "APITA",
+      "name:ja": "アピタ",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|イオン": {
     "countryCodes": ["jp"],
     "tags": {
@@ -5243,6 +5424,20 @@
       "name": "イオン",
       "name:en": "AEON",
       "name:ja": "イオン",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|イオンマーケット": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "イオンマーケット",
+      "brand:en": "Aeon Market",
+      "brand:ja": "イオンマーケット",
+      "brand:wikidata": "Q11331715",
+      "brand:wikipedia": "ja:イオンマーケット",
+      "name": "イオンマーケット",
+      "name:en": "Aeon Market",
+      "name:ja": "イオンマーケット",
       "shop": "supermarket"
     }
   },
@@ -5276,6 +5471,36 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|エコス": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "エコス",
+      "brand:en": "Ecos",
+      "brand:ja": "エコス",
+      "brand:wikidata": "Q11289886",
+      "brand:wikipedia": "ja:エコス",
+      "name": "エコス",
+      "name:en": "Ecos",
+      "name:ja": "エコス",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|エーコープ": {
+    "countryCodes": ["jp"],
+    "matchNames": ["aコープ"],
+    "tags": {
+      "brand": "エーコープ",
+      "brand:en": "A-COOP",
+      "brand:ja": "エーコープ",
+      "brand:wikidata": "Q11291524",
+      "brand:wikipedia": "ja:エーコープ",
+      "name": "エーコープ",
+      "name:en": "A-COOP",
+      "name:ja": "エーコープ",
+      "organic": "only",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|オリンピック": {
     "countryCodes": ["jp"],
     "tags": {
@@ -5290,6 +5515,35 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|オークワ": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "オークワ",
+      "brand:en": "Okuwa",
+      "brand:ja": "オークワ",
+      "brand:wikidata": "Q11293166",
+      "brand:wikipedia": "ja:オークワ",
+      "name": "オークワ",
+      "name:en": "Okuwa",
+      "name:ja": "オークワ",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|オーケーストア": {
+    "countryCodes": ["jp"],
+    "matchNames": ["オーケー, okストア"],
+    "tags": {
+      "brand": "オーケー",
+      "brand:en": "OK",
+      "brand:ja": "オーケー",
+      "brand:wikidata": "Q11293184",
+      "brand:wikipedia": "ja:オーケー",
+      "name": "オーケーストア",
+      "name:en": "OK Store",
+      "name:ja": "オーケーストア",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|カスミ": {
     "countryCodes": ["jp"],
     "tags": {
@@ -5301,6 +5555,20 @@
       "name": "カスミ",
       "name:en": "Kasumi",
       "name:ja": "カスミ",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|キョーエイ": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "キョーエイ",
+      "brand:en": "Kyoei",
+      "brand:ja": "キョーエイ",
+      "brand:wikidata": "Q11297581",
+      "brand:wikipedia": "ja:キョーエイ",
+      "name": "キョーエイ",
+      "name:en": "Kyoei",
+      "name:ja": "キョーエイ",
       "shop": "supermarket"
     }
   },
@@ -5407,6 +5675,47 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|ピアゴ": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "ピアゴ",
+      "brand:en": "PIAGO",
+      "brand:ja": "ピアゴ",
+      "brand:wikidata": "Q91014434",
+      "name": "ピアゴ",
+      "name:en": "PIAGO",
+      "name:ja": "ピアゴ",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|フジ": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "フジ",
+      "brand:en": "Fuji",
+      "brand:ja": "フジ",
+      "brand:wikidata": "Q8963035",
+      "brand:wikipedia": "ja:フジ (チェーンストア)",
+      "name": "フジ",
+      "name:en": "Fuji",
+      "name:ja": "フジ",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|フジグラン": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "フジ",
+      "brand:en": "Fuji",
+      "brand:ja": "フジ",
+      "brand:wikidata": "Q8963035",
+      "brand:wikipedia": "ja:フジ (チェーンストア)",
+      "name": "フジグラン",
+      "name:en": "Fuji GRAND",
+      "name:ja": "フジグラン",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|ベイシア": {
     "countryCodes": ["jp"],
     "tags": {
@@ -5435,6 +5744,20 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|マミーマート": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "マミーマート",
+      "brand:en": "Mammy Mart",
+      "brand:ja": "マミーマート",
+      "brand:wikidata": "Q11340902",
+      "brand:wikipedia": "ja:マミーマート",
+      "name": "マミーマート",
+      "name:en": "Mammy Mart",
+      "name:ja": "マミーマート",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|マルエツ": {
     "countryCodes": ["jp"],
     "tags": {
@@ -5449,6 +5772,20 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|マルナカ": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "マルナカ",
+      "brand:en": "Marunaka",
+      "brand:ja": "マルナカ",
+      "brand:wikidata": "Q11341399",
+      "brand:wikipedia": "ja:マルナカ (チェーンストア)",
+      "name": "マルナカ",
+      "name:en": "Marunaka",
+      "name:ja": "マルナカ",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|ヤオコー": {
     "countryCodes": ["jp"],
     "tags": {
@@ -5460,6 +5797,20 @@
       "name": "ヤオコー",
       "name:en": "Yaoko",
       "name:ja": "ヤオコー",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|ヤマナカ": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "ヤマナカ",
+      "brand:en": "Yamanaka",
+      "brand:ja": "ヤマナカ",
+      "brand:wikidata": "Q11345199",
+      "brand:wikipedia": "ja:ヤマナカ",
+      "name": "ヤマナカ",
+      "name:en": "Yamanaka",
+      "name:ja": "ヤマナカ",
       "shop": "supermarket"
     }
   },
@@ -5566,6 +5917,20 @@
       "shop": "supermarket"
     }
   },
+  "shop/supermarket|成城石井": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "brand": "成城石井",
+      "brand:en": "Seijo Ishii",
+      "brand:ja": "成城石井",
+      "brand:wikidata": "Q11495410",
+      "brand:wikipedia": "ja:成城石井",
+      "name": "成城石井",
+      "name:en": "Seijo Ishii",
+      "name:ja": "成城石井",
+      "shop": "supermarket"
+    }
+  },
   "shop/supermarket|東急ストア": {
     "countryCodes": ["jp"],
     "tags": {
@@ -5617,6 +5982,22 @@
       "brand:wikipedia": "wuu:沃尔玛",
       "name": "沃尔玛",
       "name:en": "Walmart",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|相鉄ローゼン": {
+    "countryCodes": ["jp"],
+    "matchNames": ["そうてつローゼン"],
+    "tags": {
+      "alt_name": "そうてつローゼン",
+      "brand": "相鉄ローゼン",
+      "brand:en": "Sotetsu Rosen",
+      "brand:ja": "相鉄ローゼン",
+      "brand:wikidata": "Q11582450",
+      "brand:wikipedia": "ja:相鉄ローゼン",
+      "name": "相鉄ローゼン",
+      "name:en": "Sotetsu Rosen",
+      "name:ja": "相鉄ローゼン",
       "shop": "supermarket"
     }
   },

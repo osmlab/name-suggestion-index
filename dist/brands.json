@@ -42,6 +42,16 @@
         "name": "ABSA"
       }
     },
+    "amenity/bank|ACBA": {
+      "countryCodes": ["am"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "ACBA",
+        "brand:wikidata": "Q55602923",
+        "brand:wikipedia": "hy:ԱԿԲԱ-Կրեդիտ Ագրիկոլ բանկ",
+        "name": "ACBA"
+      }
+    },
     "amenity/bank|AIB": {
       "countryCodes": ["gb", "ie"],
       "matchNames": ["aib bank", "allied irish bank"],
@@ -1557,6 +1567,7 @@
       }
     },
     "amenity/bank|Banco Pichincha": {
+      "countryCodes": ["co", "ec", "pe"],
       "tags": {
         "amenity": "bank",
         "brand": "Banco Pichincha",
@@ -2127,6 +2138,16 @@
         "name": "Bank of the West"
       }
     },
+    "amenity/bank|BankWest~(USA)": {
+      "countryCodes": ["us"],
+      "nomatch": ["amenity/bank|Bankwest~(Australia)"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "BankWest",
+        "brand:wikidata": "Q90386673",
+        "name": "BankWest"
+      }
+    },
     "amenity/bank|Bankia": {
       "countryCodes": ["es"],
       "tags": {
@@ -2148,8 +2169,9 @@
         "name": "Bankinter"
       }
     },
-    "amenity/bank|Bankwest": {
+    "amenity/bank|Bankwest~(Australia)": {
       "countryCodes": ["au"],
+      "nomatch": ["amenity/bank|Bankwest~(USA)"],
       "tags": {
         "amenity": "bank",
         "brand": "Bankwest",
@@ -2187,6 +2209,16 @@
         "name": "Banque Atlantique"
       }
     },
+    "amenity/bank|Banque Dupuy de Parseval": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "Banque Dupuy de Parseval",
+        "brand:wikidata": "Q2882897",
+        "brand:wikipedia": "fr:Banque Dupuy de Parseval",
+        "name": "Banque Dupuy de Parseval"
+      }
+    },
     "amenity/bank|Banque Laurentienne": {
       "countryCodes": ["ca"],
       "tags": {
@@ -2198,6 +2230,7 @@
       }
     },
     "amenity/bank|Banque Populaire~(France)": {
+      "countryCodes": ["fr"],
       "tags": {
         "amenity": "bank",
         "brand": "Banque Populaire",
@@ -2207,7 +2240,7 @@
       }
     },
     "amenity/bank|Banque Populaire~(Maroc)": {
-      "countryCodes": ["de", "es", "fr", "gb", "it", "ma", "nl"],
+      "countryCodes": ["de", "es", "it", "ma", "nl"],
       "tags": {
         "amenity": "bank",
         "brand": "Banque Populaire",
@@ -2217,6 +2250,7 @@
       }
     },
     "amenity/bank|Banque de France": {
+      "countryCodes": ["fr"],
       "tags": {
         "amenity": "bank",
         "brand": "Banque de France",
@@ -2378,6 +2412,7 @@
       }
     },
     "amenity/bank|CIB Bank": {
+      "countryCodes": ["hu"],
       "tags": {
         "amenity": "bank",
         "brand": "CIB Bank",
@@ -2808,6 +2843,15 @@
         "official_name": "City National Bank of Florida"
       }
     },
+    "amenity/bank|City National Bank~(West Virginia)": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "City National Bank",
+        "brand:wikidata": "Q90937436",
+        "name": "City National Bank"
+      }
+    },
     "amenity/bank|Clydesdale Bank": {
       "countryCodes": ["gb"],
       "tags": {
@@ -3147,16 +3191,6 @@
         "name": "Ecobank"
       }
     },
-    "amenity/bank|Emigrant Savings Bank": {
-      "countryCodes": ["us"],
-      "tags": {
-        "amenity": "bank",
-        "brand": "Emigrant Savings Bank",
-        "brand:wikidata": "Q5371104",
-        "brand:wikipedia": "en:Emigrant Savings Bank",
-        "name": "Emigrant Savings Bank"
-      }
-    },
     "amenity/bank|Emirates NBD": {
       "countryCodes": ["ae"],
       "tags": {
@@ -3373,6 +3407,16 @@
         "name": "Finansbank"
       }
     },
+    "amenity/bank|Fio banka": {
+      "countryCodes": ["cz", "sk"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "Fio banka",
+        "brand:wikidata": "Q12016657",
+        "brand:wikipedia": "cs:Fio banka",
+        "name": "Fio banka"
+      }
+    },
     "amenity/bank|First Bank~(North and South Carolina)": {
       "countryCodes": ["us"],
       "matchNames": ["1st bancorp", "1st bank", "first bancorp"],
@@ -3477,12 +3521,159 @@
         "name": "First National Bank"
       }
     },
-    "amenity/bank|First State Bank": {
+    "amenity/bank|First State Bank Nebraska": {
       "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|First State Bank~(Florida)",
+        "amenity/bank|First State Bank~(Illinois)",
+        "amenity/bank|First State Bank~(Michigan)",
+        "amenity/bank|First State Bank~(Mississippi)",
+        "amenity/bank|First State Bank~(Nebraska)",
+        "amenity/bank|First State Bank~(Ohio)",
+        "amenity/bank|First State Bank~(Texas)"
+      ],
       "tags": {
         "amenity": "bank",
         "brand": "First State Bank",
+        "brand:wikidata": "Q87646525",
         "name": "First State Bank"
+      }
+    },
+    "amenity/bank|First State Bank~(Florida)": {
+      "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|First State Bank Nebraska",
+        "amenity/bank|First State Bank~(Illinois)",
+        "amenity/bank|First State Bank~(Michigan)",
+        "amenity/bank|First State Bank~(Mississippi)",
+        "amenity/bank|First State Bank~(Nebraska)",
+        "amenity/bank|First State Bank~(Ohio)",
+        "amenity/bank|First State Bank~(Texas)"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "First State Bank",
+        "brand:wikidata": "Q87647395",
+        "name": "First State Bank"
+      }
+    },
+    "amenity/bank|First State Bank~(Illinois)": {
+      "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|First State Bank Nebraska",
+        "amenity/bank|First State Bank~(Florida)",
+        "amenity/bank|First State Bank~(Michigan)",
+        "amenity/bank|First State Bank~(Mississippi)",
+        "amenity/bank|First State Bank~(Nebraska)",
+        "amenity/bank|First State Bank~(Ohio)",
+        "amenity/bank|First State Bank~(Texas)"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "First State Bank",
+        "brand:wikidata": "Q87647340",
+        "name": "First State Bank"
+      }
+    },
+    "amenity/bank|First State Bank~(Michigan)": {
+      "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|First State Bank Nebraska",
+        "amenity/bank|First State Bank~(Florida)",
+        "amenity/bank|First State Bank~(Illinois)",
+        "amenity/bank|First State Bank~(Mississippi)",
+        "amenity/bank|First State Bank~(Nebraska)",
+        "amenity/bank|First State Bank~(Ohio)",
+        "amenity/bank|First State Bank~(Texas)"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "First State Bank",
+        "brand:wikidata": "Q87647479",
+        "name": "First State Bank"
+      }
+    },
+    "amenity/bank|First State Bank~(Mississippi)": {
+      "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|First State Bank Nebraska",
+        "amenity/bank|First State Bank~(Florida)",
+        "amenity/bank|First State Bank~(Illinois)",
+        "amenity/bank|First State Bank~(Michigan)",
+        "amenity/bank|First State Bank~(Nebraska)",
+        "amenity/bank|First State Bank~(Ohio)",
+        "amenity/bank|First State Bank~(Texas)"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "First State Bank",
+        "brand:wikidata": "Q87647452",
+        "name": "First State Bank"
+      }
+    },
+    "amenity/bank|First State Bank~(Nebraska)": {
+      "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|First State Bank Nebraska",
+        "amenity/bank|First State Bank~(Florida)",
+        "amenity/bank|First State Bank~(Illinois)",
+        "amenity/bank|First State Bank~(Michigan)",
+        "amenity/bank|First State Bank~(Mississippi)",
+        "amenity/bank|First State Bank~(Ohio)",
+        "amenity/bank|First State Bank~(Texas)"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "First State Bank",
+        "brand:wikidata": "Q5453817",
+        "name": "First State Bank"
+      }
+    },
+    "amenity/bank|First State Bank~(Ohio)": {
+      "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|First State Bank Nebraska",
+        "amenity/bank|First State Bank~(Florida)",
+        "amenity/bank|First State Bank~(Illinois)",
+        "amenity/bank|First State Bank~(Michigan)",
+        "amenity/bank|First State Bank~(Mississippi)",
+        "amenity/bank|First State Bank~(Nebraska)",
+        "amenity/bank|First State Bank~(Texas)"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "First State Bank",
+        "brand:wikidata": "Q87647374",
+        "name": "First State Bank"
+      }
+    },
+    "amenity/bank|First State Bank~(Texas)": {
+      "countryCodes": ["us"],
+      "nomatch": [
+        "amenity/bank|First State Bank Nebraska",
+        "amenity/bank|First State Bank~(Florida)",
+        "amenity/bank|First State Bank~(Illinois)",
+        "amenity/bank|First State Bank~(Michigan)",
+        "amenity/bank|First State Bank~(Mississippi)",
+        "amenity/bank|First State Bank~(Nebraska)",
+        "amenity/bank|First State Bank~(Ohio)"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "First State Bank",
+        "brand:wikidata": "Q87647065",
+        "name": "First State Bank"
+      }
+    },
+    "amenity/bank|First Tech Credit Union": {
+      "countryCodes": ["us"],
+      "matchNames": ["1st tech", "1st tech credit union", "first tech"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "First Tech Credit Union",
+        "brand:wikidata": "Q5453865",
+        "brand:wikipedia": "en:First Tech Credit Union",
+        "name": "First Tech Credit Union"
       }
     },
     "amenity/bank|First West Credit Union": {
@@ -3889,6 +4080,16 @@
         "brand:wikidata": "Q2423252",
         "brand:wikipedia": "en:Itaú Corpbanca",
         "name": "Itaú"
+      }
+    },
+    "amenity/bank|J&T Banka": {
+      "countryCodes": ["cz", "sk"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "J&T Banka",
+        "brand:wikidata": "Q12022160",
+        "brand:wikipedia": "sk:J & T BANKA",
+        "name": "J&T Banka"
       }
     },
     "amenity/bank|JS Bank": {
@@ -4759,6 +4960,16 @@
         "name": "Prima banka"
       }
     },
+    "amenity/bank|Privatbanka": {
+      "countryCodes": ["sk"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "Privatbanka",
+        "brand:wikidata": "Q12774628",
+        "brand:wikipedia": "sk:Privatbanka",
+        "name": "Privatbanka"
+      }
+    },
     "amenity/bank|Prosperity Bank": {
       "tags": {
         "amenity": "bank",
@@ -4775,6 +4986,16 @@
         "brand:wikidata": "Q4835087",
         "brand:wikipedia": "es:BBVA Provincial",
         "name": "Provincial"
+      }
+    },
+    "amenity/bank|Prvá stavebná sporiteľňa": {
+      "countryCodes": ["sk"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "Prvá stavebná sporiteľňa",
+        "brand:wikidata": "Q29054618",
+        "brand:wikipedia": "sk:Prvá stavebná sporiteľňa",
+        "name": "Prvá stavebná sporiteľňa"
       }
     },
     "amenity/bank|Public Bank~(Malaysia)": {
@@ -6934,6 +7155,13 @@
         "name:he": "בנק מזרחי טפחות"
       }
     },
+    "amenity/bank|الصندوق الوطني للتوفير والاحتياط": {
+      "tags": {
+        "amenity": "bank",
+        "brand": "الصندوق الوطني للتوفير والاحتياط",
+        "name": "الصندوق الوطني للتوفير والاحتياط"
+      }
+    },
     "amenity/bank|بانک آینده": {
       "countryCodes": ["ir"],
       "tags": {
@@ -7420,6 +7648,21 @@
         "name:ja": "スルガ銀行"
       }
     },
+    "amenity/bank|セブン銀行": {
+      "countryCodes": ["jp"],
+      "matchNames": ["7銀行"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "セブン銀行",
+        "brand:en": "Seven Bank",
+        "brand:ja": "セブン銀行",
+        "brand:wikidata": "Q7457182",
+        "brand:wikipedia": "ja:セブン銀行",
+        "name": "セブン銀行",
+        "name:en": "Seven Bank",
+        "name:ja": "セブン銀行"
+      }
+    },
     "amenity/bank|三井住友信託銀行": {
       "countryCodes": ["jp"],
       "tags": {
@@ -7639,6 +7882,21 @@
         "name": "京城商業銀行"
       }
     },
+    "amenity/bank|京葉銀行": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "αBANK",
+        "amenity": "bank",
+        "brand": "京葉銀行",
+        "brand:en": "Keiyo Bank",
+        "brand:ja": "京葉銀行",
+        "brand:wikidata": "Q11374734",
+        "brand:wikipedia": "ja:京葉銀行",
+        "name": "京葉銀行",
+        "name:en": "Keiyo Bank",
+        "name:ja": "京葉銀行"
+      }
+    },
     "amenity/bank|京都中央信用金庫": {
       "countryCodes": ["jp"],
       "tags": {
@@ -7739,6 +7997,20 @@
         "name:en": "Hokkaido Bank"
       }
     },
+    "amenity/bank|千葉興業銀行": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "千葉興業銀行",
+        "brand:en": "Chiba Kogyo Bank",
+        "brand:ja": "千葉興業銀行",
+        "brand:wikidata": "Q11406742",
+        "brand:wikipedia": "ja:千葉興業銀行",
+        "name": "千葉興業銀行",
+        "name:en": "Chiba Kogyo Bank",
+        "name:ja": "千葉興業銀行"
+      }
+    },
     "amenity/bank|千葉銀行": {
       "countryCodes": ["jp"],
       "tags": {
@@ -7801,6 +8073,20 @@
         "name:en": "Taiwan Cooperative Bank"
       }
     },
+    "amenity/bank|商工中金": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "商工中金",
+        "brand:en": "Shoko Chukin Bank",
+        "brand:ja": "商工中金",
+        "brand:wikidata": "Q11418759",
+        "brand:wikipedia": "ja:商工中金",
+        "name": "商工中金",
+        "name:en": "Shoko Chukin Bank",
+        "name:ja": "商工中金"
+      }
+    },
     "amenity/bank|國泰世華商業銀行": {
       "countryCodes": ["tw"],
       "tags": {
@@ -7825,6 +8111,22 @@
         "name": "埼玉りそな銀行",
         "name:en": "Saitama Resona Bank",
         "name:ja": "埼玉りそな銀行"
+      }
+    },
+    "amenity/bank|多摩信用金庫": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name": "たましん",
+        "alt_name:en": "Tamashin",
+        "amenity": "bank",
+        "brand": "多摩信用金庫",
+        "brand:en": "Tama Shinkin Bank",
+        "brand:ja": "多摩信用金庫",
+        "brand:wikidata": "Q11430719",
+        "brand:wikipedia": "ja:多摩信用金庫",
+        "name": "多摩信用金庫",
+        "name:en": "Tama Shinkin Bank",
+        "name:ja": "多摩信用金庫"
       }
     },
     "amenity/bank|大眾商業銀行": {
@@ -7952,6 +8254,20 @@
         "name:en": "Bank of East Asia",
         "name:zh-Hans": "东亚银行",
         "name:zh-Hant": "東亞銀行"
+      }
+    },
+    "amenity/bank|東京ベイ信金": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "東京ベイ信金",
+        "brand:en": "Tokyo Bay Shinkin Bank",
+        "brand:ja": "東京ベイ信金",
+        "brand:wikidata": "Q11524392",
+        "brand:wikipedia": "ja:東京ベイ信金",
+        "name": "東京ベイ信金",
+        "name:en": "Tokyo Bay Shinkin Bank",
+        "name:ja": "東京ベイ信金"
       }
     },
     "amenity/bank|東日本銀行": {
@@ -8330,6 +8646,20 @@
         "name": "Grid"
       }
     },
+    "amenity/bicycle_rental|HELLO CYCLING": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "HELLO CYCLING",
+        "brand:en": "HELLO CYCLING",
+        "brand:ja": "ハローサイクリング",
+        "brand:wikidata": "Q91231927",
+        "fee": "yes",
+        "name": "HELLO CYCLING",
+        "name:en": "HELLO CYCLING",
+        "name:ja": "ハローサイクリング"
+      }
+    },
     "amenity/bicycle_rental|MiBici": {
       "countryCodes": ["mx"],
       "tags": {
@@ -8338,6 +8668,23 @@
         "brand:wikidata": "Q60966987",
         "brand:wikipedia": "es:MiBici",
         "name": "MiBici"
+      }
+    },
+    "amenity/bicycle_rental|OV-fiets": {
+      "countryCodes": ["nl"],
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "OV-fiets",
+        "brand:wikidata": "Q2629982",
+        "brand:wikipedia": "en:OV-fiets",
+        "name": "OV-fiets"
+      }
+    },
+    "amenity/bicycle_rental|SZ-Bike": {
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "SZ-Bike",
+        "name": "SZ-Bike"
       }
     },
     "amenity/bicycle_rental|Swapfiets": {
@@ -8349,6 +8696,23 @@
         "name": "Swapfiets"
       }
     },
+    "amenity/bicycle_rental|baybike": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "baybike",
+        "brand:en": "baybike",
+        "brand:ja": "ベイバイク",
+        "brand:wikidata": "Q91499435",
+        "fee": "yes",
+        "name": "baybike",
+        "name:en": "baybike",
+        "name:ja": "ベイバイク",
+        "official_name": "横浜コミュニティサイクル",
+        "official_name:en": "Yokohama Bike Share",
+        "official_name:ja": "横浜コミュニティサイクル"
+      }
+    },
     "amenity/bicycle_rental|metropolradruhr": {
       "countryCodes": ["de"],
       "tags": {
@@ -8356,6 +8720,38 @@
         "brand": "metropolradruhr",
         "brand:wikidata": "Q62104274",
         "name": "metropolradruhr"
+      }
+    },
+    "amenity/bicycle_rental|ちよくる": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "ちよくる",
+        "brand:en": "Chiyocle",
+        "brand:ja": "ちよくる",
+        "brand:wikidata": "Q91498542",
+        "fee": "yes",
+        "name": "ちよくる",
+        "name:en": "Chiyocle",
+        "name:ja": "ちよくる",
+        "official_name": "千代田区コミュニティサイクル",
+        "official_name:en": "Chiyoda City Bike Share",
+        "official_name:ja": "千代田区コミュニティサイクル"
+      }
+    },
+    "amenity/bicycle_rental|ドコモ・バイクシェア": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "ドコモ・バイクシェア",
+        "brand:en": "Docomo Bike Share",
+        "brand:ja": "ドコモ・バイクシェア",
+        "brand:wikidata": "Q55533296",
+        "brand:wikipedia": "ja:ドコモ・バイクシェア",
+        "fee": "yes",
+        "name": "ドコモ・バイクシェア",
+        "name:en": "Docomo Bike Share",
+        "name:ja": "ドコモ・バイクシェア"
       }
     },
     "amenity/bureau_de_change|CADECA": {
@@ -8838,6 +9234,17 @@
         "takeaway": "yes"
       }
     },
+    "amenity/cafe|Coffeeshop Company": {
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Coffeeshop Company",
+        "brand:wikidata": "Q873767",
+        "brand:wikipedia": "en:Coffeeshop Company",
+        "cuisine": "coffee_shop",
+        "name": "Coffeeshop Company",
+        "takeaway": "yes"
+      }
+    },
     "amenity/cafe|Cofix": {
       "countryCodes": ["il", "ru"],
       "tags": {
@@ -8866,6 +9273,24 @@
         "name": "Cofizz",
         "name:en": "Cofizz",
         "name:he": "קופיז",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/cafe|Columbus Café & Co": {
+      "countryCodes": ["be", "bh", "fr", "ma", "qa", "us"],
+      "matchNames": [
+        "colombus",
+        "colombus café",
+        "colombus café & co",
+        "columbus",
+        "columbus café"
+      ],
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Columbus Café & Co",
+        "brand:wikidata": "Q2984582",
+        "cuisine": "coffee_shop",
+        "name": "Columbus Café & Co",
         "takeaway": "yes"
       }
     },
@@ -9481,15 +9906,6 @@
         "takeaway": "yes"
       }
     },
-    "amenity/cafe|Їдальня": {
-      "tags": {
-        "amenity": "cafe",
-        "brand": "Їдальня",
-        "cuisine": "coffee_shop",
-        "name": "Їдальня",
-        "takeaway": "yes"
-      }
-    },
     "amenity/cafe|Берёзка": {
       "tags": {
         "amenity": "cafe",
@@ -9606,15 +10022,6 @@
         "takeaway": "yes"
       }
     },
-    "amenity/cafe|Трактир": {
-      "tags": {
-        "amenity": "cafe",
-        "brand": "Трактир",
-        "cuisine": "coffee_shop",
-        "name": "Трактир",
-        "takeaway": "yes"
-      }
-    },
     "amenity/cafe|Транзит": {
       "countryCodes": ["kz", "ru", "ua"],
       "tags": {
@@ -9658,6 +10065,15 @@
         "brand": "Хуторок",
         "cuisine": "coffee_shop",
         "name": "Хуторок",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/cafe|Цех 85": {
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Цех 85",
+        "cuisine": "coffee_shop",
+        "name": "Цех 85",
         "takeaway": "yes"
       }
     },
@@ -10027,11 +10443,17 @@
       }
     },
     "amenity/cafe|星乃珈琲店": {
+      "countryCodes": ["jp"],
       "tags": {
         "amenity": "cafe",
         "brand": "星乃珈琲店",
+        "brand:en": "Hoshino Coffee",
+        "brand:ja": "星乃珈琲店",
+        "brand:wikidata": "Q88396880",
         "cuisine": "coffee_shop",
         "name": "星乃珈琲店",
+        "name:en": "Hoshino Coffee",
+        "name:ja": "星乃珈琲店",
         "takeaway": "yes"
       }
     },
@@ -10084,7 +10506,7 @@
       }
     },
     "amenity/cafe|貢茶~(Japan)": {
-      "countryCodes": ["ja"],
+      "countryCodes": ["jp"],
       "tags": {
         "amenity": "cafe",
         "brand": "貢茶",
@@ -10135,8 +10557,14 @@
       "tags": {
         "amenity": "cafe",
         "brand": "路易莎咖啡",
+        "brand:en": "Louisa Coffee",
+        "brand:wikidata": "Q67933328",
+        "brand:wikipedia": "zh:路易莎咖啡",
+        "brand:zh": "路易莎咖啡",
         "cuisine": "coffee_shop",
         "name": "路易莎咖啡",
+        "name:en": "Louisa Coffee",
+        "name:zh": "路易莎咖啡",
         "takeaway": "yes"
       }
     },
@@ -10432,12 +10860,12 @@
         "name:ja": "タイムズカーシェア"
       }
     },
-    "amenity/car_wash|IMO": {
+    "amenity/car_wash|IMO Car Wash": {
       "tags": {
         "amenity": "car_wash",
-        "brand": "IMO",
+        "brand": "IMO Car Wash",
         "brand:wikidata": "Q81802686",
-        "name": "IMO"
+        "name": "IMO Car Wash"
       }
     },
     "amenity/car_wash|Waves": {
@@ -10555,6 +10983,13 @@
         "name": "FLO"
       }
     },
+    "amenity/charging_station|Gogoro 電池交換站": {
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "Gogoro 電池交換站",
+        "name": "Gogoro 電池交換站"
+      }
+    },
     "amenity/charging_station|InCharge": {
       "matchNames": ["vattenfall"],
       "tags": {
@@ -10610,6 +11045,20 @@
         "brand": "eVgo",
         "brand:wikidata": "Q61803820",
         "name": "eVgo"
+      }
+    },
+    "amenity/charging_station|東光高岳": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "東光高岳",
+        "brand:en": "Takaoka Toko",
+        "brand:ja": "東光高岳",
+        "brand:wikidata": "Q17220263",
+        "brand:wikipedia": "ja:東光高岳",
+        "name": "東光高岳",
+        "name:en": "Takaoka Toko",
+        "name:ja": "東光高岳"
       }
     },
     "amenity/childcare|Kids 'R' Kids": {
@@ -11363,6 +11812,13 @@
         "name": "Western Dental"
       }
     },
+    "amenity/dentist|Zahnarztpraxis": {
+      "tags": {
+        "amenity": "dentist",
+        "brand": "Zahnarztpraxis",
+        "name": "Zahnarztpraxis"
+      }
+    },
     "amenity/doctors|MinuteClinic": {
       "countryCodes": ["us"],
       "matchTags": ["amenity/clinic"],
@@ -11927,6 +12383,7 @@
       "tags": {
         "amenity": "fast_food",
         "brand": "China Garden",
+        "cuisine": "chinese",
         "name": "China Garden",
         "takeaway": "yes"
       }
@@ -12227,6 +12684,18 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|East of Chicago Pizza": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "East of Chicago Pizza",
+        "brand:wikidata": "Q5329751",
+        "brand:wikipedia": "en:East of Chicago Pizza",
+        "cuisine": "pizza",
+        "name": "East of Chicago Pizza",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Einstein Bros. Bagels": {
       "countryCodes": ["us"],
       "matchNames": ["einstein bros", "einstein brothers"],
@@ -12393,6 +12862,17 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Freshëns": {
+      "countryCodes": ["us"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Freshëns",
+        "brand:wikidata": "Q88353412",
+        "cuisine": "juice;salad",
+        "name": "Freshëns",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Gabriel Pizza": {
       "countryCodes": ["ca"],
       "tags": {
@@ -12425,6 +12905,7 @@
         "brand:wikipedia": "en:Gino's Pizza and Spaghetti",
         "cuisine": "pizza",
         "name": "Gino's Pizza",
+        "official_name": "Gino's Pizza & Spaghetti House",
         "takeaway": "yes"
       }
     },
@@ -12701,6 +13182,15 @@
         "brand:wikipedia": "en:Hungry Jack's",
         "cuisine": "burger",
         "name": "Hungry Jacks",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|Hungry Lion": {
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Hungry Lion",
+        "cuisine": "chicken",
+        "name": "Hungry Lion",
         "takeaway": "yes"
       }
     },
@@ -13540,6 +14030,8 @@
       "tags": {
         "amenity": "fast_food",
         "brand": "Pizza Capers",
+        "brand:wikidata": "Q17021875",
+        "brand:wikipedia": "en:Pizza Capers",
         "cuisine": "pizza",
         "name": "Pizza Capers",
         "takeaway": "yes"
@@ -13611,6 +14103,19 @@
         "takeaway": "yes"
       }
     },
+    "amenity/fast_food|Pizza Paï": {
+      "countryCodes": ["fr"],
+      "nomatch": ["amenity/restaurant|Pizza Paï"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Pizza Paï",
+        "brand:wikidata": "Q3389501",
+        "brand:wikipedia": "fr:PizzaPai",
+        "cuisine": "pizza",
+        "name": "Pizza Paï",
+        "takeaway": "yes"
+      }
+    },
     "amenity/fast_food|Pizza Pizza": {
       "countryCodes": ["ca"],
       "tags": {
@@ -13661,6 +14166,15 @@
         "brand:wikipedia": "en:Pollo Campero",
         "cuisine": "chicken",
         "name": "Pollo Campero",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|Pollo Feliz": {
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Pollo Feliz",
+        "cuisine": "chicken",
+        "name": "Pollo Feliz",
         "takeaway": "yes"
       }
     },
@@ -14025,14 +14539,6 @@
         "brand:wikipedia": "en:Smoothie King",
         "cuisine": "juice",
         "name": "Smoothie King",
-        "takeaway": "yes"
-      }
-    },
-    "amenity/fast_food|Snack Bar": {
-      "tags": {
-        "amenity": "fast_food",
-        "brand": "Snack Bar",
-        "name": "Snack Bar",
         "takeaway": "yes"
       }
     },
@@ -14704,7 +15210,14 @@
       "tags": {
         "amenity": "fast_food",
         "brand": "Додо Пицца",
+        "brand:en": "Dodo Pizza",
+        "brand:ru": "Додо Пицца",
+        "brand:wikidata": "Q61949318",
+        "brand:wikipedia": "ru:Додо Пицца",
+        "cuisine": "pizza",
         "name": "Додо Пицца",
+        "name:en": "Dodo Pizza",
+        "name:ru": "Додо Пицца",
         "takeaway": "yes"
       }
     },
@@ -15159,7 +15672,9 @@
     },
     "amenity/fast_food|ケンタッキーフライドチキン": {
       "countryCodes": ["jp"],
+      "matchNames": ["ケンタッキー"],
       "tags": {
+        "alt_name:en": "Kentucky Fried Chicken",
         "amenity": "fast_food",
         "brand": "ケンタッキーフライドチキン",
         "brand:en": "KFC",
@@ -15313,7 +15828,7 @@
         "brand:ja": "ファーストキッチン",
         "brand:wikidata": "Q5453133",
         "brand:wikipedia": "ja:ファーストキッチン",
-        "cuisine": "pizza",
+        "cuisine": "friture",
         "name": "ファーストキッチン",
         "name:en": "First Kitchen",
         "name:ja": "ファーストキッチン",
@@ -15491,6 +16006,24 @@
         "cuisine": "noodle",
         "name": "日高屋",
         "name:en": "Hidakaya",
+        "takeaway": "yes"
+      }
+    },
+    "amenity/fast_food|本家かまどや": {
+      "countryCodes": ["jp"],
+      "matchNames": ["かまどや"],
+      "tags": {
+        "alt_name": "かまどや",
+        "amenity": "fast_food",
+        "brand": "本家かまどや",
+        "brand:en": "Honke Kamadoya",
+        "brand:ja": "本家かまどや",
+        "brand:wikidata": "Q11520140",
+        "brand:wikipedia": "ja:本家かまどや",
+        "cuisine": "japanese",
+        "name": "本家かまどや",
+        "name:en": "Honke Kamadoya",
+        "name:ja": "本家かまどや",
         "takeaway": "yes"
       }
     },
@@ -15801,7 +16334,14 @@
       }
     },
     "amenity/fuel|Alexela": {
-      "tags": {"amenity": "fuel", "brand": "Alexela", "name": "Alexela"}
+      "countryCodes": ["ee"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Alexela",
+        "brand:wikidata": "Q20529782",
+        "brand:wikipedia": "et:Alexela Oil",
+        "name": "Alexela"
+      }
     },
     "amenity/fuel|Aloha Petroleum": {
       "countryCodes": ["us"],
@@ -16085,7 +16625,13 @@
       }
     },
     "amenity/fuel|Beyfin": {
-      "tags": {"amenity": "fuel", "brand": "Beyfin", "name": "Beyfin"}
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Beyfin",
+        "brand:wikidata": "Q3639256",
+        "brand:wikipedia": "it:Beyfin",
+        "name": "Beyfin"
+      }
     },
     "amenity/fuel|Bharat Petroleum": {
       "countryCodes": ["in"],
@@ -16173,7 +16719,19 @@
       }
     },
     "amenity/fuel|Casino": {
-      "tags": {"amenity": "fuel", "brand": "Casino", "name": "Casino"}
+      "countryCodes": ["fr"],
+      "nomatch": [
+        "shop/convenience|Casino Shop",
+        "shop/convenience|Le Petit Casino",
+        "shop/supermarket|Casino",
+        "shop/supermarket|Géant Casino"
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Casino",
+        "brand:wikidata": "Q89029184",
+        "name": "Casino"
+      }
     },
     "amenity/fuel|Cenex": {
       "countryCodes": ["us"],
@@ -16293,6 +16851,7 @@
     },
     "amenity/fuel|Conoco": {
       "countryCodes": ["us"],
+      "nomatch": ["shop/convenience|Conoco"],
       "tags": {
         "amenity": "fuel",
         "brand": "Conoco",
@@ -16331,15 +16890,7 @@
       }
     },
     "amenity/fuel|Cosmo": {
-      "countryCodes": ["jp"],
-      "nomatch": ["amenity/restaurant|Cosmo"],
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Cosmo",
-        "brand:wikidata": "Q2498318",
-        "brand:wikipedia": "en:Cosmo Oil Company",
-        "name": "Cosmo"
-      }
+      "tags": {"amenity": "fuel", "brand": "Cosmo", "name": "Cosmo"}
     },
     "amenity/fuel|Costco Gasoline": {
       "countryCodes": ["au", "ca", "mx", "us"],
@@ -16711,6 +17262,15 @@
         "name": "Goil"
       }
     },
+    "amenity/fuel|Green Oil": {
+      "countryCodes": ["ma"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Green Oil",
+        "brand:wikidata": "Q88393926",
+        "name": "Green Oil"
+      }
+    },
     "amenity/fuel|Gulf": {
       "tags": {
         "amenity": "fuel",
@@ -17011,6 +17571,17 @@
     "amenity/fuel|Kwik Fill": {
       "countryCodes": ["us"],
       "tags": {"amenity": "fuel", "brand": "Kwik Fill", "name": "Kwik Fill"}
+    },
+    "amenity/fuel|Kwik Shop": {
+      "countryCodes": ["us"],
+      "nomatch": ["shop/convenience|Kwik Shop"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Kwik Shop",
+        "brand:wikidata": "Q6450417",
+        "brand:wikipedia": "en:Kwik Shop",
+        "name": "Kwik Shop"
+      }
     },
     "amenity/fuel|Kwik Trip": {
       "countryCodes": ["us"],
@@ -17803,6 +18374,16 @@
         "name": "Rompetrol"
       }
     },
+    "amenity/fuel|Rotten Robbie": {
+      "countryCodes": ["us"],
+      "nomatch": ["shop/convenience|Rotten Robbie"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Rotten Robbie",
+        "brand:wikidata": "Q87378070",
+        "name": "Rotten Robbie"
+      }
+    },
     "amenity/fuel|Royal Farms": {
       "countryCodes": ["us"],
       "nomatch": ["shop/convenience|Royal Farms"],
@@ -17979,7 +18560,14 @@
       }
     },
     "amenity/fuel|Sonangol": {
-      "tags": {"amenity": "fuel", "brand": "Sonangol", "name": "Sonangol"}
+      "countryCodes": ["ao"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Sonangol",
+        "brand:wikidata": "Q677832",
+        "brand:wikipedia": "pt:Sonangol",
+        "name": "Sonangol"
+      }
     },
     "amenity/fuel|Sonic": {
       "countryCodes": ["ca"],
@@ -18446,6 +19034,15 @@
         "name": "Westfalen"
       }
     },
+    "amenity/fuel|Winxo": {
+      "countryCodes": ["ma"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Winxo",
+        "brand:wikidata": "Q88389320",
+        "name": "Winxo"
+      }
+    },
     "amenity/fuel|Woolworths Petrol": {
       "countryCodes": ["au"],
       "nomatch": ["shop/convenience|Woolworths Petrol"],
@@ -18494,6 +19091,15 @@
         "brand:wikidata": "Q8063337",
         "brand:wikipedia": "en:Z Energy",
         "name": "Z"
+      }
+    },
+    "amenity/fuel|Ziz": {
+      "countryCodes": ["ma"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Ziz",
+        "brand:wikidata": "Q88393228",
+        "name": "Ziz"
       }
     },
     "amenity/fuel|bft": {
@@ -18752,6 +19358,9 @@
         "name:ru": "Роснефть"
       }
     },
+    "amenity/fuel|Сибнефть": {
+      "tags": {"amenity": "fuel", "brand": "Сибнефть", "name": "Сибнефть"}
+    },
     "amenity/fuel|Сургутнефтегаз": {
       "countryCodes": ["ru"],
       "tags": {
@@ -18874,10 +19483,30 @@
       }
     },
     "amenity/fuel|اينوك": {
-      "tags": {"amenity": "fuel", "brand": "اينوك", "name": "اينوك"}
+      "tags": {
+        "amenity": "fuel",
+        "brand": "اينوك",
+        "brand:ar": "اينوك",
+        "brand:en": "ENOC",
+        "brand:wikidata": "Q3045998",
+        "brand:wikipedia": "ar:اينوك",
+        "name": "اينوك",
+        "name:ar": "اينوك",
+        "name:en": "ENOC"
+      }
     },
     "amenity/fuel|توتال": {
-      "tags": {"amenity": "fuel", "brand": "توتال", "name": "توتال"}
+      "tags": {
+        "amenity": "fuel",
+        "brand": "توتال",
+        "brand:ar": "توتال",
+        "brand:en": "Total",
+        "brand:wikidata": "Q154037",
+        "brand:wikipedia": "fr:Total (entreprise)",
+        "name": "توتال",
+        "name:ar": "توتال",
+        "name:en": "Total"
+      }
     },
     "amenity/fuel|บางจาก": {
       "countryCodes": ["th"],
@@ -18980,18 +19609,20 @@
         "name:ja": "キグナス石油"
       }
     },
-    "amenity/fuel|コスモ石油": {
+    "amenity/fuel|コスモ": {
       "countryCodes": ["jp"],
+      "nomatch": ["amenity/restaurant|Cosmo"],
       "tags": {
         "amenity": "fuel",
-        "brand": "コスモ石油",
-        "brand:en": "Cosmo Oil Company",
-        "brand:ja": "コスモ石油",
+        "brand": "コスモ",
+        "brand:en": "Cosmo",
+        "brand:ja": "コスモ",
         "brand:wikidata": "Q2498318",
         "brand:wikipedia": "en:Cosmo Oil Company",
-        "name": "コスモ石油",
-        "name:en": "Cosmo Oil Company",
-        "name:ja": "コスモ石油"
+        "name": "コスモ",
+        "name:en": "Cosmo",
+        "name:ja": "コスモ",
+        "official_name": "コスモ石油"
       }
     },
     "amenity/fuel|ゼネラル": {
@@ -19081,7 +19712,17 @@
       }
     },
     "amenity/fuel|台塑石油": {
-      "tags": {"amenity": "fuel", "brand": "台塑石油", "name": "台塑石油"}
+      "tags": {
+        "amenity": "fuel",
+        "brand": "台塑石油",
+        "brand:en": "Formosa Petrochemical Corporation",
+        "brand:wikidata": "Q1437742",
+        "brand:wikipedia": "zh:台塑石油",
+        "brand:zh": "台塑石油",
+        "name": "台塑石油",
+        "name:en": "Formosa Petrochemical Corporation",
+        "name:zh": "台塑石油"
+      }
     },
     "amenity/fuel|台灣中油": {
       "countryCodes": ["tw"],
@@ -19118,7 +19759,6 @@
     },
     "amenity/gambling|Buzz Bingo": {
       "countryCodes": ["gb"],
-      "matchTags": ["leisure/adult_gaming_centre"],
       "tags": {
         "amenity": "gambling",
         "brand": "Buzz Bingo",
@@ -19632,6 +20272,7 @@
     },
     "amenity/ice_cream|サーティワンアイスクリーム": {
       "countryCodes": ["jp"],
+      "matchNames": ["31アイスクリーム", "サーティーワン"],
       "tags": {
         "amenity": "ice_cream",
         "brand": "バスキン・ロビンス",
@@ -19643,6 +20284,185 @@
         "name": "サーティワンアイスクリーム",
         "name:en": "Baskin-Robbins",
         "name:ja": "サーティワンアイスクリーム"
+      }
+    },
+    "amenity/internet_cafe|アプレシオ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "internet_cafe",
+        "brand": "アプレシオ",
+        "brand:en": "Aprecio",
+        "brand:ja": "アプレシオ",
+        "brand:wikidata": "Q11284756",
+        "brand:wikipedia": "ja:アプレシオ",
+        "internet_access:fee": "yes",
+        "name": "アプレシオ",
+        "name:en": "Aprecio",
+        "name:ja": "アプレシオ"
+      }
+    },
+    "amenity/internet_cafe|コミック・バスター": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "internet_cafe",
+        "brand": "コミック・バスター",
+        "brand:en": "Comic Buster",
+        "brand:ja": "コミック・バスター",
+        "brand:wikidata": "Q90413129",
+        "internet_access:fee": "yes",
+        "name": "コミック・バスター",
+        "name:en": "Comic Buster",
+        "name:ja": "コミック・バスター"
+      }
+    },
+    "amenity/internet_cafe|マンボー": {
+      "countryCodes": ["jp"],
+      "matchNames": ["manboo"],
+      "tags": {
+        "amenity": "internet_cafe",
+        "brand": "マンボー",
+        "brand:en": "Manboo",
+        "brand:ja": "マンボー",
+        "brand:wikidata": "Q11341637",
+        "brand:wikipedia": "ja:マンボー (インターネットカフェ)",
+        "internet_access:fee": "yes",
+        "name": "マンボー",
+        "name:en": "Manboo",
+        "name:ja": "マンボー"
+      }
+    },
+    "amenity/internet_cafe|メディアカフェポパイ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "internet_cafe",
+        "brand": "メディアカフェポパイ",
+        "brand:en": "Media Cafe Popeye",
+        "brand:ja": "メディアカフェポパイ",
+        "brand:wikidata": "Q11343796",
+        "brand:wikipedia": "ja:メディアカフェポパイ",
+        "internet_access:fee": "yes",
+        "name": "メディアカフェポパイ",
+        "name:en": "Media Cafe Popeye",
+        "name:ja": "メディアカフェポパイ"
+      }
+    },
+    "amenity/internet_cafe|快活CLUB": {
+      "countryCodes": ["jp"],
+      "matchNames": ["快活クラブ"],
+      "tags": {
+        "alt_name": "快活クラブ",
+        "amenity": "internet_cafe",
+        "brand": "快活CLUB",
+        "brand:en": "Kaikatsu Club",
+        "brand:ja": "快活CLUB",
+        "brand:wikidata": "Q88299591",
+        "internet_access:fee": "yes",
+        "name": "快活CLUB",
+        "name:en": "Kaikatsu Club",
+        "name:ja": "快活CLUB"
+      }
+    },
+    "amenity/internet_cafe|自遊空間": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Jiyu Kukan",
+        "amenity": "internet_cafe",
+        "brand": "自遊空間",
+        "brand:en": "Space Create",
+        "brand:ja": "自遊空間",
+        "brand:wikidata": "Q88121843",
+        "internet_access:fee": "yes",
+        "name": "自遊空間",
+        "name:en": "Space Create",
+        "name:ja": "自遊空間"
+      }
+    },
+    "amenity/karaoke_box|カラオケ まねきねこ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["まねきねこ"],
+      "tags": {
+        "amenity": "karaoke_box",
+        "brand": "カラオケ まねきねこ",
+        "brand:en": "Karaoke Manekineko",
+        "brand:ja": "カラオケ まねきねこ",
+        "brand:wikidata": "Q88326334",
+        "fee": "yes",
+        "name": "カラオケ まねきねこ",
+        "name:en": "Karaoke Manekineko",
+        "name:ja": "カラオケ まねきねこ"
+      }
+    },
+    "amenity/karaoke_box|カラオケバンバン": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "karaoke_box",
+        "brand": "カラオケバンバン",
+        "brand:en": "Karaoke BanBan",
+        "brand:ja": "カラオケバンバン",
+        "brand:wikidata": "Q88485685",
+        "fee": "yes",
+        "name": "カラオケバンバン",
+        "name:en": "Karaoke BanBan",
+        "name:ja": "カラオケバンバン"
+      }
+    },
+    "amenity/karaoke_box|カラオケ館": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "karaoke_box",
+        "brand": "カラオケ館",
+        "brand:en": "Karaoke-kan",
+        "brand:ja": "カラオケ館",
+        "brand:wikidata": "Q11294889",
+        "brand:wikipedia": "ja:B&V",
+        "fee": "yes",
+        "name": "カラオケ館",
+        "name:en": "Karaoke-kan",
+        "name:ja": "カラオケ館"
+      }
+    },
+    "amenity/karaoke_box|シダックス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "karaoke_box",
+        "brand": "シダックス",
+        "brand:en": "Shidax",
+        "brand:ja": "シダックス",
+        "brand:wikidata": "Q7496130",
+        "brand:wikipedia": "ja:シダックス",
+        "fee": "yes",
+        "name": "シダックス",
+        "name:en": "Shidax",
+        "name:ja": "シダックス"
+      }
+    },
+    "amenity/karaoke_box|ジョイサウンド": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "karaoke_box",
+        "brand": "ジョイサウンド",
+        "brand:en": "Joysound",
+        "brand:ja": "ジョイサウンド",
+        "brand:wikidata": "Q11226033",
+        "brand:wikipedia": "ja:JOYSOUND",
+        "fee": "yes",
+        "name": "ジョイサウンド",
+        "name:en": "Joysound",
+        "name:ja": "ジョイサウンド"
+      }
+    },
+    "amenity/karaoke_box|ビッグエコー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "karaoke_box",
+        "brand": "ビッグエコー",
+        "brand:en": "Big Echo",
+        "brand:ja": "ビッグエコー",
+        "brand:wikidata": "Q88117761",
+        "fee": "yes",
+        "name": "ビッグエコー",
+        "name:en": "Big Echo",
+        "name:ja": "ビッグエコー"
       }
     },
     "amenity/kindergarten|Children's Learning Adventure": {
@@ -20043,6 +20863,21 @@
         "name": "Western Union"
       }
     },
+    "amenity/music_school|ヤマハ音楽教室": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "music_school",
+        "brand": "ヤマハ音楽教室",
+        "brand:en": "Yamaha Music School",
+        "brand:ja": "ヤマハ音楽教室",
+        "brand:ja-Latn": "Yamaha Ongaku Kyōshitsu",
+        "brand:wikidata": "Q90327852",
+        "name": "ヤマハ音楽教室",
+        "name:en": "Yamaha Music School",
+        "name:ja": "ヤマハ音楽教室",
+        "name:ja-Latn": "Yamaha Ongaku Kyōshitsu"
+      }
+    },
     "amenity/parking|Diamond Parking": {
       "countryCodes": ["ca", "us"],
       "tags": {
@@ -20051,6 +20886,28 @@
         "brand:wikidata": "Q5270887",
         "brand:wikipedia": "en:Diamond Parking",
         "name": "Diamond Parking"
+      }
+    },
+    "amenity/parking|Indigo": {
+      "tags": {
+        "amenity": "parking",
+        "brand": "Indigo",
+        "brand:wikidata": "Q3559970",
+        "brand:wikipedia": "fr:Indigo (entreprise)",
+        "fee": "yes",
+        "name": "Indigo"
+      }
+    },
+    "amenity/parking|NPC24H": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "parking",
+        "brand": "NPC",
+        "brand:wikidata": "Q11506782",
+        "brand:wikipedia": "ja:日本パーキング",
+        "fee": "yes",
+        "name": "NPC24H",
+        "official_name": "日本パーキング"
       }
     },
     "amenity/parking|Parking Company of America": {
@@ -20094,6 +20951,21 @@
         "name": "Wilson Parking"
       }
     },
+    "amenity/parking|アップルパーク": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "parking",
+        "brand": "アップルパーク",
+        "brand:en": "Apple Park",
+        "brand:ja": "アップルパーク",
+        "brand:wikidata": "Q30923801",
+        "brand:wikipedia": "ja:アップルパーク",
+        "fee": "yes",
+        "name": "アップルパーク",
+        "name:en": "Apple Park",
+        "name:ja": "アップルパーク"
+      }
+    },
     "amenity/parking|タイムズ": {
       "countryCodes": ["jp"],
       "matchNames": ["times 24th", "タイムズ24"],
@@ -20108,6 +20980,82 @@
         "name": "タイムズ",
         "name:en": "Times",
         "name:ja": "タイムズ"
+      }
+    },
+    "amenity/parking|トラストパーク": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "parking",
+        "brand": "トラストパーク",
+        "brand:en": "Trust Park",
+        "brand:ja": "トラストパーク",
+        "brand:wikidata": "Q11321776",
+        "brand:wikipedia": "ja:トラストホールディングス",
+        "fee": "yes",
+        "name": "トラストパーク",
+        "name:en": "Trust Park",
+        "name:ja": "トラストパーク"
+      }
+    },
+    "amenity/parking|パラカ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "parking",
+        "brand": "パラカ",
+        "brand:en": "Paraca",
+        "brand:ja": "パラカ",
+        "brand:wikidata": "Q11329318",
+        "brand:wikipedia": "ja:パラカ",
+        "fee": "yes",
+        "name": "パラカ",
+        "name:en": "Paraca",
+        "name:ja": "パラカ"
+      }
+    },
+    "amenity/parking|ル・パルク": {
+      "countryCodes": ["jp"],
+      "matchNames": ["nttル・パルク"],
+      "tags": {
+        "amenity": "parking",
+        "brand": "ル・パルク",
+        "brand:en": "LePerc",
+        "brand:ja": "ル・パルク",
+        "brand:wikidata": "Q11236111",
+        "brand:wikipedia": "ja:NTTル・パルク",
+        "fee": "yes",
+        "name": "ル・パルク",
+        "name:en": "LePerc",
+        "name:ja": "ル・パルク"
+      }
+    },
+    "amenity/parking|三井のリパーク": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "parking",
+        "brand": "三井のリパーク",
+        "brand:en": "Mitsui Repark",
+        "brand:ja": "三井のリパーク",
+        "brand:wikidata": "Q11415765",
+        "brand:wikipedia": "ja:名鉄協商",
+        "fee": "yes",
+        "name": "三井のリパーク",
+        "name:en": "Mitsui Repark",
+        "name:ja": "三井のリパーク"
+      }
+    },
+    "amenity/parking|名鉄協商パーキング": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "parking",
+        "brand": "名鉄協商パーキング",
+        "brand:en": "Meitetsu Kyosho",
+        "brand:ja": "名鉄協商パーキング",
+        "brand:wikidata": "Q11415765",
+        "brand:wikipedia": "ja:名鉄協商",
+        "fee": "yes",
+        "name": "名鉄協商パーキング",
+        "name:en": "Meitetsu Kyosho",
+        "name:ja": "名鉄協商パーキング"
       }
     },
     "amenity/payment_centre|Abitab": {
@@ -20575,6 +21523,15 @@
         "name": "Farmacenter"
       }
     },
+    "amenity/pharmacy|Farmacia": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Farmacia",
+        "healthcare": "pharmacy",
+        "name": "Farmacia"
+      }
+    },
     "amenity/pharmacy|Farmacia Benavides": {
       "countryCodes": ["mx"],
       "tags": {
@@ -20827,6 +21784,15 @@
         "name": "Gintarinė vaistinė"
       }
     },
+    "amenity/pharmacy|Gradska ljekarna Zagreb": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Gradska ljekarna Zagreb",
+        "healthcare": "pharmacy",
+        "name": "Gradska ljekarna Zagreb"
+      }
+    },
     "amenity/pharmacy|Guardian~(Asia)": {
       "countryCodes": ["bn", "id", "kh", "my", "sg", "vn"],
       "tags": {
@@ -20977,6 +21943,33 @@
         "name": "Life Pharmacy"
       }
     },
+    "amenity/pharmacy|Ljekarna Jadran": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Ljekarna Jadran",
+        "healthcare": "pharmacy",
+        "name": "Ljekarna Jadran"
+      }
+    },
+    "amenity/pharmacy|Ljekarna Joukhadar": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Ljekarna Joukhadar",
+        "healthcare": "pharmacy",
+        "name": "Ljekarna Joukhadar"
+      }
+    },
+    "amenity/pharmacy|Ljekarna Pablo": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Ljekarna Pablo",
+        "healthcare": "pharmacy",
+        "name": "Ljekarna Pablo"
+      }
+    },
     "amenity/pharmacy|Lloyds Pharmacy": {
       "countryCodes": ["be", "gb", "ie", "im"],
       "matchNames": ["lloyds"],
@@ -21018,6 +22011,15 @@
         "healthcare": "pharmacy",
         "name": "Longs Drugs",
         "short_name": "Longs"
+      }
+    },
+    "amenity/pharmacy|Mandis Pharm": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Mandis Pharm",
+        "healthcare": "pharmacy",
+        "name": "Mandis Pharm"
       }
     },
     "amenity/pharmacy|Mannings": {
@@ -21195,6 +22197,15 @@
         "name": "Priceline Pharmacy"
       }
     },
+    "amenity/pharmacy|Prima Pharme": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Prima Pharme",
+        "healthcare": "pharmacy",
+        "name": "Prima Pharme"
+      }
+    },
     "amenity/pharmacy|Punto Farma~(Colombia)": {
       "countryCodes": ["co"],
       "tags": {
@@ -21271,6 +22282,7 @@
     },
     "amenity/pharmacy|Rowlands Pharmacy": {
       "countryCodes": ["gb"],
+      "matchNames": ["rowlands"],
       "tags": {
         "amenity": "pharmacy",
         "brand": "Rowlands Pharmacy",
@@ -21431,6 +22443,30 @@
         "brand:wikipedia": "fr:Uniprix (pharmacies)",
         "healthcare": "pharmacy",
         "name": "Uniprix"
+      }
+    },
+    "amenity/pharmacy|Vaše zdravlje": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Vaše zdravlje",
+        "healthcare": "pharmacy",
+        "name": "Vaše zdravlje"
+      }
+    },
+    "amenity/pharmacy|V・ドラッグ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "V・ドラッグ",
+        "brand:en": "V・Drug",
+        "brand:ja": "V・ドラッグ",
+        "brand:wikidata": "Q11367334",
+        "brand:wikipedia": "ja:中部薬品",
+        "healthcare": "pharmacy",
+        "name": "V・ドラッグ",
+        "name:en": "V・Drug",
+        "name:ja": "V・ドラッグ"
       }
     },
     "amenity/pharmacy|Walgreens": {
@@ -21676,6 +22712,14 @@
         "name": "Мед-сервіс"
       }
     },
+    "amenity/pharmacy|Медея": {
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Медея",
+        "healthcare": "pharmacy",
+        "name": "Медея"
+      }
+    },
     "amenity/pharmacy|Мелодия здоровья": {
       "countryCodes": ["ru"],
       "tags": {
@@ -21897,6 +22941,8 @@
         "amenity": "pharmacy",
         "brand": "さくら薬局",
         "brand:ja": "さくら薬局",
+        "brand:wikidata": "Q11299021",
+        "brand:wikipedia": "ja:クラフト (ドラッグストア)",
         "healthcare": "pharmacy",
         "name": "さくら薬局",
         "name:en": "Sakura Pharmacy",
@@ -21909,8 +22955,11 @@
         "amenity": "pharmacy",
         "brand": "アイン薬局",
         "brand:ja": "アイン薬局",
+        "brand:wikidata": "Q11282518",
+        "brand:wikipedia": "ja:アインファーマシーズ",
         "healthcare": "pharmacy",
         "name": "アイン薬局",
+        "name:en": "Ain Pharmaciez",
         "name:ja": "アイン薬局"
       }
     },
@@ -21958,6 +23007,23 @@
         "name:ja": "ウエルシア薬局"
       }
     },
+    "amenity/pharmacy|オーエスドラッグ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["osドラッグ"],
+      "tags": {
+        "alt_name": "OSドラッグ",
+        "amenity": "pharmacy",
+        "brand": "オーエスドラッグ",
+        "brand:en": "OS Drug",
+        "brand:ja": "オーエスドラッグ",
+        "brand:wikidata": "Q11407223",
+        "brand:wikipedia": "ja:協和商事",
+        "healthcare": "pharmacy",
+        "name": "オーエスドラッグ",
+        "name:en": "OS Drug",
+        "name:ja": "オーエスドラッグ"
+      }
+    },
     "amenity/pharmacy|カワチ薬品": {
       "countryCodes": ["jp"],
       "tags": {
@@ -21986,6 +23052,20 @@
         "name": "キリン堂",
         "name:en": "Kirindo",
         "name:ja": "キリン堂"
+      }
+    },
+    "amenity/pharmacy|クオール": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "クオール",
+        "brand:en": "Qol",
+        "brand:ja": "クオール",
+        "brand:wikidata": "Q88383318",
+        "healthcare": "pharmacy",
+        "name": "クオール",
+        "name:en": "Qol",
+        "name:ja": "クオール"
       }
     },
     "amenity/pharmacy|クスリのアオキ": {
@@ -22204,6 +23284,17 @@
         "name:ja": "ドラッグセイムス"
       }
     },
+    "amenity/pharmacy|ハックドラッグ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "ハックドラッグ",
+        "brand:ja": "ハックドラッグ",
+        "healthcare": "pharmacy",
+        "name": "ハックドラッグ",
+        "name:ja": "ハックドラッグ"
+      }
+    },
     "amenity/pharmacy|マツモトキヨシ": {
       "countryCodes": ["jp"],
       "tags": {
@@ -22235,6 +23326,16 @@
         "brand": "屈臣氏",
         "healthcare": "pharmacy",
         "name": "屈臣氏"
+      }
+    },
+    "amenity/post_office|An Post": {
+      "countryCodes": ["ie"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "An Post",
+        "brand:wikidata": "Q482490",
+        "brand:wikipedia": "en:An Post",
+        "name": "An Post"
       }
     },
     "amenity/post_office|Australia Post": {
@@ -22589,6 +23690,9 @@
         "name": "United States Post Office"
       }
     },
+    "amenity/post_office|Zoom": {
+      "tags": {"amenity": "post_office", "brand": "Zoom", "name": "Zoom"}
+    },
     "amenity/post_office|ΕΛΤΑ": {
       "countryCodes": ["gr"],
       "tags": {
@@ -22675,6 +23779,27 @@
         "name": "Укрпошта"
       }
     },
+    "amenity/post_office|بريد الجزائر": {
+      "tags": {
+        "amenity": "post_office",
+        "brand": "بريد الجزائر",
+        "name": "بريد الجزائر"
+      }
+    },
+    "amenity/post_office|ヤマト運輸": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "ヤマト運輸",
+        "brand:en": "Yamato Transport",
+        "brand:ja": "ヤマト運輸",
+        "brand:wikidata": "Q6584353",
+        "brand:wikipedia": "ja:ヤマト運輸",
+        "name": "ヤマト運輸",
+        "name:en": "Yamato Transport",
+        "name:ja": "ヤマト運輸"
+      }
+    },
     "amenity/post_office|中国邮政": {
       "countryCodes": ["cn"],
       "tags": {
@@ -22685,6 +23810,35 @@
         "brand:wikipedia": "en:China Post",
         "name": "中国邮政",
         "name:en": "China Post"
+      }
+    },
+    "amenity/post_office|佐川急便": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "佐川急便",
+        "brand:en": "Sagawa Express",
+        "brand:ja": "佐川急便",
+        "brand:wikidata": "Q7399082",
+        "brand:wikipedia": "ja:佐川急便",
+        "name": "佐川急便",
+        "name:en": "Sagawa Express",
+        "name:ja": "佐川急便"
+      }
+    },
+    "amenity/post_office|日本郵便": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "日本郵便",
+        "brand:en": "Japan Post",
+        "brand:ja": "日本郵便",
+        "brand:wikidata": "Q11509260",
+        "brand:wikipedia": "ja:日本郵便",
+        "name": "日本郵便",
+        "name:en": "Japan Post",
+        "name:ja": "日本郵便",
+        "short_name:en": "JP"
       }
     },
     "amenity/prep_school|Huntington Learning Center": {
@@ -22811,6 +23965,87 @@
         "brand:wikidata": "Q7962149",
         "brand:wikipedia": "en:Walkabout (pub chain)",
         "name": "Walkabout"
+      }
+    },
+    "amenity/pub|つぼ八": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pub",
+        "brand": "つぼ八",
+        "brand:en": "Tsubohachi",
+        "brand:ja": "つぼ八",
+        "brand:wikidata": "Q11272459",
+        "brand:wikipedia": "ja:つぼ八",
+        "name": "つぼ八",
+        "name:en": "Tsubohachi",
+        "name:ja": "つぼ八"
+      }
+    },
+    "amenity/pub|はなの舞": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pub",
+        "brand": "はなの舞",
+        "brand:en": "Hananomai",
+        "brand:ja": "はなの舞",
+        "brand:wikidata": "Q88384850",
+        "name": "はなの舞",
+        "name:en": "Hananomai",
+        "name:ja": "はなの舞"
+      }
+    },
+    "amenity/pub|白木屋": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pub",
+        "brand": "白木屋",
+        "brand:en": "Shirokiya",
+        "brand:ja": "白木屋",
+        "brand:wikidata": "Q489746",
+        "brand:wikipedia": "ja:白木屋 (居酒屋)",
+        "name": "白木屋",
+        "name:en": "Shirokiya",
+        "name:ja": "白木屋"
+      }
+    },
+    "amenity/pub|笑笑": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pub",
+        "brand": "笑笑",
+        "brand:en": "Warawara",
+        "brand:ja": "笑笑",
+        "brand:wikidata": "Q87214327",
+        "name": "笑笑",
+        "name:en": "Warawara",
+        "name:ja": "笑笑"
+      }
+    },
+    "amenity/pub|魚民": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pub",
+        "brand": "魚民",
+        "brand:en": "Uotami",
+        "brand:ja": "魚民",
+        "brand:wikidata": "Q11673981",
+        "name": "魚民",
+        "name:en": "Uotami",
+        "name:ja": "魚民"
+      }
+    },
+    "amenity/pub|鳥貴族": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "pub",
+        "brand": "鳥貴族",
+        "brand:en": "Torikizoku",
+        "brand:ja": "鳥貴族",
+        "brand:wikidata": "Q11675129",
+        "brand:wikipedia": "ja:鳥貴族",
+        "name": "鳥貴族",
+        "name:en": "Torikizoku",
+        "name:ja": "鳥貴族"
       }
     },
     "amenity/public_bookcase|Boîte à livres": {
@@ -22944,6 +24179,7 @@
       "tags": {
         "amenity": "restaurant",
         "brand": "Au Bureau",
+        "cuisine": "french;american;european",
         "name": "Au Bureau"
       }
     },
@@ -23143,13 +24379,6 @@
         "name": "Boston Pizza"
       }
     },
-    "amenity/restaurant|Brasserie": {
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Brasserie",
-        "name": "Brasserie"
-      }
-    },
     "amenity/restaurant|Bravo": {
       "countryCodes": ["us"],
       "nomatch": ["shop/supermarket|Bravo"],
@@ -23170,6 +24399,7 @@
         "brand": "Brewers Fayre",
         "brand:wikidata": "Q4962678",
         "brand:wikipedia": "en:Brewers Fayre",
+        "cuisine": "british",
         "name": "Brewers Fayre"
       }
     },
@@ -23381,20 +24611,6 @@
         "cuisine": "tex-mex",
         "name": "Chili's",
         "official_name": "Chili's Grill & Bar"
-      }
-    },
-    "amenity/restaurant|China City": {
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "China City",
-        "name": "China City"
-      }
-    },
-    "amenity/restaurant|China Palace": {
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "China Palace",
-        "name": "China Palace"
       }
     },
     "amenity/restaurant|Chiquito": {
@@ -23695,9 +24911,11 @@
     "amenity/restaurant|Fatz": {
       "countryCodes": ["us"],
       "tags": {
+        "amenity": "restaurant",
         "brand": "Fatz",
         "brand:wikidata": "Q5424504",
         "brand:wikipedia": "en:Fatz",
+        "cuisine": "american",
         "name": "Fatz"
       }
     },
@@ -23894,6 +25112,7 @@
         "amenity": "restaurant",
         "brand": "Handmade Burger Co.",
         "brand:wikidata": "Q56154673",
+        "brand:wikipedia": "en:Handmade Burger Co",
         "cuisine": "burger",
         "name": "Handmade Burger Co."
       }
@@ -24039,9 +25258,6 @@
         "cuisine": "american;buffet",
         "name": "Iron Skillet"
       }
-    },
-    "amenity/restaurant|Italia": {
-      "tags": {"amenity": "restaurant", "brand": "Italia", "name": "Italia"}
     },
     "amenity/restaurant|Jack Astor's": {
       "countryCodes": ["ca", "us"],
@@ -24662,6 +25878,17 @@
         "name": "Pei Wei"
       }
     },
+    "amenity/restaurant|Pepper Lunch": {
+      "matchNames": ["ペッパーランチ"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Pepper Lunch",
+        "brand:wikidata": "Q1016072",
+        "brand:wikipedia": "en:Pepper Lunch",
+        "cuisine": "steak",
+        "name": "Pepper Lunch"
+      }
+    },
     "amenity/restaurant|Perkins": {
       "countryCodes": ["us"],
       "tags": {
@@ -24764,6 +25991,18 @@
         "brand:wikipedia": "en:Pizza Hut",
         "cuisine": "pizza",
         "name": "Pizza Hut"
+      }
+    },
+    "amenity/restaurant|Pizza Paï": {
+      "countryCodes": ["fr"],
+      "nomatch": ["amenity/fast_food|Pizza Paï"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Pizza Paï",
+        "brand:wikidata": "Q3389501",
+        "brand:wikipedia": "fr:PizzaPai",
+        "cuisine": "pizza",
+        "name": "Pizza Paï"
       }
     },
     "amenity/restaurant|Pizza Ranch": {
@@ -24869,6 +26108,16 @@
         "cuisine": "burger",
         "name": "Red Robin",
         "official_name": "Red Robin Gourmet Burgers and Brews"
+      }
+    },
+    "amenity/restaurant|Ristorante Del Arte": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Ristorante Del Arte",
+        "brand:wikidata": "Q89208262",
+        "cuisine": "italian",
+        "name": "restaurant"
       }
     },
     "amenity/restaurant|Romano's Macaroni Grill": {
@@ -25114,13 +26363,6 @@
         "brand:wikipedia": "en:Sunset Grill (Canadian restaurant chain)",
         "cuisine": "american",
         "name": "Sunset Grill"
-      }
-    },
-    "amenity/restaurant|Sushi House": {
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Sushi House",
-        "name": "Sushi House"
       }
     },
     "amenity/restaurant|Swiss Chalet": {
@@ -25612,7 +26854,10 @@
         "amenity": "restaurant",
         "brand": "しゃぶ葉",
         "brand:ja": "しゃぶ葉",
+        "brand:wikidata": "Q87724264",
+        "cuisine": "buffet",
         "name": "しゃぶ葉",
+        "name:en": "Syabuyo",
         "name:ja": "しゃぶ葉"
       }
     },
@@ -25697,6 +26942,7 @@
         "brand": "ガスト",
         "brand:en": "Gusto",
         "brand:ja": "ガスト",
+        "brand:wikidata": "Q87724117",
         "cuisine": "western;japanese",
         "name": "ガスト",
         "name:en": "Gusto",
@@ -25868,8 +27114,29 @@
         "name:ja": "ロイヤルホスト"
       }
     },
+    "amenity/restaurant|一風堂": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "町田商店",
+        "brand:en": "Machida Shouten",
+        "brand:jp": "町田商店",
+        "brand:wikidata": "Q88318612",
+        "cuisine": "noodle",
+        "name": "町田商店",
+        "name:en": "Machida Shouten",
+        "name:jp": "町田商店"
+      }
+    },
     "amenity/restaurant|三媽臭臭鍋": {
-      "tags": {"amenity": "restaurant", "brand": "三媽臭臭鍋", "name": "三媽臭臭鍋"}
+      "countryCodes": ["tw"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "三媽臭臭鍋",
+        "cuisine": "taiwanese",
+        "name": "三媽臭臭鍋",
+        "name:zh": "三媽臭臭鍋"
+      }
     },
     "amenity/restaurant|丸亀製麺": {
       "countryCodes": ["jp"],
@@ -25884,6 +27151,21 @@
         "name": "丸亀製麺",
         "name:en": "Marugame Seimen",
         "name:ja": "丸亀製麺"
+      }
+    },
+    "amenity/restaurant|元気寿司": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "元気寿司",
+        "brand:en": "Genki Sushi",
+        "brand:ja": "元気寿司",
+        "brand:wikidata": "Q5533323",
+        "brand:wikipedia": "ja:元気寿司",
+        "cuisine": "sushi",
+        "name": "元気寿司",
+        "name:en": "Genki Sushi",
+        "name:ja": "元気寿司"
       }
     },
     "amenity/restaurant|八方雲集": {
@@ -25989,7 +27271,14 @@
       }
     },
     "amenity/restaurant|弘爺漢堡": {
-      "tags": {"amenity": "restaurant", "brand": "弘爺漢堡", "name": "弘爺漢堡"}
+      "countryCodes": ["tw"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "弘爺漢堡",
+        "cuisine": "american;breakfast",
+        "name": "弘爺漢堡",
+        "name:en": "Hong Ya Hambuger"
+      }
     },
     "amenity/restaurant|木曽路": {
       "countryCodes": ["jp"],
@@ -26074,7 +27363,14 @@
       }
     },
     "amenity/restaurant|麥味登": {
-      "tags": {"amenity": "restaurant", "brand": "麥味登", "name": "麥味登"}
+      "countryCodes": ["tw"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "麥味登",
+        "cuisine": "american;breakfast",
+        "name": "麥味登",
+        "name:en": "My Warn Day Care & Brunch"
+      }
     },
     "amenity/restaurant|바다횟집": {
       "countryCodes": ["kr"],
@@ -26450,6 +27746,23 @@
         "vending": "parcel_pickup"
       }
     },
+    "amenity/vending_machine|Amazonロッカー": {
+      "countryCodes": ["jp"],
+      "matchNames": ["アマゾン・ロッカー"],
+      "tags": {
+        "alt_name": "アマゾン・ロッカー",
+        "amenity": "vending_machine",
+        "brand": "Amazonロッカー",
+        "brand:en": "Amazon Locker",
+        "brand:ja": "Amazonロッカー",
+        "brand:wikidata": "Q16974764",
+        "brand:wikipedia": "ja:Amazonロッカー",
+        "name": "Amazonロッカー",
+        "name:en": "Amazon Locker",
+        "name:ja": "Amazonロッカー",
+        "vending": "parcel_pickup"
+      }
+    },
     "amenity/vending_machine|AmeriGas": {
       "countryCodes": ["us"],
       "tags": {
@@ -26573,6 +27886,19 @@
         "vending": "ice_cubes"
       }
     },
+    "amenity/vending_machine|JT": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "JT",
+        "brand:wikidata": "Q898568",
+        "brand:wikipedia": "ja:日本たばこ産業",
+        "name": "JT",
+        "official_name": "日本たばこ産業",
+        "official_name:en": "Japan Tobacco",
+        "vending": "cigarettes"
+      }
+    },
     "amenity/vending_machine|KKM": {
       "countryCodes": ["pl"],
       "tags": {
@@ -26593,6 +27919,24 @@
         "brand:wikidata": "Q2365235",
         "brand:wikipedia": "ru:Ozon.ru",
         "name": "Ozon Box",
+        "vending": "parcel_pickup"
+      }
+    },
+    "amenity/vending_machine|PUDOステーション": {
+      "countryCodes": ["jp"],
+      "matchNames": ["プドー・ステーション"],
+      "matchTags": ["amenity/post_box"],
+      "tags": {
+        "alt_name": "プドー・ステーション",
+        "amenity": "vending_machine",
+        "brand": "プドー",
+        "brand:en": "PUDO",
+        "brand:ja": "プドー",
+        "brand:wikidata": "Q86738066",
+        "brand:wikipedia": "ja:Packcity Japan",
+        "name": "PUDOステーション",
+        "name:en": "PUDO Station",
+        "name:ja": "PUDOステーション",
         "vending": "parcel_pickup"
       }
     },
@@ -26682,6 +28026,21 @@
         "vending": "cigarettes"
       }
     },
+    "amenity/vending_machine|UCC": {
+      "countryCodes": ["jp"],
+      "matchNames": ["ucc上島珈琲"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "UCC",
+        "brand:wikidata": "Q1185060",
+        "brand:wikipedia": "ja:UCC上島珈琲",
+        "name": "UCC",
+        "official_name": "上島珈琲",
+        "official_name:en": "Ueshima Coffee",
+        "official_name:ja": "上島珈琲",
+        "vending": "coffee"
+      }
+    },
     "amenity/vending_machine|VVO Fahrausweise": {
       "countryCodes": ["de"],
       "tags": {
@@ -26701,6 +28060,170 @@
         "vending": "water"
       }
     },
+    "amenity/vending_machine|い・ろ・は・す": {
+      "countryCodes": ["jp"],
+      "matchNames": ["i・lohas"],
+      "tags": {
+        "alt_name:en": "ILOHAS",
+        "amenity": "vending_machine",
+        "brand": "い・ろ・は・す",
+        "brand:en": "I Lohas",
+        "brand:ja": "い・ろ・は・す",
+        "brand:wikidata": "Q11260234",
+        "brand:wikipedia": "ja:い・ろ・は・す",
+        "drink:water": "yes",
+        "name": "い・ろ・は・す",
+        "name:en": "I Lohas",
+        "name:ja": "い・ろ・は・す",
+        "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|だし道楽": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "だし道楽",
+        "brand:en": "Dashi Douraku",
+        "brand:ja": "だし道楽",
+        "brand:wikidata": "Q60989429",
+        "brand:wikipedia": "ja:だし道楽",
+        "drink:brewery": "yes",
+        "name": "だし道楽",
+        "name:en": "Dashi Douraku",
+        "name:ja": "だし道楽",
+        "vending": "food"
+      }
+    },
+    "amenity/vending_machine|はこぽす": {
+      "countryCodes": ["jp"],
+      "matchTags": ["amenity/post_box"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "はこぽす",
+        "brand:en": "Hakopost",
+        "brand:ja": "はこぽす",
+        "brand:wikidata": "Q11509261",
+        "brand:wikipedia": "ja:日本郵便輸送",
+        "name": "はこぽす",
+        "name:en": "Hakopost",
+        "name:ja": "はこぽす",
+        "vending": "parcel_pickup"
+      }
+    },
+    "amenity/vending_machine|アキュア": {
+      "countryCodes": ["jp"],
+      "matchNames": ["acureの自販機"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "アキュア",
+        "brand:en": "Acure",
+        "brand:ja": "アキュア",
+        "brand:wikidata": "Q11226260",
+        "brand:wikipedia": "ja:JR東日本ウォータービジネス",
+        "name": "アキュア",
+        "name:en": "Acure",
+        "name:ja": "アキュア"
+      }
+    },
+    "amenity/vending_machine|アサヒビール": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Asahi Beer",
+        "amenity": "vending_machine",
+        "brand": "アサヒビール",
+        "brand:en": "Asahi Breweries",
+        "brand:ja": "アサヒビール",
+        "brand:wikidata": "Q720479",
+        "brand:wikipedia": "ja:アサヒビール",
+        "drink:brewery": "yes",
+        "name": "アサヒビール",
+        "name:en": "Asahi Breweries",
+        "name:ja": "アサヒビール",
+        "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|アペックス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "アペックス",
+        "brand:en": "Apex",
+        "brand:ja": "アペックス",
+        "brand:wikidata": "Q11284782",
+        "brand:wikipedia": "ja:アペックス (企業)",
+        "name": "アペックス",
+        "name:en": "Apex",
+        "name:ja": "アペックス",
+        "vending": "coffee"
+      }
+    },
+    "amenity/vending_machine|カップヌードル": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "カップヌードル",
+        "brand:en": "Cup Noodle",
+        "brand:ja": "カップヌードル",
+        "brand:wikidata": "Q1143401",
+        "brand:wikipedia": "ja:カップヌードル",
+        "name": "カップヌードル",
+        "name:en": "Cup Noodle",
+        "name:ja": "カップヌードル",
+        "vending": "food"
+      }
+    },
+    "amenity/vending_machine|カルピス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Calpico",
+        "amenity": "vending_machine",
+        "brand": "カルピス",
+        "brand:en": "Calpis",
+        "brand:ja": "カルピス",
+        "brand:wikidata": "Q1027454",
+        "brand:wikipedia": "ja:カルピス",
+        "name": "カルピス",
+        "name:en": "Calpis",
+        "name:ja": "カルピス",
+        "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|キリンビバレッジ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["キリンbv"],
+      "tags": {
+        "alt_name": "キリンBV",
+        "amenity": "vending_machine",
+        "brand": "キリンビバレッジ",
+        "brand:en": "Kirin Beverage",
+        "brand:ja": "キリンビバレッジ",
+        "brand:wikidata": "Q1833953",
+        "brand:wikipedia": "ja:キリンビバレッジ",
+        "drink:tea": "yes",
+        "name": "キリンビバレッジ",
+        "name:en": "Kirin Beverage",
+        "name:ja": "キリンビバレッジ",
+        "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|キリンビール": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Kirin Beer",
+        "amenity": "vending_machine",
+        "brand": "キリンビール",
+        "brand:en": "Kirin Brewery",
+        "brand:ja": "キリンビール",
+        "brand:wikidata": "Q13403399",
+        "brand:wikipedia": "ja:麒麟麦酒",
+        "drink:brewery": "yes",
+        "name": "キリンビール",
+        "name:en": "Kirin Brewery",
+        "name:ja": "キリンビール",
+        "official_name": "麒麟麦酒",
+        "vending": "drinks"
+      }
+    },
     "amenity/vending_machine|コカ・コーラ": {
       "countryCodes": ["jp"],
       "tags": {
@@ -26710,11 +28233,120 @@
         "brand:ja": "コカ・コーラ",
         "brand:wikidata": "Q2813",
         "brand:wikipedia": "ja:コカ・コーラ",
-        "drink": "cola",
+        "drink:cola": "yes",
         "name": "コカ・コーラ",
         "name:en": "Coca-Cola",
         "name:ja": "コカ・コーラ",
         "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|サントリー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "サントリー",
+        "brand:en": "Suntory",
+        "brand:ja": "サントリー",
+        "brand:wikidata": "Q1345267",
+        "brand:wikipedia": "ja:サントリー",
+        "name": "サントリー",
+        "name:en": "Suntory",
+        "name:ja": "サントリー",
+        "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|ジョージア": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "ジョージア",
+        "brand:en": "Georgia",
+        "brand:ja": "ジョージア",
+        "brand:wikidata": "Q5547323",
+        "brand:wikipedia": "ja:ジョージア (缶コーヒー)",
+        "name": "ジョージア",
+        "name:en": "Georgia",
+        "name:ja": "ジョージア",
+        "vending": "coffee"
+      }
+    },
+    "amenity/vending_machine|セブンティーンアイス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "セブンティーンアイス",
+        "brand:en": "Seventeen Ice",
+        "brand:ja": "セブンティーンアイス",
+        "brand:wikidata": "Q11314427",
+        "brand:wikipedia": "ja:セブンティーンアイス",
+        "name": "セブンティーンアイス",
+        "name:en": "Seventeen Ice",
+        "name:ja": "セブンティーンアイス",
+        "vending": "ice_cream"
+      }
+    },
+    "amenity/vending_machine|ダイドードリンコ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["dydoドリンコ", "ダイドー"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "ダイドー",
+        "brand:en": "DyDo",
+        "brand:ja": "ダイドー",
+        "brand:wikidata": "Q11316814",
+        "brand:wikipedia": "ja:ダイドードリンコ",
+        "drink:soft_drink": "yes",
+        "name": "ダイドードリンコ",
+        "name:en": "DyDo Drinco",
+        "name:ja": "ダイドードリンコ",
+        "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|チェリオ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "チェリオ",
+        "brand:en": "Cheerio",
+        "brand:ja": "チェリオ",
+        "brand:wikidata": "Q5089350",
+        "brand:wikipedia": "ja:チェリオ",
+        "drink:soft_drink": "yes",
+        "name": "チェリオ",
+        "name:en": "Cheerio",
+        "name:ja": "チェリオ",
+        "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|ドール": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "ドール",
+        "brand:en": "Dole",
+        "brand:ja": "ドール",
+        "brand:wikidata": "Q492747",
+        "brand:wikipedia": "ja:ドール・フード・カンパニー",
+        "name": "ドール",
+        "name:en": "Dole",
+        "name:ja": "ドール",
+        "vending": "food"
+      }
+    },
+    "amenity/vending_machine|ニチレイフーズ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Nichirei 24 Hour Hot Menu Casual Frozen Foods",
+        "amenity": "vending_machine",
+        "brand": "ニチレイフーズ",
+        "brand:en": "Nichirei Foods",
+        "brand:ja": "ニチレイフーズ",
+        "brand:wikidata": "Q4921527",
+        "brand:wikipedia": "ja:ニチレイ",
+        "name": "ニチレイフーズ",
+        "name:en": "Nichirei Foods",
+        "name:ja": "ニチレイフーズ",
+        "vending": "food"
       }
     },
     "amenity/vending_machine|ポッカサッポロ": {
@@ -26731,6 +28363,101 @@
         "name:en": "Pokka Sapporo",
         "name:ja": "ポッカサッポロ",
         "vending": "water;food"
+      }
+    },
+    "amenity/vending_machine|メトロの缶詰": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Metocan Shop",
+        "amenity": "vending_machine",
+        "brand": "メトロの缶詰",
+        "brand:en": "Metro Commerce",
+        "brand:ja": "メトロの缶詰",
+        "brand:wikidata": "Q11343895",
+        "brand:wikipedia": "ja:メトロコマース",
+        "name": "メトロの缶詰",
+        "name:en": "Metro Commerce",
+        "name:ja": "メトロの缶詰",
+        "vending": "gift"
+      }
+    },
+    "amenity/vending_machine|ヤクルト": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "ヤクルト",
+        "brand:en": "Yakult",
+        "brand:ja": "ヤクルト",
+        "brand:wikidata": "Q16172223",
+        "brand:wikipedia": "ja:ヤクルト本社",
+        "drink:milk": "yes",
+        "name": "ヤクルト",
+        "name:en": "Yakult",
+        "name:ja": "ヤクルト",
+        "vending": "milk"
+      }
+    },
+    "amenity/vending_machine|ロッテアイス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "ロッテアイス",
+        "brand:en": "Lotte Ice Cream",
+        "brand:ja": "ロッテアイス",
+        "brand:wikidata": "Q24886018",
+        "brand:wikipedia": "ja:ロッテアイス",
+        "name": "ロッテアイス",
+        "name:en": "Lotte Ice Cream",
+        "name:ja": "ロッテアイス",
+        "vending": "ice_cream"
+      }
+    },
+    "amenity/vending_machine|伊藤園": {
+      "countryCodes": ["jp"],
+      "matchNames": ["ito en"],
+      "tags": {
+        "alt_name:en": "ITOEN",
+        "amenity": "vending_machine",
+        "brand": "伊藤園",
+        "brand:en": "Ito En",
+        "brand:ja": "伊藤園",
+        "brand:wikidata": "Q3079325",
+        "brand:wikipedia": "ja:伊藤園",
+        "drink:tea": "yes",
+        "name": "伊藤園",
+        "name:en": "Ito En",
+        "name:ja": "伊藤園",
+        "vending": "drinks"
+      }
+    },
+    "amenity/vending_machine|大塚食品": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "大塚",
+        "brand:en": "Otsuka",
+        "brand:ja": "大塚",
+        "brand:wikidata": "Q11434124",
+        "brand:wikipedia": "ja:大塚食品",
+        "name": "大塚食品",
+        "name:en": "Otsuka Foods",
+        "name:ja": "大塚食品",
+        "vending": "food"
+      }
+    },
+    "amenity/vending_machine|明治": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "明治",
+        "brand:en": "Meiji",
+        "brand:ja": "明治",
+        "brand:wikidata": "Q11512281",
+        "brand:wikipedia": "ja:明治 (企業)",
+        "name": "明治",
+        "name:en": "Meiji",
+        "name:ja": "明治",
+        "vending": "food"
       }
     },
     "amenity/veterinary|Banfield Pet Hospital": {
@@ -26830,6 +28557,16 @@
         "short_name": "Blood Service"
       }
     },
+    "healthcare/blood_donation|San Diego Blood Bank": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "San Diego Blood Bank",
+        "brand:wikidata": "Q87770169",
+        "healthcare": "blood_donation",
+        "name": "San Diego Blood Bank",
+        "short_name": "SDBB"
+      }
+    },
     "healthcare/blood_donation|Thai Red Cross Society": {
       "countryCodes": ["th"],
       "tags": {
@@ -26905,6 +28642,125 @@
         "residential": "apartments"
       }
     },
+    "leisure/adult_gaming_centre|ガイア": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ガイア",
+        "brand:en": "GAIA",
+        "brand:ja": "ガイア",
+        "brand:wikidata": "Q11295831",
+        "brand:wikipedia": "ja:ガイア (パチンコ)",
+        "gambling": "pachinko",
+        "leisure": "adult_gaming_centre",
+        "name": "ガイア",
+        "name:en": "GAIA",
+        "name:ja": "ガイア"
+      }
+    },
+    "leisure/adult_gaming_centre|ダイナム": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ダイナム",
+        "brand:en": "Dynam",
+        "brand:ja": "ダイナム",
+        "brand:wikidata": "Q10846977",
+        "brand:wikipedia": "ja:ダイナム",
+        "gambling": "pachinko",
+        "leisure": "adult_gaming_centre",
+        "name": "ダイナム",
+        "name:en": "Dynam",
+        "name:ja": "ダイナム"
+      }
+    },
+    "leisure/adult_gaming_centre|マルハン": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "マルハン",
+        "brand:en": "Maruhan",
+        "brand:ja": "マルハン",
+        "brand:wikidata": "Q1905948",
+        "brand:wikipedia": "ja:マルハン",
+        "gambling": "pachinko",
+        "leisure": "adult_gaming_centre",
+        "name": "マルハン",
+        "name:en": "Maruhan",
+        "name:ja": "マルハン"
+      }
+    },
+    "leisure/amusement_arcade|アドアーズ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "アドアーズ",
+        "brand:en": "Adores",
+        "brand:ja": "アドアーズ",
+        "brand:wikidata": "Q54843532",
+        "brand:wikipedia": "ja:アドアーズ",
+        "leisure": "amusement_arcade",
+        "name": "アドアーズ",
+        "name:en": "Adores",
+        "name:ja": "アドアーズ"
+      }
+    },
+    "leisure/amusement_arcade|アピナ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "アピナ",
+        "brand:en": "Apina",
+        "brand:ja": "アピナ",
+        "brand:wikidata": "Q55385192",
+        "brand:wikipedia": "ja:共和コーポレーション",
+        "leisure": "amusement_arcade",
+        "name": "アピナ",
+        "name:en": "Apina",
+        "name:ja": "アピナ"
+      }
+    },
+    "leisure/amusement_arcade|クラブセガ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["クラブsega", "セガ", "セガワールド"],
+      "tags": {
+        "alt_name": "セガワールド",
+        "alt_name:en": "Sega World",
+        "brand": "クラブセガ",
+        "brand:en": "Club Sega",
+        "brand:ja": "クラブセガ",
+        "brand:wikidata": "Q7446141",
+        "brand:wikipedia": "ja:セガ エンタテインメント",
+        "leisure": "amusement_arcade",
+        "name": "クラブセガ",
+        "name:en": "Club Sega",
+        "name:ja": "クラブセガ"
+      }
+    },
+    "leisure/amusement_arcade|タイトーステーション": {
+      "countryCodes": ["jp"],
+      "matchNames": ["タイトー"],
+      "tags": {
+        "brand": "タイトーステーション",
+        "brand:en": "Taito Station",
+        "brand:ja": "タイトーステーション",
+        "brand:wikidata": "Q1054844",
+        "brand:wikipedia": "ja:タイトー",
+        "leisure": "amusement_arcade",
+        "name": "タイトーステーション",
+        "name:en": "Taito Station",
+        "name:ja": "タイトーステーション"
+      }
+    },
+    "leisure/amusement_arcade|ナムコ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ナムコ",
+        "brand:en": "NAMCO",
+        "brand:ja": "ナムコ",
+        "brand:wikidata": "Q309996",
+        "brand:wikipedia": "ja:バンダイナムコアミューズメント",
+        "leisure": "amusement_arcade",
+        "name": "ナムコ",
+        "name:en": "NAMCO",
+        "name:ja": "ナムコ"
+      }
+    },
     "leisure/bowling_alley|Hollywood Bowl": {
       "countryCodes": ["gb"],
       "tags": {
@@ -26923,6 +28779,20 @@
         "brand:wikipedia": "en:Strike Bowling Bar",
         "leisure": "bowling_alley",
         "name": "Strike Bowling Bar"
+      }
+    },
+    "leisure/bowling_alley|ラウンドワン": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ラウンドワン",
+        "brand:en": "ROUND1",
+        "brand:ja": "ラウンドワン",
+        "brand:wikidata": "Q11346634",
+        "brand:wikipedia": "ja:ラウンドワン",
+        "leisure": "bowling_alley",
+        "name": "ラウンドワン",
+        "name:en": "ROUND1",
+        "name:ja": "ラウンドワン"
       }
     },
     "leisure/dog_park|Kamp K9": {
@@ -27287,6 +29157,48 @@
         "name:ja": "カーブス"
       }
     },
+    "leisure/fitness_centre|コナミスポーツクラブ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "コナミスポーツクラブ",
+        "brand:en": "Konami Sports Club",
+        "brand:ja": "コナミスポーツクラブ",
+        "brand:wikidata": "Q11302286",
+        "brand:wikipedia": "ja:コナミスポーツ (企業)",
+        "leisure": "fitness_centre",
+        "name": "コナミスポーツクラブ",
+        "name:en": "Konami Sports Club",
+        "name:ja": "コナミスポーツクラブ"
+      }
+    },
+    "leisure/fitness_centre|ジョイフィット": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ジョイフィット",
+        "brand:en": "JOYFIT",
+        "brand:ja": "ジョイフィット",
+        "brand:wikidata": "Q11310515",
+        "brand:wikipedia": "ja:ジョイフィット",
+        "leisure": "fitness_centre",
+        "name": "ジョイフィット",
+        "name:en": "JOYFIT",
+        "name:ja": "ジョイフィット"
+      }
+    },
+    "leisure/fitness_centre|ティップネス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ティップネス",
+        "brand:en": "Tipness",
+        "brand:ja": "ティップネス",
+        "brand:wikidata": "Q11318940",
+        "brand:wikipedia": "ja:ティップネス",
+        "leisure": "fitness_centre",
+        "name": "ティップネス",
+        "name:en": "Tipness",
+        "name:ja": "ティップネス"
+      }
+    },
     "leisure/playground|McDonald's PlayPlace": {
       "matchNames": ["mcdonald's"],
       "tags": {
@@ -27314,6 +29226,15 @@
         "leisure": "sports_centre",
         "name": "iFLY",
         "sport": "indoor_skydiving"
+      }
+    },
+    "leisure/trampoline_park|Flip Out": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Flip Out",
+        "brand:wikidata": "Q87271194",
+        "leisure": "trampoline_park",
+        "name": "Flip Out"
       }
     },
     "office/bail_bond_agent|Aladdin Bail Bonds": {
@@ -27421,6 +29342,14 @@
         "office": "coworking"
       }
     },
+    "office/coworking|Spaces": {
+      "tags": {
+        "brand": "Spaces",
+        "brand:wikidata": "Q87629680",
+        "name": "Spaces",
+        "office": "coworking"
+      }
+    },
     "office/coworking|Ucommune~(China)": {
       "countryCodes": ["cn"],
       "tags": {
@@ -27494,7 +29423,6 @@
       }
     },
     "office/coworking|WeWork": {
-      "countryCodes": ["us"],
       "tags": {
         "brand": "WeWork",
         "brand:wikidata": "Q19995004",
@@ -27540,6 +29468,15 @@
         "office": "employment_agency"
       }
     },
+    "office/employment_agency|Driver Hire": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Driver Hire",
+        "brand:wikidata": "Q89404688",
+        "name": "Driver Hire",
+        "office": "employment_agency"
+      }
+    },
     "office/employment_agency|Jobcentre Plus": {
       "countryCodes": ["gb"],
       "tags": {
@@ -27559,6 +29496,15 @@
         "office": "employment_agency"
       }
     },
+    "office/employment_agency|Office Angels": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Office Angels",
+        "brand:wikidata": "Q89403503",
+        "name": "Office Angels",
+        "office": "employment_agency"
+      }
+    },
     "office/employment_agency|Pôle Emploi": {
       "countryCodes": ["fr"],
       "tags": {
@@ -27575,6 +29521,36 @@
         "brand:wikidata": "Q267840",
         "brand:wikipedia": "en:Randstad Holding",
         "name": "Randstad",
+        "office": "employment_agency"
+      }
+    },
+    "office/employment_agency|ハローワーク": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ハローワーク",
+        "brand:en": "Hello Work",
+        "brand:ja": "ハローワーク",
+        "brand:wikidata": "Q5016578",
+        "brand:wikipedia": "ja:公共職業安定所",
+        "name": "ハローワーク",
+        "name:en": "Hello Work",
+        "name:ja": "ハローワーク",
+        "office": "employment_agency",
+        "official_name": "公共職業安定所",
+        "official_name:en": "Public Employment Security Office"
+      }
+    },
+    "office/employment_agency|パソナ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "パソナ",
+        "brand:en": "Pasona",
+        "brand:ja": "パソナ",
+        "brand:wikidata": "Q7142290",
+        "brand:wikipedia": "ja:パソナ",
+        "name": "パソナ",
+        "name:en": "Pasona",
+        "name:ja": "パソナ",
         "office": "employment_agency"
       }
     },
@@ -27870,6 +29846,15 @@
         "office": "estate_agent"
       }
     },
+    "office/estate_agent|Mayfair Town & Country": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Mayfair Town & Country",
+        "brand:wikidata": "Q90269289",
+        "name": "Mayfair Town & Country",
+        "office": "estate_agent"
+      }
+    },
     "office/estate_agent|Orpi": {
       "countryCodes": ["fr"],
       "tags": {
@@ -27945,6 +29930,15 @@
         "office": "estate_agent"
       }
     },
+    "office/estate_agent|Stags": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Stags",
+        "brand:wikidata": "Q91028631",
+        "name": "Stags",
+        "office": "estate_agent"
+      }
+    },
     "office/estate_agent|Stirling Ackroyd": {
       "countryCodes": ["gb"],
       "tags": {
@@ -27960,6 +29954,15 @@
         "brand": "Swetenhams",
         "brand:wikidata": "Q81858340",
         "name": "Swetenhams",
+        "office": "estate_agent"
+      }
+    },
+    "office/estate_agent|Symonds & Sampson": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Symonds & Sampson",
+        "brand:wikidata": "Q90262955",
+        "name": "Symonds & Sampson",
         "office": "estate_agent"
       }
     },
@@ -28034,6 +30037,20 @@
         "name": "エイブル",
         "name:en": "Able",
         "name:ja": "エイブル",
+        "office": "estate_agent"
+      }
+    },
+    "office/estate_agent|タウンハウジング": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "タウンハウジング",
+        "brand:en": "Townhousing",
+        "brand:ja": "タウンハウジング",
+        "brand:wikidata": "Q11315877",
+        "brand:wikipedia": "ja:タウンハウジング",
+        "name": "タウンハウジング",
+        "name:en": "Townhousing",
+        "name:ja": "タウンハウジング",
         "office": "estate_agent"
       }
     },
@@ -28331,6 +30348,16 @@
         "brand:wikidata": "Q1181452",
         "brand:wikipedia": "de:Debeka",
         "name": "Debeka",
+        "office": "insurance"
+      }
+    },
+    "office/insurance|ENSA": {
+      "countryCodes": ["ao"],
+      "tags": {
+        "brand": "ENSA",
+        "brand:wikidata": "Q5323726",
+        "brand:wikipedia": "en:ENSA – Seguros de Angola",
+        "name": "ENSA",
         "office": "insurance"
       }
     },
@@ -28719,6 +30746,13 @@
         "office": "insurance"
       }
     },
+    "office/insurance|Ubezpieczenia": {
+      "tags": {
+        "brand": "Ubezpieczenia",
+        "name": "Ubezpieczenia",
+        "office": "insurance"
+      }
+    },
     "office/insurance|VidaCaixa": {
       "countryCodes": ["es"],
       "tags": {
@@ -28795,6 +30829,13 @@
         "office": "insurance"
       }
     },
+    "office/insurance|Ренессанс страхование": {
+      "tags": {
+        "brand": "Ренессанс страхование",
+        "name": "Ренессанс страхование",
+        "office": "insurance"
+      }
+    },
     "office/insurance|Росгосстрах": {
       "countryCodes": ["ru"],
       "tags": {
@@ -28830,6 +30871,49 @@
         "name": "بیمه ایران",
         "name:en": "Iran Insurance",
         "name:fa": "بیمه ایران",
+        "office": "insurance"
+      }
+    },
+    "office/insurance|日本生命": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Nissay",
+        "brand": "日本生命",
+        "brand:en": "Nippon Life",
+        "brand:ja": "日本生命",
+        "brand:wikidata": "Q519611",
+        "brand:wikipedia": "ja:日本生命保険",
+        "name": "日本生命",
+        "name:en": "Nippon Life",
+        "name:ja": "日本生命",
+        "office": "insurance"
+      }
+    },
+    "office/insurance|明治安田生命": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "明治安田生命",
+        "brand:en": "Meiji Yasuda Life",
+        "brand:ja": "明治安田生命",
+        "brand:wikidata": "Q174081",
+        "brand:wikipedia": "ja:明治安田生命保険",
+        "name": "明治安田生命",
+        "name:en": "Meiji Yasuda Life",
+        "name:ja": "明治安田生命",
+        "office": "insurance"
+      }
+    },
+    "office/insurance|第一生命": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "第一生命",
+        "brand:en": "Dai-ichi Life",
+        "brand:ja": "第一生命",
+        "brand:wikidata": "Q595475",
+        "brand:wikipedia": "ja:第一生命保険",
+        "name": "第一生命",
+        "name:en": "Dai-ichi Life",
+        "name:ja": "第一生命",
         "office": "insurance"
       }
     },
@@ -28874,6 +30958,16 @@
         "office": "tax_advisor"
       }
     },
+    "office/telecommunication|Antik Telecom": {
+      "countryCodes": ["sk"],
+      "tags": {
+        "brand": "Antik Telecom",
+        "brand:wikidata": "Q30297477",
+        "brand:wikipedia": "sk:Antik Telecom",
+        "name": "Antik Telecom",
+        "office": "telecommunication"
+      }
+    },
     "office/telecommunication|Beeline": {
       "tags": {
         "brand": "Beeline",
@@ -28890,6 +30984,19 @@
         "name": "ETECSA",
         "office": "telecommunication",
         "official_name": "Empresa de Telecomunicaciones de Cuba"
+      }
+    },
+    "office/telecommunication|Билайн": {
+      "tags": {
+        "brand": "Билайн",
+        "brand:en": "Beeline",
+        "brand:ru": "Билайн",
+        "brand:wikidata": "Q402880",
+        "brand:wikipedia": "ru:Билайн",
+        "name": "Билайн",
+        "name:en": "Beeline",
+        "name:ru": "Билайн",
+        "office": "telecommunication"
       }
     },
     "shop/agrarian|Granngården": {
@@ -29247,8 +31354,12 @@
       "countryCodes": ["jp"],
       "tags": {
         "brand": "やまや",
+        "brand:en": "Yamaya",
         "brand:ja": "やまや",
+        "brand:wikidata": "Q17224765",
+        "brand:wikipedia": "ja:やまや",
         "name": "やまや",
+        "name:en": "YaMaYa",
         "name:ja": "やまや",
         "shop": "alcohol"
       }
@@ -29265,6 +31376,50 @@
         "name:en": "Kakuyasu",
         "name:ja": "カクヤス",
         "shop": "alcohol"
+      }
+    },
+    "shop/anime|まんだらけ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "まんだらけ",
+        "brand:en": "Mandarake",
+        "brand:ja": "まんだらけ",
+        "brand:wikidata": "Q6747833",
+        "brand:wikipedia": "ja:まんだらけ",
+        "name": "まんだらけ",
+        "name:en": "Mandarake",
+        "name:ja": "まんだらけ",
+        "shop": "anime"
+      }
+    },
+    "shop/anime|らしんばん": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "らしんばん",
+        "brand:en": "Lashinbang",
+        "brand:ja": "らしんばん",
+        "brand:wikidata": "Q11281322",
+        "brand:wikipedia": "ja:らしんばん",
+        "name": "らしんばん",
+        "name:en": "Lashinbang",
+        "name:ja": "らしんばん",
+        "shop": "anime"
+      }
+    },
+    "shop/anime|ケイ・ブックス": {
+      "countryCodes": ["jp"],
+      "matchNames": ["k-books"],
+      "matchTags": ["shop/books"],
+      "tags": {
+        "brand": "ケイ・ブックス",
+        "brand:en": "K-BOOKS",
+        "brand:ja": "ケイ・ブックス",
+        "brand:wikidata": "Q8061680",
+        "brand:wikipedia": "ja:K-BOOKS",
+        "name": "ケイ・ブックス",
+        "name:en": "K-BOOKS",
+        "name:ja": "ケイ・ブックス",
+        "shop": "anime"
       }
     },
     "shop/art|YellowKorner": {
@@ -29352,6 +31507,20 @@
         "name": "西松屋",
         "name:en": "Nishimatsuya Chain",
         "name:ja": "西松屋",
+        "shop": "baby_goods"
+      }
+    },
+    "shop/baby_goods|赤ちゃん本舗": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "赤ちゃん本舗",
+        "brand:en": "Akachan Honpo",
+        "brand:ja": "赤ちゃん本舗",
+        "brand:wikidata": "Q11257015",
+        "brand:wikipedia": "ja:赤ちゃん本舗",
+        "name": "赤ちゃん本舗",
+        "name:en": "Akachan Honpo",
+        "name:ja": "赤ちゃん本舗",
         "shop": "baby_goods"
       }
     },
@@ -29589,6 +31758,16 @@
         "shop": "bakery"
       }
     },
+    "shop/bakery|Brioche Dorée": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Brioche Dorée",
+        "brand:wikidata": "Q2925606",
+        "brand:wikipedia": "fr:Brioche Dorée",
+        "name": "Brioche Dorée",
+        "shop": "bakery"
+      }
+    },
     "shop/bakery|Brumby's Bakeries": {
       "countryCodes": ["au"],
       "tags": {
@@ -29685,6 +31864,16 @@
         "shop": "bakery"
       }
     },
+    "shop/bakery|De Echte Bakker": {
+      "countryCodes": ["nl"],
+      "tags": {
+        "brand": "De Echte Bakker",
+        "brand:wikidata": "Q16920716",
+        "brand:wikipedia": "en:De Echte Bakker",
+        "name": "De Echte Bakker",
+        "shop": "bakery"
+      }
+    },
     "shop/bakery|Der Beck": {
       "countryCodes": ["de"],
       "tags": {
@@ -29724,6 +31913,16 @@
         "brand:wikidata": "Q1003020",
         "brand:wikipedia": "en:Fornetti",
         "name": "Fornetti",
+        "shop": "bakery"
+      }
+    },
+    "shop/bakery|Franz": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Franz",
+        "brand:wikidata": "Q7889571",
+        "brand:wikipedia": "en:United States Bakery",
+        "name": "Franz",
         "shop": "bakery"
       }
     },
@@ -29842,6 +32041,13 @@
         "shop": "bakery"
       }
     },
+    "shop/bakery|La Panetière": {
+      "tags": {
+        "brand": "La Panetière",
+        "name": "La Panetière",
+        "shop": "bakery"
+      }
+    },
     "shop/bakery|Le Crobag": {
       "countryCodes": ["at", "de", "pl", "ru"],
       "tags": {
@@ -29855,6 +32061,15 @@
     "shop/bakery|Le Fournil": {
       "countryCodes": ["fr"],
       "tags": {"brand": "Le Fournil", "name": "Le Fournil", "shop": "bakery"}
+    },
+    "shop/bakery|Le Pétrin Ribeïrou": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Le Pétrin Ribeïrou",
+        "brand:wikidata": "Q89209633",
+        "name": "Le Pétrin Ribeïrou",
+        "shop": "bakery"
+      }
     },
     "shop/bakery|Leifert": {
       "countryCodes": ["de"],
@@ -30072,6 +32287,16 @@
         "shop": "bakery"
       }
     },
+    "shop/bakery|Warrens Bakery": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Warrens Bakery",
+        "brand:wikidata": "Q7970646",
+        "brand:wikipedia": "en:Warrens Bakery",
+        "name": "Warrens Bakery",
+        "shop": "bakery"
+      }
+    },
     "shop/bakery|Wiener Feinbäcker": {
       "countryCodes": ["de"],
       "tags": {
@@ -30134,6 +32359,9 @@
     },
     "shop/bakery|بربری": {
       "tags": {"brand": "بربری", "name": "بربری", "shop": "bakery"}
+    },
+    "shop/bakery|سنگکی": {
+      "tags": {"brand": "سنگکی", "name": "سنگکی", "shop": "bakery"}
     },
     "shop/bakery|サンジェルマン": {
       "countryCodes": ["jp"],
@@ -30230,6 +32458,15 @@
     },
     "shop/beauty|Body Minute": {
       "tags": {"brand": "Body Minute", "name": "Body Minute", "shop": "beauty"}
+    },
+    "shop/beauty|Citron Vert": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Citron Vert",
+        "brand:wikidata": "Q89503945",
+        "name": "Citron Vert",
+        "shop": "beauty"
+      }
     },
     "shop/beauty|European Wax Center": {
       "countryCodes": ["us"],
@@ -30352,7 +32589,6 @@
         "beauty": "cosmetics",
         "brand": "Yves Rocher",
         "brand:wikidata": "Q28496595",
-        "brand:wikipedia": "en:Yves Rocher (company)",
         "name": "Yves Rocher",
         "shop": "beauty"
       }
@@ -30542,6 +32778,13 @@
         "shop": "beverages"
       }
     },
+    "shop/beverages|Markgrafen Getränkemarkt": {
+      "tags": {
+        "brand": "Markgrafen Getränkemarkt",
+        "name": "Markgrafen Getränkemarkt",
+        "shop": "beverages"
+      }
+    },
     "shop/beverages|Orterer Getränkemarkt": {
       "countryCodes": ["de"],
       "tags": {
@@ -30558,6 +32801,16 @@
         "brand": "Rewe Getränkemarkt",
         "brand:wikidata": "Q57519344",
         "name": "Rewe Getränkemarkt",
+        "shop": "beverages"
+      }
+    },
+    "shop/beverages|Sagasser": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Sagasser",
+        "brand:wikidata": "Q30838417",
+        "brand:wikipedia": "de:Sagasser",
+        "name": "Sagasser",
         "shop": "beverages"
       }
     },
@@ -30725,6 +32978,9 @@
         "name": "Paddy Power",
         "shop": "bookmaker"
       }
+    },
+    "shop/bookmaker|STS": {
+      "tags": {"brand": "STS", "name": "STS", "shop": "bookmaker"}
     },
     "shop/bookmaker|Tipico": {
       "countryCodes": ["at", "co", "de", "gi", "hr", "mt"],
@@ -30970,6 +33226,16 @@
         "shop": "books"
       }
     },
+    "shop/books|Martinus": {
+      "countryCodes": ["sk"],
+      "tags": {
+        "brand": "Martinus",
+        "brand:wikidata": "Q15089074",
+        "brand:wikipedia": "sk:Martinus",
+        "name": "Martinus",
+        "shop": "books"
+      }
+    },
     "shop/books|Mondadori": {
       "countryCodes": ["it"],
       "tags": {
@@ -31196,6 +33462,36 @@
         "shop": "books"
       }
     },
+    "shop/books|くまざわ書店": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "Kumabook",
+        "brand": "くまざわ書店",
+        "brand:en": "Kumazawa Books",
+        "brand:ja": "くまざわ書店",
+        "brand:wikidata": "Q11265517",
+        "brand:wikipedia": "ja:くまざわ",
+        "name": "くまざわ書店",
+        "name:en": "Kumazawa Books",
+        "name:ja": "くまざわ書店",
+        "shop": "books"
+      }
+    },
+    "shop/books|とらのあな": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "books": "comic",
+        "brand": "とらのあな",
+        "brand:en": "Toranoana",
+        "brand:ja": "とらのあな",
+        "brand:wikidata": "Q865297",
+        "brand:wikipedia": "ja:コミックとらのあな",
+        "name": "とらのあな",
+        "name:en": "Comic Toranoana",
+        "name:ja": "とらのあな",
+        "shop": "books"
+      }
+    },
     "shop/books|オリオン書房": {
       "countryCodes": ["jp"],
       "tags": {
@@ -31207,6 +33503,21 @@
         "name": "オリオン書房",
         "name:en": "Orion Books",
         "name:ja": "オリオン書房",
+        "shop": "books"
+      }
+    },
+    "shop/books|ジュンク堂書店": {
+      "countryCodes": ["jp"],
+      "matchNames": ["ジュンク"],
+      "tags": {
+        "brand": "ジュンク堂書店",
+        "brand:en": "Junkudo",
+        "brand:ja": "ジュンク堂書店",
+        "brand:wikidata": "Q3190093",
+        "brand:wikipedia": "ja:ジュンク堂書店",
+        "name": "ジュンク堂書店",
+        "name:en": "Junkudo",
+        "name:ja": "ジュンク堂書店",
         "shop": "books"
       }
     },
@@ -31263,6 +33574,24 @@
         "name": "三省堂書店",
         "name:en": "Books Sanseido",
         "name:ja": "三省堂書店",
+        "shop": "books"
+      }
+    },
+    "shop/books|丸善": {
+      "countryCodes": ["jp"],
+      "matchNames": ["丸善書店"],
+      "tags": {
+        "brand": "丸善",
+        "brand:en": "MARUZEN",
+        "brand:ja": "丸善",
+        "brand:wikidata": "Q1906012",
+        "brand:wikipedia": "ja:丸善雄松堂",
+        "name": "丸善",
+        "name:en": "MARUZEN",
+        "name:ja": "丸善",
+        "official_name": "丸善雄松堂",
+        "official_name:en": "Maruzen Yushodo",
+        "official_name:ja": "丸善雄松堂",
         "shop": "books"
       }
     },
@@ -31333,6 +33662,20 @@
         "name": "未来屋書店",
         "name:en": "Miraiya Shoten",
         "name:ja": "未来屋書店",
+        "shop": "books"
+      }
+    },
+    "shop/books|紀伊國屋書店": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "紀伊國屋書店",
+        "brand:en": "Books Kinokuniya",
+        "brand:ja": "紀伊國屋書店",
+        "brand:wikidata": "Q8061680",
+        "brand:wikipedia": "ja:紀伊國屋書店",
+        "name": "紀伊國屋書店",
+        "name:en": "Books Kinokuniya",
+        "name:ja": "紀伊國屋書店",
         "shop": "books"
       }
     },
@@ -31825,15 +34168,6 @@
         "shop": "car_repair"
       }
     },
-    "shop/car_repair|F1 Autocentre": {
-      "countryCodes": ["gb"],
-      "tags": {
-        "brand": "F1 Autocentre",
-        "brand:wikidata": "Q79239635",
-        "name": "F1 Autocentre",
-        "shop": "car_repair"
-      }
-    },
     "shop/car_repair|Feu Vert": {
       "countryCodes": ["fr"],
       "tags": {
@@ -31864,6 +34198,13 @@
         "shop": "car_repair"
       }
     },
+    "shop/car_repair|Fit Service": {
+      "tags": {
+        "brand": "Fit Service",
+        "name": "Fit Service",
+        "shop": "car_repair"
+      }
+    },
     "shop/car_repair|Ford": {
       "nomatch": ["shop/car|Ford"],
       "tags": {
@@ -31871,6 +34212,16 @@
         "brand:wikidata": "Q44294",
         "brand:wikipedia": "en:Ford Motor Company",
         "name": "Ford",
+        "shop": "car_repair"
+      }
+    },
+    "shop/car_repair|Formula One Autocentres": {
+      "countryCodes": ["gb"],
+      "matchNames": ["f1 autocentre", "formula 1 autocentre"],
+      "tags": {
+        "brand": "Formula One Autocentres",
+        "brand:wikidata": "Q79239635",
+        "name": "Formula One Autocentres",
         "shop": "car_repair"
       }
     },
@@ -32824,6 +35175,15 @@
         "shop": "charity"
       }
     },
+    "shop/charity|Brainwave": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Brainwave",
+        "brand:wikidata": "Q90561455",
+        "name": "Brainwave",
+        "shop": "charity"
+      }
+    },
     "shop/charity|British Heart Foundation": {
       "countryCodes": ["gb"],
       "tags": {
@@ -32947,6 +35307,17 @@
         "shop": "charity"
       }
     },
+    "shop/charity|RNLI Shop": {
+      "countryCodes": ["gb", "ie"],
+      "matchNames": ["royal national lifeboat institution"],
+      "tags": {
+        "brand": "RNLI Shop",
+        "brand:wikidata": "Q2166873",
+        "brand:wikipedia": "en:Royal National Lifeboat Institution",
+        "name": "RNLI Shop",
+        "shop": "charity"
+      }
+    },
     "shop/charity|RSPCA": {
       "countryCodes": ["au", "gb"],
       "tags": {
@@ -33001,6 +35372,25 @@
         "brand:wikidata": "Q7434435",
         "brand:wikipedia": "en:Scope (charity)",
         "name": "Scope",
+        "shop": "charity"
+      }
+    },
+    "shop/charity|Shelter": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Shelter",
+        "brand:wikidata": "Q7493943",
+        "brand:wikipedia": "en:Shelter (charity)",
+        "name": "Shelter",
+        "shop": "charity"
+      }
+    },
+    "shop/charity|St Margaret's Hospice Care": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "St Margaret's Hospice Care",
+        "brand:wikidata": "Q91027360",
+        "name": "St Margaret's Hospice Care",
         "shop": "charity"
       }
     },
@@ -33118,6 +35508,9 @@
     },
     "shop/chemist|Clarel": {
       "tags": {"brand": "Clarel", "name": "Clarel", "shop": "chemist"}
+    },
+    "shop/chemist|Drogas": {
+      "tags": {"brand": "Drogas", "name": "Drogas", "shop": "chemist"}
     },
     "shop/chemist|Drogeria Natura": {
       "countryCodes": ["pl"],
@@ -33733,6 +36126,25 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Armor Lux": {
+      "tags": {
+        "brand": "Armor Lux",
+        "brand:wikidata": "Q951079",
+        "brand:wikipedia": "fr:Armor Lux",
+        "name": "Armor Lux",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Aubade": {
+      "tags": {
+        "brand": "Aubade",
+        "brand:wikidata": "Q2870536",
+        "brand:wikipedia": "fr:Aubade (lingerie)",
+        "clothes": "underwear",
+        "name": "Aubade",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|Avenue": {
       "tags": {
         "brand": "Avenue",
@@ -33780,6 +36192,17 @@
         "brand:wikidata": "Q816714",
         "brand:wikipedia": "en:Bench (British clothing brand)",
         "name": "Bench.",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Bepon": {
+      "countryCodes": ["sk"],
+      "tags": {
+        "brand": "Bepon",
+        "brand:wikidata": "Q23766409",
+        "brand:wikipedia": "sk:Bepon",
+        "clothes": "underwear",
+        "name": "Bepon",
         "shop": "clothes"
       }
     },
@@ -33869,6 +36292,15 @@
         "brand:wikidata": "Q4942146",
         "brand:wikipedia": "en:Bonmarché",
         "name": "Bonmarché",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Bonne Gueule": {
+      "tags": {
+        "brand": "Bonne Gueule",
+        "brand:wikidata": "Q22248146",
+        "brand:wikipedia": "fr:BonneGueule",
+        "name": "Bonne Gueule",
         "shop": "clothes"
       }
     },
@@ -33997,6 +36429,16 @@
         "brand:wikidata": "Q5000795",
         "brand:wikipedia": "en:Burton (retailer)",
         "name": "Burton",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Bóboli": {
+      "countryCodes": ["es"],
+      "tags": {
+        "brand": "Boboli",
+        "brand:wikidata": "Q39073733",
+        "brand:wikipedia": "ca:Bóboli",
+        "name": "Bóboli",
         "shop": "clothes"
       }
     },
@@ -34352,7 +36794,14 @@
       }
     },
     "shop/clothes|Darjeeling": {
-      "tags": {"brand": "Darjeeling", "name": "Darjeeling", "shop": "clothes"}
+      "tags": {
+        "brand": "Darjeeling",
+        "brand:wikidata": "Q3016203",
+        "brand:wikipedia": "fr:Darjeeling (lingerie)",
+        "clothes": "underwear",
+        "name": "Darjeeling",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|David's Bridal": {
       "countryCodes": ["ca", "us"],
@@ -34700,6 +37149,7 @@
     },
     "shop/clothes|GU": {
       "countryCodes": ["cl", "jp", "tw"],
+      "matchNames": ["ジーユー"],
       "tags": {
         "brand": "GU",
         "brand:wikidata": "Q5512642",
@@ -34796,6 +37246,15 @@
         "brand:wikipedia": "ru:Глория Джинс",
         "name": "Gloria Jeans",
         "shop": "clothes"
+      }
+    },
+    "shop/clothes|Grain de Malice": {
+      "tags": {
+        "brand": "Grain de Malice",
+        "brand:wikidata": "Q66757157",
+        "name": "Grain de Malice",
+        "shop": "clothes",
+        "short_name": "GDM"
       }
     },
     "shop/clothes|Gucci": {
@@ -34909,6 +37368,21 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Honeys": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "Honeys",
+        "brand:en": "Honeys",
+        "brand:ja": "ハニーズ",
+        "brand:wikidata": "Q11326592",
+        "brand:wikipedia": "ja:ハニーズ",
+        "clothes": "women",
+        "name": "Honeys",
+        "name:en": "Honeys",
+        "name:ja": "ハニーズ",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|Hot Topic": {
       "countryCodes": ["ca", "us"],
       "tags": {
@@ -35011,6 +37485,16 @@
         "brand:wikidata": "Q2671470",
         "brand:wikipedia": "nl:JBC",
         "name": "JBC",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Jacadi": {
+      "tags": {
+        "brand": "Jacadi",
+        "brand:wikidata": "Q3157058",
+        "brand:wikipedia": "fr:Jacadi",
+        "clothes": "children",
+        "name": "Jacadi",
         "shop": "clothes"
       }
     },
@@ -35240,6 +37724,15 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Kookaï": {
+      "tags": {
+        "brand": "Kookaï",
+        "brand:wikidata": "Q1783759",
+        "brand:wikipedia": "fr:Kookaï",
+        "name": "Kookaï",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|Koton": {
       "tags": {
         "brand": "Koton",
@@ -35330,6 +37823,24 @@
         "brand:wikidata": "Q6506731",
         "brand:wikipedia": "en:Le Château",
         "name": "Le Château",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Le Slip Français": {
+      "tags": {
+        "brand": "Le Slip Français",
+        "brand:wikidata": "Q14594793",
+        "brand:wikipedia": "fr:Le Slip Français",
+        "name": "Le Slip Français",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Le Temps des Cerises": {
+      "tags": {
+        "brand": "Le Temps des Cerises",
+        "brand:wikidata": "Q3162640",
+        "brand:wikipedia": "fr:Le Temps des cerises (vêtements)",
+        "name": "Le Temps des Cerises",
         "shop": "clothes"
       }
     },
@@ -35660,6 +38171,15 @@
     "shop/clothes|Minimax": {
       "countryCodes": ["by"],
       "tags": {"brand": "Minimax", "name": "Minimax", "shop": "clothes"}
+    },
+    "shop/clothes|Mise au Green": {
+      "tags": {
+        "brand": "Mise au Green",
+        "brand:wikidata": "Q3316239",
+        "brand:wikipedia": "fr:Mise au green",
+        "name": "Mise au Green",
+        "shop": "clothes"
+      }
     },
     "shop/clothes|Miss Etam": {
       "countryCodes": ["nl"],
@@ -36239,6 +38759,16 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Riu Paris": {
+      "tags": {
+        "brand": "Riu Paris",
+        "brand:wikidata": "Q16644311",
+        "brand:wikipedia": "fr:RIU Paris",
+        "clothers": "women",
+        "name": "Riu Paris",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|River Island": {
       "countryCodes": ["gb", "ie", "im", "nl", "pl"],
       "tags": {
@@ -36501,6 +39031,16 @@
         "brand:wikidata": "Q689695",
         "brand:wikipedia": "en:Tally Weijl",
         "name": "Tally Weijl",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|Tape à l'Œil": {
+      "tags": {
+        "brand": "Tape à l'Œil",
+        "brand:wikidata": "Q30749175",
+        "brand:wikipedia": "fr:Tape à l'œil",
+        "clothes": "children",
+        "name": "Tape à l'Œil",
         "shop": "clothes"
       }
     },
@@ -36816,6 +39356,16 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Vertbaudet": {
+      "tags": {
+        "brand": "Vertbaudet",
+        "brand:wikidata": "Q2518521",
+        "brand:wikipedia": "fr:Vertbaudet",
+        "clothes": "children",
+        "name": "Vertbaudet",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|Victoria's Secret": {
       "tags": {
         "brand": "Victoria's Secret",
@@ -36863,6 +39413,21 @@
         "brand:wikidata": "Q1987861",
         "brand:wikipedia": "en:WE (clothing)",
         "name": "WE",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|WEGO": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "WEGO",
+        "brand:en": "WEGO",
+        "brand:ja": "ウィゴー",
+        "brand:wikidata": "Q17193890",
+        "brand:wikipedia": "ja:ウィゴー",
+        "clothes": "men;women",
+        "name": "WEGO",
+        "name:en": "WEGO",
+        "name:ja": "ウィゴー",
         "shop": "clothes"
       }
     },
@@ -37058,6 +39623,15 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Zadig & Voltaire": {
+      "tags": {
+        "brand": "Zadig & Voltaire",
+        "brand:wikidata": "Q3574548",
+        "brand:wikipedia": "fr:Zadig & Voltaire",
+        "name": "Zadig & Voltaire",
+        "shop": "clothes"
+      }
+    },
     "shop/clothes|Zara": {
       "tags": {
         "brand": "Zara",
@@ -37097,6 +39671,22 @@
         "brand:wikidata": "Q18640136",
         "brand:wikipedia": "de:Mister*lady",
         "name": "mister*lady",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|niko and ...": {
+      "countryCodes": ["jp"],
+      "matchNames": ["ニコアンド"],
+      "tags": {
+        "brand": "niko and ...",
+        "brand:en": "niko and ...",
+        "brand:ja": "ニコアンド",
+        "brand:wikidata": "Q11236730",
+        "brand:wikipedia": "ja:niko and...",
+        "clothes": "men;women",
+        "name": "niko and ...",
+        "name:en": "niko and ...",
+        "name:ja": "ニコアンド",
         "shop": "clothes"
       }
     },
@@ -37140,6 +39730,9 @@
         "shop": "clothes"
       }
     },
+    "shop/clothes|Сударь": {
+      "tags": {"brand": "Сударь", "name": "Сударь", "shop": "clothes"}
+    },
     "shop/clothes|しまむら": {
       "countryCodes": ["jp"],
       "tags": {
@@ -37148,9 +39741,13 @@
         "brand:ja": "しまむら",
         "brand:wikidata": "Q7758173",
         "brand:wikipedia": "ja:しまむら",
+        "clothes": "women",
         "name": "しまむら",
         "name:en": "Shimamura",
         "name:ja": "しまむら",
+        "official_name": "ファッションセンターしまむら",
+        "official_name:en": "Fashion Center Shimamura",
+        "official_name:ja": "ファッションセンターしまむら",
         "shop": "clothes"
       }
     },
@@ -37165,6 +39762,19 @@
         "name": "はるやま",
         "name:en": "Haruyama",
         "name:ja": "はるやま",
+        "shop": "clothes"
+      }
+    },
+    "shop/clothes|アベイル": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "アベイル",
+        "brand:en": "Avail",
+        "brand:ja": "アベイル",
+        "brand:wikidata": "Q11284759",
+        "name": "アベイル",
+        "name:en": "Avail",
+        "name:ja": "アベイル",
         "shop": "clothes"
       }
     },
@@ -37273,6 +39883,15 @@
         "shop": "computer"
       }
     },
+    "shop/computer|LDLC": {
+      "tags": {
+        "brand": "LDLC",
+        "brand:wikidata": "Q3117461",
+        "brand:wikipedia": "fr:Groupe LDLC",
+        "name": "LDLC",
+        "shop": "computer"
+      }
+    },
     "shop/computer|PCデポ": {
       "countryCodes": ["jp"],
       "matchNames": ["pc depot", "ピーシーデポ"],
@@ -37299,6 +39918,48 @@
         "name": "じゃんぱら",
         "name:en": "Janpara",
         "name:ja": "じゃんぱら",
+        "shop": "computer"
+      }
+    },
+    "shop/computer|アプライド": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "アプライド",
+        "brand:en": "Applied",
+        "brand:ja": "アプライド",
+        "brand:wikidata": "Q11284742",
+        "brand:wikipedia": "ja:アプライド",
+        "name": "アプライド",
+        "name:en": "Applied",
+        "name:ja": "アプライド",
+        "shop": "computer"
+      }
+    },
+    "shop/computer|イオシス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "イオシス",
+        "brand:en": "IOSYS",
+        "brand:ja": "イオシス",
+        "brand:wikidata": "Q17988651",
+        "brand:wikipedia": "ja:イオシス (株式会社)",
+        "name": "イオシス",
+        "name:en": "IOSYS",
+        "name:ja": "イオシス",
+        "shop": "computer"
+      }
+    },
+    "shop/computer|ツクモ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ツクモ",
+        "brand:en": "TSUKUMO",
+        "brand:ja": "ツクモ",
+        "brand:wikidata": "Q29793996",
+        "brand:wikipedia": "ja:九十九電機",
+        "name": "ツクモ",
+        "name:en": "TSUKUMO",
+        "name:ja": "ツクモ",
         "shop": "computer"
       }
     },
@@ -37438,6 +40099,21 @@
         "name": "不二家",
         "name:en": "Fujiya",
         "name:ja": "不二家",
+        "shop": "confectionery"
+      }
+    },
+    "shop/confectionery|銀座コージーコーナー": {
+      "countryCodes": ["jp"],
+      "matchNames": ["コージーコーナー"],
+      "tags": {
+        "brand": "銀座コージーコーナー",
+        "brand:en": "Ginza Cozy Corner",
+        "brand:ja": "銀座コージーコーナー",
+        "brand:wikidata": "Q11649983",
+        "brand:wikipedia": "ja:銀座コージーコーナー",
+        "name": "銀座コージーコーナー",
+        "name:en": "Ginza Cozy Corner",
+        "name:ja": "銀座コージーコーナー",
         "shop": "confectionery"
       }
     },
@@ -37635,6 +40311,16 @@
         "shop": "convenience"
       }
     },
+    "shop/convenience|Bakmaz": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "brand": "Bakmaz",
+        "brand:wikidata": "Q65132948",
+        "brand:wikipedia": "hr:Bakmaz",
+        "name": "Bakmaz",
+        "shop": "convenience"
+      }
+    },
     "shop/convenience|Best-one": {
       "countryCodes": ["gb"],
       "tags": {
@@ -37721,13 +40407,17 @@
         "shop": "convenience"
       }
     },
-    "shop/convenience|Casino": {
-      "tags": {"brand": "Casino", "name": "Casino", "shop": "convenience"}
-    },
     "shop/convenience|Casino Shop": {
       "countryCodes": ["fr"],
+      "nomatch": [
+        "amenity/fuel|Casino",
+        "shop/convenience|Le Petit Casino",
+        "shop/supermarket|Casino",
+        "shop/supermarket|Géant Casino"
+      ],
       "tags": {
         "brand": "Casino Shop",
+        "brand:wikidata": "Q89029601",
         "name": "Casino Shop",
         "shop": "convenience"
       }
@@ -37808,15 +40498,39 @@
         "shop": "convenience"
       }
     },
+    "shop/convenience|Co-op Food": {
+      "countryCodes": ["gb"],
+      "matchNames": [
+        "coop",
+        "cooperative food",
+        "the co-operative food",
+        "the cooperative"
+      ],
+      "nomatch": [
+        "amenity/fuel|Co-op~(Canada)",
+        "shop/convenience|Co-op~(Canada)",
+        "shop/convenience|Coop~(Schweiz)",
+        "shop/supermarket|Co-op Food",
+        "shop/supermarket|Co-op~(Canada)",
+        "shop/supermarket|Coop~(Schweiz)"
+      ],
+      "tags": {
+        "brand": "Co-op Food",
+        "brand:wikidata": "Q3277439",
+        "brand:wikipedia": "en:Co-op Food",
+        "name": "Co-op Food",
+        "shop": "convenience"
+      }
+    },
     "shop/convenience|Co-op~(Canada)": {
       "countryCodes": ["ca"],
       "nomatch": [
         "amenity/fuel|Co-op~(Canada)",
+        "shop/convenience|Co-op Food",
         "shop/convenience|Coop~(Schweiz)",
-        "shop/convenience|The Co-operative Food~(UK)",
+        "shop/supermarket|Co-op Food",
         "shop/supermarket|Co-op~(Canada)",
-        "shop/supermarket|Coop~(Schweiz)",
-        "shop/supermarket|The Co-operative Food~(UK)"
+        "shop/supermarket|Coop~(Schweiz)"
       ],
       "tags": {
         "brand": "Federated Co-operatives",
@@ -37830,7 +40544,17 @@
       "countryCodes": ["fr"],
       "tags": {
         "brand": "CocciMarket",
+        "brand:wikidata": "Q90020480",
         "name": "CocciMarket",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|CocciMarket City": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "CocciMarket City",
+        "brand:wikidata": "Q90020481",
+        "name": "CocciMarket City",
         "shop": "convenience"
       }
     },
@@ -37849,7 +40573,15 @@
       }
     },
     "shop/convenience|Conoco": {
-      "tags": {"brand": "Conoco", "name": "Conoco", "shop": "convenience"}
+      "countryCodes": ["us"],
+      "nomatch": ["amenity/fuel|Conoco"],
+      "tags": {
+        "brand": "Conoco",
+        "brand:wikidata": "Q1126518",
+        "brand:wikipedia": "en:Conoco",
+        "name": "Conoco",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Convenient Food Mart": {
       "countryCodes": ["us"],
@@ -37877,10 +40609,8 @@
       "nomatch": [
         "amenity/fuel|Co-op~(Canada)",
         "shop/convenience|Co-op~(Canada)",
-        "shop/convenience|The Co-operative Food~(UK)",
         "shop/supermarket|Co-op~(Canada)",
-        "shop/supermarket|Coop~(Schweiz)",
-        "shop/supermarket|The Co-operative Food~(UK)"
+        "shop/supermarket|Coop~(Schweiz)"
       ],
       "tags": {
         "brand": "Coop",
@@ -37959,8 +40689,9 @@
         "shop": "convenience"
       }
     },
-    "shop/convenience|Despensa": {
-      "tags": {"brand": "Despensa", "name": "Despensa", "shop": "convenience"}
+    "shop/convenience|Diona": {
+      "countryCodes": ["hr"],
+      "tags": {"brand": "Diona", "name": "Diona", "shop": "convenience"}
     },
     "shop/convenience|Douka": {
       "tags": {"brand": "Douka", "name": "Douka", "shop": "convenience"}
@@ -38035,6 +40766,14 @@
         "brand:wikidata": "Q624041",
         "brand:wikipedia": "ko:GS25",
         "name": "GS25",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Gavranović": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "brand": "Gavranović",
+        "name": "Gavranović",
         "shop": "convenience"
       }
     },
@@ -38231,6 +40970,7 @@
     },
     "shop/convenience|Kwik Shop": {
       "countryCodes": ["us"],
+      "nomatch": ["amenity/fuel|Kwik Shop"],
       "tags": {
         "brand": "Kwik Shop",
         "brand:wikidata": "Q6450417",
@@ -38268,6 +41008,22 @@
         "brand:wikidata": "Q1557223",
         "brand:wikipedia": "en:Lawson (store)",
         "name": "Lawson",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Le Petit Casino": {
+      "countryCodes": ["fr"],
+      "matchNames": ["petit casino"],
+      "nomatch": [
+        "amenity/fuel|Casino",
+        "shop/convenience|Casino Shop",
+        "shop/supermarket|Casino",
+        "shop/supermarket|Géant Casino"
+      ],
+      "tags": {
+        "brand": "Le Petit Casino",
+        "brand:wikidata": "Q89029249",
+        "name": "Le Petit Casino",
         "shop": "convenience"
       }
     },
@@ -38484,7 +41240,7 @@
       }
     },
     "shop/convenience|Mercator": {
-      "countryCodes": ["ba", "hr", "me", "rs", "si"],
+      "countryCodes": ["ba", "hr", "me", "mk", "rs", "si"],
       "nomatch": ["shop/supermarket|Mercator"],
       "tags": {
         "brand": "Mercator",
@@ -38501,6 +41257,16 @@
         "brand:wikidata": "Q56745088",
         "brand:wikipedia": "de:Migrolino",
         "name": "Migrolino",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Milk-Agro": {
+      "countryCodes": ["sk"],
+      "nomatch": ["shop/supermarket|Milk-Agro"],
+      "tags": {
+        "brand": "Milk-Agro",
+        "brand:wikidata": "Q64173785",
+        "name": "Milk-Agro",
         "shop": "convenience"
       }
     },
@@ -38565,6 +41331,15 @@
         "brand:wikidata": "Q3088656",
         "brand:wikipedia": "en:Mobil",
         "name": "Mobil Mart",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Monop'": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Monop'",
+        "brand:wikidata": "Q89913683",
+        "name": "Monop'",
         "shop": "convenience"
       }
     },
@@ -38717,15 +41492,6 @@
         "shop": "convenience"
       }
     },
-    "shop/convenience|Petit Casino": {
-      "countryCodes": ["fr"],
-      "matchTags": ["shop/supermarket"],
-      "tags": {
-        "brand": "Petit Casino",
-        "name": "Petit Casino",
-        "shop": "convenience"
-      }
-    },
     "shop/convenience|Petro-Canada": {
       "nomatch": ["amenity/fuel|Petro-Canada"],
       "tags": {
@@ -38842,6 +41608,15 @@
         "brand:wikidata": "Q16968817",
         "brand:wikipedia": "en:REWE",
         "name": "Rewe To Go",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Rotten Robbie": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Rotten Robbie",
+        "brand:wikidata": "Q87378070",
+        "name": "Rotten Robbie",
         "shop": "convenience"
       }
     },
@@ -39007,7 +41782,14 @@
       }
     },
     "shop/convenience|Studenac": {
-      "tags": {"brand": "Studenac", "name": "Studenac", "shop": "convenience"}
+      "countryCodes": ["hr"],
+      "tags": {
+        "brand": "Studenac",
+        "brand:wikidata": "Q65156084",
+        "brand:wikipedia": "hr:Studenac",
+        "name": "Studenac",
+        "shop": "convenience"
+      }
     },
     "shop/convenience|Sunoco": {
       "nomatch": ["amenity/fuel|Sunoco"],
@@ -39018,9 +41800,6 @@
         "name": "Sunoco",
         "shop": "convenience"
       }
-    },
-    "shop/convenience|Supérette": {
-      "tags": {"brand": "Supérette", "name": "Supérette", "shop": "convenience"}
     },
     "shop/convenience|Słoneczko": {
       "countryCodes": ["pl"],
@@ -39100,30 +41879,6 @@
         "shop": "convenience"
       }
     },
-    "shop/convenience|The Co-operative Food~(UK)": {
-      "countryCodes": ["gb"],
-      "matchNames": [
-        "coop",
-        "coop food",
-        "cooperative food",
-        "the cooperative"
-      ],
-      "nomatch": [
-        "amenity/fuel|Co-op~(Canada)",
-        "shop/convenience|Co-op~(Canada)",
-        "shop/convenience|Coop~(Schweiz)",
-        "shop/supermarket|Co-op~(Canada)",
-        "shop/supermarket|Coop~(Schweiz)",
-        "shop/supermarket|The Co-operative Food~(UK)"
-      ],
-      "tags": {
-        "brand": "The Co-operative Food",
-        "brand:wikidata": "Q3277439",
-        "brand:wikipedia": "en:Co-op Food",
-        "name": "The Co-operative Food",
-        "shop": "convenience"
-      }
-    },
     "shop/convenience|Thorntons": {
       "countryCodes": ["us"],
       "nomatch": ["amenity/fuel|Thorntons", "shop/confectionery|Thorntons"],
@@ -39147,6 +41902,16 @@
         "shop": "convenience"
       }
     },
+    "shop/convenience|Tommy": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "brand": "Tommy",
+        "brand:wikidata": "Q12643718",
+        "brand:wikipedia": "hr:Tommy",
+        "name": "Tommy",
+        "shop": "convenience"
+      }
+    },
     "shop/convenience|Total": {
       "nomatch": ["amenity/fuel|Total"],
       "tags": {
@@ -39156,6 +41921,18 @@
         "name": "Total",
         "shop": "convenience"
       }
+    },
+    "shop/convenience|Trgocentar": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "brand": "Trgocentar",
+        "name": "Trgocentar",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Trgostil": {
+      "countryCodes": ["hr"],
+      "tags": {"brand": "Trgostil", "name": "Trgostil", "shop": "convenience"}
     },
     "shop/convenience|Turkey Hill": {
       "nomatch": ["amenity/fuel|Turkey Hill"],
@@ -39256,6 +42033,13 @@
         "shop": "convenience"
       }
     },
+    "shop/convenience|Votre Marché": {
+      "tags": {
+        "brand": "Votre Marché",
+        "name": "Votre Marché",
+        "shop": "convenience"
+      }
+    },
     "shop/convenience|Waitrose": {
       "countryCodes": ["gb", "je"],
       "nomatch": [
@@ -39313,6 +42097,13 @@
         "shop": "convenience"
       }
     },
+    "shop/convenience|alimentation generale": {
+      "tags": {
+        "brand": "alimentation generale",
+        "name": "alimentation generale",
+        "shop": "convenience"
+      }
+    },
     "shop/convenience|ampm": {
       "tags": {
         "brand": "ampm",
@@ -39350,6 +42141,13 @@
         "name": "uSmile 昆仑好客",
         "name:en": "uSmile",
         "name:zh": "昆仑好客",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|Épi Service": {
+      "tags": {
+        "brand": "Épi Service",
+        "name": "Épi Service",
         "shop": "convenience"
       }
     },
@@ -39586,6 +42384,9 @@
       "countryCodes": ["ru"],
       "tags": {"brand": "Фасоль", "name": "Фасоль", "shop": "convenience"}
     },
+    "shop/convenience|Фермер": {
+      "tags": {"brand": "Фермер", "name": "Фермер", "shop": "convenience"}
+    },
     "shop/convenience|Ярче": {
       "countryCodes": ["ru"],
       "tags": {"brand": "Ярче", "name": "Ярче", "shop": "convenience"}
@@ -39607,14 +42408,29 @@
     "shop/convenience|アンスリー": {
       "countryCodes": ["jp"],
       "tags": {
+        "alt_name:en": "Ansuri",
         "brand": "アンスリー",
-        "brand:en": "Ansuri",
+        "brand:en": "an3",
         "brand:ja": "アンスリー",
         "brand:wikidata": "Q17192555",
         "brand:wikipedia": "ja:アンスリー",
         "name": "アンスリー",
-        "name:en": "Ansuri",
+        "name:en": "An3",
         "name:ja": "アンスリー",
+        "shop": "convenience"
+      }
+    },
+    "shop/convenience|コミュニティ・ストア": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "コミュニティ・ストア",
+        "brand:en": "Community Store",
+        "brand:ja": "コミュニティ・ストア",
+        "brand:wikidata": "Q11302585",
+        "brand:wikipedia": "ja:コミュニティ・ストア",
+        "name": "コミュニティ・ストア",
+        "name:en": "Community Store",
+        "name:ja": "コミュニティ・ストア",
         "shop": "convenience"
       }
     },
@@ -39706,6 +42522,7 @@
     },
     "shop/convenience|デイリーヤマザキ": {
       "countryCodes": ["jp"],
+      "matchNames": ["デイリーストア"],
       "tags": {
         "brand": "デイリーヤマザキ",
         "brand:en": "Daily Yamazaki",
@@ -39734,6 +42551,7 @@
     },
     "shop/convenience|ファミリーマート": {
       "countryCodes": ["jp"],
+      "matchNames": ["ファミマ"],
       "tags": {
         "brand": "ファミリーマート",
         "brand:en": "FamilyMart",
@@ -39893,6 +42711,15 @@
         "shop": "convenience"
       }
     },
+    "shop/copyshop|FaxCopy": {
+      "countryCodes": ["sk"],
+      "tags": {
+        "brand": "FaxCopy",
+        "brand:wikidata": "Q90990574",
+        "name": "FaxCopy",
+        "shop": "copyshop"
+      }
+    },
     "shop/copyshop|FedEx Office": {
       "countryCodes": ["us"],
       "matchNames": ["fedex office print and ship center"],
@@ -39927,6 +42754,19 @@
     "shop/copyshop|Копирка": {
       "countryCodes": ["by", "ru"],
       "tags": {"brand": "Копирка", "name": "Копирка", "shop": "copyshop"}
+    },
+    "shop/copyshop|アクセア": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "アクセア",
+        "brand:en": "Accea",
+        "brand:ja": "アクセア",
+        "brand:wikidata": "Q90043156",
+        "name": "アクセア",
+        "name:en": "Accea",
+        "name:ja": "アクセア",
+        "shop": "copyshop"
+      }
     },
     "shop/cosmetics|Aveda": {
       "countryCodes": ["us"],
@@ -40353,6 +43193,15 @@
         "shop": "craft"
       }
     },
+    "shop/dairy|Veronika": {
+      "countryCodes": ["hr"],
+      "tags": {
+        "brand": "Veronika",
+        "brand:wikidata": "Q87399724",
+        "name": "Veronika",
+        "shop": "dairy"
+      }
+    },
     "shop/deli|ほっともっと": {
       "countryCodes": ["jp"],
       "nomatch": ["amenity/fast_food|ほっともっと"],
@@ -40586,6 +43435,13 @@
         "brand:wikidata": "Q623133",
         "brand:wikipedia": "en:El Corte Inglés",
         "name": "El Corte Inglés",
+        "shop": "department_store"
+      }
+    },
+    "shop/department_store|Elektra": {
+      "tags": {
+        "brand": "Elektra",
+        "name": "Elektra",
         "shop": "department_store"
       }
     },
@@ -41163,6 +44019,7 @@
     },
     "shop/department_store|無印良品": {
       "countryCodes": ["jp", "tw"],
+      "matchNames": ["良品計画"],
       "tags": {
         "brand": "無印良品",
         "brand:en": "Muji",
@@ -41172,6 +44029,7 @@
         "name": "無印良品",
         "name:en": "Muji",
         "name:ja": "無印良品",
+        "official_name:en": "Ryohin Keikaku",
         "shop": "department_store"
       }
     },
@@ -41568,6 +44426,13 @@
         "shop": "doityourself"
       }
     },
+    "shop/doityourself|PSB Mrówka": {
+      "tags": {
+        "brand": "PSB Mrówka",
+        "name": "PSB Mrówka",
+        "shop": "doityourself"
+      }
+    },
     "shop/doityourself|Point P": {
       "countryCodes": ["fr"],
       "tags": {"brand": "Point P", "name": "Point P", "shop": "doityourself"}
@@ -41610,6 +44475,21 @@
         "brand:wikipedia": "en:Rona, Inc.",
         "name": "Rona",
         "shop": "doityourself"
+      }
+    },
+    "shop/doityourself|SUPER VIVA Home": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "VIVA Home",
+        "brand:en": "VIVA Home",
+        "brand:ja": "ビバホーム",
+        "brand:wikidata": "Q11229278",
+        "brand:wikipedia": "ja:LIXILビバ",
+        "name": "SUPER VIVA Home",
+        "name:en": "SUPER VIVA Home",
+        "name:ja": "スーパービバホーム",
+        "shop": "doityourself",
+        "short_name:en": "SVH"
       }
     },
     "shop/doityourself|Screwfix": {
@@ -41693,6 +44573,21 @@
         "shop": "doityourself"
       }
     },
+    "shop/doityourself|VIVA Home": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "VIVA Home",
+        "brand:en": "VIVA Home",
+        "brand:ja": "ビバホーム",
+        "brand:wikidata": "Q11229278",
+        "brand:wikipedia": "ja:LIXILビバ",
+        "name": "VIVA Home",
+        "name:en": "VIVA Home",
+        "name:ja": "ビバホーム",
+        "shop": "doityourself",
+        "short_name:en": "VH"
+      }
+    },
     "shop/doityourself|Weldom": {
       "countryCodes": ["fr"],
       "tags": {
@@ -41743,6 +44638,20 @@
       "tags": {
         "brand": "Строитель",
         "name": "Строитель",
+        "shop": "doityourself"
+      }
+    },
+    "shop/doityourself|アマノ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "アマノ",
+        "brand:en": "Amano",
+        "brand:ja": "アマノ",
+        "brand:wikidata": "Q11284890",
+        "brand:wikipedia": "ja:アマノ",
+        "name": "アマノ",
+        "name:en": "Amano",
+        "name:ja": "アマノ",
         "shop": "doityourself"
       }
     },
@@ -41893,6 +44802,20 @@
         "shop": "dry_cleaning"
       }
     },
+    "shop/dry_cleaning|ダイヤクリーニング": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ダイヤクリーニング",
+        "brand:en": "Dia Cleaning",
+        "brand:ja": "ダイヤクリーニング",
+        "brand:wikidata": "Q11316968",
+        "brand:wikipedia": "ja:ダイヤクリーニング",
+        "name": "ダイヤクリーニング",
+        "name:en": "Dia Cleaning",
+        "name:ja": "ダイヤクリーニング",
+        "shop": "dry_cleaning"
+      }
+    },
     "shop/dry_cleaning|ホワイト急便": {
       "countryCodes": ["jp"],
       "tags": {
@@ -41904,6 +44827,36 @@
         "name": "ホワイト急便",
         "name:en": "White Kyuubin",
         "name:ja": "ホワイト急便",
+        "shop": "dry_cleaning"
+      }
+    },
+    "shop/dry_cleaning|ポニー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ポニー",
+        "brand:en": "Pony",
+        "brand:ja": "ポニー",
+        "brand:wikidata": "Q88012241",
+        "name": "ポニー",
+        "name:en": "Pony",
+        "name:ja": "ポニー",
+        "official_name": "ポニークリーニング",
+        "official_name:en": "Pony Cleaning",
+        "official_name:ja": "ポニークリーニング",
+        "shop": "dry_cleaning"
+      }
+    },
+    "shop/dry_cleaning|ヤングドライ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ヤングドライ",
+        "brand:en": "Young Dry",
+        "brand:ja": "ヤングドライ",
+        "brand:wikidata": "Q11345434",
+        "brand:wikipedia": "ja:ヤングドライ",
+        "name": "ヤングドライ",
+        "name:en": "Young Dry",
+        "name:ja": "ヤングドライ",
         "shop": "dry_cleaning"
       }
     },
@@ -41942,6 +44895,30 @@
         "brand:wikidata": "Q68201770",
         "name": "Kafkas",
         "shop": "electrical"
+      }
+    },
+    "shop/electronics|100満ボルト": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "100満ボルト",
+        "brand:en": "100mv",
+        "brand:ja": "100満ボルト",
+        "brand:wikidata": "Q11305504",
+        "brand:wikipedia": "ja:サンキュー (小売)",
+        "name": "100満ボルト",
+        "name:en": "100mv",
+        "name:ja": "100満ボルト",
+        "shop": "electronics"
+      }
+    },
+    "shop/electronics|ABC Warehouse": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "ABC Warehouse",
+        "brand:wikidata": "Q4650261",
+        "brand:wikipedia": "en:ABC Warehouse",
+        "name": "ABC Warehouse",
+        "shop": "electronics"
       }
     },
     "shop/electronics|Altex": {
@@ -42056,6 +45033,16 @@
         "brand:wikidata": "Q2439098",
         "brand:wikipedia": "fr:Darty",
         "name": "Darty",
+        "shop": "electronics"
+      }
+    },
+    "shop/electronics|Datart": {
+      "countryCodes": ["cz", "sk"],
+      "tags": {
+        "brand": "Datart",
+        "brand:wikidata": "Q11774311",
+        "brand:wikipedia": "cs:Datart",
+        "name": "Datart",
         "shop": "electronics"
       }
     },
@@ -42285,6 +45272,16 @@
         "shop": "electronics"
       }
     },
+    "shop/electronics|Nay": {
+      "countryCodes": ["sk"],
+      "tags": {
+        "brand": "Nay",
+        "brand:wikidata": "Q13537421",
+        "brand:wikipedia": "sk:Nay",
+        "name": "Nay",
+        "shop": "electronics"
+      }
+    },
     "shop/electronics|Neonet": {
       "countryCodes": ["pl"],
       "tags": {
@@ -42292,6 +45289,17 @@
         "brand:wikidata": "Q11790622",
         "brand:wikipedia": "pl:Neonet",
         "name": "Neonet",
+        "shop": "electronics"
+      }
+    },
+    "shop/electronics|Okay": {
+      "countryCodes": ["cz", "sk"],
+      "nomatch": ["shop/supermarket|Okay"],
+      "tags": {
+        "brand": "Okay",
+        "brand:wikidata": "Q17583128",
+        "brand:wikipedia": "sk:OKAY",
+        "name": "Okay",
         "shop": "electronics"
       }
     },
@@ -42517,6 +45525,7 @@
     },
     "shop/electronics|エディオン": {
       "countryCodes": ["jp"],
+      "matchNames": ["デオデオ"],
       "tags": {
         "brand": "エディオン",
         "brand:en": "EDION",
@@ -42597,6 +45606,21 @@
         "name": "ビックカメラ",
         "name:en": "Bic Camera",
         "name:ja": "ビックカメラ",
+        "shop": "electronics"
+      }
+    },
+    "shop/electronics|ベスト電器": {
+      "countryCodes": ["jp"],
+      "matchTags": ["shop/appliance"],
+      "tags": {
+        "brand": "ベスト電器",
+        "brand:en": "Best Denki",
+        "brand:ja": "ベスト電器",
+        "brand:wikidata": "Q1096390",
+        "brand:wikipedia": "ja:ベスト電器",
+        "name": "ベスト電器",
+        "name:en": "Best Denki",
+        "name:ja": "ベスト電器",
         "shop": "electronics"
       }
     },
@@ -42744,6 +45768,36 @@
         "shop": "fashion_accessories"
       }
     },
+    "shop/fashion_accessories|Mulberry": {
+      "countryCodes": [
+        "ae",
+        "au",
+        "ca",
+        "ch",
+        "cn",
+        "de",
+        "dk",
+        "fi",
+        "gb",
+        "ie",
+        "jp",
+        "kr",
+        "my",
+        "nl",
+        "no",
+        "se",
+        "sg",
+        "th",
+        "us"
+      ],
+      "tags": {
+        "brand": "Mulberry",
+        "brand:wikidata": "Q3866987",
+        "brand:wikipedia": "en:Mulberry (company)",
+        "name": "Mulberry",
+        "shop": "fashion_accessories"
+      }
+    },
     "shop/fashion_accessories|Radley London": {
       "countryCodes": ["gb"],
       "tags": {
@@ -42831,6 +45885,19 @@
     "shop/florist|Мосцветторг": {
       "countryCodes": ["ru"],
       "tags": {"brand": "Мосцветторг", "name": "Мосцветторг", "shop": "florist"}
+    },
+    "shop/florist|青山フラワーマーケット": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "青山フラワーマーケット",
+        "brand:en": "Aoyama Flower Market",
+        "brand:ja": "青山フラワーマーケット",
+        "brand:wikidata": "Q87743579",
+        "name": "青山フラワーマーケット",
+        "name:en": "Aoyama Flower Market",
+        "name:ja": "青山フラワーマーケット",
+        "shop": "florist"
+      }
     },
     "shop/frame|Aaron Brothers": {
       "countryCodes": ["us"],
@@ -43543,6 +46610,20 @@
         "shop": "furniture"
       }
     },
+    "shop/furniture|フランフラン": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "フランフラン",
+        "brand:en": "Francfranc",
+        "brand:ja": "フランフラン",
+        "brand:wikidata": "Q5479732",
+        "brand:wikipedia": "ja:Francfranc",
+        "name": "フランフラン",
+        "name:en": "Francfranc",
+        "name:ja": "フランフラン",
+        "shop": "furniture"
+      }
+    },
     "shop/games|Games Workshop": {
       "countryCodes": ["de", "fr", "gb", "nl", "us"],
       "tags": {
@@ -43570,6 +46651,9 @@
         "name": "Blue Diamond Garden Centres",
         "shop": "garden_centre"
       }
+    },
+    "shop/garden_centre|Botanic": {
+      "tags": {"brand": "Botanic", "name": "Botanic", "shop": "garden_centre"}
     },
     "shop/garden_centre|Dehner": {
       "countryCodes": ["at", "de"],
@@ -43621,6 +46705,23 @@
         "shop": "garden_centre"
       }
     },
+    "shop/garden_centre|Magasin Vert": {
+      "tags": {
+        "brand": "Magasin Vert",
+        "name": "Magasin Vert",
+        "shop": "garden_centre"
+      }
+    },
+    "shop/garden_centre|Mountfield": {
+      "countryCodes": ["cz", "sk"],
+      "tags": {
+        "brand": "Mountfield",
+        "brand:wikidata": "Q21180783",
+        "brand:wikipedia": "cs:Mountfield",
+        "name": "Mountfield",
+        "shop": "garden_centre"
+      }
+    },
     "shop/garden_centre|Otter Garden Centres": {
       "countryCodes": ["gb"],
       "tags": {
@@ -43647,6 +46748,15 @@
         "brand:wikidata": "Q3162640",
         "brand:wikipedia": "fr:Jardineries Truffaut",
         "name": "Truffaut",
+        "shop": "garden_centre"
+      }
+    },
+    "shop/garden_centre|Villaverde": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Villaverde",
+        "brand:wikidata": "Q89346546",
+        "name": "Villaverde",
         "shop": "garden_centre"
       }
     },
@@ -43968,6 +47078,15 @@
         "shop": "hairdresser"
       }
     },
+    "shop/hairdresser|Ferber": {
+      "countryCodes": ["lu"],
+      "tags": {
+        "brand": "Ferber",
+        "brand:wikidata": "Q88180887",
+        "name": "Ferber",
+        "shop": "hairdresser"
+      }
+    },
     "shop/hairdresser|First Choice Haircutters": {
       "countryCodes": ["ca"],
       "tags": {
@@ -43979,7 +47098,7 @@
       }
     },
     "shop/hairdresser|Franck Provost": {
-      "countryCodes": ["be", "fr", "pl"],
+      "countryCodes": ["be", "fr", "lu", "pl"],
       "tags": {
         "brand": "Franck Provost",
         "brand:wikidata": "Q62805922",
@@ -44030,6 +47149,15 @@
         "brand": "Hairkiller",
         "brand:wikidata": "Q58305998",
         "name": "Hairkiller",
+        "shop": "hairdresser"
+      }
+    },
+    "shop/hairdresser|Igorance": {
+      "countryCodes": ["lu"],
+      "tags": {
+        "brand": "Igorance",
+        "brand:wikidata": "Q88181481",
+        "name": "Igorance",
         "shop": "hairdresser"
       }
     },
@@ -44091,6 +47219,30 @@
         "brand": "Pascal Coste",
         "brand:wikidata": "Q66555630",
         "name": "Pascal Coste",
+        "shop": "hairdresser"
+      }
+    },
+    "shop/hairdresser|QBハウス": {
+      "countryCodes": ["jp"],
+      "matchNames": ["qb", "キュービーハウス"],
+      "tags": {
+        "brand": "QBハウス",
+        "brand:en": "QB HOUSE",
+        "brand:ja": "QBハウス",
+        "brand:wikidata": "Q11297528",
+        "brand:wikipedia": "ja:キュービーネット",
+        "name": "QBハウス",
+        "name:en": "QB HOUSE",
+        "name:ja": "QBハウス",
+        "shop": "hairdresser"
+      }
+    },
+    "shop/hairdresser|Ryanhair": {
+      "countryCodes": ["lu"],
+      "tags": {
+        "brand": "Ryanhair",
+        "brand:wikidata": "Q88180487",
+        "name": "Ryanhair",
         "shop": "hairdresser"
       }
     },
@@ -44176,6 +47328,9 @@
     "shop/hairdresser|Елена": {
       "tags": {"brand": "Елена", "name": "Елена", "shop": "hairdresser"}
     },
+    "shop/hairdresser|Имидж": {
+      "tags": {"brand": "Имидж", "name": "Имидж", "shop": "hairdresser"}
+    },
     "shop/hairdresser|Каприз": {
       "countryCodes": ["ru", "ua"],
       "tags": {"brand": "Каприз", "name": "Каприз", "shop": "hairdresser"}
@@ -44186,6 +47341,46 @@
     },
     "shop/hairdresser|Чио Чио": {
       "tags": {"brand": "Чио Чио", "name": "Чио Чио", "shop": "hairdresser"}
+    },
+    "shop/hairdresser|カットコムズ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "カットコムズ",
+        "brand:en": "Cutcomz",
+        "brand:ja": "カットコムズ",
+        "brand:wikidata": "Q91104902",
+        "name": "カットコムズ",
+        "name:en": "Cutcomz",
+        "name:ja": "カットコムズ",
+        "shop": "hairdresser"
+      }
+    },
+    "shop/hairdresser|カットファクトリー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "カットファクトリー",
+        "brand:en": "Cut Factory",
+        "brand:ja": "カットファクトリー",
+        "brand:wikidata": "Q91102312",
+        "name": "カットファクトリー",
+        "name:en": "Cut Factory",
+        "name:ja": "カットファクトリー",
+        "shop": "hairdresser"
+      }
+    },
+    "shop/hairdresser|ファミリーカット1000": {
+      "countryCodes": ["jp"],
+      "matchNames": ["ファミリーカット"],
+      "tags": {
+        "brand": "ファミリーカット1000",
+        "brand:en": "Family Cut 1000",
+        "brand:ja": "ファミリーカット1000",
+        "brand:wikidata": "Q91108482",
+        "name": "ファミリーカット1000",
+        "name:en": "Family Cut 1000",
+        "name:ja": "ファミリーカット1000",
+        "shop": "hairdresser"
+      }
     },
     "shop/hardware|220 вольт": {
       "countryCodes": ["by", "ru", "ua"],
@@ -44389,6 +47584,15 @@
         "shop": "hearing_aids"
       }
     },
+    "shop/hearing_aids|Vitakustik": {
+      "countryCodes": ["de"],
+      "tags": {
+        "brand": "Vitakustik",
+        "brand:wikidata": "Q87123390",
+        "name": "Vitakustik",
+        "shop": "hearing_aids"
+      }
+    },
     "shop/hifi|Bang & Olufsen": {
       "tags": {
         "brand": "Bang & Olufsen",
@@ -44446,6 +47650,78 @@
         "name:en": "Animate",
         "name:ja": "アニメイト",
         "shop": "hobby"
+      }
+    },
+    "shop/hobby|イエロー・サブマリン": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "イエロー・サブマリン",
+        "brand:en": "Yellow Submarine",
+        "brand:ja": "イエロー・サブマリン",
+        "brand:wikidata": "Q11668496",
+        "brand:wikipedia": "ja:ホビーベースイエローサブマリン",
+        "name": "イエロー・サブマリン",
+        "name:en": "Yellow Submarine",
+        "name:ja": "イエロー・サブマリン",
+        "shop": "hobby"
+      }
+    },
+    "shop/hobby|ジャンプショップ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["ジャンプ"],
+      "tags": {
+        "brand": "ジャンプショップ",
+        "brand:en": "Jump Shop",
+        "brand:ja": "ジャンプショップ",
+        "brand:wikidata": "Q11310200",
+        "brand:wikipedia": "ja:ジャンプショップ",
+        "name": "ジャンプショップ",
+        "name:en": "Jump Shop",
+        "name:ja": "ジャンプショップ",
+        "shop": "hobby"
+      }
+    },
+    "shop/hobby|ポケモンセンター": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ポケモンセンター",
+        "brand:en": "Pokémon Center",
+        "brand:ja": "ポケモンセンター",
+        "brand:wikidata": "Q89673816",
+        "name": "ポケモンセンター",
+        "name:en": "Pokémon Center",
+        "name:ja": "ポケモンセンター",
+        "shop": "hobby"
+      }
+    },
+    "shop/hobby|駿河屋": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "駿河屋",
+        "brand:en": "Surugaya",
+        "brand:ja": "駿河屋",
+        "brand:wikidata": "Q88485610",
+        "name": "駿河屋",
+        "name:en": "Surugaya",
+        "name:ja": "駿河屋",
+        "shop": "hobby"
+      }
+    },
+    "shop/household_linen|Carré Blanc": {
+      "tags": {
+        "brand": "Carré Blanc",
+        "brand:wikidata": "Q55596025",
+        "brand:wikipedia": "fr:Carré blanc (entreprise)",
+        "name": "Carré Blanc",
+        "shop": "household_linen"
+      }
+    },
+    "shop/household_linen|Descamps": {
+      "tags": {
+        "brand": "Descamps",
+        "brand:wikidata": "Q91002058",
+        "name": "Descamps",
+        "shop": "household_linen"
       }
     },
     "shop/houseware|At Home": {
@@ -45174,6 +48450,23 @@
         "shop": "jewelry"
       }
     },
+    "shop/jewelry|ツツミ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ツツミ",
+        "brand:en": "Tsutsumi",
+        "brand:ja": "ツツミ",
+        "brand:wikidata": "Q11318759",
+        "brand:wikipedia": "ja:ツツミ",
+        "name": "ツツミ",
+        "name:en": "Tsutsumi",
+        "name:ja": "ツツミ",
+        "official_name": "ジュエリーツツミ",
+        "official_name:en": "Jewelry Tsutsumi",
+        "official_name:ja": "ジュエリーツツミ",
+        "shop": "jewelry"
+      }
+    },
     "shop/kiosk|Lietuvos spauda": {
       "countryCodes": ["lt"],
       "tags": {
@@ -45398,6 +48691,24 @@
         "shop": "lottery"
       }
     },
+    "shop/lottery|宝くじ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["lotoロト", "lottery of japan", "takarakuji", "‎japan loto"],
+      "tags": {
+        "brand": "宝くじ",
+        "brand:en": "Takarakuji",
+        "brand:ja": "宝くじ",
+        "brand:wikidata": "Q87824893",
+        "brand:wikipedia": "ja:宝くじ",
+        "name": "宝くじ",
+        "name:en": "Takarakuji",
+        "name:ja": "宝くじ",
+        "official_name": "全国自治宝くじ",
+        "official_name:en": "National Autonomous Lottery",
+        "official_name:ja": "全国自治宝くじ",
+        "shop": "lottery"
+      }
+    },
     "shop/massage|Hand & Stone Massage and Facial Spa": {
       "countryCodes": ["us"],
       "matchNames": ["hand and stone massage"],
@@ -45429,6 +48740,19 @@
         "shop": "massage"
       }
     },
+    "shop/massage|カラダファクトリー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "カラダファクトリー",
+        "brand:en": "Karada Factory",
+        "brand:ja": "カラダファクトリー",
+        "brand:wikidata": "Q87833239",
+        "name": "カラダファクトリー",
+        "name:en": "Karada Factory",
+        "name:ja": "カラダファクトリー",
+        "shop": "massage"
+      }
+    },
     "shop/medical_supply|Pofam-Poznań": {
       "countryCodes": ["pl"],
       "tags": {
@@ -45437,6 +48761,9 @@
         "name": "Pofam-Poznań",
         "shop": "medical_supply"
       }
+    },
+    "shop/medical_supply|МИБС": {
+      "tags": {"brand": "МИБС", "name": "МИБС", "shop": "medical_supply"}
     },
     "shop/medical_supply|Ортека": {
       "countryCodes": ["ru"],
@@ -46061,7 +49388,7 @@
     },
     "shop/mobile_phone|auショップ": {
       "countryCodes": ["jp"],
-      "matchNames": ["au"],
+      "matchNames": ["au", "エーユー"],
       "tags": {
         "brand": "au",
         "brand:ja": "au",
@@ -46211,8 +49538,22 @@
         "shop": "mobile_phone"
       }
     },
+    "shop/mobile_phone|テルル": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "テルル",
+        "brand:en": "Teluru",
+        "brand:ja": "テルル",
+        "brand:wikidata": "Q91111384",
+        "name": "テルル",
+        "name:en": "Teluru",
+        "name:ja": "テルル",
+        "shop": "mobile_phone"
+      }
+    },
     "shop/mobile_phone|ドコモショップ": {
       "countryCodes": ["jp"],
+      "matchNames": ["nttドコモ", "ｄｏｃｏｍｏ"],
       "tags": {
         "brand": "ドコモショップ",
         "brand:en": "DoCoMo Shop",
@@ -46227,15 +49568,15 @@
     },
     "shop/mobile_phone|ワイモバイル": {
       "countryCodes": ["jp"],
-      "matchNames": ["ymobile, y!mobile"],
+      "matchNames": ["yahooモバイル", "ymobile"],
       "tags": {
         "brand": "ワイモバイル",
-        "brand:en": "Ymobile",
+        "brand:en": "Y!mobile",
         "brand:ja": "ワイモバイル",
         "brand:wikidata": "Q5322556",
         "brand:wikipedia": "ja:ワイモバイル",
         "name": "ワイモバイル",
-        "name:en": "Ymobile",
+        "name:en": "Y!mobile",
         "name:ja": "ワイモバイル",
         "shop": "mobile_phone"
       }
@@ -46356,6 +49697,22 @@
         "brand:wikidata": "Q6899361",
         "brand:wikipedia": "en:Moneytree",
         "name": "Moneytree",
+        "shop": "money_lender"
+      }
+    },
+    "shop/money_lender|プロミス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "プロミス",
+        "brand:en": "Promise",
+        "brand:ja": "プロミス",
+        "brand:wikidata": "Q11243682",
+        "brand:wikipedia": "ja:SMBCコンシューマーファイナンス",
+        "name": "プロミス",
+        "name:en": "Promise",
+        "name:ja": "プロミス",
+        "official_name": "SMBCコンシューマーファイナンス",
+        "official_name:en": "SMBC Consumer Finance",
         "shop": "money_lender"
       }
     },
@@ -46506,6 +49863,20 @@
         "shop": "musical_instrument"
       }
     },
+    "shop/musical_instrument|山野楽器": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "山野楽器",
+        "brand:en": "Yamano Music",
+        "brand:ja": "山野楽器",
+        "brand:wikidata": "Q11471074",
+        "brand:wikipedia": "ja:山野楽器",
+        "name": "山野楽器",
+        "name:en": "Yamano Music",
+        "name:ja": "山野楽器",
+        "shop": "musical_instrument"
+      }
+    },
     "shop/newsagent|Cigo": {
       "countryCodes": ["de", "nl"],
       "tags": {
@@ -46539,6 +49910,9 @@
         "name": "Kolporter",
         "shop": "newsagent"
       }
+    },
+    "shop/newsagent|Mag Presse": {
+      "tags": {"brand": "Mag Presse", "name": "Mag Presse", "shop": "newsagent"}
     },
     "shop/newsagent|Maison de la Presse": {
       "countryCodes": ["fr"],
@@ -46656,6 +50030,7 @@
       }
     },
     "shop/newsagent|朝日新聞": {
+      "countryCodes": ["jp"],
       "tags": {
         "brand": "朝日新聞",
         "brand:en": "Asahi Shimbun",
@@ -46911,6 +50286,7 @@
     },
     "shop/optician|Les Opticiens Mutualistes": {
       "countryCodes": ["fr"],
+      "matchNames": ["opticiens mutualistes"],
       "tags": {
         "brand": "Les Opticiens Mutualistes",
         "brand:wikidata": "Q18414551",
@@ -46925,6 +50301,16 @@
         "brand": "Lissac",
         "brand:wikidata": "Q63102559",
         "name": "Lissac",
+        "shop": "optician"
+      }
+    },
+    "shop/optician|Lynx Optique": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Lynx Optique",
+        "brand:wikidata": "Q25387428",
+        "brand:wikipedia": "fr:Lynx Optique",
+        "name": "Lynx Optique",
         "shop": "optician"
       }
     },
@@ -47037,6 +50423,16 @@
         "shop": "optician"
       }
     },
+    "shop/optician|Solaris": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Solaris",
+        "brand:wikidata": "Q3489229",
+        "brand:wikipedia": "fr:Solaris (magasin)",
+        "name": "Solaris",
+        "shop": "optician"
+      }
+    },
     "shop/optician|Solstice Sunglasses": {
       "tags": {
         "brand": "Solstice Sunglasses",
@@ -47103,6 +50499,15 @@
         "shop": "optician"
       }
     },
+    "shop/optician|Vision Plus": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Vision Plus",
+        "brand:wikidata": "Q23752663",
+        "name": "Vision Plus",
+        "shop": "optician"
+      }
+    },
     "shop/optician|Visionworks": {
       "countryCodes": ["us"],
       "tags": {
@@ -47152,12 +50557,44 @@
         "shop": "optician"
       }
     },
+    "shop/optician|ジンズ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ジンズ",
+        "brand:en": "JINS",
+        "brand:ja": "ジンズ",
+        "brand:wikidata": "Q11308974",
+        "brand:wikipedia": "ja:ジンズ",
+        "name": "ジンズ",
+        "name:en": "JINS",
+        "name:ja": "ジンズ",
+        "shop": "optician"
+      }
+    },
+    "shop/optician|ゾフ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ゾフ",
+        "brand:en": "Zoff",
+        "brand:ja": "ゾフ",
+        "brand:wikidata": "Q11255932",
+        "brand:wikipedia": "ja:Zoff",
+        "name": "ゾフ",
+        "name:en": "Zoff",
+        "name:ja": "ゾフ",
+        "shop": "optician"
+      }
+    },
     "shop/optician|メガネの三城": {
       "countryCodes": ["jp"],
       "tags": {
+        "alt_name:en": "Megane no Miki",
         "brand": "メガネの三城",
         "brand:ja": "メガネの三城",
+        "brand:wikidata": "Q11354808",
+        "brand:wikipedia": "jp:三城ホールディングス",
         "name": "メガネの三城",
+        "name:en": "Paris Miki",
         "name:ja": "メガネの三城",
         "shop": "optician"
       }
@@ -47208,6 +50645,9 @@
         "name:en": "Megane Ichiba",
         "shop": "optician"
       }
+    },
+    "shop/outdoor|BCF": {
+      "tags": {"brand": "BCF", "name": "BCF", "shop": "outdoor"}
     },
     "shop/outdoor|Bass Pro Shops": {
       "countryCodes": ["ca", "us"],
@@ -47602,6 +51042,15 @@
         "shop": "perfumery"
       }
     },
+    "shop/pet|Animalis": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Animalis",
+        "brand:wikidata": "Q2850015",
+        "name": "Animalis",
+        "shop": "pet"
+      }
+    },
     "shop/pet|Arcaplanet": {
       "tags": {"brand": "Arcaplanet", "name": "Arcaplanet", "shop": "pet"}
     },
@@ -47653,6 +51102,15 @@
         "shop": "pet"
       }
     },
+    "shop/pet|Jumper": {
+      "countryCodes": ["nl"],
+      "tags": {
+        "brand": "Jumper",
+        "brand:wikidata": "Q87338743",
+        "name": "Jumper",
+        "shop": "pet"
+      }
+    },
     "shop/pet|Maxi Zoo": {
       "countryCodes": ["be", "ch", "dk", "fr", "ie", "it", "pl"],
       "tags": {
@@ -47680,6 +51138,15 @@
         "brand:wikidata": "Q11883558",
         "brand:wikipedia": "fi:Musti ja Mirri",
         "name": "Musti ja Mirri",
+        "shop": "pet"
+      }
+    },
+    "shop/pet|Médor et Compagnie": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Médor et Compagnie",
+        "brand:wikidata": "Q89344773",
+        "name": "Médor et Compagnie",
         "shop": "pet"
       }
     },
@@ -47885,6 +51352,34 @@
         "shop": "photo"
       }
     },
+    "shop/photo|コイデカメラ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "コイデカメラ",
+        "brand:en": "Koide Camera",
+        "brand:ja": "コイデカメラ",
+        "brand:wikidata": "Q11301829",
+        "brand:wikipedia": "ja:コイデカメラ",
+        "name": "コイデカメラ",
+        "name:en": "Koide Camera",
+        "name:ja": "コイデカメラ",
+        "shop": "photo"
+      }
+    },
+    "shop/photo|パレットプラザ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "パレットプラザ",
+        "brand:en": "Palette Plaza",
+        "brand:ja": "パレットプラザ",
+        "brand:wikidata": "Q11335403",
+        "brand:wikipedia": "ja:プラザクリエイト",
+        "name": "パレットプラザ",
+        "name:en": "Palette Plaza",
+        "name:ja": "パレットプラザ",
+        "shop": "photo"
+      }
+    },
     "shop/pottery|Sargadelos": {
       "tags": {
         "brand": "Sargadelos",
@@ -47978,6 +51473,48 @@
         "brand:wikidata": "Q7428188",
         "brand:wikipedia": "en:Savers",
         "name": "Value Village",
+        "shop": "second_hand"
+      }
+    },
+    "shop/second_hand|セカンドストリート": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "セカンドストリート",
+        "brand:en": "2nd STREET",
+        "brand:ja": "セカンドストリート",
+        "brand:wikidata": "Q11314186",
+        "brand:wikipedia": "ja:セカンドストリート",
+        "name": "セカンドストリート",
+        "name:en": "2nd STREET",
+        "name:ja": "セカンドストリート",
+        "shop": "second_hand"
+      }
+    },
+    "shop/second_hand|トレジャー・ファクトリー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "トレジャー・ファクトリー",
+        "brand:en": "Treasure Factory",
+        "brand:ja": "トレジャー・ファクトリー",
+        "brand:wikidata": "Q11322108",
+        "brand:wikipedia": "ja:トレジャー・ファクトリー",
+        "name": "トレジャー・ファクトリー",
+        "name:en": "Treasure Factory",
+        "name:ja": "トレジャー・ファクトリー",
+        "shop": "second_hand"
+      }
+    },
+    "shop/second_hand|ハードオフ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ハードオフ",
+        "brand:en": "Hard Off",
+        "brand:ja": "ハードオフ",
+        "brand:wikidata": "Q11327274",
+        "brand:wikipedia": "ja:ハードオフコーポレーション",
+        "name": "ハードオフ",
+        "name:en": "Hard Off",
+        "name:ja": "ハードオフ",
         "shop": "second_hand"
       }
     },
@@ -48899,6 +52436,9 @@
         "shop": "shoes"
       }
     },
+    "shop/shoes|Vögele Shoes": {
+      "tags": {"brand": "Vögele Shoes", "name": "Vögele Shoes", "shop": "shoes"}
+    },
     "shop/shoes|Walking on a Cloud": {
       "countryCodes": ["ca"],
       "tags": {
@@ -49097,6 +52637,16 @@
         "brand:wikidata": "Q5450341",
         "brand:wikipedia": "en:Finish Line, Inc.",
         "name": "Finish Line",
+        "shop": "sports"
+      }
+    },
+    "shop/sports|GO Sport": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "GO Sport",
+        "brand:wikidata": "Q48746237",
+        "brand:wikipedia": "fr:GO Sport",
+        "name": "GO Sport",
         "shop": "sports"
       }
     },
@@ -49351,6 +52901,80 @@
         "shop": "sports"
       }
     },
+    "shop/sports|ゴルフパートナー": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ゴルフパートナー",
+        "brand:en": "Golf Partner",
+        "brand:ja": "ゴルフパートナー",
+        "brand:wikidata": "Q11303729",
+        "brand:wikipedia": "ja:ゴルフパートナー",
+        "name": "ゴルフパートナー",
+        "name:en": "Golf Partner",
+        "name:ja": "ゴルフパートナー",
+        "shop": "sports",
+        "sport": "golf"
+      }
+    },
+    "shop/sports|ゴルフ・ドゥ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ゴルフ・ドゥ",
+        "brand:en": "Golf・Do",
+        "brand:ja": "ゴルフ・ドゥ",
+        "brand:wikidata": "Q11303734",
+        "brand:wikipedia": "ja:ゴルフ・ドゥ",
+        "name": "ゴルフ・ドゥ",
+        "name:en": "Golf・Do",
+        "name:ja": "ゴルフ・ドゥ",
+        "shop": "sports",
+        "sport": "golf"
+      }
+    },
+    "shop/sports|スポーツオーソリティ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "スポーツオーソリティ",
+        "brand:en": "Sports Authority",
+        "brand:ja": "スポーツオーソリティ",
+        "brand:wikidata": "Q7579688",
+        "brand:wikipedia": "ja:スポーツオーソリティ",
+        "name": "スポーツオーソリティ",
+        "name:en": "Sports Authority",
+        "name:ja": "スポーツオーソリティ",
+        "shop": "sports"
+      }
+    },
+    "shop/sports|スポーツデポ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["スポーツdepo"],
+      "tags": {
+        "brand": "スポーツデポ",
+        "brand:en": "Sports Depo",
+        "brand:ja": "スポーツデポ",
+        "brand:wikidata": "Q11313050",
+        "brand:wikipedia": "ja:スポーツDEPO",
+        "name": "スポーツデポ",
+        "name:en": "Sports Depo",
+        "name:ja": "スポーツデポ",
+        "shop": "sports"
+      }
+    },
+    "shop/sports|スーパースポーツゼビオ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["ゼビオ"],
+      "tags": {
+        "brand": "スーパースポーツゼビオ",
+        "brand:en": "Super Sports Xebio",
+        "brand:ja": "スーパースポーツゼビオ",
+        "brand:wikidata": "Q3108542",
+        "brand:wikipedia": "ja:ゼビオホールディングス",
+        "name": "スーパースポーツゼビオ",
+        "name:en": "Super Sports Xebio",
+        "name:ja": "スーパースポーツゼビオ",
+        "shop": "sports"
+      }
+    },
     "shop/stationery|Buffetti": {
       "countryCodes": ["it"],
       "tags": {"brand": "Buffetti", "name": "Buffetti", "shop": "stationery"}
@@ -49362,6 +52986,17 @@
         "brand:wikidata": "Q18385014",
         "brand:wikipedia": "fr:Bureau Vallée",
         "name": "Bureau Vallée",
+        "shop": "stationery"
+      }
+    },
+    "shop/stationery|Koh-i-Noor": {
+      "countryCodes": ["cz", "sk"],
+      "tags": {
+        "brand": "Koh-i-Noor",
+        "brand:wikidata": "Q698032",
+        "brand:wikipedia": "en:Koh-i-Noor Hardtmuth",
+        "name": "Koh-i-Noor",
+        "official_name": "Koh-i-Noor Hardtmuth",
         "shop": "stationery"
       }
     },
@@ -49463,6 +53098,16 @@
         "shop": "stationery"
       }
     },
+    "shop/stationery|Ševt": {
+      "countryCodes": ["sk"],
+      "tags": {
+        "brand": "Ševt",
+        "brand:wikidata": "Q15980348",
+        "brand:wikipedia": "sk:ŠEVT",
+        "name": "Ševt",
+        "shop": "stationery"
+      }
+    },
     "shop/stationery|Комус": {
       "countryCodes": ["ru"],
       "tags": {
@@ -49506,6 +53151,15 @@
         "brand:wikidata": "Q7862902",
         "brand:wikipedia": "en:U-Haul",
         "name": "U-Haul",
+        "shop": "storage_rental"
+      }
+    },
+    "shop/storage_rental|UK Storage Company": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "UK Storage Company",
+        "brand:wikidata": "Q87411468",
+        "name": "UK Storage Company",
         "shop": "storage_rental"
       }
     },
@@ -49952,9 +53606,25 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|BonArea": {
+      "countryCodes": ["es"],
+      "tags": {
+        "brand": "Bon Area",
+        "brand:wikidata": "Q11924743",
+        "brand:wikipedia": "ca:Grup Alimentari Guissona",
+        "name": "Bon Area",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|Bonpreu": {
       "countryCodes": ["es"],
-      "tags": {"brand": "Bonpreu", "name": "Bonpreu", "shop": "supermarket"}
+      "tags": {
+        "brand": "Bonpreu",
+        "brand:wikidata": "Q11924747",
+        "brand:wikipedia": "ca:Grup Bon Preu",
+        "name": "Bonpreu",
+        "shop": "supermarket"
+      }
     },
     "shop/supermarket|Bravo": {
       "countryCodes": ["us"],
@@ -50165,7 +53835,19 @@
       }
     },
     "shop/supermarket|Casino": {
-      "tags": {"brand": "Casino", "name": "Casino", "shop": "supermarket"}
+      "countryCodes": ["fr"],
+      "nomatch": [
+        "amenity/fuel|Casino",
+        "shop/convenience|Casino Shop",
+        "shop/convenience|Le Petit Casino",
+        "shop/supermarket|Géant Casino"
+      ],
+      "tags": {
+        "brand": "Casino",
+        "brand:wikidata": "Q89029184",
+        "name": "Casino",
+        "shop": "supermarket"
+      }
     },
     "shop/supermarket|Centra": {
       "tags": {"brand": "Centra", "name": "Centra", "shop": "supermarket"}
@@ -50223,21 +53905,63 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Co-op Food": {
+      "countryCodes": ["gb"],
+      "matchNames": [
+        "coop",
+        "cooperative food",
+        "the co-operative food",
+        "the cooperative"
+      ],
+      "nomatch": [
+        "amenity/fuel|Co-op~(Canada)",
+        "shop/convenience|Co-op Food",
+        "shop/convenience|Co-op~(Canada)",
+        "shop/convenience|Coop~(Schweiz)",
+        "shop/supermarket|Co-op~(Canada)",
+        "shop/supermarket|Coop~(Schweiz)"
+      ],
+      "tags": {
+        "brand": "Co-op Food",
+        "brand:wikidata": "Q3277439",
+        "brand:wikipedia": "en:Co-op Food",
+        "name": "Co-op Food",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|Co-op~(Canada)": {
       "countryCodes": ["ca"],
       "nomatch": [
         "amenity/fuel|Co-op~(Canada)",
+        "shop/convenience|Co-op Food",
         "shop/convenience|Co-op~(Canada)",
         "shop/convenience|Coop~(Schweiz)",
-        "shop/convenience|The Co-operative Food~(UK)",
-        "shop/supermarket|Coop~(Schweiz)",
-        "shop/supermarket|The Co-operative Food~(UK)"
+        "shop/supermarket|Co-op Food",
+        "shop/supermarket|Coop~(Schweiz)"
       ],
       "tags": {
         "brand": "Federated Co-operatives",
         "brand:wikidata": "Q5440676",
         "brand:wikipedia": "en:Federated Co-operatives",
         "name": "Co-op",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Coccinelle Express": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Coccinelle Express",
+        "brand:wikidata": "Q90020479",
+        "name": "Coccinelle Express",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Coccinelle Supermarché": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Coccinelle Supermarché",
+        "brand:wikidata": "Q90020459",
+        "name": "Coccinelle Supermarché",
         "shop": "supermarket"
       }
     },
@@ -50341,6 +54065,16 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Coop Eesti": {
+      "countryCodes": ["ee"],
+      "tags": {
+        "brand": "Coop Eesti",
+        "brand:wikidata": "Q12361460",
+        "brand:wikipedia": "ee:Coop Eesti",
+        "name": "Coop",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|Coop Konsum": {
       "countryCodes": ["se"],
       "tags": {
@@ -50359,15 +54093,22 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Cooperativa Obrera": {
+      "tags": {
+        "brand": "Cooperativa Obrera",
+        "name": "Cooperativa Obrera",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|Coop~(Schweiz)": {
       "countryCodes": ["ch"],
       "nomatch": [
         "amenity/fuel|Co-op~(Canada)",
+        "shop/convenience|Co-op Food",
         "shop/convenience|Co-op~(Canada)",
         "shop/convenience|Coop~(Schweiz)",
-        "shop/convenience|The Co-operative Food~(UK)",
-        "shop/supermarket|Co-op~(Canada)",
-        "shop/supermarket|The Co-operative Food~(UK)"
+        "shop/supermarket|Co-op Food",
+        "shop/supermarket|Co-op~(Canada)"
       ],
       "tags": {
         "brand": "Coop",
@@ -50443,6 +54184,16 @@
         "brand:wikidata": "Q5191916",
         "brand:wikipedia": "en:Cub Foods",
         "name": "Cub Foods",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Côté Nature": {
+      "countryCodes": ["fr"],
+      "tags": {
+        "brand": "Côté Nature",
+        "brand:wikidata": "Q90016283",
+        "name": "Côté Nature",
+        "organic": "only",
         "shop": "supermarket"
       }
     },
@@ -51202,10 +54953,15 @@
     },
     "shop/supermarket|Géant Casino": {
       "countryCodes": ["cg", "fr"],
+      "nomatch": [
+        "amenity/fuel|Casino",
+        "shop/convenience|Casino Shop",
+        "shop/convenience|Le Petit Casino",
+        "shop/supermarket|Casino"
+      ],
       "tags": {
         "brand": "Géant Casino",
         "brand:wikidata": "Q1380537",
-        "brand:wikipedia": "fr:Enseignes du groupe Casino",
         "name": "Géant Casino",
         "shop": "supermarket"
       }
@@ -51407,7 +55163,6 @@
     },
     "shop/supermarket|ICA Maxi": {
       "countryCodes": ["no", "se"],
-      "matchNames": ["maxi"],
       "nomatch": ["shop/supermarket|ICA", "shop/supermarket|ICA Kvantum"],
       "tags": {
         "brand": "ICA Maxi",
@@ -51722,6 +55477,16 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|La Sirena": {
+      "countryCodes": ["es"],
+      "tags": {
+        "brand": "La Sirena",
+        "brand:wikidata": "Q21034458",
+        "brand:wikipedia": "ca:La Sirena",
+        "name": "La Sirena",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|La Vie Claire": {
       "countryCodes": ["fr"],
       "nomatch": ["shop/convenience|La Vie Claire"],
@@ -51948,6 +55713,31 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|MEGAドン・キホーテ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["メガ・ドン・キホーテ"],
+      "matchTags": [
+        "amenity/general",
+        "amenity/retail",
+        "amenity/variety_store"
+      ],
+      "nomatch": ["amenity/variety_store|ドン・キホーテ"],
+      "tags": {
+        "brand": "ドン・キホーテ",
+        "brand:en": "Don Quijote",
+        "brand:ja": "ドン・キホーテ",
+        "brand:wikidata": "Q1185381",
+        "brand:wikipedia": "ja:ドン・キホーテ (企業)",
+        "name": "MEGAドン・キホーテ",
+        "name:en": "MEGA Don Quijote",
+        "name:ja": "MEGAドン・キホーテ",
+        "opening_hours": "24/7",
+        "shop": "supermarket",
+        "short_name": "MEGAドンキ",
+        "short_name:en": "MegaDonki",
+        "short_name:ja": "MEGAドンキ"
+      }
+    },
     "shop/supermarket|MPREIS": {
       "countryCodes": ["at", "it"],
       "tags": {
@@ -52027,16 +55817,6 @@
         "brand:wikidata": "Q513977",
         "brand:wikipedia": "en:Match (supermarket)",
         "name": "Match",
-        "shop": "supermarket"
-      }
-    },
-    "shop/supermarket|Maxi": {
-      "countryCodes": ["ca"],
-      "tags": {
-        "brand": "Maxi",
-        "brand:wikidata": "Q3302441",
-        "brand:wikipedia": "fr:Maxi (supermarché)",
-        "name": "Maxi",
         "shop": "supermarket"
       }
     },
@@ -52257,6 +56037,16 @@
         "brand:wikidata": "Q48844636",
         "brand:wikipedia": "pl:Mila (sieć sklepów)",
         "name": "Mila",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Milk-Agro": {
+      "countryCodes": ["sk"],
+      "nomatch": ["shop/convenience|Milk-Agro"],
+      "tags": {
+        "brand": "Milk-Agro",
+        "brand:wikidata": "Q64173785",
+        "name": "Milk-Agro",
         "shop": "supermarket"
       }
     },
@@ -52509,6 +56299,7 @@
     },
     "shop/supermarket|Okay": {
       "countryCodes": ["be"],
+      "nomatch": ["shop/electronics|Okay"],
       "tags": {
         "brand": "Okay",
         "brand:wikidata": "Q2159701",
@@ -52916,8 +56707,8 @@
       "countryCodes": ["ee", "lt", "lv"],
       "tags": {
         "brand": "Rimi",
-        "brand:wikidata": "Q7334456",
-        "brand:wikipedia": "en:Rimi (Norway)",
+        "brand:wikidata": "Q3741108",
+        "brand:wikipedia": "en:Rimi Baltic",
         "name": "Rimi",
         "shop": "supermarket"
       }
@@ -52990,6 +56781,16 @@
         "brand:wikidata": "Q7431920",
         "brand:wikipedia": "en:Schnucks",
         "name": "Schnucks",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Selver": {
+      "countryCodes": ["ee"],
+      "tags": {
+        "brand": "Selver",
+        "brand:wikidata": "Q3771177",
+        "brand:wikipedia": "en:Selver",
+        "name": "Selver",
         "shop": "supermarket"
       }
     },
@@ -53110,6 +56911,16 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Smatch": {
+      "countryCodes": ["be", "lu"],
+      "tags": {
+        "brand": "Smatch",
+        "brand:wikidata": "Q5185959",
+        "brand:wikipedia": "fr:Smatch",
+        "name": "Smatch",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|Smith's": {
       "countryCodes": ["ca", "us"],
       "nomatch": ["amenity/fuel|Smith's"],
@@ -53138,6 +56949,16 @@
         "brand:wikidata": "Q735562",
         "brand:wikipedia": "en:Soriana",
         "name": "Soriana",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|Sorli Discau": {
+      "countryCodes": ["es"],
+      "tags": {
+        "brand": "Sorli Discau",
+        "brand:wikidata": "Q21034458",
+        "brand:wikipedia": "ca:Sorli",
+        "name": "Sorli Discau",
         "shop": "supermarket"
       }
     },
@@ -53280,6 +57101,15 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|Super del Norte": {
+      "countryCodes": ["mx"],
+      "tags": {
+        "brand": "Super del Norte",
+        "brand:wikidata": "Q88388513",
+        "name": "Super del Norte",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|SuperBrugsen": {
       "countryCodes": ["dk"],
       "tags": {
@@ -53297,6 +57127,16 @@
         "brand:wikidata": "Q7642081",
         "brand:wikipedia": "en:SuperValu (Ireland)",
         "name": "SuperValu",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|SuperVerd": {
+      "countryCodes": ["es"],
+      "tags": {
+        "brand": "Superverd",
+        "brand:wikidata": "Q11950546",
+        "brand:wikipedia": "ca:Superverd",
+        "name": "Superverd",
         "shop": "supermarket"
       }
     },
@@ -53432,27 +57272,12 @@
         "shop": "supermarket"
       }
     },
-    "shop/supermarket|The Co-operative Food~(UK)": {
+    "shop/supermarket|The Food Warehouse": {
       "countryCodes": ["gb"],
-      "matchNames": [
-        "coop",
-        "coop food",
-        "cooperative food",
-        "the cooperative"
-      ],
-      "nomatch": [
-        "amenity/fuel|Co-op~(Canada)",
-        "shop/convenience|Co-op~(Canada)",
-        "shop/convenience|Coop~(Schweiz)",
-        "shop/convenience|The Co-operative Food~(UK)",
-        "shop/supermarket|Co-op~(Canada)",
-        "shop/supermarket|Coop~(Schweiz)"
-      ],
       "tags": {
-        "brand": "The Co-operative Food",
-        "brand:wikidata": "Q3277439",
-        "brand:wikipedia": "en:Co-op Food",
-        "name": "The Co-operative Food",
+        "brand": "The Food Warehouse",
+        "brand:wikidata": "Q87263899",
+        "name": "The Food Warehouse",
         "shop": "supermarket"
       }
     },
@@ -54509,6 +58334,20 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|ゆめタウン": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ゆめタウン",
+        "brand:en": "YouMe Town",
+        "brand:ja": "ゆめタウン",
+        "brand:wikidata": "Q11280900",
+        "brand:wikipedia": "ja:ゆめタウン",
+        "name": "ゆめタウン",
+        "name:en": "YouMe Town",
+        "name:ja": "ゆめタウン",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|アコレ": {
       "countryCodes": ["jp"],
       "tags": {
@@ -54524,6 +58363,19 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|アピタ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "アピタ",
+        "brand:en": "APITA",
+        "brand:ja": "アピタ",
+        "brand:wikidata": "Q55384637",
+        "name": "アピタ",
+        "name:en": "APITA",
+        "name:ja": "アピタ",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|イオン": {
       "countryCodes": ["jp"],
       "tags": {
@@ -54535,6 +58387,20 @@
         "name": "イオン",
         "name:en": "AEON",
         "name:ja": "イオン",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|イオンマーケット": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "イオンマーケット",
+        "brand:en": "Aeon Market",
+        "brand:ja": "イオンマーケット",
+        "brand:wikidata": "Q11331715",
+        "brand:wikipedia": "ja:イオンマーケット",
+        "name": "イオンマーケット",
+        "name:en": "Aeon Market",
+        "name:ja": "イオンマーケット",
         "shop": "supermarket"
       }
     },
@@ -54568,6 +58434,36 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|エコス": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "エコス",
+        "brand:en": "Ecos",
+        "brand:ja": "エコス",
+        "brand:wikidata": "Q11289886",
+        "brand:wikipedia": "ja:エコス",
+        "name": "エコス",
+        "name:en": "Ecos",
+        "name:ja": "エコス",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|エーコープ": {
+      "countryCodes": ["jp"],
+      "matchNames": ["aコープ"],
+      "tags": {
+        "brand": "エーコープ",
+        "brand:en": "A-COOP",
+        "brand:ja": "エーコープ",
+        "brand:wikidata": "Q11291524",
+        "brand:wikipedia": "ja:エーコープ",
+        "name": "エーコープ",
+        "name:en": "A-COOP",
+        "name:ja": "エーコープ",
+        "organic": "only",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|オリンピック": {
       "countryCodes": ["jp"],
       "tags": {
@@ -54582,6 +58478,35 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|オークワ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "オークワ",
+        "brand:en": "Okuwa",
+        "brand:ja": "オークワ",
+        "brand:wikidata": "Q11293166",
+        "brand:wikipedia": "ja:オークワ",
+        "name": "オークワ",
+        "name:en": "Okuwa",
+        "name:ja": "オークワ",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|オーケーストア": {
+      "countryCodes": ["jp"],
+      "matchNames": ["オーケー, okストア"],
+      "tags": {
+        "brand": "オーケー",
+        "brand:en": "OK",
+        "brand:ja": "オーケー",
+        "brand:wikidata": "Q11293184",
+        "brand:wikipedia": "ja:オーケー",
+        "name": "オーケーストア",
+        "name:en": "OK Store",
+        "name:ja": "オーケーストア",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|カスミ": {
       "countryCodes": ["jp"],
       "tags": {
@@ -54593,6 +58518,20 @@
         "name": "カスミ",
         "name:en": "Kasumi",
         "name:ja": "カスミ",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|キョーエイ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "キョーエイ",
+        "brand:en": "Kyoei",
+        "brand:ja": "キョーエイ",
+        "brand:wikidata": "Q11297581",
+        "brand:wikipedia": "ja:キョーエイ",
+        "name": "キョーエイ",
+        "name:en": "Kyoei",
+        "name:ja": "キョーエイ",
         "shop": "supermarket"
       }
     },
@@ -54699,6 +58638,47 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|ピアゴ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ピアゴ",
+        "brand:en": "PIAGO",
+        "brand:ja": "ピアゴ",
+        "brand:wikidata": "Q91014434",
+        "name": "ピアゴ",
+        "name:en": "PIAGO",
+        "name:ja": "ピアゴ",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|フジ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "フジ",
+        "brand:en": "Fuji",
+        "brand:ja": "フジ",
+        "brand:wikidata": "Q8963035",
+        "brand:wikipedia": "ja:フジ (チェーンストア)",
+        "name": "フジ",
+        "name:en": "Fuji",
+        "name:ja": "フジ",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|フジグラン": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "フジ",
+        "brand:en": "Fuji",
+        "brand:ja": "フジ",
+        "brand:wikidata": "Q8963035",
+        "brand:wikipedia": "ja:フジ (チェーンストア)",
+        "name": "フジグラン",
+        "name:en": "Fuji GRAND",
+        "name:ja": "フジグラン",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|ベイシア": {
       "countryCodes": ["jp"],
       "tags": {
@@ -54727,6 +58707,20 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|マミーマート": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "マミーマート",
+        "brand:en": "Mammy Mart",
+        "brand:ja": "マミーマート",
+        "brand:wikidata": "Q11340902",
+        "brand:wikipedia": "ja:マミーマート",
+        "name": "マミーマート",
+        "name:en": "Mammy Mart",
+        "name:ja": "マミーマート",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|マルエツ": {
       "countryCodes": ["jp"],
       "tags": {
@@ -54741,6 +58735,20 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|マルナカ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "マルナカ",
+        "brand:en": "Marunaka",
+        "brand:ja": "マルナカ",
+        "brand:wikidata": "Q11341399",
+        "brand:wikipedia": "ja:マルナカ (チェーンストア)",
+        "name": "マルナカ",
+        "name:en": "Marunaka",
+        "name:ja": "マルナカ",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|ヤオコー": {
       "countryCodes": ["jp"],
       "tags": {
@@ -54752,6 +58760,20 @@
         "name": "ヤオコー",
         "name:en": "Yaoko",
         "name:ja": "ヤオコー",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|ヤマナカ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ヤマナカ",
+        "brand:en": "Yamanaka",
+        "brand:ja": "ヤマナカ",
+        "brand:wikidata": "Q11345199",
+        "brand:wikipedia": "ja:ヤマナカ",
+        "name": "ヤマナカ",
+        "name:en": "Yamanaka",
+        "name:ja": "ヤマナカ",
         "shop": "supermarket"
       }
     },
@@ -54858,6 +58880,20 @@
         "shop": "supermarket"
       }
     },
+    "shop/supermarket|成城石井": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "成城石井",
+        "brand:en": "Seijo Ishii",
+        "brand:ja": "成城石井",
+        "brand:wikidata": "Q11495410",
+        "brand:wikipedia": "ja:成城石井",
+        "name": "成城石井",
+        "name:en": "Seijo Ishii",
+        "name:ja": "成城石井",
+        "shop": "supermarket"
+      }
+    },
     "shop/supermarket|東急ストア": {
       "countryCodes": ["jp"],
       "tags": {
@@ -54909,6 +58945,22 @@
         "brand:wikipedia": "wuu:沃尔玛",
         "name": "沃尔玛",
         "name:en": "Walmart",
+        "shop": "supermarket"
+      }
+    },
+    "shop/supermarket|相鉄ローゼン": {
+      "countryCodes": ["jp"],
+      "matchNames": ["そうてつローゼン"],
+      "tags": {
+        "alt_name": "そうてつローゼン",
+        "brand": "相鉄ローゼン",
+        "brand:en": "Sotetsu Rosen",
+        "brand:ja": "相鉄ローゼン",
+        "brand:wikidata": "Q11582450",
+        "brand:wikipedia": "ja:相鉄ローゼン",
+        "name": "相鉄ローゼン",
+        "name:en": "Sotetsu Rosen",
+        "name:ja": "相鉄ローゼン",
         "shop": "supermarket"
       }
     },
@@ -55025,6 +59077,16 @@
         "brand:wikidata": "Q944186",
         "brand:wikipedia": "en:Kusmi Tea",
         "name": "Kusmi Tea",
+        "shop": "tea"
+      }
+    },
+    "shop/tea|Palais des Thés": {
+      "countryCodes": ["be", "fr", "ge", "il", "lu", "no", "ru"],
+      "tags": {
+        "brand": "Palais des Thés",
+        "brand:wikidata": "Q3225161",
+        "brand:wikipedia": "en:Le Palais des Thés",
+        "name": "Palais des Thés",
         "shop": "tea"
       }
     },
@@ -55226,6 +59288,20 @@
     "shop/ticket|Минсктранс": {
       "tags": {"brand": "Минсктранс", "name": "Минсктранс", "shop": "ticket"}
     },
+    "shop/ticket|みどりの窓口": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "みどりの窓口",
+        "brand:en": "Midori-no-madoguchi",
+        "brand:ja": "みどりの窓口",
+        "brand:wikidata": "Q11279064",
+        "brand:wikipedia": "ja:みどりの窓口",
+        "name": "みどりの窓口",
+        "name:en": "JR Ticket Office",
+        "name:ja": "みどりの窓口",
+        "shop": "ticket"
+      }
+    },
     "shop/tiles|Tile Giant": {
       "countryCodes": ["gb"],
       "matchTags": ["shop/diy"],
@@ -55266,6 +59342,24 @@
         "brand:wikidata": "Q5636000",
         "brand:wikipedia": "en:HSS Hire",
         "name": "HSS Hire",
+        "shop": "tool_hire"
+      }
+    },
+    "shop/tool_hire|Kiloutou": {
+      "tags": {
+        "brand": "Kiloutou",
+        "brand:wikidata": "Q3196672",
+        "brand:wikipedia": "fr:Kiloutou",
+        "name": "Kiloutou",
+        "shop": "tool_hire"
+      }
+    },
+    "shop/tool_hire|Loxam": {
+      "tags": {
+        "brand": "Loxam",
+        "brand:wikidata": "Q3264407",
+        "brand:wikipedia": "fr:Loxam",
+        "name": "Loxam",
         "shop": "tool_hire"
       }
     },
@@ -55473,6 +59567,16 @@
         "name": "84 Lumber",
         "shop": "trade",
         "trade": "building_supplies"
+      }
+    },
+    "shop/trade|Bradfords Building Supplies": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Bradfords Building Supplies",
+        "brand:wikidata": "Q17986044",
+        "brand:wikipedia": "en:Bradfords Group",
+        "name": "Bradfords Building Supplies",
+        "shop": "trade"
       }
     },
     "shop/trade|Caterpillar": {
@@ -55815,6 +59919,24 @@
         "shop": "travel_agency"
       }
     },
+    "shop/tyres|Alliance Tire Company": {
+      "tags": {
+        "brand": "Alliance",
+        "brand:wikidata": "Q420541",
+        "brand:wikipedia": "en:Alliance Tire Company Ltd",
+        "name": "Alliance Tire Company",
+        "shop": "tyres"
+      }
+    },
+    "shop/tyres|Apollo Tyres": {
+      "tags": {
+        "brand": "Apollo Tyres",
+        "brand:wikidata": "Q4780362",
+        "brand:wikipedia": "en:Apollo Tyres",
+        "name": "Apollo Tyres",
+        "shop": "tyres"
+      }
+    },
     "shop/tyres|Big O Tires": {
       "countryCodes": ["ca", "us"],
       "tags": {
@@ -55834,6 +59956,25 @@
         "shop": "tyres"
       }
     },
+    "shop/tyres|Continental AG": {
+      "tags": {
+        "brand": "Continental AG",
+        "brand:wikidata": "Q163241",
+        "brand:wikipedia": "en:Continental AG",
+        "name": "Continental AG",
+        "shop": "tyres"
+      }
+    },
+    "shop/tyres|Cooper Tire & Rubber Company": {
+      "countryCodes": ["us"],
+      "tags": {
+        "brand": "Cooper Tire & Rubber Company",
+        "brand:wikidata": "Q1129847",
+        "brand:wikipedia": "en:Cooper Tire & Rubber Company",
+        "name": "Cooper Tire & Rubber Company",
+        "shop": "tyres"
+      }
+    },
     "shop/tyres|Discount Tire": {
       "countryCodes": ["us"],
       "tags": {
@@ -55844,9 +59985,19 @@
         "shop": "tyres"
       }
     },
+    "shop/tyres|Eurotyre~(Belgium/Netherlands)": {
+      "countryCodes": ["be", "nl"],
+      "nomatch": ["shop/tyres|Eurotyre~(France)"],
+      "tags": {
+        "brand": "Eurotyre",
+        "brand:wikidata": "Q91309121",
+        "name": "Eurotyre",
+        "shop": "tyres"
+      }
+    },
     "shop/tyres|Eurotyre~(France)": {
-      "countryCodes": ["fr"],
-      "matchTags": ["shop/car_repair"],
+      "countryCodes": ["fr", "so"],
+      "nomatch": ["shop/tyres|Eurotyre~(Belgium/Netherlands)"],
       "tags": {
         "brand": "Eurotyre",
         "brand:wikidata": "Q3060871",
@@ -56198,6 +60349,13 @@
         "short_name": "Ollie's"
       }
     },
+    "shop/variety_store|Pfennigpfeiffer": {
+      "tags": {
+        "brand": "Pfennigpfeiffer",
+        "name": "Pfennigpfeiffer",
+        "shop": "variety_store"
+      }
+    },
     "shop/variety_store|Poundland": {
       "countryCodes": ["gb"],
       "tags": {
@@ -56245,6 +60403,21 @@
         "brand:wikidata": "Q1364603",
         "brand:wikipedia": "de:TEDi",
         "name": "TEDi",
+        "shop": "variety_store"
+      }
+    },
+    "shop/variety_store|THANK YOU MART": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "alt_name:en": "390 Yen Shop",
+        "brand": "THANK YOU MART",
+        "brand:en": "THANK YOU MART",
+        "brand:ja": "サンキューマート",
+        "brand:wikidata": "Q11305509",
+        "brand:wikipedia": "ja:サンキューマート",
+        "name": "THANK YOU MART",
+        "name:en": "THANK YOU MART",
+        "name:ja": "サンキューマート",
         "shop": "variety_store"
       }
     },
@@ -56298,7 +60471,7 @@
     },
     "shop/variety_store|ダイソー": {
       "countryCodes": ["jp"],
-      "matchNames": ["ザ・ダイソー"],
+      "matchNames": ["ザ・ダイソー", "大創産業"],
       "tags": {
         "brand": "ダイソー",
         "brand:en": "Daiso",
@@ -56341,6 +60514,7 @@
     },
     "shop/variety_store|ドン・キホーテ": {
       "countryCodes": ["jp"],
+      "nomatch": ["amenity/supermarket|MEGAドン・キホーテ"],
       "tags": {
         "brand": "ドン・キホーテ",
         "brand:en": "Don Quijote",
@@ -56355,6 +60529,20 @@
         "short_name": "ドンキ",
         "short_name:en": "Donki",
         "short_name:ja": "ドンキ"
+      }
+    },
+    "shop/variety_store|ワッツ": {
+      "countryCodes": ["jp"],
+      "tags": {
+        "brand": "ワッツ",
+        "brand:en": "Watts",
+        "brand:ja": "ワッツ",
+        "brand:wikidata": "Q11351402",
+        "brand:wikipedia": "ja:ワッツ (企業)",
+        "name": "ワッツ",
+        "name:en": "Watts",
+        "name:ja": "ワッツ",
+        "shop": "variety_store"
       }
     },
     "shop/video_games|EB Games": {
@@ -56480,6 +60668,17 @@
         "shop": "watches"
       }
     },
+    "shop/watches|Seiko": {
+      "matchNames": ["セイコー"],
+      "matchTags": ["shop/jewelry"],
+      "tags": {
+        "brand": "Seiko",
+        "brand:wikidata": "Q322601",
+        "brand:wikipedia": "en:Seiko",
+        "name": "Seiko",
+        "shop": "watches"
+      }
+    },
     "shop/watches|Swatch": {
       "matchTags": ["shop/jewelry"],
       "tags": {
@@ -56498,6 +60697,16 @@
         "brand:wikidata": "Q4835754",
         "brand:wikipedia": "en:BJ's Wholesale Club",
         "name": "BJ's Wholesale Club",
+        "shop": "wholesale"
+      }
+    },
+    "shop/wholesale|Booker Wholesale": {
+      "countryCodes": ["gb"],
+      "tags": {
+        "brand": "Booker Wholesale",
+        "brand:wikidata": "Q4943180",
+        "brand:wikipedia": "en:Booker Group",
+        "name": "Booker Wholesale",
         "shop": "wholesale"
       }
     },
@@ -57694,8 +61903,24 @@
     "tourism/hotel|Уют": {
       "tags": {"brand": "Уют", "name": "Уют", "tourism": "hotel"}
     },
+    "tourism/hotel|アパホテル": {
+      "countryCodes": ["jp"],
+      "matchNames": ["apaホテル"],
+      "tags": {
+        "brand": "アパホテル",
+        "brand:en": "APA Hotel",
+        "brand:ja": "アパホテル",
+        "brand:wikidata": "Q11284497",
+        "brand:wikipedia": "ja:アパグループ",
+        "name": "アパホテル",
+        "name:en": "APA Hotel",
+        "name:ja": "アパホテル",
+        "tourism": "hotel"
+      }
+    },
     "tourism/hotel|東横イン": {
       "countryCodes": ["jp"],
+      "matchNames": ["東横inn"],
       "tags": {
         "brand": "東横イン",
         "brand:en": "Toyoko Inn",
@@ -57733,6 +61958,13 @@
         "brand:wikidata": "Q5333330",
         "brand:wikipedia": "en:Econo Lodge",
         "name": "Econo Lodge",
+        "tourism": "motel"
+      }
+    },
+    "tourism/motel|Economy Inn": {
+      "tags": {
+        "brand": "Economy Inn",
+        "name": "Economy Inn",
         "tourism": "motel"
       }
     },

@@ -31,6 +31,16 @@
       "name": "ABSA"
     }
   },
+  "amenity/bank|ACBA": {
+    "countryCodes": ["am"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "ACBA",
+      "brand:wikidata": "Q55602923",
+      "brand:wikipedia": "hy:ԱԿԲԱ-Կրեդիտ Ագրիկոլ բանկ",
+      "name": "ACBA"
+    }
+  },
   "amenity/bank|AIB": {
     "countryCodes": ["gb", "ie"],
     "matchNames": [
@@ -1561,6 +1571,7 @@
     }
   },
   "amenity/bank|Banco Pichincha": {
+    "countryCodes": ["co", "ec", "pe"],
     "tags": {
       "amenity": "bank",
       "brand": "Banco Pichincha",
@@ -2131,6 +2142,18 @@
       "name": "Bank of the West"
     }
   },
+  "amenity/bank|BankWest~(USA)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|Bankwest~(Australia)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "BankWest",
+      "brand:wikidata": "Q90386673",
+      "name": "BankWest"
+    }
+  },
   "amenity/bank|Bankia": {
     "countryCodes": ["es"],
     "tags": {
@@ -2152,8 +2175,9 @@
       "name": "Bankinter"
     }
   },
-  "amenity/bank|Bankwest": {
+  "amenity/bank|Bankwest~(Australia)": {
     "countryCodes": ["au"],
+    "nomatch": ["amenity/bank|Bankwest~(USA)"],
     "tags": {
       "amenity": "bank",
       "brand": "Bankwest",
@@ -2191,6 +2215,16 @@
       "name": "Banque Atlantique"
     }
   },
+  "amenity/bank|Banque Dupuy de Parseval": {
+    "countryCodes": ["fr"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Banque Dupuy de Parseval",
+      "brand:wikidata": "Q2882897",
+      "brand:wikipedia": "fr:Banque Dupuy de Parseval",
+      "name": "Banque Dupuy de Parseval"
+    }
+  },
   "amenity/bank|Banque Laurentienne": {
     "countryCodes": ["ca"],
     "tags": {
@@ -2202,6 +2236,7 @@
     }
   },
   "amenity/bank|Banque Populaire~(France)": {
+    "countryCodes": ["fr"],
     "tags": {
       "amenity": "bank",
       "brand": "Banque Populaire",
@@ -2214,8 +2249,6 @@
     "countryCodes": [
       "de",
       "es",
-      "fr",
-      "gb",
       "it",
       "ma",
       "nl"
@@ -2229,6 +2262,7 @@
     }
   },
   "amenity/bank|Banque de France": {
+    "countryCodes": ["fr"],
     "tags": {
       "amenity": "bank",
       "brand": "Banque de France",
@@ -2390,6 +2424,7 @@
     }
   },
   "amenity/bank|CIB Bank": {
+    "countryCodes": ["hu"],
     "tags": {
       "amenity": "bank",
       "brand": "CIB Bank",
@@ -2684,9 +2719,11 @@
     }
   },
   "amenity/bank|Centennial Bank": {
+    "countryCodes": ["us"],
     "tags": {
       "amenity": "bank",
       "brand": "Centennial Bank",
+      "brand:wikidata": "Q92384230",
       "name": "Centennial Bank"
     }
   },
@@ -2820,6 +2857,15 @@
       "brand:wikipedia": "en:City National Bank of Florida",
       "name": "City National Bank",
       "official_name": "City National Bank of Florida"
+    }
+  },
+  "amenity/bank|City National Bank~(West Virginia)": {
+    "countryCodes": ["us"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "City National Bank",
+      "brand:wikidata": "Q90937436",
+      "name": "City National Bank"
     }
   },
   "amenity/bank|Clydesdale Bank": {
@@ -3177,16 +3223,6 @@
       "name": "Ecobank"
     }
   },
-  "amenity/bank|Emigrant Savings Bank": {
-    "countryCodes": ["us"],
-    "tags": {
-      "amenity": "bank",
-      "brand": "Emigrant Savings Bank",
-      "brand:wikidata": "Q5371104",
-      "brand:wikipedia": "en:Emigrant Savings Bank",
-      "name": "Emigrant Savings Bank"
-    }
-  },
   "amenity/bank|Emirates NBD": {
     "countryCodes": ["ae"],
     "tags": {
@@ -3410,6 +3446,16 @@
       "name": "Finansbank"
     }
   },
+  "amenity/bank|Fio banka": {
+    "countryCodes": ["cz", "sk"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Fio banka",
+      "brand:wikidata": "Q12016657",
+      "brand:wikipedia": "cs:Fio banka",
+      "name": "Fio banka"
+    }
+  },
   "amenity/bank|First Bank~(North and South Carolina)": {
     "countryCodes": ["us"],
     "matchNames": [
@@ -3522,11 +3568,147 @@
       "name": "First National Bank"
     }
   },
-  "amenity/bank|First State Bank": {
+  "amenity/bank|First State Bank Nebraska": {
     "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|First State Bank~(Florida)",
+      "amenity/bank|First State Bank~(Illinois)",
+      "amenity/bank|First State Bank~(Michigan)",
+      "amenity/bank|First State Bank~(Mississippi)",
+      "amenity/bank|First State Bank~(Nebraska)",
+      "amenity/bank|First State Bank~(Ohio)",
+      "amenity/bank|First State Bank~(Texas)"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "First State Bank",
+      "brand:wikidata": "Q87646525",
+      "name": "First State Bank"
+    }
+  },
+  "amenity/bank|First State Bank~(Florida)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|First State Bank Nebraska",
+      "amenity/bank|First State Bank~(Illinois)",
+      "amenity/bank|First State Bank~(Michigan)",
+      "amenity/bank|First State Bank~(Mississippi)",
+      "amenity/bank|First State Bank~(Nebraska)",
+      "amenity/bank|First State Bank~(Ohio)",
+      "amenity/bank|First State Bank~(Texas)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "First State Bank",
+      "brand:wikidata": "Q87647395",
+      "name": "First State Bank"
+    }
+  },
+  "amenity/bank|First State Bank~(Illinois)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|First State Bank Nebraska",
+      "amenity/bank|First State Bank~(Florida)",
+      "amenity/bank|First State Bank~(Michigan)",
+      "amenity/bank|First State Bank~(Mississippi)",
+      "amenity/bank|First State Bank~(Nebraska)",
+      "amenity/bank|First State Bank~(Ohio)",
+      "amenity/bank|First State Bank~(Texas)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "First State Bank",
+      "brand:wikidata": "Q87647340",
+      "name": "First State Bank"
+    }
+  },
+  "amenity/bank|First State Bank~(Michigan)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|First State Bank Nebraska",
+      "amenity/bank|First State Bank~(Florida)",
+      "amenity/bank|First State Bank~(Illinois)",
+      "amenity/bank|First State Bank~(Mississippi)",
+      "amenity/bank|First State Bank~(Nebraska)",
+      "amenity/bank|First State Bank~(Ohio)",
+      "amenity/bank|First State Bank~(Texas)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "First State Bank",
+      "brand:wikidata": "Q87647479",
+      "name": "First State Bank"
+    }
+  },
+  "amenity/bank|First State Bank~(Mississippi)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|First State Bank Nebraska",
+      "amenity/bank|First State Bank~(Florida)",
+      "amenity/bank|First State Bank~(Illinois)",
+      "amenity/bank|First State Bank~(Michigan)",
+      "amenity/bank|First State Bank~(Nebraska)",
+      "amenity/bank|First State Bank~(Ohio)",
+      "amenity/bank|First State Bank~(Texas)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "First State Bank",
+      "brand:wikidata": "Q87647452",
+      "name": "First State Bank"
+    }
+  },
+  "amenity/bank|First State Bank~(Nebraska)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|First State Bank Nebraska",
+      "amenity/bank|First State Bank~(Florida)",
+      "amenity/bank|First State Bank~(Illinois)",
+      "amenity/bank|First State Bank~(Michigan)",
+      "amenity/bank|First State Bank~(Mississippi)",
+      "amenity/bank|First State Bank~(Ohio)",
+      "amenity/bank|First State Bank~(Texas)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "First State Bank",
+      "brand:wikidata": "Q5453817",
+      "name": "First State Bank"
+    }
+  },
+  "amenity/bank|First State Bank~(Ohio)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|First State Bank Nebraska",
+      "amenity/bank|First State Bank~(Florida)",
+      "amenity/bank|First State Bank~(Illinois)",
+      "amenity/bank|First State Bank~(Michigan)",
+      "amenity/bank|First State Bank~(Mississippi)",
+      "amenity/bank|First State Bank~(Nebraska)",
+      "amenity/bank|First State Bank~(Texas)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "First State Bank",
+      "brand:wikidata": "Q87647374",
+      "name": "First State Bank"
+    }
+  },
+  "amenity/bank|First State Bank~(Texas)": {
+    "countryCodes": ["us"],
+    "nomatch": [
+      "amenity/bank|First State Bank Nebraska",
+      "amenity/bank|First State Bank~(Florida)",
+      "amenity/bank|First State Bank~(Illinois)",
+      "amenity/bank|First State Bank~(Michigan)",
+      "amenity/bank|First State Bank~(Mississippi)",
+      "amenity/bank|First State Bank~(Nebraska)",
+      "amenity/bank|First State Bank~(Ohio)"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "First State Bank",
+      "brand:wikidata": "Q87647065",
       "name": "First State Bank"
     }
   },
@@ -3955,6 +4137,16 @@
       "brand:wikidata": "Q2423252",
       "brand:wikipedia": "en:Itaú Corpbanca",
       "name": "Itaú"
+    }
+  },
+  "amenity/bank|J&T Banka": {
+    "countryCodes": ["cz", "sk"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "J&T Banka",
+      "brand:wikidata": "Q12022160",
+      "brand:wikipedia": "sk:J & T BANKA",
+      "name": "J&T Banka"
     }
   },
   "amenity/bank|JS Bank": {
@@ -4834,6 +5026,16 @@
       "name": "Prima banka"
     }
   },
+  "amenity/bank|Privatbanka": {
+    "countryCodes": ["sk"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Privatbanka",
+      "brand:wikidata": "Q12774628",
+      "brand:wikipedia": "sk:Privatbanka",
+      "name": "Privatbanka"
+    }
+  },
   "amenity/bank|Prosperity Bank": {
     "tags": {
       "amenity": "bank",
@@ -4850,6 +5052,16 @@
       "brand:wikidata": "Q4835087",
       "brand:wikipedia": "es:BBVA Provincial",
       "name": "Provincial"
+    }
+  },
+  "amenity/bank|Prvá stavebná sporiteľňa": {
+    "countryCodes": ["sk"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Prvá stavebná sporiteľňa",
+      "brand:wikidata": "Q29054618",
+      "brand:wikipedia": "sk:Prvá stavebná sporiteľňa",
+      "name": "Prvá stavebná sporiteľňa"
     }
   },
   "amenity/bank|Public Bank~(Malaysia)": {
@@ -4921,6 +5133,7 @@
     "tags": {
       "amenity": "bank",
       "brand": "RHB Bank",
+      "brand:wikidata": "Q4207443",
       "brand:wikipedia": "ms:RHB Bank",
       "name": "RHB Bank"
     }
@@ -7060,6 +7273,14 @@
       "name:he": "בנק מזרחי טפחות"
     }
   },
+  "amenity/bank|الصندوق الوطني للتوفير والاحتياط": {
+    "tags": {
+      "amenity": "bank",
+      "brand": "الصندوق الوطني للتوفير والاحتياط",
+      "brand:wikidata": "Q2931752",
+      "name": "الصندوق الوطني للتوفير والاحتياط"
+    }
+  },
   "amenity/bank|بانک آینده": {
     "countryCodes": ["ir"],
     "tags": {
@@ -7546,6 +7767,21 @@
       "name:ja": "スルガ銀行"
     }
   },
+  "amenity/bank|セブン銀行": {
+    "countryCodes": ["jp"],
+    "matchNames": ["7銀行"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "セブン銀行",
+      "brand:en": "Seven Bank",
+      "brand:ja": "セブン銀行",
+      "brand:wikidata": "Q7457182",
+      "brand:wikipedia": "ja:セブン銀行",
+      "name": "セブン銀行",
+      "name:en": "Seven Bank",
+      "name:ja": "セブン銀行"
+    }
+  },
   "amenity/bank|三井住友信託銀行": {
     "countryCodes": ["jp"],
     "tags": {
@@ -7765,6 +8001,21 @@
       "name": "京城商業銀行"
     }
   },
+  "amenity/bank|京葉銀行": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "alt_name:en": "αBANK",
+      "amenity": "bank",
+      "brand": "京葉銀行",
+      "brand:en": "Keiyo Bank",
+      "brand:ja": "京葉銀行",
+      "brand:wikidata": "Q11374734",
+      "brand:wikipedia": "ja:京葉銀行",
+      "name": "京葉銀行",
+      "name:en": "Keiyo Bank",
+      "name:ja": "京葉銀行"
+    }
+  },
   "amenity/bank|京都中央信用金庫": {
     "countryCodes": ["jp"],
     "tags": {
@@ -7865,6 +8116,20 @@
       "name:en": "Hokkaido Bank"
     }
   },
+  "amenity/bank|千葉興業銀行": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "千葉興業銀行",
+      "brand:en": "Chiba Kogyo Bank",
+      "brand:ja": "千葉興業銀行",
+      "brand:wikidata": "Q11406742",
+      "brand:wikipedia": "ja:千葉興業銀行",
+      "name": "千葉興業銀行",
+      "name:en": "Chiba Kogyo Bank",
+      "name:ja": "千葉興業銀行"
+    }
+  },
   "amenity/bank|千葉銀行": {
     "countryCodes": ["jp"],
     "tags": {
@@ -7927,6 +8192,20 @@
       "name:en": "Taiwan Cooperative Bank"
     }
   },
+  "amenity/bank|商工中金": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "商工中金",
+      "brand:en": "Shoko Chukin Bank",
+      "brand:ja": "商工中金",
+      "brand:wikidata": "Q11418759",
+      "brand:wikipedia": "ja:商工中金",
+      "name": "商工中金",
+      "name:en": "Shoko Chukin Bank",
+      "name:ja": "商工中金"
+    }
+  },
   "amenity/bank|國泰世華商業銀行": {
     "countryCodes": ["tw"],
     "tags": {
@@ -7951,6 +8230,22 @@
       "name": "埼玉りそな銀行",
       "name:en": "Saitama Resona Bank",
       "name:ja": "埼玉りそな銀行"
+    }
+  },
+  "amenity/bank|多摩信用金庫": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "alt_name": "たましん",
+      "alt_name:en": "Tamashin",
+      "amenity": "bank",
+      "brand": "多摩信用金庫",
+      "brand:en": "Tama Shinkin Bank",
+      "brand:ja": "多摩信用金庫",
+      "brand:wikidata": "Q11430719",
+      "brand:wikipedia": "ja:多摩信用金庫",
+      "name": "多摩信用金庫",
+      "name:en": "Tama Shinkin Bank",
+      "name:ja": "多摩信用金庫"
     }
   },
   "amenity/bank|大眾商業銀行": {
@@ -8078,6 +8373,20 @@
       "name:en": "Bank of East Asia",
       "name:zh-Hans": "东亚银行",
       "name:zh-Hant": "東亞銀行"
+    }
+  },
+  "amenity/bank|東京ベイ信金": {
+    "countryCodes": ["jp"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "東京ベイ信金",
+      "brand:en": "Tokyo Bay Shinkin Bank",
+      "brand:ja": "東京ベイ信金",
+      "brand:wikidata": "Q11524392",
+      "brand:wikipedia": "ja:東京ベイ信金",
+      "name": "東京ベイ信金",
+      "name:en": "Tokyo Bay Shinkin Bank",
+      "name:ja": "東京ベイ信金"
     }
   },
   "amenity/bank|東日本銀行": {
