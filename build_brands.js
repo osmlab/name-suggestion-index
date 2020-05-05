@@ -265,6 +265,10 @@ function checkBrands() {
 
     // Warn on other missing tags
     switch (parts.kv) {
+      case 'amenity/gambling':
+      case 'leisure/adult_gaming_centre':
+        if (!obj.tags.gambling) { warnMissingTag.push([kvnd, 'gambling']); }
+        break;
       case 'amenity/fast_food':
       case 'amenity/restaurant':
         if (!obj.tags.cuisine) { warnMissingTag.push([kvnd, 'cuisine']); }
@@ -284,7 +288,7 @@ function checkBrands() {
     }
 
     // Warn if OSM tags contain odd punctuation or spacing..
-    ['cuisine', 'vending', 'beauty'].forEach(osmkey => {
+    ['cuisine', 'vending', 'beauty', 'gambling'].forEach(osmkey => {
       const val = obj.tags[osmkey];
       if (val && oddPunctuation.test(val)) {
         warnFormatTag.push([kvnd, `${osmkey} = ${val}`]);

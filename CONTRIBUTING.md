@@ -513,7 +513,9 @@ Tip: The browsable index at https://nsi.guide/ can show you where the Wikidata i
 Social media accounts may be used to automatically fetch logos, which are used by the iD Editor.
 <img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata.gif"/>
 
-Social media links are often displayed on the official web site of a brand, making them easy to find. When adding an entry for a social media account, it might be worth checking if that account has a "verified badge", and if it does, this can be added via the "add qualifier" option, using "has quality" along with "verified badge".
+Social media links are often displayed on the official web site of a brand, making them easy to find. When adding an entry for a social media account, it might be worth checking if that account has a "verified badge" which indicates a verified social media account, and if it does, this can be added via the "add qualifier" option, using "has quality" along with either  "verified account" or "verified badge".
+
+<img width="730px" alt="Checking Twitter references in Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata-applebees-twitter.png"/>	
 
 #### Adding references to Wikidata
 
