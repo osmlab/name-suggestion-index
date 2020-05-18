@@ -110,8 +110,9 @@ relation[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}]
     
     // Create Overpass Turbo link:
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
+    const title = `View ${n} via Overpass Turbo`;
     return (
-      <a target="_blank" href={href} title="View ${n} via Overpass Turbo">View ${n} via Overpass Turbo</a>
+      <a target="_blank" href={href} title={title}>View {n} via Overpass Turbo</a>
     );
   }
 
