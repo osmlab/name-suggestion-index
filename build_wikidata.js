@@ -469,10 +469,16 @@ function fetchFacebookLogo(qid, username) {
   return fetch(logoURL)
     .then(response => {
       if (!response.ok) {
-        throw new Error(response.status + ' ' + response.statusText);
+        return response.json();  // we should get a response body with more information
       }
       if (response.headers.get('content-md5') !== 'OMs/UjwLoIRaoKN19eGYeQ==') {  // question-mark image #2750
         target.logos.facebook = logoURL;
+      }
+      return {};
+    })
+    .then(json => {
+      if (json && json.error && json.error.message) {
+        throw new Error(json.error.message);
       }
       return true;
     })
