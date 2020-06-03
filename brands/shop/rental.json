@@ -1,6 +1,6 @@
 {
   "shop/rental|Penske Truck Rental": {
-    "countryCodes": ["ca", "us"],
+    "locationSet": {"include": ["ca", "us"]},
     "matchTags": [
       "amenity/car_rental",
       "office/moving_company"
@@ -14,7 +14,9 @@
     }
   },
   "shop/rental|Ryder": {
-    "countryCodes": ["ca", "gb", "mx", "us"],
+    "locationSet": {
+      "include": ["ca", "gb", "mx", "us"]
+    },
     "matchTags": ["amenity/car_rental"],
     "tags": {
       "brand": "Ryder",
@@ -25,7 +27,7 @@
     }
   },
   "shop/rental|U-Haul": {
-    "countryCodes": ["ca", "us"],
+    "locationSet": {"include": ["ca", "us"]},
     "matchNames": ["uhaul neighborhood dealer"],
     "nomatch": ["shop/storage_rental|U-Haul"],
     "tags": {
@@ -37,7 +39,7 @@
     }
   },
   "shop/rental|United Rentals": {
-    "countryCodes": ["ca", "us"],
+    "locationSet": {"include": ["ca", "us"]},
     "matchNames": ["united rental"],
     "matchTags": [
       "amenity/car_rental",
