@@ -149,47 +149,58 @@ function mergeBrands() {
       if (!obj.tags.healthcare) obj.tags.healthcare = 'pharmacy';
     }
 
-    // Force `countryCode`, and duplicate `name:xx` and `brand:xx` tags
+    // Force `locationSet`, and duplicate `name:xx` and `brand:xx` tags
     // if the name can only be reasonably read in one country.
     // https://www.regular-expressions.info/unicode.html
     if (/[\u0590-\u05FF]/.test(parts.n)) {          // Hebrew
-      obj.countryCodes = ['il'];
+      obj.locationSet = { include: ['il'] };
       // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
       if (obj.tags.name) { obj.tags['name:he'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:he'] = obj.tags.brand; }
     } else if (/[\u0E00-\u0E7F]/.test(parts.n)) {   // Thai
-      obj.countryCodes = ['th'];
+      obj.locationSet = { include: ['th'] };
       if (obj.tags.name) { obj.tags['name:th'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:th'] = obj.tags.brand; }
     } else if (/[\u1000-\u109F]/.test(parts.n)) {   // Myanmar
-      obj.countryCodes = ['mm'];
+      obj.locationSet = { include: ['mm'] };
       if (obj.tags.name) { obj.tags['name:my'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:my'] = obj.tags.brand; }
     } else if (/[\u1100-\u11FF]/.test(parts.n)) {   // Hangul
-      obj.countryCodes = ['kr'];
+      obj.locationSet = { include: ['kr'] };
       if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
     } else if (/[\u1700-\u171F]/.test(parts.n)) {   // Tagalog
-      obj.countryCodes = ['ph'];
+      obj.locationSet = { include: ['ph'] };
       if (obj.tags.name) { obj.tags['name:tl'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:tl'] = obj.tags.brand; }
     } else if (/[\u3040-\u30FF]/.test(parts.n)) {   // Hirgana or Katakana
-      obj.countryCodes = ['jp'];
+      obj.locationSet = { include: ['jp'] };
       if (obj.tags.name) { obj.tags['name:ja'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:ja'] = obj.tags.brand; }
     } else if (/[\u3130-\u318F]/.test(parts.n)) {   // Hangul
-      obj.countryCodes = ['kr'];
+      obj.locationSet = { include: ['kr'] };
       if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
     } else if (/[\uA960-\uA97F]/.test(parts.n)) {   // Hangul
-      obj.countryCodes = ['kr'];
+      obj.locationSet = { include: ['kr'] };
       if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
     } else if (/[\uAC00-\uD7AF]/.test(parts.n)) {   // Hangul
-      obj.countryCodes = ['kr'];
+      obj.locationSet = { include: ['kr'] };
       if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
     }
+
+
+// upgrade countryCodes -> locationSets - #3162
+if (!obj.locationSet) {
+  if (!obj.countryCodes || !obj.countryCodes.length) {
+    obj.locationSet = { include: ['001'] };   // the whole world
+  } else {
+    obj.locationSet = { include: obj.countryCodes };
+  }
+  delete obj.countryCodes;
+}
 
     brands[kvnd] = sort(brands[kvnd]);
 
