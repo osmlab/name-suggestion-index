@@ -118,6 +118,33 @@ There may also be entries for McDonald's in other languages!
 
 &nbsp;
 
+#### Required properties
+
+##### `locationSet`
+
+Each entry requires a `locationSet` to define where the entry is available.  You can define the `locationSet` as an Object with `include` and `exclude` properties:
+
+```js
+"locationSet": {
+  "include": [ Array of locations ],
+  "exclude": [ Array of locations ]
+}
+```
+
+The "locations" can be any of the following:
+* Strings recognized by the [country-coder library](https://github.com/ideditor/country-coder#readme). These should be [ISO 3166-1 2 or 3 letter country codes](https://en.wikipedia.org/wiki/List_of_countries_by_United_Nations_geoscheme) or [UN M.49 numeric codes](https://en.wikipedia.org/wiki/UN_M49).<br/>_Example: `"de"`_<br/>Tip: The M49 code for the whole world is `"001"`.
+* Filenames for custom `.geojson` features. If you want to use a custom feature, you'll need to add these under the `features/` folder.  Each `Feature` must have an `id` property that ends in `.geojson`.<br/>_Example: `"de-hamburg.geojson"`_<br/>Tip: You can use [geojson.io](http://geojson.io) or other tools to create these.
+
+You can view examples and learn more about working with `locationSets` in the [@ideditor/location-conflation](https://github.com/ideditor/location-conflation/blob/master/README.md) project.
+
+
+##### `tags`
+
+Each entry requires a `tags` value.  This is just an Object containing all the OpenStreetMap tags that should be set on the feature.
+
+
+&nbsp;
+
 #### Optional properties
 
 ##### `matchNames`/`matchTags`
@@ -280,6 +307,7 @@ For example, "Универмаг" is just a Russian word for "Department store":
 
 ```js
   "shop/department_store|Универмаг": {
+    "locationSet": { "include": ["ru"] }
     "tags": {
       "brand": "Универмаг",
       "name": "Универмаг",
@@ -309,6 +337,7 @@ In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|Chipotle": {
+    "locationSet": { "include": ["001"] }
     "matchNames": ["chipotle mexican grill"],
     "tags": {
       "amenity": "fast_food",
@@ -350,6 +379,7 @@ We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
 
 ```js
   "amenity/fast_food|Chipotle": {
+    "locationSet": { "include": ["001"] }
     "matchNames": ["chipotle mexican grill"],
     "tags": {
       "amenity": "fast_food",
