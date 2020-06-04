@@ -123,7 +123,10 @@ function mergeBrands() {
 
     let obj = brands[kvnd];
     if (!obj) {   // a new entry!
-      obj = { tags: {} };
+      obj = {
+        locationSet: { include: ['001'] },   // the whole world
+        tags: {}
+      };
       brands[kvnd] = obj;  // insert
 
       // assign default tags - new entries
@@ -190,17 +193,6 @@ function mergeBrands() {
       if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
       if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
     }
-
-
-// upgrade countryCodes -> locationSets - #3162
-if (!obj.locationSet) {
-  if (!obj.countryCodes || !obj.countryCodes.length) {
-    obj.locationSet = { include: ['001'] };   // the whole world
-  } else {
-    obj.locationSet = { include: obj.countryCodes };
-  }
-  delete obj.countryCodes;
-}
 
     brands[kvnd] = sort(brands[kvnd]);
 

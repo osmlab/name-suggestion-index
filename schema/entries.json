@@ -8,23 +8,13 @@
     "^\\S+/\\S+|.*$": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["tags"],
+      "required": ["locationSet", "tags"],
       "properties": {
 
         "locationSet": {
           "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
           "description": "(required) included and excluded locations for this imagery source",
           "$ref": "#/definitions/locationSet"
-        },
-
-        "countryCodes": {
-          "description": "(optional) Array of ISO 3166-1 alpha-2 two letter country codes in lowercase",
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "pattern": "^[A-Za-z]{2}$"
-          }
         },
 
         "matchNames": {

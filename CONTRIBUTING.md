@@ -84,6 +84,7 @@ In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|McDonald's": {         // Identifier like "key/value|name"
+    "locationSet": { "include": ["001"] },  // "locationSet" - defines where this brand is valid ("001" = worldwide)
     "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
       "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
       "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
@@ -99,7 +100,7 @@ There may also be entries for McDonald's in other languages!
 
 ```js
   "amenity/fast_food|マクドナルド": {         // Identifier like "key/value|name"
-    "countryCodes": ["jp"],                 // Optional `countryCodes` - array of countries where this entry is used
+    "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
     "tags": {
       "amenity": "fast_food",
       "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
@@ -123,13 +124,13 @@ There may also be entries for McDonald's in other languages!
 
 Brands are often tagged inconsistently in OpenStreetMap.  For example, some mappers write "International House of Pancakes" and others write "IHOP".
 
-This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate entries out of the index and is used in the iD editor to help suggest tag improvements. 
+This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate entries out of the index and is used in the iD editor to help suggest tag improvements.
 
 `matchNames` and `matchTags` properties can be used to list the less-preferred alternatives.
 
 ```js
   "amenity/fast_food|Honey Baked Ham": {          // match this tag and name
-    "countryCodes": ["us"],
+    "locationSet": { "include": ["us"] },
     "matchNames": ["honey baked ham company"],    // also match these names
     "matchTags": ["shop/butcher", "shop/deli"],   // also match these tags
     "tags": {
@@ -195,7 +196,7 @@ When using a tilde `~` name:
 
 ```js
   "shop/supermarket|Price Chopper~(Kansas City)": {
-    "countryCodes": ["us"],
+    "locationSet": { "include": ["us"] },
     "nomatch": [
       "shop/supermarket|Price Chopper~(New York)"
     ],
@@ -208,7 +209,7 @@ When using a tilde `~` name:
     }
   },
   "shop/supermarket|Price Chopper~(New York)": {
-    "countryCodes": ["us"],
+    "locationSet": { "include": ["us"] },
     "nomatch": [
       "shop/supermarket|Price Chopper~(Kansas City)"
     ],
@@ -380,6 +381,7 @@ In `brands/amenity/fast_food.json`:
 
 ```js
   "amenity/fast_food|かっぱ寿司": {
+    "locationSet": { "include": ["jp"] }
     "tags": {
       "amenity": "fast_food",
       "brand": "かっぱ寿司",
@@ -423,11 +425,11 @@ We can add:
 * `"name:ja"` and `"brand:ja"` tags to contain the local name "かっぱ寿司"
 * `"brand:wikipedia"` and `"brand:wikidata"` tags
 * `"cuisine": "sushi"` OpenStreetMap tag
-* `"countryCodes"` property, to indicate that this brand should only be used in Japan.
+* Also check the `"locationSet"` property to make sure it is accurate.
 
 ```js
   "amenity/fast_food|かっぱ寿司": {
-    "countryCodes": ["jp"],                // added
+    "locationSet": { "include": ["jp"] },
     "tags": {
       "amenity": "fast_food",
       "brand": "かっぱ寿司",
@@ -463,7 +465,7 @@ is a valuable way to get ahead of incorrect tagging.
 
 2. Add your new entry anywhere into the appropriate file under `brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
 
-3. If the brand only has locations in a known set of countries add the `"countryCodes": []` key to your new entry. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
+3. If the brand only has locations in a known set of countries add them to the `"locationSet"` property. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
 
 4. If instances of this brand are commonly mistagged add the `"matchNames": []` key to list these. Again, refer to [here](#card_file_box--about-the-brand-files) for syntax.
 
@@ -515,7 +517,7 @@ Social media accounts may be used to automatically fetch logos, which are used b
 
 Social media links are often displayed on the official web site of a brand, making them easy to find. When adding an entry for a social media account, it might be worth checking if that account has a "verified badge" which indicates a verified social media account, and if it does, this can be added via the "add qualifier" option, using "has quality" along with either  "verified account" or "verified badge".
 
-<img width="730px" alt="Checking Twitter references in Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata-applebees-twitter.png"/>	
+<img width="730px" alt="Checking Twitter references in Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata-applebees-twitter.png"/>
 
 #### Adding references to Wikidata
 
