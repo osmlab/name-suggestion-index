@@ -94,10 +94,7 @@ function buildJSON() {
       out[k][v][n].count = namesKeep[kvnd];
     }
 
-    if (obj.countryCodes) {
-      out[k][v][n].countryCodes = obj.countryCodes;
-    }
-
+    out[k][v][n].locationSet = obj.locationSet;
     out[k][v][n].tags = obj.tags;
   });
 

@@ -1,65 +1,127 @@
 {
-    "title": "entries schema",
-    "description": "name-suggestion-index entries",
-    "type": "object",
-    "additionalProperties": false,
-    "patternProperties": {
-        "^\\S+/\\S+|.*$": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "tags"
-            ],
-            "properties": {
-                "countryCodes": {
-                    "description": "(optional) Array of ISO 3166-1 alpha-2 two letter country codes in lowercase",
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "pattern": "^[A-Za-z]{2}$"
-                    }
-                },
-                "matchNames": {
-                    "description": "(optional) An array of alternate but less-desired names.",
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "matchTags": {
-                    "description": "(optional) An array of alternate but less-desired tag-pairs.",
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "pattern": "^\\S+/\\S+$"
-                    }
-                },
-                "nomatch": {
-                    "description": "(optional) Array of alternate keys that do not match this key, used to suppress warning about potential duplicate name.",
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string",
-                        "pattern": "^\\S+/\\S+|.*$"
-                    }
-                },
-                "tags": {
-                    "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
-                    "type": "object",
-                    "properties": {
-                        "countryCodes": { "not" : {} },
-                        "matchNames":   { "not" : {} },
-                        "matchTags":    { "not" : {} },
-                        "operator":     { "not" : {} },
-                        "nomatch":      { "not" : {} },
-                        "tags":         { "not" : {} }
-                    },
-                    "required": ["name", "brand"]
-                }
-            }
+  "title": "brands schema",
+  "description": "name-suggestion-index brands",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+
+    "^\\S+/\\S+|.*$": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locationSet", "tags"],
+      "properties": {
+
+        "locationSet": {
+          "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
+          "description": "(required) included and excluded locations for this imagery source",
+          "$ref": "#/definitions/locationSet"
+        },
+
+        "matchNames": {
+          "description": "(optional) An array of alternate but less-desired names.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+
+        "matchTags": {
+          "description": "(optional) An array of alternate but less-desired tag-pairs.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^\\S+/\\S+$"
+          }
+        },
+
+        "nomatch": {
+          "description": "(optional) Array of alternate keys that do not match this key, used to suppress warning about potential duplicate name.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^\\S+/\\S+|.*$"
+          }
+        },
+
+        "tags": {
+          "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
+          "type": "object",
+          "properties": {
+            "countryCodes": { "not" : {} },
+            "locationSet":  { "not" : {} },
+            "matchNames":   { "not" : {} },
+            "matchTags":    { "not" : {} },
+            "operator":     { "not" : {} },
+            "nomatch":      { "not" : {} },
+            "tags":         { "not" : {} }
+          },
+          "required": ["name", "brand"]
         }
+
+      }
     }
+  },
+
+  "definitions": {
+    "locationSet": {
+      "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["include"],
+      "properties": {
+
+        "include": {
+          "description": "(required) locations included",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              { "$ref": "#/definitions/countryCoder" },
+              { "$ref": "#/definitions/coordinatePair" },
+              { "$ref": "#/definitions/geojsonFilename" }
+            ]
+          }
+        },
+
+        "exclude": {
+          "description": "(optional) locations excluded",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              { "$ref": "#/definitions/countryCoder" },
+              { "$ref": "#/definitions/coordinatePair" },
+              { "$ref": "#/definitions/geojsonFilename" }
+            ]
+          }
+        }
+      }
+    },
+
+    "countryCoder": {
+      "$comment": "See country-coder documentation for compatible values: https://github.com/ideditor/country-coder#readme",
+      "description": "A country code (ISO 3166-1, United Nations M49, or anything recognized by country-coder)",
+      "type": "string"
+    },
+
+    "coordinatePair": {
+      "description": "A coordinate pair formatted as [longitude, latitude]",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+
+    "geojsonFilename": {
+      "description": "A filename for one of the geojson features in this project",
+      "type": "string",
+      "pattern": "^.*\\.geojson$"
+    }
+  }
+
 }
