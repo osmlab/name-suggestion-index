@@ -36,9 +36,10 @@ La construction d'un index de nom canonique permet deux choses très utiles:
 * L'index de suggestion de nom est utilisé dans iD lors de l'ajout d'un nouvel élément *
 
 Actuellement utilisé dans:
-* iD (voir ci-dessus)
-* [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
-* Présélections JOSM disponibles
+- iD (voir ci-dessus)
+- [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
+- [Présélections JOSM](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) disponibles
+- [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)
 
 
 ### Participer!
