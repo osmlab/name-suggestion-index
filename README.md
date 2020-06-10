@@ -37,6 +37,7 @@ Currently used in:
 - iD (see above)
 - [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) available
+- [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)  
 
 ### Participate!
 
