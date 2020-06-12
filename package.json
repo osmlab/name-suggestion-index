@@ -3,7 +3,7 @@
   "version": "4.0.2",
   "license": "BSD-3-Clause",
   "repository": "osmlab/name-suggestion-index",
-  "author": "Bryan Housel <bryan@mapbox.com>",
+  "author": "Bryan Housel <bhousel@gmail.com>",
   "description": "Canonical common brand names for OpenStreetMap",
   "homepage": "http://osmlab.github.io/name-suggestion-index",
   "keywords": [
@@ -18,12 +18,13 @@
   "main": "dist/index.js",
   "module": "index.mjs",
   "scripts": {
+    "all": "run-s build dist",
     "dist": "node build_dist.js && rollup -c",
     "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --no-minify --public-url ./ --out-dir docs",
     "build": "node build_brands",
     "lint": "eslint *.js lib/*.js",
     "logos": "node build_wikidata",
-    "test": "npm-run-all -s validate lint build",
+    "test": "run-s validate lint build",
     "validate": "node validate",
     "wikicheck": "node check_wikiTags",
     "wikidata": "node build_wikidata"
