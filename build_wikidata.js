@@ -1,7 +1,7 @@
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
 const fileTree = require('./lib/file_tree.js');
-const fs = require('fs-extra');
+const fs = require('fs');
 const sort = require('./lib/sort.js');
 const stringify = require('json-stringify-pretty-compact');
 
@@ -331,7 +331,7 @@ function finish() {
   let origWikidata;
   try {
     origWikidata = require('./dist/wikidata.json').wikidata;
-  } catch (err) { 
+  } catch (err) {
     origWikidata = {};
   }
 

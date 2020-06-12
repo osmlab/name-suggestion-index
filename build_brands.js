@@ -1,5 +1,5 @@
 const colors = require('colors/safe');
-const fs = require('fs-extra');
+const fs = require('fs');
 const LocationConflation = require('@ideditor/location-conflation');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
