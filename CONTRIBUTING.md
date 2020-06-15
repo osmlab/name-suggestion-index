@@ -137,6 +137,8 @@ The "locations" can be any of the following:
 
 You can view examples and learn more about working with `locationSets` in the [@ideditor/location-conflation](https://github.com/ideditor/location-conflation/blob/master/README.md) project.
 
+⚡️ You can test locationSets on this interactive map:  https://ideditor.github.io/location-conflation/
+
 
 ##### `tags`
 
