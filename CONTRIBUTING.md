@@ -22,7 +22,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 * `dist/names_keep.json` - subset of `names_all` we are keeping
 * `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
-##### :white_check_mark: &nbsp; Do edit the files in `config/`, `brands/`, and `features`:
+##### :white_check_mark: &nbsp; Do edit the files in `config/`, `brands/`, and `features/`:
 
 * `config/*`
   * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
