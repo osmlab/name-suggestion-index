@@ -1,14 +1,14 @@
 const colors = require('colors/safe');
 const fs = require('fs');
-const dissolved = require('./dist/dissolved.json');
-const namesKeep = require('./dist/names_keep.json');
-const packageJSON = require('./package.json');
+const dissolved = require('../dist/dissolved.json');
+const namesKeep = require('../dist/names_keep.json');
+const packageJSON = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
 const xmlbuilder2 = require('xmlbuilder2');
 
-const fileTree = require('./lib/file_tree.js');
-const toParts = require('./lib/to_parts.js');
+const fileTree = require('../lib/file_tree.js');
+const toParts = require('../lib/to_parts.js');
 
 let brands = fileTree.read('brands');
 let out = {};

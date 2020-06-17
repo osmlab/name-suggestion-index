@@ -13,7 +13,7 @@ const colors = require('colors/safe');
 const fs = require('fs');
 const osmium = require('osmium');
 const shell = require('shelljs');
-const sort = require('./lib/sort');
+const sort = require('../lib/sort');
 const stringify = require('json-stringify-pretty-compact');
 
 if (process.argv.length < 3) {

@@ -1,8 +1,8 @@
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
-const fileTree = require('./lib/file_tree.js');
+const fileTree = require('../lib/file_tree.js');
 const fs = require('fs');
-const sort = require('./lib/sort.js');
+const sort = require('../lib/sort.js');
 const stringify = require('json-stringify-pretty-compact');
 
 const wbk = require('wikibase-sdk')({
@@ -32,7 +32,7 @@ try {
   //   "twitter_access_token_secret": ""
   // }]
   const Twitter = require('twitter');
-  let secrets = require('./config/secrets.json');
+  let secrets = require('../config/secrets.json');
   secrets = [].concat(secrets);
 
   twitterAPIs = secrets.map(s => {
@@ -330,7 +330,7 @@ function finish() {
 
   let origWikidata;
   try {
-    origWikidata = require('./dist/wikidata.json').wikidata;
+    origWikidata = require('../dist/wikidata.json').wikidata;
   } catch (err) {
     origWikidata = {};
   }

@@ -1,7 +1,7 @@
 const clearConsole = require('clear');
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
-const fileTree = require('./lib/file_tree.js');
+const fileTree = require('../lib/file_tree.js');
 
 const wbk = require('wikibase-sdk')({
   instance: 'https://www.wikidata.org',

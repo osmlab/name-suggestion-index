@@ -4,20 +4,20 @@ const LocationConflation = require('@ideditor/location-conflation');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
-const fileTree = require('./lib/file_tree.js');
-const matcher = require('./lib/matcher.js')();
-const sort = require('./lib/sort.js');
-const stemmer = require('./lib/stemmer.js');
-const toParts = require('./lib/to_parts.js');
-const validate = require('./lib/validate.js');
+const fileTree = require('../lib/file_tree.js');
+const matcher = require('../lib/matcher.js')();
+const sort = require('../lib/sort.js');
+const stemmer = require('../lib/stemmer.js');
+const toParts = require('../lib/to_parts.js');
+const validate = require('../lib/validate.js');
 
 
 // Load cached wikidata
-const _wikidata = require('./dist/wikidata.json').wikidata;
+const _wikidata = require('../dist/wikidata.json').wikidata;
 
 // Load and check filters.json
-let filters = require('./config/filters.json');
-const filtersSchema = require('./schema/filters.json');
+let filters = require('../config/filters.json');
+const filtersSchema = require('../schema/filters.json');
 validate('config/filters.json', filters, filtersSchema);  // validate JSON-schema
 
 // Lowercase and sort the filters for consistency
@@ -34,7 +34,7 @@ const loco = new LocationConflation();
 let brands = fileTree.read('brands', loco);
 
 // all names start out in _discard..
-const allnames = require('./dist/names_all.json');
+const allnames = require('../dist/names_all.json');
 let _discard = Object.assign({}, allnames);
 let _keep = {};
 
