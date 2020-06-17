@@ -47,6 +47,7 @@ function buildAll() {
   let tasks = [
     minifyJSON('dist/brands.json', 'dist/brands.min.json'),
     minifyJSON('dist/dissolved.json', 'dist/dissolved.min.json'),
+    minifyJSON('dist/featureCollection.json', 'dist/featureCollection.min.json'),
     minifyJSON('dist/filters.json', 'dist/filters.min.json'),
     minifyJSON('dist/match_groups.json', 'dist/match_groups.min.json'),
     minifyJSON('dist/name-suggestions.json', 'dist/name-suggestions.min.json'),

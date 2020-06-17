@@ -80,18 +80,20 @@ Name lists:
 
 * `config/*`
   * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
-* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+* `brands/*` - Source files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`
   * `brands/shop/*.json`
   * `brands/tourism/*.json`
   * `brands/office/*.json`
+* `features/*` - Source files for custom locations where brands are active
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
 ### Building the index
 
 - `npm run build`
+  - Processes any custom locations under `features/**/*.geojson`
   - Regenerates `dist/names_keep.json` and `dist/names_discard.json`
   - Any new entries from `names_keep` not already present in the index will be added to it
   - Outputs many warnings to suggest updates to `brands/**/*.json`

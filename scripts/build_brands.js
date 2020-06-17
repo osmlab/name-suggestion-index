@@ -1,5 +1,6 @@
 const colors = require('colors/safe');
 const fs = require('fs');
+const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
@@ -30,7 +31,7 @@ fs.writeFileSync('config/filters.json', stringify(filters));
 
 
 // Load and check brand files
-const loco = new LocationConflation();
+const loco = new LocationConflation(featureCollection);
 let brands = fileTree.read('brands', loco);
 
 // all names start out in _discard..

@@ -22,7 +22,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 * `dist/names_keep.json` - subset of `names_all` we are keeping
 * `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
-##### :white_check_mark: &nbsp; Do edit the files in `config/` and `brands/`:
+##### :white_check_mark: &nbsp; Do edit the files in `config/`, `brands/`, and `features`:
 
 * `config/*`
   * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
@@ -32,6 +32,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
   * `brands/leisure/*.json`
   * `brands/shop/*.json`
   * `brands/tourism/*.json`
+* `features/*` - Source files for custom locations where brands are active
 
 &nbsp;
 
@@ -133,7 +134,7 @@ Each entry requires a `locationSet` to define where the entry is available.  You
 
 The "locations" can be any of the following:
 * Strings recognized by the [country-coder library](https://github.com/ideditor/country-coder#readme). These should be [ISO 3166-1 2 or 3 letter country codes](https://en.wikipedia.org/wiki/List_of_countries_by_United_Nations_geoscheme) or [UN M.49 numeric codes](https://en.wikipedia.org/wiki/UN_M49).<br/>_Example: `"de"`_<br/>Tip: The M49 code for the whole world is `"001"`.
-* Filenames for custom `.geojson` features. If you want to use a custom feature, you'll need to add these under the `features/` folder.  Each `Feature` must have an `id` property that ends in `.geojson`.<br/>_Example: `"de-hamburg.geojson"`_<br/>Tip: You can use [geojson.io](http://geojson.io) or other tools to create these.
+* Filenames for custom `.geojson` features. If you want to use a custom feature, you'll need to add these under the `features/` folder (see ["Features"](#features) below for more details). Each `Feature` must have an `id` property that ends in `.geojson`.<br/>_Example: `"de-hamburg.geojson"`_<br/>Tip: You can use [geojson.io](http://geojson.io) or other tools to create these.
 
 You can view examples and learn more about working with `locationSets` in the [@ideditor/location-conflation](https://github.com/ideditor/location-conflation/blob/master/README.md) project.
 
@@ -251,6 +252,36 @@ When using a tilde `~` name:
     }
   },
 ```
+
+&nbsp;
+
+### Features
+
+These are optional `.geojson` files found under the `features/` folder. Each feature file must contain a single GeoJSON `Feature` for a region where a brand  is active. Only `Polygon` and `MultiPolygon` geometries are supported.
+
+Feature files look like this:
+
+```js
+{
+  "type": "Feature",
+  "id": "scotland.geojson",
+  "properties": {},
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [...]
+  }
+}
+```
+
+Note: A `FeatureCollection` containing a single `Feature` is ok too - the build script can handle this.
+
+The build script will automatically generate an `id` property to match the filename.
+
+👉 GeoJSON Protips:
+* There are many online tools to create or modify `.geojson` files.
+* You can draw and edit GeoJSON polygons with [geojson.io](http://geojson.io) - (Editing MultiPolygons does not work in drawing mode, but you can edit the code directly).
+* You can simplify GeoJSON files with [mapshaper.org](https://mapshaper.org/)
+* [More than you ever wanted to know about GeoJSON](https://macwright.org/2015/03/23/geojson-second-bite.html)
 
 
 &nbsp;
