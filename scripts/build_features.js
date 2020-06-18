@@ -1,4 +1,3 @@
-const calcArea = require('@mapbox/geojson-area');
 const colors = require('colors/safe');
 const fs = require('fs');
 const glob = require('glob');
@@ -33,7 +32,7 @@ function buildAll() {
   // Features
   const features = collectFeatures();
   const featureCollection = { type: 'FeatureCollection', features: features };
-  fs.writeFileSync('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 1000 }));
+  fs.writeFileSync('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 3000 }));
 
   console.timeEnd(END);
 }
