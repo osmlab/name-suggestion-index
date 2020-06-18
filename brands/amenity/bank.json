@@ -2315,6 +2315,29 @@
       "name": "Banque Laurentienne"
     }
   },
+  "amenity/bank|Banque Nationale": {
+    "locationSet": {
+      "include": ["quebec.geojson"]
+    },
+    "matchNames": [
+      "national bank",
+      "national bank of canada"
+    ],
+    "tags": {
+      "amenity": "bank",
+      "brand": "Banque Nationale",
+      "brand:en": "National Bank",
+      "brand:fr": "Banque Nationale",
+      "brand:wikidata": "Q634298",
+      "brand:wikipedia": "fr:Banque nationale du Canada",
+      "name": "Banque Nationale",
+      "name:en": "National Bank",
+      "name:fr": "Banque Nationale",
+      "official_name": "Banque Nationale du Canada",
+      "official_name:en": "National Bank of Canada",
+      "official_name:fr": "Banque Nationale du Canada"
+    }
+  },
   "amenity/bank|Banque Populaire~(France)": {
     "locationSet": {"include": ["fr"]},
     "tags": {
@@ -4836,7 +4859,10 @@
     }
   },
   "amenity/bank|National Bank": {
-    "locationSet": {"include": ["ca"]},
+    "locationSet": {
+      "include": ["ca"],
+      "exclude": ["quebec.geojson"]
+    },
     "matchNames": [
       "banque nationale",
       "banque nationale du canada"
