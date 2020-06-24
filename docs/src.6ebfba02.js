@@ -8168,7 +8168,7 @@ function classList(props) {
     'fa-li': listItem,
     'fa-flip-horizontal': flip === 'horizontal' || flip === 'both',
     'fa-flip-vertical': flip === 'vertical' || flip === 'both'
-  }, _defineProperty(_classes, "fa-".concat(size), typeof size !== 'undefined' && size !== null), _defineProperty(_classes, "fa-rotate-".concat(rotation), typeof rotation !== 'undefined' && rotation !== null), _defineProperty(_classes, "fa-pull-".concat(pull), typeof pull !== 'undefined' && pull !== null), _defineProperty(_classes, 'fa-swap-opacity', props.swapOpacity), _classes); // map over all the keys in the classes object
+  }, _defineProperty(_classes, "fa-".concat(size), typeof size !== 'undefined' && size !== null), _defineProperty(_classes, "fa-rotate-".concat(rotation), typeof rotation !== 'undefined' && rotation !== null && rotation !== 0), _defineProperty(_classes, "fa-pull-".concat(pull), typeof pull !== 'undefined' && pull !== null), _defineProperty(_classes, 'fa-swap-opacity', props.swapOpacity), _classes); // map over all the keys in the classes object
   // return an array of the keys where the value for the key is not null
 
   return Object.keys(classes).map(function (key) {
@@ -8323,7 +8323,10 @@ function objectWithKey(key, value) {
   return Array.isArray(value) && value.length > 0 || !Array.isArray(value) && value ? _defineProperty({}, key, value) : {};
 }
 
-function FontAwesomeIcon(props) {
+function FontAwesomeIcon(_ref) {
+  var forwardedRef = _ref.forwardedRef,
+      props = _objectWithoutProperties(_ref, ["forwardedRef"]);
+
   var iconArgs = props.icon,
       maskArgs = props.mask,
       symbol = props.symbol,
@@ -8344,7 +8347,9 @@ function FontAwesomeIcon(props) {
   }
 
   var abstract = renderedIcon.abstract;
-  var extraProps = {};
+  var extraProps = {
+    ref: forwardedRef
+  };
   Object.keys(props).forEach(function (key) {
     // eslint-disable-next-line no-prototype-builtins
     if (!FontAwesomeIcon.defaultProps.hasOwnProperty(key)) {
@@ -8366,7 +8371,7 @@ FontAwesomeIcon.propTypes = {
   listItem: _propTypes.default.bool,
   pull: _propTypes.default.oneOf(['right', 'left']),
   pulse: _propTypes.default.bool,
-  rotation: _propTypes.default.oneOf([90, 180, 270]),
+  rotation: _propTypes.default.oneOf([0, 90, 180, 270]),
   size: _propTypes.default.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
   spin: _propTypes.default.bool,
   symbol: _propTypes.default.oneOfType([_propTypes.default.bool, _propTypes.default.string]),
