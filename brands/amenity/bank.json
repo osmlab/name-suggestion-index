@@ -558,9 +558,12 @@
       "official_name": "Banque et Caisse d'Épargne de l'État"
     }
   },
-  "amenity/bank|BCI": {
-    "locationSet": {"include": ["001"]},
+  "amenity/bank|BCI~(Chile)": {
+    "locationSet": {"include": ["cl"]},
     "matchNames": ["banco bci"],
+    "nomatch": [
+      "amenity/bank|BCI~(South Africa)"
+    ],
     "tags": {
       "amenity": "bank",
       "brand": "BCI",
@@ -568,6 +571,18 @@
       "brand:wikipedia": "es:Banco de Crédito e Inversiones",
       "name": "BCI",
       "official_name": "Banco de Crédito e Inversiones"
+    }
+  },
+  "amenity/bank|BCI~(South Africa)": {
+    "locationSet": {"include": ["za"]},
+    "nomatch": ["amenity/bank|BCI~(Chile)"],
+    "tags": {
+      "amenity": "bank",
+      "brand": "BCI",
+      "brand:wikidata": "Q9645132",
+      "brand:wikipedia": "ca:Banco Comercial e de Investimentos",
+      "name": "BCI",
+      "official_name": "Banco Comercial e de Investimentos"
     }
   },
   "amenity/bank|BCP~(Bolivia)": {
