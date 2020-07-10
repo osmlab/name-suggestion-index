@@ -4692,6 +4692,14 @@
     "locationSet": {
       "include": ["ca", "mx", "us"]
     },
+    "nomatch": [
+      "amenity/fuel|Walmart",
+      "amenity/pharmacy|Walmart Pharmacy",
+      "shop/department_store|Walmart",
+      "shop/garden_centre|Walmart Garden Center",
+      "shop/supermarket|Walmart Supercenter",
+      "shop/supermarket|Walmart Supercentre"
+    ],
     "tags": {
       "brand": "Walmart",
       "brand:wikidata": "Q483551",
@@ -4701,14 +4709,43 @@
     }
   },
   "shop/supermarket|Walmart Supercenter": {
-    "locationSet": {"include": ["001"]},
-    "matchNames": ["walmart supercentre"],
+    "locationSet": {
+      "include": ["001"],
+      "exclude": ["ca"]
+    },
     "matchTags": ["shop/department_store"],
+    "nomatch": [
+      "amenity/fuel|Walmart",
+      "amenity/pharmacy|Walmart Pharmacy",
+      "shop/department_store|Walmart",
+      "shop/garden_centre|Walmart Garden Center",
+      "shop/supermarket|Walmart Neighborhood Market",
+      "shop/supermarket|Walmart Supercentre"
+    ],
     "tags": {
       "brand": "Walmart",
       "brand:wikidata": "Q483551",
       "brand:wikipedia": "en:Walmart",
       "name": "Walmart Supercenter",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Walmart Supercentre": {
+    "locationSet": {"include": ["ca"]},
+    "matchTags": ["shop/department_store"],
+    "nomatch": [
+      "amenity/fuel|Walmart",
+      "amenity/pharmacy|Walmart Pharmacy",
+      "shop/department_store|Walmart",
+      "shop/garden_centre|Walmart Garden Center",
+      "shop/supermarket|Walmart Neighborhood Market",
+      "shop/supermarket|Walmart Supercenter"
+    ],
+    "tags": {
+      "brand": "Walmart",
+      "brand:wikidata": "Q483551",
+      "brand:wikipedia": "en:Walmart",
+      "name": "Walmart Supercentre",
       "shop": "supermarket"
     }
   },
