@@ -3123,14 +3123,28 @@
       "shop": "supermarket"
     }
   },
-  "shop/supermarket|Monoprix": {
-    "locationSet": {
-      "include": ["ad", "fr", "tn"]
-    },
+  "shop/supermarket|Monoprix~(France)": {
+    "locationSet": {"include": ["ad", "fr"]},
+    "nomatch": [
+      "shop/supermarket|Monoprix~(Tunisia)"
+    ],
     "tags": {
       "brand": "Monoprix",
       "brand:wikidata": "Q3321241",
-      "brand:wikipedia": "en:Monoprix",
+      "brand:wikipedia": "fr:Monoprix (France)",
+      "name": "Monoprix",
+      "shop": "supermarket"
+    }
+  },
+  "shop/supermarket|Monoprix~(Tunisia)": {
+    "locationSet": {"include": ["tn"]},
+    "nomatch": [
+      "shop/supermarket|Monoprix~(France)"
+    ],
+    "tags": {
+      "brand": "Monoprix",
+      "brand:wikidata": "Q2719231",
+      "brand:wikipedia": "en:Monoprix (Tunisia)",
       "name": "Monoprix",
       "shop": "supermarket"
     }
