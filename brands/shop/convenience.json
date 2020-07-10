@@ -218,6 +218,7 @@
   },
   "shop/convenience|Bodega Aurrera Express": {
     "locationSet": {"include": ["mx"]},
+    "matchTags": ["shop/supermarket"],
     "nomatch": [
       "shop/supermarket|Bodega Aurrera"
     ],
@@ -321,6 +322,7 @@
   },
   "shop/convenience|Casino Shop": {
     "locationSet": {"include": ["fr"]},
+    "matchNames": ["casino"],
     "nomatch": [
       "amenity/fuel|Casino",
       "shop/convenience|Le Petit Casino",
@@ -703,6 +705,7 @@
   },
   "shop/convenience|Fresh": {
     "locationSet": {"include": ["sk"]},
+    "nomatch": ["shop/supermarket|Fresh Plus"],
     "tags": {
       "brand": "Fresh",
       "brand:wikidata": "Q50737403",
@@ -2002,6 +2005,7 @@
   },
   "shop/convenience|Tesco Express": {
     "locationSet": {"include": ["001"]},
+    "matchTags": ["shop/supermarket"],
     "nomatch": [
       "amenity/fuel|Tesco",
       "shop/convenience|Tesco",
@@ -2534,11 +2538,21 @@
     }
   },
   "shop/convenience|КазМунайГаз": {
-    "locationSet": {"include": ["001"]},
+    "locationSet": {"include": ["kz"]},
     "nomatch": ["amenity/fuel|КазМунайГаз"],
     "tags": {
       "brand": "КазМунайГаз",
+      "brand:wikidata": "Q1417227",
+      "brand:wikipedia": "en:KazMunayGas",
       "name": "КазМунайГаз",
+      "shop": "convenience"
+    }
+  },
+  "shop/convenience|Караван": {
+    "locationSet": {"include": ["ru", "ua"]},
+    "tags": {
+      "brand": "Караван",
+      "name": "Караван",
       "shop": "convenience"
     }
   },
@@ -2576,7 +2590,13 @@
     "nomatch": ["amenity/fuel|Лукойл"],
     "tags": {
       "brand": "Лукойл",
+      "brand:en": "Lukoil",
+      "brand:ru": "Лукойл",
+      "brand:wikidata": "Q329347",
+      "brand:wikipedia": "ru:Лукойл",
       "name": "Лукойл",
+      "name:en": "Lukoil",
+      "name:ru": "Лукойл",
       "shop": "convenience"
     }
   },
