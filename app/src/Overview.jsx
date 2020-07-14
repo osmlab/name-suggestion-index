@@ -64,7 +64,7 @@ export default function Overview(props) {
             (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
           ));
         } else if (cc) {
-          const codes = (entry.countryCodes || []);
+          const codes = (entry.locationSet.include || []);
           entry.filtered = (codes.length && codes.every(
             (code) => (code.toLowerCase().indexOf(cc) === -1)
           ));

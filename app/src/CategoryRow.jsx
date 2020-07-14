@@ -44,7 +44,7 @@ export default function CategoryRow(props) {
         <span className="anchor">{tags.name}</span>
       </h3>
       <div className="nsikey"><pre>'{kvnd}'</pre></div>
-      <div className="countries">{ countries(entry.countryCodes) }</div>
+      <div className="countries">{ locations(entry.locationSet) }</div>
       <div className="viewlink">{ overpassLink(k, v, tags.name, tags['brand:wikidata']) }</div>
     </td>
     <td className="count">{count}</td>
@@ -63,12 +63,12 @@ export default function CategoryRow(props) {
   );
 
 
-  function countries(countryCodes) {
-    const cclist = (countryCodes || []).join(', ');
-    return cclist && (
+  function locations(locationSet) {
+    const val = JSON.stringify(locationSet);
+    return val && (
       <>
       🌐
-      <code dangerouslySetInnerHTML={ highlight(cc, cclist) } />
+      <code dangerouslySetInnerHTML={ highlight(cc, val) } />
       </>
     );
   }
@@ -107,7 +107,7 @@ way[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
 relation[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}]
 { color:green; fill-color:green; }
 }}`);
-    
+
     // Create Overpass Turbo link:
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
     const title = `View ${n} via Overpass Turbo`;

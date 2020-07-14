@@ -8168,7 +8168,7 @@ function classList(props) {
     'fa-li': listItem,
     'fa-flip-horizontal': flip === 'horizontal' || flip === 'both',
     'fa-flip-vertical': flip === 'vertical' || flip === 'both'
-  }, _defineProperty(_classes, "fa-".concat(size), typeof size !== 'undefined' && size !== null), _defineProperty(_classes, "fa-rotate-".concat(rotation), typeof rotation !== 'undefined' && rotation !== null && rotation !== 0), _defineProperty(_classes, "fa-pull-".concat(pull), typeof pull !== 'undefined' && pull !== null), _defineProperty(_classes, 'fa-swap-opacity', props.swapOpacity), _classes); // map over all the keys in the classes object
+  }, _defineProperty(_classes, "fa-".concat(size), typeof size !== 'undefined' && size !== null), _defineProperty(_classes, "fa-rotate-".concat(rotation), typeof rotation !== 'undefined' && rotation !== null), _defineProperty(_classes, "fa-pull-".concat(pull), typeof pull !== 'undefined' && pull !== null), _defineProperty(_classes, 'fa-swap-opacity', props.swapOpacity), _classes); // map over all the keys in the classes object
   // return an array of the keys where the value for the key is not null
 
   return Object.keys(classes).map(function (key) {
@@ -8323,10 +8323,7 @@ function objectWithKey(key, value) {
   return Array.isArray(value) && value.length > 0 || !Array.isArray(value) && value ? _defineProperty({}, key, value) : {};
 }
 
-function FontAwesomeIcon(_ref) {
-  var forwardedRef = _ref.forwardedRef,
-      props = _objectWithoutProperties(_ref, ["forwardedRef"]);
-
+function FontAwesomeIcon(props) {
   var iconArgs = props.icon,
       maskArgs = props.mask,
       symbol = props.symbol,
@@ -8347,9 +8344,7 @@ function FontAwesomeIcon(_ref) {
   }
 
   var abstract = renderedIcon.abstract;
-  var extraProps = {
-    ref: forwardedRef
-  };
+  var extraProps = {};
   Object.keys(props).forEach(function (key) {
     // eslint-disable-next-line no-prototype-builtins
     if (!FontAwesomeIcon.defaultProps.hasOwnProperty(key)) {
@@ -8371,7 +8366,7 @@ FontAwesomeIcon.propTypes = {
   listItem: _propTypes.default.bool,
   pull: _propTypes.default.oneOf(['right', 'left']),
   pulse: _propTypes.default.bool,
-  rotation: _propTypes.default.oneOf([0, 90, 180, 270]),
+  rotation: _propTypes.default.oneOf([90, 180, 270]),
   size: _propTypes.default.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
   spin: _propTypes.default.bool,
   symbol: _propTypes.default.oneOfType([_propTypes.default.bool, _propTypes.default.string]),
@@ -11701,7 +11696,7 @@ function CategoryRow(props) {
     className: "nsikey"
   }, /*#__PURE__*/_react.default.createElement("pre", null, "'", kvnd, "'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "countries"
-  }, countries(entry.countryCodes)), /*#__PURE__*/_react.default.createElement("div", {
+  }, locations(entry.locationSet)), /*#__PURE__*/_react.default.createElement("div", {
     className: "viewlink"
   }, overpassLink(k, v, tags.name, tags['brand:wikidata']))), /*#__PURE__*/_react.default.createElement("td", {
     className: "count"
@@ -11720,10 +11715,10 @@ function CategoryRow(props) {
     className: "logo"
   }, logo(logos.twitter)));
 
-  function countries(countryCodes) {
-    var cclist = (countryCodes || []).join(', ');
-    return cclist && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", /*#__PURE__*/_react.default.createElement("code", {
-      dangerouslySetInnerHTML: highlight(cc, cclist)
+  function locations(locationSet) {
+    var val = JSON.stringify(locationSet);
+    return val && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", /*#__PURE__*/_react.default.createElement("code", {
+      dangerouslySetInnerHTML: highlight(cc, val)
     }));
   }
 
@@ -18984,7 +18979,7 @@ function Category(props) {
         return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
       });
     } else if (cc) {
-      var codes = entry.countryCodes || [];
+      var codes = entry.locationSet.include || [];
       entry.filtered = codes.length && codes.every(function (code) {
         return code.toLowerCase().indexOf(cc) === -1;
       });
@@ -19178,7 +19173,7 @@ function Overview(props) {
             return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
           });
         } else if (cc) {
-          var codes = entry.countryCodes || [];
+          var codes = entry.locationSet.include || [];
           entry.filtered = codes.length && codes.every(function (code) {
             return code.toLowerCase().indexOf(cc) === -1;
           });
