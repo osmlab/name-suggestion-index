@@ -114,7 +114,7 @@ export default function Category(props) {
     <table className="summary">
     <thead>
     <tr>
-    <th>Name<br/>ID<br/>Countries</th>
+    <th>Name<br/>ID<br/>Locations</th>
     <th>Count</th>
     <th>OpenStreetMap Tags</th>
     <th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>

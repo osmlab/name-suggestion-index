@@ -44,8 +44,12 @@ export default function CategoryRow(props) {
         <span className="anchor">{tags.name}</span>
       </h3>
       <div className="nsikey"><pre>'{kvnd}'</pre></div>
-      <div className="countries">{ locations(entry.locationSet) }</div>
-      <div className="viewlink">{ overpassLink(k, v, tags.name, tags['brand:wikidata']) }</div>
+      <div className="locations">{ locoDisplay(entry.locationSet, tags.name) }</div>
+      <div className="viewlink">
+        { searchOverpassLink(k, v, tags.name, tags['brand:wikidata']) }<br/>
+        { searchGoogleLink(tags.name) }<br/>
+        { searchWikipediaLink(tags.name) }
+      </div>
     </td>
     <td className="count">{count}</td>
     <td className="tags"><pre className="tags" dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -63,12 +67,15 @@ export default function CategoryRow(props) {
   );
 
 
-  function locations(locationSet) {
+  function locoDisplay(locationSet, name) {
     const val = JSON.stringify(locationSet);
+    const q = encodeURIComponent(val);
+    const href = `https://ideditor.github.io/location-conflation/?locationSet=${q}`;
+    const title = `View LocationSet for ${name}`;
     return val && (
       <>
-      🌐
-      <code dangerouslySetInnerHTML={ highlight(cc, val) } />
+      <code dangerouslySetInnerHTML={ highlight(cc, val) } /><br/>
+      <a target="_blank" href={href} title={title}>View LocationSet</a>
       </>
     );
   }
@@ -79,13 +86,27 @@ export default function CategoryRow(props) {
     if (needle) {
       let re = new RegExp('\(' + needle + '\)', 'gi');
       html = html.replace(re, '<mark>$1</mark>');
-
     }
     return  { __html: html };
   }
 
 
-  function overpassLink(k, v, n, w) {
+  function searchGoogleLink(name) {
+    const q = encodeURIComponent(name);
+    const href = `https://google.com/search?q=${q}`;
+    const title = `Search Google for ${name}`;
+    return (<a target="_blank" href={href} title={title}>Search Google</a>);
+  }
+
+  function searchWikipediaLink(name) {
+    const q = encodeURIComponent(name);
+    const href = `https://google.com/search?q=${q}+site%3Awikipedia.org`;
+    const title = `Search Wikipedia for ${name}`;
+    return (<a target="_blank" href={href} title={title}>Search Wikipedia</a>);
+  }
+
+
+  function searchOverpassLink(k, v, n, w) {
     // Build Overpass Turbo link:
     const q = encodeURIComponent(`[out:json][timeout:100];
 (nwr["name"="${n}"];);
@@ -110,10 +131,8 @@ relation[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}]
 
     // Create Overpass Turbo link:
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
-    const title = `View ${n} via Overpass Turbo`;
-    return (
-      <a target="_blank" href={href} title={title}>View {n} via Overpass Turbo</a>
-    );
+    const title = `Search Overpass Turbo for ${n}`;
+    return (<a target="_blank" href={href} title={title}>Search Overpass Turbo</a>);
   }
 
   function fblogo(username, src) {
@@ -128,7 +147,7 @@ relation[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}]
   }
 
   function wdLink(qid) {
-    const href = 'https://www.wikidata.org/wiki/' + qid;
+    const href = `https://www.wikidata.org/wiki/${qid}`;
     return qid && (
       <div className="viewlink">
       <a target="_blank" href={href}>{qid}</a>

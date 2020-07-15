@@ -11695,10 +11695,10 @@ function CategoryRow(props) {
   }, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
     className: "nsikey"
   }, /*#__PURE__*/_react.default.createElement("pre", null, "'", kvnd, "'")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "countries"
-  }, locations(entry.locationSet)), /*#__PURE__*/_react.default.createElement("div", {
+    className: "locations"
+  }, locoDisplay(entry.locationSet, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
     className: "viewlink"
-  }, overpassLink(k, v, tags.name, tags['brand:wikidata']))), /*#__PURE__*/_react.default.createElement("td", {
+  }, searchOverpassLink(k, v, tags.name, tags['brand:wikidata']), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(tags.name), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(tags.name))), /*#__PURE__*/_react.default.createElement("td", {
     className: "count"
   }, count), /*#__PURE__*/_react.default.createElement("td", {
     className: "tags"
@@ -11715,11 +11715,18 @@ function CategoryRow(props) {
     className: "logo"
   }, logo(logos.twitter)));
 
-  function locations(locationSet) {
+  function locoDisplay(locationSet, name) {
     var val = JSON.stringify(locationSet);
-    return val && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", /*#__PURE__*/_react.default.createElement("code", {
+    var q = encodeURIComponent(val);
+    var href = "https://ideditor.github.io/location-conflation/?locationSet=".concat(q);
+    var title = "View LocationSet for ".concat(name);
+    return val && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("code", {
       dangerouslySetInnerHTML: highlight(cc, val)
-    }));
+    }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("a", {
+      target: "_blank",
+      href: href,
+      title: title
+    }, "View LocationSet"));
   }
 
   function highlight(needle, haystack) {
@@ -11735,17 +11742,39 @@ function CategoryRow(props) {
     };
   }
 
-  function overpassLink(k, v, n, w) {
-    // Build Overpass Turbo link:
-    var q = encodeURIComponent("[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "]\n{ color:green; fill-color:green; }\n}}")); // Create Overpass Turbo link:
-
-    var href = "https://overpass-turbo.eu/?Q=".concat(q, "&R");
-    var title = "View ".concat(n, " via Overpass Turbo");
+  function searchGoogleLink(name) {
+    var q = encodeURIComponent(name);
+    var href = "https://google.com/search?q=".concat(q);
+    var title = "Search Google for ".concat(name);
     return /*#__PURE__*/_react.default.createElement("a", {
       target: "_blank",
       href: href,
       title: title
-    }, "View ", n, " via Overpass Turbo");
+    }, "Search Google");
+  }
+
+  function searchWikipediaLink(name) {
+    var q = encodeURIComponent(name);
+    var href = "https://google.com/search?q=".concat(q, "+site%3Awikipedia.org");
+    var title = "Search Wikipedia for ".concat(name);
+    return /*#__PURE__*/_react.default.createElement("a", {
+      target: "_blank",
+      href: href,
+      title: title
+    }, "Search Wikipedia");
+  }
+
+  function searchOverpassLink(k, v, n, w) {
+    // Build Overpass Turbo link:
+    var q = encodeURIComponent("[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "]\n{ color:green; fill-color:green; }\n}}")); // Create Overpass Turbo link:
+
+    var href = "https://overpass-turbo.eu/?Q=".concat(q, "&R");
+    var title = "Search Overpass Turbo for ".concat(n);
+    return /*#__PURE__*/_react.default.createElement("a", {
+      target: "_blank",
+      href: href,
+      title: title
+    }, "Search Overpass Turbo");
   }
 
   function fblogo(username, src) {
@@ -11760,7 +11789,7 @@ function CategoryRow(props) {
   }
 
   function wdLink(qid) {
-    var href = 'https://www.wikidata.org/wiki/' + qid;
+    var href = "https://www.wikidata.org/wiki/".concat(qid);
     return qid && /*#__PURE__*/_react.default.createElement("div", {
       className: "viewlink"
     }, /*#__PURE__*/_react.default.createElement("a", {
@@ -19015,7 +19044,7 @@ function Category(props) {
     data: data
   }), /*#__PURE__*/_react.default.createElement("table", {
     className: "summary"
-  }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", null, "Name", /*#__PURE__*/_react.default.createElement("br", null), "ID", /*#__PURE__*/_react.default.createElement("br", null), "Countries"), /*#__PURE__*/_react.default.createElement("th", null, "Count"), /*#__PURE__*/_react.default.createElement("th", null, "OpenStreetMap Tags"), /*#__PURE__*/_react.default.createElement("th", null, "Wikidata Name/Description", /*#__PURE__*/_react.default.createElement("br", null), "Official Website", /*#__PURE__*/_react.default.createElement("br", null), "Social Links"), /*#__PURE__*/_react.default.createElement("th", {
+  }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", null, "Name", /*#__PURE__*/_react.default.createElement("br", null), "ID", /*#__PURE__*/_react.default.createElement("br", null), "Locations"), /*#__PURE__*/_react.default.createElement("th", null, "Count"), /*#__PURE__*/_react.default.createElement("th", null, "OpenStreetMap Tags"), /*#__PURE__*/_react.default.createElement("th", null, "Wikidata Name/Description", /*#__PURE__*/_react.default.createElement("br", null), "Official Website", /*#__PURE__*/_react.default.createElement("br", null), "Social Links"), /*#__PURE__*/_react.default.createElement("th", {
     className: "logo"
   }, "Commons Logo"), /*#__PURE__*/_react.default.createElement("th", {
     className: "logo"
