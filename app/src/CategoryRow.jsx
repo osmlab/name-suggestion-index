@@ -70,7 +70,7 @@ export default function CategoryRow(props) {
   function locoDisplay(locationSet, name) {
     const val = JSON.stringify(locationSet);
     const q = encodeURIComponent(val);
-    const href = `https://ideditor.github.io/location-conflation/?locationSet=${q}`;
+    const href = `https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=${q}`;
     const title = `View LocationSet for ${name}`;
     return val && (
       <>

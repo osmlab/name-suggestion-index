@@ -11718,7 +11718,7 @@ function CategoryRow(props) {
   function locoDisplay(locationSet, name) {
     var val = JSON.stringify(locationSet);
     var q = encodeURIComponent(val);
-    var href = "https://ideditor.github.io/location-conflation/?locationSet=".concat(q);
+    var href = "https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=".concat(q);
     var title = "View LocationSet for ".concat(name);
     return val && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("code", {
       dangerouslySetInnerHTML: highlight(cc, val)
