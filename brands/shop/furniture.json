@@ -170,14 +170,28 @@
       "shop": "furniture"
     }
   },
-  "shop/furniture|Courts Malaysia": {
-    "locationSet": {
-      "include": ["my"]
-    },
+  "shop/furniture|Courts~(Malaysia)": {
+    "locationSet": {"include": ["my"]},
+    "nomatch": [
+      "shop/furniture|Courts~(Singapore)"
+    ],
     "tags": {
-      "brand": "Courts Malaysia",
+      "brand": "Courts",
       "brand:wikidata": "Q5178707",
       "brand:wikipedia": "en:Courts Malaysia",
+      "name": "Courts",
+      "shop": "furniture"
+    }
+  },
+  "shop/furniture|Courts~(Singapore)": {
+    "locationSet": {"include": ["sg"]},
+    "nomatch": [
+      "shop/furniture|Courts~(Malaysia)"
+    ],
+    "tags": {
+      "brand": "Courts",
+      "brand:wikidata": "Q24942673",
+      "brand:wikipedia": "en:Courts Singapore",
       "name": "Courts",
       "shop": "furniture"
     }
