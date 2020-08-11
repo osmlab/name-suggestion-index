@@ -27,6 +27,7 @@ function buildAll() {
 
   // Start clean
   shell.rm('-f', [
+    'docs/sitemap.xml',
     'dist/name-suggestions.*',
     'dist/taginfo.json',
     'dist/*.min.json'
@@ -42,6 +43,7 @@ function buildAll() {
   buildJSON();
   buildXML();
   buildTaginfo();
+  buildSitemap();
 
   // Minify the json files
   let tasks = [
@@ -186,6 +188,31 @@ function buildTaginfo() {
 
   taginfo.tags = Object.keys(items).sort().map(k => items[k]);
   fs.writeFileSync('dist/taginfo.json', prettyStringify(taginfo, { maxLength: 100 }));
+}
+
+
+function buildSitemap() {
+  const changefreq = 'weekly';
+  const lastmod = (new Date()).toISOString();
+
+  let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
+  let urlset = root.ele('urlset').att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+
+  let index = urlset.ele('url');
+  index.ele('loc').txt('https://nsi.guide/index.html');
+  index.ele('changefreq').txt(changefreq);
+  index.ele('lastmod').txt(lastmod);
+
+  for (let k in out) {
+    for (let v in out[k]) {
+      let url = urlset.ele('url');
+      url.ele('loc').txt(`https://nsi.guide/index.html?k=${k}&v=${v}`);
+      url.ele('changefreq').txt(changefreq);
+      url.ele('lastmod').txt(lastmod);
+    }
+  }
+
+  fs.writeFileSync('docs/sitemap.xml', root.end({ prettyPrint: true }));
 }
 
 
