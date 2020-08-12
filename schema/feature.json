@@ -1,0 +1,15 @@
+{
+  "title": "Feature",
+  "description": "A GeoJSON Feature",
+  "allOf": [
+    { "$ref": "http://json.schemastore.org/geojson.json#/definitions/feature" }
+  ],
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[-_.A-Za-z0-9]+$"
+    }
+  }
+}

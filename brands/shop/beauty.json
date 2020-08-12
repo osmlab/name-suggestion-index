@@ -1,13 +1,15 @@
 {
   "shop/beauty|Beauty Nails": {
+    "locationSet": {"include": ["001"]},
     "tags": {
+      "beauty": "nails",
       "brand": "Beauty Nails",
       "name": "Beauty Nails",
       "shop": "beauty"
     }
   },
   "shop/beauty|Benefit Brow Bar": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "matchNames": ["benefit", "ulta brow bar"],
     "tags": {
       "beauty": "eyebrow;eyelash;waxing",
@@ -19,15 +21,28 @@
     }
   },
   "shop/beauty|Body Minute": {
+    "locationSet": {"include": ["001"]},
     "tags": {
+      "beauty": "cosmetics",
       "brand": "Body Minute",
       "name": "Body Minute",
       "shop": "beauty"
     }
   },
-  "shop/beauty|Citron Vert": {
-    "countryCodes": ["fr"],
+  "shop/beauty|Carlance": {
+    "locationSet": {"include": ["fr"]},
     "tags": {
+      "beauty": "hair;nails;skin_care;massage",
+      "brand": "Carlance",
+      "brand:wikidata": "Q91601625",
+      "name": "Carlance",
+      "shop": "beauty"
+    }
+  },
+  "shop/beauty|Citron Vert": {
+    "locationSet": {"include": ["fr"]},
+    "tags": {
+      "beauty": "hair;nails;skin_care;massage",
       "brand": "Citron Vert",
       "brand:wikidata": "Q89503945",
       "name": "Citron Vert",
@@ -35,7 +50,7 @@
     }
   },
   "shop/beauty|European Wax Center": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "tags": {
       "beauty": "waxing",
       "brand": "European Wax Center",
@@ -46,14 +61,18 @@
     }
   },
   "shop/beauty|Happy Nails": {
+    "locationSet": {"include": ["001"]},
     "tags": {
+      "beauty": "nails",
       "brand": "Happy Nails",
       "name": "Happy Nails",
       "shop": "beauty"
     }
   },
   "shop/beauty|Hollywood Nails": {
-    "countryCodes": ["de", "gb", "us"],
+    "locationSet": {
+      "include": ["de", "gb", "us"]
+    },
     "tags": {
       "beauty": "nails",
       "brand": "Hollywood Nails",
@@ -62,7 +81,7 @@
     }
   },
   "shop/beauty|Indigo Sun": {
-    "countryCodes": ["gb"],
+    "locationSet": {"include": ["gb"]},
     "matchTags": [
       "leisure/tanning_salon",
       "shop/solarium"
@@ -76,6 +95,7 @@
     }
   },
   "shop/beauty|Nails for You": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "beauty": "nails",
       "brand": "Nails for You",
@@ -84,14 +104,16 @@
     }
   },
   "shop/beauty|New York Nails": {
+    "locationSet": {"include": ["001"]},
     "tags": {
+      "beauty": "nails",
       "brand": "New York Nails",
       "name": "New York Nails",
       "shop": "beauty"
     }
   },
   "shop/beauty|Palm Beach Tan": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "matchTags": [
       "leisure/tanning_salon",
       "shop/solarium"
@@ -106,7 +128,7 @@
     }
   },
   "shop/beauty|Perfect Brows NYC": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "matchNames": ["perfect brows"],
     "tags": {
       "beauty": "eyebrow;eyelash;waxing",
@@ -116,7 +138,7 @@
     }
   },
   "shop/beauty|Sola Salons": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "matchNames": ["sola", "sola salon studios"],
     "tags": {
       "beauty": "hair;nails;skin_care;massage",
@@ -127,6 +149,7 @@
     }
   },
   "shop/beauty|Star Nails": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "beauty": "nails",
       "brand": "Star Nails",
@@ -135,7 +158,7 @@
     }
   },
   "shop/beauty|Tan Republic": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "matchTags": ["leisure/tanning_salon"],
     "tags": {
       "beauty": "tanning",
@@ -146,7 +169,7 @@
     }
   },
   "shop/beauty|The Skin Bar at Ulta Beauty": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "nomatch": [
       "shop/beauty|Ulta Beauty",
       "shop/cosmetics|Ulta Beauty"
@@ -162,11 +185,9 @@
     }
   },
   "shop/beauty|Yves Rocher": {
+    "locationSet": {"include": ["001"]},
     "matchNames": ["ив роше"],
-    "matchTags": [
-      "shop/chemist",
-      "shop/cosmetics"
-    ],
+    "nomatch": ["shop/cosmetics|Yves Rocher"],
     "tags": {
       "beauty": "cosmetics",
       "brand": "Yves Rocher",

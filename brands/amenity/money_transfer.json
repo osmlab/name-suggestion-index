@@ -1,6 +1,6 @@
 {
   "amenity/money_transfer|Express Union": {
-    "countryCodes": ["td"],
+    "locationSet": {"include": ["td"]},
     "matchTags": ["amenity/bank"],
     "nomatch": [
       "amenity/bank|Banco Unión",
@@ -15,7 +15,7 @@
     }
   },
   "amenity/money_transfer|Hoa Phát": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "matchNames": [
       "hoa phat goi tien",
       "hoa phat gui tien"
@@ -29,7 +29,9 @@
     }
   },
   "amenity/money_transfer|MoneyGram": {
-    "countryCodes": ["de", "fr", "gr"],
+    "locationSet": {
+      "include": ["de", "fr", "gr"]
+    },
     "tags": {
       "amenity": "money_transfer",
       "brand": "MoneyGram",
@@ -39,7 +41,7 @@
     }
   },
   "amenity/money_transfer|Orange Money": {
-    "countryCodes": ["ml"],
+    "locationSet": {"include": ["ml"]},
     "tags": {
       "amenity": "money_transfer",
       "brand": "Orange Money",
@@ -49,6 +51,7 @@
     }
   },
   "amenity/money_transfer|Western Union": {
+    "locationSet": {"include": ["001"]},
     "matchTags": ["amenity/bureau_de_change"],
     "nomatch": ["amenity/bank|Western Union"],
     "tags": {

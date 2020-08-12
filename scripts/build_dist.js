@@ -1,14 +1,14 @@
 const colors = require('colors/safe');
 const fs = require('fs');
-const dissolved = require('./dist/dissolved.json');
-const namesKeep = require('./dist/names_keep.json');
-const packageJSON = require('./package.json');
+const dissolved = require('../dist/dissolved.json');
+const namesKeep = require('../dist/names_keep.json');
+const packageJSON = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
 const xmlbuilder2 = require('xmlbuilder2');
 
-const fileTree = require('./lib/file_tree.js');
-const toParts = require('./lib/to_parts.js');
+const fileTree = require('../lib/file_tree.js');
+const toParts = require('../lib/to_parts.js');
 
 let brands = fileTree.read('brands');
 let out = {};
@@ -27,6 +27,7 @@ function buildAll() {
 
   // Start clean
   shell.rm('-f', [
+    'docs/sitemap.xml',
     'dist/name-suggestions.*',
     'dist/taginfo.json',
     'dist/*.min.json'
@@ -42,11 +43,13 @@ function buildAll() {
   buildJSON();
   buildXML();
   buildTaginfo();
+  buildSitemap();
 
   // Minify the json files
   let tasks = [
     minifyJSON('dist/brands.json', 'dist/brands.min.json'),
     minifyJSON('dist/dissolved.json', 'dist/dissolved.min.json'),
+    minifyJSON('dist/featureCollection.json', 'dist/featureCollection.min.json'),
     minifyJSON('dist/filters.json', 'dist/filters.min.json'),
     minifyJSON('dist/match_groups.json', 'dist/match_groups.min.json'),
     minifyJSON('dist/name-suggestions.json', 'dist/name-suggestions.min.json'),
@@ -94,10 +97,7 @@ function buildJSON() {
       out[k][v][n].count = namesKeep[kvnd];
     }
 
-    if (obj.countryCodes) {
-      out[k][v][n].countryCodes = obj.countryCodes;
-    }
-
+    out[k][v][n].locationSet = obj.locationSet;
     out[k][v][n].tags = obj.tags;
   });
 
@@ -188,6 +188,31 @@ function buildTaginfo() {
 
   taginfo.tags = Object.keys(items).sort().map(k => items[k]);
   fs.writeFileSync('dist/taginfo.json', prettyStringify(taginfo, { maxLength: 100 }));
+}
+
+
+function buildSitemap() {
+  const changefreq = 'weekly';
+  const lastmod = (new Date()).toISOString();
+
+  let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
+  let urlset = root.ele('urlset').att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+
+  let index = urlset.ele('url');
+  index.ele('loc').txt('https://nsi.guide/index.html');
+  index.ele('changefreq').txt(changefreq);
+  index.ele('lastmod').txt(lastmod);
+
+  for (let k in out) {
+    for (let v in out[k]) {
+      let url = urlset.ele('url');
+      url.ele('loc').txt(`https://nsi.guide/index.html?k=${k}&v=${v}`);
+      url.ele('changefreq').txt(changefreq);
+      url.ele('lastmod').txt(lastmod);
+    }
+  }
+
+  fs.writeFileSync('docs/sitemap.xml', root.end({ prettyPrint: true }));
 }
 
 

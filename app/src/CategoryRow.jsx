@@ -44,8 +44,12 @@ export default function CategoryRow(props) {
         <span className="anchor">{tags.name}</span>
       </h3>
       <div className="nsikey"><pre>'{kvnd}'</pre></div>
-      <div className="countries">{ countries(entry.countryCodes) }</div>
-      <div className="viewlink">{ overpassLink(k, v, tags.name) }</div>
+      <div className="locations">{ locoDisplay(entry.locationSet, tags.name) }</div>
+      <div className="viewlink">
+        { searchOverpassLink(k, v, tags.name, tags['brand:wikidata']) }<br/>
+        { searchGoogleLink(tags.name) }<br/>
+        { searchWikipediaLink(tags.name) }
+      </div>
     </td>
     <td className="count">{count}</td>
     <td className="tags"><pre className="tags" dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -63,12 +67,15 @@ export default function CategoryRow(props) {
   );
 
 
-  function countries(countryCodes) {
-    const cclist = (countryCodes || []).join(', ');
-    return cclist && (
+  function locoDisplay(locationSet, name) {
+    const val = JSON.stringify(locationSet);
+    const q = encodeURIComponent(val);
+    const href = `https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=${q}`;
+    const title = `View LocationSet for ${name}`;
+    return val && (
       <>
-      🌐
-      <code dangerouslySetInnerHTML={ highlight(cc, cclist) } />
+      <code dangerouslySetInnerHTML={ highlight(cc, val) } /><br/>
+      <a target="_blank" href={href} title={title}>View LocationSet</a>
       </>
     );
   }
@@ -79,22 +86,53 @@ export default function CategoryRow(props) {
     if (needle) {
       let re = new RegExp('\(' + needle + '\)', 'gi');
       html = html.replace(re, '<mark>$1</mark>');
-
     }
     return  { __html: html };
   }
 
 
-  function overpassLink(k, v, n) {
-    const q = encodeURIComponent(`[out:json][timeout:60];
-(nwr["${k}"="${v}"]["name"="${n}"];);
+  function searchGoogleLink(name) {
+    const q = encodeURIComponent(name);
+    const href = `https://google.com/search?q=${q}`;
+    const title = `Search Google for ${name}`;
+    return (<a target="_blank" href={href} title={title}>Search Google</a>);
+  }
+
+  function searchWikipediaLink(name) {
+    const q = encodeURIComponent(name);
+    const href = `https://google.com/search?q=${q}+site%3Awikipedia.org`;
+    const title = `Search Wikipedia for ${name}`;
+    return (<a target="_blank" href={href} title={title}>Search Wikipedia</a>);
+  }
+
+
+  function searchOverpassLink(k, v, n, w) {
+    // Build Overpass Turbo link:
+    const q = encodeURIComponent(`[out:json][timeout:100];
+(nwr["name"="${n}"];);
 out body;
 >;
-out skel qt;`);
+out skel qt;
+
+{{style:
+node[name=${n}],
+way[name=${n}],
+relation[name=${n}]
+{ color:red; fill-color:red; }
+node[${k}=${v}][name=${n}],
+way[${k}=${v}][name=${n}],
+relation[${k}=${v}][name=${n}]
+{ color:yellow; fill-color:yellow; }
+node[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
+way[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
+relation[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}]
+{ color:green; fill-color:green; }
+}}`);
+
+    // Create Overpass Turbo link:
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
-    return (
-      <a target="_blank" href={href}>View on Overpass Turbo</a>
-    );
+    const title = `Search Overpass Turbo for ${n}`;
+    return (<a target="_blank" href={href} title={title}>Search Overpass Turbo</a>);
   }
 
   function fblogo(username, src) {
@@ -109,7 +147,7 @@ out skel qt;`);
   }
 
   function wdLink(qid) {
-    const href = 'https://www.wikidata.org/wiki/' + qid;
+    const href = `https://www.wikidata.org/wiki/${qid}`;
     return qid && (
       <div className="viewlink">
       <a target="_blank" href={href}>{qid}</a>

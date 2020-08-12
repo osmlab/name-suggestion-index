@@ -117,7 +117,738 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"MCp7":[function(require,module,exports) {
+})({"QVnC":[function(require,module,exports) {
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return PromiseImpl.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return PromiseImpl.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new PromiseImpl(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    if (PromiseImpl === void 0) PromiseImpl = Promise;
+
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList),
+      PromiseImpl
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+  typeof module === "object" ? module.exports : {}
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+},{}],"MCp7":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2788,24 +3519,8 @@ function createMemoryHistory(props) {
   };
   return history;
 }
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","resolve-pathname":"UAZL","value-equal":"Vvjq","tiny-warning":"sIbj","tiny-invariant":"bfQg"}],"HOM9":[function(require,module,exports) {
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-module.exports = _inheritsLoose;
-},{}],"bHnc":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","resolve-pathname":"UAZL","value-equal":"Vvjq","tiny-warning":"sIbj","tiny-invariant":"bfQg"}],"fIzv":[function(require,module,exports) {
 var global = arguments[3];
-'use strict';
-
-var key = '__global_unique_id__';
-
-module.exports = function () {
-  return global[key] = (global[key] || 0) + 1;
-};
-},{}],"fIzv":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2815,11 +3530,9 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/inheritsLoose"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _gud = _interopRequireDefault(require("gud"));
 
 var _tinyWarning = _interopRequireDefault(require("tiny-warning"));
 
@@ -2830,6 +3543,12 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var MAX_SIGNED_31_BIT_INT = 1073741823;
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : {};
+
+function getUniqueId() {
+  var key = '__global_unique_id__';
+  return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
+}
 
 function objectIs(x, y) {
   if (x === y) {
@@ -2869,7 +3588,7 @@ function onlyChild(children) {
 function createReactContext(defaultValue, calculateChangedBits) {
   var _Provider$childContex, _Consumer$contextType;
 
-  var contextProp = '__create-react-context-' + (0, _gud.default)() + '__';
+  var contextProp = '__create-react-context-' + getUniqueId() + '__';
 
   var Provider = /*#__PURE__*/function (_Component) {
     (0, _inheritsLoose2.default)(Provider, _Component);
@@ -2994,7 +3713,7 @@ function createReactContext(defaultValue, calculateChangedBits) {
 var index = _react.default.createContext || createReactContext;
 var _default = index;
 exports.default = _default;
-},{"react":"n8MK","@babel/runtime/helpers/inheritsLoose":"HOM9","prop-types":"D9Od","gud":"bHnc","tiny-warning":"sIbj"}],"WQ3f":[function(require,module,exports) {
+},{"react":"n8MK","@babel/runtime/helpers/esm/inheritsLoose":"S11h","prop-types":"D9Od","tiny-warning":"sIbj"}],"WQ3f":[function(require,module,exports) {
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
@@ -3595,7 +4314,7 @@ exports.useLocation = useLocation;
 exports.useParams = useParams;
 exports.useRouteMatch = useRouteMatch;
 exports.withRouter = withRouter;
-exports.__RouterContext = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.MemoryRouter = void 0;
+exports.__RouterContext = exports.__HistoryContext = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.MemoryRouter = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/inheritsLoose"));
 
@@ -3630,7 +4349,17 @@ var createNamedContext = function createNamedContext(name) {
   return context;
 };
 
-var context = /*#__PURE__*/createNamedContext("Router");
+var historyContext = /*#__PURE__*/createNamedContext("Router-History"); // TODO: Replace with React.createContext once we can assume React 16+
+
+exports.__HistoryContext = historyContext;
+
+var createNamedContext$1 = function createNamedContext(name) {
+  var context = (0, _miniCreateReactContext.default)();
+  context.displayName = name;
+  return context;
+};
+
+var context = /*#__PURE__*/createNamedContext$1("Router");
 /**
  * The public API for putting history on context.
  */
@@ -3697,14 +4426,16 @@ var Router = /*#__PURE__*/function (_React$Component) {
 
   _proto.render = function render() {
     return _react.default.createElement(context.Provider, {
-      children: this.props.children || null,
       value: {
         history: this.props.history,
         location: this.state.location,
         match: Router.computeRootMatch(this.state.location.pathname),
         staticContext: this.props.staticContext
       }
-    });
+    }, _react.default.createElement(historyContext.Provider, {
+      children: this.props.children || null,
+      value: this.props.history
+    }));
   };
 
   return Router;
@@ -4311,7 +5042,7 @@ function useHistory() {
     !(typeof useContext === "function") ? "production" !== "production" ? (0, _tinyInvariant.default)(false, "You must use React >= 16.8 in order to use useHistory()") : (0, _tinyInvariant.default)(false) : void 0;
   }
 
-  return useContext(context).history;
+  return useContext(historyContext);
 }
 
 function useLocation() {
@@ -4336,7 +5067,9 @@ function useRouteMatch(path) {
     !(typeof useContext === "function") ? "production" !== "production" ? (0, _tinyInvariant.default)(false, "You must use React >= 16.8 in order to use useRouteMatch()") : (0, _tinyInvariant.default)(false) : void 0;
   }
 
-  return path ? matchPath(useLocation().pathname, path) : useContext(context).match;
+  var location = useLocation();
+  var match = useContext(context).match;
+  return path ? matchPath(location.pathname, path) : match;
 }
 
 if ("production" !== "production") {
@@ -4366,26 +5099,93 @@ if ("production" !== "production") {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var _exportNames = {
-  BrowserRouter: true,
-  HashRouter: true,
-  Link: true,
-  NavLink: true
-};
+Object.defineProperty(exports, "MemoryRouter", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.MemoryRouter;
+  }
+});
+Object.defineProperty(exports, "Prompt", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.Prompt;
+  }
+});
+Object.defineProperty(exports, "Redirect", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.Redirect;
+  }
+});
+Object.defineProperty(exports, "Route", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.Route;
+  }
+});
+Object.defineProperty(exports, "Router", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.Router;
+  }
+});
+Object.defineProperty(exports, "StaticRouter", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.StaticRouter;
+  }
+});
+Object.defineProperty(exports, "Switch", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.Switch;
+  }
+});
+Object.defineProperty(exports, "generatePath", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.generatePath;
+  }
+});
+Object.defineProperty(exports, "matchPath", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.matchPath;
+  }
+});
+Object.defineProperty(exports, "useHistory", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.useHistory;
+  }
+});
+Object.defineProperty(exports, "useLocation", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.useLocation;
+  }
+});
+Object.defineProperty(exports, "useParams", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.useParams;
+  }
+});
+Object.defineProperty(exports, "useRouteMatch", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.useRouteMatch;
+  }
+});
+Object.defineProperty(exports, "withRouter", {
+  enumerable: true,
+  get: function () {
+    return _reactRouter.withRouter;
+  }
+});
 exports.NavLink = exports.Link = exports.HashRouter = exports.BrowserRouter = void 0;
 
 var _reactRouter = require("react-router");
-
-Object.keys(_reactRouter).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _reactRouter[key];
-    }
-  });
-});
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/inheritsLoose"));
 
@@ -4550,6 +5350,8 @@ var LinkAnchor = forwardRef(function (_ref, forwardedRef) {
   } else {
     props.ref = innerRef;
   }
+  /* eslint-disable-next-line jsx-a11y/anchor-has-content */
+
 
   return _react.default.createElement("a", props);
 });
@@ -4645,11 +5447,12 @@ var NavLink = forwardRef$1(function (_ref, forwardedRef) {
       exact = _ref.exact,
       isActiveProp = _ref.isActive,
       locationProp = _ref.location,
+      sensitive = _ref.sensitive,
       strict = _ref.strict,
       styleProp = _ref.style,
       to = _ref.to,
       innerRef = _ref.innerRef,
-      rest = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["aria-current", "activeClassName", "activeStyle", "className", "exact", "isActive", "location", "strict", "style", "to", "innerRef"]);
+      rest = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["aria-current", "activeClassName", "activeStyle", "className", "exact", "isActive", "location", "sensitive", "strict", "style", "to", "innerRef"]);
   return _react.default.createElement(_reactRouter.__RouterContext.Consumer, null, function (context) {
     !context ? "production" !== "production" ? (0, _tinyInvariant.default)(false, "You should not use <NavLink> outside a <Router>") : (0, _tinyInvariant.default)(false) : void 0;
     var currentLocation = locationProp || context.location;
@@ -4660,6 +5463,7 @@ var NavLink = forwardRef$1(function (_ref, forwardedRef) {
     var match = escapedPath ? (0, _reactRouter.matchPath)(currentLocation.pathname, {
       path: escapedPath,
       exact: exact,
+      sensitive: sensitive,
       strict: strict
     }) : null;
     var isActive = !!(isActiveProp ? isActiveProp(match, currentLocation) : match);
@@ -4696,883 +5500,12 @@ if ("production" !== "production") {
     exact: _propTypes.default.bool,
     isActive: _propTypes.default.func,
     location: _propTypes.default.object,
+    sensitive: _propTypes.default.bool,
     strict: _propTypes.default.bool,
     style: _propTypes.default.object
   });
 }
-},{"react-router":"LI7H","@babel/runtime/helpers/esm/inheritsLoose":"S11h","react":"n8MK","history":"Wop6","prop-types":"D9Od","tiny-warning":"sIbj","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"Vabl","tiny-invariant":"bfQg"}],"QVnC":[function(require,module,exports) {
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var runtime = (function (exports) {
-  "use strict";
-
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
-
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
-
-    return generator;
-  }
-  exports.wrap = wrap;
-
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
-
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
-
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
-
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
-        return this._invoke(method, arg);
-      };
-    });
-  }
-
-  exports.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  exports.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  exports.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator, PromiseImpl) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return PromiseImpl.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return PromiseImpl.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
-          result.value = unwrapped;
-          resolve(result);
-        }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
-          return invoke("throw", error, resolve, reject);
-        });
-      }
-    }
-
-    var previousPromise;
-
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new PromiseImpl(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
-    }
-
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
-
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  exports.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
-    if (PromiseImpl === void 0) PromiseImpl = Promise;
-
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList),
-      PromiseImpl
-    );
-
-    return exports.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        // Note: ["return"] must be used for ES3 parsing compatibility.
-        if (delegate.iterator["return"]) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
-    }
-
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
-      }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  Gp[toStringTagSymbol] = "Generator";
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  exports.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
-      }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  exports.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
-    }
-  };
-
-  // Regardless of whether this script is executing as a CommonJS module
-  // or not, return the runtime object so that we can declare the variable
-  // regeneratorRuntime in the outer scope, which allows this module to be
-  // injected easily by `bin/regenerator --include-runtime script.js`.
-  return exports;
-
-}(
-  // If this script is executing as a CommonJS module, use module.exports
-  // as the regeneratorRuntime namespace. Otherwise create a new empty
-  // object. Either way, the resulting object will be used to initialize
-  // the regeneratorRuntime variable at the top of this file.
-  typeof module === "object" ? module.exports : {}
-));
-
-try {
-  regeneratorRuntime = runtime;
-} catch (accidentalStrictMode) {
-  // This module should not be running in strict mode, so the above
-  // assignment should always work unless something is misconfigured. Just
-  // in case runtime.js accidentally runs in strict mode, we can escape
-  // strict mode using a global Function call. This could conceivably fail
-  // if a Content Security Policy forbids using Function, but in that case
-  // the proper solution is to fix the accidental strict mode problem. If
-  // you've misconfigured your bundler to force strict mode and applied a
-  // CSP to forbid Function, and you're not willing to fix either of those
-  // problems, please detail your unique predicament in a GitHub issue.
-  Function("r", "regeneratorRuntime = r")(runtime);
-}
-
-},{}],"PMvg":[function(require,module,exports) {
-module.exports = require("regenerator-runtime");
-
-},{"regenerator-runtime":"QVnC"}],"agGE":[function(require,module,exports) {
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
-
-module.exports = _asyncToGenerator;
-},{}],"dLyZ":[function(require,module,exports) {
-function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
-},{}],"OUZ9":[function(require,module,exports) {
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-module.exports = _arrayWithHoles;
-},{}],"vKPt":[function(require,module,exports) {
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-module.exports = _iterableToArrayLimit;
-},{}],"NVR6":[function(require,module,exports) {
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-module.exports = _arrayLikeToArray;
-},{}],"UyFj":[function(require,module,exports) {
-var arrayLikeToArray = require("./arrayLikeToArray");
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(n);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
-}
-
-module.exports = _unsupportedIterableToArray;
-},{"./arrayLikeToArray":"NVR6"}],"Rom6":[function(require,module,exports) {
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableRest;
-},{}],"HETk":[function(require,module,exports) {
-var arrayWithHoles = require("./arrayWithHoles");
-
-var iterableToArrayLimit = require("./iterableToArrayLimit");
-
-var unsupportedIterableToArray = require("./unsupportedIterableToArray");
-
-var nonIterableRest = require("./nonIterableRest");
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
-
-module.exports = _slicedToArray;
-},{"./arrayWithHoles":"OUZ9","./iterableToArrayLimit":"vKPt","./unsupportedIterableToArray":"UyFj","./nonIterableRest":"Rom6"}],"jpgZ":[function(require,module,exports) {
+},{"react-router":"LI7H","@babel/runtime/helpers/esm/inheritsLoose":"S11h","react":"n8MK","history":"Wop6","prop-types":"D9Od","tiny-warning":"sIbj","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"Vabl","tiny-invariant":"bfQg"}],"jpgZ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6378,6 +6311,7 @@ function makeIconMasking(_ref) {
       attributes = _ref.attributes,
       main = _ref.main,
       mask = _ref.mask,
+      explicitMaskId = _ref.maskId,
       transform = _ref.transform;
   var mainWidth = main.width,
       mainPath = main.icon;
@@ -6410,8 +6344,8 @@ function makeIconMasking(_ref) {
     attributes: _objectSpread({}, trans.outer),
     children: [maskInnerGroup]
   };
-  var maskId = "mask-".concat(nextUniqueId());
-  var clipId = "clip-".concat(nextUniqueId());
+  var maskId = "mask-".concat(explicitMaskId || nextUniqueId());
+  var clipId = "clip-".concat(explicitMaskId || nextUniqueId());
   var maskTag = {
     tag: 'mask',
     attributes: _objectSpread({}, ALL_SPACE, {
@@ -6544,6 +6478,8 @@ function makeInlineSvgAbstract(params) {
       transform = params.transform,
       symbol = params.symbol,
       title = params.title,
+      maskId = params.maskId,
+      titleId = params.titleId,
       extra = params.extra,
       _params$watchable = params.watchable,
       watchable = _params$watchable === void 0 ? false : _params$watchable;
@@ -6575,7 +6511,7 @@ function makeInlineSvgAbstract(params) {
   if (title) content.children.push({
     tag: 'title',
     attributes: {
-      id: content.attributes['aria-labelledby'] || "title-".concat(nextUniqueId())
+      id: content.attributes['aria-labelledby'] || "title-".concat(titleId || nextUniqueId())
     },
     children: [title]
   });
@@ -6585,6 +6521,7 @@ function makeInlineSvgAbstract(params) {
     iconName: iconName,
     main: main,
     mask: mask,
+    maskId: maskId,
     transform: transform,
     symbol: symbol,
     styles: extra.styles
@@ -6705,7 +6642,7 @@ var p = config.measurePerformance && PERFORMANCE && PERFORMANCE.mark && PERFORMA
   mark: noop$1,
   measure: noop$1
 };
-var preamble = "FA \"5.12.1\"";
+var preamble = "FA \"5.13.0\"";
 
 var begin = function begin(name) {
   p.mark("".concat(preamble, " ").concat(name, " begins"));
@@ -7223,10 +7160,11 @@ function attributesParser(node) {
     return acc;
   }, {});
   var title = node.getAttribute('title');
+  var titleId = node.getAttribute('data-fa-title-id');
 
   if (config.autoA11y) {
     if (title) {
-      extraAttributes['aria-labelledby'] = "".concat(config.replacementClass, "-title-").concat(nextUniqueId());
+      extraAttributes['aria-labelledby'] = "".concat(config.replacementClass, "-title-").concat(titleId || nextUniqueId());
     } else {
       extraAttributes['aria-hidden'] = 'true';
       extraAttributes['focusable'] = 'false';
@@ -7252,10 +7190,12 @@ function blankMeta() {
   return {
     iconName: null,
     title: null,
+    titleId: null,
     prefix: null,
     transform: meaninglessTransform,
     symbol: false,
     mask: null,
+    maskId: null,
     extra: {
       classes: [],
       styles: {},
@@ -7278,10 +7218,12 @@ function parseMeta(node) {
   return {
     iconName: iconName,
     title: node.getAttribute('title'),
+    titleId: node.getAttribute('data-fa-title-id'),
     prefix: prefix,
     transform: transform,
     symbol: symbol,
     mask: mask,
+    maskId: node.getAttribute('data-fa-mask-id'),
     extra: {
       classes: extraClasses,
       styles: extraStyles,
@@ -7452,10 +7394,12 @@ var styles$3 = namespace.styles;
 function generateSvgReplacementMutation(node, nodeMeta) {
   var iconName = nodeMeta.iconName,
       title = nodeMeta.title,
+      titleId = nodeMeta.titleId,
       prefix = nodeMeta.prefix,
       transform = nodeMeta.transform,
       symbol = nodeMeta.symbol,
       mask = nodeMeta.mask,
+      maskId = nodeMeta.maskId,
       extra = nodeMeta.extra;
   return new picked(function (resolve, reject) {
     picked.all([findIcon(iconName, prefix), findIcon(mask.iconName, mask.prefix)]).then(function (_ref) {
@@ -7473,7 +7417,9 @@ function generateSvgReplacementMutation(node, nodeMeta) {
         transform: transform,
         symbol: symbol,
         mask: mask,
+        maskId: maskId,
         title: title,
+        titleId: titleId,
         extra: extra,
         watchable: true
       })]);
@@ -7898,8 +7844,12 @@ var icon = resolveIcons(function (iconDefinition) {
       symbol = _params$symbol === void 0 ? false : _params$symbol,
       _params$mask = params.mask,
       mask = _params$mask === void 0 ? null : _params$mask,
+      _params$maskId = params.maskId,
+      maskId = _params$maskId === void 0 ? null : _params$maskId,
       _params$title = params.title,
       title = _params$title === void 0 ? null : _params$title,
+      _params$titleId = params.titleId,
+      titleId = _params$titleId === void 0 ? null : _params$titleId,
       _params$classes = params.classes,
       classes = _params$classes === void 0 ? [] : _params$classes,
       _params$attributes = params.attributes,
@@ -7917,7 +7867,7 @@ var icon = resolveIcons(function (iconDefinition) {
 
     if (config.autoA11y) {
       if (title) {
-        attributes['aria-labelledby'] = "".concat(config.replacementClass, "-title-").concat(nextUniqueId());
+        attributes['aria-labelledby'] = "".concat(config.replacementClass, "-title-").concat(titleId || nextUniqueId());
       } else {
         attributes['aria-hidden'] = 'true';
         attributes['focusable'] = 'false';
@@ -7939,6 +7889,8 @@ var icon = resolveIcons(function (iconDefinition) {
       transform: _objectSpread({}, meaninglessTransform, transform),
       symbol: symbol,
       title: title,
+      maskId: maskId,
+      titleId: titleId,
       extra: {
         attributes: attributes,
         styles: styles,
@@ -11743,10 +11695,10 @@ function CategoryRow(props) {
   }, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
     className: "nsikey"
   }, /*#__PURE__*/_react.default.createElement("pre", null, "'", kvnd, "'")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "countries"
-  }, countries(entry.countryCodes)), /*#__PURE__*/_react.default.createElement("div", {
+    className: "locations"
+  }, locoDisplay(entry.locationSet, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
     className: "viewlink"
-  }, overpassLink(k, v, tags.name))), /*#__PURE__*/_react.default.createElement("td", {
+  }, searchOverpassLink(k, v, tags.name, tags['brand:wikidata']), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(tags.name), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(tags.name))), /*#__PURE__*/_react.default.createElement("td", {
     className: "count"
   }, count), /*#__PURE__*/_react.default.createElement("td", {
     className: "tags"
@@ -11763,11 +11715,18 @@ function CategoryRow(props) {
     className: "logo"
   }, logo(logos.twitter)));
 
-  function countries(countryCodes) {
-    var cclist = (countryCodes || []).join(', ');
-    return cclist && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "\uD83C\uDF10", /*#__PURE__*/_react.default.createElement("code", {
-      dangerouslySetInnerHTML: highlight(cc, cclist)
-    }));
+  function locoDisplay(locationSet, name) {
+    var val = JSON.stringify(locationSet);
+    var q = encodeURIComponent(val);
+    var href = "https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=".concat(q);
+    var title = "View LocationSet for ".concat(name);
+    return val && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("code", {
+      dangerouslySetInnerHTML: highlight(cc, val)
+    }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("a", {
+      target: "_blank",
+      href: href,
+      title: title
+    }, "View LocationSet"));
   }
 
   function highlight(needle, haystack) {
@@ -11783,13 +11742,39 @@ function CategoryRow(props) {
     };
   }
 
-  function overpassLink(k, v, n) {
-    var q = encodeURIComponent("[out:json][timeout:60];\n(nwr[\"".concat(k, "\"=\"").concat(v, "\"][\"name\"=\"").concat(n, "\"];);\nout body;\n>;\nout skel qt;"));
-    var href = "https://overpass-turbo.eu/?Q=".concat(q, "&R");
+  function searchGoogleLink(name) {
+    var q = encodeURIComponent(name);
+    var href = "https://google.com/search?q=".concat(q);
+    var title = "Search Google for ".concat(name);
     return /*#__PURE__*/_react.default.createElement("a", {
       target: "_blank",
-      href: href
-    }, "View on Overpass Turbo");
+      href: href,
+      title: title
+    }, "Search Google");
+  }
+
+  function searchWikipediaLink(name) {
+    var q = encodeURIComponent(name);
+    var href = "https://google.com/search?q=".concat(q, "+site%3Awikipedia.org");
+    var title = "Search Wikipedia for ".concat(name);
+    return /*#__PURE__*/_react.default.createElement("a", {
+      target: "_blank",
+      href: href,
+      title: title
+    }, "Search Wikipedia");
+  }
+
+  function searchOverpassLink(k, v, n, w) {
+    // Build Overpass Turbo link:
+    var q = encodeURIComponent("[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(n, "][brand:wikidata=").concat(w, "]\n{ color:green; fill-color:green; }\n}}")); // Create Overpass Turbo link:
+
+    var href = "https://overpass-turbo.eu/?Q=".concat(q, "&R");
+    var title = "Search Overpass Turbo for ".concat(n);
+    return /*#__PURE__*/_react.default.createElement("a", {
+      target: "_blank",
+      href: href,
+      title: title
+    }, "Search Overpass Turbo");
   }
 
   function fblogo(username, src) {
@@ -11804,7 +11789,7 @@ function CategoryRow(props) {
   }
 
   function wdLink(qid) {
-    var href = 'https://www.wikidata.org/wiki/' + qid;
+    var href = "https://www.wikidata.org/wiki/".concat(qid);
     return qid && /*#__PURE__*/_react.default.createElement("div", {
       className: "viewlink"
     }, /*#__PURE__*/_react.default.createElement("a", {
@@ -11839,15 +11824,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.faBorderStyle = exports.faBorderNone = exports.faBorderAll = exports.faBookmark = exports.faBookReader = exports.faBookOpen = exports.faBookMedical = exports.faBookDead = exports.faBook = exports.faBong = exports.faBone = exports.faBomb = exports.faBolt = exports.faBold = exports.faBlog = exports.faBlind = exports.faBlenderPhone = exports.faBlender = exports.faBirthdayCake = exports.faBiohazard = exports.faBinoculars = exports.faBiking = exports.faBicycle = exports.faBible = exports.faBezierCurve = exports.faBellSlash = exports.faBell = exports.faBeer = exports.faBed = exports.faBatteryThreeQuarters = exports.faBatteryQuarter = exports.faBatteryHalf = exports.faBatteryFull = exports.faBatteryEmpty = exports.faBath = exports.faBasketballBall = exports.faBaseballBall = exports.faBars = exports.faBarcode = exports.faBandAid = exports.faBan = exports.faBalanceScaleRight = exports.faBalanceScaleLeft = exports.faBalanceScale = exports.faBahai = exports.faBacon = exports.faBackward = exports.faBackspace = exports.faBabyCarriage = exports.faBaby = exports.faAward = exports.faAudioDescription = exports.faAtom = exports.faAtlas = exports.faAt = exports.faAsterisk = exports.faAssistiveListeningSystems = exports.faArrowsAltV = exports.faArrowsAltH = exports.faArrowsAlt = exports.faArrowUp = exports.faArrowRight = exports.faArrowLeft = exports.faArrowDown = exports.faArrowCircleUp = exports.faArrowCircleRight = exports.faArrowCircleLeft = exports.faArrowCircleDown = exports.faArrowAltCircleUp = exports.faArrowAltCircleRight = exports.faArrowAltCircleLeft = exports.faArrowAltCircleDown = exports.faArchway = exports.faArchive = exports.faAppleAlt = exports.faAnkh = exports.faAngry = exports.faAngleUp = exports.faAngleRight = exports.faAngleLeft = exports.faAngleDown = exports.faAngleDoubleUp = exports.faAngleDoubleRight = exports.faAngleDoubleLeft = exports.faAngleDoubleDown = exports.faAnchor = exports.faAmericanSignLanguageInterpreting = exports.faAmbulance = exports.faAllergies = exports.faAlignRight = exports.faAlignLeft = exports.faAlignJustify = exports.faAlignCenter = exports.faAirFreshener = exports.faAdjust = exports.faAddressCard = exports.faAddressBook = exports.faAd = exports.prefix = exports.fas = void 0;
-exports.faCloudMoon = exports.faCloudMeatball = exports.faCloudDownloadAlt = exports.faCloud = exports.faClosedCaptioning = exports.faClone = exports.faClock = exports.faClipboardList = exports.faClipboardCheck = exports.faClipboard = exports.faClinicMedical = exports.faCity = exports.faCircleNotch = exports.faCircle = exports.faChurch = exports.faChild = exports.faChevronUp = exports.faChevronRight = exports.faChevronLeft = exports.faChevronDown = exports.faChevronCircleUp = exports.faChevronCircleRight = exports.faChevronCircleLeft = exports.faChevronCircleDown = exports.faChessRook = exports.faChessQueen = exports.faChessPawn = exports.faChessKnight = exports.faChessKing = exports.faChessBoard = exports.faChessBishop = exports.faChess = exports.faCheese = exports.faCheckSquare = exports.faCheckDouble = exports.faCheckCircle = exports.faCheck = exports.faChartPie = exports.faChartLine = exports.faChartBar = exports.faChartArea = exports.faChargingStation = exports.faChalkboardTeacher = exports.faChalkboard = exports.faChair = exports.faCertificate = exports.faCat = exports.faCashRegister = exports.faCartPlus = exports.faCartArrowDown = exports.faCarrot = exports.faCaretUp = exports.faCaretSquareUp = exports.faCaretSquareRight = exports.faCaretSquareLeft = exports.faCaretSquareDown = exports.faCaretRight = exports.faCaretLeft = exports.faCaretDown = exports.faCaravan = exports.faCarSide = exports.faCarCrash = exports.faCarBattery = exports.faCarAlt = exports.faCar = exports.faCapsules = exports.faCannabis = exports.faCandyCane = exports.faCampground = exports.faCameraRetro = exports.faCamera = exports.faCalendarWeek = exports.faCalendarTimes = exports.faCalendarPlus = exports.faCalendarMinus = exports.faCalendarDay = exports.faCalendarCheck = exports.faCalendarAlt = exports.faCalendar = exports.faCalculator = exports.faBusinessTime = exports.faBusAlt = exports.faBus = exports.faBurn = exports.faBullseye = exports.faBullhorn = exports.faBuilding = exports.faBug = exports.faBrush = exports.faBroom = exports.faBroadcastTower = exports.faBriefcaseMedical = exports.faBriefcase = exports.faBreadSlice = exports.faBrain = exports.faBraille = exports.faBoxes = exports.faBoxOpen = exports.faBox = exports.faBowlingBall = void 0;
-exports.faExclamationCircle = exports.faExclamation = exports.faExchangeAlt = exports.faEuroSign = exports.faEthernet = exports.faEraser = exports.faEquals = exports.faEnvelopeSquare = exports.faEnvelopeOpenText = exports.faEnvelopeOpen = exports.faEnvelope = exports.faEllipsisV = exports.faEllipsisH = exports.faEject = exports.faEgg = exports.faEdit = exports.faDungeon = exports.faDumpsterFire = exports.faDumpster = exports.faDumbbell = exports.faDrumstickBite = exports.faDrumSteelpan = exports.faDrum = exports.faDrawPolygon = exports.faDragon = exports.faDraftingCompass = exports.faDownload = exports.faDove = exports.faDotCircle = exports.faDoorOpen = exports.faDoorClosed = exports.faDonate = exports.faDollyFlatbed = exports.faDolly = exports.faDollarSign = exports.faDog = exports.faDna = exports.faDizzy = exports.faDivide = exports.faDirections = exports.faDigitalTachograph = exports.faDiceTwo = exports.faDiceThree = exports.faDiceSix = exports.faDiceOne = exports.faDiceFour = exports.faDiceFive = exports.faDiceD6 = exports.faDiceD20 = exports.faDice = exports.faDiagnoses = exports.faDharmachakra = exports.faDesktop = exports.faDemocrat = exports.faDeaf = exports.faDatabase = exports.faCut = exports.faCubes = exports.faCube = exports.faCrutch = exports.faCrown = exports.faCrow = exports.faCrosshairs = exports.faCross = exports.faCropAlt = exports.faCrop = exports.faCreditCard = exports.faCouch = exports.faCopyright = exports.faCopy = exports.faCookieBite = exports.faCookie = exports.faConciergeBell = exports.faCompressArrowsAlt = exports.faCompressAlt = exports.faCompress = exports.faCompass = exports.faCompactDisc = exports.faCommentsDollar = exports.faComments = exports.faCommentSlash = exports.faCommentMedical = exports.faCommentDots = exports.faCommentDollar = exports.faCommentAlt = exports.faComment = exports.faColumns = exports.faCoins = exports.faCogs = exports.faCog = exports.faCoffee = exports.faCodeBranch = exports.faCode = exports.faCocktail = exports.faCloudUploadAlt = exports.faCloudSunRain = exports.faCloudSun = exports.faCloudShowersHeavy = exports.faCloudRain = exports.faCloudMoonRain = void 0;
-exports.faGrinSquintTears = exports.faGrinSquint = exports.faGrinHearts = exports.faGrinBeamSweat = exports.faGrinBeam = exports.faGrinAlt = exports.faGrin = exports.faGrimace = exports.faGreaterThanEqual = exports.faGreaterThan = exports.faGraduationCap = exports.faGopuram = exports.faGolfBall = exports.faGlobeEurope = exports.faGlobeAsia = exports.faGlobeAmericas = exports.faGlobeAfrica = exports.faGlobe = exports.faGlasses = exports.faGlassWhiskey = exports.faGlassMartiniAlt = exports.faGlassMartini = exports.faGlassCheers = exports.faGifts = exports.faGift = exports.faGhost = exports.faGenderless = exports.faGem = exports.faGavel = exports.faGasPump = exports.faGamepad = exports.faFutbol = exports.faFunnelDollar = exports.faFrownOpen = exports.faFrown = exports.faFrog = exports.faForward = exports.faFootballBall = exports.faFontAwesomeLogoFull = exports.faFont = exports.faFolderPlus = exports.faFolderOpen = exports.faFolderMinus = exports.faFolder = exports.faFlushed = exports.faFlask = exports.faFlagUsa = exports.faFlagCheckered = exports.faFlag = exports.faFistRaised = exports.faFish = exports.faFirstAid = exports.faFireExtinguisher = exports.faFireAlt = exports.faFire = exports.faFingerprint = exports.faFilter = exports.faFilm = exports.faFillDrip = exports.faFill = exports.faFileWord = exports.faFileVideo = exports.faFileUpload = exports.faFileSignature = exports.faFilePrescription = exports.faFilePowerpoint = exports.faFilePdf = exports.faFileMedicalAlt = exports.faFileMedical = exports.faFileInvoiceDollar = exports.faFileInvoice = exports.faFileImport = exports.faFileImage = exports.faFileExport = exports.faFileExcel = exports.faFileDownload = exports.faFileCsv = exports.faFileContract = exports.faFileCode = exports.faFileAudio = exports.faFileArchive = exports.faFileAlt = exports.faFile = exports.faFighterJet = exports.faFemale = exports.faFeatherAlt = exports.faFeather = exports.faFax = exports.faFastForward = exports.faFastBackward = exports.faFan = exports.faEyeSlash = exports.faEyeDropper = exports.faEye = exports.faExternalLinkSquareAlt = exports.faExternalLinkAlt = exports.faExpandArrowsAlt = exports.faExpandAlt = exports.faExpand = exports.faExclamationTriangle = void 0;
-exports.faLaptop = exports.faLanguage = exports.faLandmark = exports.faKiwiBird = exports.faKissWinkHeart = exports.faKissBeam = exports.faKiss = exports.faKhanda = exports.faKeyboard = exports.faKey = exports.faKaaba = exports.faJournalWhills = exports.faJoint = exports.faJedi = exports.faItalic = exports.faInfoCircle = exports.faInfo = exports.faInfinity = exports.faIndustry = exports.faIndent = exports.faInbox = exports.faImages = exports.faImage = exports.faIgloo = exports.faIdCardAlt = exports.faIdCard = exports.faIdBadge = exports.faIcons = exports.faIcicles = exports.faIceCream = exports.faICursor = exports.faHryvnia = exports.faHouseDamage = exports.faHourglassStart = exports.faHourglassHalf = exports.faHourglassEnd = exports.faHourglass = exports.faHotel = exports.faHotdog = exports.faHotTub = exports.faHospitalSymbol = exports.faHospitalAlt = exports.faHospital = exports.faHorseHead = exports.faHorse = exports.faHome = exports.faHollyBerry = exports.faHockeyPuck = exports.faHistory = exports.faHippo = exports.faHiking = exports.faHighlighter = exports.faHelicopter = exports.faHeartbeat = exports.faHeartBroken = exports.faHeart = exports.faHeadset = exports.faHeadphonesAlt = exports.faHeadphones = exports.faHeading = exports.faHdd = exports.faHatWizard = exports.faHatCowboySide = exports.faHatCowboy = exports.faHashtag = exports.faHardHat = exports.faHanukiah = exports.faHandshake = exports.faHandsHelping = exports.faHands = exports.faHandSpock = exports.faHandScissors = exports.faHandRock = exports.faHandPointer = exports.faHandPointUp = exports.faHandPointRight = exports.faHandPointLeft = exports.faHandPointDown = exports.faHandPeace = exports.faHandPaper = exports.faHandMiddleFinger = exports.faHandLizard = exports.faHandHoldingUsd = exports.faHandHoldingHeart = exports.faHandHolding = exports.faHamsa = exports.faHammer = exports.faHamburger = exports.faHSquare = exports.faGuitar = exports.faGripVertical = exports.faGripLinesVertical = exports.faGripLines = exports.faGripHorizontal = exports.faGrinWink = exports.faGrinTongueWink = exports.faGrinTongueSquint = exports.faGrinTongue = exports.faGrinTears = exports.faGrinStars = void 0;
-exports.faPalette = exports.faPaintRoller = exports.faPaintBrush = exports.faPager = exports.faOutdent = exports.faOtter = exports.faOm = exports.faOilCan = exports.faObjectUngroup = exports.faObjectGroup = exports.faNotesMedical = exports.faNotEqual = exports.faNewspaper = exports.faNeuter = exports.faNetworkWired = exports.faMusic = exports.faMugHot = exports.faMousePointer = exports.faMouse = exports.faMountain = exports.faMotorcycle = exports.faMosque = exports.faMortarPestle = exports.faMoon = exports.faMonument = exports.faMoneyCheckAlt = exports.faMoneyCheck = exports.faMoneyBillWaveAlt = exports.faMoneyBillWave = exports.faMoneyBillAlt = exports.faMoneyBill = exports.faMobileAlt = exports.faMobile = exports.faMitten = exports.faMinusSquare = exports.faMinusCircle = exports.faMinus = exports.faMicroscope = exports.faMicrophoneSlash = exports.faMicrophoneAltSlash = exports.faMicrophoneAlt = exports.faMicrophone = exports.faMicrochip = exports.faMeteor = exports.faMercury = exports.faMenorah = exports.faMemory = exports.faMehRollingEyes = exports.faMehBlank = exports.faMeh = exports.faMedkit = exports.faMedal = exports.faMask = exports.faMarsStrokeV = exports.faMarsStrokeH = exports.faMarsStroke = exports.faMarsDouble = exports.faMars = exports.faMarker = exports.faMapSigns = exports.faMapPin = exports.faMapMarkerAlt = exports.faMapMarker = exports.faMapMarkedAlt = exports.faMapMarked = exports.faMap = exports.faMale = exports.faMailBulk = exports.faMagnet = exports.faMagic = exports.faLuggageCart = exports.faLowVision = exports.faLongArrowAltUp = exports.faLongArrowAltRight = exports.faLongArrowAltLeft = exports.faLongArrowAltDown = exports.faLockOpen = exports.faLock = exports.faLocationArrow = exports.faListUl = exports.faListOl = exports.faListAlt = exports.faList = exports.faLiraSign = exports.faLink = exports.faLightbulb = exports.faLifeRing = exports.faLevelUpAlt = exports.faLevelDownAlt = exports.faLessThanEqual = exports.faLessThan = exports.faLemon = exports.faLeaf = exports.faLayerGroup = exports.faLaughWink = exports.faLaughSquint = exports.faLaughBeam = exports.faLaugh = exports.faLaptopMedical = exports.faLaptopCode = void 0;
-exports.faRunning = exports.faRulerVertical = exports.faRulerHorizontal = exports.faRulerCombined = exports.faRuler = exports.faRubleSign = exports.faRssSquare = exports.faRss = exports.faRoute = exports.faRocket = exports.faRobot = exports.faRoad = exports.faRing = exports.faRibbon = exports.faRetweet = exports.faRestroom = exports.faRepublican = exports.faReplyAll = exports.faReply = exports.faRemoveFormat = exports.faRegistered = exports.faRedoAlt = exports.faRedo = exports.faRecycle = exports.faRecordVinyl = exports.faReceipt = exports.faRandom = exports.faRainbow = exports.faRadiationAlt = exports.faRadiation = exports.faQuran = exports.faQuoteRight = exports.faQuoteLeft = exports.faQuidditch = exports.faQuestionCircle = exports.faQuestion = exports.faQrcode = exports.faPuzzlePiece = exports.faProjectDiagram = exports.faProcedures = exports.faPrint = exports.faPrescriptionBottleAlt = exports.faPrescriptionBottle = exports.faPrescription = exports.faPrayingHands = exports.faPray = exports.faPowerOff = exports.faPoundSign = exports.faPortrait = exports.faPoop = exports.faPooStorm = exports.faPoo = exports.faPollH = exports.faPoll = exports.faPodcast = exports.faPlusSquare = exports.faPlusCircle = exports.faPlus = exports.faPlug = exports.faPlayCircle = exports.faPlay = exports.faPlaneDeparture = exports.faPlaneArrival = exports.faPlane = exports.faPlaceOfWorship = exports.faPizzaSlice = exports.faPills = exports.faPiggyBank = exports.faPhotoVideo = exports.faPhoneVolume = exports.faPhoneSquareAlt = exports.faPhoneSquare = exports.faPhoneSlash = exports.faPhoneAlt = exports.faPhone = exports.faPersonBooth = exports.faPercentage = exports.faPercent = exports.faPepperHot = exports.faPeopleCarry = exports.faPencilRuler = exports.faPencilAlt = exports.faPenSquare = exports.faPenNib = exports.faPenFancy = exports.faPenAlt = exports.faPen = exports.faPeace = exports.faPaw = exports.faPauseCircle = exports.faPause = exports.faPaste = exports.faPastafarianism = exports.faPassport = exports.faParking = exports.faParagraph = exports.faParachuteBox = exports.faPaperclip = exports.faPaperPlane = exports.faPallet = void 0;
-exports.faStopwatch = exports.faStopCircle = exports.faStop = exports.faStickyNote = exports.faStethoscope = exports.faStepForward = exports.faStepBackward = exports.faStarOfLife = exports.faStarOfDavid = exports.faStarHalfAlt = exports.faStarHalf = exports.faStarAndCrescent = exports.faStar = exports.faStamp = exports.faSquareRootAlt = exports.faSquareFull = exports.faSquare = exports.faSprayCan = exports.faSplotch = exports.faSpinner = exports.faSpider = exports.faSpellCheck = exports.faSpaceShuttle = exports.faSpa = exports.faSortUp = exports.faSortNumericUpAlt = exports.faSortNumericUp = exports.faSortNumericDownAlt = exports.faSortNumericDown = exports.faSortDown = exports.faSortAmountUpAlt = exports.faSortAmountUp = exports.faSortAmountDownAlt = exports.faSortAmountDown = exports.faSortAlphaUpAlt = exports.faSortAlphaUp = exports.faSortAlphaDownAlt = exports.faSortAlphaDown = exports.faSort = exports.faSolarPanel = exports.faSocks = exports.faSnowplow = exports.faSnowman = exports.faSnowflake = exports.faSnowboarding = exports.faSms = exports.faSmokingBan = exports.faSmoking = exports.faSmog = exports.faSmileWink = exports.faSmileBeam = exports.faSmile = exports.faSlidersH = exports.faSleigh = exports.faSlash = exports.faSkullCrossbones = exports.faSkull = exports.faSkiingNordic = exports.faSkiing = exports.faSkating = exports.faSitemap = exports.faSimCard = exports.faSignature = exports.faSignal = exports.faSignOutAlt = exports.faSignLanguage = exports.faSignInAlt = exports.faSign = exports.faShuttleVan = exports.faShower = exports.faShoppingCart = exports.faShoppingBasket = exports.faShoppingBag = exports.faShoePrints = exports.faShippingFast = exports.faShip = exports.faShieldAlt = exports.faShekelSign = exports.faShareSquare = exports.faShareAltSquare = exports.faShareAlt = exports.faShare = exports.faShapes = exports.faServer = exports.faSeedling = exports.faSearchPlus = exports.faSearchMinus = exports.faSearchLocation = exports.faSearchDollar = exports.faSearch = exports.faSdCard = exports.faScroll = exports.faScrewdriver = exports.faSchool = exports.faSave = exports.faSatelliteDish = exports.faSatellite = exports.faSadTear = exports.faSadCry = exports.faRupeeSign = void 0;
-exports.faUpload = exports.faUnlockAlt = exports.faUnlock = exports.faUnlink = exports.faUniversity = exports.faUniversalAccess = exports.faUndoAlt = exports.faUndo = exports.faUnderline = exports.faUmbrellaBeach = exports.faUmbrella = exports.faTv = exports.faTty = exports.faTshirt = exports.faTruckPickup = exports.faTruckMoving = exports.faTruckMonster = exports.faTruckLoading = exports.faTruck = exports.faTrophy = exports.faTree = exports.faTrashRestoreAlt = exports.faTrashRestore = exports.faTrashAlt = exports.faTrash = exports.faTransgenderAlt = exports.faTransgender = exports.faTram = exports.faTrain = exports.faTrailer = exports.faTrafficLight = exports.faTrademark = exports.faTractor = exports.faToriiGate = exports.faTorah = exports.faTooth = exports.faTools = exports.faToolbox = exports.faToiletPaper = exports.faToilet = exports.faToggleOn = exports.faToggleOff = exports.faTired = exports.faTintSlash = exports.faTint = exports.faTimesCircle = exports.faTimes = exports.faTicketAlt = exports.faThumbtack = exports.faThumbsUp = exports.faThumbsDown = exports.faThermometerThreeQuarters = exports.faThermometerQuarter = exports.faThermometerHalf = exports.faThermometerFull = exports.faThermometerEmpty = exports.faThermometer = exports.faTheaterMasks = exports.faThList = exports.faThLarge = exports.faTh = exports.faTextWidth = exports.faTextHeight = exports.faTerminal = exports.faTenge = exports.faTemperatureLow = exports.faTemperatureHigh = exports.faTeethOpen = exports.faTeeth = exports.faTaxi = exports.faTasks = exports.faTape = exports.faTags = exports.faTag = exports.faTachometerAlt = exports.faTablets = exports.faTabletAlt = exports.faTablet = exports.faTableTennis = exports.faTable = exports.faSyringe = exports.faSyncAlt = exports.faSync = exports.faSynagogue = exports.faSwimmingPool = exports.faSwimmer = exports.faSwatchbook = exports.faSurprise = exports.faSuperscript = exports.faSun = exports.faSuitcaseRolling = exports.faSuitcase = exports.faSubway = exports.faSubscript = exports.faStroopwafel = exports.faStrikethrough = exports.faStreetView = exports.faStream = exports.faStoreAlt = exports.faStore = void 0;
-exports.faYinYang = exports.faYenSign = exports.faXRay = exports.faWrench = exports.faWonSign = exports.faWineGlassAlt = exports.faWineGlass = exports.faWineBottle = exports.faWindowRestore = exports.faWindowMinimize = exports.faWindowMaximize = exports.faWindowClose = exports.faWind = exports.faWifi = exports.faWheelchair = exports.faWeightHanging = exports.faWeight = exports.faWaveSquare = exports.faWater = exports.faWarehouse = exports.faWallet = exports.faWalking = exports.faVrCardboard = exports.faVoteYea = exports.faVolumeUp = exports.faVolumeOff = exports.faVolumeMute = exports.faVolumeDown = exports.faVolleyballBall = exports.faVoicemail = exports.faVihara = exports.faVideoSlash = exports.faVideo = exports.faVials = exports.faVial = exports.faVenusMars = exports.faVenusDouble = exports.faVenus = exports.faVectorSquare = exports.faUtensils = exports.faUtensilSpoon = exports.faUsersCog = exports.faUsers = exports.faUserTimes = exports.faUserTie = exports.faUserTag = exports.faUserSlash = exports.faUserShield = exports.faUserSecret = exports.faUserPlus = exports.faUserNurse = exports.faUserNinja = exports.faUserMinus = exports.faUserMd = exports.faUserLock = exports.faUserInjured = exports.faUserGraduate = exports.faUserFriends = exports.faUserEdit = exports.faUserCog = exports.faUserClock = exports.faUserCircle = exports.faUserCheck = exports.faUserAstronaut = exports.faUserAltSlash = exports.faUserAlt = exports.faUser = void 0;
+exports.faCloudMeatball = exports.faCloudDownloadAlt = exports.faCloud = exports.faClosedCaptioning = exports.faClone = exports.faClock = exports.faClipboardList = exports.faClipboardCheck = exports.faClipboard = exports.faClinicMedical = exports.faCity = exports.faCircleNotch = exports.faCircle = exports.faChurch = exports.faChild = exports.faChevronUp = exports.faChevronRight = exports.faChevronLeft = exports.faChevronDown = exports.faChevronCircleUp = exports.faChevronCircleRight = exports.faChevronCircleLeft = exports.faChevronCircleDown = exports.faChessRook = exports.faChessQueen = exports.faChessPawn = exports.faChessKnight = exports.faChessKing = exports.faChessBoard = exports.faChessBishop = exports.faChess = exports.faCheese = exports.faCheckSquare = exports.faCheckDouble = exports.faCheckCircle = exports.faCheck = exports.faChartPie = exports.faChartLine = exports.faChartBar = exports.faChartArea = exports.faChargingStation = exports.faChalkboardTeacher = exports.faChalkboard = exports.faChair = exports.faCertificate = exports.faCat = exports.faCashRegister = exports.faCartPlus = exports.faCartArrowDown = exports.faCarrot = exports.faCaretUp = exports.faCaretSquareUp = exports.faCaretSquareRight = exports.faCaretSquareLeft = exports.faCaretSquareDown = exports.faCaretRight = exports.faCaretLeft = exports.faCaretDown = exports.faCaravan = exports.faCarSide = exports.faCarCrash = exports.faCarBattery = exports.faCarAlt = exports.faCar = exports.faCapsules = exports.faCannabis = exports.faCandyCane = exports.faCampground = exports.faCameraRetro = exports.faCamera = exports.faCalendarWeek = exports.faCalendarTimes = exports.faCalendarPlus = exports.faCalendarMinus = exports.faCalendarDay = exports.faCalendarCheck = exports.faCalendarAlt = exports.faCalendar = exports.faCalculator = exports.faBusinessTime = exports.faBusAlt = exports.faBus = exports.faBurn = exports.faBullseye = exports.faBullhorn = exports.faBuilding = exports.faBug = exports.faBrush = exports.faBroom = exports.faBroadcastTower = exports.faBriefcaseMedical = exports.faBriefcase = exports.faBreadSlice = exports.faBrain = exports.faBraille = exports.faBoxes = exports.faBoxTissue = exports.faBoxOpen = exports.faBox = exports.faBowlingBall = void 0;
+exports.faExchangeAlt = exports.faEuroSign = exports.faEthernet = exports.faEraser = exports.faEquals = exports.faEnvelopeSquare = exports.faEnvelopeOpenText = exports.faEnvelopeOpen = exports.faEnvelope = exports.faEllipsisV = exports.faEllipsisH = exports.faEject = exports.faEgg = exports.faEdit = exports.faDungeon = exports.faDumpsterFire = exports.faDumpster = exports.faDumbbell = exports.faDrumstickBite = exports.faDrumSteelpan = exports.faDrum = exports.faDrawPolygon = exports.faDragon = exports.faDraftingCompass = exports.faDownload = exports.faDove = exports.faDotCircle = exports.faDoorOpen = exports.faDoorClosed = exports.faDonate = exports.faDollyFlatbed = exports.faDolly = exports.faDollarSign = exports.faDog = exports.faDna = exports.faDizzy = exports.faDivide = exports.faDisease = exports.faDirections = exports.faDigitalTachograph = exports.faDiceTwo = exports.faDiceThree = exports.faDiceSix = exports.faDiceOne = exports.faDiceFour = exports.faDiceFive = exports.faDiceD6 = exports.faDiceD20 = exports.faDice = exports.faDiagnoses = exports.faDharmachakra = exports.faDesktop = exports.faDemocrat = exports.faDeaf = exports.faDatabase = exports.faCut = exports.faCubes = exports.faCube = exports.faCrutch = exports.faCrown = exports.faCrow = exports.faCrosshairs = exports.faCross = exports.faCropAlt = exports.faCrop = exports.faCreditCard = exports.faCouch = exports.faCopyright = exports.faCopy = exports.faCookieBite = exports.faCookie = exports.faConciergeBell = exports.faCompressArrowsAlt = exports.faCompressAlt = exports.faCompress = exports.faCompass = exports.faCompactDisc = exports.faCommentsDollar = exports.faComments = exports.faCommentSlash = exports.faCommentMedical = exports.faCommentDots = exports.faCommentDollar = exports.faCommentAlt = exports.faComment = exports.faColumns = exports.faCoins = exports.faCogs = exports.faCog = exports.faCoffee = exports.faCodeBranch = exports.faCode = exports.faCocktail = exports.faCloudUploadAlt = exports.faCloudSunRain = exports.faCloudSun = exports.faCloudShowersHeavy = exports.faCloudRain = exports.faCloudMoonRain = exports.faCloudMoon = void 0;
+exports.faGrinBeamSweat = exports.faGrinBeam = exports.faGrinAlt = exports.faGrin = exports.faGrimace = exports.faGreaterThanEqual = exports.faGreaterThan = exports.faGraduationCap = exports.faGopuram = exports.faGolfBall = exports.faGlobeEurope = exports.faGlobeAsia = exports.faGlobeAmericas = exports.faGlobeAfrica = exports.faGlobe = exports.faGlasses = exports.faGlassWhiskey = exports.faGlassMartiniAlt = exports.faGlassMartini = exports.faGlassCheers = exports.faGifts = exports.faGift = exports.faGhost = exports.faGenderless = exports.faGem = exports.faGavel = exports.faGasPump = exports.faGamepad = exports.faFutbol = exports.faFunnelDollar = exports.faFrownOpen = exports.faFrown = exports.faFrog = exports.faForward = exports.faFootballBall = exports.faFontAwesomeLogoFull = exports.faFont = exports.faFolderPlus = exports.faFolderOpen = exports.faFolderMinus = exports.faFolder = exports.faFlushed = exports.faFlask = exports.faFlagUsa = exports.faFlagCheckered = exports.faFlag = exports.faFistRaised = exports.faFish = exports.faFirstAid = exports.faFireExtinguisher = exports.faFireAlt = exports.faFire = exports.faFingerprint = exports.faFilter = exports.faFilm = exports.faFillDrip = exports.faFill = exports.faFileWord = exports.faFileVideo = exports.faFileUpload = exports.faFileSignature = exports.faFilePrescription = exports.faFilePowerpoint = exports.faFilePdf = exports.faFileMedicalAlt = exports.faFileMedical = exports.faFileInvoiceDollar = exports.faFileInvoice = exports.faFileImport = exports.faFileImage = exports.faFileExport = exports.faFileExcel = exports.faFileDownload = exports.faFileCsv = exports.faFileContract = exports.faFileCode = exports.faFileAudio = exports.faFileArchive = exports.faFileAlt = exports.faFile = exports.faFighterJet = exports.faFemale = exports.faFeatherAlt = exports.faFeather = exports.faFax = exports.faFaucet = exports.faFastForward = exports.faFastBackward = exports.faFan = exports.faEyeSlash = exports.faEyeDropper = exports.faEye = exports.faExternalLinkSquareAlt = exports.faExternalLinkAlt = exports.faExpandArrowsAlt = exports.faExpandAlt = exports.faExpand = exports.faExclamationTriangle = exports.faExclamationCircle = exports.faExclamation = void 0;
+exports.faInfoCircle = exports.faInfo = exports.faInfinity = exports.faIndustry = exports.faIndent = exports.faInbox = exports.faImages = exports.faImage = exports.faIgloo = exports.faIdCardAlt = exports.faIdCard = exports.faIdBadge = exports.faIcons = exports.faIcicles = exports.faIceCream = exports.faICursor = exports.faHryvnia = exports.faHouseUser = exports.faHouseDamage = exports.faHourglassStart = exports.faHourglassHalf = exports.faHourglassEnd = exports.faHourglass = exports.faHotel = exports.faHotdog = exports.faHotTub = exports.faHospitalUser = exports.faHospitalSymbol = exports.faHospitalAlt = exports.faHospital = exports.faHorseHead = exports.faHorse = exports.faHome = exports.faHollyBerry = exports.faHockeyPuck = exports.faHistory = exports.faHippo = exports.faHiking = exports.faHighlighter = exports.faHelicopter = exports.faHeartbeat = exports.faHeartBroken = exports.faHeart = exports.faHeadset = exports.faHeadphonesAlt = exports.faHeadphones = exports.faHeading = exports.faHeadSideVirus = exports.faHeadSideMask = exports.faHeadSideCoughSlash = exports.faHeadSideCough = exports.faHdd = exports.faHatWizard = exports.faHatCowboySide = exports.faHatCowboy = exports.faHashtag = exports.faHardHat = exports.faHanukiah = exports.faHandshakeSlash = exports.faHandshakeAltSlash = exports.faHandshake = exports.faHandsWash = exports.faHandsHelping = exports.faHands = exports.faHandSpock = exports.faHandSparkles = exports.faHandScissors = exports.faHandRock = exports.faHandPointer = exports.faHandPointUp = exports.faHandPointRight = exports.faHandPointLeft = exports.faHandPointDown = exports.faHandPeace = exports.faHandPaper = exports.faHandMiddleFinger = exports.faHandLizard = exports.faHandHoldingWater = exports.faHandHoldingUsd = exports.faHandHoldingMedical = exports.faHandHoldingHeart = exports.faHandHolding = exports.faHamsa = exports.faHammer = exports.faHamburger = exports.faHSquare = exports.faGuitar = exports.faGripVertical = exports.faGripLinesVertical = exports.faGripLines = exports.faGripHorizontal = exports.faGrinWink = exports.faGrinTongueWink = exports.faGrinTongueSquint = exports.faGrinTongue = exports.faGrinTears = exports.faGrinStars = exports.faGrinSquintTears = exports.faGrinSquint = exports.faGrinHearts = void 0;
+exports.faMouse = exports.faMountain = exports.faMotorcycle = exports.faMosque = exports.faMortarPestle = exports.faMoon = exports.faMonument = exports.faMoneyCheckAlt = exports.faMoneyCheck = exports.faMoneyBillWaveAlt = exports.faMoneyBillWave = exports.faMoneyBillAlt = exports.faMoneyBill = exports.faMobileAlt = exports.faMobile = exports.faMitten = exports.faMinusSquare = exports.faMinusCircle = exports.faMinus = exports.faMicroscope = exports.faMicrophoneSlash = exports.faMicrophoneAltSlash = exports.faMicrophoneAlt = exports.faMicrophone = exports.faMicrochip = exports.faMeteor = exports.faMercury = exports.faMenorah = exports.faMemory = exports.faMehRollingEyes = exports.faMehBlank = exports.faMeh = exports.faMedkit = exports.faMedal = exports.faMask = exports.faMarsStrokeV = exports.faMarsStrokeH = exports.faMarsStroke = exports.faMarsDouble = exports.faMars = exports.faMarker = exports.faMapSigns = exports.faMapPin = exports.faMapMarkerAlt = exports.faMapMarker = exports.faMapMarkedAlt = exports.faMapMarked = exports.faMap = exports.faMale = exports.faMailBulk = exports.faMagnet = exports.faMagic = exports.faLungsVirus = exports.faLungs = exports.faLuggageCart = exports.faLowVision = exports.faLongArrowAltUp = exports.faLongArrowAltRight = exports.faLongArrowAltLeft = exports.faLongArrowAltDown = exports.faLockOpen = exports.faLock = exports.faLocationArrow = exports.faListUl = exports.faListOl = exports.faListAlt = exports.faList = exports.faLiraSign = exports.faLink = exports.faLightbulb = exports.faLifeRing = exports.faLevelUpAlt = exports.faLevelDownAlt = exports.faLessThanEqual = exports.faLessThan = exports.faLemon = exports.faLeaf = exports.faLayerGroup = exports.faLaughWink = exports.faLaughSquint = exports.faLaughBeam = exports.faLaugh = exports.faLaptopMedical = exports.faLaptopHouse = exports.faLaptopCode = exports.faLaptop = exports.faLanguage = exports.faLandmark = exports.faKiwiBird = exports.faKissWinkHeart = exports.faKissBeam = exports.faKiss = exports.faKhanda = exports.faKeyboard = exports.faKey = exports.faKaaba = exports.faJournalWhills = exports.faJoint = exports.faJedi = exports.faItalic = void 0;
+exports.faRedo = exports.faRecycle = exports.faRecordVinyl = exports.faReceipt = exports.faRandom = exports.faRainbow = exports.faRadiationAlt = exports.faRadiation = exports.faQuran = exports.faQuoteRight = exports.faQuoteLeft = exports.faQuidditch = exports.faQuestionCircle = exports.faQuestion = exports.faQrcode = exports.faPuzzlePiece = exports.faPumpSoap = exports.faPumpMedical = exports.faProjectDiagram = exports.faProcedures = exports.faPrint = exports.faPrescriptionBottleAlt = exports.faPrescriptionBottle = exports.faPrescription = exports.faPrayingHands = exports.faPray = exports.faPowerOff = exports.faPoundSign = exports.faPortrait = exports.faPoop = exports.faPooStorm = exports.faPoo = exports.faPollH = exports.faPoll = exports.faPodcast = exports.faPlusSquare = exports.faPlusCircle = exports.faPlus = exports.faPlug = exports.faPlayCircle = exports.faPlay = exports.faPlaneSlash = exports.faPlaneDeparture = exports.faPlaneArrival = exports.faPlane = exports.faPlaceOfWorship = exports.faPizzaSlice = exports.faPills = exports.faPiggyBank = exports.faPhotoVideo = exports.faPhoneVolume = exports.faPhoneSquareAlt = exports.faPhoneSquare = exports.faPhoneSlash = exports.faPhoneAlt = exports.faPhone = exports.faPersonBooth = exports.faPercentage = exports.faPercent = exports.faPepperHot = exports.faPeopleCarry = exports.faPeopleArrows = exports.faPencilRuler = exports.faPencilAlt = exports.faPenSquare = exports.faPenNib = exports.faPenFancy = exports.faPenAlt = exports.faPen = exports.faPeace = exports.faPaw = exports.faPauseCircle = exports.faPause = exports.faPaste = exports.faPastafarianism = exports.faPassport = exports.faParking = exports.faParagraph = exports.faParachuteBox = exports.faPaperclip = exports.faPaperPlane = exports.faPallet = exports.faPalette = exports.faPaintRoller = exports.faPaintBrush = exports.faPager = exports.faOutdent = exports.faOtter = exports.faOm = exports.faOilCan = exports.faObjectUngroup = exports.faObjectGroup = exports.faNotesMedical = exports.faNotEqual = exports.faNewspaper = exports.faNeuter = exports.faNetworkWired = exports.faMusic = exports.faMugHot = exports.faMousePointer = void 0;
+exports.faSortUp = exports.faSortNumericUpAlt = exports.faSortNumericUp = exports.faSortNumericDownAlt = exports.faSortNumericDown = exports.faSortDown = exports.faSortAmountUpAlt = exports.faSortAmountUp = exports.faSortAmountDownAlt = exports.faSortAmountDown = exports.faSortAlphaUpAlt = exports.faSortAlphaUp = exports.faSortAlphaDownAlt = exports.faSortAlphaDown = exports.faSort = exports.faSolarPanel = exports.faSocks = exports.faSoap = exports.faSnowplow = exports.faSnowman = exports.faSnowflake = exports.faSnowboarding = exports.faSms = exports.faSmokingBan = exports.faSmoking = exports.faSmog = exports.faSmileWink = exports.faSmileBeam = exports.faSmile = exports.faSlidersH = exports.faSleigh = exports.faSlash = exports.faSkullCrossbones = exports.faSkull = exports.faSkiingNordic = exports.faSkiing = exports.faSkating = exports.faSitemap = exports.faSimCard = exports.faSignature = exports.faSignal = exports.faSignOutAlt = exports.faSignLanguage = exports.faSignInAlt = exports.faSign = exports.faShuttleVan = exports.faShower = exports.faShoppingCart = exports.faShoppingBasket = exports.faShoppingBag = exports.faShoePrints = exports.faShippingFast = exports.faShip = exports.faShieldVirus = exports.faShieldAlt = exports.faShekelSign = exports.faShareSquare = exports.faShareAltSquare = exports.faShareAlt = exports.faShare = exports.faShapes = exports.faServer = exports.faSeedling = exports.faSearchPlus = exports.faSearchMinus = exports.faSearchLocation = exports.faSearchDollar = exports.faSearch = exports.faSdCard = exports.faScroll = exports.faScrewdriver = exports.faSchool = exports.faSave = exports.faSatelliteDish = exports.faSatellite = exports.faSadTear = exports.faSadCry = exports.faRupeeSign = exports.faRunning = exports.faRulerVertical = exports.faRulerHorizontal = exports.faRulerCombined = exports.faRuler = exports.faRubleSign = exports.faRssSquare = exports.faRss = exports.faRoute = exports.faRocket = exports.faRobot = exports.faRoad = exports.faRing = exports.faRibbon = exports.faRetweet = exports.faRestroom = exports.faRepublican = exports.faReplyAll = exports.faReply = exports.faRemoveFormat = exports.faRegistered = exports.faRedoAlt = void 0;
+exports.faTrain = exports.faTrailer = exports.faTrafficLight = exports.faTrademark = exports.faTractor = exports.faToriiGate = exports.faTorah = exports.faTooth = exports.faTools = exports.faToolbox = exports.faToiletPaperSlash = exports.faToiletPaper = exports.faToilet = exports.faToggleOn = exports.faToggleOff = exports.faTired = exports.faTintSlash = exports.faTint = exports.faTimesCircle = exports.faTimes = exports.faTicketAlt = exports.faThumbtack = exports.faThumbsUp = exports.faThumbsDown = exports.faThermometerThreeQuarters = exports.faThermometerQuarter = exports.faThermometerHalf = exports.faThermometerFull = exports.faThermometerEmpty = exports.faThermometer = exports.faTheaterMasks = exports.faThList = exports.faThLarge = exports.faTh = exports.faTextWidth = exports.faTextHeight = exports.faTerminal = exports.faTenge = exports.faTemperatureLow = exports.faTemperatureHigh = exports.faTeethOpen = exports.faTeeth = exports.faTaxi = exports.faTasks = exports.faTape = exports.faTags = exports.faTag = exports.faTachometerAlt = exports.faTablets = exports.faTabletAlt = exports.faTablet = exports.faTableTennis = exports.faTable = exports.faSyringe = exports.faSyncAlt = exports.faSync = exports.faSynagogue = exports.faSwimmingPool = exports.faSwimmer = exports.faSwatchbook = exports.faSurprise = exports.faSuperscript = exports.faSun = exports.faSuitcaseRolling = exports.faSuitcase = exports.faSubway = exports.faSubscript = exports.faStroopwafel = exports.faStrikethrough = exports.faStreetView = exports.faStream = exports.faStoreSlash = exports.faStoreAltSlash = exports.faStoreAlt = exports.faStore = exports.faStopwatch20 = exports.faStopwatch = exports.faStopCircle = exports.faStop = exports.faStickyNote = exports.faStethoscope = exports.faStepForward = exports.faStepBackward = exports.faStarOfLife = exports.faStarOfDavid = exports.faStarHalfAlt = exports.faStarHalf = exports.faStarAndCrescent = exports.faStar = exports.faStamp = exports.faSquareRootAlt = exports.faSquareFull = exports.faSquare = exports.faSprayCan = exports.faSplotch = exports.faSpinner = exports.faSpider = exports.faSpellCheck = exports.faSpaceShuttle = exports.faSpa = void 0;
+exports.faYinYang = exports.faYenSign = exports.faXRay = exports.faWrench = exports.faWonSign = exports.faWineGlassAlt = exports.faWineGlass = exports.faWineBottle = exports.faWindowRestore = exports.faWindowMinimize = exports.faWindowMaximize = exports.faWindowClose = exports.faWind = exports.faWifi = exports.faWheelchair = exports.faWeightHanging = exports.faWeight = exports.faWaveSquare = exports.faWater = exports.faWarehouse = exports.faWallet = exports.faWalking = exports.faVrCardboard = exports.faVoteYea = exports.faVolumeUp = exports.faVolumeOff = exports.faVolumeMute = exports.faVolumeDown = exports.faVolleyballBall = exports.faVoicemail = exports.faViruses = exports.faVirusSlash = exports.faVirus = exports.faVihara = exports.faVideoSlash = exports.faVideo = exports.faVials = exports.faVial = exports.faVenusMars = exports.faVenusDouble = exports.faVenus = exports.faVectorSquare = exports.faUtensils = exports.faUtensilSpoon = exports.faUsersCog = exports.faUsers = exports.faUserTimes = exports.faUserTie = exports.faUserTag = exports.faUserSlash = exports.faUserShield = exports.faUserSecret = exports.faUserPlus = exports.faUserNurse = exports.faUserNinja = exports.faUserMinus = exports.faUserMd = exports.faUserLock = exports.faUserInjured = exports.faUserGraduate = exports.faUserFriends = exports.faUserEdit = exports.faUserCog = exports.faUserClock = exports.faUserCircle = exports.faUserCheck = exports.faUserAstronaut = exports.faUserAltSlash = exports.faUserAlt = exports.faUser = exports.faUpload = exports.faUnlockAlt = exports.faUnlock = exports.faUnlink = exports.faUniversity = exports.faUniversalAccess = exports.faUndoAlt = exports.faUndo = exports.faUnderline = exports.faUmbrellaBeach = exports.faUmbrella = exports.faTv = exports.faTty = exports.faTshirt = exports.faTruckPickup = exports.faTruckMoving = exports.faTruckMonster = exports.faTruckLoading = exports.faTruck = exports.faTrophy = exports.faTree = exports.faTrashRestoreAlt = exports.faTrashRestore = exports.faTrashAlt = exports.faTrash = exports.faTransgenderAlt = exports.faTransgender = exports.faTram = void 0;
 var prefix = "fas";
 exports.prefix = prefix;
 var faAd = {
@@ -12456,6 +12441,12 @@ var faBoxOpen = {
   icon: [640, 512, [], "f49e", "M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z"]
 };
 exports.faBoxOpen = faBoxOpen;
+var faBoxTissue = {
+  prefix: 'fas',
+  iconName: 'box-tissue',
+  icon: [512, 512, [], "f95b", "M383.88,287.82l64-192H338.47a70.2,70.2,0,0,1-66.59-48,70.21,70.21,0,0,0-66.6-48H63.88l64,288Zm-384,192a32,32,0,0,0,32,32h448a32,32,0,0,0,32-32v-64H-.12Zm480-256H438.94l-21.33,64h14.27a16,16,0,0,1,0,32h-352a16,16,0,1,1,0-32H95.09l-14.22-64h-49a32,32,0,0,0-32,32v128h512v-128A32,32,0,0,0,479.88,223.82Z"]
+};
+exports.faBoxTissue = faBoxTissue;
 var faBoxes = {
   prefix: 'fas',
   iconName: 'boxes',
@@ -13404,6 +13395,12 @@ var faDirections = {
   icon: [512, 512, [], "f5eb", "M502.61 233.32L278.68 9.39c-12.52-12.52-32.83-12.52-45.36 0L9.39 233.32c-12.52 12.53-12.52 32.83 0 45.36l223.93 223.93c12.52 12.53 32.83 12.53 45.36 0l223.93-223.93c12.52-12.53 12.52-32.83 0-45.36zm-100.98 12.56l-84.21 77.73c-5.12 4.73-13.43 1.1-13.43-5.88V264h-96v64c0 4.42-3.58 8-8 8h-32c-4.42 0-8-3.58-8-8v-80c0-17.67 14.33-32 32-32h112v-53.73c0-6.97 8.3-10.61 13.43-5.88l84.21 77.73c3.43 3.17 3.43 8.59 0 11.76z"]
 };
 exports.faDirections = faDirections;
+var faDisease = {
+  prefix: 'fas',
+  iconName: 'disease',
+  icon: [512, 512, [], "f7fa", "M472.29 195.9l-67.06-23c-19.28-6.6-33.54-20.92-38.14-38.31l-16-60.45c-11.58-43.77-76.57-57.13-110-22.62L195 99.24c-13.26 13.71-33.54 20.93-54.2 19.31l-71.9-5.62c-52-4.07-86.93 44.89-59 82.84l38.54 52.42c11.08 15.07 12.82 33.86 4.64 50.24l-28.43 57C4 396.67 47.46 440.29 98.11 429.23l70-15.28c20.11-4.39 41.45 0 57.07 11.73l54.32 40.83c39.32 29.56 101 7.57 104.45-37.22l4.7-61.86c1.35-17.8 12.8-33.87 30.63-43l62-31.74c44.84-22.96 39.55-80.17-8.99-96.79zM160 256a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm128 96a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm16-128a16 16 0 1 1 16-16 16 16 0 0 1-16 16z"]
+};
+exports.faDisease = faDisease;
 var faDivide = {
   prefix: 'fas',
   iconName: 'divide',
@@ -13710,6 +13707,12 @@ var faFastForward = {
   icon: [512, 512, [], "f050", "M512 76v360c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12V284.1L276.5 440.6c-20.6 17.2-52.5 2.8-52.5-24.6V284.1L52.5 440.6C31.9 457.8 0 443.4 0 416V96c0-27.4 31.9-41.7 52.5-24.6L224 226.8V96c0-27.4 31.9-41.7 52.5-24.6L448 226.8V76c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12z"]
 };
 exports.faFastForward = faFastForward;
+var faFaucet = {
+  prefix: 'fas',
+  iconName: 'faucet',
+  icon: [512, 512, [], "f905", "M352,256H313.39c-15.71-13.44-35.46-23.07-57.39-28V180.44l-32-3.38-32,3.38V228c-21.93,5-41.68,14.6-57.39,28H16A16,16,0,0,0,0,272v96a16,16,0,0,0,16,16h92.79C129.38,421.73,173,448,224,448s94.62-26.27,115.21-64H352a32,32,0,0,1,32,32,32,32,0,0,0,32,32h64a32,32,0,0,0,32-32A160,160,0,0,0,352,256ZM81.59,159.91l142.41-15,142.41,15c9.42,1,17.59-6.81,17.59-16.8V112.89c0-10-8.17-17.8-17.59-16.81L256,107.74V80a16,16,0,0,0-16-16H208a16,16,0,0,0-16,16v27.74L81.59,96.08C72.17,95.09,64,102.9,64,112.89v30.22C64,153.1,72.17,160.91,81.59,159.91Z"]
+};
+exports.faFaucet = faFaucet;
 var faFax = {
   prefix: 'fas',
   iconName: 'fax',
@@ -14340,12 +14343,24 @@ var faHandHoldingHeart = {
   icon: [576, 512, [], "f4be", "M275.3 250.5c7 7.4 18.4 7.4 25.5 0l108.9-114.2c31.6-33.2 29.8-88.2-5.6-118.8-30.8-26.7-76.7-21.9-104.9 7.7L288 36.9l-11.1-11.6C248.7-4.4 202.8-9.2 172 17.5c-35.3 30.6-37.2 85.6-5.6 118.8l108.9 114.2zm290 77.6c-11.8-10.7-30.2-10-42.6 0L430.3 402c-11.3 9.1-25.4 14-40 14H272c-8.8 0-16-7.2-16-16s7.2-16 16-16h78.3c15.9 0 30.7-10.9 33.3-26.6 3.3-20-12.1-37.4-31.6-37.4H192c-27 0-53.1 9.3-74.1 26.3L71.4 384H16c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h356.8c14.5 0 28.6-4.9 40-14L564 377c15.2-12.1 16.4-35.3 1.3-48.9z"]
 };
 exports.faHandHoldingHeart = faHandHoldingHeart;
+var faHandHoldingMedical = {
+  prefix: 'fas',
+  iconName: 'hand-holding-medical',
+  icon: [576, 512, [], "f95c", "M159.88,175.82h64v64a16,16,0,0,0,16,16h64a16,16,0,0,0,16-16v-64h64a16,16,0,0,0,16-16v-64a16,16,0,0,0-16-16h-64v-64a16,16,0,0,0-16-16h-64a16,16,0,0,0-16,16v64h-64a16,16,0,0,0-16,16v64A16,16,0,0,0,159.88,175.82ZM568.07,336.13a39.91,39.91,0,0,0-55.93-8.47L392.47,415.84H271.86a16,16,0,0,1,0-32H350.1c16,0,30.75-10.87,33.37-26.61a32.06,32.06,0,0,0-31.62-37.38h-160a117.7,117.7,0,0,0-74.12,26.25l-46.5,37.74H15.87a16.11,16.11,0,0,0-16,16v96a16.11,16.11,0,0,0,16,16h347a104.8,104.8,0,0,0,61.7-20.27L559.6,392A40,40,0,0,0,568.07,336.13Z"]
+};
+exports.faHandHoldingMedical = faHandHoldingMedical;
 var faHandHoldingUsd = {
   prefix: 'fas',
   iconName: 'hand-holding-usd',
   icon: [576, 512, [], "f4c0", "M271.06,144.3l54.27,14.3a8.59,8.59,0,0,1,6.63,8.1c0,4.6-4.09,8.4-9.12,8.4h-35.6a30,30,0,0,1-11.19-2.2c-5.24-2.2-11.28-1.7-15.3,2l-19,17.5a11.68,11.68,0,0,0-2.25,2.66,11.42,11.42,0,0,0,3.88,15.74,83.77,83.77,0,0,0,34.51,11.5V240c0,8.8,7.83,16,17.37,16h17.37c9.55,0,17.38-7.2,17.38-16V222.4c32.93-3.6,57.84-31,53.5-63-3.15-23-22.46-41.3-46.56-47.7L282.68,97.4a8.59,8.59,0,0,1-6.63-8.1c0-4.6,4.09-8.4,9.12-8.4h35.6A30,30,0,0,1,332,83.1c5.23,2.2,11.28,1.7,15.3-2l19-17.5A11.31,11.31,0,0,0,368.47,61a11.43,11.43,0,0,0-3.84-15.78,83.82,83.82,0,0,0-34.52-11.5V16c0-8.8-7.82-16-17.37-16H295.37C285.82,0,278,7.2,278,16V33.6c-32.89,3.6-57.85,31-53.51,63C227.63,119.6,247,137.9,271.06,144.3ZM565.27,328.1c-11.8-10.7-30.2-10-42.6,0L430.27,402a63.64,63.64,0,0,1-40,14H272a16,16,0,0,1,0-32h78.29c15.9,0,30.71-10.9,33.25-26.6a31.2,31.2,0,0,0,.46-5.46A32,32,0,0,0,352,320H192a117.66,117.66,0,0,0-74.1,26.29L71.4,384H16A16,16,0,0,0,0,400v96a16,16,0,0,0,16,16H372.77a64,64,0,0,0,40-14L564,377a32,32,0,0,0,1.28-48.9Z"]
 };
 exports.faHandHoldingUsd = faHandHoldingUsd;
+var faHandHoldingWater = {
+  prefix: 'fas',
+  iconName: 'hand-holding-water',
+  icon: [576, 512, [], "f4c1", "M288 256c53 0 96-42.1 96-94 0-40-57.1-120.7-83.2-155.6-6.4-8.5-19.2-8.5-25.6 0C249.1 41.3 192 122 192 162c0 51.9 43 94 96 94zm277.3 72.1c-11.8-10.7-30.2-10-42.6 0L430.3 402c-11.3 9.1-25.4 14-40 14H272c-8.8 0-16-7.2-16-16s7.2-16 16-16h78.3c15.9 0 30.7-10.9 33.3-26.6 3.3-20-12.1-37.4-31.6-37.4H192c-27 0-53.1 9.3-74.1 26.3L71.4 384H16c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h356.8c14.5 0 28.6-4.9 40-14L564 377c15.2-12.1 16.4-35.3 1.3-48.9z"]
+};
+exports.faHandHoldingWater = faHandHoldingWater;
 var faHandLizard = {
   prefix: 'fas',
   iconName: 'hand-lizard',
@@ -14412,6 +14427,12 @@ var faHandScissors = {
   icon: [512, 512, [], "f257", "M216 440c0-22.092 17.909-40 40-40v-8h-32c-22.091 0-40-17.908-40-40s17.909-40 40-40h32v-8H48c-26.51 0-48-21.49-48-48s21.49-48 48-48h208v-13.572l-177.551-69.74c-24.674-9.694-36.818-37.555-27.125-62.228 9.693-24.674 37.554-36.817 62.228-27.124l190.342 74.765 24.872-31.09c12.306-15.381 33.978-19.515 51.081-9.741l112 64A40.002 40.002 0 0 1 512 168v240c0 18.562-12.77 34.686-30.838 38.937l-136 32A39.982 39.982 0 0 1 336 480h-80c-22.091 0-40-17.908-40-40z"]
 };
 exports.faHandScissors = faHandScissors;
+var faHandSparkles = {
+  prefix: 'fas',
+  iconName: 'hand-sparkles',
+  icon: [640, 512, [], "f95d", "M106.66,170.64l.09,0,49.55-20.65a7.32,7.32,0,0,0,3.68-6h0a7.29,7.29,0,0,0-3.68-6l-49.57-20.67-.07,0L86,67.68a6.66,6.66,0,0,0-11.92,0l-20.7,49.63-.05,0L3.7,138A7.29,7.29,0,0,0,0,144H0a7.32,7.32,0,0,0,3.68,6L53.27,170.6l.07,0L74,220.26a6.65,6.65,0,0,0,11.92,0l20.69-49.62ZM471.38,467.41l-1-.42-1-.5a38.67,38.67,0,0,1,0-69.14l1-.49,1-.43,37.49-15.63,15.63-37.48.41-1,.47-.95c3.85-7.74,10.58-13.63,18.35-17.34,0-1.33.25-2.69.27-4V144a32,32,0,0,0-64,0v72a8,8,0,0,1-8,8H456a8,8,0,0,1-8-8V64a32,32,0,0,0-64,0V216a8,8,0,0,1-8,8H360a8,8,0,0,1-8-8V32a32,32,0,0,0-64,0V216a8,8,0,0,1-8,8H264a8,8,0,0,1-8-8V64a32,32,0,0,0-64,0v241l-23.59-32.49a40,40,0,0,0-64.71,47.09L229.3,492.21A48.07,48.07,0,0,0,268.09,512H465.7c19.24,0,35.65-11.73,43.24-28.79l-.07-.17ZM349.79,339.52,320,351.93l-12.42,29.78a4,4,0,0,1-7.15,0L288,351.93l-29.79-12.41a4,4,0,0,1,0-7.16L288,319.94l12.42-29.78a4,4,0,0,1,7.15,0L320,319.94l29.79,12.42a4,4,0,0,1,0,7.16ZM640,431.91a7.28,7.28,0,0,0-3.68-6l-49.57-20.67-.07,0L566,355.63a6.66,6.66,0,0,0-11.92,0l-20.7,49.63-.05,0L483.7,426a7.28,7.28,0,0,0-3.68,6h0a7.29,7.29,0,0,0,3.68,5.95l49.57,20.67.07,0L554,508.21a6.65,6.65,0,0,0,11.92,0l20.69-49.62h0l.09,0,49.55-20.66a7.29,7.29,0,0,0,3.68-5.95h0Z"]
+};
+exports.faHandSparkles = faHandSparkles;
 var faHandSpock = {
   prefix: 'fas',
   iconName: 'hand-spock',
@@ -14430,12 +14451,30 @@ var faHandsHelping = {
   icon: [640, 512, [], "f4c4", "M488 192H336v56c0 39.7-32.3 72-72 72s-72-32.3-72-72V126.4l-64.9 39C107.8 176.9 96 197.8 96 220.2v47.3l-80 46.2C.7 322.5-4.6 342.1 4.3 357.4l80 138.6c8.8 15.3 28.4 20.5 43.7 11.7L231.4 448H368c35.3 0 64-28.7 64-64h16c17.7 0 32-14.3 32-32v-64h8c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24zm147.7-37.4L555.7 16C546.9.7 527.3-4.5 512 4.3L408.6 64H306.4c-12 0-23.7 3.4-33.9 9.7L239 94.6c-9.4 5.8-15 16.1-15 27.1V248c0 22.1 17.9 40 40 40s40-17.9 40-40v-88h184c30.9 0 56 25.1 56 56v28.5l80-46.2c15.3-8.9 20.5-28.4 11.7-43.7z"]
 };
 exports.faHandsHelping = faHandsHelping;
+var faHandsWash = {
+  prefix: 'fas',
+  iconName: 'hands-wash',
+  icon: [576, 512, [], "f95e", "M496,224a48,48,0,1,0-48-48A48,48,0,0,0,496,224ZM311.47,178.45A56.77,56.77,0,0,1,328,176a56,56,0,0,1,19,3.49l15.35-48.61A24,24,0,0,0,342,99.74c-11.53-1.35-22.21,6.44-25.71,17.51l-20.9,66.17ZM93.65,386.33c.8-.19,1.54-.54,2.35-.71V359.93a156,156,0,0,1,107.06-148l73.7-22.76L310.92,81.05a24,24,0,0,0-20.33-31.11c-11.53-1.34-22.22,6.45-25.72,17.52L231.42,173.88a8,8,0,0,1-15.26-4.83L259.53,31.26A24,24,0,0,0,239.2.15C227.67-1.19,217,6.6,213.49,17.66L165.56,169.37a8,8,0,1,1-15.26-4.82l38.56-122a24,24,0,0,0-20.33-31.11C157,10,146.32,17.83,142.82,28.9l-60,189.85L80.76,168.7A24,24,0,0,0,56.9,144.55c-13.23-.05-24.72,10.54-24.9,23.86V281.14A123.69,123.69,0,0,0,93.65,386.33ZM519.1,336H360a8,8,0,0,1,0-16H488a24,24,0,0,0,23.54-28.76C509.35,279.84,498.71,272,487.1,272H288l47.09-17.06a24,24,0,0,0-14.18-45.88L213.19,242.31A123.88,123.88,0,0,0,128,360v25.65a79.78,79.78,0,0,1,58,108.63A118.9,118.9,0,0,0,248,512H456a24,24,0,0,0,23.54-28.76C477.35,471.84,466.71,464,455.1,464H360a8,8,0,0,1,0-16H488a24,24,0,0,0,23.54-28.76C509.35,407.84,498.71,400,487.1,400H360a8,8,0,0,1,0-16H520a24,24,0,0,0,23.54-28.76C541.35,343.84,530.71,336,519.1,336ZM416,64a32,32,0,1,0-32-32A32,32,0,0,0,416,64ZM112,416a48,48,0,1,0,48,48A48,48,0,0,0,112,416Z"]
+};
+exports.faHandsWash = faHandsWash;
 var faHandshake = {
   prefix: 'fas',
   iconName: 'handshake',
   icon: [640, 512, [], "f2b5", "M434.7 64h-85.9c-8 0-15.7 3-21.6 8.4l-98.3 90c-.1.1-.2.3-.3.4-16.6 15.6-16.3 40.5-2.1 56 12.7 13.9 39.4 17.6 56.1 2.7.1-.1.3-.1.4-.2l79.9-73.2c6.5-5.9 16.7-5.5 22.6 1 6 6.5 5.5 16.6-1 22.6l-26.1 23.9L504 313.8c2.9 2.4 5.5 5 7.9 7.7V128l-54.6-54.6c-5.9-6-14.1-9.4-22.6-9.4zM544 128.2v223.9c0 17.7 14.3 32 32 32h64V128.2h-96zm48 223.9c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zM0 384h64c17.7 0 32-14.3 32-32V128.2H0V384zm48-63.9c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16c0-8.9 7.2-16 16-16zm435.9 18.6L334.6 217.5l-30 27.5c-29.7 27.1-75.2 24.5-101.7-4.4-26.9-29.4-24.8-74.9 4.4-101.7L289.1 64h-83.8c-8.5 0-16.6 3.4-22.6 9.4L128 128v223.9h18.3l90.5 81.9c27.4 22.3 67.7 18.1 90-9.3l.2-.2 17.9 15.5c15.9 13 39.4 10.5 52.3-5.4l31.4-38.6 5.4 4.4c13.7 11.1 33.9 9.1 45-4.7l9.5-11.7c11.2-13.8 9.1-33.9-4.6-45.1z"]
 };
 exports.faHandshake = faHandshake;
+var faHandshakeAltSlash = {
+  prefix: 'fas',
+  iconName: 'handshake-alt-slash',
+  icon: [640, 512, [], "f95f", "M358.59,195.6,504.2,313.8a63.4,63.4,0,0,1,22.21,37.91H624a16.05,16.05,0,0,0,16-16V143.91A16,16,0,0,0,624,128H512L457.41,73.41A32,32,0,0,0,434.8,64H348.91a32,32,0,0,0-21.61,8.41l-88.12,80.68-25.69-19.85L289.09,64H205.3a32,32,0,0,0-22.6,9.41l-20.34,20.3L45.47,3.38A16,16,0,0,0,23,6.19L3.38,31.46A16,16,0,0,0,6.19,53.91L594.54,508.63A16,16,0,0,0,617,505.82l19.64-25.27a16,16,0,0,0-2.81-22.45L303.4,202.72l32.69-29.92,27-24.7a16,16,0,0,1,21.61,23.61ZM16,128A16.05,16.05,0,0,0,0,144V335.91a16,16,0,0,0,16,16H146.3l90.5,81.89a64,64,0,0,0,90-9.3l.2-.2,17.91,15.5a37.16,37.16,0,0,0,52.29-5.39l8.8-10.82L23.56,128Z"]
+};
+exports.faHandshakeAltSlash = faHandshakeAltSlash;
+var faHandshakeSlash = {
+  prefix: 'fas',
+  iconName: 'handshake-slash',
+  icon: [640, 512, [], "f960", "M0,128.21V384H64a32,32,0,0,0,32-32V184L23.83,128.21ZM48,320.1a16,16,0,1,1-16,16A16,16,0,0,1,48,320.1Zm80,31.81h18.3l90.5,81.89a64,64,0,0,0,90-9.3l.2-.2,17.91,15.5a37.16,37.16,0,0,0,52.29-5.39l8.8-10.82L128,208.72Zm416-223.7V352.1a32,32,0,0,0,32,32h64V128.21ZM592,352.1a16,16,0,1,1,16-16A16,16,0,0,1,592,352.1ZM303.33,202.67l59.58-54.57a16,16,0,0,1,21.59,23.61L358.41,195.6,504,313.8a73.08,73.08,0,0,1,7.91,7.7V128L457.3,73.41A31.76,31.76,0,0,0,434.7,64H348.8a31.93,31.93,0,0,0-21.6,8.41l-88.07,80.64-25.64-19.81L289.09,64H205.3a32,32,0,0,0-22.6,9.41L162.36,93.72,45.47,3.38A16,16,0,0,0,23,6.19L3.38,31.46A16,16,0,0,0,6.19,53.91L594.53,508.63A16,16,0,0,0,617,505.82l19.65-25.27a16,16,0,0,0-2.82-22.45Z"]
+};
+exports.faHandshakeSlash = faHandshakeSlash;
 var faHanukiah = {
   prefix: 'fas',
   iconName: 'hanukiah',
@@ -14478,6 +14517,30 @@ var faHdd = {
   icon: [576, 512, [], "f0a0", "M576 304v96c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48v-96c0-26.51 21.49-48 48-48h480c26.51 0 48 21.49 48 48zm-48-80a79.557 79.557 0 0 1 30.777 6.165L462.25 85.374A48.003 48.003 0 0 0 422.311 64H153.689a48 48 0 0 0-39.938 21.374L17.223 230.165A79.557 79.557 0 0 1 48 224h480zm-48 96c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm-96 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32z"]
 };
 exports.faHdd = faHdd;
+var faHeadSideCough = {
+  prefix: 'fas',
+  iconName: 'head-side-cough',
+  icon: [640, 512, [], "f961", "M616,304a24,24,0,1,0-24-24A24,24,0,0,0,616,304ZM552,416a24,24,0,1,0,24,24A24,24,0,0,0,552,416Zm-64-56a24,24,0,1,0,24,24A24,24,0,0,0,488,360ZM616,464a24,24,0,1,0,24,24A24,24,0,0,0,616,464Zm0-104a24,24,0,1,0,24,24A24,24,0,0,0,616,360Zm-64-40a24,24,0,1,0,24,24A24,24,0,0,0,552,320Zm-74.78-45c-21-47.12-48.5-151.75-73.12-186.75A208.13,208.13,0,0,0,234.1,0H192C86,0,0,86,0,192c0,56.75,24.75,107.62,64,142.88V512H288V480h64a64,64,0,0,0,64-64H320a32,32,0,0,1,0-64h96V320h32A32,32,0,0,0,477.22,275ZM288,224a32,32,0,1,1,32-32A32.07,32.07,0,0,1,288,224Z"]
+};
+exports.faHeadSideCough = faHeadSideCough;
+var faHeadSideCoughSlash = {
+  prefix: 'fas',
+  iconName: 'head-side-cough-slash',
+  icon: [640, 512, [], "f962", "M454.11,319.21c19.56-3.81,31.62-25,23.11-44.21-21-47.12-48.5-151.75-73.12-186.75A208.13,208.13,0,0,0,234.1,0H192A190.64,190.64,0,0,0,84.18,33.3L45.46,3.38A16,16,0,0,0,23,6.19L3.37,31.46A16,16,0,0,0,6.18,53.91L594.53,508.63A16,16,0,0,0,617,505.82l19.64-25.27a16,16,0,0,0-2.81-22.45ZM313.39,210.45,263.61,172c5.88-7.14,14.43-12,24.36-12a32.06,32.06,0,0,1,32,32C320,199,317.24,205.17,313.39,210.45ZM616,304a24,24,0,1,0-24-24A24,24,0,0,0,616,304Zm-64,64a24,24,0,1,0-24-24A24,24,0,0,0,552,368ZM288,384a32,32,0,0,1,32-32h19.54L20.73,105.59A190.86,190.86,0,0,0,0,192c0,56.75,24.75,107.62,64,142.88V512H288V480h64a64,64,0,0,0,64-64H320A32,32,0,0,1,288,384Zm328-24a24,24,0,1,0,24,24A24,24,0,0,0,616,360Z"]
+};
+exports.faHeadSideCoughSlash = faHeadSideCoughSlash;
+var faHeadSideMask = {
+  prefix: 'fas',
+  iconName: 'head-side-mask',
+  icon: [512, 512, [], "f963", "M.15,184.42C-2.17,244.21,23,298.06,64,334.88V512H224V316.51L3.67,156.25A182.28,182.28,0,0,0,.15,184.42ZM509.22,275c-21-47.12-48.5-151.75-73.12-186.75A208.11,208.11,0,0,0,266.11,0H200C117,0,42.48,50.57,13.25,123.65L239.21,288H511.76A31.35,31.35,0,0,0,509.22,275ZM320,224a32,32,0,1,1,32-32A32.07,32.07,0,0,1,320,224Zm16,144H496l16-48H256V512H401.88a64,64,0,0,0,60.71-43.76L464,464H336a16,16,0,0,1,0-32H474.67l10.67-32H336a16,16,0,0,1,0-32Z"]
+};
+exports.faHeadSideMask = faHeadSideMask;
+var faHeadSideVirus = {
+  prefix: 'fas',
+  iconName: 'head-side-virus',
+  icon: [512, 512, [], "f964", "M272,240a16,16,0,1,0,16,16A16,16,0,0,0,272,240Zm-64-64a16,16,0,1,0,16,16A16,16,0,0,0,208,176Zm301.2,99c-20.93-47.12-48.43-151.73-73.07-186.75A207.9,207.9,0,0,0,266.09,0H192C86,0,0,86,0,192A191.23,191.23,0,0,0,64,334.81V512H320V448h64a64,64,0,0,0,64-64V320H480A32,32,0,0,0,509.2,275ZM368,240H355.88c-28.51,0-42.79,34.47-22.63,54.63l8.58,8.57a16,16,0,1,1-22.63,22.63l-8.57-8.58C290.47,297.09,256,311.37,256,339.88V352a16,16,0,0,1-32,0V339.88c0-28.51-34.47-42.79-54.63-22.63l-8.57,8.58a16,16,0,0,1-22.63-22.63l8.58-8.57c20.16-20.16,5.88-54.63-22.63-54.63H112a16,16,0,0,1,0-32h12.12c28.51,0,42.79-34.47,22.63-54.63l-8.58-8.57a16,16,0,0,1,22.63-22.63l8.57,8.58c20.16,20.16,54.63,5.88,54.63-22.63V96a16,16,0,0,1,32,0v12.12c0,28.51,34.47,42.79,54.63,22.63l8.57-8.58a16,16,0,0,1,22.63,22.63l-8.58,8.57C313.09,173.53,327.37,208,355.88,208H368a16,16,0,0,1,0,32Z"]
+};
+exports.faHeadSideVirus = faHeadSideVirus;
 var faHeading = {
   prefix: 'fas',
   iconName: 'heading',
@@ -14598,6 +14661,12 @@ var faHospitalSymbol = {
   icon: [512, 512, [], "f47e", "M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm112 376c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-88h-96v88c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V136c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v88h96v-88c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v240z"]
 };
 exports.faHospitalSymbol = faHospitalSymbol;
+var faHospitalUser = {
+  prefix: 'fas',
+  iconName: 'hospital-user',
+  icon: [640, 512, [], "f80d", "M480 320a96 96 0 1 0-96-96 96 96 0 0 0 96 96zm48 32a22.88 22.88 0 0 0-7.06 1.09 124.76 124.76 0 0 1-81.89 0A22.82 22.82 0 0 0 432 352a112 112 0 0 0-112 112.62c.14 26.26 21.73 47.38 48 47.38h224c26.27 0 47.86-21.12 48-47.38A112 112 0 0 0 528 352zm-198.09 10.45A145.19 145.19 0 0 1 352 344.62V128a32 32 0 0 0-32-32h-32V32a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v64H32a32 32 0 0 0-32 32v368a16 16 0 0 0 16 16h288.31A78.62 78.62 0 0 1 288 464.79a143.06 143.06 0 0 1 41.91-102.34zM144 404a12 12 0 0 1-12 12H92a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm0-128a12 12 0 0 1-12 12H92a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm48-122a6 6 0 0 1-6 6h-20a6 6 0 0 1-6-6v-26h-26a6 6 0 0 1-6-6v-20a6 6 0 0 1 6-6h26V70a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v26h26a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6h-26zm80 250a12 12 0 0 1-12 12h-40a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12zm0-128a12 12 0 0 1-12 12h-40a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12z"]
+};
+exports.faHospitalUser = faHospitalUser;
 var faHotTub = {
   prefix: 'fas',
   iconName: 'hot-tub',
@@ -14646,6 +14715,12 @@ var faHouseDamage = {
   icon: [576, 512, [], "f6f1", "M288 114.96L69.47 307.71c-1.62 1.46-3.69 2.14-5.47 3.35V496c0 8.84 7.16 16 16 16h149.23L192 439.19l104.11-64-60.16-119.22L384 392.75l-104.11 64L319.81 512H496c8.84 0 16-7.16 16-16V311.1c-1.7-1.16-3.72-1.82-5.26-3.2L288 114.96zm282.69 121.32L512 184.45V48c0-8.84-7.16-16-16-16h-64c-8.84 0-16 7.16-16 16v51.69L314.75 10.31C307.12 3.45 297.56.01 288 0s-19.1 3.41-26.7 10.27L5.31 236.28c-6.57 5.91-7.12 16.02-1.21 22.6l21.4 23.82c5.9 6.57 16.02 7.12 22.6 1.21L277.42 81.63c6.05-5.33 15.12-5.33 21.17 0L527.91 283.9c6.57 5.9 16.69 5.36 22.6-1.21l21.4-23.82c5.9-6.57 5.36-16.69-1.22-22.59z"]
 };
 exports.faHouseDamage = faHouseDamage;
+var faHouseUser = {
+  prefix: 'fas',
+  iconName: 'house-user',
+  icon: [576, 512, [], "f965", "M570.69,236.27,512,184.44V48a16,16,0,0,0-16-16H432a16,16,0,0,0-16,16V99.67L314.78,10.3C308.5,4.61,296.53,0,288,0s-20.46,4.61-26.74,10.3l-256,226A18.27,18.27,0,0,0,0,248.2a18.64,18.64,0,0,0,4.09,10.71L25.5,282.7a21.14,21.14,0,0,0,12,5.3,21.67,21.67,0,0,0,10.69-4.11l15.9-14V480a32,32,0,0,0,32,32H480a32,32,0,0,0,32-32V269.88l15.91,14A21.94,21.94,0,0,0,538.63,288a20.89,20.89,0,0,0,11.87-5.31l21.41-23.81A21.64,21.64,0,0,0,576,248.19,21,21,0,0,0,570.69,236.27ZM288,176a64,64,0,1,1-64,64A64,64,0,0,1,288,176ZM400,448H176a16,16,0,0,1-16-16,96,96,0,0,1,96-96h64a96,96,0,0,1,96,96A16,16,0,0,1,400,448Z"]
+};
+exports.faHouseUser = faHouseUser;
 var faHryvnia = {
   prefix: 'fas',
   iconName: 'hryvnia',
@@ -14844,6 +14919,12 @@ var faLaptopCode = {
   icon: [640, 512, [], "f5fc", "M255.03 261.65c6.25 6.25 16.38 6.25 22.63 0l11.31-11.31c6.25-6.25 6.25-16.38 0-22.63L253.25 192l35.71-35.72c6.25-6.25 6.25-16.38 0-22.63l-11.31-11.31c-6.25-6.25-16.38-6.25-22.63 0l-58.34 58.34c-6.25 6.25-6.25 16.38 0 22.63l58.35 58.34zm96.01-11.3l11.31 11.31c6.25 6.25 16.38 6.25 22.63 0l58.34-58.34c6.25-6.25 6.25-16.38 0-22.63l-58.34-58.34c-6.25-6.25-16.38-6.25-22.63 0l-11.31 11.31c-6.25 6.25-6.25 16.38 0 22.63L386.75 192l-35.71 35.72c-6.25 6.25-6.25 16.38 0 22.63zM624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z"]
 };
 exports.faLaptopCode = faLaptopCode;
+var faLaptopHouse = {
+  prefix: 'fas',
+  iconName: 'laptop-house',
+  icon: [640, 512, [], "f966", "M272,288H208a16,16,0,0,1-16-16V208a16,16,0,0,1,16-16h64a16,16,0,0,1,16,16v37.12C299.11,232.24,315,224,332.8,224H469.74l6.65-7.53A16.51,16.51,0,0,0,480,207a16.31,16.31,0,0,0-4.75-10.61L416,144V48a16,16,0,0,0-16-16H368a16,16,0,0,0-16,16V87.3L263.5,8.92C258,4,247.45,0,240.05,0s-17.93,4-23.47,8.92L4.78,196.42A16.15,16.15,0,0,0,0,207a16.4,16.4,0,0,0,3.55,9.39L22.34,237.7A16.22,16.22,0,0,0,33,242.48,16.51,16.51,0,0,0,42.34,239L64,219.88V384a32,32,0,0,0,32,32H272ZM629.33,448H592V288c0-17.67-12.89-32-28.8-32H332.8c-15.91,0-28.8,14.33-28.8,32V448H266.67A10.67,10.67,0,0,0,256,458.67v10.66A42.82,42.82,0,0,0,298.6,512H597.4A42.82,42.82,0,0,0,640,469.33V458.67A10.67,10.67,0,0,0,629.33,448ZM544,448H352V304H544Z"]
+};
+exports.faLaptopHouse = faLaptopHouse;
 var faLaptopMedical = {
   prefix: 'fas',
   iconName: 'laptop-medical',
@@ -15018,6 +15099,18 @@ var faLuggageCart = {
   icon: [640, 512, [], "f59d", "M224 320h32V96h-32c-17.67 0-32 14.33-32 32v160c0 17.67 14.33 32 32 32zm352-32V128c0-17.67-14.33-32-32-32h-32v224h32c17.67 0 32-14.33 32-32zm48 96H128V16c0-8.84-7.16-16-16-16H16C7.16 0 0 7.16 0 16v32c0 8.84 7.16 16 16 16h48v368c0 8.84 7.16 16 16 16h82.94c-1.79 5.03-2.94 10.36-2.94 16 0 26.51 21.49 48 48 48s48-21.49 48-48c0-5.64-1.15-10.97-2.94-16h197.88c-1.79 5.03-2.94 10.36-2.94 16 0 26.51 21.49 48 48 48s48-21.49 48-48c0-5.64-1.15-10.97-2.94-16H624c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM480 96V48c0-26.51-21.49-48-48-48h-96c-26.51 0-48 21.49-48 48v272h192V96zm-48 0h-96V48h96v48z"]
 };
 exports.faLuggageCart = faLuggageCart;
+var faLungs = {
+  prefix: 'fas',
+  iconName: 'lungs',
+  icon: [640, 512, [], "f604", "M636.11 390.15C614.44 308.85 580.07 231 534.1 159.13 511.98 124.56 498.03 96 454.05 96 415.36 96 384 125.42 384 161.71v60.11l-32.88-21.92a15.996 15.996 0 0 1-7.12-13.31V16c0-8.84-7.16-16-16-16h-16c-8.84 0-16 7.16-16 16v170.59c0 5.35-2.67 10.34-7.12 13.31L256 221.82v-60.11C256 125.42 224.64 96 185.95 96c-43.98 0-57.93 28.56-80.05 63.13C59.93 231 25.56 308.85 3.89 390.15 1.3 399.84 0 409.79 0 419.78c0 61.23 62.48 105.44 125.24 88.62l59.5-15.95c42.18-11.3 71.26-47.47 71.26-88.62v-87.49l-85.84 57.23a7.992 7.992 0 0 1-11.09-2.22l-8.88-13.31a7.992 7.992 0 0 1 2.22-11.09L320 235.23l167.59 111.72a7.994 7.994 0 0 1 2.22 11.09l-8.88 13.31a7.994 7.994 0 0 1-11.09 2.22L384 316.34v87.49c0 41.15 29.08 77.31 71.26 88.62l59.5 15.95C577.52 525.22 640 481.01 640 419.78c0-9.99-1.3-19.94-3.89-29.63z"]
+};
+exports.faLungs = faLungs;
+var faLungsVirus = {
+  prefix: 'fas',
+  iconName: 'lungs-virus',
+  icon: [640, 512, [], "f967", "M344,150.68V16A16,16,0,0,0,328,0H312a16,16,0,0,0-16,16V150.68a46.45,46.45,0,0,1,48,0ZM195.54,444.46a48.06,48.06,0,0,1,0-67.88l8.58-8.58H192a48,48,0,0,1,0-96h12.12l-8.58-8.57a48,48,0,0,1,60.46-74V161.75C256,125.38,224.62,96,186,96c-44,0-58,28.5-80.12,63.13a819.52,819.52,0,0,0-102,231A113.16,113.16,0,0,0,0,419.75C0,481,62.5,525.26,125.25,508.38l59.5-15.87a98.51,98.51,0,0,0,52.5-34.75,46.49,46.49,0,0,1-41.71-13.3Zm226.29-22.63a16,16,0,0,0,0-22.62l-8.58-8.58C393.09,370.47,407.37,336,435.88,336H448a16,16,0,0,0,0-32H435.88c-28.51,0-42.79-34.47-22.63-54.62l8.58-8.58a16,16,0,0,0-22.63-22.63l-8.57,8.58C370.47,246.91,336,232.63,336,204.12V192a16,16,0,0,0-32,0v12.12c0,28.51-34.47,42.79-54.63,22.63l-8.57-8.58a16,16,0,0,0-22.63,22.63l8.58,8.58c20.16,20.15,5.88,54.62-22.63,54.62H192a16,16,0,0,0,0,32h12.12c28.51,0,42.79,34.47,22.63,54.63l-8.58,8.58a16,16,0,1,0,22.63,22.62l8.57-8.57C269.53,393.1,304,407.38,304,435.88V448a16,16,0,0,0,32,0V435.88c0-28.5,34.47-42.78,54.63-22.62l8.57,8.57a16,16,0,0,0,22.63,0ZM288,304a16,16,0,1,1,16-16A16,16,0,0,1,288,304Zm64,64a16,16,0,1,1,16-16A16,16,0,0,1,352,368Zm284.12,22.13a819.52,819.52,0,0,0-102-231C512,124.5,498,96,454,96c-38.62,0-70,29.38-70,65.75v27.72a48,48,0,0,1,60.46,74L435.88,272H448a48,48,0,0,1,0,96H435.88l8.58,8.58a47.7,47.7,0,0,1-41.71,81.18,98.51,98.51,0,0,0,52.5,34.75l59.5,15.87C577.5,525.26,640,481,640,419.75A113.16,113.16,0,0,0,636.12,390.13Z"]
+};
+exports.faLungsVirus = faLungsVirus;
 var faMagic = {
   prefix: 'fas',
   iconName: 'magic',
@@ -15558,6 +15651,12 @@ var faPencilRuler = {
   icon: [512, 512, [], "f5ae", "M109.46 244.04l134.58-134.56-44.12-44.12-61.68 61.68a7.919 7.919 0 0 1-11.21 0l-11.21-11.21c-3.1-3.1-3.1-8.12 0-11.21l61.68-61.68-33.64-33.65C131.47-3.1 111.39-3.1 99 9.29L9.29 99c-12.38 12.39-12.39 32.47 0 44.86l100.17 100.18zm388.47-116.8c18.76-18.76 18.75-49.17 0-67.93l-45.25-45.25c-18.76-18.76-49.18-18.76-67.95 0l-46.02 46.01 113.2 113.2 46.02-46.03zM316.08 82.71l-297 296.96L.32 487.11c-2.53 14.49 10.09 27.11 24.59 24.56l107.45-18.84L429.28 195.9 316.08 82.71zm186.63 285.43l-33.64-33.64-61.68 61.68c-3.1 3.1-8.12 3.1-11.21 0l-11.21-11.21c-3.09-3.1-3.09-8.12 0-11.21l61.68-61.68-44.14-44.14L267.93 402.5l100.21 100.2c12.39 12.39 32.47 12.39 44.86 0l89.71-89.7c12.39-12.39 12.39-32.47 0-44.86z"]
 };
 exports.faPencilRuler = faPencilRuler;
+var faPeopleArrows = {
+  prefix: 'fas',
+  iconName: 'people-arrows',
+  icon: [576, 512, [], "f968", "M96,128A64,64,0,1,0,32,64,64,64,0,0,0,96,128Zm0,176.08a44.11,44.11,0,0,1,13.64-32L181.77,204c1.65-1.55,3.77-2.31,5.61-3.57A63.91,63.91,0,0,0,128,160H64A64,64,0,0,0,0,224v96a32,32,0,0,0,32,32V480a32,32,0,0,0,32,32h64a32,32,0,0,0,32-32V383.61l-50.36-47.53A44.08,44.08,0,0,1,96,304.08ZM480,128a64,64,0,1,0-64-64A64,64,0,0,0,480,128Zm32,32H448a63.91,63.91,0,0,0-59.38,40.42c1.84,1.27,4,2,5.62,3.59l72.12,68.06a44.37,44.37,0,0,1,0,64L416,383.62V480a32,32,0,0,0,32,32h64a32,32,0,0,0,32-32V352a32,32,0,0,0,32-32V224A64,64,0,0,0,512,160ZM444.4,295.34l-72.12-68.06A12,12,0,0,0,352,236v36H224V236a12,12,0,0,0-20.28-8.73L131.6,295.34a12.4,12.4,0,0,0,0,17.47l72.12,68.07A12,12,0,0,0,224,372.14V336H352v36.14a12,12,0,0,0,20.28,8.74l72.12-68.07A12.4,12.4,0,0,0,444.4,295.34Z"]
+};
+exports.faPeopleArrows = faPeopleArrows;
 var faPeopleCarry = {
   prefix: 'fas',
   iconName: 'people-carry',
@@ -15672,6 +15771,12 @@ var faPlaneDeparture = {
   icon: [640, 512, [], "f5b0", "M624 448H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h608c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM80.55 341.27c6.28 6.84 15.1 10.72 24.33 10.71l130.54-.18a65.62 65.62 0 0 0 29.64-7.12l290.96-147.65c26.74-13.57 50.71-32.94 67.02-58.31 18.31-28.48 20.3-49.09 13.07-63.65-7.21-14.57-24.74-25.27-58.25-27.45-29.85-1.94-59.54 5.92-86.28 19.48l-98.51 49.99-218.7-82.06a17.799 17.799 0 0 0-18-1.11L90.62 67.29c-10.67 5.41-13.25 19.65-5.17 28.53l156.22 98.1-103.21 52.38-72.35-36.47a17.804 17.804 0 0 0-16.07.02L9.91 230.22c-10.44 5.3-13.19 19.12-5.57 28.08l76.21 82.97z"]
 };
 exports.faPlaneDeparture = faPlaneDeparture;
+var faPlaneSlash = {
+  prefix: 'fas',
+  iconName: 'plane-slash',
+  icon: [640, 512, [], "f969", "M32.48,147.88,64,256,32.48,364.13A16,16,0,0,0,48,384H88a16,16,0,0,0,12.8-6.41L144,320H246.85l-49,171.59A16,16,0,0,0,213.2,512h65.5a16,16,0,0,0,13.89-8.06l66.6-116.54L34.35,136.34A15.47,15.47,0,0,0,32.48,147.88ZM633.82,458.09,455.14,320H512c35.34,0,96-28.66,96-64s-60.66-64-96-64H397.7L292.61,8.06C290.06,3.61,283.84,0,278.71,0H213.2a16,16,0,0,0-15.38,20.39l36.94,129.29L45.46,3.38A16,16,0,0,0,23,6.19L3.37,31.45A16,16,0,0,0,6.18,53.91L594.54,508.63A16,16,0,0,0,617,505.81l19.64-25.26A16,16,0,0,0,633.82,458.09Z"]
+};
+exports.faPlaneSlash = faPlaneSlash;
 var faPlay = {
   prefix: 'fas',
   iconName: 'play',
@@ -15810,6 +15915,18 @@ var faProjectDiagram = {
   icon: [640, 512, [], "f542", "M384 320H256c-17.67 0-32 14.33-32 32v128c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32V352c0-17.67-14.33-32-32-32zM192 32c0-17.67-14.33-32-32-32H32C14.33 0 0 14.33 0 32v128c0 17.67 14.33 32 32 32h95.72l73.16 128.04C211.98 300.98 232.4 288 256 288h.28L192 175.51V128h224V64H192V32zM608 0H480c-17.67 0-32 14.33-32 32v128c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32V32c0-17.67-14.33-32-32-32z"]
 };
 exports.faProjectDiagram = faProjectDiagram;
+var faPumpMedical = {
+  prefix: 'fas',
+  iconName: 'pump-medical',
+  icon: [384, 512, [], "f96a", "M235.51,159.82H84.24A64,64,0,0,0,20.51,218L.14,442a64,64,0,0,0,63.74,69.8h192A64,64,0,0,0,319.61,442L299.24,218A64,64,0,0,0,235.51,159.82Zm4.37,173.33a13.35,13.35,0,0,1-13.34,13.34h-40v40a13.33,13.33,0,0,1-13.33,13.33H146.54a13.33,13.33,0,0,1-13.33-13.33v-40h-40a13.34,13.34,0,0,1-13.33-13.34V306.49a13.33,13.33,0,0,1,13.33-13.34h40v-40a13.33,13.33,0,0,1,13.33-13.33h26.67a13.33,13.33,0,0,1,13.33,13.33v40h40a13.34,13.34,0,0,1,13.34,13.34ZM379.19,93.88,335.87,50.56a64,64,0,0,0-45.24-18.74H223.88a32,32,0,0,0-32-32h-64a32,32,0,0,0-32,32v96h128v-32h66.75l43.31,43.31a16,16,0,0,0,22.63,0l22.62-22.62A16,16,0,0,0,379.19,93.88Z"]
+};
+exports.faPumpMedical = faPumpMedical;
+var faPumpSoap = {
+  prefix: 'fas',
+  iconName: 'pump-soap',
+  icon: [384, 512, [], "f96b", "M235.63,160H84.37a64,64,0,0,0-63.74,58.21L.27,442.21A64,64,0,0,0,64,512H256a64,64,0,0,0,63.74-69.79l-20.36-224A64,64,0,0,0,235.63,160ZM160,416c-33.12,0-60-26.33-60-58.75,0-25,35.7-75.47,52-97.27A10,10,0,0,1,168,260c16.33,21.8,52,72.27,52,97.27C220,389.67,193.12,416,160,416ZM379.31,94.06,336,50.74A64,64,0,0,0,290.75,32H224A32,32,0,0,0,192,0H128A32,32,0,0,0,96,32v96H224V96h66.75l43.31,43.31a16,16,0,0,0,22.63,0l22.62-22.62A16,16,0,0,0,379.31,94.06Z"]
+};
+exports.faPumpSoap = faPumpSoap;
 var faPuzzlePiece = {
   prefix: 'fas',
   iconName: 'puzzle-piece',
@@ -16182,6 +16299,12 @@ var faShieldAlt = {
   icon: [512, 512, [], "f3ed", "M466.5 83.7l-192-80a48.15 48.15 0 0 0-36.9 0l-192 80C27.7 91.1 16 108.6 16 128c0 198.5 114.5 335.7 221.5 380.3 11.8 4.9 25.1 4.9 36.9 0C360.1 472.6 496 349.3 496 128c0-19.4-11.7-36.9-29.5-44.3zM256.1 446.3l-.1-381 175.9 73.3c-3.3 151.4-82.1 261.1-175.8 307.7z"]
 };
 exports.faShieldAlt = faShieldAlt;
+var faShieldVirus = {
+  prefix: 'fas',
+  iconName: 'shield-virus',
+  icon: [512, 512, [], "f96c", "M224,192a16,16,0,1,0,16,16A16,16,0,0,0,224,192ZM466.5,83.68l-192-80A57.4,57.4,0,0,0,256.05,0a57.4,57.4,0,0,0-18.46,3.67l-192,80A47.93,47.93,0,0,0,16,128C16,326.5,130.5,463.72,237.5,508.32a48.09,48.09,0,0,0,36.91,0C360.09,472.61,496,349.3,496,128A48,48,0,0,0,466.5,83.68ZM384,256H371.88c-28.51,0-42.79,34.47-22.63,54.63l8.58,8.57a16,16,0,1,1-22.63,22.63l-8.57-8.58C306.47,313.09,272,327.37,272,355.88V368a16,16,0,0,1-32,0V355.88c0-28.51-34.47-42.79-54.63-22.63l-8.57,8.58a16,16,0,0,1-22.63-22.63l8.58-8.57c20.16-20.16,5.88-54.63-22.63-54.63H128a16,16,0,0,1,0-32h12.12c28.51,0,42.79-34.47,22.63-54.63l-8.58-8.57a16,16,0,0,1,22.63-22.63l8.57,8.58c20.16,20.16,54.63,5.88,54.63-22.63V112a16,16,0,0,1,32,0v12.12c0,28.51,34.47,42.79,54.63,22.63l8.57-8.58a16,16,0,0,1,22.63,22.63l-8.58,8.57C329.09,189.53,343.37,224,371.88,224H384a16,16,0,0,1,0,32Zm-96,0a16,16,0,1,0,16,16A16,16,0,0,0,288,256Z"]
+};
+exports.faShieldVirus = faShieldVirus;
 var faShip = {
   prefix: 'fas',
   iconName: 'ship',
@@ -16392,6 +16515,12 @@ var faSnowplow = {
   icon: [640, 512, [], "f7d2", "M120 376c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zm80 0c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zm80 0c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zm80 0c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zm238.6 49.4c-14.5-14.5-22.6-34.1-22.6-54.6V269.2c0-20.5 8.1-40.1 22.6-54.6l36.7-36.7c6.2-6.2 6.2-16.4 0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6 0l-36.7 36.7c-26.5 26.5-41.4 62.4-41.4 99.9V288h-64v-50.9c0-8.7-1.8-17.2-5.2-25.2L364.5 29.1C356.9 11.4 339.6 0 320.3 0H176c-26.5 0-48 21.5-48 48v112h-16c-26.5 0-48 21.5-48 48v91.2C26.3 317.2 0 355.4 0 400c0 61.9 50.1 112 112 112h256c61.9 0 112-50.1 112-112 0-17.3-4.2-33.4-11.2-48H512v18.7c0 37.5 14.9 73.4 41.4 99.9l36.7 36.7c6.2 6.2 16.4 6.2 22.6 0l22.6-22.6c6.2-6.2 6.2-16.4 0-22.6l-36.7-36.7zM192 64h117.8l68.6 160H256l-64-64V64zm176 384H112c-26.5 0-48-21.5-48-48s21.5-48 48-48h256c26.5 0 48 21.5 48 48s-21.5 48-48 48z"]
 };
 exports.faSnowplow = faSnowplow;
+var faSoap = {
+  prefix: 'fas',
+  iconName: 'soap',
+  icon: [512, 512, [], "f96e", "M416,192a95.42,95.42,0,0,1-30.94,70.21A95.8,95.8,0,0,1,352,448H160a96,96,0,0,1,0-192h88.91A95.3,95.3,0,0,1,224,192H96A96,96,0,0,0,0,288V416a96,96,0,0,0,96,96H416a96,96,0,0,0,96-96V288A96,96,0,0,0,416,192Zm-96,64a64,64,0,1,0-64-64A64,64,0,0,0,320,256ZM208,96a48,48,0,1,0-48-48A48,48,0,0,0,208,96ZM384,64a32,32,0,1,0-32-32A32,32,0,0,0,384,64ZM160,288a64,64,0,0,0,0,128H352a64,64,0,0,0,0-128Z"]
+};
+exports.faSoap = faSoap;
 var faSocks = {
   prefix: 'fas',
   iconName: 'socks',
@@ -16638,6 +16767,12 @@ var faStopwatch = {
   icon: [448, 512, [], "f2f2", "M432 304c0 114.9-93.1 208-208 208S16 418.9 16 304c0-104 76.3-190.2 176-205.5V64h-28c-6.6 0-12-5.4-12-12V12c0-6.6 5.4-12 12-12h120c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-28v34.5c37.5 5.8 71.7 21.6 99.7 44.6l27.5-27.5c4.7-4.7 12.3-4.7 17 0l28.3 28.3c4.7 4.7 4.7 12.3 0 17l-29.4 29.4-.6.6C419.7 223.3 432 262.2 432 304zm-176 36V188.5c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12V340c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12z"]
 };
 exports.faStopwatch = faStopwatch;
+var faStopwatch20 = {
+  prefix: 'fas',
+  iconName: 'stopwatch-20',
+  icon: [448, 512, [], "f96f", "M398.5,190.91l.59-.61,26.59-26.58a16,16,0,0,0,0-22.63L403,118.41a16,16,0,0,0-22.63,0l-24.68,24.68A206.68,206.68,0,0,0,256,98.5V64h32a16,16,0,0,0,16-16V16A16,16,0,0,0,288,0H160a16.05,16.05,0,0,0-16,16V48a16.05,16.05,0,0,0,16,16h32V98.5A207.92,207.92,0,0,0,16.09,297.57C12.64,411.5,106.76,510.22,220.72,512,337.13,513.77,432,420,432,304A206,206,0,0,0,398.5,190.91ZM204.37,377.55a8.2,8.2,0,0,1,8.32,8.07v22.31a8.2,8.2,0,0,1-8.32,8.07H121.52a16.46,16.46,0,0,1-16.61-17.62c2.78-35.22,14.67-57.41,38.45-91.37,20.42-29.19,27.1-37.32,27.1-62.34,0-16.92-1.79-24.27-12.21-24.27-9.39,0-12.69,7.4-12.69,22.68v5.23a8.2,8.2,0,0,1-8.33,8.07h-24.9a8.2,8.2,0,0,1-8.33-8.07v-4.07c0-27.3,8.48-60.24,56.43-60.24,43,0,55.57,25.85,55.57,61,0,35.58-12.44,51.21-34.35,81.31-11.56,15-24.61,35.57-26.41,51.2ZM344,352.32c0,35.16-12.3,63.68-57.23,63.68C243.19,416,232,386.48,232,352.55V247.22c0-40.73,19.58-63.22,56.2-63.22C325,184,344,206.64,344,245.3ZM287.87,221.73c-9.41,0-13.23,7.5-13.23,20V357.68c0,13.11,3.59,20.59,13.23,20.59s13-8,13-21.27V241.06C300.89,229.79,297.88,221.73,287.87,221.73Z"]
+};
+exports.faStopwatch20 = faStopwatch20;
 var faStore = {
   prefix: 'fas',
   iconName: 'store',
@@ -16650,6 +16785,18 @@ var faStoreAlt = {
   icon: [640, 512, [], "f54f", "M320 384H128V224H64v256c0 17.7 14.3 32 32 32h256c17.7 0 32-14.3 32-32V224h-64v160zm314.6-241.8l-85.3-128c-6-8.9-16-14.2-26.7-14.2H117.4c-10.7 0-20.7 5.3-26.6 14.2l-85.3 128c-14.2 21.3 1 49.8 26.6 49.8H608c25.5 0 40.7-28.5 26.6-49.8zM512 496c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V224h-64v272z"]
 };
 exports.faStoreAlt = faStoreAlt;
+var faStoreAltSlash = {
+  prefix: 'fas',
+  iconName: 'store-alt-slash',
+  icon: [640, 512, [], "f970", "M17.89,123.62,5.51,142.2c-14.2,21.3,1,49.8,26.59,49.8h74.26ZM576,413.42V224H512V364L384,265V224H330.92l-41.4-32H608c25.5,0,40.7-28.5,26.59-49.8l-85.29-128A32.18,32.18,0,0,0,522.6,0H117.42A31.87,31.87,0,0,0,90.81,14.2l-10.66,16L45.46,3.38A16,16,0,0,0,23,6.19L3.37,31.46A16,16,0,0,0,6.18,53.91L594.53,508.63A16,16,0,0,0,617,505.81l19.64-25.26a16,16,0,0,0-2.81-22.45ZM320,384H128V224H64V480a32,32,0,0,0,32,32H352a32,32,0,0,0,32-32V406.59l-64-49.47Z"]
+};
+exports.faStoreAltSlash = faStoreAltSlash;
+var faStoreSlash = {
+  prefix: 'fas',
+  iconName: 'store-slash',
+  icon: [640, 512, [], "f971", "M121.51,384V284.2a119.43,119.43,0,0,1-28,3.8,123.46,123.46,0,0,1-17.1-1.2,114.88,114.88,0,0,1-15.58-3.6V480c0,17.7,13.59,32,30.4,32H505.75L348.42,384Zm-28-128.09c25.1,0,47.29-10.72,64-27.24L24,120.05c-30.52,53.39-2.45,126.53,56.49,135A95.68,95.68,0,0,0,93.48,255.91ZM602.13,458.09,547.2,413.41V283.2a93.5,93.5,0,0,1-15.57,3.6,127.31,127.31,0,0,1-17.29,1.2,114.89,114.89,0,0,1-28-3.8v79.68L348.52,251.77a88.06,88.06,0,0,0,25.41,4.14c28.11,0,53-13,70.11-33.11,17.19,20.11,42.08,33.11,70.11,33.11a94.31,94.31,0,0,0,13-.91c59.66-8.41,88-82.8,56.06-136.4L521.55,15A30.1,30.1,0,0,0,495.81,0H112A30.11,30.11,0,0,0,86.27,15L76.88,30.78,43.19,3.38A14.68,14.68,0,0,0,21.86,6.19L3.2,31.45A16.58,16.58,0,0,0,5.87,53.91L564.81,508.63a14.69,14.69,0,0,0,21.33-2.82l18.66-25.26A16.58,16.58,0,0,0,602.13,458.09Z"]
+};
+exports.faStoreSlash = faStoreSlash;
 var faStream = {
   prefix: 'fas',
   iconName: 'stream',
@@ -17010,6 +17157,12 @@ var faToiletPaper = {
   icon: [576, 512, [], "f71e", "M128 0C74.98 0 32 85.96 32 192v172.07c0 41.12-9.8 62.77-31.17 126.87C-2.62 501.3 5.09 512 16.01 512h280.92c13.77 0 26-8.81 30.36-21.88 12.83-38.48 24.71-72.4 24.71-126.05V192c0-83.6 23.67-153.52 60.44-192H128zM96 224c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm64 0c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm64 0c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm64 0c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zM480 0c-53.02 0-96 85.96-96 192s42.98 192 96 192 96-85.96 96-192S533.02 0 480 0zm0 256c-17.67 0-32-28.65-32-64s14.33-64 32-64 32 28.65 32 64-14.33 64-32 64z"]
 };
 exports.faToiletPaper = faToiletPaper;
+var faToiletPaperSlash = {
+  prefix: 'fas',
+  iconName: 'toilet-paper-slash',
+  icon: [640, 512, [], "f972", "M64,192V364.13c0,41.12-9.75,62.75-31.12,126.87A16,16,0,0,0,48,512H328.86a31.87,31.87,0,0,0,30.38-21.87c9.31-27.83,18-53.35,22.18-85.55l-316-244.25C64.53,170.66,64,181.19,64,192ZM633.82,458.09l-102-78.81C575.28,360.91,608,284.32,608,192,608,86,565,0,512,0s-96,86-96,192c0,42,7,80.4,18.43,112L384,265V192c0-83.62,23.63-153.5,60.5-192H160c-23.33,0-44.63,16.83-61.26,44.53L45.46,3.38A16,16,0,0,0,23,6.19L3.37,31.45A16,16,0,0,0,6.18,53.91L594.54,508.63A16,16,0,0,0,617,505.81l19.64-25.26A16,16,0,0,0,633.82,458.09ZM512,256c-17.63,0-32-28.62-32-64s14.37-64,32-64,32,28.63,32,64S529.62,256,512,256Z"]
+};
+exports.faToiletPaperSlash = faToiletPaperSlash;
 var faToolbox = {
   prefix: 'fas',
   iconName: 'toolbox',
@@ -17460,6 +17613,24 @@ var faVihara = {
   icon: [640, 512, [], "f6a7", "M632.88 400.71L544 352v-64l55.16-17.69c11.79-5.9 11.79-22.72 0-28.62L480 192v-64l27.31-16.3c7.72-7.72 5.61-20.74-4.16-25.62L320 0 136.85 86.07c-9.77 4.88-11.88 17.9-4.16 25.62L160 128v64L40.84 241.69c-11.79 5.9-11.79 22.72 0 28.62L96 288v64L7.12 400.71c-5.42 3.62-7.7 9.63-7 15.29.62 5.01 3.57 9.75 8.72 12.33L64 448v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h160v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h160v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48l55.15-19.67c5.16-2.58 8.1-7.32 8.72-12.33.71-5.67-1.57-11.68-6.99-15.29zM224 128h192v64H224v-64zm-64 224v-64h320v64H160z"]
 };
 exports.faVihara = faVihara;
+var faVirus = {
+  prefix: 'fas',
+  iconName: 'virus',
+  icon: [512, 512, [], "f974", "M483.55,227.55H462c-50.68,0-76.07-61.27-40.23-97.11L437,115.19A28.44,28.44,0,0,0,396.8,75L381.56,90.22c-35.84,35.83-97.11,10.45-97.11-40.23V28.44a28.45,28.45,0,0,0-56.9,0V50c0,50.68-61.27,76.06-97.11,40.23L115.2,75A28.44,28.44,0,0,0,75,115.19l15.25,15.25c35.84,35.84,10.45,97.11-40.23,97.11H28.45a28.45,28.45,0,1,0,0,56.89H50c50.68,0,76.07,61.28,40.23,97.12L75,396.8A28.45,28.45,0,0,0,115.2,437l15.24-15.25c35.84-35.84,97.11-10.45,97.11,40.23v21.54a28.45,28.45,0,0,0,56.9,0V462c0-50.68,61.27-76.07,97.11-40.23L396.8,437A28.45,28.45,0,0,0,437,396.8l-15.25-15.24c-35.84-35.84-10.45-97.12,40.23-97.12h21.54a28.45,28.45,0,1,0,0-56.89ZM224,272a48,48,0,1,1,48-48A48,48,0,0,1,224,272Zm80,56a24,24,0,1,1,24-24A24,24,0,0,1,304,328Z"]
+};
+exports.faVirus = faVirus;
+var faVirusSlash = {
+  prefix: 'fas',
+  iconName: 'virus-slash',
+  icon: [640, 512, [], "f975", "M114,227.56H92.44a28.44,28.44,0,0,0,0,56.88H114c50.68,0,76.06,61.28,40.23,97.12L139,396.81A28.44,28.44,0,1,0,179.19,437l15.25-15.25c35.84-35.84,97.11-10.45,97.11,40.23v21.54a28.45,28.45,0,0,0,56.9,0V462c0-26.61,17-45.91,38.22-53.37l-244.5-189A55.58,55.58,0,0,1,114,227.56ZM633.82,458.09,470.62,332c4.17-25.39,24.91-47.52,55.39-47.52h21.55a28.44,28.44,0,1,0,0-56.88H526c-50.68,0-76.06-61.28-40.23-97.12L501,115.19A28.44,28.44,0,0,0,460.81,75L445.56,90.22c-35.84,35.84-97.11,10.46-97.11-40.23V28.45a28.45,28.45,0,0,0-56.9,0V50c0,50.69-61.27,76.07-97.11,40.23L179.19,75A28.43,28.43,0,0,0,139,75c-.13.14-.15.32-.28.46L45.46,3.38A16,16,0,0,0,23,6.19L3.37,31.45A16,16,0,0,0,6.18,53.91L594.54,508.63A16,16,0,0,0,617,505.81l19.64-25.26A16,16,0,0,0,633.82,458.09ZM335.43,227.48l-62.87-48.59A46.55,46.55,0,0,1,288,176a48,48,0,0,1,48,48C336,225.22,335.52,226.29,335.43,227.48Z"]
+};
+exports.faVirusSlash = faVirusSlash;
+var faViruses = {
+  prefix: 'fas',
+  iconName: 'viruses',
+  icon: [640, 512, [], "f976", "M624,352H611.88c-28.51,0-42.79-34.47-22.63-54.63l8.58-8.57a16,16,0,1,0-22.63-22.63l-8.57,8.58C546.47,294.91,512,280.63,512,252.12V240a16,16,0,0,0-32,0v12.12c0,28.51-34.47,42.79-54.63,22.63l-8.57-8.58a16,16,0,0,0-22.63,22.63l8.58,8.57c20.16,20.16,5.88,54.63-22.63,54.63H368a16,16,0,0,0,0,32h12.12c28.51,0,42.79,34.47,22.63,54.63l-8.58,8.57a16,16,0,1,0,22.63,22.63l8.57-8.58c20.16-20.16,54.63-5.88,54.63,22.63V496a16,16,0,0,0,32,0V483.88c0-28.51,34.47-42.79,54.63-22.63l8.57,8.58a16,16,0,1,0,22.63-22.63l-8.58-8.57C569.09,418.47,583.37,384,611.88,384H624a16,16,0,0,0,0-32ZM480,384a32,32,0,1,1,32-32A32,32,0,0,1,480,384ZM346.51,213.33h16.16a21.33,21.33,0,0,0,0-42.66H346.51c-38,0-57.05-46-30.17-72.84l11.43-11.44A21.33,21.33,0,0,0,297.6,56.23L286.17,67.66c-26.88,26.88-72.84,7.85-72.84-30.17V21.33a21.33,21.33,0,0,0-42.66,0V37.49c0,38-46,57.05-72.84,30.17L86.4,56.23A21.33,21.33,0,0,0,56.23,86.39L67.66,97.83c26.88,26.88,7.85,72.84-30.17,72.84H21.33a21.33,21.33,0,0,0,0,42.66H37.49c38,0,57.05,46,30.17,72.84L56.23,297.6A21.33,21.33,0,1,0,86.4,327.77l11.43-11.43c26.88-26.88,72.84-7.85,72.84,30.17v16.16a21.33,21.33,0,0,0,42.66,0V346.51c0-38,46-57.05,72.84-30.17l11.43,11.43a21.33,21.33,0,0,0,30.17-30.17l-11.43-11.43C289.46,259.29,308.49,213.33,346.51,213.33ZM160,192a32,32,0,1,1,32-32A32,32,0,0,1,160,192Zm80,32a16,16,0,1,1,16-16A16,16,0,0,1,240,224Z"]
+};
+exports.faViruses = faViruses;
 var faVoicemail = {
   prefix: 'fas',
   iconName: 'voicemail',
@@ -17742,6 +17913,7 @@ var _iconsCache = {
   faBowlingBall: faBowlingBall,
   faBox: faBox,
   faBoxOpen: faBoxOpen,
+  faBoxTissue: faBoxTissue,
   faBoxes: faBoxes,
   faBraille: faBraille,
   faBrain: faBrain,
@@ -17900,6 +18072,7 @@ var _iconsCache = {
   faDiceTwo: faDiceTwo,
   faDigitalTachograph: faDigitalTachograph,
   faDirections: faDirections,
+  faDisease: faDisease,
   faDivide: faDivide,
   faDizzy: faDizzy,
   faDna: faDna,
@@ -17951,6 +18124,7 @@ var _iconsCache = {
   faFan: faFan,
   faFastBackward: faFastBackward,
   faFastForward: faFastForward,
+  faFaucet: faFaucet,
   faFax: faFax,
   faFeather: faFeather,
   faFeatherAlt: faFeatherAlt,
@@ -18056,7 +18230,9 @@ var _iconsCache = {
   faHamsa: faHamsa,
   faHandHolding: faHandHolding,
   faHandHoldingHeart: faHandHoldingHeart,
+  faHandHoldingMedical: faHandHoldingMedical,
   faHandHoldingUsd: faHandHoldingUsd,
+  faHandHoldingWater: faHandHoldingWater,
   faHandLizard: faHandLizard,
   faHandMiddleFinger: faHandMiddleFinger,
   faHandPaper: faHandPaper,
@@ -18068,10 +18244,14 @@ var _iconsCache = {
   faHandPointer: faHandPointer,
   faHandRock: faHandRock,
   faHandScissors: faHandScissors,
+  faHandSparkles: faHandSparkles,
   faHandSpock: faHandSpock,
   faHands: faHands,
   faHandsHelping: faHandsHelping,
+  faHandsWash: faHandsWash,
   faHandshake: faHandshake,
+  faHandshakeAltSlash: faHandshakeAltSlash,
+  faHandshakeSlash: faHandshakeSlash,
   faHanukiah: faHanukiah,
   faHardHat: faHardHat,
   faHashtag: faHashtag,
@@ -18079,6 +18259,10 @@ var _iconsCache = {
   faHatCowboySide: faHatCowboySide,
   faHatWizard: faHatWizard,
   faHdd: faHdd,
+  faHeadSideCough: faHeadSideCough,
+  faHeadSideCoughSlash: faHeadSideCoughSlash,
+  faHeadSideMask: faHeadSideMask,
+  faHeadSideVirus: faHeadSideVirus,
   faHeading: faHeading,
   faHeadphones: faHeadphones,
   faHeadphonesAlt: faHeadphonesAlt,
@@ -18099,6 +18283,7 @@ var _iconsCache = {
   faHospital: faHospital,
   faHospitalAlt: faHospitalAlt,
   faHospitalSymbol: faHospitalSymbol,
+  faHospitalUser: faHospitalUser,
   faHotTub: faHotTub,
   faHotdog: faHotdog,
   faHotel: faHotel,
@@ -18107,6 +18292,7 @@ var _iconsCache = {
   faHourglassHalf: faHourglassHalf,
   faHourglassStart: faHourglassStart,
   faHouseDamage: faHouseDamage,
+  faHouseUser: faHouseUser,
   faHryvnia: faHryvnia,
   faICursor: faICursor,
   faIceCream: faIceCream,
@@ -18140,6 +18326,7 @@ var _iconsCache = {
   faLanguage: faLanguage,
   faLaptop: faLaptop,
   faLaptopCode: faLaptopCode,
+  faLaptopHouse: faLaptopHouse,
   faLaptopMedical: faLaptopMedical,
   faLaugh: faLaugh,
   faLaughBeam: faLaughBeam,
@@ -18169,6 +18356,8 @@ var _iconsCache = {
   faLongArrowAltUp: faLongArrowAltUp,
   faLowVision: faLowVision,
   faLuggageCart: faLuggageCart,
+  faLungs: faLungs,
+  faLungsVirus: faLungsVirus,
   faMagic: faMagic,
   faMagnet: faMagnet,
   faMailBulk: faMailBulk,
@@ -18259,6 +18448,7 @@ var _iconsCache = {
   faPenSquare: faPenSquare,
   faPencilAlt: faPencilAlt,
   faPencilRuler: faPencilRuler,
+  faPeopleArrows: faPeopleArrows,
   faPeopleCarry: faPeopleCarry,
   faPepperHot: faPepperHot,
   faPercent: faPercent,
@@ -18278,6 +18468,7 @@ var _iconsCache = {
   faPlane: faPlane,
   faPlaneArrival: faPlaneArrival,
   faPlaneDeparture: faPlaneDeparture,
+  faPlaneSlash: faPlaneSlash,
   faPlay: faPlay,
   faPlayCircle: faPlayCircle,
   faPlug: faPlug,
@@ -18301,6 +18492,8 @@ var _iconsCache = {
   faPrint: faPrint,
   faProcedures: faProcedures,
   faProjectDiagram: faProjectDiagram,
+  faPumpMedical: faPumpMedical,
+  faPumpSoap: faPumpSoap,
   faPuzzlePiece: faPuzzlePiece,
   faQrcode: faQrcode,
   faQuestion: faQuestion,
@@ -18363,6 +18556,7 @@ var _iconsCache = {
   faShareSquare: faShareSquare,
   faShekelSign: faShekelSign,
   faShieldAlt: faShieldAlt,
+  faShieldVirus: faShieldVirus,
   faShip: faShip,
   faShippingFast: faShippingFast,
   faShoePrints: faShoePrints,
@@ -18398,6 +18592,7 @@ var _iconsCache = {
   faSnowflake: faSnowflake,
   faSnowman: faSnowman,
   faSnowplow: faSnowplow,
+  faSoap: faSoap,
   faSocks: faSocks,
   faSolarPanel: faSolarPanel,
   faSort: faSort,
@@ -18439,8 +18634,11 @@ var _iconsCache = {
   faStop: faStop,
   faStopCircle: faStopCircle,
   faStopwatch: faStopwatch,
+  faStopwatch20: faStopwatch20,
   faStore: faStore,
   faStoreAlt: faStoreAlt,
+  faStoreAltSlash: faStoreAltSlash,
+  faStoreSlash: faStoreSlash,
   faStream: faStream,
   faStreetView: faStreetView,
   faStrikethrough: faStrikethrough,
@@ -18501,6 +18699,7 @@ var _iconsCache = {
   faToggleOn: faToggleOn,
   faToilet: faToilet,
   faToiletPaper: faToiletPaper,
+  faToiletPaperSlash: faToiletPaperSlash,
   faToolbox: faToolbox,
   faTools: faTools,
   faTooth: faTooth,
@@ -18576,6 +18775,9 @@ var _iconsCache = {
   faVideo: faVideo,
   faVideoSlash: faVideoSlash,
   faVihara: faVihara,
+  faVirus: faVirus,
+  faVirusSlash: faVirusSlash,
+  faViruses: faViruses,
   faVoicemail: faVoicemail,
   faVolleyballBall: faVolleyballBall,
   faVolumeDown: faVolumeDown,
@@ -18718,8 +18920,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Category;
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
 var _react = _interopRequireDefault(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
@@ -18731,6 +18931,8 @@ var _CategoryRow = _interopRequireDefault(require("./CategoryRow"));
 var _Filters = _interopRequireDefault(require("./Filters"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function Category(props) {
   var tree = props.tree;
@@ -18806,7 +19008,7 @@ function Category(props) {
         return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
       });
     } else if (cc) {
-      var codes = entry.countryCodes || [];
+      var codes = entry.locationSet.include || [];
       entry.filtered = codes.length && codes.every(function (code) {
         return code.toLowerCase().indexOf(cc) === -1;
       });
@@ -18824,7 +19026,7 @@ function Category(props) {
       entry.filtered = inc && hasLogo;
     }
 
-    return /*#__PURE__*/_react.default.createElement(_CategoryRow.default, (0, _extends2.default)({
+    return /*#__PURE__*/_react.default.createElement(_CategoryRow.default, _extends({
       key: kvnd
     }, props, {
       entry: entry,
@@ -18842,7 +19044,7 @@ function Category(props) {
     data: data
   }), /*#__PURE__*/_react.default.createElement("table", {
     className: "summary"
-  }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", null, "Name", /*#__PURE__*/_react.default.createElement("br", null), "ID", /*#__PURE__*/_react.default.createElement("br", null), "Countries"), /*#__PURE__*/_react.default.createElement("th", null, "Count"), /*#__PURE__*/_react.default.createElement("th", null, "OpenStreetMap Tags"), /*#__PURE__*/_react.default.createElement("th", null, "Wikidata Name/Description", /*#__PURE__*/_react.default.createElement("br", null), "Official Website", /*#__PURE__*/_react.default.createElement("br", null), "Social Links"), /*#__PURE__*/_react.default.createElement("th", {
+  }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", null, "Name", /*#__PURE__*/_react.default.createElement("br", null), "ID", /*#__PURE__*/_react.default.createElement("br", null), "Locations"), /*#__PURE__*/_react.default.createElement("th", null, "Count"), /*#__PURE__*/_react.default.createElement("th", null, "OpenStreetMap Tags"), /*#__PURE__*/_react.default.createElement("th", null, "Wikidata Name/Description", /*#__PURE__*/_react.default.createElement("br", null), "Official Website", /*#__PURE__*/_react.default.createElement("br", null), "Social Links"), /*#__PURE__*/_react.default.createElement("th", {
     className: "logo"
   }, "Commons Logo"), /*#__PURE__*/_react.default.createElement("th", {
     className: "logo"
@@ -18852,7 +19054,7 @@ function Category(props) {
 }
 
 ;
-},{"@babel/runtime/helpers/extends":"dLyZ","react":"n8MK","react-router-dom":"uc19","./CategoryInstructions":"jpgZ","./CategoryRow":"b69n","./Filters":"z2FW"}],"jutB":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","./CategoryInstructions":"jpgZ","./CategoryRow":"b69n","./Filters":"z2FW"}],"jutB":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19000,7 +19202,7 @@ function Overview(props) {
             return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
           });
         } else if (cc) {
-          var codes = entry.countryCodes || [];
+          var codes = entry.locationSet.include || [];
           entry.filtered = codes.length && codes.every(function (code) {
             return code.toLowerCase().indexOf(cc) === -1;
           });
@@ -19054,14 +19256,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = App;
 
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
-
-var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
-
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
@@ -19072,11 +19266,29 @@ var _Footer = _interopRequireDefault(require("./Footer"));
 
 var _Overview = _interopRequireDefault(require("./Overview"));
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // Load the name-suggestion-index data files
 var DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist";
@@ -19088,27 +19300,27 @@ var TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/develop/data/t
 
 function App() {
   var _useState = (0, _react.useState)({}),
-      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      _useState2 = _slicedToArray(_useState, 2),
       filters = _useState2[0],
       setFilters = _useState2[1];
 
   var _useFetch = useFetch(NAMES),
-      _useFetch2 = (0, _slicedToArray2.default)(_useFetch, 2),
+      _useFetch2 = _slicedToArray(_useFetch, 2),
       names = _useFetch2[0],
       namesLoading = _useFetch2[1];
 
   var _useFetch3 = useFetch(WIKIDATA),
-      _useFetch4 = (0, _slicedToArray2.default)(_useFetch3, 2),
+      _useFetch4 = _slicedToArray(_useFetch3, 2),
       wikidata = _useFetch4[0],
       wikidataLoading = _useFetch4[1];
 
   var _useBrands = useBrands(BRANDS),
-      _useBrands2 = (0, _slicedToArray2.default)(_useBrands, 2),
+      _useBrands2 = _slicedToArray(_useBrands, 2),
       dict = _useBrands2[0],
       dictLoading = _useBrands2[1];
 
   var _useTaginfo = useTaginfo(TAGINFO),
-      _useTaginfo2 = (0, _slicedToArray2.default)(_useTaginfo, 2),
+      _useTaginfo2 = _slicedToArray(_useTaginfo, 2),
       icons = _useTaginfo2[0],
       iconsLoading = _useTaginfo2[1];
 
@@ -19129,12 +19341,12 @@ function App() {
       var params = parseParams(routeProps.location.search);
 
       if (params.k && params.v || params.id) {
-        return /*#__PURE__*/_react.default.createElement(_Category.default, (0, _extends2.default)({}, routeProps, params, {
+        return /*#__PURE__*/_react.default.createElement(_Category.default, _extends({}, routeProps, params, {
           tree: "brands",
           data: appData
         }));
       } else {
-        return /*#__PURE__*/_react.default.createElement(_Overview.default, (0, _extends2.default)({}, routeProps, {
+        return /*#__PURE__*/_react.default.createElement(_Overview.default, _extends({}, routeProps, {
           tree: "brands",
           data: appData
         }));
@@ -19144,12 +19356,12 @@ function App() {
 
   function useFetch(url) {
     var _useState3 = (0, _react.useState)([]),
-        _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+        _useState4 = _slicedToArray(_useState3, 2),
         data = _useState4[0],
         setData = _useState4[1];
 
     var _useState5 = (0, _react.useState)(true),
-        _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+        _useState6 = _slicedToArray(_useState5, 2),
         loading = _useState6[0],
         setLoading = _useState6[1];
 
@@ -19158,9 +19370,9 @@ function App() {
     }
 
     function _fetchUrl() {
-      _fetchUrl = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      _fetchUrl = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
         var response, json;
-        return _regenerator.default.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -19196,12 +19408,12 @@ function App() {
 
   function useBrands(url) {
     var _useState7 = (0, _react.useState)({}),
-        _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
+        _useState8 = _slicedToArray(_useState7, 2),
         data = _useState8[0],
         setData = _useState8[1];
 
     var _useState9 = (0, _react.useState)(true),
-        _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
+        _useState10 = _slicedToArray(_useState9, 2),
         loading = _useState10[0],
         setLoading = _useState10[1];
 
@@ -19210,9 +19422,9 @@ function App() {
     }
 
     function _fetchUrl2() {
-      _fetchUrl2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+      _fetchUrl2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
         var response, json, obj, dict;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
@@ -19264,12 +19476,12 @@ function App() {
 
   function useTaginfo(url) {
     var _useState11 = (0, _react.useState)({}),
-        _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
+        _useState12 = _slicedToArray(_useState11, 2),
         data = _useState12[0],
         setData = _useState12[1];
 
     var _useState13 = (0, _react.useState)(true),
-        _useState14 = (0, _slicedToArray2.default)(_useState13, 2),
+        _useState14 = _slicedToArray(_useState13, 2),
         loading = _useState14[0],
         setLoading = _useState14[1];
 
@@ -19278,9 +19490,9 @@ function App() {
     }
 
     function _fetchUrl3() {
-      _fetchUrl3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+      _fetchUrl3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
         var response, json, tags, icons;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
@@ -19352,8 +19564,10 @@ function App() {
 }
 
 ;
-},{"@babel/runtime/regenerator":"PMvg","@babel/runtime/helpers/asyncToGenerator":"agGE","@babel/runtime/helpers/extends":"dLyZ","@babel/runtime/helpers/slicedToArray":"HETk","react":"n8MK","react-router-dom":"uc19","./Category":"vBRt","./Footer":"jutB","./Overview":"RzVt"}],"c2Qt":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","./Category":"vBRt","./Footer":"jutB","./Overview":"RzVt"}],"c2Qt":[function(require,module,exports) {
 "use strict";
+
+require("regenerator-runtime/runtime");
 
 require("whatwg-fetch");
 
@@ -19368,4 +19582,4 @@ var _App = _interopRequireDefault(require("./App"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById("root"));
-},{"whatwg-fetch":"MCp7","react":"n8MK","react-dom":"NKHc","react-router-dom":"uc19","./App":"vmSA"}]},{},["c2Qt"], null)
+},{"regenerator-runtime/runtime":"QVnC","whatwg-fetch":"MCp7","react":"n8MK","react-dom":"NKHc","react-router-dom":"uc19","./App":"vmSA"}]},{},["c2Qt"], null)

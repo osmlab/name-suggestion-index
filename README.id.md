@@ -30,9 +30,11 @@ Membangun indeks nama canonical memungkina dua hal yang sangat berguna:
 *name-suggestion-index saat digunakan di ID untuk menambahkan item baru*
 
 Saat ini digunakan di:
-* iD (lihat dibawah)
-* [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
-* Preset JOSM yang tersedia
+- iD (lihat dibawah)
+- [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
+- [Preset JOSM](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) yang tersedia
+- [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)
+
 
 ### Ikut berpartisipasilah!
 

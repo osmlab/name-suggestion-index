@@ -1,6 +1,6 @@
 {
   "amenity/post_office|An Post": {
-    "countryCodes": ["ie"],
+    "locationSet": {"include": ["ie"]},
     "tags": {
       "amenity": "post_office",
       "brand": "An Post",
@@ -10,7 +10,7 @@
     }
   },
   "amenity/post_office|Australia Post": {
-    "countryCodes": ["au"],
+    "locationSet": {"include": ["au"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Australia Post",
@@ -20,7 +20,7 @@
     }
   },
   "amenity/post_office|CTT~(Macau)": {
-    "countryCodes": ["mo"],
+    "locationSet": {"include": ["mo"]},
     "nomatch": [
       "amenity/post_office|CTT~(Portugal)"
     ],
@@ -33,7 +33,7 @@
     }
   },
   "amenity/post_office|CTT~(Portugal)": {
-    "countryCodes": ["pt"],
+    "locationSet": {"include": ["pt"]},
     "nomatch": [
       "amenity/post_office|CTT~(Macau)"
     ],
@@ -46,7 +46,7 @@
     }
   },
   "amenity/post_office|Canada Post": {
-    "countryCodes": ["ca"],
+    "locationSet": {"include": ["ca"]},
     "nomatch": ["amenity/post_box|Canada Post"],
     "tags": {
       "amenity": "post_office",
@@ -57,7 +57,7 @@
     }
   },
   "amenity/post_office|Chilexpress": {
-    "countryCodes": ["cl"],
+    "locationSet": {"include": ["cl"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Chilexpress",
@@ -65,7 +65,7 @@
     }
   },
   "amenity/post_office|Correios": {
-    "countryCodes": ["br"],
+    "locationSet": {"include": ["br"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Correios",
@@ -74,8 +74,16 @@
       "name": "Correios"
     }
   },
+  "amenity/post_office|Correo": {
+    "locationSet": {"include": ["001"]},
+    "tags": {
+      "amenity": "post_office",
+      "brand": "Correo",
+      "name": "Correo"
+    }
+  },
   "amenity/post_office|Correo Argentino": {
-    "countryCodes": ["ar"],
+    "locationSet": {"include": ["ar"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Correo Argentino",
@@ -85,7 +93,7 @@
     }
   },
   "amenity/post_office|Correos de Chile": {
-    "countryCodes": ["cl"],
+    "locationSet": {"include": ["cl"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Correos de Chile",
@@ -95,7 +103,7 @@
     }
   },
   "amenity/post_office|Correos de Costa Rica": {
-    "countryCodes": ["cr"],
+    "locationSet": {"include": ["cr"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Correos de Costa Rica",
@@ -105,7 +113,7 @@
     }
   },
   "amenity/post_office|Correos de México": {
-    "countryCodes": ["mx"],
+    "locationSet": {"include": ["mx"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Correos de México",
@@ -115,6 +123,7 @@
     }
   },
   "amenity/post_office|DHL": {
+    "locationSet": {"include": ["001"]},
     "matchNames": ["dhl paketshop"],
     "tags": {
       "amenity": "post_office",
@@ -125,7 +134,9 @@
     }
   },
   "amenity/post_office|DPD Paketshop": {
-    "countryCodes": ["at", "de", "pl"],
+    "locationSet": {
+      "include": ["at", "de", "pl"]
+    },
     "tags": {
       "amenity": "post_office",
       "brand": "DPD Paketshop",
@@ -135,7 +146,7 @@
     }
   },
   "amenity/post_office|Deutsche Post": {
-    "countryCodes": ["de"],
+    "locationSet": {"include": ["de"]},
     "matchNames": [
       "deutsche post ag",
       "deutsche post filiale"
@@ -149,6 +160,7 @@
     }
   },
   "amenity/post_office|Domesa": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Domesa",
@@ -156,7 +168,7 @@
     }
   },
   "amenity/post_office|Fancourier": {
-    "countryCodes": ["ro"],
+    "locationSet": {"include": ["ro"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Fancourier",
@@ -166,6 +178,7 @@
     }
   },
   "amenity/post_office|FedEx": {
+    "locationSet": {"include": ["001"]},
     "nomatch": ["amenity/post_box|FedEx"],
     "tags": {
       "amenity": "post_office",
@@ -176,7 +189,7 @@
     }
   },
   "amenity/post_office|Hermes Paketshop": {
-    "countryCodes": ["de"],
+    "locationSet": {"include": ["de"]},
     "matchNames": ["hermes"],
     "tags": {
       "amenity": "post_office",
@@ -186,8 +199,21 @@
       "name": "Hermes Paketshop"
     }
   },
+  "amenity/post_office|J&T Express": {
+    "locationSet": {
+      "include": ["id", "my", "ph"]
+    },
+    "nomatch": ["amenity/bank|J&T Banka"],
+    "tags": {
+      "amenity": "post_office",
+      "brand": "J&T Express",
+      "brand:wikidata": "Q95690344",
+      "brand:wikipedia": "id:J&T Express",
+      "name": "J&T Express"
+    }
+  },
   "amenity/post_office|LBC": {
-    "countryCodes": ["ph"],
+    "locationSet": {"include": ["ph"]},
     "matchNames": ["lbc express"],
     "tags": {
       "amenity": "post_office",
@@ -198,6 +224,7 @@
     }
   },
   "amenity/post_office|La Poste": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "amenity": "post_office",
       "brand": "La Poste",
@@ -207,13 +234,9 @@
     }
   },
   "amenity/post_office|MRW": {
-    "countryCodes": [
-      "ad",
-      "es",
-      "gi",
-      "pt",
-      "ve"
-    ],
+    "locationSet": {
+      "include": ["ad", "es", "gi", "pt", "ve"]
+    },
     "tags": {
       "amenity": "post_office",
       "brand": "MRW",
@@ -223,6 +246,7 @@
     }
   },
   "amenity/post_office|Mail Boxes Etc.": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Mail Boxes Etc.",
@@ -232,7 +256,7 @@
     }
   },
   "amenity/post_office|OCA": {
-    "countryCodes": ["ar"],
+    "locationSet": {"include": ["ar"]},
     "tags": {
       "amenity": "post_office",
       "brand": "OCA",
@@ -242,7 +266,7 @@
     }
   },
   "amenity/post_office|Oficina de Correos": {
-    "countryCodes": ["es"],
+    "locationSet": {"include": ["es"]},
     "matchNames": ["correos"],
     "tags": {
       "amenity": "post_office",
@@ -253,7 +277,7 @@
     }
   },
   "amenity/post_office|PHLPost": {
-    "countryCodes": ["ph"],
+    "locationSet": {"include": ["ph"]},
     "matchNames": ["phl"],
     "tags": {
       "amenity": "post_office",
@@ -265,15 +289,18 @@
     }
   },
   "amenity/post_office|PTT": {
+    "locationSet": {"include": ["tr"]},
     "nomatch": ["amenity/fuel|PTT"],
     "tags": {
       "amenity": "post_office",
       "brand": "PTT",
+      "brand:wikidata": "Q3079259",
+      "brand:wikipedia": "tr:PTT",
       "name": "PTT"
     }
   },
   "amenity/post_office|Poczta Polska": {
-    "countryCodes": ["pl"],
+    "locationSet": {"include": ["pl"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Poczta Polska",
@@ -282,8 +309,18 @@
       "name": "Poczta Polska"
     }
   },
+  "amenity/post_office|Pos Malaysia": {
+    "locationSet": {"include": ["my"]},
+    "tags": {
+      "amenity": "post_office",
+      "brand": "Pos Malaysia",
+      "brand:wikidata": "Q6112623",
+      "brand:wikipedia": "en:Pos Malaysia",
+      "name": "Pos Malaysia"
+    }
+  },
   "amenity/post_office|Post Office~(UK)": {
-    "countryCodes": ["gb"],
+    "locationSet": {"include": ["gb"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Post Office",
@@ -293,7 +330,7 @@
     }
   },
   "amenity/post_office|PostalAnnex": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "matchTags": ["shop/post_office"],
     "tags": {
       "amenity": "post_office",
@@ -303,6 +340,7 @@
     }
   },
   "amenity/post_office|Postbank Finanzcenter": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Postbank Finanzcenter",
@@ -310,7 +348,7 @@
     }
   },
   "amenity/post_office|Poste Italiane": {
-    "countryCodes": ["it"],
+    "locationSet": {"include": ["it"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Poste Italiane",
@@ -320,14 +358,17 @@
     }
   },
   "amenity/post_office|Posti": {
+    "locationSet": {"include": ["fi"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Posti",
+      "brand:wikidata": "Q843453",
+      "brand:wikipedia": "fi:Posti Group",
       "name": "Posti"
     }
   },
   "amenity/post_office|Serpost": {
-    "countryCodes": ["pe"],
+    "locationSet": {"include": ["pe"]},
     "matchNames": ["servicios postales del perú"],
     "matchTags": ["shop/post_office"],
     "tags": {
@@ -339,14 +380,16 @@
     }
   },
   "amenity/post_office|Servientrega": {
+    "locationSet": {"include": ["co"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Servientrega",
+      "brand:wikidata": "Q96094519",
       "name": "Servientrega"
     }
   },
   "amenity/post_office|Slovenská pošta": {
-    "countryCodes": ["sk"],
+    "locationSet": {"include": ["sk"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Slovenská pošta",
@@ -355,8 +398,20 @@
       "name": "Slovenská pošta"
     }
   },
+  "amenity/post_office|TCC": {
+    "locationSet": {"include": ["co"]},
+    "tags": {
+      "amenity": "post_office",
+      "brand": "TCC",
+      "brand:wikidata": "Q27968821",
+      "brand:wikipedia": "es:TCC (Colombia)",
+      "name": "TCC",
+      "old_name": "Transcomerco",
+      "short_name": "TCC"
+    }
+  },
   "amenity/post_office|The UPS Store": {
-    "countryCodes": ["ca", "us"],
+    "locationSet": {"include": ["ca", "us"]},
     "matchNames": ["ups store"],
     "matchTags": ["shop/copyshop"],
     "nomatch": ["amenity/post_box|UPS"],
@@ -370,7 +425,7 @@
     }
   },
   "amenity/post_office|United States Post Office": {
-    "countryCodes": ["us"],
+    "locationSet": {"include": ["us"]},
     "matchNames": [
       "united states postal service",
       "us post office",
@@ -387,6 +442,7 @@
     }
   },
   "amenity/post_office|Zoom": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Zoom",
@@ -394,7 +450,7 @@
     }
   },
   "amenity/post_office|ΕΛΤΑ": {
-    "countryCodes": ["gr"],
+    "locationSet": {"include": ["gr"]},
     "tags": {
       "amenity": "post_office",
       "brand": "ΕΛΤΑ",
@@ -404,7 +460,7 @@
     }
   },
   "amenity/post_office|Белпошта": {
-    "countryCodes": ["by"],
+    "locationSet": {"include": ["by"]},
     "matchNames": ["белпочта"],
     "tags": {
       "amenity": "post_office",
@@ -421,6 +477,7 @@
     }
   },
   "amenity/post_office|Еконт": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Еконт",
@@ -428,7 +485,7 @@
     }
   },
   "amenity/post_office|Казпочта": {
-    "countryCodes": ["kz"],
+    "locationSet": {"include": ["kz"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Казпочта",
@@ -438,7 +495,7 @@
     }
   },
   "amenity/post_office|Нова Пошта": {
-    "countryCodes": ["ua"],
+    "locationSet": {"include": ["ua"]},
     "matchNames": [
       "нова пошта №1",
       "нова пошта №2",
@@ -454,7 +511,7 @@
     }
   },
   "amenity/post_office|Почта России": {
-    "countryCodes": ["ru"],
+    "locationSet": {"include": ["ru"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Почта России",
@@ -464,7 +521,7 @@
     }
   },
   "amenity/post_office|СДЭК": {
-    "countryCodes": ["ru"],
+    "locationSet": {"include": ["ru"]},
     "tags": {
       "amenity": "post_office",
       "brand": "СДЭК",
@@ -474,7 +531,7 @@
     }
   },
   "amenity/post_office|Укрпошта": {
-    "countryCodes": ["ua"],
+    "locationSet": {"include": ["ua"]},
     "tags": {
       "amenity": "post_office",
       "brand": "Укрпошта",
@@ -484,6 +541,7 @@
     }
   },
   "amenity/post_office|بريد الجزائر": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "amenity": "post_office",
       "brand": "بريد الجزائر",
@@ -491,7 +549,7 @@
     }
   },
   "amenity/post_office|ヤマト運輸": {
-    "countryCodes": ["jp"],
+    "locationSet": {"include": ["jp"]},
     "tags": {
       "amenity": "post_office",
       "brand": "ヤマト運輸",
@@ -505,7 +563,7 @@
     }
   },
   "amenity/post_office|中国邮政": {
-    "countryCodes": ["cn"],
+    "locationSet": {"include": ["cn"]},
     "tags": {
       "amenity": "post_office",
       "brand": "中国邮政",
@@ -517,7 +575,7 @@
     }
   },
   "amenity/post_office|佐川急便": {
-    "countryCodes": ["jp"],
+    "locationSet": {"include": ["jp"]},
     "tags": {
       "amenity": "post_office",
       "brand": "佐川急便",
@@ -531,7 +589,7 @@
     }
   },
   "amenity/post_office|日本郵便": {
-    "countryCodes": ["jp"],
+    "locationSet": {"include": ["jp"]},
     "tags": {
       "amenity": "post_office",
       "brand": "日本郵便",

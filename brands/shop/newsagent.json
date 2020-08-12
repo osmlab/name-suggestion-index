@@ -1,6 +1,18 @@
 {
+  "shop/newsagent|Central": {
+    "locationSet": {
+      "include": ["great_britain.geojson"]
+    },
+    "nomatch": ["shop/convenience|Central"],
+    "tags": {
+      "brand": "Central Convenience Store",
+      "brand:wikidata": "Q97104475",
+      "name": "Central",
+      "shop": "newsagent"
+    }
+  },
   "shop/newsagent|Cigo": {
-    "countryCodes": ["de", "nl"],
+    "locationSet": {"include": ["de", "nl"]},
     "tags": {
       "brand": "Cigo",
       "brand:wikidata": "Q62391977",
@@ -9,6 +21,7 @@
     }
   },
   "shop/newsagent|Hudson": {
+    "locationSet": {"include": ["001"]},
     "matchNames": ["hudson news"],
     "tags": {
       "brand": "Hudson",
@@ -19,7 +32,9 @@
     }
   },
   "shop/newsagent|Inmedio": {
-    "countryCodes": ["hu", "pl", "ro"],
+    "locationSet": {
+      "include": ["hu", "pl", "ro"]
+    },
     "tags": {
       "brand": "Inmedio",
       "name": "Inmedio",
@@ -27,7 +42,7 @@
     }
   },
   "shop/newsagent|Kolporter": {
-    "countryCodes": ["pl"],
+    "locationSet": {"include": ["pl"]},
     "matchTags": ["shop/kiosk"],
     "tags": {
       "brand": "Kolporter",
@@ -38,6 +53,7 @@
     }
   },
   "shop/newsagent|Mag Presse": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "brand": "Mag Presse",
       "name": "Mag Presse",
@@ -45,7 +61,7 @@
     }
   },
   "shop/newsagent|Maison de la Presse": {
-    "countryCodes": ["fr"],
+    "locationSet": {"include": ["fr"]},
     "matchTags": ["shop/books"],
     "tags": {
       "brand": "Maison de la Presse",
@@ -55,7 +71,7 @@
     }
   },
   "shop/newsagent|Martin's": {
-    "countryCodes": ["gb"],
+    "locationSet": {"include": ["gb"]},
     "matchTags": ["shop/convenience"],
     "tags": {
       "brand": "Martin's",
@@ -66,7 +82,7 @@
     }
   },
   "shop/newsagent|Primera": {
-    "countryCodes": ["nl"],
+    "locationSet": {"include": ["nl"]},
     "tags": {
       "brand": "Primera",
       "brand:wikidata": "Q2176149",
@@ -76,6 +92,7 @@
     }
   },
   "shop/newsagent|Relay": {
+    "locationSet": {"include": ["001"]},
     "matchTags": ["shop/kiosk"],
     "tags": {
       "brand": "Relay",
@@ -86,6 +103,7 @@
     }
   },
   "shop/newsagent|WHSmith": {
+    "locationSet": {"include": ["001"]},
     "matchTags": [
       "shop/convenience",
       "shop/kiosk",
@@ -101,7 +119,7 @@
     }
   },
   "shop/newsagent|k kiosk": {
-    "countryCodes": ["ch"],
+    "locationSet": {"include": ["ch"]},
     "nomatch": ["shop/kiosk|k kiosk"],
     "tags": {
       "brand": "k kiosk",
@@ -111,36 +129,23 @@
       "shop": "newsagent"
     }
   },
-  "shop/newsagent|Белсоюзпечать": {
-    "countryCodes": ["by"],
-    "matchTags": ["shop/kiosk"],
-    "nomatch": [
-      "shop/newsagent|Витебскоблсоюзпечать",
-      "shop/newsagent|Союзпечать"
+  "shop/newsagent|БелДрук": {
+    "locationSet": {"include": ["by"]},
+    "matchNames": [
+      "белсоюзпечать",
+      "витебскоблсоюзпечать"
     ],
-    "tags": {
-      "brand": "Белсоюзпечать",
-      "brand:wikidata": "Q67723214",
-      "name": "Белсоюзпечать",
-      "shop": "newsagent"
-    }
-  },
-  "shop/newsagent|Витебскоблсоюзпечать": {
-    "countryCodes": ["by"],
     "matchTags": ["shop/kiosk"],
-    "nomatch": [
-      "shop/newsagent|Белсоюзпечать",
-      "shop/newsagent|Союзпечать"
-    ],
+    "nomatch": ["shop/newsagent|Союзпечать"],
     "tags": {
-      "brand": "Витебскоблсоюзпечать",
-      "brand:wikidata": "Q67723214",
-      "name": "Витебскоблсоюзпечать",
+      "brand": "БелДрук",
+      "brand:wikidata": "Q63986228",
+      "name": "БелДрук",
       "shop": "newsagent"
     }
   },
   "shop/newsagent|Первая полоса": {
-    "countryCodes": ["ru"],
+    "locationSet": {"include": ["ru"]},
     "tags": {
       "brand": "Первая полоса",
       "brand:wikidata": "Q62736412",
@@ -149,6 +154,7 @@
     }
   },
   "shop/newsagent|Роспечать": {
+    "locationSet": {"include": ["001"]},
     "tags": {
       "brand": "Роспечать",
       "name": "Роспечать",
@@ -156,7 +162,7 @@
     }
   },
   "shop/newsagent|Союзпечать": {
-    "countryCodes": ["ru", "ua"],
+    "locationSet": {"include": ["ru", "ua"]},
     "matchTags": ["shop/kiosk"],
     "nomatch": [
       "shop/newsagent|Белсоюзпечать",
@@ -170,8 +176,23 @@
       "shop": "newsagent"
     }
   },
+  "shop/newsagent|日本経済新聞": {
+    "locationSet": {"include": ["jp"]},
+    "matchNames": ["日経新聞"],
+    "tags": {
+      "brand": "日本経済新聞",
+      "brand:en": "The Nikkei",
+      "brand:ja": "日本経済新聞",
+      "brand:wikidata": "Q1077694",
+      "brand:wikipedia": "ja:日本経済新聞",
+      "name": "日本経済新聞",
+      "name:en": "The Nikkei",
+      "name:ja": "日本経済新聞",
+      "shop": "newsagent"
+    }
+  },
   "shop/newsagent|朝日新聞": {
-    "countryCodes": ["jp"],
+    "locationSet": {"include": ["jp"]},
     "tags": {
       "brand": "朝日新聞",
       "brand:en": "Asahi Shimbun",
@@ -182,8 +203,38 @@
       "shop": "newsagent"
     }
   },
+  "shop/newsagent|毎日新聞": {
+    "locationSet": {"include": ["jp"]},
+    "matchNames": ["毎日ニュースポート"],
+    "tags": {
+      "brand": "毎日新聞",
+      "brand:en": "Mainichi Shimbun",
+      "brand:ja": "毎日新聞",
+      "brand:wikidata": "Q1136866",
+      "brand:wikipedia": "ja:毎日新聞",
+      "name": "毎日新聞",
+      "name:en": "Mainichi Shimbun",
+      "name:ja": "毎日新聞",
+      "shop": "newsagent"
+    }
+  },
+  "shop/newsagent|産経新聞": {
+    "locationSet": {"include": ["jp"]},
+    "matchNames": ["サンケイ新聞"],
+    "tags": {
+      "brand": "産経新聞",
+      "brand:en": "Sankei Shimbun",
+      "brand:ja": "産経新聞",
+      "brand:wikidata": "Q1197261",
+      "brand:wikipedia": "ja:産経新聞",
+      "name": "産経新聞",
+      "name:en": "Sankei Shimbun",
+      "name:ja": "産経新聞",
+      "shop": "newsagent"
+    }
+  },
   "shop/newsagent|読売新聞": {
-    "countryCodes": ["jp"],
+    "locationSet": {"include": ["jp"]},
     "tags": {
       "brand": "読売新聞",
       "brand:en": "Yomiuri Shimbun",

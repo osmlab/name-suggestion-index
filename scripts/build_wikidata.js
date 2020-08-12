@@ -1,8 +1,8 @@
 const colors = require('colors/safe');
 const fetch = require('node-fetch');
-const fileTree = require('./lib/file_tree.js');
-const fs = require('fs-extra');
-const sort = require('./lib/sort.js');
+const fileTree = require('../lib/file_tree.js');
+const fs = require('fs');
+const sort = require('../lib/sort.js');
 const stringify = require('json-stringify-pretty-compact');
 
 const wbk = require('wikibase-sdk')({
@@ -32,7 +32,7 @@ try {
   //   "twitter_access_token_secret": ""
   // }]
   const Twitter = require('twitter');
-  let secrets = require('./config/secrets.json');
+  let secrets = require('../config/secrets.json');
   secrets = [].concat(secrets);
 
   twitterAPIs = secrets.map(s => {
@@ -330,8 +330,8 @@ function finish() {
 
   let origWikidata;
   try {
-    origWikidata = require('./dist/wikidata.json').wikidata;
-  } catch (err) { 
+    origWikidata = require('../dist/wikidata.json').wikidata;
+  } catch (err) {
     origWikidata = {};
   }
 
@@ -469,10 +469,16 @@ function fetchFacebookLogo(qid, username) {
   return fetch(logoURL)
     .then(response => {
       if (!response.ok) {
-        throw new Error(response.status + ' ' + response.statusText);
+        return response.json();  // we should get a response body with more information
       }
       if (response.headers.get('content-md5') !== 'OMs/UjwLoIRaoKN19eGYeQ==') {  // question-mark image #2750
         target.logos.facebook = logoURL;
+      }
+      return {};
+    })
+    .then(json => {
+      if (json && json.error && json.error.message) {
+        throw new Error(json.error.message);
       }
       return true;
     })
