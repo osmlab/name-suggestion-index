@@ -39,7 +39,6 @@ Currently used in:
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) available
 - [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)
 
-
 ### Participate!
 
 - Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
@@ -119,7 +118,7 @@ You do not need to do these steps in order to contribute to the index.
   - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
 - Run `node build_all_names wanted.osm.pbf`
   - results will go in `dist/names_all.json`
-  - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
+  - `git commit -m 'Updated dist/names_all.json'`
 
 ### License
 
