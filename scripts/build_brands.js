@@ -44,7 +44,7 @@ filterNames();
 matcher.buildMatchIndex(brands);
 checkBrands();
 mergeBrands();
-fileTree.write('brands', brands);
+fileTree.write('brands', brands, loco);
 console.log('');
 
 
