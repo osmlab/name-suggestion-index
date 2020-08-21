@@ -30,6 +30,7 @@ export default function CategoryRow(props) {
   const count = data.names[kvnd] || '< 50';
   const tags = entry.tags || {};
   const qid = tags['brand:wikidata'];
+  const bn = tags['brand'];
   const wd = data.wikidata[qid] || {};
   const label = wd.label || '';
   const description = wd.description ? '"' + wd.description + '"' : '';
@@ -46,7 +47,7 @@ export default function CategoryRow(props) {
       <div className="nsikey"><pre>'{kvnd}'</pre></div>
       <div className="locations">{ locoDisplay(entry.locationSet, tags.name) }</div>
       <div className="viewlink">
-        { searchOverpassLink(k, v, tags.name, tags['brand:wikidata']) }<br/>
+        { searchOverpassLink(k, v, tags.name, tags['brand:wikidata'], tags['brand']) }<br/>
         { searchGoogleLink(tags.name) }<br/>
         { searchWikipediaLink(tags.name) }
       </div>
@@ -106,7 +107,7 @@ export default function CategoryRow(props) {
   }
 
 
-  function searchOverpassLink(k, v, n, w) {
+  function searchOverpassLink(k, v, n, w, bn) {
     // Build Overpass Turbo link:
     const q = encodeURIComponent(`[out:json][timeout:100];
 (nwr["name"="${n}"];);
@@ -123,9 +124,9 @@ node[${k}=${v}][name=${n}],
 way[${k}=${v}][name=${n}],
 relation[${k}=${v}][name=${n}]
 { color:yellow; fill-color:yellow; }
-node[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
-way[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}],
-relation[${k}=${v}][name=${n}][brand=${n}][brand:wikidata=${w}]
+node[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${w}],
+way[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${w}],
+relation[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${w}]
 { color:green; fill-color:green; }
 }}`);
 
