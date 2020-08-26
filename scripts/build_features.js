@@ -2,7 +2,6 @@ const colors = require('colors/safe');
 const fs = require('fs');
 const glob = require('glob');
 const JSON5 = require('json5');
-const LocationConflation = require('@ideditor/location-conflation');
 const path = require('path');
 const precision = require('geojson-precision');
 const prettyStringify = require('json-stringify-pretty-compact');
