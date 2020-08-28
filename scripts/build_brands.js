@@ -34,16 +34,16 @@ fs.writeFileSync('config/filters.json', stringify(filters));
 const loco = new LocationConflation(featureCollection);
 let brands = fileTree.read('brands', loco);
 
-// all names start out in _discard..
-const allnames = require('../dist/names_all.json');
-let _discard = Object.assign({}, allnames);
-let _keep = {};
+// // all names start out in _discard..
+// const allnames = require('../dist/names_all.json');
+// let _discard = Object.assign({}, allnames);
+// let _keep = {};
 
 
-filterNames();
-matcher.buildMatchIndex(brands);
-checkBrands();
-mergeBrands();
+// filterNames();
+// matcher.buildMatchIndex(brands);
+// checkBrands();
+// mergeBrands();
 fileTree.write('brands', brands, loco);
 console.log('');
 
