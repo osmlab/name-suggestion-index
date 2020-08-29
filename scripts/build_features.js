@@ -1,6 +1,7 @@
 const colors = require('colors/safe');
 const fs = require('fs');
 const glob = require('glob');
+const JSON5 = require('json5');
 const LocationConflation = require('@ideditor/location-conflation');
 const path = require('path');
 const precision = require('geojson-precision');
@@ -51,7 +52,7 @@ function collectFeatures() {
     const contents = fs.readFileSync(file, 'utf8');
     let parsed;
     try {
-      parsed = JSON.parse(contents);
+      parsed = JSON5.parse(contents);
     } catch (jsonParseError) {
       console.error(colors.red(`Error - ${jsonParseError.message} in:`));
       console.error('  ' + colors.yellow(file));
