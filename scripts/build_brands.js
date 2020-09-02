@@ -32,7 +32,8 @@ fs.writeFileSync('config/filters.json', stringify(filters));
 
 // Load and check brand files
 const loco = new LocationConflation(featureCollection);
-let brands = fileTree.read('brands', loco);
+let brands = {};
+fileTree.read('brands', brands, loco);
 
 // // all names start out in _discard..
 // const allnames = require('../dist/names_all.json');

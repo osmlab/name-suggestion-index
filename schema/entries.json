@@ -1,73 +1,87 @@
 {
-  "title": "brands schema",
-  "description": "name-suggestion-index brands",
+  "title": "entries schema",
+  "description": "name-suggestion-index entries",
   "type": "object",
   "additionalProperties": false,
   "patternProperties": {
 
-    "^\\S+/\\S+|.*$": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["locationSet", "tags"],
-      "properties": {
+    "^\\S+/\\S+/\\S+$": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
 
-        "id": {
-          "description": "(generated) unique identifier.",
-          "type": "string"
-        },
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["displayName", "locationSet", "tags"],
+        "properties": {
 
-        "locationSet": {
-          "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
-          "description": "(required) included and excluded locations for this imagery source",
-          "$ref": "#/definitions/locationSet"
-        },
-
-        "matchNames": {
-          "description": "(optional) An array of alternate but less-desired names.",
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
+          "displayName": {
+            "description": "(required) A display name for this entry.",
             "type": "string"
-          }
-        },
-
-        "matchTags": {
-          "description": "(optional) An array of alternate but less-desired tag-pairs.",
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "pattern": "^\\S+/\\S+$"
-          }
-        },
-
-        "nomatch": {
-          "description": "(optional) Array of alternate keys that do not match this key, used to suppress warning about potential duplicate name.",
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "pattern": "^\\S+/\\S+|.*$"
-          }
-        },
-
-        "tags": {
-          "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
-          "type": "object",
-          "properties": {
-            "countryCodes": { "not" : {} },
-            "locationSet":  { "not" : {} },
-            "matchNames":   { "not" : {} },
-            "matchTags":    { "not" : {} },
-            "operator":     { "not" : {} },
-            "nomatch":      { "not" : {} },
-            "tags":         { "not" : {} }
           },
-          "required": ["name", "brand"]
-        }
 
+          "id": {
+            "description": "(generated) unique identifier.",
+            "type": "string"
+          },
+
+          "oldid": {
+            "description": "(optional) The legacy NSI identifier - will go away soon",
+            "type": "string"
+          },
+
+          "locationSet": {
+            "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
+            "description": "(required) included and excluded locations for this item",
+            "$ref": "#/definitions/locationSet"
+          },
+
+          "matchNames": {
+            "description": "(optional) An array of alternate but less-desired names.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+
+          "matchTags": {
+            "description": "(optional) An array of alternate but less-desired tag-pairs.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^\\S+/\\S+$"
+            }
+          },
+
+          "nomatch": {
+            "description": "(optional) Array of alternate keys that do not match this key, used to suppress warning about potential duplicate name.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^\\S+/\\S+|.*$"
+            }
+          },
+
+          "tags": {
+            "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
+            "type": "object",
+            "properties": {
+              "locationSet":  { "not" : {} },
+              "matchNames":   { "not" : {} },
+              "matchTags":    { "not" : {} },
+              "operator":     { "not" : {} },
+              "nomatch":      { "not" : {} },
+              "tags":         { "not" : {} }
+            },
+            "required": ["name", "brand"]
+          }
+        }
       }
     }
+
   },
 
   "definitions": {
