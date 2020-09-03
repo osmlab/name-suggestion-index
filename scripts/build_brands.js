@@ -9,9 +9,10 @@ const fileTree = require('../lib/file_tree.js');
 const matcher = require('../lib/matcher.js')();
 const sort = require('../lib/sort.js');
 const stemmer = require('../lib/stemmer.js');
-const toParts = require('../lib/to_parts.js');
 const validate = require('../lib/validate.js');
 
+// We use LocationConflation for validating and processing the locationSets
+const loco = new LocationConflation(featureCollection);
 
 // Load cached wikidata
 const _wikidata = require('../dist/wikidata.json').wikidata;
@@ -30,22 +31,22 @@ filters = {
 fs.writeFileSync('config/filters.json', stringify(filters));
 
 
+// all names start out in _discard..
+const allnames = require('../dist/names_all.json');
+let _discard = Object.assign({}, allnames);
+let _keep = {};
+filterNames();
+
+
+let _cache = { path: {}, id: {} };
+
 // Load and check brand files
-const loco = new LocationConflation(featureCollection);
-let brands = {};
-fileTree.read('brands', brands, loco);
+fileTree.read('brands', _cache, loco);
 
-// // all names start out in _discard..
-// const allnames = require('../dist/names_all.json');
-// let _discard = Object.assign({}, allnames);
-// let _keep = {};
-
-
-// filterNames();
-// matcher.buildMatchIndex(brands);
-// checkBrands();
-// mergeBrands();
-fileTree.write('brands', brands, loco);
+// matcher.buildMatchIndex(_cache);
+checkBrands();
+mergeBrands();
+fileTree.write('brands', _cache, loco);
 console.log('');
 
 
@@ -70,11 +71,11 @@ function filterNames() {
   // filter by keepTags (move from _discard -> _keep)
   filters.keepTags.forEach(s => {
     const re = new RegExp(s, 'i');
-    for (let kvnd in _discard) {
-      const tag = kvnd.split('|', 2)[0];
+    for (let kvn in _discard) {
+      const tag = kvn.split('|', 2)[0];
       if (re.test(tag)) {
-        _keep[kvnd] = _discard[kvnd];
-        delete _discard[kvnd];
+        _keep[kvn] = _discard[kvn];
+        delete _discard[kvn];
       }
     }
   });
@@ -82,10 +83,10 @@ function filterNames() {
   // filter by discardKeys (move from _keep -> _discard)
   filters.discardKeys.forEach(s => {
     const re = new RegExp(s, 'i');
-    for (let kvnd in _keep) {
-      if (re.test(kvnd)) {
-        _discard[kvnd] = _keep[kvnd];
-        delete _keep[kvnd];
+    for (let kvn in _keep) {
+      if (re.test(kvn)) {
+        _discard[kvn] = _keep[kvn];
+        delete _keep[kvn];
       }
     }
   });
@@ -93,11 +94,11 @@ function filterNames() {
   // filter by discardNames (move from _keep -> _discard)
   filters.discardNames.forEach(s => {
     const re = new RegExp(s, 'i');
-    for (let kvnd in _keep) {
-      const name = kvnd.split('|', 2)[1];
+    for (let kvn in _keep) {
+      const name = kvn.split('|', 2)[1];
       if (re.test(name)) {
-        _discard[kvnd] = _keep[kvnd];
-        delete _keep[kvnd];
+        _discard[kvn] = _keep[kvn];
+        delete _keep[kvn];
       }
     }
   });
@@ -116,88 +117,90 @@ function mergeBrands() {
   console.log('\nmerging brands');
   console.time(colors.green('brands merged'));
 
-  // Create/update entries
-  // First, entries in namesKeep (i.e. counted entries)
-  Object.keys(_keep).forEach(kvnd => {
-    const parts = toParts(kvnd);
-    const m = matcher.matchParts(parts);
-    if (m) return;  // already in the index
+//TODO rewrite matcher
+  // // Create/update entries
+  // // First, entries in namesKeep (i.e. counted entries)
+  // Object.keys(_keep).forEach(kvnd => {
+  //   const parts = toParts(kvnd);
+  //   const m = matcher.matchParts(parts);
+  //   if (m) return;  // already in the index
 
-    let obj = brands[kvnd];
-    if (!obj) {   // a new entry!
-      obj = {
-        locationSet: { include: ['001'] },   // the whole world
-        tags: {}
-      };
-      brands[kvnd] = obj;  // insert
+  //   let obj = brands[kvnd];
+  //   if (!obj) {   // a new entry!
+  //     obj = {
+  //       displayName: parts.n,
+  //       locationSet: { include: ['001'] },   // the whole world
+  //       tags: {}
+  //     };
+  //     brands[kvnd] = obj;  // insert
 
-      // assign default tags - new entries
-      obj.tags.brand = parts.n;
-      obj.tags.name = parts.n;
-      obj.tags[parts.k] = parts.v;
-    }
-  });
+  //     // assign default tags - new entries
+  //     obj.tags.brand = parts.n;
+  //     obj.tags.name = parts.n;
+  //     obj.tags[parts.k] = parts.v;
+  //   }
+  // });
 
 
   // now process all brands
-  Object.keys(brands).forEach(kvnd => {
-    const obj = brands[kvnd];
-    const parts = toParts(kvnd);
+  const brands = _cache.path.brands;
+  Object.keys(brands).forEach(kv => {
+    _cache.path.brands[kv].forEach(item => {
+      let tags = item.tags;
+      const name = tags.name || tags.brand;
 
-    // assign default tags - new or existing entries
-    if (parts.kv === 'amenity/cafe') {
-      if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
-      if (!obj.tags.cuisine) obj.tags.cuisine = 'coffee_shop';
-    } else if (parts.kv === 'amenity/fast_food') {
-      if (!obj.tags.takeaway) obj.tags.takeaway = 'yes';
-    } else if (parts.kv === 'amenity/pharmacy') {
-      if (!obj.tags.healthcare) obj.tags.healthcare = 'pharmacy';
-    }
+      // assign default tags - new or existing entries
+      if (kv === 'amenity/cafe') {
+        if (!tags.takeaway) tags.takeaway = 'yes';
+        if (!tags.cuisine) tags.cuisine = 'coffee_shop';
+      } else if (kv === 'amenity/fast_food') {
+        if (!tags.takeaway) tags.takeaway = 'yes';
+      } else if (kv === 'amenity/pharmacy') {
+        if (!tags.healthcare) tags.healthcare = 'pharmacy';
+      }
 
-    // Force `locationSet`, and duplicate `name:xx` and `brand:xx` tags
-    // if the name can only be reasonably read in one country.
-    // https://www.regular-expressions.info/unicode.html
-    if (/[\u0590-\u05FF]/.test(parts.n)) {          // Hebrew
-      obj.locationSet = { include: ['il'] };
-      // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
-      if (obj.tags.name) { obj.tags['name:he'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:he'] = obj.tags.brand; }
-    } else if (/[\u0E00-\u0E7F]/.test(parts.n)) {   // Thai
-      obj.locationSet = { include: ['th'] };
-      if (obj.tags.name) { obj.tags['name:th'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:th'] = obj.tags.brand; }
-    } else if (/[\u1000-\u109F]/.test(parts.n)) {   // Myanmar
-      obj.locationSet = { include: ['mm'] };
-      if (obj.tags.name) { obj.tags['name:my'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:my'] = obj.tags.brand; }
-    } else if (/[\u1100-\u11FF]/.test(parts.n)) {   // Hangul
-      obj.locationSet = { include: ['kr'] };
-      if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-    } else if (/[\u1700-\u171F]/.test(parts.n)) {   // Tagalog
-      obj.locationSet = { include: ['ph'] };
-      if (obj.tags.name) { obj.tags['name:tl'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:tl'] = obj.tags.brand; }
-    } else if (/[\u3040-\u30FF]/.test(parts.n)) {   // Hirgana or Katakana
-      obj.locationSet = { include: ['jp'] };
-      if (obj.tags.name) { obj.tags['name:ja'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:ja'] = obj.tags.brand; }
-    } else if (/[\u3130-\u318F]/.test(parts.n)) {   // Hangul
-      obj.locationSet = { include: ['kr'] };
-      if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-    } else if (/[\uA960-\uA97F]/.test(parts.n)) {   // Hangul
-      obj.locationSet = { include: ['kr'] };
-      if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-    } else if (/[\uAC00-\uD7AF]/.test(parts.n)) {   // Hangul
-      obj.locationSet = { include: ['kr'] };
-      if (obj.tags.name) { obj.tags['name:ko'] = obj.tags.name; }
-      if (obj.tags.brand) { obj.tags['brand:ko'] = obj.tags.brand; }
-    }
-
-    brands[kvnd] = sort(brands[kvnd]);
-
+      // Force `locationSet`, and duplicate `name:xx` and `brand:xx` tags
+      // if the name can only be reasonably read in one country.
+      // https://www.regular-expressions.info/unicode.html
+      if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
+        item.locationSet = { include: ['il'] };
+        // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
+        if (tags.name) { tags['name:he'] = tags.name; }
+        if (tags.brand) { tags['brand:he'] = tags.brand; }
+      } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
+        item.locationSet = { include: ['th'] };
+        if (tags.name) { tags['name:th'] = tags.name; }
+        if (tags.brand) { tags['brand:th'] = tags.brand; }
+      } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
+        item.locationSet = { include: ['mm'] };
+        if (tags.name) { tags['name:my'] = tags.name; }
+        if (tags.brand) { tags['brand:my'] = tags.brand; }
+      } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
+        item.locationSet = { include: ['kr'] };
+        if (tags.name) { tags['name:ko'] = tags.name; }
+        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+      } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
+        item.locationSet = { include: ['ph'] };
+        if (tags.name) { tags['name:tl'] = tags.name; }
+        if (tags.brand) { tags['brand:tl'] = tags.brand; }
+      } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
+        item.locationSet = { include: ['jp'] };
+        if (tags.name) { tags['name:ja'] = tags.name; }
+        if (tags.brand) { tags['brand:ja'] = tags.brand; }
+      } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
+        item.locationSet = { include: ['kr'] };
+        if (tags.name) { tags['name:ko'] = tags.name; }
+        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+      } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
+        item.locationSet = { include: ['kr'] };
+        if (tags.name) { tags['name:ko'] = tags.name; }
+        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+      } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
+        item.locationSet = { include: ['kr'] };
+        if (tags.name) { tags['name:ko'] = tags.name; }
+        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+      }
+    });
   });
 
   console.timeEnd(colors.green('brands merged'));
@@ -221,93 +224,94 @@ function checkBrands() {
   let warnFormatTag = [];
   let seen = {};
 
-  Object.keys(brands).forEach(kvnd => {
-    const obj = brands[kvnd];
-    const parts = toParts(kvnd);
+  let total = 0;
+  const brands = _cache.path.brands;
+  Object.keys(brands).forEach(kv => {
+    _cache.path.brands[kv].forEach(item => {
+      const tags = item.tags;
+      const name = tags.name || tags.brand;
+      total++;
 
-    if (!parts.d) {  // ignore ambiguous entries for these
-      // Warn if some other item matches this item
-      const m = matcher.matchParts(parts);
-      if (m && m.kvnd !== kvnd) {
-        warnMatched.push([m.kvnd, kvnd]);
+//TODO rewrite matcher
+      // if (!parts.d) {  // ignore ambiguous entries for these
+      //   // Warn if some other item matches this item
+      //   const m = matcher.matchParts(parts);
+      //   if (m && m.kvnd !== kvnd) {
+      //     warnMatched.push([m.kvnd, kvnd]);
+      //   }
+
+      //   // Warn if the name appears to be a duplicate
+      //   const stem = stemmer(name);
+      //   const other = seen[stem];
+      //   if (other) {
+      //     // suppress warning?
+      //     let suppress = false;
+      //     if (brands[other].nomatch && brands[other].nomatch.indexOf(kvnd) !== -1) {
+      //       suppress = true;
+      //     } else if (item.nomatch && item.nomatch.indexOf(other) !== -1) {
+      //       suppress = true;
+      //     }
+      //     if (!suppress) {
+      //       warnDuplicate.push([kvnd, other]);
+      //     }
+      //   }
+      //   seen[stem] = kvnd;
+      // }
+
+      // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
+      const wd = tags['brand:wikidata'];
+      if (!wd) {
+        warnMissingWikidata.push(item.id);
+      } else if (!/^Q\d+$/.test(wd)) {
+        warnFormatWikidata.push([item.id, wd]);
+      }
+      const wp = tags['brand:wikipedia'];
+      if (!wp) {
+        warnMissingWikipedia.push(item.id);
+      } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+        warnFormatWikipedia.push([item.id, wp]);
       }
 
-      // Warn if the name appears to be a duplicate
-      const stem = stemmer(parts.n);
-      const other = seen[stem];
-      if (other) {
-        // suppress warning?
-        let suppress = false;
-        if (brands[other].nomatch && brands[other].nomatch.indexOf(kvnd) !== -1) {
-          suppress = true;
-        } else if (obj.nomatch && obj.nomatch.indexOf(other) !== -1) {
-          suppress = true;
+      // Warn on missing logo
+      const logos = (wd && _wikidata[wd] && _wikidata[wd].logos) || {};
+      if (!Object.keys(logos).length) {
+        warnMissingLogos.push(item.id);
+      }
+
+      // Warn on other missing tags
+      switch (kv) {
+        case 'amenity/gambling':
+        case 'leisure/adult_gaming_centre':
+          if (!tags.gambling) { warnMissingTag.push([item.id, 'gambling']); }
+          break;
+        case 'amenity/fast_food':
+        case 'amenity/restaurant':
+          if (!tags.cuisine) { warnMissingTag.push([item.id, 'cuisine']); }
+          break;
+        case 'amenity/vending_machine':
+          if (!tags.vending) { warnMissingTag.push([item.id, 'vending']); }
+          break;
+        case 'shop/beauty':
+          if (!tags.beauty) { warnMissingTag.push([item.id, 'beauty']); }
+          break;
+      }
+
+      // Warn if OSM tags contain odd punctuation or spacing..
+      ['cuisine', 'vending', 'beauty', 'gambling'].forEach(osmkey => {
+        const val = tags[osmkey];
+        if (val && oddPunctuation.test(val)) {
+          warnFormatTag.push([item.id, `${osmkey} = ${val}`]);
         }
-        if (!suppress) {
-          warnDuplicate.push([kvnd, other]);
+      });
+      // Warn if user put `wikidata`/`wikipedia` instead of `brand:wikidata`/`brand:wikipedia`
+      ['wikipedia', 'wikidata'].forEach(osmkey => {
+        const val = tags[osmkey];
+        if (val) {
+          warnFormatTag.push([item.id, `${osmkey} = ${val}`]);
         }
-      }
-      seen[stem] = kvnd;
-    }
-
-    // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
-    const wd = obj.tags['brand:wikidata'];
-    if (!wd) {
-      warnMissingWikidata.push(kvnd);
-    } else if (!/^Q\d+$/.test(wd)) {
-      warnFormatWikidata.push([kvnd, wd]);
-    }
-    const wp = obj.tags['brand:wikipedia'];
-    if (!wp) {
-      warnMissingWikipedia.push(kvnd);
-    } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-      warnFormatWikipedia.push([kvnd, wp]);
-    }
-
-    // Warn on missing logo
-    const logos = (wd && _wikidata[wd] && _wikidata[wd].logos) || {};
-    if (!Object.keys(logos).length) {
-      warnMissingLogos.push(kvnd);
-    }
-
-    // Warn on other missing tags
-    switch (parts.kv) {
-      case 'amenity/gambling':
-      case 'leisure/adult_gaming_centre':
-        if (!obj.tags.gambling) { warnMissingTag.push([kvnd, 'gambling']); }
-        break;
-      case 'amenity/fast_food':
-      case 'amenity/restaurant':
-        if (!obj.tags.cuisine) { warnMissingTag.push([kvnd, 'cuisine']); }
-        break;
-      case 'amenity/vending_machine':
-        if (!obj.tags.vending) { warnMissingTag.push([kvnd, 'vending']); }
-        break;
-      case 'shop/beauty':
-        if (!obj.tags.beauty) { warnMissingTag.push([kvnd, 'beauty']); }
-        break;
-    }
-
-    // warn if the primary tag is missing or set to the wrong value..
-    const primary = obj.tags[parts.k];
-    if (!primary || primary !== parts.v) {
-      warnMissingTag.push([kvnd, parts.k]);
-    }
-
-    // Warn if OSM tags contain odd punctuation or spacing..
-    ['cuisine', 'vending', 'beauty', 'gambling'].forEach(osmkey => {
-      const val = obj.tags[osmkey];
-      if (val && oddPunctuation.test(val)) {
-        warnFormatTag.push([kvnd, `${osmkey} = ${val}`]);
-      }
+      });
     });
-    // Warn if user put `wikidata`/`wikipedia` instead of `brand:wikidata`/`brand:wikipedia`
-    ['wikipedia', 'wikidata'].forEach(osmkey => {
-      const val = obj.tags[osmkey];
-      if (val) {
-        warnFormatTag.push([kvnd, `${osmkey} = ${val}`]);
-      }
-    });
+
   });
 
   if (warnMatched.length) {
@@ -360,39 +364,6 @@ function checkBrands() {
     console.warn('total ' + warnDuplicate.length);
   }
 
-  // if (warnMissingWikidata.length) {
-  //   console.warn(colors.yellow('\nWarning - Brand missing `brand:wikidata`:'));
-  //   console.warn(colors.gray('--------------------------------------------------------------------------------'));
-  //   console.warn(colors.gray('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".'));
-  //   console.warn(colors.gray('--------------------------------------------------------------------------------'));
-  //   warnMissingWikidata.forEach(w => console.warn(
-  //     colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikidata"'
-  //   ));
-  //   console.warn('total ' + warnMissingWikidata.length);
-  // }
-
-  // if (warnMissingWikipedia.length) {
-  //   console.warn(colors.yellow('\nWarning - Brand missing `brand:wikipedia`:'));
-  //   console.warn(colors.gray('--------------------------------------------------------------------------------'));
-  //   console.warn(colors.gray('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".'));
-  //   console.warn(colors.gray('--------------------------------------------------------------------------------'));
-  //   warnMissingWikipedia.forEach(w => console.warn(
-  //     colors.yellow('  "' + w + '"') + ' -> missing -> "brand:wikipedia"'
-  //   ));
-  //   console.warn('total ' + warnMissingWikipedia.length);
-  // }
-
-  // if (warnMissingLogos.length) {
-  //   console.warn(colors.yellow('\nWarning - Brand missing `logos`:'));
-  //   console.warn(colors.gray('--------------------------------------------------------------------------------'));
-  //   console.warn(colors.gray('To resolve these, update the brands\' entries on wikidata.org, then `npm run wikidata`.'));
-  //   console.warn(colors.gray('--------------------------------------------------------------------------------'));
-  //   warnMissingLogos.forEach(w => console.warn(
-  //     colors.yellow('  "' + w + '"') + ' -> missing -> "logos"'
-  //   ));
-  //   console.warn('total ' + warnMissingLogos.length);
-  // }
-
   if (warnFormatWikidata.length) {
     console.warn(colors.yellow('\nWarning - Brand with incorrect `brand:wikidata` format:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
@@ -415,7 +386,6 @@ function checkBrands() {
     console.warn('total ' + warnFormatWikipedia.length);
   }
 
-  const total = Object.keys(brands).length;
   const hasWd = total - warnMissingWikidata.length;
   const pctWd = (hasWd * 100 / total).toFixed(1);
   const hasLogos = total - warnMissingLogos.length;
