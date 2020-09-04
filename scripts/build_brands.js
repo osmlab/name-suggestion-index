@@ -62,8 +62,11 @@ console.log('');
 // "shop/coffee|Starbucks": 8284
 //
 function filterNames() {
-  console.log('\nfiltering names');
-  console.time(colors.green('names filtered'));
+  const START = '🏗  ' + colors.yellow('Filtering names...');
+  const END = '👍  ' + colors.green('names filtered');
+  console.log('');
+  console.log(START);
+  console.time(END);
 
   // Start clean
   shell.rm('-f', ['dist/names_keep.json', 'dist/names_discard.json']);
@@ -105,7 +108,8 @@ function filterNames() {
 
   fs.writeFileSync('dist/names_discard.json', stringify(sort(_discard)));
   fs.writeFileSync('dist/names_keep.json', stringify(sort(_keep)));
-  console.timeEnd(colors.green('names filtered'));
+
+  console.timeEnd(END);
 }
 
 
@@ -114,8 +118,11 @@ function filterNames() {
 // and updates the files under `/brands/**/*.json`
 //
 function mergeBrands() {
-  console.log('\nmerging brands');
-  console.time(colors.green('brands merged'));
+  const START = '⚙️   ' + colors.yellow('Merging brands...');
+  const END = '👍  ' + colors.green('brands merged');
+  console.log('');
+  console.log(START);
+  console.time(END);
 
 //TODO rewrite matcher
   // // Create/update entries
@@ -203,7 +210,7 @@ function mergeBrands() {
     });
   });
 
-  console.timeEnd(colors.green('brands merged'));
+  console.timeEnd(END);
 }
 
 

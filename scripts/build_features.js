@@ -21,7 +21,6 @@ buildAll();
 function buildAll() {
   const START = '🏗   ' + colors.yellow('Building features...');
   const END = '👍  ' + colors.green('features built');
-
   console.log('');
   console.log(START);
   console.time(END);
