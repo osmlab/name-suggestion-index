@@ -821,8 +821,11 @@
     },
     {
       "displayName": "Cora (non-Quebec)",
-      "id": "cora-e68b16",
-      "locationSet": {"include": ["ca"]},
+      "id": "cora-3d3916",
+      "locationSet": {
+        "include": ["ca"],
+        "exclude": ["quebec.geojson"]
+      },
       "nomatch": [
         "amenity/restaurant|Cora~(Quebec)",
         "shop/supermarket|Cora"
@@ -839,8 +842,10 @@
     },
     {
       "displayName": "Cora (Quebec)",
-      "id": "cora-e68b16",
-      "locationSet": {"include": ["ca"]},
+      "id": "cora-31d79c",
+      "locationSet": {
+        "include": ["quebec.geojson"]
+      },
       "nomatch": [
         "amenity/restaurant|Cora~(non-Quebec)",
         "shop/supermarket|Cora"
