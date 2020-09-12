@@ -43,7 +43,7 @@ let _cache = { path: {}, id: {} };
 // Load and check brand files
 fileTree.read('brands', _cache, loco);
 
-// matcher.buildMatchIndex(_cache);
+matcher.buildMatchIndex(_cache.path);
 checkBrands();
 mergeBrands();
 fileTree.write('brands', _cache, loco);
@@ -148,21 +148,29 @@ function mergeBrands() {
   //   }
   // });
 
+  // process `brands/*` only
+  const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === 'brands');
 
-  // now process all brands
-  const brands = _cache.path.brands;
-  Object.keys(brands).forEach(kv => {
-    _cache.path.brands[kv].forEach(item => {
+  paths.forEach(tkv => {
+    let items = _cache.path[tkv];
+    if (!Array.isArray(items) || !items.length) return;
+
+    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const t = parts[0];
+    const k = parts[1];
+    const v = parts[2];
+
+    items.forEach(item => {
       let tags = item.tags;
       const name = tags.name || tags.brand;
 
       // assign default tags - new or existing entries
-      if (kv === 'amenity/cafe') {
+      if (k === 'amenity' && v === 'cafe') {
         if (!tags.takeaway) tags.takeaway = 'yes';
         if (!tags.cuisine) tags.cuisine = 'coffee_shop';
-      } else if (kv === 'amenity/fast_food') {
+      } else if (k === 'amenity' && v === 'fast_food') {
         if (!tags.takeaway) tags.takeaway = 'yes';
-      } else if (kv === 'amenity/pharmacy') {
+      } else if (k === 'amenity' && v === 'pharmacy') {
         if (!tags.healthcare) tags.healthcare = 'pharmacy';
       }
 
@@ -232,9 +240,21 @@ function checkBrands() {
   let seen = {};
 
   let total = 0;
-  const brands = _cache.path.brands;
-  Object.keys(brands).forEach(kv => {
-    _cache.path.brands[kv].forEach(item => {
+
+  // process `brands/*` only
+  const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === 'brands');
+
+  paths.forEach(tkv => {
+    const items = _cache.path[tkv];
+    if (!Array.isArray(items) || !items.length) return;
+
+    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const t = parts[0];
+    const k = parts[1];
+    const v = parts[2];
+    const kv = `${k}/${v}`;
+
+    items.forEach(item => {
       const tags = item.tags;
       const name = tags.name || tags.brand;
       total++;
