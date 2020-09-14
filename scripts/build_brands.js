@@ -43,7 +43,7 @@ let _cache = { path: {}, id: {} };
 // Load and check brand files
 fileTree.read('brands', _cache, loco);
 
-matcher.buildMatchIndex(_cache.path);
+buildMatchIndexes();
 checkItems();
 mergeItems();
 
@@ -63,7 +63,7 @@ console.log('');
 // "shop/coffee|Starbucks": 8284
 //
 function filterNames() {
-  const START = '🏗  ' + colors.yellow('Filtering names...');
+  const START = '🏗   ' + colors.yellow('Filtering names gathered from OSM...');
   const END = '👍  ' + colors.green('names filtered');
   console.log('');
   console.log(START);
@@ -107,6 +107,11 @@ function filterNames() {
     }
   });
 
+  const discardCount = Object.keys(_discard).length;
+  const keepCount = Object.keys(_keep).length;
+  console.log(`📦  Discard: ${discardCount}`);
+  console.log(`📦  Keep: ${keepCount}`);
+
   fs.writeFileSync('dist/names_discard.json', stringify(sort(_discard)));
   fs.writeFileSync('dist/names_keep.json', stringify(sort(_keep)));
 
@@ -115,20 +120,45 @@ function filterNames() {
 
 
 //
-// mergeItems() takes the names we are keeping and:
-//   - inserts anything "new" (i.e. not matched by the matcher).
-//   - updates all items to have whatever tags they should have.
+// buildMatchIndexes()
+// Sets up the `matcher` so we can use it to do k/v/n matching.
+// We can skip the location indexing for this script.
 //
-function mergeItems() {
-  const t = 'brands';
-
-  const START = '⚙️   ' + colors.yellow('Merging brands...');
-  const END = '👍  ' + colors.green('brands merged');
+function buildMatchIndexes() {
+  const START = '🏗   ' + colors.yellow('Building match indexes...');
+  const END = '👍  ' + colors.green('indexes built');
   console.log('');
   console.log(START);
   console.time(END);
 
-  // First, INSERT - Look in `_keep` for new entries not yet in the index
+  matcher.buildMatchIndex(_cache.path, loco);
+
+  // It takes about 7 seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
+  // We don't need the location index for this script, but it's useful to know.
+  //  matcher.buildLocationIndex(_cache.path, loco);
+
+  console.timeEnd(END);
+}
+
+
+//
+// mergeItems()
+// Iterate over the names we are keeping and:
+// - insert anything "new" (i.e. not matched by the matcher).
+// - update all items to have whatever tags they should have.
+//
+function mergeItems() {
+  const t = 'brands';
+
+  const START = '⚙️   ' + colors.yellow(`Merging ${t}...`);
+  const END = '👍  ' + colors.green(`${t} merged`);
+  console.log('');
+  console.log(START);
+  console.time(END);
+
+  let newCount = 0;
+
+  // First, INSERT - Look in `_keep` for new items not yet in the index
   Object.keys(_keep).forEach(kvn => {
     const parts = kvn.split('|', 2);     // kvn = "key/value|mame"
     const kv = parts[0];
@@ -147,17 +177,18 @@ function mergeItems() {
       tags: {}
     };
 
-    // assign default tags - new entries
+    // assign default tags - new items
     item.tags.brand = n;
     item.tags.name = n;
     item.tags[k] = v;
 
     // INSERT
-    // note these entries will be `id`-less until next time the build script runs
+    // note these items will be `id`-less until next time the build script runs
     // we should generate the id here also.
     const tkv = `${t}/${k}/${v}`;
     if (!_cache.path[tkv])  _cache.path[tkv] = [];
     _cache.path[tkv].push(item);
+    newCount++;
   });
 
 
@@ -178,7 +209,7 @@ function mergeItems() {
       let tags = item.tags;
       const name = tags.name || tags.brand;
 
-      // assign default tags - new or existing entries
+      // assign default tags - new or existing items
       if (k === 'amenity' && v === 'cafe') {
         if (!tags.takeaway) tags.takeaway = 'yes';
         if (!tags.cuisine) tags.cuisine = 'coffee_shop';
@@ -232,11 +263,13 @@ function mergeItems() {
     });
   });
 
+  console.log(`📦  New: ${newCount}`);
   console.timeEnd(END);
 }
 
 
 //
+// checkItems()
 // Checks all the items for several kinds of issues
 //
 function checkItems() {
@@ -274,7 +307,7 @@ function checkItems() {
       total++;
 
 //TODO - rethink what we want to accomplish with duplicat checking
-      // if (!parts.d) {  // ignore ambiguous entries for these
+      // if (!parts.d) {  // ignore ambiguous items for these
       //   // Warn if some other item matches this item
       //   const m = matcher.matchParts(parts);
       //   if (m && m.kvnd !== kvnd) {
@@ -397,7 +430,7 @@ function checkItems() {
     console.warn(colors.yellow('\nWarning - Potential duplicate item names:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     console.warn(colors.gray('To resolve these, remove the worse entry and add `matchNames`/`matchTags` properties on the better entry.'));
-    console.warn(colors.gray('To suppress this warning for entries that really are different, add a `nomatch` property on both entries.'));
+    console.warn(colors.gray('To suppress this warning for items that really are different, add a `nomatch` property on both items.'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     warnDuplicate.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
@@ -433,7 +466,7 @@ function checkItems() {
   const pctLogos = (hasLogos * 100 / total).toFixed(1);
 
   console.info(colors.blue.bold(`\nIndex completeness:`));
-  console.info(colors.blue.bold(`  ${total} entries total.`));
+  console.info(colors.blue.bold(`  ${total} items total.`));
   console.info(colors.blue.bold(`  ${hasWd} (${pctWd}%) with a '*:wikidata' tag.`));
   console.info(colors.blue.bold(`  ${hasLogos} (${pctLogos}%) with a logo.`));
 }
