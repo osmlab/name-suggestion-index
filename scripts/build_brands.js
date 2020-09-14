@@ -137,9 +137,7 @@ function mergeItems() {
     const k = parts2[0];
     const v = parts2[1];
 
-// TODO implement `match`
-const m = true;
-    // const m = matcher.match(k, v, n);
+    const m = matcher.match(k, v, n);
     if (m) return;  // already in the index
 
     // a new entry!
@@ -275,7 +273,7 @@ function checkItems() {
       const name = tags.name || tags.brand;
       total++;
 
-//TODO rewrite matcher
+//TODO - rethink what we want to accomplish with duplicat checking
       // if (!parts.d) {  // ignore ambiguous entries for these
       //   // Warn if some other item matches this item
       //   const m = matcher.matchParts(parts);
