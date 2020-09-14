@@ -44,8 +44,9 @@ let _cache = { path: {}, id: {} };
 fileTree.read('brands', _cache, loco);
 
 matcher.buildMatchIndex(_cache.path);
-checkBrands();
-mergeBrands();
+checkItems();
+mergeItems();
+
 fileTree.write('brands', _cache, loco);
 console.log('');
 
@@ -114,41 +115,56 @@ function filterNames() {
 
 
 //
-// mergeBrands() takes the brand names we are keeping
-// and updates the files under `/brands/**/*.json`
+// mergeItems() takes the names we are keeping and:
+//   - inserts anything "new" (i.e. not matched by the matcher).
+//   - updates all items to have whatever tags they should have.
 //
-function mergeBrands() {
+function mergeItems() {
+  const t = 'brands';
+
   const START = '⚙️   ' + colors.yellow('Merging brands...');
   const END = '👍  ' + colors.green('brands merged');
   console.log('');
   console.log(START);
   console.time(END);
 
-//TODO rewrite matcher
-  // // Create/update entries
-  // // First, entries in namesKeep (i.e. counted entries)
-  // Object.keys(_keep).forEach(kvnd => {
-  //   const parts = toParts(kvnd);
-  //   const m = matcher.matchParts(parts);
-  //   if (m) return;  // already in the index
+  // First, INSERT - Look in `_keep` for new entries not yet in the index
+  Object.keys(_keep).forEach(kvn => {
+    const parts = kvn.split('|', 2);     // kvn = "key/value|mame"
+    const kv = parts[0];
+    const n = parts[1];
+    const parts2 = kv.split('/', 2);
+    const k = parts2[0];
+    const v = parts2[1];
 
-  //   let obj = brands[kvnd];
-  //   if (!obj) {   // a new entry!
-  //     obj = {
-  //       displayName: parts.n,
-  //       locationSet: { include: ['001'] },   // the whole world
-  //       tags: {}
-  //     };
-  //     brands[kvnd] = obj;  // insert
+// TODO implement `match`
+const m = true;
+    // const m = matcher.match(k, v, n);
+    if (m) return;  // already in the index
 
-  //     // assign default tags - new entries
-  //     obj.tags.brand = parts.n;
-  //     obj.tags.name = parts.n;
-  //     obj.tags[parts.k] = parts.v;
-  //   }
-  // });
+    // a new entry!
+    let item = {
+      displayName: n,
+      locationSet: { include: ['001'] },   // the whole world
+      tags: {}
+    };
 
-  // process `brands/*` only
+    // assign default tags - new entries
+    item.tags.brand = n;
+    item.tags.name = n;
+    item.tags[k] = v;
+
+    // INSERT
+    // note these entries will be `id`-less until next time the build script runs
+    // we should generate the id here also.
+    const tkv = `${t}/${k}/${v}`;
+    if (!_cache.path[tkv])  _cache.path[tkv] = [];
+    _cache.path[tkv].push(item);
+  });
+
+
+  // Next, UPDATE - Check all items for expected tags
+  // for now, process `brands/*` only
   const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === 'brands');
 
   paths.forEach(tkv => {
@@ -223,9 +239,9 @@ function mergeBrands() {
 
 
 //
-// Checks all the brands for several kinds of issues
+// Checks all the items for several kinds of issues
 //
-function checkBrands() {
+function checkItems() {
   const oddPunctuation = /[\s\=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
 
   let warnMatched = matcher.getWarnings();
@@ -241,7 +257,7 @@ function checkBrands() {
 
   let total = 0;
 
-  // process `brands/*` only
+  // for now, process `brands/*` only
   const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === 'brands');
 
   paths.forEach(tkv => {
@@ -342,10 +358,10 @@ function checkBrands() {
   });
 
   if (warnMatched.length) {
-    console.warn(colors.yellow('\nWarning - Brands match other brands:'));
+    console.warn(colors.yellow('\nWarning - items match other items:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
-    console.warn(colors.gray('If the brands are the different, add a disambiguator after the name, like `~(USA)` vs `~(Canada)`'));
-    console.warn(colors.gray('If the brands are the same, remove extra `matchTags` or `matchNames`.  Remember:'));
+    console.warn(colors.gray('If the items are the different, make sure they have different locationSets (e.g. "us", "ca"'));
+    console.warn(colors.gray('If the items are the same, remove extra `matchTags` or `matchNames`.  Remember:'));
     console.warn(colors.gray('- Name matching ignores letter case, punctuation, spacing, and diacritical marks (é vs e). '));
     console.warn(colors.gray('  No need to add `matchNames` for variations in these.'));
     console.warn(colors.gray('- Tag matching automatically includes other similar tags in the same match group.'));
@@ -358,7 +374,7 @@ function checkBrands() {
   }
 
   if (warnMissingTag.length) {
-    console.warn(colors.yellow('\nWarning - Missing tags for brands:'));
+    console.warn(colors.yellow('\nWarning - Missing tags for items:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     console.warn(colors.gray('To resolve these, add the missing tag.'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
@@ -380,7 +396,7 @@ function checkBrands() {
   }
 
   if (warnDuplicate.length) {
-    console.warn(colors.yellow('\nWarning - Potential duplicate brand names:'));
+    console.warn(colors.yellow('\nWarning - Potential duplicate item names:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     console.warn(colors.gray('To resolve these, remove the worse entry and add `matchNames`/`matchTags` properties on the better entry.'));
     console.warn(colors.gray('To suppress this warning for entries that really are different, add a `nomatch` property on both entries.'));
@@ -392,23 +408,23 @@ function checkBrands() {
   }
 
   if (warnFormatWikidata.length) {
-    console.warn(colors.yellow('\nWarning - Brand with incorrect `brand:wikidata` format:'));
+    console.warn(colors.yellow('\nWarning - Item with incorrect `wikidata` format:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
-    console.warn(colors.gray('To resolve these, make sure "brand:wikidata" tag looks like "Q191615".'));
+    console.warn(colors.gray('To resolve these, make sure "*:wikidata" tag looks like "Q191615".'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     warnFormatWikidata.forEach(w => console.warn(
-      colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikidata": ' + '"' + w[1] + '"'
+      colors.yellow('  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
     ));
     console.warn('total ' + warnFormatWikidata.length);
   }
 
   if (warnFormatWikipedia.length) {
-    console.warn(colors.yellow('\nWarning - Brand with incorrect `brand:wikipedia` format:'));
+    console.warn(colors.yellow('\nWarning - Item with incorrect `wikipedia` format:'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
-    console.warn(colors.gray('To resolve these, make sure "brand:wikipedia" tag looks like "en:Pizza Hut".'));
+    console.warn(colors.gray('To resolve these, make sure "*:wikipedia" tag looks like "en:Pizza Hut".'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     warnFormatWikipedia.forEach(w => console.warn(
-      colors.yellow('  "' + w[0] + '"') + ' -> "brand:wikipedia": ' + '"' + w[1] + '"'
+      colors.yellow('  "' + w[0] + '"') + ' -> "*:wikipedia": ' + '"' + w[1] + '"'
     ));
     console.warn('total ' + warnFormatWikipedia.length);
   }
@@ -420,6 +436,6 @@ function checkBrands() {
 
   console.info(colors.blue.bold(`\nIndex completeness:`));
   console.info(colors.blue.bold(`  ${total} entries total.`));
-  console.info(colors.blue.bold(`  ${hasWd} (${pctWd}%) with a 'brand:wikidata' tag.`));
+  console.info(colors.blue.bold(`  ${hasWd} (${pctWd}%) with a '*:wikidata' tag.`));
   console.info(colors.blue.bold(`  ${hasLogos} (${pctLogos}%) with a logo.`));
 }
