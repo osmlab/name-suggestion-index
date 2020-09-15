@@ -84,8 +84,10 @@ Each brand entry looks like this _(comments added for clarity)_:
 In `brands/amenity/fast_food.json`:
 
 ```js
-  "amenity/fast_food|McDonald's": {         // Identifier like "key/value|name"
-    "locationSet": { "include": ["001"] },  // "locationSet" - defines where this brand is valid ("001" = worldwide)
+  {
+    "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
+    "id": "mcdonalds-658eea",               // "id" - a unique identifier generated automatically
+    "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
     "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
       "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
       "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
@@ -100,7 +102,9 @@ In `brands/amenity/fast_food.json`:
 There may also be entries for McDonald's in other languages!
 
 ```js
-  "amenity/fast_food|マクドナルド": {         // Identifier like "key/value|name"
+  {
+    "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
+    "id": "マクドナルド-3e7699",              // "id" - a unique identifier generated automatically
     "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
     "tags": {
       "amenity": "fast_food",
@@ -159,28 +163,33 @@ This project includes a "fuzzy" matcher that can match alternate names and tags 
 `matchNames` and `matchTags` properties can be used to list the less-preferred alternatives.
 
 ```js
-  "amenity/fast_food|Honey Baked Ham": {          // match this tag and name
+  "brands/amenity/fast_food": [     // all items in this file will match the tag `amenity=fast_food`
+  …
+  {
+    "displayName": "Honey Baked Ham",
+    "id": "honeybakedham-4d2ff4",
     "locationSet": { "include": ["us"] },
-    "matchNames": ["honey baked ham company"],    // also match these names
-    "matchTags": ["shop/butcher", "shop/deli"],   // also match these tags
+    "matchNames": ["honey baked ham company"],    // also match these less-preferred names
+    "matchTags": ["shop/butcher", "shop/deli"],   // also match these less-preferred tags
     "tags": {
-      "alt_name": "HoneyBaked Ham",
+      "alt_name": "HoneyBaked Ham",                    // match `alt_name`
       "amenity": "fast_food",
-      "brand": "Honey Baked Ham",
+      "brand": "Honey Baked Ham",                      // match `brand`
       "brand:wikidata": "Q5893363",
       "brand:wikipedia": "en:The Honey Baked Ham Company",
       "cuisine": "american",
-      "name": "Honey Baked Ham",
-      "official_name": "The Honey Baked Ham Company"
+      "name": "Honey Baked Ham",                       // match `name`
+      "official_name": "The Honey Baked Ham Company"   // match `official_name`
     }
   },
+  …
 ```
 
 :point_right: The matcher code also has some useful automatic behaviors...
 
 You don't need to add `matchNames` for:
 - Name variations in capitalization, punctuation, spacing (the middots common in Japanese names count as punctuation, so "V・ドラッグ" already matches "vドラッグ")
-- Name variations that already appear in the `name`, `alt_name`, `short_name`, `official_name` tags
+- Name variations that already appear in the `name`, `brand`, `alt_name`, `short_name`, `official_name` tags
 - Name variations in diacritic marks (e.g. "Häagen-Dazs" already matches "Haagen-Dazs")
 - Name variations in `&` vs. `and`
 
@@ -189,62 +198,43 @@ You don't need to add `matchTags` for:
 and vice versa. _Tags in a match group will automatically match any other tags in the same match group._
 
 
-##### `nomatch`
-
-Sometimes there are multiple _different_ entries that use the same name.
-
-For example, "Sonic" can be either a fast food restaurant or a fuel station.
-
-We want to allow both kinds of "Sonic" to exist in the index, and we don't want
-to be warned that they are potentially duplicate, so we can add a `nomatch`
-property to each entry to suppress the "duplicate name" warning.
-
-```js
-  "amenity/fuel|Sonic": {
-    "nomatch": ["amenity/fast_food|Sonic"],
-    ...
-  },
-  "amenity/fast_food|Sonic": {
-    "nomatch": ["amenity/fuel|Sonic"],
-    ...
-  },
-```
-
 &nbsp;
-
 
 #### Identical names, multiple brands
 
-Sometimes multiple brands with the same name will operate in geographically
-distinct locations.  You can modify the key to include a tilde `~` after the name
-to tell the difference between two otherwise identical brands.
-The text after the tilde can contain anything.
+Sometimes multiple brands use the same name - this is okay!
 
-When using a tilde `~` name:
-* You should add `"nomatch":` properties to each name so they do not generate duplicate name warnings.
+Make sure each entry has a distinct `locationSet`, and the index will generate unique identifiers for each one.
+You should also give each entry a unique `displayName`, so you everyone can tell them apart.
 
 
 ```js
-  "shop/supermarket|Price Chopper~(Kansas City)": {
-    "locationSet": { "include": ["us"] },
-    "tags": {
-      "brand": "Price Chopper",
-      "brand:wikidata": "Q7242572",
-      "brand:wikipedia": "en:Price Chopper (supermarket)",
-      "name": "Price Chopper",
-      "shop": "supermarket"
-    }
-  },
-  "shop/supermarket|Price Chopper~(New York)": {
-    "locationSet": { "include": ["us"] },
-    "tags": {
-      "brand": "Price Chopper",
-      "brand:wikidata": "Q7242574",
-      "brand:wikipedia": "en:Price Chopper Supermarkets",
-      "name": "Price Chopper",
-      "shop": "supermarket"
-    }
-  },
+  "brands/shop/supermarket": [
+    …
+    {
+      "displayName": "Price Chopper (Kansas City)",
+      "id": "pricechopper-9554e9",
+      "locationSet": { "include": ["price_chopper_ks_mo.geojson"] },
+      "tags": {
+        "brand": "Price Chopper",
+        "brand:wikidata": "Q7242572",
+        "brand:wikipedia": "en:Price Chopper (supermarket)",
+        "name": "Price Chopper",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Price Chopper (New York)",
+      "id": "pricechopper-f86a3e",
+      "locationSet": { "include": ["price_chopper_ny.geojson"] },
+      "tags": {
+        "brand": "Price Chopper",
+        "brand:wikidata": "Q7242574",
+        "brand:wikipedia": "en:Price Chopper Supermarkets",
+        "name": "Price Chopper",
+        "shop": "supermarket"
+      }
+    },
 ```
 
 &nbsp;
@@ -302,9 +292,15 @@ If you aren't sure, just ask on GitHub!
 #### Duplicate names
 
 ```
-Warning - Potential duplicate brand names:
-To resolve these, remove the worse entry and add "matchNames"/"matchTags" properties on the better entry.
-To suppress this warning for entries that really are different, add a "nomatch" property on both entries.
+  Warning - Potential duplicate:
+------------------------------------------------------------------------------------------------------
+  If the items are two different businesses,
+    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.
+  If the items are duplicates of the same business,
+    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.
+  If the duplicate item is a generic word,
+    add a filter to config/filters.json and delete the unwanted item.
+------------------------------------------------------------------------------------------------------
   "shop/supermarket|Carrefour" -> duplicates? -> "amenity/fuel|Carrefour"
   "shop/supermarket|VinMart" -> duplicates? -> "shop/department_store|VinMart"
 ```
@@ -316,10 +312,9 @@ For "VinMart" we really prefer for it to be tagged as a supermarket.  It's a sin
 * Delete the (not preferred) entry for `"shop/department_store|VinMart"`
 
 For "Carrefour" we know that can be both a supermarket and a fuel station.  It's two different things.
-* Add `"nomatch": ["shop/supermarket|Carrefour"]` to the `"amenity/fuel|Carrefour"` entry
-* Add `"nomatch": ["amenity/fuel|Carrefour"]` to the `"shop/supermarket|Carrefour"` entry
+* Make sure both entries have a `brand:wikidata` tag and appropriate `locationSet`.
 
-Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding whether to match or nomatch these duplicates.
+Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
 
 If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
 
@@ -333,13 +328,18 @@ generic words from the index, so they are not suggested to mappers.
 For example, "Универмаг" is just a Russian word for "Department store":
 
 ```js
-  "shop/department_store|Универмаг": {
-    "locationSet": { "include": ["ru"] }
-    "tags": {
-      "brand": "Универмаг",
-      "name": "Универмаг",
-      "shop": "department_store"
-    }
+  "brands/shop/department_store": [
+    …
+    {
+      "displayName": "Универмаг",
+      "id": "универмаг-d5eaac",
+      "locationSet": { "include": ["ru"] },
+      "tags": {
+        "brand": "Универмаг",
+        "name": "Универмаг",
+        "shop": "department_store"
+      }
+    },
   },
 ```
 
@@ -363,15 +363,19 @@ Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that an
 In `brands/amenity/fast_food.json`:
 
 ```js
-  "amenity/fast_food|Chipotle": {
-    "locationSet": { "include": ["001"] }
-    "matchNames": ["chipotle mexican grill"],
-    "tags": {
-      "amenity": "fast_food",
-      "brand": "Chipotle",
-      "cuisine": "mexican",
-      "name": "Chipotle"
-    }
+  "brands/amenity/fast_food": [
+    …
+    {
+      "displayName": "Chipotle",
+      "id": "chipotle-658eea",
+      "locationSet": { "include": ["us"] }
+      "matchNames": ["chipotle mexican grill"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Chipotle",
+        "cuisine": "mexican",
+        "name": "Chipotle"
+      }
   },
 ```
 
@@ -405,17 +409,21 @@ under the "tools" menu in the sidebar.
 We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
 
 ```js
-  "amenity/fast_food|Chipotle": {
-    "locationSet": { "include": ["001"] }
-    "matchNames": ["chipotle mexican grill"],
-    "tags": {
-      "amenity": "fast_food",
-      "brand:wikidata": "Q465751",                            // added
-      "brand:wikipedia": "en:Chipotle Mexican Grill",         // added
-      "brand": "Chipotle",
-      "cuisine": "mexican",
-      "name": "Chipotle"
-    }
+  "brands/amenity/fast_food": [
+    …
+    {
+      "displayName": "Chipotle",
+      "id": "chipotle-658eea",
+      "locationSet": { "include": ["us"] }
+      "matchNames": ["chipotle mexican grill"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Chipotle",
+        "brand:wikidata": "Q465751",                            // added
+        "brand:wikipedia": "en:Chipotle Mexican Grill",         // added
+        "cuisine": "mexican",
+        "name": "Chipotle"
+      }
   },
 ```
 
@@ -437,13 +445,18 @@ This example uses a brand "かっぱ寿司".  I don't know what that is, so I wi
 In `brands/amenity/fast_food.json`:
 
 ```js
-  "amenity/fast_food|かっぱ寿司": {
-    "locationSet": { "include": ["jp"] }
-    "tags": {
-      "amenity": "fast_food",
-      "brand": "かっぱ寿司",
-      "name": "かっぱ寿司"
-    }
+  "brands/amenity/fast_food": [
+    …
+    {
+      "displayName": "かっぱ寿司",
+      "id": "かっぱ寿司-3e7699",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "かっぱ寿司",
+        "name": "かっぱ寿司"
+      }
+    },
   },
 ```
 
@@ -485,21 +498,25 @@ We can add:
 * Also check the `"locationSet"` property to make sure it is accurate.
 
 ```js
-  "amenity/fast_food|かっぱ寿司": {
-    "locationSet": { "include": ["jp"] },
-    "tags": {
-      "amenity": "fast_food",
-      "brand": "かっぱ寿司",
-      "brand:en": "Kappazushi",            // added
-      "brand:ja": "かっぱ寿司",            // added
-      "brand:wikipedia": "ja:かっぱ寿司",     // added
-      "brand:wikidata": "Q11263916",        // added
-      "cuisine": "sushi",                   // added
-      "name": "かっぱ寿司",
-      "name:en": "Kappazushi",              // added
-      "name:ja": "かっぱ寿司"               // added
-    }
-  },
+  "brands/amenity/fast_food": [
+    …
+    {
+      "displayName": "かっぱ寿司",
+      "id": "かっぱ寿司-3e7699",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "かっぱ寿司",
+        "brand:en": "Kappazushi",            // added
+        "brand:ja": "かっぱ寿司",            // added
+        "brand:wikipedia": "ja:かっぱ寿司",     // added
+        "brand:wikidata": "Q11263916",        // added
+        "cuisine": "sushi",                   // added
+        "name": "かっぱ寿司",
+        "name:en": "Kappazushi",              // added
+        "name:ja": "かっぱ寿司"               // added
+      }
+    },
 ```
 
 _(comments added for clarity)_
