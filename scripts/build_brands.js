@@ -14,9 +14,6 @@ const validate = require('../lib/validate.js');
 // We use LocationConflation for validating and processing the locationSets
 const loco = new LocationConflation(featureCollection);
 
-// Load cached wikidata
-const _wikidata = require('../dist/wikidata.json').wikidata;
-
 // Load and check filters.json
 let filters = require('../config/filters.json');
 const filtersSchema = require('../schema/filters.json');
@@ -281,7 +278,6 @@ function checkItems() {
   let warnFormatWikipedia = [];
   let warnMissingWikidata = [];
   let warnMissingWikipedia = [];
-  let warnMissingLogos = [];
   let warnMissingTag = [];
   let warnFormatTag = [];
   let seen = {};
@@ -344,12 +340,6 @@ function checkItems() {
         warnMissingWikipedia.push(item.id);
       } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
         warnFormatWikipedia.push([item.id, wp]);
-      }
-
-      // Warn on missing logo
-      const logos = (wd && _wikidata[wd] && _wikidata[wd].logos) || {};
-      if (!Object.keys(logos).length) {
-        warnMissingLogos.push(item.id);
       }
 
       // Warn on other missing tags
@@ -462,11 +452,8 @@ function checkItems() {
 
   const hasWd = total - warnMissingWikidata.length;
   const pctWd = (hasWd * 100 / total).toFixed(1);
-  const hasLogos = total - warnMissingLogos.length;
-  const pctLogos = (hasLogos * 100 / total).toFixed(1);
 
   console.info(colors.blue.bold(`\nIndex completeness:`));
   console.info(colors.blue.bold(`  ${total} items total.`));
   console.info(colors.blue.bold(`  ${hasWd} (${pctWd}%) with a '*:wikidata' tag.`));
-  console.info(colors.blue.bold(`  ${hasLogos} (${pctLogos}%) with a logo.`));
 }
