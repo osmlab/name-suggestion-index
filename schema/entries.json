@@ -55,16 +55,6 @@
             }
           },
 
-          "nomatch": {
-            "description": "(optional) Array of alternate keys that do not match this key, used to suppress warning about potential duplicate name.",
-            "type": "array",
-            "uniqueItems": true,
-            "items": {
-              "type": "string",
-              "pattern": "^\\S+/\\S+|.*$"
-            }
-          },
-
           "tags": {
             "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
             "type": "object",
@@ -73,7 +63,6 @@
               "matchNames":   { "not" : {} },
               "matchTags":    { "not" : {} },
               "operator":     { "not" : {} },
-              "nomatch":      { "not" : {} },
               "tags":         { "not" : {} }
             },
             "required": ["name", "brand"]

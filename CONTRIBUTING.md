@@ -227,9 +227,6 @@ When using a tilde `~` name:
 ```js
   "shop/supermarket|Price Chopper~(Kansas City)": {
     "locationSet": { "include": ["us"] },
-    "nomatch": [
-      "shop/supermarket|Price Chopper~(New York)"
-    ],
     "tags": {
       "brand": "Price Chopper",
       "brand:wikidata": "Q7242572",
@@ -240,9 +237,6 @@ When using a tilde `~` name:
   },
   "shop/supermarket|Price Chopper~(New York)": {
     "locationSet": { "include": ["us"] },
-    "nomatch": [
-      "shop/supermarket|Price Chopper~(Kansas City)"
-    ],
     "tags": {
       "brand": "Price Chopper",
       "brand:wikidata": "Q7242574",
