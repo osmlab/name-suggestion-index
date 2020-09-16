@@ -2,7 +2,6 @@ const colors = require('colors/safe');
 const fs = require('fs');
 const glob = require('glob');
 const JSON5 = require('json5');
-const LocationConflation = require('@ideditor/location-conflation');
 const path = require('path');
 const precision = require('geojson-precision');
 const prettyStringify = require('json-stringify-pretty-compact');
@@ -22,7 +21,6 @@ buildAll();
 function buildAll() {
   const START = '🏗   ' + colors.yellow('Building features...');
   const END = '👍  ' + colors.green('features built');
-
   console.log('');
   console.log(START);
   console.time(END);
@@ -40,13 +38,12 @@ function buildAll() {
 
 
 //
-// `collectFeatures`
+// collectFeatures()
 // Gather all the features from `features/**/*.geojson`
 //
 function collectFeatures() {
   let features = [];
   let files = {};
-  process.stdout.write('📦  Features: ');
 
   glob.sync('features/**/*.geojson').forEach(file => {
     const contents = fs.readFileSync(file, 'utf8');
@@ -112,16 +109,18 @@ function collectFeatures() {
     }
     features.push(feature);
     files[id] = file;
-
-    process.stdout.write(colors.green('✓'));
   });
 
-  process.stdout.write(' ' + Object.keys(files).length + '\n');
-
+  const featureCount = Object.keys(files).length;
+  console.log(`📦  Features: ${featureCount}`);
   return features;
 }
 
 
+//
+// validateFile()
+// Performs JSON schema validation on the file.
+//
 function validateFile(file, resource, schema) {
   const validationErrors = v.validate(resource, schema).errors;
   if (validationErrors.length) {
@@ -139,6 +138,10 @@ function validateFile(file, resource, schema) {
 }
 
 
+//
+// prettifyFile()
+// Writes a prettified version of the file
+//
 function prettifyFile(file, object, contents) {
   const pretty = prettyStringify(object, { maxLength: 100 });
   if (pretty !== contents) {

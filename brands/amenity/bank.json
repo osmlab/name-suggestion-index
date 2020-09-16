@@ -1193,7 +1193,6 @@
       "displayName": "Banco Ganadero",
       "id": "bancoganadero-66977e",
       "locationSet": {"include": ["bo"]},
-      "matchNames": ["bg"],
       "oldid": "amenity/bank|Banco Ganadero",
       "tags": {
         "amenity": "bank",
@@ -1259,7 +1258,6 @@
       "displayName": "Banco Mercantil",
       "id": "bancomercantilsantacruz-66977e",
       "locationSet": {"include": ["bo"]},
-      "matchNames": ["bmsc"],
       "oldid": "amenity/bank|Banco Mercantil",
       "tags": {
         "amenity": "bank",
@@ -1315,7 +1313,6 @@
       "displayName": "Banco Nacional de Bolivia",
       "id": "banconacionaldebolivia-66977e",
       "locationSet": {"include": ["bo"]},
-      "matchNames": ["bnb"],
       "oldid": "amenity/bank|Banco Nacional de Bolivia",
       "tags": {
         "amenity": "bank",
@@ -2275,7 +2272,7 @@
       "displayName": "BCEE",
       "id": "bcee-d335b6",
       "locationSet": {"include": ["lu"]},
-      "matchNames": ["s-bank", "spuerkeess"],
+      "matchNames": ["spuerkeess"],
       "oldid": "amenity/bank|BCEE",
       "tags": {
         "alt_name": "S-Bank",
@@ -2321,7 +2318,7 @@
       "displayName": "BCP (Bolivia)",
       "id": "bcp-66977e",
       "locationSet": {"include": ["bo"]},
-      "matchNames": ["banco de crédito", "bcp"],
+      "matchNames": ["banco de crédito"],
       "oldid": "amenity/bank|BCP~(Bolivia)",
       "tags": {
         "amenity": "bank",
@@ -2336,7 +2333,7 @@
       "displayName": "BCP (France)",
       "id": "bcp-ad79d4",
       "locationSet": {"include": ["fr"]},
-      "matchNames": ["banque bcp", "bcp"],
+      "matchNames": ["banque bcp"],
       "oldid": "amenity/bank|BCP~(France)",
       "tags": {
         "amenity": "bank",
@@ -2350,7 +2347,7 @@
       "displayName": "BCP (Luxembourg)",
       "id": "bcp-d335b6",
       "locationSet": {"include": ["lu"]},
-      "matchNames": ["banque bcp", "bcp"],
+      "matchNames": ["banque bcp"],
       "oldid": "amenity/bank|BCP~(Luxembourg)",
       "tags": {
         "amenity": "bank",
@@ -2364,7 +2361,6 @@
       "displayName": "BCP (Peru)",
       "id": "bcp-e2ab80",
       "locationSet": {"include": ["pe"]},
-      "matchNames": ["banco de crédito del perú"],
       "oldid": "amenity/bank|BCP~(Peru)",
       "tags": {
         "amenity": "bank",
@@ -2379,7 +2375,6 @@
       "displayName": "BCR (Banca Comercială Română)",
       "id": "bcr-9a9a30",
       "locationSet": {"include": ["ro"]},
-      "matchNames": ["banca comercială română"],
       "oldid": "amenity/bank|BCR~(Banca Comercială Română)",
       "tags": {
         "amenity": "bank",
@@ -2394,7 +2389,6 @@
       "displayName": "BCR (Costa Rica)",
       "id": "bcr-8702f4",
       "locationSet": {"include": ["cr"]},
-      "matchNames": ["banco de costa rica"],
       "oldid": "amenity/bank|BCR~(Costa Rica)",
       "tags": {
         "amenity": "bank",
@@ -2645,9 +2639,7 @@
       "id": "bmo-e1345b",
       "locationSet": {"include": ["ca"]},
       "matchNames": [
-        "bank of montreal",
         "banque de montréal",
-        "bmo",
         "bmo bank of montreal",
         "bmo banque de montréal"
       ],
@@ -2669,7 +2661,6 @@
         "bank of montreal",
         "bmo",
         "bmo bank of montreal",
-        "bmo harris bank",
         "harris bank"
       ],
       "oldid": "amenity/bank|BMO Harris Bank~(USA)",
@@ -3500,8 +3491,12 @@
     },
     {
       "displayName": "Citizens Bank (Eastern USA)",
-      "id": "citizensbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "citizensbank-f81b67",
+      "locationSet": {
+        "include": [
+          "citizens_bank_eastern_us.geojson"
+        ]
+      },
       "oldid": "amenity/bank|Citizens Bank~(Eastern USA)",
       "tags": {
         "amenity": "bank",
@@ -3514,8 +3509,10 @@
     },
     {
       "displayName": "Citizens Bank (Kentucky)",
-      "id": "citizensbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "citizensbank-b10741",
+      "locationSet": {
+        "include": ["citizens_bank_ky.geojson"]
+      },
       "oldid": "amenity/bank|Citizens Bank~(Kentucky)",
       "tags": {
         "alt_name": "Citizens Bank of Kentucky",
@@ -3544,9 +3541,28 @@
       }
     },
     {
+      "displayName": "Citizens Bank (Tennessee)",
+      "id": "citizensbank-e67839",
+      "locationSet": {
+        "include": ["citizens_bank_tn.geojson"]
+      },
+      "tags": {
+        "alt_name": "Citizens Bank",
+        "amenity": "bank",
+        "brand": "Citizens Bank",
+        "name": "Citizens Bank"
+      }
+    },
+    {
       "displayName": "City National Bank (California)",
-      "id": "citynationalbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "citynationalbank-bd20e4",
+      "locationSet": {
+        "include": ["contiguous_us.geojson"],
+        "exclude": [
+          "city_national_bank_fl.geojson",
+          "city_national_bank_wv.geojson"
+        ]
+      },
       "oldid": "amenity/bank|City National Bank~(California)",
       "tags": {
         "amenity": "bank",
@@ -3558,8 +3574,12 @@
     },
     {
       "displayName": "City National Bank (Florida)",
-      "id": "citynationalbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "citynationalbank-2f5975",
+      "locationSet": {
+        "include": [
+          "city_national_bank_fl.geojson"
+        ]
+      },
       "oldid": "amenity/bank|City National Bank~(Florida)",
       "tags": {
         "amenity": "bank",
@@ -3572,8 +3592,12 @@
     },
     {
       "displayName": "City National Bank (West Virginia)",
-      "id": "citynationalbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "citynationalbank-e6f7d9",
+      "locationSet": {
+        "include": [
+          "city_national_bank_wv.geojson"
+        ]
+      },
       "oldid": "amenity/bank|City National Bank~(West Virginia)",
       "tags": {
         "amenity": "bank",
@@ -3628,8 +3652,10 @@
     },
     {
       "displayName": "Columbia Bank (New Jersey)",
-      "id": "columbiabank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "columbiabank-9e20ed",
+      "locationSet": {
+        "include": ["new_jersey.geojson"]
+      },
       "oldid": "amenity/bank|Columbia Bank~(New Jersey)",
       "tags": {
         "amenity": "bank",
@@ -3640,8 +3666,12 @@
     },
     {
       "displayName": "Columbia Bank (Washington)",
-      "id": "columbiabank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "columbiabank-c99efc",
+      "locationSet": {
+        "include": [
+          "columbia_bank_northwest_us.geojson"
+        ]
+      },
       "oldid": "amenity/bank|Columbia Bank~(Washington)",
       "tags": {
         "amenity": "bank",
@@ -4385,8 +4415,12 @@
     },
     {
       "displayName": "First Bank (North and South Carolina)",
-      "id": "firstbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "firstbank-978cca",
+      "locationSet": {
+        "include": [
+          "first_bank_carolinas.geojson"
+        ]
+      },
       "matchNames": [
         "1st bancorp",
         "1st bank",
@@ -4403,8 +4437,8 @@
     },
     {
       "displayName": "First Bank (Puerto Rico)",
-      "id": "firstbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "firstbank-9794e6",
+      "locationSet": {"include": ["pr"]},
       "matchNames": [
         "1st bancorp",
         "1st bank",
@@ -4421,9 +4455,12 @@
     },
     {
       "displayName": "First Bank (Western USA)",
-      "id": "firstbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
-      "matchNames": ["1st bank"],
+      "id": "firstbank-f17495",
+      "locationSet": {
+        "include": [
+          "first_bank_western_us.geojson"
+        ]
+      },
       "oldid": "amenity/bank|First Bank~(Western USA)",
       "tags": {
         "amenity": "bank",
@@ -4484,8 +4521,7 @@
         "1st interstate",
         "1st interstate bancsystem",
         "1st interstate bank",
-        "first interstate",
-        "first interstate bancsystem"
+        "first interstate"
       ],
       "oldid": "amenity/bank|First Interstate Bank",
       "tags": {
@@ -4523,9 +4559,27 @@
       }
     },
     {
+      "displayName": "First State Bank (East Nebraska)",
+      "id": "firststatebank-727e4e",
+      "locationSet": {
+        "include": [
+          "first_state_bank_ne_east.geojson"
+        ]
+      },
+      "oldid": "amenity/bank|First State Bank Nebraska",
+      "tags": {
+        "amenity": "bank",
+        "brand": "First State Bank",
+        "brand:wikidata": "Q87646525",
+        "name": "First State Bank"
+      }
+    },
+    {
       "displayName": "First State Bank (Florida)",
-      "id": "firststatebank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "firststatebank-5ce5b6",
+      "locationSet": {
+        "include": ["florida_keys.geojson"]
+      },
       "oldid": "amenity/bank|First State Bank~(Florida)",
       "tags": {
         "amenity": "bank",
@@ -4536,8 +4590,10 @@
     },
     {
       "displayName": "First State Bank (Illinois)",
-      "id": "firststatebank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "firststatebank-fa1437",
+      "locationSet": {
+        "include": ["first_state_bank_il.geojson"]
+      },
       "oldid": "amenity/bank|First State Bank~(Illinois)",
       "tags": {
         "amenity": "bank",
@@ -4548,8 +4604,10 @@
     },
     {
       "displayName": "First State Bank (Michigan)",
-      "id": "firststatebank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "firststatebank-60082c",
+      "locationSet": {
+        "include": ["first_state_bank_mi.geojson"]
+      },
       "oldid": "amenity/bank|First State Bank~(Michigan)",
       "tags": {
         "amenity": "bank",
@@ -4560,8 +4618,10 @@
     },
     {
       "displayName": "First State Bank (Mississippi)",
-      "id": "firststatebank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "firststatebank-e33acc",
+      "locationSet": {
+        "include": ["mississippi.geojson"]
+      },
       "oldid": "amenity/bank|First State Bank~(Mississippi)",
       "tags": {
         "amenity": "bank",
@@ -4571,21 +4631,11 @@
       }
     },
     {
-      "displayName": "First State Bank (Nebraska)",
-      "id": "firststatebank-ea2e2d",
-      "locationSet": {"include": ["us"]},
-      "oldid": "amenity/bank|First State Bank~(Nebraska)",
-      "tags": {
-        "amenity": "bank",
-        "brand": "First State Bank",
-        "brand:wikidata": "Q5453817",
-        "name": "First State Bank"
-      }
-    },
-    {
       "displayName": "First State Bank (Ohio)",
-      "id": "firststatebank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "firststatebank-05021f",
+      "locationSet": {
+        "include": ["first_state_bank_oh.geojson"]
+      },
       "oldid": "amenity/bank|First State Bank~(Ohio)",
       "tags": {
         "amenity": "bank",
@@ -4596,8 +4646,10 @@
     },
     {
       "displayName": "First State Bank (Texas)",
-      "id": "firststatebank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "firststatebank-8d0805",
+      "locationSet": {
+        "include": ["first_state_bank_tx.geojson"]
+      },
       "oldid": "amenity/bank|First State Bank~(Texas)",
       "tags": {
         "amenity": "bank",
@@ -4607,14 +4659,18 @@
       }
     },
     {
-      "displayName": "First State Bank Nebraska",
-      "id": "firststatebank-ea2e2d",
-      "locationSet": {"include": ["us"]},
-      "oldid": "amenity/bank|First State Bank Nebraska",
+      "displayName": "First State Bank (West Nebraska and Omaha)",
+      "id": "firststatebank-a81bcc",
+      "locationSet": {
+        "include": [
+          "first_state_bank_ne_west.geojson"
+        ]
+      },
+      "oldid": "amenity/bank|First State Bank~(Nebraska)",
       "tags": {
         "amenity": "bank",
         "brand": "First State Bank",
-        "brand:wikidata": "Q87646525",
+        "brand:wikidata": "Q5453817",
         "name": "First State Bank"
       }
     },
@@ -6172,7 +6228,6 @@
       "displayName": "OTP",
       "id": "otpbank-b7a026",
       "locationSet": {"include": ["001"]},
-      "matchNames": ["otp bank"],
       "oldid": "amenity/bank|OTP",
       "tags": {
         "amenity": "bank",
@@ -6251,8 +6306,12 @@
     },
     {
       "displayName": "People's United Bank",
-      "id": "peoplesunitedbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "peoplesunitedbank-28419b",
+      "locationSet": {
+        "include": [
+          "peoples_united_bank_ct.geojson"
+        ]
+      },
       "oldid": "amenity/bank|People's United Bank",
       "tags": {
         "amenity": "bank",
@@ -6264,8 +6323,12 @@
     },
     {
       "displayName": "Peoples Bank (Flemingsburg, Kentucky)",
-      "id": "peoplesbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "peoplesbank-c5d8f2",
+      "locationSet": {
+        "include": [
+          "peoples_bank_flemingsburg_ky.geojson"
+        ]
+      },
       "oldid": "amenity/bank|Peoples Bank~(Flemingsburg, Kentucky)",
       "tags": {
         "amenity": "bank",
@@ -6276,8 +6339,13 @@
     },
     {
       "displayName": "Peoples Bank (Ohio)",
-      "id": "peoplesbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "peoplesbank-ab694f",
+      "locationSet": {
+        "include": ["peoples_bank_oh.geojson"],
+        "exclude": [
+          "peoples_bank_flemingsburg_ky.geojson"
+        ]
+      },
       "oldid": "amenity/bank|Peoples Bank~(Ohio)",
       "tags": {
         "amenity": "bank",
@@ -6288,8 +6356,10 @@
     },
     {
       "displayName": "Peoples Bank (Washington)",
-      "id": "peoplesbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "peoplesbank-154b10",
+      "locationSet": {
+        "include": ["peoples_bank_wa.geojson"]
+      },
       "oldid": "amenity/bank|Peoples Bank~(Washington)",
       "tags": {
         "amenity": "bank",
@@ -6563,7 +6633,6 @@
       "displayName": "Raiffeisen (Luxembourg)",
       "id": "raiffeisen-d335b6",
       "locationSet": {"include": ["lu"]},
-      "matchNames": ["raiffeisen"],
       "oldid": "amenity/bank|Raiffeisen~(Luxembourg)",
       "tags": {
         "amenity": "bank",
@@ -7282,14 +7351,14 @@
       "displayName": "State Bank of India",
       "id": "statebankofindia-b7a026",
       "locationSet": {"include": ["001"]},
-      "matchNames": ["sbi"],
       "oldid": "amenity/bank|State Bank of India",
       "tags": {
         "amenity": "bank",
         "brand": "State Bank of India",
         "brand:wikidata": "Q1340361",
         "brand:wikipedia": "en:State Bank of India",
-        "name": "State Bank of India"
+        "name": "State Bank of India",
+        "short_name": "SBI"
       }
     },
     {
@@ -7844,20 +7913,26 @@
     },
     {
       "displayName": "United Bank (Connecticut)",
-      "id": "unitedbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "unitedbank-28419b",
+      "locationSet": {
+        "include": [
+          "peoples_united_bank_ct.geojson"
+        ]
+      },
       "oldid": "amenity/bank|United Bank~(Connecticut)",
       "tags": {
         "amenity": "bank",
         "brand": "United Bank",
-        "brand:wikidata": "Q64825157",
+        "brand:wikidata": "Q16959074",
         "name": "United Bank"
       }
     },
     {
       "displayName": "United Bank (West Virginia)",
-      "id": "unitedbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "id": "unitedbank-18df87",
+      "locationSet": {
+        "include": ["united_bank_wv.geojson"]
+      },
       "oldid": "amenity/bank|United Bank~(West Virginia)",
       "tags": {
         "amenity": "bank",
@@ -9054,7 +9129,7 @@
       "displayName": "Уральский банк реконструкции и развития",
       "id": "ураnьскийбанкреконструкциииразвития-0eb427",
       "locationSet": {"include": ["ru"]},
-      "matchNames": ["убрир", "убрр"],
+      "matchNames": ["убрр"],
       "oldid": "amenity/bank|Уральский банк реконструкции и развития",
       "tags": {
         "amenity": "bank",
