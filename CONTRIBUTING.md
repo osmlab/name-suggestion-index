@@ -49,7 +49,7 @@ For example, a McDonald's restaurant might have these tags:
   "amenity": "fast_food"
   "cuisine": "burger"
   "name": "McDonald's"
-  ... and more tags to record its address, opening hours, and so on.
+  … and more tags to record its address, opening hours, and so on.
 ```
 
 &nbsp;
@@ -79,55 +79,103 @@ The files are organized by OpenStreetMap tag:
   * `brands/tourism/*.json`
 
 
-Each brand entry looks like this _(comments added for clarity)_:
+Each item looks like this _(comments added for clarity)_:
 
 In `brands/amenity/fast_food.json`:
 
 ```js
-  {
-    "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
-    "id": "mcdonalds-658eea",               // "id" - a unique identifier generated automatically
-    "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
-    "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
-      "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
-      "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
-      "brand:wikidata": "Q38076",           //   `brand:wikidata` - Universal Wikidata identifier
-      "brand:wikipedia": "en:McDonald's",   //   `brand:wikipedia` - Reference to English Wikipedia
-      "cuisine": "burger",                  //   `cuisine` - What kind of fast food is served here
-      "name": "McDonald's"                  //   `name` - Display name, also in the local language (English)
-    }
-  },
+  "brands/amenity/fast_food": [
+    …
+    {
+      "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
+      "id": "mcdonalds-658eea",               // "id" - a unique identifier generated automatically
+      "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
+      "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
+        "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
+        "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
+        "brand:wikidata": "Q38076",           //   `brand:wikidata` - Universal Wikidata identifier
+        "brand:wikipedia": "en:McDonald's",   //   `brand:wikipedia` - Reference to English Wikipedia
+        "cuisine": "burger",                  //   `cuisine` - What kind of fast food is served here
+        "name": "McDonald's"                  //   `name` - Display name, also in the local language (English)
+      }
+    },
 ```
 
 There may also be entries for McDonald's in other languages!
 
 ```js
-  {
-    "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
-    "id": "マクドナルド-3e7699",              // "id" - a unique identifier generated automatically
-    "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
-    "tags": {
-      "amenity": "fast_food",
-      "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
-      "brand:en": "McDonald's",             // `brand:en` - For non-English brands, tag the English version too
-      "brand:ja": "マクドナルド",             // `brand:ja` - Add at least one `brand:xx` tag that matches `brand`
-      "brand:wikidata": "Q38076",           // `brand:wikidata` - Same Universal wikidata identifier
-      "brand:wikipedia": "ja:マクドナルド",   // `brand:wikipedia` - Reference to Japanese Wikipedia
-      "cuisine": "burger",
-      "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
-      "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
-      "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
-    }
-  },
+  "brands/amenity/fast_food": [
+    …
+    {
+      "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
+      "id": "マクドナルド-3e7699",              // "id" - a unique identifier generated automatically
+      "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
+        "brand:en": "McDonald's",             // `brand:en` - For non-English brands, tag the English version too
+        "brand:ja": "マクドナルド",             // `brand:ja` - Add at least one `brand:xx` tag that matches `brand`
+        "brand:wikidata": "Q38076",           // `brand:wikidata` - Same Universal wikidata identifier
+        "brand:wikipedia": "ja:マクドナルド",   // `brand:wikipedia` - Reference to Japanese Wikipedia
+        "cuisine": "burger",
+        "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
+        "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
+        "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
+      }
+    },
 ```
 
 &nbsp;
 
 #### Required properties
 
+##### `displayName`
+
+The `displayName` can contain anything, but it should be a short text appropriate for display in lists or as preset names in editor software.  This is different from the OpenStreetMap `name` tag.
+
+By convention, if you need to disambiguate between multiple brands with the same name, we add text in parenthesis.  Here there are 2 items named "Target", but they have been assigned different display names to tell them apart.
+
+In `brands/shop/department_store.json`:
+
+```js
+  "brands/shop/department_store": [
+    …
+    {
+      "displayName": "Target (Australia)",
+      "id": "target-c93bbd",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "brand": "Target",
+        "brand:wikidata": "Q7685854",
+        "brand:wikipedia": "en:Target Australia",
+        "name": "Target",
+        "shop": "department_store"
+      }
+    },
+    {
+      "displayName": "Target (USA)",
+      "id": "target-592fe0",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Target",
+        "brand:wikidata": "Q1046951",
+        "brand:wikipedia": "en:Target Corporation",
+        "name": "Target",
+        "shop": "department_store"
+      }
+    },
+```
+
+##### `id` (generated)
+
+Each item has a unique `id` generated for it.  You can leave it out and the build script will generate one automatically.
+
+The identifiers are stable unless the name, key, value, or locationSet change.
+
+
 ##### `locationSet`
 
-Each entry requires a `locationSet` to define where the entry is available.  You can define the `locationSet` as an Object with `include` and `exclude` properties:
+Each item requires a `locationSet` to define where the item is available.  You can define the `locationSet` as an Object with `include` and `exclude` properties:
 
 ```js
 "locationSet": {
@@ -147,7 +195,7 @@ You can view examples and learn more about working with `locationSets` in the [@
 
 ##### `tags`
 
-Each entry requires a `tags` value.  This is just an Object containing all the OpenStreetMap tags that should be set on the feature.
+Each item requires a `tags` value.  This is just an Object containing all the OpenStreetMap tags that should be set on the feature.
 
 
 &nbsp;
@@ -193,10 +241,37 @@ You don't need to add `matchNames` for:
 - Name variations in diacritic marks (e.g. "Häagen-Dazs" already matches "Haagen-Dazs")
 - Name variations in `&` vs. `and`
 
+Note: The build script will remove extra `matchNames` that are unnecessary.
+
 You don't need to add `matchTags` for:
 - Tags assigned to _match groups_ (defined in `config/match_groups.json`). For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
 and vice versa. _Tags in a match group will automatically match any other tags in the same match group._
 
+
+##### `note`
+
+You can optionally add a `note` property to any item.  The note can contain any text useful for maintaining the index - for example, information about the brand's status, or a link to a GitHub issue.
+
+The notes just stay with the name-suggestion-index; they aren't OpenStreetMap tags or used by other software.
+
+```js
+  "brands/amenity/bank": [
+  …
+  {
+    {
+      "displayName": "United Bank (Connecticut)",
+      "id": "unitedbank-28419b",
+      "locationSet": { "include": ["peoples_united_bank_ct.geojson"] },
+      "note": "Merged into People's United Bank (Q7165802) in 2019, see https://en.wikipedia.org/wiki/United_Financial_Bancorp",
+      "tags": {
+        "amenity": "bank",
+        "brand": "United Bank",
+        "brand:wikidata": "Q16959074",
+        "brand:wikipedia": "en:United Financial Bancorp",
+        "name": "United Bank"
+      }
+    },
+```
 
 &nbsp;
 
@@ -205,6 +280,7 @@ and vice versa. _Tags in a match group will automatically match any other tags i
 Sometimes multiple brands use the same name - this is okay!
 
 Make sure each entry has a distinct `locationSet`, and the index will generate unique identifiers for each one.
+
 You should also give each entry a unique `displayName`, so you everyone can tell them apart.
 
 
