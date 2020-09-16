@@ -32,19 +32,26 @@ fs.writeFileSync('config/filters.json', stringify(filters));
 
 // Load and check brand files
 const loco = new LocationConflation(featureCollection);
-let brands = fileTree.read('brands', loco);
+let brands = {};
 
 // all names start out in _discard..
 const allnames = require('../dist/names_all.json');
 let _discard = Object.assign({}, allnames);
 let _keep = {};
-
-
 filterNames();
-matcher.buildMatchIndex(brands);
-checkBrands();
-mergeBrands();
-fileTree.write('brands', brands);
+
+
+let _cache = { path: {}, id: {} };
+
+// Load and check brand files
+fileTree.readLegacy('brands', _cache, loco);
+
+////// MIGRATION - only `readLegacy` then `write`
+// buildMatchIndexes();
+// checkItems();
+// mergeItems();
+
+fileTree.write('brands', _cache, loco);
 console.log('');
 
 
