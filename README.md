@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/osmlab/name-suggestion-index.svg?branch=master)](https://travis-ci.org/osmlab/name-suggestion-index)
+[![Build Status](https://travis-ci.org/osmlab/name-suggestion-index.svg?branch=main)](https://travis-ci.org/osmlab/name-suggestion-index)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 
 ## name-suggestion-index
@@ -29,7 +29,7 @@ Building a canonical name index allows two very useful things:
 - We can suggest the most "correct" way to tag things as users create them while editing.
 - We can scan the OSM data for "incorrect" features and produce lists for review and cleanup.
 
-<img width="1017px" alt="Name Suggestion Index in use in iD" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/nsi-in-iD.gif"/>
+<img width="1017px" alt="Name Suggestion Index in use in iD" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/nsi-in-iD.gif"/>
 
 *The name-suggestion-index is in use in iD when adding a new item*
 

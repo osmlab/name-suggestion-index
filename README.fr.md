@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/osmlab/name-suggestion-index.svg?branch=master)](https://travis-ci.org/osmlab/name-suggestion-index)
+[![Build Status](https://travis-ci.org/osmlab/name-suggestion-index.svg?branch=main)](https://travis-ci.org/osmlab/name-suggestion-index)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 
 ## name-suggestion-index
@@ -31,7 +31,7 @@ La construction d'un index de nom canonique permet deux choses très utiles:
 - Nous pouvons suggérer la manière la plus "correcte" d'étiqueter les choses lorsque les utilisateurs les créent pendant l'édition.
 - Nous pouvons analyser les données OSM pour les fonctionnalités "incorrectes" et produire des listes pour révision et nettoyage.
 
-<img width="1017px" alt="Index de suggestion de noms utilisé dans iD" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/nsi-in-iD.gif"/>
+<img width="1017px" alt="Index de suggestion de noms utilisé dans iD" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/nsi-in-iD.gif"/>
 
 * L'index de suggestion de nom est utilisé dans iD lors de l'ajout d'un nouvel élément *
 

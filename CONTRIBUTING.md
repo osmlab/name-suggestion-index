@@ -140,7 +140,7 @@ The "locations" can be any of the following:
 * Strings recognized by the [country-coder library](https://github.com/ideditor/country-coder#readme). These should be [ISO 3166-1 2 or 3 letter country codes](https://en.wikipedia.org/wiki/List_of_countries_by_United_Nations_geoscheme) or [UN M.49 numeric codes](https://en.wikipedia.org/wiki/UN_M49).<br/>_Example: `"de"`_<br/>Tip: The M49 code for the whole world is `"001"`.
 * Filenames for custom `.geojson` features. If you want to use a custom feature, you'll need to add these under the `features/` folder (see ["Features"](#features) below for more details). Each `Feature` must have an `id` property that ends in `.geojson`.<br/>_Example: `"de-hamburg.geojson"`_<br/>Tip: You can use [geojson.io](http://geojson.io) or other tools to create these.
 
-You can view examples and learn more about working with `locationSets` in the [@ideditor/location-conflation](https://github.com/ideditor/location-conflation/blob/master/README.md) project.
+You can view examples and learn more about working with `locationSets` in the [@ideditor/location-conflation](https://github.com/ideditor/location-conflation/blob/main/README.md) project.
 
 ⚡️ You can test locationSets on this interactive map:  https://ideditor.github.io/location-conflation/
 
@@ -381,7 +381,7 @@ In `brands/amenity/fast_food.json`:
 
 2. Google for that brand - if you are lucky, you might find the Wikipedia page right away.
 
-<img width="600px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_1.png"/>
+<img width="600px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_1.png"/>
 
 3. From the Wikipedia page URL, you can identify the `brand:wikipedia` value.
 
@@ -398,11 +398,11 @@ under the "tools" menu in the sidebar.
 [#1881]: https://github.com/osmlab/name-suggestion-index/issues/1881
 [@maxerickson]: https://github.com/maxerickson
 
-<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_2.png"/>
+<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_2.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
-<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_3.png"/>
+<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_3.png"/>
 
 5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
@@ -467,7 +467,7 @@ Tip: You might want to narrow you search by Googling with a `site:` filter:  `"�
 From these results, we can know that the brand is "Kappazushi", owned by a Japanese company
 called "Kappa Create".  We can also find the Wikipedia page.
 
-<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_1.png"/>
+<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_1.png"/>
 
 3. As with English brands, you can identify the `brand:wikipedia` value from the URL.
 Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
@@ -480,13 +480,13 @@ OpenStreetMap expects this tag to be formatted like `"ja:かっぱ寿司"`.
 Although I can not read Japanese, I can identify the "Wikidata item" link because
 it always appears in the sidebar and mouseover will show the Wikidata 'Q' code in the URL.
 
-<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_3.png"/>
+<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_3.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
 Note: The Wikidata page looks a bit sparse - you can edit this too if you want to help!
 
-<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_4.png"/>
+<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_4.png"/>
 
 5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
@@ -569,7 +569,7 @@ Tip: The browsable index at https://nsi.guide/ can open Overpass Turbo with the 
 
 As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
 
-<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/overpass.png"/>
+<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/overpass.png"/>
 
 &nbsp;
 
@@ -587,17 +587,17 @@ Tip: The browsable index at https://nsi.guide/ can show you where the Wikidata i
 #### Adding properties to Wikidata
 
 Social media accounts may be used to automatically fetch logos, which are used by the iD Editor.
-<img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata.gif"/>
+<img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata.gif"/>
 
 Social media links are often displayed on the official web site of a brand, making them easy to find. When adding an entry for a social media account, it might be worth checking if that account has a "verified badge" which indicates a verified social media account, and if it does, this can be added via the "add qualifier" option, using "has quality" along with either  "verified account" or "verified badge".
 
-<img width="730px" alt="Checking Twitter references in Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata-applebees-twitter.png"/>
+<img width="730px" alt="Checking Twitter references in Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata-applebees-twitter.png"/>
 
 #### Adding references to Wikidata
 
 Entries without matching Wikipedia article must have some references by independent sources. For our entries usually the easiest one to add is something in form of "this shop brand had N shops on some specific date".
 
-<img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata_references.gif"/>
+<img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata_references.gif"/>
 <!--See https://www.wikidata.org/w/index.php?title=Wikidata:Administrators%27_noticeboard&oldid=941582891#Entries_that_should_be_now_fixed for discussion on Wikidata-->
 
 #### Creating Wikidata entries

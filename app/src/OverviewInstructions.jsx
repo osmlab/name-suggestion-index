@@ -18,7 +18,7 @@ export default function OverviewInstructions() {
     Below is a list of categories used by OpenStreetMap. Each category displays a count of brands <strong>"(complete / total)"</strong>,
     where "complete" means the brands have been matched to a Wikidata identifier and a logo.<br/>
     <br/>
-    See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.<br/>
+    See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.<br/>
     </div>
     </>
   );

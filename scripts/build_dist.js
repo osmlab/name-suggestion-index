@@ -150,12 +150,12 @@ function buildXML() {
 function buildTaginfo() {
   let taginfo = {
     'data_format': 1,
-    'data_url': 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/dist/taginfo.json',
+    'data_url': 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/taginfo.json',
     'project': {
       'name': 'name-suggestion-index',
       'description': 'Canonical common brand names for OpenStreetMap',
       'project_url': 'https://github.com/osmlab/name-suggestion-index',
-      'doc_url': 'https://github.com/osmlab/name-suggestion-index/blob/master/README.md',
+      'doc_url': 'https://github.com/osmlab/name-suggestion-index/blob/main/README.md',
       'icon_url': 'https://raw.githubusercontent.com/mapbox/maki/master/icons/fast-food-15.svg?sanitize=true',
       'contact_name': 'Bryan Housel',
       'contact_email': 'bhousel@gmail.com'
