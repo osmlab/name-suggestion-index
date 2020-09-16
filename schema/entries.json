@@ -21,12 +21,7 @@
           },
 
           "id": {
-            "description": "(generated) unique identifier.",
-            "type": "string"
-          },
-
-          "oldid": {
-            "description": "(optional) The legacy NSI identifier - will go away soon",
+            "description": "(generated) A unique identifier generated automatically.",
             "type": "string"
           },
 
@@ -53,6 +48,16 @@
               "type": "string",
               "pattern": "^\\S+/\\S+$"
             }
+          },
+
+          "note": {
+            "description": "(optional) An optional note - can contain anything about the item.",
+            "type": "string"
+          },
+
+          "oldid": {
+            "description": "(optional) The legacy NSI identifier - will go away soon",
+            "type": "string"
           },
 
           "tags": {
