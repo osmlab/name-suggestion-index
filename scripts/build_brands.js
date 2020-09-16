@@ -44,7 +44,7 @@ buildMatchIndexes();
 checkItems();
 mergeItems();
 
-fileTree.write('brands', _cache, loco);
+fileTree.write('brands', _cache);
 console.log('');
 
 
@@ -198,7 +198,6 @@ function mergeItems() {
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const t = parts[0];
     const k = parts[1];
     const v = parts[2];
 
@@ -297,7 +296,6 @@ function checkItems() {
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const t = parts[0];
     const k = parts[1];
     const v = parts[2];
     const kv = `${k}/${v}`;

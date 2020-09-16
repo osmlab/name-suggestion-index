@@ -1,3 +1,7 @@
+const featureCollection = require('../dist/featureCollection.json');
+const LocationConflation = require('@ideditor/location-conflation');
+const loco = new LocationConflation(featureCollection);
+
 // validate the filters.json file
 const filters = require('../config/filters.json');
 const filtersSchema = require('../schema/filters.json');
@@ -6,4 +10,6 @@ validate('config/filters.json', filters, filtersSchema);
 
 // reading a fileTree will also validate its contents
 const fileTree = require('../lib/file_tree');
-fileTree.read('brands');
+
+let _cache = { path: {}, id: {} };
+fileTree.read('brands', _cache, loco);
