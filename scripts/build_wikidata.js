@@ -2,8 +2,9 @@ const colors = require('colors/safe');
 const fetch = require('node-fetch');
 const fileTree = require('../lib/file_tree.js');
 const fs = require('fs');
+const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
+const prettyStringify = require('json-stringify-pretty-compact');
 const sort = require('../lib/sort.js');
-const stringify = require('json-stringify-pretty-compact');
 
 // We use LocationConflation for validating and processing the locationSets
 const featureCollection = require('../dist/featureCollection.json');
@@ -236,11 +237,8 @@ function processEntities(result) {
         // P17 - Countries where the brand is dissoluted
         const countries = item.qualifiers.P17;
         if (countries) {
-          dissolution.countries = countries;
-// country-coder can convert QID -> ISO code for us
-          // countryCodesQueue.push({ qid: qid, index: target.dissolutions.length, countries: countries });
+          dissolution.countries = countries.map(iso1A2Code);
         }
-
         // P156 - followed by or P1366 - replaced by (successor)
         const successorQID = item.qualifiers.P156 || item.qualifiers.P1366;
         if (successorQID) {
@@ -368,7 +366,7 @@ function finish() {
     _wikidata[qid] = sort(target);
   });
 
-  fs.writeFileSync('dist/wikidata.json', stringify({ wikidata: sort(_wikidata) }));
+  fs.writeFileSync('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
 
 
   // update dissolved.json
@@ -380,7 +378,7 @@ function finish() {
       dissolved[item.id] = _wikidata[qid].dissolutions;
     }
   });
-  fs.writeFileSync('dist/dissolved.json', stringify(sort(dissolved), { maxLength: 100 }));
+  fs.writeFileSync('dist/dissolved.json', prettyStringify(sort(dissolved), { maxLength: 100 }));
 
   console.timeEnd(END);
 
