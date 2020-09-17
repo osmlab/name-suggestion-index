@@ -5,6 +5,11 @@ const fs = require('fs');
 const sort = require('../lib/sort.js');
 const stringify = require('json-stringify-pretty-compact');
 
+// We use LocationConflation for validating and processing the locationSets
+const featureCollection = require('../dist/featureCollection.json');
+const LocationConflation = require('@ideditor/location-conflation');
+const loco = new LocationConflation(featureCollection);
+
 const wbk = require('wikibase-sdk')({
   instance: 'https://www.wikidata.org',
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
@@ -47,10 +52,25 @@ try {
 
 
 // what to fetch
-let _brands = fileTree.read('brands');
-let _ennames = {};
+let _cache = { path: {}, id: {} };
+fileTree.read('brands', _cache, loco);
+
+
+// gather QIDs..
 let _wikidata = {};
-gatherQIDs(_brands);
+let _qidNames = {};       // we use this just for displaying information in the console
+Object.values(_cache.id).forEach(item => {
+  const tags = item.tags;
+  ['brand', 'operator', 'network'].forEach(osmtag => {
+    const wdtag = `${osmtag}:wikidata`;
+    const entag = `${osmtag}:en`;
+    const qid = tags[wdtag];
+    if (qid && /^Q\d+$/.test(qid) && !_wikidata[qid]) {   // valid QID not already gathered
+      _wikidata[qid] = {};
+      _qidNames[qid] = tags['name:en'] || tags.name || tags[entag] || tags[osmtag];
+    }
+  });
+});
 
 let _qids = Object.keys(_wikidata);
 let _total = _qids.length;
@@ -59,7 +79,7 @@ if (!_total) {
   process.exit();
 }
 
-// split into several wikidata requests
+// Chunk into multiple wikidata API requests..
 let _urls = wbk.getManyEntities({
   ids: _qids,
   languages: ['en'],
@@ -71,20 +91,12 @@ let _errors = [];
 doFetch().then(finish);
 
 
-function gatherQIDs(brands) {
-  Object.keys(brands).forEach(kvnd => {
-    ['brand:wikidata', 'operator:wikidata'].forEach(wdtag => {
-      const tags = brands[kvnd].tags;
-      const qid = tags[wdtag];
-      if (qid && /^Q\d+$/.test(qid)) {
-        _ennames[qid] = tags['name:en'] || tags.name;
-        _wikidata[qid] = {};
-      }
-    });
-  });
-}
 
-
+//
+// `doFetch`
+// Returns a Promise that keeps fetching Wikidata API requests recursively
+// until there is nothing left to fetch, then returns a resolved Promise
+//
 function doFetch(index) {
   index = index || 0;
   if (index >= _urls.length) {
@@ -110,10 +122,15 @@ function doFetch(index) {
 }
 
 
+//
+// `processEntities`
+// Here we process the fetched results from the Wikidata API,
+// then schedule followup API calls to the Twitter/Facebook APIs,
+// then eventually resolves when all that work is done.
+//
 function processEntities(result) {
   let twitterQueue = [];
   let facebookQueue = [];
-  let countryCodesQueue = [];
 
   Object.keys(result.entities).forEach(qid => {
     let target = _wikidata[qid];
@@ -123,7 +140,7 @@ function processEntities(result) {
 
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${_ennames[qid]}" was deleted.`);
+        colors.red(`  Entity for "${_qidNames[qid]}" was deleted.`);
       _errors.push(msg);
       console.error(msg);
       return;
@@ -133,7 +150,7 @@ function processEntities(result) {
       target.label = label;
     } else {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${_ennames[qid]}" missing English label.`);
+        colors.red(`  Entity for "${_qidNames[qid]}" missing English label.`);
       _errors.push(msg);
       console.error(msg);
     }
@@ -217,77 +234,55 @@ function processEntities(result) {
 
       if (item.qualifiers) {
         // P17 - Countries where the brand is dissoluted
-        let countries = item.qualifiers.P17;
+        const countries = item.qualifiers.P17;
         if (countries) {
           dissolution.countries = countries;
-          countryCodesQueue.push({ qid: qid, index: target.dissolutions.length, countries: countries });
+// country-coder can convert QID -> ISO code for us
+          // countryCodesQueue.push({ qid: qid, index: target.dissolutions.length, countries: countries });
         }
 
         // P156 - followed by or P1366 - replaced by (successor)
-        let successor = item.qualifiers.P156 || item.qualifiers.P1366;
-        if (successor) {
-          dissolution.upgrade = successor;
+        const successorQID = item.qualifiers.P156 || item.qualifiers.P1366;
+        if (successorQID) {
+          dissolution.upgrade = successorQID;
         }
       }
 
-      // P156 - followed by or P1366 - replaced by (successor)
-      // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
-      let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366');
-      // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
-      if (successor && successor.id && !dissolution.upgrade) {
-        dissolution.upgrade = [ successor.id ];
+      if (!dissolution.upgrade) {
+        // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
+        // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
+        // P156 - followed by or P1366 - replaced by (successor)
+        let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366');
+        if (successor && successor.id) {
+          dissolution.upgrade = successor.id;
+        }
       }
 
       if (dissolution.upgrade) {
-        dissolution.upgrade.forEach((entity, index) => {
-          let keys = getKeysByQid(entity);
-          if (keys.length === 0) {
-            // If the brand is not yet in the index, show a warning to add it
-            let msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-              colors.red(`  ${target.label} should probably be replaced by ${entity}, but this entry is not yet present in the index.`);
-            if (dissolution.countries) {
-              msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
-            }
-            _errors.push(msg);
-            console.error(msg);
-            dissolution.upgrade.splice(index, 1);
-
-          } else if (keys.length === 1) {
-            dissolution.upgrade[index] = keys[0];
-
-          } else if (keys.length > 1) {
-            let msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-              colors.red(`  ${target.label} should probably be replaced by ${entity}, but this applies to more than one entry in the index: ${JSON.stringify(keys)}.`);
-            if (dissolution.countries) {
-              msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
-            }
-            _errors.push(msg);
-            console.error(colors.red(msg));
-            dissolution.upgrade.splice(index, 1);
-          }
-        });
-
-        if (dissolution.upgrade.length === 0) {
-          delete dissolution.upgrade;
+        let msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+          colors.red(`  ${target.label} might possibly be replaced by ${dissolution.upgrade}`);
+        if (dissolution.countries) {
+          msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
         }
+        _errors.push(msg);
+        console.error(msg);
       }
-
       target.dissolutions.push(dissolution);
     });
+
   });
 
   if (twitterAPIs.length && twitterQueue.length) {
     return checkTwitterRateLimit(twitterQueue.length)
       .then(() => Promise.all(twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username)) ))
-      .then(() => Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) ))
-      .then(() => Promise.all(countryCodesQueue.map(obj => fetchCountryCodes(obj.qid, obj.index, obj.countries)) ));
+      .then(() => Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) ));
   } else {
-    return Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)))
-      .then(() => Promise.all(countryCodesQueue.map(obj => fetchCountryCodes(obj.qid, obj.index, obj.countries)) ));
+    return Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)));
   }
 }
 
 
+// `getClaimValue`
 // Get the claim value, considering any claim rank..
 //   - disregard any claimes with an end date qualifier in the past
 //   - disregard any claims with "deprecated" rank
@@ -324,17 +319,25 @@ function getClaimValue(entity, prop) {
 }
 
 
+// `finish`
+// Wrap up, write files
+// - wikidata.json
+// - dissolved.json
+//
 function finish() {
-  console.log('\nwriting wikidata.json');
-  console.time(colors.green('wikidata.json updated'));
+  const START = '🏗   ' + colors.yellow('Writing output files');
+  const END = '👍  ' + colors.green('output files updated');
+  console.log('');
+  console.log(START);
+  console.time(END);
 
+  // update wikidata.json
   let origWikidata;
   try {
     origWikidata = require('../dist/wikidata.json').wikidata;
   } catch (err) {
     origWikidata = {};
   }
-
 
   Object.keys(_wikidata).forEach(qid => {
     let target = _wikidata[qid];
@@ -365,44 +368,29 @@ function finish() {
     _wikidata[qid] = sort(target);
   });
 
-
   fs.writeFileSync('dist/wikidata.json', stringify({ wikidata: sort(_wikidata) }));
-  console.timeEnd(colors.green('wikidata.json updated'));
 
 
-  console.log('\nwriting dissolved.json');
-  console.time(colors.green('dissolved.json updated'));
-
+  // update dissolved.json
   let dissolved = {};
-
-  Object.keys(_brands).forEach(kvnd => {
-    let qid = _brands[kvnd].tags['brand:wikidata'];
+  Object.values(_cache.id).forEach(item => {
+    const tags = item.tags;
+    let qid = tags['brand:wikidata'];
     if (qid && _wikidata[qid].dissolutions && _wikidata[qid].dissolutions.length > 0) {
-      dissolved[kvnd] = _wikidata[qid].dissolutions;
+      dissolved[item.id] = _wikidata[qid].dissolutions;
     }
   });
-
   fs.writeFileSync('dist/dissolved.json', stringify(sort(dissolved), { maxLength: 100 }));
-  console.timeEnd(colors.green('dissolved.json updated'));
 
+  console.timeEnd(END);
 
+  // output whatever errors we've gathered
   if (_errors.length) {
     console.log(colors.yellow.bold(`\nError Summary:`));
     _errors.forEach(msg => console.error(colors.red(msg)));
   }
 }
 
-
-// Find the key(s) of items in the index by its QID set in 'brand:wikidata'
-function getKeysByQid(qid) {
-  let result = [];
-  Object.keys(_brands).forEach(kvnd => {
-    if (_brands[kvnd].tags['brand:wikidata'] === qid) {
-      result.push(kvnd);
-    }
-  });
-  return result;
-}
 
 // check Twitter rate limit status
 // https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
@@ -491,38 +479,8 @@ function fetchFacebookLogo(qid, username) {
 }
 
 
-// replace the reference to a country with its ISO 3166-1 alpha-2 code which is present as a claim of the entity
-function fetchCountryCodes(qid, index, countries) {
-  let target = _wikidata[qid];
-  let url = wbk.getEntities({
-    ids: countries,
-    languages: ['en'],
-    props: ['claims'],
-    format: 'json'
-  });
-
-  return fetch(url)
-    .then(response => response.json())
-    .then(json => {
-      let entities = json.entities;
-      for (let entity of Object.keys(entities)) {
-        // P297 - ISO 3166-1 alpha-2 code
-        let code = entities[entity].claims.P297;
-        if (!code) {
-          // the entity is likely not a country if no country code is present
-          let msg = `Error: https://www.wikidata.org/wiki/${qid}\n\tThe linked item ${entity} does not seem to be a country because there is no country code stored as a claim.`;
-          _errors.push(msg);
-          console.error(colors.red(msg));
-        }
-        countries[countries.indexOf(entity)] = wbk.simplify.propertyClaims(code)[0].toLowerCase();
-        target.dissolutions[index].countries = countries;
-      }
-    });
-}
-
-
 function delay(msec) {
-  return new Promise((resolve) => setTimeout(resolve, msec));
+  return new Promise(resolve => setTimeout(resolve, msec));
 }
 
 
