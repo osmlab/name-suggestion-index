@@ -31,7 +31,7 @@ function buildAll() {
   // Features
   const features = collectFeatures();
   const featureCollection = { type: 'FeatureCollection', features: features };
-  fs.writeFileSync('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 3000 }));
+  fs.writeFileSync('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 9999 }));
 
   console.timeEnd(END);
 }

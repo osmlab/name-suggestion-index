@@ -1,7 +1,5 @@
 const colors = require('colors/safe');
 const fs = require('fs');
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
@@ -12,6 +10,8 @@ const stemmer = require('../lib/stemmer.js');
 const validate = require('../lib/validate.js');
 
 // We use LocationConflation for validating and processing the locationSets
+const featureCollection = require('../dist/featureCollection.json');
+const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
 // Load and check filters.json

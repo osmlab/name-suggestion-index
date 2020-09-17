@@ -1,17 +1,22 @@
 const colors = require('colors/safe');
 const fs = require('fs');
 const dissolved = require('../dist/dissolved.json');
+const fileTree = require('../lib/file_tree.js');
 const namesKeep = require('../dist/names_keep.json');
 const packageJSON = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
 const xmlbuilder2 = require('xmlbuilder2');
 
-const fileTree = require('../lib/file_tree.js');
-const toParts = require('../lib/to_parts.js');
+// We use LocationConflation for validating and processing the locationSets
+const featureCollection = require('../dist/featureCollection.json');
+const LocationConflation = require('@ideditor/location-conflation');
+const loco = new LocationConflation(featureCollection);
 
-let brands = fileTree.read('brands');
-let out = {};
+
+let _cache = { path: {}, id: {} };
+fileTree.read('brands', _cache, loco);
+let _nameSuggestions = {};
 
 buildAll();
 
@@ -37,8 +42,8 @@ function buildAll() {
   shell.cp('-f', 'config/filters.json', 'dist/filters.json');
   shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
 
-  // Write `brands.json` as a single file
-  fs.writeFileSync('dist/brands.json', prettyStringify({ brands: brands }));
+  // Write `brands.json` as a single file containing everything by path
+  fs.writeFileSync('dist/brands.json', prettyStringify(_cache.path));
 
   buildJSON();
   buildXML();
@@ -74,35 +79,41 @@ function buildAll() {
 
 
 function buildJSON() {
-  Object.keys(brands).forEach(kvnd => {
-    const obj = brands[kvnd];
+  // for now, process `brands/*` only
+  const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === 'brands');
 
-    const wd = obj.tags['brand:wikidata'];
-    if (!wd || !/^Q\d+$/.test(wd)) return;   // wikidata tag missing or looks wrong..
+  paths.forEach(tkv => {
+    let items = _cache.path[tkv];
+    if (!Array.isArray(items) || !items.length) return;
 
-    if (dissolved[kvnd]) {
-      return;   // brand does not exist anymore, so it should not be in the index
-    }
+    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const k = parts[1];
+    const v = parts[2];
 
-    const parts = toParts(kvnd);
-    const k = parts.k;
-    const v = parts.v;
-    const n = parts.n + (parts.d !== undefined ? ' ' + parts.d : "");
+    items.forEach(item => {
+      const wd = item.tags['brand:wikidata'];
+      if (!wd || !/^Q\d+$/.test(wd)) return;   // wikidata tag missing or looks wrong..
+      if (dissolved[item.id]) return;          // dissolved/closed businesses
 
-    if (!out[k])    out[k] = {};
-    if (!out[k][v]) out[k][v] = {};
-    out[k][v][n] = {};
+      const n = item.displayName;
+      const kvn = `${k}/${v}|${n}`;
 
-    if (namesKeep[kvnd]) {
-      out[k][v][n].count = namesKeep[kvnd];
-    }
+      if (!_nameSuggestions[k])     _nameSuggestions[k] = {};
+      if (!_nameSuggestions[k][v])  _nameSuggestions[k][v] = {};
+      _nameSuggestions[k][v][n] = {};
 
-    out[k][v][n].locationSet = obj.locationSet;
-    out[k][v][n].tags = obj.tags;
+      if (namesKeep[kvn]) {
+        _nameSuggestions[k][v][n].count = namesKeep[kvn];
+      }
+
+      _nameSuggestions[k][v][n].id = item.id;
+      _nameSuggestions[k][v][n].locationSet = item.locationSet;
+      _nameSuggestions[k][v][n].tags = item.tags;
+    });
   });
 
   // Save individual data files
-  fs.writeFileSync('dist/name-suggestions.json', prettyStringify(out));
+  fs.writeFileSync('dist/name-suggestions.json', prettyStringify(_nameSuggestions));
 }
 
 
@@ -122,20 +133,20 @@ function buildXML() {
 
   // Create JOSM presets using the key and value structure from the json
   // to organize the presets into JOSM preset groups.
-  for (let key in out) {
+  for (const key in _nameSuggestions) {
     let keygroup = topgroup.ele('group').att('name', key);
 
-    for (let value in out[key]) {
+    for (const value in _nameSuggestions[key]) {
       let valuegroup = keygroup.ele('group').att('name', value);
 
-      for (let name in out[key][value]) {
+      for (const displayName in _nameSuggestions[key][value]) {
         let item = valuegroup
           .ele('item')
-          .att('name', name)
+          .att('name', displayName)
           .att('type', 'node,closedway,multipolygon');
 
-        let tags = out[key][value][name].tags;
-        for (let k in tags) {
+        const tags = _nameSuggestions[key][value][displayName].tags;
+        for (const k in tags) {
           item.ele('key').att('key', k).att('value', tags[k]);
         }
       }
@@ -163,19 +174,19 @@ function buildTaginfo() {
   };
 
   let items = {};
-  for (let key in out) {
-    for (let value in out[key]) {
-      for (let name in out[key][value]) {
-        let tags = out[key][value][name].tags;
+  for (const key in _nameSuggestions) {
+    for (const value in _nameSuggestions[key]) {
+      for (const name in _nameSuggestions[key][value]) {
+        const tags = _nameSuggestions[key][value][name].tags;
         for (let k in tags) {
           let v = tags[k];
 
-          // skip value for most tags this project uses
-          if (/name|brand|operator/.test(k)) {
+          // skip value for many tags this project uses
+          if (/name|brand|network|operator/.test(k)) {
             v = '*';
           }
 
-          let kv = k + '/' + v;
+          const kv = `${k}/${v}`;
           items[kv] = { key: k };
 
           if (v !== '*') {
@@ -203,8 +214,8 @@ function buildSitemap() {
   index.ele('changefreq').txt(changefreq);
   index.ele('lastmod').txt(lastmod);
 
-  for (let k in out) {
-    for (let v in out[k]) {
+  for (const k in _nameSuggestions) {
+    for (const v in _nameSuggestions[k]) {
       let url = urlset.ele('url');
       url.ele('loc').txt(`https://nsi.guide/index.html?k=${k}&v=${v}`);
       url.ele('changefreq').txt(changefreq);
@@ -216,13 +227,13 @@ function buildSitemap() {
 }
 
 
-function minifyJSON(inPath, outPath) {
+function minifyJSON(inPath, _nameSuggestionsPath) {
   return new Promise((resolve, reject) => {
     fs.readFile(inPath, 'utf8', (err, data) => {
       if (err) return reject(err);
 
       const minified = JSON.stringify(JSON.parse(data));
-      fs.writeFile(outPath, minified, (err) => {
+      fs.writeFile(_nameSuggestionsPath, minified, (err) => {
         if (err) return reject(err);
         resolve();
       });
