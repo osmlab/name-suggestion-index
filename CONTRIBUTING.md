@@ -237,15 +237,17 @@ This project includes a "fuzzy" matcher that can match alternate names and tags 
 
 You don't need to add `matchNames` for:
 - Name variations in capitalization, punctuation, spacing (the middots common in Japanese names count as punctuation, so "V・ドラッグ" already matches "vドラッグ")
-- Name variations that already appear in the `name`, `brand`, `alt_name`, `short_name`, `official_name` tags
+- Name variations that already appear in the `name`, `brand`, `operator`, `network`.
+- Name variations that already appear in an alternate name tag (e.g. `alt_name`, `short_name`, `official_name`, etc.)
+- Name variations that already appear in any international version of those tags (e.g. `name:en`, `official_name:ja`, etc.)
 - Name variations in diacritic marks (e.g. "Häagen-Dazs" already matches "Haagen-Dazs")
 - Name variations in `&` vs. `and`
-
-Note: The build script will remove extra `matchNames` that are unnecessary.
 
 You don't need to add `matchTags` for:
 - Tags assigned to _match groups_ (defined in `config/match_groups.json`). For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
 and vice versa. _Tags in a match group will automatically match any other tags in the same match group._
+
+👉 Bonus: The build script will automatically remove extra `matchNames` and `matchTags` that are unnecessary.
 
 
 ##### `note`
