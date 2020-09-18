@@ -6,29 +6,26 @@ import CategoryRowSocialLinks from "./CategoryRowSocialLinks";
 
 export default function CategoryRow(props) {
   const data = props.data;
-  if (data.isLoading()) {
-    return;
-  }
+  if (data.isLoading()) return;
 
-  const kvnd = props.kvnd;
-  const entry = props.entry;
+  const item = props.item;
   const k = props.k;
   const v = props.v;
 
-  // filters
+  // filters (used here for highlighting)
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
   const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
 
   const rowClasses = [];
-  if (entry.filtered) {
-    rowClasses.push("hide");
-  }
-  if (entry.selected) {
-    rowClasses.push("selected");
-  }
+  if (item.filtered) rowClasses.push("hide");
+  if (item.selected) rowClasses.push("selected");
 
-  const count = data.names[kvnd] || '< 50';
-  const tags = entry.tags || {};
+  // choose something to use as the "name"
+  const n = item.tags.name || item.tags.brand || item.tags.operator || item.tags.network;
+
+  const kvn = `${k}/${v}|${n}`;
+  const count = data.names[kvn] || '< 50';
+  const tags = item.tags || {};
   const qid = tags['brand:wikidata'];
   const bn = tags['brand'];
   const wd = data.wikidata[qid] || {};
@@ -40,16 +37,16 @@ export default function CategoryRow(props) {
   return (
     <tr className={rowClasses.join(' ') || null} >
     <td className="namesuggest">
-      <h3 className="slug" id={entry.slug}>
-        <a href={`#${entry.slug}`}>#</a>
-        <span className="anchor">{tags.name}</span>
+      <h3 className="slug" id={item.slug}>
+        <a href={`#${item.slug}`}>#</a>
+        <span className="anchor">{item.displayName}</span>
       </h3>
-      <div className="nsikey"><pre>'{kvnd}'</pre></div>
-      <div className="locations">{ locoDisplay(entry.locationSet, tags.name) }</div>
+      <div className="nsikey"><pre>{item.id}</pre></div>
+      <div className="locations">{ locoDisplay(item.locationSet, n) }</div>
       <div className="viewlink">
-        { searchOverpassLink(k, v, tags.name, tags['brand:wikidata'], tags['brand']) }<br/>
-        { searchGoogleLink(tags.name) }<br/>
-        { searchWikipediaLink(tags.name) }
+        { searchOverpassLink(k, v, n, tags['brand:wikidata'], tags['brand']) }<br/>
+        { searchGoogleLink(n) }<br/>
+        { searchWikipediaLink(n) }
       </div>
     </td>
     <td className="count">{count}</td>
@@ -85,7 +82,7 @@ export default function CategoryRow(props) {
   function highlight(needle, haystack) {
     let html = haystack;
     if (needle) {
-      let re = new RegExp('\(' + needle + '\)', 'gi');
+      const re = new RegExp('\(' + needle + '\)', 'gi');
       html = html.replace(re, '<mark>$1</mark>');
     }
     return  { __html: html };

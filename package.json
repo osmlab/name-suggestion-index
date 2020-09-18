@@ -46,6 +46,7 @@
   "module": "index.mjs",
   "scripts": {
     "all": "run-s build dist",
+    "appbuild": "npm run docbuild",
     "dist": "node scripts/build_dist.js && rollup -c",
     "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --no-minify --public-url ./ --out-dir docs",
     "build": "run-s build:features build:brands",

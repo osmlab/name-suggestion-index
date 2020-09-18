@@ -5597,7 +5597,7 @@ function CategoryInstructions() {
   }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"View on Overpass Turbo\" link to see where the name is used in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag, you can do the research to add it to our project, or filter it out if it is not a brand.", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md"
-  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), "You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later."))));
+  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), "You can add the brand's Facebook or Twitter usernames, and this project will pick up the logos later."))));
 }
 
 ;
@@ -11769,30 +11769,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function CategoryRow(props) {
   var data = props.data;
-
-  if (data.isLoading()) {
-    return;
-  }
-
-  var kvnd = props.kvnd;
-  var entry = props.entry;
+  if (data.isLoading()) return;
+  var item = props.item;
   var k = props.k;
-  var v = props.v; // filters
+  var v = props.v; // filters (used here for highlighting)
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var rowClasses = [];
+  if (item.filtered) rowClasses.push("hide");
+  if (item.selected) rowClasses.push("selected"); // choose something to use as the "name"
 
-  if (entry.filtered) {
-    rowClasses.push("hide");
-  }
-
-  if (entry.selected) {
-    rowClasses.push("selected");
-  }
-
-  var count = data.names[kvnd] || '< 50';
-  var tags = entry.tags || {};
+  var n = item.tags.name || item.tags.brand || item.tags.operator || item.tags.network;
+  var kvn = "".concat(k, "/").concat(v, "|").concat(n);
+  var count = data.names[kvn] || '< 50';
+  var tags = item.tags || {};
   var qid = tags['brand:wikidata'];
   var bn = tags['brand'];
   var wd = data.wikidata[qid] || {};
@@ -11806,18 +11797,18 @@ function CategoryRow(props) {
     className: "namesuggest"
   }, /*#__PURE__*/_react.default.createElement("h3", {
     className: "slug",
-    id: entry.slug
+    id: item.slug
   }, /*#__PURE__*/_react.default.createElement("a", {
-    href: "#".concat(entry.slug)
+    href: "#".concat(item.slug)
   }, "#"), /*#__PURE__*/_react.default.createElement("span", {
     className: "anchor"
-  }, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
+  }, item.displayName)), /*#__PURE__*/_react.default.createElement("div", {
     className: "nsikey"
-  }, /*#__PURE__*/_react.default.createElement("pre", null, "'", kvnd, "'")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("pre", null, item.id)), /*#__PURE__*/_react.default.createElement("div", {
     className: "locations"
-  }, locoDisplay(entry.locationSet, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
+  }, locoDisplay(item.locationSet, n)), /*#__PURE__*/_react.default.createElement("div", {
     className: "viewlink"
-  }, searchOverpassLink(k, v, tags.name, tags['brand:wikidata'], tags['brand']), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(tags.name), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(tags.name))), /*#__PURE__*/_react.default.createElement("td", {
+  }, searchOverpassLink(k, v, n, tags['brand:wikidata'], tags['brand']), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(n), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(n))), /*#__PURE__*/_react.default.createElement("td", {
     className: "count"
   }, count), /*#__PURE__*/_react.default.createElement("td", {
     className: "tags"
@@ -19085,24 +19076,26 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 function Category(props) {
   var tree = props.tree;
   var data = props.data;
-  var id = props.id && props.id.match(/^(\w+?)\/(\w+?)\|(.+)$/);
-  var k = id ? id[1] : props.k;
-  var v = id ? id[2] : props.v;
+  var index = data.index;
+  var id = props.id;
+  var k = props.k;
+  var v = props.v;
   var kv = "".concat(k, "/").concat(v);
-  var entries = data.dict && data.dict[k] && data.dict[k][v];
+  var tkv = "".concat(tree, "/").concat(k, "/").concat(v);
+  var items = index.path && index.path[tkv];
   var hash = props.location.hash;
-  var slug = id ? id[3] : hash && hash.slice(1); // remove leading '#'
+  var slug = hash && hash.slice(1); // remove leading '#'
 
   var message;
 
   if (data.isLoading()) {
     message = "Loading, please wait...";
-  } else if (!entries) {
-    message = "No entries for ".concat(k, "/").concat(v, ".");
+  } else if (!Array.isArray(items) || !items.length) {
+    message = "No items for ".concat(tkv, ".");
   }
 
   if (message) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, tree, "/", k, "/", v), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, tkv), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: "index.html"
     }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
       data: data
@@ -19127,66 +19120,55 @@ function Category(props) {
 
 
   var icon_url = data.icons[kv];
+  if (!icon_url) icon_url = data.icons[k]; // fallback to generic key=* icon
 
-  if (!icon_url) {
-    // fallback to key only
-    icon_url = data.icons[k];
-  }
-
-  if (!icon_url) {
-    // fallback to shop icon
-    icon_url = data.icons.shop;
-  } // filters
-
+  if (!icon_url) icon_url = data.icons.shop; // fallback to generic shop icon
+  // filters
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var inc = !!(data.filters && data.filters.inc);
-  var rows = Object.keys(entries).map(function (kvnd) {
-    var entry = entries[kvnd]; // calculate slug
+  var rows = items.map(function (item) {
+    // calculate slug
+    item.slug = encodeURI(item.id); // apply selection if slug in URL matches slug
 
-    var nd = kvnd.split('|')[1];
-    entry.slug = encodeURI(nd); // apply selection if slug in URL matches slug
-
-    entry.selected = slug === entry.slug; // apply filters
+    item.selected = slug === item.slug; // apply filters
 
     if (tt) {
-      var tags = Object.entries(entry.tags);
-      entry.filtered = tags.length && tags.every(function (pair) {
+      var tags = Object.entries(item.tags);
+      item.filtered = tags.length && tags.every(function (pair) {
         return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
       });
     } else if (cc) {
-      var codes = entry.locationSet.include || [];
-      entry.filtered = codes.length && codes.every(function (code) {
+      // todo: fix countrycode filters - #4077
+      var codes = item.locationSet.include || [];
+      item.filtered = codes.length && codes.every(function (code) {
         return code.toLowerCase().indexOf(cc) === -1;
       });
     } else {
-      delete entry.filtered;
+      delete item.filtered;
     }
 
-    if (!entry.filtered) {
-      var _tags = entry.tags || {};
+    if (!item.filtered) {
+      var _tags = item.tags || {};
 
       var qid = _tags['brand:wikidata'];
       var wd = data.wikidata[qid] || {};
       var logos = wd.logos || {};
       var hasLogo = Object.keys(logos).length;
-      entry.filtered = inc && hasLogo;
+      item.filtered = inc && hasLogo;
     }
 
     return /*#__PURE__*/_react.default.createElement(_CategoryRow.default, _extends({
-      key: kvnd
+      key: item.id
     }, props, {
-      entry: entry,
-      kvnd: kvnd,
-      k: k,
-      v: v
+      item: item
     }));
   });
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, /*#__PURE__*/_react.default.createElement("img", {
     className: "icon",
     src: icon_url
-  }), tree, "/", k, "/", v), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }), tkv), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "index.html"
   }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     data: data
@@ -19297,7 +19279,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Overview(props) {
   var tree = props.tree;
-  var data = props.data; // filters
+  var data = props.data;
+  var index = data.index; // filters
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
@@ -19319,80 +19302,75 @@ function Overview(props) {
     }, message));
   }
 
-  var items = [];
-  Object.keys(data.dict).forEach(function (k) {
-    var entry = data.dict[k];
-    Object.keys(entry).forEach(function (v) {
-      var kv = "".concat(k, "/").concat(v); // pick an icon for this category
+  var categories = [];
+  Object.keys(index.path).forEach(function (tkv) {
+    var parts = tkv.split('/', 3);
+    var t = parts[0];
+    var k = parts[1];
+    var v = parts[2];
+    var kv = "".concat(k, "/").concat(v);
+    if (t !== tree) return; // pick an icon for this category
 
-      var icon_url = data.icons[kv];
+    var icon_url = data.icons[kv];
+    if (!icon_url) icon_url = data.icons[k]; // fallback to generic key=* icon
 
-      if (!icon_url) {
-        // fallback to key only
-        icon_url = data.icons[k];
+    if (!icon_url) icon_url = data.icons.shop; // fallback to generic shop icon
+
+    var items = index.path[tkv];
+    var count = 0;
+    var complete = 0;
+    items.forEach(function (item) {
+      // apply filters
+      if (tt) {
+        var _tags = Object.entries(item.tags);
+
+        item.filtered = _tags.length && _tags.every(function (pair) {
+          return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
+        });
+      } else if (cc) {
+        // todo: fix countrycode filters - #4077
+        var codes = item.locationSet.include || [];
+        item.filtered = codes.length && codes.every(function (code) {
+          return code.toLowerCase().indexOf(cc) === -1;
+        });
+      } else {
+        delete item.filtered;
       }
 
-      if (!icon_url) {
-        // fallback to shop icon
-        icon_url = data.icons.shop;
-      }
+      var tags = item.tags || {};
+      var qid = tags['brand:wikidata'];
+      var wd = data.wikidata[qid] || {};
+      var logos = wd.logos || {};
 
-      var keys = Object.keys(data.dict[k][v]);
-      var count = 0;
-      var complete = 0;
-      keys.forEach(function (kvnd) {
-        var entry = data.dict[k][v][kvnd]; // apply filters
+      if (!item.filtered) {
+        count++;
 
-        if (tt) {
-          var _tags = Object.entries(entry.tags);
+        if (Object.keys(logos).length) {
+          complete++;
 
-          entry.filtered = _tags.length && _tags.every(function (pair) {
-            return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
-          });
-        } else if (cc) {
-          var codes = entry.locationSet.include || [];
-          entry.filtered = codes.length && codes.every(function (code) {
-            return code.toLowerCase().indexOf(cc) === -1;
-          });
-        } else {
-          delete entry.filtered;
-        }
-
-        var tags = entry.tags || {};
-        var qid = tags['brand:wikidata'];
-        var wd = data.wikidata[qid] || {};
-        var logos = wd.logos || {};
-
-        if (!entry.filtered) {
-          count++;
-
-          if (Object.keys(logos).length) {
-            complete++;
-
-            if (inc) {
-              entry.filtered = true;
-            }
+          if (inc) {
+            item.filtered = true;
           }
         }
-      });
-      var isComplete = complete === count;
-      var klass = "category" + (!count || inc && isComplete ? " hide" : "");
-      items.push( /*#__PURE__*/_react.default.createElement("div", {
-        key: kv,
-        className: klass
-      }, /*#__PURE__*/_react.default.createElement("img", {
-        className: "icon",
-        src: icon_url
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        to: "index.html?k=".concat(k, "&v=").concat(v)
-      }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
+      }
     });
+    var isComplete = complete === count;
+    var klass = "category" + (!count || inc && isComplete ? " hide" : "");
+    categories.push( /*#__PURE__*/_react.default.createElement("div", {
+      key: kv,
+      className: klass
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      className: "icon",
+      src: icon_url
+    }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?k=".concat(k, "&v=").concat(v)
+    }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
   });
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, tree, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     data: data
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, items));
+  }, categories));
 }
 
 ;
@@ -19441,7 +19419,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // Load the name-suggestion-index data files
 var DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist";
 var NAMES = "".concat(DIST, "/names_keep.json");
-var BRANDS = "".concat(DIST, "/brands.json");
+var INDEX = "".concat(DIST, "/brands.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.json"); // We can use iD's taginfo file to pick icons
 
 var TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json";
@@ -19462,10 +19440,10 @@ function App() {
       wikidata = _useFetch4[0],
       wikidataLoading = _useFetch4[1];
 
-  var _useBrands = useBrands(BRANDS),
-      _useBrands2 = _slicedToArray(_useBrands, 2),
-      dict = _useBrands2[0],
-      dictLoading = _useBrands2[1];
+  var _useIndex = useIndex(INDEX),
+      _useIndex2 = _slicedToArray(_useIndex, 2),
+      index = _useIndex2[0],
+      indexLoading = _useIndex2[1];
 
   var _useTaginfo = useTaginfo(TAGINFO),
       _useTaginfo2 = _slicedToArray(_useTaginfo, 2),
@@ -19474,12 +19452,12 @@ function App() {
 
   var appData = {
     isLoading: function isLoading() {
-      return namesLoading || wikidataLoading || dictLoading || iconsLoading;
+      return namesLoading || wikidataLoading || indexLoading || iconsLoading;
     },
     filters: filters,
     setFilters: setFilters,
     names: names,
-    dict: dict,
+    index: index,
     icons: icons,
     wikidata: wikidata.wikidata
   };
@@ -19551,10 +19529,10 @@ function App() {
       fetchUrl();
     }, []);
     return [data, loading];
-  } // same as useFetch, but process brand data into a k-v dict
+  } // same as useFetch, but load index data into a cache
 
 
-  function useBrands(url) {
+  function useIndex(url) {
     var _useState7 = (0, _react.useState)({}),
         _useState8 = _slicedToArray(_useState7, 2),
         data = _useState8[0],
@@ -19571,7 +19549,7 @@ function App() {
 
     function _fetchUrl2() {
       _fetchUrl2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        var response, json, obj, dict;
+        var response, json, index;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -19586,26 +19564,24 @@ function App() {
 
               case 5:
                 json = _context2.sent;
-                obj = json.brands;
-                dict = {}; // populate K-V dictionary
+                index = {
+                  path: {},
+                  id: {}
+                }; // populate cache
 
-                Object.keys(obj).forEach(function (kvnd) {
-                  var kvndparts = kvnd.split('|', 2);
-                  var kvparts = kvndparts[0].split('/', 2);
-                  var k = kvparts[0];
-                  var v = kvparts[1];
-                  dict[k] = dict[k] || {};
-                  dict[k][v] = dict[k][v] || {};
-                  dict[k][v][kvnd] = sort(obj[kvnd]);
+                Object.keys(json).forEach(function (tkv) {
+                  var items = json[tkv];
+                  index.path[tkv] = items;
+                  items.forEach(function (item) {
+                    index.id[item.id] = item; // index oldids too, in case anything links to them - they don't collide with new ids, so should be ok.
 
-                  if (dict[k][v][kvnd].tags) {
-                    dict[k][v][kvnd].tags = sort(obj[kvnd].tags);
-                  }
+                    if (item.oldid) index.id[item.oldid] = item;
+                  });
                 });
-                setData(dict);
+                setData(index);
                 setLoading(false);
 
-              case 11:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -19700,14 +19676,6 @@ function App() {
 
       return obj;
     }, {});
-  }
-
-  function sort(obj) {
-    var sorted = {};
-    Object.keys(obj).sort().forEach(function (k) {
-      sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
-    });
-    return sorted;
   }
 }
 
