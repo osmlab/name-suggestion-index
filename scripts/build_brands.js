@@ -259,7 +259,7 @@ function mergeItems() {
       }
 
       // regenerate id here, in case the locationSet has changed
-      locationID = loco.validateLocationSet(item.locationSet).id;
+      const locationID = loco.validateLocationSet(item.locationSet).id;
       item.id = idgen(item, tkv, locationID);
     });
   });
