@@ -17,39 +17,75 @@ const wbk = require('wikibase-sdk')({
 });
 
 
+// First, try to load the user's secrets.
+// This is optional but needed if you want this script to:
+// - connect to the Twitter API to fetch logos
+// - connect to the Wikibase API to update NSI identifiers.
+//
+// `config/secrets.json` looks like this:
+// {
+//   "twitter": [
+//     {
+//       "twitter_consumer_key": "",
+//       "twitter_consumer_secret": "",
+//       "twitter_access_token_key": "",
+//       "twitter_access_token_secret": ""
+//     }, {
+//       "twitter_consumer_key": "",
+//       "twitter_consumer_secret": "",
+//       "twitter_access_token_key": "",
+//       "twitter_access_token_secret": ""
+//     }
+//   ],
+//   "wikibase": {
+//       dunno yet
+//   }
+// }
 
-// If you want to fetch Twitter logos, sign up for
-// API credentials at https://apps.twitter.com/
-// and put them into `config/secrets.json`
-let twitterAPIs = [];
-let _twitterAPIIndex = 0;
+let _secrets;
 try {
-  // `config/secrets.json` can contain a single secret object,
-  // or an array of secret objects like:
-  // [{
-  //   "twitter_consumer_key": "",
-  //   "twitter_consumer_secret": "",
-  //   "twitter_access_token_key": "",
-  //   "twitter_access_token_secret": ""
-  // }, {
-  //   "twitter_consumer_key": "",
-  //   "twitter_consumer_secret": "",
-  //   "twitter_access_token_key": "",
-  //   "twitter_access_token_secret": ""
-  // }]
-  const Twitter = require('twitter');
-  let secrets = require('../config/secrets.json');
-  secrets = [].concat(secrets);
-
-  twitterAPIs = secrets.map(s => {
-    return new Twitter({
-      consumer_key: s.twitter_consumer_key,
-      consumer_secret: s.twitter_consumer_secret,
-      access_token_key: s.twitter_access_token_key,
-      access_token_secret: s.twitter_access_token_secret
-    });
-  });
+  _secrets = require('../config/secrets.json');
 } catch (err) { /* ignore */ }
+
+if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
+  console.error(colors.red('WHOA!'));
+  console.error(colors.yellow('The `config/secrets.json` file format has changed a bit.'));
+  console.error(colors.yellow('We were expecting to find `twitter` or `wikibase` properties.'));
+  console.error(colors.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error('');
+  process.exit(1);
+}
+
+// To fetch Twitter logos, sign up for API credentials at https://apps.twitter.com/
+// and put them into `config/secrets.json`
+let Twitter;
+let _twitterAPIs = [];
+let _twitterAPIIndex = 0;
+if (_secrets && _secrets.twitter) {
+  try {
+    Twitter = require('twitter');
+  } catch (err) {
+    console.error(colors.yellow(`Looks like you don't have the optional Twitter package installed`));
+    console.error(colors.yellow('Try `npm install twitter` to install it.'));
+  }
+  if (Twitter) {
+    _twitterAPIs = _secrets.twitter.map(s => {
+      return new Twitter({
+        consumer_key: s.twitter_consumer_key,
+        consumer_secret: s.twitter_consumer_secret,
+        access_token_key: s.twitter_access_token_key,
+        access_token_secret: s.twitter_access_token_secret
+      });
+    });
+  }
+}
+
+// To update wikibase, .. ?
+// and put them into `config/secrets.json`
+if (_secrets && _secrets.wikibase) {
+  // ?
+}
+
 
 
 // what to fetch
@@ -270,7 +306,7 @@ function processEntities(result) {
 
   });
 
-  if (twitterAPIs.length && twitterQueue.length) {
+  if (_twitterAPIs.length && twitterQueue.length) {
     return checkTwitterRateLimit(twitterQueue.length)
       .then(() => Promise.all(twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username)) ))
       .then(() => Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) ));
@@ -341,7 +377,7 @@ function finish() {
     let target = _wikidata[qid];
 
     // if we haven't been able to access the Twitter API, don't overwrite the Twitter data - #3569
-    if (!twitterAPIs.length) {
+    if (!_twitterAPIs.length) {
       const origTarget = origWikidata[qid];
       ['identities', 'logos'].forEach(prop => {
         const origTwitter = origTarget && origTarget[prop] && origTarget[prop].twitter;
@@ -394,9 +430,9 @@ function finish() {
 // https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
 // rate limit: 900calls / 15min
 function checkTwitterRateLimit(need) {
-  _twitterAPIIndex = (_twitterAPIIndex + 1) % twitterAPIs.length;
-  const twitterAPI = twitterAPIs[_twitterAPIIndex];
-  const which = twitterAPIs.length > 1 ? (' ' + (_twitterAPIIndex + 1)) : '';
+  _twitterAPIIndex = (_twitterAPIIndex + 1) % _twitterAPIs.length;
+  const twitterAPI = _twitterAPIs[_twitterAPIIndex];
+  const which = _twitterAPIs.length > 1 ? (' ' + (_twitterAPIIndex + 1)) : '';
 
   return twitterAPI
     .get('application/rate_limit_status', { resources: 'users' })
@@ -431,7 +467,7 @@ function checkTwitterRateLimit(need) {
 // https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
 function fetchTwitterUserDetails(qid, username) {
   const target = _wikidata[qid];
-  const twitterAPI = twitterAPIs[_twitterAPIIndex];
+  const twitterAPI = _twitterAPIs[_twitterAPIIndex];
 
   return twitterAPI
     .get('users/show', { screen_name: username })
