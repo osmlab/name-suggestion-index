@@ -17,6 +17,8 @@ const wbk = require('wikibase-sdk')({
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
+// set to true if you just want to test what the script will do without updating Wikidata
+const DRYRUN = false;
 
 // First, try to load the user's secrets.
 // This is optional but needed if you want this script to:
@@ -187,8 +189,9 @@ function processEntities(result) {
     let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
 
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
+      label = enLabelForQID(qid) || qid;
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${nameForQID(qid)}" was deleted.`);
+        colors.red(`  Entity for "${label}" was deleted.`);
       _errors.push(msg);
       console.error(msg);
       return;
@@ -196,11 +199,22 @@ function processEntities(result) {
 
     if (label) {
       target.label = label;
+
     } else {
-      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${nameForQID(qid)}" missing English label.`);
-      _errors.push(msg);
-      console.error(msg);
+      // try to pick an English label.
+      label = enLabelForQID(qid);
+      if (label && _wbEdit) {   // if we're allowed to make edits, just set the label
+        target.label = label;
+        const msg = colors.blue(`Adding English label for ${qid}: ${label}`);
+        wbEditQueue.push({ id: qid, language: 'en', value: label, msg: msg });
+
+      } else {   // otherwise raise a warning for the user to deal with.
+        label = label || qid;
+        const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
+          colors.red(`  Entity for "${label}" missing English label.`);
+        _errors.push(msg);
+        console.error(msg);
+      }
     }
 
     if (description) {
@@ -562,32 +576,58 @@ function processWbEditQueue(queue) {
   if (!queue.length) return Promise.resolve();
 
   const request = queue.pop();
-  console.log(`queue length: ${queue.length} - ${request.msg}`);
+  console.log(`Updating Wikidata: ${queue.length} - ${request.msg}`);
+  delete request.message;
 
-  let task;
-  if (request.guid && request.newValue) {
-    task = _wbEdit.claim.update(request);
-  } else if (request.guid && !request.newValue) {
-    task = _wbEdit.claim.remove(request);
-  } else if (!request.guid) {
-    task = _wbEdit.claim.create(request);
+  if (DRYRUN) {
+    return Promise.resolve()
+      .then(() => processWbEditQueue(queue));
+
+  } else {
+    let task;
+    if (request.guid && request.newValue) {
+      task = _wbEdit.claim.update(request);
+    } else if (request.guid && !request.newValue) {
+      task = _wbEdit.claim.remove(request);
+    } else if (!request.guid && request.id && request.property && request.value) {
+      task = _wbEdit.claim.create(request);
+    } else if (!request.guid && request.id && request.language && request.value) {
+      task = _wbEdit.label.set(request);
+    }
+
+    return task
+      .then(() => delay(300))
+      .then(() => processWbEditQueue(queue));
   }
-
-  return task
-    .then(() => delay(300))
-    .then(() => processWbEditQueue(queue));
 }
 
 
-// function nameForItem(itemID) {
-//   const item = _cache.id(itemID);
-//   return (item && item.displayName) || `unknown ${itemID}`;
-// }
+function enLabelForQID(qid) {
+  const ids = Array.from(_qidItems[qid]);
+  for (let i = 0; i < ids.length; i++) {
+    const item = _cache.id[ids[i]];
 
-function nameForQID(qid) {
-  const set = _qidItems[qid];
-  const item = set && Array.from(set)[0];    // can be multiple, just pick first one.
-  return (item && item.displayName) || qid;
+    // These we know are English..
+    if (item.tags['name:en'])     return item.tags['name:en'];
+    if (item.tags['brand:en'])    return item.tags['brand:en'];
+    if (item.tags['operator:en']) return item.tags['operator:en'];
+    if (item.tags['network:en'])  return item.tags['network:en'];
+
+    // These we're not sure..
+    if (looksLatin(item.tags.name))     return item.tags.name;
+    if (looksLatin(item.tags.brand))    return item.tags.brand;
+    if (looksLatin(item.tags.operator)) return item.tags.operator;
+    if (looksLatin(item.tags.network))  return item.tags.network;
+    if (looksLatin(item.displayName))   return item.displayName;
+  }
+
+  return null;
+
+  function looksLatin(str) {
+    if (!str) return false;
+    // nothing outside the latin unicode ranges
+    return !/[^\u0020-\u024F\u1E02-\u1EF3]/.test(str);
+  }
 }
 
 
