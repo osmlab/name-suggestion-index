@@ -113,12 +113,11 @@ Object.values(_cache.id).forEach(item => {
   ['brand', 'operator', 'network'].forEach(osmtag => {
     const wdtag = `${osmtag}:wikidata`;
     const qid = tags[wdtag];
-    if (qid && /^Q\d+$/.test(qid) && !_wikidata[qid]) {   // valid QID not already gathered
-      _wikidata[qid] = {};
+    if (!qid || !/^Q\d+$/.test(qid)) return;
 
-      if (!_qidItems[qid])  _qidItems[qid] = new Set();
-      _qidItems[qid].add(item.id);
-    }
+    if (!_wikidata[qid])  _wikidata[qid] = {};
+    if (!_qidItems[qid])  _qidItems[qid] = new Set();
+    _qidItems[qid].add(item.id);
   });
 });
 
@@ -321,8 +320,11 @@ function processEntities(result) {
     if (_wbEdit) {
 
       // P8253 - name-suggestion-index identifier
-      const nsiIds = Array.from(_qidItems[qid]).sort();  // sort ids so claim order is deterministic.
-      const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepIds: true });
+      // sort ids so claim order is deterministic, to avoid unnecessary updating
+      const nsiIds = Array.from(_qidItems[qid])
+        .sort((a, b) => a.localeCompare(b));
+      const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepIds: true })
+        .sort((a, b) => a.value.localeCompare(b.value));
 
       // make the nsiClaims match the nsiIds...
       let i = 0;
@@ -330,16 +332,16 @@ function processEntities(result) {
         const claim = nsiClaims[i];
         if (i < nsiIds.length) {   // match existing claims to ids
           if (claim.value !== nsiIds[i]) {
-            let msg = colors.blue(`Updating NSI identifier for ${qid}: ${claim.value} -> ${nsiIds[i]}`);
+            const msg = colors.blue(`Updating NSI identifier for ${qid}: ${claim.value} -> ${nsiIds[i]}`);
             wbEditQueue.push({ guid: claim.id, newValue: nsiIds[i], msg: msg });
           }
         } else {  // remove extra existing claims
-          let msg = colors.blue(`Removing NSI identifier for ${qid}: ${claim.value}`);
+          const msg = colors.blue(`Removing NSI identifier for ${qid}: ${claim.value}`);
           wbEditQueue.push({ guid: claim.id, msg: msg });
         }
       }
       for (i; i < nsiIds.length; i++) {   // add new claims
-        let msg = colors.blue(`Adding NSI identifier for ${qid}: ${nsiIds[i]}`);
+        const msg = colors.blue(`Adding NSI identifier for ${qid}: ${nsiIds[i]}`);
         wbEditQueue.push({ id: qid, property: 'P8253', value: nsiIds[i], msg: msg });
       }
 
@@ -411,8 +413,9 @@ function finish() {
   console.log(START);
   console.time(END);
 
-  // update wikidata.json
+  // update `wikidata.json` and `dissolved.json`
   let origWikidata;
+  let dissolved = {};
   try {
     origWikidata = require('../dist/wikidata.json').wikidata;
   } catch (err) {
@@ -445,21 +448,16 @@ function finish() {
       }
     });
 
+    if (target.dissolutions) {
+      _qidItems[qid].forEach(itemID => {
+        dissolved[itemID] = target.dissolutions;
+      });
+    }
+
     _wikidata[qid] = sort(target);
   });
 
   fs.writeFileSync('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
-
-
-  // update dissolved.json
-  let dissolved = {};
-  Object.values(_cache.id).forEach(item => {
-    const tags = item.tags;
-    let qid = tags['brand:wikidata'];
-    if (qid && _wikidata[qid].dissolutions && _wikidata[qid].dissolutions.length > 0) {
-      dissolved[item.id] = _wikidata[qid].dissolutions;
-    }
-  });
   fs.writeFileSync('dist/dissolved.json', prettyStringify(sort(dissolved), { maxLength: 100 }));
 
   console.timeEnd(END);
