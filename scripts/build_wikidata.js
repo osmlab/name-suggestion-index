@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const fileTree = require('../lib/file_tree.js');
 const fs = require('fs');
 const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
+const project = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const sort = require('../lib/sort.js');
 
@@ -38,7 +39,8 @@ const wbk = require('wikibase-sdk')({
 //     }
 //   ],
 //   "wikibase": {
-//       dunno yet
+//     "username": "my-wikidata-username",
+//     "password": "my-wikidata-password"
 //   }
 // }
 
@@ -65,7 +67,7 @@ if (_secrets && _secrets.twitter) {
   try {
     Twitter = require('twitter');
   } catch (err) {
-    console.error(colors.yellow(`Looks like you don't have the optional Twitter package installed`));
+    console.error(colors.yellow('Looks like you don\'t have the optional Twitter package installed...'));
     console.error(colors.yellow('Try `npm install twitter` to install it.'));
   }
   if (Twitter) {
@@ -80,12 +82,22 @@ if (_secrets && _secrets.twitter) {
   }
 }
 
-// To update wikibase, .. ?
-// and put them into `config/secrets.json`
+// To update wikidata
+// add your username/password into `config/secrets.json`
+let _wbEdit;
 if (_secrets && _secrets.wikibase) {
-  // ?
+  try {
+    _wbEdit = require('wikibase-edit')({
+      instance: 'https://www.wikidata.org',
+      credentials: _secrets.wikibase,
+      summary: 'Updated name-suggestion-index related claims, see http//nsi.guide for project details.',
+      userAgent: `${project.name}/${project.version} (${project.homepage})`,
+    });
+  } catch (err) {
+    console.error(colors.yellow('Looks like you don\'t have the optional wikibase-edit package installed...'));
+    console.error(colors.yellow('Try `npm install wikibase-edit` to install it.'));
+  }
 }
-
 
 
 // what to fetch
@@ -95,16 +107,17 @@ fileTree.read('brands', _cache, loco);
 
 // gather QIDs..
 let _wikidata = {};
-let _qidNames = {};       // we use this just for displaying information in the console
+let _qidItems = {};
 Object.values(_cache.id).forEach(item => {
   const tags = item.tags;
   ['brand', 'operator', 'network'].forEach(osmtag => {
     const wdtag = `${osmtag}:wikidata`;
-    const entag = `${osmtag}:en`;
     const qid = tags[wdtag];
     if (qid && /^Q\d+$/.test(qid) && !_wikidata[qid]) {   // valid QID not already gathered
       _wikidata[qid] = {};
-      _qidNames[qid] = tags['name:en'] || tags.name || tags[entag] || tags[osmtag];
+
+      if (!_qidItems[qid])  _qidItems[qid] = new Set();
+      _qidItems[qid].add(item.id);
     }
   });
 });
@@ -136,9 +149,7 @@ doFetch().then(finish);
 //
 function doFetch(index) {
   index = index || 0;
-  if (index >= _urls.length) {
-    return Promise.resolve();
-  }
+  if (index >= _urls.length) return Promise.resolve();
 
   let currURL = _urls[index];
 
@@ -168,6 +179,7 @@ function doFetch(index) {
 function processEntities(result) {
   let twitterQueue = [];
   let facebookQueue = [];
+  let wbEditQueue = [];
 
   Object.keys(result.entities).forEach(qid => {
     let target = _wikidata[qid];
@@ -177,7 +189,7 @@ function processEntities(result) {
 
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${_qidNames[qid]}" was deleted.`);
+        colors.red(`  Entity for "${nameForQID(qid)}" was deleted.`);
       _errors.push(msg);
       console.error(msg);
       return;
@@ -187,7 +199,7 @@ function processEntities(result) {
       target.label = label;
     } else {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${_qidNames[qid]}" missing English label.`);
+        colors.red(`  Entity for "${nameForQID(qid)}" missing English label.`);
       _errors.push(msg);
       console.error(msg);
     }
@@ -304,14 +316,48 @@ function processEntities(result) {
       target.dissolutions.push(dissolution);
     });
 
-  });
+
+    // if we're allowed to make edits..
+    if (_wbEdit) {
+
+      // P8253 - name-suggestion-index identifier
+      const nsiIds = Array.from(_qidItems[qid]).sort();  // sort ids so claim order is deterministic.
+      const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepIds: true });
+
+      // make the nsiClaims match the nsiIds...
+      let i = 0;
+      for (i; i < nsiClaims.length; i++) {
+        const claim = nsiClaims[i];
+        if (i < nsiIds.length) {   // match existing claims to ids
+          if (claim.value !== nsiIds[i]) {
+            let msg = colors.blue(`Updating NSI identifier for ${qid}: ${claim.value} -> ${nsiIds[i]}`);
+            wbEditQueue.push({ guid: claim.id, newValue: nsiIds[i], msg: msg });
+          }
+        } else {  // remove extra existing claims
+          let msg = colors.blue(`Removing NSI identifier for ${qid}: ${claim.value}`);
+          wbEditQueue.push({ guid: claim.id, msg: msg });
+        }
+      }
+      for (i; i < nsiIds.length; i++) {   // add new claims
+        let msg = colors.blue(`Adding NSI identifier for ${qid}: ${nsiIds[i]}`);
+        wbEditQueue.push({ id: qid, property: 'P8253', value: nsiIds[i], msg: msg });
+      }
+
+      // TOOD - This will not catch situations where we have changed the QID on our end,
+      //   because they won't exist in the index anymore and been gathered in the first place.
+      // We should maybe make a SPARQL query to clean up entities with orphaned P8253 claims.
+    }
+
+  });  // foreach qid
 
   if (_twitterAPIs.length && twitterQueue.length) {
     return checkTwitterRateLimit(twitterQueue.length)
-      .then(() => Promise.all(twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username)) ))
-      .then(() => Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) ));
+      .then(() => Promise.all( twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username)) ))
+      .then(() => Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) ))
+      .then(() => processWbEditQueue(wbEditQueue));
   } else {
-    return Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)));
+    return Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) )
+      .then(() => processWbEditQueue(wbEditQueue));
   }
 }
 
@@ -510,6 +556,40 @@ function fetchFacebookLogo(qid, username) {
       _errors.push(msg);
       console.error(colors.red(msg));
     });
+}
+
+
+// We need to slow these down and run them sequentially with some delay.
+function processWbEditQueue(queue) {
+  if (!queue.length) return Promise.resolve();
+
+  const request = queue.pop();
+  console.log(`queue length: ${queue.length} - ${request.msg}`);
+
+  let task;
+  if (request.guid && request.newValue) {
+    task = _wbEdit.claim.update(request);
+  } else if (request.guid && !request.newValue) {
+    task = _wbEdit.claim.remove(request);
+  } else if (!request.guid) {
+    task = _wbEdit.claim.create(request);
+  }
+
+  return task
+    .then(() => delay(300))
+    .then(() => processWbEditQueue(queue));
+}
+
+
+// function nameForItem(itemID) {
+//   const item = _cache.id(itemID);
+//   return (item && item.displayName) || `unknown ${itemID}`;
+// }
+
+function nameForQID(qid) {
+  const set = _qidItems[qid];
+  const item = set && Array.from(set)[0];    // can be multiple, just pick first one.
+  return (item && item.displayName) || qid;
 }
 
 
