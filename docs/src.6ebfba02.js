@@ -19795,5 +19795,10 @@ var _App = _interopRequireDefault(require("./App"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById('root'));
+// force full page refreshes for bots
+var forceRefresh = /bot|google|baidu|bing|msn|teoma|slurp|yandex/i.test(navigator.userAgent);
+
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, {
+  forceRefresh: forceRefresh
+}, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById('root'));
 },{"regenerator-runtime/runtime":"QVnC","whatwg-fetch":"MCp7","react":"n8MK","react-dom":"NKHc","react-router-dom":"uc19","./App":"vmSA"}]},{},["c2Qt"], null)
