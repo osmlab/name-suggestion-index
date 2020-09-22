@@ -65,7 +65,11 @@
               "note":         { "not" : {} },
               "tags":         { "not" : {} }
             },
-            "required": ["name", "brand"]
+            "oneOf": [
+              { "required": ["brand"] },
+              { "required": ["operator"] },
+              { "required": ["network"] }
+            ]
           }
         }
       }
