@@ -1,24 +1,36 @@
-import React from "react";
+import React from 'react';
 
 
-export default function OverviewInstructions() {
+export default function OverviewInstructions(props) {
+  // setup defaults for this tree..
+  const t = props.t;
+
+  let wikidataTag;
+  if (t === 'brands') {
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    wikidataTag = 'operator:wikidata';
+  } else if (t === 'networks') {
+    wikidataTag = 'network:wikidata';
+  }
+
   return (
     <>
-    <div className="instructions"><span className="hi">👋</span>Hi! This project is called <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/">name-suggestion-index</a>.<br/>
+    <div className='instructions'><span className='hi'>👋</span>Hi! This project is called <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/'>name-suggestion-index</a>.<br/>
     <br/>
-    We've collected a list of common business names from <a target="_blank" href="https://www.openstreetmap.org">OpenStreetMap</a>,
-    and we're matching them all to their preferred tags, including a <code>'brand:wikidata'</code> tag.<br/>
+    We've collected a list of common business names from <a target='_blank' href='https://www.openstreetmap.org'>OpenStreetMap</a>,
+    and we're matching them all to their preferred tags, including a <code>'{wikidataTag}'</code> tag.<br/>
     <br/>
     This tag is pretty special because we can use it to link features in OpenStreetMap to records
-    in <a target="_blank" href="https://www.wikidata.org">Wikidata</a>, a free and open knowledge database.
+    in <a target='_blank' href='https://www.wikidata.org'>Wikidata</a>, a free and open knowledge database.
     <br/>
-    You can help us by adding brands to the index, matching brands to Wikidata identifiers,
-    or improving the brands' Wikidata pages.<br/>
+    You can help us by adding {t} to the index, matching {t} to Wikidata identifiers,
+    or improving the {t}' Wikidata pages.<br/>
     <br/>
-    Below is a list of categories used by OpenStreetMap. Each category displays a count of brands <strong>"(complete / total)"</strong>,
-    where "complete" means the brands have been matched to a Wikidata identifier and a logo.<br/>
+    Below is a list of categories used by OpenStreetMap. Each category displays a count of {t} <strong>"(complete / total)"</strong>,
+    where "complete" means the {t} have been matched to a Wikidata identifier and a logo.<br/>
     <br/>
-    See <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for more info.<br/>
+    See <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md'>CONTRIBUTING.md</a> for more info.<br/>
     </div>
     </>
   );

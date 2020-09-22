@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import Category from "./Category";
-import Footer from "./Footer";
-import Overview from "./Overview";
+import Category from './Category';
+import Footer from './Footer';
+import Overview from './Overview';
 
 // Load the name-suggestion-index data files
-const DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist";
+const DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
 const NAMES = `${DIST}/names_keep.json`;
 const INDEX = `${DIST}/brands.json`;
 const WIKIDATA = `${DIST}/wikidata.json`;
 
 // We can use iD's taginfo file to pick icons
-const TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json";
+const TAGINFO = 'https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json';
 
 
 export default function App() {
@@ -35,15 +35,23 @@ export default function App() {
   return (
     <>
     <Switch>
-      <Route path="/" render={ routeProps => {
+      <Route path='/' render={ routeProps => {
         const params = parseParams(routeProps.location.search);
+        if (!params.t) {
+          params.t = 'brands';
+        }
+        if (params.id) {
+          delete params.k;
+          delete params.v;
+        }
+
         if ((params.k && params.v) || params.id) {
           return (
-            <Category {...routeProps} {...params} tree='brands' data={appData} />
+            <Category {...routeProps} {...params} data={appData} />
           );
         } else {
           return (
-            <Overview {...routeProps} tree='brands' data={appData} />
+            <Overview {...routeProps} {...params} data={appData} />
           );
         }
       } }/>
@@ -84,9 +92,8 @@ export default function App() {
         const items = json[tkv];
         index.path[tkv] = items;
         items.forEach(item => {
+          item.tkv = tkv;  // remember the path for later
           index.id[item.id] = item;
-          // index oldids too, in case anything links to them - they don't collide with new ids, so should be ok.
-          if (item.oldid) index.id[item.oldid] = item;
         });
       });
 

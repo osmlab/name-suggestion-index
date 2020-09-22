@@ -1,40 +1,63 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import CategoryInstructions from "./CategoryInstructions";
-import CategoryRow from "./CategoryRow";
-import Filters from "./Filters";
+import CategoryInstructions from './CategoryInstructions';
+import CategoryRow from './CategoryRow';
+import Filters from './Filters';
 
 
 export default function Category(props) {
-  const tree = props.tree;
   const data = props.data;
   const index = data.index;
 
-  const id = props.id;
-  const k = props.k;
-  const v = props.v;
-  const kv = `${k}/${v}`;
-  const tkv = `${tree}/${k}/${v}`;
-  const items = index.path && index.path[tkv];
   const hash = props.location.hash;
-  const slug = hash && hash.slice(1);   // remove leading '#'
+  let slug = hash && hash.slice(1);   // remove leading '#'
 
   let message;
+  let items, t, k, v, tkv, kv;
+
   if (data.isLoading()) {
-    message = "Loading, please wait...";
-  } else if (!Array.isArray(items) || !items.length) {
-    message = `No items for ${tkv}.`;
+    message = 'Loading, please wait...';
+
+  } else {
+    if (props.id) {   // passed an `id` parameter
+      const item = index.id[props.id];
+      if (item) {
+        const parts = item.tkv.split('/', 3);     // tkv = 'tree/key/value'
+        t = parts[0];
+        k = parts[1];
+        v = parts[2];
+        kv = `${k}/${v}`;
+        tkv = `${t}/${k}/${v}`;
+        slug = encodeURI(item.id);
+      } else {
+        kv = 'unknown';
+        tkv = 'unknown';
+        message = `No item found for "${props.id}".`;
+      }
+
+    } else {          // passed `t`, `k`, `v` parameters
+      t = props.t;
+      k = props.k;
+      v = props.v;
+      kv = `${k}/${v}`;
+      tkv = `${t}/${k}/${v}`;
+    }
+
+    items = index.path && index.path[tkv];
+    if (!message && !Array.isArray(items) || !items.length) {
+      message = `No items found for "${tkv}".`;
+    }
   }
 
   if (message) {
     return (
       <>
       <h2>{tkv}</h2>
-      <Link to="index.html">↑ Back to overview</Link>
-      <CategoryInstructions />
+      <Link to='index.html'>↑ Back to overview</Link>
+      <CategoryInstructions t={t} />
       <Filters data={data} />
-      <div className="summary">
+      <div className='summary'>
       {message}
       </div>
       </>
@@ -54,10 +77,23 @@ export default function Category(props) {
     }
   }
 
+  // setup defaults for this tree..
+  let fallbackIcon, wikidataTag;
+  if (t === 'brands') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
+    wikidataTag = 'operator:wikidata';
+  } else if (t === 'networks') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
+    wikidataTag = 'network:wikidata';
+  }
+
   // pick an icon for this category
   let icon_url = data.icons[kv];
   if (!icon_url) icon_url = data.icons[k];    // fallback to generic key=* icon
-  if (!icon_url) icon_url = data.icons.shop;  // fallback to generic shop icon
+  if (!icon_url) icon_url = fallbackIcon;     // fallback to generic icon
 
   // filters
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
@@ -88,7 +124,7 @@ export default function Category(props) {
 
     if (!item.filtered) {
       const tags = item.tags || {};
-      const qid = tags['brand:wikidata'];
+      const qid = tags[wikidataTag];
       const wd = data.wikidata[qid] || {};
       const logos = wd.logos || {};
       const hasLogo = Object.keys(logos).length;
@@ -102,21 +138,21 @@ export default function Category(props) {
 
   return (
     <>
-    <h2><img className="icon" src={icon_url} />{tkv}</h2>
-    <Link to="index.html">↑ Back to overview</Link>
-    <CategoryInstructions />
+    <h2><img className='icon' src={icon_url} />{tkv}</h2>
+    <Link to='index.html'>↑ Back to overview</Link>
+    <CategoryInstructions t={t} />
     <Filters data={data} />
 
-    <table className="summary">
+    <table className='summary'>
     <thead>
     <tr>
     <th>Name<br/>ID<br/>Locations</th>
     <th>Count</th>
     <th>OpenStreetMap Tags</th>
     <th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
-    <th className="logo">Commons Logo</th>
-    <th className="logo">Facebook Logo</th>
-    <th className="logo">Twitter Logo</th>
+    <th className='logo'>Commons Logo</th>
+    <th className='logo'>Facebook Logo</th>
+    <th className='logo'>Twitter Logo</th>
     </tr>
     </thead>
 
