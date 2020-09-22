@@ -173,31 +173,27 @@ function buildTaginfo() {
     }
   };
 
-  let items = {};
-  for (const key in _nameSuggestions) {
-    for (const value in _nameSuggestions[key]) {
-      for (const name in _nameSuggestions[key][value]) {
-        const tags = _nameSuggestions[key][value][name].tags;
-        for (let k in tags) {
-          let v = tags[k];
+  // collect all tag pairs
+  let tagPairs = {};
+  Object.values(_cache.id).filter(item => {
+    for (const k in item.tags) {
+      let v = item.tags[k];
 
-          // skip value for many tags this project uses
-          if (/name|brand|network|operator/.test(k)) {
-            v = '*';
-          }
+      // skip value for many tags this project uses..
+      if (/name|brand|network|operator/.test(k)) {
+        v = '*';
+      }
 
-          const kv = `${k}/${v}`;
-          items[kv] = { key: k };
+      const kv = `${k}/${v}`;
+      tagPairs[kv] = { key: k };
 
-          if (v !== '*') {
-            items[kv].value = v;
-          }
-        }
+      if (v !== '*') {
+        tagPairs[kv].value = v;
       }
     }
-  }
+  });
 
-  taginfo.tags = Object.keys(items).sort().map(k => items[k]);
+  taginfo.tags = Object.keys(tagPairs).sort().map(kv => tagPairs[kv]);
   fs.writeFileSync('dist/taginfo.json', prettyStringify(taginfo, { maxLength: 100 }));
 }
 
