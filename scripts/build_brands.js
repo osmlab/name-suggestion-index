@@ -358,7 +358,7 @@ function checkItems() {
       });
 
 
-      // Warn about "new" (no wikidata) entries that may duplicate an "existing" (has wikidata) item.
+      // Warn about "new" (no wikidata) items that may duplicate an "existing" (has wikidata) item.
       // The criteria for this warning is:
       // - One of the items has no wikidata
       // - The items have nearly the same name
