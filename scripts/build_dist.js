@@ -214,14 +214,18 @@ function buildSitemap() {
   index.ele('changefreq').txt(changefreq);
   index.ele('lastmod').txt(lastmod);
 
-  for (const k in _nameSuggestions) {
-    for (const v in _nameSuggestions[k]) {
-      let url = urlset.ele('url');
-      url.ele('loc').txt(`https://nsi.guide/index.html?k=${k}&v=${v}`);
-      url.ele('changefreq').txt(changefreq);
-      url.ele('lastmod').txt(lastmod);
-    }
-  }
+  // collect all paths
+  Object.keys(_cache.path).filter(tkv => {
+    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const t = parts[0];
+    const k = parts[1];
+    const v = parts[2];
+
+    let url = urlset.ele('url');
+    url.ele('loc').txt(`https://nsi.guide/index.html?t=${t}&k=${k}&v=${v}`);
+    url.ele('changefreq').txt(changefreq);
+    url.ele('lastmod').txt(lastmod);
+  });
 
   fs.writeFileSync('docs/sitemap.xml', root.end({ prettyPrint: true }));
 }
