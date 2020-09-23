@@ -6,4 +6,4 @@ node_js:
 
 after_failure:
   # Show why we failed
-  - if [ -f ${TRAVIS_BUILD_DIR}/.npm/_logs/*.log ]; then cat ${TRAVIS_BUILD_DIR}/.npm/_logs/*.log; fi
+  - if [ -f $HOME/.npm/_logs/*.log ]; then cat $HOME/.npm/_logs/*.log; fi
