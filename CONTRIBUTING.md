@@ -283,7 +283,7 @@ Sometimes multiple brands use the same name - this is okay!
 
 Make sure each entry has a distinct `locationSet`, and the index will generate unique identifiers for each one.
 
-You should also give each entry a unique `displayName`, so you everyone can tell them apart.
+You should also give each entry a unique `displayName`, so everyone can tell them apart.
 
 
 ```js
