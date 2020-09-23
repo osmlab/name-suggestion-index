@@ -5588,16 +5588,31 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function CategoryInstructions() {
+function CategoryInstructions(props) {
+  // setup defaults for this tree..
+  var t = props.t;
+  var itemType, wikidataTag;
+
+  if (t === 'brands') {
+    itemType = 'brand';
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    itemType = 'operator';
+    wikidataTag = 'operator:wikidata';
+  } else if (t === 'networks') {
+    itemType = 'network';
+    wikidataTag = 'network:wikidata';
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "instructions"
-  }, "Some things you can do here:", /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Is a brand name missing or something is incorrect? ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Some things you can do here:", /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Is a ", itemType, " name missing or something is incorrect? ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/issues"
-  }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"View on Overpass Turbo\" link to see where the name is used in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag, you can do the research to add it to our project, or filter it out if it is not a brand.", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"View on Overpass Turbo\" link to see where the name is used in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag, you can do the research to add it to our project, or filter it out if it is not a ", itemType, ".", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md"
-  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), "You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later."))));
+  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), "You can add the ", itemType, "'s Facebook or Twitter usernames, and this project will pick up the logos later."))));
 }
 
 ;
@@ -11769,30 +11784,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function CategoryRow(props) {
   var data = props.data;
-
-  if (data.isLoading()) {
-    return;
-  }
-
-  var kvnd = props.kvnd;
-  var entry = props.entry;
+  if (data.isLoading()) return;
+  var item = props.item;
   var k = props.k;
-  var v = props.v; // filters
+  var v = props.v; // filters (used here for highlighting)
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var rowClasses = [];
+  if (item.filtered) rowClasses.push('hide');
+  if (item.selected) rowClasses.push('selected'); // choose something to use as the 'name'
 
-  if (entry.filtered) {
-    rowClasses.push("hide");
-  }
-
-  if (entry.selected) {
-    rowClasses.push("selected");
-  }
-
-  var count = data.names[kvnd] || '< 50';
-  var tags = entry.tags || {};
+  var n = item.tags.name || item.tags.brand || item.tags.operator || item.tags.network;
+  var kvn = "".concat(k, "/").concat(v, "|").concat(n);
+  var count = data.names[kvn] || '< 50';
+  var tags = item.tags || {};
   var qid = tags['brand:wikidata'];
   var bn = tags['brand'];
   var wd = data.wikidata[qid] || {};
@@ -11806,18 +11812,18 @@ function CategoryRow(props) {
     className: "namesuggest"
   }, /*#__PURE__*/_react.default.createElement("h3", {
     className: "slug",
-    id: entry.slug
+    id: item.slug
   }, /*#__PURE__*/_react.default.createElement("a", {
-    href: "#".concat(entry.slug)
+    href: "#".concat(item.slug)
   }, "#"), /*#__PURE__*/_react.default.createElement("span", {
     className: "anchor"
-  }, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
+  }, item.displayName)), /*#__PURE__*/_react.default.createElement("div", {
     className: "nsikey"
-  }, /*#__PURE__*/_react.default.createElement("pre", null, "'", kvnd, "'")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("pre", null, item.id)), /*#__PURE__*/_react.default.createElement("div", {
     className: "locations"
-  }, locoDisplay(entry.locationSet, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
+  }, locoDisplay(item.locationSet, n)), /*#__PURE__*/_react.default.createElement("div", {
     className: "viewlink"
-  }, searchOverpassLink(k, v, tags.name, tags['brand:wikidata'], tags['brand']), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(tags.name), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(tags.name))), /*#__PURE__*/_react.default.createElement("td", {
+  }, searchOverpassLink(k, v, n, tags['brand:wikidata'], tags['brand']), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(n), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(n))), /*#__PURE__*/_react.default.createElement("td", {
     className: "count"
   }, count), /*#__PURE__*/_react.default.createElement("td", {
     className: "tags"
@@ -18980,7 +18986,7 @@ function Filters(props) {
   var tt = filters.tt || '';
   var cc = filters.cc || '';
   var inc = !!filters.inc;
-  var klass = "filters" + (tt.trim() || cc.trim() || inc ? " active" : "");
+  var klass = 'filters' + (tt.trim() || cc.trim() || inc ? ' active' : '');
   return /*#__PURE__*/_react.default.createElement("div", {
     className: klass
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -19083,28 +19089,57 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function Category(props) {
-  var tree = props.tree;
   var data = props.data;
-  var id = props.id && props.id.match(/^(\w+?)\/(\w+?)\|(.+)$/);
-  var k = id ? id[1] : props.k;
-  var v = id ? id[2] : props.v;
-  var kv = "".concat(k, "/").concat(v);
-  var entries = data.dict && data.dict[k] && data.dict[k][v];
+  var index = data.index;
   var hash = props.location.hash;
-  var slug = id ? id[3] : hash && hash.slice(1); // remove leading '#'
+  var slug = hash && hash.slice(1); // remove leading '#'
 
   var message;
+  var items, t, k, v, tkv, kv;
 
   if (data.isLoading()) {
-    message = "Loading, please wait...";
-  } else if (!entries) {
-    message = "No entries for ".concat(k, "/").concat(v, ".");
+    message = 'Loading, please wait...';
+  } else {
+    if (props.id) {
+      // passed an `id` parameter
+      var item = index.id[props.id];
+
+      if (item) {
+        var parts = item.tkv.split('/', 3); // tkv = 'tree/key/value'
+
+        t = parts[0];
+        k = parts[1];
+        v = parts[2];
+        kv = "".concat(k, "/").concat(v);
+        tkv = "".concat(t, "/").concat(k, "/").concat(v);
+        slug = encodeURI(item.id);
+      } else {
+        kv = 'unknown';
+        tkv = 'unknown';
+        message = "No item found for \"".concat(props.id, "\".");
+      }
+    } else {
+      // passed `t`, `k`, `v` parameters
+      t = props.t;
+      k = props.k;
+      v = props.v;
+      kv = "".concat(k, "/").concat(v);
+      tkv = "".concat(t, "/").concat(k, "/").concat(v);
+    }
+
+    items = index.path && index.path[tkv];
+
+    if (!message && !Array.isArray(items) || !items.length) {
+      message = "No items found for \"".concat(tkv, "\".");
+    }
   }
 
   if (message) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, tree, "/", k, "/", v), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, tkv), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: "index.html"
-    }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+    }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
+      t: t
+    }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
       data: data
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "summary"
@@ -19123,72 +19158,77 @@ function Category(props) {
         }
       }, 50);
     }
+  } // setup defaults for this tree..
+
+
+  var fallbackIcon, wikidataTag;
+
+  if (t === 'brands') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
+    wikidataTag = 'operator:wikidata';
+  } else if (t === 'networks') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
+    wikidataTag = 'network:wikidata';
   } // pick an icon for this category
 
 
   var icon_url = data.icons[kv];
+  if (!icon_url) icon_url = data.icons[k]; // fallback to generic key=* icon
 
-  if (!icon_url) {
-    // fallback to key only
-    icon_url = data.icons[k];
-  }
-
-  if (!icon_url) {
-    // fallback to shop icon
-    icon_url = data.icons.shop;
-  } // filters
-
+  if (!icon_url) icon_url = fallbackIcon; // fallback to generic icon
+  // filters
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var inc = !!(data.filters && data.filters.inc);
-  var rows = Object.keys(entries).map(function (kvnd) {
-    var entry = entries[kvnd]; // calculate slug
+  var rows = items.map(function (item) {
+    // calculate slug
+    item.slug = encodeURI(item.id); // apply selection if slug in URL matches slug
 
-    var nd = kvnd.split('|')[1];
-    entry.slug = encodeURI(nd); // apply selection if slug in URL matches slug
-
-    entry.selected = slug === entry.slug; // apply filters
+    item.selected = slug === item.slug; // apply filters
 
     if (tt) {
-      var tags = Object.entries(entry.tags);
-      entry.filtered = tags.length && tags.every(function (pair) {
+      var tags = Object.entries(item.tags);
+      item.filtered = tags.length && tags.every(function (pair) {
         return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
       });
     } else if (cc) {
-      var codes = entry.locationSet.include || [];
-      entry.filtered = codes.length && codes.every(function (code) {
+      // todo: fix countrycode filters - #4077
+      var codes = item.locationSet.include || [];
+      item.filtered = codes.length && codes.every(function (code) {
         return code.toLowerCase().indexOf(cc) === -1;
       });
     } else {
-      delete entry.filtered;
+      delete item.filtered;
     }
 
-    if (!entry.filtered) {
-      var _tags = entry.tags || {};
+    if (!item.filtered) {
+      var _tags = item.tags || {};
 
-      var qid = _tags['brand:wikidata'];
+      var qid = _tags[wikidataTag];
       var wd = data.wikidata[qid] || {};
       var logos = wd.logos || {};
       var hasLogo = Object.keys(logos).length;
-      entry.filtered = inc && hasLogo;
+      item.filtered = inc && hasLogo;
     }
 
     return /*#__PURE__*/_react.default.createElement(_CategoryRow.default, _extends({
-      key: kvnd
+      key: item.id
     }, props, {
-      entry: entry,
-      kvnd: kvnd,
-      k: k,
-      v: v
+      item: item
     }));
   });
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, /*#__PURE__*/_react.default.createElement("img", {
     className: "icon",
     src: icon_url
-  }), tree, "/", k, "/", v), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }), tkv), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "index.html"
-  }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+  }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
+    t: t
+  }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     data: data
   }), /*#__PURE__*/_react.default.createElement("table", {
     className: "summary"
@@ -19217,7 +19257,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Footer() {
   function ghCornerImage() {
     return {
-      __html: "\n        <svg width=\"80\" height=\"80\" viewBox=\"0 0 250 250\" style=\"fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;\" aria-hidden=\"true\"><path d=\"M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z\"></path><path d=\"M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2\" fill=\"currentColor\" style=\"transform-origin: 130px 106px;\" class=\"octo-arm\"></path><path d=\"M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z\" fill=\"currentColor\" class=\"octo-body\"></path></svg>\n      "
+      __html: "\n        <svg width='80' height='80' viewBox='0 0 250 250' style='fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;' aria-hidden='true'><path d='M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z'></path><path d='M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2' fill='currentColor' style='transform-origin: 130px 106px;' class='octo-arm'></path><path d='M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z' fill='currentColor' class='octo-body'></path></svg>\n      "
     };
   }
 
@@ -19229,9 +19269,7 @@ function Footer() {
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "footer"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    class: "timestamp"
-  }, "\xA0"), /*#__PURE__*/_react.default.createElement("a", {
+  }, /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/",
     className: "github-corner",
@@ -19256,7 +19294,19 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function OverviewInstructions() {
+function OverviewInstructions(props) {
+  // setup defaults for this tree..
+  var t = props.t;
+  var wikidataTag;
+
+  if (t === 'brands') {
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    wikidataTag = 'operator:wikidata';
+  } else if (t === 'networks') {
+    wikidataTag = 'network:wikidata';
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "instructions"
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -19267,10 +19317,10 @@ function OverviewInstructions() {
   }, "name-suggestion-index"), ".", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "We've collected a list of common business names from ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://www.openstreetmap.org"
-  }, "OpenStreetMap"), ", and we're matching them all to their preferred tags, including a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "This tag is pretty special because we can use it to link features in OpenStreetMap to records in ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "OpenStreetMap"), ", and we're matching them all to their preferred tags, including a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "This tag is pretty special because we can use it to link features in OpenStreetMap to records in ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://www.wikidata.org"
-  }, "Wikidata"), ", a free and open knowledge database.", /*#__PURE__*/_react.default.createElement("br", null), "You can help us by adding brands to the index, matching brands to Wikidata identifiers, or improving the brands' Wikidata pages.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "Below is a list of categories used by OpenStreetMap. Each category displays a count of brands ", /*#__PURE__*/_react.default.createElement("strong", null, "\"(complete / total)\""), ", where \"complete\" means the brands have been matched to a Wikidata identifier and a logo.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Wikidata"), ", a free and open knowledge database.", /*#__PURE__*/_react.default.createElement("br", null), "You can help us by adding ", t, " to the index, matching ", t, " to Wikidata identifiers, or improving the ", t, "' Wikidata pages.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "Below is a list of categories used by OpenStreetMap. Each category displays a count of ", t, " ", /*#__PURE__*/_react.default.createElement("strong", null, "\"(complete / total)\""), ", where \"complete\" means the ", t, " have been matched to a Wikidata identifier and a logo.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md"
   }, "CONTRIBUTING.md"), " for more info.", /*#__PURE__*/_react.default.createElement("br", null)));
@@ -19296,103 +19346,122 @@ var _Filters = _interopRequireDefault(require("./Filters"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Overview(props) {
-  var tree = props.tree;
-  var data = props.data; // filters
+  var t = props.t;
+  var data = props.data;
+  var index = data.index; // filters
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
-  var inc = !!(data.filters && data.filters.inc);
+  var inc = !!(data.filters && data.filters.inc); // setup defaults for this tree..
+
+  var fallbackIcon, wikidataTag;
+
+  if (t === 'brands') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
+    wikidataTag = 'operator:wikidata';
+  } else if (t === 'networks') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
+    wikidataTag = 'network:wikidata';
+  }
+
   var message;
+  var paths;
 
   if (data.isLoading()) {
-    message = "Loading, please wait...";
-  } else if (tree !== 'brands') {
-    // only one supported for now
-    message = "No entries for ".concat(tree, ".");
+    message = 'Loading, please wait...';
+  } else {
+    paths = Object.keys(index.path).filter(function (tkv) {
+      return tkv.split('/')[0] === t;
+    });
+
+    if (!paths.length) {
+      message = "No entries found for \"".concat(t, "\".");
+    }
   }
 
   if (message) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, tree, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, t, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, {
+      t: t
+    }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
       data: data
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "container"
     }, message));
   }
 
-  var items = [];
-  Object.keys(data.dict).forEach(function (k) {
-    var entry = data.dict[k];
-    Object.keys(entry).forEach(function (v) {
-      var kv = "".concat(k, "/").concat(v); // pick an icon for this category
+  var categories = [];
+  paths.forEach(function (tkv) {
+    var parts = tkv.split('/', 3);
+    var t = parts[0];
+    var k = parts[1];
+    var v = parts[2];
+    var kv = "".concat(k, "/").concat(v); // pick an icon for this category
 
-      var icon_url = data.icons[kv];
+    var icon_url = data.icons[kv];
+    if (!icon_url) icon_url = data.icons[k]; // fallback to generic key=* icon
 
-      if (!icon_url) {
-        // fallback to key only
-        icon_url = data.icons[k];
+    if (!icon_url) icon_url = fallbackIcon; // fallback to generic icon
+
+    var items = index.path[tkv];
+    var count = 0;
+    var complete = 0;
+    items.forEach(function (item) {
+      // apply filters
+      if (tt) {
+        var _tags = Object.entries(item.tags);
+
+        item.filtered = _tags.length && _tags.every(function (pair) {
+          return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
+        });
+      } else if (cc) {
+        // todo: fix countrycode filters - #4077
+        var codes = item.locationSet.include || [];
+        item.filtered = codes.length && codes.every(function (code) {
+          return code.toLowerCase().indexOf(cc) === -1;
+        });
+      } else {
+        delete item.filtered;
       }
 
-      if (!icon_url) {
-        // fallback to shop icon
-        icon_url = data.icons.shop;
-      }
+      var tags = item.tags || {};
+      var qid = tags[wikidataTag];
+      var wd = data.wikidata[qid] || {};
+      var logos = wd.logos || {};
 
-      var keys = Object.keys(data.dict[k][v]);
-      var count = 0;
-      var complete = 0;
-      keys.forEach(function (kvnd) {
-        var entry = data.dict[k][v][kvnd]; // apply filters
+      if (!item.filtered) {
+        count++;
 
-        if (tt) {
-          var _tags = Object.entries(entry.tags);
+        if (Object.keys(logos).length) {
+          complete++;
 
-          entry.filtered = _tags.length && _tags.every(function (pair) {
-            return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
-          });
-        } else if (cc) {
-          var codes = entry.locationSet.include || [];
-          entry.filtered = codes.length && codes.every(function (code) {
-            return code.toLowerCase().indexOf(cc) === -1;
-          });
-        } else {
-          delete entry.filtered;
-        }
-
-        var tags = entry.tags || {};
-        var qid = tags['brand:wikidata'];
-        var wd = data.wikidata[qid] || {};
-        var logos = wd.logos || {};
-
-        if (!entry.filtered) {
-          count++;
-
-          if (Object.keys(logos).length) {
-            complete++;
-
-            if (inc) {
-              entry.filtered = true;
-            }
+          if (inc) {
+            item.filtered = true;
           }
         }
-      });
-      var isComplete = complete === count;
-      var klass = "category" + (!count || inc && isComplete ? " hide" : "");
-      items.push( /*#__PURE__*/_react.default.createElement("div", {
-        key: kv,
-        className: klass
-      }, /*#__PURE__*/_react.default.createElement("img", {
-        className: "icon",
-        src: icon_url
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        to: "index.html?k=".concat(k, "&v=").concat(v)
-      }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
+      }
     });
+    var isComplete = complete === count;
+    var klass = 'category' + (!count || inc && isComplete ? ' hide' : '');
+    categories.push( /*#__PURE__*/_react.default.createElement("div", {
+      key: tkv,
+      className: klass
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      className: "icon",
+      src: icon_url
+    }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?t=".concat(t, "&k=").concat(k, "&v=").concat(v)
+    }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
   });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, tree, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, t, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, {
+    t: t
+  }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     data: data
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, items));
+  }, categories));
 }
 
 ;
@@ -19439,12 +19508,12 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // Load the name-suggestion-index data files
-var DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist";
+var DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
 var NAMES = "".concat(DIST, "/names_keep.json");
-var BRANDS = "".concat(DIST, "/brands.json");
+var INDEX = "".concat(DIST, "/brands.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.json"); // We can use iD's taginfo file to pick icons
 
-var TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json";
+var TAGINFO = 'https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json';
 
 function App() {
   var _useState = (0, _react.useState)({}),
@@ -19462,10 +19531,10 @@ function App() {
       wikidata = _useFetch4[0],
       wikidataLoading = _useFetch4[1];
 
-  var _useBrands = useBrands(BRANDS),
-      _useBrands2 = _slicedToArray(_useBrands, 2),
-      dict = _useBrands2[0],
-      dictLoading = _useBrands2[1];
+  var _useIndex = useIndex(INDEX),
+      _useIndex2 = _slicedToArray(_useIndex, 2),
+      index = _useIndex2[0],
+      indexLoading = _useIndex2[1];
 
   var _useTaginfo = useTaginfo(TAGINFO),
       _useTaginfo2 = _slicedToArray(_useTaginfo, 2),
@@ -19474,12 +19543,12 @@ function App() {
 
   var appData = {
     isLoading: function isLoading() {
-      return namesLoading || wikidataLoading || dictLoading || iconsLoading;
+      return namesLoading || wikidataLoading || indexLoading || iconsLoading;
     },
     filters: filters,
     setFilters: setFilters,
     names: names,
-    dict: dict,
+    index: index,
     icons: icons,
     wikidata: wikidata.wikidata
   };
@@ -19488,14 +19557,21 @@ function App() {
     render: function render(routeProps) {
       var params = parseParams(routeProps.location.search);
 
+      if (!params.t) {
+        params.t = 'brands';
+      }
+
+      if (params.id) {
+        delete params.k;
+        delete params.v;
+      }
+
       if (params.k && params.v || params.id) {
         return /*#__PURE__*/_react.default.createElement(_Category.default, _extends({}, routeProps, params, {
-          tree: "brands",
           data: appData
         }));
       } else {
-        return /*#__PURE__*/_react.default.createElement(_Overview.default, _extends({}, routeProps, {
-          tree: "brands",
+        return /*#__PURE__*/_react.default.createElement(_Overview.default, _extends({}, routeProps, params, {
           data: appData
         }));
       }
@@ -19551,10 +19627,10 @@ function App() {
       fetchUrl();
     }, []);
     return [data, loading];
-  } // same as useFetch, but process brand data into a k-v dict
+  } // same as useFetch, but load index data into a cache
 
 
-  function useBrands(url) {
+  function useIndex(url) {
     var _useState7 = (0, _react.useState)({}),
         _useState8 = _slicedToArray(_useState7, 2),
         data = _useState8[0],
@@ -19571,7 +19647,7 @@ function App() {
 
     function _fetchUrl2() {
       _fetchUrl2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        var response, json, obj, dict;
+        var response, json, index;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -19586,26 +19662,24 @@ function App() {
 
               case 5:
                 json = _context2.sent;
-                obj = json.brands;
-                dict = {}; // populate K-V dictionary
+                index = {
+                  path: {},
+                  id: {}
+                }; // populate cache
 
-                Object.keys(obj).forEach(function (kvnd) {
-                  var kvndparts = kvnd.split('|', 2);
-                  var kvparts = kvndparts[0].split('/', 2);
-                  var k = kvparts[0];
-                  var v = kvparts[1];
-                  dict[k] = dict[k] || {};
-                  dict[k][v] = dict[k][v] || {};
-                  dict[k][v][kvnd] = sort(obj[kvnd]);
+                Object.keys(json).forEach(function (tkv) {
+                  var items = json[tkv];
+                  index.path[tkv] = items;
+                  items.forEach(function (item) {
+                    item.tkv = tkv; // remember the path for later
 
-                  if (dict[k][v][kvnd].tags) {
-                    dict[k][v][kvnd].tags = sort(obj[kvnd].tags);
-                  }
+                    index.id[item.id] = item;
+                  });
                 });
-                setData(dict);
+                setData(index);
                 setLoading(false);
 
-              case 11:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -19701,14 +19775,6 @@ function App() {
       return obj;
     }, {});
   }
-
-  function sort(obj) {
-    var sorted = {};
-    Object.keys(obj).sort().forEach(function (k) {
-      sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
-    });
-    return sorted;
-  }
 }
 
 ;
@@ -19729,5 +19795,10 @@ var _App = _interopRequireDefault(require("./App"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById("root"));
+// force full page refreshes for bots
+var forceRefresh = /bot|google|baidu|bing|msn|teoma|slurp|yandex/i.test(navigator.userAgent);
+
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, {
+  forceRefresh: forceRefresh
+}, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById('root'));
 },{"regenerator-runtime/runtime":"QVnC","whatwg-fetch":"MCp7","react":"n8MK","react-dom":"NKHc","react-router-dom":"uc19","./App":"vmSA"}]},{},["c2Qt"], null)

@@ -46,6 +46,7 @@
   "module": "index.mjs",
   "scripts": {
     "all": "run-s build dist",
+    "appbuild": "npm run docbuild",
     "dist": "node scripts/build_dist.js && rollup -c",
     "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --no-minify --public-url ./ --out-dir docs",
     "build": "run-s build:features build:brands",
@@ -97,7 +98,8 @@
   },
   "optionalDependencies": {
     "twitter": "^1.7.1",
-    "wikibase-sdk": "^7.2.1"
+    "wikibase-edit": "^4.7.3",
+    "wikibase-sdk": "^7.7.1"
   },
   "engines": {
     "node": ">=10"

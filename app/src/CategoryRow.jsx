@@ -1,34 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import CategoryRowSocialLinks from "./CategoryRowSocialLinks";
+import CategoryRowSocialLinks from './CategoryRowSocialLinks';
 
 
 export default function CategoryRow(props) {
   const data = props.data;
-  if (data.isLoading()) {
-    return;
-  }
+  if (data.isLoading()) return;
 
-  const kvnd = props.kvnd;
-  const entry = props.entry;
+  const item = props.item;
   const k = props.k;
   const v = props.v;
 
-  // filters
+  // filters (used here for highlighting)
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
   const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
 
   const rowClasses = [];
-  if (entry.filtered) {
-    rowClasses.push("hide");
-  }
-  if (entry.selected) {
-    rowClasses.push("selected");
-  }
+  if (item.filtered) rowClasses.push('hide');
+  if (item.selected) rowClasses.push('selected');
 
-  const count = data.names[kvnd] || '< 50';
-  const tags = entry.tags || {};
+  // choose something to use as the 'name'
+  const n = item.tags.name || item.tags.brand || item.tags.operator || item.tags.network;
+
+  const kvn = `${k}/${v}|${n}`;
+  const count = data.names[kvn] || '< 50';
+  const tags = item.tags || {};
   const qid = tags['brand:wikidata'];
   const bn = tags['brand'];
   const wd = data.wikidata[qid] || {};
@@ -39,31 +36,31 @@ export default function CategoryRow(props) {
 
   return (
     <tr className={rowClasses.join(' ') || null} >
-    <td className="namesuggest">
-      <h3 className="slug" id={entry.slug}>
-        <a href={`#${entry.slug}`}>#</a>
-        <span className="anchor">{tags.name}</span>
+    <td className='namesuggest'>
+      <h3 className='slug' id={item.slug}>
+        <a href={`#${item.slug}`}>#</a>
+        <span className='anchor'>{item.displayName}</span>
       </h3>
-      <div className="nsikey"><pre>'{kvnd}'</pre></div>
-      <div className="locations">{ locoDisplay(entry.locationSet, tags.name) }</div>
-      <div className="viewlink">
-        { searchOverpassLink(k, v, tags.name, tags['brand:wikidata'], tags['brand']) }<br/>
-        { searchGoogleLink(tags.name) }<br/>
-        { searchWikipediaLink(tags.name) }
+      <div className='nsikey'><pre>{item.id}</pre></div>
+      <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
+      <div className='viewlink'>
+        { searchOverpassLink(k, v, n, tags['brand:wikidata'], tags['brand']) }<br/>
+        { searchGoogleLink(n) }<br/>
+        { searchWikipediaLink(n) }
       </div>
     </td>
-    <td className="count">{count}</td>
-    <td className="tags"><pre className="tags" dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
-    <td className="wikidata">
+    <td className='count'>{count}</td>
+    <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
+    <td className='wikidata'>
       <h3>{label}</h3>
       <span>{description}</span><br/>
       { wdLink(tags['brand:wikidata']) }
       { siteLink(identities.website) }
       <CategoryRowSocialLinks {...identities} />
     </td>
-    <td className="logo">{ logo(logos.wikidata) }</td>
-    <td className="logo">{ fblogo(identities.facebook, logos.facebook) }</td>
-    <td className="logo">{ logo(logos.twitter) }</td>
+    <td className='logo'>{ logo(logos.wikidata) }</td>
+    <td className='logo'>{ fblogo(identities.facebook, logos.facebook) }</td>
+    <td className='logo'>{ logo(logos.twitter) }</td>
     </tr>
   );
 
@@ -76,7 +73,7 @@ export default function CategoryRow(props) {
     return val && (
       <>
       <code dangerouslySetInnerHTML={ highlight(cc, val) } /><br/>
-      <a target="_blank" href={href} title={title}>View LocationSet</a>
+      <a target='_blank' href={href} title={title}>View LocationSet</a>
       </>
     );
   }
@@ -85,7 +82,7 @@ export default function CategoryRow(props) {
   function highlight(needle, haystack) {
     let html = haystack;
     if (needle) {
-      let re = new RegExp('\(' + needle + '\)', 'gi');
+      const re = new RegExp('\(' + needle + '\)', 'gi');
       html = html.replace(re, '<mark>$1</mark>');
     }
     return  { __html: html };
@@ -96,14 +93,14 @@ export default function CategoryRow(props) {
     const q = encodeURIComponent(name);
     const href = `https://google.com/search?q=${q}`;
     const title = `Search Google for ${name}`;
-    return (<a target="_blank" href={href} title={title}>Search Google</a>);
+    return (<a target='_blank' href={href} title={title}>Search Google</a>);
   }
 
   function searchWikipediaLink(name) {
     const q = encodeURIComponent(name);
     const href = `https://google.com/search?q=${q}+site%3Awikipedia.org`;
     const title = `Search Wikipedia for ${name}`;
-    return (<a target="_blank" href={href} title={title}>Search Wikipedia</a>);
+    return (<a target='_blank' href={href} title={title}>Search Wikipedia</a>);
   }
 
 
@@ -133,7 +130,7 @@ relation[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${w}]
     // Create Overpass Turbo link:
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
     const title = `Search Overpass Turbo for ${n}`;
-    return (<a target="_blank" href={href} title={title}>Search Overpass Turbo</a>);
+    return (<a target='_blank' href={href} title={title}>Search Overpass Turbo</a>);
   }
 
   function fblogo(username, src) {
@@ -143,15 +140,15 @@ relation[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${w}]
 
   function logo(src) {
     return src && (
-      <img className="logo" src={src}/>
+      <img className='logo' src={src}/>
     );
   }
 
   function wdLink(qid) {
     const href = `https://www.wikidata.org/wiki/${qid}`;
     return qid && (
-      <div className="viewlink">
-      <a target="_blank" href={href}>{qid}</a>
+      <div className='viewlink'>
+      <a target='_blank' href={href}>{qid}</a>
       </div>
     );
   }
@@ -159,8 +156,8 @@ relation[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${w}]
 
   function siteLink(href) {
     return href && (
-      <div className="viewlink">
-      <a target="_blank" href={href}>{href}</a>
+      <div className='viewlink'>
+      <a target='_blank' href={href}>{href}</a>
       </div>
     );
   }

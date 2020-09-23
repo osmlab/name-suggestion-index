@@ -4,6 +4,7 @@ const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
 const fileTree = require('../lib/file_tree.js');
+const idgen = require('../lib/idgen.js');
 const matcher = require('../lib/matcher.js')();
 const sort = require('../lib/sort.js');
 const stemmer = require('../lib/stemmer.js');
@@ -157,32 +158,30 @@ function mergeItems() {
 
   // First, INSERT - Look in `_keep` for new items not yet in the index
   Object.keys(_keep).forEach(kvn => {
-    const parts = kvn.split('|', 2);     // kvn = "key/value|mame"
+    const parts = kvn.split('|', 2);     // kvn = "key/value|name"
     const kv = parts[0];
     const n = parts[1];
     const parts2 = kv.split('/', 2);
     const k = parts2[0];
     const v = parts2[1];
+    const tkv = `${t}/${k}/${v}`;
 
     const m = matcher.match(k, v, n);
     if (m) return;  // already in the index
 
-    // a new entry!
+    // a new item!
     let item = {
       displayName: n,
-      locationSet: { include: ['001'] },   // the whole world
-      tags: {}
+      tags: {
+        brand: n,
+        name:  n
+      }
     };
 
-    // assign default tags - new items
-    item.tags.brand = n;
-    item.tags.name = n;
+    // assign default osm tag
     item.tags[k] = v;
 
     // INSERT
-    // note these items will be `id`-less until next time the build script runs
-    // we should generate the id here also.
-    const tkv = `${t}/${k}/${v}`;
     if (!_cache.path[tkv])  _cache.path[tkv] = [];
     _cache.path[tkv].push(item);
     newCount++;
@@ -205,57 +204,63 @@ function mergeItems() {
       let tags = item.tags;
       const name = tags.name || tags.brand;
 
-      // assign default tags - new or existing items
+      // Assign default tags
       if (k === 'amenity' && v === 'cafe') {
-        if (!tags.takeaway) tags.takeaway = 'yes';
-        if (!tags.cuisine) tags.cuisine = 'coffee_shop';
+        if (!tags.takeaway)    tags.takeaway = 'yes';
+        if (!tags.cuisine)     tags.cuisine = 'coffee_shop';
       } else if (k === 'amenity' && v === 'fast_food') {
-        if (!tags.takeaway) tags.takeaway = 'yes';
+        if (!tags.takeaway)    tags.takeaway = 'yes';
       } else if (k === 'amenity' && v === 'pharmacy') {
-        if (!tags.healthcare) tags.healthcare = 'pharmacy';
+        if (!tags.healthcare)  tags.healthcare = 'pharmacy';
       }
 
-      // Force `locationSet`, and duplicate `name:xx` and `brand:xx` tags
-      // if the name can only be reasonably read in one country.
+      // If the name can only be reasonably read in one country.
+      // Assign `locationSet`, and duplicate `name:xx` and `brand:xx` tags
       // https://www.regular-expressions.info/unicode.html
       if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
-        item.locationSet = { include: ['il'] };
         // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
-        if (tags.name) { tags['name:he'] = tags.name; }
-        if (tags.brand) { tags['brand:he'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['il'] };
+        if (tags.name)          tags['name:he']  = tags.name;
+        if (tags.brand)         tags['brand:he'] = tags.brand;
       } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
-        item.locationSet = { include: ['th'] };
-        if (tags.name) { tags['name:th'] = tags.name; }
-        if (tags.brand) { tags['brand:th'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['th'] };
+        if (tags.name)          tags['name:th']  = tags.name;
+        if (tags.brand)         tags['brand:th'] = tags.brand;
       } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
-        item.locationSet = { include: ['mm'] };
-        if (tags.name) { tags['name:my'] = tags.name; }
-        if (tags.brand) { tags['brand:my'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['mm'] };
+        if (tags.name)          tags['name:my']  = tags.name;
+        if (tags.brand)         tags['brand:my'] = tags.brand;
       } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
-        item.locationSet = { include: ['kr'] };
-        if (tags.name) { tags['name:ko'] = tags.name; }
-        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        if (tags.name)          tags['name:ko']  = tags.name;
+        if (tags.brand)         tags['brand:ko'] = tags.brand;
       } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
-        item.locationSet = { include: ['ph'] };
-        if (tags.name) { tags['name:tl'] = tags.name; }
-        if (tags.brand) { tags['brand:tl'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['ph'] };
+        if (tags.name)          tags['name:tl']  = tags.name;
+        if (tags.brand)         tags['brand:tl'] = tags.brand;
       } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
-        item.locationSet = { include: ['jp'] };
-        if (tags.name) { tags['name:ja'] = tags.name; }
-        if (tags.brand) { tags['brand:ja'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['jp'] };
+        if (tags.name)          tags['name:ja']  = tags.name;
+        if (tags.brand)         tags['brand:ja'] = tags.brand;
       } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
-        item.locationSet = { include: ['kr'] };
-        if (tags.name) { tags['name:ko'] = tags.name; }
-        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        if (tags.name)          tags['name:ko']  = tags.name;
+        if (tags.brand)         tags['brand:ko'] = tags.brand;
       } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
-        item.locationSet = { include: ['kr'] };
-        if (tags.name) { tags['name:ko'] = tags.name; }
-        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        if (tags.name)          tags['name:ko']  = tags.name;
+        if (tags.brand)         tags['brand:ko'] = tags.brand;
       } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
-        item.locationSet = { include: ['kr'] };
-        if (tags.name) { tags['name:ko'] = tags.name; }
-        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        if (tags.name)          tags['name:ko']  = tags.name;
+        if (tags.brand)         tags['brand:ko'] = tags.brand;
+      } else {
+        if (!item.locationSet)  item.locationSet = { include: ['001'] };   // the whole world
       }
+
+      // regenerate id here, in case the locationSet has changed
+      const locationID = loco.validateLocationSet(item.locationSet).id;
+      item.id = idgen(item, tkv, locationID);
     });
   });
 
@@ -353,7 +358,7 @@ function checkItems() {
       });
 
 
-      // Warn about "new" (no wikidata) entries that may duplicate an "existing" (has wikidata) item.
+      // Warn about "new" (no wikidata) items that may duplicate an "existing" (has wikidata) item.
       // The criteria for this warning is:
       // - One of the items has no wikidata
       // - The items have nearly the same name

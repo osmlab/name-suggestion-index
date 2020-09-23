@@ -1,13 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import OverviewInstructions from "./OverviewInstructions";
-import Filters from "./Filters";
+import OverviewInstructions from './OverviewInstructions';
+import Filters from './Filters';
 
 
 export default function Overview(props) {
-  const tree = props.tree;
+  const t = props.t;
   const data = props.data;
+  const index = data.index;
 
   // filters
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
@@ -15,97 +16,109 @@ export default function Overview(props) {
   const inc = !!(data.filters && data.filters.inc);
 
 
+  // setup defaults for this tree..
+  let fallbackIcon, wikidataTag;
+  if (t === 'brands') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
+    wikidataTag = 'operator:wikidata';
+  } else if (t === 'networks') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
+    wikidataTag = 'network:wikidata';
+  }
+
   let message;
+  let paths;
   if (data.isLoading()) {
-    message = "Loading, please wait...";
-  } else if (tree !== 'brands') {     // only one supported for now
-    message = `No entries for ${tree}.`;
+    message = 'Loading, please wait...';
+  } else {
+    paths = Object.keys(index.path).filter(tkv => tkv.split('/')[0] === t);
+    if (!paths.length) {
+      message = `No entries found for "${t}".`;
+    }
   }
 
   if (message) {
     return (
       <>
-      <h1>{tree}/</h1>
-      <OverviewInstructions />
+      <h1>{t}/</h1>
+      <OverviewInstructions t={t} />
       <Filters data={data} />
-      <div className="container">
+      <div className='container'>
       {message}
       </div>
       </>
     );
   }
 
-  const items = [];
-  Object.keys(data.dict).forEach(k => {
-    let entry = data.dict[k];
-    Object.keys(entry).forEach(v => {
-      const kv = `${k}/${v}`;
 
-      // pick an icon for this category
-      let icon_url = data.icons[kv];
-      if (!icon_url) {   // fallback to key only
-        icon_url = data.icons[k];
+  const categories = [];
+  paths.forEach(tkv => {
+    const parts = tkv.split('/', 3);
+    const t = parts[0];
+    const k = parts[1];
+    const v = parts[2];
+    const kv = `${k}/${v}`;
+
+    // pick an icon for this category
+    let icon_url = data.icons[kv];
+    if (!icon_url) icon_url = data.icons[k];    // fallback to generic key=* icon
+    if (!icon_url) icon_url = fallbackIcon;     // fallback to generic icon
+
+    const items = index.path[tkv];
+    let count = 0;
+    let complete = 0;
+
+    items.forEach(item => {
+      // apply filters
+      if (tt) {
+        const tags = Object.entries(item.tags);
+        item.filtered = (tags.length && tags.every(
+          (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
+        ));
+      } else if (cc) {  // todo: fix countrycode filters - #4077
+        const codes = (item.locationSet.include || []);
+        item.filtered = (codes.length && codes.every(
+          (code) => (code.toLowerCase().indexOf(cc) === -1)
+        ));
+      } else {
+        delete item.filtered;
       }
-      if (!icon_url) {   // fallback to shop icon
-        icon_url = data.icons.shop;
-      }
 
-      const keys = Object.keys(data.dict[k][v]);
-      let count = 0;
-      let complete = 0;
-
-      keys.forEach(kvnd => {
-        let entry = data.dict[k][v][kvnd];
-
-        // apply filters
-        if (tt) {
-          const tags = Object.entries(entry.tags);
-          entry.filtered = (tags.length && tags.every(
-            (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
-          ));
-        } else if (cc) {
-          const codes = (entry.locationSet.include || []);
-          entry.filtered = (codes.length && codes.every(
-            (code) => (code.toLowerCase().indexOf(cc) === -1)
-          ));
-        } else {
-          delete entry.filtered;
-        }
-
-        const tags = entry.tags || {};
-        const qid = tags['brand:wikidata'];
-        const wd = data.wikidata[qid] || {};
-        const logos = wd.logos || {};
-        if (!entry.filtered) {
-          count++;
-          if (Object.keys(logos).length) {
-            complete++;
-            if (inc) {
-              entry.filtered = true;
-            }
+      const tags = item.tags || {};
+      const qid = tags[wikidataTag];
+      const wd = data.wikidata[qid] || {};
+      const logos = wd.logos || {};
+      if (!item.filtered) {
+        count++;
+        if (Object.keys(logos).length) {
+          complete++;
+          if (inc) {
+            item.filtered = true;
           }
         }
-      });
-
-      let isComplete = (complete === count);
-      const klass = "category" + ((!count || (inc && isComplete)) ? " hide" : "");
-      items.push(
-        <div key={kv} className={klass} >
-        <img className="icon" src={icon_url} />
-        <Link to={`index.html?k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
-        </div>
-      );
-
+      }
     });
+
+    const isComplete = (complete === count);
+    const klass = 'category' + ((!count || (inc && isComplete)) ? ' hide' : '');
+    categories.push(
+      <div key={tkv} className={klass} >
+      <img className='icon' src={icon_url} />
+      <Link to={`index.html?t=${t}&k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
+      </div>
+    );
   });
 
   return (
     <>
-    <h1>{tree}/</h1>
-    <OverviewInstructions />
+    <h1>{t}/</h1>
+    <OverviewInstructions t={t} />
     <Filters data={data} />
-    <div className="container">
-    {items}
+    <div className='container'>
+    {categories}
     </div>
     </>
   );

@@ -101,7 +101,7 @@ In `brands/amenity/fast_food.json`:
     },
 ```
 
-There may also be entries for McDonald's in other languages!
+There may also be items for McDonald's in other languages!
 
 ```js
   "brands/amenity/fast_food": [
@@ -206,7 +206,7 @@ Each item requires a `tags` value.  This is just an Object containing all the Op
 
 Brands are often tagged inconsistently in OpenStreetMap.  For example, some mappers write "International House of Pancakes" and others write "IHOP".
 
-This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate entries out of the index and is used in the iD editor to help suggest tag improvements.
+This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate items out of the index and is used in the iD editor to help suggest tag improvements.
 
 `matchNames` and `matchTags` properties can be used to list the less-preferred alternatives.
 
@@ -237,15 +237,17 @@ This project includes a "fuzzy" matcher that can match alternate names and tags 
 
 You don't need to add `matchNames` for:
 - Name variations in capitalization, punctuation, spacing (the middots common in Japanese names count as punctuation, so "V・ドラッグ" already matches "vドラッグ")
-- Name variations that already appear in the `name`, `brand`, `alt_name`, `short_name`, `official_name` tags
+- Name variations that already appear in the `name`, `brand`, `operator`, `network`.
+- Name variations that already appear in an alternate name tag (e.g. `alt_name`, `short_name`, `official_name`, etc.)
+- Name variations that already appear in any international version of those tags (e.g. `name:en`, `official_name:ja`, etc.)
 - Name variations in diacritic marks (e.g. "Häagen-Dazs" already matches "Haagen-Dazs")
 - Name variations in `&` vs. `and`
-
-Note: The build script will remove extra `matchNames` that are unnecessary.
 
 You don't need to add `matchTags` for:
 - Tags assigned to _match groups_ (defined in `config/match_groups.json`). For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
 and vice versa. _Tags in a match group will automatically match any other tags in the same match group._
+
+👉 Bonus: The build script will automatically remove extra `matchNames` and `matchTags` that are unnecessary.
 
 
 ##### `note`
@@ -388,7 +390,7 @@ For "VinMart" we really prefer for it to be tagged as a supermarket.  It's a sin
 * Delete the (not preferred) entry for `"shop/department_store|VinMart"`
 
 For "Carrefour" we know that can be both a supermarket and a fuel station.  It's two different things.
-* Make sure both entries have a `brand:wikidata` tag and appropriate `locationSet`.
+* Make sure both items have a `brand:wikidata` tag and appropriate `locationSet`.
 
 Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
 
@@ -423,7 +425,7 @@ To remove this generic name:
 1. Delete the item from the appropriate file, in this case `brands/shop/department_store.json`
 2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
 3. Run `npm run build` - if the filter is working, the name will not be put back into `brands/shop/department_store.json`
-4. `git diff` - to make sure that the entries you wanted to discard are gone (and no others are affected)
+4. `git diff` - to make sure that the items you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.
 
 &nbsp;
@@ -653,8 +655,8 @@ As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated i
 
 Editing brand pages on Wikidata is something that anybody can do.  It helps not just our project, but anybody who uses this data for other purposes too!  You can read more about contributing to Wikidata [here](https://www.wikidata.org/wiki/Wikidata:Contribute).
 
-- Add Wikidata entries for brands that don't yet have them.
-- Improve the labels and descriptions on the Wikidata entries.
+- Add Wikidata pages for brands that don't yet have them.
+- Improve the labels and descriptions on the Wikidata pages.
 - Translate the labels and descriptions to more languages.
 - Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
 
@@ -671,11 +673,11 @@ Social media links are often displayed on the official web site of a brand, maki
 
 #### Adding references to Wikidata
 
-Entries without matching Wikipedia article must have some references by independent sources. For our entries usually the easiest one to add is something in form of "this shop brand had N shops on some specific date".
+Wikidata pages without a matching Wikipedia article should have some additional references by independent sources. For our purposes, the easiest one to add is usually something in form of "this shop brand had N shops on some specific date".
 
 <img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata_references.gif"/>
 <!--See https://www.wikidata.org/w/index.php?title=Wikidata:Administrators%27_noticeboard&oldid=941582891#Entries_that_should_be_now_fixed for discussion on Wikidata-->
 
-#### Creating Wikidata entries
+#### Creating Wikidata pages
 
 For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is mandatory to add some external identifier or references (see section above with animation showing how it can be done).

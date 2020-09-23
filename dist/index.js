@@ -337,7 +337,7 @@
     );
   };
 
-  var matchGroups = {adult_gaming_centre:["amenity/casino","amenity/gambling","leisure/adult_gaming_centre"],beauty:["shop/beauty","shop/hairdresser_supply"],bed:["shop/bed","shop/furniture"],beverages:["shop/alcohol","shop/beverages"],camping:["leisure/park","tourism/camp_site","tourism/caravan_site"],car_parts:["shop/car_parts","shop/car_repair","shop/tires","shop/tyres"],confectionery:["shop/candy","shop/chocolate","shop/confectionery"],convenience:["shop/beauty","shop/chemist","shop/convenience","shop/cosmetics","shop/newsagent"],coworking:["amenity/coworking_space","office/coworking","office/coworking_space"],electronics:["office/telecommunication","shop/computer","shop/electronics","shop/hifi","shop/mobile","shop/mobile_phone","shop/telecommunication"],fashion:["shop/accessories","shop/bag","shop/botique","shop/clothes","shop/department_store","shop/fashion","shop/fashion_accessories","shop/sports","shop/shoes"],financial:["amenity/bank","office/accountant","office/financial","office/financial_advisor","office/tax_advisor","shop/tax"],fitness:["leisure/fitness_centre","leisure/fitness_center","leisure/sports_centre","leisure/sports_center"],food:["amenity/cafe","amenity/fast_food","amenity/ice_cream","amenity/restaurant","shop/bakery","shop/ice_cream","shop/pastry","shop/tea","shop/coffee"],fuel:["amenity/fuel","shop/gas","shop/convenience;gas","shop/gas;convenience"],gift:["shop/gift","shop/card","shop/cards","shop/stationery"],hardware:["shop/carpet","shop/diy","shop/doityourself","shop/doors","shop/electrical","shop/flooring","shop/hardware","shop/power_tools","shop/tool_hire","shop/tools","shop/trade"],health_food:["shop/health","shop/health_food","shop/herbalist","shop/nutrition_supplements"],houseware:["shop/houseware","shop/interior_decoration"],lodging:["tourism/hotel","tourism/motel"],money_transfer:["amenity/money_transfer","shop/money_transfer"],outdoor:["shop/outdoor","shop/sports"],playground:["amenity/theme_park","leisure/amusement_arcade","leisure/playground"],rental:["amenity/bicycle_rental","amenity/boat_rental","amenity/car_rental","amenity/truck_rental","amenity/vehicle_rental","shop/rental"],school:["amenity/childcare","amenity/college","amenity/kindergarten","amenity/language_school","amenity/prep_school","amenity/school","amenity/university"],supermarket:["shop/food","shop/frozen_food","shop/greengrocer","shop/grocery","shop/supermarket","shop/wholesale"],variety_store:["shop/variety_store","shop/discount","shop/convenience"],vending:["amenity/vending_machine","shop/vending_machine"],wholesale:["shop/wholesale","shop/supermarket","shop/department_store"]};
+  var matchGroups = {adult_gaming_centre:["amenity/casino","amenity/gambling","leisure/adult_gaming_centre"],beauty:["shop/beauty","shop/hairdresser_supply"],bed:["shop/bed","shop/furniture"],beverages:["shop/alcohol","shop/beverages"],camping:["leisure/park","tourism/camp_site","tourism/caravan_site"],car_parts:["shop/car_parts","shop/car_repair","shop/tires","shop/tyres"],confectionery:["shop/candy","shop/chocolate","shop/confectionery"],convenience:["shop/beauty","shop/chemist","shop/convenience","shop/cosmetics","shop/newsagent"],coworking:["amenity/coworking_space","office/coworking","office/coworking_space"],electronics:["office/telecommunication","shop/computer","shop/electronics","shop/hifi","shop/mobile","shop/mobile_phone","shop/telecommunication"],fashion:["shop/accessories","shop/bag","shop/botique","shop/clothes","shop/department_store","shop/fashion","shop/fashion_accessories","shop/sports","shop/shoes"],financial:["amenity/bank","office/accountant","office/financial","office/financial_advisor","office/tax_advisor","shop/tax"],fitness:["leisure/fitness_centre","leisure/fitness_center","leisure/sports_centre","leisure/sports_center"],food:["amenity/cafe","amenity/fast_food","amenity/ice_cream","amenity/restaurant","shop/bakery","shop/ice_cream","shop/pastry","shop/tea","shop/coffee"],fuel:["amenity/fuel","shop/gas","shop/convenience;gas","shop/gas;convenience"],gift:["shop/gift","shop/card","shop/cards","shop/stationery"],hardware:["shop/carpet","shop/diy","shop/doityourself","shop/doors","shop/electrical","shop/flooring","shop/hardware","shop/power_tools","shop/tool_hire","shop/tools","shop/trade"],health_food:["shop/health","shop/health_food","shop/herbalist","shop/nutrition_supplements"],hobby:["shop/electronics","shop/hobby","shop/books","shop/games","shop/collector","shop/toys","shop/model","shop/video_games","shop/anime"],houseware:["shop/houseware","shop/interior_decoration"],lodging:["tourism/hotel","tourism/motel"],money_transfer:["amenity/money_transfer","shop/money_transfer"],outdoor:["shop/outdoor","shop/sports"],playground:["amenity/theme_park","leisure/amusement_arcade","leisure/playground"],rental:["amenity/bicycle_rental","amenity/boat_rental","amenity/car_rental","amenity/truck_rental","amenity/vehicle_rental","shop/rental"],school:["amenity/childcare","amenity/college","amenity/kindergarten","amenity/language_school","amenity/prep_school","amenity/school","amenity/university"],supermarket:["shop/food","shop/frozen_food","shop/greengrocer","shop/grocery","shop/supermarket","shop/wholesale"],variety_store:["shop/variety_store","shop/discount","shop/convenience"],vending:["amenity/vending_machine","shop/vending_machine"],wholesale:["shop/wholesale","shop/supermarket","shop/department_store"]};
   var require$$0 = {
   matchGroups: matchGroups
   };
@@ -1259,13 +1259,6 @@
     let _warnings = [];    // array of match conflict pairs
     let matcher = {};
 
-    // additional tag to get a name from
-    const fallbackName = {
-      'brands': 'brand',
-      'operators': 'operator',
-      'networks': 'network'
-    };
-
 
     //
     // buildMatchIndex()
@@ -1293,69 +1286,116 @@
         const k = parts[1];
         const v = parts[2];
 
-        // perform two passes - once for primary names, once for secondary/alternate names
-        items.forEach(item => _insertNames(t, k, v, item, 'primary'));
-        items.forEach(item => _insertNames(t, k, v, item, 'secondary'));
+        // Perform two passes - first gather primary name tag, then gather secondary/alternate names
+        items.forEach(item => _indexItem(t, k, v, item, 'primary'));
+        items.forEach(item => _indexItem(t, k, v, item, 'secondary'));
       });
 
 
-      function _insertNames(t, k, v, item, which) {
+      function _indexItem(t, k, v, item, which) {
         if (!item.id) return;
+        const tags = item.tags;
+        const thiskv = `${k}/${v}`;
 
-        // Remember this item's locationSetID for later, in case we need do location filtering.
+        // First time - perform some setup steps on this item before anything else.
         if (which === 'primary') {
+          // 1. index this item's locationSetID..
           _itemToLocation[item.id] = loco.validateLocationSet(item.locationSet).id;
+
+          // 2. Automatically remove redundant `matchTags` - #3417
+          // (i.e. This kv is already covered by matchGroups, so it doesn't need to be in `item.matchTags`)
+          if (Array.isArray(item.matchTags) && item.matchTags.length) {
+            Object.values(matchGroups$1).forEach(matchGroup => {
+              const inGroup = matchGroup.some(matchkv => matchkv === thiskv);
+              if (!inGroup) return;
+
+              // keep matchTags *not* already in match group
+              item.matchTags = item.matchTags
+                .filter(matchTag => !matchGroup.some(matchkv => matchkv === matchTag));
+            });
+
+            if (!item.matchTags.length) delete item.matchTags;
+          }
         }
 
-        const match_kv = [`${k}/${v}`]
-          .concat(item.matchTags || [])
-          .concat([`${k}/yes`, `building/yes`])   // #3454 - match some generic tags
-          .map(s => s.toLowerCase());
 
-        let match_name = [];
+        // Look for tags to insert..
+        let kvTags = [
+          `${thiskv}`,
+          `${k}/yes`,          // #3454 - match some generic tags
+          'building/yes'       // #3454 - match some generic tags
+        ].concat(item.matchTags || []);
+
+        // Look for names to insert..
+        let nameTags = [];
         if (which === 'primary') {
-          match_name = []
-            .concat(item.tags.name || [])
-            .concat(item.tags.official_name || []);   // #2732 - match alternate names
+          nameTags = [/^name$/];
 
-        } else if (which === 'secondary') {
-          match_name = []
-            .concat(item.tags[fallbackName[t]] || [])
-            .concat(item.tags.alt_name || [])         // #2732 - match alternate names
-            .concat(item.tags.short_name || [])       // #2732 - match alternate names
-            .concat(item.matchNames || []);
+        } else if (which === 'secondary') {          // #2732 - match alternate names
+          nameTags = [
+            /^(brand|operator|network)$/,
+            /^\w+_name$/,                            // e.g. `alt_name`, `short_name`
+            /^(name|brand|operator|network):\w+$/,   // e.g. `name:en`, `name:ru`
+            /^\w+_name:\w+$/                         // e.g. `alt_name:en`, `short_name:ru`
+          ];
         }
 
-        if (!match_name.length) return;  // nothing to do
-
-        match_kv.forEach(kv => {
+        kvTags.forEach(kv => {
           if (!_matchIndex[kv])  _matchIndex[kv] = {};
 
-          match_name.forEach(name => {
-            const nsimple = simplify(name);
-            if (!_matchIndex[kv][nsimple])  _matchIndex[kv][nsimple] = new Set();
+          nameTags.forEach(nameTag => {
+            const re = new RegExp(nameTag, 'i');
+            Object.keys(tags).forEach(osmkey => {
+              if (!re.test(osmkey)) return;    // osmkey is not a name tag, skip
 
-            const set = _matchIndex[kv][nsimple];
-            if (set.has(item.id)) {
-              // Warn if we detect collisions in a primary name.
-              // Skip warning if a secondary name or a generic `*=yes` tag - #2972 / #3454
-              if (which === 'primary' && !/\/yes$/.test(kv)) {
-                _warnings.push([item.id, `${item.id} (${kv}/${nsimple})`]);
+              // There are a few exceptions to the nameTag matching regexes.
+              // Usually a tag suffix contains a language code like `name:en`, `name:ru`
+              // but we want to exclude things like `operator:type`, `name:etymology`, etc..
+              if (/:(type|left|right|etymology)$/.test(osmkey)) return;
 
-              } else if (which === 'secondary') {
-                // Automatically remove redundant matchNames  #3417
-                // (i.e. This name got indexed some other way, so it doesn't need to be in matchNames.)
-                if (Array.isArray(item.matchNames) && item.matchNames.length) {
-                  item.matchNames = item.matchNames.filter(n => n !== name);
-                  if (!item.matchNames.length) delete item.matchNames;
+              const name = tags[osmkey];
+              const nsimple = simplify(name);
+              if (!_matchIndex[kv][nsimple])  _matchIndex[kv][nsimple] = new Set();
+
+              let set = _matchIndex[kv][nsimple];
+              if (set.has(item.id)) {
+                // Warn if we detect collisions on `name` tag.
+                // For example, multiple items with the same k/v that simplify to the same simplename
+                // "Bed Bath & Beyond" and "Bed Bath and Beyond"
+                if (osmkey === 'name') {
+                  _warnings.push([item.id, `${item.id} (${kv}/${nsimple})`]);
                 }
+              } else {
+                set.add(item.id);
               }
-            } else {
-              set.add(item.id);
-            }
+            });
           });
-        });
 
+          // check `matchNames` after indexing all other names
+          if (which === 'secondary') {
+            let keepMatchNames = [];
+
+            (item.matchNames || []).forEach(matchName => {
+              const nsimple = simplify(matchName);
+              if (!_matchIndex[kv][nsimple])  _matchIndex[kv][nsimple] = new Set();
+
+              let set = _matchIndex[kv][nsimple];
+              if (!set.has(item.id)) {
+                set.add(item.id);
+                keepMatchNames.push(matchName);
+              }
+            });
+
+            // Automatically remove redundant `matchNames` - #3417
+            // (i.e. This name got indexed some other way, so it doesn't need to be in `item.matchNames`)
+            if (keepMatchNames.length) {
+              item.matchNames = keepMatchNames;
+            } else {
+              delete item.matchNames;
+            }
+          }
+
+        });
       }
     };
 
@@ -1412,7 +1452,7 @@
       let m = _tryMatch(kv, nsimple);
       if (m) return m;
 
-      // Look in match groups for other kv pairs considered equilivent to kv..
+      // Look in match groups for other pairs considered equivalent to kv..
       for (let mg in matchGroups$1) {
         const matchGroup = matchGroups$1[mg];
         const inGroup = matchGroup.some(otherkv => otherkv === kv);
@@ -1475,43 +1515,9 @@
     return simplify(name);
   };
 
-  // toParts - split a name-suggestion-index key into parts
-  // {
-  //   kvnd:        "amenity/fast_food|Thaï Express~(North America)",
-  //   kvn:         "amenity/fast_food|Thaï Express",
-  //   kv:          "amenity/fast_food",
-  //   k:           "amenity",
-  //   v:           "fast_food",
-  //   n:           "Thaï Express",
-  //   d:           "(North America)",
-  //   nsimple:     "thaiexpress",
-  //   kvnnsimple:  "amenity/fast_food|thaiexpress"
-  // }
-  var to_parts = (kvnd) => {
-    const parts = {};
-    parts.kvnd = kvnd;
-
-    const kvndparts = kvnd.split('~', 2);
-    if (kvndparts.length > 1) parts.d = kvndparts[1];
-
-    parts.kvn = kvndparts[0];
-    const kvnparts = parts.kvn.split('|', 2);
-    if (kvnparts.length > 1) parts.n = kvnparts[1];
-
-    parts.kv = kvnparts[0];
-    const kvparts = parts.kv.split('/', 2);
-    parts.k = kvparts[0];
-    parts.v = kvparts[1];
-
-    parts.nsimple = simplify(parts.n);
-    parts.kvnsimple = parts.kv + '|' + parts.nsimple;
-    return parts;
-  };
-
   exports.matcher = matcher;
   exports.simplify = simplify;
   exports.stemmer = stemmer;
-  exports.toParts = to_parts;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

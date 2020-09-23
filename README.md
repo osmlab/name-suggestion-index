@@ -95,7 +95,7 @@ Name lists:
 - `npm run build`
   - Processes any custom locations under `features/**/*.geojson`
   - Regenerates `dist/names_keep.json` and `dist/names_discard.json`
-  - Any new entries from `names_keep` not already present in the index will be added to it
+  - Any new items from `names_keep` not already present in the index will be added to it
   - Outputs many warnings to suggest updates to `brands/**/*.json`
 
 ### Other commands
