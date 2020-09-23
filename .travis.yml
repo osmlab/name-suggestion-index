@@ -3,3 +3,7 @@ node_js:
   - "10"
   - "12"
   - "14"
+
+after_failure:
+  # Show why we failed
+  - if [ -f ${TRAVIS_BUILD_DIR}/.npm/_logs/*.log ]; then cat ${TRAVIS_BUILD_DIR}/.npm/_logs/*.log; fi
