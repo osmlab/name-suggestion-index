@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Category from './Category';
+import Header from './Header';
 import Footer from './Footer';
 import Overview from './Overview';
 
@@ -35,30 +36,51 @@ export default function App() {
   return (
     <>
     <Switch>
-      <Route path='/' render={ routeProps => {
-        const params = parseParams(routeProps.location.search);
-        if (!params.t) {
-          params.t = 'brands';
-        }
-        if (params.id) {
-          delete params.k;
-          delete params.v;
-        }
-
-        if ((params.k && params.v) || params.id) {
-          return (
-            <Category {...routeProps} {...params} data={appData} />
-          );
-        } else {
-          return (
-            <Overview {...routeProps} {...params} data={appData} />
-          );
-        }
-      } }/>
+      <Route path='/' render={render}/>
     </Switch>
     <Footer />
     </>
   );
+
+
+  function render(routeProps) {
+    let params = parseParams(routeProps.location.search);
+    if (!params.t) params.t = 'brands';
+
+    // if passed an `id` param, lookup that item and override the `t`, `k`, `v` params
+    if (!appData.isLoading() && params.id) {
+      const item = appData.index.id[params.id];
+      if (item) {
+        const parts = item.tkv.split('/', 3);     // tkv = 'tree/key/value'
+        params.t = parts[0];
+        params.k = parts[1];
+        params.v = parts[2];
+        routeProps.location.search = `?t=${params.t}&k=${params.k}&v=${params.v}`;
+        routeProps.location.hash = `#${params.id}`;
+        routeProps.history.replace(routeProps.location);
+      }
+    }
+
+    if ((params.k && params.v) || params.id) {
+      return (
+        <>
+        <Header {...params} data={appData} />
+        <div id='content'>
+        <Category {...routeProps} {...params} data={appData} />
+        </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+        <Header {...params} data={appData} />
+        <div id='content'>
+        <Overview {...routeProps} {...params} data={appData} />
+        </div>
+        </>
+      );
+    }
+  }
 
 
   function useFetch(url) {

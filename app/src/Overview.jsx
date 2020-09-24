@@ -29,6 +29,10 @@ export default function Overview(props) {
     wikidataTag = 'network:wikidata';
   }
 
+  // only render these components if we are loading a supported tree..
+  const instructions = wikidataTag ? OverviewInstructions({t: t}) : null;
+  const filters = wikidataTag ? Filters({data: data}) : null;
+
   let message;
   let paths;
   if (data.isLoading()) {
@@ -43,16 +47,14 @@ export default function Overview(props) {
   if (message) {
     return (
       <>
-      <h1>{t}/</h1>
-      <OverviewInstructions t={t} />
-      <Filters data={data} />
+      {instructions}
+      {filters}
       <div className='container'>
       {message}
       </div>
       </>
     );
   }
-
 
   const categories = [];
   paths.forEach(tkv => {
@@ -114,9 +116,8 @@ export default function Overview(props) {
 
   return (
     <>
-    <h1>{t}/</h1>
-    <OverviewInstructions t={t} />
-    <Filters data={data} />
+    {instructions}
+    {filters}
     <div className='container'>
     {categories}
     </div>

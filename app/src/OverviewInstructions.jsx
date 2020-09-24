@@ -5,12 +5,15 @@ export default function OverviewInstructions(props) {
   // setup defaults for this tree..
   const t = props.t;
 
-  let wikidataTag;
+  let itemType, wikidataTag;
   if (t === 'brands') {
+    itemType = 'brand';
     wikidataTag = 'brand:wikidata';
   } else if (t === 'operators') {
+    itemType = 'operator';
     wikidataTag = 'operator:wikidata';
   } else if (t === 'networks') {
+    itemType = 'network';
     wikidataTag = 'network:wikidata';
   }
 
@@ -18,7 +21,7 @@ export default function OverviewInstructions(props) {
     <>
     <div className='instructions'><span className='hi'>👋</span>Hi! This project is called <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/'>name-suggestion-index</a>.<br/>
     <br/>
-    We've collected a list of common business names from <a target='_blank' href='https://www.openstreetmap.org'>OpenStreetMap</a>,
+    We've collected a list of common {itemType} names from <a target='_blank' href='https://www.openstreetmap.org'>OpenStreetMap</a>,
     and we're matching them all to their preferred tags, including a <code>'{wikidataTag}'</code> tag.<br/>
     <br/>
     This tag is pretty special because we can use it to link features in OpenStreetMap to records

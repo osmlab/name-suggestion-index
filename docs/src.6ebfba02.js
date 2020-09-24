@@ -19094,37 +19094,25 @@ function Category(props) {
   var hash = props.location.hash;
   var slug = hash && hash.slice(1); // remove leading '#'
 
+  var t = props.t;
+  var k = props.k;
+  var v = props.v;
+  var tkv = "".concat(t, "/").concat(k, "/").concat(v);
   var message;
-  var items, t, k, v, tkv, kv;
+  var items;
 
   if (data.isLoading()) {
     message = 'Loading, please wait...';
   } else {
     if (props.id) {
-      // passed an `id` parameter
+      // if passed an `id` prop, that overrides the `t`, `k`, `v` props
       var item = index.id[props.id];
 
       if (item) {
-        var parts = item.tkv.split('/', 3); // tkv = 'tree/key/value'
-
-        t = parts[0];
-        k = parts[1];
-        v = parts[2];
-        kv = "".concat(k, "/").concat(v);
-        tkv = "".concat(t, "/").concat(k, "/").concat(v);
         slug = encodeURI(item.id);
       } else {
-        kv = 'unknown';
-        tkv = 'unknown';
         message = "No item found for \"".concat(props.id, "\".");
       }
-    } else {
-      // passed `t`, `k`, `v` parameters
-      t = props.t;
-      k = props.k;
-      v = props.v;
-      kv = "".concat(k, "/").concat(v);
-      tkv = "".concat(t, "/").concat(k, "/").concat(v);
     }
 
     items = index.path && index.path[tkv];
@@ -19135,9 +19123,11 @@ function Category(props) {
   }
 
   if (message) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, tkv), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: "index.html"
-    }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "nav"
+    }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?t=".concat(t)
+    }, "\u2191 Back to ", t, "/")), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
       t: t
     }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
       data: data
@@ -19161,25 +19151,16 @@ function Category(props) {
   } // setup defaults for this tree..
 
 
-  var fallbackIcon, wikidataTag;
+  var wikidataTag;
 
   if (t === 'brands') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
     wikidataTag = 'brand:wikidata';
   } else if (t === 'operators') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
     wikidataTag = 'operator:wikidata';
   } else if (t === 'networks') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
     wikidataTag = 'network:wikidata';
-  } // pick an icon for this category
+  } // filters
 
-
-  var icon_url = data.icons[kv];
-  if (!icon_url) icon_url = data.icons[k]; // fallback to generic key=* icon
-
-  if (!icon_url) icon_url = fallbackIcon; // fallback to generic icon
-  // filters
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
@@ -19221,12 +19202,11 @@ function Category(props) {
       item: item
     }));
   });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, /*#__PURE__*/_react.default.createElement("img", {
-    className: "icon",
-    src: icon_url
-  }), tkv), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "index.html"
-  }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "nav"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "index.html?t=".concat(t)
+  }, "\u2191 Back to ", t, "/")), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
     t: t
   }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     data: data
@@ -19242,7 +19222,110 @@ function Category(props) {
 }
 
 ;
-},{"react":"n8MK","react-router-dom":"uc19","./CategoryInstructions":"jpgZ","./CategoryRow":"b69n","./Filters":"z2FW"}],"jutB":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","./CategoryInstructions":"jpgZ","./CategoryRow":"b69n","./Filters":"z2FW"}],"dKbm":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeBrandsSvgIcons = require("@fortawesome/free-brands-svg-icons");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header(props) {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "header",
+    className: "hasCols"
+  }, Title(props), TreeSwitcher(props), GitHub());
+}
+
+;
+
+function Title(props) {
+  var data = props.data;
+  var index = data.index;
+  var t = props.t;
+  var k = props.k;
+  var v = props.v; // try to pick an icon
+
+  var iconURL;
+
+  if (!data.isLoading() && k && v) {
+    var fallbackIcon;
+
+    if (t === 'brands') {
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    } else if (t === 'operators') {
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
+    } else if (t === 'networks') {
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
+    }
+
+    var kv = "".concat(k, "/").concat(v);
+    iconURL = data.icons[kv];
+    if (!iconURL) iconURL = data.icons[k]; // fallback to generic key=* icon
+
+    if (!iconURL) iconURL = fallbackIcon; // fallback to generic icon
+  }
+
+  var icon = iconURL ? /*#__PURE__*/_react.default.createElement("img", {
+    className: "icon",
+    src: iconURL
+  }) : null; // pick a title
+
+  var title;
+
+  if (t && k && v) {
+    title = "".concat(t, "/").concat(k, "/").concat(v);
+    document.title = "Name Suggestion Index - ".concat(title);
+  } else if (t) {
+    title = "".concat(t, "/");
+    document.title = "Name Suggestion Index - ".concat(title);
+  } else {
+    title = 'Name Suggestion Index';
+    document.title = 'Name Suggestion Index';
+  }
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "title"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, icon, title));
+}
+
+function TreeSwitcher(props) {
+  var t = props.t; // const others = ['brands', 'operators', 'networks'].filter(d => d !== t);
+
+  var others = [];
+  var links = others.map(function (t) {
+    return /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?t=".concat(t)
+    }, t, "/"));
+  });
+  var list = links.length ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, " see also: ", /*#__PURE__*/_react.default.createElement("ul", null, links), " ") : null;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "treeswitcher"
+  }, list);
+}
+
+function GitHub() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "octocat"
+  }, /*#__PURE__*/_react.default.createElement("a", {
+    href: "https://github.com/osmlab/name-suggestion-index",
+    target: "_blank"
+  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon: _freeBrandsSvgIcons.faGithub,
+    size: "2x"
+  })));
+}
+},{"react":"n8MK","react-router-dom":"uc19","@fortawesome/react-fontawesome":"O6gX","@fortawesome/free-brands-svg-icons":"XFr7"}],"jutB":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19255,30 +19338,9 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Footer() {
-  function ghCornerImage() {
-    return {
-      __html: "\n        <svg width='80' height='80' viewBox='0 0 250 250' style='fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;' aria-hidden='true'><path d='M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z'></path><path d='M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2' fill='currentColor' style='transform-origin: 130px 106px;' class='octo-arm'></path><path d='M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z' fill='currentColor' class='octo-body'></path></svg>\n      "
-    };
-  }
-
-  function ghCornerStyle() {
-    return {
-      __html: "\n        .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}\n      "
-    };
-  }
-
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", {
     className: "footer"
-  }, /*#__PURE__*/_react.default.createElement("a", {
-    target: "_blank",
-    href: "https://github.com/osmlab/name-suggestion-index/",
-    className: "github-corner",
-    "aria-label": "View on GitHub"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    dangerouslySetInnerHTML: ghCornerImage()
-  })), /*#__PURE__*/_react.default.createElement("style", {
-    dangerouslySetInnerHTML: ghCornerStyle()
-  })));
+  });
 }
 
 ;
@@ -19297,13 +19359,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function OverviewInstructions(props) {
   // setup defaults for this tree..
   var t = props.t;
-  var wikidataTag;
+  var itemType, wikidataTag;
 
   if (t === 'brands') {
+    itemType = 'brand';
     wikidataTag = 'brand:wikidata';
   } else if (t === 'operators') {
+    itemType = 'operator';
     wikidataTag = 'operator:wikidata';
   } else if (t === 'networks') {
+    itemType = 'network';
     wikidataTag = 'network:wikidata';
   }
 
@@ -19314,7 +19379,7 @@ function OverviewInstructions(props) {
   }, "\uD83D\uDC4B"), "Hi! This project is called ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/"
-  }, "name-suggestion-index"), ".", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "We've collected a list of common business names from ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "name-suggestion-index"), ".", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "We've collected a list of common ", itemType, " names from ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://www.openstreetmap.org"
   }, "OpenStreetMap"), ", and we're matching them all to their preferred tags, including a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "This tag is pretty special because we can use it to link features in OpenStreetMap to records in ", /*#__PURE__*/_react.default.createElement("a", {
@@ -19365,8 +19430,15 @@ function Overview(props) {
   } else if (t === 'networks') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
     wikidataTag = 'network:wikidata';
-  }
+  } // only render these components if we are loading a supported tree..
 
+
+  var instructions = wikidataTag ? (0, _OverviewInstructions.default)({
+    t: t
+  }) : null;
+  var filters = wikidataTag ? (0, _Filters.default)({
+    data: data
+  }) : null;
   var message;
   var paths;
 
@@ -19383,11 +19455,7 @@ function Overview(props) {
   }
 
   if (message) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, t, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, {
-      t: t
-    }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
-      data: data
-    }), /*#__PURE__*/_react.default.createElement("div", {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, instructions, filters, /*#__PURE__*/_react.default.createElement("div", {
       className: "container"
     }, message));
   }
@@ -19455,11 +19523,7 @@ function Overview(props) {
       to: "index.html?t=".concat(t, "&k=").concat(k, "&v=").concat(v)
     }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
   });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, t, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, {
-    t: t
-  }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
-    data: data
-  }), /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, instructions, filters, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, categories));
 }
@@ -19478,6 +19542,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _reactRouterDom = require("react-router-dom");
 
 var _Category = _interopRequireDefault(require("./Category"));
+
+var _Header = _interopRequireDefault(require("./Header"));
 
 var _Footer = _interopRequireDefault(require("./Footer"));
 
@@ -19554,29 +19620,46 @@ function App() {
   };
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/",
-    render: function render(routeProps) {
-      var params = parseParams(routeProps.location.search);
+    render: render
+  })), /*#__PURE__*/_react.default.createElement(_Footer.default, null));
 
-      if (!params.t) {
-        params.t = 'brands';
-      }
+  function render(routeProps) {
+    var params = parseParams(routeProps.location.search);
+    if (!params.t) params.t = 'brands'; // if passed an `id` param, lookup that item and override the `t`, `k`, `v` params
 
-      if (params.id) {
-        delete params.k;
-        delete params.v;
-      }
+    if (!appData.isLoading() && params.id) {
+      var item = appData.index.id[params.id];
 
-      if (params.k && params.v || params.id) {
-        return /*#__PURE__*/_react.default.createElement(_Category.default, _extends({}, routeProps, params, {
-          data: appData
-        }));
-      } else {
-        return /*#__PURE__*/_react.default.createElement(_Overview.default, _extends({}, routeProps, params, {
-          data: appData
-        }));
+      if (item) {
+        var parts = item.tkv.split('/', 3); // tkv = 'tree/key/value'
+
+        params.t = parts[0];
+        params.k = parts[1];
+        params.v = parts[2];
+        routeProps.location.search = "?t=".concat(params.t, "&k=").concat(params.k, "&v=").concat(params.v);
+        routeProps.location.hash = "#".concat(params.id);
+        routeProps.history.replace(routeProps.location);
       }
     }
-  })), /*#__PURE__*/_react.default.createElement(_Footer.default, null));
+
+    if (params.k && params.v || params.id) {
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, _extends({}, params, {
+        data: appData
+      })), /*#__PURE__*/_react.default.createElement("div", {
+        id: "content"
+      }, /*#__PURE__*/_react.default.createElement(_Category.default, _extends({}, routeProps, params, {
+        data: appData
+      }))));
+    } else {
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, _extends({}, params, {
+        data: appData
+      })), /*#__PURE__*/_react.default.createElement("div", {
+        id: "content"
+      }, /*#__PURE__*/_react.default.createElement(_Overview.default, _extends({}, routeProps, params, {
+        data: appData
+      }))));
+    }
+  }
 
   function useFetch(url) {
     var _useState3 = (0, _react.useState)([]),
@@ -19778,7 +19861,7 @@ function App() {
 }
 
 ;
-},{"react":"n8MK","react-router-dom":"uc19","./Category":"vBRt","./Footer":"jutB","./Overview":"RzVt"}],"c2Qt":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","./Category":"vBRt","./Header":"dKbm","./Footer":"jutB","./Overview":"RzVt"}],"c2Qt":[function(require,module,exports) {
 "use strict";
 
 require("regenerator-runtime/runtime");

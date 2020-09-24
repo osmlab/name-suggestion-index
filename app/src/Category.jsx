@@ -13,35 +13,24 @@ export default function Category(props) {
   const hash = props.location.hash;
   let slug = hash && hash.slice(1);   // remove leading '#'
 
+  let t = props.t;
+  let k = props.k;
+  let v = props.v;
+  let tkv = `${t}/${k}/${v}`;
   let message;
-  let items, t, k, v, tkv, kv;
+  let items;
 
   if (data.isLoading()) {
     message = 'Loading, please wait...';
 
   } else {
-    if (props.id) {   // passed an `id` parameter
+    if (props.id) {   // if passed an `id` prop, that overrides the `t`, `k`, `v` props
       const item = index.id[props.id];
       if (item) {
-        const parts = item.tkv.split('/', 3);     // tkv = 'tree/key/value'
-        t = parts[0];
-        k = parts[1];
-        v = parts[2];
-        kv = `${k}/${v}`;
-        tkv = `${t}/${k}/${v}`;
         slug = encodeURI(item.id);
       } else {
-        kv = 'unknown';
-        tkv = 'unknown';
         message = `No item found for "${props.id}".`;
       }
-
-    } else {          // passed `t`, `k`, `v` parameters
-      t = props.t;
-      k = props.k;
-      v = props.v;
-      kv = `${k}/${v}`;
-      tkv = `${t}/${k}/${v}`;
     }
 
     items = index.path && index.path[tkv];
@@ -53,8 +42,7 @@ export default function Category(props) {
   if (message) {
     return (
       <>
-      <h2>{tkv}</h2>
-      <Link to='index.html'>↑ Back to overview</Link>
+      <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
       <CategoryInstructions t={t} />
       <Filters data={data} />
       <div className='summary'>
@@ -78,22 +66,14 @@ export default function Category(props) {
   }
 
   // setup defaults for this tree..
-  let fallbackIcon, wikidataTag;
+  let wikidataTag;
   if (t === 'brands') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
     wikidataTag = 'brand:wikidata';
   } else if (t === 'operators') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
     wikidataTag = 'operator:wikidata';
   } else if (t === 'networks') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
     wikidataTag = 'network:wikidata';
   }
-
-  // pick an icon for this category
-  let icon_url = data.icons[kv];
-  if (!icon_url) icon_url = data.icons[k];    // fallback to generic key=* icon
-  if (!icon_url) icon_url = fallbackIcon;     // fallback to generic icon
 
   // filters
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
@@ -138,8 +118,7 @@ export default function Category(props) {
 
   return (
     <>
-    <h2><img className='icon' src={icon_url} />{tkv}</h2>
-    <Link to='index.html'>↑ Back to overview</Link>
+    <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
     <CategoryInstructions t={t} />
     <Filters data={data} />
 
