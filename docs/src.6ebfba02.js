@@ -19236,15 +19236,19 @@ var _reactRouterDom = require("react-router-dom");
 
 var _reactFontawesome = require("@fortawesome/react-fontawesome");
 
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
 var _freeBrandsSvgIcons = require("@fortawesome/free-brands-svg-icons");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function Header(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
     id: "header",
     className: "hasCols"
-  }, Title(props), TreeSwitcher(props), GitHub());
+  }, Title(props), TreeSwitcher(props), DarkMode(), GitHub());
 }
 
 ;
@@ -19314,6 +19318,56 @@ function TreeSwitcher(props) {
   }, list);
 }
 
+function DarkMode() {
+  var currValue = window.localStorage.getItem('nsi-darkmode');
+
+  if (currValue === null) {
+    // initial, no preference set, use media query to check it
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      currValue = 'true';
+      window.localStorage.setItem('nsi-darkmode', currValue);
+    }
+  }
+
+  setDarkMode(currValue);
+  var checkedProp = currValue === 'true' ? {
+    defaultChecked: 'true'
+  } : {};
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "darkmode",
+    className: "control"
+  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon: _freeSolidSvgIcons.faSun,
+    size: "lg"
+  }), /*#__PURE__*/_react.default.createElement("label", {
+    className: "switch"
+  }, /*#__PURE__*/_react.default.createElement("input", _extends({
+    id: "nsi-darkmode",
+    type: "checkbox"
+  }, checkedProp, {
+    onChange: toggleDarkMode
+  })), /*#__PURE__*/_react.default.createElement("span", {
+    className: "slider round"
+  })), /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon: _freeSolidSvgIcons.faMoon,
+    size: "lg"
+  }));
+
+  function toggleDarkMode(e) {
+    var newValue = window.localStorage.getItem('nsi-darkmode') === 'true' ? 'false' : 'true';
+    window.localStorage.setItem('nsi-darkmode', newValue);
+    setDarkMode(newValue);
+  }
+
+  function setDarkMode(val) {
+    if (val === 'true') {
+      document.getElementById('root').classList.add('dark');
+    } else {
+      document.getElementById('root').classList.remove('dark');
+    }
+  }
+}
+
 function GitHub() {
   return /*#__PURE__*/_react.default.createElement("div", {
     id: "octocat"
@@ -19325,7 +19379,7 @@ function GitHub() {
     size: "2x"
   })));
 }
-},{"react":"n8MK","react-router-dom":"uc19","@fortawesome/react-fontawesome":"O6gX","@fortawesome/free-brands-svg-icons":"XFr7"}],"jutB":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","@fortawesome/react-fontawesome":"O6gX","@fortawesome/free-solid-svg-icons":"lmHt","@fortawesome/free-brands-svg-icons":"XFr7"}],"jutB":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

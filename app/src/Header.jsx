@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 
@@ -9,6 +10,7 @@ export default function Header(props) {
     <div id='header' className='hasCols'>
       { Title(props) }
       { TreeSwitcher(props) }
+      { DarkMode() }
       { GitHub() }
     </div>
   );
@@ -78,11 +80,51 @@ function TreeSwitcher(props) {
 }
 
 
+function DarkMode() {
+  let currValue = window.localStorage.getItem('nsi-darkmode');
+
+  if (currValue === null) {  // initial, no preference set, use media query to check it
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      currValue = 'true';
+      window.localStorage.setItem('nsi-darkmode', currValue);
+    }
+  }
+
+  setDarkMode(currValue);
+  const checkedProp = (currValue === 'true') ? { defaultChecked: 'true' } : {};
+
+  return (
+    <div id='darkmode' className='control'>
+      <FontAwesomeIcon icon={faSun} size='lg' />
+      <label className='switch'>
+        <input id='nsi-darkmode' type='checkbox' {...checkedProp} onChange={toggleDarkMode} />
+        <span className='slider round'></span>
+      </label>
+      <FontAwesomeIcon icon={faMoon} size='lg' />
+    </div>
+  );
+
+  function toggleDarkMode(e) {
+    const newValue = (window.localStorage.getItem('nsi-darkmode') === 'true') ? 'false' : 'true';
+    window.localStorage.setItem('nsi-darkmode', newValue);
+    setDarkMode(newValue);
+  }
+
+  function setDarkMode(val) {
+    if (val === 'true') {
+      document.getElementById('root').classList.add('dark');
+    } else {
+      document.getElementById('root').classList.remove('dark');
+    }
+  }
+}
+
+
 function GitHub() {
   return (
     <div id='octocat'>
     <a href='https://github.com/osmlab/name-suggestion-index' target='_blank'>
-      <FontAwesomeIcon icon={faGithub} size='2x' />
+    <FontAwesomeIcon icon={faGithub} size='2x' />
     </a>
     </div>
   );
