@@ -3,7 +3,3 @@ node_js:
   - "10"
   - "12"
   - "14"
-
-after_failure:
-  # Show why we failed
-  - if [ -f $HOME/.npm/_logs/*.log ]; then cat $HOME/.npm/_logs/*.log; fi
