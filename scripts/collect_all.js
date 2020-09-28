@@ -74,7 +74,7 @@ function collect(tag, fromKeys, threshold) {
       if (!n) return;
 
       // 'ncn','rcn','lcn', etc.. these are special and not actual networks - ignore them.
-      if (tag === 'network' && /^[nrl][cw]n$/.test(n)) return;
+      if (tag === 'network' && /^[inrl][chw]n$/.test(n)) return;
 
       const v = entity.tags(k);
       if (!v) return;
