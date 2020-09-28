@@ -24,13 +24,13 @@ if (process.argv.length < 3) {
 }
 
 const POIKEYS = ['amenity', 'shop', 'leisure', 'tourism', 'office', 'craft'];
-const OPERATORKEYS = ['amenity', 'power', 'public_transport'];
-const NETWORKKEYS = ['route', 'public_transport'];
+const OPERATORKEYS = ['power', 'route']; //, 'public_transport'];
+const NETWORKKEYS = ['power', 'route']; //, 'public_transport'];
 
-// collect('name', POIKEYS, 50);
-// collect('brand', POIKEYS, 50);
-// collect('operator', OPERATORKEYS, 25);
-collect('network', NETWORKKEYS, 25);
+collect('name', POIKEYS, 50);
+collect('brand', POIKEYS, 50);
+collect('operator', OPERATORKEYS, 10);
+collect('network', NETWORKKEYS, 10);
 
 
 function collect(tag, fromKeys, threshold) {
