@@ -8,7 +8,7 @@ import Overview from './Overview';
 
 // Load the name-suggestion-index data files
 const DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
-const NAMES = `${DIST}/names_keep.json`;
+const NAMES = `${DIST}/filtered/names_keep.json`;
 const INDEX = `${DIST}/brands.json`;
 const WIKIDATA = `${DIST}/wikidata.json`;
 

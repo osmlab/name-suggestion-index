@@ -19629,7 +19629,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // Load the name-suggestion-index data files
 var DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
-var NAMES = "".concat(DIST, "/names_keep.json");
+var NAMES = "".concat(DIST, "/filtered/names_keep.json");
 var INDEX = "".concat(DIST, "/brands.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.json"); // We can use iD's taginfo file to pick icons
 
