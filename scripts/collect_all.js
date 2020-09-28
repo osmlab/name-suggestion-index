@@ -18,29 +18,39 @@ const stringify = require('json-stringify-pretty-compact');
 
 if (process.argv.length < 3) {
   console.log('');
-  console.log('Usage:  node build_all_names <planet.osm>');
+  console.log('Usage:  node scripts/collect_all.js <planet.osm>');
   console.log('');
   process.exit(1);
 }
 
-const checkKeys = ['amenity', 'shop', 'leisure', 'tourism', 'office'];
-const THRESHOLD = process.argv[3] || 50;
+const POIKEYS = ['amenity', 'shop', 'leisure', 'tourism', 'office', 'craft'];
+const OPERATORKEYS = ['amenity', 'power', 'public_transport'];
+const NETWORKKEYS = ['route', 'public_transport'];
 
-build();
+// collect('name', POIKEYS, 50);
+// collect('brand', POIKEYS, 50);
+// collect('operator', OPERATORKEYS, 25);
+collect('network', NETWORKKEYS, 25);
 
 
-function build() {
-  console.log('building names_all.json');
-  console.time(colors.green('data built'));
+function collect(tag, fromKeys, threshold) {
+  const what = `${tag}s`;   // names, brands, operators, networks
+  const file = `dist/collected/${what}_all.json`;
+
+  const START = '🏗   ' + colors.yellow(`Collecting ${what} from OSM planet...`);
+  const END = '👍  ' + colors.green(`${what} collected`);
+  console.log('');
+  console.log(START);
+  console.time(END);
 
   // Start clean
-  shell.rm('-f', ['dist/names_all.json']);
+  shell.rm('-f', file);
   let all = {};
 
   // process one key at a time to reduce memory footprint
-  checkKeys.forEach(k => {
+  fromKeys.forEach(k => {
     // count
-    console.log(` counting ${k}`);
+    console.log(` collecting ${what} from ${k}=*`);
     let counted = {};
     let handler = new osmium.Handler();
     handler.options({ tagged_nodes_only: true });
@@ -53,25 +63,28 @@ function build() {
 
     // filter
     console.log(` filtering ${k}`);
-    for (let kvn in counted) {
-      if (counted[kvn] > THRESHOLD) {
+    for (const kvn in counted) {
+      if (counted[kvn] > threshold) {
         all[kvn] = counted[kvn];  // keep
       }
     }
 
     function countEntity(entity) {
-      let n = entity.tags('name');
+      const n = entity.tags(tag);
       if (!n) return;
 
-      let v = entity.tags(k);
+      // 'ncn','rcn','lcn', etc.. these are special and not actual networks - ignore them.
+      if (tag === 'network' && /^[nrl][cw]n$/.test(n)) return;
+
+      const v = entity.tags(k);
       if (!v) return;
 
-      let kvn = `${k}/${v}|${n}`;
+      const kvn = `${k}/${v}|${n}`;
       counted[kvn] = (counted[kvn] || 0) + 1;
     }
   });
 
 
-  fs.writeFileSync('dist/names_all.json', stringify(sort(all)));
-  console.timeEnd(colors.green('data built'));
+  fs.writeFileSync(file, stringify(sort(all)));
+  console.timeEnd(END);
 }

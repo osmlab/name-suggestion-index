@@ -76,9 +76,8 @@ Fichiers prédéfinis (utilisés par les éditeurs OSM):
 * `dist/name-suggestions.presets.xml` - Préréglages de suggestion de nom, comme XML prédéfini de style JOSM
 
 Listes de noms:
-* `dist/names_all.json` - tous les noms et balises fréquents collectés depuis OpenStreetMap
-* `dist/names_discard.json` - sous-ensemble de `names_all` que nous éliminons
-* `dist/names_keep.json` - sous-ensemble de `names_all` que nous conservons
+* `dist/collected/*` - tous les noms et balises fréquents collectés depuis OpenStreetMap
+* `dist/filtered/*` - sous-ensemble de `names_all` que nous conservons / éliminons
 * `dist/wikidata.json` - données de marque en cache récupérées à partir de Wikidata
 
 #### Fichiers de configuration (modifiez-les):
@@ -98,7 +97,7 @@ Listes de noms:
 ### Création de l'index
 
 * `npm run build`
-  * Régénère `dist/names_keep.json` et `dist/names_discard.json`
+  * Régénère `dist/filtered/names_keep.json` et `dist/filtered/names_discard.json`
   * Toutes les nouvelles entrées de `names_keep` qui ne sont pas déjà présentes dans l'index y seront ajoutées
   * Génère de nombreux avertissements pour suggérer des mises à jour de `brands/**/*.json`
 
@@ -121,9 +120,9 @@ Vous n'avez pas besoin de suivre ces étapes pour contribuer à l'index.
 - Préfiltrez le fichier planète pour inclure uniquement les éléments nommés avec les clés que nous recherchons:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
   - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
-- Exécutez `node build_all_names wanted.osm.pbf`
-   - les résultats iront dans `dist/names_all.json`
-  - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
+- Exécutez `node collect_all.js wanted.osm.pbf`
+   - les résultats iront dans `dist/collected/*.json`
+  - `git add dist/collected && git commit -m 'Updated dist/collected'`
 
 
 ### Licence

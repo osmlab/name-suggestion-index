@@ -70,9 +70,8 @@ Preset file (digunakan oleh OSM editors):
 * `dist/name-suggestions.presets.xml` - Name suggestion presets, as JOSM-style preset XML
 
 Daftar nama:
-* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/names_discard.json` - subset of `names_all` we are discarding
-* `dist/names_keep.json` - subset of `names_all` we are keeping
+* `dist/collected/*` - all the frequent names and tags collected from OpenStreetMap
+* `dist/filtered/*` - subset of names and tags that we are keeping or discarding
 * `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
 #### Konfigurasi file (sunting bagian ini):
@@ -92,7 +91,7 @@ Daftar nama:
 ### Membangun indeks
 
 * `npm run build`
-  * Memperbarui `dist/names_keep.json` dan `dist/names_discard.json`
+  * Memperbarui `dist/filtered/names_keep.json` dan `dist/filtered/names_discard.json`
   * Setiap entri baru dari `names_keep` yang belum ada di dalam indeks akan ditambahkan ke dalamnya
   * Outputs many warnings to suggest updates to `brands/**/*.json`
   * Keluarkan banyak peringatan untuk menyarankan pembaruan `brands/**/*.json`
@@ -116,9 +115,9 @@ Anda tidak berlu untuk melakukan tahapan ini untuk berkonstribusi pada indeks.
 - File planet prefilter hanya menyertakan nama item dengan kunci yang kami cari:
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
   - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
-- Jalankan `node build_all_names wanted.osm.pbf`
-  - hasilnya akan berada di `dist/names_all.json`
-  - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
+- Jalankan `node collect_all.js wanted.osm.pbf`
+  - hasilnya akan berada di `dist/collected/*.json`
+  - `git add dist/collected && git commit -m 'Updated dist/collected'`
 
 
 ### Lisensi

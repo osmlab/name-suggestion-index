@@ -71,10 +71,9 @@ Preset files (used by OSM editors):
 * `dist/name-suggestions.presets.xml` - Name suggestion presets, as JOSM-style preset XML
 
 Name lists:
-* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/names_discard.json` - subset of `names_all` we are discarding
-* `dist/names_keep.json` - subset of `names_all` we are keeping
-* `dist/wikidata.json` - cached brand data retrieved from Wikidata
+* `dist/collected/*` - all the frequent names and tags collected from OpenStreetMap
+* `dist/filtered/*` - subset of names and tags that we are keeping or discarding
+* `dist/wikidata.json` - cached data retrieved from Wikidata
 
 #### Configuration files (edit these):
 
@@ -94,7 +93,7 @@ Name lists:
 
 - `npm run build`
   - Processes any custom locations under `features/**/*.geojson`
-  - Regenerates `dist/names_keep.json` and `dist/names_discard.json`
+  - Regenerates `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
   - Any new items from `names_keep` not already present in the index will be added to it
   - Outputs many warnings to suggest updates to `brands/**/*.json`
 
@@ -104,7 +103,7 @@ Name lists:
 - `npm run dist` - Rebuild and minify the generated files in the `dist/` folder.
 - `npm run` - Lists other available commands
 
-### Updating `dist/names_all.json` from planet
+### Collecting names from planet
 
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
 You do not need to do these steps in order to contribute to the index.
@@ -115,11 +114,16 @@ You do not need to do these steps in order to contribute to the index.
 - [Download the planet](http://planet.osm.org/pbf/)
   - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
+
   - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
+
+  - `osmium tags-filter planet-latest.osm.pbf -R name,brand,operator,network -o named.osm.pbf`
+
   - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
-- Run `node build_all_names wanted.osm.pbf`
-  - results will go in `dist/names_all.json`
-  - `git commit -m 'Updated dist/names_all.json'`
+
+- Run `node collect_all.js wanted.osm.pbf`
+  - results will go in `dist/collected/*.json`
+  - `git add dist/collected && git commit -m 'Updated dist/collected'`
 
 ### License
 

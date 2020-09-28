@@ -17,9 +17,8 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
-* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/names_discard.json` - subset of `names_all` we are discarding
-* `dist/names_keep.json` - subset of `names_all` we are keeping
+* `dist/collected/*` - all the frequent names and tags collected from OpenStreetMap
+* `dist/filtered/*` - subset of names and tags that we are keeping or discarding
 * `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
 ##### :white_check_mark: &nbsp; Do edit the files in `config/`, `brands/`, and `features/`:
@@ -67,8 +66,8 @@ and not need to worry about the tags being added.
 __The `brands/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
 
 These files are created by a several step process:
-- Process the OpenStreetMap "planet" data to extract common names -> `dist/names_all.json`
-- Filter all the names into -> `dist/names_keep.json` and `dist/names_discard.json`
+- Process the OpenStreetMap "planet" data to extract common names -> `dist/collected/names_all.json`
+- Filter all the names into -> `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
 - Merge the names we are keeping into -> `brands/**/*.json` files for us to decide what to do with them
 
 The files are organized by OpenStreetMap tag:
@@ -392,7 +391,7 @@ For "VinMart" we really prefer for it to be tagged as a supermarket.  It's a sin
 For "Carrefour" we know that can be both a supermarket and a fuel station.  It's two different things.
 * Make sure both items have a `brand:wikidata` tag and appropriate `locationSet`.
 
-Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
+Existing tagging (you can compare counts in `dist/filtered/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
 
 If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
 

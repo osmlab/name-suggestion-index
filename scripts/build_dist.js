@@ -2,7 +2,7 @@ const colors = require('colors/safe');
 const fs = require('fs');
 const dissolved = require('../dist/dissolved.json');
 const fileTree = require('../lib/file_tree.js');
-const namesKeep = require('../dist/names_keep.json');
+const namesKeep = require('../dist/filtered/names_keep.json');
 const packageJSON = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
@@ -35,7 +35,9 @@ function buildAll() {
     'docs/sitemap.xml',
     'dist/name-suggestions.*',
     'dist/taginfo.json',
-    'dist/*.min.json'
+    'dist/*.min.json',
+    'dist/collected/*.min.json',
+    'dist/filtered/*.min.json'
   ]);
 
   // Copy some project config files into `/dist`
@@ -58,9 +60,9 @@ function buildAll() {
     minifyJSON('dist/filters.json', 'dist/filters.min.json'),
     minifyJSON('dist/match_groups.json', 'dist/match_groups.min.json'),
     minifyJSON('dist/name-suggestions.json', 'dist/name-suggestions.min.json'),
-    minifyJSON('dist/names_all.json', 'dist/names_all.min.json'),
-    minifyJSON('dist/names_discard.json', 'dist/names_discard.min.json'),
-    minifyJSON('dist/names_keep.json', 'dist/names_keep.min.json'),
+    minifyJSON('dist/collected/names_all.json', 'dist/collected/names_all.min.json'),
+    minifyJSON('dist/filtered/names_discard.json', 'dist/filtered/names_discard.min.json'),
+    minifyJSON('dist/filtered/names_keep.json', 'dist/filtered/names_keep.min.json'),
     minifyJSON('dist/taginfo.json', 'dist/taginfo.min.json'),
     minifyJSON('dist/wikidata.json', 'dist/wikidata.min.json')
   ];

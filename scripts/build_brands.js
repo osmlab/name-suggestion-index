@@ -30,7 +30,7 @@ fs.writeFileSync('config/filters.json', stringify(filters));
 
 
 // all names start out in _discard..
-const allnames = require('../dist/names_all.json');
+const allnames = require('../dist/collected/names_all.json');
 let _discard = Object.assign({}, allnames);
 let _keep = {};
 filterNames();
@@ -50,11 +50,11 @@ console.log('');
 
 
 
-// `filterNames()` will process a `dist/names_all.json` file,
+// `filterNames()` will process a `names_all.json` file,
 // splitting the data up into 2 files:
 //
-// `dist/names_keep.json` - candidates for suggestion presets
-// `dist/names_discard.json` - everything else
+// `dist/filtered/names_keep.json` - candidates for suggestion presets
+// `dist/filtered/names_discard.json` - everything else
 //
 // The file format is identical to the `names_all.json` file:
 // "key/value|name": count
@@ -68,7 +68,7 @@ function filterNames() {
   console.time(END);
 
   // Start clean
-  shell.rm('-f', ['dist/names_keep.json', 'dist/names_discard.json']);
+  shell.rm('-f', ['dist/filtered/names_keep.json', 'dist/filtered/names_discard.json']);
 
   // filter by keepTags (move from _discard -> _keep)
   filters.keepTags.forEach(s => {
@@ -110,8 +110,8 @@ function filterNames() {
   console.log(`📦  Discard: ${discardCount}`);
   console.log(`📦  Keep: ${keepCount}`);
 
-  fs.writeFileSync('dist/names_discard.json', stringify(sort(_discard)));
-  fs.writeFileSync('dist/names_keep.json', stringify(sort(_keep)));
+  fs.writeFileSync('dist/filtered/names_discard.json', stringify(sort(_discard)));
+  fs.writeFileSync('dist/filtered/names_keep.json', stringify(sort(_keep)));
 
   console.timeEnd(END);
 }
