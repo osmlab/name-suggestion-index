@@ -113,8 +113,7 @@ Anda tidak berlu untuk melakukan tahapan ini untuk berkonstribusi pada indeks.
 - [Unduh planet](http://planet.osm.org/pbf/)
   - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - File planet prefilter hanya menyertakan nama item dengan kunci yang kami cari:
-  - `osmium tags-filter planet-latest.osm.pbf -R name -o named.osm.pbf`
-  - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
+  - `osmium tags-filter planet-latest.osm.pbf -R name,brand,operator,network -o named.osm.pbf`
 - Jalankan `node collect_all.js wanted.osm.pbf`
   - hasilnya akan berada di `dist/collected/*.json`
   - `git add dist/collected && git commit -m 'Updated dist/collected'`
