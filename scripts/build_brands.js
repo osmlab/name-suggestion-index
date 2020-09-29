@@ -17,7 +17,7 @@ const loco = new LocationConflation(featureCollection);
 
 // Load and check brand_filters.json
 let filters = require('../config/brand_filters.json');
-const filtersSchema = require('../schema/brand_filters.json');
+const filtersSchema = require('../schema/filters.json');
 validate('config/brand_filters.json', filters, filtersSchema);  // validate JSON-schema
 
 // Lowercase and sort the filters for consistency

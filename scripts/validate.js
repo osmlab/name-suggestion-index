@@ -4,7 +4,7 @@ const loco = new LocationConflation(featureCollection);
 
 // validate the brand_filters.json file
 const filters = require('../config/brand_filters.json');
-const filtersSchema = require('../schema/brand_filters.json');
+const filtersSchema = require('../schema/filters.json');
 const validate = require('../lib/validate');
 validate('config/brand_filters.json', filters, filtersSchema);
 
