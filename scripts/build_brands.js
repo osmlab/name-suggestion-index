@@ -29,10 +29,15 @@ filters = {
 fs.writeFileSync('config/brand_filters.json', stringify(filters));
 
 
-// all names start out in _discard..
+// we'll use both brand and name tags
 const allnames = require('../dist/collected/names_all.json');
-let _discard = Object.assign({}, allnames);
+const allbrands = require('../dist/collected/brands_all.json');
+
+let _discard = {};
 let _keep = {};
+// all names and brands start out in _discard..
+Object.keys(allnames).forEach(kvn => _discard[kvn] = _discard[kvn] || allnames[kvn]);
+Object.keys(allbrands).forEach(kvn => _discard[kvn] = _discard[kvn] || allbrands[kvn]);
 filterNames();
 
 
@@ -104,6 +109,15 @@ function filterNames() {
       }
     }
   });
+
+  // discard semicolon-delimited multivalues
+  for (let kvn in _keep) {
+    const name = kvn.split('|', 2)[1];
+    if (/;/.test(name)) {
+      _discard[kvn] = _keep[kvn];
+      delete _keep[kvn];
+    }
+  }
 
   const discardCount = Object.keys(_discard).length;
   const keepCount = Object.keys(_keep).length;
@@ -346,6 +360,13 @@ function checkItems() {
       ['cuisine', 'vending', 'beauty', 'gambling'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val && oddPunctuation.test(val)) {
+          warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
+        }
+      });
+      // Warn if a semicolon-delimited multivalue has snuck into the index
+      ['name', 'brand', 'operator', 'network'].forEach(osmkey => {
+        const val = tags[osmkey];
+        if (val && /;/.test(val)) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
         }
       });

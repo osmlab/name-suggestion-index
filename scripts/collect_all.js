@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-// This script will process a planet file and extract frequently occuring names.
-// It produces a file containing all the top names and tags: `dist/names_all.json`
+// This script will process a planet file and collect frequently occuring tags that we care about.
+// It produces files containing all the top names and tags: `dist/collected/names_all.json`
 //
 // `names_all.json` contains a dictionary object in the format:
 // "key/value|name": count
