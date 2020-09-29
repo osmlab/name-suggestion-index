@@ -84,12 +84,11 @@ Listes de noms:
 
 * `config/*`
   * `config/brand_filters.json` - Expressions régulières utilisées pour filtrer `names_all` dans `names_keep`/`names_discard`
-* `brands/*` - Fichiers de configuration pour chaque type d'entreprise de marque, organisés par balise OpenStreetMap
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
-  * `brands/office/*.json`
+* `data/*` - Fichiers de configuration pour chaque type d'entreprise de marque, organisés par balise OpenStreetMap
+  * `data/brands/amenity/*.json`
+  * `data/brands/leisure/*.json`
+  * `data/brands/shop/*.json`
+  * etc...
 
 :point_right: Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour savoir comment contribuer à cet index.
 
@@ -99,7 +98,7 @@ Listes de noms:
 * `npm run build`
   * Régénère `dist/filtered/names_keep.json` et `dist/filtered/names_discard.json`
   * Toutes les nouvelles entrées de `names_keep` qui ne sont pas déjà présentes dans l'index y seront ajoutées
-  * Génère de nombreux avertissements pour suggérer des mises à jour de `brands/**/*.json`
+  * Génère de nombreux avertissements pour suggérer des mises à jour de `data/**/*.json`
 
 
 ### Autres commandes

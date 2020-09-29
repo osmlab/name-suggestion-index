@@ -78,12 +78,11 @@ Daftar nama:
 
 * `config/*`
   * `config/brand_filters.json`- Regular expressions yang digunakan untuk memfilter `names_all` ke `names_keep` / `names_discard`
-* `brands/*` - Konfirugasi file untuk  setiap jenis merk bisnis, diorganisasikan oleh tag OpenStreetMap
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
-  * `brands/office/*.json`
+* `data/*` - Konfirugasi file untuk setiap jenis merk bisnis, diorganisasikan oleh tag OpenStreetMap
+  * `data/brands/amenity/*.json`
+  * `data/brands/leisure/*.json`
+  * `data/brands/shop/*.json`
+  * dan seterusnya...
 
 :point_right: Lihat [CONTRIBUTING.md](CONTRIBUTING.md) untuk info tentang bagaimana cara konstribusi di indeks ini.
 
@@ -93,8 +92,7 @@ Daftar nama:
 * `npm run build`
   * Memperbarui `dist/filtered/names_keep.json` dan `dist/filtered/names_discard.json`
   * Setiap entri baru dari `names_keep` yang belum ada di dalam indeks akan ditambahkan ke dalamnya
-  * Outputs many warnings to suggest updates to `brands/**/*.json`
-  * Keluarkan banyak peringatan untuk menyarankan pembaruan `brands/**/*.json`
+  * Keluarkan banyak peringatan untuk menyarankan pembaruan `data/**/*.json`
 
 
 ### Perintah lain

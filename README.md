@@ -79,12 +79,11 @@ Name lists:
 
 * `config/*`
   * `config/brand_filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
-* `brands/*` - Source files for each kind of branded business, organized by OpenStreetMap tag
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
-  * `brands/office/*.json`
+* `data/*` - Data files for each kind of branded business, organized by topic and OpenStreetMap tag
+  * `data/brands/amenity/*.json`
+  * `data/brands/leisure/*.json`
+  * `data/brands/shop/*.json`
+  * and so on...
 * `features/*` - Source files for custom locations where brands are active
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
@@ -95,7 +94,7 @@ Name lists:
   - Processes any custom locations under `features/**/*.geojson`
   - Regenerates `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
   - Any new items from `names_keep` not already present in the index will be added to it
-  - Outputs many warnings to suggest updates to `brands/**/*.json`
+  - Outputs many warnings to suggest updates to `data/**/*.json`
 
 ### Other commands
 
