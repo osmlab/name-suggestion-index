@@ -41,7 +41,7 @@ function buildAll() {
   ]);
 
   // Copy some project config files into `/dist`
-  shell.cp('-f', 'config/filters.json', 'dist/filters.json');
+  shell.cp('-f', 'config/brand_filters.json', 'dist/brand_filters.json');
   shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
 
   // Write `brands.json` as a single file containing everything by path
@@ -57,7 +57,7 @@ function buildAll() {
     minifyJSON('dist/brands.json', 'dist/brands.min.json'),
     minifyJSON('dist/dissolved.json', 'dist/dissolved.min.json'),
     minifyJSON('dist/featureCollection.json', 'dist/featureCollection.min.json'),
-    minifyJSON('dist/filters.json', 'dist/filters.min.json'),
+    minifyJSON('dist/brand_filters.json', 'dist/brand_filters.min.json'),
     minifyJSON('dist/match_groups.json', 'dist/match_groups.min.json'),
     minifyJSON('dist/name-suggestions.json', 'dist/name-suggestions.min.json'),
     minifyJSON('dist/collected/names_all.json', 'dist/collected/names_all.min.json'),

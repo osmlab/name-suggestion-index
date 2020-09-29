@@ -24,7 +24,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 ##### :white_check_mark: &nbsp; Do edit the files in `config/`, `brands/`, and `features/`:
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
+  * `config/brand_filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
   * `config/match_groups.json`- Groups of tag pairs that are considered equal when matching
 * `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
@@ -376,7 +376,7 @@ If you aren't sure, just ask on GitHub!
   If the items are duplicates of the same business,
     add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.
   If the duplicate item is a generic word,
-    add a filter to config/filters.json and delete the unwanted item.
+    add a filter to config/brand_filters.json and delete the unwanted item.
 ------------------------------------------------------------------------------------------------------
   "shop/supermarket|Carrefour" -> duplicates? -> "amenity/fuel|Carrefour"
   "shop/supermarket|VinMart" -> duplicates? -> "shop/department_store|VinMart"
@@ -422,7 +422,7 @@ For example, "Универмаг" is just a Russian word for "Department store":
 
 To remove this generic name:
 1. Delete the item from the appropriate file, in this case `brands/shop/department_store.json`
-2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
+2. Edit `config/brand_filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
 3. Run `npm run build` - if the filter is working, the name will not be put back into `brands/shop/department_store.json`
 4. `git diff` - to make sure that the items you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.

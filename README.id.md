@@ -77,7 +77,7 @@ Daftar nama:
 #### Konfigurasi file (sunting bagian ini):
 
 * `config/*`
-  * `config/filters.json`- Regular expressions yang digunakan untuk memfilter `names_all` ke `names_keep` / `names_discard`
+  * `config/brand_filters.json`- Regular expressions yang digunakan untuk memfilter `names_all` ke `names_keep` / `names_discard`
 * `brands/*` - Konfirugasi file untuk  setiap jenis merk bisnis, diorganisasikan oleh tag OpenStreetMap
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`

@@ -78,7 +78,7 @@ Name lists:
 #### Configuration files (edit these):
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
+  * `config/brand_filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
 * `brands/*` - Source files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`

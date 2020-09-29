@@ -83,7 +83,7 @@ Listes de noms:
 #### Fichiers de configuration (modifiez-les):
 
 * `config/*`
-  * `config/filters.json` - Expressions régulières utilisées pour filtrer `names_all` dans `names_keep`/`names_discard`
+  * `config/brand_filters.json` - Expressions régulières utilisées pour filtrer `names_all` dans `names_keep`/`names_discard`
 * `brands/*` - Fichiers de configuration pour chaque type d'entreprise de marque, organisés par balise OpenStreetMap
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`

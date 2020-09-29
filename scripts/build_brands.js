@@ -15,10 +15,10 @@ const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
-// Load and check filters.json
-let filters = require('../config/filters.json');
-const filtersSchema = require('../schema/filters.json');
-validate('config/filters.json', filters, filtersSchema);  // validate JSON-schema
+// Load and check brand_filters.json
+let filters = require('../config/brand_filters.json');
+const filtersSchema = require('../schema/brand_filters.json');
+validate('config/brand_filters.json', filters, filtersSchema);  // validate JSON-schema
 
 // Lowercase and sort the filters for consistency
 filters = {
@@ -26,7 +26,7 @@ filters = {
   discardKeys: filters.discardKeys.map(s => s.toLowerCase()).sort(),
   discardNames: filters.discardNames.map(s => s.toLowerCase()).sort()
 };
-fs.writeFileSync('config/filters.json', stringify(filters));
+fs.writeFileSync('config/brand_filters.json', stringify(filters));
 
 
 // all names start out in _discard..
@@ -434,7 +434,7 @@ function checkItems() {
     console.warn(colors.gray('  If the items are duplicates of the same business,'));
     console.warn(colors.gray('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
     console.warn(colors.gray('  If the duplicate item is a generic word,'));
-    console.warn(colors.gray('    add a filter to config/filters.json and delete the unwanted item.'));
+    console.warn(colors.gray('    add a filter to config/brand_filters.json and delete the unwanted item.'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     warnDuplicate.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
