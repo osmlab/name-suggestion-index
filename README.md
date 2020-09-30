@@ -3,7 +3,7 @@
 
 ## name-suggestion-index
 
-Canonical common brand names for OpenStreetMap
+Canonical common brand names for OpenStreetMap, an effective way of tagging
 
 ### What is it?
 
