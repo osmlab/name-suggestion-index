@@ -23,7 +23,7 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
-const POIKEYS = ['amenity', 'shop', 'leisure', 'tourism', 'office', 'craft'];
+const POIKEYS = ['amenity', 'shop', 'leisure', 'tourism', 'office', 'craft', 'healthcare'];
 const OPERATORKEYS = ['power', 'route']; //, 'public_transport'];
 const NETWORKKEYS = ['power', 'route']; //, 'public_transport'];
 
