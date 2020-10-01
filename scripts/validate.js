@@ -13,3 +13,4 @@ const fileTree = require('../lib/file_tree');
 
 let _cache = { path: {}, id: {} };
 fileTree.read('brands', _cache, loco);
+fileTree.read('transit', _cache, loco);
