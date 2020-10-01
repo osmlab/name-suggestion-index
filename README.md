@@ -3,19 +3,18 @@
 
 ## name-suggestion-index
 
-Canonical common brand names for OpenStreetMap
+Canonical features for OpenStreetMap
 
 ### What is it?
 
 The goal of this project is to maintain a [canonical](https://en.wikipedia.org/wiki/Canonicalization)
-list of commonly used names for suggesting consistent spelling and tagging of features
-in OpenStreetMap.
+list of commonly used features for suggesting consistent spelling and tagging in OpenStreetMap.
 
 [Watch the video](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html) from our talk at State of the Map US 2019 to learn more about this project!
 
 ### Browse the index
 
-You can browse the index at <https://nsi.guide/> to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+You can browse the index at <https://nsi.guide/> to see which featrues are missing Wikidata links, or have incomplete Wikipedia pages.
 
 ### How it's used
 
@@ -113,10 +112,14 @@ You do not need to do these steps in order to contribute to the index.
 - [Download the planet](http://planet.osm.org/pbf/)
   - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
-  - `osmium tags-filter planet-latest.osm.pbf -R name,brand,operator,network -o named.osm.pbf`
-- Run `node collect_all.js wanted.osm.pbf`
+  - `osmium tags-filter planet-latest.osm.pbf -R name,brand,operator,network -o filtered.osm.pbf`
+- Run `node collect_all.js /path/to/filtered.osm.pbf`
   - results will go in `dist/collected/*.json`
-  - `git add dist/collected && git commit -m 'Updated dist/collected'`
+- A new challenge:
+  - Attempt an `npm run build`.  Now that unique `id` properties are generated, it is possible that this command will fail.
+  - This can happen if there are *multiple* new items that end up with the same `id` (e.g. "MetroBus" vs "Metrobus")
+  - You'll need to just pick one to keep, then keep trying to run `npm run build` until the duplicate `id` issues are gone.
+  - `git add . && git commit -m 'Collected common names from latest planet'`
 
 ### License
 

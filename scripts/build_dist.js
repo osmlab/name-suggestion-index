@@ -42,6 +42,7 @@ function buildAll() {
 
   // Copy some project config files into `/dist`
   shell.cp('-f', 'config/brand_filters.json', 'dist/brand_filters.json');
+  shell.cp('-f', 'config/transit_filters.json', 'dist/transit_filters.json');
   shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
 
   // Write `brands.json` as a single file containing everything by path
@@ -166,7 +167,7 @@ function buildTaginfo() {
     'data_url': 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/taginfo.json',
     'project': {
       'name': 'name-suggestion-index',
-      'description': 'Canonical common brand names for OpenStreetMap',
+      'description': 'Canonical features for OpenStreetMap',
       'project_url': 'https://github.com/osmlab/name-suggestion-index',
       'doc_url': 'https://github.com/osmlab/name-suggestion-index/blob/main/README.md',
       'icon_url': 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/fastr-food-15.svg',
