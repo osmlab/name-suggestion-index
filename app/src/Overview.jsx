@@ -21,11 +21,8 @@ export default function Overview(props) {
   if (t === 'brands') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
     wikidataTag = 'brand:wikidata';
-  } else if (t === 'operators') {
+  } else if (t === 'transit') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
-    wikidataTag = 'operator:wikidata';
-  } else if (t === 'networks') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
     wikidataTag = 'network:wikidata';
   }
 

@@ -8,9 +8,10 @@ import Overview from './Overview';
 
 // Load the name-suggestion-index data files
 const DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
-const NAMES = `${DIST}/filtered/names_keep.json`;
-const INDEX = `${DIST}/brands.json`;
-const WIKIDATA = `${DIST}/wikidata.json`;
+const NAMES_KEEP = `${DIST}/filtered/names_keep.min.json`;
+const TRANSIT_KEEP = `${DIST}/filtered/transit_keep.min.json`;
+const INDEX = `${DIST}/index.min.json`;
+const WIKIDATA = `${DIST}/wikidata.min.json`;
 
 // We can use iD's taginfo file to pick icons
 const TAGINFO = 'https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json';
@@ -18,16 +19,18 @@ const TAGINFO = 'https://raw.githubusercontent.com/openstreetmap/iD/develop/data
 
 export default function App() {
   const [filters, setFilters] = useState({});
-  const [names, namesLoading] = useFetch(NAMES);
+  const [nameCounts, nameCountsLoading] = useFetch(NAMES_KEEP);
+  const [transitCounts, transitCountsLoading] = useFetch(TRANSIT_KEEP);
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
   const [index, indexLoading] = useIndex(INDEX);
   const [icons, iconsLoading] = useTaginfo(TAGINFO);
 
   const appData = {
-    isLoading: () => (namesLoading || wikidataLoading || indexLoading || iconsLoading),
+    isLoading: () => (nameCountsLoading || transitCountsLoading || wikidataLoading || indexLoading || iconsLoading),
     filters: filters,
     setFilters: setFilters,
-    names: names,
+    nameCounts: nameCounts,
+    transitCounts: transitCounts,
     index: index,
     icons: icons,
     wikidata: wikidata.wikidata
