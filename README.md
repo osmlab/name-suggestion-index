@@ -14,7 +14,7 @@ list of commonly used features for suggesting consistent spelling and tagging in
 
 ### Browse the index
 
-You can browse the index at <https://nsi.guide/> to see which featrues are missing Wikidata links, or have incomplete Wikipedia pages.
+You can browse the index at <https://nsi.guide/> to see which features are missing Wikidata links, or have incomplete Wikipedia pages.
 
 ### How it's used
 
@@ -23,7 +23,7 @@ name and tag things. For example, we may prefer `McDonald's` tagged as `amenity=
 but we see many examples of other spellings (`Mc Donald's`, `McDonalds`, `McDonald’s`) and
 taggings (`amenity=restaurant`).
 
-Building a canonical name index allows two very useful things:
+Building a canonical feature index allows two very useful things:
 
 - We can suggest the most "correct" way to tag things as users create them while editing.
 - We can scan the OSM data for "incorrect" features and produce lists for review and cleanup.
@@ -64,26 +64,30 @@ We're always looking for help!  If you have any questions or want to reach out t
 
 #### Generated files (do not edit):
 
-Preset files (used by OSM editors):
-* `dist/name-suggestions.json` - Name suggestion presets
-* `dist/name-suggestions.min.json` - Name suggestion presets, minified
-* `dist/name-suggestions.presets.xml` - Name suggestion presets, as JOSM-style preset XML
+The files under `dist/*` are generated:
+* `dist/collected/*` - Frequently occuring tags collected from OpenStreetMap
+* `dist/filtered/*` - Subset of tags that we are keeping or discarding
+* `dist/presets/*` - Preset files for use in OSM editors, custom JOSM presets, etc.
+* `dist/taginfo.json` - List of all tags this project uses (see: https://taginfo.openstreetmap.org/)
+* `dist/wikidata.json` - Cached data retrieved from Wikidata
 
-Name lists:
-* `dist/collected/*` - all the frequent names and tags collected from OpenStreetMap
-* `dist/filtered/*` - subset of names and tags that we are keeping or discarding
-* `dist/wikidata.json` - cached data retrieved from Wikidata
+#### Input files (edit these):
 
-#### Configuration files (edit these):
+The files under `config/*`, `data/*`, and `features/*` can be edited:
 
-* `config/*`
-  * `config/brand_filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
-* `data/*` - Data files for each kind of branded business, organized by topic and OpenStreetMap tag
+* `config/*`:
+  * `config/filter_*.json` - Regular expressions used to filter the OpenStreetMap tags into keep/discard lists
+  * `config/match_groups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
+* `data/*` - Data files for each kind of feature, organized by topic and OpenStreetMap tag
   * `data/brands/amenity/*.json`
-  * `data/brands/leisure/*.json`
   * `data/brands/shop/*.json`
-  * and so on...
-* `features/*` - Source files for custom locations where brands are active
+  * `data/transit/route/*.json`
+  * and so on…
+* `features/*` - GeoJSON files that define custom regions where the features are allowed
+  * `hawaii.geojson`
+  * `quebec.geojson`
+  * `scotland.geojson`
+  * and so on…
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
@@ -91,9 +95,15 @@ Name lists:
 
 - `npm run build`
   - Processes any custom locations under `features/**/*.geojson`
-  - Regenerates `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
-  - Any new items from `names_keep` not already present in the index will be added to it
+  - Regenerates `dist/filtered/*` keep and discard lists
+  - Any new items from the keep list not already present in the index will be merged into it
   - Outputs many warnings to suggest updates to `data/**/*.json`
+
+### Building nsi.guide
+
+<https://nsi.guide/> is a web application written in ReactJS that lets anyone browse the index.
+* The source code for this app can be found under `app/*`
+* `npm run appbuild` will rebuild it.
 
 ### Other commands
 

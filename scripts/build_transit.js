@@ -15,10 +15,10 @@ const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
-// Load and check transit_filters.json
-let filters = require('../config/transit_filters.json');
+// Load and check filter_transit.json
+let filters = require('../config/filter_transit.json');
 const filtersSchema = require('../schema/filters.json');
-validate('config/transit_filters.json', filters, filtersSchema);  // validate JSON-schema
+validate('config/filter_transit.json', filters, filtersSchema);  // validate JSON-schema
 
 // Lowercase and sort the filters for consistency
 filters = {
@@ -26,7 +26,7 @@ filters = {
   discardKeys: filters.discardKeys.map(s => s.toLowerCase()).sort(),
   discardNames: filters.discardNames.map(s => s.toLowerCase()).sort()
 };
-fs.writeFileSync('config/transit_filters.json', stringify(filters));
+fs.writeFileSync('config/filter_transit.json', stringify(filters));
 
 
 // we'll use the `network` tag to seed the transit data
@@ -422,7 +422,7 @@ function checkItems() {
     console.warn(colors.gray('  If the items are duplicates of the same business,'));
     console.warn(colors.gray('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
     console.warn(colors.gray('  If the duplicate item is a generic word,'));
-    console.warn(colors.gray('    add a filter to config/transit_filters.json and delete the unwanted item.'));
+    console.warn(colors.gray('    add a filter to config/filter_transit.json and delete the unwanted item.'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     warnDuplicate.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
