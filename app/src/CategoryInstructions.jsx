@@ -9,10 +9,7 @@ export default function CategoryInstructions(props) {
   if (t === 'brands') {
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
-  } else if (t === 'operators') {
-    itemType = 'operator';
-    wikidataTag = 'operator:wikidata';
-  } else if (t === 'networks') {
+  } else if (t === 'transit') {
     itemType = 'network';
     wikidataTag = 'network:wikidata';
   }

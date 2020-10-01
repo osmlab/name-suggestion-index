@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-// This script will process a planet file and extract frequently occuring names.
-// It produces a file containing all the top names and tags: `dist/names_all.json`
+// This script will process a planet file and collect frequently occuring tags that we care about.
+// It produces files containing all the top names and tags: `dist/collected/names_all.json`
 //
 // `names_all.json` contains a dictionary object in the format:
 // "key/value|name": count
@@ -23,14 +23,14 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
-const POIKEYS = ['amenity', 'shop', 'leisure', 'tourism', 'office', 'craft'];
-const OPERATORKEYS = ['amenity', 'power', 'public_transport'];
-const NETWORKKEYS = ['route', 'public_transport'];
+const POIKEYS = ['amenity', 'shop', 'leisure', 'tourism', 'office', 'craft', 'healthcare'];
+const OPERATORKEYS = ['power', 'route']; //, 'public_transport'];
+const NETWORKKEYS = ['power', 'route']; //, 'public_transport'];
 
-// collect('name', POIKEYS, 50);
-// collect('brand', POIKEYS, 50);
-// collect('operator', OPERATORKEYS, 25);
-collect('network', NETWORKKEYS, 25);
+collect('name', POIKEYS, 50);
+collect('brand', POIKEYS, 50);
+collect('operator', OPERATORKEYS, 10);
+collect('network', NETWORKKEYS, 10);
 
 
 function collect(tag, fromKeys, threshold) {
@@ -74,7 +74,7 @@ function collect(tag, fromKeys, threshold) {
       if (!n) return;
 
       // 'ncn','rcn','lcn', etc.. these are special and not actual networks - ignore them.
-      if (tag === 'network' && /^[nrl][cw]n$/.test(n)) return;
+      if (tag === 'network' && /^[inrl][chw]n$/.test(n)) return;
 
       const v = entity.tags(k);
       if (!v) return;

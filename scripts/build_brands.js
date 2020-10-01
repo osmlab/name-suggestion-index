@@ -15,10 +15,10 @@ const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
-// Load and check filters.json
-let filters = require('../config/filters.json');
+// Load and check filter_brands.json
+let filters = require('../config/filter_brands.json');
 const filtersSchema = require('../schema/filters.json');
-validate('config/filters.json', filters, filtersSchema);  // validate JSON-schema
+validate('config/filter_brands.json', filters, filtersSchema);  // validate JSON-schema
 
 // Lowercase and sort the filters for consistency
 filters = {
@@ -26,13 +26,18 @@ filters = {
   discardKeys: filters.discardKeys.map(s => s.toLowerCase()).sort(),
   discardNames: filters.discardNames.map(s => s.toLowerCase()).sort()
 };
-fs.writeFileSync('config/filters.json', stringify(filters));
+fs.writeFileSync('config/filter_brands.json', stringify(filters));
 
 
-// all names start out in _discard..
+// we'll use both brand and name tags
 const allnames = require('../dist/collected/names_all.json');
-let _discard = Object.assign({}, allnames);
+const allbrands = require('../dist/collected/brands_all.json');
+
+let _discard = {};
 let _keep = {};
+// all names and brands start out in _discard..
+Object.keys(allnames).forEach(kvn => _discard[kvn] = _discard[kvn] || allnames[kvn]);
+Object.keys(allbrands).forEach(kvn => _discard[kvn] = _discard[kvn] || allbrands[kvn]);
 filterNames();
 
 
@@ -104,6 +109,15 @@ function filterNames() {
       }
     }
   });
+
+  // discard semicolon-delimited multivalues
+  for (let kvn in _keep) {
+    const name = kvn.split('|', 2)[1];
+    if (/;/.test(name)) {
+      _discard[kvn] = _keep[kvn];
+      delete _keep[kvn];
+    }
+  }
 
   const discardCount = Object.keys(_discard).length;
   const keepCount = Object.keys(_keep).length;
@@ -349,6 +363,13 @@ function checkItems() {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
         }
       });
+      // Warn if a semicolon-delimited multivalue has snuck into the index
+      ['name', 'brand', 'operator', 'network'].forEach(osmkey => {
+        const val = tags[osmkey];
+        if (val && /;/.test(val)) {
+          warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
+        }
+      });
       // Warn if user put `wikidata`/`wikipedia` instead of `brand:wikidata`/`brand:wikipedia`
       ['wikipedia', 'wikidata'].forEach(osmkey => {
         const val = tags[osmkey];
@@ -434,7 +455,7 @@ function checkItems() {
     console.warn(colors.gray('  If the items are duplicates of the same business,'));
     console.warn(colors.gray('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
     console.warn(colors.gray('  If the duplicate item is a generic word,'));
-    console.warn(colors.gray('    add a filter to config/filters.json and delete the unwanted item.'));
+    console.warn(colors.gray('    add a filter to config/filter_brands.json and delete the unwanted item.'));
     console.warn(colors.gray('--------------------------------------------------------------------------------'));
     warnDuplicate.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')

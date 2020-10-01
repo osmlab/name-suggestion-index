@@ -5596,10 +5596,7 @@ function CategoryInstructions(props) {
   if (t === 'brands') {
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
-  } else if (t === 'operators') {
-    itemType = 'operator';
-    wikidataTag = 'operator:wikidata';
-  } else if (t === 'networks') {
+  } else if (t === 'transit') {
     itemType = 'network';
     wikidataTag = 'network:wikidata';
   }
@@ -11786,6 +11783,7 @@ function CategoryRow(props) {
   var data = props.data;
   if (data.isLoading()) return;
   var item = props.item;
+  var t = props.t;
   var k = props.k;
   var v = props.v; // filters (used here for highlighting)
 
@@ -11793,14 +11791,27 @@ function CategoryRow(props) {
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var rowClasses = [];
   if (item.filtered) rowClasses.push('hide');
-  if (item.selected) rowClasses.push('selected'); // choose something to use as the 'name'
+  if (item.selected) rowClasses.push('selected'); // setup defaults for this tree..
 
-  var n = item.tags.name || item.tags.brand || item.tags.operator || item.tags.network;
-  var kvn = "".concat(k, "/").concat(v, "|").concat(n);
-  var count = data.names[kvn] || '< 50';
-  var tags = item.tags || {};
-  var qid = tags['brand:wikidata'];
-  var bn = tags['brand'];
+  var n, kvn, count, tags, qid, overpassQuery;
+
+  if (t === 'brands') {
+    n = item.tags.name || item.tags.brand;
+    kvn = "".concat(k, "/").concat(v, "|").concat(n);
+    count = data.nameCounts[kvn] || '< 50';
+    tags = item.tags || {};
+    qid = tags['brand:wikidata'];
+    var bn = tags['brand'];
+    overpassQuery = "[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "]\n{ color:green; fill-color:green; }\n}}");
+  } else if (t === 'transit') {
+    n = item.tags.network;
+    kvn = "".concat(k, "/").concat(v, "|").concat(n);
+    count = data.transitCounts[kvn] || '< 50';
+    tags = item.tags || {};
+    qid = tags['network:wikidata'];
+    overpassQuery = "[out:json][timeout:100];\n(nwr[\"network\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[network=").concat(n, "],\nway[network=").concat(n, "],\nrelation[network=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][network=").concat(n, "],\nway[").concat(k, "=").concat(v, "][network=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][network=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "],\nway[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "],\nrelation[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "]\n{ color:green; fill-color:green; }\n}}");
+  }
+
   var wd = data.wikidata[qid] || {};
   var label = wd.label || '';
   var description = wd.description ? '"' + wd.description + '"' : '';
@@ -11823,7 +11834,7 @@ function CategoryRow(props) {
     className: "locations"
   }, locoDisplay(item.locationSet, n)), /*#__PURE__*/_react.default.createElement("div", {
     className: "viewlink"
-  }, searchOverpassLink(k, v, n, tags['brand:wikidata'], tags['brand']), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(n), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(n))), /*#__PURE__*/_react.default.createElement("td", {
+  }, searchOverpassLink(n, overpassQuery), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(n), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(n))), /*#__PURE__*/_react.default.createElement("td", {
     className: "count"
   }, count), /*#__PURE__*/_react.default.createElement("td", {
     className: "tags"
@@ -11889,10 +11900,8 @@ function CategoryRow(props) {
     }, "Search Wikipedia");
   }
 
-  function searchOverpassLink(k, v, n, w, bn) {
-    // Build Overpass Turbo link:
-    var q = encodeURIComponent("[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(w, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(w, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(w, "]\n{ color:green; fill-color:green; }\n}}")); // Create Overpass Turbo link:
-
+  function searchOverpassLink(name, overpassQuery) {
+    var q = encodeURIComponent(overpassQuery);
     var href = "https://overpass-turbo.eu/?Q=".concat(q, "&R");
     var title = "Search Overpass Turbo for ".concat(n);
     return /*#__PURE__*/_react.default.createElement("a", {
@@ -19155,9 +19164,7 @@ function Category(props) {
 
   if (t === 'brands') {
     wikidataTag = 'brand:wikidata';
-  } else if (t === 'operators') {
-    wikidataTag = 'operator:wikidata';
-  } else if (t === 'networks') {
+  } else if (t === 'transit') {
     wikidataTag = 'network:wikidata';
   } // filters
 
@@ -19267,10 +19274,8 @@ function Title(props) {
 
     if (t === 'brands') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
-    } else if (t === 'operators') {
+    } else if (t === 'transit') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
-    } else if (t === 'networks') {
-      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
     }
 
     var kv = "".concat(k, "/").concat(v);
@@ -19304,9 +19309,10 @@ function Title(props) {
 }
 
 function TreeSwitcher(props) {
-  var t = props.t; // const others = ['brands', 'operators', 'networks'].filter(d => d !== t);
-
-  var others = [];
+  var t = props.t;
+  var others = ['brands', 'transit'].filter(function (d) {
+    return d !== t;
+  });
   var links = others.map(function (t) {
     return /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: "index.html?t=".concat(t)
@@ -19418,10 +19424,7 @@ function OverviewInstructions(props) {
   if (t === 'brands') {
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
-  } else if (t === 'operators') {
-    itemType = 'operator';
-    wikidataTag = 'operator:wikidata';
-  } else if (t === 'networks') {
+  } else if (t === 'transit') {
     itemType = 'network';
     wikidataTag = 'network:wikidata';
   }
@@ -19478,11 +19481,8 @@ function Overview(props) {
   if (t === 'brands') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
     wikidataTag = 'brand:wikidata';
-  } else if (t === 'operators') {
+  } else if (t === 'transit') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
-    wikidataTag = 'operator:wikidata';
-  } else if (t === 'networks') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/shield.svg';
     wikidataTag = 'network:wikidata';
   } // only render these components if we are loading a supported tree..
 
@@ -19629,9 +19629,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // Load the name-suggestion-index data files
 var DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
-var NAMES = "".concat(DIST, "/names_keep.json");
-var INDEX = "".concat(DIST, "/brands.json");
-var WIKIDATA = "".concat(DIST, "/wikidata.json"); // We can use iD's taginfo file to pick icons
+var NAMES_KEEP = "".concat(DIST, "/filtered/names_keep.min.json");
+var TRANSIT_KEEP = "".concat(DIST, "/filtered/transit_keep.min.json");
+var INDEX = "".concat(DIST, "/index.min.json");
+var WIKIDATA = "".concat(DIST, "/wikidata.min.json"); // We can use iD's taginfo file to pick icons
 
 var TAGINFO = 'https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json';
 
@@ -19641,15 +19642,20 @@ function App() {
       filters = _useState2[0],
       setFilters = _useState2[1];
 
-  var _useFetch = useFetch(NAMES),
+  var _useFetch = useFetch(NAMES_KEEP),
       _useFetch2 = _slicedToArray(_useFetch, 2),
-      names = _useFetch2[0],
-      namesLoading = _useFetch2[1];
+      nameCounts = _useFetch2[0],
+      nameCountsLoading = _useFetch2[1];
 
-  var _useFetch3 = useFetch(WIKIDATA),
+  var _useFetch3 = useFetch(TRANSIT_KEEP),
       _useFetch4 = _slicedToArray(_useFetch3, 2),
-      wikidata = _useFetch4[0],
-      wikidataLoading = _useFetch4[1];
+      transitCounts = _useFetch4[0],
+      transitCountsLoading = _useFetch4[1];
+
+  var _useFetch5 = useFetch(WIKIDATA),
+      _useFetch6 = _slicedToArray(_useFetch5, 2),
+      wikidata = _useFetch6[0],
+      wikidataLoading = _useFetch6[1];
 
   var _useIndex = useIndex(INDEX),
       _useIndex2 = _slicedToArray(_useIndex, 2),
@@ -19663,11 +19669,12 @@ function App() {
 
   var appData = {
     isLoading: function isLoading() {
-      return namesLoading || wikidataLoading || indexLoading || iconsLoading;
+      return nameCountsLoading || transitCountsLoading || wikidataLoading || indexLoading || iconsLoading;
     },
     filters: filters,
     setFilters: setFilters,
-    names: names,
+    nameCounts: nameCounts,
+    transitCounts: transitCounts,
     index: index,
     icons: icons,
     wikidata: wikidata.wikidata

@@ -3,19 +3,18 @@
 
 ## name-suggestion-index
 
-Canonical common brand names for OpenStreetMap
+Canonical features for OpenStreetMap
 
 ### What is it?
 
 The goal of this project is to maintain a [canonical](https://en.wikipedia.org/wiki/Canonicalization)
-list of commonly used names for suggesting consistent spelling and tagging of features
-in OpenStreetMap.
+list of commonly used features for suggesting consistent spelling and tagging in OpenStreetMap.
 
 [Watch the video](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html) from our talk at State of the Map US 2019 to learn more about this project!
 
 ### Browse the index
 
-You can browse the index at <https://nsi.guide/> to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+You can browse the index at <https://nsi.guide/> to see which features are missing Wikidata links, or have incomplete Wikipedia pages.
 
 ### How it's used
 
@@ -24,7 +23,7 @@ name and tag things. For example, we may prefer `McDonald's` tagged as `amenity=
 but we see many examples of other spellings (`Mc Donald's`, `McDonalds`, `McDonald’s`) and
 taggings (`amenity=restaurant`).
 
-Building a canonical name index allows two very useful things:
+Building a canonical feature index allows two very useful things:
 
 - We can suggest the most "correct" way to tag things as users create them while editing.
 - We can scan the OSM data for "incorrect" features and produce lists for review and cleanup.
@@ -65,27 +64,30 @@ We're always looking for help!  If you have any questions or want to reach out t
 
 #### Generated files (do not edit):
 
-Preset files (used by OSM editors):
-* `dist/name-suggestions.json` - Name suggestion presets
-* `dist/name-suggestions.min.json` - Name suggestion presets, minified
-* `dist/name-suggestions.presets.xml` - Name suggestion presets, as JOSM-style preset XML
+The files under `dist/*` are generated:
+* `dist/collected/*` - Frequently occuring tags collected from OpenStreetMap
+* `dist/filtered/*` - Subset of tags that we are keeping or discarding
+* `dist/presets/*` - Preset files for use in OSM editors, custom JOSM presets, etc.
+* `dist/taginfo.json` - List of all tags this project uses (see: https://taginfo.openstreetmap.org/)
+* `dist/wikidata.json` - Cached data retrieved from Wikidata
 
-Name lists:
-* `dist/collected/*` - all the frequent names and tags collected from OpenStreetMap
-* `dist/filtered/*` - subset of names and tags that we are keeping or discarding
-* `dist/wikidata.json` - cached data retrieved from Wikidata
+#### Input files (edit these):
 
-#### Configuration files (edit these):
+The files under `config/*`, `data/*`, and `features/*` can be edited:
 
-* `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
-* `brands/*` - Source files for each kind of branded business, organized by OpenStreetMap tag
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
-  * `brands/office/*.json`
-* `features/*` - Source files for custom locations where brands are active
+* `config/*`:
+  * `config/filter_*.json` - Regular expressions used to filter the OpenStreetMap tags into keep/discard lists
+  * `config/match_groups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
+* `data/*` - Data files for each kind of feature, organized by topic and OpenStreetMap tag
+  * `data/brands/amenity/*.json`
+  * `data/brands/shop/*.json`
+  * `data/transit/route/*.json`
+  * and so on…
+* `features/*` - GeoJSON files that define custom regions where the features are allowed
+  * `hawaii.geojson`
+  * `quebec.geojson`
+  * `scotland.geojson`
+  * and so on…
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
@@ -93,9 +95,15 @@ Name lists:
 
 - `npm run build`
   - Processes any custom locations under `features/**/*.geojson`
-  - Regenerates `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
-  - Any new items from `names_keep` not already present in the index will be added to it
-  - Outputs many warnings to suggest updates to `brands/**/*.json`
+  - Regenerates `dist/filtered/*` keep and discard lists
+  - Any new items from the keep list not already present in the index will be merged into it
+  - Outputs many warnings to suggest updates to `data/**/*.json`
+
+### Building nsi.guide
+
+<https://nsi.guide/> is a web application written in ReactJS that lets anyone browse the index.
+* The source code for this app can be found under `app/*`
+* `npm run appbuild` will rebuild it.
 
 ### Other commands
 
@@ -114,10 +122,14 @@ You do not need to do these steps in order to contribute to the index.
 - [Download the planet](http://planet.osm.org/pbf/)
   - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
-  - `osmium tags-filter planet-latest.osm.pbf -R name,brand,operator,network -o named.osm.pbf`
-- Run `node collect_all.js wanted.osm.pbf`
+  - `osmium tags-filter planet-latest.osm.pbf -R name,brand,operator,network -o filtered.osm.pbf`
+- Run `node collect_all.js /path/to/filtered.osm.pbf`
   - results will go in `dist/collected/*.json`
-  - `git add dist/collected && git commit -m 'Updated dist/collected'`
+- A new challenge:
+  - Attempt an `npm run build`.  Now that unique `id` properties are generated, it is possible that this command will fail.
+  - This can happen if there are *multiple* new items that end up with the same `id` (e.g. "MetroBus" vs "Metrobus")
+  - You'll need to just pick one to keep, then keep trying to run `npm run build` until the duplicate `id` issues are gone.
+  - `git add . && git commit -m 'Collected common names from latest planet'`
 
 ### License
 

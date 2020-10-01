@@ -21,16 +21,16 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 * `dist/filtered/*` - subset of names and tags that we are keeping or discarding
 * `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
-##### :white_check_mark: &nbsp; Do edit the files in `config/`, `brands/`, and `features/`:
+##### :white_check_mark: &nbsp; Do edit the files in `config/`, `data/`, and `features/`:
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
+  * `config/filter_brands.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
   * `config/match_groups.json`- Groups of tag pairs that are considered equal when matching
-* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
+* `data/*` - Data files for each kind of branded business, organized by topic and OpenStreetMap tag
+  * `data/brands/amenity/*.json`
+  * `data/brands/leisure/*.json`
+  * `data/brands/shop/*.json`
+  * and so on...
 * `features/*` - Source files for custom locations where brands are active
 
 &nbsp;
@@ -61,21 +61,21 @@ and not need to worry about the tags being added.
 
 &nbsp;
 
-### :card_file_box: &nbsp; About the brand files
+### :card_file_box: &nbsp; About the data files
 
-__The `brands/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
+__The `data/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
 
 These files are created by a several step process:
-- Process the OpenStreetMap "planet" data to extract common names -> `dist/collected/names_all.json`
-- Filter all the names into -> `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
-- Merge the names we are keeping into -> `brands/**/*.json` files for us to decide what to do with them
+- Process the OpenStreetMap "planet" data to collect common tags -> for example, `dist/collected/names_all.json`
+- Filter all the tags into -> `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
+- Merge the items we are keeping into -> `data/**/*.json` files for us to decide what to do with them
 
-The files are organized by OpenStreetMap tag:
-* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
+The data files are organized by topic and OpenStreetMap tag:
+* `data/brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `amenity/*.json`
+  * `leisure/*.json`
+  * `shop/*.json`
+  * and so on...
 
 
 Each item looks like this _(comments added for clarity)_:
@@ -360,7 +360,7 @@ This will output a lot of warnings, which you can help fix!
 
 ### :thinking: &nbsp; Resolve warnings
 
-Warnings mean that you need to edit files under `brands/*`.
+Warnings mean that you need to edit files under `data/brands/*`.
 The warning output gives a clue about how to fix or suppress the warning.
 If you aren't sure, just ask on GitHub!
 
@@ -376,7 +376,7 @@ If you aren't sure, just ask on GitHub!
   If the items are duplicates of the same business,
     add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.
   If the duplicate item is a generic word,
-    add a filter to config/filters.json and delete the unwanted item.
+    add a filter to config/filter_brands.json and delete the unwanted item.
 ------------------------------------------------------------------------------------------------------
   "shop/supermarket|Carrefour" -> duplicates? -> "amenity/fuel|Carrefour"
   "shop/supermarket|VinMart" -> duplicates? -> "shop/department_store|VinMart"
@@ -421,9 +421,9 @@ For example, "Универмаг" is just a Russian word for "Department store":
 ```
 
 To remove this generic name:
-1. Delete the item from the appropriate file, in this case `brands/shop/department_store.json`
-2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
-3. Run `npm run build` - if the filter is working, the name will not be put back into `brands/shop/department_store.json`
+1. Delete the item from the appropriate file, in this case `data/brands/shop/department_store.json`
+2. Edit `config/filter_brands.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
+3. Run `npm run build` - if the filter is working, the name will not be put back into `data/brands/shop/department_store.json`
 4. `git diff` - to make sure that the items you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.
 
@@ -614,7 +614,7 @@ is a valuable way to get ahead of incorrect tagging.
 
 1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `shop=food`). Ideally you also have `brand:wikidata` and `brand:wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
 
-2. Add your new entry anywhere into the appropriate file under `brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
+2. Add your new entry anywhere into the appropriate file under `data/brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
 
 3. If the brand only has locations in a known set of countries add them to the `"locationSet"` property. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
 
