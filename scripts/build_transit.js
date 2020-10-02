@@ -323,14 +323,18 @@ function checkItems() {
       // Warn if `*:wikidata` or `*:wikipedia` tags are missing or look wrong..
       ['network', 'operator'].forEach(osmkey => {
         const wd = tags[`${osmkey}:wikidata`];
-        if (!wd && osmkey === 'network') {
-          warnMissingWikidata.push(display);
+        if (!wd) {
+          if (osmkey === 'network')  {
+            warnMissingWikidata.push(display);
+          }
         } else if (!/^Q\d+$/.test(wd)) {
           warnFormatWikidata.push([display(item), wd]);
         }
         const wp = tags[`${osmkey}:wikipedia`];
-        if (!wp && osmkey === 'network') {
-          warnMissingWikipedia.push(display(item));
+        if (!wp) {
+          if (osmkey === 'network')  {
+            warnMissingWikipedia.push(display(item));
+          }
         } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
           warnFormatWikipedia.push([display(item), wp]);
         }
