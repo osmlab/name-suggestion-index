@@ -17,7 +17,7 @@ v.addSchema(geojsonSchema, 'http://json.schemastore.org/geojson.json');
 
 
 console.log(colors.blue('-'.repeat(70)));
-console.log(colors.blue('🧩  Build features/*'))
+console.log(colors.blue('🧩  Build features/*'));
 console.log(colors.blue('-'.repeat(70)));
 buildAll();
 
