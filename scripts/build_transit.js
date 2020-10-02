@@ -216,6 +216,14 @@ function mergeItems() {
       let tags = item.tags;
       const name = tags.network;
 
+      // if the operator is the same as the network, copy any missing *:wikipedia/*:wikidata tags
+      if (tags.network && tags.operator && tags.network === tags.operator) {
+        if (!tags['operator:wikidata'] && tags['network:wikidata'])    tags['operator:wikidata'] = tags['network:wikidata'];
+        if (!tags['operator:wikipedia'] && tags['network:wikipedia'])  tags['operator:wikipedia'] = tags['network:wikipedia'];
+        if (!tags['network:wikidata'] && tags['operator:wikidata'])    tags['network:wikidata'] = tags['operator:wikidata'];
+        if (!tags['network:wikipedia'] && tags['operator:wikipedia'])  tags['network:wikipedia'] = tags['operator:wikipedia'];
+      }
+
       // If the name can only be reasonably read in one country.
       // Assign `locationSet`, and duplicate `network:xx` and `operator:xx` tags
       // https://www.regular-expressions.info/unicode.html
@@ -312,19 +320,21 @@ function checkItems() {
       const name = tags.network;
       total++;
 
-      // Warn if `network:wikidata` or `network:wikipedia` tags are missing or look wrong..
-      const wd = tags['network:wikidata'];
-      if (!wd) {
-        warnMissingWikidata.push(display);
-      } else if (!/^Q\d+$/.test(wd)) {
-        warnFormatWikidata.push([display(item), wd]);
-      }
-      const wp = tags['network:wikipedia'];
-      if (!wp) {
-        warnMissingWikipedia.push(display(item));
-      } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-        warnFormatWikipedia.push([display(item), wp]);
-      }
+      // Warn if `*:wikidata` or `*:wikipedia` tags are missing or look wrong..
+      ['network', 'operator'].forEach(osmkey => {
+        const wd = tags[`${osmkey}:wikidata`];
+        if (!wd && osmkey === 'network') {
+          warnMissingWikidata.push(display);
+        } else if (!/^Q\d+$/.test(wd)) {
+          warnFormatWikidata.push([display(item), wd]);
+        }
+        const wp = tags[`${osmkey}:wikipedia`];
+        if (!wp && osmkey === 'network') {
+          warnMissingWikipedia.push(display(item));
+        } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+          warnFormatWikipedia.push([display(item), wp]);
+        }
+      });
 
       // Warn if a semicolon-delimited multivalue has snuck into the index
       ['name', 'brand', 'operator', 'network'].forEach(osmkey => {
