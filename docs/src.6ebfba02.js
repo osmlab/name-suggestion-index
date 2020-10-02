@@ -11843,7 +11843,7 @@ function CategoryRow(props) {
     dangerouslySetInnerHTML: highlight(tt, displayTags(tags))
   })), /*#__PURE__*/_react.default.createElement("td", {
     className: "wikidata"
-  }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(tags['brand:wikidata']), siteLink(identities.website), /*#__PURE__*/_react.default.createElement(_CategoryRowSocialLinks.default, identities)), /*#__PURE__*/_react.default.createElement("td", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(qid), siteLink(identities.website), /*#__PURE__*/_react.default.createElement(_CategoryRowSocialLinks.default, identities)), /*#__PURE__*/_react.default.createElement("td", {
     className: "logo"
   }, logo(logos.wikidata)), /*#__PURE__*/_react.default.createElement("td", {
     className: "logo"

@@ -106,7 +106,7 @@ relation[${k}=${v}][network=${n}][network:wikidata=${qid}]
     <td className='wikidata'>
       <h3>{label}</h3>
       <span>{description}</span><br/>
-      { wdLink(tags['brand:wikidata']) }
+      { wdLink(qid) }
       { siteLink(identities.website) }
       <CategoryRowSocialLinks {...identities} />
     </td>
