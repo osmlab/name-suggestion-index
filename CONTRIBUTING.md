@@ -17,21 +17,20 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
-* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/names_discard.json` - subset of `names_all` we are discarding
-* `dist/names_keep.json` - subset of `names_all` we are keeping
+* `dist/collected/*` - all the frequent names and tags collected from OpenStreetMap
+* `dist/filtered/*` - subset of names and tags that we are keeping or discarding
 * `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
-##### :white_check_mark: &nbsp; Do edit the files in `config/`, `brands/`, and `features/`:
+##### :white_check_mark: &nbsp; Do edit the files in `config/`, `data/`, and `features/`:
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
+  * `config/filter_brands.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
   * `config/match_groups.json`- Groups of tag pairs that are considered equal when matching
-* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
+* `data/*` - Data files for each kind of branded business, organized by topic and OpenStreetMap tag
+  * `data/brands/amenity/*.json`
+  * `data/brands/leisure/*.json`
+  * `data/brands/shop/*.json`
+  * and so on...
 * `features/*` - Source files for custom locations where brands are active
 
 &nbsp;
@@ -62,21 +61,21 @@ and not need to worry about the tags being added.
 
 &nbsp;
 
-### :card_file_box: &nbsp; About the brand files
+### :card_file_box: &nbsp; About the data files
 
-__The `brands/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
+__The `data/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
 
 These files are created by a several step process:
-- Process the OpenStreetMap "planet" data to extract common names -> `dist/names_all.json`
-- Filter all the names into -> `dist/names_keep.json` and `dist/names_discard.json`
-- Merge the names we are keeping into -> `brands/**/*.json` files for us to decide what to do with them
+- Process the OpenStreetMap "planet" data to collect common tags -> for example, `dist/collected/names_all.json`
+- Filter all the tags into -> `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
+- Merge the items we are keeping into -> `data/**/*.json` files for us to decide what to do with them
 
-The files are organized by OpenStreetMap tag:
-* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
+The data files are organized by topic and OpenStreetMap tag:
+* `data/brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `amenity/*.json`
+  * `leisure/*.json`
+  * `shop/*.json`
+  * and so on...
 
 
 Each item looks like this _(comments added for clarity)_:
@@ -101,7 +100,7 @@ In `brands/amenity/fast_food.json`:
     },
 ```
 
-There may also be entries for McDonald's in other languages!
+There may also be items for McDonald's in other languages!
 
 ```js
   "brands/amenity/fast_food": [
@@ -206,7 +205,7 @@ Each item requires a `tags` value.  This is just an Object containing all the Op
 
 Brands are often tagged inconsistently in OpenStreetMap.  For example, some mappers write "International House of Pancakes" and others write "IHOP".
 
-This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate entries out of the index and is used in the iD editor to help suggest tag improvements.
+This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate items out of the index and is used in the iD editor to help suggest tag improvements.
 
 `matchNames` and `matchTags` properties can be used to list the less-preferred alternatives.
 
@@ -283,7 +282,7 @@ Sometimes multiple brands use the same name - this is okay!
 
 Make sure each entry has a distinct `locationSet`, and the index will generate unique identifiers for each one.
 
-You should also give each entry a unique `displayName`, so you everyone can tell them apart.
+You should also give each entry a unique `displayName`, so everyone can tell them apart.
 
 
 ```js
@@ -361,7 +360,7 @@ This will output a lot of warnings, which you can help fix!
 
 ### :thinking: &nbsp; Resolve warnings
 
-Warnings mean that you need to edit files under `brands/*`.
+Warnings mean that you need to edit files under `data/brands/*`.
 The warning output gives a clue about how to fix or suppress the warning.
 If you aren't sure, just ask on GitHub!
 
@@ -377,7 +376,7 @@ If you aren't sure, just ask on GitHub!
   If the items are duplicates of the same business,
     add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.
   If the duplicate item is a generic word,
-    add a filter to config/filters.json and delete the unwanted item.
+    add a filter to config/filter_brands.json and delete the unwanted item.
 ------------------------------------------------------------------------------------------------------
   "shop/supermarket|Carrefour" -> duplicates? -> "amenity/fuel|Carrefour"
   "shop/supermarket|VinMart" -> duplicates? -> "shop/department_store|VinMart"
@@ -390,9 +389,9 @@ For "VinMart" we really prefer for it to be tagged as a supermarket.  It's a sin
 * Delete the (not preferred) entry for `"shop/department_store|VinMart"`
 
 For "Carrefour" we know that can be both a supermarket and a fuel station.  It's two different things.
-* Make sure both entries have a `brand:wikidata` tag and appropriate `locationSet`.
+* Make sure both items have a `brand:wikidata` tag and appropriate `locationSet`.
 
-Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
+Existing tagging (you can compare counts in `dist/filtered/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
 
 If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
 
@@ -422,10 +421,10 @@ For example, "Универмаг" is just a Russian word for "Department store":
 ```
 
 To remove this generic name:
-1. Delete the item from the appropriate file, in this case `brands/shop/department_store.json`
-2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
-3. Run `npm run build` - if the filter is working, the name will not be put back into `brands/shop/department_store.json`
-4. `git diff` - to make sure that the entries you wanted to discard are gone (and no others are affected)
+1. Delete the item from the appropriate file, in this case `data/brands/shop/department_store.json`
+2. Edit `config/filter_brands.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
+3. Run `npm run build` - if the filter is working, the name will not be put back into `data/brands/shop/department_store.json`
+4. `git diff` - to make sure that the items you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.
 
 &nbsp;
@@ -615,7 +614,7 @@ is a valuable way to get ahead of incorrect tagging.
 
 1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `shop=food`). Ideally you also have `brand:wikidata` and `brand:wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
 
-2. Add your new entry anywhere into the appropriate file under `brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
+2. Add your new entry anywhere into the appropriate file under `data/brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
 
 3. If the brand only has locations in a known set of countries add them to the `"locationSet"` property. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
 
@@ -655,8 +654,8 @@ As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated i
 
 Editing brand pages on Wikidata is something that anybody can do.  It helps not just our project, but anybody who uses this data for other purposes too!  You can read more about contributing to Wikidata [here](https://www.wikidata.org/wiki/Wikidata:Contribute).
 
-- Add Wikidata entries for brands that don't yet have them.
-- Improve the labels and descriptions on the Wikidata entries.
+- Add Wikidata pages for brands that don't yet have them.
+- Improve the labels and descriptions on the Wikidata pages.
 - Translate the labels and descriptions to more languages.
 - Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
 
@@ -673,11 +672,11 @@ Social media links are often displayed on the official web site of a brand, maki
 
 #### Adding references to Wikidata
 
-Entries without matching Wikipedia article must have some references by independent sources. For our entries usually the easiest one to add is something in form of "this shop brand had N shops on some specific date".
+Wikidata pages without a matching Wikipedia article should have some additional references by independent sources. For our purposes, the easiest one to add is usually something in form of "this shop brand had N shops on some specific date".
 
 <img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata_references.gif"/>
 <!--See https://www.wikidata.org/w/index.php?title=Wikidata:Administrators%27_noticeboard&oldid=941582891#Entries_that_should_be_now_fixed for discussion on Wikidata-->
 
-#### Creating Wikidata entries
+#### Creating Wikidata pages
 
 For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is mandatory to add some external identifier or references (see section above with animation showing how it can be done).

@@ -1,40 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import CategoryInstructions from "./CategoryInstructions";
-import CategoryRow from "./CategoryRow";
-import Filters from "./Filters";
+import CategoryInstructions from './CategoryInstructions';
+import CategoryRow from './CategoryRow';
+import Filters from './Filters';
 
 
 export default function Category(props) {
-  const tree = props.tree;
   const data = props.data;
   const index = data.index;
 
-  const id = props.id;
-  const k = props.k;
-  const v = props.v;
-  const kv = `${k}/${v}`;
-  const tkv = `${tree}/${k}/${v}`;
-  const items = index.path && index.path[tkv];
   const hash = props.location.hash;
-  const slug = hash && hash.slice(1);   // remove leading '#'
+  let slug = hash && hash.slice(1);   // remove leading '#'
 
+  let t = props.t;
+  let k = props.k;
+  let v = props.v;
+  let tkv = `${t}/${k}/${v}`;
   let message;
+  let items;
+
   if (data.isLoading()) {
-    message = "Loading, please wait...";
-  } else if (!Array.isArray(items) || !items.length) {
-    message = `No items for ${tkv}.`;
+    message = 'Loading, please wait...';
+
+  } else {
+    if (props.id) {   // if passed an `id` prop, that overrides the `t`, `k`, `v` props
+      const item = index.id[props.id];
+      if (item) {
+        slug = encodeURI(item.id);
+      } else {
+        message = `No item found for "${props.id}".`;
+      }
+    }
+
+    items = index.path && index.path[tkv];
+    if (!message && !Array.isArray(items) || !items.length) {
+      message = `No items found for "${tkv}".`;
+    }
   }
 
   if (message) {
     return (
       <>
-      <h2>{tkv}</h2>
-      <Link to="index.html">↑ Back to overview</Link>
-      <CategoryInstructions />
+      <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
+      <CategoryInstructions t={t} />
       <Filters data={data} />
-      <div className="summary">
+      <div className='summary'>
       {message}
       </div>
       </>
@@ -54,10 +65,13 @@ export default function Category(props) {
     }
   }
 
-  // pick an icon for this category
-  let icon_url = data.icons[kv];
-  if (!icon_url) icon_url = data.icons[k];    // fallback to generic key=* icon
-  if (!icon_url) icon_url = data.icons.shop;  // fallback to generic shop icon
+  // setup defaults for this tree..
+  let wikidataTag;
+  if (t === 'brands') {
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'transit') {
+    wikidataTag = 'network:wikidata';
+  }
 
   // filters
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
@@ -88,7 +102,7 @@ export default function Category(props) {
 
     if (!item.filtered) {
       const tags = item.tags || {};
-      const qid = tags['brand:wikidata'];
+      const qid = tags[wikidataTag];
       const wd = data.wikidata[qid] || {};
       const logos = wd.logos || {};
       const hasLogo = Object.keys(logos).length;
@@ -102,21 +116,20 @@ export default function Category(props) {
 
   return (
     <>
-    <h2><img className="icon" src={icon_url} />{tkv}</h2>
-    <Link to="index.html">↑ Back to overview</Link>
-    <CategoryInstructions />
+    <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
+    <CategoryInstructions t={t} />
     <Filters data={data} />
 
-    <table className="summary">
+    <table className='summary'>
     <thead>
     <tr>
     <th>Name<br/>ID<br/>Locations</th>
     <th>Count</th>
     <th>OpenStreetMap Tags</th>
     <th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
-    <th className="logo">Commons Logo</th>
-    <th className="logo">Facebook Logo</th>
-    <th className="logo">Twitter Logo</th>
+    <th className='logo'>Commons Logo</th>
+    <th className='logo'>Facebook Logo</th>
+    <th className='logo'>Twitter Logo</th>
     </tr>
     </thead>
 

@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const fileTree = require('../lib/file_tree.js');
 const fs = require('fs');
 const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
+const project = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const sort = require('../lib/sort.js');
 
@@ -16,6 +17,8 @@ const wbk = require('wikibase-sdk')({
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
+// set to true if you just want to test what the script will do without updating Wikidata
+const DRYRUN = false;
 
 // First, try to load the user's secrets.
 // This is optional but needed if you want this script to:
@@ -38,7 +41,8 @@ const wbk = require('wikibase-sdk')({
 //     }
 //   ],
 //   "wikibase": {
-//       dunno yet
+//     "username": "my-wikidata-username",
+//     "password": "my-wikidata-password"
 //   }
 // }
 
@@ -65,7 +69,7 @@ if (_secrets && _secrets.twitter) {
   try {
     Twitter = require('twitter');
   } catch (err) {
-    console.error(colors.yellow(`Looks like you don't have the optional Twitter package installed`));
+    console.error(colors.yellow('Looks like you don\'t have the optional Twitter package installed...'));
     console.error(colors.yellow('Try `npm install twitter` to install it.'));
   }
   if (Twitter) {
@@ -80,32 +84,43 @@ if (_secrets && _secrets.twitter) {
   }
 }
 
-// To update wikibase, .. ?
-// and put them into `config/secrets.json`
+// To update wikidata
+// add your username/password into `config/secrets.json`
+let _wbEdit;
 if (_secrets && _secrets.wikibase) {
-  // ?
+  try {
+    _wbEdit = require('wikibase-edit')({
+      instance: 'https://www.wikidata.org',
+      credentials: _secrets.wikibase,
+      summary: 'Updated name-suggestion-index related claims, see http//nsi.guide for project details.',
+      userAgent: `${project.name}/${project.version} (${project.homepage})`,
+    });
+  } catch (err) {
+    console.error(colors.yellow('Looks like you don\'t have the optional wikibase-edit package installed...'));
+    console.error(colors.yellow('Try `npm install wikibase-edit` to install it.'));
+  }
 }
-
 
 
 // what to fetch
 let _cache = { path: {}, id: {} };
 fileTree.read('brands', _cache, loco);
+fileTree.read('transit', _cache, loco);
 
 
 // gather QIDs..
 let _wikidata = {};
-let _qidNames = {};       // we use this just for displaying information in the console
+let _qidItems = {};
 Object.values(_cache.id).forEach(item => {
   const tags = item.tags;
   ['brand', 'operator', 'network'].forEach(osmtag => {
     const wdtag = `${osmtag}:wikidata`;
-    const entag = `${osmtag}:en`;
     const qid = tags[wdtag];
-    if (qid && /^Q\d+$/.test(qid) && !_wikidata[qid]) {   // valid QID not already gathered
-      _wikidata[qid] = {};
-      _qidNames[qid] = tags['name:en'] || tags.name || tags[entag] || tags[osmtag];
-    }
+    if (!qid || !/^Q\d+$/.test(qid)) return;
+
+    if (!_wikidata[qid])  _wikidata[qid] = {};
+    if (!_qidItems[qid])  _qidItems[qid] = new Set();
+    _qidItems[qid].add(item.id);
   });
 });
 
@@ -136,9 +151,7 @@ doFetch().then(finish);
 //
 function doFetch(index) {
   index = index || 0;
-  if (index >= _urls.length) {
-    return Promise.resolve();
-  }
+  if (index >= _urls.length) return Promise.resolve();
 
   let currURL = _urls[index];
 
@@ -168,6 +181,7 @@ function doFetch(index) {
 function processEntities(result) {
   let twitterQueue = [];
   let facebookQueue = [];
+  let wbEditQueue = [];
 
   Object.keys(result.entities).forEach(qid => {
     let target = _wikidata[qid];
@@ -176,8 +190,9 @@ function processEntities(result) {
     let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
 
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
+      label = enLabelForQID(qid) || qid;
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${_qidNames[qid]}" was deleted.`);
+        colors.red(`  Entity for "${label}" was deleted.`);
       _errors.push(msg);
       console.error(msg);
       return;
@@ -185,11 +200,22 @@ function processEntities(result) {
 
     if (label) {
       target.label = label;
+
     } else {
-      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${_qidNames[qid]}" missing English label.`);
-      _errors.push(msg);
-      console.error(msg);
+      // try to pick an English label.
+      label = enLabelForQID(qid);
+      if (label && _wbEdit) {   // if we're allowed to make edits, just set the label
+        target.label = label;
+        const msg = colors.blue(`Adding English label for ${qid}: ${label}`);
+        wbEditQueue.push({ id: qid, language: 'en', value: label, msg: msg });
+
+      } else {   // otherwise raise a warning for the user to deal with.
+        label = label || qid;
+        const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
+          colors.red(`  Entity for "${label}" missing English label.`);
+        _errors.push(msg);
+        console.error(msg);
+      }
     }
 
     if (description) {
@@ -304,14 +330,51 @@ function processEntities(result) {
       target.dissolutions.push(dissolution);
     });
 
-  });
+
+    // if we're allowed to make edits..
+    if (_wbEdit) {
+
+      // P8253 - name-suggestion-index identifier
+      // sort ids so claim order is deterministic, to avoid unnecessary updating
+      const nsiIds = Array.from(_qidItems[qid])
+        .sort((a, b) => a.localeCompare(b));
+      const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepIds: true })
+        .sort((a, b) => a.value.localeCompare(b.value));
+
+      // make the nsiClaims match the nsiIds...
+      let i = 0;
+      for (i; i < nsiClaims.length; i++) {
+        const claim = nsiClaims[i];
+        if (i < nsiIds.length) {   // match existing claims to ids
+          if (claim.value !== nsiIds[i]) {
+            const msg = colors.blue(`Updating NSI identifier for ${qid}: ${claim.value} -> ${nsiIds[i]}`);
+            wbEditQueue.push({ guid: claim.id, newValue: nsiIds[i], msg: msg });
+          }
+        } else {  // remove extra existing claims
+          const msg = colors.blue(`Removing NSI identifier for ${qid}: ${claim.value}`);
+          wbEditQueue.push({ guid: claim.id, msg: msg });
+        }
+      }
+      for (i; i < nsiIds.length; i++) {   // add new claims
+        const msg = colors.blue(`Adding NSI identifier for ${qid}: ${nsiIds[i]}`);
+        wbEditQueue.push({ id: qid, property: 'P8253', value: nsiIds[i], msg: msg });
+      }
+
+      // TOOD - This will not catch situations where we have changed the QID on our end,
+      //   because they won't exist in the index anymore and been gathered in the first place.
+      // We should maybe make a SPARQL query to clean up entities with orphaned P8253 claims.
+    }
+
+  });  // foreach qid
 
   if (_twitterAPIs.length && twitterQueue.length) {
     return checkTwitterRateLimit(twitterQueue.length)
-      .then(() => Promise.all(twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username)) ))
-      .then(() => Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) ));
+      .then(() => Promise.all( twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username)) ))
+      .then(() => Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) ))
+      .then(() => processWbEditQueue(wbEditQueue));
   } else {
-    return Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)));
+    return Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) )
+      .then(() => processWbEditQueue(wbEditQueue));
   }
 }
 
@@ -365,8 +428,9 @@ function finish() {
   console.log(START);
   console.time(END);
 
-  // update wikidata.json
+  // update `wikidata.json` and `dissolved.json`
   let origWikidata;
+  let dissolved = {};
   try {
     origWikidata = require('../dist/wikidata.json').wikidata;
   } catch (err) {
@@ -399,21 +463,16 @@ function finish() {
       }
     });
 
+    if (target.dissolutions) {
+      _qidItems[qid].forEach(itemID => {
+        dissolved[itemID] = target.dissolutions;
+      });
+    }
+
     _wikidata[qid] = sort(target);
   });
 
   fs.writeFileSync('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
-
-
-  // update dissolved.json
-  let dissolved = {};
-  Object.values(_cache.id).forEach(item => {
-    const tags = item.tags;
-    let qid = tags['brand:wikidata'];
-    if (qid && _wikidata[qid].dissolutions && _wikidata[qid].dissolutions.length > 0) {
-      dissolved[item.id] = _wikidata[qid].dissolutions;
-    }
-  });
   fs.writeFileSync('dist/dissolved.json', prettyStringify(sort(dissolved), { maxLength: 100 }));
 
   console.timeEnd(END);
@@ -510,6 +569,66 @@ function fetchFacebookLogo(qid, username) {
       _errors.push(msg);
       console.error(colors.red(msg));
     });
+}
+
+
+// We need to slow these down and run them sequentially with some delay.
+function processWbEditQueue(queue) {
+  if (!queue.length) return Promise.resolve();
+
+  const request = queue.pop();
+  console.log(`Updating Wikidata: ${queue.length} - ${request.msg}`);
+  delete request.message;
+
+  if (DRYRUN) {
+    return Promise.resolve()
+      .then(() => processWbEditQueue(queue));
+
+  } else {
+    let task;
+    if (request.guid && request.newValue) {
+      task = _wbEdit.claim.update(request);
+    } else if (request.guid && !request.newValue) {
+      task = _wbEdit.claim.remove(request);
+    } else if (!request.guid && request.id && request.property && request.value) {
+      task = _wbEdit.claim.create(request);
+    } else if (!request.guid && request.id && request.language && request.value) {
+      task = _wbEdit.label.set(request);
+    }
+
+    return task
+      .then(() => delay(300))
+      .then(() => processWbEditQueue(queue));
+  }
+}
+
+
+function enLabelForQID(qid) {
+  const ids = Array.from(_qidItems[qid]);
+  for (let i = 0; i < ids.length; i++) {
+    const item = _cache.id[ids[i]];
+
+    // These we know are English..
+    if (item.tags['name:en'])     return item.tags['name:en'];
+    if (item.tags['brand:en'])    return item.tags['brand:en'];
+    if (item.tags['operator:en']) return item.tags['operator:en'];
+    if (item.tags['network:en'])  return item.tags['network:en'];
+
+    // These we're not sure..
+    if (looksLatin(item.tags.name))     return item.tags.name;
+    if (looksLatin(item.tags.brand))    return item.tags.brand;
+    if (looksLatin(item.tags.operator)) return item.tags.operator;
+    if (looksLatin(item.tags.network))  return item.tags.network;
+    if (looksLatin(item.displayName))   return item.displayName;
+  }
+
+  return null;
+
+  function looksLatin(str) {
+    if (!str) return false;
+    // nothing outside the latin unicode ranges
+    return !/[^\u0020-\u024F\u1E02-\u1EF3]/.test(str);
+  }
 }
 
 
