@@ -50,7 +50,7 @@
     "appbuild": "npm run docbuild",
     "dist": "node scripts/build_dist.js && rollup -c",
     "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --no-minify --public-url ./ --out-dir docs",
-    "build": "run-s build:features build:brands",
+    "build": "run-s build:features build:brands build:transit",
     "build:features": "node scripts/build_features.js",
     "build:brands": "node scripts/build_brands.js",
     "build:transit": "node scripts/build_transit.js",
