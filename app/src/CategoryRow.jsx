@@ -55,7 +55,7 @@ relation[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${qid}]
   } else if (t === 'transit') {
     n = item.tags.network;
     kvn = `${k}/${v}|${n}`;
-    count = data.transitCounts[kvn] || '< 50';
+    count = data.transitCounts[kvn] || '< 10';
     tags = item.tags || {};
     qid = tags['network:wikidata'];
     overpassQuery = `[out:json][timeout:100];
@@ -123,10 +123,7 @@ relation[${k}=${v}][network=${n}][network:wikidata=${qid}]
     const href = `https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=${q}`;
     const title = `View LocationSet for ${name}`;
     return val && (
-      <>
-      <code dangerouslySetInnerHTML={ highlight(cc, val) } /><br/>
-      <a target='_blank' href={href} title={title}>View LocationSet</a>
-      </>
+      <a target='_blank' href={href} title={title}><code dangerouslySetInnerHTML={ highlight(cc, val) } /></a>
     );
   }
 
