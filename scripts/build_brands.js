@@ -488,7 +488,7 @@ function checkItems() {
   const hasWd = total - warnMissingWikidata.length;
   const pctWd = (hasWd * 100 / total).toFixed(1);
 
-  console.info(colors.blue.bold(`\nIndex completeness:`));
+  console.info(colors.blue.bold(`\n${t} completeness:`));
   console.info(colors.blue.bold(`  ${total} items total.`));
   console.info(colors.blue.bold(`  ${hasWd} (${pctWd}%) with a '*:wikidata' tag.`));
 }
