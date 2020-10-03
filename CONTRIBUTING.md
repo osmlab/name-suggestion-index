@@ -325,7 +325,7 @@ Feature files look like this:
 ```js
 {
   "type": "Feature",
-  "id": "scotland.geojson",
+  "id": "contiguous_us.geojson",
   "properties": {},
   "geometry": {
     "type": "Polygon",
