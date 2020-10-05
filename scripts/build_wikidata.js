@@ -346,8 +346,8 @@ function processEntities(result) {
     });
 
 
-    // if we're allowed to make edits..
-    if (_wbEdit) {
+    // if we're allowed to make edits, and we want this qid to have an P8253 property ..
+    if (_wbEdit && _qidIdItems[qid]) {
 
       // P8253 - name-suggestion-index identifier
       // sort ids so claim order is deterministic, to avoid unnecessary updating
