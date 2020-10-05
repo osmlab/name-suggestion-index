@@ -15,6 +15,10 @@ const featureSchema = require('../schema/feature.json');
 let v = new Validator();
 v.addSchema(geojsonSchema, 'http://json.schemastore.org/geojson.json');
 
+
+console.log(colors.blue('-'.repeat(70)));
+console.log(colors.blue('🧩  Build features/*'));
+console.log(colors.blue('-'.repeat(70)));
 buildAll();
 
 
@@ -31,7 +35,7 @@ function buildAll() {
   // Features
   const features = collectFeatures();
   const featureCollection = { type: 'FeatureCollection', features: features };
-  fs.writeFileSync('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 3000 }));
+  fs.writeFileSync('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 9999 }));
 
   console.timeEnd(END);
 }

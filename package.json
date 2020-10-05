@@ -14,6 +14,7 @@
     "Diego Sangunietti (https://github.com/sguinetti)",
     "doublah (https://github.com/doublah)",
     "ENT8R <info.ent8r@gmail.com> (https://github.com/ENT8R)",
+    "Ferdi (https://github.com/Identitaet)",
     "Han Chao <hanchao0123@hotmail.com> (https://github.com/hanchao)",
     "Karthoo (https://github.com/Karthoo)",
     "Malcolm Smith (https://github.com/mds08011)",
@@ -24,6 +25,7 @@
     "Praxis Darian <hello@vulpinecat.com> (https://github.com/good-praxis)",
     "Quincy Morgan (https://github.com/quincylvania)",
     "Rickey Richards (https://github.com/RickeyRichards)",
+    "Robot8A (https://github.com/Robot8A)",
     "SilentSpike (https://github.com/SilentSpike)",
     "sinclarius (https://github.com/sinclarius)",
     "Tim Smith <tsmith@chef.io> (https://github.com/tas50)",
@@ -46,11 +48,13 @@
   "module": "index.mjs",
   "scripts": {
     "all": "run-s build dist",
+    "appbuild": "npm run docbuild",
     "dist": "node scripts/build_dist.js && rollup -c",
     "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --no-minify --public-url ./ --out-dir docs",
-    "build": "run-s build:features build:brands",
+    "build": "run-s build:features build:brands build:transit",
     "build:features": "node scripts/build_features.js",
     "build:brands": "node scripts/build_brands.js",
+    "build:transit": "node scripts/build_transit.js",
     "lint": "eslint scripts/*.js lib/*.js",
     "logos": "node scripts/build_wikidata",
     "test": "run-s validate lint build",
@@ -97,7 +101,8 @@
   },
   "optionalDependencies": {
     "twitter": "^1.7.1",
-    "wikibase-sdk": "^7.2.1"
+    "wikibase-edit": "^4.7.3",
+    "wikibase-sdk": "^7.7.1"
   },
   "engines": {
     "node": ">=10"
