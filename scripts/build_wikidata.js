@@ -105,21 +105,37 @@ if (_secrets && _secrets.wikibase) {
 // what to fetch
 let _cache = { path: {}, id: {} };
 fileTree.read('brands', _cache, loco);
+fileTree.read('transit', _cache, loco);
 
 
 // gather QIDs..
 let _wikidata = {};
-let _qidItems = {};
-Object.values(_cache.id).forEach(item => {
-  const tags = item.tags;
-  ['brand', 'operator', 'network'].forEach(osmtag => {
-    const wdtag = `${osmtag}:wikidata`;
-    const qid = tags[wdtag];
-    if (!qid || !/^Q\d+$/.test(qid)) return;
+let _qidItems = {};      // any item referenced by a qid
+let _qidIdItems = {};    // items where we actually want to update the nsi-identifier on wikidata
+Object.keys(_cache.path).forEach(tkv => {
+  const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+  const t = parts[0];
 
-    if (!_wikidata[qid])  _wikidata[qid] = {};
-    if (!_qidItems[qid])  _qidItems[qid] = new Set();
-    _qidItems[qid].add(item.id);
+  _cache.path[tkv].forEach(item => {
+    const tags = item.tags;
+    ['brand', 'operator', 'network'].forEach(osmtag => {
+      const wdtag = `${osmtag}:wikidata`;
+      const qid = tags[wdtag];
+      if (!qid || !/^Q\d+$/.test(qid)) return;
+
+      if (!_wikidata[qid])  _wikidata[qid] = {};
+      if (!_qidItems[qid])  _qidItems[qid] = new Set();
+      _qidItems[qid].add(item.id);
+
+      const isMainTag = (
+        (t === 'brands' && osmtag === 'brand') ||
+        (t === 'transit' && osmtag === 'network')
+      );
+      if (isMainTag) {
+        if (!_qidIdItems[qid])  _qidIdItems[qid] = new Set();
+        _qidIdItems[qid].add(item.id);
+      }
+    });
   });
 });
 
@@ -335,7 +351,7 @@ function processEntities(result) {
 
       // P8253 - name-suggestion-index identifier
       // sort ids so claim order is deterministic, to avoid unnecessary updating
-      const nsiIds = Array.from(_qidItems[qid])
+      const nsiIds = Array.from(_qidIdItems[qid])
         .sort((a, b) => a.localeCompare(b));
       const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepIds: true })
         .sort((a, b) => a.value.localeCompare(b.value));

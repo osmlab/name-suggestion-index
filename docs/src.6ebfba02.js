@@ -11806,7 +11806,7 @@ function CategoryRow(props) {
   } else if (t === 'transit') {
     n = item.tags.network;
     kvn = "".concat(k, "/").concat(v, "|").concat(n);
-    count = data.transitCounts[kvn] || '< 50';
+    count = data.transitCounts[kvn] || '< 10';
     tags = item.tags || {};
     qid = tags['network:wikidata'];
     overpassQuery = "[out:json][timeout:100];\n(nwr[\"network\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[network=").concat(n, "],\nway[network=").concat(n, "],\nrelation[network=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][network=").concat(n, "],\nway[").concat(k, "=").concat(v, "][network=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][network=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "],\nway[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "],\nrelation[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "]\n{ color:green; fill-color:green; }\n}}");
@@ -11843,7 +11843,7 @@ function CategoryRow(props) {
     dangerouslySetInnerHTML: highlight(tt, displayTags(tags))
   })), /*#__PURE__*/_react.default.createElement("td", {
     className: "wikidata"
-  }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(tags['brand:wikidata']), siteLink(identities.website), /*#__PURE__*/_react.default.createElement(_CategoryRowSocialLinks.default, identities)), /*#__PURE__*/_react.default.createElement("td", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(qid), siteLink(identities.website), /*#__PURE__*/_react.default.createElement(_CategoryRowSocialLinks.default, identities)), /*#__PURE__*/_react.default.createElement("td", {
     className: "logo"
   }, logo(logos.wikidata)), /*#__PURE__*/_react.default.createElement("td", {
     className: "logo"
@@ -11856,13 +11856,13 @@ function CategoryRow(props) {
     var q = encodeURIComponent(val);
     var href = "https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=".concat(q);
     var title = "View LocationSet for ".concat(name);
-    return val && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("code", {
-      dangerouslySetInnerHTML: highlight(cc, val)
-    }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("a", {
+    return val && /*#__PURE__*/_react.default.createElement("a", {
       target: "_blank",
       href: href,
       title: title
-    }, "View LocationSet"));
+    }, /*#__PURE__*/_react.default.createElement("code", {
+      dangerouslySetInnerHTML: highlight(cc, val)
+    }));
   }
 
   function highlight(needle, haystack) {

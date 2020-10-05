@@ -15,6 +15,10 @@ const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
+console.log(colors.blue('-'.repeat(70)));
+console.log(colors.blue('🍔  Build brands/*'));
+console.log(colors.blue('-'.repeat(70)));
+
 // Load and check filter_brands.json
 let filters = require('../config/filter_brands.json');
 const filtersSchema = require('../schema/filters.json');
@@ -411,14 +415,14 @@ function checkItems() {
 
   if (warnMatched.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Ambiguous matches:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  If the items are the different, make sure they have different locationSets (e.g. "us", "ca"'));
     console.warn(colors.gray('  If the items are the same, remove extra `matchTags` or `matchNames`.  Remember:'));
     console.warn(colors.gray('  - Name matching ignores letter case, punctuation, spacing, and diacritical marks (é vs e). '));
     console.warn(colors.gray('    No need to add `matchNames` for variations in these.'));
     console.warn(colors.gray('  - Tag matching automatically includes other similar tags in the same match group.'));
     console.warn(colors.gray('    No need to add `matchTags` for similar tags.  see `config/match_groups.json`'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnMatched.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
     ));
@@ -427,9 +431,9 @@ function checkItems() {
 
   if (warnMissingTag.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Missing tag:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  To resolve these, add the missing tag.'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnMissingTag.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> missing tag? -> ' + colors.yellow('"' + w[1] + '"')
     ));
@@ -438,9 +442,9 @@ function checkItems() {
 
   if (warnFormatTag.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Unusual OpenStreetMap tag:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  To resolve these, make sure the OpenStreetMap tag is correct.'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatTag.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> unusual tag? -> ' + colors.yellow('"' + w[1] + '"')
     ));
@@ -449,14 +453,14 @@ function checkItems() {
 
   if (warnDuplicate.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Potential duplicate:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  If the items are two different businesses,'));
     console.warn(colors.gray('    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.'));
     console.warn(colors.gray('  If the items are duplicates of the same business,'));
     console.warn(colors.gray('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
     console.warn(colors.gray('  If the duplicate item is a generic word,'));
     console.warn(colors.gray('    add a filter to config/filter_brands.json and delete the unwanted item.'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnDuplicate.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
     ));
@@ -465,9 +469,9 @@ function checkItems() {
 
   if (warnFormatWikidata.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Incorrect `wikidata` format:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  To resolve these, make sure "*:wikidata" tag looks like "Q191615".'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatWikidata.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
     ));
@@ -476,9 +480,9 @@ function checkItems() {
 
   if (warnFormatWikipedia.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Incorrect `wikipedia` format:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  To resolve these, make sure "*:wikipedia" tag looks like "en:Pizza Hut".'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatWikipedia.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> "*:wikipedia": ' + '"' + w[1] + '"'
     ));
@@ -488,7 +492,7 @@ function checkItems() {
   const hasWd = total - warnMissingWikidata.length;
   const pctWd = (hasWd * 100 / total).toFixed(1);
 
-  console.info(colors.blue.bold(`\nIndex completeness:`));
+  console.info(colors.blue.bold(`\n${t}/* completeness:`));
   console.info(colors.blue.bold(`  ${total} items total.`));
   console.info(colors.blue.bold(`  ${hasWd} (${pctWd}%) with a '*:wikidata' tag.`));
 }
