@@ -362,17 +362,17 @@ function processEntities(result) {
         const claim = nsiClaims[i];
         if (i < nsiIds.length) {   // match existing claims to ids
           if (claim.value !== nsiIds[i]) {
-            const msg = colors.blue(`Updating NSI identifier for ${qid}: ${claim.value} -> ${nsiIds[i]}`);
-            wbEditQueue.push({ guid: claim.id, newValue: nsiIds[i], msg: msg });
+            const msg = `Updating NSI identifier for ${qid}: ${claim.value} -> ${nsiIds[i]}`;
+            wbEditQueue.push({ qid: qid, guid: claim.id, newValue: nsiIds[i], msg: msg });
           }
         } else {  // remove extra existing claims
-          const msg = colors.blue(`Removing NSI identifier for ${qid}: ${claim.value}`);
-          wbEditQueue.push({ guid: claim.id, msg: msg });
+          const msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
+          wbEditQueue.push({ qid: qid, guid: claim.id, msg: msg });
         }
       }
       for (i; i < nsiIds.length; i++) {   // add new claims
-        const msg = colors.blue(`Adding NSI identifier for ${qid}: ${nsiIds[i]}`);
-        wbEditQueue.push({ id: qid, property: 'P8253', value: nsiIds[i], msg: msg });
+        const msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
+        wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], msg: msg });
       }
 
       // TOOD - This will not catch situations where we have changed the QID on our end,
@@ -552,7 +552,7 @@ function fetchTwitterUserDetails(qid, username) {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
         colors.red(`  Twitter username @${username}: ${JSON.stringify(e)}`);
       _errors.push(msg);
-      console.error(colors.red(msg));
+      console.error(msg);
     });
 }
 
@@ -582,7 +582,7 @@ function fetchFacebookLogo(qid, username) {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
         colors.red(`  Facebook username @${username}: ${e}`);
       _errors.push(msg);
-      console.error(colors.red(msg));
+      console.error(msg);
     });
 }
 
@@ -592,8 +592,11 @@ function processWbEditQueue(queue) {
   if (!queue.length) return Promise.resolve();
 
   const request = queue.pop();
-  console.log(`Updating Wikidata: ${queue.length} - ${request.msg}`);
-  delete request.message;
+  const qid = request.qid;
+  const msg = request.msg;
+  console.log(`Updating Wikidata ${queue.length}:  ` + colors.blue(msg));
+  delete request.qid;
+  delete request.msg;
 
   if (DRYRUN) {
     return Promise.resolve()
@@ -612,6 +615,11 @@ function processWbEditQueue(queue) {
     }
 
     return task
+      .catch(e => {
+        const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}  `) + colors.red(e);
+        _errors.push(msg);
+        console.error(msg);
+      })
       .then(() => delay(300))
       .then(() => processWbEditQueue(queue));
   }
