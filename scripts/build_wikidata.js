@@ -346,9 +346,18 @@ function processEntities(result) {
     });
 
 
-    // if we're allowed to make edits, and we want this qid to have an P8253 property ..
-    if (_wbEdit && _qidIdItems[qid]) {
+    // If we are allowed to make edits to wikidata, continue beyond here
+    if (!_wbEdit) return;
 
+    // If P31 "instance of" is missing, set it to Q4830453 "business"
+    const instanceOf = getClaimValue(entity, 'P31');
+    if (!instanceOf) {
+      const msg = `Setting "P31 "instance of" = Q4830453 "business" for ${qid}`;
+      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: 'Q4830453', msg: msg });
+    }
+
+    // If we want this qid to have an P8253 property ..
+    if (_qidIdItems[qid]) {
       // P8253 - name-suggestion-index identifier
       // sort ids so claim order is deterministic, to avoid unnecessary updating
       const nsiIds = Array.from(_qidIdItems[qid])
