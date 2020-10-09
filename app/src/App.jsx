@@ -47,8 +47,26 @@ export default function App() {
 
 
   function render(routeProps) {
-    let params = parseParams(routeProps.location.search);
+    const oldSearch = routeProps.location.search;
+    const oldHash = routeProps.location.hash;
+    let newSearch = oldSearch;
+    let newHash = oldHash;
+    let params = stringQs(oldSearch);
+
     if (!params.t) params.t = 'brands';
+
+    // sync up the filtering params with the querystring params
+    ['tt', 'cc', 'inc'].forEach(k => {
+      if (appData.isLoading() && params[k]) {   // early render (user has not typed yet)
+        filters[k] = params[k];                 // querystring overrides filters
+      } else {
+        if (filters[k]) {                       // after that
+          params[k] = filters[k];               // filters overrides querystring
+        } else {
+          delete params[k];
+        }
+      }
+    });
 
     // if passed an `id` param, lookup that item and override the `t`, `k`, `v` params
     if (!appData.isLoading() && params.id) {
@@ -58,12 +76,28 @@ export default function App() {
         params.t = parts[0];
         params.k = parts[1];
         params.v = parts[2];
-        routeProps.location.search = `?t=${params.t}&k=${params.k}&v=${params.v}`;
-        routeProps.location.hash = `#${params.id}`;
-        routeProps.history.replace(routeProps.location);
+
+        // move it from the `id` param to the hash
+        newHash = '#' + params.id;
+        delete params.id;
       }
     }
 
+    // put params in this order
+    let newParams = {};
+    ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc'].forEach(k => {
+      if (params[k]) newParams[k] = params[k];
+    });
+    newSearch = '?' + qsString(newParams);
+
+    // replace url state if it has changed
+    if (newSearch !== oldSearch || newHash !== oldHash) {
+      routeProps.location.search = newSearch;
+      routeProps.location.hash = newHash;
+      routeProps.history.replace(routeProps.location);
+    }
+
+    // finally render the page
     if ((params.k && params.v) || params.id) {
       return (
         <>
@@ -161,17 +195,25 @@ export default function App() {
   }
 
 
-  function parseParams(str) {
-    if (str.charAt(0) === '?') {
-      str = str.slice(1);
-    }
+  function stringQs(str) {
+    let i = 0;  // advance past any leading '?' or '#' characters
+    while (i < str.length && (str[i] === '?' || str[i] === '#')) i++;
+    str = str.slice(i);
+
     return str.split('&').reduce((obj, pair) => {
       const parts = pair.split('=');
       if (parts.length === 2) {
-          obj[parts[0]] = (null === parts[1]) ? '' : decodeURIComponent(parts[1]);
+        obj[parts[0]] = (null === parts[1]) ? '' : decodeURIComponent(parts[1]);
       }
       return obj;
     }, {});
+  }
+
+
+  function qsString(obj) {
+    return Object.keys(obj).map(key => {
+      return encodeURIComponent(key) + '=' + (encodeURIComponent(obj[key]));
+    }).join('&');
   }
 
 };
