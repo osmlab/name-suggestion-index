@@ -19685,8 +19685,26 @@ function App() {
   })), /*#__PURE__*/_react.default.createElement(_Footer.default, null));
 
   function render(routeProps) {
-    var params = parseParams(routeProps.location.search);
-    if (!params.t) params.t = 'brands'; // if passed an `id` param, lookup that item and override the `t`, `k`, `v` params
+    var oldSearch = routeProps.location.search;
+    var oldHash = routeProps.location.hash;
+    var newSearch = oldSearch;
+    var newHash = oldHash;
+    var params = stringQs(oldSearch);
+    if (!params.t) params.t = 'brands'; // sync up the filtering params with the querystring params
+
+    ['tt', 'cc', 'inc'].forEach(function (k) {
+      if (appData.isLoading() && params[k]) {
+        // early render (user has not typed yet)
+        filters[k] = params[k]; // querystring overrides filters
+      } else {
+        if (filters[k]) {
+          // after that
+          params[k] = filters[k]; // filters overrides querystring
+        } else {
+          delete params[k];
+        }
+      }
+    }); // if passed an `id` param, lookup that item and override the `t`, `k`, `v` params
 
     if (!appData.isLoading() && params.id) {
       var item = appData.index.id[params.id];
@@ -19696,12 +19714,26 @@ function App() {
 
         params.t = parts[0];
         params.k = parts[1];
-        params.v = parts[2];
-        routeProps.location.search = "?t=".concat(params.t, "&k=").concat(params.k, "&v=").concat(params.v);
-        routeProps.location.hash = "#".concat(params.id);
-        routeProps.history.replace(routeProps.location);
+        params.v = parts[2]; // move it from the `id` param to the hash
+
+        newHash = '#' + params.id;
+        delete params.id;
       }
-    }
+    } // put params in this order
+
+
+    var newParams = {};
+    ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc'].forEach(function (k) {
+      if (params[k]) newParams[k] = params[k];
+    });
+    newSearch = '?' + qsString(newParams); // replace url state if it has changed
+
+    if (newSearch !== oldSearch || newHash !== oldHash) {
+      routeProps.location.search = newSearch;
+      routeProps.location.hash = newHash;
+      routeProps.history.replace(routeProps.location);
+    } // finally render the page
+
 
     if (params.k && params.v || params.id) {
       return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, _extends({}, params, {
@@ -19904,11 +19936,14 @@ function App() {
     return [data, loading];
   }
 
-  function parseParams(str) {
-    if (str.charAt(0) === '?') {
-      str = str.slice(1);
+  function stringQs(str) {
+    var i = 0; // advance past any leading '?' or '#' characters
+
+    while (i < str.length && (str[i] === '?' || str[i] === '#')) {
+      i++;
     }
 
+    str = str.slice(i);
     return str.split('&').reduce(function (obj, pair) {
       var parts = pair.split('=');
 
@@ -19918,6 +19953,12 @@ function App() {
 
       return obj;
     }, {});
+  }
+
+  function qsString(obj) {
+    return Object.keys(obj).map(function (key) {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+    }).join('&');
   }
 }
 
