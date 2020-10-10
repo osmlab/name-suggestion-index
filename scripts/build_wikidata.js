@@ -92,7 +92,7 @@ if (_secrets && _secrets.wikibase) {
     _wbEdit = require('wikibase-edit')({
       instance: 'https://www.wikidata.org',
       credentials: _secrets.wikibase,
-      summary: 'Updated name-suggestion-index related claims, see http//nsi.guide for project details.',
+      summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
       userAgent: `${project.name}/${project.version} (${project.homepage})`,
     });
   } catch (err) {
