@@ -122,6 +122,7 @@ Object.keys(_cache.path).forEach(tkv => {
       const wdtag = `${osmtag}:wikidata`;
       const qid = tags[wdtag];
       if (!qid || !/^Q\d+$/.test(qid)) return;
+
       if (!_wikidata[qid])  _wikidata[qid] = {};
       if (!_qidItems[qid])  _qidItems[qid] = new Set();
       _qidItems[qid].add(item.id);
@@ -368,10 +369,15 @@ function processEntities(result) {
       let i = 0;
       for (i; i < nsiClaims.length; i++) {
         const claim = nsiClaims[i];
-        if (i < nsiIds.length) {   // match existing claims to ids
-          if (claim.value !== nsiIds[i]) {
-            const msg = `Updating NSI identifier for ${qid}: ${claim.value} -> ${nsiIds[i]}`;
-            wbEditQueue.push({ qid: qid, guid: claim.id, newValue: nsiIds[i], msg: msg });
+        if (i < nsiIds.length) {   // match existing claims to ids, and force all ranks to 'normal'
+          if (claim.value !== nsiIds[i] || claim.rank !== 'normal') {
+            let msg;
+            if (claim.value !== nsiIds[i]) {
+              msg = `Updating NSI identifier for ${qid}: value ${claim.value} -> ${nsiIds[i]}`;
+            } else {
+              msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
+            }
+            wbEditQueue.push({ qid: qid, guid: claim.id, newValue: nsiIds[i], rank: 'normal', msg: msg });
           }
         } else {  // remove extra existing claims
           const msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
@@ -380,7 +386,7 @@ function processEntities(result) {
       }
       for (i; i < nsiIds.length; i++) {   // add new claims
         const msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
-        wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], msg: msg });
+        wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', msg: msg });
       }
 
       // TOOD - This will not catch situations where we have changed the QID on our end,
