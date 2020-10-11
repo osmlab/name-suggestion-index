@@ -5588,16 +5588,28 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function CategoryInstructions() {
+function CategoryInstructions(props) {
+  // setup defaults for this tree..
+  var t = props.t;
+  var itemType, wikidataTag;
+
+  if (t === 'brands') {
+    itemType = 'brand';
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'transit') {
+    itemType = 'network';
+    wikidataTag = 'network:wikidata';
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "instructions"
-  }, "Some things you can do here:", /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Is a brand name missing or something is incorrect? ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Some things you can do here:", /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Is a ", itemType, " name missing or something is incorrect? ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/issues"
-  }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"View on Overpass Turbo\" link to see where the name is used in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag, you can do the research to add it to our project, or filter it out if it is not a brand.", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"View on Overpass Turbo\" link to see where the name is used in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag, you can do the research to add it to our project, or filter it out if it is not a ", itemType, ".", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md"
-  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), "You can add the brand's Facebook, Instagram, or Twitter usernames, and this project will pick up the logos later."))));
+  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), "You can add the ", itemType, "'s Facebook or Twitter usernames, and this project will pick up the logos later."))));
 }
 
 ;
@@ -11769,32 +11781,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function CategoryRow(props) {
   var data = props.data;
-
-  if (data.isLoading()) {
-    return;
-  }
-
-  var kvnd = props.kvnd;
-  var entry = props.entry;
+  if (data.isLoading()) return;
+  var item = props.item;
+  var t = props.t;
   var k = props.k;
-  var v = props.v; // filters
+  var v = props.v; // filters (used here for highlighting)
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var rowClasses = [];
+  if (item.filtered) rowClasses.push('hide');
+  if (item.selected) rowClasses.push('selected'); // setup defaults for this tree..
 
-  if (entry.filtered) {
-    rowClasses.push("hide");
+  var n, kvn, count, tags, qid, overpassQuery;
+
+  if (t === 'brands') {
+    n = item.tags.name || item.tags.brand;
+    kvn = "".concat(k, "/").concat(v, "|").concat(n);
+    count = data.nameCounts[kvn] || '< 50';
+    tags = item.tags || {};
+    qid = tags['brand:wikidata'];
+    var bn = tags['brand'];
+    overpassQuery = "[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "]\n{ color:green; fill-color:green; }\n}}");
+  } else if (t === 'transit') {
+    n = item.tags.network;
+    kvn = "".concat(k, "/").concat(v, "|").concat(n);
+    count = data.transitCounts[kvn] || '< 10';
+    tags = item.tags || {};
+    qid = tags['network:wikidata'];
+    overpassQuery = "[out:json][timeout:100];\n(nwr[\"network\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[network=").concat(n, "],\nway[network=").concat(n, "],\nrelation[network=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][network=").concat(n, "],\nway[").concat(k, "=").concat(v, "][network=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][network=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "],\nway[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "],\nrelation[").concat(k, "=").concat(v, "][network=").concat(n, "][network:wikidata=").concat(qid, "]\n{ color:green; fill-color:green; }\n}}");
   }
 
-  if (entry.selected) {
-    rowClasses.push("selected");
-  }
-
-  var count = data.names[kvnd] || '< 50';
-  var tags = entry.tags || {};
-  var qid = tags['brand:wikidata'];
-  var bn = tags['brand'];
   var wd = data.wikidata[qid] || {};
   var label = wd.label || '';
   var description = wd.description ? '"' + wd.description + '"' : '';
@@ -11806,18 +11823,18 @@ function CategoryRow(props) {
     className: "namesuggest"
   }, /*#__PURE__*/_react.default.createElement("h3", {
     className: "slug",
-    id: entry.slug
+    id: item.slug
   }, /*#__PURE__*/_react.default.createElement("a", {
-    href: "#".concat(entry.slug)
+    href: "#".concat(item.slug)
   }, "#"), /*#__PURE__*/_react.default.createElement("span", {
     className: "anchor"
-  }, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
+  }, item.displayName)), /*#__PURE__*/_react.default.createElement("div", {
     className: "nsikey"
-  }, /*#__PURE__*/_react.default.createElement("pre", null, "'", kvnd, "'")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("pre", null, item.id)), /*#__PURE__*/_react.default.createElement("div", {
     className: "locations"
-  }, locoDisplay(entry.locationSet, tags.name)), /*#__PURE__*/_react.default.createElement("div", {
+  }, locoDisplay(item.locationSet, n)), /*#__PURE__*/_react.default.createElement("div", {
     className: "viewlink"
-  }, searchOverpassLink(k, v, tags.name, tags['brand:wikidata'], tags['brand']), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(tags.name), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(tags.name))), /*#__PURE__*/_react.default.createElement("td", {
+  }, searchOverpassLink(n, overpassQuery), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(n), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(n))), /*#__PURE__*/_react.default.createElement("td", {
     className: "count"
   }, count), /*#__PURE__*/_react.default.createElement("td", {
     className: "tags"
@@ -11826,7 +11843,7 @@ function CategoryRow(props) {
     dangerouslySetInnerHTML: highlight(tt, displayTags(tags))
   })), /*#__PURE__*/_react.default.createElement("td", {
     className: "wikidata"
-  }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(tags['brand:wikidata']), siteLink(identities.website), /*#__PURE__*/_react.default.createElement(_CategoryRowSocialLinks.default, identities)), /*#__PURE__*/_react.default.createElement("td", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(qid), siteLink(identities.website), /*#__PURE__*/_react.default.createElement(_CategoryRowSocialLinks.default, identities)), /*#__PURE__*/_react.default.createElement("td", {
     className: "logo"
   }, logo(logos.wikidata)), /*#__PURE__*/_react.default.createElement("td", {
     className: "logo"
@@ -11839,13 +11856,13 @@ function CategoryRow(props) {
     var q = encodeURIComponent(val);
     var href = "https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=".concat(q);
     var title = "View LocationSet for ".concat(name);
-    return val && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("code", {
-      dangerouslySetInnerHTML: highlight(cc, val)
-    }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("a", {
+    return val && /*#__PURE__*/_react.default.createElement("a", {
       target: "_blank",
       href: href,
       title: title
-    }, "View LocationSet"));
+    }, /*#__PURE__*/_react.default.createElement("code", {
+      dangerouslySetInnerHTML: highlight(cc, val)
+    }));
   }
 
   function highlight(needle, haystack) {
@@ -11883,10 +11900,8 @@ function CategoryRow(props) {
     }, "Search Wikipedia");
   }
 
-  function searchOverpassLink(k, v, n, w, bn) {
-    // Build Overpass Turbo link:
-    var q = encodeURIComponent("[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(w, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(w, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(w, "]\n{ color:green; fill-color:green; }\n}}")); // Create Overpass Turbo link:
-
+  function searchOverpassLink(name, overpassQuery) {
+    var q = encodeURIComponent(overpassQuery);
     var href = "https://overpass-turbo.eu/?Q=".concat(q, "&R");
     var title = "Search Overpass Turbo for ".concat(n);
     return /*#__PURE__*/_react.default.createElement("a", {
@@ -18980,7 +18995,7 @@ function Filters(props) {
   var tt = filters.tt || '';
   var cc = filters.cc || '';
   var inc = !!filters.inc;
-  var klass = "filters" + (tt.trim() || cc.trim() || inc ? " active" : "");
+  var klass = 'filters' + (tt.trim() || cc.trim() || inc ? ' active' : '');
   return /*#__PURE__*/_react.default.createElement("div", {
     className: klass
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -19083,28 +19098,47 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function Category(props) {
-  var tree = props.tree;
   var data = props.data;
-  var id = props.id && props.id.match(/^(\w+?)\/(\w+?)\|(.+)$/);
-  var k = id ? id[1] : props.k;
-  var v = id ? id[2] : props.v;
-  var kv = "".concat(k, "/").concat(v);
-  var entries = data.dict && data.dict[k] && data.dict[k][v];
+  var index = data.index;
   var hash = props.location.hash;
-  var slug = id ? id[3] : hash && hash.slice(1); // remove leading '#'
+  var slug = hash && hash.slice(1); // remove leading '#'
 
+  var t = props.t;
+  var k = props.k;
+  var v = props.v;
+  var tkv = "".concat(t, "/").concat(k, "/").concat(v);
   var message;
+  var items;
 
   if (data.isLoading()) {
-    message = "Loading, please wait...";
-  } else if (!entries) {
-    message = "No entries for ".concat(k, "/").concat(v, ".");
+    message = 'Loading, please wait...';
+  } else {
+    if (props.id) {
+      // if passed an `id` prop, that overrides the `t`, `k`, `v` props
+      var item = index.id[props.id];
+
+      if (item) {
+        slug = encodeURI(item.id);
+      } else {
+        message = "No item found for \"".concat(props.id, "\".");
+      }
+    }
+
+    items = index.path && index.path[tkv];
+
+    if (!message && !Array.isArray(items) || !items.length) {
+      message = "No items found for \"".concat(tkv, "\".");
+    }
   }
 
   if (message) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, tree, "/", k, "/", v), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: "index.html"
-    }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "nav"
+    }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?t=".concat(t)
+    }, "\u2191 Back to ", t, "/")), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
+      t: t
+    }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
       data: data
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "summary"
@@ -19123,72 +19157,65 @@ function Category(props) {
         }
       }, 50);
     }
-  } // pick an icon for this category
+  } // setup defaults for this tree..
 
 
-  var icon_url = data.icons[kv];
+  var wikidataTag;
 
-  if (!icon_url) {
-    // fallback to key only
-    icon_url = data.icons[k];
-  }
-
-  if (!icon_url) {
-    // fallback to shop icon
-    icon_url = data.icons.shop;
+  if (t === 'brands') {
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'transit') {
+    wikidataTag = 'network:wikidata';
   } // filters
 
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
   var inc = !!(data.filters && data.filters.inc);
-  var rows = Object.keys(entries).map(function (kvnd) {
-    var entry = entries[kvnd]; // calculate slug
+  var rows = items.map(function (item) {
+    // calculate slug
+    item.slug = encodeURI(item.id); // apply selection if slug in URL matches slug
 
-    var nd = kvnd.split('|')[1];
-    entry.slug = encodeURI(nd); // apply selection if slug in URL matches slug
-
-    entry.selected = slug === entry.slug; // apply filters
+    item.selected = slug === item.slug; // apply filters
 
     if (tt) {
-      var tags = Object.entries(entry.tags);
-      entry.filtered = tags.length && tags.every(function (pair) {
+      var tags = Object.entries(item.tags);
+      item.filtered = tags.length && tags.every(function (pair) {
         return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
       });
     } else if (cc) {
-      var codes = entry.locationSet.include || [];
-      entry.filtered = codes.length && codes.every(function (code) {
+      // todo: fix countrycode filters - #4077
+      var codes = item.locationSet.include || [];
+      item.filtered = codes.length && codes.every(function (code) {
         return code.toLowerCase().indexOf(cc) === -1;
       });
     } else {
-      delete entry.filtered;
+      delete item.filtered;
     }
 
-    if (!entry.filtered) {
-      var _tags = entry.tags || {};
+    if (!item.filtered) {
+      var _tags = item.tags || {};
 
-      var qid = _tags['brand:wikidata'];
+      var qid = _tags[wikidataTag];
       var wd = data.wikidata[qid] || {};
       var logos = wd.logos || {};
       var hasLogo = Object.keys(logos).length;
-      entry.filtered = inc && hasLogo;
+      item.filtered = inc && hasLogo;
     }
 
     return /*#__PURE__*/_react.default.createElement(_CategoryRow.default, _extends({
-      key: kvnd
+      key: item.id
     }, props, {
-      entry: entry,
-      kvnd: kvnd,
-      k: k,
-      v: v
+      item: item
     }));
   });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, /*#__PURE__*/_react.default.createElement("img", {
-    className: "icon",
-    src: icon_url
-  }), tree, "/", k, "/", v), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "index.html"
-  }, "\u2191 Back to overview"), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "nav"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "index.html?t=".concat(t)
+  }, "\u2191 Back to ", t, "/")), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
+    t: t
+  }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     data: data
   }), /*#__PURE__*/_react.default.createElement("table", {
     className: "summary"
@@ -19202,7 +19229,163 @@ function Category(props) {
 }
 
 ;
-},{"react":"n8MK","react-router-dom":"uc19","./CategoryInstructions":"jpgZ","./CategoryRow":"b69n","./Filters":"z2FW"}],"jutB":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","./CategoryInstructions":"jpgZ","./CategoryRow":"b69n","./Filters":"z2FW"}],"dKbm":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _reactFontawesome = require("@fortawesome/react-fontawesome");
+
+var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+
+var _freeBrandsSvgIcons = require("@fortawesome/free-brands-svg-icons");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function Header(props) {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "header",
+    className: "hasCols"
+  }, Title(props), TreeSwitcher(props), DarkMode(), GitHub());
+}
+
+;
+
+function Title(props) {
+  var data = props.data;
+  var index = data.index;
+  var t = props.t;
+  var k = props.k;
+  var v = props.v; // try to pick an icon
+
+  var iconURL;
+
+  if (!data.isLoading() && k && v) {
+    var fallbackIcon;
+
+    if (t === 'brands') {
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    } else if (t === 'transit') {
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
+    }
+
+    var kv = "".concat(k, "/").concat(v);
+    iconURL = data.icons[kv];
+    if (!iconURL) iconURL = data.icons[k]; // fallback to generic key=* icon
+
+    if (!iconURL) iconURL = fallbackIcon; // fallback to generic icon
+  }
+
+  var icon = iconURL ? /*#__PURE__*/_react.default.createElement("img", {
+    className: "icon",
+    src: iconURL
+  }) : null; // pick a title
+
+  var title;
+
+  if (t && k && v) {
+    title = "".concat(t, "/").concat(k, "/").concat(v);
+    document.title = "Name Suggestion Index - ".concat(title);
+  } else if (t) {
+    title = "".concat(t, "/");
+    document.title = "Name Suggestion Index - ".concat(title);
+  } else {
+    title = 'Name Suggestion Index';
+    document.title = 'Name Suggestion Index';
+  }
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "title"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, icon, title));
+}
+
+function TreeSwitcher(props) {
+  var t = props.t;
+  var others = ['brands', 'transit'].filter(function (d) {
+    return d !== t;
+  });
+  var links = others.map(function (t) {
+    return /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?t=".concat(t)
+    }, t, "/"));
+  });
+  var list = links.length ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, " see also: ", /*#__PURE__*/_react.default.createElement("ul", null, links), " ") : null;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "treeswitcher"
+  }, list);
+}
+
+function DarkMode() {
+  var currValue = window.localStorage.getItem('nsi-darkmode');
+
+  if (currValue === null) {
+    // initial, no preference set, use media query to check it
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      currValue = 'true';
+      window.localStorage.setItem('nsi-darkmode', currValue);
+    }
+  }
+
+  setDarkMode(currValue);
+  var checkedProp = currValue === 'true' ? {
+    defaultChecked: 'true'
+  } : {};
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "darkmode",
+    className: "control"
+  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon: _freeSolidSvgIcons.faSun,
+    size: "lg"
+  }), /*#__PURE__*/_react.default.createElement("label", {
+    className: "switch"
+  }, /*#__PURE__*/_react.default.createElement("input", _extends({
+    id: "nsi-darkmode",
+    type: "checkbox"
+  }, checkedProp, {
+    onChange: toggleDarkMode
+  })), /*#__PURE__*/_react.default.createElement("span", {
+    className: "slider round"
+  })), /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon: _freeSolidSvgIcons.faMoon,
+    size: "lg"
+  }));
+
+  function toggleDarkMode(e) {
+    var newValue = window.localStorage.getItem('nsi-darkmode') === 'true' ? 'false' : 'true';
+    window.localStorage.setItem('nsi-darkmode', newValue);
+    setDarkMode(newValue);
+  }
+
+  function setDarkMode(val) {
+    if (val === 'true') {
+      document.getElementById('root').classList.add('dark');
+    } else {
+      document.getElementById('root').classList.remove('dark');
+    }
+  }
+}
+
+function GitHub() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "octocat"
+  }, /*#__PURE__*/_react.default.createElement("a", {
+    href: "https://github.com/osmlab/name-suggestion-index",
+    target: "_blank"
+  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon: _freeBrandsSvgIcons.faGithub,
+    size: "2x"
+  })));
+}
+},{"react":"n8MK","react-router-dom":"uc19","@fortawesome/react-fontawesome":"O6gX","@fortawesome/free-solid-svg-icons":"lmHt","@fortawesome/free-brands-svg-icons":"XFr7"}],"jutB":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19215,32 +19398,9 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Footer() {
-  function ghCornerImage() {
-    return {
-      __html: "\n        <svg width=\"80\" height=\"80\" viewBox=\"0 0 250 250\" style=\"fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;\" aria-hidden=\"true\"><path d=\"M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z\"></path><path d=\"M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2\" fill=\"currentColor\" style=\"transform-origin: 130px 106px;\" class=\"octo-arm\"></path><path d=\"M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z\" fill=\"currentColor\" class=\"octo-body\"></path></svg>\n      "
-    };
-  }
-
-  function ghCornerStyle() {
-    return {
-      __html: "\n        .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}\n      "
-    };
-  }
-
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", {
     className: "footer"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    class: "timestamp"
-  }, "\xA0"), /*#__PURE__*/_react.default.createElement("a", {
-    target: "_blank",
-    href: "https://github.com/osmlab/name-suggestion-index/",
-    className: "github-corner",
-    "aria-label": "View on GitHub"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    dangerouslySetInnerHTML: ghCornerImage()
-  })), /*#__PURE__*/_react.default.createElement("style", {
-    dangerouslySetInnerHTML: ghCornerStyle()
-  })));
+  });
 }
 
 ;
@@ -19256,7 +19416,19 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function OverviewInstructions() {
+function OverviewInstructions(props) {
+  // setup defaults for this tree..
+  var t = props.t;
+  var itemType, wikidataTag;
+
+  if (t === 'brands') {
+    itemType = 'brand';
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'transit') {
+    itemType = 'network';
+    wikidataTag = 'network:wikidata';
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "instructions"
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -19264,13 +19436,13 @@ function OverviewInstructions() {
   }, "\uD83D\uDC4B"), "Hi! This project is called ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/"
-  }, "name-suggestion-index"), ".", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "We've collected a list of common business names from ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "name-suggestion-index"), ".", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "We've collected a list of common ", itemType, " names from ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://www.openstreetmap.org"
-  }, "OpenStreetMap"), ", and we're matching them all to their preferred tags, including a ", /*#__PURE__*/_react.default.createElement("code", null, "'brand:wikidata'"), " tag.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "This tag is pretty special because we can use it to link features in OpenStreetMap to records in ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "OpenStreetMap"), ", and we're matching them all to their preferred tags, including a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "This tag is pretty special because we can use it to link features in OpenStreetMap to records in ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://www.wikidata.org"
-  }, "Wikidata"), ", a free and open knowledge database.", /*#__PURE__*/_react.default.createElement("br", null), "You can help us by adding brands to the index, matching brands to Wikidata identifiers, or improving the brands' Wikidata pages.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "Below is a list of categories used by OpenStreetMap. Each category displays a count of brands ", /*#__PURE__*/_react.default.createElement("strong", null, "\"(complete / total)\""), ", where \"complete\" means the brands have been matched to a Wikidata identifier and a logo.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Wikidata"), ", a free and open knowledge database.", /*#__PURE__*/_react.default.createElement("br", null), "You can help us by adding ", t, " to the index, matching ", t, " to Wikidata identifiers, or improving the ", t, "' Wikidata pages.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "Below is a list of categories used by OpenStreetMap. Each category displays a count of ", t, " ", /*#__PURE__*/_react.default.createElement("strong", null, "\"(complete / total)\""), ", where \"complete\" means the ", t, " have been matched to a Wikidata identifier and a logo.", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md"
   }, "CONTRIBUTING.md"), " for more info.", /*#__PURE__*/_react.default.createElement("br", null)));
@@ -19296,103 +19468,118 @@ var _Filters = _interopRequireDefault(require("./Filters"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Overview(props) {
-  var tree = props.tree;
-  var data = props.data; // filters
+  var t = props.t;
+  var data = props.data;
+  var index = data.index; // filters
 
   var tt = (data.filters && data.filters.tt || '').toLowerCase().trim();
   var cc = (data.filters && data.filters.cc || '').toLowerCase().trim();
-  var inc = !!(data.filters && data.filters.inc);
+  var inc = !!(data.filters && data.filters.inc); // setup defaults for this tree..
+
+  var fallbackIcon, wikidataTag;
+
+  if (t === 'brands') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    wikidataTag = 'brand:wikidata';
+  } else if (t === 'transit') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
+    wikidataTag = 'network:wikidata';
+  } // only render these components if we are loading a supported tree..
+
+
+  var instructions = wikidataTag ? (0, _OverviewInstructions.default)({
+    t: t
+  }) : null;
+  var filters = wikidataTag ? (0, _Filters.default)({
+    data: data
+  }) : null;
   var message;
+  var paths;
 
   if (data.isLoading()) {
-    message = "Loading, please wait...";
-  } else if (tree !== 'brands') {
-    // only one supported for now
-    message = "No entries for ".concat(tree, ".");
+    message = 'Loading, please wait...';
+  } else {
+    paths = Object.keys(index.path).filter(function (tkv) {
+      return tkv.split('/')[0] === t;
+    });
+
+    if (!paths.length) {
+      message = "No entries found for \"".concat(t, "\".");
+    }
   }
 
   if (message) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, tree, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
-      data: data
-    }), /*#__PURE__*/_react.default.createElement("div", {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, instructions, filters, /*#__PURE__*/_react.default.createElement("div", {
       className: "container"
     }, message));
   }
 
-  var items = [];
-  Object.keys(data.dict).forEach(function (k) {
-    var entry = data.dict[k];
-    Object.keys(entry).forEach(function (v) {
-      var kv = "".concat(k, "/").concat(v); // pick an icon for this category
+  var categories = [];
+  paths.forEach(function (tkv) {
+    var parts = tkv.split('/', 3);
+    var t = parts[0];
+    var k = parts[1];
+    var v = parts[2];
+    var kv = "".concat(k, "/").concat(v); // pick an icon for this category
 
-      var icon_url = data.icons[kv];
+    var icon_url = data.icons[kv];
+    if (!icon_url) icon_url = data.icons[k]; // fallback to generic key=* icon
 
-      if (!icon_url) {
-        // fallback to key only
-        icon_url = data.icons[k];
+    if (!icon_url) icon_url = fallbackIcon; // fallback to generic icon
+
+    var items = index.path[tkv];
+    var count = 0;
+    var complete = 0;
+    items.forEach(function (item) {
+      // apply filters
+      if (tt) {
+        var _tags = Object.entries(item.tags);
+
+        item.filtered = _tags.length && _tags.every(function (pair) {
+          return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
+        });
+      } else if (cc) {
+        // todo: fix countrycode filters - #4077
+        var codes = item.locationSet.include || [];
+        item.filtered = codes.length && codes.every(function (code) {
+          return code.toLowerCase().indexOf(cc) === -1;
+        });
+      } else {
+        delete item.filtered;
       }
 
-      if (!icon_url) {
-        // fallback to shop icon
-        icon_url = data.icons.shop;
-      }
+      var tags = item.tags || {};
+      var qid = tags[wikidataTag];
+      var wd = data.wikidata[qid] || {};
+      var logos = wd.logos || {};
 
-      var keys = Object.keys(data.dict[k][v]);
-      var count = 0;
-      var complete = 0;
-      keys.forEach(function (kvnd) {
-        var entry = data.dict[k][v][kvnd]; // apply filters
+      if (!item.filtered) {
+        count++;
 
-        if (tt) {
-          var _tags = Object.entries(entry.tags);
+        if (Object.keys(logos).length) {
+          complete++;
 
-          entry.filtered = _tags.length && _tags.every(function (pair) {
-            return pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1;
-          });
-        } else if (cc) {
-          var codes = entry.locationSet.include || [];
-          entry.filtered = codes.length && codes.every(function (code) {
-            return code.toLowerCase().indexOf(cc) === -1;
-          });
-        } else {
-          delete entry.filtered;
-        }
-
-        var tags = entry.tags || {};
-        var qid = tags['brand:wikidata'];
-        var wd = data.wikidata[qid] || {};
-        var logos = wd.logos || {};
-
-        if (!entry.filtered) {
-          count++;
-
-          if (Object.keys(logos).length) {
-            complete++;
-
-            if (inc) {
-              entry.filtered = true;
-            }
+          if (inc) {
+            item.filtered = true;
           }
         }
-      });
-      var isComplete = complete === count;
-      var klass = "category" + (!count || inc && isComplete ? " hide" : "");
-      items.push( /*#__PURE__*/_react.default.createElement("div", {
-        key: kv,
-        className: klass
-      }, /*#__PURE__*/_react.default.createElement("img", {
-        className: "icon",
-        src: icon_url
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        to: "index.html?k=".concat(k, "&v=").concat(v)
-      }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
+      }
     });
+    var isComplete = complete === count;
+    var klass = 'category' + (!count || inc && isComplete ? ' hide' : '');
+    categories.push( /*#__PURE__*/_react.default.createElement("div", {
+      key: tkv,
+      className: klass
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      className: "icon",
+      src: icon_url
+    }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?t=".concat(t, "&k=").concat(k, "&v=").concat(v)
+    }, "".concat(kv, " (").concat(complete, "/").concat(count, ")"))));
   });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, tree, "/"), /*#__PURE__*/_react.default.createElement(_OverviewInstructions.default, null), /*#__PURE__*/_react.default.createElement(_Filters.default, {
-    data: data
-  }), /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, instructions, filters, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, items));
+  }, categories));
 }
 
 ;
@@ -19409,6 +19596,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _reactRouterDom = require("react-router-dom");
 
 var _Category = _interopRequireDefault(require("./Category"));
+
+var _Header = _interopRequireDefault(require("./Header"));
 
 var _Footer = _interopRequireDefault(require("./Footer"));
 
@@ -19439,12 +19628,13 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // Load the name-suggestion-index data files
-var DIST = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist";
-var NAMES = "".concat(DIST, "/names_keep.json");
-var BRANDS = "".concat(DIST, "/brands.json");
-var WIKIDATA = "".concat(DIST, "/wikidata.json"); // We can use iD's taginfo file to pick icons
+var DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
+var NAMES_KEEP = "".concat(DIST, "/filtered/names_keep.min.json");
+var TRANSIT_KEEP = "".concat(DIST, "/filtered/transit_keep.min.json");
+var INDEX = "".concat(DIST, "/index.min.json");
+var WIKIDATA = "".concat(DIST, "/wikidata.min.json"); // We can use iD's taginfo file to pick icons
 
-var TAGINFO = "https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json";
+var TAGINFO = 'https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json';
 
 function App() {
   var _useState = (0, _react.useState)({}),
@@ -19452,20 +19642,25 @@ function App() {
       filters = _useState2[0],
       setFilters = _useState2[1];
 
-  var _useFetch = useFetch(NAMES),
+  var _useFetch = useFetch(NAMES_KEEP),
       _useFetch2 = _slicedToArray(_useFetch, 2),
-      names = _useFetch2[0],
-      namesLoading = _useFetch2[1];
+      nameCounts = _useFetch2[0],
+      nameCountsLoading = _useFetch2[1];
 
-  var _useFetch3 = useFetch(WIKIDATA),
+  var _useFetch3 = useFetch(TRANSIT_KEEP),
       _useFetch4 = _slicedToArray(_useFetch3, 2),
-      wikidata = _useFetch4[0],
-      wikidataLoading = _useFetch4[1];
+      transitCounts = _useFetch4[0],
+      transitCountsLoading = _useFetch4[1];
 
-  var _useBrands = useBrands(BRANDS),
-      _useBrands2 = _slicedToArray(_useBrands, 2),
-      dict = _useBrands2[0],
-      dictLoading = _useBrands2[1];
+  var _useFetch5 = useFetch(WIKIDATA),
+      _useFetch6 = _slicedToArray(_useFetch5, 2),
+      wikidata = _useFetch6[0],
+      wikidataLoading = _useFetch6[1];
+
+  var _useIndex = useIndex(INDEX),
+      _useIndex2 = _slicedToArray(_useIndex, 2),
+      index = _useIndex2[0],
+      indexLoading = _useIndex2[1];
 
   var _useTaginfo = useTaginfo(TAGINFO),
       _useTaginfo2 = _slicedToArray(_useTaginfo, 2),
@@ -19474,33 +19669,90 @@ function App() {
 
   var appData = {
     isLoading: function isLoading() {
-      return namesLoading || wikidataLoading || dictLoading || iconsLoading;
+      return nameCountsLoading || transitCountsLoading || wikidataLoading || indexLoading || iconsLoading;
     },
     filters: filters,
     setFilters: setFilters,
-    names: names,
-    dict: dict,
+    nameCounts: nameCounts,
+    transitCounts: transitCounts,
+    index: index,
     icons: icons,
     wikidata: wikidata.wikidata
   };
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/",
-    render: function render(routeProps) {
-      var params = parseParams(routeProps.location.search);
-
-      if (params.k && params.v || params.id) {
-        return /*#__PURE__*/_react.default.createElement(_Category.default, _extends({}, routeProps, params, {
-          tree: "brands",
-          data: appData
-        }));
-      } else {
-        return /*#__PURE__*/_react.default.createElement(_Overview.default, _extends({}, routeProps, {
-          tree: "brands",
-          data: appData
-        }));
-      }
-    }
+    render: render
   })), /*#__PURE__*/_react.default.createElement(_Footer.default, null));
+
+  function render(routeProps) {
+    var oldSearch = routeProps.location.search;
+    var oldHash = routeProps.location.hash;
+    var newSearch = oldSearch;
+    var newHash = oldHash;
+    var params = stringQs(oldSearch);
+    if (!params.t) params.t = 'brands'; // sync up the filtering params with the querystring params
+
+    ['tt', 'cc', 'inc'].forEach(function (k) {
+      if (appData.isLoading() && params[k]) {
+        // early render (user has not typed yet)
+        filters[k] = params[k]; // querystring overrides filters
+      } else {
+        if (filters[k]) {
+          // after that
+          params[k] = filters[k]; // filters overrides querystring
+        } else {
+          delete params[k];
+        }
+      }
+    }); // if passed an `id` param, lookup that item and override the `t`, `k`, `v` params
+
+    if (!appData.isLoading() && params.id) {
+      var item = appData.index.id[params.id];
+
+      if (item) {
+        var parts = item.tkv.split('/', 3); // tkv = 'tree/key/value'
+
+        params.t = parts[0];
+        params.k = parts[1];
+        params.v = parts[2]; // move it from the `id` param to the hash
+
+        newHash = '#' + params.id;
+        delete params.id;
+      }
+    } // put params in this order
+
+
+    var newParams = {};
+    ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc'].forEach(function (k) {
+      if (params[k]) newParams[k] = params[k];
+    });
+    newSearch = '?' + qsString(newParams); // replace url state if it has changed
+
+    if (newSearch !== oldSearch || newHash !== oldHash) {
+      routeProps.location.search = newSearch;
+      routeProps.location.hash = newHash;
+      routeProps.history.replace(routeProps.location);
+    } // finally render the page
+
+
+    if (params.k && params.v || params.id) {
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, _extends({}, params, {
+        data: appData
+      })), /*#__PURE__*/_react.default.createElement("div", {
+        id: "content"
+      }, /*#__PURE__*/_react.default.createElement(_Category.default, _extends({}, routeProps, params, {
+        data: appData
+      }))));
+    } else {
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, _extends({}, params, {
+        data: appData
+      })), /*#__PURE__*/_react.default.createElement("div", {
+        id: "content"
+      }, /*#__PURE__*/_react.default.createElement(_Overview.default, _extends({}, routeProps, params, {
+        data: appData
+      }))));
+    }
+  }
 
   function useFetch(url) {
     var _useState3 = (0, _react.useState)([]),
@@ -19551,10 +19803,10 @@ function App() {
       fetchUrl();
     }, []);
     return [data, loading];
-  } // same as useFetch, but process brand data into a k-v dict
+  } // same as useFetch, but load index data into a cache
 
 
-  function useBrands(url) {
+  function useIndex(url) {
     var _useState7 = (0, _react.useState)({}),
         _useState8 = _slicedToArray(_useState7, 2),
         data = _useState8[0],
@@ -19571,7 +19823,7 @@ function App() {
 
     function _fetchUrl2() {
       _fetchUrl2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-        var response, json, obj, dict;
+        var response, json, index;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -19586,26 +19838,24 @@ function App() {
 
               case 5:
                 json = _context2.sent;
-                obj = json.brands;
-                dict = {}; // populate K-V dictionary
+                index = {
+                  path: {},
+                  id: {}
+                }; // populate cache
 
-                Object.keys(obj).forEach(function (kvnd) {
-                  var kvndparts = kvnd.split('|', 2);
-                  var kvparts = kvndparts[0].split('/', 2);
-                  var k = kvparts[0];
-                  var v = kvparts[1];
-                  dict[k] = dict[k] || {};
-                  dict[k][v] = dict[k][v] || {};
-                  dict[k][v][kvnd] = sort(obj[kvnd]);
+                Object.keys(json).forEach(function (tkv) {
+                  var items = json[tkv];
+                  index.path[tkv] = items;
+                  items.forEach(function (item) {
+                    item.tkv = tkv; // remember the path for later
 
-                  if (dict[k][v][kvnd].tags) {
-                    dict[k][v][kvnd].tags = sort(obj[kvnd].tags);
-                  }
+                    index.id[item.id] = item;
+                  });
                 });
-                setData(dict);
+                setData(index);
                 setLoading(false);
 
-              case 11:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -19686,11 +19936,14 @@ function App() {
     return [data, loading];
   }
 
-  function parseParams(str) {
-    if (str.charAt(0) === '?') {
-      str = str.slice(1);
+  function stringQs(str) {
+    var i = 0; // advance past any leading '?' or '#' characters
+
+    while (i < str.length && (str[i] === '?' || str[i] === '#')) {
+      i++;
     }
 
+    str = str.slice(i);
     return str.split('&').reduce(function (obj, pair) {
       var parts = pair.split('=');
 
@@ -19702,17 +19955,15 @@ function App() {
     }, {});
   }
 
-  function sort(obj) {
-    var sorted = {};
-    Object.keys(obj).sort().forEach(function (k) {
-      sorted[k] = Array.isArray(obj[k]) ? obj[k].sort() : obj[k];
-    });
-    return sorted;
+  function qsString(obj) {
+    return Object.keys(obj).map(function (key) {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+    }).join('&');
   }
 }
 
 ;
-},{"react":"n8MK","react-router-dom":"uc19","./Category":"vBRt","./Footer":"jutB","./Overview":"RzVt"}],"c2Qt":[function(require,module,exports) {
+},{"react":"n8MK","react-router-dom":"uc19","./Category":"vBRt","./Header":"dKbm","./Footer":"jutB","./Overview":"RzVt"}],"c2Qt":[function(require,module,exports) {
 "use strict";
 
 require("regenerator-runtime/runtime");
@@ -19729,5 +19980,10 @@ var _App = _interopRequireDefault(require("./App"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById("root"));
+// force full page refreshes for bots
+var forceRefresh = /bot|google|baidu|bing|msn|teoma|slurp|yandex/i.test(navigator.userAgent);
+
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, {
+  forceRefresh: forceRefresh
+}, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById('root'));
 },{"regenerator-runtime/runtime":"QVnC","whatwg-fetch":"MCp7","react":"n8MK","react-dom":"NKHc","react-router-dom":"uc19","./App":"vmSA"}]},{},["c2Qt"], null)
