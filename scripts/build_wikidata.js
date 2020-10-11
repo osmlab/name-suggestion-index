@@ -122,7 +122,6 @@ Object.keys(_cache.path).forEach(tkv => {
       const wdtag = `${osmtag}:wikidata`;
       const qid = tags[wdtag];
       if (!qid || !/^Q\d+$/.test(qid)) return;
-
       if (!_wikidata[qid])  _wikidata[qid] = {};
       if (!_qidItems[qid])  _qidItems[qid] = new Set();
       _qidItems[qid].add(item.id);
@@ -221,7 +220,7 @@ function processEntities(result) {
       label = enLabelForQID(qid);
       if (label && _wbEdit) {   // if we're allowed to make edits, just set the label
         target.label = label;
-        const msg = colors.blue(`Adding English label for ${qid}: ${label}`);
+        const msg = `Adding English label for ${qid}: ${label}`;
         wbEditQueue.push({ id: qid, language: 'en', value: label, msg: msg });
 
       } else {   // otherwise raise a warning for the user to deal with.
@@ -362,7 +361,7 @@ function processEntities(result) {
       // sort ids so claim order is deterministic, to avoid unnecessary updating
       const nsiIds = Array.from(_qidIdItems[qid])
         .sort((a, b) => a.localeCompare(b));
-      const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepIds: true })
+      const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true })
         .sort((a, b) => a.value.localeCompare(b.value));
 
       // make the nsiClaims match the nsiIds...
@@ -603,7 +602,7 @@ function processWbEditQueue(queue) {
   const request = queue.pop();
   const qid = request.qid;
   const msg = request.msg;
-  console.log(`Updating Wikidata ${queue.length}:  ` + colors.blue(msg));
+  console.log(colors.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
   delete request.qid;
   delete request.msg;
 
