@@ -98,6 +98,7 @@ relation[${k}=${v}][network=${n}][network:wikidata=${qid}]
       <div className='viewlink'>
         { searchOverpassLink(n, overpassQuery) }<br/>
         { searchGoogleLink(n) }<br/>
+        { searchDuckDuckGoLink(n) }<br/>
         { searchWikipediaLink(n) }
       </div>
     </td>
@@ -143,6 +144,13 @@ relation[${k}=${v}][network=${n}][network:wikidata=${qid}]
     const href = `https://google.com/search?q=${q}`;
     const title = `Search Google for ${name}`;
     return (<a target='_blank' href={href} title={title}>Search Google</a>);
+  }
+  
+  function searchDuckDuckGoLink(name) {
+    const q = encodeURIComponent(name);
+    const href = `https://duckduckgo.com/?q=${q}`;
+    const title = `Search DuckDuckGo for ${name}`;
+    return (<a target='_blank' href={href} title={title}>Search DuckDuckGo</a>);
   }
 
   function searchWikipediaLink(name) {
