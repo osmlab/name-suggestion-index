@@ -123,7 +123,7 @@ You do not need to do these steps in order to contribute to the index.
   - `curl -L -o planet-latest.osm.pbf https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf`
 - Prefilter the planet file to only include named items with keys we are looking for:
   - `osmium tags-filter planet-latest.osm.pbf -R name,brand,operator,network -o filtered.osm.pbf`
-- Run `node collect_all.js /path/to/filtered.osm.pbf`
+- Run `node scripts/collect_all.js /path/to/filtered.osm.pbf`
   - results will go in `dist/collected/*.json`
 - A new challenge:
   - Attempt an `npm run build`.  Now that unique `id` properties are generated, it is possible that this command will fail.
