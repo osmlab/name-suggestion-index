@@ -17,21 +17,20 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 
 ##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
 
-* `dist/names_all.json` - all the frequent names and tags collected from OpenStreetMap
-* `dist/names_discard.json` - subset of `names_all` we are discarding
-* `dist/names_keep.json` - subset of `names_all` we are keeping
+* `dist/collected/*` - all the frequent names and tags collected from OpenStreetMap
+* `dist/filtered/*` - subset of names and tags that we are keeping or discarding
 * `dist/wikidata.json` - cached brand data retrieved from Wikidata
 
-##### :white_check_mark: &nbsp; Do edit the files in `config/`, `brands/`, and `features/`:
+##### :white_check_mark: &nbsp; Do edit the files in `config/`, `data/`, and `features/`:
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
+  * `config/filter_brands.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
   * `config/match_groups.json`- Groups of tag pairs that are considered equal when matching
-* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
+* `data/*` - Data files for each kind of branded business, organized by topic and OpenStreetMap tag
+  * `data/brands/amenity/*.json`
+  * `data/brands/leisure/*.json`
+  * `data/brands/shop/*.json`
+  * and so on...
 * `features/*` - Source files for custom locations where brands are active
 
 &nbsp;
@@ -49,7 +48,7 @@ For example, a McDonald's restaurant might have these tags:
   "amenity": "fast_food"
   "cuisine": "burger"
   "name": "McDonald's"
-  ... and more tags to record its address, opening hours, and so on.
+  … and more tags to record its address, opening hours, and so on.
 ```
 
 &nbsp;
@@ -62,72 +61,120 @@ and not need to worry about the tags being added.
 
 &nbsp;
 
-### :card_file_box: &nbsp; About the brand files
+### :card_file_box: &nbsp; About the data files
 
-__The `brands/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
+__The `data/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
 
 These files are created by a several step process:
-- Process the OpenStreetMap "planet" data to extract common names -> `dist/names_all.json`
-- Filter all the names into -> `dist/names_keep.json` and `dist/names_discard.json`
-- Merge the names we are keeping into -> `brands/**/*.json` files for us to decide what to do with them
+- Process the OpenStreetMap "planet" data to collect common tags -> for example, `dist/collected/names_all.json`
+- Filter all the tags into -> `dist/filtered/names_keep.json` and `dist/filtered/names_discard.json`
+- Merge the items we are keeping into -> `data/**/*.json` files for us to decide what to do with them
 
-The files are organized by OpenStreetMap tag:
-* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
-  * `brands/amenity/*.json`
-  * `brands/leisure/*.json`
-  * `brands/shop/*.json`
-  * `brands/tourism/*.json`
+The data files are organized by topic and OpenStreetMap tag:
+* `data/brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `amenity/*.json`
+  * `leisure/*.json`
+  * `shop/*.json`
+  * and so on...
 
 
-Each brand entry looks like this _(comments added for clarity)_:
+Each item looks like this _(comments added for clarity)_:
 
 In `brands/amenity/fast_food.json`:
 
 ```js
-  {
-    "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
-    "id": "mcdonalds-658eea",               // "id" - a unique identifier generated automatically
-    "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
-    "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
-      "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
-      "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
-      "brand:wikidata": "Q38076",           //   `brand:wikidata` - Universal Wikidata identifier
-      "brand:wikipedia": "en:McDonald's",   //   `brand:wikipedia` - Reference to English Wikipedia
-      "cuisine": "burger",                  //   `cuisine` - What kind of fast food is served here
-      "name": "McDonald's"                  //   `name` - Display name, also in the local language (English)
-    }
-  },
+  "brands/amenity/fast_food": [
+    …
+    {
+      "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
+      "id": "mcdonalds-658eea",               // "id" - a unique identifier generated automatically
+      "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
+      "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
+        "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
+        "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
+        "brand:wikidata": "Q38076",           //   `brand:wikidata` - Universal Wikidata identifier
+        "brand:wikipedia": "en:McDonald's",   //   `brand:wikipedia` - Reference to English Wikipedia
+        "cuisine": "burger",                  //   `cuisine` - What kind of fast food is served here
+        "name": "McDonald's"                  //   `name` - Display name, also in the local language (English)
+      }
+    },
 ```
 
-There may also be entries for McDonald's in other languages!
+There may also be items for McDonald's in other languages!
 
 ```js
-  {
-    "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
-    "id": "マクドナルド-3e7699",              // "id" - a unique identifier generated automatically
-    "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
-    "tags": {
-      "amenity": "fast_food",
-      "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
-      "brand:en": "McDonald's",             // `brand:en` - For non-English brands, tag the English version too
-      "brand:ja": "マクドナルド",             // `brand:ja` - Add at least one `brand:xx` tag that matches `brand`
-      "brand:wikidata": "Q38076",           // `brand:wikidata` - Same Universal wikidata identifier
-      "brand:wikipedia": "ja:マクドナルド",   // `brand:wikipedia` - Reference to Japanese Wikipedia
-      "cuisine": "burger",
-      "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
-      "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
-      "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
-    }
-  },
+  "brands/amenity/fast_food": [
+    …
+    {
+      "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
+      "id": "マクドナルド-3e7699",              // "id" - a unique identifier generated automatically
+      "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
+        "brand:en": "McDonald's",             // `brand:en` - For non-English brands, tag the English version too
+        "brand:ja": "マクドナルド",             // `brand:ja` - Add at least one `brand:xx` tag that matches `brand`
+        "brand:wikidata": "Q38076",           // `brand:wikidata` - Same Universal wikidata identifier
+        "brand:wikipedia": "ja:マクドナルド",   // `brand:wikipedia` - Reference to Japanese Wikipedia
+        "cuisine": "burger",
+        "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
+        "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
+        "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
+      }
+    },
 ```
 
 &nbsp;
 
 #### Required properties
 
+##### `displayName`
+
+The `displayName` can contain anything, but it should be a short text appropriate for display in lists or as preset names in editor software.  This is different from the OpenStreetMap `name` tag.
+
+By convention, if you need to disambiguate between multiple brands with the same name, we add text in parenthesis.  Here there are 2 items named "Target", but they have been assigned different display names to tell them apart.
+
+In `brands/shop/department_store.json`:
+
+```js
+  "brands/shop/department_store": [
+    …
+    {
+      "displayName": "Target (Australia)",
+      "id": "target-c93bbd",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "brand": "Target",
+        "brand:wikidata": "Q7685854",
+        "brand:wikipedia": "en:Target Australia",
+        "name": "Target",
+        "shop": "department_store"
+      }
+    },
+    {
+      "displayName": "Target (USA)",
+      "id": "target-592fe0",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Target",
+        "brand:wikidata": "Q1046951",
+        "brand:wikipedia": "en:Target Corporation",
+        "name": "Target",
+        "shop": "department_store"
+      }
+    },
+```
+
+##### `id` (generated)
+
+Each item has a unique `id` generated for it.  You can leave it out and the build script will generate one automatically.
+
+The identifiers are stable unless the name, key, value, or locationSet change.
+
+
 ##### `locationSet`
 
-Each entry requires a `locationSet` to define where the entry is available.  You can define the `locationSet` as an Object with `include` and `exclude` properties:
+Each item requires a `locationSet` to define where the item is available.  You can define the `locationSet` as an Object with `include` and `exclude` properties:
 
 ```js
 "locationSet": {
@@ -140,14 +187,14 @@ The "locations" can be any of the following:
 * Strings recognized by the [country-coder library](https://github.com/ideditor/country-coder#readme). These should be [ISO 3166-1 2 or 3 letter country codes](https://en.wikipedia.org/wiki/List_of_countries_by_United_Nations_geoscheme) or [UN M.49 numeric codes](https://en.wikipedia.org/wiki/UN_M49).<br/>_Example: `"de"`_<br/>Tip: The M49 code for the whole world is `"001"`.
 * Filenames for custom `.geojson` features. If you want to use a custom feature, you'll need to add these under the `features/` folder (see ["Features"](#features) below for more details). Each `Feature` must have an `id` property that ends in `.geojson`.<br/>_Example: `"de-hamburg.geojson"`_<br/>Tip: You can use [geojson.io](http://geojson.io) or other tools to create these.
 
-You can view examples and learn more about working with `locationSets` in the [@ideditor/location-conflation](https://github.com/ideditor/location-conflation/blob/master/README.md) project.
+You can view examples and learn more about working with `locationSets` in the [@ideditor/location-conflation](https://github.com/ideditor/location-conflation/blob/main/README.md) project.
 
 ⚡️ You can test locationSets on this interactive map:  https://ideditor.github.io/location-conflation/
 
 
 ##### `tags`
 
-Each entry requires a `tags` value.  This is just an Object containing all the OpenStreetMap tags that should be set on the feature.
+Each item requires a `tags` value.  This is just an Object containing all the OpenStreetMap tags that should be set on the feature.
 
 
 &nbsp;
@@ -158,7 +205,7 @@ Each entry requires a `tags` value.  This is just an Object containing all the O
 
 Brands are often tagged inconsistently in OpenStreetMap.  For example, some mappers write "International House of Pancakes" and others write "IHOP".
 
-This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate entries out of the index and is used in the iD editor to help suggest tag improvements.
+This project includes a "fuzzy" matcher that can match alternate names and tags to a single entry in the name-suggestion-index.  The matcher keeps duplicate items out of the index and is used in the iD editor to help suggest tag improvements.
 
 `matchNames` and `matchTags` properties can be used to list the less-preferred alternatives.
 
@@ -189,7 +236,9 @@ This project includes a "fuzzy" matcher that can match alternate names and tags 
 
 You don't need to add `matchNames` for:
 - Name variations in capitalization, punctuation, spacing (the middots common in Japanese names count as punctuation, so "V・ドラッグ" already matches "vドラッグ")
-- Name variations that already appear in the `name`, `brand`, `alt_name`, `short_name`, `official_name` tags
+- Name variations that already appear in the `name`, `brand`, `operator`, `network`.
+- Name variations that already appear in an alternate name tag (e.g. `alt_name`, `short_name`, `official_name`, etc.)
+- Name variations that already appear in any international version of those tags (e.g. `name:en`, `official_name:ja`, etc.)
 - Name variations in diacritic marks (e.g. "Häagen-Dazs" already matches "Haagen-Dazs")
 - Name variations in `&` vs. `and`
 
@@ -197,6 +246,33 @@ You don't need to add `matchTags` for:
 - Tags assigned to _match groups_ (defined in `config/match_groups.json`). For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
 and vice versa. _Tags in a match group will automatically match any other tags in the same match group._
 
+👉 Bonus: The build script will automatically remove extra `matchNames` and `matchTags` that are unnecessary.
+
+
+##### `note`
+
+You can optionally add a `note` property to any item.  The note can contain any text useful for maintaining the index - for example, information about the brand's status, or a link to a GitHub issue.
+
+The notes just stay with the name-suggestion-index; they aren't OpenStreetMap tags or used by other software.
+
+```js
+  "brands/amenity/bank": [
+  …
+  {
+    {
+      "displayName": "United Bank (Connecticut)",
+      "id": "unitedbank-28419b",
+      "locationSet": { "include": ["peoples_united_bank_ct.geojson"] },
+      "note": "Merged into People's United Bank (Q7165802) in 2019, see https://en.wikipedia.org/wiki/United_Financial_Bancorp",
+      "tags": {
+        "amenity": "bank",
+        "brand": "United Bank",
+        "brand:wikidata": "Q16959074",
+        "brand:wikipedia": "en:United Financial Bancorp",
+        "name": "United Bank"
+      }
+    },
+```
 
 &nbsp;
 
@@ -205,7 +281,8 @@ and vice versa. _Tags in a match group will automatically match any other tags i
 Sometimes multiple brands use the same name - this is okay!
 
 Make sure each entry has a distinct `locationSet`, and the index will generate unique identifiers for each one.
-You should also give each entry a unique `displayName`, so you everyone can tell them apart.
+
+You should also give each entry a unique `displayName`, so everyone can tell them apart.
 
 
 ```js
@@ -283,7 +360,7 @@ This will output a lot of warnings, which you can help fix!
 
 ### :thinking: &nbsp; Resolve warnings
 
-Warnings mean that you need to edit files under `brands/*`.
+Warnings mean that you need to edit files under `data/brands/*`.
 The warning output gives a clue about how to fix or suppress the warning.
 If you aren't sure, just ask on GitHub!
 
@@ -299,7 +376,7 @@ If you aren't sure, just ask on GitHub!
   If the items are duplicates of the same business,
     add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.
   If the duplicate item is a generic word,
-    add a filter to config/filters.json and delete the unwanted item.
+    add a filter to config/filter_brands.json and delete the unwanted item.
 ------------------------------------------------------------------------------------------------------
   "shop/supermarket|Carrefour" -> duplicates? -> "amenity/fuel|Carrefour"
   "shop/supermarket|VinMart" -> duplicates? -> "shop/department_store|VinMart"
@@ -312,9 +389,9 @@ For "VinMart" we really prefer for it to be tagged as a supermarket.  It's a sin
 * Delete the (not preferred) entry for `"shop/department_store|VinMart"`
 
 For "Carrefour" we know that can be both a supermarket and a fuel station.  It's two different things.
-* Make sure both entries have a `brand:wikidata` tag and appropriate `locationSet`.
+* Make sure both items have a `brand:wikidata` tag and appropriate `locationSet`.
 
-Existing tagging (you can compare counts in `dist/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
+Existing tagging (you can compare counts in `dist/filtered/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
 
 If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
 
@@ -344,10 +421,10 @@ For example, "Универмаг" is just a Russian word for "Department store":
 ```
 
 To remove this generic name:
-1. Delete the item from the appropriate file, in this case `brands/shop/department_store.json`
-2. Edit `config/filters.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
-3. Run `npm run build` - if the filter is working, the name will not be put back into `brands/shop/department_store.json`
-4. `git diff` - to make sure that the entries you wanted to discard are gone (and no others are affected)
+1. Delete the item from the appropriate file, in this case `data/brands/shop/department_store.json`
+2. Edit `config/filter_brands.json`. Add a regular expression matching the generic name in either the `discardKeys` or `discardNames` list.
+3. Run `npm run build` - if the filter is working, the name will not be put back into `data/brands/shop/department_store.json`
+4. `git diff` - to make sure that the items you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.
 
 &nbsp;
@@ -381,7 +458,7 @@ In `brands/amenity/fast_food.json`:
 
 2. Google for that brand - if you are lucky, you might find the Wikipedia page right away.
 
-<img width="600px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_1.png"/>
+<img width="600px" alt="Google for Chipotle" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_1.png"/>
 
 3. From the Wikipedia page URL, you can identify the `brand:wikipedia` value.
 
@@ -398,11 +475,11 @@ under the "tools" menu in the sidebar.
 [#1881]: https://github.com/osmlab/name-suggestion-index/issues/1881
 [@maxerickson]: https://github.com/maxerickson
 
-<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_2.png"/>
+<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_2.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
-<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/chipotle_3.png"/>
+<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_3.png"/>
 
 5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
@@ -467,7 +544,7 @@ Tip: You might want to narrow you search by Googling with a `site:` filter:  `"�
 From these results, we can know that the brand is "Kappazushi", owned by a Japanese company
 called "Kappa Create".  We can also find the Wikipedia page.
 
-<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_1.png"/>
+<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_1.png"/>
 
 3. As with English brands, you can identify the `brand:wikipedia` value from the URL.
 Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
@@ -480,13 +557,13 @@ OpenStreetMap expects this tag to be formatted like `"ja:かっぱ寿司"`.
 Although I can not read Japanese, I can identify the "Wikidata item" link because
 it always appears in the sidebar and mouseover will show the Wikidata 'Q' code in the URL.
 
-<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_3.png"/>
+<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_3.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
 Note: The Wikidata page looks a bit sparse - you can edit this too if you want to help!
 
-<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/kappa_4.png"/>
+<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_4.png"/>
 
 5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
@@ -537,7 +614,7 @@ is a valuable way to get ahead of incorrect tagging.
 
 1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `shop=food`). Ideally you also have `brand:wikidata` and `brand:wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
 
-2. Add your new entry anywhere into the appropriate file under `brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
+2. Add your new entry anywhere into the appropriate file under `data/brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-brand-files) if you're not familiar with the syntax.
 
 3. If the brand only has locations in a known set of countries add them to the `"locationSet"` property. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
 
@@ -569,7 +646,7 @@ Tip: The browsable index at https://nsi.guide/ can open Overpass Turbo with the 
 
 As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
 
-<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/overpass.png"/>
+<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/overpass.png"/>
 
 &nbsp;
 
@@ -577,8 +654,8 @@ As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated i
 
 Editing brand pages on Wikidata is something that anybody can do.  It helps not just our project, but anybody who uses this data for other purposes too!  You can read more about contributing to Wikidata [here](https://www.wikidata.org/wiki/Wikidata:Contribute).
 
-- Add Wikidata entries for brands that don't yet have them.
-- Improve the labels and descriptions on the Wikidata entries.
+- Add Wikidata pages for brands that don't yet have them.
+- Improve the labels and descriptions on the Wikidata pages.
 - Translate the labels and descriptions to more languages.
 - Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
 
@@ -587,19 +664,19 @@ Tip: The browsable index at https://nsi.guide/ can show you where the Wikidata i
 #### Adding properties to Wikidata
 
 Social media accounts may be used to automatically fetch logos, which are used by the iD Editor.
-<img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata.gif"/>
+<img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata.gif"/>
 
 Social media links are often displayed on the official web site of a brand, making them easy to find. When adding an entry for a social media account, it might be worth checking if that account has a "verified badge" which indicates a verified social media account, and if it does, this can be added via the "add qualifier" option, using "has quality" along with either  "verified account" or "verified badge".
 
-<img width="730px" alt="Checking Twitter references in Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata-applebees-twitter.png"/>
+<img width="730px" alt="Checking Twitter references in Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata-applebees-twitter.png"/>
 
 #### Adding references to Wikidata
 
-Entries without matching Wikipedia article must have some references by independent sources. For our entries usually the easiest one to add is something in form of "this shop brand had N shops on some specific date".
+Wikidata pages without a matching Wikipedia article should have some additional references by independent sources. For our purposes, the easiest one to add is usually something in form of "this shop brand had N shops on some specific date".
 
-<img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/master/docs/img/wikidata_references.gif"/>
+<img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata_references.gif"/>
 <!--See https://www.wikidata.org/w/index.php?title=Wikidata:Administrators%27_noticeboard&oldid=941582891#Entries_that_should_be_now_fixed for discussion on Wikidata-->
 
-#### Creating Wikidata entries
+#### Creating Wikidata pages
 
 For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is mandatory to add some external identifier or references (see section above with animation showing how it can be done).

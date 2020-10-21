@@ -1,23 +1,28 @@
 const colors = require('colors/safe');
 const fs = require('fs');
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
 const fileTree = require('../lib/file_tree.js');
+const idgen = require('../lib/idgen.js');
 const matcher = require('../lib/matcher.js')();
 const sort = require('../lib/sort.js');
 const stemmer = require('../lib/stemmer.js');
 const validate = require('../lib/validate.js');
 
 // We use LocationConflation for validating and processing the locationSets
+const featureCollection = require('../dist/featureCollection.json');
+const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
-// Load and check filters.json
-let filters = require('../config/filters.json');
+console.log(colors.blue('-'.repeat(70)));
+console.log(colors.blue('🍔  Build brands/*'));
+console.log(colors.blue('-'.repeat(70)));
+
+// Load and check filter_brands.json
+let filters = require('../config/filter_brands.json');
 const filtersSchema = require('../schema/filters.json');
-validate('config/filters.json', filters, filtersSchema);  // validate JSON-schema
+validate('config/filter_brands.json', filters, filtersSchema);  // validate JSON-schema
 
 // Lowercase and sort the filters for consistency
 filters = {
@@ -25,13 +30,18 @@ filters = {
   discardKeys: filters.discardKeys.map(s => s.toLowerCase()).sort(),
   discardNames: filters.discardNames.map(s => s.toLowerCase()).sort()
 };
-fs.writeFileSync('config/filters.json', stringify(filters));
+fs.writeFileSync('config/filter_brands.json', stringify(filters));
 
 
-// all names start out in _discard..
-const allnames = require('../dist/names_all.json');
-let _discard = Object.assign({}, allnames);
+// we'll use both brand and name tags
+const allnames = require('../dist/collected/names_all.json');
+const allbrands = require('../dist/collected/brands_all.json');
+
+let _discard = {};
 let _keep = {};
+// all names and brands start out in _discard..
+Object.keys(allnames).forEach(kvn => _discard[kvn] = _discard[kvn] || allnames[kvn]);
+Object.keys(allbrands).forEach(kvn => _discard[kvn] = _discard[kvn] || allbrands[kvn]);
 filterNames();
 
 
@@ -44,16 +54,16 @@ buildMatchIndexes();
 checkItems();
 mergeItems();
 
-fileTree.write('brands', _cache, loco);
+fileTree.write('brands', _cache);
 console.log('');
 
 
 
-// `filterNames()` will process a `dist/names_all.json` file,
+// `filterNames()` will process a `names_all.json` file,
 // splitting the data up into 2 files:
 //
-// `dist/names_keep.json` - candidates for suggestion presets
-// `dist/names_discard.json` - everything else
+// `dist/filtered/names_keep.json` - candidates for suggestion presets
+// `dist/filtered/names_discard.json` - everything else
 //
 // The file format is identical to the `names_all.json` file:
 // "key/value|name": count
@@ -67,7 +77,7 @@ function filterNames() {
   console.time(END);
 
   // Start clean
-  shell.rm('-f', ['dist/names_keep.json', 'dist/names_discard.json']);
+  shell.rm('-f', ['dist/filtered/names_keep.json', 'dist/filtered/names_discard.json']);
 
   // filter by keepTags (move from _discard -> _keep)
   filters.keepTags.forEach(s => {
@@ -104,13 +114,22 @@ function filterNames() {
     }
   });
 
+  // discard semicolon-delimited multivalues
+  for (let kvn in _keep) {
+    const name = kvn.split('|', 2)[1];
+    if (/;/.test(name)) {
+      _discard[kvn] = _keep[kvn];
+      delete _keep[kvn];
+    }
+  }
+
   const discardCount = Object.keys(_discard).length;
   const keepCount = Object.keys(_keep).length;
   console.log(`📦  Discard: ${discardCount}`);
   console.log(`📦  Keep: ${keepCount}`);
 
-  fs.writeFileSync('dist/names_discard.json', stringify(sort(_discard)));
-  fs.writeFileSync('dist/names_keep.json', stringify(sort(_keep)));
+  fs.writeFileSync('dist/filtered/names_discard.json', stringify(sort(_discard)));
+  fs.writeFileSync('dist/filtered/names_keep.json', stringify(sort(_keep)));
 
   console.timeEnd(END);
 }
@@ -157,32 +176,30 @@ function mergeItems() {
 
   // First, INSERT - Look in `_keep` for new items not yet in the index
   Object.keys(_keep).forEach(kvn => {
-    const parts = kvn.split('|', 2);     // kvn = "key/value|mame"
+    const parts = kvn.split('|', 2);     // kvn = "key/value|name"
     const kv = parts[0];
     const n = parts[1];
     const parts2 = kv.split('/', 2);
     const k = parts2[0];
     const v = parts2[1];
+    const tkv = `${t}/${k}/${v}`;
 
     const m = matcher.match(k, v, n);
     if (m) return;  // already in the index
 
-    // a new entry!
+    // a new item!
     let item = {
       displayName: n,
-      locationSet: { include: ['001'] },   // the whole world
-      tags: {}
+      tags: {
+        brand: n,
+        name:  n
+      }
     };
 
-    // assign default tags - new items
-    item.tags.brand = n;
-    item.tags.name = n;
+    // assign default osm tag
     item.tags[k] = v;
 
     // INSERT
-    // note these items will be `id`-less until next time the build script runs
-    // we should generate the id here also.
-    const tkv = `${t}/${k}/${v}`;
     if (!_cache.path[tkv])  _cache.path[tkv] = [];
     _cache.path[tkv].push(item);
     newCount++;
@@ -198,7 +215,6 @@ function mergeItems() {
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const t = parts[0];
     const k = parts[1];
     const v = parts[2];
 
@@ -206,57 +222,63 @@ function mergeItems() {
       let tags = item.tags;
       const name = tags.name || tags.brand;
 
-      // assign default tags - new or existing items
+      // Assign default tags
       if (k === 'amenity' && v === 'cafe') {
-        if (!tags.takeaway) tags.takeaway = 'yes';
-        if (!tags.cuisine) tags.cuisine = 'coffee_shop';
+        if (!tags.takeaway)    tags.takeaway = 'yes';
+        if (!tags.cuisine)     tags.cuisine = 'coffee_shop';
       } else if (k === 'amenity' && v === 'fast_food') {
-        if (!tags.takeaway) tags.takeaway = 'yes';
+        if (!tags.takeaway)    tags.takeaway = 'yes';
       } else if (k === 'amenity' && v === 'pharmacy') {
-        if (!tags.healthcare) tags.healthcare = 'pharmacy';
+        if (!tags.healthcare)  tags.healthcare = 'pharmacy';
       }
 
-      // Force `locationSet`, and duplicate `name:xx` and `brand:xx` tags
-      // if the name can only be reasonably read in one country.
+      // If the name can only be reasonably read in one country.
+      // Assign `locationSet`, and duplicate `name:xx` and `brand:xx` tags
       // https://www.regular-expressions.info/unicode.html
       if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
-        item.locationSet = { include: ['il'] };
         // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
-        if (tags.name) { tags['name:he'] = tags.name; }
-        if (tags.brand) { tags['brand:he'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['il'] };
+        if (tags.name)          tags['name:he']  = tags.name;
+        if (tags.brand)         tags['brand:he'] = tags.brand;
       } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
-        item.locationSet = { include: ['th'] };
-        if (tags.name) { tags['name:th'] = tags.name; }
-        if (tags.brand) { tags['brand:th'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['th'] };
+        if (tags.name)          tags['name:th']  = tags.name;
+        if (tags.brand)         tags['brand:th'] = tags.brand;
       } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
-        item.locationSet = { include: ['mm'] };
-        if (tags.name) { tags['name:my'] = tags.name; }
-        if (tags.brand) { tags['brand:my'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['mm'] };
+        if (tags.name)          tags['name:my']  = tags.name;
+        if (tags.brand)         tags['brand:my'] = tags.brand;
       } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
-        item.locationSet = { include: ['kr'] };
-        if (tags.name) { tags['name:ko'] = tags.name; }
-        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        if (tags.name)          tags['name:ko']  = tags.name;
+        if (tags.brand)         tags['brand:ko'] = tags.brand;
       } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
-        item.locationSet = { include: ['ph'] };
-        if (tags.name) { tags['name:tl'] = tags.name; }
-        if (tags.brand) { tags['brand:tl'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['ph'] };
+        if (tags.name)          tags['name:tl']  = tags.name;
+        if (tags.brand)         tags['brand:tl'] = tags.brand;
       } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
-        item.locationSet = { include: ['jp'] };
-        if (tags.name) { tags['name:ja'] = tags.name; }
-        if (tags.brand) { tags['brand:ja'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['jp'] };
+        if (tags.name)          tags['name:ja']  = tags.name;
+        if (tags.brand)         tags['brand:ja'] = tags.brand;
       } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
-        item.locationSet = { include: ['kr'] };
-        if (tags.name) { tags['name:ko'] = tags.name; }
-        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        if (tags.name)          tags['name:ko']  = tags.name;
+        if (tags.brand)         tags['brand:ko'] = tags.brand;
       } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
-        item.locationSet = { include: ['kr'] };
-        if (tags.name) { tags['name:ko'] = tags.name; }
-        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        if (tags.name)          tags['name:ko']  = tags.name;
+        if (tags.brand)         tags['brand:ko'] = tags.brand;
       } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
-        item.locationSet = { include: ['kr'] };
-        if (tags.name) { tags['name:ko'] = tags.name; }
-        if (tags.brand) { tags['brand:ko'] = tags.brand; }
+        if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        if (tags.name)          tags['name:ko']  = tags.name;
+        if (tags.brand)         tags['brand:ko'] = tags.brand;
+      } else {
+        if (!item.locationSet)  item.locationSet = { include: ['001'] };   // the whole world
       }
+
+      // regenerate id here, in case the locationSet has changed
+      const locationID = loco.validateLocationSet(item.locationSet).id;
+      item.id = idgen(item, tkv, locationID);
     });
   });
 
@@ -297,7 +319,6 @@ function checkItems() {
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const t = parts[0];
     const k = parts[1];
     const v = parts[2];
     const kv = `${k}/${v}`;
@@ -346,6 +367,13 @@ function checkItems() {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
         }
       });
+      // Warn if a semicolon-delimited multivalue has snuck into the index
+      ['name', 'brand', 'operator', 'network'].forEach(osmkey => {
+        const val = tags[osmkey];
+        if (val && /;/.test(val)) {
+          warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
+        }
+      });
       // Warn if user put `wikidata`/`wikipedia` instead of `brand:wikidata`/`brand:wikipedia`
       ['wikipedia', 'wikidata'].forEach(osmkey => {
         const val = tags[osmkey];
@@ -355,7 +383,7 @@ function checkItems() {
       });
 
 
-      // Warn about "new" (no wikidata) entries that may duplicate an "existing" (has wikidata) item.
+      // Warn about "new" (no wikidata) items that may duplicate an "existing" (has wikidata) item.
       // The criteria for this warning is:
       // - One of the items has no wikidata
       // - The items have nearly the same name
@@ -387,14 +415,14 @@ function checkItems() {
 
   if (warnMatched.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Ambiguous matches:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  If the items are the different, make sure they have different locationSets (e.g. "us", "ca"'));
     console.warn(colors.gray('  If the items are the same, remove extra `matchTags` or `matchNames`.  Remember:'));
     console.warn(colors.gray('  - Name matching ignores letter case, punctuation, spacing, and diacritical marks (é vs e). '));
     console.warn(colors.gray('    No need to add `matchNames` for variations in these.'));
     console.warn(colors.gray('  - Tag matching automatically includes other similar tags in the same match group.'));
     console.warn(colors.gray('    No need to add `matchTags` for similar tags.  see `config/match_groups.json`'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnMatched.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
     ));
@@ -403,9 +431,9 @@ function checkItems() {
 
   if (warnMissingTag.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Missing tag:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  To resolve these, add the missing tag.'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnMissingTag.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> missing tag? -> ' + colors.yellow('"' + w[1] + '"')
     ));
@@ -414,9 +442,9 @@ function checkItems() {
 
   if (warnFormatTag.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Unusual OpenStreetMap tag:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  To resolve these, make sure the OpenStreetMap tag is correct.'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatTag.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> unusual tag? -> ' + colors.yellow('"' + w[1] + '"')
     ));
@@ -425,14 +453,14 @@ function checkItems() {
 
   if (warnDuplicate.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Potential duplicate:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  If the items are two different businesses,'));
     console.warn(colors.gray('    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.'));
     console.warn(colors.gray('  If the items are duplicates of the same business,'));
     console.warn(colors.gray('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
     console.warn(colors.gray('  If the duplicate item is a generic word,'));
-    console.warn(colors.gray('    add a filter to config/filters.json and delete the unwanted item.'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('    add a filter to config/filter_brands.json and delete the unwanted item.'));
+    console.warn(colors.gray('-').repeat(70));
     warnDuplicate.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
     ));
@@ -441,9 +469,9 @@ function checkItems() {
 
   if (warnFormatWikidata.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Incorrect `wikidata` format:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  To resolve these, make sure "*:wikidata" tag looks like "Q191615".'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatWikidata.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
     ));
@@ -452,9 +480,9 @@ function checkItems() {
 
   if (warnFormatWikipedia.length) {
     console.warn(colors.yellow('\n⚠️   Warning - Incorrect `wikipedia` format:'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     console.warn(colors.gray('  To resolve these, make sure "*:wikipedia" tag looks like "en:Pizza Hut".'));
-    console.warn(colors.gray('--------------------------------------------------------------------------------'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatWikipedia.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> "*:wikipedia": ' + '"' + w[1] + '"'
     ));
@@ -464,7 +492,7 @@ function checkItems() {
   const hasWd = total - warnMissingWikidata.length;
   const pctWd = (hasWd * 100 / total).toFixed(1);
 
-  console.info(colors.blue.bold(`\nIndex completeness:`));
+  console.info(colors.blue.bold(`\n${t}/* completeness:`));
   console.info(colors.blue.bold(`  ${total} items total.`));
   console.info(colors.blue.bold(`  ${hasWd} (${pctWd}%) with a '*:wikidata' tag.`));
 }

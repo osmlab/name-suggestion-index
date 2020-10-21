@@ -1,6 +1,7 @@
 html, body {
   width: 100%;
   height: 100%;
+  background: black;
 }
 
 body {
@@ -9,54 +10,44 @@ body {
     "Fira Sans", "Droid Sans", "Helvetica Neue", "Arial",
     sans-serif;
   margin: 0;
-  padding: 0 20px;
-  color: #333;
+  padding: 0;
   font-size: 14px;
   overflow-x: hidden;
+  overscroll-behavior: none;
 }
 
+#root        { background: #fff; color: #333; }
+#root.dark   { background: #2a2a2a; color: #bbb; }
+
+.hasCols { display: flex; flex-flow: row nowrap; }
+.hasRows { display: flex; flex-flow: column nowrap; }
+.hasCols > div { flex: 1; }
+.hasRows > div { flex: 1; }
+
 /* global styles */
-a {
-  text-decoration: none;
-}
-h3 {
-  margin: 0;
-}
-a:visited, a {
-  color: #67e;
-  font-weight: bold;
-}
-a:hover {
-  color: #56a;
-}
-:focus {
-  outline-color: transparent;
-  outline-style: none;
-}
+h1, h2, h3  { margin: 0; }
+a { text-decoration: none; }
+:focus             { outline-color: transparent; outline-style: none; }
+a:visited, a       { color: #67e; font-weight: bold; }
+a:hover, a:active  { color: #56a; }
+.dark a:visited, .dark a       { color: #88c; font-weight: bold; }
+.dark a:hover, .dark a:active  { color: #56a; }
+
 ul {
   margin-block-start: 0;
   margin-block-end: 0;
   padding-left: 20px;
 }
 
-h1 {
-  margin-block-end: 0;
-}
+.hi { font-size: 20px; margin-right: 10px; }
+.dark .hi { filter: saturate(0); }
+.nav { margin-top: 10px; }
+.instructions { max-width: 1000px; margin-top: 20px; }
+pre { font-size: 12px; margin: 0; }
+.hide { display: none; }
 
-.hi {
-  font-size: 20px;
-  margin-right: 10px;
-}
-code {
-  background: #eee;
-}
-pre {
-  font-size: 12px;
-  margin: 0;
-}
-.hide {
-  display: none;
-}
+code       { background: #eee; }
+.dark code { background: #444; }
 
 img.icon {
   width: 1.1em;
@@ -64,6 +55,9 @@ img.icon {
   margin-right: 8px;
   opacity: 0.8;
   vertical-align: text-bottom;
+}
+.dark img.icon {
+  filter: invert(1);
 }
 
 /* forms */
@@ -76,6 +70,13 @@ input[type=text] {
   border-radius: 4px;
   text-overflow: ellipsis;
 }
+.dark textarea,
+.dark input[type=text],
+.dark input[type=checkbox] {
+  background-color: #666;
+  color: #ddd;
+  border: 1px solid #777;
+}
 
 button {
   border: 1px solid #ccc;
@@ -83,12 +84,20 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+.dark button {
+  background-color: #393939;
+  color: #aaa;
+  border: 1px solid #666;
+}
 button:hover {
-    background-color: #ececec;
+  background-color: #ececec;
+}
+.dark button:hover {
+  background-color: #777;
 }
 button:focus,
 button.active {
-    background: #7092ff;
+  background: #7092ff;
 }
 
 textarea:focus,
@@ -97,18 +106,82 @@ input:focus {
 }
 
 
+/* Sections */
+#header {
+  align-items: center;
+  padding: 5px 20px;
+  background: #111;
+  color: #ddd;
+  font-weight: bold;
+}
+#header a:visited, #header a       { color: #aaf; }
+#header a:hover, #header a:active  { color: #ccf; }
+
+#title img.icon {
+  filter: invert(1);
+  opacity: 1;
+  padding-right: 10px;
+}
+#treeswitcher {
+  flex: 0 1 auto;
+  padding: 0 30px;
+}
+#treeswitcher ul {
+  flex: 1;
+  display: inline;
+  padding: 0;
+}
+#treeswitcher li {
+  display: inline;
+  margin-left: 10px;
+}
+
+#darkmode {
+  flex: 0 0 120px;
+  padding: 5px 10px;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  padding: 0 20px;
+}
+#darkmode > svg {
+  margin: 0 5px;
+}
+
+#darkmode > svg.fa-sun { color: gold; }
+.dark #darkmode > svg.fa-sun { color: unset; }
+#darkmode > svg.fa-moon { color: unset; }
+.dark #darkmode > svg.fa-moon { color: #88c; }
+
+#octocat { flex: 0 0 40px; }
+#octocat a:visited, #octocat a       { color: #fff; }
+#octocat a:hover, #octocat a:active  { color: #ddd; }
+
+#content { padding: 0 20px 100px 20px; }
+#footer  { height: 30px; }
+
+
 /* Filters */
 .filters {
   display: inline-block;
   background: #f6f6f6;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-top: 20px;
   padding: 10px;
   max-width: 1000px;
+}
+.dark .filters {
+  background: #464646;
+  border: 1px solid #222;
 }
 .filters.active {
   background: #eef;
   border: 1px solid #bbe;
+}
+.dark .filters.active {
+  background: #464666;
+  border: 1px solid #556;
 }
 .filters .filterby {
   margin: 8px;
@@ -135,19 +208,14 @@ div.category {
 
 
 /* Category Pages */
-.nav {
-  margin-top: 5px;
-}
-.instructions {
-  max-width: 1000px;
-  margin: 20px 0;
-  padding-bottom: 10px;
-}
 .logo {
   max-width: 75px !important;
   max-height: 75px !important;
   vertical-align: middle !important;
   text-align: center;
+}
+.dark img.logo {
+  filter: contrast(0.7);
 }
 
 table.summary {
@@ -156,6 +224,9 @@ table.summary {
   text-align: left;
   border-collapse: collapse;
   margin-top: 20px;
+}
+.dark table.summary {
+  border: 1px solid #555;
 }
 table.summary th {
   position: sticky;
@@ -167,9 +238,17 @@ table.summary th {
   font-weight: bold;
   color: #000;
 }
+.dark table.summary th {
+  background: #1a1a1a;
+  color: #999;
+  border: 1px solid #555;
+}
 
 tbody tr.selected {
   background-color: #ffe;
+}
+.dark tbody tr.selected {
+  background-color: #3a3a30;
 }
 
 tbody td {
@@ -178,6 +257,9 @@ tbody td {
   border: 1px solid #000;
   padding: 5px 10px;
   vertical-align: top;
+}
+.dark tbody td {
+  border: 1px solid #555;
 }
 
 tbody h3.slug::before {
@@ -231,11 +313,12 @@ tbody td.wikidata div.viewlink {
   color: white;
   background: black;
   border-radius: 3px;
-  height: 0.9em;
-  margin-bottom: 0.05em;
+  height: 0.895em;
+  margin-bottom: 0.03em;
   width: 0.95em;
 }
 
+/* invert certain social icons so they match the others */
 .sociallinks a svg.fa-instagram,
 .sociallinks a svg.fa-vk,
 .sociallinks a:visited svg.fa-instagram,
@@ -243,21 +326,92 @@ tbody td.wikidata div.viewlink {
   color: white;
   background: #67e;
 }
+.dark .sociallinks a svg.fa-instagram,
+.dark .sociallinks a svg.fa-vk,
+.dark .sociallinks a:visited svg.fa-instagram,
+.dark .sociallinks a:visited svg.fa-vk {
+  color: #2a2a2a;
+  background: #88c;
+}
 .sociallinks a:hover svg.fa-instagram,
 .sociallinks a:hover svg.fa-vk {
   color: white;
+  background: #56a;
+}
+.dark .sociallinks a:hover svg.fa-instagram,
+.dark .sociallinks a:hover svg.fa-vk {
+  color: #2a2a2a;
   background: #56a;
 }
 .sociallinks a {
   margin: 0 2px;
 }
 
-.timestamp {
-  margin: 20px 0;
-  font-size: 12px;
-  font-style: italic;
-  color: #888;
+
+/* slider/switch */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 10px;
+  margin-bottom: 3px;
+  vertical-align: middle;
 }
-.timestamp .message {
-  margin: 0 10px;
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #aaa;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: -5px;
+  background-color: #ddd;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #aaa;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #0053ba;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 10px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
