@@ -307,7 +307,7 @@ function finish() {
     console.warn('To resolve these, add a sitelink to the correct entry');
     _foundSitelink.sort();
     _foundSitelink.forEach(msg => console.warn(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) has sitelinks to ${colors.green.bold(msg[3])}`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) has sitelinks to ${colors.green.bold(msg[4])}`
     ));
     console.warn('total ' + _foundSitelink.length);
   }
