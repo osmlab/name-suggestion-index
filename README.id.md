@@ -10,15 +10,18 @@ Merk umum nama canonical untuk OpenStreetMap
 
 Tujuan dari proyek ini adalah untuk mempertahankan [canonical](https://en.wikipedia.org/wiki/Canonicalization) daftar nama umum yang digunakan untuk memberi saran untuk ejaan dan fitur tagging yang konsisten di OpenStreetMap.
 
+[Tonton videonya](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html) dari ceramah kami di State of Map US 2019 untuk mempelajari lebih lanjut tentang proyek ini!
+
+
 ### Telusuri indeks
 
-Anda dapat menulusuri indeks di https://nsi.guide/ untuk melihat merk mana yang hilang dari link Wikidata, atau yang tidak komplet di halaman Wikipedia. 
+Anda dapat menulusuri indeks di https://nsi.guide/ untuk melihat merk mana yang hilang dari link Wikidata, atau yang tidak komplet di halaman Wikipedia.
 
 ### Bagaimana ini digunakan
 
 Saat fitur peta dibuat di OpenStreetMap, mereka tidak selalu konsisten tentang bagaimana mereka memberi nama dan menandai sesuatu. Contoh, kita dapat memilih kata `McDonald's` yang ditandai sebagai `amenity=fast_food` tetapi kita juga melihat banyak contoh untuk pengejaan yang lain (`Mc Donald's`, `McDonalds`, `McDonald’s`) dan menandai (`amenity=restaurant`).
 
-Membangun indeks nama canonical memungkina dua hal yang sangat berguna: 
+Membangun indeks nama canonical memungkina dua hal yang sangat berguna:
 - Kita dapat menyarankan cara yang paling "benar" untuk menandai hal-hal yang dibuat pengguna saat menyunting
 - Kita dapat memindai OSM data untuk fitur "salah" dan menhasilkan daftar untuk ditinjau dan dibersihkan
 
@@ -27,9 +30,11 @@ Membangun indeks nama canonical memungkina dua hal yang sangat berguna:
 *name-suggestion-index saat digunakan di ID untuk menambahkan item baru*
 
 Saat ini digunakan di:
-* ID (lihat dibawah)
-* [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
-* Preset JOSM yang tersedia
+- iD (lihat dibawah)
+- [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
+- [Preset JOSM](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) yang tersedia
+- [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)
+
 
 ### Ikut berpartisipasilah!
 
@@ -43,7 +48,7 @@ Kami selalu mencari bantuan!  Jika kaum memiliki pertanyaan atau ingin menghubun
 
 ### Prasyarat
 
-* [Node.js](https://nodejs.org/) versi 6 or terbaru
+* [Node.js](https://nodejs.org/) versi 10 or terbaru
 * [`git`](https://www.atlassian.com/git/tutorials/install-git/) untuk platform anda
 
 
@@ -73,7 +78,7 @@ Daftar nama:
 #### Konfigurasi file (sunting bagian ini):
 
 * `config/*`
-  * `config/filters.json`- Regular expressions yang digunakan untuk memfilter `names_all` ke `names_keep` / `discardNames`
+  * `config/filters.json`- Regular expressions yang digunakan untuk memfilter `names_all` ke `names_keep` / `names_discard`
 * `brands/*` - Konfirugasi file untuk  setiap jenis merk bisnis, diorganisasikan oleh tag OpenStreetMap
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`

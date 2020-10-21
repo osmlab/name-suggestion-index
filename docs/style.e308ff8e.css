@@ -127,10 +127,7 @@ input:focus {
 /* Overview Page */
 div.container {
   margin-top: 20px;
-
-  -webkit-columns: 10 250px;
-     -moz-columns: 10 250px;
-          columns: 10 250px;
+  columns: auto 275px;
 }
 div.category {
   padding: 2px 5px;
@@ -170,6 +167,11 @@ table.summary th {
   font-weight: bold;
   color: #000;
 }
+
+tbody tr.selected {
+  background-color: #ffe;
+}
+
 tbody td {
   font-size: 13px;
   max-height: 100px;
@@ -190,7 +192,7 @@ tbody .anchor {
   margin: 0 5px;
 }
 tbody .nsikey,
-tbody .countries,
+tbody .locations,
 tbody .sociallinks,
 tbody .viewlink {
   padding-top: 10px;
@@ -201,11 +203,11 @@ tbody td.namesuggest {
 tbody .nsikey {
   overflow-x: auto;
 }
-tbody .countries {
+tbody .locations {
   overflow-x: auto;
   font-size: 12px;
 }
-tbody .countries code {
+tbody .locations code {
   background: unset;
   font-size: 12px;
 }

@@ -5,18 +5,17 @@
 
 Canonical common brand names for OpenStreetMap
 
-
 ### What is it?
 
 The goal of this project is to maintain a [canonical](https://en.wikipedia.org/wiki/Canonicalization)
 list of commonly used names for suggesting consistent spelling and tagging of features
 in OpenStreetMap.
 
+[Watch the video](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html) from our talk at State of the Map US 2019 to learn more about this project!
 
 ### Browse the index
 
-You can browse the index at https://nsi.guide/ to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
-
+You can browse the index at <https://nsi.guide/> to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 ### How it's used
 
@@ -26,6 +25,7 @@ but we see many examples of other spellings (`Mc Donald's`, `McDonalds`, `McDona
 taggings (`amenity=restaurant`).
 
 Building a canonical name index allows two very useful things:
+
 - We can suggest the most "correct" way to tag things as users create them while editing.
 - We can scan the OSM data for "incorrect" features and produce lists for review and cleanup.
 
@@ -34,34 +34,32 @@ Building a canonical name index allows two very useful things:
 *The name-suggestion-index is in use in iD when adding a new item*
 
 Currently used in:
-* iD (see above)
-* [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
-* JOSM presets available
-
+- iD (see above)
+- [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
+- [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) available
+- [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)
+- [Go Map!!](https://github.com/bryceco/GoMap), as they use iD presets
 
 ### Participate!
 
-* Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
-* See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
+- Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
 We're always looking for help!  If you have any questions or want to reach out to a maintainer, ping `bhousel` on:
-* [OpenStreetMap US Slack](https://slack.openstreetmap.us/)
+- [OpenStreetMap US Slack](https://slack.openstreetmap.us/)
 (`#poi` or `#general` channels)
-
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/) version 6 or newer
-* [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
-
+- [Node.js](https://nodejs.org/) version 10 or newer
+- [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
 
 ### Installing
 
-* Clone this project, for example:
+- Clone this project, for example:
   `git clone git@github.com:osmlab/name-suggestion-index.git`
-* `cd` into the project folder,
-* Run `npm install` to install libraries
-
+- `cd` into the project folder,
+- Run `npm install` to install libraries
 
 ### About the index
 
@@ -81,29 +79,30 @@ Name lists:
 #### Configuration files (edit these):
 
 * `config/*`
-  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `discardNames`
-* `brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+  * `config/filters.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
+* `brands/*` - Source files for each kind of branded business, organized by OpenStreetMap tag
   * `brands/amenity/*.json`
   * `brands/leisure/*.json`
   * `brands/shop/*.json`
   * `brands/tourism/*.json`
   * `brands/office/*.json`
+* `features/*` - Source files for custom locations where brands are active
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
-
 ### Building the index
 
-* `npm run build`
-  * Regenerates `dist/names_keep.json` and `dist/names_discard.json`
-  * Any new entries from `names_keep` not already present in the index will be added to it
-  * Outputs many warnings to suggest updates to `brands/**/*.json`
-
+- `npm run build`
+  - Processes any custom locations under `features/**/*.geojson`
+  - Regenerates `dist/names_keep.json` and `dist/names_discard.json`
+  - Any new entries from `names_keep` not already present in the index will be added to it
+  - Outputs many warnings to suggest updates to `brands/**/*.json`
 
 ### Other commands
 
-* `npm run wikidata` - Fetch useful data from Wikidata - labels, descriptions, logos, etc.
-* `npm run` - Lists other available tools
+- `npm run wikidata` - Fetch useful data from Wikidata - labels, descriptions, logos, etc.
+- `npm run dist` - Rebuild and minify the generated files in the `dist/` folder.
+- `npm run` - Lists other available commands
 
 ### Updating `dist/names_all.json` from planet
 
@@ -120,8 +119,7 @@ You do not need to do these steps in order to contribute to the index.
   - `osmium tags-filter named.osm.pbf -R amenity,shop,leisure,tourism,office -o wanted.osm.pbf`
 - Run `node build_all_names wanted.osm.pbf`
   - results will go in `dist/names_all.json`
-  - `git add dist/names_all.json && git commit -m 'Updated dist/names_all.json'`
-
+  - `git commit -m 'Updated dist/names_all.json'`
 
 ### License
 
