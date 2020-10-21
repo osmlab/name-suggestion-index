@@ -4,6 +4,7 @@
 
 ##### :raising_hand: &nbsp; How to help:
 
+* [Prerequisites & installation instruction in the README](https://github.com/osmlab/name-suggestion-index#prerequisites)
 * `npm run build` will reprocess the files and output warnings
 * Resolve warnings - [show me](#thinking--resolve-warnings)
 * Remove generic names - [show me](#hocho--remove-generic-names)
