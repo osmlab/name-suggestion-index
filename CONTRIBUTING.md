@@ -87,7 +87,7 @@ In `brands/amenity/fast_food.json`:
     …
     {
       "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
-      "id": "mcdonalds-658eea",               // "id" - a unique identifier generated automatically
+      "id": "mcdonalds-658eea",               // "id" - a unique identifier added and generated automatically
       "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
       "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
         "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
@@ -107,7 +107,7 @@ There may also be items for McDonald's in other languages!
     …
     {
       "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
-      "id": "マクドナルド-3e7699",              // "id" - a unique identifier generated automatically
+      "id": "マクドナルド-3e7699",              // "id" - a unique identifier added and generated automatically
       "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
       "tags": {
         "amenity": "fast_food",
@@ -167,7 +167,9 @@ In `brands/shop/department_store.json`:
 
 ##### `id` (generated)
 
-Each item has a unique `id` generated for it.  You can leave it out and the build script will generate one automatically.
+Each item has a unique `id` generated for it.
+When adding new data, don't add the `id` line (key and value).
+Then run `npm run build` which will add the key and generate the value automatically.
 
 The identifiers are stable unless the name, key, value, or locationSet change.
 
