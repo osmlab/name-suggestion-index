@@ -575,6 +575,11 @@ function fetchTwitterUserDetails(qid, username) {
 function fetchFacebookLogo(qid, username) {
   let target = _wikidata[qid];
   let logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
+  let userid;
+
+  // Does this "username" end in a numeric id?  If so, fallback to it.
+  const m = username.match(/-(\d+)$/);
+  if (m) userid = m[1];
 
   return fetch(logoURL)
     .then(response => {
@@ -593,10 +598,15 @@ function fetchFacebookLogo(qid, username) {
       return true;
     })
     .catch(e => {
-      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Facebook username @${username}: ${e}`);
-      _errors.push(msg);
-      console.error(msg);
+      if (userid) {
+        target.identities.facebook = userid;
+        return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
+      } else {
+        const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+          colors.red(`  Facebook username @${username}: ${e}`);
+        _errors.push(msg);
+        console.error(msg);
+      }
     });
 }
 
