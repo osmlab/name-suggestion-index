@@ -17,8 +17,26 @@ const wbk = require('wikibase-sdk')({
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
+findNSIOrphans()
+  .then(() => {
+    console.log('done');
+    process.exit(1);
+  });
+
+// spin forever
+let spins = 0;
+function spin() {
+  console.log(spins++);
+  return delay(1000)
+    .then(() => spin());
+};
+
+spin();
+return;
+
+
 // set to true if you just want to test what the script will do without updating Wikidata
-const DRYRUN = false;
+const DRYRUN = true;
 
 // First, try to load the user's secrets.
 // This is optional but needed if you want this script to:
@@ -607,6 +625,27 @@ function fetchFacebookLogo(qid, username) {
         _errors.push(msg);
         console.error(msg);
       }
+    });
+}
+
+
+// Get all items in Wikidata with NSI identifiers
+function findNSIOrphans() {
+  const query = 'SELECT ?qid ?nsi WHERE { ?qid wdt:P8253 ?nsi. }';
+
+  return fetch(wbk.sparqlQuery(query))
+    .then(response => {
+      if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+      return response.json();
+    })
+    .then(result => {
+      const results = wbk.simplify.sparqlResults(result);
+console.log(JSON.stringify(results[0]));
+return true;
+    })
+    .catch(e => {
+      _errors.push(e);
+      console.error(colors.red(e));
     });
 }
 
