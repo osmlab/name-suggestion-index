@@ -302,13 +302,12 @@ function checkItems() {
   let warnDuplicate = [];
   let warnFormatWikidata = [];
   let warnFormatWikipedia = [];
-  let warnMissingWikidata = [];
-  let warnMissingWikipedia = [];
   let warnMissingTag = [];
   let warnFormatTag = [];
   let seenName = {};
 
   let total = 0;
+  let totalWd = 0;
 
   // for now, process `brands/*` only
   const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === 'brands');
@@ -326,21 +325,26 @@ function checkItems() {
     items.forEach(item => {
       const tags = item.tags;
       const name = tags.name || tags.brand;
-      total++;
 
-      // Warn if `brand:wikidata` or `brand:wikipedia` tags are missing or look wrong..
-      const wd = tags['brand:wikidata'];
-      if (!wd) {
-        warnMissingWikidata.push(display);
-      } else if (!/^Q\d+$/.test(wd)) {
-        warnFormatWikidata.push([display(item), wd]);
-      }
-      const wp = tags['brand:wikipedia'];
-      if (!wp) {
-        warnMissingWikipedia.push(display(item));
-      } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-        warnFormatWikipedia.push([display(item), wp]);
-      }
+      total++;
+      if (tags['brand:wikidata']) totalWd++;
+
+      // check tags
+      Object.keys(tags).forEach(osmkey => {
+        if (/:wikidata$/.test(osmkey)) {       // Check '*:wikidata' tags
+          const wd = tags[osmkey];
+          if (!/^Q\d+$/.test(wd)) {
+            warnFormatWikidata.push([display(item), wd]);
+          }
+        }
+        if (/:wikipedia$/.test(osmkey)) {      // Check '*.wikipedia' tags
+          // So many contributors get the wikipedia tags wrong, so let's just reformat it for them.
+          const wp = tags[osmkey] = decodeURIComponent(tags[osmkey]).replace('_', ' ');
+          if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+            warnFormatWikipedia.push([display(item), wp]);
+          }
+        }
+      });
 
       // Warn on other missing tags
       switch (kv) {
@@ -385,11 +389,11 @@ function checkItems() {
 
       // Warn about "new" (no wikidata) items that may duplicate an "existing" (has wikidata) item.
       // The criteria for this warning is:
-      // - One of the items has no wikidata
+      // - One of the items has no `brand:wikidata`
       // - The items have nearly the same name
       // - The items have the same locationSet (or the one without wikidata is worldwide)
       const stem = stemmer(name) || name;
-      const itemwd = wd;
+      const itemwd = tags['brand:wikidata'];
       const itemls = loco.validateLocationSet(item.locationSet).id;
 
       if (!seenName[stem]) seenName[stem] = new Set();
@@ -489,7 +493,7 @@ function checkItems() {
     console.warn('total ' + warnFormatWikipedia.length);
   }
 
-  const hasWd = total - warnMissingWikidata.length;
+  const hasWd = total - totalWd;
   const pctWd = (hasWd * 100 / total).toFixed(1);
 
   console.info(colors.blue.bold(`\n${t}/* completeness:`));

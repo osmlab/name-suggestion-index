@@ -298,13 +298,12 @@ function checkItems() {
   let warnDuplicate = [];
   let warnFormatWikidata = [];
   let warnFormatWikipedia = [];
-  let warnMissingWikidata = [];
-  let warnMissingWikipedia = [];
   let warnMissingTag = [];
   let warnFormatTag = [];
   let seenName = {};
 
   let total = 0;
+  let totalWd = 0;
 
   // for now, process `transit/*` only
   const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === 'transit');
@@ -314,33 +313,32 @@ function checkItems() {
     const items = _cache.path[tkv];
     if (!Array.isArray(items) || !items.length) return;
 
-    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const k = parts[1];
-    const v = parts[2];
-    const kv = `${k}/${v}`;
+    // const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+    // const k = parts[1];
+    // const v = parts[2];
+    // const kv = `${k}/${v}`;
 
     items.forEach(item => {
       const tags = item.tags;
-      const name = tags.network;
-      total++;
+      // const name = tags.network;
 
-      // Warn if `*:wikidata` or `*:wikipedia` tags are missing or look wrong..
-      ['network', 'operator'].forEach(osmkey => {
-        const wd = tags[`${osmkey}:wikidata`];
-        if (!wd) {
-          if (osmkey === 'network')  {
-            warnMissingWikidata.push(display);
+      total++;
+      if (tags['network:wikidata']) totalWd++;
+
+      // check tags
+      Object.keys(tags).forEach(osmkey => {
+        if (/:wikidata$/.test(osmkey)) {       // Check '*:wikidata' tags
+          const wd = tags[osmkey];
+          if (!/^Q\d+$/.test(wd)) {
+            warnFormatWikidata.push([display(item), wd]);
           }
-        } else if (!/^Q\d+$/.test(wd)) {
-          warnFormatWikidata.push([display(item), wd]);
         }
-        const wp = tags[`${osmkey}:wikipedia`];
-        if (!wp) {
-          if (osmkey === 'network')  {
-            warnMissingWikipedia.push(display(item));
+        if (/:wikipedia$/.test(osmkey)) {      // Check '*.wikipedia' tags
+          // So many contributors get the wikipedia tags wrong, so let's just reformat it for them.
+          const wp = tags[osmkey] = decodeURIComponent(tags[osmkey]).replace('_', ' ');
+          if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+            warnFormatWikipedia.push([display(item), wp]);
           }
-        } else if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
-          warnFormatWikipedia.push([display(item), wp]);
         }
       });
 
@@ -351,6 +349,7 @@ function checkItems() {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
         }
       });
+
       // Warn if user put `wikidata`/`wikipedia` instead of `network:wikidata`/`network:wikipedia`
       ['wikipedia', 'wikidata'].forEach(osmkey => {
         const val = tags[osmkey];
@@ -470,7 +469,7 @@ function checkItems() {
     console.warn('total ' + warnFormatWikipedia.length);
   }
 
-  const hasWd = total - warnMissingWikidata.length;
+  const hasWd = total - totalWd;
   const pctWd = (hasWd * 100 / total).toFixed(1);
 
   console.info(colors.blue.bold(`\n${t}/* completeness:`));

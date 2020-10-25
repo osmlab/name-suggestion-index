@@ -17,6 +17,7 @@ const wbk = require('wikibase-sdk')({
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
+
 // set to true if you just want to test what the script will do without updating Wikidata
 const DRYRUN = false;
 
@@ -155,8 +156,11 @@ let _urls = wbk.getManyEntities({
 });
 
 let _errors = [];
-doFetch().then(finish);
 
+
+doFetch()
+  .then(removeOldNsiClaims)
+  .then(finish);
 
 
 //
@@ -388,10 +392,6 @@ function processEntities(result) {
         const msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
         wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', msg: msg });
       }
-
-      // TOOD - This will not catch situations where we have changed the QID on our end,
-      //   because they won't exist in the index anymore and been gathered in the first place.
-      // We should maybe make a SPARQL query to clean up entities with orphaned P8253 claims.
     }
 
   });  // foreach qid
@@ -575,6 +575,11 @@ function fetchTwitterUserDetails(qid, username) {
 function fetchFacebookLogo(qid, username) {
   let target = _wikidata[qid];
   let logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
+  let userid;
+
+  // Does this "username" end in a numeric id?  If so, fallback to it.
+  const m = username.match(/-(\d+)$/);
+  if (m) userid = m[1];
 
   return fetch(logoURL)
     .then(response => {
@@ -593,15 +598,60 @@ function fetchFacebookLogo(qid, username) {
       return true;
     })
     .catch(e => {
-      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Facebook username @${username}: ${e}`);
-      _errors.push(msg);
-      console.error(msg);
+      if (userid) {
+        target.identities.facebook = userid;
+        return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
+      } else {
+        const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+          colors.red(`  Facebook username @${username}: ${e}`);
+        _errors.push(msg);
+        console.error(msg);
+      }
     });
 }
 
 
-// We need to slow these down and run them sequentially with some delay.
+// `removeOldNsiClaims`
+// Find all items in Wikidata with NSI identifier claims (P8253).
+// Remove any old claims where we don't reference that QID anymore.
+function removeOldNsiClaims() {
+  const query = `
+    SELECT ?qid ?nsiId ?guid
+    WHERE {
+      ?qid    p:P8253  ?guid.
+      ?guid  ps:P8253  ?nsiId.
+    }`;
+
+  return fetch(wbk.sparqlQuery(query))
+    .then(response => {
+      if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+      return response.json();
+    })
+    .then(wbk.simplify.sparqlResults)
+    .then(results => {
+      let wbEditQueue = [];
+      results.forEach(item => {
+        if (!_qidIdItems[item.qid]) {
+          const msg = `Removing old NSI identifier for ${item.qid}: ${item.nsiId}`;
+          wbEditQueue.push({ qid: item.qid, guid: item.guid, msg: msg });
+        }
+      });
+      return wbEditQueue;
+    })
+    .then(processWbEditQueue)
+    .catch(e => {
+      _errors.push(e);
+      console.error(colors.red(e));
+    });
+}
+
+
+// `processWbEditQueue`
+// Perform any edits to Wikidata that we want to do.
+// (Slow these down and run them sequentially with some delay).
+//
+// Set `DRYRUN=true` at the beginning of this script to prevent actual edits from happening.
+//
 function processWbEditQueue(queue) {
   if (!queue.length) return Promise.resolve();
 
@@ -640,6 +690,9 @@ function processWbEditQueue(queue) {
 }
 
 
+// `enLabelForQID`
+// Pick a value that should be suitable to use as an English label.
+// If we are pushing edits to Wikidata, add en labels for items that don't have them.
 function enLabelForQID(qid) {
   const ids = Array.from(_qidItems[qid]);
   for (let i = 0; i < ids.length; i++) {
