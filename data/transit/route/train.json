@@ -2,21 +2,34 @@
   "transit/route/train": [
     {
       "displayName": "A-Welle",
-      "id": "awelle-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "awelle-d5549f",
+      "locationSet": {"include": ["ch"]},
+      "matchNames": ["tarifverbund a-welle"],
       "tags": {
         "network": "A-Welle",
-        "operator": "A-Welle",
+        "network:wikidata": "Q1233212",
+        "network:wikipedia": "de:Tarifverbund A-Welle",
         "route": "train"
       }
     },
     {
       "displayName": "Achterhoek-Rivierenland",
-      "id": "achterhoekrivierenland-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "achterhoekrivierenland-948004",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "network": "Achterhoek-Rivierenland",
-        "operator": "Achterhoek-Rivierenland",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Altamont Corridor Express",
+      "id": "ace-012d27",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "network": "ACE",
+        "network:wikidata": "Q434302",
+        "network:wikipedia": "en:Altamont Corridor Express",
+        "operator": "San Joaquin Regional Rail Commission",
         "route": "train"
       }
     },
@@ -36,18 +49,21 @@
     },
     {
       "displayName": "Augsburger Verkehrs- und Tarifverbund",
-      "id": "augsburgerverkehrsundtarifverbund-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "augsburgerverkehrsundtarifverbund-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Augsburger Verkehrs- und Tarifverbund",
-        "operator": "Augsburger Verkehrs- und Tarifverbund",
+        "network:guid": "DE-BY-AVV",
+        "network:short": "AVV",
+        "network:wikidata": "Q760574",
+        "network:wikipedia": "de:Augsburger Verkehrs- und Tarifverbund",
         "route": "train"
       }
     },
     {
       "displayName": "Belgrano",
-      "id": "belgrano-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "belgrano-2dc166",
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "network": "Belgrano",
         "operator": "Belgrano",
@@ -55,12 +71,30 @@
       }
     },
     {
-      "displayName": "bodo",
-      "id": "bodo-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Bilboko Aldiriak / Cercanías Bilbao",
+      "id": "bilbokoaldiriakcercaniasbilbao-8dd936",
+      "locationSet": {"include": ["es"]},
       "tags": {
-        "network": "bodo",
-        "operator": "bodo",
+        "network": "Bilboko Aldiriak / Cercanías Bilbao",
+        "network:es": "Cercanías Bilbao",
+        "network:eu": "Bilboko Aldiriak",
+        "network:wikidata": "Q685485",
+        "network:wikipedia": "eu:Bilboko Renfe Aldiriak",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Bodensee-Oberschwaben Verkehrsverbund",
+      "id": "bodenseeoberschwabenverkehrsverbund-da20e0",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "network": "Bodensee-Oberschwaben Verkehrsverbund",
+        "network:short": "bodo",
+        "network:wikidata": "Q889680",
+        "network:wikipedia": "de:Bodensee-Oberschwaben Verkehrsverbund",
         "route": "train"
       }
     },
@@ -79,39 +113,148 @@
       }
     },
     {
-      "displayName": "Cercanías Madrid",
-      "id": "cercaniasmadrid-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Cercanías Asturias",
+      "id": "cercaniasasturias-8dd936",
+      "locationSet": {"include": ["es"]},
       "tags": {
-        "network": "Cercanías Madrid",
-        "operator": "Cercanías Madrid",
+        "network": "Cercanías Asturias",
+        "network:wikidata": "Q1054739",
+        "network:wikipedia": "es:Cercanías Asturias",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
         "route": "train"
       }
     },
     {
-      "displayName": "CFL",
-      "id": "cfl-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Cercanías Cádiz",
+      "id": "cercaniascadiz-8dd936",
+      "locationSet": {"include": ["es"]},
       "tags": {
-        "network": "CFL",
-        "operator": "CFL",
+        "network": "Cercanías Cádiz",
+        "network:wikidata": "Q1054745",
+        "network:wikipedia": "es:Cercanías Cádiz",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Cercanías Madrid",
+      "id": "cercaniasmadrid-8dd936",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Cercanías Madrid",
+        "network:wikidata": "Q1054785",
+        "network:wikipedia": "es:Cercanías Madrid",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Cercanías Málaga",
+      "id": "cercaniasmalaga-8dd936",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Cercanías Málaga",
+        "network:wikidata": "Q167503",
+        "network:wikipedia": "es:Cercanías Málaga",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Cercanías Murcia/Alicante",
+      "id": "cercaniasmurciaalicante-8dd936",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Cercanías Murcia/Alicante",
+        "network:wikidata": "Q650688",
+        "network:wikipedia": "es:Cercanías Murcia/Alicante",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Cercanías Santander",
+      "id": "cercaniassantander-8dd936",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Cercanías Santander",
+        "network:wikidata": "Q1054773",
+        "network:wikipedia": "es:Cercanías Santander",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Cercanías Sevilla",
+      "id": "cercaniassevilla-8dd936",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Cercanías Sevilla",
+        "network:wikidata": "Q2747014",
+        "network:wikipedia": "es:Cercanías Sevilla",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Cercanías València",
+      "id": "cercaniasvalencia-8dd936",
+      "locationSet": {"include": ["es"]},
+      "matchNames": [
+        "rodalia de valència",
+        "rodalia valència"
+      ],
+      "tags": {
+        "network": "Cercanías València",
+        "network:wikidata": "Q2689944",
+        "network:wikipedia": "es:Cercanías Valencia",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Cercanías Zaragoza",
+      "id": "cercaniaszaragoza-8dd936",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Cercanías Zaragoza",
+        "network:wikidata": "Q1054798",
+        "network:wikipedia": "es:Cercanías Zaragoza",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
         "route": "train"
       }
     },
     {
       "displayName": "ch-direct",
-      "id": "chdirect-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "chdirect-d5549f",
+      "locationSet": {"include": ["ch"]},
       "tags": {
         "network": "ch-direct",
-        "operator": "ch-direct",
         "route": "train"
       }
     },
     {
       "displayName": "CN-railway",
-      "id": "cnrailway-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "cnrailway-61c516",
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "network": "CN-railway",
         "operator": "CN-railway",
@@ -119,42 +262,63 @@
       }
     },
     {
+      "displayName": "Companhia Paulista de Trens Metropolitanos",
+      "id": "companhiapaulistadetrensmetropolitanos-ed1f03",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "network": "Companhia Paulista de Trens Metropolitanos",
+        "network:short": "CPTM",
+        "network:wikidata": "Q1121227",
+        "network:wikipedia": "pt:Companhia Paulista de Trens Metropolitanos",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "CP Lisboa",
-      "id": "cplisboa-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "cplisboa-3ee463",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": ["cp urbanos de lisboa"],
       "tags": {
         "network": "CP Lisboa",
-        "operator": "CP Lisboa",
+        "network:wikidata": "Q847651",
+        "network:wikipedia": "pt:CP Urbanos de Lisboa",
         "route": "train"
       }
     },
     {
       "displayName": "CP Longo Curso",
-      "id": "cplongocurso-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "cplongocurso-3ee463",
+      "locationSet": {"include": ["pt"]},
       "tags": {
         "network": "CP Longo Curso",
+        "network:wikidata": "Q1024241",
+        "network:wikipedia": "pt:CP Longo Curso",
         "operator": "CP Longo Curso",
+        "operator:wikidata": "Q1024241",
+        "operator:wikipedia": "pt:CP Longo Curso",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "CP Porto",
+      "id": "cpporto-3ee463",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": ["cp urbanos do porto"],
+      "tags": {
+        "network": "CP Porto",
+        "network:wikidata": "Q2624115",
+        "network:wikipedia": "pt:CP Urbanos do Porto",
         "route": "train"
       }
     },
     {
       "displayName": "CP Regional",
-      "id": "cpregional-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "cpregional-3ee463",
+      "locationSet": {"include": ["pt"]},
       "tags": {
         "network": "CP Regional",
-        "operator": "CP Regional",
-        "route": "train"
-      }
-    },
-    {
-      "displayName": "CPTM",
-      "id": "cptm-44bbb3",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "network": "CPTM",
-        "operator": "CPTM",
+        "network:wikidata": "Q1024244",
+        "network:wikipedia": "pt:CP Regional",
         "route": "train"
       }
     },
@@ -174,7 +338,7 @@
     },
     {
       "displayName": "DB InterCityExpress",
-      "id": "dbintercityexpress-4bdfff",
+      "id": "dbintercityexpress-d50aa4",
       "locationSet": {
         "include": [
           "at",
@@ -210,12 +374,42 @@
       }
     },
     {
+      "displayName": "Donostiako Aldiriak / Cercanías San Sebastián",
+      "id": "donostiakoaldiriakcercaniassansebastian-8dd936",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Donostiako Aldiriak / Cercanías San Sebastián",
+        "network:es": "Cercanías San Sebastián",
+        "network:eu": "Donostiako Aldiriak",
+        "network:wikidata": "Q2946410",
+        "network:wikipedia": "eu:Donostiako Renfe Aldiriak",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Dublin Commuter",
-      "id": "dublincommuter-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "dublincommuter-73b98a",
+      "locationSet": {"include": ["ie"]},
       "tags": {
         "network": "Dublin Commuter",
         "operator": "Dublin Commuter",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Eurobahn",
+      "id": "eurobahn-ba45e2",
+      "locationSet": {"include": ["de", "nl"]},
+      "tags": {
+        "network": "Eurobahn",
+        "network:wikidata": "Q589575",
+        "network:wikipedia": "de:Eurobahn",
+        "operator": "Keolis",
+        "operator:wikidata": "Q664399",
+        "operator:wikipedia": "de:Keolis",
         "route": "train"
       }
     },
@@ -241,18 +435,24 @@
     },
     {
       "displayName": "Euskotren Trena",
-      "id": "euskotrentrena-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "euskotrentrena-19c4af",
+      "locationSet": {"include": ["es", "fr"]},
       "tags": {
         "network": "Euskotren Trena",
-        "operator": "Euskotren Trena",
+        "network:wikidata": "Q149274",
+        "network:wikipedia": "eu:Euskotren Trena",
+        "operator": "Eusko Trenbideak – Ferrocarriles Vascos",
+        "operator:es": "Ferrocarriles Vascos",
+        "operator:eu": "Eusko Trenbideak",
+        "operator:wikidata": "Q3061020",
+        "operator:wikipedia": "eu:Eusko Trenbideak",
         "route": "train"
       }
     },
     {
       "displayName": "exo",
-      "id": "exo-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "exo-11f910",
+      "locationSet": {"include": ["ca"]},
       "tags": {
         "network": "exo",
         "operator": "exo",
@@ -261,8 +461,8 @@
     },
     {
       "displayName": "Ferrovie Nord",
-      "id": "ferrovienord-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "ferrovienord-66b763",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "network": "Ferrovie Nord",
         "operator": "Ferrovie Nord",
@@ -271,8 +471,8 @@
     },
     {
       "displayName": "Formula",
-      "id": "formula-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "formula-66b763",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "network": "Formula",
         "operator": "Formula",
@@ -281,8 +481,8 @@
     },
     {
       "displayName": "Frimobil",
-      "id": "frimobil-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "frimobil-d5549f",
+      "locationSet": {"include": ["ch"]},
       "tags": {
         "network": "Frimobil",
         "operator": "Frimobil",
@@ -290,9 +490,27 @@
       }
     },
     {
+      "displayName": "FrontRunner",
+      "id": "uta-012d27",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "frontrunner",
+        "uta frontrunner"
+      ],
+      "tags": {
+        "network": "UTA",
+        "network:wikidata": "Q5505779",
+        "network:wikipedia": "en:FrontRunner",
+        "operator": "UTA",
+        "operator:wikidata": "Q5505779",
+        "operator:wikipedia": "en:FrontRunner",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Großraum-Verkehr Hannover",
-      "id": "grossraumverkehrhannover-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "grossraumverkehrhannover-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Großraum-Verkehr Hannover",
         "operator": "Großraum-Verkehr Hannover",
@@ -301,8 +519,8 @@
     },
     {
       "displayName": "Hoofdrailnet Nederland",
-      "id": "hoofdrailnetnederland-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "hoofdrailnetnederland-6fd908",
+      "locationSet": {"include": ["be", "nl"]},
       "tags": {
         "network": "Hoofdrailnet Nederland",
         "operator": "Hoofdrailnet Nederland",
@@ -311,8 +529,8 @@
     },
     {
       "displayName": "HSL",
-      "id": "hsl-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "hsl-976e87",
+      "locationSet": {"include": ["fi"]},
       "tags": {
         "network": "HSL",
         "operator": "HSL",
@@ -321,8 +539,8 @@
     },
     {
       "displayName": "HVV",
-      "id": "hvv-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "hvv-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "HVV",
         "operator": "HVV",
@@ -331,8 +549,10 @@
     },
     {
       "displayName": "IC",
-      "id": "ic-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "ic-16fee5",
+      "locationSet": {
+        "include": ["be", "fr", "lu"]
+      },
       "tags": {
         "network": "IC",
         "operator": "IC",
@@ -341,8 +561,8 @@
     },
     {
       "displayName": "IDS BK",
-      "id": "idsbk-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "idsbk-b6707b",
+      "locationSet": {"include": ["sk"]},
       "tags": {
         "network": "IDS BK",
         "operator": "IDS BK",
@@ -351,8 +571,8 @@
     },
     {
       "displayName": "Intercités",
-      "id": "intercites-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "intercites-19c4af",
+      "locationSet": {"include": ["es", "fr"]},
       "tags": {
         "network": "Intercités",
         "operator": "Intercités",
@@ -361,8 +581,8 @@
     },
     {
       "displayName": "Jungfraubahnen",
-      "id": "jungfraubahnen-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "jungfraubahnen-d5549f",
+      "locationSet": {"include": ["ch"]},
       "tags": {
         "network": "Jungfraubahnen",
         "operator": "Jungfraubahnen",
@@ -371,8 +591,8 @@
     },
     {
       "displayName": "KAI_DAOP_2",
-      "id": "kaidaop2-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "kaidaop2-305460",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "network": "KAI_DAOP_2",
         "operator": "KAI_DAOP_2",
@@ -381,8 +601,8 @@
     },
     {
       "displayName": "Karlsruher Verkehrsverbund",
-      "id": "karlsruherverkehrsverbund-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "karlsruherverkehrsverbund-458bc6",
+      "locationSet": {"include": ["de", "fr"]},
       "tags": {
         "network": "Karlsruher Verkehrsverbund",
         "operator": "Karlsruher Verkehrsverbund",
@@ -390,9 +610,19 @@
       }
     },
     {
-      "displayName": "KSl",
-      "id": "ksl-44bbb3",
+      "displayName": "Kärntner Linien",
+      "id": "karntnerlinien-44bbb3",
       "locationSet": {"include": ["001"]},
+      "tags": {
+        "network": "Kärntner Linien",
+        "operator": "Kärntner Linien",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "KSl",
+      "id": "ksl-163923",
+      "locationSet": {"include": ["cz", "pl"]},
       "tags": {
         "network": "KSl",
         "operator": "KSl",
@@ -411,8 +641,8 @@
     },
     {
       "displayName": "Léman Express",
-      "id": "lemanexpress-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "lemanexpress-514c1e",
+      "locationSet": {"include": ["ch", "fr"]},
       "tags": {
         "network": "Léman Express",
         "operator": "Léman Express",
@@ -421,8 +651,8 @@
     },
     {
       "displayName": "Libero",
-      "id": "libero-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "libero-d5549f",
+      "locationSet": {"include": ["ch"]},
       "tags": {
         "network": "Libero",
         "operator": "Libero",
@@ -431,8 +661,10 @@
     },
     {
       "displayName": "Limburg",
-      "id": "limburg-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "limburg-c09de4",
+      "locationSet": {
+        "include": ["be", "de", "nl"]
+      },
       "tags": {
         "network": "Limburg",
         "operator": "Limburg",
@@ -469,6 +701,20 @@
       }
     },
     {
+      "displayName": "Marmaray",
+      "id": "marmaray-764b53",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "network": "Marmaray",
+        "network:wikidata": "Q497844",
+        "network:wikipedia": "tr:Marmaray",
+        "operator": "TCDD Taşımacılık",
+        "operator:wikidata": "Q28220824",
+        "operator:wikipedia": "tr:TCDD Taşımacılık",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "MBTA",
       "id": "mbta-012d27",
       "locationSet": {"include": ["us"]},
@@ -487,8 +733,8 @@
     },
     {
       "displayName": "MDV",
-      "id": "mdv-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "mdv-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "MDV",
         "operator": "MDV",
@@ -497,8 +743,8 @@
     },
     {
       "displayName": "Metra",
-      "id": "metra-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "metra-012d27",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "network": "Metra",
         "operator": "Metra",
@@ -507,11 +753,30 @@
     },
     {
       "displayName": "Metro del Baix Llobregat",
-      "id": "metrodelbaixllobregat-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "metrodelbaixllobregat-8dd936",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Metro del Baix Llobregat",
         "operator": "Metro del Baix Llobregat",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Metro Trains Melbourne",
+      "id": "metrotrainsmelbourne-cffedd",
+      "locationSet": {"include": ["au"]},
+      "matchNames": [
+        "metro",
+        "metro melbourne",
+        "mtm"
+      ],
+      "tags": {
+        "network": "Metro Trains Melbourne",
+        "network:wikidata": "Q10931299",
+        "network:wikipedia": "en:Metro Trains Melbourne",
+        "operator": "Metro Trains Melbourne",
+        "operator:wikidata": "Q10931299",
+        "operator:wikipedia": "en:Metro Trains Melbourne",
         "route": "train"
       }
     },
@@ -530,9 +795,21 @@
       }
     },
     {
+      "displayName": "Metrolink",
+      "id": "metrolink-012d27",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "network": "Metrolink",
+        "network:wikidata": "Q766647",
+        "network:wikipedia": "en:Metrolink (California)",
+        "operator": "Southern California Regional Rail Authority",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Metrorail Gauteng",
-      "id": "metrorailgauteng-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "metrorailgauteng-5dfea9",
+      "locationSet": {"include": ["za"]},
       "tags": {
         "network": "Metrorail Gauteng",
         "operator": "Metrorail Gauteng",
@@ -541,8 +818,8 @@
     },
     {
       "displayName": "Metrorail KwaZulu-Natal",
-      "id": "metrorailkwazulunatal-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "metrorailkwazulunatal-5dfea9",
+      "locationSet": {"include": ["za"]},
       "tags": {
         "network": "Metrorail KwaZulu-Natal",
         "operator": "Metrorail KwaZulu-Natal",
@@ -551,8 +828,8 @@
     },
     {
       "displayName": "Metrorail Western Cape",
-      "id": "metrorailwesterncape-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "metrorailwesterncape-5dfea9",
+      "locationSet": {"include": ["za"]},
       "tags": {
         "network": "Metrorail Western Cape",
         "operator": "Metrorail Western Cape",
@@ -561,8 +838,8 @@
     },
     {
       "displayName": "Mitre",
-      "id": "mitre-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "mitre-2dc166",
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "network": "Mitre",
         "operator": "Mitre",
@@ -581,8 +858,8 @@
     },
     {
       "displayName": "Mumbai Suburban Rail Network",
-      "id": "mumbaisuburbanrailnetwork-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "mumbaisuburbanrailnetwork-7147b7",
+      "locationSet": {"include": ["in"]},
       "tags": {
         "network": "Mumbai Suburban Rail Network",
         "operator": "Mumbai Suburban Rail Network",
@@ -591,18 +868,23 @@
     },
     {
       "displayName": "Münchner Verkehrs- und Tarifverbund",
-      "id": "munchnerverkehrsundtarifverbund-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "munchnerverkehrsundtarifverbund-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Münchner Verkehrs- und Tarifverbund",
-        "operator": "Münchner Verkehrs- und Tarifverbund",
+        "network:guid": "DE-BY-MVV",
+        "network:short": "MVV",
+        "network:wikidata": "Q259000",
+        "network:wikipedia": "de:Münchner Verkehrs- und Tarifverbund",
         "route": "train"
       }
     },
     {
       "displayName": "NAH.SH",
-      "id": "nahsh-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "nahsh-7b61bc",
+      "locationSet": {
+        "include": ["de", "dk", "pl"]
+      },
       "tags": {
         "network": "NAH.SH",
         "operator": "NAH.SH",
@@ -611,8 +893,8 @@
     },
     {
       "displayName": "naldo",
-      "id": "naldo-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "naldo-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "naldo",
         "operator": "naldo",
@@ -621,8 +903,8 @@
     },
     {
       "displayName": "National Rail",
-      "id": "nationalrail-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "nationalrail-67e2a7",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "network": "National Rail",
         "operator": "National Rail",
@@ -630,19 +912,52 @@
       }
     },
     {
+      "displayName": "NCTD Coaster",
+      "id": "nctd-012d27",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "network": "NCTD",
+        "network:wikidata": "Q5138375",
+        "network:wikipedia": "en:Coaster (commuter rail)",
+        "operator": "NCTD",
+        "operator:wikidata": "Q5138375",
+        "operator:wikipedia": "en:Coaster (commuter rail)",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "New Mexico Rail Runner Express",
+      "id": "riometro-012d27",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "network": "Rio Metro",
+        "network:wikidata": "Q11324955",
+        "network:wikipedia": "en:New Mexico Rail Runner Express",
+        "operator": "Rio Metro",
+        "operator:wikidata": "Q11324955",
+        "operator:wikipedia": "en:New Mexico Rail Runner Express",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "NJ Transit",
-      "id": "njtransit-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "njtransit-012d27",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["new jersey transit"],
       "tags": {
         "network": "NJ Transit",
+        "network:wikidata": "Q498553",
+        "network:wikipedia": "en:NJ Transit",
         "operator": "NJ Transit",
+        "operator:wikidata": "Q498553",
+        "operator:wikipedia": "en:NJ Transit",
         "route": "train"
       }
     },
     {
       "displayName": "Noordelijke Treindiensten",
-      "id": "noordelijketreindiensten-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "noordelijketreindiensten-ba45e2",
+      "locationSet": {"include": ["de", "nl"]},
       "tags": {
         "network": "Noordelijke Treindiensten",
         "operator": "Noordelijke Treindiensten",
@@ -660,9 +975,23 @@
       }
     },
     {
+      "displayName": "NWB",
+      "id": "nordwestbahn-da20e0",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "network": "NordWestBahn",
+        "network:wikidata": "Q314293",
+        "network:wikipedia": "de:NordWestBahn",
+        "operator": "Transdev GmbH",
+        "operator:wikidata": "Q897024",
+        "operator:wikipedia": "de:Transdev GmbH",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "ODIS",
-      "id": "odis-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "odis-cc6cef",
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "network": "ODIS",
         "operator": "ODIS",
@@ -671,8 +1000,8 @@
     },
     {
       "displayName": "OÖVV",
-      "id": "oovv-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "oovv-70a9a9",
+      "locationSet": {"include": ["at"]},
       "tags": {
         "network": "OÖVV",
         "operator": "OÖVV",
@@ -681,8 +1010,10 @@
     },
     {
       "displayName": "Ostwind",
-      "id": "ostwind-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "ostwind-aa6868",
+      "locationSet": {
+        "include": ["at", "ch", "de", "li"]
+      },
       "tags": {
         "network": "Ostwind",
         "operator": "Ostwind",
@@ -691,8 +1022,8 @@
     },
     {
       "displayName": "PID",
-      "id": "pid-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "pid-cc6cef",
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "network": "PID",
         "operator": "PID",
@@ -701,8 +1032,8 @@
     },
     {
       "displayName": "PTV - Metropolitan Trains",
-      "id": "ptvmetropolitantrains-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "ptvmetropolitantrains-cffedd",
+      "locationSet": {"include": ["au"]},
       "tags": {
         "network": "PTV - Metropolitan Trains",
         "operator": "PTV - Metropolitan Trains",
@@ -711,8 +1042,8 @@
     },
     {
       "displayName": "PTV - Regional Trains",
-      "id": "ptvregionaltrains-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "ptvregionaltrains-cffedd",
+      "locationSet": {"include": ["au"]},
       "tags": {
         "network": "PTV - Regional Trains",
         "operator": "PTV - Regional Trains",
@@ -721,8 +1052,8 @@
     },
     {
       "displayName": "Regio-Verkehrsverbund Freiburg",
-      "id": "regioverkehrsverbundfreiburg-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "regioverkehrsverbundfreiburg-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Regio-Verkehrsverbund Freiburg",
         "operator": "Regio-Verkehrsverbund Freiburg",
@@ -731,8 +1062,8 @@
     },
     {
       "displayName": "RER",
-      "id": "rer-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "rer-fbf24c",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "network": "RER",
         "operator": "RER",
@@ -741,8 +1072,8 @@
     },
     {
       "displayName": "RMV",
-      "id": "rmv-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "rmv-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "RMV",
         "operator": "RMV",
@@ -751,8 +1082,8 @@
     },
     {
       "displayName": "Roca",
-      "id": "roca-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "roca-2dc166",
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "network": "Roca",
         "operator": "Roca",
@@ -760,32 +1091,44 @@
       }
     },
     {
-      "displayName": "Rodalia de València",
-      "id": "rodaliadevalencia-44bbb3",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "network": "Rodalia de València",
-        "operator": "Rodalia de València",
-        "route": "train"
-      }
-    },
-    {
       "displayName": "Rodalies de Catalunya",
-      "id": "rodaliesdecatalunya-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "rodaliesdecatalunya-19c4af",
+      "locationSet": {"include": ["es", "fr"]},
+      "matchNames": [
+        "cercanías de catalunya",
+        "cercanías de cataluña"
+      ],
       "tags": {
         "network": "Rodalies de Catalunya",
-        "operator": "Rodalies de Catalunya",
+        "network:wikidata": "Q3322422",
+        "network:wikipedia": "ca:Rodalies de Catalunya",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "operator:wikipedia": "es:Renfe",
         "route": "train"
       }
     },
     {
       "displayName": "Rodalies de Catalunya (ATM Barcelona)",
-      "id": "rodaliesdecatalunyaatmbarcelona-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "rodaliesdecatalunyaatmbarcelona-19c4af",
+      "locationSet": {"include": ["es", "fr"]},
       "tags": {
         "network": "Rodalies de Catalunya (ATM Barcelona)",
         "operator": "Rodalies de Catalunya (ATM Barcelona)",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Romney, Hythe & Dymchurch Railway",
+      "id": "romneyhytheanddymchurchrailway-67e2a7",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "network": "Romney, Hythe & Dymchurch Railway",
+        "network:wikidata": "Q2090360",
+        "network:wikipedia": "en:Romney, Hythe and Dymchurch Railway",
+        "operator": "Romney, Hythe & Dymchurch Railway",
+        "operator:wikidata": "Q2090360",
+        "operator:wikipedia": "en:Romney, Hythe and Dymchurch Railway",
         "route": "train"
       }
     },
@@ -801,8 +1144,8 @@
     },
     {
       "displayName": "S-Bahn Steiermark",
-      "id": "sbahnsteiermark-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "sbahnsteiermark-70a9a9",
+      "locationSet": {"include": ["at"]},
       "tags": {
         "network": "S-Bahn Steiermark",
         "operator": "S-Bahn Steiermark",
@@ -811,8 +1154,8 @@
     },
     {
       "displayName": "saarVV",
-      "id": "saarvv-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "saarvv-458bc6",
+      "locationSet": {"include": ["de", "fr"]},
       "tags": {
         "network": "saarVV",
         "operator": "saarVV",
@@ -821,8 +1164,8 @@
     },
     {
       "displayName": "Salzburger Verkehrsverbund",
-      "id": "salzburgerverkehrsverbund-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "salzburgerverkehrsverbund-bba518",
+      "locationSet": {"include": ["at", "de"]},
       "tags": {
         "network": "Salzburger Verkehrsverbund",
         "operator": "Salzburger Verkehrsverbund",
@@ -831,8 +1174,8 @@
     },
     {
       "displayName": "ScotRail",
-      "id": "scotrail-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "scotrail-67e2a7",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "network": "ScotRail",
         "operator": "ScotRail",
@@ -841,18 +1184,43 @@
     },
     {
       "displayName": "SEPTA",
-      "id": "septa-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "septa-012d27",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "southeastern pennsylvania transportation authority"
+      ],
       "tags": {
         "network": "SEPTA",
+        "network:wikidata": "Q2037863",
+        "network:wikipedia": "en:SEPTA",
         "operator": "SEPTA",
+        "operator:wikidata": "Q2037863",
+        "operator:wikipedia": "en:SEPTA",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Serveis Ferroviaris de Mallorca",
+      "id": "serveisferroviarisdemallorca-8dd936",
+      "locationSet": {"include": ["es"]},
+      "matchNames": [
+        "servicios ferroviarios de mallorca"
+      ],
+      "tags": {
+        "network": "Serveis Ferroviaris de Mallorca",
+        "network:short": "SFM",
+        "network:wikidata": "Q1811123",
+        "network:wikipedia": "ca:Serveis Ferroviaris de Mallorca",
+        "operator": "Serveis Ferroviaris de Mallorca",
+        "operator:wikidata": "Q1811123",
+        "operator:wikipedia": "ca:Serveis Ferroviaris de Mallorca",
         "route": "train"
       }
     },
     {
       "displayName": "SITAM",
-      "id": "sitam-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "sitam-a29473",
+      "locationSet": {"include": ["ch", "it"]},
       "tags": {
         "network": "SITAM",
         "operator": "SITAM",
@@ -861,8 +1229,8 @@
     },
     {
       "displayName": "Skånetrafiken",
-      "id": "skanetrafiken-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "skanetrafiken-ce5db4",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "network": "Skånetrafiken",
         "operator": "Skånetrafiken",
@@ -880,9 +1248,46 @@
       }
     },
     {
+      "displayName": "Société Nationale des Chemins de Fer Luxembourgeois",
+      "id": "societenationaledescheminsdeferluxembourgeois-979c3c",
+      "locationSet": {
+        "include": ["be", "de", "fr", "lu"]
+      },
+      "matchNames": [
+        "chemins de fer luxembourgeois",
+        "luxemburgische eisenbahnen",
+        "nationale gesellschaft der luxemburgischen eisenbahnen"
+      ],
+      "tags": {
+        "network": "Société Nationale des Chemins de fer Luxembourgeois",
+        "network:short": "CFL",
+        "network:wikidata": "Q525359",
+        "network:wikipedia": "fr:Société Nationale des Chemins de Fer Luxembourgeois",
+        "operator": "Société Nationale des Chemins de fer Luxembourgeois",
+        "operator:short": "CFL",
+        "operator:wikidata": "Q525359",
+        "operator:wikipedia": "fr:Société Nationale des Chemins de Fer Luxembourgeois",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Sounder",
+      "id": "soundtransit-012d27",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "network": "Sound Transit",
+        "network:wikidata": "Q7564853",
+        "network:wikipedia": "en:Sounder commuter rail",
+        "operator": "Sound Transit",
+        "operator:wikidata": "Q7564853",
+        "operator:wikipedia": "en:Sounder commuter rail",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "SPT",
-      "id": "spt-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "spt-67e2a7",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "network": "SPT",
         "operator": "SPT",
@@ -901,8 +1306,8 @@
     },
     {
       "displayName": "SuperVia",
-      "id": "supervia-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "supervia-ed1f03",
+      "locationSet": {"include": ["br"]},
       "tags": {
         "network": "SuperVia",
         "operator": "SuperVia",
@@ -911,8 +1316,8 @@
     },
     {
       "displayName": "Sydney Trains",
-      "id": "sydneytrains-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "sydneytrains-cffedd",
+      "locationSet": {"include": ["au"]},
       "tags": {
         "network": "Sydney Trains",
         "operator": "Sydney Trains",
@@ -921,8 +1326,8 @@
     },
     {
       "displayName": "Takst Sjælland",
-      "id": "takstsjaelland-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "takstsjaelland-972e07",
+      "locationSet": {"include": ["dk"]},
       "tags": {
         "network": "Takst Sjælland",
         "operator": "Takst Sjælland",
@@ -1127,7 +1532,7 @@
     },
     {
       "displayName": "TGV",
-      "id": "tgv-b8aeac",
+      "id": "tgv-7d2d57",
       "locationSet": {
         "include": [
           "be",
@@ -1152,8 +1557,8 @@
     },
     {
       "displayName": "TPL-Piemonte",
-      "id": "tplpiemonte-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "tplpiemonte-312323",
+      "locationSet": {"include": ["fr", "it"]},
       "tags": {
         "network": "TPL-Piemonte",
         "operator": "TPL-Piemonte",
@@ -1162,8 +1567,8 @@
     },
     {
       "displayName": "Transilien",
-      "id": "transilien-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "transilien-46b9eb",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Transilien",
         "operator": "Transilien",
@@ -1182,8 +1587,8 @@
     },
     {
       "displayName": "Transpennine",
-      "id": "transpennine-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "transpennine-67e2a7",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "network": "Transpennine",
         "operator": "Transpennine",
@@ -1202,8 +1607,8 @@
     },
     {
       "displayName": "Trenitalia",
-      "id": "trenitalia-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "trenitalia-66b763",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "network": "Trenitalia",
         "operator": "Trenitalia",
@@ -1212,8 +1617,8 @@
     },
     {
       "displayName": "Trenitalia S.p.A",
-      "id": "trenitaliaspa-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "trenitaliaspa-66b763",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "network": "Trenitalia S.p.A",
         "operator": "Trenitalia S.p.A",
@@ -1221,9 +1626,21 @@
       }
     },
     {
+      "displayName": "V/Line",
+      "id": "vline-cffedd",
+      "locationSet": {"include": ["au"]},
+      "matchNames": ["v/line corporation"],
+      "tags": {
+        "network": "V/Line",
+        "network:wikidata": "Q7906335",
+        "network:wikipedia": "en:V/Line",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Västtrafik",
-      "id": "vasttrafik-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "vasttrafik-ce5db4",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "network": "Västtrafik",
         "operator": "Västtrafik",
@@ -1232,28 +1649,32 @@
     },
     {
       "displayName": "Verkehrs- und Tarifverbund Stuttgart",
-      "id": "verkehrsundtarifverbundstuttgart-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "verkehrsundtarifverbundstuttgart-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Verkehrs- und Tarifverbund Stuttgart",
-        "operator": "Verkehrs- und Tarifverbund Stuttgart",
+        "network:guid": "DE-BW-VVS",
+        "network:short": "VVS",
+        "network:wikidata": "Q2516108",
+        "network:wikipedia": "de:Verkehrs- und Tarifverbund Stuttgart",
         "route": "train"
       }
     },
     {
       "displayName": "Verkehrsverbund Berlin-Brandenburg",
-      "id": "verkehrsverbundberlinbrandenburg-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "verkehrsverbundberlinbrandenburg-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Verkehrsverbund Berlin-Brandenburg",
-        "operator": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
+        "network:wikidata": "Q315451",
         "route": "train"
       }
     },
     {
       "displayName": "Verkehrsverbund Bremen/Niedersachsen",
-      "id": "verkehrsverbundbremenniedersachsen-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "verkehrsverbundbremenniedersachsen-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Verkehrsverbund Bremen/Niedersachsen",
         "operator": "Verkehrsverbund Bremen/Niedersachsen",
@@ -1262,8 +1683,8 @@
     },
     {
       "displayName": "Verkehrsverbund Großraum Nürnberg",
-      "id": "verkehrsverbundgrossraumnurnberg-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "verkehrsverbundgrossraumnurnberg-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Verkehrsverbund Großraum Nürnberg",
         "operator": "Verkehrsverbund Großraum Nürnberg",
@@ -1281,9 +1702,24 @@
       }
     },
     {
+      "displayName": "Verkehrsverbund Mainfranken",
+      "id": "verkehrsverbundmainfranken-da20e0",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "verkehrsunternehmens-verbund mainfranken"
+      ],
+      "tags": {
+        "network": "Verkehrsverbund Mainfranken",
+        "network:short": "VVM",
+        "network:wikidata": "Q2516466",
+        "network:wikipedia": "de:Verkehrsverbund Mainfranken",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Verkehrsverbund Oberelbe",
-      "id": "verkehrsverbundoberelbe-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "verkehrsverbundoberelbe-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Verkehrsverbund Oberelbe",
         "operator": "Verkehrsverbund Oberelbe",
@@ -1292,8 +1728,8 @@
     },
     {
       "displayName": "Verkehrsverbund Rhein-Neckar",
-      "id": "verkehrsverbundrheinneckar-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "verkehrsverbundrheinneckar-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Verkehrsverbund Rhein-Neckar",
         "operator": "Verkehrsverbund Rhein-Neckar",
@@ -1316,8 +1752,10 @@
     },
     {
       "displayName": "VOR",
-      "id": "vor-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "vor-5316b2",
+      "locationSet": {
+        "include": ["at", "cz", "hu", "sk"]
+      },
       "tags": {
         "network": "VOR",
         "operator": "VOR",
@@ -1326,8 +1764,8 @@
     },
     {
       "displayName": "VR",
-      "id": "vr-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "vr-976e87",
+      "locationSet": {"include": ["fi"]},
       "tags": {
         "network": "VR",
         "operator": "VR",
@@ -1336,8 +1774,8 @@
     },
     {
       "displayName": "VRB",
-      "id": "vrb-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "vrb-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "VRB",
         "operator": "VRB",
@@ -1346,8 +1784,8 @@
     },
     {
       "displayName": "VRM",
-      "id": "vrm-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "vrm-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "VRM",
         "operator": "VRM",
@@ -1356,8 +1794,8 @@
     },
     {
       "displayName": "VRN",
-      "id": "vrn-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "vrn-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "VRN",
         "operator": "VRN",
@@ -1380,8 +1818,8 @@
     },
     {
       "displayName": "VVO",
-      "id": "vvo-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "vvo-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "VVO",
         "operator": "VVO",
@@ -1390,8 +1828,10 @@
     },
     {
       "displayName": "VVT",
-      "id": "vvt-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "vvt-872add",
+      "locationSet": {
+        "include": ["at", "ch", "de", "it"]
+      },
       "tags": {
         "network": "VVT",
         "operator": "VVT",
@@ -1411,9 +1851,24 @@
       }
     },
     {
+      "displayName": "Westfalenbahn",
+      "id": "westfalenbahn-da20e0",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "network": "Westfalenbahn",
+        "network:short": "WFB",
+        "network:wikidata": "Q2024025",
+        "network:wikipedia": "de:Westfalenbahn",
+        "operator": "Abellio",
+        "operator:wikidata": "Q2246805",
+        "operator:wikipedia": "de:Abellio (Unternehmen)",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "ZVV",
-      "id": "zvv-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "zvv-91ea8f",
+      "locationSet": {"include": ["ch", "de"]},
       "tags": {
         "network": "ZVV",
         "operator": "ZVV",
@@ -1422,8 +1877,8 @@
     },
     {
       "displayName": "БГ:Воз",
-      "id": "c0e434-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "c0e434-b1d5b3",
+      "locationSet": {"include": ["rs"]},
       "tags": {
         "network": "БГ:Воз",
         "operator": "БГ:Воз",
@@ -1432,8 +1887,8 @@
     },
     {
       "displayName": "РЖД",
-      "id": "a2f5de-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "a2f5de-4f6875",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "network": "РЖД",
         "operator": "РЖД",
@@ -1442,8 +1897,8 @@
     },
     {
       "displayName": "Укрзалізниця",
-      "id": "8067fe-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "8067fe-216244",
+      "locationSet": {"include": ["ua"]},
       "tags": {
         "network": "Укрзалізниця",
         "operator": "Укрзалізниця",
@@ -1451,9 +1906,21 @@
       }
     },
     {
+      "displayName": "アーバンネットワーク",
+      "id": "b8f89f-717a77",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "network": "アーバンネットワーク",
+        "network:ja": "アーバンネットワーク",
+        "operator": "アーバンネットワーク",
+        "operator:ja": "アーバンネットワーク",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "京成",
-      "id": "c9cec4-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "c9cec4-717a77",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "network": "京成",
         "operator": "京成",
@@ -1462,8 +1929,8 @@
     },
     {
       "displayName": "北京城市铁路",
-      "id": "7a1b4d-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "7a1b4d-61c516",
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "network": "北京城市铁路",
         "operator": "北京城市铁路",
@@ -1482,8 +1949,8 @@
     },
     {
       "displayName": "小田急電鉄",
-      "id": "ad805d-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "ad805d-717a77",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "network": "小田急電鉄",
         "operator": "小田急電鉄",
@@ -1492,8 +1959,8 @@
     },
     {
       "displayName": "東京近郊区間",
-      "id": "5e433f-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "5e433f-717a77",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "network": "東京近郊区間",
         "operator": "東京近郊区間",
@@ -1502,11 +1969,21 @@
     },
     {
       "displayName": "東急電鉄",
-      "id": "4e231d-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "4e231d-717a77",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "network": "東急電鉄",
         "operator": "東急電鉄",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "通勤五方面作戦",
+      "id": "f51aac-44bbb3",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "network": "通勤五方面作戦",
+        "operator": "通勤五方面作戦",
         "route": "train"
       }
     }

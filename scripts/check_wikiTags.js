@@ -8,7 +8,13 @@ const wbk = require('wikibase-sdk')({
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
-let _brands = fileTree.read('brands');
+const featureCollection = require('../dist/featureCollection.json');
+const LocationConflation = require('@ideditor/location-conflation');
+const loco = new LocationConflation(featureCollection);
+
+let _cache = { path: {}, id: {} };
+fileTree.read('brands', _cache, loco);
+fileTree.read('transit', _cache, loco);
 
 let _errors = [];
 let _wrongFormat = [];
@@ -20,7 +26,7 @@ let _wrongEntity = [];
 let _missingInstance = [];
 let _missingReferences = [];
 
-let _data = gatherData(_brands);
+let _data = gatherData(_cache);
 
 let _urls = {
   wikidata: wbk.getManyEntities({
@@ -43,27 +49,29 @@ doFetch(null, _urls.wikidata, checkWikidata)
 
 
 // Find all wikidata QIDs and wikipedia articles set as values in all entries
-function gatherData(brands) {
+function gatherData(tree) {
   let wikidata = {};
   let wikipedia = {};
 
-  Object.keys(brands).forEach(kvnd => {
-    ['brand:wikidata', 'operator:wikidata'].forEach(t => {
-      let qid = brands[kvnd].tags[t];
-      if (qid && /^Q\d+$/.test(qid)) {
-        wikidata[qid] = kvnd;
-      } else if (qid) {
-        _wrongFormat.push([kvnd, qid, t]);
-      }
-    });
+  Object.keys(tree.path).forEach(tkv => {
+    tree.path[tkv].forEach(item => {
+      ['brand:wikidata', 'operator:wikidata', 'network:wikidata'].forEach(t => {
+        let qid = item.tags[t];
+        if (qid && /^Q\d+$/.test(qid)) {
+          wikidata[qid] = item.id;
+        } else if (qid) {
+          _wrongFormat.push([item.id, qid, t]);
+        }
+      });
 
-    ['brand:wikipedia', 'operator:wikipedia'].forEach(t => {
-      let wp = brands[kvnd].tags[t];
-      if (wp && /^[a-z_]{2,}:[^_]*$/.test(wp)) {
-        wikipedia[wp] = kvnd;
-      } else if (wp) {
-        _wrongFormat.push([kvnd, wp, t]);
-      }
+      ['brand:wikipedia', 'operator:wikipedia', 'network:wikipedia'].forEach(t => {
+        let wp = item.tags[t];
+        if (wp && /^[a-z_]{2,}:[^_]*$/.test(wp)) {
+          wikipedia[wp] = item.id;
+        } else if (wp) {
+          _wrongFormat.push([item.id, wp, t]);
+        }
+      });
     });
   });
 
@@ -99,7 +107,6 @@ function getWikipediaUrls(values) {
 function doFetch(index, urls, check) {
   index = index || 0;
   if (index >= urls.length) {
-    clearConsole();
     return Promise.resolve();
   }
 
@@ -107,15 +114,24 @@ function doFetch(index, urls, check) {
 
   process.stdout.write('.');
 
-  return fetch(url)
-    .then(response => response.json())
-    .then(check)
-    .catch(e => {
-      _errors.push(e);
-      console.error(colors.red(e));
-    })
-    .then(() => delay(500))
-    .then(() => doFetch(++index, urls, check));
+  return fetch(url, {
+    headers: {
+      // Setting a resonable User-Agent is required in order to access the Wikipedia API
+      // see https://meta.wikimedia.org/wiki/User-Agent_policy
+      'User-Agent': 'name-suggestion-index (https://github.com/osmlab/name-suggestion-index)'
+    }
+  })
+  .then(response => {
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    return response.json();
+  })
+  .then(check)
+  .catch(e => {
+    _errors.push(e);
+    console.error(colors.red(e));
+  })
+  .then(() => delay(500))
+  .then(() => doFetch(++index, urls, check));
 }
 
 
@@ -130,38 +146,38 @@ function checkWikidata(result) {
   Object.keys(result.entities).forEach(qid => {
     let entity = result.entities[qid];
     let target = _data.wikidata[qid];
-    let entry = _brands[target];
+    let entry = _cache.id[target];
 
     let sitelinks = getSitelinks(entity);
     let claims = wbk.simplify.claims(entity.claims, { keepReferences: true });
     let instance = entity.claims && entity.claims.P31;
 
-    let tag = entry.tags['brand:wikidata'] === qid ? 'brand' : 'operator';
+    let tag = Object.keys(entry.tags).find(key => entry.tags[key] === qid).split(':')[0];
     let wikipedia = entry.tags[`${tag}:wikipedia`];
 
     // Wikidata entity was either deleted or is a redirect
     if (entity.missing === '') {
-      return _deletedWikidata.push([target, qid, `${tag}:wikidata`]);
+      return _deletedWikidata.push([entry.displayName, entry.id, qid, `${tag}:wikidata`]);
     }
 
     // If there is a Wikidata entity specified but no Wikipedia article,
     // try to find a matching article from all possible sitelinks
     if (!wikipedia && sitelinks.length) {
-      _foundSitelink.push([target, qid, `${tag}:wikidata`, sitelinks.join(', ')]);
+      _foundSitelink.push([entry.displayName, entry.id, qid, `${tag}:wikidata`, sitelinks.join(', ')]);
     }
 
     if (wikipedia) {
       // Check whether the linked Wikipedia article of the Wikidata entity is the correct one
       let correct = getCorrectSitelink(wikipedia, entity.sitelinks);
       if (correct) {
-        _wrongLink.push([target, qid, `${tag}:wikidata`, wikipedia, correct]);
+        _wrongLink.push([entry.displayName, entry.id, qid, `${tag}:wikidata`, wikipedia, correct]);
       }
     }
 
     // Check if there are any blacklisted claims
     Object.keys(blacklist).forEach(property => {
       if (claims[property]) {
-        _wrongEntity.push([target, qid, `${tag}:wikidata`, property, blacklist[property]]);
+        _wrongEntity.push([entry.displayName, entry.id, qid, `${tag}:wikidata`, property, blacklist[property]]);
       }
     });
 
@@ -169,13 +185,13 @@ function checkWikidata(result) {
     if (!sitelinks.length) {
       // Warn if there are no instance claims and no sitelinks
       if (!instance) {
-        _missingInstance.push([target, qid, `${tag}:wikidata`]);
+        _missingInstance.push([entry.displayName, entry.id, qid, `${tag}:wikidata`]);
       }
 
       // Warn if there are no references and no sitelinks
       let references = getReferences(claims);
       if (!references.length) {
-        _missingReferences.push([target, qid, `${tag}:wikidata`]);
+        _missingReferences.push([entry.displayName, entry.id, qid, `${tag}:wikidata`]);
       }
     }
   });
@@ -189,23 +205,23 @@ function checkWikipedia(result) {
     let page = result.query.pages[id];
     let iwl = `${page.pagelanguage}:${page.title}`;
     let target = _data.wikipedia[iwl];
-    let entry = _brands[target];
+    let entry = _cache.id[target];
 
     if (!entry) {
       return;
     }
 
-    let tag = entry.tags['brand:wikipedia'] === iwl ? 'brand' : 'operator';
+    let tag = Object.keys(entry.tags).find(key => entry.tags[key] === iwl).split(':')[0];
     let wikidata = entry.tags[`${tag}:wikidata`];
 
     // Wikipedia page has been deleted or is a redirect
     if (page.missing === '' || page.redirect === '') {
-      return _deletedWikipedia.push([target, iwl, wikidata, `${tag}:wikipedia`]);
+      return _deletedWikipedia.push([entry.displayName, entry.id, iwl, wikidata, `${tag}:wikipedia`]);
     }
 
     // Check whether the (local) linked Wikidata entity of the Wikipedia article is the correct one
     if (page.pageprops && page.pageprops.wikibase_item !== wikidata) {
-      _wrongLink.push([target, iwl, `${tag}:wikipedia`, wikidata, page.pageprops.wikibase_item]);
+      _wrongLink.push([entry.displayName, entry.id, iwl, `${tag}:wikipedia`, wikidata, page.pageprops.wikibase_item]);
     }
   });
 
@@ -249,6 +265,8 @@ function getReferences(claims) {
 
 
 function finish() {
+  clearConsole();
+
   if (_errors.length) {
     console.log(colors.yellow.bold(`\nError Summary:`));
     _errors.forEach(msg => console.error(colors.red.bold(msg)));
@@ -259,7 +277,7 @@ function finish() {
     console.error('To resolve these, make sure that the values are in the correct format');
     _wrongFormat.sort();
     _wrongFormat.forEach(msg => console.error(
-      `${colors.yellow.bold(msg[0])}: ${colors.red.bold(msg[1])} (${colors.blue.bold(msg[2])}) is in a wrong format`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.red.bold(msg[2])} (${colors.blue.bold(msg[3])}) is in a wrong format`
     ));
     console.error('total ' + _wrongFormat.length);
   }
@@ -269,7 +287,7 @@ function finish() {
     console.error('To resolve these, either remove the Wikidata entity from the entry or create a new one and add the correct id of the entity');
     _deletedWikidata.sort();
     _deletedWikidata.forEach(msg => console.error(
-      `${colors.yellow.bold(msg[0])}: ${colors.red.bold(msg[1])} (${colors.blue.bold(msg[2])}) does not exist or is a redirect`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.red.bold(msg[2])} (${colors.blue.bold(msg[3])}) does not exist or is a redirect`
     ));
     console.error('total ' + _deletedWikidata.length);
   }
@@ -279,7 +297,7 @@ function finish() {
     console.error('To resolve these, either remove the Wikipedia article from the entry or create a new one and add the correct link to the article');
     _deletedWikipedia.sort();
     _deletedWikipedia.forEach(msg => console.error(
-      `${colors.yellow.bold(msg[0])}: ${colors.red.bold(msg[1])} (${msg[2]}) (${colors.blue.bold(msg[3])}) does not exist or is a redirect`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.red.bold(msg[2])} (${msg[3]}) (${colors.blue.bold(msg[4])}) does not exist or is a redirect`
     ));
     console.error('total ' + _deletedWikipedia.length);
   }
@@ -289,7 +307,7 @@ function finish() {
     console.warn('To resolve these, add a sitelink to the correct entry');
     _foundSitelink.sort();
     _foundSitelink.forEach(msg => console.warn(
-      `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) has sitelinks to ${colors.green.bold(msg[3])}`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) has sitelinks to ${colors.green.bold(msg[4])}`
     ));
     console.warn('total ' + _foundSitelink.length);
   }
@@ -299,7 +317,7 @@ function finish() {
     console.warn('To resolve these, check whether the Wikidata or the Wikipedia value is wrong and correct one of them');
     _wrongLink.sort();
     _wrongLink.forEach(msg => console.warn(
-      `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is not linked to ${colors.red.bold(msg[3])} but to ${colors.green.bold(msg[4])}`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) is not linked to ${colors.red.bold(msg[4])} but to ${colors.green.bold(msg[5])}`
     ));
     console.warn('total ' + _wrongLink.length);
   }
@@ -309,7 +327,7 @@ function finish() {
     console.warn('To resolve these, check whether the Wikidata entity really describes the brand and not something else or follow the hint on how to fix the entry');
     _wrongEntity.sort();
     _wrongEntity.forEach(msg => console.warn(
-      `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) ${colors.red.bold(msg[3])}: ${msg[4]}`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) ${colors.red.bold(msg[4])}: ${msg[5]}`
     ));
     console.warn('total ' + _wrongEntity.length);
   }
@@ -319,7 +337,7 @@ function finish() {
     console.warn('To resolve these, add an instance claim (P31) or a sitelink to the Wikidata item');
     _missingInstance.sort();
     _missingInstance.forEach(msg => console.warn(
-      `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is missing a sitelink and an instance claim (P31)`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) is missing a sitelink and an instance claim (P31)`
     ));
     console.warn('total ' + _missingInstance.length);
   }
@@ -329,7 +347,7 @@ function finish() {
     console.warn('To resolve these, add a reference to an external source or a sitelink to the Wikidata item');
     _missingReferences.sort();
     _missingReferences.forEach(msg => console.warn(
-      `${colors.yellow.bold(msg[0])}: ${colors.yellow.bold(msg[1])} (${colors.blue.bold(msg[2])}) is missing a sitelink and a reference`
+      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) is missing a sitelink and a reference`
     ));
     console.warn('total ' + _missingReferences.length);
   }

@@ -17,6 +17,7 @@ const wbk = require('wikibase-sdk')({
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
+
 // set to true if you just want to test what the script will do without updating Wikidata
 const DRYRUN = false;
 
@@ -92,7 +93,7 @@ if (_secrets && _secrets.wikibase) {
     _wbEdit = require('wikibase-edit')({
       instance: 'https://www.wikidata.org',
       credentials: _secrets.wikibase,
-      summary: 'Updated name-suggestion-index related claims, see http//nsi.guide for project details.',
+      summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
       userAgent: `${project.name}/${project.version} (${project.homepage})`,
     });
   } catch (err) {
@@ -110,17 +111,32 @@ fileTree.read('transit', _cache, loco);
 
 // gather QIDs..
 let _wikidata = {};
-let _qidItems = {};
-Object.values(_cache.id).forEach(item => {
-  const tags = item.tags;
-  ['brand', 'operator', 'network'].forEach(osmtag => {
-    const wdtag = `${osmtag}:wikidata`;
-    const qid = tags[wdtag];
-    if (!qid || !/^Q\d+$/.test(qid)) return;
+let _qidItems = {};      // any item referenced by a qid
+let _qidIdItems = {};    // items where we actually want to update the nsi-identifier on wikidata
+Object.keys(_cache.path).forEach(tkv => {
+  const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+  const t = parts[0];
 
-    if (!_wikidata[qid])  _wikidata[qid] = {};
-    if (!_qidItems[qid])  _qidItems[qid] = new Set();
-    _qidItems[qid].add(item.id);
+  _cache.path[tkv].forEach(item => {
+    const tags = item.tags;
+    ['brand', 'operator', 'network'].forEach(osmtag => {
+      const wdtag = `${osmtag}:wikidata`;
+      const qid = tags[wdtag];
+      if (!qid || !/^Q\d+$/.test(qid)) return;
+
+      if (!_wikidata[qid])  _wikidata[qid] = {};
+      if (!_qidItems[qid])  _qidItems[qid] = new Set();
+      _qidItems[qid].add(item.id);
+
+      const isMainTag = (
+        (t === 'brands' && osmtag === 'brand') ||
+        (t === 'transit' && osmtag === 'network')
+      );
+      if (isMainTag) {
+        if (!_qidIdItems[qid])  _qidIdItems[qid] = new Set();
+        _qidIdItems[qid].add(item.id);
+      }
+    });
   });
 });
 
@@ -140,8 +156,11 @@ let _urls = wbk.getManyEntities({
 });
 
 let _errors = [];
-doFetch().then(finish);
 
+
+doFetch()
+  .then(removeOldNsiClaims)
+  .then(finish);
 
 
 //
@@ -206,7 +225,7 @@ function processEntities(result) {
       label = enLabelForQID(qid);
       if (label && _wbEdit) {   // if we're allowed to make edits, just set the label
         target.label = label;
-        const msg = colors.blue(`Adding English label for ${qid}: ${label}`);
+        const msg = `Adding English label for ${qid}: ${label}`;
         wbEditQueue.push({ id: qid, language: 'en', value: label, msg: msg });
 
       } else {   // otherwise raise a warning for the user to deal with.
@@ -331,38 +350,48 @@ function processEntities(result) {
     });
 
 
-    // if we're allowed to make edits..
-    if (_wbEdit) {
+    // If we are allowed to make edits to wikidata, continue beyond here
+    if (!_wbEdit) return;
 
+    // If P31 "instance of" is missing, set it to Q4830453 "business"
+    const instanceOf = getClaimValue(entity, 'P31');
+    if (!instanceOf) {
+      const msg = `Setting "P31 "instance of" = Q4830453 "business" for ${qid}`;
+      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: 'Q4830453', msg: msg });
+    }
+
+    // If we want this qid to have an P8253 property ..
+    if (_qidIdItems[qid]) {
       // P8253 - name-suggestion-index identifier
       // sort ids so claim order is deterministic, to avoid unnecessary updating
-      const nsiIds = Array.from(_qidItems[qid])
+      const nsiIds = Array.from(_qidIdItems[qid])
         .sort((a, b) => a.localeCompare(b));
-      const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepIds: true })
+      const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true })
         .sort((a, b) => a.value.localeCompare(b.value));
 
       // make the nsiClaims match the nsiIds...
       let i = 0;
       for (i; i < nsiClaims.length; i++) {
         const claim = nsiClaims[i];
-        if (i < nsiIds.length) {   // match existing claims to ids
-          if (claim.value !== nsiIds[i]) {
-            const msg = colors.blue(`Updating NSI identifier for ${qid}: ${claim.value} -> ${nsiIds[i]}`);
-            wbEditQueue.push({ guid: claim.id, newValue: nsiIds[i], msg: msg });
+        if (i < nsiIds.length) {   // match existing claims to ids, and force all ranks to 'normal'
+          if (claim.value !== nsiIds[i] || claim.rank !== 'normal') {
+            let msg;
+            if (claim.value !== nsiIds[i]) {
+              msg = `Updating NSI identifier for ${qid}: value ${claim.value} -> ${nsiIds[i]}`;
+            } else {
+              msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
+            }
+            wbEditQueue.push({ qid: qid, guid: claim.id, newValue: nsiIds[i], rank: 'normal', msg: msg });
           }
         } else {  // remove extra existing claims
-          const msg = colors.blue(`Removing NSI identifier for ${qid}: ${claim.value}`);
-          wbEditQueue.push({ guid: claim.id, msg: msg });
+          const msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
+          wbEditQueue.push({ qid: qid, guid: claim.id, msg: msg });
         }
       }
       for (i; i < nsiIds.length; i++) {   // add new claims
-        const msg = colors.blue(`Adding NSI identifier for ${qid}: ${nsiIds[i]}`);
-        wbEditQueue.push({ id: qid, property: 'P8253', value: nsiIds[i], msg: msg });
+        const msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
+        wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', msg: msg });
       }
-
-      // TOOD - This will not catch situations where we have changed the QID on our end,
-      //   because they won't exist in the index anymore and been gathered in the first place.
-      // We should maybe make a SPARQL query to clean up entities with orphaned P8253 claims.
     }
 
   });  // foreach qid
@@ -537,7 +566,7 @@ function fetchTwitterUserDetails(qid, username) {
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
         colors.red(`  Twitter username @${username}: ${JSON.stringify(e)}`);
       _errors.push(msg);
-      console.error(colors.red(msg));
+      console.error(msg);
     });
 }
 
@@ -546,6 +575,11 @@ function fetchTwitterUserDetails(qid, username) {
 function fetchFacebookLogo(qid, username) {
   let target = _wikidata[qid];
   let logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
+  let userid;
+
+  // Does this "username" end in a numeric id?  If so, fallback to it.
+  const m = username.match(/-(\d+)$/);
+  if (m) userid = m[1];
 
   return fetch(logoURL)
     .then(response => {
@@ -564,21 +598,69 @@ function fetchFacebookLogo(qid, username) {
       return true;
     })
     .catch(e => {
-      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Facebook username @${username}: ${e}`);
-      _errors.push(msg);
-      console.error(colors.red(msg));
+      if (userid) {
+        target.identities.facebook = userid;
+        return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
+      } else {
+        const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+          colors.red(`  Facebook username @${username}: ${e}`);
+        _errors.push(msg);
+        console.error(msg);
+      }
     });
 }
 
 
-// We need to slow these down and run them sequentially with some delay.
+// `removeOldNsiClaims`
+// Find all items in Wikidata with NSI identifier claims (P8253).
+// Remove any old claims where we don't reference that QID anymore.
+function removeOldNsiClaims() {
+  const query = `
+    SELECT ?qid ?nsiId ?guid
+    WHERE {
+      ?qid    p:P8253  ?guid.
+      ?guid  ps:P8253  ?nsiId.
+    }`;
+
+  return fetch(wbk.sparqlQuery(query))
+    .then(response => {
+      if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+      return response.json();
+    })
+    .then(wbk.simplify.sparqlResults)
+    .then(results => {
+      let wbEditQueue = [];
+      results.forEach(item => {
+        if (!_qidIdItems[item.qid]) {
+          const msg = `Removing old NSI identifier for ${item.qid}: ${item.nsiId}`;
+          wbEditQueue.push({ qid: item.qid, guid: item.guid, msg: msg });
+        }
+      });
+      return wbEditQueue;
+    })
+    .then(processWbEditQueue)
+    .catch(e => {
+      _errors.push(e);
+      console.error(colors.red(e));
+    });
+}
+
+
+// `processWbEditQueue`
+// Perform any edits to Wikidata that we want to do.
+// (Slow these down and run them sequentially with some delay).
+//
+// Set `DRYRUN=true` at the beginning of this script to prevent actual edits from happening.
+//
 function processWbEditQueue(queue) {
   if (!queue.length) return Promise.resolve();
 
   const request = queue.pop();
-  console.log(`Updating Wikidata: ${queue.length} - ${request.msg}`);
-  delete request.message;
+  const qid = request.qid;
+  const msg = request.msg;
+  console.log(colors.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
+  delete request.qid;
+  delete request.msg;
 
   if (DRYRUN) {
     return Promise.resolve()
@@ -597,12 +679,20 @@ function processWbEditQueue(queue) {
     }
 
     return task
+      .catch(e => {
+        const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}  `) + colors.red(e);
+        _errors.push(msg);
+        console.error(msg);
+      })
       .then(() => delay(300))
       .then(() => processWbEditQueue(queue));
   }
 }
 
 
+// `enLabelForQID`
+// Pick a value that should be suitable to use as an English label.
+// If we are pushing edits to Wikidata, add en labels for items that don't have them.
 function enLabelForQID(qid) {
   const ids = Array.from(_qidItems[qid]);
   for (let i = 0; i < ids.length; i++) {
