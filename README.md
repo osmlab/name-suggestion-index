@@ -84,9 +84,8 @@ The files under `config/*`, `data/*`, and `features/*` can be edited:
   * `data/transit/route/*.json`
   * and so on…
 * `features/*` - GeoJSON files that define custom regions where the features are allowed
-  * `hawaii.geojson`
+  * `new_jersey.geojson`
   * `quebec.geojson`
-  * `scotland.geojson`
   * and so on…
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.

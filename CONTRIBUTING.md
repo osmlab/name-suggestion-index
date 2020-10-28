@@ -328,7 +328,7 @@ Feature files look like this:
 ```js
 {
   "type": "Feature",
-  "id": "scotland.geojson",
+  "id": "new_jersey.geojson",
   "properties": {},
   "geometry": {
     "type": "Polygon",
