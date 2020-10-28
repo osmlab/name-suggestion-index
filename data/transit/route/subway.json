@@ -248,10 +248,23 @@
     {
       "displayName": "RATP",
       "id": "ratp-907487",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {
+         "include": ["001"],
+         "exclude": ["fr"]
+         },
       "tags": {
         "network": "RATP",
         "operator": "RATP",
+        "route": "subway"
+      }
+    },
+    {
+      "displayName": "RATP",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "operator": "RATP",
+        "network:wikidata": "Q643290",
+        "network:wikipedia": "fr:Régie autonome des transports parisiens",
         "route": "subway"
       }
     },
@@ -339,6 +352,19 @@
       "tags": {
         "network": "Subte de Buenos Aires",
         "operator": "Subte de Buenos Aires",
+        "route": "subway"
+      }
+    },
+    {
+      "displayName": "TCL",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "network": "TCL",
+        "network:wikidata": "Q8700",
+        "network:wikipedia": "fr:Transports en commun lyonnais",
+        "operator": "Keolis Lyon",
+        "operator:wikidata": "Q61456136",
+        "operator:wikipedia": "fr:Keolis",
         "route": "subway"
       }
     },
