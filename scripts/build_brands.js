@@ -340,7 +340,7 @@ function checkItems() {
         if (/:wikipedia$/.test(osmkey)) {      // Check '*.wikipedia' tags
           // So many contributors get the wikipedia tags wrong, so let's just reformat it for them.
           const wp = tags[osmkey] = decodeURIComponent(tags[osmkey]).replace('_', ' ');
-          if (!/^[a-z_]{2,}:[^_]*$/.test(wp)) {
+          if (!/^[a-z\-]{2,}:[^_]*$/.test(wp)) {
             warnFormatWikipedia.push([display(item), wp]);
           }
         }
