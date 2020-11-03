@@ -52,6 +52,33 @@ relation[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${qid}]
 { color:green; fill-color:green; }
 }}`;
 
+  } else if (t === 'operators') {
+    n = item.tags.operator;
+    kvn = `${k}/${v}|${n}`;
+    count = data.operatorCounts[kvn] || '< 10';
+    tags = item.tags || {};
+    qid = tags['operator:wikidata'];
+    overpassQuery = `[out:json][timeout:100];
+(nwr["operator"="${n}"];);
+out body;
+>;
+out skel qt;
+
+{{style:
+node[operator=${n}],
+way[operator=${n}],
+relation[operator=${n}]
+{ color:red; fill-color:red; }
+node[${k}=${v}][operator=${n}],
+way[${k}=${v}][operator=${n}],
+relation[${k}=${v}][operator=${n}]
+{ color:yellow; fill-color:yellow; }
+node[${k}=${v}][operator=${n}][operator:wikidata=${qid}],
+way[${k}=${v}][operator=${n}][operator:wikidata=${qid}],
+relation[${k}=${v}][operator=${n}][operator:wikidata=${qid}]
+{ color:green; fill-color:green; }
+}}`
+
   } else if (t === 'transit') {
     n = item.tags.network;
     kvn = `${k}/${v}|${n}`;

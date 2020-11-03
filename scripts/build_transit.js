@@ -470,7 +470,7 @@ function checkItems() {
   }
 
   const hasWd = total - totalWd;
-  const pctWd = (hasWd * 100 / total).toFixed(1);
+  const pctWd = total > 0 ? (hasWd * 100 / total).toFixed(1) : 0;
 
   console.info(colors.blue.bold(`\n${t}/* completeness:`));
   console.info(colors.blue.bold(`  ${total} items total.`));

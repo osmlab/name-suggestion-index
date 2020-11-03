@@ -69,6 +69,8 @@ export default function Category(props) {
   let wikidataTag;
   if (t === 'brands') {
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
     wikidataTag = 'network:wikidata';
   }

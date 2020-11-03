@@ -5605,22 +5605,28 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function CategoryInstructions(props) {
   // setup defaults for this tree..
   var t = props.t;
-  var itemType, wikidataTag;
+  var a, itemType, wikidataTag;
 
   if (t === 'brands') {
+    a = 'a';
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    a = 'an';
+    itemType = 'aoperator';
+    wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
+    a = 'a';
     itemType = 'network';
     wikidataTag = 'network:wikidata';
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "instructions"
-  }, "Some things you can do here:", /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Is a ", itemType, " name missing or something is incorrect? ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Some things you can do here:", /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Is ", a, " ", itemType, " name missing or something is incorrect? ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/issues"
-  }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"View on Overpass Turbo\" link to see where the name is used in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag, you can do the research to add it to our project, or filter it out if it is not a ", itemType, ".", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"View on Overpass Turbo\" link to see where the name is used in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag, you can do the research to add it to our project, or filter it out if it is not ", a, " ", itemType, ".", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md"
   }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), "You can add the ", itemType, "'s Facebook or Twitter usernames, and this project will pick up the logos later."))));
@@ -11954,6 +11960,13 @@ function CategoryRow(props) {
     qid = tags['brand:wikidata'];
     var bn = tags['brand'];
     overpassQuery = "[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "]\n{ color:green; fill-color:green; }\n}}");
+  } else if (t === 'operators') {
+    n = item.tags.operator;
+    kvn = "".concat(k, "/").concat(v, "|").concat(n);
+    count = data.operatorCounts[kvn] || '< 10';
+    tags = item.tags || {};
+    qid = tags['operator:wikidata'];
+    overpassQuery = "[out:json][timeout:100];\n(nwr[\"operator\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[operator=").concat(n, "],\nway[operator=").concat(n, "],\nrelation[operator=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][operator=").concat(n, "],\nway[").concat(k, "=").concat(v, "][operator=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][operator=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][operator=").concat(n, "][operator:wikidata=").concat(qid, "],\nway[").concat(k, "=").concat(v, "][operator=").concat(n, "][operator:wikidata=").concat(qid, "],\nrelation[").concat(k, "=").concat(v, "][operator=").concat(n, "][operator:wikidata=").concat(qid, "]\n{ color:green; fill-color:green; }\n}}");
   } else if (t === 'transit') {
     n = item.tags.network;
     kvn = "".concat(k, "/").concat(v, "|").concat(n);
@@ -19334,6 +19347,8 @@ function Category(props) {
 
   if (t === 'brands') {
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
     wikidataTag = 'network:wikidata';
   } // filters
@@ -19444,6 +19459,8 @@ function Title(props) {
 
     if (t === 'brands') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    } else if (t === 'operators') {
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/briefcase.svg';
     } else if (t === 'transit') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
     }
@@ -19480,7 +19497,7 @@ function Title(props) {
 
 function TreeSwitcher(props) {
   var t = props.t;
-  var others = ['brands', 'transit'].filter(function (d) {
+  var others = ['brands', 'operators', 'transit'].filter(function (d) {
     return d !== t;
   });
   var links = others.map(function (t) {
@@ -19594,6 +19611,9 @@ function OverviewInstructions(props) {
   if (t === 'brands') {
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    itemType = 'operator';
+    wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
     itemType = 'network';
     wikidataTag = 'network:wikidata';
@@ -19651,6 +19671,9 @@ function Overview(props) {
   if (t === 'brands') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'operators') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/briefcase.svg';
+    wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
     wikidataTag = 'network:wikidata';
@@ -19800,6 +19823,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // Load the name-suggestion-index data files
 var DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
 var NAMES_KEEP = "".concat(DIST, "/filtered/names_keep.min.json");
+var OPERATORS_KEEP = "".concat(DIST, "/filtered/operators_keep.min.json");
 var TRANSIT_KEEP = "".concat(DIST, "/filtered/transit_keep.min.json");
 var INDEX = "".concat(DIST, "/index.min.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.min.json"); // We can use iD's taginfo file to pick icons
@@ -19817,15 +19841,20 @@ function App() {
       nameCounts = _useFetch2[0],
       nameCountsLoading = _useFetch2[1];
 
-  var _useFetch3 = useFetch(TRANSIT_KEEP),
+  var _useFetch3 = useFetch(OPERATORS_KEEP),
       _useFetch4 = _slicedToArray(_useFetch3, 2),
-      transitCounts = _useFetch4[0],
-      transitCountsLoading = _useFetch4[1];
+      operatorCounts = _useFetch4[0],
+      operatorCountsLoading = _useFetch4[1];
 
-  var _useFetch5 = useFetch(WIKIDATA),
+  var _useFetch5 = useFetch(TRANSIT_KEEP),
       _useFetch6 = _slicedToArray(_useFetch5, 2),
-      wikidata = _useFetch6[0],
-      wikidataLoading = _useFetch6[1];
+      transitCounts = _useFetch6[0],
+      transitCountsLoading = _useFetch6[1];
+
+  var _useFetch7 = useFetch(WIKIDATA),
+      _useFetch8 = _slicedToArray(_useFetch7, 2),
+      wikidata = _useFetch8[0],
+      wikidataLoading = _useFetch8[1];
 
   var _useIndex = useIndex(INDEX),
       _useIndex2 = _slicedToArray(_useIndex, 2),
@@ -19839,11 +19868,12 @@ function App() {
 
   var appData = {
     isLoading: function isLoading() {
-      return nameCountsLoading || transitCountsLoading || wikidataLoading || indexLoading || iconsLoading;
+      return nameCountsLoading || operatorCountsLoading || transitCountsLoading || wikidataLoading || indexLoading || iconsLoading;
     },
     filters: filters,
     setFilters: setFilters,
     nameCounts: nameCounts,
+    operatorCounts: operatorCounts,
     transitCounts: transitCounts,
     index: index,
     icons: icons,

@@ -18,6 +18,7 @@ const loco = new LocationConflation(featureCollection);
 
 let _cache = { path: {}, id: {} };
 fileTree.read('brands', _cache, loco);
+fileTree.read('operators', _cache, loco);
 fileTree.read('transit', _cache, loco);
 let _presetData = {};
 
@@ -46,6 +47,7 @@ function buildAll() {
 
   // Copy some project config files into `/dist`
   shell.cp('-f', 'config/filter_brands.json', 'dist/filter_brands.json');
+  shell.cp('-f', 'config/filter_operators.json', 'dist/filter_operators.json');
   shell.cp('-f', 'config/filter_transit.json', 'dist/filter_transit.json');
   shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
 
@@ -80,6 +82,7 @@ function buildJSON() {
     // which tag is considered the "main" tag for this tree?
     const wdTag = {
       'brands': 'brand:wikidata',
+      'operators': 'operator:wikidata',
       'transit': 'network:wikidata'
     }[t];
     if (wdTag) return;

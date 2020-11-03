@@ -31,6 +31,8 @@ function Title(props) {
     let fallbackIcon;
     if (t === 'brands') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    } else if (t === 'operators') {
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/briefcase.svg';
     } else if (t === 'transit') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
     }
@@ -65,7 +67,7 @@ function Title(props) {
 
 function TreeSwitcher(props) {
   const t = props.t;
-  const others = ['brands', 'transit'].filter(d => d !== t);
+  const others = ['brands', 'operators', 'transit'].filter(d => d !== t);
   const links = others.map(t => (<li><Link to={`index.html?t=${t}`}>{t}/</Link></li>));
   const list = links.length ? (<> see also: <ul>{links}</ul> </>) : null;
 

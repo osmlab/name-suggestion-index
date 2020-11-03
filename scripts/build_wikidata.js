@@ -106,6 +106,7 @@ if (_secrets && _secrets.wikibase) {
 // what to fetch
 let _cache = { path: {}, id: {} };
 fileTree.read('brands', _cache, loco);
+fileTree.read('operators', _cache, loco);
 fileTree.read('transit', _cache, loco);
 
 
@@ -130,6 +131,7 @@ Object.keys(_cache.path).forEach(tkv => {
 
       const isMainTag = (
         (t === 'brands' && osmtag === 'brand') ||
+        (t === 'operators' && osmtag === 'operator') ||
         (t === 'transit' && osmtag === 'network')
       );
       if (isMainTag) {

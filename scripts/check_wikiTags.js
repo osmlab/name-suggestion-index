@@ -14,6 +14,7 @@ const loco = new LocationConflation(featureCollection);
 
 let _cache = { path: {}, id: {} };
 fileTree.read('brands', _cache, loco);
+fileTree.read('operators', _cache, loco);
 fileTree.read('transit', _cache, loco);
 
 let _errors = [];
