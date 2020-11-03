@@ -1511,7 +1511,7 @@
       /(shop|store)/ig
     ];
 
-    name = noise.reduce((acc, regex) => acc.replace(regex, ''), name);
+    name = noise.reduce((acc, regex) => acc.replace(regex, ''), (name || ''));
     return simplify(name);
   };
 
