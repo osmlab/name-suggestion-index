@@ -25,9 +25,9 @@ export default function CategoryRow(props) {
   let n, kvn, count, tags, qid, overpassQuery;
 
   if (t === 'brands') {
-    n = item.tags.name || item.tags.brand;
+    n = item.tags.brand || item.tags.name;
     kvn = `${k}/${v}|${n}`;
-    count = data.nameCounts[kvn] || '< 50';
+    count = data.brandCounts[kvn] || '< 50';
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
     let bn = tags['brand'];

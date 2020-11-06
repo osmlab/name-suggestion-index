@@ -1,5 +1,6 @@
 const colors = require('colors/safe');
 const fs = require('fs');
+const JSON5 = require('json5');
 const shell = require('shelljs');
 const stringify = require('json-stringify-pretty-compact');
 
@@ -16,142 +17,206 @@ const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
 console.log(colors.blue('-'.repeat(70)));
-console.log(colors.blue('🍔  Build brands/*'));
+console.log(colors.blue('🗂   Build data/'));
 console.log(colors.blue('-'.repeat(70)));
 
-// Load and check filter_brands.json
-let filters = require('../config/filter_brands.json');
-const filtersSchema = require('../schema/filters.json');
-validate('config/filter_brands.json', filters, filtersSchema);  // validate JSON-schema
+let _collected = {};
+loadCollected();
 
-// Lowercase and sort the filters for consistency
-filters = {
-  keepTags: filters.keepTags.map(s => s.toLowerCase()).sort(),
-  discardKeys: filters.discardKeys.map(s => s.toLowerCase()).sort(),
-  discardNames: filters.discardNames.map(s => s.toLowerCase()).sort()
-};
-fs.writeFileSync('config/filter_brands.json', stringify(filters));
-
-
-// we'll use both brand and name tags
-const allnames = require('../dist/collected/names_all.json');
-const allbrands = require('../dist/collected/brands_all.json');
+let _filters = {};
+loadFilters();
 
 let _discard = {};
 let _keep = {};
-// all names and brands start out in _discard..
-Object.keys(allnames).forEach(kvn => _discard[kvn] = _discard[kvn] || allnames[kvn]);
-Object.keys(allbrands).forEach(kvn => _discard[kvn] = _discard[kvn] || allbrands[kvn]);
-filterNames();
-
+runFilters();
 
 let _cache = { path: {}, id: {} };
+loadIndex();
 
-// Load and check brand files
-fileTree.read('brands', _cache, loco);
+checkItems('brands');
+// checkItems('operators');
+// checkItems('transit');
 
-buildMatchIndexes();
-checkItems();
-mergeItems();
+mergeItems('brands');
+// mergeItems('operators');
+// mergeItems('transit');
 
-fileTree.write('brands', _cache);
+saveIndex();
 console.log('');
 
 
+//
+// Load, validate, and cleanup filter files
+//
+function loadFilters() {
+  const filtersSchema = require('../schema/filters.json');
 
-// `filterNames()` will process the collected tags,
-// splitting the data up into 2 files:
+  ['brands', 'operators', 'transit'].forEach(tree => {
+    const file = `config/filter_${tree}.json`;
+    const contents = fs.readFileSync(file, 'utf8');
+    let data;
+    try {
+      data = JSON5.parse(contents);
+    } catch (jsonParseError) {
+      console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
+      console.error('  ' + colors.yellow(file));
+      process.exit(1);
+    }
+
+    // check JSON schema
+    validate(file, data, filtersSchema);
+
+    // Lowercase and sort the files for consistency, save them that way.
+    data = {
+      keepTags: data.keepTags.map(s => s.toLowerCase()).sort(),
+      discardKeys: data.discardKeys.map(s => s.toLowerCase()).sort(),
+      discardNames: data.discardNames.map(s => s.toLowerCase()).sort()
+    };
+    fs.writeFileSync(file, stringify(data));
+
+    _filters[tree] = data;
+  });
+}
+
+
 //
-// `dist/filtered/names_keep.json` - candidates for suggestion presets
-// `dist/filtered/names_discard.json` - everything else
+// Load lists of tags collected from OSM from `dist/collected/*`
 //
-// The file format is identical to the `names_all.json` file:
-// "key/value|name": count
-// "shop/coffee|Starbucks": 8284
+function loadCollected() {
+  ['name', 'brand', 'operator', 'network'].forEach(tag => {
+    const file = `dist/collected/${tag}s_all.json`;
+    const contents = fs.readFileSync(file, 'utf8');
+    let data;
+    try {
+      data = JSON5.parse(contents);
+    } catch (jsonParseError) {
+      console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
+      console.error('  ' + colors.yellow(file));
+      process.exit(1);
+    }
+
+    _collected[tag] = data;
+  });
+}
+
+
 //
-function filterNames() {
-  const START = '🏗   ' + colors.yellow('Filtering names gathered from OSM...');
-  const END = '👍  ' + colors.green('names filtered');
+// Filter the tags collected into _keep and _discard lists
+//
+function runFilters() {
+  const START = '🏗   ' + colors.yellow(`Filtering values gathered from OSM...`);
+  const END = '👍  ' + colors.green(`done filtering`);
   console.log('');
   console.log(START);
   console.time(END);
 
-  // Start clean
-  shell.rm('-f', ['dist/filtered/names_keep.json', 'dist/filtered/names_discard.json']);
+  // which trees use which tags?
+  const treeTags = {
+    brands:     ['brand', 'name'],
+    operators:  ['operator'],
+    transit:    ['network']
+  };
 
-  // filter by keepTags (move from _discard -> _keep)
-  filters.keepTags.forEach(s => {
-    const re = new RegExp(s, 'i');
-    for (let kvn in _discard) {
-      const tag = kvn.split('|', 2)[0];
-      if (re.test(tag)) {
-        _keep[kvn] = _discard[kvn];
-        delete _discard[kvn];
+  ['brands', 'operators', 'transit'].forEach(tree => {
+    let filters = _filters[tree];
+    let discard = _discard[tree] = {};
+    let keep = _keep[tree] = {};
+
+    // Start clean
+    shell.rm('-f', [`dist/filtered/${tree}_keep.json`, `dist/filtered/${tree}_discard.json`]);
+
+    // All the collected values start out in discard..
+    treeTags[tree].forEach(tag => {
+      let collected = _collected[tag];
+      for (const kvn in collected) {
+        discard[kvn] = Math.max((discard[kvn] || 0), collected[kvn]);
       }
-    }
-  });
+    });
 
-  // filter by discardKeys (move from _keep -> _discard)
-  filters.discardKeys.forEach(s => {
-    const re = new RegExp(s, 'i');
-    for (let kvn in _keep) {
-      if (re.test(kvn)) {
-        _discard[kvn] = _keep[kvn];
-        delete _keep[kvn];
+    // Filter by keepTags (move from discard -> keep)
+    filters.keepTags.forEach(s => {
+      const re = new RegExp(s, 'i');
+      for (const kvn in discard) {
+        const tag = kvn.split('|', 2)[0];
+        if (re.test(tag)) {
+          keep[kvn] = discard[kvn];
+          delete discard[kvn];
+        }
       }
-    }
-  });
+    });
 
-  // filter by discardNames (move from _keep -> _discard)
-  filters.discardNames.forEach(s => {
-    const re = new RegExp(s, 'i');
-    for (let kvn in _keep) {
-      const name = kvn.split('|', 2)[1];
-      if (re.test(name)) {
-        _discard[kvn] = _keep[kvn];
-        delete _keep[kvn];
+    // Filter by discardKeys (move from keep -> discard)
+    filters.discardKeys.forEach(s => {
+      const re = new RegExp(s, 'i');
+      for (const kvn in keep) {
+        if (re.test(kvn)) {
+          discard[kvn] = keep[kvn];
+          delete keep[kvn];
+        }
       }
-    }
+    });
+
+    // filter by discardNames (move from keep -> discard)
+    filters.discardNames.forEach(s => {
+      const re = new RegExp(s, 'i');
+      for (let kvn in keep) {
+        const name = kvn.split('|', 2)[1];
+        if (re.test(name) || /;/.test(name)) {  // also discard values with semicolons
+          discard[kvn] = keep[kvn];
+          delete keep[kvn];
+        }
+      }
+    });
+
+    const discardCount = Object.keys(discard).length;
+    const keepCount = Object.keys(keep).length;
+    console.log(`📦  ${tree}:\tkeep ${keepCount}, discard ${discardCount}`);
+
+    fs.writeFileSync(`dist/filtered/${tree}_discard.json`, stringify(sort(discard)));
+    fs.writeFileSync(`dist/filtered/${tree}_keep.json`, stringify(sort(keep)));
+
   });
-
-  // discard semicolon-delimited multivalues
-  for (let kvn in _keep) {
-    const name = kvn.split('|', 2)[1];
-    if (/;/.test(name)) {
-      _discard[kvn] = _keep[kvn];
-      delete _keep[kvn];
-    }
-  }
-
-  const discardCount = Object.keys(_discard).length;
-  const keepCount = Object.keys(_keep).length;
-  console.log(`📦  Discard: ${discardCount}`);
-  console.log(`📦  Keep: ${keepCount}`);
-
-  fs.writeFileSync('dist/filtered/names_discard.json', stringify(sort(_discard)));
-  fs.writeFileSync('dist/filtered/names_keep.json', stringify(sort(_keep)));
 
   console.timeEnd(END);
 }
 
 
 //
-// buildMatchIndexes()
-// Sets up the `matcher` so we can use it to do k/v/n matching.
-// We can skip the location indexing for this script.
+// Load the index files under `data/*`
 //
-function buildMatchIndexes() {
-  const START = '🏗   ' + colors.yellow('Building match indexes...');
-  const END = '👍  ' + colors.green('indexes built');
+function loadIndex() {
+  const START = '🏗   ' + colors.yellow(`Loading index files...`);
+  const END = '👍  ' + colors.green(`done loading`);
   console.log('');
   console.log(START);
   console.time(END);
 
-  matcher.buildMatchIndex(_cache.path, loco);
+  fileTree.read('brands', _cache, loco);
+  fileTree.read('operators', _cache, loco);
+  fileTree.read('transit', _cache, loco);
 
-  // It takes about 7 seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
-  // We don't need the location index for this script, but it's useful to know.
+  matcher.buildMatchIndex(_cache.path, loco);
+  // It takes a while to resolve all of the locationSets into GeoJSON and insert into which-polygon
+  // We don't need a location index for this script, but it's useful to know.
   //  matcher.buildLocationIndex(_cache.path, loco);
+
+  console.timeEnd(END);
+}
+
+
+//
+// Save the updated index files under `data/*`
+//
+function saveIndex() {
+  const START = '🏗   ' + colors.yellow(`Saving index files...`);
+  const END = '👍  ' + colors.green(`done saving`);
+  console.log('');
+  console.log(START);
+  console.time(END);
+
+  fileTree.write('brands', _cache);
+  fileTree.write('operators', _cache);
+  fileTree.write('transit', _cache);
 
   console.timeEnd(END);
 }
@@ -175,7 +240,7 @@ function mergeItems() {
   let newCount = 0;
 
   // First, INSERT - Look in `_keep` for new items not yet in the index
-  Object.keys(_keep).forEach(kvn => {
+  Object.keys(_keep[t]).forEach(kvn => {
     const parts = kvn.split('|', 2);     // kvn = "key/value|name"
     const kv = parts[0];
     const n = parts[1];

@@ -4,7 +4,7 @@ const glob = require('glob');
 const dissolved = require('../dist/dissolved.json');
 const fileTree = require('../lib/file_tree.js');
 const JSON5 = require('json5');
-const namesKeep = require('../dist/filtered/names_keep.json');
+const brandsKeep = require('../dist/filtered/brands_keep.json');
 const packageJSON = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
@@ -99,8 +99,8 @@ function buildJSON() {
       if (!_presetData[k][v])  _presetData[k][v] = {};
       _presetData[k][v][n] = {};
 
-      if (namesKeep[kvn]) {
-        _presetData[k][v][n].count = namesKeep[kvn];
+      if (brandsKeep[kvn]) {
+        _presetData[k][v][n].count = brandsKeep[kvn];
       }
 
       _presetData[k][v][n].id = item.id;

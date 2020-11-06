@@ -11953,9 +11953,9 @@ function CategoryRow(props) {
   var n, kvn, count, tags, qid, overpassQuery;
 
   if (t === 'brands') {
-    n = item.tags.name || item.tags.brand;
+    n = item.tags.brand || item.tags.name;
     kvn = "".concat(k, "/").concat(v, "|").concat(n);
-    count = data.nameCounts[kvn] || '< 50';
+    count = data.brandCounts[kvn] || '< 50';
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
     var bn = tags['brand'];
@@ -19822,7 +19822,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // Load the name-suggestion-index data files
 var DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
-var NAMES_KEEP = "".concat(DIST, "/filtered/names_keep.min.json");
+var BRANDS_KEEP = "".concat(DIST, "/filtered/brands_keep.min.json");
 var OPERATORS_KEEP = "".concat(DIST, "/filtered/operators_keep.min.json");
 var TRANSIT_KEEP = "".concat(DIST, "/filtered/transit_keep.min.json");
 var INDEX = "".concat(DIST, "/index.min.json");
@@ -19836,10 +19836,10 @@ function App() {
       filters = _useState2[0],
       setFilters = _useState2[1];
 
-  var _useFetch = useFetch(NAMES_KEEP),
+  var _useFetch = useFetch(BRANDS_KEEP),
       _useFetch2 = _slicedToArray(_useFetch, 2),
-      nameCounts = _useFetch2[0],
-      nameCountsLoading = _useFetch2[1];
+      brandCounts = _useFetch2[0],
+      brandCountsLoading = _useFetch2[1];
 
   var _useFetch3 = useFetch(OPERATORS_KEEP),
       _useFetch4 = _slicedToArray(_useFetch3, 2),
@@ -19868,11 +19868,11 @@ function App() {
 
   var appData = {
     isLoading: function isLoading() {
-      return nameCountsLoading || operatorCountsLoading || transitCountsLoading || wikidataLoading || indexLoading || iconsLoading;
+      return brandCountsLoading || operatorCountsLoading || transitCountsLoading || wikidataLoading || indexLoading || iconsLoading;
     },
     filters: filters,
     setFilters: setFilters,
-    nameCounts: nameCounts,
+    brandCounts: brandCounts,
     operatorCounts: operatorCounts,
     transitCounts: transitCounts,
     index: index,
