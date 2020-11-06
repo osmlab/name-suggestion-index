@@ -313,9 +313,13 @@ function mergeItems() {
         } else if (tree === 'operators') {
           name = tags.operator || tags.brand;
           // seed operators  (for a file that we copied over from the 'brand' tree)  // todo: remove?
-          if (!tags.operator && tags.brand)                            tags.operator = tags.brand;
-          if (!tags['operator:wikidata'] && tags['brand:wikidata'])    tags['operator:wikidata'] = tags['brand:wikidata'];
-          if (!tags['operator:wikipedia'] && tags['brand:wikipedia'])  tags['operator:wikipedia'] = tags['brand:wikipedia'];
+          Object.keys(tags).forEach(osmkey => {
+            if (/brand/.test(osmkey)) {  // convert `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
+              let newkey = osmkey.replace('brand', 'operator');
+              if (!tags[newkey]) tags[newkey] = tags[osmkey];
+            }
+          });
+
 
         } else if (tree === 'transit') {
           name = tags.network;
