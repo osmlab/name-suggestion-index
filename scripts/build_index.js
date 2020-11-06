@@ -320,7 +320,6 @@ function mergeItems() {
             }
           });
 
-
         } else if (tree === 'transit') {
           name = tags.network;
           // if the operator is the same as the network, copy any missing *:wikipedia/*:wikidata tags
