@@ -220,7 +220,7 @@ relation[${k}=${v}][network=${n}][network:wikidata=${qid}]
   function displayTags(tags) {
     let result = '';
     Object.keys(tags).forEach(k => {
-      result += `"${k}": "${tags[k]}"
+      result += `${k}=${tags[k]}
 `;
     });
     return result;
