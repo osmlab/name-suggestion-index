@@ -1,0 +1,33 @@
+{
+  "title": "replacements.json",
+  "description": "name-suggestion-index replacements",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+
+    "^Q\\d+$": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wikidata"],
+      "properties": {
+
+        "wikidata": {
+          "description": "(required) The replacement Wikidata QID.",
+          "type": "string"
+        },
+
+        "wikipedia": {
+          "description": "(optional) The replacement Wikipedia value.",
+          "type": "string"
+        },
+
+        "note": {
+          "description": "(optional) An optional note - can contain anything about the item.",
+          "type": "string"
+        }
+
+      }
+    }
+
+  }
+}

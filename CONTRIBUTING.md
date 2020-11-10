@@ -27,6 +27,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 * `config/*`
   * `config/filter_brands.json`- Regular expressions used to filter `names_all` into `names_keep` / `names_discard`
   * `config/match_groups.json`- Groups of tag pairs that are considered equal when matching
+  * `config/replacements.json` - Mapping of old Wikidata QIDs map to their replacement new Wikidata and Wikipedia values.
 * `data/*` - Data files for each kind of branded business, organized by topic and OpenStreetMap tag
   * `data/brands/amenity/*.json`
   * `data/brands/leisure/*.json`
@@ -72,7 +73,7 @@ These files are created by a several step process:
 - Merge the items we are keeping into -> `data/**/*.json` files for us to decide what to do with them
 
 The data files are organized by topic and OpenStreetMap tag:
-* `data/brands/*` - Config files for each kind of branded business, organized by OpenStreetMap tag
+* `data/brands/*` - Source files for each kind of branded business, organized by OpenStreetMap tag
   * `amenity/*.json`
   * `leisure/*.json`
   * `shop/*.json`

@@ -50,6 +50,7 @@ function buildAll() {
   shell.cp('-f', 'config/filter_operators.json', 'dist/filter_operators.json');
   shell.cp('-f', 'config/filter_transit.json', 'dist/filter_transit.json');
   shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
+  shell.cp('-f', 'config/replacements.json', 'dist/replacements.json');
 
   // Write `index.json` as a single file containing everything by path
   fs.writeFileSync('dist/index.json', prettyStringify(_cache.path, { maxLength: 800 }));

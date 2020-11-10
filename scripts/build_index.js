@@ -23,6 +23,9 @@ console.log(colors.blue('-'.repeat(70)));
 let _collected = {};
 loadCollected();
 
+let _replacements = {};
+loadReplacements();
+
 let _filters = {};
 loadFilters();
 
@@ -41,6 +44,54 @@ mergeItems();
 
 saveIndex();
 console.log('');
+
+
+//
+// Load lists of tags collected from OSM from `dist/collected/*`
+//
+function loadCollected() {
+  ['name', 'brand', 'operator', 'network'].forEach(tag => {
+    const file = `dist/collected/${tag}s_all.json`;
+    const contents = fs.readFileSync(file, 'utf8');
+    let data;
+    try {
+      data = JSON5.parse(contents);
+    } catch (jsonParseError) {
+      console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
+      console.error('  ' + colors.yellow(file));
+      process.exit(1);
+    }
+
+    _collected[tag] = data;
+  });
+}
+
+
+//
+// Load, validate, cleanup the replacement file
+//
+function loadReplacements() {
+  const replacementsSchema = require('../schema/replacements.json');
+
+  const file = 'config/replacements.json';
+  const contents = fs.readFileSync(file, 'utf8');
+  let data;
+  try {
+    data = JSON5.parse(contents);
+  } catch (jsonParseError) {
+    console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
+    console.error('  ' + colors.yellow(file));
+    process.exit(1);
+  }
+
+  // check JSON schema
+  validate(file, data, replacementsSchema);
+
+  // // Lowercase and sort the files for consistency, save them that way.
+  fs.writeFileSync(file, stringify(sort(data)));
+
+  _replacements = data;
+}
 
 
 //
@@ -73,27 +124,6 @@ function loadFilters() {
     fs.writeFileSync(file, stringify(data));
 
     _filters[tree] = data;
-  });
-}
-
-
-//
-// Load lists of tags collected from OSM from `dist/collected/*`
-//
-function loadCollected() {
-  ['name', 'brand', 'operator', 'network'].forEach(tag => {
-    const file = `dist/collected/${tag}s_all.json`;
-    const contents = fs.readFileSync(file, 'utf8');
-    let data;
-    try {
-      data = JSON5.parse(contents);
-    } catch (jsonParseError) {
-      console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
-      console.error('  ' + colors.yellow(file));
-      process.exit(1);
-    }
-
-    _collected[tag] = data;
   });
 }
 
@@ -365,6 +395,31 @@ function mergeItems() {
         } else {
           if (!item.locationSet)  item.locationSet = { include: ['001'] };   // the whole world
         }
+
+        // Perform QID/Wikipedia replacements
+        Object.keys(tags).forEach(osmkey => {
+          const matchTag = osmkey.match(/^(\w+):wikidata$/);
+          if (matchTag) {                         // Look at '*:wikidata' tags
+            const wd = tags[osmkey];
+            const replace = _replacements[wd];    // If it matches a QID in the replacement list...
+
+            if (replace && replace.wikidata !== undefined) {   // replace or delete `*:wikidata` tag
+              if (replace.wikidata) {
+                tags[osmkey] = replace.wikidata;
+              } else {
+                delete tags[osmkey];
+              }
+            }
+            if (replace && replace.wikipedia !== undefined) {  // replace or delete `*:wikipedia` tag
+              const wpkey = matchTag[1] + ':wikipedia';
+              if (replace.wikipedia) {
+                tags[wpkey] = replace.wikipedia;
+              } else {
+                delete tags[wpkey];
+              }
+            }
+          }
+        });
 
         // regenerate id here, in case the locationSet has changed
         const locationID = loco.validateLocationSet(item.locationSet).id;

@@ -78,6 +78,7 @@ The files under `config/*`, `data/*`, and `features/*` can be edited:
 * `config/*`:
   * `config/filter_*.json` - Regular expressions used to filter the OpenStreetMap tags into keep/discard lists
   * `config/match_groups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
+  * `config/replacements.json` - Mapping of old Wikidata QIDs map to their replacement new Wikidata and Wikipedia values.
 * `data/*` - Data files for each kind of feature, organized by topic and OpenStreetMap tag
   * `data/brands/amenity/*.json`
   * `data/brands/shop/*.json`
