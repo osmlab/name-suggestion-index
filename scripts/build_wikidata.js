@@ -320,7 +320,7 @@ function processEntities(result) {
         // P17 - Countries where the brand is dissoluted
         const countries = item.qualifiers.P17;
         if (countries) {
-          dissolution.countries = countries.map(iso1A2Code);
+          dissolution.countries = countries.map(code => iso1A2Code(code));
         }
         // P156 - followed by or P1366 - replaced by (successor)
         const successorQID = item.qualifiers.P156 || item.qualifiers.P1366;
