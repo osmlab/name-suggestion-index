@@ -9,69 +9,10 @@
       "type": "array",
       "uniqueItems": true,
       "items": {
-
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["displayName", "locationSet", "tags"],
-        "properties": {
-
-          "displayName": {
-            "description": "(required) A display name for this entry.",
-            "type": "string"
-          },
-
-          "id": {
-            "description": "(generated) A unique identifier generated automatically.",
-            "type": "string"
-          },
-
-          "locationSet": {
-            "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
-            "description": "(required) included and excluded locations for this item",
-            "$ref": "#/definitions/locationSet"
-          },
-
-          "matchNames": {
-            "description": "(optional) An array of alternate but less-desired names.",
-            "type": "array",
-            "uniqueItems": true,
-            "items": {
-              "type": "string"
-            }
-          },
-
-          "matchTags": {
-            "description": "(optional) An array of alternate but less-desired tag-pairs.",
-            "type": "array",
-            "uniqueItems": true,
-            "items": {
-              "type": "string",
-              "pattern": "^\\S+/\\S+$"
-            }
-          },
-
-          "note": {
-            "description": "(optional) An optional note - can contain anything about the item.",
-            "type": "string"
-          },
-
-          "tags": {
-            "description": "(required) OpenStreetMap tags to associate with this entry (parent properties not allowed here)",
-            "type": "object",
-            "properties": {
-              "locationSet":  { "not" : {} },
-              "matchNames":   { "not" : {} },
-              "matchTags":    { "not" : {} },
-              "note":         { "not" : {} },
-              "tags":         { "not" : {} }
-            },
-            "anyOf": [
-              { "required": ["brand"] },
-              { "required": ["operator"] },
-              { "required": ["network"] }
-            ]
-          }
-        }
+        "anyOf": [
+          { "$ref": "#/definitions/normalItem" },
+          { "$ref": "#/definitions/templateItem" }
+        ]
       }
     }
 
@@ -133,6 +74,117 @@
       "description": "A filename for one of the geojson features in this project",
       "type": "string",
       "pattern": "^.*\\.geojson$"
+    },
+
+    "normalItem": {
+      "description": "A normal item (not a template item)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["displayName", "locationSet", "tags"],
+      "properties": {
+
+        "displayName": {
+          "description": "(required) A display name for this entry.",
+          "type": "string"
+        },
+
+        "id": {
+          "description": "(generated) A unique identifier generated automatically.",
+          "type": "string"
+        },
+
+        "locationSet": {
+          "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
+          "description": "(required) included and excluded locations for this item",
+          "$ref": "#/definitions/locationSet"
+        },
+
+        "matchNames": {
+          "description": "(optional) An array of alternate but less-desired names.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+
+        "matchTags": {
+          "description": "(optional) An array of alternate but less-desired tag-pairs.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^\\S+/\\S+$"
+          }
+        },
+
+        "note": {
+          "description": "(optional) An optional note - can contain anything about the item.",
+          "type": "string"
+        },
+
+        "tags": {
+          "$comment": "Exclude properties that should appear elsewhere to avoid common mistakes",
+          "description": "(required) OpenStreetMap tags to associate with this item",
+          "type": "object",
+          "properties": {
+            "forEach":      { "not" : {} },
+            "locationSet":  { "not" : {} },
+            "matchNames":   { "not" : {} },
+            "matchTags":    { "not" : {} },
+            "note":         { "not" : {} },
+            "setTags":      { "not" : {} },
+            "tags":         { "not" : {} }
+          },
+          "anyOf": [
+            { "required": ["brand"] },
+            { "required": ["operator"] },
+            { "required": ["network"] }
+          ]
+        }
+
+      }
+    },
+
+    "templateItem": {
+      "description": "Template items get expanded into normal items when the index is built",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forEach", "setTags"],
+      "properties": {
+
+        "forEach": {
+          "description": "(required) A tree/key/value path to use as the source of the expanded items",
+          "type": "string",
+          "pattern": "^\\S+/\\S+/\\S+$"
+        },
+
+        "note": {
+          "description": "(optional) An optional note - can contain anything about the item.",
+          "type": "string"
+        },
+
+        "setTags": {
+          "$comment": "Exclude properties that should appear elsewhere to avoid common mistakes",
+          "description": "(required) OpenStreetMap tags to change from the source tags",
+          "type": "object",
+          "properties": {
+            "forEach":      { "not" : {} },
+            "locationSet":  { "not" : {} },
+            "matchNames":   { "not" : {} },
+            "matchTags":    { "not" : {} },
+            "note":         { "not" : {} },
+            "setTags":      { "not" : {} },
+            "tags":         { "not" : {} }
+          },
+          "anyOf": [
+            { "required": ["brand"] },
+            { "required": ["operator"] },
+            { "required": ["network"] }
+          ]
+        }
+
+      }
     }
   }
 
