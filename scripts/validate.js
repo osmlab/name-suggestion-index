@@ -15,7 +15,7 @@ validate('config/filter_transit.json', filterTransit, filtersSchema);
 
 // reading a fileTree will also validate its contents
 const fileTree = require('../lib/file_tree');
-let _cache = { path: {}, id: {}, template: {} };
+let _cache = {};
 fileTree.read('brands', _cache, loco);
 fileTree.read('operators', _cache, loco);
 fileTree.read('transit', _cache, loco);

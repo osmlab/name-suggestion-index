@@ -16,7 +16,7 @@ const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
 
-let _cache = { path: {}, id: {}, template: {} };
+let _cache = {};
 fileTree.read('brands', _cache, loco);
 fileTree.read('operators', _cache, loco);
 fileTree.read('transit', _cache, loco);

@@ -104,7 +104,7 @@ if (_secrets && _secrets.wikibase) {
 
 
 // what to fetch
-let _cache = { path: {}, id: {}, template: {} };
+let _cache = {};
 fileTree.read('brands', _cache, loco);
 fileTree.read('operators', _cache, loco);
 fileTree.read('transit', _cache, loco);

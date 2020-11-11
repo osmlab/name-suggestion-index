@@ -33,7 +33,7 @@ let _discard = {};
 let _keep = {};
 runFilters();
 
-let _cache = { path: {}, id: {}, template: {} };
+let _cache = {};
 loadIndex();
 
 checkItems('brands');
