@@ -19828,7 +19828,7 @@ var TRANSIT_KEEP = "".concat(DIST, "/filtered/transit_keep.min.json");
 var INDEX = "".concat(DIST, "/index.min.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.min.json"); // We can use iD's taginfo file to pick icons
 
-var TAGINFO = 'https://raw.githubusercontent.com/openstreetmap/iD/develop/data/taginfo.json';
+var TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@1.0.0/dist/taginfo.min.json';
 
 function App() {
   var _useState = (0, _react.useState)({}),
