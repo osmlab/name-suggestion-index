@@ -57,7 +57,7 @@ export default function Overview(props) {
   }
 
   const categories = [];
-  paths.forEach(tkv => {
+  paths.sort().forEach(tkv => {
     const parts = tkv.split('/', 3);
     const t = parts[0];
     const k = parts[1];

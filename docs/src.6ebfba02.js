@@ -19708,7 +19708,7 @@ function Overview(props) {
   }
 
   var categories = [];
-  paths.forEach(function (tkv) {
+  paths.sort().forEach(function (tkv) {
     var parts = tkv.split('/', 3);
     var t = parts[0];
     var k = parts[1];

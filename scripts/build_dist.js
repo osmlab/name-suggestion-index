@@ -8,6 +8,7 @@ const brandsKeep = require('../dist/filtered/brands_keep.json');
 const packageJSON = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
+const sort = require('../lib/sort.js');
 const xmlbuilder2 = require('xmlbuilder2');
 
 // We use LocationConflation for validating and processing the locationSets
@@ -21,8 +22,9 @@ fileTree.read('brands', _cache, loco);
 fileTree.read('operators', _cache, loco);
 fileTree.read('transit', _cache, loco);
 fileTree.expandTemplates(_cache, loco);
-let _presetData = {};
+_cache.path = sort(_cache.path);
 
+let _presetData = {};
 buildAll();
 
 
@@ -72,7 +74,7 @@ function buildAll() {
 function buildJSON() {
   const paths = Object.keys(_cache.path);
 
-  paths.forEach(tkv => {
+  paths.sort().forEach(tkv => {
     let items = _cache.path[tkv];
     if (!Array.isArray(items) || !items.length) return;
 
