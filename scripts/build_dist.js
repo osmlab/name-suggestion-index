@@ -20,6 +20,7 @@ let _cache = {};
 fileTree.read('brands', _cache, loco);
 fileTree.read('operators', _cache, loco);
 fileTree.read('transit', _cache, loco);
+fileTree.expandTemplates(_cache, loco);
 let _presetData = {};
 
 buildAll();
