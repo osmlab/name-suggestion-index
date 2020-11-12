@@ -504,8 +504,12 @@ function finish() {
     _wikidata[qid] = sort(target);
   });
 
-  fs.writeFileSync('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
-  fs.writeFileSync('dist/dissolved.json', prettyStringify(sort(dissolved), { maxLength: 100 }));
+console.log(JSON.stringify(_wikidata, null, 2));
+  // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
+  if (!DRYRUN) {
+    fs.writeFileSync('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
+    fs.writeFileSync('dist/dissolved.json', prettyStringify(sort(dissolved), { maxLength: 100 }));
+  }
 
   console.timeEnd(END);
 
@@ -661,7 +665,9 @@ function processWbEditQueue(queue) {
   const request = queue.pop();
   const qid = request.qid;
   const msg = request.msg;
-  console.log(colors.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
+  if (!DRYRUN) {
+    console.log(colors.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
+  }
   delete request.qid;
   delete request.msg;
 
