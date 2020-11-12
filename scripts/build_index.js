@@ -343,13 +343,23 @@ function mergeItems() {
 
         } else if (tree === 'operators') {
           name = tags.operator || tags.brand;
-          // seed operators  (for a file that we copied over from the 'brand' tree)  // todo: remove?
+          // seed missing operator tags (for a file that we copied over from the 'brand' tree)
           Object.keys(tags).forEach(osmkey => {
-            if (/brand/.test(osmkey)) {  // convert `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
+            if (/brand/.test(osmkey)) {  // copy `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
               let newkey = osmkey.replace('brand', 'operator');
               if (!tags[newkey]) tags[newkey] = tags[osmkey];
             }
           });
+
+          // for certain categories, copy missing tags the other way too
+          if (/^amenity\/post/.test(kv)) {
+            Object.keys(tags).forEach(osmkey => {
+              if (/operator/.test(osmkey)) {  // copy `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
+                let newkey = osmkey.replace('operator', 'brand');
+                if (!tags[newkey]) tags[newkey] = tags[osmkey];
+              }
+            });
+          }
 
         } else if (tree === 'transit') {
           name = tags.network;
