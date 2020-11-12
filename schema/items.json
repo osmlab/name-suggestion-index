@@ -128,13 +128,13 @@
           "description": "(required) OpenStreetMap tags to associate with this item",
           "type": "object",
           "properties": {
-            "forEach":      { "not" : {} },
-            "locationSet":  { "not" : {} },
-            "matchNames":   { "not" : {} },
-            "matchTags":    { "not" : {} },
-            "note":         { "not" : {} },
-            "setTags":      { "not" : {} },
-            "tags":         { "not" : {} }
+            "locationSet":    { "not" : {} },
+            "matchNames":     { "not" : {} },
+            "matchTags":      { "not" : {} },
+            "note":           { "not" : {} },
+            "tags":           { "not" : {} },
+            "templateSource": { "not" : {} },
+            "templateTags":   { "not" : {} }
           },
           "anyOf": [
             { "required": ["brand"] },
@@ -150,32 +150,32 @@
       "description": "Template items get expanded into normal items when the index is built",
       "type": "object",
       "additionalProperties": false,
-      "required": ["forEach", "setTags"],
+      "required": ["templateSource", "templateTags"],
       "properties": {
-
-        "forEach": {
-          "description": "(required) A tree/key/value path to use as the source of the expanded items",
-          "type": "string",
-          "pattern": "^\\S+/\\S+/\\S+$"
-        },
 
         "note": {
           "description": "(optional) An optional note - can contain anything about the item.",
           "type": "string"
         },
 
-        "setTags": {
+        "templateSource": {
+          "description": "(required) A tree/key/value path to use as the source of the expanded items",
+          "type": "string",
+          "pattern": "^\\S+/\\S+/\\S+$"
+        },
+
+        "templateTags": {
           "$comment": "Exclude properties that should appear elsewhere to avoid common mistakes",
           "description": "(required) OpenStreetMap tags to change from the source tags",
           "type": "object",
           "properties": {
-            "forEach":      { "not" : {} },
-            "locationSet":  { "not" : {} },
-            "matchNames":   { "not" : {} },
-            "matchTags":    { "not" : {} },
-            "note":         { "not" : {} },
-            "setTags":      { "not" : {} },
-            "tags":         { "not" : {} }
+            "locationSet":    { "not" : {} },
+            "matchNames":     { "not" : {} },
+            "matchTags":      { "not" : {} },
+            "note":           { "not" : {} },
+            "tags":           { "not" : {} },
+            "templateSource": { "not" : {} },
+            "templateTags":   { "not" : {} }
           },
           "anyOf": [
             { "required": ["brand"] },

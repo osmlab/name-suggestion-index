@@ -222,6 +222,7 @@ function loadIndex() {
   fileTree.read('brands', _cache, loco);
   fileTree.read('operators', _cache, loco);
   fileTree.read('transit', _cache, loco);
+  fileTree.expandTemplates(_cache, loco);
 
   matcher.buildMatchIndex(_cache.path, loco);
   // It takes a while to resolve all of the locationSets into GeoJSON and insert into which-polygon
