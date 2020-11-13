@@ -331,6 +331,7 @@ function mergeItems() {
         // Perform tree-specific tag cleanups here..
         if (tree === 'brands') {
           name = tags.brand || tags.name;
+
           // assign some default tags if missing
           if (kv === 'amenity/cafe') {
             if (!tags.takeaway)    tags.takeaway = 'yes';
@@ -343,27 +344,36 @@ function mergeItems() {
 
         } else if (tree === 'operators') {
           name = tags.operator || tags.brand;
-          // seed missing operator tags (for a file that we copied over from the 'brand' tree)
+
+          // Seed missing operator tags (for a file that we copied over from the 'brand' tree)
           Object.keys(tags).forEach(osmkey => {
-            if (/brand/.test(osmkey)) {  // copy `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
-              let newkey = osmkey.replace('brand', 'operator');
-              if (!tags[newkey]) tags[newkey] = tags[osmkey];
+            if (/brand/.test(osmkey)) {
+              let operatorkey = osmkey.replace('brand', 'operator');   // copy `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
+              if (!tags[operatorkey]) tags[operatorkey] = tags[osmkey];
             }
           });
 
-          // for certain categories, copy missing tags the other way too
-          if (/^amenity\/post/.test(kv)) {
+          // For certain 'operator' categories that are kind of like brands,
+          // copy missing tags the other way too and include names
+          //  (note: we can change this later of people hate it)
+          // https://github.com/osmlab/name-suggestion-index/issues/2883#issuecomment-726305200
+          if (/^amenity\/(bicycle|car|post)/.test(kv)) {
             Object.keys(tags).forEach(osmkey => {
-              if (/operator/.test(osmkey)) {  // copy `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
-                let newkey = osmkey.replace('operator', 'brand');
-                if (!tags[newkey]) tags[newkey] = tags[osmkey];
+              if (/operator/.test(osmkey)) {
+                let brandkey = osmkey.replace('operator', 'brand');  // copy `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
+                if (!tags[brandkey]) tags[brandkey] = tags[osmkey];
+                if (!/wiki/.test(osmkey)) {
+                  let namekey = osmkey.replace('operator', 'name');   // copy `operator`->`name`, `operator:ru`->`name:ru`, etc.
+                  if (!tags[namekey]) tags[namekey] = tags[osmkey];
+                }
               }
             });
           }
 
         } else if (tree === 'transit') {
           name = tags.network;
-          // if the operator is the same as the network, copy any missing *:wikipedia/*:wikidata tags
+
+          // If the operator is the same as the network, copy any missing *:wikipedia/*:wikidata tags
           if (tags.network && tags.operator && tags.network === tags.operator) {
             if (!tags['operator:wikidata'] && tags['network:wikidata'])    tags['operator:wikidata'] = tags['network:wikidata'];
             if (!tags['operator:wikipedia'] && tags['network:wikipedia'])  tags['operator:wikipedia'] = tags['network:wikipedia'];
@@ -372,8 +382,8 @@ function mergeItems() {
           }
         }
 
-        // If the name can only be reasonably read in one country.
-        // Assign `locationSet`, and localize tags like `name:xx`
+        // If the name can only be reasonably read in one country,
+        // assign `locationSet`, and localize tags like `name:xx`
         // https://www.regular-expressions.info/unicode.html
         if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
           // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
