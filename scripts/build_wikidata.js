@@ -19,14 +19,7 @@ const wbk = require('wikibase-sdk')({
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
-const DRYRUN = true;
-
-
-// when the script was run
-const startDate = new Date();
-const yyyy = startDate.getUTCFullYear();
-const mm = startDate.getUTCMonth();
-const dd = startDate.getUTCDate();
+const DRYRUN = false;
 
 
 // First, try to load the user's secrets.
@@ -380,33 +373,38 @@ function processEntities(result) {
       const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true })
         .sort((a, b) => a.value.localeCompare(b.value));
 
-      // Include this refrence on all our claims - #4648:  'stated in': 'name suggestion index', 'point in time': now
-      const references = [{ P248: 'Q62108705', P585: `${yyyy}-${mm}-${dd}` }];
+      // Include this reference on all our claims - #4648
+      const references = [{ P248: 'Q62108705' }];   // 'stated in': 'name suggestion index'
 
-      // make the nsiClaims match the nsiIds...
+      // Make the nsiClaims match the nsiIds...
       let i = 0;
+      let msg;
       for (i; i < nsiClaims.length; i++) {
         const claim = nsiClaims[i];
 
         if (i < nsiIds.length) {   // match existing claims to ids, and force all ranks to 'normal'
-          if (claim.value !== nsiIds[i] || claim.rank !== 'normal' || (!claim.references || !claim.references.length)) {
-            let msg;
+          let msg;
+          if (claim.value !== nsiIds[i] || claim.rank !== 'normal') {
             if (claim.value !== nsiIds[i]) {
               msg = `Updating NSI identifier for ${qid}: value ${claim.value} -> ${nsiIds[i]}`;
             } else if (claim.rank !== 'normal') {
               msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
-            } else {
-              msg = `Updating NSI identifier reference for ${qid}`;
             }
             wbEditQueue.push({ qid: qid, guid: claim.id, newValue: nsiIds[i], rank: 'normal', references: references, msg: msg });
           }
+          if (!claim.references || !claim.references.length) {
+            msg = `Updating NSI identifier reference for ${qid}`;
+            wbEditQueue.push({ qid: qid, guid: claim.id, snaks: references[0], msg: msg });
+          }
+
         } else {  // remove extra existing claims
-          const msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
+          msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
           wbEditQueue.push({ qid: qid, guid: claim.id, msg: msg });
         }
       }
+
       for (i; i < nsiIds.length; i++) {   // add new claims
-        const msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
+        msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
         wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', references: references, msg: msg });
       }
     }
@@ -689,14 +687,16 @@ function processWbEditQueue(queue) {
 
   } else {
     let task;
-    if (request.guid && request.newValue) {
-      task = _wbEdit.claim.update(request);
+    if (request.guid && request.snaks) {
+      task = _wbEdit.reference.set(request);        // update reference
+    } else if (request.guid && request.newValue) {
+      task = _wbEdit.claim.update(request);         // update claim
     } else if (request.guid && !request.newValue) {
-      task = _wbEdit.claim.remove(request);
+      task = _wbEdit.claim.remove(request);         // remove claim
     } else if (!request.guid && request.id && request.property && request.value) {
-      task = _wbEdit.claim.create(request);
+      task = _wbEdit.claim.create(request);         // create claim
     } else if (!request.guid && request.id && request.language && request.value) {
-      task = _wbEdit.label.set(request);
+      task = _wbEdit.label.set(request);            // set label
     }
 
     return task
