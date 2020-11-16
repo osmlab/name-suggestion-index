@@ -19,7 +19,15 @@ const wbk = require('wikibase-sdk')({
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
-const DRYRUN = false;
+const DRYRUN = true;
+
+
+// when the script was run
+const startDate = new Date();
+const yyyy = startDate.getUTCFullYear();
+const mm = startDate.getUTCMonth();
+const dd = startDate.getUTCDate();
+
 
 // First, try to load the user's secrets.
 // This is optional but needed if you want this script to:
@@ -372,19 +380,25 @@ function processEntities(result) {
       const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true })
         .sort((a, b) => a.value.localeCompare(b.value));
 
+      // Include this refrence on all our claims - #4648:  'stated in': 'name suggestion index', 'point in time': now
+      const references = [{ P248: 'Q62108705', P585: `${yyyy}-${mm}-${dd}` }];
+
       // make the nsiClaims match the nsiIds...
       let i = 0;
       for (i; i < nsiClaims.length; i++) {
         const claim = nsiClaims[i];
+
         if (i < nsiIds.length) {   // match existing claims to ids, and force all ranks to 'normal'
-          if (claim.value !== nsiIds[i] || claim.rank !== 'normal') {
+          if (claim.value !== nsiIds[i] || claim.rank !== 'normal' || (!claim.references || !claim.references.length)) {
             let msg;
             if (claim.value !== nsiIds[i]) {
               msg = `Updating NSI identifier for ${qid}: value ${claim.value} -> ${nsiIds[i]}`;
-            } else {
+            } else if (claim.rank !== 'normal') {
               msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
+            } else {
+              msg = `Updating NSI identifier reference for ${qid}`;
             }
-            wbEditQueue.push({ qid: qid, guid: claim.id, newValue: nsiIds[i], rank: 'normal', msg: msg });
+            wbEditQueue.push({ qid: qid, guid: claim.id, newValue: nsiIds[i], rank: 'normal', references: references, msg: msg });
           }
         } else {  // remove extra existing claims
           const msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
@@ -393,7 +407,7 @@ function processEntities(result) {
       }
       for (i; i < nsiIds.length; i++) {   // add new claims
         const msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
-        wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', msg: msg });
+        wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', references: references, msg: msg });
       }
     }
 
@@ -665,9 +679,7 @@ function processWbEditQueue(queue) {
   const request = queue.pop();
   const qid = request.qid;
   const msg = request.msg;
-  if (!DRYRUN) {
-    console.log(colors.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
-  }
+  console.log(colors.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
   delete request.qid;
   delete request.msg;
 
