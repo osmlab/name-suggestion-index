@@ -19,7 +19,7 @@ const wbk = require('wikibase-sdk')({
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
-const DRYRUN = true;
+const DRYRUN = false;
 
 
 // First, try to load the user's secrets.
