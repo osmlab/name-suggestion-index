@@ -19,7 +19,7 @@ const wbk = require('wikibase-sdk')({
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
-const DRYRUN = false;
+const DRYRUN = true;
 
 
 // First, try to load the user's secrets.
@@ -71,8 +71,8 @@ if (_secrets && _secrets.twitter) {
   try {
     Twitter = require('twitter');
   } catch (err) {
-    console.error(colors.yellow('Looks like you don\'t have the optional Twitter package installed...'));
-    console.error(colors.yellow('Try `npm install twitter` to install it.'));
+    console.warn(colors.yellow('Looks like you don\'t have the optional Twitter package installed...'));
+    console.warn(colors.yellow('Try `npm install twitter` to install it.'));
   }
   if (Twitter) {
     _twitterAPIs = _secrets.twitter.map(s => {
@@ -98,8 +98,8 @@ if (_secrets && _secrets.wikibase) {
       userAgent: `${project.name}/${project.version} (${project.homepage})`,
     });
   } catch (err) {
-    console.error(colors.yellow('Looks like you don\'t have the optional wikibase-edit package installed...'));
-    console.error(colors.yellow('Try `npm install wikibase-edit` to install it.'));
+    console.warn(colors.yellow('Looks like you don\'t have the optional wikibase-edit package installed...'));
+    console.warn(colors.yellow('Try `npm install wikibase-edit` to install it.'));
   }
 }
 
@@ -155,11 +155,11 @@ if (!_total) {
 let _urls = wbk.getManyEntities({
   ids: _qids,
   languages: ['en'],
-  props: ['info', 'labels', 'descriptions', 'claims'],
+  props: ['info', 'labels', 'descriptions', 'claims', 'sitelinks'],
   format: 'json'
 });
 
-let _errors = [];
+let _warnings = [];
 
 
 doFetch()
@@ -187,8 +187,8 @@ function doFetch(index) {
     })
     .then(result => processEntities(result))
     .catch(e => {
-      _errors.push(e);
-      console.error(colors.red(e));
+      _warnings.push(e);
+      console.warn(colors.red(e));
     })
     .then(() => delay(500))
     .then(() => doFetch(++index));
@@ -210,20 +210,19 @@ function processEntities(result) {
     let target = _wikidata[qid];
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
-    let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
 
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Entity for "${label}" was deleted.`);
-      _errors.push(msg);
-      console.error(msg);
+        colors.red(`  ⚠️ Entity for "${label}" was deleted.`);
+      _warnings.push(msg);
+      console.warn(msg);
       return;
     }
 
+    // Get label...
     if (label) {
       target.label = label;
-
     } else {
       // try to pick an English label.
       label = enLabelForQID(qid);
@@ -236,16 +235,23 @@ function processEntities(result) {
         label = label || qid;
         const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
           colors.red(`  Entity for "${label}" missing English label.`);
-        _errors.push(msg);
-        console.error(msg);
+        _warnings.push(msg);
+        console.warn(msg);
       }
     }
 
+    // Get description...
+    let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
     if (description) {
       target.description = description;
     }
 
-    // process claims below here
+    // Get sitelinks to supply missing `*:wikipedia` tags - #4716
+    if (entity.sitelinks) {
+      addMissingWikipediaTags(qid, entity.sitelinks);
+    }
+
+    // Process claims below here...
     if (!entity.claims) return;
     target.logos = {};
     target.identities = {};
@@ -342,13 +348,13 @@ function processEntities(result) {
       }
 
       if (dissolution.upgrade) {
-        let msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        let msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
           colors.red(`  ${target.label} might possibly be replaced by ${dissolution.upgrade}`);
         if (dissolution.countries) {
           msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
         }
-        _errors.push(msg);
-        console.error(msg);
+        _warnings.push(msg);
+        console.warn(msg);
       }
       target.dissolutions.push(dissolution);
     });
@@ -516,19 +522,23 @@ function finish() {
     _wikidata[qid] = sort(target);
   });
 
-console.log(JSON.stringify(_wikidata, null, 2));
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
     fs.writeFileSync('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
     fs.writeFileSync('dist/dissolved.json', prettyStringify(sort(dissolved), { maxLength: 100 }));
+
+    // Write filetree too, in case we updated some of these with `*:wikipedia` tags - #4716
+    fileTree.write('brands', _cache);
+    fileTree.write('operators', _cache);
+    fileTree.write('transit', _cache);
   }
 
   console.timeEnd(END);
 
   // output whatever errors we've gathered
-  if (_errors.length) {
+  if (_warnings.length) {
     console.log(colors.yellow.bold(`\nError Summary:`));
-    _errors.forEach(msg => console.error(colors.red(msg)));
+    _warnings.forEach(msg => console.warn(colors.red(msg)));
   }
 }
 
@@ -550,7 +560,7 @@ function checkTwitterRateLimit(need) {
       console.log(colors.green.bold(`Twitter rate status${which}: need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
       if (need > stats.remaining) {
         const delaySec = clamp(resetSec, 10, 60);
-        console.log(colors.blue(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
+        console.log(colors.green.bold(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
         return delaySec;
       } else {
         return 0;
@@ -565,7 +575,7 @@ function checkTwitterRateLimit(need) {
       }
     })
     .catch(e => {
-      console.error(colors.blue(`Error: Twitter rate limit: ` + JSON.stringify(e)));
+      console.warn(colors.green.bold(`Error: Twitter rate limit: ` + JSON.stringify(e)));
     });
 }
 
@@ -582,10 +592,10 @@ function fetchTwitterUserDetails(qid, username) {
       target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
     })
     .catch(e => {
-      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+      const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
         colors.red(`  Twitter username @${username}: ${JSON.stringify(e)}`);
-      _errors.push(msg);
-      console.error(msg);
+      _warnings.push(msg);
+      console.warn(msg);
     });
 }
 
@@ -621,10 +631,10 @@ function fetchFacebookLogo(qid, username) {
         target.identities.facebook = userid;
         return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
       } else {
-        const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
+        const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
           colors.red(`  Facebook username @${username}: ${e}`);
-        _errors.push(msg);
-        console.error(msg);
+        _warnings.push(msg);
+        console.warn(msg);
       }
     });
 }
@@ -659,8 +669,8 @@ function removeOldNsiClaims() {
     })
     .then(processWbEditQueue)
     .catch(e => {
-      _errors.push(e);
-      console.error(colors.red(e));
+      _warnings.push(e);
+      console.warn(colors.red(e));
     });
 }
 
@@ -701,12 +711,147 @@ function processWbEditQueue(queue) {
 
     return task
       .catch(e => {
-        const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}  `) + colors.red(e);
-        _errors.push(msg);
-        console.error(msg);
+        const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}  `) + colors.red(e);
+        _warnings.push(msg);
+        console.warn(msg);
       })
       .then(() => delay(300))
       .then(() => processWbEditQueue(queue));
+  }
+}
+
+
+// `addMissingWikipediaTags`
+// We can look at the wikidata sitelinks and pick one if this item is missing `*:wikipedia` tags - #4716
+function addMissingWikipediaTags(qid, sitelinks) {
+  // Convert sitelinks to OSM wikipedia tags..
+  let wikis = {};
+  Object.keys(sitelinks).forEach(code => {
+    const sitelink = sitelinks[code];
+    const site = sitelink.site;
+    const title = sitelink.title;
+    if (!site || !title) return null;
+
+    const m = site.match(/(\w+)wiki$/);     // 'enwiki', 'dewiki', 'zh_yuewiki', etc
+    if (!m) return null;
+    if (m[1] === 'commons') return null;    // skip 'commonswiki'
+
+    const lang = m[1].replace(/_/g, '-');   // 'zh_yue' -> 'zh-yue'
+    wikis[lang] = `${lang}:${title}`;
+  });
+
+  const wikiCount = Object.keys(wikis).length;
+  if (!wikiCount) return null;   // there are none
+
+  // which NSI items use this qid?
+  Array.from(_qidItems[qid]).forEach(id => {
+    const item = _cache.id[id];
+    if (item.fromTemplate) return;  // skip items expanded from templates
+
+    ['brand', 'operator', 'network'].forEach(osmkey => {
+      const wd = item.tags[`${osmkey}:wikidata`];
+      let wp = item.tags[`${osmkey}:wikipedia`];
+      if (wd && (wd === qid) && !wp) {  // `*:wikidata` tag matches, `*:wikipedia` tag missing
+        wp = chooseWiki(item);
+        if (wp) {
+          item.tags[`${osmkey}:wikipedia`] = wp;
+          const msg = colors.cyan(`${qid} "${item.displayName}" adding missing tag ${osmkey}:wikipedia = ${wp}`);
+          _warnings.push(msg);
+          console.warn(msg);
+        }
+      }
+    });
+  });
+
+
+  // Attempt to guess what language this item is, and pick a reasonable wikipedia tag for it
+  // This code is terrible and nobody should do this.
+  function chooseWiki(item) {
+    if (!wikiCount) return null;
+    const cc = item.locationSet.include[0];   // first location in the locationSet
+    const name = item.displayName;
+    let tryLangs = ['en'];                    // always fallback to enwiki
+
+    // https://en.wikipedia.org/wiki/Unicode_block
+    if (/[\u0370-\u03FF]/.test(name)) {          // Greek
+      tryLangs.push('el');
+    } else if (/[\u0590-\u05FF]/.test(name)) {   // Hebrew
+      tryLangs.push('he');
+    } else if (/[\u0600-\u06FF]/.test(name)) {   // Arabic
+      tryLangs.push('ar');
+    } else if (/[\u0750-\u077F]/.test(name)) {   // Arabic
+      tryLangs.push('ar');
+    } else if (/[\u08A0-\u08FF]/.test(name)) {   // Arabic
+      tryLangs.push('ar');
+    } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
+      tryLangs.push('th');
+    } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
+      tryLangs.push('my');
+    } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
+      tryLangs.push('ko');
+    } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
+      tryLangs.push('tl');
+    } else if (/[\u1800-\u18AF]/.test(name)) {   // Mongolian
+      tryLangs.push('mn');
+    } else if (/[\u1F00-\u1FFF]/.test(name)) {   // Greek
+      tryLangs.push('el');
+    } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
+      tryLangs.push('ja');
+    } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
+      tryLangs.push('ko');
+    } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
+      tryLangs.push('ko');
+    } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
+      tryLangs.push('ko');
+    } else if (cc === 'de' || cc === 'at' || cc === 'ch') {     // German
+      tryLangs.push('de');
+    } else if (cc === 'fr' || cc === 'fx' || cc === 'be') {     // French
+      tryLangs.push('fr');
+    } else if (cc === 'es' || cc === 'mx' || cc === 'ar') {     // Spanish (better include Argentina here or they may get Arabic)
+      tryLangs.push('es');
+    } else if (cc === 'gr' || cc === 'cy') {    // Greek (note gr/el) (better include Cyprus here or they may get Welsh)
+      tryLangs.push('el');
+    } else if (cc === 'pt' || cc === 'br') {    // Portuguese
+      tryLangs.push('pt');
+    } else if (cc === 'ru' || cc === 'by') {    // Russian
+      tryLangs.push('ru');
+    } else if (cc === 'ua') {                   // Ukranian, then Russian (note ua/uk)
+      tryLangs.push('ru', 'uk');
+    } else if (cc === 'dk') {                   // Danish (note dk/da)
+      tryLangs.push('da');
+    } else if (cc === 'se') {                   // Swedish (note se/sv)
+      tryLangs.push('sv');
+    } else if (cc === 'cz') {                   // Czech (note cz/cs)
+      tryLangs.push('cs');
+    } else if (cc === 'jp') {                   // Japanese (note jp/ja)
+      tryLangs.push('ja');
+    } else if (cc === 'rs') {                   // Serbian (note rs/sr)
+      tryLangs.push('sr');
+    } else if (cc === 'in') {                   // India / Hindi
+      tryLangs.push('hi');
+    } else if (cc === 'hk') {                   // Cantonese, then Standard Chinese
+      tryLangs.push('zh', 'zh-yue');
+    } else if (cc === 'cn') {                   // Standard Chinese
+      tryLangs.push('zh');
+    } else if (cc === 'ca') {                   // Canada, pick English (so they don't end up with Catalan)
+      tryLangs.push('en');
+    } else {
+      // Just guess the country code as the language code..
+      // At this point we are hoping that rare wiki languages don't have articles for rare qids
+      tryLangs.push(cc);
+    }
+
+    while (tryLangs.length) {
+      const lang = tryLangs.pop();
+      if (wikis[lang]) return wikis[lang];
+    }
+
+    // We've exhausted the guesses, just return the first wiki we find..
+    for (const lang in wikis) {
+      return wikis[lang];
+    }
+
+    return null;
   }
 }
 
