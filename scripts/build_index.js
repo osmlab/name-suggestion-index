@@ -417,8 +417,15 @@ function mergeItems() {
           if (!item.locationSet)  item.locationSet = { include: ['001'] };   // the whole world
         }
 
-        // Perform QID/Wikipedia replacements
+        // Perform common tag cleanups here..
         Object.keys(tags).forEach(osmkey => {
+          // `website` tag should be the website for that location, not the website for the brand..
+          if (osmkey === 'website') {
+            delete tags[osmkey];
+            return;
+          }
+
+          // Replace QID/Wikipedia replacements
           const matchTag = osmkey.match(/^(\w+):wikidata$/);
           if (matchTag) {                         // Look at '*:wikidata' tags
             const wd = tags[osmkey];
