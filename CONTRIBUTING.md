@@ -10,7 +10,7 @@
 * Remove generic names - [show me](#hocho--remove-generic-names)
 * Add `brand:wikidata` and `brand:wikipedia` tags - [show me](#female_detective--add-wiki-tags)
 * Add missing brands - [show me](#convenience_store--add-missing-brands)
-* Edit Wikidata - [show me](#memo--edit-wikidata)
+* Edit Wikidata in compliance with their policies - [show me](#memo--edit-wikidata)
 
 Tip: You can browse the index at https://nsi.guide/
 to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
@@ -662,6 +662,7 @@ Editing brand pages on Wikidata is something that anybody can do.  It helps not 
 - Improve the labels and descriptions on the Wikidata pages.
 - Translate the labels and descriptions to more languages.
 - Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
+- Add the NSI identifier (P8253).  This should be a short string like "chipotle-658eea", not a URL.
 
 Tip: The browsable index at https://nsi.guide/ can show you where the Wikidata information is missing or incomplete.
 
@@ -681,6 +682,8 @@ Wikidata pages without a matching Wikipedia article should have some additional 
 <img width="800px" alt="Adding references on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata_references.gif"/>
 <!--See https://www.wikidata.org/w/index.php?title=Wikidata:Administrators%27_noticeboard&oldid=941582891#Entries_that_should_be_now_fixed for discussion on Wikidata-->
 
+If adding a general reference, you can use "described at URL" (P973) as a top-level claim.  The ideal would be links to articles in major newspapers that are primarily about the brand in question.  Press releases and articles guest-written by the CEO are not as good.
+
 #### Creating Wikidata pages
 
-For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is mandatory to add some external identifier or references (see section above with animation showing how it can be done).
+For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is mandatory to add external identifiers and references in order to comply with Wikidata's notability policies (see section above with animation showing how it can be done).
