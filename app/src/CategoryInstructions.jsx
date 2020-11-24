@@ -12,7 +12,7 @@ export default function CategoryInstructions(props) {
     wikidataTag = 'brand:wikidata';
   } else if (t === 'operators') {
     a = 'an';
-    itemType = 'aoperator';
+    itemType = 'operator';
     wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
     a = 'a';
