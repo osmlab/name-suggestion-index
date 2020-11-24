@@ -1296,13 +1296,8 @@ function parseHeaders(rawHeaders) {
   var headers = new Headers(); // Replace instances of \r\n and \n followed by at least one space or horizontal tab with a space
   // https://tools.ietf.org/html/rfc7230#section-3.2
 
-  var preProcessedHeaders = rawHeaders.replace(/\r?\n[\t ]+/g, ' '); // Avoiding split via regex to work around a common IE11 bug with the core-js 3.6.0 regex polyfill
-  // https://github.com/github/fetch/issues/748
-  // https://github.com/zloirock/core-js/issues/751
-
-  preProcessedHeaders.split('\r').map(function (header) {
-    return header.indexOf('\n') === 0 ? header.substr(1, header.length) : header;
-  }).forEach(function (line) {
+  var preProcessedHeaders = rawHeaders.replace(/\r?\n[\t ]+/g, ' ');
+  preProcessedHeaders.split(/\r?\n/).forEach(function (line) {
     var parts = line.split(':');
     var key = parts.shift().trim();
 
@@ -5618,7 +5613,7 @@ function CategoryInstructions(props) {
     wikidataTag = 'brand:wikidata';
   } else if (t === 'operators') {
     a = 'an';
-    itemType = 'aoperator';
+    itemType = 'operator';
     wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
     a = 'a';
