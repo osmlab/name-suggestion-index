@@ -75,18 +75,18 @@ function loadConfig() {
           keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(),
           discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort()
         }
-        tree = cleaned;
+        data.trees[t] = cleaned;
       });
 
     } else if (which === 'replacements') {
-      Object.keys(data).forEach(qid => {
+      Object.keys(data.replacements).forEach(qid => {
         let replacement = data.replacements[qid];
         let cleaned = {
           note:      replacement.note,
           wikidata:  replacement.wikidata,
           wikipedia: replacement.wikipedia
         }
-        replacement = cleaned;
+        data.replacements[qid] = cleaned;
       });
 
     } else if (which === 'genericWords') {
@@ -96,7 +96,7 @@ function loadConfig() {
     // Lowercase and sort the files for consistency, save them that way.
     fs.writeFileSync(file, stringify(sort(data)));
 
-    _config[which] = data;
+    _config[which] = data[which];
   });
 }
 
@@ -141,14 +141,14 @@ function runFilters() {
 
   ['brands', 'operators', 'transit'].forEach(t => {
     let tree = _config.trees[t];
-    let discard = _discard[tree] = {};
-    let keep = _keep[tree] = {};
+    let discard = _discard[t] = {};
+    let keep = _keep[t] = {};
 
     // Start clean
-    shell.rm('-f', [`dist/filtered/${tree}_keep.json`, `dist/filtered/${tree}_discard.json`]);
+    shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
 
     // All the collected values start out in discard..
-    treeTags[tree].forEach(tag => {
+    treeTags[t].forEach(tag => {
       let collected = _collected[tag];
       for (const kvn in collected) {
         discard[kvn] = Math.max((discard[kvn] || 0), collected[kvn]);
@@ -192,10 +192,10 @@ function runFilters() {
 
     const discardCount = Object.keys(discard).length;
     const keepCount = Object.keys(keep).length;
-    console.log(`📦  ${tree}:\t${keepCount} keep, ${discardCount} discard`);
+    console.log(`📦  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    fs.writeFileSync(`dist/filtered/${tree}_discard.json`, stringify(sort(discard)));
-    fs.writeFileSync(`dist/filtered/${tree}_keep.json`, stringify(sort(keep)));
+    fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sort(discard)));
+    fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sort(keep)));
 
   });
 
