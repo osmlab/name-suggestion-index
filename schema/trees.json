@@ -1,0 +1,64 @@
+{
+  "title": "trees.json",
+  "description": "JSON Schema for config/trees.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["trees"],
+  "properties": {
+
+    "trees": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+
+        "^\\S+$": {
+          "description": "(required) The name of the tree (e.g. 'brands')",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["emoji", "mainTag", "subclassOf", "keepKV", "discardKVN"],
+          "properties": {
+
+            "emoji": {
+              "description": "(required) An emoji used for logging and output (e.g. '🍔')",
+              "type": "string"
+            },
+
+            "mainTag": {
+              "description": "(required) An OSM Tag that this tree uses as the main tag (e.g. 'brand:wikidata')",
+              "type": "string",
+              "pattern": "^\\S+$"
+            },
+
+            "subclassOf": {
+              "description": "(required) A Wikidata QID that items in this tree should all be instanceOf/subclassOf (e.g. 'Q4830453')",
+              "type": "string",
+              "pattern": "^Q\\d+$"
+            },
+
+            "keepKV": {
+              "description": "(required) An array of regular expressions that match k/v tuples to keep.",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "format": "regex"
+              }
+            },
+
+            "discardKVN": {
+              "description": "(required) An array of regular expressions that match k/v|n tuples to discard.",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "format": "regex"
+              }
+            }
+
+          }
+        }
+
+      }
+    }
+  }
+}

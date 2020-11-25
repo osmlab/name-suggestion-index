@@ -20,14 +20,11 @@ console.log(colors.blue('-'.repeat(70)));
 console.log(colors.blue('🗂   Build index'));
 console.log(colors.blue('-'.repeat(70)));
 
+let _config = {};
+loadConfig();
+
 let _collected = {};
 loadCollected();
-
-let _replacements = {};
-loadReplacements();
-
-let _filters = {};
-loadFilters();
 
 let _discard = {};
 let _keep = {};
@@ -44,6 +41,64 @@ mergeItems();
 
 saveIndex();
 console.log('');
+
+
+
+//
+// Load, validate, cleanup config files
+//
+function loadConfig() {
+  ['trees', 'replacements', 'genericWords'].forEach(which => {
+    const schema = require(`../schema/${which}.json`);
+    const file = `config/${which}.json`;
+    const contents = fs.readFileSync(file, 'utf8');
+    let data;
+    try {
+      data = JSON5.parse(contents);
+    } catch (jsonParseError) {
+      console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
+      console.error('  ' + colors.yellow(file));
+      process.exit(1);
+    }
+
+    // check JSON schema
+    validate(file, data, schema);
+
+    // Clean and sort the files for consistency, save them that way.
+    if (which === 'trees') {
+      Object.keys(data.trees).forEach(t => {
+        let tree = data.trees[t];
+        let cleaned = {
+          emoji:      tree.emoji,
+          mainTag:    tree.mainTag,
+          subclassOf: tree.subclassOf,
+          keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(),
+          discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort()
+        }
+        tree = cleaned;
+      });
+
+    } else if (which === 'replacements') {
+      Object.keys(data).forEach(qid => {
+        let replacement = data.replacements[qid];
+        let cleaned = {
+          note:      replacement.note,
+          wikidata:  replacement.wikidata,
+          wikipedia: replacement.wikipedia
+        }
+        replacement = cleaned;
+      });
+
+    } else if (which === 'genericWords') {
+      data.genericWords = data.genericWords.map(s => s.toLowerCase()).sort();
+    }
+
+    // Lowercase and sort the files for consistency, save them that way.
+    fs.writeFileSync(file, stringify(sort(data)));
+
+    _config[which] = data;
+  });
+}
 
 
 //
@@ -68,67 +123,6 @@ function loadCollected() {
 
 
 //
-// Load, validate, cleanup the replacement file
-//
-function loadReplacements() {
-  const replacementsSchema = require('../schema/replacements.json');
-
-  const file = 'config/replacements.json';
-  const contents = fs.readFileSync(file, 'utf8');
-  let data;
-  try {
-    data = JSON5.parse(contents);
-  } catch (jsonParseError) {
-    console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
-    console.error('  ' + colors.yellow(file));
-    process.exit(1);
-  }
-
-  // check JSON schema
-  validate(file, data, replacementsSchema);
-
-  // // Lowercase and sort the files for consistency, save them that way.
-  fs.writeFileSync(file, stringify(sort(data)));
-
-  _replacements = data;
-}
-
-
-//
-// Load, validate, and cleanup filter files
-//
-function loadFilters() {
-  const filtersSchema = require('../schema/filters.json');
-
-  ['brands', 'operators', 'transit'].forEach(tree => {
-    const file = `config/filter_${tree}.json`;
-    const contents = fs.readFileSync(file, 'utf8');
-    let data;
-    try {
-      data = JSON5.parse(contents);
-    } catch (jsonParseError) {
-      console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
-      console.error('  ' + colors.yellow(file));
-      process.exit(1);
-    }
-
-    // check JSON schema
-    validate(file, data, filtersSchema);
-
-    // Lowercase and sort the files for consistency, save them that way.
-    data = {
-      keepTags: data.keepTags.map(s => s.toLowerCase()).sort(),
-      discardKeys: data.discardKeys.map(s => s.toLowerCase()).sort(),
-      discardNames: data.discardNames.map(s => s.toLowerCase()).sort()
-    };
-    fs.writeFileSync(file, stringify(data));
-
-    _filters[tree] = data;
-  });
-}
-
-
-//
 // Filter the tags collected into _keep and _discard lists
 //
 function runFilters() {
@@ -145,8 +139,8 @@ function runFilters() {
     transit:    ['network']
   };
 
-  ['brands', 'operators', 'transit'].forEach(tree => {
-    let filters = _filters[tree];
+  ['brands', 'operators', 'transit'].forEach(t => {
+    let tree = _config.trees[t];
     let discard = _discard[tree] = {};
     let keep = _keep[tree] = {};
 
@@ -161,12 +155,12 @@ function runFilters() {
       }
     });
 
-    // Filter by keepTags (move from discard -> keep)
-    filters.keepTags.forEach(s => {
+    // Filter by keepKV (move from discard -> keep)
+    tree.keepKV.forEach(s => {
       const re = new RegExp(s, 'i');
       for (const kvn in discard) {
-        const tag = kvn.split('|', 2)[0];
-        if (re.test(tag)) {
+        const kv = kvn.split('|', 2)[0];
+        if (re.test(kv)) {
           keep[kvn] = discard[kvn];
           delete discard[kvn];
         }
@@ -174,7 +168,7 @@ function runFilters() {
     });
 
     // Filter by discardKeys (move from keep -> discard)
-    filters.discardKeys.forEach(s => {
+    tree.discardKVN.forEach(s => {
       const re = new RegExp(s, 'i');
       for (const kvn in keep) {
         if (re.test(kvn)) {
@@ -185,7 +179,7 @@ function runFilters() {
     });
 
     // filter by discardNames (move from keep -> discard)
-    filters.discardNames.forEach(s => {
+    _config.genericWords.forEach(s => {
       const re = new RegExp(s, 'i');
       for (let kvn in keep) {
         const name = kvn.split('|', 2)[1];
@@ -429,7 +423,7 @@ function mergeItems() {
           const matchTag = osmkey.match(/^(\w+):wikidata$/);
           if (matchTag) {                         // Look at '*:wikidata' tags
             const wd = tags[osmkey];
-            const replace = _replacements[wd];    // If it matches a QID in the replacement list...
+            const replace = _config.replacements[wd];    // If it matches a QID in the replacement list...
 
             if (replace && replace.wikidata !== undefined) {   // replace or delete `*:wikidata` tag
               if (replace.wikidata) {
@@ -474,22 +468,11 @@ function mergeItems() {
 // checkItems()
 // Checks all the items for several kinds of issues
 //
-function checkItems(tree) {
+function checkItems(t) {
   console.log('');
-  console.log('🏗   ' + colors.yellow(`Checking ${tree}...`));
+  console.log('🏗   ' + colors.yellow(`Checking ${t}...`));
 
-  const icon = {
-    brands:    '🍔',
-    operators: '💼',
-    transit:   '🚅'
-  }[tree];
-
-  const wdTag = {
-    brands:    'brand:wikidata',
-    operators: 'operator:wikidata',
-    transit:   'network:wikidata'
-  }[tree];
-
+  const tree = _config.trees[t];
   const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
 
   let warnMatched = matcher.getWarnings();
@@ -503,7 +486,7 @@ function checkItems(tree) {
   let total = 0;      // total items
   let totalWd = 0;    // total items with wikidata
 
-  const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === tree);
+  const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === t);
   const display = (val) => `${val.displayName} (${val.id})`;
 
   paths.forEach(tkv => {
@@ -519,7 +502,7 @@ function checkItems(tree) {
       const tags = item.tags;
 
       total++;
-      if (tags[wdTag]) totalWd++;
+      if (tags[tree.mainTag]) totalWd++;
 
       // check tags
       Object.keys(tags).forEach(osmkey => {
@@ -587,7 +570,7 @@ function checkItems(tree) {
   //     // - The items have the same locationSet (or the one without wikidata is worldwide)
   //     const name = tags.name || tags.brand;
   //     const stem = stemmer(name) || name;
-  //     const itemwd = tags[wdTag];
+  //     const itemwd = tags[tree.mainTag];
   //     const itemls = loco.validateLocationSet(item.locationSet).id;
 
   //     if (!seenName[stem]) seenName[stem] = new Set();
@@ -596,7 +579,7 @@ function checkItems(tree) {
   //     if (seenName[stem].size > 1) {
   //       seenName[stem].forEach(other => {
   //         if (other.id === item.id) return;   // skip self
-  //         const otherwd = other.tags[wdTag];
+  //         const otherwd = other.tags[tree.mainTag];
   //         const otherls = loco.validateLocationSet(other.locationSet).id;
 
   //         // pick one of the items without a wikidata tag to be the "duplicate"
@@ -690,7 +673,7 @@ function checkItems(tree) {
   const pctWd = total > 0 ? (totalWd * 100 / total).toFixed(1) : 0;
 
   console.log('');
-  console.info(colors.blue.bold(`${icon}  ${tree}/* completeness:`));
+  console.info(colors.blue.bold(`${tree.emoji}  ${t}/* completeness:`));
   console.info(colors.blue.bold(`    ${total} total`));
-  console.info(colors.blue.bold(`    ${totalWd} (${pctWd}%) with a '${wdTag}' tag`));
+  console.info(colors.blue.bold(`    ${totalWd} (${pctWd}%) with a '${tree.mainTag}' tag`));
 }
