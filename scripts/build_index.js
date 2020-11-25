@@ -11,6 +11,9 @@ const sort = require('../lib/sort.js');
 const stemmer = require('../lib/stemmer.js');
 const validate = require('../lib/validate.js');
 
+// metadata about the trees
+const trees = require('../config/trees.json').trees;
+
 // We use LocationConflation for validating and processing the locationSets
 const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
@@ -71,7 +74,6 @@ function loadConfig() {
         let cleaned = {
           emoji:      tree.emoji,
           mainTag:    tree.mainTag,
-          subclassOf: tree.subclassOf,
           keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(),
           discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort()
         };

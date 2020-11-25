@@ -11,6 +11,9 @@ const shell = require('shelljs');
 const sort = require('../lib/sort.js');
 const xmlbuilder2 = require('xmlbuilder2');
 
+// metadata about the trees
+const trees = require('../config/trees.json').trees;
+
 // We use LocationConflation for validating and processing the locationSets
 const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
@@ -47,11 +50,10 @@ function buildAll() {
   ]);
 
   // Copy some project config files into `/dist`
-  shell.cp('-f', 'config/filter_brands.json', 'dist/filter_brands.json');
-  shell.cp('-f', 'config/filter_operators.json', 'dist/filter_operators.json');
-  shell.cp('-f', 'config/filter_transit.json', 'dist/filter_transit.json');
+  shell.cp('-f', 'config/genericWords.json', 'dist/genericWords.json');
   shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
   shell.cp('-f', 'config/replacements.json', 'dist/replacements.json');
+  shell.cp('-f', 'config/trees.json', 'dist/trees.json');
 
   // Write `index.json` as a single file containing everything by path
   fs.writeFileSync('dist/index.json', prettyStringify(_cache.path, { maxLength: 800 }));
@@ -81,13 +83,8 @@ function buildJSON() {
     const k = parts[1];
     const v = parts[2];
 
-    // which tag is considered the "main" tag for this tree?
-    const wdTag = {
-      'brands': 'brand:wikidata',
-      'operators': 'operator:wikidata',
-      'transit': 'network:wikidata'
-    }[t];
-    if (wdTag) return;
+    // Which tag is considered the "main" tag for this tree?
+    const wdTag = trees[t].mainTag;
 
     items.forEach(item => {
       const wd = item.tags[wdTag];
