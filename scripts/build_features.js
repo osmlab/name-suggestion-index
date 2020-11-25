@@ -116,7 +116,7 @@ function collectFeatures() {
   });
 
   const featureCount = Object.keys(files).length;
-  console.log(`📦  features:\t${featureCount}`);
+  console.log(`🧩  features:\t${featureCount}`);
   return features;
 }
 

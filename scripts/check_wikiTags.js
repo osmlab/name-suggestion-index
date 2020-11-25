@@ -13,9 +13,7 @@ const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
 let _cache = {};
-fileTree.read('brands', _cache, loco);
-fileTree.read('operators', _cache, loco);
-fileTree.read('transit', _cache, loco);
+fileTree.read(_cache, loco);
 
 let _errors = [];
 let _wrongFormat = [];
@@ -27,7 +25,7 @@ let _wrongEntity = [];
 let _missingInstance = [];
 let _missingReferences = [];
 
-let _data = gatherData(_cache);
+let _data = gatherData();
 
 let _urls = {
   wikidata: wbk.getManyEntities({
@@ -50,12 +48,12 @@ doFetch(null, _urls.wikidata, checkWikidata)
 
 
 // Find all wikidata QIDs and wikipedia articles set as values in all entries
-function gatherData(tree) {
+function gatherData() {
   let wikidata = {};
   let wikipedia = {};
 
-  Object.keys(tree.path).forEach(tkv => {
-    tree.path[tkv].forEach(item => {
+  Object.keys(_cache.path).forEach(tkv => {
+    _cache.path[tkv].forEach(item => {
       ['brand:wikidata', 'operator:wikidata', 'network:wikidata'].forEach(t => {
         let qid = item.tags[t];
         if (qid && /^Q\d+$/.test(qid)) {

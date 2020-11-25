@@ -23,6 +23,4 @@ validate(
 // reading a fileTree will also validate its contents
 const fileTree = require('../lib/file_tree');
 let _cache = {};
-fileTree.read('brands', _cache, loco);
-fileTree.read('operators', _cache, loco);
-fileTree.read('transit', _cache, loco);
+fileTree.read(_cache, loco);

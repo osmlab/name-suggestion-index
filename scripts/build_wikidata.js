@@ -7,6 +7,9 @@ const project = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const sort = require('../lib/sort.js');
 
+// metadata about the trees
+const trees = require('../config/trees.json').trees;
+
 // We use LocationConflation for validating and processing the locationSets
 const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
@@ -106,16 +109,14 @@ if (_secrets && _secrets.wikibase) {
 
 // what to fetch
 let _cache = {};
-fileTree.read('brands', _cache, loco);
-fileTree.read('operators', _cache, loco);
-fileTree.read('transit', _cache, loco);
+fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
 
 // gather QIDs..
 let _wikidata = {};
 let _qidItems = {};      // any item referenced by a qid
-let _qidIdItems = {};    // items where we actually want to update the nsi-identifier on wikidata
+let _qidIdItems = {};    // items where we actually want to update the NSI-identifier on wikidata
 Object.keys(_cache.path).forEach(tkv => {
   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
   const t = parts[0];
@@ -123,19 +124,15 @@ Object.keys(_cache.path).forEach(tkv => {
   _cache.path[tkv].forEach(item => {
     const tags = item.tags;
     ['brand', 'operator', 'network'].forEach(osmtag => {
-      const wdtag = `${osmtag}:wikidata`;
-      const qid = tags[wdtag];
+      const wdTag = `${osmtag}:wikidata`;
+      const qid = tags[wdTag];
       if (!qid || !/^Q\d+$/.test(qid)) return;
 
       if (!_wikidata[qid])  _wikidata[qid] = {};
       if (!_qidItems[qid])  _qidItems[qid] = new Set();
       _qidItems[qid].add(item.id);
 
-      const isMainTag = (
-        (t === 'brands' && osmtag === 'brand') ||
-        (t === 'operators' && osmtag === 'operator') ||
-        (t === 'transit' && osmtag === 'network')
-      );
+      const isMainTag = (wdTag === trees[t].mainTag);
       if (isMainTag) {
         if (!_qidIdItems[qid])  _qidIdItems[qid] = new Set();
         _qidIdItems[qid].add(item.id);
@@ -363,11 +360,11 @@ function processEntities(result) {
     // If we are allowed to make edits to wikidata, continue beyond here
     if (!_wbEdit) return;
 
-    // If P31 "instance of" is missing, set it to Q4830453 "business"
+    // If P31 "instance of" is missing, set it to Q43229 "organization"
     const instanceOf = getClaimValue(entity, 'P31');
     if (!instanceOf) {
-      const msg = `Setting "P31 "instance of" = Q4830453 "business" for ${qid}`;
-      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: 'Q4830453', msg: msg });
+      const msg = `Setting P31 "instance of" = Q43229 "organization" for ${qid}`;
+      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: 'Q43229', msg: msg });
     }
 
     // If we want this qid to have an P8253 property ..
@@ -528,9 +525,7 @@ function finish() {
     fs.writeFileSync('dist/dissolved.json', prettyStringify(sort(dissolved), { maxLength: 100 }));
 
     // Write filetree too, in case we updated some of these with `*:wikipedia` tags - #4716
-    fileTree.write('brands', _cache);
-    fileTree.write('operators', _cache);
-    fileTree.write('transit', _cache);
+    fileTree.write(_cache);
   }
 
   console.timeEnd(END);

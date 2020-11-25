@@ -74,8 +74,8 @@ function loadConfig() {
           subclassOf: tree.subclassOf,
           keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(),
           discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort()
-        }
-        data.trees[t] = cleaned;
+        };
+        tree = cleaned;
       });
 
     } else if (which === 'replacements') {
@@ -85,8 +85,8 @@ function loadConfig() {
           note:      replacement.note,
           wikidata:  replacement.wikidata,
           wikipedia: replacement.wikipedia
-        }
-        data.replacements[qid] = cleaned;
+        };
+        replacement = cleaned;
       });
 
     } else if (which === 'genericWords') {
@@ -140,7 +140,7 @@ function runFilters() {
   };
 
   ['brands', 'operators', 'transit'].forEach(t => {
-    let tree = _config.trees[t];
+    const tree = _config.trees[t];
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
 
@@ -192,7 +192,7 @@ function runFilters() {
 
     const discardCount = Object.keys(discard).length;
     const keepCount = Object.keys(keep).length;
-    console.log(`📦  ${t}:\t${keepCount} keep, ${discardCount} discard`);
+    console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
     fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sort(discard)));
     fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sort(keep)));
@@ -213,12 +213,9 @@ function loadIndex() {
   console.log(START);
   console.time(END);
 
-  fileTree.read('brands', _cache, loco);
-  fileTree.read('operators', _cache, loco);
-  fileTree.read('transit', _cache, loco);
-  fileTree.expandTemplates(_cache, loco);
-
+  fileTree.read(_cache, loco);
   matcher.buildMatchIndex(_cache.path, loco);
+
   // It takes a while to resolve all of the locationSets into GeoJSON and insert into which-polygon
   // We don't need a location index for this script, but it's useful to know.
   //  matcher.buildLocationIndex(_cache.path, loco);
@@ -237,9 +234,7 @@ function saveIndex() {
   console.log(START);
   console.time(END);
 
-  fileTree.write('brands', _cache);
-  fileTree.write('operators', _cache);
-  fileTree.write('transit', _cache);
+  fileTree.write(_cache);
 
   console.timeEnd(END);
 }
@@ -259,21 +254,22 @@ function mergeItems() {
   console.time(END);
 
 
-  ['brands', 'operators', 'transit'].forEach(tree => {
+  ['brands', 'operators', 'transit'].forEach(t => {
+    const tree = _config.trees[t];
     let total = 0;
     let totalNew = 0;
 
     //
     // INSERT - Look in `_keep` for new items not yet in the tree..
     //
-    Object.keys(_keep[tree]).forEach(kvn => {
+    Object.keys(_keep[t]).forEach(kvn => {
       const parts = kvn.split('|', 2);     // kvn = "key/value|name"
       const kv = parts[0];
       const n = parts[1];
       const parts2 = kv.split('/', 2);
       const k = parts2[0];
       const v = parts2[1];
-      const tkv = `${tree}/${k}/${v}`;
+      const tkv = `${t}/${k}/${v}`;
 
       const m = matcher.match(k, v, n);
       if (m) return;     // already in the index
@@ -285,14 +281,14 @@ function mergeItems() {
       item.tags[k] = v;     // assign default tag k=v
 
       // Perform tree-specific tag defaults here..
-      if (tree === 'brands') {
+      if (t === 'brands') {
         item.tags.brand = n;
         item.tags.name = n;
 
-      } else if (tree === 'operators') {
+      } else if (t === 'operators') {
         item.tags.operator = n;
 
-      } else if (tree === 'transit') {
+      } else if (t === 'transit') {
         item.tags.network = n;
         item.tags.operator = n;
       }
@@ -307,7 +303,7 @@ function mergeItems() {
     //
     // UPDATE - Check all items in the tree for expected tags..
     //
-    const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === tree);
+    const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === t);
     paths.forEach(tkv => {
       let items = _cache.path[tkv];
       if (!Array.isArray(items) || !items.length) return;
@@ -323,7 +319,7 @@ function mergeItems() {
         let name = '';   // which "name" we use for the locales check below
 
         // Perform tree-specific tag cleanups here..
-        if (tree === 'brands') {
+        if (t === 'brands') {
           name = tags.brand || tags.name;
 
           // assign some default tags if missing
@@ -336,7 +332,7 @@ function mergeItems() {
             if (!tags.healthcare)  tags.healthcare = 'pharmacy';
           }
 
-        } else if (tree === 'operators') {
+        } else if (t === 'operators') {
           name = tags.operator || tags.brand;
 
           // Seed missing operator tags (for a file that we copied over from the 'brand' tree)
@@ -364,7 +360,7 @@ function mergeItems() {
             });
           }
 
-        } else if (tree === 'transit') {
+        } else if (t === 'transit') {
           name = tags.network;
 
           // If the operator is the same as the network, copy any missing *:wikipedia/*:wikidata tags
@@ -449,7 +445,7 @@ function mergeItems() {
       });
     });
 
-    console.log(`📦  ${tree}:\t${total} total, ${totalNew} new`);
+    console.log(`${tree.emoji}  ${t}:\t${total} total, ${totalNew} new`);
 
   });
 

@@ -15,7 +15,7 @@
           "description": "(required) The name of the tree (e.g. 'brands')",
           "type": "object",
           "additionalProperties": false,
-          "required": ["emoji", "mainTag", "subclassOf", "keepKV", "discardKVN"],
+          "required": ["emoji", "mainTag", "keepKV", "discardKVN"],
           "properties": {
 
             "emoji": {
@@ -27,12 +27,6 @@
               "description": "(required) An OSM Tag that this tree uses as the main tag (e.g. 'brand:wikidata')",
               "type": "string",
               "pattern": "^\\S+$"
-            },
-
-            "subclassOf": {
-              "description": "(required) A Wikidata QID that items in this tree should all be instanceOf/subclassOf (e.g. 'Q4830453')",
-              "type": "string",
-              "pattern": "^Q\\d+$"
             },
 
             "keepKV": {
