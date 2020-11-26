@@ -5,9 +5,9 @@ const loco = new LocationConflation(featureCollection);
 // validate the config files
 const validate = require('../lib/validate');
 validate(
-  'config/generic_words.json',
-  require('../config/generic_words.json'),
-  require('../schema/generic_words.json')
+  'config/genericWords.json',
+  require('../config/genericWords.json'),
+  require('../schema/genericWords.json')
 );
 validate(
   'config/replacements.json',
