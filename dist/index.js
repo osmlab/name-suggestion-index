@@ -338,25 +338,16 @@
     );
   };
 
-  var matchGroups = {adult_gaming_centre:["amenity/casino","amenity/gambling","leisure/adult_gaming_centre"],beauty:["shop/beauty","shop/hairdresser_supply"],bed:["shop/bed","shop/furniture"],beverages:["shop/alcohol","shop/beverages"],camping:["leisure/park","tourism/camp_site","tourism/caravan_site"],car_parts:["shop/car_parts","shop/car_repair","shop/tires","shop/tyres"],clinic:["amenity/clinic","amenity/doctors","healthcare/clinic","healthcare/dialysis"],confectionery:["shop/candy","shop/chocolate","shop/confectionery"],convenience:["shop/beauty","shop/chemist","shop/convenience","shop/cosmetics","shop/newsagent"],coworking:["amenity/coworking_space","office/coworking","office/coworking_space"],dentist:["amenity/dentist","amenity/doctors","healthcare/dentist"],electronics:["office/telecommunication","shop/computer","shop/electronics","shop/hifi","shop/mobile","shop/mobile_phone","shop/telecommunication"],fashion:["shop/accessories","shop/bag","shop/botique","shop/clothes","shop/department_store","shop/fashion","shop/fashion_accessories","shop/sports","shop/shoes"],financial:["amenity/bank","office/accountant","office/financial","office/financial_advisor","office/tax_advisor","shop/tax"],fitness:["leisure/fitness_centre","leisure/fitness_center","leisure/sports_centre","leisure/sports_center"],food:["amenity/pub","amenity/bar","amenity/cafe","amenity/fast_food","amenity/ice_cream","amenity/restaurant","shop/bakery","shop/ice_cream","shop/pastry","shop/tea","shop/coffee"],fuel:["amenity/fuel","shop/gas","shop/convenience;gas","shop/gas;convenience"],gift:["shop/gift","shop/card","shop/cards","shop/stationery"],hardware:["shop/carpet","shop/diy","shop/doityourself","shop/doors","shop/electrical","shop/flooring","shop/hardware","shop/hardware_store","shop/power_tools","shop/tool_hire","shop/tools","shop/trade"],health_food:["shop/health","shop/health_food","shop/herbalist","shop/nutrition_supplements"],hobby:["shop/electronics","shop/hobby","shop/books","shop/games","shop/collector","shop/toys","shop/model","shop/video_games","shop/anime"],hospital:["amenity/doctors","amenity/hospital","healthcare/hospital"],houseware:["shop/houseware","shop/interior_decoration"],lodging:["tourism/hotel","tourism/motel"],money_transfer:["amenity/money_transfer","shop/money_transfer"],office_supplies:["shop/office_supplies","shop/stationary","shop/stationery"],outdoor:["shop/outdoor","shop/sports"],pharmacy:["amenity/doctors","amenity/pharmacy","healthcare/pharmacy"],playground:["amenity/theme_park","leisure/amusement_arcade","leisure/playground"],rental:["amenity/bicycle_rental","amenity/boat_rental","amenity/car_rental","amenity/truck_rental","amenity/vehicle_rental","shop/rental"],school:["amenity/childcare","amenity/college","amenity/kindergarten","amenity/language_school","amenity/prep_school","amenity/school","amenity/university"],supermarket:["shop/food","shop/frozen_food","shop/greengrocer","shop/grocery","shop/supermarket","shop/wholesale"],variety_store:["shop/variety_store","shop/discount","shop/convenience"],vending:["amenity/vending_machine","shop/vending_machine"],storage:["shop/storage_units","shop/storage_rental"],weight_loss:["amenity/doctors","amenity/weight_clinic","healthcare/counselling","leisure/fitness_centre","office/therapist","shop/beauty","shop/diet","shop/food","shop/health_food","shop/herbalist","shop/nutrition","shop/nutrition_supplements","shop/weight_loss"],wholesale:["shop/wholesale","shop/supermarket","shop/department_store"]};
+  var matchGroups = {adult_gaming_centre:["amenity/casino","amenity/gambling","leisure/adult_gaming_centre"],beauty:["shop/beauty","shop/hairdresser_supply"],bed:["shop/bed","shop/furniture"],beverages:["shop/alcohol","shop/beverages"],camping:["leisure/park","tourism/camp_site","tourism/caravan_site"],car_parts:["shop/car_parts","shop/car_repair","shop/tires","shop/tyres"],clinic:["amenity/clinic","amenity/doctors","healthcare/clinic","healthcare/dialysis"],confectionery:["shop/candy","shop/chocolate","shop/confectionery"],convenience:["shop/beauty","shop/chemist","shop/convenience","shop/cosmetics","shop/newsagent"],coworking:["amenity/coworking_space","office/coworking","office/coworking_space"],dentist:["amenity/dentist","amenity/doctors","healthcare/dentist"],electronics:["office/telecommunication","shop/computer","shop/electronics","shop/hifi","shop/mobile","shop/mobile_phone","shop/telecommunication"],fashion:["shop/accessories","shop/bag","shop/botique","shop/clothes","shop/department_store","shop/fashion","shop/fashion_accessories","shop/sports","shop/shoes"],financial:["amenity/bank","office/accountant","office/financial","office/financial_advisor","office/tax_advisor","shop/tax"],fitness:["leisure/fitness_centre","leisure/fitness_center","leisure/sports_centre","leisure/sports_center"],food:["amenity/pub","amenity/bar","amenity/cafe","amenity/fast_food","amenity/ice_cream","amenity/restaurant","shop/bakery","shop/ice_cream","shop/pastry","shop/tea","shop/coffee"],fuel:["amenity/fuel","shop/gas","shop/convenience;gas","shop/gas;convenience"],gift:["shop/gift","shop/card","shop/cards","shop/stationery"],hardware:["shop/carpet","shop/diy","shop/doityourself","shop/doors","shop/electrical","shop/flooring","shop/hardware","shop/hardware_store","shop/power_tools","shop/tool_hire","shop/tools","shop/trade"],health_food:["shop/health","shop/health_food","shop/herbalist","shop/nutrition_supplements"],hobby:["shop/electronics","shop/hobby","shop/books","shop/games","shop/collector","shop/toys","shop/model","shop/video_games","shop/anime"],hospital:["amenity/doctors","amenity/hospital","healthcare/hospital"],houseware:["shop/houseware","shop/interior_decoration"],lifeboat_station:["amenity/lifeboat_station","emergency/lifeboat_station"],lodging:["tourism/hotel","tourism/motel"],money_transfer:["amenity/money_transfer","shop/money_transfer"],office_supplies:["shop/office_supplies","shop/stationary","shop/stationery"],outdoor:["shop/outdoor","shop/sports"],pharmacy:["amenity/doctors","amenity/pharmacy","healthcare/pharmacy"],playground:["amenity/theme_park","leisure/amusement_arcade","leisure/playground"],rental:["amenity/bicycle_rental","amenity/boat_rental","amenity/car_rental","amenity/truck_rental","amenity/vehicle_rental","shop/rental"],school:["amenity/childcare","amenity/college","amenity/kindergarten","amenity/language_school","amenity/prep_school","amenity/school","amenity/university"],supermarket:["shop/food","shop/frozen_food","shop/greengrocer","shop/grocery","shop/supermarket","shop/wholesale"],variety_store:["shop/variety_store","shop/discount","shop/convenience"],vending:["amenity/vending_machine","shop/vending_machine"],storage:["shop/storage_units","shop/storage_rental"],weight_loss:["amenity/doctors","amenity/weight_clinic","healthcare/counselling","leisure/fitness_centre","office/therapist","shop/beauty","shop/diet","shop/food","shop/health_food","shop/herbalist","shop/nutrition","shop/nutrition_supplements","shop/weight_loss"],wholesale:["shop/wholesale","shop/supermarket","shop/department_store"]};
   var require$$0 = {
   matchGroups: matchGroups
   };
 
   var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-  function createCommonjsModule(fn, basedir, module) {
-  	return module = {
-  		path: basedir,
-  		exports: {},
-  		require: function (path, base) {
-  			return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-  		}
-  	}, fn(module, module.exports), module.exports;
-  }
-
-  function commonjsRequire () {
-  	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+  function createCommonjsModule(fn) {
+    var module = { exports: {} };
+  	return fn(module, module.exports), module.exports;
   }
 
   var quickselect = createCommonjsModule(function (module, exports) {
@@ -1320,21 +1311,21 @@
         }
 
 
-        // Look for tags to insert..
-        let kvTags = [
-          `${thiskv}`,
-          `${k}/yes`,          // #3454 - match some generic tags
-          'building/yes'       // #3454 - match some generic tags
-        ].concat(item.matchTags || []);
+        // key/value tagpairs to insert into the index..
+        let kvTags = [`${thiskv}`];
+        if (thiskv !== 'man_made/flagpole') {
+          kvTags.push(`${k}/yes`, 'building/yes');  // #3454 - match some generic tags
+        }
+        kvTags = kvTags.concat(item.matchTags || []);
 
-        // Look for names to insert..
+        // name variations to insert into the index..
         let nameTags = [];
         if (which === 'primary') {
-          nameTags = [/^name$/];
+          nameTags = [/^(flag:)?name$/];
 
         } else if (which === 'secondary') {          // #2732 - match alternate names
           nameTags = [
-            /^(brand|operator|network)$/,
+            /^(brand|operator|network|subject)$/,
             /^\w+_name$/,                            // e.g. `alt_name`, `short_name`
             /^(name|brand|operator|network):\w+$/,   // e.g. `name:en`, `name:ru`
             /^\w+_name:\w+$/                         // e.g. `alt_name:en`, `short_name:ru`
