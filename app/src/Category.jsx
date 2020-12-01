@@ -69,6 +69,8 @@ export default function Category(props) {
   let wikidataTag;
   if (t === 'brands') {
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'flags') {
+    wikidataTag = 'flag:wikidata';
   } else if (t === 'operators') {
     wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
@@ -116,30 +118,57 @@ export default function Category(props) {
     );
   });
 
-  return (
-    <>
-    <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
-    <CategoryInstructions t={t} />
-    <Filters data={data} />
+  if (t === 'flags') {
+    return (
+      <>
+      <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
+      <CategoryInstructions t={t} />
+      <Filters data={data} />
 
-    <table className='summary'>
-    <thead>
-    <tr>
-    <th>Name<br/>ID<br/>Locations</th>
-    <th>Count</th>
-    <th>OpenStreetMap Tags</th>
-    <th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
-    <th className='logo'>Commons Logo</th>
-    <th className='logo'>Facebook Logo</th>
-    <th className='logo'>Twitter Logo</th>
-    </tr>
-    </thead>
+      <table className='summary'>
+      <thead>
+      <tr>
+      <th>Name<br/>ID<br/>Locations</th>
+      <th>OpenStreetMap Tags</th>
+      <th>Wikidata Name/Description<br/>Official Website</th>
+      <th className='logo'>Commons Logo</th>
+      </tr>
+      </thead>
 
-    <tbody>
-    {rows}
-    </tbody>
+      <tbody>
+      {rows}
+      </tbody>
 
-    </table>
-    </>
-  );
+      </table>
+      </>
+    );
+  } else {
+    return (
+      <>
+      <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
+      <CategoryInstructions t={t} />
+      <Filters data={data} />
+
+      <table className='summary'>
+      <thead>
+      <tr>
+      <th>Name<br/>ID<br/>Locations</th>
+      <th>Count</th>
+      <th>OpenStreetMap Tags</th>
+      <th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
+      <th className='logo'>Commons Logo</th>
+      <th className='logo'>Facebook Logo</th>
+      <th className='logo'>Twitter Logo</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      {rows}
+      </tbody>
+
+      </table>
+      </>
+    );
+  }
+
 };

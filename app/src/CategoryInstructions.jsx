@@ -10,6 +10,10 @@ export default function CategoryInstructions(props) {
     a = 'a';
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'flags') {
+    a = 'a';
+    itemType = 'flag';
+    wikidataTag = 'flag:wikidata';
   } else if (t === 'operators') {
     a = 'an';
     itemType = 'operator';
@@ -20,16 +24,21 @@ export default function CategoryInstructions(props) {
     wikidataTag = 'network:wikidata';
   }
 
+  // Flags don't have Facebook accounts
+  let social = '';
+  if (t !== 'flags') {
+    social = `<br/>You can add the ${itemType}'s Facebook or Twitter usernames, and this project will pick up the logos later.`;
+  }
+
   return (
     <>
     <div className='instructions'>Some things you can do here:
     <ul>
-    <li>Is {a} {itemType} name missing or something is incorrect? <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/issues'>Open an issue</a> or pull request to add it!</li>
-    <li>Click the "Search Overpass Turbo" link to see where the name is used in OpenStreetMap.</li>
+    <li>Is {a} {itemType} missing or something is incorrect? <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/issues'>Open an issue</a> or pull request to add it!</li>
+    <li>Click the "Search Overpass Turbo" link to see where the {itemType} is mapped in OpenStreetMap.</li>
     <li>If a record is missing a <code>'{wikidataTag}'</code> tag, you can do the research to add it to our project, or filter it out if it is not {a} {itemType}.<br/>
       See <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md'>CONTRIBUTING.md</a> for more info.</li>
-    <li>If a record with a <code>'{wikidataTag}'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>
-      You can add the {itemType}'s Facebook or Twitter usernames, and this project will pick up the logos later.</li>
+    <li>If a record with a <code>'{wikidataTag}'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.{social}</li>
     </ul>
     </div>
     </>

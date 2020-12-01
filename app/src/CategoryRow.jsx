@@ -52,6 +52,18 @@ relation[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${qid}]
 { color:green; fill-color:green; }
 }}`;
 
+  } else if (t === 'flags') {
+    n = item.tags['flag:name'];
+    kvn = `${k}/${v}|${n}`;
+    count = null;
+    tags = item.tags || {};
+    qid = tags['flag:wikidata'];
+    overpassQuery = `[out:json][timeout:100];
+(nwr["flag:name"="${n}"];);
+out body;
+>;
+out skel qt;`;
+
   } else if (t === 'operators') {
     n = item.tags.operator;
     kvn = `${k}/${v}|${n}`;
@@ -77,7 +89,7 @@ node[${k}=${v}][operator=${n}][operator:wikidata=${qid}],
 way[${k}=${v}][operator=${n}][operator:wikidata=${qid}],
 relation[${k}=${v}][operator=${n}][operator:wikidata=${qid}]
 { color:green; fill-color:green; }
-}}`
+}}`;
 
   } else if (t === 'transit') {
     n = item.tags.network;
@@ -104,7 +116,7 @@ node[${k}=${v}][network=${n}][network:wikidata=${qid}],
 way[${k}=${v}][network=${n}][network:wikidata=${qid}],
 relation[${k}=${v}][network=${n}][network:wikidata=${qid}]
 { color:green; fill-color:green; }
-}}`
+}}`;
   }
 
   const wd = data.wikidata[qid] || {};
@@ -113,35 +125,63 @@ relation[${k}=${v}][network=${n}][network:wikidata=${qid}]
   const identities = wd.identities || {};
   const logos = wd.logos || {};
 
-  return (
-    <tr className={rowClasses.join(' ') || null} >
-    <td className='namesuggest'>
-      <h3 className='slug' id={item.slug}>
-        <a href={`#${item.slug}`}>#</a>
-        <span className='anchor'>{item.displayName}</span>
-      </h3>
-      <div className='nsikey'><pre>{item.id}</pre></div>
-      <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
-      <div className='viewlink'>
-        { searchOverpassLink(n, overpassQuery) }<br/>
-        { searchGoogleLink(n) }<br/>
-        { searchWikipediaLink(n) }
-      </div>
-    </td>
-    <td className='count'>{count}</td>
-    <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
-    <td className='wikidata'>
-      <h3>{label}</h3>
-      <span>{description}</span><br/>
-      { wdLink(qid) }
-      { siteLink(identities.website) }
-      <CategoryRowSocialLinks {...identities} />
-    </td>
-    <td className='logo'>{ logo(logos.wikidata) }</td>
-    <td className='logo'>{ fblogo(identities.facebook, logos.facebook) }</td>
-    <td className='logo'>{ logo(logos.twitter) }</td>
-    </tr>
-  );
+  if (t === 'flags') {
+    return (
+      <tr className={rowClasses.join(' ') || null} >
+      <td className='namesuggest'>
+        <h3 className='slug' id={item.slug}>
+          <a href={`#${item.slug}`}>#</a>
+          <span className='anchor'>{item.displayName}</span>
+        </h3>
+        <div className='nsikey'><pre>{item.id}</pre></div>
+        <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
+        <div className='viewlink'>
+          { searchOverpassLink(n, overpassQuery) }<br/>
+          { searchGoogleLink(n) }<br/>
+          { searchWikipediaLink(n) }
+        </div>
+      </td>
+      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
+      <td className='wikidata'>
+        <h3>{label}</h3>
+        <span>{description}</span><br/>
+        { wdLink(qid) }
+        { siteLink(identities.website) }
+      </td>
+      <td className='logo'>{ logo(logos.wikidata) }</td>
+      </tr>
+    );
+  } else {
+    return (
+      <tr className={rowClasses.join(' ') || null} >
+      <td className='namesuggest'>
+        <h3 className='slug' id={item.slug}>
+          <a href={`#${item.slug}`}>#</a>
+          <span className='anchor'>{item.displayName}</span>
+        </h3>
+        <div className='nsikey'><pre>{item.id}</pre></div>
+        <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
+        <div className='viewlink'>
+          { searchOverpassLink(n, overpassQuery) }<br/>
+          { searchGoogleLink(n) }<br/>
+          { searchWikipediaLink(n) }
+        </div>
+      </td>
+      <td className='count'>{count}</td>
+      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
+      <td className='wikidata'>
+        <h3>{label}</h3>
+        <span>{description}</span><br/>
+        { wdLink(qid) }
+        { siteLink(identities.website) }
+        <CategoryRowSocialLinks {...identities} />
+      </td>
+      <td className='logo'>{ logo(logos.wikidata) }</td>
+      <td className='logo'>{ fblogo(identities.facebook, logos.facebook) }</td>
+      <td className='logo'>{ logo(logos.twitter) }</td>
+      </tr>
+    );
+  }
 
 
   function locoDisplay(locationSet, name) {

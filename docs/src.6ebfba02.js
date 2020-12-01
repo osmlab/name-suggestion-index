@@ -5611,6 +5611,10 @@ function CategoryInstructions(props) {
     a = 'a';
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'flags') {
+    a = 'a';
+    itemType = 'flag';
+    wikidataTag = 'flag:wikidata';
   } else if (t === 'operators') {
     a = 'an';
     itemType = 'operator';
@@ -5619,17 +5623,24 @@ function CategoryInstructions(props) {
     a = 'a';
     itemType = 'network';
     wikidataTag = 'network:wikidata';
+  } // Flags don't have Facebook accounts
+
+
+  var social = '';
+
+  if (t !== 'flags') {
+    social = "<br/>You can add the ".concat(itemType, "'s Facebook or Twitter usernames, and this project will pick up the logos later.");
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "instructions"
-  }, "Some things you can do here:", /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Is ", a, " ", itemType, " name missing or something is incorrect? ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Some things you can do here:", /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Is ", a, " ", itemType, " missing or something is incorrect? ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/issues"
-  }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"Search Overpass Turbo\" link to see where the name is used in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag, you can do the research to add it to our project, or filter it out if it is not ", a, " ", itemType, ".", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
+  }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"Search Overpass Turbo\" link to see where the ", itemType, " is mapped in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag, you can do the research to add it to our project, or filter it out if it is not ", a, " ", itemType, ".", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md"
-  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), "You can add the ", itemType, "'s Facebook or Twitter usernames, and this project will pick up the logos later."))));
+  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", social))));
 }
 
 ;
@@ -11960,6 +11971,13 @@ function CategoryRow(props) {
     qid = tags['brand:wikidata'];
     var bn = tags['brand'];
     overpassQuery = "[out:json][timeout:100];\n(nwr[\"name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;\n\n{{style:\nnode[name=").concat(n, "],\nway[name=").concat(n, "],\nrelation[name=").concat(n, "]\n{ color:red; fill-color:red; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "]\n{ color:yellow; fill-color:yellow; }\nnode[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "],\nway[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "],\nrelation[").concat(k, "=").concat(v, "][name=").concat(n, "][brand=").concat(bn, "][brand:wikidata=").concat(qid, "]\n{ color:green; fill-color:green; }\n}}");
+  } else if (t === 'flags') {
+    n = item.tags['flag:name'];
+    kvn = "".concat(k, "/").concat(v, "|").concat(n);
+    count = null;
+    tags = item.tags || {};
+    qid = tags['flag:wikidata'];
+    overpassQuery = "[out:json][timeout:100];\n(nwr[\"flag:name\"=\"".concat(n, "\"];);\nout body;\n>;\nout skel qt;");
   } else if (t === 'operators') {
     n = item.tags.operator;
     kvn = "".concat(k, "/").concat(v, "|").concat(n);
@@ -11981,39 +11999,70 @@ function CategoryRow(props) {
   var description = wd.description ? '"' + wd.description + '"' : '';
   var identities = wd.identities || {};
   var logos = wd.logos || {};
-  return /*#__PURE__*/_react.default.createElement("tr", {
-    className: rowClasses.join(' ') || null
-  }, /*#__PURE__*/_react.default.createElement("td", {
-    className: "namesuggest"
-  }, /*#__PURE__*/_react.default.createElement("h3", {
-    className: "slug",
-    id: item.slug
-  }, /*#__PURE__*/_react.default.createElement("a", {
-    href: "#".concat(item.slug)
-  }, "#"), /*#__PURE__*/_react.default.createElement("span", {
-    className: "anchor"
-  }, item.displayName)), /*#__PURE__*/_react.default.createElement("div", {
-    className: "nsikey"
-  }, /*#__PURE__*/_react.default.createElement("pre", null, item.id)), /*#__PURE__*/_react.default.createElement("div", {
-    className: "locations"
-  }, locoDisplay(item.locationSet, n)), /*#__PURE__*/_react.default.createElement("div", {
-    className: "viewlink"
-  }, searchOverpassLink(n, overpassQuery), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(n), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(n))), /*#__PURE__*/_react.default.createElement("td", {
-    className: "count"
-  }, count), /*#__PURE__*/_react.default.createElement("td", {
-    className: "tags"
-  }, /*#__PURE__*/_react.default.createElement("pre", {
-    className: "tags",
-    dangerouslySetInnerHTML: highlight(tt, displayTags(tags))
-  })), /*#__PURE__*/_react.default.createElement("td", {
-    className: "wikidata"
-  }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(qid), siteLink(identities.website), /*#__PURE__*/_react.default.createElement(_CategoryRowSocialLinks.default, identities)), /*#__PURE__*/_react.default.createElement("td", {
-    className: "logo"
-  }, logo(logos.wikidata)), /*#__PURE__*/_react.default.createElement("td", {
-    className: "logo"
-  }, fblogo(identities.facebook, logos.facebook)), /*#__PURE__*/_react.default.createElement("td", {
-    className: "logo"
-  }, logo(logos.twitter)));
+
+  if (t === 'flags') {
+    return /*#__PURE__*/_react.default.createElement("tr", {
+      className: rowClasses.join(' ') || null
+    }, /*#__PURE__*/_react.default.createElement("td", {
+      className: "namesuggest"
+    }, /*#__PURE__*/_react.default.createElement("h3", {
+      className: "slug",
+      id: item.slug
+    }, /*#__PURE__*/_react.default.createElement("a", {
+      href: "#".concat(item.slug)
+    }, "#"), /*#__PURE__*/_react.default.createElement("span", {
+      className: "anchor"
+    }, item.displayName)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "nsikey"
+    }, /*#__PURE__*/_react.default.createElement("pre", null, item.id)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "locations"
+    }, locoDisplay(item.locationSet, n)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "viewlink"
+    }, searchOverpassLink(n, overpassQuery), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(n), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(n))), /*#__PURE__*/_react.default.createElement("td", {
+      className: "tags"
+    }, /*#__PURE__*/_react.default.createElement("pre", {
+      className: "tags",
+      dangerouslySetInnerHTML: highlight(tt, displayTags(tags))
+    })), /*#__PURE__*/_react.default.createElement("td", {
+      className: "wikidata"
+    }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(qid), siteLink(identities.website)), /*#__PURE__*/_react.default.createElement("td", {
+      className: "logo"
+    }, logo(logos.wikidata)));
+  } else {
+    return /*#__PURE__*/_react.default.createElement("tr", {
+      className: rowClasses.join(' ') || null
+    }, /*#__PURE__*/_react.default.createElement("td", {
+      className: "namesuggest"
+    }, /*#__PURE__*/_react.default.createElement("h3", {
+      className: "slug",
+      id: item.slug
+    }, /*#__PURE__*/_react.default.createElement("a", {
+      href: "#".concat(item.slug)
+    }, "#"), /*#__PURE__*/_react.default.createElement("span", {
+      className: "anchor"
+    }, item.displayName)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "nsikey"
+    }, /*#__PURE__*/_react.default.createElement("pre", null, item.id)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "locations"
+    }, locoDisplay(item.locationSet, n)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "viewlink"
+    }, searchOverpassLink(n, overpassQuery), /*#__PURE__*/_react.default.createElement("br", null), searchGoogleLink(n), /*#__PURE__*/_react.default.createElement("br", null), searchWikipediaLink(n))), /*#__PURE__*/_react.default.createElement("td", {
+      className: "count"
+    }, count), /*#__PURE__*/_react.default.createElement("td", {
+      className: "tags"
+    }, /*#__PURE__*/_react.default.createElement("pre", {
+      className: "tags",
+      dangerouslySetInnerHTML: highlight(tt, displayTags(tags))
+    })), /*#__PURE__*/_react.default.createElement("td", {
+      className: "wikidata"
+    }, /*#__PURE__*/_react.default.createElement("h3", null, label), /*#__PURE__*/_react.default.createElement("span", null, description), /*#__PURE__*/_react.default.createElement("br", null), wdLink(qid), siteLink(identities.website), /*#__PURE__*/_react.default.createElement(_CategoryRowSocialLinks.default, identities)), /*#__PURE__*/_react.default.createElement("td", {
+      className: "logo"
+    }, logo(logos.wikidata)), /*#__PURE__*/_react.default.createElement("td", {
+      className: "logo"
+    }, fblogo(identities.facebook, logos.facebook)), /*#__PURE__*/_react.default.createElement("td", {
+      className: "logo"
+    }, logo(logos.twitter)));
+  }
 
   function locoDisplay(locationSet, name) {
     var val = JSON.stringify(locationSet);
@@ -19347,6 +19396,8 @@ function Category(props) {
 
   if (t === 'brands') {
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'flags') {
+    wikidataTag = 'flag:wikidata';
   } else if (t === 'operators') {
     wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
@@ -19394,23 +19445,40 @@ function Category(props) {
       item: item
     }));
   });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav"
-  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "index.html?t=".concat(t)
-  }, "\u2191 Back to ", t, "/")), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
-    t: t
-  }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
-    data: data
-  }), /*#__PURE__*/_react.default.createElement("table", {
-    className: "summary"
-  }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", null, "Name", /*#__PURE__*/_react.default.createElement("br", null), "ID", /*#__PURE__*/_react.default.createElement("br", null), "Locations"), /*#__PURE__*/_react.default.createElement("th", null, "Count"), /*#__PURE__*/_react.default.createElement("th", null, "OpenStreetMap Tags"), /*#__PURE__*/_react.default.createElement("th", null, "Wikidata Name/Description", /*#__PURE__*/_react.default.createElement("br", null), "Official Website", /*#__PURE__*/_react.default.createElement("br", null), "Social Links"), /*#__PURE__*/_react.default.createElement("th", {
-    className: "logo"
-  }, "Commons Logo"), /*#__PURE__*/_react.default.createElement("th", {
-    className: "logo"
-  }, "Facebook Logo"), /*#__PURE__*/_react.default.createElement("th", {
-    className: "logo"
-  }, "Twitter Logo"))), /*#__PURE__*/_react.default.createElement("tbody", null, rows)));
+
+  if (t === 'flags') {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "nav"
+    }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?t=".concat(t)
+    }, "\u2191 Back to ", t, "/")), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
+      t: t
+    }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+      data: data
+    }), /*#__PURE__*/_react.default.createElement("table", {
+      className: "summary"
+    }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", null, "Name", /*#__PURE__*/_react.default.createElement("br", null), "ID", /*#__PURE__*/_react.default.createElement("br", null), "Locations"), /*#__PURE__*/_react.default.createElement("th", null, "OpenStreetMap Tags"), /*#__PURE__*/_react.default.createElement("th", null, "Wikidata Name/Description", /*#__PURE__*/_react.default.createElement("br", null), "Official Website"), /*#__PURE__*/_react.default.createElement("th", {
+      className: "logo"
+    }, "Commons Logo"))), /*#__PURE__*/_react.default.createElement("tbody", null, rows)));
+  } else {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "nav"
+    }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+      to: "index.html?t=".concat(t)
+    }, "\u2191 Back to ", t, "/")), /*#__PURE__*/_react.default.createElement(_CategoryInstructions.default, {
+      t: t
+    }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+      data: data
+    }), /*#__PURE__*/_react.default.createElement("table", {
+      className: "summary"
+    }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", null, "Name", /*#__PURE__*/_react.default.createElement("br", null), "ID", /*#__PURE__*/_react.default.createElement("br", null), "Locations"), /*#__PURE__*/_react.default.createElement("th", null, "Count"), /*#__PURE__*/_react.default.createElement("th", null, "OpenStreetMap Tags"), /*#__PURE__*/_react.default.createElement("th", null, "Wikidata Name/Description", /*#__PURE__*/_react.default.createElement("br", null), "Official Website", /*#__PURE__*/_react.default.createElement("br", null), "Social Links"), /*#__PURE__*/_react.default.createElement("th", {
+      className: "logo"
+    }, "Commons Logo"), /*#__PURE__*/_react.default.createElement("th", {
+      className: "logo"
+    }, "Facebook Logo"), /*#__PURE__*/_react.default.createElement("th", {
+      className: "logo"
+    }, "Twitter Logo"))), /*#__PURE__*/_react.default.createElement("tbody", null, rows)));
+  }
 }
 
 ;
@@ -19459,6 +19527,8 @@ function Title(props) {
 
     if (t === 'brands') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
+    } else if (t === 'flags') {
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/embassy-15.svg';
     } else if (t === 'operators') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/briefcase.svg';
     } else if (t === 'transit') {
@@ -19497,7 +19567,7 @@ function Title(props) {
 
 function TreeSwitcher(props) {
   var t = props.t;
-  var others = ['brands', 'operators', 'transit'].filter(function (d) {
+  var others = ['brands', 'flags', 'operators', 'transit'].filter(function (d) {
     return d !== t;
   });
   var links = others.map(function (t) {
@@ -19611,6 +19681,9 @@ function OverviewInstructions(props) {
   if (t === 'brands') {
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'flags') {
+    itemType = 'flag';
+    wikidataTag = 'flag:wikidata';
   } else if (t === 'operators') {
     itemType = 'operator';
     wikidataTag = 'operator:wikidata';
@@ -19671,6 +19744,9 @@ function Overview(props) {
   if (t === 'brands') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'flags') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/embassy-15.svg';
+    wikidataTag = 'flag:wikidata';
   } else if (t === 'operators') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/briefcase.svg';
     wikidataTag = 'operator:wikidata';
