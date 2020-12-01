@@ -7,8 +7,9 @@
       "tags": {
         "amenity": "police",
         "operator": "Arma dei Carabinieri",
+        "operator:short": "Carabinieri",
         "operator:wikidata": "Q54852",
-        "operator:wikipedia": "it:Arma dei Carabinieri"
+        "operator:wikipedia": "en:Carabinieri"
       }
     },
     {
@@ -43,12 +44,14 @@
       }
     },
     {
-      "displayName": "Brigada Militar",
-      "id": "brigadamilitar-f7f40a",
+      "displayName": "Brigada Militar do Rio Grande do Sul",
       "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "police",
-        "operator": "Brigada Militar"
+        "operator": "Brigada Militar do Rio Grande do Sul",
+        "operator:en": "Military Police Brigade of Rio Grande do Sul",
+        "operator:short": "BMRS",
+        "operator:wikipedia": "en:Military Brigade of Rio Grande do Sul"
       }
     },
     {
@@ -69,6 +72,7 @@
       "tags": {
         "amenity": "police",
         "operator": "Bundespolizei",
+        "operator:short": "BPOL",
         "operator:wikidata": "Q56026",
         "operator:wikipedia": "de:Bundespolizei (Deutschland)"
       }
@@ -107,17 +111,6 @@
       }
     },
     {
-      "displayName": "Carabinieri",
-      "id": "carabinieri-f71f16",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Carabinieri",
-        "operator:wikidata": "Q54852",
-        "operator:wikipedia": "it:Arma dei Carabinieri"
-      }
-    },
-    {
       "displayName": "Cheshire Constabulary",
       "id": "cheshireconstabulary-e8776d",
       "locationSet": {"include": ["gb-eng"]},
@@ -140,12 +133,12 @@
       }
     },
     {
-      "displayName": "Comunidad de Madrid.",
+      "displayName": "Comunidad de Madrid",
       "id": "comunidaddemadrid-dd66e9",
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "police",
-        "operator": "Comunidad de Madrid."
+        "operator": "Comunidad de Madrid"
       }
     },
     {
@@ -180,6 +173,16 @@
       }
     },
     {
+      "displayName": "Departamento de Polícia Federal",
+      "id": "federal-f7f40a",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Departamento de Polícia Federal",
+        "operator:wikipedia": "Federal Police of Brazil"
+      }
+    },
+    {
       "displayName": "Derbyshire Constabulary",
       "id": "derbyshireconstabulary-e8776d",
       "locationSet": {"include": ["gb-eng"]},
@@ -202,12 +205,14 @@
       }
     },
     {
-      "displayName": "DGSN",
+      "displayName": "DGSN (Algeria)",
       "id": "dgsn-1f771a",
       "locationSet": {"include": ["dz"]},
       "tags": {
         "amenity": "police",
-        "operator": "DGSN",
+        "operator": "Direction Générale de la Sûreté Nationale",
+        "operator:ar": "المديرية العامة للأمن الوطني",
+        "operator:short": "DGSN",
         "operator:wikidata": "Q12218510",
         "operator:wikipedia": "fr:Police nationale (Algérie)"
       }
@@ -235,6 +240,17 @@
       }
     },
     {
+      "displayName": "Federal Bureau of Investigation",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Federal Bureau of Investigation",
+        "operator:short": "FBI",
+        "operator:wikidata": "Q8333",
+        "operator:wikipedia": "en:Federal Bureau of Investigation"
+      }
+    },
+    {
       "displayName": "Essex Police",
       "id": "essexpolice-e8776d",
       "locationSet": {"include": ["gb-eng"]},
@@ -252,15 +268,6 @@
       "tags": {
         "amenity": "police",
         "operator": "Estadual"
-      }
-    },
-    {
-      "displayName": "Federal",
-      "id": "federal-f7f40a",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Federal"
       }
     },
     {
@@ -292,7 +299,23 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "police",
-        "operator": "Gendarmerie nationale"
+        "operator": "Gendarmerie Nationale"
+      }
+    },
+    {
+      "displayName": "Gendarmerie nationale (Algeria)",
+      "locationSet": {"include": ["dz"]},
+      "matchNames": [
+        "mdn",
+        "ministry of national defence",
+        "ministry of national defense",
+        "ministère de la défense nationale",
+        "وزارة الدفاع الوطني الجزائرية"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "Gendarmerie Nationale",
+        "operator:ar": "الدرك الوطني"
       }
     },
     {
@@ -340,6 +363,19 @@
       }
     },
     {
+      "displayName": "Indonesian National Police",
+      "id": "polri-d8ba39",
+      "locationSet": {"include": ["id"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Indonesian National Police",
+        "operator:id": "Kepolisian Negara Republik Indonesia",
+        "operator:short": "POLRI",
+        "operator:wikidata": "Q3103954",
+        "operator:wikipedia": "en:Indonesian National Police"
+      }
+    },
+    {
       "displayName": "Jammu And Kashmir Police",
       "id": "jammuandkashmirpolice-d00fc1",
       "locationSet": {"include": ["001"]},
@@ -370,16 +406,20 @@
       }
     },
     {
-      "displayName": "MDN",
-      "id": "mdn-1f771a",
-      "locationSet": {"include": ["dz"]},
+      "displayName": "Metro Transit Police Department (DC)",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "wmata police"
+      ],
       "tags": {
         "amenity": "police",
-        "operator": "MDN"
+        "operator": "Metro Transit Police Department",
+        "operator:wikidata": "Q6824749",
+        "operator:wikipedia": "en:Metro Transit Police Department"
       }
     },
     {
-      "displayName": "Metropolitan Police",
+      "displayName": "Metropolitan Police (London)",
       "id": "metropolitanpolice-e8776d",
       "locationSet": {"include": ["gb-eng"]},
       "tags": {
@@ -387,6 +427,21 @@
         "operator": "Metropolitan Police",
         "operator:wikidata": "Q1139213",
         "operator:wikipedia": "en:Metropolitan Police"
+      }
+    },
+    {
+      "displayName": "Metropolitan Police Department (DC)",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "dcpd",
+        "washington dc police department"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "Metropolitan Police Department",
+        "operator:short": "MPD",
+        "operator:wikidata": "Q1350854",
+        "operator:wikipedia": "en:Metropolitan Police Department of the District of Columbia"
       }
     },
     {
@@ -408,18 +463,22 @@
       }
     },
     {
-      "displayName": "Ministerio de Interior y Justicia",
-      "id": "ministeriodeinterioryjusticia-3383b4",
-      "locationSet": {"include": ["ve"]},
+      "displayName": "Ministerio de Obras Públicas y Transportes",
+      "id": "mopt-05938a",
+      "locationSet": {"include": ["cr"]},
       "tags": {
         "amenity": "police",
-        "operator": "Ministerio de Interior y Justicia"
+        "operator": "Ministerio de Obras Públicas y Transportes",
+        "operator:short": "MOPT"
       }
     },
     {
       "displayName": "Ministerio del Interior",
       "id": "ministeriodelinterior-d00fc1",
       "locationSet": {"include": ["001"]},
+      "matchNames": [
+        "ministerio de interior"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Ministerio del Interior"
@@ -429,6 +488,9 @@
       "displayName": "Ministerio del Interior y Justicia",
       "id": "ministeriodelinterioryjusticia-3383b4",
       "locationSet": {"include": ["ve"]},
+      "matchNames": [
+        "ministerio de interior y justicia"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Ministerio del Interior y Justicia"
@@ -441,24 +503,6 @@
       "tags": {
         "amenity": "police",
         "operator": "Ministerium des Innern und für Sport Rheinland-Pfalz"
-      }
-    },
-    {
-      "displayName": "MOPT",
-      "id": "mopt-05938a",
-      "locationSet": {"include": ["cr"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "MOPT"
-      }
-    },
-    {
-      "displayName": "MSP",
-      "id": "msp-05938a",
-      "locationSet": {"include": ["cr"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "MSP"
       }
     },
     {
@@ -520,15 +564,6 @@
       }
     },
     {
-      "displayName": "Ottawa",
-      "id": "ottawa-d00fc1",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Ottawa"
-      }
-    },
-    {
       "displayName": "Ottawa Police Service",
       "id": "ottawapoliceservice-b69ec0",
       "locationSet": {"include": ["ca"]},
@@ -546,35 +581,9 @@
       "tags": {
         "amenity": "police",
         "operator": "Philippine National Police",
+        "operator:short": "PNP",
         "operator:wikidata": "Q963772",
         "operator:wikipedia": "tl:Pambansang Pulisya ng Pilipinas"
-      }
-    },
-    {
-      "displayName": "PNB",
-      "id": "pnb-d00fc1",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "PNB"
-      }
-    },
-    {
-      "displayName": "PNP",
-      "id": "pnp-d00fc1",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "PNP"
-      }
-    },
-    {
-      "displayName": "Police",
-      "id": "police-d00fc1",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Police"
       }
     },
     {
@@ -689,6 +698,16 @@
       }
     },
     {
+      "displayName": "Polícia de Segurança Pública (Portugal)",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Polícia de Segurança Pública",
+        "operator:short": "PSP",
+        "operator:wikipedia": "en:Polícia de Segurança Pública"
+      }
+    },
+    {
       "displayName": "Policía Federal Argentina",
       "id": "policiafederalargentina-e73d55",
       "locationSet": {"include": ["ar"]},
@@ -700,12 +719,25 @@
       }
     },
     {
+      "displayName": "Policía Nacional Bolivariana",
+      "id": "pnb-d00fc1",
+      "locationSet": {"include": ["ve"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Policía Nacional Bolivariana",
+        "operator:en": "Bolivarian National Police",
+        "operator:short": "PNB",
+        "operator:wikipedia": "en:Venezuelan National Police"
+      }
+    },
+    {
       "displayName": "Polícia Militar",
       "id": "policiamilitar-f7f40a",
       "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "police",
-        "operator": "Polícia Militar"
+        "operator": "Polícia Militar",
+        "wikipedia": "en:Military Police (Brazil)"
       }
     },
     {
@@ -755,12 +787,15 @@
       "id": "policianacionaldebolivia-23a32a",
       "locationSet": {"include": ["bo"]},
       "matchNames": [
+        "policia nacional boliviana",
+        "policia nacional de bolivia",
         "policia nacional boliviana (pnb)",
         "policia nacional de bolivia (pnb)"
       ],
       "tags": {
         "amenity": "police",
         "operator": "Policía Nacional de Bolivia",
+        "operator:short": "PNB",
         "operator:wikidata": "Q3065571",
         "operator:wikipedia": "es:Policía Nacional de Bolivia"
       }
@@ -819,15 +854,6 @@
       }
     },
     {
-      "displayName": "Polizia",
-      "id": "polizia-f71f16",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Polizia"
-      }
-    },
-    {
       "displayName": "Polizia di Stato",
       "id": "poliziadistato-f71f16",
       "locationSet": {"include": ["it"]},
@@ -860,22 +886,12 @@
       "displayName": "Polizia Stradale",
       "id": "poliziastradale-f71f16",
       "locationSet": {"include": ["it"]},
+      "note": "Highway Patrol; Subgroup of Polizia di Stato",
       "tags": {
         "amenity": "police",
         "operator": "Polizia Stradale",
         "operator:wikidata": "Q3907573",
         "operator:wikipedia": "it:Polizia stradale"
-      }
-    },
-    {
-      "displayName": "POLRI",
-      "id": "polri-d8ba39",
-      "locationSet": {"include": ["id"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "POLRI",
-        "operator:wikidata": "Q3103954",
-        "operator:wikipedia": "en:Indonesian National Police"
       }
     },
     {
@@ -890,12 +906,26 @@
       }
     },
     {
-      "displayName": "PSP",
-      "id": "psp-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Public Force of the Ministry of Public Security",
+      "id": "msp-05938a",
+      "locationSet": {"include": ["cr"]},
       "tags": {
         "amenity": "police",
-        "operator": "PSP"
+        "operator": "Public Force",
+        "operator:es": "Fuerza Pública",
+        "operator:wikipedia": "en:Public Force of Costa_Rica"
+      }
+    },
+    {
+      "displayName": "Public Security Police Force of Macau",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Public Security Police Force",
+        "operator:pt": "Polícia de Segurança Pública",
+        "operator:cn": "治安警察局",
+        "operator:short": "CPSP",
+        "operator:wikipedia": "en:Public Security Police Force of Macau"
       }
     },
     {
@@ -924,21 +954,33 @@
       "displayName": "Royal Canadian Mounted Police",
       "id": "royalcanadianmountedpolice-b69ec0",
       "locationSet": {"include": ["ca"]},
-      "matchNames": ["rcmp"],
       "tags": {
         "amenity": "police",
         "operator": "Royal Canadian Mounted Police",
+        "operator:short": "RCMP",
         "operator:wikidata": "Q335175",
         "operator:wikipedia": "en:Royal Canadian Mounted Police"
       }
     },
     {
-      "displayName": "SAPS",
+      "displayName": "Royal Thai Police",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Royal Thai Police",
+        "operator:short": "RTP",
+        "operator:th": "ตำรวจแห่งชาติ",
+        "operator:wikipedia": "en:Royal Thai Police"
+      }
+    },
+    {
+      "displayName": "South African Police Service",
       "id": "saps-3a04a0",
       "locationSet": {"include": ["za"]},
       "tags": {
         "amenity": "police",
-        "operator": "SAPS",
+        "operator": "South African Police Service",
+        "operator:short": "SAPS",
         "operator:wikidata": "Q1362732",
         "operator:wikipedia": "en:South African Police Service"
       }
@@ -947,33 +989,28 @@
       "displayName": "Secretaria da Segurança Pública do Estado de São Paulo",
       "id": "secretariadasegurancapublicadoestadodesaopaulo-f7f40a",
       "locationSet": {"include": ["br"]},
+      "matchNames": [
+        "secretaria de segurança pública do estado de são paulo"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Secretaria da Segurança Pública do Estado de São Paulo"
       }
     },
     {
-      "displayName": "Secretaria de Estado de Segurança Pública e Defesa Social - SEGUP",
+      "displayName": "Secretaria de Estado de Segurança Pública e Defesa Social",
       "id": "secretariadeestadodesegurancapublicaedefesasocialsegup-f7f40a",
       "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "police",
-        "operator": "Secretaria de Estado de Segurança Pública e Defesa Social - SEGUP"
-      }
-    },
-    {
-      "displayName": "Secretaria de Segurança Pública do Estado de São Paulo",
-      "id": "secretariadesegurancapublicadoestadodesaopaulo-f7f40a",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Secretaria de Segurança Pública do Estado de São Paulo"
+        "operator": "Secretaria de Estado de Segurança Pública e Defesa Social",
+        "operator:short": "SEGUP"
       }
     },
     {
       "displayName": "SEPSA",
       "id": "sepsa-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cu"]},
       "tags": {
         "amenity": "police",
         "operator": "SEPSA"
@@ -989,6 +1026,17 @@
       }
     },
     {
+      "displayName": "Texas Rangers",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Texas Ranger Division",
+        "operator:short": "Texas Rangers",
+        "operator:wikidata": "Q510865",
+        "operator:wikipedia": "en:Texas Ranger Division"
+      }
+    },
+    {
       "displayName": "Toronto Police Service",
       "id": "torontopoliceservice-b69ec0",
       "locationSet": {"include": ["ca"]},
@@ -997,6 +1045,16 @@
         "operator": "Toronto Police Service",
         "operator:wikidata": "Q1521097",
         "operator:wikipedia": "en:Toronto Police Service"
+      }
+    },
+    {
+      "displayName": "Tourist Police (Thailand)",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Tourist Police Bureau",
+        "operator:th": "กองบัญชาการตำรวจท่องเที่ยว",
+        "operator:wikipedia": "en:Tourist Police (Thailand)"
       }
     },
     {
@@ -1011,36 +1069,25 @@
       }
     },
     {
-      "displayName": "МВД России",
+      "displayName": "Министерство Внутренних Дел",
       "id": "0b9f08-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["ru"]},
+      "matchNames": [
+        "МВД РФ",
+        "МВД России"
+      ],
       "tags": {
         "amenity": "police",
-        "operator": "МВД России"
-      }
-    },
-    {
-      "displayName": "МВД РФ",
-      "id": "741b0c-d00fc1",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "МВД РФ"
-      }
-    },
-    {
-      "displayName": "وزارة الدفاع الوطني الجزائرية",
-      "id": "798285-d00fc1",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "وزارة الدفاع الوطني الجزائرية"
+        "operator": "Министерство Внутренних Дел",
+        "operator:en": "Ministry of Internal Affairs",
+        "operator:short": "МВД",
+        "operator:wikipedia": "en:Ministry of Internal Affairs (Russia)"
       }
     },
     {
       "displayName": "北海道警察本部",
       "id": "f7841d-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "police",
         "operator": "北海道警察本部"
@@ -1049,7 +1096,7 @@
     {
       "displayName": "吹田警察署",
       "id": "0f0a19-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "police",
         "operator": "吹田警察署"
@@ -1058,7 +1105,7 @@
     {
       "displayName": "海巡署",
       "id": "057e0b-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "police",
         "operator": "海巡署"
@@ -1067,7 +1114,7 @@
     {
       "displayName": "臺北市政府警察局",
       "id": "0e7388-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "police",
         "operator": "臺北市政府警察局"
@@ -1076,7 +1123,7 @@
     {
       "displayName": "那覇警察署",
       "id": "8e766a-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "police",
         "operator": "那覇警察署"
