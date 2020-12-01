@@ -177,7 +177,7 @@ function buildTaginfo() {
 
       // Skip value for many tags this project uses..
       // ('tag matches any of these')(?!('not followed by :type'))
-      if (/(name|brand|network|operator|subject|flag)(?!(:type))/.test(k)) {
+      if (/(brand|country|flag|name|network|operator|subject)(?!(:type))/.test(k)) {
         v = '*';
       }
 
