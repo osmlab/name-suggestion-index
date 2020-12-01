@@ -54,7 +54,7 @@ function gatherData() {
 
   Object.keys(_cache.path).forEach(tkv => {
     _cache.path[tkv].forEach(item => {
-      ['brand:wikidata', 'operator:wikidata', 'network:wikidata'].forEach(t => {
+      ['brand:wikidata', 'flag:wikidata', 'operator:wikidata', 'network:wikidata'].forEach(t => {
         let qid = item.tags[t];
         if (qid && /^Q\d+$/.test(qid)) {
           wikidata[qid] = item.id;

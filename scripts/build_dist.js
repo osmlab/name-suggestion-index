@@ -175,8 +175,9 @@ function buildTaginfo() {
     for (const k in item.tags) {
       let v = item.tags[k];
 
-      // skip value for many tags this project uses..
-      if (/name|brand|network|operator/.test(k)) {
+      // Skip value for many tags this project uses..
+      // ('tag matches any of these')(?!('not followed by :type'))
+      if (/(name|brand|network|operator|subject|flag)(?!(:type))/.test(k)) {
         v = '*';
       }
 

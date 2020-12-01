@@ -37,6 +37,7 @@ let _cache = {};
 loadIndex();
 
 checkItems('brands');
+checkItems('flags');
 checkItems('operators');
 checkItems('transit');
 
@@ -135,13 +136,14 @@ function runFilters() {
   console.time(END);
 
   // which trees use which tags?
+  // note, 'flags' not seeded with collected data (yet?)
   const treeTags = {
     brands:     ['brand', 'name'],
     operators:  ['operator'],
     transit:    ['network']
   };
 
-  ['brands', 'operators', 'transit'].forEach(t => {
+  Object.keys(treeTags).forEach(t => {
     const tree = _config.trees[t];
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
@@ -256,7 +258,7 @@ function mergeItems() {
   console.time(END);
 
 
-  ['brands', 'operators', 'transit'].forEach(t => {
+  Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
     let total = 0;
     let totalNew = 0;
@@ -264,7 +266,8 @@ function mergeItems() {
     //
     // INSERT - Look in `_keep` for new items not yet in the tree..
     //
-    Object.keys(_keep[t]).forEach(kvn => {
+    const keeping = _keep[t] || {};
+    Object.keys(keeping).forEach(kvn => {
       const parts = kvn.split('|', 2);     // kvn = "key/value|name"
       const kv = parts[0];
       const n = parts[1];
@@ -333,6 +336,9 @@ function mergeItems() {
           } else if (kv === 'amenity/pharmacy') {
             if (!tags.healthcare)  tags.healthcare = 'pharmacy';
           }
+
+        } else if (t === 'flags') {
+          name = tags['flag:name'];
 
         } else if (t === 'operators') {
           name = tags.operator || tags.brand;
@@ -531,6 +537,11 @@ function checkItems(t) {
           break;
         case 'amenity/vending_machine':
           if (!tags.vending) { warnMissingTag.push([display(item), 'vending']); }
+          break;
+        case 'man_made/flagpole':
+          if (!tags['flag:type']) { warnMissingTag.push([display(item), 'flag:type']); }
+          if (!tags['subject']) { warnMissingTag.push([display(item), 'subject']); }
+          if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
           break;
         case 'shop/beauty':
           if (!tags.beauty) { warnMissingTag.push([display(item), 'beauty']); }

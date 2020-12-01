@@ -117,13 +117,14 @@ fileTree.expandTemplates(_cache, loco);
 let _wikidata = {};
 let _qidItems = {};      // any item referenced by a qid
 let _qidIdItems = {};    // items where we actually want to update the NSI-identifier on wikidata
+let _qidP31 = {};        // reasonable fallback "instance of" we expect this qid to have
 Object.keys(_cache.path).forEach(tkv => {
   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
   const t = parts[0];
 
   _cache.path[tkv].forEach(item => {
     const tags = item.tags;
-    ['brand', 'operator', 'network'].forEach(osmtag => {
+    ['brand', 'flag', 'operator', 'network', 'subject'].forEach(osmtag => {
       const wdTag = `${osmtag}:wikidata`;
       const qid = tags[wdTag];
       if (!qid || !/^Q\d+$/.test(qid)) return;
@@ -131,6 +132,17 @@ Object.keys(_cache.path).forEach(tkv => {
       if (!_wikidata[qid])  _wikidata[qid] = {};
       if (!_qidItems[qid])  _qidItems[qid] = new Set();
       _qidItems[qid].add(item.id);
+
+      // What to set P31 to if missing
+      if (osmtag === 'brand') {
+        _qidP31[qid] = { qid: 'Q4830453', what: 'business' };
+      } else if (osmtag === 'flag') {
+        _qidP31[qid] = { qid: 'Q14660', what: 'flag' };
+      } else if (osmtag === 'network') {
+        _qidP31[qid] = { qid: 'Q924286', what: 'transport network' };
+      } else {
+        _qidP31[qid] = { qid: 'Q43229', what: 'organization' };
+      }
 
       const isMainTag = (wdTag === trees[t].mainTag);
       if (isMainTag) {
@@ -360,11 +372,12 @@ function processEntities(result) {
     // If we are allowed to make edits to wikidata, continue beyond here
     if (!_wbEdit) return;
 
-    // If P31 "instance of" is missing, set it to Q43229 "organization"
+    // If P31 "instance of" is missing, set it to a resonable value.
     const instanceOf = getClaimValue(entity, 'P31');
     if (!instanceOf) {
-      const msg = `Setting P31 "instance of" = Q43229 "organization" for ${qid}`;
-      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: 'Q43229', msg: msg });
+      const p31 = _qidP31[qid];
+      const msg = `Setting P31 "instance of" = ${p31.qid} "${p31.what}" for ${qid}`;
+      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: p31.qid, msg: msg });
     }
 
     // If we want this qid to have an P8253 property ..
@@ -718,6 +731,7 @@ function processWbEditQueue(queue) {
 
 // `addMissingWikipediaTags`
 // We can look at the wikidata sitelinks and pick one if this item is missing `*:wikipedia` tags - #4716
+// Note, skip assigning `*:wikipedia` for 'flags' tree for now.
 function addMissingWikipediaTags(qid, sitelinks) {
   // Convert sitelinks to OSM wikipedia tags..
   let wikis = {};
@@ -854,6 +868,7 @@ function addMissingWikipediaTags(qid, sitelinks) {
 // `enLabelForQID`
 // Pick a value that should be suitable to use as an English label.
 // If we are pushing edits to Wikidata, add en labels for items that don't have them.
+// Note, avoid assigning English label for 'flags' tree for now.
 function enLabelForQID(qid) {
   const ids = Array.from(_qidItems[qid]);
   for (let i = 0; i < ids.length; i++) {
