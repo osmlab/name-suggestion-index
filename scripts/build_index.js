@@ -357,7 +357,8 @@ function mergeItems() {
           // https://github.com/osmlab/name-suggestion-index/issues/2883#issuecomment-726305200
           if (/^amenity\/(bicycle|car|post)/.test(kv)) {
             Object.keys(tags).forEach(osmkey => {
-              if (/operator/.test(osmkey)) {
+              // an operator tag (but not `operator:type`)
+              if (/operator(?!(:type))/.test(osmkey)) {
                 let brandkey = osmkey.replace('operator', 'brand');  // copy `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
                 if (!tags[brandkey]) tags[brandkey] = tags[osmkey];
                 if (!/wiki/.test(osmkey)) {
