@@ -113,11 +113,11 @@ fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
 
-// gather QIDs..
+// Gather all QIDs referenced by any tag..
 let _wikidata = {};
-let _qidItems = {};      // any item referenced by a qid
-let _qidIdItems = {};    // items where we actually want to update the NSI-identifier on wikidata
-let _qidP31 = {};        // reasonable fallback "instance of" we expect this qid to have
+let _qidItems = {};       // any item referenced by a qid
+let _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
+let _qidMetadata = {};
 Object.keys(_cache.path).forEach(tkv => {
   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
   const t = parts[0];
@@ -133,15 +133,15 @@ Object.keys(_cache.path).forEach(tkv => {
       if (!_qidItems[qid])  _qidItems[qid] = new Set();
       _qidItems[qid].add(item.id);
 
-      // What to set P31 to if missing
+      // What to set P31 "instance of" to if missing
       if (osmtag === 'brand') {
-        _qidP31[qid] = { qid: 'Q4830453', what: 'business' };
+        _qidMetadata[qid] = { p31: 'Q4830453', what: 'business' };
       } else if (osmtag === 'flag') {
-        _qidP31[qid] = { qid: 'Q14660', what: 'flag' };
+        _qidMetadata[qid] = { p31: 'Q14660', what: 'flag' };
       } else if (osmtag === 'network') {
-        _qidP31[qid] = { qid: 'Q924286', what: 'transport network' };
+        _qidMetadata[qid] = { p31: 'Q924286', what: 'transport network' };
       } else {
-        _qidP31[qid] = { qid: 'Q43229', what: 'organization' };
+        _qidMetadata[qid] = { p31: 'Q43229', what: 'organization' };
       }
 
       const isMainTag = (wdTag === trees[t].mainTag);
@@ -172,6 +172,7 @@ let _warnings = [];
 
 
 doFetch()
+  .then(() => delay(5000))
   .then(removeOldNsiClaims)
   .then(finish);
 
@@ -216,6 +217,7 @@ function processEntities(result) {
   let wbEditQueue = [];
 
   Object.keys(result.entities).forEach(qid => {
+    const meta = _qidMetadata[qid];
     let target = _wikidata[qid];
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
@@ -223,7 +225,7 @@ function processEntities(result) {
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  ⚠️ Entity for "${label}" was deleted.`);
+        colors.red(`  ⚠️  Entity for "${label}" was deleted.`);
       _warnings.push(msg);
       console.warn(msg);
       return;
@@ -266,11 +268,14 @@ function processEntities(result) {
     target.identities = {};
     target.dissolutions = [];
 
-    // P154 - Commons Logo (often not square)
-    const wikidataLogo = getClaimValue(entity, 'P154');
-    if (wikidataLogo) {
+
+    // P18 - Image (use this for flags)
+    // P154 - Logo Image
+    const imageProp = (meta.what === 'flag' ? 'P18' : 'P154');
+    const imageFile = getClaimValue(entity, imageProp);
+    if (imageFile) {
       target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
-        utilQsString({ title: `Special:Redirect/file/${wikidataLogo}`, width: 100 });
+        utilQsString({ title: `Special:Redirect/file/${imageFile}`, width: 100 });
     }
 
     // P856 - official website
@@ -375,9 +380,8 @@ function processEntities(result) {
     // If P31 "instance of" is missing, set it to a resonable value.
     const instanceOf = getClaimValue(entity, 'P31');
     if (!instanceOf) {
-      const p31 = _qidP31[qid];
-      const msg = `Setting P31 "instance of" = ${p31.qid} "${p31.what}" for ${qid}`;
-      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: p31.qid, msg: msg });
+      const msg = `Setting P31 "instance of" = ${meta.p31} "${meta.what}" for ${qid}`;
+      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: meta.p31, msg: msg });
     }
 
     // If we want this qid to have an P8253 property ..
