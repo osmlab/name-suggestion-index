@@ -882,24 +882,29 @@ function addMissingWikipediaTags(qid, sitelinks) {
 // `enLabelForQID`
 // Pick a value that should be suitable to use as an English label.
 // If we are pushing edits to Wikidata, add en labels for items that don't have them.
-// Note, avoid assigning English label for 'flags' tree for now.
 function enLabelForQID(qid) {
+  const meta = _qidMetadata[qid];
   const ids = Array.from(_qidItems[qid]);
   for (let i = 0; i < ids.length; i++) {
     const item = _cache.id[ids[i]];
 
-    // These we know are English..
-    if (item.tags['name:en'])     return item.tags['name:en'];
-    if (item.tags['brand:en'])    return item.tags['brand:en'];
-    if (item.tags['operator:en']) return item.tags['operator:en'];
-    if (item.tags['network:en'])  return item.tags['network:en'];
+    if (meta.what === 'flag') {
+      if (looksLatin(item.tags.subject))  return `Flag of ${item.tags.subject}`;
 
-    // These we're not sure..
-    if (looksLatin(item.tags.name))     return item.tags.name;
-    if (looksLatin(item.tags.brand))    return item.tags.brand;
-    if (looksLatin(item.tags.operator)) return item.tags.operator;
-    if (looksLatin(item.tags.network))  return item.tags.network;
-    if (looksLatin(item.displayName))   return item.displayName;
+    } else {
+      // These we know are English..
+      if (item.tags['name:en'])     return item.tags['name:en'];
+      if (item.tags['brand:en'])    return item.tags['brand:en'];
+      if (item.tags['operator:en']) return item.tags['operator:en'];
+      if (item.tags['network:en'])  return item.tags['network:en'];
+
+      // These we're not sure..
+      if (looksLatin(item.tags.name))     return item.tags.name;
+      if (looksLatin(item.tags.brand))    return item.tags.brand;
+      if (looksLatin(item.tags.operator)) return item.tags.operator;
+      if (looksLatin(item.tags.network))  return item.tags.network;
+      if (looksLatin(item.displayName))   return item.displayName;
+    }
   }
 
   return null;
