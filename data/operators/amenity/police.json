@@ -156,8 +156,8 @@
     },
     {
       "displayName": "Cuerpo de Agentes de Control Municipal",
-      "id": "cuerpodeagentesdecontrolmunicipal-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "id": "cuerpodeagentesdecontrolmunicipal-210a6b",
+      "locationSet": {"include": ["ec"]},
       "tags": {
         "amenity": "police",
         "operator": "Cuerpo de Agentes de Control Municipal"
@@ -368,6 +368,7 @@
       "displayName": "Guardia Civil",
       "id": "guardiacivil-dd66e9",
       "locationSet": {"include": ["es"]},
+      "matchNames": ["ministerio de defensa"],
       "tags": {
         "amenity": "police",
         "operator": "Guardia Civil",
@@ -423,8 +424,8 @@
     },
     {
       "displayName": "Jammu And Kashmir Police",
-      "id": "jammuandkashmirpolice-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "id": "jammuandkashmirpolice-0bc1d6",
+      "locationSet": {"include": ["in", "pk"]},
       "tags": {
         "amenity": "police",
         "operator": "Jammu And Kashmir Police",
@@ -511,15 +512,6 @@
       }
     },
     {
-      "displayName": "Ministerio de Defensa",
-      "id": "ministeriodedefensa-d00fc1",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Ministerio de Defensa"
-      }
-    },
-    {
       "displayName": "Ministerio de Obras Públicas y Transportes",
       "id": "ministeriodeobraspublicasytransportes-05938a",
       "locationSet": {"include": ["cr"]},
@@ -531,9 +523,12 @@
     },
     {
       "displayName": "Ministerio del Interior",
-      "id": "ministeriodelinterior-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "id": "ministeriodelinterior-c6f4a7",
+      "locationSet": {
+        "include": ["ec", "py", "uy"]
+      },
       "matchNames": ["ministerio de interior"],
+      "note": "This should be split and formalized",
       "tags": {
         "amenity": "police",
         "operator": "Ministerio del Interior"
@@ -656,15 +651,6 @@
         "operator:short": "PNP",
         "operator:wikidata": "Q963772",
         "operator:wikipedia": "tl:Pambansang Pulisya ng Pilipinas"
-      }
-    },
-    {
-      "displayName": "Police",
-      "id": "police-d00fc1",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Police"
       }
     },
     {
@@ -889,7 +875,10 @@
       "displayName": "Policía Nacional de Colombia",
       "id": "policianacionaldecolombia-057a57",
       "locationSet": {"include": ["co"]},
-      "matchNames": ["policia nacional"],
+      "matchNames": [
+        "ministerio de defensa",
+        "policia nacional"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Policía Nacional de Colombia",
@@ -907,6 +896,24 @@
         "operator": "Policía Nacional del Perú",
         "operator:wikidata": "Q6320215",
         "operator:wikipedia": "es:Policía Nacional del Perú"
+      }
+    },
+    {
+      "displayName": "Policía Nacional Revolucionaria",
+      "id": "policianacionalrevolucionaria-0bef41",
+      "locationSet": {"include": ["cu"]},
+      "matchNames": [
+        "ministerio de interior",
+        "police",
+        "policía revolucionaria de cuba"
+      ],
+      "note": "Cuba only has one force. The 'police' name match is added as a hack to stop the build script from creating a global 'Police' stub.",
+      "tags": {
+        "amenity": "police",
+        "operator": "Policía Nacional Revolucionaria",
+        "operator:short": "PNR",
+        "operator:wikidata": "Q3907549",
+        "operator:wikipedia": "en:Law enforcement in Cuba"
       }
     },
     {
