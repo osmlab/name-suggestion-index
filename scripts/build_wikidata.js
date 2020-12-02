@@ -1,4 +1,5 @@
 const colors = require('colors/safe');
+const crypto = require('crypto');
 const fetch = require('node-fetch');
 const fileTree = require('../lib/file_tree.js');
 const fs = require('fs');
@@ -272,10 +273,19 @@ function processEntities(result) {
     // P18 - Image (use this for flags)
     // P154 - Logo Image
     const imageProp = (meta.what === 'flag' ? 'P18' : 'P154');
-    const imageFile = getClaimValue(entity, imageProp);
+    let imageFile = getClaimValue(entity, imageProp);
     if (imageFile) {
-      target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
-        utilQsString({ title: `Special:Redirect/file/${imageFile}`, width: 100 });
+      const re = /\.svg$/i;
+      if (re.test(imageFile)) {
+        imageFile = imageFile.replace(/\s/g, '_');   // 'Flag of Alaska.svg' -> 'Flag_of_Alaska.svg'
+        const hash = crypto.createHash('md5').update(imageFile).digest('hex');
+        const x = hash.slice(0, 1);
+        const xx = hash.slice(0, 2);
+        target.logos.wikidata = `https://upload.wikimedia.org/wikipedia/commons/${x}/${xx}/${imageFile}`;
+      } else {
+        target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
+          utilQsString({ title: `Special:Redirect/file/${imageFile}`, width: 150 });
+      }
     }
 
     // P856 - official website
