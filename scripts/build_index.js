@@ -340,6 +340,16 @@ function mergeItems() {
         } else if (t === 'flags') {
           name = tags['flag:name'];
 
+          // Sort the flags in the file according to their country of origin
+          let country = tags.country || item.locationSet.include[0];
+          if (typeof country === 'string' && country.length === 2) {
+            const cc = country.toUpperCase() + ' - ';
+            const re = new RegExp('^' + cc);   // leading country code
+            if (!re.test(item.displayName)) {
+              item.displayName = cc + item.displayName;
+            }
+          }
+
         } else if (t === 'operators') {
           name = tags.operator || tags.brand;
 
