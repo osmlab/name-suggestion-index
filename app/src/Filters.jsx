@@ -26,7 +26,7 @@ export default function Filters(props) {
 
     <span className='field'>
       <label for='cc'>Country Code:</label>
-      <input type='text' id='cc' name='cc' autocorrect='off' maxlength='2' size='2'
+      <input type='text' id='cc' name='cc' autocorrect='off' maxlength='5' size='3'
         value={cc} onChange={filtersChanged} />
     </span>
 
