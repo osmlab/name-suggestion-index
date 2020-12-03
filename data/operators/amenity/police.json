@@ -427,24 +427,24 @@
     },
     {
       "displayName": "Indonesian National Police",
-      "id": "indonesiannationalpolice-d8ba39",
+      "id": "kepolisiannegararepublikindonesia-d8ba39",
       "locationSet": {"include": ["id"]},
       "tags": {
         "amenity": "police",
-        "operator": "Indonesian National Police",
-        "operator:id": "Kepolisian Negara Republik Indonesia",
+        "operator": "Kepolisian Negara Republik Indonesia",
+        "operator:en": "Indonesian National Police",
         "operator:short": "POLRI",
         "operator:wikidata": "Q3103954",
         "operator:wikipedia": "en:Indonesian National Police"
       }
     },
     {
-      "displayName": "Jammu And Kashmir Police",
+      "displayName": "Jammu and Kashmir Police",
       "id": "jammuandkashmirpolice-0bc1d6",
       "locationSet": {"include": ["in", "pk"]},
       "tags": {
         "amenity": "police",
-        "operator": "Jammu And Kashmir Police",
+        "operator": "Jammu and Kashmir Police",
         "operator:wikidata": "Q6148022",
         "operator:wikipedia": "en:Jammu and Kashmir Police"
       }
@@ -470,11 +470,12 @@
     },
     {
       "displayName": "Los Angeles Police Department",
-      "id": "cityoflosangelespolicedepartment-04d52e",
+      "id": "losangelespolicedepartment-04d52e",
       "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "police",
-        "operator": "City of Los Angeles Police Department",
+        "operator": "Los Angeles Police Department",
+        "operator:official": "City of Los Angeles Police Department",
         "operator:short": "LAPD",
         "operator:wikidata": "Q214126",
         "operator:wikipedia": "en:Los Angeles Police Department"
@@ -482,8 +483,10 @@
     },
     {
       "displayName": "Metro Transit Police Department (DC)",
-      "id": "metrotransitpolicedepartment-04d52e",
-      "locationSet": {"include": ["us"]},
+      "id": "metrotransitpolicedepartment-d74a50",
+      "locationSet": {
+        "include": ["giant_de_md_va.geojson"]
+      },
       "matchNames": ["wmata police"],
       "tags": {
         "amenity": "police",
@@ -505,8 +508,10 @@
     },
     {
       "displayName": "Metropolitan Police Department (DC)",
-      "id": "metropolitanpolicedepartment-04d52e",
-      "locationSet": {"include": ["us"]},
+      "id": "metropolitanpolicedepartment-d74a50",
+      "locationSet": {
+        "include": ["giant_de_md_va.geojson"]
+      },
       "matchNames": [
         "dcpd",
         "washington dc police department"
@@ -587,22 +592,23 @@
       "locationSet": {"include": ["np"]},
       "tags": {
         "amenity": "police",
-        "operator": "Nepal Police",
+        "operator": "नेपाल प्रहरी",
+        "operator:en": "Nepal Police",
         "operator:wikidata": "Q13182779",
         "operator:wikipedia": "ne:नेपाल प्रहरी"
       }
     },
     {
       "displayName": "New York Police Department",
-      "id": "cityofnewyorkpolicedepartment-04d52e",
+      "id": "newyorkpolicedepartment-04d52e",
       "locationSet": {"include": ["us"]},
       "matchNames": [
-        "new york city police department",
-        "new york police department"
+        "new york city police department"
       ],
       "tags": {
         "amenity": "police",
-        "operator": "City of New York Police Department",
+        "operator": "New York Police Department",
+        "operator:official": "City of New York Police Department",
         "operator:short": "NYPD",
         "operator:wikidata": "Q328473",
         "operator:wikipedia": "en:New York City Police Department"
@@ -658,9 +664,34 @@
       }
     },
     {
+      "displayName": "Police",
+      "id": "police-67435b",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["001"]
+      },
+      "note": "Block 'Police' stub globally",
+      "tags": {
+        "amenity": "police",
+        "operator": "Police"
+      }
+    },
+    {
       "displayName": "Police nationale (France)",
-      "id": "policenationale-714d2d",
-      "locationSet": {"include": ["fr"]},
+      "id": "policenationale-664ff7",
+      "locationSet": {
+        "include": [
+          "bl",
+          "fr",
+          "gf",
+          "gp",
+          "mf",
+          "mq",
+          "pf",
+          "re",
+          "yt"
+        ]
+      },
       "matchNames": ["sûreté nationale"],
       "tags": {
         "amenity": "police",
@@ -796,8 +827,11 @@
     },
     {
       "displayName": "Polícia Militar",
-      "id": "policiamilitar-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitar-1808c2",
+      "locationSet": {
+        "include": ["br"],
+        "exclude": ["br"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar",
@@ -1241,10 +1275,8 @@
       "locationSet": {"include": ["cu"]},
       "matchNames": [
         "ministerio de interior",
-        "police",
         "policía revolucionaria de cuba"
       ],
-      "note": "Cuba only has one force. The 'police' name match is added as a hack to stop the build script from creating a global 'Police' stub.",
       "tags": {
         "amenity": "police",
         "operator": "Policía Nacional Revolucionaria",
@@ -1286,8 +1318,11 @@
     },
     {
       "displayName": "Polizia",
-      "id": "polizia-f71f16",
-      "locationSet": {"include": ["it"]},
+      "id": "polizia-b6a9e5",
+      "locationSet": {
+        "include": ["it"],
+        "exclude": ["it"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polizia"
@@ -1363,8 +1398,8 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "police",
-        "operator": "Public Security Police Force",
-        "operator:cn": "治安警察局",
+        "operator": "治安警察局",
+        "operator:en": "Public Security Police Force",
         "operator:pt": "Polícia de Segurança Pública",
         "operator:short": "CPSP",
         "operator:wikipedia": "en:Public Security Police Force of Macau"
@@ -1410,7 +1445,8 @@
       "locationSet": {"include": ["th"]},
       "tags": {
         "amenity": "police",
-        "operator": "Royal Thai Police",
+        "operator": "ตำรวจแห่งชาติ",
+        "operator:en": "Royal Thai Police",
         "operator:short": "RTP",
         "operator:th": "ตำรวจแห่งชาติ",
         "operator:wikipedia": "en:Royal Thai Police"
@@ -1502,7 +1538,8 @@
       "note": "Mostly for filing insurance claims and insulating tourists from the 'real' police",
       "tags": {
         "amenity": "police",
-        "operator": "Tourist Police Bureau",
+        "operator": "กองบัญชาการตำรวจท่องเที่ยว",
+        "operator:en": "Tourist Police Bureau",
         "operator:th": "กองบัญชาการตำรวจท่องเที่ยว",
         "operator:wikipedia": "en:Tourist Police (Thailand)"
       }
