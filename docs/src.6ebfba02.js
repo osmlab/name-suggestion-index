@@ -19257,8 +19257,8 @@ function Filters(props) {
     id: "cc",
     name: "cc",
     autocorrect: "off",
-    maxlength: "2",
-    size: "2",
+    maxlength: "5",
+    size: "3",
     value: cc,
     onChange: filtersChanged
   })), /*#__PURE__*/_react.default.createElement("span", {
