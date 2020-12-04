@@ -422,7 +422,6 @@ For example, "Универмаг" is just a Russian word for "Department store":
         "shop": "department_store"
       }
     },
-  },
 ```
 
 To remove this generic name:
@@ -442,24 +441,24 @@ Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that an
 
 1. Find an entry in a brand file that is missing these tags:
 
-In `brands/amenity/fast_food.json`:
+    In `brands/amenity/fast_food.json`:
 
-```js
-  "brands/amenity/fast_food": [
-    …
-    {
-      "displayName": "Chipotle",
-      "id": "chipotle-658eea",
-      "locationSet": { "include": ["us"] }
-      "matchNames": ["chipotle mexican grill"],
-      "tags": {
-        "amenity": "fast_food",
-        "brand": "Chipotle",
-        "cuisine": "mexican",
-        "name": "Chipotle"
-      }
-  },
-```
+    ```js
+      "brands/amenity/fast_food": [
+        …
+        {
+          "displayName": "Chipotle",
+          "id": "chipotle-658eea",
+          "locationSet": { "include": ["us"] }
+          "matchNames": ["chipotle mexican grill"],
+          "tags": {
+            "amenity": "fast_food",
+            "brand": "Chipotle",
+            "cuisine": "mexican",
+            "name": "Chipotle"
+          }
+      },
+    ```
 
 2. Google for that brand - if you are lucky, you might find the Wikipedia page right away.
 
@@ -467,54 +466,54 @@ In `brands/amenity/fast_food.json`:
 
 3. From the Wikipedia page URL, you can identify the `brand:wikipedia` value.
 
-OpenStreetMap expects this tag to be formatted like `"en:Chipotle Mexican Grill"`.
-* Copy the page name from the URL.
-* Add the language prefix - "en:" for the English Wikipedia.
-* Replace the underscores '_' with spaces.
+    OpenStreetMap expects this tag to be formatted like `"en:Chipotle Mexican Grill"`.
+    * Copy the page name from the URL.
+    * Add the language prefix - "en:" for the English Wikipedia.
+    * Replace the underscores '\_' with spaces.
 
-On the brand's Wikipedia page, you can also find its "Wikidata item" link.  This appears
-under the "tools" menu in the sidebar.
+    On the brand's Wikipedia page, you can also find its "Wikidata item" link.  This appears
+    under the "tools" menu in the sidebar.
 
-:point_right: protip: [@maxerickson] has created a user script to make copying these values even easier - see [#1881]
+    :point_right: protip: [@maxerickson] has created a user script to make copying these values even easier - see [#1881]
 
-[#1881]: https://github.com/osmlab/name-suggestion-index/issues/1881
-[@maxerickson]: https://github.com/maxerickson
+    [#1881]: https://github.com/osmlab/name-suggestion-index/issues/1881
+    [@maxerickson]: https://github.com/maxerickson
 
-<img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_2.png"/>
+    <img width="600px" alt="Chipotle Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_2.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
-<img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_3.png"/>
+    <img width="600px" alt="Chipotle Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/chipotle_3.png"/>
 
 5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
-We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
+    We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
 
-```js
-  "brands/amenity/fast_food": [
-    …
-    {
-      "displayName": "Chipotle",
-      "id": "chipotle-658eea",
-      "locationSet": { "include": ["us"] }
-      "matchNames": ["chipotle mexican grill"],
-      "tags": {
-        "amenity": "fast_food",
-        "brand": "Chipotle",
-        "brand:wikidata": "Q465751",                            // added
-        "brand:wikipedia": "en:Chipotle Mexican Grill",         // added
-        "cuisine": "mexican",
-        "name": "Chipotle"
-      }
-  },
-```
+    ```js
+      "brands/amenity/fast_food": [
+        …
+        {
+          "displayName": "Chipotle",
+          "id": "chipotle-658eea",
+          "locationSet": { "include": ["us"] }
+          "matchNames": ["chipotle mexican grill"],
+          "tags": {
+            "amenity": "fast_food",
+            "brand": "Chipotle",
+            "brand:wikidata": "Q465751",                            // added
+            "brand:wikipedia": "en:Chipotle Mexican Grill",         // added
+            "cuisine": "mexican",
+            "name": "Chipotle"
+          }
+      },
+    ```
 
-_(comments added for clarity)_
+    _(comments added for clarity)_
 
 6. Rebuild and submit a pull request.
 
-* Run `npm run build`
-* If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
+    * Run `npm run build`
+    * If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
 
 &nbsp;
 
@@ -524,89 +523,88 @@ This example uses a brand "かっぱ寿司".  I don't know what that is, so I wi
 
 1. Find an entry in a brand file that is missing these tags:
 
-In `brands/amenity/fast_food.json`:
+    In `brands/amenity/fast_food.json`:
 
-```js
-  "brands/amenity/fast_food": [
-    …
-    {
-      "displayName": "かっぱ寿司",
-      "id": "かっぱ寿司-3e7699",
-      "locationSet": {"include": ["jp"]},
-      "tags": {
-        "amenity": "fast_food",
-        "brand": "かっぱ寿司",
-        "name": "かっぱ寿司"
-      }
-    },
-  },
-```
+    ```js
+      "brands/amenity/fast_food": [
+        …
+        {
+          "displayName": "かっぱ寿司",
+          "id": "かっぱ寿司-3e7699",
+          "locationSet": {"include": ["jp"]},
+          "tags": {
+            "amenity": "fast_food",
+            "brand": "かっぱ寿司",
+            "name": "かっぱ寿司"
+          }
+        },
+    ```
 
 2. Google for that brand - if you are lucky, you might find the Wikipedia page right away.
 
-Tip: You might want to narrow you search by Googling with a `site:` filter:  `"かっぱ寿司 site:ja.wikipedia.org"`
+    Tip: You might want to narrow you search by Googling with a `site:` filter:  `"かっぱ寿司 site:ja.wikipedia.org"`
 
-From these results, we can know that the brand is "Kappazushi", owned by a Japanese company
-called "Kappa Create".  We can also find the Wikipedia page.
+    From these results, we can know that the brand is "Kappazushi", owned by a Japanese company
+    called "Kappa Create".  We can also find the Wikipedia page.
 
-<img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_1.png"/>
+    <img width="600px" alt="Google for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_1.png"/>
 
 3. As with English brands, you can identify the `brand:wikipedia` value from the URL.
 Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
 
-OpenStreetMap expects this tag to be formatted like `"ja:かっぱ寿司"`.
-* Copy the page name from the URL.
-* Add the language prefix "ja:".
-* Replace the underscores '_' with spaces.
+    OpenStreetMap expects this tag to be formatted like `"ja:かっぱ寿司"`.
+    * Copy the page name from the URL.
+    * Add the language prefix "ja:".
+    * Replace the underscores "\_" with spaces.
 
-Although I can not read Japanese, I can identify the "Wikidata item" link because
-it always appears in the sidebar and mouseover will show the Wikidata 'Q' code in the URL.
+    Although I can not read Japanese, I can identify the "Wikidata item" link because
+    it always appears in the sidebar and mouseover will show the Wikidata 'Q' code in the URL.
 
-<img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_3.png"/>
+    <img width="600px" alt="Kappa Sushi Wikipedia" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_3.png"/>
 
 4. On the brand's Wikidata page, you can identify the `brand:wikidata` value.  It is a code starting with 'Q' and several numbers.
 
-Note: The Wikidata page looks a bit sparse - you can edit this too if you want to help!
+    Note: The Wikidata page looks a bit sparse - you can edit this too if you want to help!
 
-<img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_4.png"/>
+    <img width="600px" alt="Kappa Sushi Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/kappa_4.png"/>
 
 5. Update the brand file, in this case `brands/amenity/fast_food.json`:
 
-We can add:
-* `"brand:en"` and `"name:en"` tags to contain the English name "Kappazushi"
-* `"name:ja"` and `"brand:ja"` tags to contain the local name "かっぱ寿司"
-* `"brand:wikipedia"` and `"brand:wikidata"` tags
-* `"cuisine": "sushi"` OpenStreetMap tag
-* Also check the `"locationSet"` property to make sure it is accurate.
+    We can add:
+    * `"brand:en"` and `"name:en"` tags to contain the English name "Kappazushi"
+    * `"name:ja"` and `"brand:ja"` tags to contain the local name "かっぱ寿司"
+    * `"brand:wikipedia"` and `"brand:wikidata"` tags
+    * `"cuisine": "sushi"` OpenStreetMap tag
+    * Also check the `"locationSet"` property to make sure it is accurate.
 
-```js
-  "brands/amenity/fast_food": [
-    …
-    {
-      "displayName": "かっぱ寿司",
-      "id": "かっぱ寿司-3e7699",
-      "locationSet": {"include": ["jp"]},
-      "tags": {
-        "amenity": "fast_food",
-        "brand": "かっぱ寿司",
-        "brand:en": "Kappazushi",            // added
-        "brand:ja": "かっぱ寿司",            // added
-        "brand:wikipedia": "ja:かっぱ寿司",     // added
-        "brand:wikidata": "Q11263916",        // added
-        "cuisine": "sushi",                   // added
-        "name": "かっぱ寿司",
-        "name:en": "Kappazushi",              // added
-        "name:ja": "かっぱ寿司"               // added
-      }
-    },
-```
+    ```js
+      "brands/amenity/fast_food": [
+        …
+        {
+          "displayName": "かっぱ寿司",
+          "id": "かっぱ寿司-3e7699",
+          "locationSet": {"include": ["jp"]},
+          "tags": {
+            "amenity": "fast_food",
+            "brand": "かっぱ寿司",
+            "brand:en": "Kappazushi",            // added
+            "brand:ja": "かっぱ寿司",            // added
+            "brand:wikipedia": "ja:かっぱ寿司",     // added
+            "brand:wikidata": "Q11263916",        // added
+            "cuisine": "sushi",                   // added
+            "name": "かっぱ寿司",
+            "name:en": "Kappazushi",              // added
+            "name:ja": "かっぱ寿司"               // added
+          }
+        },
+    ```
 
-_(comments added for clarity)_
+    _(comments added for clarity)_
 
 6. Rebuild and submit a pull request.
 
-* Run `npm run build`
-* If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
+    * Run `npm run build`
+    * If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
 
 &nbsp;
 
@@ -639,19 +637,19 @@ Overpass Turbo can show them on a map:
 2. Enter your query like this, replacing the `name` and other OpenStreetMap tags.
 Because we don't specify a bounding box, this will perform a global query.
 
-```
-nwr["name"="かっぱ寿司"]["amenity"="fast_food"];
-out center;
-```
+    ```
+    nwr["name"="かっぱ寿司"]["amenity"="fast_food"];
+    out center;
+    ```
 
-Tip: The browsable index at https://nsi.guide/ can open Overpass Turbo with the query already set up for you.
+    Tip: The browsable index at https://nsi.guide/ can open Overpass Turbo with the query already set up for you.
 
 
 3. Click run to view the results.
 
-As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
+    As expected, the "かっぱ寿司" (Kappazushi) locations are all concentrated in Japan.
 
-<img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/overpass.png"/>
+    <img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/overpass.png"/>
 
 &nbsp;
 
