@@ -58,8 +58,8 @@ function buildAll() {
   // Write `index.json` as a single file containing everything by path
   fs.writeFileSync('dist/index.json', prettyStringify(_cache.path, { maxLength: 800 }));
 
-  buildJSON();
-  buildXML();
+  buildJSON();     // nsi-id-presets.json
+  buildXML();      // nsi-josm-presets.json
   buildTaginfo();
   buildSitemap();
 
@@ -108,8 +108,7 @@ function buildJSON() {
     });
   });
 
-  // Save individual data files
-  fs.writeFileSync('dist/presets/name-suggestions.json', prettyStringify(_presetData));
+  fs.writeFileSync('dist/presets/nsi-id-presets.json', prettyStringify(_presetData));
 }
 
 
@@ -149,8 +148,8 @@ function buildXML() {
     }
   }
 
-  fs.writeFileSync('dist/presets/name-suggestions.presets.xml', root.end({ prettyPrint: true }));
-  fs.writeFileSync('dist/presets/name-suggestions.presets.min.xml', root.end());
+  fs.writeFileSync('dist/presets/nsi-josm-presets.xml', root.end({ prettyPrint: true }));
+  fs.writeFileSync('dist/presets/nsi-josm-presets.min.xml', root.end());
 }
 
 
@@ -175,7 +174,7 @@ function buildTaginfo() {
     for (const k in item.tags) {
       let v = item.tags[k];
 
-      // Skip value for many tags this project uses..
+      // Don't export every value for many tags this project uses..
       // ('tag matches any of these')(?!('not followed by :type'))
       if (/(brand|country|flag|name|network|operator|subject)(?!(:type))/.test(k)) {
         v = '*';
