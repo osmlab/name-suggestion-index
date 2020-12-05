@@ -4,12 +4,15 @@ const glob = require('glob');
 const dissolved = require('../dist/dissolved.json');
 const fileTree = require('../lib/file_tree.js');
 const JSON5 = require('json5');
-const brandsKeep = require('../dist/filtered/brands_keep.json');
 const packageJSON = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
 const sort = require('../lib/sort.js');
+const wikidata = require('../dist/wikidata.json').wikidata;
 const xmlbuilder2 = require('xmlbuilder2');
+
+// iD's presets which we will build on
+const sourcePresets = require('@openstreetmap/id-tagging-schema/dist/presets.json');
 
 // metadata about the trees
 const trees = require('../config/trees.json').trees;
@@ -25,7 +28,6 @@ fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 _cache.path = sort(_cache.path);
 
-let _presetData = {};
 buildAll();
 
 
@@ -72,46 +74,175 @@ function buildAll() {
 
 
 function buildJSON() {
-  const paths = Object.keys(_cache.path);
+  //
+  // First we'll match every NSI item to a source iD preset.
+  // The source iD presets look like this:
+  //
+  // "amenity": {
+  //   "name": "Amenity"
+  //   "fields": […],
+  //   "geometry": […],
+  //   "tags": {
+  //     "amenity": "*"
+  //   },
+  //   "searchable": false
+  // },
+  // "amenity/fast_food": {
+  //   "name": "Fast Food",
+  //   "icon": "maki-fast-food",
+  //   "fields": […],
+  //   "geometry": […],
+  //   "terms": […],
+  //   "tags": {
+  //     "amenity": "fast_food"
+  //   }
+  // },
+  // "amenity/fast_food/sandwich": {
+  //   "name": "Sandwich Fast Food",
+  //   "icon": "temaki-sandwich",
+  //   "fields": […],
+  //   "geometry": […],
+  //   "terms": […],
+  //   "tags": {
+  //     "amenity": "fast_food",
+  //     "cuisine": "sandwich"
+  //   }
+  // },
+  //
+  // There are a few special behaviors in the iD presets are important to us:
+  // - They each have stable identifiers like `key`, `key/value`, `key/value/anothervalue`
+  // - Presets with increasing specificity "inherit" fields from presets of less specificity
+  //    (e.g. the sandwich fast food preset inherits all the fields of the regular fast food preset)
+  // - We can generate presets with NSI identifiers that hang off the end of this specificity chain
+  //    (e.g. "amenity/fast_food/sandwich/arbys-3c08fb")
+  // - NSI identifiers will not collide with the iD identifiers (NSI ids don't look like tag values)
+  //
 
+  let targetPresets = {};
+  let missing = new Set();
+
+  const paths = Object.keys(_cache.path);
   paths.sort().forEach(tkv => {
     let items = _cache.path[tkv];
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const t = parts[0];
-    const k = parts[1];
-    const v = parts[2];
+    let t = parts[0];
+    let k = parts[1];
+    let v = parts[2];
 
-    // Which tag is considered the "main" tag for this tree?
+    // exception where the NSI key/value doesn't match the iD key/value
+    if (k === 'route') k = 'type/route';
+
+    let kv = `${k}/${v}`;
+
+
+    // Which wikidata tag is considered the "main" tag for this tree?
     const wdTag = trees[t].mainTag;
 
     items.forEach(item => {
-      const wd = item.tags[wdTag];
-      if (!wd || !/^Q\d+$/.test(wd)) return;   // wikidata tag missing or looks wrong..
-      if (dissolved[item.id]) return;          // dissolved/closed businesses
+      const tags = item.tags;
+      const qid = tags[wdTag];
+      if (!qid || !/^Q\d+$/.test(qid)) return;   // wikidata tag missing or looks wrong..
+      if (dissolved[item.id]) return;            // dissolved/closed businesses
 
-      const n = item.displayName;
-      const kvn = `${k}/${v}|${n}`;
+      let presetID, preset;
 
-      if (!_presetData[k])     _presetData[k] = {};
-      if (!_presetData[k][v])  _presetData[k][v] = {};
-      _presetData[k][v][n] = {};
+      // Sometimes we can choose a more specific iD preset then `key/value`..
+      // Attempt to match a `key/value/extravalue`
+      const tryKeys = ['beauty', 'clothes', 'cuisine', 'healthcare:speciality', 'religion', 'social_facility', 'sport', 'vending'];
+      tryKeys.forEach(osmkey => {
+        if (preset) return;    // matched one already
+        const val = tags[osmkey];
+        if (!val) return;
 
-      if (brandsKeep[kvn]) {
-        _presetData[k][v][n].count = brandsKeep[kvn];
+        if (val === 'parcel_pickup;parcel_mail_in') {    // this one is just special
+          presetID = `${kv}/parcel_pickup_dropoff`;
+          preset = sourcePresets[presetID];
+          if (preset) return;  // it matched
+        }
+
+        // keys like cuisine can contain multiple values, so try each one in order
+        let vals = val.split(';');
+        for (let i = 0; i < vals.length; i++) {
+          presetID = kv + '/' + vals[i].trim();
+          preset = sourcePresets[presetID];
+          if (preset) return;   // it matched
+        }
+      });
+
+      // fallback to `key/value`
+      if (!preset) {
+        presetID = kv;
+        preset = sourcePresets[presetID];
       }
 
-      _presetData[k][v][n].id = item.id;
-      _presetData[k][v][n].locationSet = item.locationSet;
-      _presetData[k][v][n].tags = item.tags;
+      // still no match?
+      if (!preset) {
+        missing.add(tkv);
+        return;
+      }
+
+      // generate our target preset
+      const targetID = `${presetID}/${item.id}`;
+
+      let targetTags = {};
+      targetTags[wdTag] = tags[wdTag]; // add the `*:wikidata` tag
+      for (const k in preset.tags) {     // prioritize NSI tags over iD preset tags (for `vending`, `cuisine`, etc)
+        targetTags[k] = tags[k] || preset.tags[k];
+      }
+
+      // Prefer a wiki commons logo sometimes.. openstreetmap/iD#6361
+      const preferCommons = {
+        Q177054: true,    // Burger King
+        Q524757: true,    // KFC
+        Q779845: true,    // CBA
+        Q1205312: true,   // In-N-Out
+        Q10443115: true   // Carlings
+      };
+
+      let logoURL;
+      let logoURLs = wikidata[qid] && wikidata[qid].logos;
+      if (logoURLs) {
+        if (logoURLs.wikidata && preferCommons[qid]) {
+          logoURL = logoURLs.wikidata;
+        } else if (logoURLs.facebook) {
+          logoURL = logoURLs.facebook;
+        } else if (logoURLs.twitter) {
+          logoURL = logoURLs.twitter;
+        } else {
+          logoURL = logoURLs.wikidata;
+        }
+      }
+
+      let targetPreset = {
+        name: item.displayName,
+        locationSet: item.locationSet,
+        icon: preset.icon,
+        geometry: preset.geometry,
+        matchScore: 2
+      };
+
+      if (logoURL)           targetPreset.imageURL = logoURL;
+      if (item.matchNames)   targetPreset.terms = item.matchNames;
+      if (preset.reference)  targetPreset.reference = preset.reference;
+      targetPreset.tags = sort(targetTags);
+      targetPreset.addTags = sort(item.tags);
+
+      targetPresets[targetID] = targetPreset;
     });
   });
 
-  fs.writeFileSync('dist/presets/nsi-id-presets.json', prettyStringify(_presetData));
+  missing.forEach(tkv => {
+    console.warn(colors.yellow(`Warning - no iD source preset found for ${tkv}`));
+  });
+
+  fs.writeFileSync('dist/presets/nsi-id-presets.json', prettyStringify(targetPresets));
 }
 
 
+// Create JOSM presets using the tree/key/value structure
+// to organize the presets into JOSM preset groups.
 function buildXML() {
   let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
   let presets = root.ele('presets')
@@ -122,31 +253,44 @@ function buildXML() {
     .att('link', 'https://github.com/' + packageJSON.repository)
     .att('version', packageJSON.version);
 
-  let topgroup = presets
+  let topGroup = presets
     .ele('group')
     .att('name', 'Name Suggestion Index');
 
-  // Create JOSM presets using the key and value structure from the json
-  // to organize the presets into JOSM preset groups.
-  for (const key in _presetData) {
-    let keygroup = topgroup.ele('group').att('name', key);
+  let tPrev, kPrev, vPrev;
+  let tGroup, kGroup, vGroup;
 
-    for (const value in _presetData[key]) {
-      let valuegroup = keygroup.ele('group').att('name', value);
+  const paths = Object.keys(_cache.path);
+  paths.sort().forEach(tkv => {
+    let items = _cache.path[tkv];
+    if (!Array.isArray(items) || !items.length) return;
 
-      for (const displayName in _presetData[key][value]) {
-        let item = valuegroup
-          .ele('item')
-          .att('name', displayName)
-          .att('type', 'node,closedway,multipolygon');
+    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+    let t = parts[0];
+    let k = parts[1];
+    let v = parts[2];
 
-        const tags = _presetData[key][value][displayName].tags;
-        for (const k in tags) {
-          item.ele('key').att('key', k).att('value', tags[k]);
-        }
+    // Create new menu groups as t/k/v change
+    if (t !== tPrev)  tGroup = topGroup.ele('group').att('name', t);
+    if (k !== kPrev)  kGroup = tGroup.ele('group').att('name', k);
+    if (t !== tPrev)  vGroup = kGroup.ele('group').att('name', v);
+
+    items.forEach(item => {
+      let preset = vGroup
+        .ele('item')
+        .att('name', item.displayName)
+        .att('type', 'node,closedway,multipolygon');
+
+      const tags = item.tags;
+      for (const k in tags) {
+        preset.ele('key').att('key', k).att('value', tags[k]);
       }
-    }
-  }
+    });
+
+    tPrev = t;
+    kPrev = k;
+    vPrev = v;
+  });
 
   fs.writeFileSync('dist/presets/nsi-josm-presets.xml', root.end({ prettyPrint: true }));
   fs.writeFileSync('dist/presets/nsi-josm-presets.min.xml', root.end());
