@@ -270,20 +270,27 @@ function buildXML() {
     let k = parts[1];
     let v = parts[2];
 
+    // Which wikidata tag is considered the "main" tag for this tree?
+    const wdTag = trees[t].mainTag;
+
     // Create new menu groups as t/k/v change
     if (t !== tPrev)  tGroup = topGroup.ele('group').att('name', t);
     if (k !== kPrev)  kGroup = tGroup.ele('group').att('name', k);
     if (t !== tPrev)  vGroup = kGroup.ele('group').att('name', v);
 
     items.forEach(item => {
+      const tags = item.tags;
+      const qid = tags[wdTag];
+      if (!qid || !/^Q\d+$/.test(qid)) return;   // wikidata tag missing or looks wrong..
+      if (dissolved[item.id]) return;            // dissolved/closed businesses
+
       let preset = vGroup
         .ele('item')
         .att('name', item.displayName)
         .att('type', 'node,closedway,multipolygon');
 
-      const tags = item.tags;
-      for (const k in tags) {
-        preset.ele('key').att('key', k).att('value', tags[k]);
+      for (const osmkey in tags) {
+        preset.ele('key').att('key', osmkey).att('value', tags[osmkey]);
       }
     });
 
