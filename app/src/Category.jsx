@@ -98,7 +98,7 @@ export default function Category(props) {
     } else if (cc) {  // todo: fix countrycode filters - #4077
       const codes = (item.locationSet.include || []);
       item.filtered = (codes.length && codes.every(
-        (code) => (code.toLowerCase().indexOf(cc) === -1)
+        (code) => (typeof code !== 'string' || code.toLowerCase().indexOf(cc) === -1)
       ));
     } else {
       delete item.filtered;

@@ -791,7 +791,10 @@ function addMissingWikipediaTags(qid, sitelinks) {
   // This code is terrible and nobody should do this.
   function chooseWiki(item) {
     if (!wikiCount) return null;
+
     const cc = item.locationSet.include[0];   // first location in the locationSet
+    if (typeof cc !== 'string') return null;
+
     const name = item.displayName;
     let tryLangs = ['en'];                    // always fallback to enwiki
 

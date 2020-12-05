@@ -19257,7 +19257,7 @@ function Filters(props) {
     id: "cc",
     name: "cc",
     autocorrect: "off",
-    maxlength: "5",
+    maxlength: "6",
     size: "3",
     value: cc,
     onChange: filtersChanged
@@ -19423,7 +19423,7 @@ function Category(props) {
       // todo: fix countrycode filters - #4077
       var codes = item.locationSet.include || [];
       item.filtered = codes.length && codes.every(function (code) {
-        return code.toLowerCase().indexOf(cc) === -1;
+        return typeof code !== 'string' || code.toLowerCase().indexOf(cc) === -1;
       });
     } else {
       delete item.filtered;
@@ -19811,7 +19811,7 @@ function Overview(props) {
         // todo: fix countrycode filters - #4077
         var codes = item.locationSet.include || [];
         item.filtered = codes.length && codes.every(function (code) {
-          return code.toLowerCase().indexOf(cc) === -1;
+          return typeof code !== 'string' || code.toLowerCase().indexOf(cc) === -1;
         });
       } else {
         delete item.filtered;
