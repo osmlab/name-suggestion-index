@@ -276,7 +276,7 @@ function buildXML() {
     // Create new menu groups as t/k/v change
     if (t !== tPrev)  tGroup = topGroup.ele('group').att('name', t);
     if (k !== kPrev)  kGroup = tGroup.ele('group').att('name', k);
-    if (t !== tPrev)  vGroup = kGroup.ele('group').att('name', v);
+    if (v !== vPrev)  vGroup = kGroup.ele('group').att('name', v);
 
     items.forEach(item => {
       const tags = item.tags;
