@@ -63,7 +63,7 @@
     "build:index": "node scripts/build_index.js",
     "lint": "eslint scripts/*.js lib/*.js",
     "logos": "node scripts/build_wikidata",
-    "test": "run-s validate lint build",
+    "test": "run-s build:features validate lint build",
     "validate": "node scripts/validate.js",
     "wikicheck": "node scripts/check_wikiTags.js",
     "wikidata": "node scripts/build_wikidata.js"
