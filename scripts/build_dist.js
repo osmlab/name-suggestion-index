@@ -121,8 +121,8 @@ function buildJSON() {
   let targetPresets = {};
   let missing = new Set();
 
-  const paths = Object.keys(_cache.path);
-  paths.sort().forEach(tkv => {
+  const paths = Object.keys(_cache.path).sort();
+  paths.forEach(tkv => {
     let items = _cache.path[tkv];
     if (!Array.isArray(items) || !items.length) return;
 
@@ -260,18 +260,26 @@ function buildXML() {
   let tPrev, kPrev, vPrev;
   let tGroup, kGroup, vGroup;
 
-  const paths = Object.keys(_cache.path);
-  paths.sort().forEach(tkv => {
-    let items = _cache.path[tkv];
-    if (!Array.isArray(items) || !items.length) return;
-
+  const paths = Object.keys(_cache.path).sort();
+  paths.forEach(tkv => {
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    let t = parts[0];
-    let k = parts[1];
-    let v = parts[2];
+    const t = parts[0];
+    const k = parts[1];
+    const v = parts[2];
 
     // Which wikidata tag is considered the "main" tag for this tree?
     const wdTag = trees[t].mainTag;
+
+    // Include only items that have a wikidata tag and are not dissolved..
+    let items = (_cache.path[tkv] || [])
+      .filter(item => {
+        const qid = item.tags[wdTag];
+        if (!qid || !/^Q\d+$/.test(qid)) return false;   // wikidata tag missing or looks wrong..
+        if (dissolved[item.id]) return false;            // dissolved/closed businesses..
+        return true;
+      });
+
+    if (!items.length) return;  // skip this path
 
     // Create new menu groups as t/k/v change
     if (t !== tPrev)  tGroup = topGroup.ele('group').att('name', t);
@@ -279,18 +287,13 @@ function buildXML() {
     if (v !== vPrev)  vGroup = kGroup.ele('group').att('name', v);
 
     items.forEach(item => {
-      const tags = item.tags;
-      const qid = tags[wdTag];
-      if (!qid || !/^Q\d+$/.test(qid)) return;   // wikidata tag missing or looks wrong..
-      if (dissolved[item.id]) return;            // dissolved/closed businesses
-
       let preset = vGroup
         .ele('item')
         .att('name', item.displayName)
         .att('type', 'node,closedway,multipolygon');
 
-      for (const osmkey in tags) {
-        preset.ele('key').att('key', osmkey).att('value', tags[osmkey]);
+      for (const osmkey in item.tags) {
+        preset.ele('key').att('key', osmkey).att('value', item.tags[osmkey]);
       }
     });
 
@@ -358,7 +361,8 @@ function buildSitemap() {
   index.ele('lastmod').txt(lastmod);
 
   // collect all paths
-  Object.keys(_cache.path).filter(tkv => {
+  const paths = Object.keys(_cache.path).sort();
+  paths.forEach(tkv => {
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
     const t = parts[0];
     const k = parts[1];
