@@ -27,7 +27,7 @@ export default function CategoryInstructions(props) {
   // Flags don't have Facebook accounts
   let social = '';
   if (t !== 'flags') {
-    social = `<br/>You can add the ${itemType}'s Facebook or Twitter usernames, and this project will pick up the logos later.`;
+    social = `You can add the ${itemType}'s Facebook or Twitter usernames, and this project will pick up the logos later.`;
   }
 
   return (
@@ -38,7 +38,7 @@ export default function CategoryInstructions(props) {
     <li>Click the "Search Overpass Turbo" link to see where the {itemType} is mapped in OpenStreetMap.</li>
     <li>If a record is missing a <code>'{wikidataTag}'</code> tag, you can do the research to add it to our project, or filter it out if it is not {a} {itemType}.<br/>
       See <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md'>CONTRIBUTING.md</a> for more info.</li>
-    <li>If a record with a <code>'{wikidataTag}'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.{social}</li>
+    <li>If a record with a <code>'{wikidataTag}'</code> tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.<br/>{social}</li>
     </ul>
     </div>
     </>

@@ -5629,7 +5629,7 @@ function CategoryInstructions(props) {
   var social = '';
 
   if (t !== 'flags') {
-    social = "<br/>You can add the ".concat(itemType, "'s Facebook or Twitter usernames, and this project will pick up the logos later.");
+    social = "You can add the ".concat(itemType, "'s Facebook or Twitter usernames, and this project will pick up the logos later.");
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
@@ -5640,7 +5640,7 @@ function CategoryInstructions(props) {
   }, "Open an issue"), " or pull request to add it!"), /*#__PURE__*/_react.default.createElement("li", null, "Click the \"Search Overpass Turbo\" link to see where the ", itemType, " is mapped in OpenStreetMap."), /*#__PURE__*/_react.default.createElement("li", null, "If a record is missing a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag, you can do the research to add it to our project, or filter it out if it is not ", a, " ", itemType, ".", /*#__PURE__*/_react.default.createElement("br", null), "See ", /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     href: "https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md"
-  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", social))));
+  }, "CONTRIBUTING.md"), " for more info."), /*#__PURE__*/_react.default.createElement("li", null, "If a record with a ", /*#__PURE__*/_react.default.createElement("code", null, "'", wikidataTag, "'"), " tag has a poor description or is missing logos, click the Wikidata link and edit the Wikidata page.", /*#__PURE__*/_react.default.createElement("br", null), social))));
 }
 
 ;
