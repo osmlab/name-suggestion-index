@@ -42,8 +42,8 @@ function buildAll() {
 
   // Start clean
   shell.rm('-f', [
+    'dist/nsi.json',
     'docs/sitemap.xml',
-    'dist/index.json',
     'dist/taginfo.json',
     'dist/presets/*',
     'dist/*.min.json',
@@ -53,12 +53,12 @@ function buildAll() {
 
   // Copy some project config files into `/dist`
   shell.cp('-f', 'config/genericWords.json', 'dist/genericWords.json');
-  shell.cp('-f', 'config/match_groups.json', 'dist/match_groups.json');
+  shell.cp('-f', 'config/matchGroups.json', 'dist/matchGroups.json');
   shell.cp('-f', 'config/replacements.json', 'dist/replacements.json');
   shell.cp('-f', 'config/trees.json', 'dist/trees.json');
 
-  // Write `index.json` as a single file containing everything by path
-  fs.writeFileSync('dist/index.json', prettyStringify(_cache.path, { maxLength: 800 }));
+  // Write `nsi.json` as a single file containing everything by path
+  fs.writeFileSync('dist/nsi.json', prettyStringify(_cache.path, { maxLength: 800 }));
 
   buildJSON();     // nsi-id-presets.json
   buildXML();      // nsi-josm-presets.json

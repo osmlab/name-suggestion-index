@@ -37,7 +37,8 @@ Currently used in:
 - [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) available
 - [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)
-- [Go Map!!](https://github.com/bryceco/GoMap), as they use iD presets
+- [osmfeatures](https://github.com/westnordost/osmfeatures)
+- [Go Map!!](https://github.com/bryceco/GoMap)
 
 ### Participate!
 
@@ -45,8 +46,7 @@ Currently used in:
 - See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
 We're always looking for help!  If you have any questions or want to reach out to a maintainer, ping `bhousel` on:
-- [OpenStreetMap US Slack](https://slack.openstreetmap.us/)
-(`#poi` or `#general` channels)
+- [OpenStreetMap US Slack](https://slack.openstreetmap.us/) (`#poi` or `#general` channels)
 
 ### Prerequisites
 
@@ -65,11 +65,14 @@ We're always looking for help!  If you have any questions or want to reach out t
 #### Generated files (do not edit):
 
 The files under `dist/*` are generated:
-* `dist/collected/*` - Frequently occuring tags collected from OpenStreetMap
-* `dist/filtered/*` - Subset of tags that we are keeping or discarding
-* `dist/presets/*` - Preset files for use in OSM editors, custom JOSM presets, etc.
-* `dist/taginfo.json` - List of all tags this project uses (see: https://taginfo.openstreetmap.org/)
+* `dist/nsi.json` - The complete index
+* `dist/dissolved.json` - List of items that we believe may be dissolved based on Wikidata claims
+* `dist/taginfo.json` - List of all tags this project supports (see: https://taginfo.openstreetmap.org/)
 * `dist/wikidata.json` - Cached data retrieved from Wikidata
+* `dist/collected/*` - Frequently occuring tags collected from OpenStreetMap
+* `dist/config/*` - A copy of the config files (see below)
+* `dist/filtered/*` - Subset of tags that we are keeping or discarding
+* `dist/presets/*` - Preset files generated for iD and JOSM editors
 
 #### Input files (edit these):
 
@@ -77,17 +80,18 @@ The files under `config/*`, `data/*`, and `features/*` can be edited:
 
 * `config/*`:
   * `config/genericWords.json` - Regular expressions used to find and discard generic names
-  * `config/match_groups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
+  * `config/matchGroups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
   * `config/replacements.json` - Mapping of old Wikidata QIDs map to their replacement new Wikidata and Wikipedia values.
   * `config/trees.json` - Metadata about subtrees in this project, and regular expressions used to keep and discard tags
 * `data/*` - Data files for each kind of feature, organized by topic and OpenStreetMap tag
-  * `data/brands/amenity/*.json`
-  * `data/brands/shop/*.json`
-  * `data/transit/route/*.json`
+  * `data/brands/**/*.json`
+  * `data/flags/**/*.json`
+  * `data/operators/**/*.json`
+  * `data/transit/**/*.json`
   * and so on…
 * `features/*` - GeoJSON files that define custom regions where the features are allowed
-  * `new_jersey.geojson`
-  * `quebec.geojson`
+  * `features/us/new_jersey.geojson`
+  * `features/ca/quebec.geojson`
   * and so on…
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.

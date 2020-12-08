@@ -622,7 +622,7 @@ function checkItems(t) {
     console.warn(colors.gray('  - Name matching ignores letter case, punctuation, spacing, and diacritical marks (é vs e). '));
     console.warn(colors.gray('    No need to add `matchNames` for variations in these.'));
     console.warn(colors.gray('  - Tag matching automatically includes other similar tags in the same match group.'));
-    console.warn(colors.gray('    No need to add `matchTags` for similar tags.  see `config/match_groups.json`'));
+    console.warn(colors.gray('    No need to add `matchTags` for similar tags.  see `config/matchGroups.json`'));
     console.warn(colors.gray('-').repeat(70));
     warnMatched.forEach(w => console.warn(
       colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')

@@ -11,7 +11,7 @@ const DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/mai
 const BRANDS_KEEP = `${DIST}/filtered/brands_keep.min.json`;
 const OPERATORS_KEEP = `${DIST}/filtered/operators_keep.min.json`;
 const TRANSIT_KEEP = `${DIST}/filtered/transit_keep.min.json`;
-const INDEX = `${DIST}/index.min.json`;
+const INDEX = `${DIST}/nsi.min.json`;
 const WIKIDATA = `${DIST}/wikidata.min.json`;
 
 // We can use iD's taginfo file to pick icons

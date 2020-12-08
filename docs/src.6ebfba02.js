@@ -19901,7 +19901,7 @@ var DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/
 var BRANDS_KEEP = "".concat(DIST, "/filtered/brands_keep.min.json");
 var OPERATORS_KEEP = "".concat(DIST, "/filtered/operators_keep.min.json");
 var TRANSIT_KEEP = "".concat(DIST, "/filtered/transit_keep.min.json");
-var INDEX = "".concat(DIST, "/index.min.json");
+var INDEX = "".concat(DIST, "/nsi.min.json");
 var WIKIDATA = "".concat(DIST, "/wikidata.min.json"); // We can use iD's taginfo file to pick icons
 
 var TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@1.0.0/dist/taginfo.min.json';

@@ -26,7 +26,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 
 * `config/*`:
   * `config/genericWords.json` - Regular expressions used to find and discard generic names
-  * `config/match_groups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
+  * `config/matchGroups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
   * `config/replacements.json` - Mapping of old Wikidata QIDs map to their replacement new Wikidata and Wikipedia values.
   * `config/trees.json` - Metadata about subtrees in this project, and regular expressions used to keep and discard tags
 * `data/*` - Data files for each kind of branded business, organized by topic and OpenStreetMap tag
@@ -248,7 +248,7 @@ You don't need to add `matchNames` for:
 - Name variations in `&` vs. `and`
 
 You don't need to add `matchTags` for:
-- Tags assigned to _match groups_ (defined in `config/match_groups.json`). For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
+- Tags assigned to _match groups_ (defined in `config/matchGroups.json`). For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
 and vice versa. _Tags in a match group will automatically match any other tags in the same match group._
 
 👉 Bonus: The build script will automatically remove extra `matchNames` and `matchTags` that are unnecessary.
