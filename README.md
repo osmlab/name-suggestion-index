@@ -84,13 +84,13 @@ You can download the files from the index directly from GitHub or use a CDN.
 
 ##### Latest published release (stable forever):
 
-Direct from GitHub <sub>([docs](https://stackoverflow.com/questions/39065921/what-do-raw-githubusercontent-com-urls-represent))</sub>:
+Direct from GitHub <sub><sup>([docs](https://stackoverflow.com/questions/39065921/what-do-raw-githubusercontent-com-urls-represent))</sup></sub>:
 ```js
 https://raw.githubusercontent.com/osmlab/name-suggestion-index/{branch or tag}/{path to file}
 https://raw.githubusercontent.com/osmlab/name-suggestion-index/v4.0.2/dist/name-suggestions.presets.min.xml
 ```
 
-Via JSDelivr CDN <sub>([docs](https://www.jsdelivr.com/))</sub>:
+Via JSDelivr CDN <sub><sup>([docs](https://www.jsdelivr.com/))</sup></sub>:
 ```js
 https://cdn.jsdelivr.net/npm/name-suggestion-index@{semver}/{path to file}
 https://cdn.jsdelivr.net/npm/name-suggestion-index@4.0.2/dist/name-suggestions.presets.min.xml
@@ -98,15 +98,15 @@ https://cdn.jsdelivr.net/npm/name-suggestion-index@4.0.2/dist/name-suggestions.p
 
 ##### Current developement version (breaks sometimes!):
 
-Direct from GitHub <sub>([docs](https://stackoverflow.com/questions/39065921/what-do-raw-githubusercontent-com-urls-represent))</sub>:
+Direct from GitHub <sub><sup>([docs](https://stackoverflow.com/questions/39065921/what-do-raw-githubusercontent-com-urls-represent))</sup></sub>:
 ```js
 https://raw.githubusercontent.com/osmlab/name-suggestion-index/{branch or tag}/{path to file}
 https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/presets/nsi-josm-presets.min.xml
 ```
 
-Via JSDelivr CDN <sub>([docs](https://www.jsdelivr.com/?docs=gh))</sub>:
+Via JSDelivr CDN <sub><sup>([docs](https://www.jsdelivr.com/?docs=gh))</sup></sub>:
 ```js
-https://cdn.jsdelivr.net/gh/name-suggestion-index@{semver}/{path to file}
+https://cdn.jsdelivr.net/gh/name-suggestion-index@{branch or tag}/{path to file}
 https://cdn.jsdelivr.net/gh/osmlab/name-suggestion-index@main/dist/presets/nsi-josm-presets.min.xml
 ```
 
