@@ -351,7 +351,7 @@ function mergeItems() {
           }
 
         } else if (t === 'operators') {
-          name = tags.operator || tags.brand;
+          name = tags.operator || tags.name || tags.brand;
 
           // Seed missing operator tags (for a file that we copied over from the 'brand' tree)
           Object.keys(tags).forEach(osmkey => {
@@ -365,7 +365,7 @@ function mergeItems() {
           // copy missing tags the other way too and include names
           //  (note: we can change this later of people hate it)
           // https://github.com/osmlab/name-suggestion-index/issues/2883#issuecomment-726305200
-          if (/^amenity\/(bicycle|car|post)/.test(kv)) {
+          if (/^amenity\/(bicycle|car)/.test(kv)) {
             Object.keys(tags).forEach(osmkey => {
               // an operator tag (but not `operator:type`)
               if (/operator(?!(:type))/.test(osmkey)) {
