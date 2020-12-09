@@ -6,7 +6,7 @@
 - [ ] npm install
 - [ ] npm run build
 - [ ] npm run wikidata
-- [ ] Update version number in `package.json`
+- [ ] Update version number in `package.json` and `README.md`
 - [ ] npm run dist
 - [ ] git add . && git commit -m 'vA.B.C'
 - [ ] git tag vA.B.C

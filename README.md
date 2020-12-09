@@ -14,7 +14,7 @@ list of commonly used features for suggesting consistent spelling and tagging in
 
 ### Browse the index
 
-You can browse the index at <https://nsi.guide/> to see which features are missing Wikidata links, or have incomplete Wikipedia pages.
+You can browse the index at <https://nsi.guide/>.
 
 ### How it's used
 
@@ -40,25 +40,6 @@ Currently used in:
 - [osmfeatures](https://github.com/westnordost/osmfeatures)
 - [Go Map!!](https://github.com/bryceco/GoMap)
 
-### Participate!
-
-- Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
-- See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
-
-We're always looking for help!  If you have any questions or want to reach out to a maintainer, ping `bhousel` on:
-- [OpenStreetMap US Slack](https://slack.openstreetmap.us/) (`#poi` or `#general` channels)
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) version 10 or newer
-- [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
-
-### Installing
-
-- Clone this project, for example:
-  `git clone git@github.com:osmlab/name-suggestion-index.git`
-- `cd` into the project folder,
-- Run `npm install` to install libraries
 
 ### About the index
 
@@ -74,7 +55,7 @@ The files under `dist/*` are generated:
 * `dist/filtered/*` - Subset of tags that we are keeping or discarding
 * `dist/presets/*` - Preset files generated for iD and JOSM editors
 
-#### Input files (edit these):
+#### Source files (edit these):
 
 The files under `config/*`, `data/*`, and `features/*` can be edited:
 
@@ -96,7 +77,61 @@ The files under `config/*`, `data/*`, and `features/*` can be edited:
 
 :point_right: See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
 
-### Building the index
+
+#### Downloading the index files:
+
+You can download the files from the index directly from GitHub or use a CDN.
+
+##### Latest published release (stable forever):
+
+Direct from GitHub <sub>([docs](https://stackoverflow.com/questions/39065921/what-do-raw-githubusercontent-com-urls-represent))</sub>:
+```js
+https://raw.githubusercontent.com/osmlab/name-suggestion-index/{branch or tag}/{path to file}
+https://raw.githubusercontent.com/osmlab/name-suggestion-index/v4.0.2/dist/name-suggestions.presets.min.xml
+```
+
+Via JSDelivr CDN <sub>([docs](https://www.jsdelivr.com/))</sub>:
+```js
+https://cdn.jsdelivr.net/npm/name-suggestion-index@{semver}/{path to file}
+https://cdn.jsdelivr.net/npm/name-suggestion-index@4.0.2/dist/name-suggestions.presets.min.xml
+```
+
+##### Current developement version (breaks sometimes!):
+
+Direct from GitHub <sub>([docs](https://stackoverflow.com/questions/39065921/what-do-raw-githubusercontent-com-urls-represent))</sub>:
+```js
+https://raw.githubusercontent.com/osmlab/name-suggestion-index/{branch or tag}/{path to file}
+https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/presets/nsi-josm-presets.min.xml
+```
+
+Via JSDelivr CDN <sub>([docs](https://www.jsdelivr.com/?docs=gh))</sub>:
+```js
+https://cdn.jsdelivr.net/gh/name-suggestion-index@{semver}/{path to file}
+https://cdn.jsdelivr.net/gh/osmlab/name-suggestion-index@main/dist/presets/nsi-josm-presets.min.xml
+```
+
+
+### Participate!
+
+- Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
+
+We're always looking for help!  If you have any questions or want to reach out to a maintainer, ping `bhousel` on:
+- [OpenStreetMap US Slack](https://slack.openstreetmap.us/) (`#poi` or `#general` channels)
+
+#### Prerequisites
+
+- [Node.js](https://nodejs.org/) version 10 or newer
+- [`git`](https://www.atlassian.com/git/tutorials/install-git/) for your platform
+
+#### Installing
+
+- Clone this project, for example:
+  `git clone git@github.com:osmlab/name-suggestion-index.git`
+- `cd` into the project folder,
+- Run `npm install` to install libraries
+
+#### Building the index
 
 - `npm run build`
   - Processes any custom locations under `features/**/*.geojson`
@@ -104,19 +139,19 @@ The files under `config/*`, `data/*`, and `features/*` can be edited:
   - Any new items from the keep list not already present in the index will be merged into it
   - Outputs many warnings to suggest updates to `data/**/*.json`
 
-### Building nsi.guide
+#### Building nsi.guide
 
 <https://nsi.guide/> is a web application written in ReactJS that lets anyone browse the index.
 * The source code for this app can be found under `app/*`
 * `npm run appbuild` will rebuild it.
 
-### Other commands
+#### Other commands
 
 - `npm run wikidata` - Fetch useful data from Wikidata - labels, descriptions, logos, etc.
 - `npm run dist` - Rebuild and minify the generated files in the `dist/` folder.
 - `npm run` - Lists other available commands
 
-### Collecting names from planet
+#### Collecting names from planet
 
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
 You do not need to do these steps in order to contribute to the index.
