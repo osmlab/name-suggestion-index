@@ -49,7 +49,13 @@ function collectFeatures() {
   let features = [];
   let files = {};
 
-  glob.sync('features/**/*.geojson').forEach(file => {
+  glob.sync('features/**/*', { nodir: true }).forEach(file => {
+    if (!/\.geojson$/.test(file)) {
+      console.error(colors.red(`Error - file should have a .geojson extension:`));
+      console.error('  ' + colors.yellow(file));
+      process.exit(1);
+    }
+
     const contents = fs.readFileSync(file, 'utf8');
     let parsed;
     try {
