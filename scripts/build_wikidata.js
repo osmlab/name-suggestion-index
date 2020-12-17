@@ -345,43 +345,45 @@ function processEntities(result) {
     }
 
     // P576 - Dissolution date
-    wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
-      let dissolution = { date: item.value };
+    if (meta.what !== 'flag') {
+      wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
+        let dissolution = { date: item.value };
 
-      if (item.qualifiers) {
-        // P17 - Countries where the brand is dissoluted
-        const countries = item.qualifiers.P17;
-        if (countries) {
-          dissolution.countries = countries.map(code => iso1A2Code(code));
+        if (item.qualifiers) {
+          // P17 - Countries where the brand is dissoluted
+          const countries = item.qualifiers.P17;
+          if (countries) {
+            dissolution.countries = countries.map(code => iso1A2Code(code));
+          }
+          // P156 - followed by or P1366 - replaced by (successor)
+          const successorQID = item.qualifiers.P156 || item.qualifiers.P1366;
+          if (successorQID) {
+            dissolution.upgrade = successorQID;
+          }
         }
-        // P156 - followed by or P1366 - replaced by (successor)
-        const successorQID = item.qualifiers.P156 || item.qualifiers.P1366;
-        if (successorQID) {
-          dissolution.upgrade = successorQID;
-        }
-      }
 
-      if (!dissolution.upgrade) {
-        // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
-        // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
-        // P156 - followed by or P1366 - replaced by (successor)
-        let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366');
-        if (successor && successor.id) {
-          dissolution.upgrade = successor.id;
+        if (!dissolution.upgrade) {
+          // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
+          // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
+          // P156 - followed by or P1366 - replaced by (successor)
+          let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366');
+          if (successor && successor.id) {
+            dissolution.upgrade = successor.id;
+          }
         }
-      }
 
-      if (dissolution.upgrade) {
-        let msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
-          colors.red(`  ${target.label} might possibly be replaced by ${dissolution.upgrade}`);
-        if (dissolution.countries) {
-          msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
+        if (dissolution.upgrade) {
+          let msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
+            colors.red(`  ${target.label} might possibly be replaced by ${dissolution.upgrade}`);
+          if (dissolution.countries) {
+            msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
+          }
+          _warnings.push(msg);
+          console.warn(msg);
         }
-        _warnings.push(msg);
-        console.warn(msg);
-      }
-      target.dissolutions.push(dissolution);
-    });
+        target.dissolutions.push(dissolution);
+      });
+    }
 
 
     // If we are allowed to make edits to wikidata, continue beyond here
