@@ -141,6 +141,8 @@ Object.keys(_cache.path).forEach(tkv => {
         _qidMetadata[qid] = { p31: 'Q14660', what: 'flag' };
       } else if (osmtag === 'network') {
         _qidMetadata[qid] = { p31: 'Q924286', what: 'transport network' };
+      } else if (osmtag === 'subject') {
+        _qidMetadata[qid] = { p31: 'Q43229', what: 'subject' };
       } else {
         _qidMetadata[qid] = { p31: 'Q43229', what: 'organization' };
       }
@@ -345,7 +347,7 @@ function processEntities(result) {
     }
 
     // P576 - Dissolution date
-    if (meta.what !== 'flag') {
+    if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
         let dissolution = { date: item.value };
 
