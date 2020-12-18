@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, MemoryRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -70,7 +70,7 @@ function Title(props) {
 function TreeSwitcher(props) {
   const t = props.t;
   const others = ['brands', 'flags', 'operators', 'transit'].filter(d => d !== t);
-  const links = others.map(t => (<li><Link to={`index.html?t=${t}`}>{t}/</Link></li>));
+  const links = others.map(t => (<li key={t}><MemoryRouter><Link to={`index.html?t=${t}`}>{t}/</Link></MemoryRouter></li>));
   const list = links.length ? (<> see also: <ul>{links}</ul> </>) : null;
 
   return (
@@ -125,7 +125,7 @@ function GitHub() {
   return (
     <div id='octocat'>
     <a href='https://github.com/osmlab/name-suggestion-index' target='_blank'>
-    <FontAwesomeIcon icon={faGithub} size='2x' />
+    <FontAwesomeIcon icon={faGithub} size='2x' title="github" />
     </a>
     </div>
   );
