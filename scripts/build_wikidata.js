@@ -260,9 +260,9 @@ function processEntities(result) {
       target.description = description;
     }
 
-    // Get sitelinks to supply missing `*:wikipedia` tags - #4716
+    // Get sitelinks to supply missing `*:wikipedia` tags - #4716, #4747
     if (entity.sitelinks) {
-      addMissingWikipediaTags(qid, entity.sitelinks);
+      checkWikipediaTags(qid, entity.sitelinks);
     }
 
     // Process claims below here...
@@ -747,10 +747,12 @@ function processWbEditQueue(queue) {
 }
 
 
-// `addMissingWikipediaTags`
-// We can look at the wikidata sitelinks and pick one if this item is missing `*:wikipedia` tags - #4716
+// `checkWikipediaTags`
+// Look at the wikidata sitelinks for this qid and
+// - assign `*:wikipedia` tags that are missing - #4716
+// - correct `*:wikipedia` tags that look wrong - #4747
 // Note, skip assigning `*:wikipedia` for 'flags' tree for now.
-function addMissingWikipediaTags(qid, sitelinks) {
+function checkWikipediaTags(qid, sitelinks) {
   // Convert sitelinks to OSM wikipedia tags..
   let wikis = {};
   Object.keys(sitelinks).forEach(code => {
@@ -768,7 +770,6 @@ function addMissingWikipediaTags(qid, sitelinks) {
   });
 
   const wikiCount = Object.keys(wikis).length;
-  if (!wikiCount) return null;   // there are none
 
   // which NSI items use this qid?
   Array.from(_qidItems[qid]).forEach(id => {
@@ -777,14 +778,34 @@ function addMissingWikipediaTags(qid, sitelinks) {
 
     ['brand', 'operator', 'network'].forEach(osmkey => {
       const wd = item.tags[`${osmkey}:wikidata`];
-      let wp = item.tags[`${osmkey}:wikipedia`];
-      if (wd && (wd === qid) && !wp) {  // `*:wikidata` tag matches, `*:wikipedia` tag missing
-        wp = chooseWiki(item);
-        if (wp) {
-          item.tags[`${osmkey}:wikipedia`] = wp;
-          const msg = colors.cyan(`${qid} "${item.displayName}" adding missing tag ${osmkey}:wikipedia = ${wp}`);
+      const wpOld = item.tags[`${osmkey}:wikipedia`];
+
+      if (wd && (wd === qid)) {  // `*:wikidata` tag matches
+        if (wpOld && !wikiCount) {            // there was a wikipedia sitelink... but there shouldn't be one for this wikidata qid
+          delete item.tags[`${osmkey}:wikipedia`];
+          const msg = colors.cyan(`${qid} "${item.displayName}" removing old tag "${osmkey}:wikipedia = ${wpOld}" (doesn't match this qid)`);
           _warnings.push(msg);
           console.warn(msg);
+        } else if (wpOld && wikiCount) {        // there was a wikipedia sitelink...
+          const m = wpOld.match(/^(\w+):/);     // check the language of it  ('en', 'de', 'zh-yue')
+          if (m) {
+            const lang = m[1];
+            let wpNew = wikis[lang];
+            if (wpNew && wpNew !== wpOld) {     // the sitelink we found for this language and qid is different, so replace it
+              item.tags[`${osmkey}:wikipedia`] = wpNew;
+              const msg = colors.cyan(`${qid} "${item.displayName}" updating tag "${osmkey}:wikipedia = ${wpNew}" (was "${wpOld})"`);
+              _warnings.push(msg);
+              console.warn(msg);
+            }
+          }
+        } else if (!wpOld) {                    // there was no sitelink before...
+          let wpNew = chooseWiki(item);         // so we will try to pick one
+          if (wpNew) {
+            item.tags[`${osmkey}:wikipedia`] = wpNew;
+            const msg = colors.cyan(`${qid} "${item.displayName}" adding missing tag "${osmkey}:wikipedia = ${wpNew}"`);
+            _warnings.push(msg);
+            console.warn(msg);
+          }
         }
       }
     });
