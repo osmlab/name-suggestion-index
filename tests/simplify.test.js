@@ -30,4 +30,10 @@ describe('simplify', () => {
     expect(simplify('Beßon')).toBe('besson');
   });
 
+  test('returns empty string if no input', () => {
+    expect(simplify()).toBe('');
+    expect(simplify(null)).toBe('');
+    expect(simplify({})).toBe('');
+  });
+
 });

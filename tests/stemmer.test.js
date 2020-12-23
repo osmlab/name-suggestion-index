@@ -11,6 +11,7 @@ describe('stemmer', () => {
   test('returns empty string if no input', () => {
     expect(stemmer()).toBe('');
     expect(stemmer(null)).toBe('');
+    expect(stemmer({})).toBe('');
   });
 
 });
