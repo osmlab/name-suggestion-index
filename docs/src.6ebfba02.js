@@ -20121,7 +20121,7 @@ function App() {
                 }; // populate cache
 
                 Object.keys(json.nsi).forEach(function (tkv) {
-                  var items = json[tkv];
+                  var items = json.nsi[tkv];
                   index.path[tkv] = items;
                   items.forEach(function (item) {
                     item.tkv = tkv; // remember the path for later

@@ -151,7 +151,7 @@ export default function App() {
 
       // populate cache
       Object.keys(json.nsi).forEach(tkv => {
-        const items = json[tkv];
+        const items = json.nsi[tkv];
         index.path[tkv] = items;
         items.forEach(item => {
           item.tkv = tkv;  // remember the path for later
