@@ -330,6 +330,8 @@
   // remove spaces, punctuation, diacritics
   // for punction see https://stackoverflow.com/a/21224179
   var simplify = (str) => {
+    if (typeof str !== 'string') return '';
+
     return diacritics.remove(
       str
         .replace(/&/g, 'and')
@@ -1235,7 +1237,7 @@
     // }
     let _matchIndex;
 
-    // The `_itemToLocation` structure maps itemIDs to locationSetIDs:
+    // The `_itemLocation` structure maps itemIDs to locationSetIDs:
     // {
     //   'firstbank-f17495':  '+[first_bank_western_us.geojson]',
     //   'firstbank-978cca':  '+[first_bank_carolinas.geojson]',
@@ -1243,9 +1245,19 @@
     //   'coopfood-a8278b':   '+[Q23666]',
     //   …
     // }
-    let _itemToLocation;
+    let _itemLocation;
 
-    // the _locationIndex is an instance of which-polygon spatial index for the location sets.
+    // The `_locationSets` structure maps locationSetIDs to *resolved* locationSets:
+    // {
+    //   '+[first_bank_western_us.geojson]':  GeoJSON {…},
+    //   '+[first_bank_carolinas.geojson]':   GeoJSON {…},
+    //   '+[Q16]':                            GeoJSON {…},
+    //   '+[Q23666]':                         GeoJSON {…},
+    //   …
+    // }
+    let _locationSets;
+
+    // The _locationIndex is an instance of which-polygon spatial index for the locationSets.
     let _locationIndex;
 
     let _warnings = [];    // array of match conflict pairs
@@ -1264,10 +1276,9 @@
     //    …
     // }
     //
-    matcher.buildMatchIndex = (all, loco) => {
+    matcher.buildMatchIndex = (all) => {
       if (_matchIndex) return;   // it was built already
       _matchIndex = {};
-      _itemToLocation = {};
 
       Object.keys(all).forEach(tkv => {
         let items = all[tkv];
@@ -1291,10 +1302,7 @@
 
         // First time - perform some setup steps on this item before anything else.
         if (which === 'primary') {
-          // 1. index this item's locationSetID..
-          _itemToLocation[item.id] = loco.validateLocationSet(item.locationSet).id;
-
-          // 2. Automatically remove redundant `matchTags` - #3417
+          // Automatically remove redundant `matchTags` - #3417
           // (i.e. This kv is already covered by matchGroups, so it doesn't need to be in `item.matchTags`)
           if (Array.isArray(item.matchTags) && item.matchTags.length) {
             Object.values(matchGroups$1).forEach(matchGroup => {
@@ -1313,7 +1321,7 @@
 
         // key/value tagpairs to insert into the index..
         let kvTags = [`${thiskv}`];
-        if (thiskv !== 'man_made/flagpole') {
+        if (t !== 'transit' && t !== 'flags') {
           kvTags.push(`${k}/yes`, 'building/yes');  // #3454 - match some generic tags
         }
         kvTags = kvTags.concat(item.matchTags || []);
@@ -1325,10 +1333,10 @@
 
         } else if (which === 'secondary') {          // #2732 - match alternate names
           nameTags = [
-            /^(brand|operator|network|subject)$/,
-            /^\w+_name$/,                            // e.g. `alt_name`, `short_name`
-            /^(name|brand|operator|network):\w+$/,   // e.g. `name:en`, `name:ru`
-            /^\w+_name:\w+$/                         // e.g. `alt_name:en`, `short_name:ru`
+            /^(brand|country|flag|operator|network|subject)$/,
+            /^\w+_name$/,                                                 // e.g. `alt_name`, `short_name`
+            /^(name|brand|country|flag|operator|network|subject):\w+$/,   // e.g. `name:en`, `name:ru`
+            /^\w+_name:\w+$/                                              // e.g. `alt_name:en`, `short_name:ru`
           ];
         }
 
@@ -1343,7 +1351,7 @@
               // There are a few exceptions to the nameTag matching regexes.
               // Usually a tag suffix contains a language code like `name:en`, `name:ru`
               // but we want to exclude things like `operator:type`, `name:etymology`, etc..
-              if (/:(type|left|right|etymology)$/.test(osmkey)) return;
+              if (/:(type|left|right|etymology|wikipedia)$/.test(osmkey)) return;
 
               const name = tags[osmkey];
               const nsimple = simplify(name);
@@ -1395,23 +1403,41 @@
     //
     // buildLocationIndex()
     // Call this to prepare a which-polygon location index.
-    // You can skip this step if you don't care about location.
+    // This *resolves* all the locationSets into GeoJSON, which takes some time.
+    // You can skip this step if you don't care about matching within a location.
     //
     matcher.buildLocationIndex = (all, loco) => {
       if (_locationIndex) return;   // it was built already
 
-      let locationSets = {};
+      _itemLocation = {};
+      _locationSets = {};
+
       Object.keys(all).forEach(tkv => {
         let items = all[tkv];
         if (!Array.isArray(items) || !items.length) return;
 
         items.forEach(item => {
-          let feature = loco.resolveLocationSet(item.locationSet).feature;
-          locationSets[feature.id] = feature;
+          if (_itemLocation[item.id]) return;
+
+          const resolved = loco.resolveLocationSet(item.locationSet);
+          if (_locationSets[resolved.id]) return;
+
+          // important: always use the locationSet `id` (`+[Q30]`), not the feature `id` (`Q30`)
+          const feature = _cloneDeep(resolved.feature);
+          feature.id = resolved.id;
+          feature.properties.id = resolved.id;
+
+          _itemLocation[item.id] = resolved.id;
+          _locationSets[resolved.id] = feature;
         });
       });
 
-      _locationIndex = whichPolygon_1({ type: 'FeatureCollection', features: Object.values(locationSets) });
+      _locationIndex = whichPolygon_1({ type: 'FeatureCollection', features: Object.values(_locationSets) });
+
+
+      function _cloneDeep(obj) {
+        return JSON.parse(JSON.stringify(obj));
+      }
     };
 
 
@@ -1430,18 +1456,19 @@
         throw new Error('match:  matchIndex not built.');
       }
 
-      // If we were supplied a location, and a locationIndex has been set up,
+      // If we were supplied a location, and a _locationIndex has been set up,
       // get the locationSets that are valid there so we can filter results.
-      let filterLocations;
+      let validLocations;
       if (Array.isArray(loc) && _locationIndex) {
-        filterLocations = new Set(_locationIndex([loc[0], loc[1], loc[0], loc[1]], true).map(props => props.id));
+        // which-polygon query returns an array of GeoJSON properties, pass true to return all results
+        validLocations = _locationIndex([loc[0], loc[1], loc[0], loc[1]], true);
       }
 
       const kv = `${k}/${v}`;
       const nsimple = simplify(n);
 
       // Look for an exact match on kv..
-      let m = _tryMatch(kv, nsimple);
+      let m = tryMatch(kv, nsimple);
       if (m) return m;
 
       // Look in match groups for other pairs considered equivalent to kv..
@@ -1453,7 +1480,7 @@
         for (let i = 0; i < matchGroup.length; i++) {
           const otherkv = matchGroup[i];
           if (otherkv === kv) continue;  // skip self
-          m = _tryMatch(otherkv, nsimple);
+          m = tryMatch(otherkv, nsimple);
           if (m) return m;
         }
       }
@@ -1462,7 +1489,7 @@
       return null;
 
 
-      function _tryMatch(kv, nsimple) {
+      function tryMatch(kv, nsimple) {
         if (!_matchIndex[kv]) return null;
 
         let m = _matchIndex[kv][nsimple];
@@ -1470,12 +1497,27 @@
 
         let itemIDs = Array.from(m);
 
-        // Filter the match to include only results valid in that location.
-        if (filterLocations) {
-          itemIDs = itemIDs.filter(itemID => filterLocations.has(_itemToLocation[itemID]));
+        // Filter the match to include only results valid in the requested `loc`.
+        if (validLocations) {
+          itemIDs = itemIDs.filter(isValidLocation);
+        }
+        return itemIDs.length ? itemIDs.sort(byAreaAscending) : null;
+
+
+        function isValidLocation(itemID) {
+          if (!_itemLocation) return true;
+          return validLocations.find(props => props.id === _itemLocation[itemID]);
         }
 
-        return itemIDs.length ? itemIDs : null;
+        // Sort smaller (more relevant) locations first.
+        function byAreaAscending(itemA, itemB) {
+          if (!_itemLocation || !_locationSets) return 0;
+          const locationA = _locationSets[_itemLocation[itemA]];
+          const locationB = _locationSets[_itemLocation[itemB]];
+          const areaA = (locationA && locationA.properties.area) || Infinity;
+          const areaB = (locationB && locationB.properties.area) || Infinity;
+          return areaA - areaB;
+        }
       }
     };
 
@@ -1492,7 +1534,9 @@
 
   // Removes noise from the name so that we can compare
   // similar names for catching duplicates.
-  var stemmer = (name) => {
+  var stemmer = (str) => {
+    if (typeof str !== 'string') return '';
+
     const noise = [
       /ban(k|c)(a|o)?/ig,
       /банк/ig,
@@ -1503,8 +1547,8 @@
       /(shop|store)/ig
     ];
 
-    name = noise.reduce((acc, regex) => acc.replace(regex, ''), (name || ''));
-    return simplify(name);
+    str = noise.reduce((acc, regex) => acc.replace(regex, ''), str);
+    return simplify(str);
   };
 
   exports.matcher = matcher;
