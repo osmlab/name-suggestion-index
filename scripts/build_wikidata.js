@@ -552,8 +552,21 @@ function finish() {
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
-    fs.writeFileSync('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
-    fs.writeFileSync('dist/dissolved.json', prettyStringify(sort(dissolved), { maxLength: 100 }));
+    const packageJSON = require('../package.json');
+    const distURL = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
+    const now = new Date();
+
+    const wikidataContents = {
+      _meta: { filename: `${distURL}/wikidata.json`, generated: now, version: packageJSON.version },
+      wikidata: sort(_wikidata)
+    };
+    fs.writeFileSync('dist/wikidata.json', prettyStringify(wikidataContents));
+
+    const dissolvedContents = {
+      _meta: { filename: `${distURL}/dissolved.json`, generated: now, version: packageJSON.version },
+      dissolved: sort(dissolved)
+    };
+    fs.writeFileSync('dist/dissolved.json', prettyStringify(dissolvedContents, { maxLength: 100 }));
 
     // Write filetree too, in case we updated some of these with `*:wikipedia` tags - #4716
     fileTree.write(_cache);

@@ -22,6 +22,10 @@ const featureCollection = require('../dist/featureCollection.json');
 const LocationConflation = require('@ideditor/location-conflation');
 const loco = new LocationConflation(featureCollection);
 
+// more metadata we'll add to output files
+const distURL = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
+const now = new Date();
+
 
 let _cache = {};
 fileTree.read(_cache, loco);
@@ -51,14 +55,16 @@ function buildAll() {
     'dist/filtered/*.min.json'
   ]);
 
-  // Copy some project config files into `/dist`
-  shell.cp('-f', 'config/genericWords.json', 'dist/genericWords.json');
-  shell.cp('-f', 'config/matchGroups.json', 'dist/matchGroups.json');
-  shell.cp('-f', 'config/replacements.json', 'dist/replacements.json');
-  shell.cp('-f', 'config/trees.json', 'dist/trees.json');
+  // Copy some project config files into `/dist`, adding timestamps
+  copyWithMeta('genericWords.json');
+  copyWithMeta('matchGroups.json');
+  copyWithMeta('replacements.json');
+  copyWithMeta('trees.json');
 
   // Write `nsi.json` as a single file containing everything by path
-  fs.writeFileSync('dist/nsi.json', prettyStringify(_cache.path, { maxLength: 800 }));
+  let output = { nsi: _cache.path };
+  output._meta = { filename: `${distURL}/nsi.json`, generated: now, version: packageJSON.version };
+  fs.writeFileSync('dist/nsi.json', prettyStringify(output, { maxLength: 800 }));
 
   buildJSON();     // nsi-id-presets.json
   buildXML();      // nsi-josm-presets.json
@@ -70,6 +76,25 @@ function buildAll() {
     const minFile = file.replace('.json', '.min.json');
     minifySync(file, minFile);
   });
+}
+
+
+function copyWithMeta(filename) {
+  const inPath = `config/${filename}`;
+  const outPath = `dist/${filename}`;
+
+  const contents = fs.readFileSync(inPath, 'utf8');
+  let data;
+  try {
+    data = JSON5.parse(contents);
+  } catch (jsonParseError) {
+    console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
+    console.error('  ' + colors.yellow(inPath));
+    process.exit(1);
+  }
+
+  data._meta = { filename: `${distURL}/${filename}`, generated: now, version: packageJSON.version };
+  fs.writeFileSync(outPath, prettyStringify(data));
 }
 
 
@@ -237,7 +262,9 @@ function buildJSON() {
     console.warn(colors.yellow(`Warning - no iD source preset found for ${tkv}`));
   });
 
-  fs.writeFileSync('dist/presets/nsi-id-presets.json', prettyStringify(targetPresets));
+  let output = { presets: targetPresets };
+  output._meta = { filename: `${distURL}/presets/nsi-id-presets.json`, generated: now, version: packageJSON.version };
+  fs.writeFileSync('dist/presets/nsi-id-presets.json', prettyStringify(output));
 }
 
 
@@ -310,7 +337,7 @@ function buildXML() {
 function buildTaginfo() {
   let taginfo = {
     'data_format': 1,
-    'data_url': 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/taginfo.json',
+    'data_url': `${distURL}/taginfo.json`,
     'project': {
       'name': 'name-suggestion-index',
       'description': 'Canonical features for OpenStreetMap',
@@ -350,7 +377,7 @@ function buildTaginfo() {
 
 function buildSitemap() {
   const changefreq = 'weekly';
-  const lastmod = (new Date()).toISOString();
+  const lastmod = now.toISOString();
 
   let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
   let urlset = root.ele('urlset').att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');

@@ -15,6 +15,11 @@ const featureSchema = require('../schema/feature.json');
 let v = new Validator();
 v.addSchema(geojsonSchema, 'http://json.schemastore.org/geojson.json');
 
+// more metadata we'll add to output files
+const packageJSON = require('../package.json');
+const distURL = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
+const now = new Date();
+
 
 console.log(colors.blue('-'.repeat(70)));
 console.log(colors.blue('🧩  Build features'));
@@ -34,7 +39,8 @@ function buildAll() {
 
   // Features
   const features = collectFeatures();
-  const featureCollection = { type: 'FeatureCollection', features: features };
+  let featureCollection = { type: 'FeatureCollection', features: features };
+  featureCollection._meta = { filename: `${distURL}/featureCollection.json`, generated: now, version: packageJSON.version };
   fs.writeFileSync('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 9999 }));
 
   console.timeEnd(END);
