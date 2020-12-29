@@ -20116,10 +20116,11 @@ function App() {
                 json = _context2.sent;
                 index = {
                   path: {},
-                  id: {}
+                  id: {},
+                  meta: json._meta
                 }; // populate cache
 
-                Object.keys(json).forEach(function (tkv) {
+                Object.keys(json.nsi).forEach(function (tkv) {
                   var items = json[tkv];
                   index.path[tkv] = items;
                   items.forEach(function (item) {

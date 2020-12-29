@@ -147,10 +147,10 @@ export default function App() {
     async function fetchUrl() {
       const response = await fetch(url);
       const json = await response.json();
-      let index = { path: {}, id: {} };
+      let index = { path: {}, id: {}, meta: json._meta };
 
       // populate cache
-      Object.keys(json).forEach(tkv => {
+      Object.keys(json.nsi).forEach(tkv => {
         const items = json[tkv];
         index.path[tkv] = items;
         items.forEach(item => {
