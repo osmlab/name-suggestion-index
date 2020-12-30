@@ -75,8 +75,8 @@ function buildAll() {
 
 
 function copyWithMeta(filename) {
-  const contents = require(`config/${filename}`);
-  writeFileWithMeta(`dist/${filename}`, prettyStringify(contents));
+  const contents = fs.readFileSync(`config/${filename}`, 'utf8');
+  writeFileWithMeta(`dist/${filename}`, contents);
 }
 
 
