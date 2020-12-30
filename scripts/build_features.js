@@ -6,7 +6,7 @@ const path = require('path');
 const precision = require('geojson-precision');
 const prettyStringify = require('json-stringify-pretty-compact');
 const rewind = require('geojson-rewind');
-const shell = require('shelljs');
+const writeFileWithMeta = require('../lib/write_file_with_meta.js');
 const Validator = require('jsonschema').Validator;
 
 const geojsonSchema = require('../schema/geojson.json');
@@ -14,11 +14,6 @@ const featureSchema = require('../schema/feature.json');
 
 let v = new Validator();
 v.addSchema(geojsonSchema, 'http://json.schemastore.org/geojson.json');
-
-// more metadata we'll add to output files
-const packageJSON = require('../package.json');
-const distURL = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
-const now = new Date();
 
 
 console.log(colors.blue('-'.repeat(70)));
@@ -34,14 +29,9 @@ function buildAll() {
   console.log(START);
   console.time(END);
 
-  // Start clean
-  shell.rm('-f', ['dist/featureCollection.json']);
-
-  // Features
   const features = collectFeatures();
   let featureCollection = { type: 'FeatureCollection', features: features };
-  featureCollection._meta = { filename: `${distURL}/featureCollection.json`, generated: now, version: packageJSON.version };
-  fs.writeFileSync('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 9999 }));
+  writeFileWithMeta('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 9999 }));
 
   console.timeEnd(END);
 }

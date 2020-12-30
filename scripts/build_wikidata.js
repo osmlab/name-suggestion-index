@@ -2,11 +2,11 @@ const colors = require('colors/safe');
 const crypto = require('crypto');
 const fetch = require('node-fetch');
 const fileTree = require('../lib/file_tree.js');
-const fs = require('fs');
 const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
 const project = require('../package.json');
 const prettyStringify = require('json-stringify-pretty-compact');
 const sort = require('../lib/sort.js');
+const writeFileWithMeta = require('../lib/write_file_with_meta.js');
 
 // metadata about the trees
 const trees = require('../config/trees.json').trees;
@@ -552,21 +552,8 @@ function finish() {
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
-    const packageJSON = require('../package.json');
-    const distURL = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
-    const now = new Date();
-
-    const wikidataContents = {
-      _meta: { filename: `${distURL}/wikidata.json`, generated: now, version: packageJSON.version },
-      wikidata: sort(_wikidata)
-    };
-    fs.writeFileSync('dist/wikidata.json', prettyStringify(wikidataContents));
-
-    const dissolvedContents = {
-      _meta: { filename: `${distURL}/dissolved.json`, generated: now, version: packageJSON.version },
-      dissolved: sort(dissolved)
-    };
-    fs.writeFileSync('dist/dissolved.json', prettyStringify(dissolvedContents, { maxLength: 100 }));
+    writeFileWithMeta('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
+    writeFileWithMeta('dist/dissolved.json', prettyStringify({ dissolved: sort(dissolved) }, { maxLength: 100 }));
 
     // Write filetree too, in case we updated some of these with `*:wikipedia` tags - #4716
     fileTree.write(_cache);
