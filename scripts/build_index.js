@@ -218,13 +218,19 @@ function loadIndex() {
   console.time(END);
 
   fileTree.read(_cache, loco);
-  matcher.buildMatchIndex(_cache.path, loco);
-
-  // It takes a while to resolve all of the locationSets into GeoJSON and insert into which-polygon
-  // We don't need a location index for this script, but it's useful to know.
-  //  matcher.buildLocationIndex(_cache.path, loco);
-
   console.timeEnd(END);
+
+  const MATCH_INDEX_END = '👍  ' + colors.green(`built match index`);
+  console.time(MATCH_INDEX_END);
+  matcher.buildMatchIndex(_cache.path);
+  console.timeEnd(MATCH_INDEX_END);
+
+  // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
+  // We don't need a location index for this script, but it's useful to know.
+  const LOCATION_INDEX_END = '👍  ' + colors.green(`built location index`);
+  console.time(LOCATION_INDEX_END);
+  matcher.buildLocationIndex(_cache.path, loco);
+  console.timeEnd(LOCATION_INDEX_END);
 }
 
 
