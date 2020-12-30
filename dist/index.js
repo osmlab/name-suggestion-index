@@ -1427,13 +1427,20 @@
           feature.id = resolved.id;
           feature.properties.id = resolved.id;
 
+          if (!feature.geometry.coordinates.length || !feature.properties.area) {
+            console.error('');
+            console.error(`buildLocationIndex: locationSet ${resolved.id} for ${item.id} resolves to invalid feature:`);
+            console.error(JSON.stringify(feature));
+            console.error('');
+            return;
+          }
+
           _itemLocation[item.id] = resolved.id;
           _locationSets[resolved.id] = feature;
         });
       });
 
       _locationIndex = whichPolygon_1({ type: 'FeatureCollection', features: Object.values(_locationSets) });
-
 
       function _cloneDeep(obj) {
         return JSON.parse(JSON.stringify(obj));
