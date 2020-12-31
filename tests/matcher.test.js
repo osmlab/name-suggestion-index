@@ -131,13 +131,13 @@ describe('match', () => {
 
 
   describe('advanced matching, multiple result', () => {
-    test('matches KFC with unspecified location, results sort by area ascending', () => {
+    test('matches KFC with unspecified location, results sort by area descending', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC');
       expect(result).toBeInstanceOf(Array);
       expect(result.length).toBe(3);
-      expect(result[0]).toBe('pfk-a54c14');  // quebec area = 1821913 km²
+      expect(result[0]).toBe('kfc-658eea');  // world area = 511207893 km²
       expect(result[1]).toBe('kfc-1ff19c');  // china area = 10386875 km²
-      expect(result[2]).toBe('kfc-658eea');  // world area = 511207893 km²
+      expect(result[2]).toBe('pfk-a54c14');  // quebec area = 1821913 km²
     });
 
     test('matches KFC in USA', () => {
