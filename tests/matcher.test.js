@@ -277,6 +277,21 @@ describe('match', () => {
       const result = _matcher.match('building', 'yes', 'new zealand');
       expect(result).toBeNull();
     });
+
+    test('matches state flag of Georgia before country flag of Georgia in USA', () => {
+      const result = _matcher.match('man_made', 'flagpole', 'georgia', USA);
+      expect(result).toBeInstanceOf(Array);
+      expect(result.length).toBe(2);
+      expect(result[0]).toBe('georgia-85bb3f');  // Georgia, the US state
+      expect(result[1]).toBe('georgia-e5dc93');  // Georgia, the country
+    });
+
+    test('matches only country flag of Georgia outside the USA', () => {
+      const result = _matcher.match('man_made', 'flagpole', 'georgia', HONGKONG);
+      expect(result).toBeInstanceOf(Array);
+      expect(result.length).toBe(1);
+      expect(result[0]).toBe('georgia-e5dc93');  // Georgia, the country
+    });
   });
 
 });
