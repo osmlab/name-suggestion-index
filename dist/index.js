@@ -1351,7 +1351,7 @@
               // There are a few exceptions to the nameTag matching regexes.
               // Usually a tag suffix contains a language code like `name:en`, `name:ru`
               // but we want to exclude things like `operator:type`, `name:etymology`, etc..
-              if (/:(type|left|right|etymology|wikipedia)$/.test(osmkey)) return;
+              if (/:(colour|type|left|right|etymology|wikipedia)$/.test(osmkey)) return;
 
               const name = tags[osmkey];
               const nsimple = simplify(name);
@@ -1417,14 +1417,16 @@
         if (!Array.isArray(items) || !items.length) return;
 
         items.forEach(item => {
-          if (_itemLocation[item.id]) return;
+          if (_itemLocation[item.id]) return;   // we've seen item id already - shouldn't be possible?
 
-          const resolved = loco.resolveLocationSet(item.locationSet);
-          if (_locationSets[resolved.id]) return;
+          const resolved = loco.resolveLocationSet(item.locationSet);   // resolve a feature for this locationSet
+          _itemLocation[item.id] = resolved.id;                         // link it to the item
 
-          // important: always use the locationSet `id` (`+[Q30]`), not the feature `id` (`Q30`)
-          const feature = _cloneDeep(resolved.feature);
-          feature.id = resolved.id;
+          if (_locationSets[resolved.id]) return;   // we've seen this locationSet feature before..
+
+          // First time seeing this locationSet feature, make a copy and add to locationSet cache..
+          let feature = _cloneDeep(resolved.feature);
+          feature.id = resolved.id;      // Important: always use the locationSet `id` (`+[Q30]`), not the feature `id` (`Q30`)
           feature.properties.id = resolved.id;
 
           if (!feature.geometry.coordinates.length || !feature.properties.area) {
@@ -1435,7 +1437,6 @@
             return;
           }
 
-          _itemLocation[item.id] = resolved.id;
           _locationSets[resolved.id] = feature;
         });
       });
