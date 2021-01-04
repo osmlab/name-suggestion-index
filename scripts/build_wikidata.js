@@ -403,9 +403,9 @@ function processEntities(result) {
       // P8253 - name-suggestion-index identifier
       // sort ids so claim order is deterministic, to avoid unnecessary updating
       const nsiIds = Array.from(_qidIdItems[qid])
-        .sort((a, b) => a.localeCompare(b));
+        .sort((a, b) => a.localeCompare(b, 'en-US'));
       const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true })
-        .sort((a, b) => a.value.localeCompare(b.value));
+        .sort((a, b) => a.value.localeCompare(b.value, 'en-US'));
 
       // Include this reference on all our claims - #4648
       const references = [{ P248: 'Q62108705' }];   // 'stated in': 'name suggestion index'
