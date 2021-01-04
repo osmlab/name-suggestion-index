@@ -4,8 +4,8 @@ const fetch = require('node-fetch');
 const fileTree = require('../lib/file_tree.js');
 const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
 const project = require('../package.json');
-const prettyStringify = require('json-stringify-pretty-compact');
 const sort = require('../lib/sort.js');
+const stringify = require('@aitodotai/json-stringify-pretty-compact');
 const writeFileWithMeta = require('../lib/write_file_with_meta.js');
 
 // metadata about the trees
@@ -552,8 +552,8 @@ function finish() {
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
-    writeFileWithMeta('dist/wikidata.json', prettyStringify({ wikidata: sort(_wikidata) }));
-    writeFileWithMeta('dist/dissolved.json', prettyStringify({ dissolved: sort(dissolved) }, { maxLength: 100 }));
+    writeFileWithMeta('dist/wikidata.json', stringify({ wikidata: sort(_wikidata) }) + '\n');
+    writeFileWithMeta('dist/dissolved.json', stringify({ dissolved: sort(dissolved) }, { maxLength: 100 }) + '\n');
 
     // Write filetree too, in case we updated some of these with `*:wikipedia` tags - #4716
     fileTree.write(_cache);

@@ -4,8 +4,8 @@ const glob = require('glob');
 const JSON5 = require('json5');
 const path = require('path');
 const precision = require('geojson-precision');
-const prettyStringify = require('json-stringify-pretty-compact');
 const rewind = require('geojson-rewind');
+const stringify = require('@aitodotai/json-stringify-pretty-compact');
 const writeFileWithMeta = require('../lib/write_file_with_meta.js');
 const Validator = require('jsonschema').Validator;
 
@@ -31,7 +31,7 @@ function buildAll() {
 
   const features = collectFeatures();
   let featureCollection = { type: 'FeatureCollection', features: features };
-  writeFileWithMeta('dist/featureCollection.json', prettyStringify(featureCollection, { maxLength: 9999 }));
+  writeFileWithMeta('dist/featureCollection.json', stringify(featureCollection, { maxLength: 9999 }) + '\n');
 
   console.timeEnd(END);
 }
@@ -149,7 +149,7 @@ function validateFile(file, resource, schema) {
 // Writes a prettified version of the file
 //
 function prettifyFile(file, object, contents) {
-  const pretty = prettyStringify(object, { maxLength: 100 });
+  const pretty = stringify(object, { maxLength: 100 }) + '\n';
   if (pretty !== contents) {
     fs.writeFileSync(file, pretty);
   }

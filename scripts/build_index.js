@@ -2,7 +2,7 @@ const colors = require('colors/safe');
 const fs = require('fs');
 const JSON5 = require('json5');
 const shell = require('shelljs');
-const stringify = require('json-stringify-pretty-compact');
+const stringify = require('@aitodotai/json-stringify-pretty-compact');
 
 const fileTree = require('../lib/file_tree.js');
 const idgen = require('../lib/idgen.js');
@@ -97,7 +97,7 @@ function loadConfig() {
     }
 
     // Lowercase and sort the files for consistency, save them that way.
-    fs.writeFileSync(file, stringify(sort(data)));
+    fs.writeFileSync(file, stringify(sort(data)) + '\n');
 
     _config[which] = data[which];
   });
@@ -198,8 +198,8 @@ function runFilters() {
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sort(discard)));
-    fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sort(keep)));
+    fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sort(discard)) + '\n');
+    fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sort(keep)) + '\n');
 
   });
 
