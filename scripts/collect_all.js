@@ -14,7 +14,7 @@ const fs = require('fs');
 const osmium = require('osmium');
 const shell = require('shelljs');
 const sort = require('../lib/sort');
-const stringify = require('json-stringify-pretty-compact');
+const stringify = require('@aitodotai/json-stringify-pretty-compact');
 
 if (process.argv.length < 3) {
   console.log('');
@@ -85,6 +85,6 @@ function collect(tag, fromKeys, threshold) {
   });
 
 
-  fs.writeFileSync(file, stringify(sort(all)));
+  fs.writeFileSync(file, stringify(sort(all)) + '\n');
   console.timeEnd(END);
 }
