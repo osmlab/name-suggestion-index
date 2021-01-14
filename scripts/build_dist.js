@@ -5,9 +5,9 @@ const dissolved = require('../dist/dissolved.json').dissolved;
 const fileTree = require('../lib/file_tree.js');
 const JSON5 = require('json5');
 const packageJSON = require('../package.json');
-const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
 const sort = require('../lib/sort.js');
+const stringify = require('@aitodotai/json-stringify-pretty-compact');
 const wikidata = require('../dist/wikidata.json').wikidata;
 const writeFileWithMeta = require('../lib/write_file_with_meta.js');
 const xmlbuilder2 = require('xmlbuilder2');
@@ -59,7 +59,7 @@ function buildAll() {
 
   // Write `nsi.json` as a single file containing everything by path
   const output = { nsi: _cache.path };
-  writeFileWithMeta('dist/nsi.json', prettyStringify(output, { maxLength: 800 }));
+  writeFileWithMeta('dist/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
 
   buildJSON();     // nsi-id-presets.json
   buildXML();      // nsi-josm-presets.json
@@ -245,7 +245,7 @@ function buildJSON() {
   });
 
   let output = { presets: targetPresets };
-  writeFileWithMeta('dist/presets/nsi-id-presets.json', prettyStringify(output));
+  writeFileWithMeta('dist/presets/nsi-id-presets.json', stringify(output) + '\n');
 }
 
 
@@ -353,7 +353,7 @@ function buildTaginfo() {
   });
 
   taginfo.tags = Object.keys(tagPairs).sort().map(kv => tagPairs[kv]);
-  fs.writeFileSync('dist/taginfo.json', prettyStringify(taginfo, { maxLength: 100 }));
+  fs.writeFileSync('dist/taginfo.json', stringify(taginfo, { maxLength: 100 }) + '\n');
 }
 
 

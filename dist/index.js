@@ -1431,7 +1431,7 @@
 
           if (!feature.geometry.coordinates.length || !feature.properties.area) {
             console.error('');
-            console.error(`buildLocationIndex: locationSet ${resolved.id} for ${item.id} resolves to invalid feature:`);
+            console.error(`buildLocationIndex: locationSet ${resolved.id} for ${item.id} resolves to an empty feature:`);
             console.error(JSON.stringify(feature));
             console.error('');
             return;

@@ -233,7 +233,7 @@ function checkWikipedia(result) {
 function getCorrectSitelink(wikipedia, sitelinks) {
   let [ language, title ] = wikipedia.split(':', 2);
   let sitelink = sitelinks && sitelinks[`${language}wiki`];
-  if (sitelink && title.localeCompare(sitelink.title) !== 0) {
+  if (sitelink && title.localeCompare(sitelink.title, 'en-US') !== 0) {
     return `${language}:${sitelink.title}`;
   }
 }
