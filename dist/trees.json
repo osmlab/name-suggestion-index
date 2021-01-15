@@ -1,14 +1,18 @@
 {
   "_meta": {
     "version": "5.0.0-pre",
-    "generated": "2021-01-04T19:12:26.500Z",
+    "generated": "2021-01-15T17:20:57.385Z",
     "url": "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/trees.json",
-    "hash": "b695f7a58472920b7ff216babafc3a1e"
+    "hash": "fbb204bd3b3f131086f3422be33a2c67"
   },
   "trees": {
     "brands": {
       "emoji": "🍔",
       "mainTag": "brand:wikidata",
+      "nameTags": {
+        "primary": ["^name(:\\w+)?$"],
+        "alternate": ["^(brand|operator)(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+      },
       "keepKV": [
         "^amenity/bank$",
         "^amenity/bicycle_rental$",
@@ -133,12 +137,20 @@
     "flags": {
       "emoji": "🚩",
       "mainTag": "flag:wikidata",
+      "nameTags": {
+        "primary": ["^flag:name(:\\w+)?$"],
+        "alternate": ["^(country|flag|subject)(:\\w+)?$"]
+      },
       "keepKV": ["^man_made/flagpole$"],
       "discardKVN": []
     },
     "operators": {
       "emoji": "💼",
       "mainTag": "operator:wikidata",
+      "nameTags": {
+        "primary": ["^(name|operator)(:\\w+)?$"],
+        "alternate": ["^brand(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+      },
       "discardKVN": [],
       "keepKV": [
         "^amenity/car_sharing$",
@@ -147,12 +159,17 @@
         "^amenity/police$",
         "^amenity/post_(depot|office)$",
         "^emergency/ambulance_station$",
-        "^emergency/lifeboat_station$"
+        "^emergency/lifeboat_station$",
+        "^emergency/phone$"
       ]
     },
     "transit": {
       "emoji": "🚇",
       "mainTag": "network:wikidata",
+      "nameTags": {
+        "primary": ["^network$"],
+        "alternate": ["^(operator|network)(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+      },
       "keepKV": [
         "^route/(aerialway|bus|light_rail|subway|train|tram|trolleybus|walking_bus)$"
       ],

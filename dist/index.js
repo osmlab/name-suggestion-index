@@ -340,9 +340,14 @@
     );
   };
 
-  var matchGroups = {adult_gaming_centre:["amenity/casino","amenity/gambling","leisure/adult_gaming_centre"],beauty:["shop/beauty","shop/hairdresser_supply"],bed:["shop/bed","shop/furniture"],beverages:["shop/alcohol","shop/beverages"],camping:["leisure/park","tourism/camp_site","tourism/caravan_site"],car_parts:["shop/car_parts","shop/car_repair","shop/tires","shop/tyres"],clinic:["amenity/clinic","amenity/doctors","healthcare/clinic","healthcare/dialysis"],confectionery:["shop/candy","shop/chocolate","shop/confectionery"],convenience:["shop/beauty","shop/chemist","shop/convenience","shop/cosmetics","shop/newsagent"],coworking:["amenity/coworking_space","office/coworking","office/coworking_space"],dentist:["amenity/dentist","amenity/doctors","healthcare/dentist"],electronics:["office/telecommunication","shop/computer","shop/electronics","shop/hifi","shop/mobile","shop/mobile_phone","shop/telecommunication"],fashion:["shop/accessories","shop/bag","shop/botique","shop/clothes","shop/department_store","shop/fashion","shop/fashion_accessories","shop/sports","shop/shoes"],financial:["amenity/bank","office/accountant","office/financial","office/financial_advisor","office/tax_advisor","shop/tax"],fitness:["leisure/fitness_centre","leisure/fitness_center","leisure/sports_centre","leisure/sports_center"],food:["amenity/pub","amenity/bar","amenity/cafe","amenity/fast_food","amenity/ice_cream","amenity/restaurant","shop/bakery","shop/ice_cream","shop/pastry","shop/tea","shop/coffee"],fuel:["amenity/fuel","shop/gas","shop/convenience;gas","shop/gas;convenience"],gift:["shop/gift","shop/card","shop/cards","shop/stationery"],hardware:["shop/carpet","shop/diy","shop/doityourself","shop/doors","shop/electrical","shop/flooring","shop/hardware","shop/hardware_store","shop/power_tools","shop/tool_hire","shop/tools","shop/trade"],health_food:["shop/health","shop/health_food","shop/herbalist","shop/nutrition_supplements"],hobby:["shop/electronics","shop/hobby","shop/books","shop/games","shop/collector","shop/toys","shop/model","shop/video_games","shop/anime"],hospital:["amenity/doctors","amenity/hospital","healthcare/hospital"],houseware:["shop/houseware","shop/interior_decoration"],lifeboat_station:["amenity/lifeboat_station","emergency/lifeboat_station"],lodging:["tourism/hotel","tourism/motel"],money_transfer:["amenity/money_transfer","shop/money_transfer"],office_supplies:["shop/office_supplies","shop/stationary","shop/stationery"],outdoor:["shop/outdoor","shop/sports"],pharmacy:["amenity/doctors","amenity/pharmacy","healthcare/pharmacy"],playground:["amenity/theme_park","leisure/amusement_arcade","leisure/playground"],rental:["amenity/bicycle_rental","amenity/boat_rental","amenity/car_rental","amenity/truck_rental","amenity/vehicle_rental","shop/rental"],school:["amenity/childcare","amenity/college","amenity/kindergarten","amenity/language_school","amenity/prep_school","amenity/school","amenity/university"],supermarket:["shop/food","shop/frozen_food","shop/greengrocer","shop/grocery","shop/supermarket","shop/wholesale"],variety_store:["shop/variety_store","shop/discount","shop/convenience"],vending:["amenity/vending_machine","shop/vending_machine"],storage:["shop/storage_units","shop/storage_rental"],weight_loss:["amenity/doctors","amenity/weight_clinic","healthcare/counselling","leisure/fitness_centre","office/therapist","shop/beauty","shop/diet","shop/food","shop/health_food","shop/herbalist","shop/nutrition","shop/nutrition_supplements","shop/weight_loss"],wholesale:["shop/wholesale","shop/supermarket","shop/department_store"]};
+  var matchGroups = {adult_gaming_centre:["amenity/casino","amenity/gambling","leisure/adult_gaming_centre"],beauty:["shop/beauty","shop/hairdresser_supply"],bed:["shop/bed","shop/furniture"],beverages:["shop/alcohol","shop/beverages"],camping:["leisure/park","tourism/camp_site","tourism/caravan_site"],car_parts:["shop/car_parts","shop/car_repair","shop/tires","shop/tyres"],clinic:["amenity/clinic","amenity/doctors","healthcare/clinic","healthcare/dialysis"],confectionery:["shop/candy","shop/chocolate","shop/confectionery"],convenience:["shop/beauty","shop/chemist","shop/convenience","shop/cosmetics","shop/newsagent"],coworking:["amenity/coworking_space","office/coworking","office/coworking_space"],dentist:["amenity/dentist","amenity/doctors","healthcare/dentist"],electronics:["office/telecommunication","shop/computer","shop/electronics","shop/hifi","shop/mobile","shop/mobile_phone","shop/telecommunication"],fashion:["shop/accessories","shop/bag","shop/botique","shop/clothes","shop/department_store","shop/fashion","shop/fashion_accessories","shop/sports","shop/shoes"],financial:["amenity/bank","office/accountant","office/financial","office/financial_advisor","office/tax_advisor","shop/tax"],fitness:["leisure/fitness_centre","leisure/fitness_center","leisure/sports_centre","leisure/sports_center"],food:["amenity/pub","amenity/bar","amenity/cafe","amenity/fast_food","amenity/ice_cream","amenity/restaurant","shop/bakery","shop/ice_cream","shop/pastry","shop/tea","shop/coffee"],fuel:["amenity/fuel","shop/gas","shop/convenience;gas","shop/gas;convenience"],gift:["shop/gift","shop/card","shop/cards","shop/stationery"],hardware:["shop/carpet","shop/diy","shop/doityourself","shop/doors","shop/electrical","shop/flooring","shop/hardware","shop/hardware_store","shop/power_tools","shop/tool_hire","shop/tools","shop/trade"],health_food:["shop/health","shop/health_food","shop/herbalist","shop/nutrition_supplements"],hobby:["shop/electronics","shop/hobby","shop/books","shop/games","shop/collector","shop/toys","shop/model","shop/video_games","shop/anime"],hospital:["amenity/doctors","amenity/hospital","healthcare/hospital"],houseware:["shop/houseware","shop/interior_decoration"],lifeboat_station:["amenity/lifeboat_station","emergency/lifeboat_station","emergency/marine_rescue"],lodging:["tourism/hotel","tourism/motel"],money_transfer:["amenity/money_transfer","shop/money_transfer"],office_supplies:["shop/office_supplies","shop/stationary","shop/stationery"],outdoor:["shop/outdoor","shop/sports"],pharmacy:["amenity/doctors","amenity/pharmacy","healthcare/pharmacy"],playground:["amenity/theme_park","leisure/amusement_arcade","leisure/playground"],rental:["amenity/bicycle_rental","amenity/boat_rental","amenity/car_rental","amenity/truck_rental","amenity/vehicle_rental","shop/rental"],school:["amenity/childcare","amenity/college","amenity/kindergarten","amenity/language_school","amenity/prep_school","amenity/school","amenity/university"],supermarket:["shop/food","shop/frozen_food","shop/greengrocer","shop/grocery","shop/supermarket","shop/wholesale"],variety_store:["shop/variety_store","shop/discount","shop/convenience"],vending:["amenity/vending_machine","shop/vending_machine"],storage:["shop/storage_units","shop/storage_rental"],weight_loss:["amenity/doctors","amenity/weight_clinic","healthcare/counselling","leisure/fitness_centre","office/therapist","shop/beauty","shop/diet","shop/food","shop/health_food","shop/herbalist","shop/nutrition","shop/nutrition_supplements","shop/weight_loss"],wholesale:["shop/wholesale","shop/supermarket","shop/department_store"]};
   var require$$0 = {
   matchGroups: matchGroups
+  };
+
+  var trees = {brands:{emoji:"🍔",mainTag:"brand:wikidata",nameTags:{primary:["^name(:\\w+)?$"],alternate:["^(brand|operator)(:\\w+)?$","^(\\w+)_name(:\\w+)?$"]},keepKV:["^amenity/bank$","^amenity/bicycle_rental$","^amenity/bureau_de_change$","^amenity/cafe$","^amenity/car_rental$","^amenity/cinema$","^amenity/clinic$","^amenity/dentist$","^amenity/fast_food$","^amenity/fuel$","^amenity/hospital$","^amenity/ice_cream$","^amenity/money_transfer$","^amenity/payment_(centre|terminal)$","^amenity/pharmacy$","^amenity/public_bookcase$","^amenity/restaurant$","^amenity/social_(centre|facility)$","^amenity/vending_machine$","^amenity/veterinary$","^healthcare/audiologist$","^healthcare/blood_donation$","^healthcare/counselling$","^healthcare/laboratory$","^healthcare/physiotherapist$","^leisure/adult_gaming_centre$","^leisure/amusement_arcade$","^leisure/bowling_alley$","^leisure/escape_game$","^leisure/fitness_centre$","^office/accountant$","^office/employment_agency$","^office/estate_agent$","^office/financial(_advisor)?$","^office/insurance$","^office/tax_advisor$","^office/telecommunication$","^shop/(?!(yes|no|banner_shop|gas|convenience;gas|lottery|mall|vacant))","^tourism/(h|m)otel$"],discardKVN:["^amenity/bank\\|(atm|bank spółdzielczy|lbs|pko)$","^amenity/bank\\|(bank zachodni|bz) wbk$","^amenity/bank\\|(landesbau|bau|kreis|stadt)?sparkasse.*$","^amenity/bank\\|volks- und raiffeisenbank$","^amenity/bank\\|volksbank$","^amenity/bank\\|volksbank( |-)raiffeisenbank$","^amenity/bank\\|vr( |-)bank$","^amenity/bicycle_rental\\|nextbike( gmbh)?$","^amenity/bar\\|уют$","^amenity/cafe\\|((eiscaf(e|é)\\s)?(dolomiti|venezia)|kiosque(\\sà)?\\scafé|caf(e|é)\\sexpress|встреча|рандеву|чайхана|жемчужина|виктория|бер(е|ё)зка|лакомка|мечта|оазис|парус|сказка||||||)$","^amenity/cinema\\|октябрь$","^amenity/clinic\\|(clinic|health center|health sub center|urgent care|consultorio|фап)$","^amenity/dentist\\|дантист$","^amenity/fast_food\\|(ali\\sbaba|antalya|asia(\\s|-)(bistro|imbiss|wok)|(berlin|city)\\sdöner|city\\s(grill|pizza)|kebabai|kfc/taco\\sbell)$","^amenity/fast_food\\|(marmaris|pizza\\s(house|time))$","^amenity/fuel\\|independent|gnv|gpl|posto|spbu|جایگاه\\scng$","^amenity/hospital\\|(clinic|health center|(government )?hospital( municipal)?)$","^amenity/hospital\\|(фап|центральна районна лікарня|црб)$","^amenity/hospital\\|(центральная районная )?больница$","^amenity/ice_cream\\|gelateria|venezia$","^amenity/pharmacy\\|(adler|bahnhof|brunnen|burg|bären|einhorn|engel|hirsch|hubertus|kur|linden|löwen)(-| )?apotheke$","^amenity/pharmacy\\|(centrum|farm(a|á)cia\\s(central(e)?|comunale))$","^amenity/pharmacy\\|(marien|markt|mohren|neue|park|rathaus|rats|rosen|schloss|sonnen|stadt|stern)(-| )?apotheke$","^amenity/pharmacy\\|(айболит|арніка|фармация|фармація)$","^amenity/pharmacy\\|pharmacie\\s(centrale|comunale|de\\s(l'hôtel\\sde\\sville|la\\s(gare|mairie|poste))|du\\s(centre|marché|parc))$","^amenity/restaurant\\|((gasthaus|gasthof|schwarzer)?\\s?(adler|löwen))$","^amenity/restaurant\\|(ali\\sbaba|adria|akropolis|amici|aroma|asia|athen|athos|bahnhof|bamboo|bären|bella\\s(vista|napoli))","^amenity/restaurant\\|(belvedere|brasserie|canteen|cantina|capri|carpe\\sdiem|casa\\s?(blanca|mia)|casino)","^amenity/restaurant\\|(china\\s(buffet|city|garden|house|king|palace|star|town|wok)|(da|la|las|el)\\s)","^amenity/restaurant\\|(delphi|deutsches\\shaus|dhaba|dionysos|dolce\\svita|dorfkrug|europa|frohsinn)","^amenity/restaurant\\|(golden\\sdragon|great\\swall)$","^amenity/restaurant\\|(grüner\\sbaum|hellas|hirsch(en)?|hong\\skong|happy garden)","^amenity/restaurant\\|(indian\\spalace|ichiban|il\\sgiardino|italia|jade\\sgarden|jägerhof)","^amenity/restaurant\\|(kirchenwirt|koliba|kreta|kreuz|krone|lamm|le\\s(bistrot|patio))","^amenity/restaurant\\|(l'escale|lemongrass|linde|lindenhof|little\\s(italy|india)|los\\s(amigos|arcos))","^amenity/restaurant\\|(lotus|löwen|maharaja|mamma\\smia|mandarin|marco\\spolo|marmaris|mediterraneo|mensa|milano|mykonos|mythos)","^amenity/restaurant\\|(namaste|napoli|new\\schina|oasis|ochsen|olympia|osaka|paradise|parrilla|peking|pho|pinocchio)","^amenity/restaurant\\|(pizza\\shouse|pizz(a|e)ria|pizza\\sking|pomodoro|portofino|poseidon|ratskeller|rhodos|ristorante\\s)","^amenity/restaurant\\|(roma|rose|rössl(e|i)|saffron|saigon|sakura|san\\smarco|santorini|schützenhaus|shalimar|shanghai|sonne|sphinx)","^amenity/restaurant\\|(sportheim|sternen|syrtaki|taj\\smahal|taste\\sof\\sindia|the\\skitchen|toscana|tokyo|traube)","^amenity/restaurant\\|(venezia|waldschänke|wok|zorbas|(zum|zur)\\s)","^amenity/restaurant\\|don camillo","^amenity/restaurant\\|永和豆漿$","^amenity/social_facility\\|dom pomocy społecznej$","^amenity/social_facility\\|maison de retraite$","^amenity/social_facility\\|safe haven$","^amenity/vending_machine\\|(schlauchomat|tobaccoland)$","^shop/(convenience|kiosk)\\|(777|bp|esso|exxon|independent|mobil|shell)$","^shop/bakery\\|(backshop|schneider|schäfer|каравай)$","^shop/bakery\\|(bäckerei\\s)?müller","^shop/clothes\\|трикотаж$","^shop/convenience\\|(24 часа|августина|альянс|апельсин|ассорти|бер(е|ё)зка|бриз|валентина|весна|визит|ветеран|водолей|гастроном|гермес|гурман|диана|добрый|дружба|домашний|елена)$","^shop/convenience\\|(almac[eé]n|despensa)$","^shop/convenience\\|(boutique d'alimentation|sup[eé]rette)$","^shop/convenience\\|(milk bar|юлия)$","^shop/convenience\\|(калинка|каштан|квартал|колобок|колос(ок)?|каравай|кооператор|корзинка|кулинария|лакомка|ласточка|лидер|луч|любава|любимый|людмила|люкс)$","^shop/convenience\\|(меркурий|мечта|мини маркет|мираж|белорусские продукты|продукты 24|натали|надежда|ника)$","^shop/convenience\\|(оазис|околица|олимп|парус|пеликан|престиж|подсолнух|радуга|росинка|ромашка|родник|рассвет|русь)$","^shop/convenience\\|(сельпо|семейный|сказка|солнышко|спутник|солнечный|светлана|удача|ивушка)$","^shop/convenience\\|(юбилейный|южный|эконом|шанс|чайка|центральный|хороший|хуторок|фаворит|фортуна|татьяна|тройка|эдем|уют)$","^shop/copyshop\\|xerox$","^shop/cosmetics\\|(vente de )?cosm[eé]tiques?$","^shop/fishing\\|рыболов$","^shop/florist\\|(мир цветов|орхидея)$","^shop/frame\\|rumah\\spenduduk$","^shop/hairdresser\\|(figaro|haarwerk|стиль|локон|шарм|fodrászat)$","^shop/hardware\\|(всё для дома|1000 мелочей|хозяюшка)$","^shop/jewelry\\|(585|jubiler)$","^shop/money_transfer|mobil(e)?\\smoney$","^shop/motorcycle\\|independent$","^shop/optician\\|(die brille|vision plus|оптика|[oó]ptica)$","^shop/supermarket\\|(famiglia cooperativa|семейный)$","^shop/tailor\\|couture\\s?(dame|homme|mixte)?$","^tourism/(h|m)otel\\|budget inn$","^tourism/hotel\\|(h(o|ô)tel\\s)?((zur\\s)?post|de france|de la gare|строитель)$","^tourism/hotel\\|(h(o|ô)tel\\s)?(astoria|belvedere|central|city|continental|europa)\\s?(h(o|ô)tel)?$","^tourism/hotel\\|(h(o|ô)tel\\s)?(grand|imperial|krone|palace|panorama|park|plaza|royal|victoria)\\s?(h(o|ô)tel)?$"]},flags:{emoji:"🚩",mainTag:"flag:wikidata",nameTags:{primary:["^flag:name(:\\w+)?$"],alternate:["^(country|flag|subject)(:\\w+)?$"]},keepKV:["^man_made/flagpole$"],discardKVN:[]},operators:{emoji:"💼",mainTag:"operator:wikidata",nameTags:{primary:["^(name|operator)(:\\w+)?$"],alternate:["^brand(:\\w+)?$","^(\\w+)_name(:\\w+)?$"]},discardKVN:[],keepKV:["^amenity/car_sharing$","^amenity/charging_station$","^amenity/fire_station$","^amenity/police$","^amenity/post_(depot|office)$","^emergency/ambulance_station$","^emergency/lifeboat_station$","^emergency/phone$"]},transit:{emoji:"🚇",mainTag:"network:wikidata",nameTags:{primary:["^network$"],alternate:["^(operator|network)(:\\w+)?$","^(\\w+)_name(:\\w+)?$"]},keepKV:["^route/(aerialway|bus|light_rail|subway|train|tram|trolleybus|walking_bus)$"],discardKVN:["\\|[ilnr][chimsw][nm]$","\\|city$","\\|international$","\\|local$","\\|mtb$","\\|municipal$","\\|national$","\\|rail$","\\|regional$","\\|urban$"]}};
+  var require$$1 = {
+  trees: trees
   };
 
   var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -1208,6 +1213,7 @@
   }
 
   const matchGroups$1 = require$$0.matchGroups;
+  const trees$1 = require$$1.trees;
 
 
 
@@ -1216,25 +1222,49 @@
     // The `matchIndex` is a specialized structure that allows us to quickly answer
     //   _"Given a [key/value tagpair, name, location], what canonical items (brands etc) can match it?"_
     //
-    // The index contains all valid combinations of
-    // primary/alternate tagpairs and primary/alternate names
-    //
+    // The index contains all valid combinations of k/v tagpairs and names
     // matchIndex:
     // {
-    //    'amenity/bank': {
-    //      '1stbank':          Set ("firstbank-f17495"),
-    //      'firstbank':        Set ("firstbank-978cca", "firstbank-9794e6", "firstbank-f17495", …),
-    //      …
-    //    },
-    //    'shop/supermarket': {
-    //      'coop':                   Set ("coop-76454b", "coopfood-a8278b", "coop-ebf2d9", "coop-36e991", …),
-    //      'coopfood':               Set ("coopfood-a8278b"),
-    //      'federatedcooperatives':  Set ("coop-76454b"),
-    //      'thecooperative':         Set ("coopfood-a8278b"),
-    //      …
-    //    },
-    //    …
+    //   'primary': {
+    //      'k/v': {
+    //        'nsimple': Set (…),     // matches for tags like `name`, `name:xx`
+    //      },
+    //   },
+    //   'alternate': {
+    //      'k/v': {
+    //        'nsimple': Set (…),     // matches for alternate names
+    //      },
+    //   },
     // }
+    //
+    // {
+    //   'primary': {
+    //      'amenity/bank': {
+    //        'firstbank':              Set ("firstbank-978cca", "firstbank-9794e6", "firstbank-f17495", …),
+    //        …
+    //      },
+    //      'shop/supermarket': {
+    //        'coop':                   Set ("coop-76454b", "coop-ebf2d9", "coop-36e991", …),
+    //        'coopfood':               Set ("coopfood-a8278b", …),
+    //        …
+    //      },
+    //      …
+    //   },
+    //   'alternate': {
+    //      'amenity/bank': {
+    //        '1stbank':                Set ("firstbank-f17495"),
+    //        …
+    //      },
+    //      'shop/supermarket': {
+    //        'coop':                   Set ("coopfood-a8278b", …),
+    //        'federatedcooperatives':  Set ("coop-76454b", …),
+    //        'thecooperative':         Set ("coopfood-a8278b", …),
+    //        …
+    //      },
+    //      …
+    //   }
+    // }
+    //
     let _matchIndex;
 
     // The `_itemLocation` structure maps itemIDs to locationSetIDs:
@@ -1265,11 +1295,11 @@
 
 
     //
-    // buildMatchIndex()
+    // `buildMatchIndex()`
     // Call this to prepare the matcher for use
     //
     // `all` needs to be an Object indexed on a 'tree/key/value' path.
-    // (The cache in `file_tree.js` and `build_brands.js` makes this)
+    // (The cache in `file_tree.js` makes this)
     // {
     //    'brands/amenity/bank': [ {}, {}, … ],
     //    'brands/amenity/bar':  [ {}, {}, … ],
@@ -1278,7 +1308,7 @@
     //
     matcher.buildMatchIndex = (all) => {
       if (_matchIndex) return;   // it was built already
-      _matchIndex = {};
+      _matchIndex = { primary: {}, alternate: {} };
 
       Object.keys(all).forEach(tkv => {
         let items = all[tkv];
@@ -1288,120 +1318,150 @@
         const t = parts[0];
         const k = parts[1];
         const v = parts[2];
-
-        // Perform two passes - first gather primary name tag, then gather secondary/alternate names
-        items.forEach(item => _indexItem(t, k, v, item, 'primary'));
-        items.forEach(item => _indexItem(t, k, v, item, 'secondary'));
-      });
-
-
-      function _indexItem(t, k, v, item, which) {
-        if (!item.id) return;
-        const tags = item.tags;
         const thiskv = `${k}/${v}`;
+        const tree = trees$1[t];
 
-        // First time - perform some setup steps on this item before anything else.
-        if (which === 'primary') {
+        // Primary name patterns
+        //   /^(flag:)?name$/i,     // e.g. `name`, `flag:name`
+        //   /^name:\w+$/i          // e.g. `name:en`, `name:ru`
+        const primaryNames = tree.nameTags.primary.map(s => new RegExp(s, 'i'));
+
+        // Alternate name patterns
+        //   /^(brand|country|flag|operator|network|subject)$/i,
+        //   /^\w+_name$/i,                                             // e.g. `alt_name`, `short_name`
+        //   /^(brand|country|flag|operator|network|subject):\w+$/i,    // e.g. `name:en`, `name:ru`
+        //   /^\w+_name:\w+$/i                                          // e.g. `alt_name:en`, `short_name:ru`
+        const alternateNames = tree.nameTags.alternate.map(s => new RegExp(s, 'i'));
+
+        // There are a few exceptions to the name matching regexes.
+        // Usually a tag suffix contains a language code like `name:en`, `name:ru`
+        // but we want to exclude things like `operator:type`, `name:etymology`, etc..
+        const notNames = /:(colour|type|left|right|etymology|wikipedia)$/i;
+
+        // For certain categories we do not want to match generic pairs like `building/yes` or `amenity/yes`
+        const skipGeneric = skipGenericMatches(t, k, v);
+
+        // We will collect the generic KV pairs anyway (for the purpose of filtering them out of matchTags)
+        const genericKV = new Set([`${k}/yes`, `building/yes`]);
+
+        // Collect alternate tagpairs for this kv category from matchGroups.
+        // We might also pick up a few more generic KVs (like `shop/yes`)
+        const matchGroupKV = new Set();
+        Object.values(matchGroups$1).forEach(matchGroup => {
+          const inGroup = matchGroup.some(otherkv => otherkv === thiskv);
+          if (!inGroup) return;
+
+          matchGroup.forEach(otherkv => {
+            if (otherkv === thiskv) return;   // skip self
+            matchGroupKV.add(otherkv);
+
+            const otherk = otherkv.split('/', 2)[0];   // we might pick up a `shop/yes`
+            genericKV.add(`${otherk}/yes`);
+          });
+        });
+
+
+        // Add each item to the matchIndex
+        items.forEach(item => {
+          if (!item.id) return;
+
           // Automatically remove redundant `matchTags` - #3417
           // (i.e. This kv is already covered by matchGroups, so it doesn't need to be in `item.matchTags`)
           if (Array.isArray(item.matchTags) && item.matchTags.length) {
-            Object.values(matchGroups$1).forEach(matchGroup => {
-              const inGroup = matchGroup.some(matchkv => matchkv === thiskv);
-              if (!inGroup) return;
-
-              // keep matchTags *not* already in match group
-              item.matchTags = item.matchTags
-                .filter(matchTag => !matchGroup.some(matchkv => matchkv === matchTag));
-            });
+            item.matchTags = item.matchTags
+              .filter(matchTag => !matchGroupKV.has(matchTag) && !genericKV.has(matchTag));
 
             if (!item.matchTags.length) delete item.matchTags;
           }
-        }
 
+          // key/value tagpairs to insert into the match index..
+          let kvTags = [`${thiskv}`]
+            .concat(item.matchTags || []);
 
-        // key/value tagpairs to insert into the index..
-        let kvTags = [`${thiskv}`];
-        if (t !== 'transit' && t !== 'flags') {
-          kvTags.push(`${k}/yes`, 'building/yes');  // #3454 - match some generic tags
-        }
-        kvTags = kvTags.concat(item.matchTags || []);
+          if (!skipGeneric) {
+            kvTags = kvTags
+              .concat(Array.from(genericKV));  // #3454 - match some generic tags
+          }
 
-        // name variations to insert into the index..
-        let nameTags = [];
-        if (which === 'primary') {
-          nameTags = [/^(flag:)?name$/];
+          Object.keys(item.tags).forEach(osmkey => {    // Check all tags for "names"
+            primaryNames.forEach(regex => {
+              if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
+              kvTags.forEach(kv => insertName(_matchIndex.primary, kv, simplify(item.tags[osmkey]), item.id));
+            });
 
-        } else if (which === 'secondary') {          // #2732 - match alternate names
-          nameTags = [
-            /^(brand|country|flag|operator|network|subject)$/,
-            /^\w+_name$/,                                                 // e.g. `alt_name`, `short_name`
-            /^(name|brand|country|flag|operator|network|subject):\w+$/,   // e.g. `name:en`, `name:ru`
-            /^\w+_name:\w+$/                                              // e.g. `alt_name:en`, `short_name:ru`
-          ];
-        }
+            alternateNames.forEach(regex => {
+              if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
+              kvTags.forEach(kv => insertName(_matchIndex.alternate, kv, simplify(item.tags[osmkey]), item.id));
+            });
+          });
 
-        kvTags.forEach(kv => {
-          if (!_matchIndex[kv])  _matchIndex[kv] = {};
+          // Index `matchNames` after indexing all other names..
+          let keepMatchNames = new Set();
+          (item.matchNames || []).forEach(matchName => {
+            // If this matchname isn't already indexed, add it to the alternate index
+            const nsimple = simplify(matchName);
+            kvTags.forEach(kv => {
+              const primary = _matchIndex.primary[kv] && _matchIndex.primary[kv][nsimple];
+              const alternate = _matchIndex.alternate[kv] && _matchIndex.alternate[kv][nsimple];
+              const inPrimary = primary && primary.has(item.id);
+              const inAlternate = alternate && alternate.has(item.id);
 
-          nameTags.forEach(nameTag => {
-            const re = new RegExp(nameTag, 'i');
-            Object.keys(tags).forEach(osmkey => {
-              if (!re.test(osmkey)) return;    // osmkey is not a name tag, skip
-
-              // There are a few exceptions to the nameTag matching regexes.
-              // Usually a tag suffix contains a language code like `name:en`, `name:ru`
-              // but we want to exclude things like `operator:type`, `name:etymology`, etc..
-              if (/:(colour|type|left|right|etymology|wikipedia)$/.test(osmkey)) return;
-
-              const name = tags[osmkey];
-              const nsimple = simplify(name);
-              if (!_matchIndex[kv][nsimple])  _matchIndex[kv][nsimple] = new Set();
-
-              let set = _matchIndex[kv][nsimple];
-              if (set.has(item.id)) {
-                // Warn if we detect collisions on `name` tag.
-                // For example, multiple items with the same k/v that simplify to the same simplename
-                // "Bed Bath & Beyond" and "Bed Bath and Beyond"
-                if (osmkey === 'name') {
-                  _warnings.push([item.id, `${item.id} (${kv}/${nsimple})`]);
-                }
-              } else {
-                set.add(item.id);
+              if (!inPrimary && !inAlternate) {
+                insertName(_matchIndex.alternate, kv, nsimple, item.id);
+                keepMatchNames.add(matchName);
               }
             });
           });
 
-          // check `matchNames` after indexing all other names
-          if (which === 'secondary') {
-            let keepMatchNames = [];
-
-            (item.matchNames || []).forEach(matchName => {
-              const nsimple = simplify(matchName);
-              if (!_matchIndex[kv][nsimple])  _matchIndex[kv][nsimple] = new Set();
-
-              let set = _matchIndex[kv][nsimple];
-              if (!set.has(item.id)) {
-                set.add(item.id);
-                keepMatchNames.push(matchName);
-              }
-            });
-
-            // Automatically remove redundant `matchNames` - #3417
-            // (i.e. This name got indexed some other way, so it doesn't need to be in `item.matchNames`)
-            if (keepMatchNames.length) {
-              item.matchNames = keepMatchNames;
-            } else {
-              delete item.matchNames;
-            }
+          // Automatically remove redundant `matchNames` - #3417
+          // (i.e. This name got indexed some other way, so it doesn't need to be in `item.matchNames`)
+          if (keepMatchNames.size) {
+            item.matchNames = Array.from(keepMatchNames);
+          } else {
+            delete item.matchNames;
           }
 
-        });
+        });   // each item
+      });   // each tkv
+
+
+      // Insert this item into the matchIndex
+      function insertName(cache, kv, nsimple, itemID) {
+        if (!nsimple)  return;
+
+        if (!cache[kv])           cache[kv] = {};
+        if (!cache[kv][nsimple])  cache[kv][nsimple] = new Set();
+
+        let set = cache[kv][nsimple];
+        set.add(itemID);
+      }
+
+      // For certain categories we do not want to match generic pairs like `building/yes` or `amenity/yes`
+      function skipGenericMatches(t, k, v) {
+        return (
+          t === 'flags' ||
+          t === 'transit' ||
+          k === 'landuse' ||
+          v === 'atm' ||
+          v === 'bicycle_parking' ||
+          v === 'car_sharing' ||
+          v === 'caravan_site' ||
+          v === 'charging_station' ||
+          v === 'dog_park' ||
+          v === 'parking' ||
+          v === 'phone' ||
+          v === 'playground' ||
+          v === 'post_box' ||
+          v === 'public_bookcase' ||
+          v === 'recycling' ||
+          v === 'vending_machine'
+        );
       }
     };
 
 
     //
-    // buildLocationIndex()
+    // `buildLocationIndex()`
     // Call this to prepare a which-polygon location index.
     // This *resolves* all the locationSets into GeoJSON, which takes some time.
     // You can skip this step if you don't care about matching within a location.
@@ -1450,14 +1510,31 @@
 
 
     //
-    // match()
+    // `match()`
     // Pass parts and return an array of matches.
     // `k` - key
     // `v` - value
-    // `n` - name
+    // `n` - namelike
     // `loc` - optional - [lon,lat] location to search
     //
-    // Returns an array of matches, or null if no match
+    // Returns an array of match results, or null if no match.
+    // Each result will include the area in km² that the item is valid.
+    //
+    // Order of results:
+    // Primary ordering will be on the "match" column:
+    //   "primary" - where the query matches the `name` tag, followed by
+    //   "alternate" - where the query matches an alternate name tag (e.g. short_name, brand, operator, etc)
+    // Secondary ordering will be on the "area" column:
+    //   "area descending" if no location was provided, (worldwide before local)
+    //   "area ascending" if location was provided (local before worldwide)
+    //
+    // [
+    //    { match: 'primary',   itemID: String,  area: Number,  kv: String,  nsimple: String },
+    //    { match: 'primary',   itemID: String,  area: Number,  kv: String,  nsimple: String },
+    //    { match: 'alternate', itemID: String,  area: Number,  kv: String,  nsimple: String },
+    //    { match: 'alternate', itemID: String,  area: Number,  kv: String,  nsimple: String },
+    //    …
+    // ]
     //
     matcher.match = (k, v, n, loc) => {
       if (!_matchIndex) {
@@ -1472,80 +1549,97 @@
         matchLocations = _locationIndex([loc[0], loc[1], loc[0], loc[1]], true);
       }
 
-      const kv = `${k}/${v}`;
       const nsimple = simplify(n);
 
-      // Look for an exact match on kv..
-      let m = tryMatch(kv, nsimple);
-      if (m) return m;
+      let seen = new Set();
+      let results = [];
+      gatherMatches('primary');
+      gatherMatches('alternate');
 
-      // Look in match groups for other pairs considered equivalent to kv..
-      for (let mg in matchGroups$1) {
-        const matchGroup = matchGroups$1[mg];
-        const inGroup = matchGroup.some(otherkv => otherkv === kv);
-        if (!inGroup) continue;
+      return results.length ? results : null;
 
-        for (let i = 0; i < matchGroup.length; i++) {
-          const otherkv = matchGroup[i];
-          if (otherkv === kv) continue;  // skip self
-          m = tryMatch(otherkv, nsimple);
-          if (m) return m;
+
+      function gatherMatches(which) {
+        // First try an exact match on k/v
+        const kv = `${k}/${v}`;
+        let didMatch = tryMatch(kv, nsimple, which);
+        if (didMatch) return;
+
+        // If that didn't work, look in match groups for other pairs considered equivalent to k/v..
+        for (let mg in matchGroups$1) {
+          const matchGroup = matchGroups$1[mg];
+          const inGroup = matchGroup.some(otherkv => otherkv === kv);
+          if (!inGroup) continue;
+
+          for (let i = 0; i < matchGroup.length; i++) {
+            const otherkv = matchGroup[i];
+            if (otherkv === kv) continue;  // skip self
+            didMatch = tryMatch(otherkv, nsimple, which);
+            if (didMatch) return;
+          }
         }
       }
 
-      // didn't match anything
-      return null;
 
+      function tryMatch(kv, nsimple, which) {
+        const trunk = _matchIndex[which];
+        if (!trunk) return;
+        const branch = trunk[kv];
+        if (!branch) return;
+        const leaf = branch[nsimple];
+        if (!leaf) return;
 
-      function tryMatch(kv, nsimple) {
-        if (!_matchIndex[kv]) return null;
+        // If we get here, we matched something..
+        // Prepare the results, calculate areas (if location index was set up)
+        let hits = Array.from(leaf).map(itemID => {
+          let area = Infinity;
+          if (_itemLocation && _locationSets) {
+            const location = _locationSets[_itemLocation[itemID]];
+            area = (location && location.properties.area) || Infinity;
+          }
+          return { match: which, itemID: itemID, area: area, kv: kv, nsimple: nsimple };
+        });
 
-        let m = _matchIndex[kv][nsimple];
-        if (!m) return null;
-
-        let itemIDs = Array.from(m);
         let sortFn = byAreaDescending;
 
-        // Filter the match to include only results valid in the requested `loc`.
+        // Filter the match to include only results valid in the requested `loc`..
         if (matchLocations) {
-          itemIDs = itemIDs.filter(isValidLocation);
+          hits = hits.filter(isValidLocation);
           sortFn = byAreaAscending;
         }
 
-        return itemIDs.length ? itemIDs.sort(sortFn) : null;
+        if (!hits.length) return;
+
+        // push results
+        hits.sort(sortFn).forEach(hit => {
+          if (seen.has(hit.itemID)) return;
+          seen.add(hit.itemID);
+          results.push(hit);
+        });
+
+        return true;
 
 
-        function isValidLocation(itemID) {
+        function isValidLocation(hit) {
           if (!_itemLocation) return true;
-          return matchLocations.find(props => props.id === _itemLocation[itemID]);
+          return matchLocations.find(props => props.id === _itemLocation[hit.itemID]);
         }
-
         // Sort smaller (more local) locations first.
-        function byAreaAscending(itemA, itemB) {
-          if (!_itemLocation || !_locationSets) return 0;
-          const locationA = _locationSets[_itemLocation[itemA]];
-          const locationB = _locationSets[_itemLocation[itemB]];
-          const areaA = (locationA && locationA.properties.area) || Infinity;
-          const areaB = (locationB && locationB.properties.area) || Infinity;
-          return areaA - areaB;
+        function byAreaAscending(hitA, hitB) {
+          return hitA.area - hitB.area;
         }
-
         // Sort larger (more worldwide) locations first.
-        function byAreaDescending(itemA, itemB) {
-          if (!_itemLocation || !_locationSets) return 0;
-          const locationA = _locationSets[_itemLocation[itemA]];
-          const locationB = _locationSets[_itemLocation[itemB]];
-          const areaA = (locationA && locationA.properties.area) || Infinity;
-          const areaB = (locationB && locationB.properties.area) || Infinity;
-          return areaB - areaA;
+        function byAreaDescending(hitA, hitB) {
+          return hitB.area - hitA.area;
         }
       }
     };
 
 
     //
-    // getWarnings()
+    // `getWarnings()`
     // Return any warnings discovered when buiding the index.
+    // (currently this does nothing)
     //
     matcher.getWarnings = () => _warnings;
 
