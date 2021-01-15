@@ -75,6 +75,10 @@ function loadConfig() {
         let cleaned = {
           emoji:      tree.emoji,
           mainTag:    tree.mainTag,
+          nameTags: {
+            primary:   tree.nameTags.primary,
+            alternate: tree.nameTags.alternate,
+          },
           keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(),
           discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort()
         };

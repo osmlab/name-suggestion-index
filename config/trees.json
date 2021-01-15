@@ -3,6 +3,10 @@
     "brands": {
       "emoji": "🍔",
       "mainTag": "brand:wikidata",
+      "nameTags": {
+        "primary": ["^name(:\\w+)?$"],
+        "alternate": ["^(brand|operator)(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+      },
       "keepKV": [
         "^amenity/bank$",
         "^amenity/bicycle_rental$",
@@ -127,12 +131,20 @@
     "flags": {
       "emoji": "🚩",
       "mainTag": "flag:wikidata",
+      "nameTags": {
+        "primary": ["^flag:name(:\\w+)?$"],
+        "alternate": ["^(country|flag|subject)(:\\w+)?$"]
+      },
       "keepKV": ["^man_made/flagpole$"],
       "discardKVN": []
     },
     "operators": {
       "emoji": "💼",
       "mainTag": "operator:wikidata",
+      "nameTags": {
+        "primary": ["^(name|operator)(:\\w+)?$"],
+        "alternate": ["^brand(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+      },
       "discardKVN": [],
       "keepKV": [
         "^amenity/car_sharing$",
@@ -148,6 +160,10 @@
     "transit": {
       "emoji": "🚇",
       "mainTag": "network:wikidata",
+      "nameTags": {
+        "primary": ["^network$"],
+        "alternate": ["^(operator|network)(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+      },
       "keepKV": [
         "^route/(aerialway|bus|light_rail|subway|train|tram|trolleybus|walking_bus)$"
       ],

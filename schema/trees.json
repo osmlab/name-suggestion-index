@@ -24,9 +24,36 @@
             },
 
             "mainTag": {
-              "description": "(required) An OSM Tag that this tree uses as the main tag (e.g. 'brand:wikidata')",
+              "description": "(required) An OSM tag that this tree uses as the main tag (e.g. 'brand:wikidata')",
               "type": "string",
               "pattern": "^\\S+$"
+            },
+
+            "nameTags": {
+              "description": "(required) OSM tags that can contain namelike values to be indexed by the matcher",
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["primary", "alternate"],
+              "properties": {
+                "primary": {
+                  "description": "(required) Pattern for matching primary name tags (e.g. 'name')",
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "format": "regex"
+                  }
+                },
+                "alternate": {
+                  "description": "(required) Pattern for matching alternate name tags (e.g. 'short_name', 'alt_name')",
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "format": "regex"
+                  }
+                }
+              }
             },
 
             "keepKV": {
