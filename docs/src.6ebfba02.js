@@ -1296,8 +1296,13 @@ function parseHeaders(rawHeaders) {
   var headers = new Headers(); // Replace instances of \r\n and \n followed by at least one space or horizontal tab with a space
   // https://tools.ietf.org/html/rfc7230#section-3.2
 
-  var preProcessedHeaders = rawHeaders.replace(/\r?\n[\t ]+/g, ' ');
-  preProcessedHeaders.split(/\r?\n/).forEach(function (line) {
+  var preProcessedHeaders = rawHeaders.replace(/\r?\n[\t ]+/g, ' '); // Avoiding split via regex to work around a common IE11 bug with the core-js 3.6.0 regex polyfill
+  // https://github.com/github/fetch/issues/748
+  // https://github.com/zloirock/core-js/issues/751
+
+  preProcessedHeaders.split('\r').map(function (header) {
+    return header.indexOf('\n') === 0 ? header.substr(1, header.length) : header;
+  }).forEach(function (line) {
     var parts = line.split(':');
     var key = parts.shift().trim();
 
@@ -5658,7 +5663,7 @@ exports.parse = exports.dom = exports.library = exports.counter = exports.text =
 function _typeof2(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function (obj) { return typeof obj; }; } else { _typeof2 = function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
 /*!
- * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 function _typeof(obj) {
@@ -6769,7 +6774,7 @@ var p = config.measurePerformance && PERFORMANCE && PERFORMANCE.mark && PERFORMA
   mark: noop$1,
   measure: noop$1
 };
-var preamble = "FA \"5.15.1\"";
+var preamble = "FA \"5.15.2\"";
 
 var begin = function begin(name) {
   p.mark("".concat(preamble, " ").concat(name, " begins"));
@@ -6843,37 +6848,6 @@ function toHex(unicode) {
   }
 
   return result;
-}
-
-function codePointAt(string, index) {
-  /*! https://mths.be/codepointat v0.2.0 by @mathias */
-  var size = string.length;
-  var first = string.charCodeAt(index);
-  var second;
-
-  if (first >= 0xD800 && first <= 0xDBFF && size > index + 1) {
-    second = string.charCodeAt(index + 1);
-
-    if (second >= 0xDC00 && second <= 0xDFFF) {
-      return (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
-    }
-  }
-
-  return first;
-}
-/**
- * Used to check that the character is between the E000..F8FF private unicode
- * range
- */
-
-
-function isPrivateUnicode(iconName) {
-  if (iconName.length !== 1) {
-    return false;
-  } else {
-    var cp = codePointAt(iconName, 0);
-    return cp >= 57344 && cp <= 63743;
-  }
 }
 
 function defineIcons(prefix, icons) {
@@ -7469,28 +7443,6 @@ var missing = {
 };
 var styles$2 = namespace.styles;
 
-function resolveCustomIconVersion() {
-  var kitConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var iconName = arguments.length > 1 ? arguments[1] : undefined;
-
-  if (iconName && isPrivateUnicode(iconName)) {
-    if (kitConfig && kitConfig.iconUploads) {
-      var iconUploads = kitConfig.iconUploads;
-      var descriptiveIconName = Object.keys(iconUploads).find(function (key) {
-        return iconUploads[key] && iconUploads[key].u && iconUploads[key].u === toHex(iconName);
-      });
-
-      if (descriptiveIconName) {
-        return iconUploads[descriptiveIconName].v;
-      }
-    }
-  } else {
-    if (kitConfig && kitConfig.iconUploads && kitConfig.iconUploads[iconName] && kitConfig.iconUploads[iconName].v) {
-      return kitConfig.iconUploads[iconName].v;
-    }
-  }
-}
-
 function asFoundIcon(icon) {
   var width = icon[0];
   var height = icon[1];
@@ -7553,13 +7505,6 @@ function findIcon(iconName, prefix) {
     if (iconName && prefix && styles$2[prefix] && styles$2[prefix][iconName]) {
       var icon = styles$2[prefix][iconName];
       return resolve(asFoundIcon(icon));
-    }
-
-    var kitToken = null;
-    var iconVersion = resolveCustomIconVersion(WINDOW.FontAwesomeKitConfig, iconName);
-
-    if (WINDOW.FontAwesomeKitConfig && WINDOW.FontAwesomeKitConfig.token) {
-      kitToken = WINDOW.FontAwesomeKitConfig.token;
     }
 
     if (iconName && prefix && !config.showMissingIcons) {
@@ -8463,11 +8408,14 @@ function log() {
 
     (_console = console).error.apply(_console, arguments);
   }
-} // Normalize icon arguments
-
+}
 
 function normalizeIconArgs(icon) {
-  // if the icon is null, there's nothing to do
+  if (_fontawesomeSvgCore.parse.icon) {
+    return _fontawesomeSvgCore.parse.icon(icon);
+  } // if the icon is null, there's nothing to do
+
+
   if (icon === null) {
     return null;
   } // if the icon is an object and has a prefix and an icon name, return it
@@ -8514,14 +8462,16 @@ function FontAwesomeIcon(_ref) {
       maskArgs = props.mask,
       symbol = props.symbol,
       className = props.className,
-      title = props.title;
+      title = props.title,
+      titleId = props.titleId;
   var iconLookup = normalizeIconArgs(iconArgs);
   var classes = objectWithKey('classes', [].concat(_toConsumableArray(classList(props)), _toConsumableArray(className.split(' '))));
   var transform = objectWithKey('transform', typeof props.transform === 'string' ? _fontawesomeSvgCore.parse.transform(props.transform) : props.transform);
   var mask = objectWithKey('mask', normalizeIconArgs(maskArgs));
   var renderedIcon = (0, _fontawesomeSvgCore.icon)(iconLookup, _objectSpread2({}, classes, {}, transform, {}, mask, {
     symbol: symbol,
-    title: title
+    title: title,
+    titleId: titleId
   }));
 
   if (!renderedIcon) {
@@ -8595,7 +8545,7 @@ exports.faTwitterSquare = exports.faTwitter = exports.faTwitch = exports.faTumbl
 exports.faZhihu = exports.faYoutubeSquare = exports.faYoutube = exports.faYoast = exports.faYelp = exports.faYarn = exports.faYandexInternational = exports.faYandex = exports.faYammer = exports.faYahoo = exports.faYCombinator = exports.faXingSquare = exports.faXing = exports.faXbox = exports.faWpressr = exports.faWpforms = exports.faWpexplorer = exports.faWpbeginner = exports.faWordpressSimple = exports.faWordpress = exports.faWolfPackBattalion = exports.faWodu = exports.faWizardsOfTheCoast = exports.faWix = exports.faWindows = exports.faWikipediaW = exports.faWhmcs = exports.faWhatsappSquare = exports.faWhatsapp = exports.faWeixin = exports.faWeibo = exports.faWeebly = exports.faWaze = exports.faWatchmanMonitoring = exports.faVuejs = exports.faVnv = exports.faVk = exports.faVine = exports.faVimeoV = exports.faVimeoSquare = exports.faVimeo = exports.faViber = exports.faViadeoSquare = exports.faViadeo = exports.faViacoin = exports.faVaadin = exports.faUssunnah = exports.faUsps = exports.faUsb = exports.faUps = exports.faUntappd = exports.faUnsplash = exports.faUnity = exports.faUniregistry = exports.faUncharted = exports.faUmbraco = exports.faUikit = exports.faUbuntu = exports.faUber = exports.faTypo3 = void 0;
 
 /*!
- * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 var prefix = "fab";
@@ -12183,7 +12133,7 @@ exports.faWonSign = exports.faWineGlassAlt = exports.faWineGlass = exports.faWin
 exports.faYinYang = exports.faYenSign = exports.faXRay = exports.faWrench = void 0;
 
 /*!
- * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 var prefix = "fas";
