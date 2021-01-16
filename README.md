@@ -40,7 +40,6 @@ Currently used in:
 - [osmfeatures](https://github.com/westnordost/osmfeatures)
 - [Go Map!!](https://github.com/bryceco/GoMap)
 
-
 ### About the index
 
 #### Generated files (do not edit):
@@ -96,7 +95,7 @@ https://cdn.jsdelivr.net/npm/name-suggestion-index@{semver}/{path to file}
 https://cdn.jsdelivr.net/npm/name-suggestion-index@4.0.2/dist/name-suggestions.presets.min.xml
 ```
 
-##### Current developement version (breaks sometimes!):
+##### Current development version (breaks sometimes!):
 
 Direct from GitHub <sub><sup>([docs](https://stackoverflow.com/questions/39065921/what-do-raw-githubusercontent-com-urls-represent))</sup></sub>:
 ```js
@@ -109,7 +108,6 @@ Via JSDelivr CDN <sub><sup>([docs](https://www.jsdelivr.com/?docs=gh))</sup></su
 https://cdn.jsdelivr.net/gh/name-suggestion-index@{branch or tag}/{path to file}
 https://cdn.jsdelivr.net/gh/osmlab/name-suggestion-index@main/dist/presets/nsi-josm-presets.min.xml
 ```
-
 
 ### Participate!
 
@@ -156,7 +154,7 @@ We're always looking for help!  If you have any questions or want to reach out t
 This takes a long time and a lot of disk space. It can be done occasionally by project maintainers.
 You do not need to do these steps in order to contribute to the index.
 
-- Install `osmium` commandline tool and node package (may only be available on some environments)
+- Install `osmium` command-line tool and node package (may only be available on some environments)
   - `apt-get install osmium-tool` or `brew install osmium-tool` or similar
   - `npm install --no-save osmium`
 - [Download the planet](http://planet.osm.org/pbf/)
