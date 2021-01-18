@@ -134,9 +134,10 @@ function buildJSON() {
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    let t = parts[0];
+    const t = parts[0];
     let k = parts[1];
     let v = parts[2];
+    const tree = trees[t];
 
     // exception where the NSI key/value doesn't match the iD key/value
     if (k === 'route') k = 'type/route';
@@ -145,7 +146,18 @@ function buildJSON() {
 
 
     // Which wikidata tag is considered the "main" tag for this tree?
-    const wdTag = trees[t].mainTag;
+    const wdTag = tree.mainTag;
+
+    // Primary/alternate names may be used as preset search terms
+    const primaryNames = tree.nameTags.primary.map(s => new RegExp(s, 'i'));
+    const alternateNames = tree.nameTags.alternate.map(s => new RegExp(s, 'i'));
+
+    // There are a few exceptions to the name matching regexes.
+    // Usually a tag suffix contains a language code like `name:en`, `name:ru`
+    // but we want to exclude things like `operator:type`, `name:etymology`, etc..
+    // NOTE: here we intentionally exclude `:wikidata`, in `matcher.js` we do not.
+    const notNames = /:(colour|type|left|right|etymology|wikipedia|wikidata)$/i;
+
 
     items.forEach(item => {
       const tags = item.tags;
@@ -190,6 +202,21 @@ function buildJSON() {
         return;
       }
 
+      // Gather search terms - include all primary/alternate names and matchNames
+      // (There is similar code in lib/matcher.js)
+      let terms = new Set(item.matchNames || []);
+      Object.keys(tags).forEach(osmkey => {    // Check all tags for alternate names
+        primaryNames.forEach(regex => {
+          if (osmkey === 'name') return;   // exclude `name` tag, as iD prioritizes it above `preset.terms` already
+          if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
+          terms.add(tags[osmkey].toLowerCase());
+        });
+        alternateNames.forEach(regex => {
+          if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
+          terms.add(tags[osmkey].toLowerCase());
+        });
+      });
+
       // generate our target preset
       const targetID = `${presetID}/${item.id}`;
 
@@ -231,7 +258,7 @@ function buildJSON() {
       };
 
       if (logoURL)           targetPreset.imageURL = logoURL;
-      if (item.matchNames)   targetPreset.terms = item.matchNames;
+      if (terms.size)        targetPreset.terms = Array.from(terms).sort();
       if (preset.reference)  targetPreset.reference = preset.reference;
       targetPreset.tags = sort(targetTags);
       targetPreset.addTags = sort(item.tags);
