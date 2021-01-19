@@ -1336,7 +1336,7 @@
         // There are a few exceptions to the name matching regexes.
         // Usually a tag suffix contains a language code like `name:en`, `name:ru`
         // but we want to exclude things like `operator:type`, `name:etymology`, etc..
-        const notNames = /:(colour|type|left|right|etymology|wikipedia)$/i;
+        const notNames = /:(colour|type|left|right|etymology|pronunciation|wikipedia)$/i;
 
         // For certain categories we do not want to match generic pairs like `building/yes` or `amenity/yes`
         const skipGeneric = skipGenericMatches(t, k, v);
