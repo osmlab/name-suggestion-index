@@ -156,7 +156,7 @@ function buildJSON() {
     // Usually a tag suffix contains a language code like `name:en`, `name:ru`
     // but we want to exclude things like `operator:type`, `name:etymology`, etc..
     // NOTE: here we intentionally exclude `:wikidata`, in `matcher.js` we do not.
-    const notNames = /:(colour|type|left|right|etymology|wikipedia|wikidata)$/i;
+    const notNames = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
 
     items.forEach(item => {
