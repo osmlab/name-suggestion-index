@@ -159,6 +159,26 @@
           "type": "string"
         },
 
+        "templateInclude": {
+          "description": "(optional) Patterns to match source item IDs to be included (if not specified, all source items are included)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "regex"
+          }
+        },
+
+        "templateExclude": {
+          "description": "(optional) Patterns to match source item IDs to be excluded (if not specified, all source items are included)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "regex"
+          }
+        },
+
         "templateSource": {
           "description": "(required) A tree/key/value path to use as the source of the expanded items",
           "type": "string",
