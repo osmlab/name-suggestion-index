@@ -333,23 +333,27 @@ function mergeItems() {
         let tags = item.tags;
         let name = '';   // which "name" we use for the locales check below
 
+        // assign some default companion tags if missing
+        if (kv === 'amenity/cafe') {
+          if (!tags.takeaway)    tags.takeaway = 'yes';
+          if (!tags.cuisine)     tags.cuisine = 'coffee_shop';
+        } else if (kv === 'amenity/fast_food') {
+          if (!tags.takeaway)    tags.takeaway = 'yes';
+        } else if (kv === 'amenity/clinic') {
+          if (!tags.healthcare)  tags.healthcare = 'clinic';
+        } else if (kv === 'amenity/dentist') {
+          if (!tags.healthcare)  tags.healthcare = 'dentist';
+        } else if (kv === 'amenity/doctors') {
+          if (!tags.healthcare)  tags.healthcare = 'doctor';
+        } else if (kv === 'amenity/hospital') {
+          if (!tags.healthcare)  tags.healthcare = 'hospital';
+        } else if (kv === 'amenity/pharmacy') {
+          if (!tags.healthcare)  tags.healthcare = 'pharmacy';
+        }
+
         // Perform tree-specific tag cleanups here..
         if (t === 'brands') {
           name = tags.brand || tags.name;
-
-          // assign some default tags if missing
-          if (kv === 'amenity/cafe') {
-            if (!tags.takeaway)    tags.takeaway = 'yes';
-            if (!tags.cuisine)     tags.cuisine = 'coffee_shop';
-          } else if (kv === 'amenity/fast_food') {
-            if (!tags.takeaway)    tags.takeaway = 'yes';
-          } else if (kv === 'amenity/clinic') {
-            if (!tags.healthcare)  tags.healthcare = 'clinic';
-          } else if (kv === 'amenity/hopsital') {
-            if (!tags.healthcare)  tags.healthcare = 'hopsital';
-          } else if (kv === 'amenity/pharmacy') {
-            if (!tags.healthcare)  tags.healthcare = 'pharmacy';
-          }
 
         } else if (t === 'flags') {
           name = tags['flag:name'];
