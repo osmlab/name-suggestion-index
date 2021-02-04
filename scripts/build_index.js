@@ -1,6 +1,7 @@
 const colors = require('colors/safe');
 const fs = require('fs');
 const JSON5 = require('json5');
+const safeRegex = require('safe-regex');
 const shell = require('shelljs');
 const stringify = require('@aitodotai/json-stringify-pretty-compact');
 
@@ -68,6 +69,19 @@ function loadConfig() {
     // check JSON schema
     validate(file, data, schema);
 
+    // check regexes
+    if (which === 'trees') {
+      Object.values(data.trees).forEach(tree => {
+        tree.nameTags.primary.forEach(pattern => checkRegex(file, pattern));
+        tree.nameTags.alternate.forEach(pattern => checkRegex(file, pattern));
+        tree.keepKV.forEach(pattern => checkRegex(file, pattern));
+        tree.discardKVN.forEach(pattern => checkRegex(file, pattern));
+      });
+
+    } else if (which === 'genericWords') {
+      Object.values(data.genericWords).forEach(pattern => checkRegex(file, pattern));
+    }
+
     // Clean and sort the files for consistency, save them that way.
     if (which === 'trees') {
       Object.keys(data.trees).forEach(t => {
@@ -105,6 +119,17 @@ function loadConfig() {
 
     _config[which] = data[which];
   });
+
+  // check for potentially unsafe regular expressions:
+  // https://stackoverflow.com/a/43872595
+  function checkRegex(fileName, pattern) {
+    if (!safeRegex(pattern)) {
+      console.error(colors.red('\nError - Potentially unsafe regular expression:'));
+      console.error('  ' + colors.yellow(fileName + ': ' + pattern));
+      process.exit(1);
+    }
+  }
+
 }
 
 

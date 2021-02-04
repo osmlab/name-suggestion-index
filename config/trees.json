@@ -4,8 +4,10 @@
       "emoji": "🍔",
       "mainTag": "brand:wikidata",
       "nameTags": {
-        "primary": ["^name(:\\w+)?$"],
-        "alternate": ["^(brand|operator)(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+        "primary": ["^(name|name:\\w+)$"],
+        "alternate": [
+          "^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"
+        ]
       },
       "keepKV": [
         "^amenity/bank$",
@@ -126,8 +128,10 @@
       "emoji": "🚩",
       "mainTag": "flag:wikidata",
       "nameTags": {
-        "primary": ["^flag:name(:\\w+)?$"],
-        "alternate": ["^(country|flag|subject)(:\\w+)?$"]
+        "primary": ["^(flag:name|flag:name:\\w+)$"],
+        "alternate": [
+          "^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"
+        ]
       },
       "keepKV": ["^man_made/flagpole$"],
       "discardKVN": []
@@ -136,8 +140,8 @@
       "emoji": "💼",
       "mainTag": "operator:wikidata",
       "nameTags": {
-        "primary": ["^(name|operator)(:\\w+)?$"],
-        "alternate": ["^brand(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+        "primary": ["^(name|name:\\w+|operator|operator:\\w+)$"],
+        "alternate": ["^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"]
       },
       "discardKVN": [
         "^amenity/clinic\\|(consultorio|municipal|private(_profit)?|priv(e|é){0,2}|public)$",
@@ -163,7 +167,9 @@
       "mainTag": "network:wikidata",
       "nameTags": {
         "primary": ["^network$"],
-        "alternate": ["^(operator|network)(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+        "alternate": [
+          "^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"
+        ]
       },
       "keepKV": [
         "^route/(aerialway|bus|light_rail|subway|train|tram|trolleybus|walking_bus)$"
