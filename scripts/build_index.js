@@ -343,6 +343,10 @@ function mergeItems() {
             if (!tags.cuisine)     tags.cuisine = 'coffee_shop';
           } else if (kv === 'amenity/fast_food') {
             if (!tags.takeaway)    tags.takeaway = 'yes';
+          } else if (kv === 'amenity/clinic') {
+            if (!tags.healthcare)  tags.healthcare = 'clinic';
+          } else if (kv === 'amenity/hopsital') {
+            if (!tags.healthcare)  tags.healthcare = 'hopsital';
           } else if (kv === 'amenity/pharmacy') {
             if (!tags.healthcare)  tags.healthcare = 'pharmacy';
           }
@@ -548,6 +552,11 @@ function checkItems(t) {
 
       // Warn on other missing tags
       switch (kv) {
+        case 'amenity/clinic':
+        case 'amenity/hospital':
+        case 'amenity/pharmacy':
+          if (!tags.healthcare) { warnMissingTag.push([display(item), 'healthcare']); }
+          break;
         case 'amenity/gambling':
         case 'leisure/adult_gaming_centre':
           if (!tags.gambling) { warnMissingTag.push([display(item), 'gambling']); }
