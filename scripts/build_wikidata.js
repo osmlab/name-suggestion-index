@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const fileTree = require('../lib/file_tree.js');
 const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
 const project = require('../package.json');
-const sort = require('../lib/sort.js');
+const sortObject = require('../lib/sort_object.js');
 const stringify = require('@aitodotai/json-stringify-pretty-compact');
 const writeFileWithMeta = require('../lib/write_file_with_meta.js');
 
@@ -534,7 +534,7 @@ function finish() {
     ['identities', 'logos', 'dissolutions'].forEach(prop => {
       if (target[prop] && Object.keys(target[prop]).length) {
         if (target[prop].constructor.name === 'Object') {
-          target[prop] = sort(target[prop]);
+          target[prop] = sortObject(target[prop]);
         }
       } else {
         delete target[prop];
@@ -547,13 +547,13 @@ function finish() {
       });
     }
 
-    _wikidata[qid] = sort(target);
+    _wikidata[qid] = sortObject(target);
   });
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
-    writeFileWithMeta('dist/wikidata.json', stringify({ wikidata: sort(_wikidata) }) + '\n');
-    writeFileWithMeta('dist/dissolved.json', stringify({ dissolved: sort(dissolved) }, { maxLength: 100 }) + '\n');
+    writeFileWithMeta('dist/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
+    writeFileWithMeta('dist/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
 
     // Write filetree too, in case we updated some of these with `*:wikipedia` tags - #4716
     fileTree.write(_cache);
@@ -957,7 +957,7 @@ function clamp(num, min, max) {
 
 
 function utilQsString(obj) {
-  return Object.keys(obj).sort().map(function(key) {
+  return Object.keys(obj).sort().map(key => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
   }).join('&');
 }

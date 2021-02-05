@@ -6,7 +6,7 @@ const fileTree = require('../lib/file_tree.js');
 const JSON5 = require('json5');
 const packageJSON = require('../package.json');
 const shell = require('shelljs');
-const sort = require('../lib/sort.js');
+const sortObject = require('../lib/sort_object.js');
 const stringify = require('@aitodotai/json-stringify-pretty-compact');
 const wikidata = require('../dist/wikidata.json').wikidata;
 const writeFileWithMeta = require('../lib/write_file_with_meta.js');
@@ -27,7 +27,7 @@ const loco = new LocationConflation(featureCollection);
 let _cache = {};
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
-_cache.path = sort(_cache.path);
+_cache.path = sortObject(_cache.path);
 
 buildAll();
 
@@ -260,8 +260,8 @@ function buildJSON() {
       if (logoURL)           targetPreset.imageURL = logoURL;
       if (terms.size)        targetPreset.terms = Array.from(terms).sort();
       if (preset.reference)  targetPreset.reference = preset.reference;
-      targetPreset.tags = sort(targetTags);
-      targetPreset.addTags = sort(item.tags);
+      targetPreset.tags = sortObject(targetTags);
+      targetPreset.addTags = sortObject(item.tags);
 
       targetPresets[targetID] = targetPreset;
     });
