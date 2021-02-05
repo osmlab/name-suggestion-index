@@ -9,6 +9,7 @@ const shell = require('shelljs');
 const sortObject = require('../lib/sort_object.js');
 const stringify = require('@aitodotai/json-stringify-pretty-compact');
 const wikidata = require('../dist/wikidata.json').wikidata;
+const withLocale = require('locale-compare')('en-US');
 const writeFileWithMeta = require('../lib/write_file_with_meta.js');
 const xmlbuilder2 = require('xmlbuilder2');
 
@@ -128,7 +129,7 @@ function buildJSON() {
   let targetPresets = {};
   let missing = new Set();
 
-  const paths = Object.keys(_cache.path).sort();
+  const paths = Object.keys(_cache.path).sort(withLocale);
   paths.forEach(tkv => {
     let items = _cache.path[tkv];
     if (!Array.isArray(items) || !items.length) return;
@@ -258,7 +259,7 @@ function buildJSON() {
       };
 
       if (logoURL)           targetPreset.imageURL = logoURL;
-      if (terms.size)        targetPreset.terms = Array.from(terms).sort();
+      if (terms.size)        targetPreset.terms = Array.from(terms).sort(withLocale);
       if (preset.reference)  targetPreset.reference = preset.reference;
       targetPreset.tags = sortObject(targetTags);
       targetPreset.addTags = sortObject(item.tags);
@@ -295,7 +296,7 @@ function buildXML() {
   let tPrev, kPrev, vPrev;
   let tGroup, kGroup, vGroup;
 
-  const paths = Object.keys(_cache.path).sort();
+  const paths = Object.keys(_cache.path).sort(withLocale);
   paths.forEach(tkv => {
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
     const t = parts[0];
@@ -379,7 +380,7 @@ function buildTaginfo() {
     }
   });
 
-  taginfo.tags = Object.keys(tagPairs).sort().map(kv => tagPairs[kv]);
+  taginfo.tags = Object.keys(tagPairs).sort(withLocale).map(kv => tagPairs[kv]);
   fs.writeFileSync('dist/taginfo.json', stringify(taginfo, { maxLength: 100 }) + '\n');
 }
 
@@ -397,7 +398,7 @@ function buildSitemap() {
   index.ele('lastmod').txt(lastmod);
 
   // collect all paths
-  const paths = Object.keys(_cache.path).sort();
+  const paths = Object.keys(_cache.path).sort(withLocale);
   paths.forEach(tkv => {
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
     const t = parts[0];

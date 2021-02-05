@@ -6,6 +6,7 @@ const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
 const project = require('../package.json');
 const sortObject = require('../lib/sort_object.js');
 const stringify = require('@aitodotai/json-stringify-pretty-compact');
+const withLocale = require('locale-compare')('en-US');
 const writeFileWithMeta = require('../lib/write_file_with_meta.js');
 
 // metadata about the trees
@@ -403,9 +404,9 @@ function processEntities(result) {
       // P8253 - name-suggestion-index identifier
       // sort ids so claim order is deterministic, to avoid unnecessary updating
       const nsiIds = Array.from(_qidIdItems[qid])
-        .sort((a, b) => a.localeCompare(b, 'en-US'));
+        .sort(withLocale);
       const nsiClaims = wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true })
-        .sort((a, b) => a.value.localeCompare(b.value, 'en-US'));
+        .sort((a, b) => withLocale(a.value, b.value));
 
       // Include this reference on all our claims - #4648
       const references = [{ P248: 'Q62108705' }];   // 'stated in': 'name suggestion index'
@@ -957,7 +958,7 @@ function clamp(num, min, max) {
 
 
 function utilQsString(obj) {
-  return Object.keys(obj).sort().map(key => {
+  return Object.keys(obj).sort(withLocale).map(key => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
   }).join('&');
 }

@@ -4,6 +4,7 @@ const JSON5 = require('json5');
 const safeRegex = require('safe-regex');
 const shell = require('shelljs');
 const stringify = require('@aitodotai/json-stringify-pretty-compact');
+const withLocale = require('locale-compare')('en-US');
 
 const fileTree = require('../lib/file_tree.js');
 const idgen = require('../lib/idgen.js');
@@ -93,8 +94,8 @@ function loadConfig() {
             primary:   tree.nameTags.primary,
             alternate: tree.nameTags.alternate,
           },
-          keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(),
-          discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort()
+          keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(withLocale),
+          discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort(withLocale)
         };
         tree = cleaned;
       });
@@ -111,7 +112,7 @@ function loadConfig() {
       });
 
     } else if (which === 'genericWords') {
-      data.genericWords = data.genericWords.map(s => s.toLowerCase()).sort();
+      data.genericWords = data.genericWords.map(s => s.toLowerCase()).sort(withLocale);
     }
 
     // Lowercase and sort the files for consistency, save them that way.

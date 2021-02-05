@@ -13,7 +13,7 @@ const colors = require('colors/safe');
 const fs = require('fs');
 const osmium = require('osmium');
 const shell = require('shelljs');
-const sort = require('../lib/sort');
+const sortObject = require('../lib/sort_object.js');
 const stringify = require('@aitodotai/json-stringify-pretty-compact');
 
 if (process.argv.length < 3) {
@@ -85,6 +85,6 @@ function collect(tag, fromKeys, threshold) {
   });
 
 
-  fs.writeFileSync(file, stringify(sort(all)) + '\n');
+  fs.writeFileSync(file, stringify(sortObject(all)) + '\n');
   console.timeEnd(END);
 }
