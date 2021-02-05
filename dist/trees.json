@@ -1,17 +1,19 @@
 {
   "_meta": {
     "version": "5.0.0-pre",
-    "generated": "2021-02-04T18:05:58.950Z",
+    "generated": "2021-02-05T23:51:08.897Z",
     "url": "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/trees.json",
-    "hash": "fe0f62de5f1b5a5ba59b760d115a934b"
+    "hash": "5b8a20749844723ed34ac10cfcff8a8a"
   },
   "trees": {
     "brands": {
       "emoji": "🍔",
       "mainTag": "brand:wikidata",
       "nameTags": {
-        "primary": ["^name(:\\w+)?$"],
-        "alternate": ["^(brand|operator)(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+        "primary": ["^(name|name:\\w+)$"],
+        "alternate": [
+          "^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"
+        ]
       },
       "keepKV": [
         "^amenity/bank$",
@@ -132,8 +134,10 @@
       "emoji": "🚩",
       "mainTag": "flag:wikidata",
       "nameTags": {
-        "primary": ["^flag:name(:\\w+)?$"],
-        "alternate": ["^(country|flag|subject)(:\\w+)?$"]
+        "primary": ["^(flag:name|flag:name:\\w+)$"],
+        "alternate": [
+          "^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"
+        ]
       },
       "keepKV": ["^man_made/flagpole$"],
       "discardKVN": []
@@ -142,14 +146,16 @@
       "emoji": "💼",
       "mainTag": "operator:wikidata",
       "nameTags": {
-        "primary": ["^(name|operator)(:\\w+)?$"],
-        "alternate": ["^brand(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+        "primary": ["^(name|name:\\w+|operator|operator:\\w+)$"],
+        "alternate": ["^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"]
       },
       "discardKVN": [
         "^amenity/clinic\\|(consultorio|municipal|private(_profit)?|priv(e|é){0,2}|public)$",
         "^amenity/hospital\\|(govern?ment( authorities)?|govt( hospital)?|municipal|private|public|private not for profit|village)$",
         "^amenity/hospital\\|(центральна районна лікарня|црб)$",
-        "^amenity/hospital\\|(центральная районная )?больница$"
+        "^amenity/hospital\\|(центральная районная )?больница$",
+        "^amenity/post_office\\|(costcutter|londis|mccoll'?s|one stop|premier( stores)?|whsmith)$",
+        "^amenity/post_office\\|(co-?op( food)?|(the )?co-?operative( food)?)$"
       ],
       "keepKV": [
         "^amenity/car_sharing$",
@@ -169,7 +175,9 @@
       "mainTag": "network:wikidata",
       "nameTags": {
         "primary": ["^network$"],
-        "alternate": ["^(operator|network)(:\\w+)?$", "^(\\w+)_name(:\\w+)?$"]
+        "alternate": [
+          "^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"
+        ]
       },
       "keepKV": [
         "^route/(aerialway|bus|light_rail|subway|train|tram|trolleybus|walking_bus)$"
