@@ -99,6 +99,7 @@ function loadConfig() {
         };
         tree = cleaned;
       });
+      data.trees = sortObject(data.trees);
 
     } else if (which === 'replacements') {
       Object.keys(data.replacements).forEach(qid => {
@@ -110,13 +111,14 @@ function loadConfig() {
         };
         replacement = cleaned;
       });
+      data.replacements = sortObject(data.replacements);
 
     } else if (which === 'genericWords') {
       data.genericWords = data.genericWords.map(s => s.toLowerCase()).sort(withLocale);
     }
 
     // Lowercase and sort the files for consistency, save them that way.
-    fs.writeFileSync(file, stringify(sortObject(data)) + '\n');
+    fs.writeFileSync(file, stringify(data) + '\n');
 
     _config[which] = data[which];
   });
