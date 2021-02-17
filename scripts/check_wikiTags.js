@@ -138,48 +138,48 @@ function doFetch(index, urls, check) {
 
 
 function checkWikidata(result) {
-  // blacklist containing wrong claims for entities which are brands
+  // discardlist containing wrong claims for entities which are brands
   // and an additional message on how to deal with them
-  let blacklist = {
+  let discardlist = {
       // P625 - coordinate location
       P625: "If this value describes the location of the headquarter of the brand, then add this as a qualifier for P159 (headquarters location) and remove this claim."
   };
 
   Object.keys(result.entities).forEach(qid => {
     let entity = result.entities[qid];
-    let target = _data.wikidata[qid];
-    let entry = _cache.id[target];
+    let itemID = _data.wikidata[qid];
+    let item = _cache.id.get(itemID);
 
     let sitelinks = getSitelinks(entity);
     let claims = wbk.simplify.claims(entity.claims, { keepReferences: true });
     let instance = entity.claims && entity.claims.P31;
 
-    let tag = Object.keys(entry.tags).find(key => entry.tags[key] === qid).split(':')[0];
-    let wikipedia = entry.tags[`${tag}:wikipedia`];
+    let tag = Object.keys(item.tags).find(key => item.tags[key] === qid).split(':')[0];
+    let wikipedia = item.tags[`${tag}:wikipedia`];
 
     // Wikidata entity was either deleted or is a redirect
     if (entity.missing === '') {
-      return _deletedWikidata.push([entry.displayName, entry.id, qid, `${tag}:wikidata`]);
+      return _deletedWikidata.push([item.displayName, item.id, qid, `${tag}:wikidata`]);
     }
 
     // If there is a Wikidata entity specified but no Wikipedia article,
     // try to find a matching article from all possible sitelinks
     if (!wikipedia && sitelinks.length) {
-      _foundSitelink.push([entry.displayName, entry.id, qid, `${tag}:wikidata`, sitelinks.join(', ')]);
+      _foundSitelink.push([item.displayName, item.id, qid, `${tag}:wikidata`, sitelinks.join(', ')]);
     }
 
     if (wikipedia) {
       // Check whether the linked Wikipedia article of the Wikidata entity is the correct one
       let correct = getCorrectSitelink(wikipedia, entity.sitelinks);
       if (correct) {
-        _wrongLink.push([entry.displayName, entry.id, qid, `${tag}:wikidata`, wikipedia, correct]);
+        _wrongLink.push([item.displayName, item.id, qid, `${tag}:wikidata`, wikipedia, correct]);
       }
     }
 
-    // Check if there are any blacklisted claims
-    Object.keys(blacklist).forEach(property => {
+    // Check if there are any discardlisted claims
+    Object.keys(discardlist).forEach(property => {
       if (claims[property]) {
-        _wrongEntity.push([entry.displayName, entry.id, qid, `${tag}:wikidata`, property, blacklist[property]]);
+        _wrongEntity.push([item.displayName, item.id, qid, `${tag}:wikidata`, property, discardlist[property]]);
       }
     });
 
@@ -187,13 +187,13 @@ function checkWikidata(result) {
     if (!sitelinks.length) {
       // Warn if there are no instance claims and no sitelinks
       if (!instance) {
-        _missingInstance.push([entry.displayName, entry.id, qid, `${tag}:wikidata`]);
+        _missingInstance.push([item.displayName, item.id, qid, `${tag}:wikidata`]);
       }
 
       // Warn if there are no references and no sitelinks
       let references = getReferences(claims);
       if (!references.length) {
-        _missingReferences.push([entry.displayName, entry.id, qid, `${tag}:wikidata`]);
+        _missingReferences.push([item.displayName, item.id, qid, `${tag}:wikidata`]);
       }
     }
   });
@@ -206,24 +206,24 @@ function checkWikipedia(result) {
   Object.keys(result.query.pages).forEach(id => {
     let page = result.query.pages[id];
     let iwl = `${page.pagelanguage}:${page.title}`;
-    let target = _data.wikipedia[iwl];
-    let entry = _cache.id[target];
+    let itemID = _data.wikipedia[iwl];
+    let item = _cache.id.get(itemID);
 
-    if (!entry) {
+    if (!item) {
       return;
     }
 
-    let tag = Object.keys(entry.tags).find(key => entry.tags[key] === iwl).split(':')[0];
-    let wikidata = entry.tags[`${tag}:wikidata`];
+    let tag = Object.keys(item.tags).find(key => item.tags[key] === iwl).split(':')[0];
+    let wikidata = item.tags[`${tag}:wikidata`];
 
     // Wikipedia page has been deleted or is a redirect
     if (page.missing === '' || page.redirect === '') {
-      return _deletedWikipedia.push([entry.displayName, entry.id, iwl, wikidata, `${tag}:wikipedia`]);
+      return _deletedWikipedia.push([item.displayName, item.id, iwl, wikidata, `${tag}:wikipedia`]);
     }
 
     // Check whether the (local) linked Wikidata entity of the Wikipedia article is the correct one
     if (page.pageprops && page.pageprops.wikibase_item !== wikidata) {
-      _wrongLink.push([entry.displayName, entry.id, iwl, `${tag}:wikipedia`, wikidata, page.pageprops.wikibase_item]);
+      _wrongLink.push([item.displayName, item.id, iwl, `${tag}:wikipedia`, wikidata, page.pageprops.wikibase_item]);
     }
   });
 
@@ -286,7 +286,7 @@ function finish() {
 
   if (_deletedWikidata.length) {
     console.error(colors.yellow.bold(`\nError - Deleted Wikidata entities:`));
-    console.error('To resolve these, either remove the Wikidata entity from the entry or create a new one and add the correct id of the entity');
+    console.error('To resolve these, either remove the Wikidata entity from the item or create a new one and add the correct id of the entity');
     _deletedWikidata.sort();
     _deletedWikidata.forEach(msg => console.error(
       `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.red.bold(msg[2])} (${colors.blue.bold(msg[3])}) does not exist or is a redirect`
@@ -296,7 +296,7 @@ function finish() {
 
   if (_deletedWikipedia.length) {
     console.error(colors.yellow.bold(`\nError - Deleted Wikipedia articles:`));
-    console.error('To resolve these, either remove the Wikipedia article from the entry or create a new one and add the correct link to the article');
+    console.error('To resolve these, either remove the Wikipedia article from the item or create a new one and add the correct link to the article');
     _deletedWikipedia.sort();
     _deletedWikipedia.forEach(msg => console.error(
       `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.red.bold(msg[2])} (${msg[3]}) (${colors.blue.bold(msg[4])}) does not exist or is a redirect`
@@ -306,7 +306,7 @@ function finish() {
 
   if (_foundSitelink.length) {
     console.warn(colors.yellow.bold(`\nWarning - Matched Wikipedia articles:`));
-    console.warn('To resolve these, add a sitelink to the correct entry');
+    console.warn('To resolve these, add a sitelink to the correct item');
     _foundSitelink.sort();
     _foundSitelink.forEach(msg => console.warn(
       `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) has sitelinks to ${colors.green.bold(msg[4])}`
@@ -326,7 +326,7 @@ function finish() {
 
   if (_wrongEntity.length) {
     console.warn(colors.yellow.bold(`\nWarning - Possibly wrong linked Wikidata entity:`));
-    console.warn('To resolve these, check whether the Wikidata entity really describes the brand and not something else or follow the hint on how to fix the entry');
+    console.warn('To resolve these, check whether the Wikidata entity really describes the brand and not something else or follow the hint on how to fix the item');
     _wrongEntity.sort();
     _wrongEntity.forEach(msg => console.warn(
       `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) ${colors.red.bold(msg[4])}: ${msg[5]}`

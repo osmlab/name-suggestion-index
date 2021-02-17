@@ -777,7 +777,7 @@ function checkWikipediaTags(qid, sitelinks) {
 
   // which NSI items use this qid?
   Array.from(_qidItems[qid]).forEach(id => {
-    const item = _cache.id[id];
+    const item = _cache.id.get(id);
     if (item.fromTemplate) return;  // skip items expanded from templates
 
     ['brand', 'operator', 'network'].forEach(osmkey => {
@@ -918,7 +918,7 @@ function enLabelForQID(qid) {
   const meta = _qidMetadata[qid];
   const ids = Array.from(_qidItems[qid]);
   for (let i = 0; i < ids.length; i++) {
-    const item = _cache.id[ids[i]];
+    const item = _cache.id.get(ids[i]);
 
     if (meta.what === 'flag') {
       if (looksLatin(item.tags.subject))  return `Flag of ${item.tags.subject}`;

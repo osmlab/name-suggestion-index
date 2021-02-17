@@ -75,8 +75,6 @@ function loadConfig() {
       Object.values(data.trees).forEach(tree => {
         tree.nameTags.primary.forEach(pattern => checkRegex(file, pattern));
         tree.nameTags.alternate.forEach(pattern => checkRegex(file, pattern));
-        // tree.keepKV.forEach(pattern => checkRegex(file, pattern));
-        // tree.discardKVN.forEach(pattern => checkRegex(file, pattern));
       });
 
     } else if (which === 'genericWords') {
@@ -94,8 +92,6 @@ function loadConfig() {
             primary:   tree.nameTags.primary,
             alternate: tree.nameTags.alternate,
           }
-          // keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(withLocale),
-          // discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort(withLocale)
         };
         tree = cleaned;
       });
@@ -279,27 +275,6 @@ function saveIndex() {
   console.time(END);
 
   fileTree.write(_cache);
-
-// update trees.json
-// const paths = Object.keys(_cache.path).forEach(tkv => {
-//   let items = _cache.path[tkv];
-//   if (!Array.isArray(items) || !items.length) return;
-
-//   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-//   const t = parts[0];
-//   const k = parts[1];
-//   const v = parts[2];
-//   const kv = `${k}/${v}`;
-
-//   const tree = _config.trees[t];
-//   if (!tree.contains) tree.contains = {};
-//   tree.contains[kv] = {};
-// });
-
-// let data = { trees: _config.trees };
-// fs.writeFileSync('config/trees.json', stringify(data) + '\n');
-
-
   console.timeEnd(END);
 }
 

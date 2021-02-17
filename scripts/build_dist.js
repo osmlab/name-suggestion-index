@@ -361,7 +361,7 @@ function buildTaginfo() {
 
   // collect all tag pairs
   let tagPairs = {};
-  Object.values(_cache.id).filter(item => {
+  _cache.id.forEach((item, id) => {
     for (const k in item.tags) {
       let v = item.tags[k];
 
