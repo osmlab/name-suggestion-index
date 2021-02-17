@@ -131,7 +131,7 @@ function buildJSON() {
 
   const paths = Object.keys(_cache.path).sort(withLocale);
   paths.forEach(tkv => {
-    let items = _cache.path[tkv];
+    let items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
@@ -307,7 +307,7 @@ function buildXML() {
     const wdTag = trees[t].mainTag;
 
     // Include only items that have a wikidata tag and are not dissolved..
-    let items = (_cache.path[tkv] || [])
+    let items = (_cache.path[tkv].items || [])
       .filter(item => {
         const qid = item.tags[wdTag];
         if (!qid || !/^Q\d+$/.test(qid)) return false;   // wikidata tag missing or looks wrong..

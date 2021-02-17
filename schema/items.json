@@ -2,10 +2,18 @@
   "title": "items.json",
   "description": "JSON Schema for name-suggestion-index items",
   "type": "object",
-  "additionalProperties": false,
-  "patternProperties": {
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
 
-    "^\\S+/\\S+/\\S+$": {
+    "path": {
+      "description": "(required) The path for this category in the form tree/key/value",
+      "type": "string",
+      "pattern": "^\\S+/\\S+/\\S+$"
+    },
+
+    "items": {
+      "description": "(required) The items in this category",
       "type": "array",
       "uniqueItems": true,
       "items": {

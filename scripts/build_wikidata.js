@@ -124,7 +124,10 @@ Object.keys(_cache.path).forEach(tkv => {
   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
   const t = parts[0];
 
-  _cache.path[tkv].forEach(item => {
+  const items = _cache.path[tkv].items;
+  if (!Array.isArray(items) || !items.length) return;
+
+  items.forEach(item => {
     const tags = item.tags;
     ['brand', 'flag', 'operator', 'network', 'subject'].forEach(osmtag => {
       const wdTag = `${osmtag}:wikidata`;

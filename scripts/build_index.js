@@ -33,7 +33,7 @@ loadCollected();
 
 let _discard = {};
 let _keep = {};
-runFilters();
+// runFilters();
 
 let _cache = {};
 loadIndex();
@@ -75,8 +75,8 @@ function loadConfig() {
       Object.values(data.trees).forEach(tree => {
         tree.nameTags.primary.forEach(pattern => checkRegex(file, pattern));
         tree.nameTags.alternate.forEach(pattern => checkRegex(file, pattern));
-        tree.keepKV.forEach(pattern => checkRegex(file, pattern));
-        tree.discardKVN.forEach(pattern => checkRegex(file, pattern));
+        // tree.keepKV.forEach(pattern => checkRegex(file, pattern));
+        // tree.discardKVN.forEach(pattern => checkRegex(file, pattern));
       });
 
     } else if (which === 'genericWords') {
@@ -93,9 +93,9 @@ function loadConfig() {
           nameTags: {
             primary:   tree.nameTags.primary,
             alternate: tree.nameTags.alternate,
-          },
-          keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(withLocale),
-          discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort(withLocale)
+          }
+          // keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(withLocale),
+          // discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort(withLocale)
         };
         tree = cleaned;
       });
@@ -180,8 +180,9 @@ function runFilters() {
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
 
+//todo
     // Start clean
-    shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
+    // shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
 
     // All the collected values start out in discard..
     treeTags[t].forEach(tag => {
@@ -214,7 +215,7 @@ function runFilters() {
       }
     });
 
-    // filter by discardNames (move from keep -> discard)
+    // filter by genericWords (move from keep -> discard)
     _config.genericWords.forEach(s => {
       const re = new RegExp(s, 'i');
       for (let kvn in keep) {
@@ -230,8 +231,9 @@ function runFilters() {
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sortObject(discard)) + '\n');
-    fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sortObject(keep)) + '\n');
+//todo
+    // fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sortObject(discard)) + '\n');
+    // fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sortObject(keep)) + '\n');
 
   });
 
@@ -277,6 +279,26 @@ function saveIndex() {
   console.time(END);
 
   fileTree.write(_cache);
+
+// update trees.json
+// const paths = Object.keys(_cache.path).forEach(tkv => {
+//   let items = _cache.path[tkv];
+//   if (!Array.isArray(items) || !items.length) return;
+
+//   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+//   const t = parts[0];
+//   const k = parts[1];
+//   const v = parts[2];
+//   const kv = `${k}/${v}`;
+
+//   const tree = _config.trees[t];
+//   if (!tree.contains) tree.contains = {};
+//   tree.contains[kv] = {};
+// });
+
+// let data = { trees: _config.trees };
+// fs.writeFileSync('config/trees.json', stringify(data) + '\n');
+
 
   console.timeEnd(END);
 }
@@ -337,8 +359,9 @@ function mergeItems() {
       }
 
       // Insert into index..
-      if (!_cache.path[tkv])  _cache.path[tkv] = [];
-      _cache.path[tkv].push(item);
+      if (!_cache.category[tkv])  _cache.category[tkv] = { path: tkv };
+      if (!_cache.path[tkv])      _cache.path[tkv] = { items: [], templates: [] };
+      _cache.path[tkv].items.push(item);
       totalNew++;
     });
 
@@ -348,7 +371,7 @@ function mergeItems() {
     //
     const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === t);
     paths.forEach(tkv => {
-      let items = _cache.path[tkv];
+      let items = _cache.path[tkv].items;
       if (!Array.isArray(items) || !items.length) return;
 
       const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
@@ -551,7 +574,7 @@ function checkItems(t) {
   const display = (val) => `${val.displayName} (${val.id})`;
 
   paths.forEach(tkv => {
-    const items = _cache.path[tkv];
+    const items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
