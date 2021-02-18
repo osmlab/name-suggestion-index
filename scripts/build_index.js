@@ -28,13 +28,6 @@ console.log(colors.blue('-'.repeat(70)));
 let _config = {};
 loadConfig();
 
-let _collected = {};
-loadCollected();
-
-let _discard = {};
-let _keep = {};
-// runFilters();
-
 let _cache = {};
 loadIndex();
 
@@ -42,6 +35,12 @@ checkItems('brands');
 checkItems('flags');
 checkItems('operators');
 checkItems('transit');
+
+let _collected = {};
+let _discard = {};
+let _keep = {};
+loadCollected();
+// filterCollected();
 
 mergeItems();
 
@@ -156,7 +155,7 @@ function loadCollected() {
 //
 // Filter the tags collected into _keep and _discard lists
 //
-function runFilters() {
+function filterCollected() {
   const START = '🏗   ' + colors.yellow(`Filtering values gathered from OSM...`);
   const END = '👍  ' + colors.green(`done filtering`);
   console.log('');
@@ -188,28 +187,26 @@ function runFilters() {
       }
     });
 
-    // Filter by keepKV (move from discard -> keep)
-    tree.keepKV.forEach(s => {
-      const re = new RegExp(s, 'i');
-      for (const kvn in discard) {
-        const kv = kvn.split('|', 2)[0];
-        if (re.test(kv)) {
+    for (const kvn in discard) {
+      const parts = kvn.split('|', 2);     // kvn = "key/value|name"
+      const kv = parts[0];
+      const n = parts[1];
+      const tkv = `${t}/${kv}`;
+      const category = _cache.category[tkv];
+
+      // If we have a category for this tkv in the index, move the name from discard -> keep
+      if (category) {
+        // ..unless the name matches an exclude pattern
+        const exclude = category.exclude || {};
+        const excludeRegex = (exclude.named || []).map(s => new RegExp(s, 'i'));
+        const isExcluded = excludeRegex.some(regex => regex.test(n));
+
+        if (!isExcluded) {
           keep[kvn] = discard[kvn];
           delete discard[kvn];
         }
       }
-    });
-
-    // Filter by discardKeys (move from keep -> discard)
-    tree.discardKVN.forEach(s => {
-      const re = new RegExp(s, 'i');
-      for (const kvn in keep) {
-        if (re.test(kvn)) {
-          discard[kvn] = keep[kvn];
-          delete keep[kvn];
-        }
-      }
-    });
+    }
 
     // filter by genericWords (move from keep -> discard)
     _config.genericWords.forEach(s => {
