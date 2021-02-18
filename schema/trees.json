@@ -14,7 +14,7 @@
         "^\\S+$": {
           "description": "(required) The name of the tree (e.g. 'brands')",
           "type": "object",
-          "additionalProperties": true,
+          "additionalProperties": false,
           "required": ["emoji", "mainTag", "nameTags"],
           "properties": {
 
@@ -27,6 +27,16 @@
               "description": "(required) An OSM tag that this tree uses as the main tag (e.g. 'brand:wikidata')",
               "type": "string",
               "pattern": "^\\S+$"
+            },
+
+            "sourceTags": {
+              "description": "(optional) Tags from OSM to collect namelike values",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^\\S+$"
+              }
             },
 
             "nameTags": {

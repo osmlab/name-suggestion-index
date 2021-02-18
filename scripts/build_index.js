@@ -40,7 +40,7 @@ let _collected = {};
 let _discard = {};
 let _keep = {};
 loadCollected();
-// filterCollected();
+filterCollected();
 
 mergeItems();
 
@@ -87,6 +87,7 @@ function loadConfig() {
         let cleaned = {
           emoji:      tree.emoji,
           mainTag:    tree.mainTag,
+          sourceTag:  tree.sourceTag,
           nameTags: {
             primary:   tree.nameTags.primary,
             alternate: tree.nameTags.alternate,
@@ -118,18 +119,18 @@ function loadConfig() {
     _config[which] = data[which];
   });
 
-  // check for potentially unsafe regular expressions:
-  // https://stackoverflow.com/a/43872595
-  function checkRegex(fileName, pattern) {
-    if (!safeRegex(pattern)) {
-      console.error(colors.red('\nError - Potentially unsafe regular expression:'));
-      console.error('  ' + colors.yellow(fileName + ': ' + pattern));
-      process.exit(1);
-    }
-  }
-
 }
 
+
+// check for potentially unsafe regular expressions:
+// https://stackoverflow.com/a/43872595
+function checkRegex(fileName, pattern) {
+  if (!safeRegex(pattern)) {
+    console.error(colors.red('\nError - Potentially unsafe regular expression:'));
+    console.error('  ' + colors.yellow(fileName + ': ' + pattern));
+    process.exit(1);
+  }
+}
 
 //
 // Load lists of tags collected from OSM from `dist/collected/*`
@@ -162,46 +163,47 @@ function filterCollected() {
   console.log(START);
   console.time(END);
 
-  // which trees use which tags?
-  // note, 'flags' not seeded with collected data (yet?)
-  const treeTags = {
-    brands:     ['brand', 'name'],
-    operators:  ['operator'],
-    transit:    ['network']
-  };
-
-  Object.keys(treeTags).forEach(t => {
+  Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
-    let discard = _discard[t] = {};
-    let keep = _keep[t] = {};
+    if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) return;
 
 //todo
     // Start clean
     // shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
 
-    // All the collected values start out in discard..
-    treeTags[t].forEach(tag => {
+    let discard = _discard[t] = {};
+    let keep = _keep[t] = {};
+
+    // All the collected "names" from OSM start out in discard..
+    tree.sourceTags.forEach(tag => {
       let collected = _collected[tag];
       for (const kvn in collected) {
         discard[kvn] = Math.max((discard[kvn] || 0), collected[kvn]);
       }
     });
 
+    // Cache the regexes we need for each category
+    let excluders = {};
+
     for (const kvn in discard) {
       const parts = kvn.split('|', 2);     // kvn = "key/value|name"
       const kv = parts[0];
       const n = parts[1];
       const tkv = `${t}/${kv}`;
-      const props = _cache.path[tkv].properties;
+      const file = `./data/${tkv}.json`;
+      const category = _cache.path[tkv];
+      if (!category) continue;    // not a category we track in the index, skip
 
-      // If we have a category for this tkv in the index, move the name from discard -> keep
+      // If we have a category for this k/v pair in the index, move the name from discard -> keep
+      // ...unless the name matches an exclude pattern
+      const props = category.properties;
       if (props) {
-        // ..unless the name matches an exclude pattern
-        const exclude = props.exclude || {};
-        const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
-        const excludeRegex = excludePatterns.map(s => new RegExp(s, 'i'));
-        const isExcluded = excludeRegex.some(regex => regex.test(n));
-
+        if (!excluders[tkv]) {
+          const exclude = props.exclude || {};
+          const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
+          excluders[tkv] = excludePatterns.map(s => checkRegex(file, s) || new RegExp(s, 'i'));
+        }
+        const isExcluded = excluders[tkv].some(regex => regex.test(n));
         if (!isExcluded) {
           keep[kvn] = discard[kvn];
           delete discard[kvn];
@@ -209,7 +211,7 @@ function filterCollected() {
       }
     }
 
-    // filter by genericWords (move from keep -> discard)
+    // Filter by genericWords (move from keep -> discard)
     _config.genericWords.forEach(s => {
       const re = new RegExp(s, 'i');
       for (let kvn in keep) {
@@ -297,7 +299,7 @@ function mergeItems() {
     let totalNew = 0;
 
     //
-    // INSERT - Look in `_keep` for new items not yet in the tree..
+    // INSERT - Look in `_keep` for new items not yet in the index..
     //
     const keeping = _keep[t] || {};
     Object.keys(keeping).forEach(kvn => {
