@@ -186,28 +186,28 @@ function filterCollected() {
     let excluders = {};
 
     for (const kvn in discard) {
-      const parts = kvn.split('|', 2);     // kvn = "key/value|name"
+      const parts = kvn.split('|', 2);  // kvn = "key/value|name"
       const kv = parts[0];
       const n = parts[1];
       const tkv = `${t}/${kv}`;
       const file = `./data/${tkv}.json`;
       const category = _cache.path[tkv];
-      if (!category) continue;    // not a category we track in the index, skip
+      if (!category) continue;          // not a category we track in the index, skip
+
+      const props = category.properties || {};
+      if (props.skipCollection) continue;  // not a category where we want to collect new tags, skip
 
       // If we have a category for this k/v pair in the index, move the name from discard -> keep
       // ...unless the name matches an exclude pattern
-      const props = category.properties;
-      if (props) {
-        if (!excluders[tkv]) {
-          const exclude = props.exclude || {};
-          const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
-          excluders[tkv] = excludePatterns.map(s => checkRegex(file, s) || new RegExp(s, 'i'));
-        }
-        const isExcluded = excluders[tkv].some(regex => regex.test(n));
-        if (!isExcluded) {
-          keep[kvn] = discard[kvn];
-          delete discard[kvn];
-        }
+      if (!excluders[tkv]) {
+        const exclude = props.exclude || {};
+        const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
+        excluders[tkv] = excludePatterns.map(s => checkRegex(file, s) || new RegExp(s, 'i'));
+      }
+      const isExcluded = excluders[tkv].some(regex => regex.test(n));
+      if (!isExcluded) {
+        keep[kvn] = discard[kvn];
+        delete discard[kvn];
       }
     }
 
