@@ -86,45 +86,45 @@ Each item looks like this _(comments added for clarity)_:
 In `brands/amenity/fast_food.json`:
 
 ```js
-  "brands/amenity/fast_food": [
-    …
-    {
-      "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
-      "id": "mcdonalds-658eea",               // "id" - a unique identifier added and generated automatically
-      "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
-      "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
-        "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
-        "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
-        "brand:wikidata": "Q38076",           //   `brand:wikidata` - Universal Wikidata identifier
-        "brand:wikipedia": "en:McDonald's",   //   `brand:wikipedia` - Reference to English Wikipedia
-        "cuisine": "burger",                  //   `cuisine` - What kind of fast food is served here
-        "name": "McDonald's"                  //   `name` - Display name, also in the local language (English)
-      }
-    },
+"path": "brands/amenity/fast_food",
+"items": [
+  …
+  {
+    "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
+    "id": "mcdonalds-658eea",               // "id" - a unique identifier added and generated automatically
+    "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
+    "tags": {                               // "tags" - OpenStreetMap tags that every McDonald's should have
+      "amenity": "fast_food",               //   The OpenStreetMap tag for a "fast food" restaurant
+      "brand": "McDonald's",                //   `brand` - Brand name in the local language (English)
+      "brand:wikidata": "Q38076",           //   `brand:wikidata` - Universal Wikidata identifier
+      "brand:wikipedia": "en:McDonald's",   //   `brand:wikipedia` - Reference to English Wikipedia
+      "cuisine": "burger",                  //   `cuisine` - What kind of fast food is served here
+      "name": "McDonald's"                  //   `name` - Display name, also in the local language (English)
+    }
+  },
+  …
 ```
 
 There may also be items for McDonald's in other languages!
 
 ```js
-  "brands/amenity/fast_food": [
-    …
-    {
-      "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
-      "id": "マクドナルド-3e7699",              // "id" - a unique identifier added and generated automatically
-      "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
-      "tags": {
-        "amenity": "fast_food",
-        "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
-        "brand:en": "McDonald's",             // `brand:en` - For non-English brands, tag the English version too
-        "brand:ja": "マクドナルド",             // `brand:ja` - Add at least one `brand:xx` tag that matches `brand`
-        "brand:wikidata": "Q38076",           // `brand:wikidata` - Same Universal wikidata identifier
-        "brand:wikipedia": "ja:マクドナルド",   // `brand:wikipedia` - Reference to Japanese Wikipedia
-        "cuisine": "burger",
-        "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
-        "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
-        "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
-      }
-    },
+  {
+    "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
+    "id": "マクドナルド-3e7699",              // "id" - a unique identifier added and generated automatically
+    "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
+    "tags": {
+      "amenity": "fast_food",
+      "brand": "マクドナルド",                // `brand` - Brand name in the local language (Japanese)
+      "brand:en": "McDonald's",             // `brand:en` - For non-English brands, tag the English version too
+      "brand:ja": "マクドナルド",             // `brand:ja` - Add at least one `brand:xx` tag that matches `brand`
+      "brand:wikidata": "Q38076",           // `brand:wikidata` - Same Universal wikidata identifier
+      "brand:wikipedia": "ja:マクドナルド",   // `brand:wikipedia` - Reference to Japanese Wikipedia
+      "cuisine": "burger",
+      "name": "マクドナルド",                 // `name` - Display name, also in the local language (Japanese)
+      "name:en": "McDonald's"               // `name:en` - For non-English names, tag the English version too
+      "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
+    }
+  },
 ```
 
 &nbsp;
@@ -140,32 +140,34 @@ By convention, if you need to disambiguate between multiple brands with the same
 In `brands/shop/department_store.json`:
 
 ```js
-  "brands/shop/department_store": [
-    …
-    {
-      "displayName": "Target (Australia)",
-      "id": "target-c93bbd",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "brand": "Target",
-        "brand:wikidata": "Q7685854",
-        "brand:wikipedia": "en:Target Australia",
-        "name": "Target",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "Target (USA)",
-      "id": "target-592fe0",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "brand": "Target",
-        "brand:wikidata": "Q1046951",
-        "brand:wikipedia": "en:Target Corporation",
-        "name": "Target",
-        "shop": "department_store"
-      }
-    },
+"path": "brands/shop/department_store",
+"items": [
+  …
+  {
+    "displayName": "Target (Australia)",
+    "id": "target-c93bbd",
+    "locationSet": {"include": ["au"]},
+    "tags": {
+      "brand": "Target",
+      "brand:wikidata": "Q7685854",
+      "brand:wikipedia": "en:Target Australia",
+      "name": "Target",
+      "shop": "department_store"
+    }
+  },
+  {
+    "displayName": "Target (USA)",
+    "id": "target-592fe0",
+    "locationSet": {"include": ["us"]},
+    "tags": {
+      "brand": "Target",
+      "brand:wikidata": "Q1046951",
+      "brand:wikipedia": "en:Target Corporation",
+      "name": "Target",
+      "shop": "department_store"
+    }
+  },
+  …
 ```
 
 ##### `id` (generated)
@@ -215,7 +217,8 @@ This project includes a "fuzzy" matcher that can match alternate names and tags 
 `matchNames` and `matchTags` properties can be used to list the less-preferred alternatives.
 
 ```js
-  "brands/amenity/fast_food": [     // all items in this file will match the tag `amenity=fast_food`
+"path": "brands/amenity/fast_food",     // all items in this file will match the tag `amenity=fast_food`
+"items": [
   …
   {
     "displayName": "Honey Baked Ham",
@@ -261,22 +264,23 @@ You can optionally add a `note` property to any item.  The note can contain any 
 The notes just stay with the name-suggestion-index; they aren't OpenStreetMap tags or used by other software.
 
 ```js
-  "brands/amenity/bank": [
+"path": "brands/amenity/bank",
+"items": [
   …
   {
-    {
-      "displayName": "United Bank (Connecticut)",
-      "id": "unitedbank-28419b",
-      "locationSet": { "include": ["peoples_united_bank_ct.geojson"] },
-      "note": "Merged into People's United Bank (Q7165802) in 2019, see https://en.wikipedia.org/wiki/United_Financial_Bancorp",
-      "tags": {
-        "amenity": "bank",
-        "brand": "United Bank",
-        "brand:wikidata": "Q16959074",
-        "brand:wikipedia": "en:United Financial Bancorp",
-        "name": "United Bank"
-      }
-    },
+    "displayName": "United Bank (Connecticut)",
+    "id": "unitedbank-28419b",
+    "locationSet": { "include": ["peoples_united_bank_ct.geojson"] },
+    "note": "Merged into People's United Bank (Q7165802) in 2019, see https://en.wikipedia.org/wiki/United_Financial_Bancorp",
+    "tags": {
+      "amenity": "bank",
+      "brand": "United Bank",
+      "brand:wikidata": "Q16959074",
+      "brand:wikipedia": "en:United Financial Bancorp",
+      "name": "United Bank"
+    }
+  },
+  …
 ```
 
 &nbsp;
@@ -291,32 +295,32 @@ You should also give each entry a unique `displayName`, so everyone can tell the
 
 
 ```js
-  "brands/shop/supermarket": [
-    …
-    {
-      "displayName": "Price Chopper (Kansas City)",
-      "id": "pricechopper-9554e9",
-      "locationSet": { "include": ["price_chopper_ks_mo.geojson"] },
-      "tags": {
-        "brand": "Price Chopper",
-        "brand:wikidata": "Q7242572",
-        "brand:wikipedia": "en:Price Chopper (supermarket)",
-        "name": "Price Chopper",
-        "shop": "supermarket"
-      }
-    },
-    {
-      "displayName": "Price Chopper (New York)",
-      "id": "pricechopper-f86a3e",
-      "locationSet": { "include": ["price_chopper_ny.geojson"] },
-      "tags": {
-        "brand": "Price Chopper",
-        "brand:wikidata": "Q7242574",
-        "brand:wikipedia": "en:Price Chopper Supermarkets",
-        "name": "Price Chopper",
-        "shop": "supermarket"
-      }
-    },
+  …
+  {
+    "displayName": "Price Chopper (Kansas City)",
+    "id": "pricechopper-9554e9",
+    "locationSet": { "include": ["price_chopper_ks_mo.geojson"] },
+    "tags": {
+      "brand": "Price Chopper",
+      "brand:wikidata": "Q7242572",
+      "brand:wikipedia": "en:Price Chopper (supermarket)",
+      "name": "Price Chopper",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "displayName": "Price Chopper (New York)",
+    "id": "pricechopper-f86a3e",
+    "locationSet": { "include": ["price_chopper_ny.geojson"] },
+    "tags": {
+      "brand": "Price Chopper",
+      "brand:wikidata": "Q7242574",
+      "brand:wikipedia": "en:Price Chopper Supermarkets",
+      "name": "Price Chopper",
+      "shop": "supermarket"
+    }
+  },
+  …
 ```
 
 &nbsp;
@@ -410,18 +414,20 @@ generic words from the index, so they are not suggested to mappers.
 For example, "Универмаг" is just a Russian word for "Department store":
 
 ```js
-  "brands/shop/department_store": [
-    …
-    {
-      "displayName": "Универмаг",
-      "id": "универмаг-d5eaac",
-      "locationSet": { "include": ["ru"] },
-      "tags": {
-        "brand": "Универмаг",
-        "name": "Универмаг",
-        "shop": "department_store"
-      }
-    },
+"path": "brands/shop/department_store",
+"items": [
+  …
+  {
+    "displayName": "Универмаг",
+    "id": "универмаг-d5eaac",
+    "locationSet": { "include": ["ru"] },
+    "tags": {
+      "brand": "Универмаг",
+      "name": "Универмаг",
+      "shop": "department_store"
+    }
+  },
+  …
 ```
 
 To remove this generic name:
@@ -444,8 +450,6 @@ Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that an
     In `brands/amenity/fast_food.json`:
 
     ```js
-      "brands/amenity/fast_food": [
-        …
         {
           "displayName": "Chipotle",
           "id": "chipotle-658eea",
@@ -457,7 +461,7 @@ Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that an
             "cuisine": "mexican",
             "name": "Chipotle"
           }
-      },
+        },
     ```
 
 2. Google for that brand - if you are lucky, you might find the Wikipedia page right away.
@@ -490,8 +494,6 @@ Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that an
     We can add the `"brand:wikipedia"` and `"brand:wikidata"` tags.
 
     ```js
-      "brands/amenity/fast_food": [
-        …
         {
           "displayName": "Chipotle",
           "id": "chipotle-658eea",
@@ -505,7 +507,7 @@ Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that an
             "cuisine": "mexican",
             "name": "Chipotle"
           }
-      },
+        },
     ```
 
     _(comments added for clarity)_
@@ -526,11 +528,9 @@ This example uses a brand "かっぱ寿司".  I don't know what that is, so I wi
     In `brands/amenity/fast_food.json`:
 
     ```js
-      "brands/amenity/fast_food": [
-        …
         {
           "displayName": "かっぱ寿司",
-          "id": "かっぱ寿司-3e7699",
+          "id": "e7198e-3e7699",
           "locationSet": {"include": ["jp"]},
           "tags": {
             "amenity": "fast_food",
@@ -578,11 +578,9 @@ Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
     * Also check the `"locationSet"` property to make sure it is accurate.
 
     ```js
-      "brands/amenity/fast_food": [
-        …
         {
           "displayName": "かっぱ寿司",
-          "id": "かっぱ寿司-3e7699",
+          "id": "kappazushi-3e7699",
           "locationSet": {"include": ["jp"]},
           "tags": {
             "amenity": "fast_food",
