@@ -28,13 +28,6 @@ console.log(colors.blue('-'.repeat(70)));
 let _config = {};
 loadConfig();
 
-let _collected = {};
-loadCollected();
-
-let _discard = {};
-let _keep = {};
-runFilters();
-
 let _cache = {};
 loadIndex();
 
@@ -42,6 +35,12 @@ checkItems('brands');
 checkItems('flags');
 checkItems('operators');
 checkItems('transit');
+
+let _collected = {};
+let _discard = {};
+let _keep = {};
+loadCollected();
+// filterCollected();
 
 mergeItems();
 
@@ -75,8 +74,6 @@ function loadConfig() {
       Object.values(data.trees).forEach(tree => {
         tree.nameTags.primary.forEach(pattern => checkRegex(file, pattern));
         tree.nameTags.alternate.forEach(pattern => checkRegex(file, pattern));
-        tree.keepKV.forEach(pattern => checkRegex(file, pattern));
-        tree.discardKVN.forEach(pattern => checkRegex(file, pattern));
       });
 
     } else if (which === 'genericWords') {
@@ -93,9 +90,7 @@ function loadConfig() {
           nameTags: {
             primary:   tree.nameTags.primary,
             alternate: tree.nameTags.alternate,
-          },
-          keepKV:     tree.keepKV.map(s => s.toLowerCase()).sort(withLocale),
-          discardKVN: tree.discardKVN.map(s => s.toLowerCase()).sort(withLocale)
+          }
         };
         tree = cleaned;
       });
@@ -160,7 +155,7 @@ function loadCollected() {
 //
 // Filter the tags collected into _keep and _discard lists
 //
-function runFilters() {
+function filterCollected() {
   const START = '🏗   ' + colors.yellow(`Filtering values gathered from OSM...`);
   const END = '👍  ' + colors.green(`done filtering`);
   console.log('');
@@ -180,8 +175,9 @@ function runFilters() {
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
 
+//todo
     // Start clean
-    shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
+    // shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
 
     // All the collected values start out in discard..
     treeTags[t].forEach(tag => {
@@ -191,30 +187,28 @@ function runFilters() {
       }
     });
 
-    // Filter by keepKV (move from discard -> keep)
-    tree.keepKV.forEach(s => {
-      const re = new RegExp(s, 'i');
-      for (const kvn in discard) {
-        const kv = kvn.split('|', 2)[0];
-        if (re.test(kv)) {
+    for (const kvn in discard) {
+      const parts = kvn.split('|', 2);     // kvn = "key/value|name"
+      const kv = parts[0];
+      const n = parts[1];
+      const tkv = `${t}/${kv}`;
+      const category = _cache.category[tkv];
+
+      // If we have a category for this tkv in the index, move the name from discard -> keep
+      if (category) {
+        // ..unless the name matches an exclude pattern
+        const exclude = category.exclude || {};
+        const excludeRegex = (exclude.named || []).map(s => new RegExp(s, 'i'));
+        const isExcluded = excludeRegex.some(regex => regex.test(n));
+
+        if (!isExcluded) {
           keep[kvn] = discard[kvn];
           delete discard[kvn];
         }
       }
-    });
+    }
 
-    // Filter by discardKeys (move from keep -> discard)
-    tree.discardKVN.forEach(s => {
-      const re = new RegExp(s, 'i');
-      for (const kvn in keep) {
-        if (re.test(kvn)) {
-          discard[kvn] = keep[kvn];
-          delete keep[kvn];
-        }
-      }
-    });
-
-    // filter by discardNames (move from keep -> discard)
+    // filter by genericWords (move from keep -> discard)
     _config.genericWords.forEach(s => {
       const re = new RegExp(s, 'i');
       for (let kvn in keep) {
@@ -230,8 +224,9 @@ function runFilters() {
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sortObject(discard)) + '\n');
-    fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sortObject(keep)) + '\n');
+//todo
+    // fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sortObject(discard)) + '\n');
+    // fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sortObject(keep)) + '\n');
 
   });
 
@@ -277,7 +272,6 @@ function saveIndex() {
   console.time(END);
 
   fileTree.write(_cache);
-
   console.timeEnd(END);
 }
 
@@ -337,8 +331,9 @@ function mergeItems() {
       }
 
       // Insert into index..
-      if (!_cache.path[tkv])  _cache.path[tkv] = [];
-      _cache.path[tkv].push(item);
+      if (!_cache.category[tkv])  _cache.category[tkv] = { path: tkv };
+      if (!_cache.path[tkv])      _cache.path[tkv] = { items: [], templates: [] };
+      _cache.path[tkv].items.push(item);
       totalNew++;
     });
 
@@ -348,7 +343,7 @@ function mergeItems() {
     //
     const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === t);
     paths.forEach(tkv => {
-      let items = _cache.path[tkv];
+      let items = _cache.path[tkv].items;
       if (!Array.isArray(items) || !items.length) return;
 
       const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
@@ -551,7 +546,7 @@ function checkItems(t) {
   const display = (val) => `${val.displayName} (${val.id})`;
 
   paths.forEach(tkv => {
-    const items = _cache.path[tkv];
+    const items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
