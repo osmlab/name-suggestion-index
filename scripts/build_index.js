@@ -192,13 +192,14 @@ function filterCollected() {
       const kv = parts[0];
       const n = parts[1];
       const tkv = `${t}/${kv}`;
-      const category = _cache.category[tkv];
+      const props = _cache.path[tkv].properties;
 
       // If we have a category for this tkv in the index, move the name from discard -> keep
-      if (category) {
+      if (props) {
         // ..unless the name matches an exclude pattern
-        const exclude = category.exclude || {};
-        const excludeRegex = (exclude.named || []).map(s => new RegExp(s, 'i'));
+        const exclude = props.exclude || {};
+        const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
+        const excludeRegex = excludePatterns.map(s => new RegExp(s, 'i'));
         const isExcluded = excludeRegex.some(regex => regex.test(n));
 
         if (!isExcluded) {
@@ -331,8 +332,10 @@ function mergeItems() {
       }
 
       // Insert into index..
-      if (!_cache.category[tkv])  _cache.category[tkv] = { path: tkv };
-      if (!_cache.path[tkv])      _cache.path[tkv] = { items: [], templates: [] };
+      if (!_cache.path[tkv]) {
+        _cache.path[tkv] = { properties: { path: tkv }, items: [], templates: [] };
+      }
+
       _cache.path[tkv].items.push(item);
       totalNew++;
     });

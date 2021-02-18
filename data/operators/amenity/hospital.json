@@ -1,11 +1,14 @@
 {
-  "path": "operators/amenity/hospital",
-  "exclude": {
-    "named": [
-      "^(govern?ment( authorities)?|govt( hospital)?|municipal|private|public|private not for profit|village)$",
-      "^(центральна районна лікарня|црб)$",
-      "^(центральная районная )?больница$"
-    ]
+  "properties": {
+    "path": "operators/amenity/hospital",
+    "exclude": {
+      "generic": ["^hospital$"],
+      "named": [
+        "^(govern?ment( authorities)?|govt( hospital)?|municipal|private|public|private not for profit|village)$",
+        "^(центральна районна лікарня|црб)$",
+        "^(центральная районная )?больница$"
+      ]
+    }
   },
   "items": [
     {

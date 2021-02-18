@@ -2,14 +2,51 @@
   "title": "items.json",
   "description": "JSON Schema for name-suggestion-index items",
   "type": "object",
-  "required": [],
-  "additionalProperties": true,
+  "required": ["properties", "items"],
+  "additionalProperties": false,
   "properties": {
 
-    "path": {
-      "description": "(required) The path for this category in the form tree/key/value",
-      "type": "string",
-      "pattern": "^\\S+/\\S+/\\S+$"
+    "properties": {
+      "description": "(required) An Object containing properties for this category",
+      "type": "object",
+      "required": ["path"],
+      "additionalProperties": true,
+      "properties": {
+
+        "path": {
+          "description": "(required) The path for this category in the form tree/key/value",
+          "type": "string",
+          "pattern": "^\\S+/\\S+/\\S+$"
+        },
+
+        "exclude": {
+          "description": "(required) Patterns to match names that should be excluded from this category",
+          "type": "object",
+          "required": [],
+          "additionalProperties": false,
+
+          "properties": {
+            "generic": {
+              "description": "(optional) Patterns to match generic names that should be excluded (e.g. 'restaurant', 'burger') ",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "format": "regex"
+              }
+            },
+            "named": {
+              "description": "(required) Patterns to match proper names to exclude from this category (e.g. 'china wok', 'pizza king')",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "format": "regex"
+              }
+            }
+          }
+        }
+      }
     },
 
     "items": {
