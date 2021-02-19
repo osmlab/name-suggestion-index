@@ -2,7 +2,12 @@
   "properties": {
     "path": "operators/amenity/post_office",
     "exclude": {
-      "generic": ["^post office$"],
+      "generic": [
+        "^(briefkasten|bureau de poste|post office)$",
+        "^kantor( pos)?$",
+        "^post\\s?(agentur|filiale|partner|stelle)?$",
+        "^ufficio postale$"
+      ],
       "named": [
         "^(co-?op( food)?|(the )?co-?operative( food)?)$",
         "^(costcutter|londis|mccoll'?s|one stop|premier( stores)?|whsmith)$"
