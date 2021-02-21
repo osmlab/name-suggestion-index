@@ -2055,16 +2055,6 @@
       }
     },
     {
-      "displayName": "Car Postal Suisse",
-      "id": "carpostalsuisse-ba16da",
-      "locationSet": {"include": ["ch"]},
-      "tags": {
-        "network": "Car Postal Suisse",
-        "operator": "Car Postal Suisse",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Car TER Centre − Val de Loire",
       "id": "2e098c-ed7458",
       "locationSet": {"include": ["fr"]},
@@ -2086,12 +2076,23 @@
       }
     },
     {
-      "displayName": "CarPostal",
+      "displayName": "PostAuto",
       "id": "carpostal-ba16da",
       "locationSet": {"include": ["ch"]},
+      "matchNames": ["Car Postal Suisse"],
       "tags": {
-        "network": "CarPostal",
+        "network": "PostAuto",
+        "network:de": "PostAuto",
+        "network:en": "PostBus",
+        "network:fr": "CarPostal",
+        "network:it": "Autopostale",
+        "network:wikidata": "Q666809",
         "operator": "CarPostal",
+        "operator:de": "PostAuto",
+        "operator:en": "PostBus",
+        "operator:fr": "CarPostal",
+        "operator:it": "Autopostale",
+        "operator:wikidata": "Q666809",
         "route": "bus"
       }
     },
@@ -2341,14 +2342,15 @@
       }
     },
     {
-      "displayName": "ch-direct",
+      "displayName": "SwissPass",
       "id": "chdirect-3a952b",
       "locationSet": {
         "include": ["ch", "de", "fr", "it"]
       },
+      "matchNames": ["ch-direct", "ch-integral"],
       "tags": {
-        "network": "ch-direct",
-        "operator": "ch-direct",
+        "network": "SwissPass",
+        "network:wikidata": "Q20850937",
         "route": "bus"
       }
     },
@@ -3618,6 +3620,7 @@
       "displayName": "Engadinmobil",
       "id": "engadinmobil-ba16da",
       "locationSet": {"include": ["ch"]},
+      "matchNames": ["nus collians"],
       "tags": {
         "network": "Engadinmobil",
         "operator": "Engadinbus",
@@ -6157,6 +6160,7 @@
       "displayName": "Libero",
       "id": "libero-ba16da",
       "locationSet": {"include": ["ch"]},
+      "matchNames": ["TVBeo"],
       "tags": {
         "network": "Libero",
         "network:wikidata": "Q2394193",
@@ -6170,8 +6174,11 @@
       "locationSet": {
         "include": ["at", "ch", "li"]
       },
+      "matchNames": ["liemobil"],
       "tags": {
         "network": "Liechtenstein Bus",
+        "network:short": "VLM",
+        "network:wikidata": "Q172652",
         "operator": "Liechtenstein Bus",
         "route": "bus"
       }
@@ -8532,7 +8539,7 @@
       },
       "tags": {
         "network": "Ostwind",
-        "operator": "Ostwind",
+        "network:wikidata": "Q2394207",
         "route": "bus"
       }
     },
@@ -12566,12 +12573,14 @@
       }
     },
     {
-      "displayName": "TL",
+      "displayName": "Mobilis (Switzerland)",
       "id": "tl-ba16da",
       "locationSet": {"include": ["ch"]},
+      "matchNames": ["TL", "Tarifverbund Waadt"],
       "tags": {
-        "network": "TL",
-        "operator": "TL",
+        "network": "Mobilis",
+        "network:short": "CTV",
+        "network:wikidata": "Q2394222",
         "route": "bus"
       }
     },
@@ -12691,12 +12700,14 @@
       }
     },
     {
-      "displayName": "TPF",
+      "displayName": "Frimobil",
       "id": "tpf-ba16da",
       "locationSet": {"include": ["ch"]},
+      "matchNames": ["TPF"],
       "tags": {
-        "network": "TPF",
-        "operator": "TPF",
+        "network": "frimobil",
+        "network:short": "TVF",
+        "network:wikidata": "Q2394200",
         "route": "bus"
       }
     },
@@ -13156,7 +13167,6 @@
       "locationSet": {"include": ["ch"]},
       "tags": {
         "network": "TransReno",
-        "operator": "TransReno",
         "route": "bus"
       }
     },
@@ -13482,16 +13492,6 @@
       }
     },
     {
-      "displayName": "TVBeo",
-      "id": "tvbeo-ba16da",
-      "locationSet": {"include": ["ch"]},
-      "tags": {
-        "network": "TVBeo",
-        "operator": "TVBeo",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "TVS",
       "id": "tvs-9eaa16",
       "locationSet": {
@@ -13499,27 +13499,30 @@
       },
       "tags": {
         "network": "TVS",
-        "operator": "TVS",
         "route": "bus"
       }
     },
     {
-      "displayName": "TVSZ",
+      "displayName": "Tarifverbund Schwyz",
       "id": "tvsz-ba16da",
       "locationSet": {"include": ["ch"]},
+      "matchNames": ["Schwyzerpass"],
       "tags": {
-        "network": "TVSZ",
-        "operator": "TVSZ",
+        "network": "Tarifverbund Schwyz",
+        "network:short": "TVSZ",
+        "network:wikidata": "Q2394211",
         "route": "bus"
       }
     },
     {
-      "displayName": "TVZG",
+      "displayName": "Tarifverbund Zug",
       "id": "tvzg-ba16da",
       "locationSet": {"include": ["ch"]},
+      "matchNames": ["Zugerpass"],
       "tags": {
-        "network": "TVZG",
-        "operator": "TVZG",
+        "network": "Tarifverbund Zug",
+        "network:short": "TVZG",
+        "network:wikidata": "Q2394216",
         "route": "bus"
       }
     },
@@ -13640,9 +13643,11 @@
       "displayName": "Unireso",
       "id": "unireso-5f704d",
       "locationSet": {"include": ["ch", "fr"]},
+      "matchNames": ["Tarifverbund Genf"],
       "tags": {
         "network": "Unireso",
-        "operator": "Unireso",
+        "network:short": "CTGE",
+        "network:wikidata": "Q1312883",
         "route": "bus"
       }
     },
@@ -13720,9 +13725,10 @@
       "displayName": "Vagabond",
       "id": "vagabond-ba16da",
       "locationSet": {"include": ["ch"]},
+      "matchNames": ["Tarifverbund Jura"],
       "tags": {
         "network": "Vagabond",
-        "operator": "Vagabond",
+        "network:wikidata": "Vagabond",
         "route": "bus"
       }
     },
@@ -14740,7 +14746,7 @@
       },
       "tags": {
         "network": "VVT",
-        "operator": "VVT",
+        "network:wikidata": "Q1668732",
         "route": "bus"
       }
     },
@@ -15485,7 +15491,7 @@
       "locationSet": {"include": ["ch"]},
       "tags": {
         "network": "ZVV",
-        "operator": "ZVV",
+        "network:wikidata": "Q201977",
         "route": "bus"
       }
     },
