@@ -167,9 +167,8 @@ function filterCollected() {
     const tree = _config.trees[t];
     if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) return;
 
-//todo
     // Start clean
-    // shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
+    shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
 
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
@@ -227,9 +226,8 @@ function filterCollected() {
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-//todo
-    // fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sortObject(discard)) + '\n');
-    // fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sortObject(keep)) + '\n');
+    fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sortObject(discard)) + '\n');
+    fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sortObject(keep)) + '\n');
 
   });
 
