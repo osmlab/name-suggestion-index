@@ -400,28 +400,45 @@ function mergeItems() {
           // Seed missing operator tags (for a file that we copied over from the 'brand' tree)
           Object.keys(tags).forEach(osmkey => {
             if (/brand/.test(osmkey)) {
-              let operatorkey = osmkey.replace('brand', 'operator');   // copy `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
-              if (!tags[operatorkey]) tags[operatorkey] = tags[osmkey];
+              const brandkey = osmkey;
+              const operatorkey = brandkey.replace('brand', 'operator');   // `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
+              if (!tags[operatorkey]) {
+                tags[operatorkey] = tags[brandkey];
+              }
             }
           });
 
-          // For certain 'operator' categories that are kind of like brands,
-          // copy missing tags the other way too and include names
-          //  (note: we can change this later of people hate it)
-          // https://github.com/osmlab/name-suggestion-index/issues/2883#issuecomment-726305200
-          if (/^amenity\/(bicycle|car)/.test(kv)) {
-            Object.keys(tags).forEach(osmkey => {
-              // an operator tag (but not `operator:type`)
-              if (/operator(?!(:type))/.test(osmkey)) {
-                let brandkey = osmkey.replace('operator', 'brand');  // copy `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
-                if (!tags[brandkey]) tags[brandkey] = tags[osmkey];
-                if (!/wiki/.test(osmkey)) {
-                  let namekey = osmkey.replace('operator', 'name');   // copy `operator`->`name`, `operator:ru`->`name:ru`, etc.
-                  if (!tags[namekey]) tags[namekey] = tags[osmkey];
-                }
-              }
-            });
-          }
+          // Remove redundant brand tags.. (this is temporary code) - #4925
+          // if (/^amenity\/(post|bicycle|car)/.test(kv)) {
+          //   Object.keys(tags).forEach(osmkey => {
+          //     if (/brand/.test(osmkey)) {
+          //       const brandkey = osmkey;
+          //       const operatorkey = brandkey.replace('brand', 'operator');  // `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
+          //       if (tags[operatorkey] && tags[brandkey] === tags[operatorkey]) {
+          //         delete tags[brandkey];
+          //       }
+          //     }
+          //   });
+          // }
+
+          // // For certain 'operator' categories that are kind of like brands,
+          // // copy missing tags the other way too and include names
+          // //  (note: we can change this later if people hate it)
+          // // https://github.com/osmlab/name-suggestion-index/issues/2883#issuecomment-726305200
+          // if (/^amenity\/(bicycle|car)/.test(kv)) {
+          //   Object.keys(tags).forEach(osmkey => {
+          //     // an operator tag (but not `operator:type`)
+          //     if (/operator(?!(:type))/.test(osmkey)) {
+          //       const operatorkey = osmkey;
+          //       const brandkey = operatorkey.replace('operator', 'brand');  // `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
+          //       if (!tags[brandkey]) tags[brandkey] = tags[operatorkey];
+          //       if (!/wiki/.test(operatorkey)) {
+          //         const namekey = operatorkey.replace('operator', 'name');   // `operator`->`name`, `operator:ru`->`name:ru`, etc.
+          //         if (!tags[namekey]) tags[namekey] = tags[operatorkey];
+          //       }
+          //     }
+          //   });
+          // }
 
         } else if (t === 'transit') {
           name = tags.network;
