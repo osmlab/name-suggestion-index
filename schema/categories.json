@@ -19,45 +19,9 @@
           "pattern": "^\\S+/\\S+/\\S+$"
         },
 
-        "mergeStrategy": {
-          "$comment": "Values here should be patterns that match OSM tag keys",
-          "description": "(optional) Strategy to take when merging tag values from name-suggestion-index into OpenStreetMap",
-          "type": "object",
-          "required": [],
-          "additionalProperties": false,
-
-          "properties": {
-            "add": {
-              "description": "(optional) Values in OSM can be added, but existing values should not be modified",
-              "examples": ["^building$", "^flag:name$", "^takeaway$"],
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "format": "regex"
-              }
-            },
-            "replace": {
-              "description": "(optional) Values in OSM are always replaced with values in NSI",
-              "default": [".*"],
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "format": "regex"
-              }
-            },
-            "ignore": {
-              "description": "(optional) Values in NSI are never used to update OSM",
-              "examples": ["^payment:"],
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "format": "regex"
-              }
-            }
-          }
+        "preserveTags": {
+          "description": "(optional) For tags matching these patterns, NSI should not replace an existing value in OSM",
+          "$ref": "#/definitions/preserveTags"
         },
 
         "skipCollection": {
@@ -169,6 +133,17 @@
       "pattern": "^.*\\.geojson$"
     },
 
+    "preserveTags": {
+      "description": "(optional) For tags matching these patterns, NSI should not replace an existing value in OSM",
+      "examples": ["^name"],
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^\\S+$"
+      }
+    },
+
     "notTags": {
       "description": "A list of properties that we never want as tags, this is to prevent common mistakes",
       "type": "object",
@@ -178,10 +153,10 @@
         "id":              { "not" : {} },
         "include":         { "not" : {} },
         "locationSet":     { "not" : {} },
-        "mergeStrategy":   { "not" : {} },
         "matchNames":      { "not" : {} },
         "matchTags":       { "not" : {} },
         "path":            { "not" : {} },
+        "preserveTags":    { "not" : {} },
         "note":            { "not" : {} },
         "skipCollection":  { "not" : {} },
         "tags":            { "not" : {} },
@@ -230,6 +205,11 @@
             "type": "string",
             "pattern": "^\\S+/\\S+$"
           }
+        },
+
+        "preserveTags": {
+          "description": "(optional) For tags matching these patterns, NSI should not replace an existing value in OSM",
+          "$ref": "#/definitions/preserveTags"
         },
 
         "note": {
@@ -302,9 +282,8 @@
             { "$ref": "#/definitions/notTags" }
           ]
         }
-
       }
     }
-  }
 
+  }
 }
