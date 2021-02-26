@@ -310,7 +310,7 @@ function mergeItems() {
       const tkv = `${t}/${k}/${v}`;
 
       const m = matcher.match(k, v, n);
-      if (m) return;     // already in the index
+      if (m) return;     // already in the index (or generic)
 
       // A new item!
       let item = { tags: {} };

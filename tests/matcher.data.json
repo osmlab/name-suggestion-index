@@ -1,6 +1,12 @@
 {
   "brands/amenity/fast_food": {
-    "path": "brands/amenity/fast_food",
+    "properties": {
+      "path": "brands/amenity/fast_food",
+      "exclude": {
+        "generic": ["^(fast food|food court)$"],
+        "named": ["^(city (grill|pizza)|kebabai)$"]
+      }
+    },
     "items": [
       {
         "displayName": "Honey Baked Ham",

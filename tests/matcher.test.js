@@ -51,6 +51,50 @@ describe('match', () => {
     expect(result).toBeNull();
   });
 
+  describe('excluded/generic name matching', () => {
+    test('matches excluded generic pattern with main tagpair', () => {
+      const result = _matcher.match('amenity', 'fast_food', 'Food Court');
+      expect(result).toBeInstanceOf(Array);
+      expect(result.length).toBe(1);
+      expect(result[0].match).toBe('excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
+      expect(result[0].pattern).toBe('/^(fast food|food court)$/i');
+      expect(result[0].kv).toBe('amenity/fast_food');
+    });
+    test('match excluded generic pattern with alternate tagpair in matchGroups', () => {
+      const result = _matcher.match('amenity', 'cafe', 'Food Court');
+      expect(result).toBeInstanceOf(Array);
+      expect(result.length).toBe(1);
+      expect(result[0].match).toBe('excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
+      expect(result[0].pattern).toBe('/^(fast food|food court)$/i');
+      expect(result[0].kv).toBe('amenity/fast_food');
+    });
+    test('match globally excluded generic pattern from genericWords.json', () => {
+      const result = _matcher.match('amenity', 'cafe', '???');
+      expect(result).toBeInstanceOf(Array);
+      expect(result.length).toBe(1);
+      expect(result[0].match).toBe('excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
+      expect(result[0].pattern).toBe('/^\\?+$/i');
+      expect(result[0].kv).toBeUndefined();
+    });
+
+    test('matches excluded name pattern with main tagpair', () => {
+      const result = _matcher.match('amenity', 'fast_food', 'Kebabai');
+      expect(result).toBeInstanceOf(Array);
+      expect(result.length).toBe(1);
+      expect(result[0].match).toBe('excludeNamed');      // 'excludeNamed' = matched a named exclude pattern
+      expect(result[0].pattern).toBe('/^(city (grill|pizza)|kebabai)$/i');
+      expect(result[0].kv).toBe('amenity/fast_food');
+    });
+    test('match excluded name pattern with alternate tagpair in matchGroups', () => {
+      const result = _matcher.match('amenity', 'cafe', 'Kebabai');
+      expect(result).toBeInstanceOf(Array);
+      expect(result.length).toBe(1);
+      expect(result[0].match).toBe('excludeNamed');      // 'excludeNamed' = matched a named exclude pattern
+      expect(result[0].pattern).toBe('/^(city (grill|pizza)|kebabai)$/i');
+      expect(result[0].kv).toBe('amenity/fast_food');
+    });
+  });
+
 
   describe('basic matching, single result', () => {
     test('matches exact key/value/name', () => {
