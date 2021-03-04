@@ -276,10 +276,15 @@ function processEntities(result) {
     target.dissolutions = [];
 
 
-    // P18 - Image (use this for flags)
-    // P154 - Logo Image
-    const imageProp = (meta.what === 'flag' ? 'P18' : 'P154');
-    let imageFile = getClaimValue(entity, imageProp);
+    let imageFile;
+    if (meta.what === 'flag') {
+      // P18 - Image (use this for flags)
+      imageFile = getClaimValue(entity, 'P18');
+    } else {
+      // P154 - Logo Image
+      // P8972 - Small Logo or Icon
+      imageFile = getClaimValue(entity, 'P8972') || getClaimValue(entity, 'P154');
+    }
     if (imageFile) {
       const re = /\.svg$/i;
       if (re.test(imageFile)) {
