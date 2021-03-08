@@ -328,7 +328,6 @@ function mergeItems() {
 
       } else if (t === 'transit') {
         item.tags.network = n;
-        item.tags.operator = n;
       }
 
       // Insert into index..
@@ -408,48 +407,19 @@ function mergeItems() {
             }
           });
 
-          // Remove redundant brand tags.. (this is temporary code) - #4925
-          // if (/^amenity\/(post|bicycle|car)/.test(kv)) {
-          //   Object.keys(tags).forEach(osmkey => {
-          //     if (/brand/.test(osmkey)) {
-          //       const brandkey = osmkey;
-          //       const operatorkey = brandkey.replace('brand', 'operator');  // `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
-          //       if (tags[operatorkey] && tags[brandkey] === tags[operatorkey]) {
-          //         delete tags[brandkey];
-          //       }
-          //     }
-          //   });
-          // }
-
-          // // For certain 'operator' categories that are kind of like brands,
-          // // copy missing tags the other way too and include names
-          // //  (note: we can change this later if people hate it)
-          // // https://github.com/osmlab/name-suggestion-index/issues/2883#issuecomment-726305200
-          // if (/^amenity\/(bicycle|car)/.test(kv)) {
-          //   Object.keys(tags).forEach(osmkey => {
-          //     // an operator tag (but not `operator:type`)
-          //     if (/operator(?!(:type))/.test(osmkey)) {
-          //       const operatorkey = osmkey;
-          //       const brandkey = operatorkey.replace('operator', 'brand');  // `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
-          //       if (!tags[brandkey]) tags[brandkey] = tags[operatorkey];
-          //       if (!/wiki/.test(operatorkey)) {
-          //         const namekey = operatorkey.replace('operator', 'name');   // `operator`->`name`, `operator:ru`->`name:ru`, etc.
-          //         if (!tags[namekey]) tags[namekey] = tags[operatorkey];
-          //       }
-          //     }
-          //   });
-          // }
-
         } else if (t === 'transit') {
           name = tags.network;
 
-          // If the operator is the same as the network, copy any missing *:wikipedia/*:wikidata tags
-          if (tags.network && tags.operator && tags.network === tags.operator) {
-            if (!tags['operator:wikidata'] && tags['network:wikidata'])    tags['operator:wikidata'] = tags['network:wikidata'];
-            if (!tags['operator:wikipedia'] && tags['network:wikipedia'])  tags['operator:wikipedia'] = tags['network:wikipedia'];
-            if (!tags['network:wikidata'] && tags['operator:wikidata'])    tags['network:wikidata'] = tags['operator:wikidata'];
-            if (!tags['network:wikipedia'] && tags['operator:wikipedia'])  tags['network:wikipedia'] = tags['operator:wikipedia'];
-          }
+// one time - remove the operators if they are the same as the networks
+// Object.keys(tags).forEach(osmkey => {
+//   if (/operator/.test(osmkey)) {
+//     const operatorkey = osmkey;
+//     const networkkey = operatorkey.replace('operator', 'network');
+//     if (tags[operatorkey] && tags[networkkey] && tags[operatorkey] ===  tags[networkkey]) {
+//       delete tags[operatorkey];
+//     }
+//   }
+// });
         }
 
         // If the name can only be reasonably read in one country,
