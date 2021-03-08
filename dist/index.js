@@ -345,7 +345,7 @@
   matchGroups: matchGroups
   };
 
-  var genericWords = ["^(baseball|basketball|football|soccer|softball|tennis)\\s?(field|court)?$","^\\?+$","^barn$","^bazaa?r$","^bench$","^bou?tique$","^building$","^casa$","^church$","^clubhouse$","^driveway$","^el árbol$","^fountain$","^golf$","^government$","^graveyard$","^greenhouse$","^hofladen$","^librairie$","^magazin","^maison$","^mobile home park$","^no name$","^null$","^obuwie$","^outhouse$","^park$","^pond$","^pool$","^sale$","^shops?$","^skatepark$","^sklep$","^stores?$","^tattoo( studio)?$","^temporary$","^unknown$","^warehouse$","^windmill$","^церковная( лавка)?$"];
+  var genericWords = ["^(baseball|basketball|football|soccer|softball|tennis)\\s?(field|court)?$","^\\?+$","^barn$","^bazaa?r$","^bench$","^bou?tique$","^building$","^casa$","^church$","^clubhouse$","^driveway$","^el árbol$","^fountain$","^golf$","^government$","^graveyard$","^greenhouse$","^hofladen$","^librairie$","^magazin","^maison$","^mobile home park$","^n/a$","^no name$","^null$","^obuwie$","^outhouse$","^park$","^pond$","^pool$","^sale$","^shops?$","^skatepark$","^sklep$","^stores?$","^tattoo( studio)?$","^temporary$","^unknown$","^warehouse$","^windmill$","^церковная( лавка)?$"];
   var require$$1 = {
   genericWords: genericWords
   };
@@ -1340,6 +1340,7 @@
         const exclude = properties.exclude || {};
         (exclude.generic || []).forEach(s => branch.excludeGeneric.set(s, new RegExp(s, 'i')));
         (exclude.named || []).forEach(s => branch.excludeNamed.set(s, new RegExp(s, 'i')));
+        const excludeRegexes = [...branch.excludeGeneric.values(), ...branch.excludeNamed.values()];
 
 
         // ADD ITEMS
@@ -1406,14 +1407,17 @@
           }
 
           Object.keys(item.tags).forEach(osmkey => {    // Check all tags for "names"
+            const osmvalue = item.tags[osmkey];
             primaryNames.forEach(regex => {
-              if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
-              kvTags.forEach(kv => insertName('primary', kv, simplify(item.tags[osmkey]), item.id));
+              if (!regex.test(osmkey) || notNames.test(osmkey)) return;         // osmkey is not a namelike tag, skip
+              if (excludeRegexes.some(regex => regex.test(osmvalue))) return;   // osmvalue is excluded
+              kvTags.forEach(kv => insertName('primary', kv, simplify(osmvalue), item.id));
             });
 
             alternateNames.forEach(regex => {
-              if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
-              kvTags.forEach(kv => insertName('alternate', kv, simplify(item.tags[osmkey]), item.id));
+              if (!regex.test(osmkey) || notNames.test(osmkey)) return;         // osmkey is not a namelike tag, skip
+              if (excludeRegexes.some(regex => regex.test(osmvalue))) return;   // osmvalue is excluded
+              kvTags.forEach(kv => insertName('alternate', kv, simplify(osmvalue), item.id));
             });
           });
 
