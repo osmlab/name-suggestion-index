@@ -131,7 +131,8 @@ function buildJSON() {
 
   const paths = Object.keys(_cache.path).sort(withLocale);
   paths.forEach(tkv => {
-    let items = _cache.path[tkv].items;
+    const properties = _cache.path[tkv].properties || {};
+    const items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
@@ -250,6 +251,17 @@ function buildJSON() {
         }
       }
 
+      // Special rule for "name" field in the brands tree:
+      // If we're preserving the `name` tag, make sure both "name" and "brand" fields are shown.
+      // This triggers iD to lock the "brand" field but allow edits to the "name" field.
+      let fields;
+      if (t === 'brands' || t === 'operators') {
+        const preserveTags = item.preserveTags || properties.preserveTags || [];
+        if (preserveTags.some(s => s === '^name')) {
+          fields = ['name', 'brand', `{${presetID}}`];
+        }
+      }
+
       let targetPreset = {
         name: item.displayName,
         locationSet: item.locationSet,
@@ -260,6 +272,7 @@ function buildJSON() {
 
       if (logoURL)           targetPreset.imageURL = logoURL;
       if (terms.size)        targetPreset.terms = Array.from(terms).sort(withLocale);
+      if (fields)            targetPreset.fields = fields;
       if (preset.reference)  targetPreset.reference = preset.reference;
       targetPreset.tags = sortObject(targetTags);
       targetPreset.addTags = sortObject(item.tags);
@@ -361,7 +374,7 @@ function buildTaginfo() {
 
   // collect all tag pairs
   let tagPairs = {};
-  _cache.id.forEach((item, id) => {
+  _cache.id.forEach(item => {
     for (const k in item.tags) {
       let v = item.tags[k];
 
