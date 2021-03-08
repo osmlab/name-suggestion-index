@@ -409,17 +409,6 @@ function mergeItems() {
 
         } else if (t === 'transit') {
           name = tags.network;
-
-// one time - remove the operators if they are the same as the networks
-// Object.keys(tags).forEach(osmkey => {
-//   if (/operator/.test(osmkey)) {
-//     const operatorkey = osmkey;
-//     const networkkey = operatorkey.replace('operator', 'network');
-//     if (tags[operatorkey] && tags[networkkey] && tags[operatorkey] ===  tags[networkkey]) {
-//       delete tags[operatorkey];
-//     }
-//   }
-// });
         }
 
         // If the name can only be reasonably read in one country,
