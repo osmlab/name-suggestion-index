@@ -576,8 +576,10 @@ function checkItems(t) {
           break;
         case 'man_made/flagpole':
           if (!tags['flag:type']) { warnMissingTag.push([display(item), 'flag:type']); }
-          if (!tags['subject']) { warnMissingTag.push([display(item), 'subject']); }
-          if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
+          if (!/^wiphala/.test(item.id)) {
+            if (!tags['subject']) { warnMissingTag.push([display(item), 'subject']); }
+            if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
+          }
           break;
         case 'shop/beauty':
           if (!tags.beauty) { warnMissingTag.push([display(item), 'beauty']); }
