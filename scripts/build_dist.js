@@ -62,8 +62,8 @@ function buildAll() {
   const output = { nsi: _cache.path };
   writeFileWithMeta('dist/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
 
-  buildJSON();     // nsi-id-presets.json
-  buildXML();      // nsi-josm-presets.json
+  buildIDPresets();     // nsi-id-presets.json
+  buildJOSMPresets();   // nsi-josm-presets.json
   buildTaginfo();
   buildSitemap();
 
@@ -81,7 +81,9 @@ function copyWithMeta(filename) {
 }
 
 
-function buildJSON() {
+// build iD presets
+// https://github.com/openstreetmap/id-tagging-schema
+function buildIDPresets() {
   //
   // First we'll match every NSI item to a source iD preset.
   // The source iD presets look like this:
@@ -290,9 +292,11 @@ function buildJSON() {
 }
 
 
+// `buildJOSMPresets()`
 // Create JOSM presets using the tree/key/value structure
 // to organize the presets into JOSM preset groups.
-function buildXML() {
+// See:  https://josm.openstreetmap.de/wiki/TaggingPresets
+function buildJOSMPresets() {
   let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
   let presets = root.ele('presets')
     .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
@@ -356,6 +360,9 @@ function buildXML() {
 }
 
 
+// `buildTaginfo()`
+// Create a taginfo project file
+// See:  https://wiki.openstreetmap.org/wiki/Taginfo/Projects
 function buildTaginfo() {
   const distURL = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
   let taginfo = {
@@ -398,6 +405,9 @@ function buildTaginfo() {
 }
 
 
+// `buildSitemap()`
+// Create the sitemap for https://nsi.guide
+// See:  https://en.wikipedia.org/wiki/Sitemaps
 function buildSitemap() {
   const changefreq = 'weekly';
   const lastmod = (new Date()).toISOString();
@@ -428,6 +438,8 @@ function buildSitemap() {
 }
 
 
+// `minifySync()`
+// minifies a file
 function minifySync(inPath, outPath) {
   try {
     const contents = fs.readFileSync(inPath, 'utf8');
