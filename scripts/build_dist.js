@@ -141,11 +141,11 @@ function buildJSON() {
     let v = parts[2];
     const tree = trees[t];
 
-    // exception where the NSI key/value doesn't match the iD key/value
-    if (k === 'route') k = 'type/route';
+    let presetPath = `${k}/${v}`;
 
-    let kv = `${k}/${v}`;
-
+    // exceptions where the NSI key/value doesn't match the iD preset path key/value
+    if (k === 'route')                         presetPath = `type/route/${v}`;
+    if (k === 'highway' && v === 'bus_stop')   presetPath = 'public_transport/platform/bus_point';
 
     // Which wikidata tag is considered the "main" tag for this tree?
     const wdTag = tree.mainTag;
@@ -178,7 +178,7 @@ function buildJSON() {
         if (!val) return;
 
         if (val === 'parcel_pickup;parcel_mail_in') {    // this one is just special
-          presetID = `${kv}/parcel_pickup_dropoff`;
+          presetID = `${presetPath}/parcel_pickup_dropoff`;
           preset = sourcePresets[presetID];
           if (preset) return;  // it matched
         }
@@ -186,7 +186,7 @@ function buildJSON() {
         // keys like cuisine can contain multiple values, so try each one in order
         let vals = val.split(';');
         for (let i = 0; i < vals.length; i++) {
-          presetID = kv + '/' + vals[i].trim();
+          presetID = presetPath + '/' + vals[i].trim();
           preset = sourcePresets[presetID];
           if (preset) return;   // it matched
         }
@@ -194,7 +194,7 @@ function buildJSON() {
 
       // fallback to `key/value`
       if (!preset) {
-        presetID = kv;
+        presetID = presetPath;
         preset = sourcePresets[presetID];
       }
 
@@ -251,15 +251,15 @@ function buildJSON() {
         }
       }
 
-      // Special rule for "name" field in the brands tree:
+      // Special rule for "name" fields:
       // If we're preserving the `name` tag, make sure both "name" and "brand" fields are shown.
       // This triggers iD to lock the "brand" field but allow edits to the "name" field.
+      const preserveTags = item.preserveTags || properties.preserveTags || [];
       let fields;
-      if (t === 'brands' || t === 'operators') {
-        const preserveTags = item.preserveTags || properties.preserveTags || [];
-        if (preserveTags.some(s => s === '^name')) {
-          fields = ['name', 'brand', `{${presetID}}`];
-        }
+      if (t === 'brands' && preserveTags.some(s => s === '^name')) {
+        fields = ['name', 'brand', `{${presetID}}`];
+      } else if (t === 'operators' && preserveTags.some(s => s === '^name')) {
+        fields = ['name', 'operator', `{${presetID}}`];
       }
 
       let targetPreset = {
