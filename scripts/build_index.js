@@ -246,6 +246,7 @@ function loadIndex() {
   console.time(END);
 
   fileTree.read(_cache, loco);
+  fileTree.expandTemplates(_cache, loco);
   console.timeEnd(END);
 
   const MATCH_INDEX_END = '👍  ' + colors.green(`built match index`);
