@@ -364,7 +364,7 @@
 
   var quickselect = createCommonjsModule(function (module, exports) {
   (function (global, factory) {
-  	 module.exports = factory() ;
+  	module.exports = factory() ;
   }(commonjsGlobal, (function () {
   function quickselect(arr, k, left, right, compare) {
       quickselectStep(arr, k, left || 0, right || (arr.length - 1), compare || defaultCompare);
