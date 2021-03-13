@@ -146,8 +146,9 @@ function buildIDPresets() {
     let presetPath = `${k}/${v}`;
 
     // exceptions where the NSI key/value doesn't match the iD preset path key/value
-    if (k === 'route')                         presetPath = `type/route/${v}`;
-    if (k === 'highway' && v === 'bus_stop')   presetPath = 'public_transport/platform/bus_point';
+    if (k === 'route')                              presetPath = `type/route/${v}`;
+    if (k === 'highway' && v === 'bus_stop')        presetPath = 'public_transport/platform/bus_point';
+    if (k === 'amenity' && v === 'ferry_terminal')  presetPath = 'public_transport/station_ferry';
 
     // Which wikidata tag is considered the "main" tag for this tree?
     const wdTag = tree.mainTag;
