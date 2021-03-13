@@ -345,7 +345,7 @@
   matchGroups: matchGroups
   };
 
-  var genericWords = ["^(baseball|basketball|football|soccer|softball|tennis)\\s?(field|court)?$","^\\?+$","^barn$","^bazaa?r$","^bench$","^bou?tique$","^building$","^casa$","^church$","^clubhouse$","^driveway$","^el árbol$","^fountain$","^golf$","^government$","^graveyard$","^greenhouse$","^hofladen$","^librairie$","^magazin","^maison$","^mobile home park$","^n/a$","^no name$","^null$","^obuwie$","^outhouse$","^park$","^pond$","^pool$","^sale$","^shops?$","^skatepark$","^sklep$","^stores?$","^tattoo( studio)?$","^temporary$","^unknown$","^warehouse$","^windmill$","^церковная( лавка)?$"];
+  var genericWords = ["^(barn|bazaa?r|bench|bou?tique|building|casa|church)$","^(baseball|basketball|football|soccer|softball|tennis)\\s?(field|court)?$","^(club|green|out|ware)\\s?house$","^(driveway|el árbol|fountain|golf|government|graveyard)$","^(hofladen|librairie|magazine?|maison)$","^(mobile home|skate)?\\s?park$","^(n\\s?\\/?\\s?a|name|no\\s?name|none|null|temporary|test|unknown)$","^(obuwie|pond|pool|sale|shops?|sklep|stores?)$","^\\?+$","^tattoo( studio)?$","^windmill$","^церковная( лавка)?$"];
   var require$$1 = {
   genericWords: genericWords
   };
