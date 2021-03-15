@@ -154,15 +154,14 @@ function buildIDPresets() {
     const wdTag = tree.mainTag;
 
     // Primary/alternate names may be used as preset search terms
-    const primaryNames = tree.nameTags.primary.map(s => new RegExp(s, 'i'));
-    const alternateNames = tree.nameTags.alternate.map(s => new RegExp(s, 'i'));
+    const primaryName = new RegExp(tree.nameTags.primary, 'i');
+    const alternateName = new RegExp(tree.nameTags.alternate, 'i');
 
     // There are a few exceptions to the name matching regexes.
     // Usually a tag suffix contains a language code like `name:en`, `name:ru`
     // but we want to exclude things like `operator:type`, `name:etymology`, etc..
     // NOTE: here we intentionally exclude `:wikidata`, in `matcher.js` we do not.
-    const notNames = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
-
+    const notName = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
     items.forEach(item => {
       const tags = item.tags;
@@ -210,16 +209,13 @@ function buildIDPresets() {
       // Gather search terms - include all primary/alternate names and matchNames
       // (There is similar code in lib/matcher.js)
       let terms = new Set(item.matchNames || []);
-      Object.keys(tags).forEach(osmkey => {    // Check all tags for alternate names
-        primaryNames.forEach(regex => {
-          if (osmkey === 'name') return;   // exclude `name` tag, as iD prioritizes it above `preset.terms` already
-          if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
+      Object.keys(tags).forEach(osmkey => {
+        if (osmkey === 'name') return;      // exclude `name` tag, as iD prioritizes it above `preset.terms` already
+        if (notName.test(osmkey)) return;   // osmkey is not a namelike tag, skip
+
+        if (primaryName.test(osmkey) || alternateName.test(osmkey)) {
           terms.add(tags[osmkey].toLowerCase());
-        });
-        alternateNames.forEach(regex => {
-          if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
-          terms.add(tags[osmkey].toLowerCase());
-        });
+        }
       });
 
       // generate our target preset

@@ -72,8 +72,8 @@ function loadConfig() {
     // check regexes
     if (which === 'trees') {
       Object.values(data.trees).forEach(tree => {
-        tree.nameTags.primary.forEach(pattern => checkRegex(file, pattern));
-        tree.nameTags.alternate.forEach(pattern => checkRegex(file, pattern));
+        checkRegex(file, tree.nameTags.primary);
+        checkRegex(file, tree.nameTags.alternate);
       });
 
     } else if (which === 'genericWords') {
