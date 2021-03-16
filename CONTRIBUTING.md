@@ -2,39 +2,51 @@
 
 ### tl;dr
 
-##### :raising_hand: &nbsp; How to help:
+##### 🙋‍♀️ &nbsp; How to help:
 
-* [Prerequisites & installation instruction in the README](https://github.com/osmlab/name-suggestion-index#prerequisites)
+<!-- * [Prerequisites & installation instruction in the README](https://github.com/osmlab/name-suggestion-index#prerequisites) -->
 * `npm run build` will reprocess the files and output warnings
-* Resolve warnings - [show me](#thinking--resolve-warnings)
 * Remove generic names - [show me](#hocho--remove-generic-names)
 * Add `brand:wikidata` and `brand:wikipedia` tags - [show me](#female_detective--add-wiki-tags)
 * Add missing brands - [show me](#convenience_store--add-missing-brands)
 * Edit Wikidata in compliance with their policies - [show me](#memo--edit-wikidata)
 
-Tip: You can browse the index at https://nsi.guide/
-to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
+👉 Tip: You can browse the index at https://nsi.guide/ to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
 
-##### :no_entry_sign: &nbsp; Don't edit the files in `dist/` - they are generated:
+#### Source files (edit these):
 
-* `dist/collected/*` - all the frequent names and tags collected from OpenStreetMap
-* `dist/filtered/*` - subset of names and tags that we are keeping or discarding
-* `dist/wikidata.json` - cached brand data retrieved from Wikidata
+The files under `config/*`, `data/*`, and `features/*` can be edited:
 
-##### :white_check_mark: &nbsp; Do edit the files in `config/`, `data/`, and `features/`:
+- `data/*` - Data files for each feature category, organized by topic and OpenStreetMap tag
+  - `brands/**/*.json`
+  - `flags/**/*.json`
+  - `operators/**/*.json`
+  - `transit/**/*.json`
 
-* `config/*`:
-  * `config/genericWords.json` - Regular expressions used to find and discard generic names
-  * `config/matchGroups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
-  * `config/replacements.json` - Mapping of old Wikidata QIDs map to their replacement new Wikidata and Wikipedia values.
-  * `config/trees.json` - Metadata about subtrees in this project, and regular expressions used to keep and discard tags
-* `data/*` - Data files for each kind of branded business, organized by topic and OpenStreetMap tag
-  * `data/brands/amenity/*.json`
-  * `data/brands/leisure/*.json`
-  * `data/brands/shop/*.json`
-  * and so on...
-* `features/*` - Source files for custom locations where brands are active
+- `features/*` - GeoJSON files that define custom regions (aka [geofences](https://en.wikipedia.org/wiki/Geo-fence))
+  - `us/new_jersey.geojson`
+  - `ca/quebec.geojson`
+  - and so on…
+
+- `config/*`
+  - `genericWords.json` - Regular expressions used to find and discard generic names
+  - `matchGroups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
+  - `replacements.json` - Mapping of old Wikidata QIDs to replacement new Wikidata/Wikipedia values
+  - `trees.json` - Metadata about subtrees supported in this project
+
+
+#### Generated files (do not edit):
+
+The files under `dist/*` are generated:
+- `dist/nsi.json` - The complete index
+- `dist/dissolved.json` - List of items that we believe may be dissolved based on Wikidata claims
+- `dist/taginfo.json` - List of all tags this project supports (see: https://taginfo.openstreetmap.org/)
+- `dist/wikidata.json` - Cached data retrieved from Wikidata (names, social accounts, logos)
+- `dist/collected/*` - Frequently occuring tags collected from OpenStreetMap
+- `dist/config/*` - A copy of the config files (see below)
+- `dist/filtered/*` - Subset of tags that we are keeping or discarding
+- `dist/presets/*` - Preset files generated for iD and JOSM editors
 
 &nbsp;
 
@@ -42,8 +54,7 @@ to see which brands are missing Wikidata links, or have incomplete Wikipedia pag
 
 ### :world_map: &nbsp; About OpenStreetMap
 
-[OpenStreetMap](https://openstreetmap.org) is a free, editable map of the whole world that
-is being built by volunteers.
+[OpenStreetMap](https://openstreetmap.org) is a free, editable map of the whole world that is being built by volunteers.
 Features on the map are defined using _tags_.  Each tag is a `key=value` pair of text strings.
 
 For example, a McDonald's restaurant might have these tags:
@@ -58,9 +69,13 @@ For example, a McDonald's restaurant might have these tags:
 
 ### :bulb: &nbsp; About the name-suggestion-index
 
-The goal of this project is to define the _most correct tags_ to assign to each common brand name.
-This helps people contribute to OpenStreetMap, because they can pick "McDonald's" from a list
-and not need to worry about the tags being added.
+The goal of this project is to define the _most correct tags_ for common features,
+and to link these features to a [Wikidata](https://www.wikidata.org/) QID identifer.
+
+- This helps people contribute to OpenStreetMap, because they can pick "McDonald's"
+from a list and not need to worry about the tags being added.
+- This helps the OpenStreetMap project because consumers can use and understand the
+data better when it is tagged consistently.
 
 &nbsp;
 
@@ -240,7 +255,7 @@ This project includes a "fuzzy" matcher that can match alternate names and tags 
   …
 ```
 
-:point_right: The matcher code also has some useful automatic behaviors...
+👉 The matcher code also has some useful automatic behaviors…
 
 You don't need to add `matchNames` for:
 - Name variations in capitalization, punctuation, spacing (the middots common in Japanese names count as punctuation, so "V・ドラッグ" already matches "vドラッグ")
@@ -264,23 +279,15 @@ You can optionally add a `note` property to any item.  The note can contain any 
 The notes just stay with the name-suggestion-index; they aren't OpenStreetMap tags or used by other software.
 
 ```js
-"path": "brands/amenity/bank",
-"items": [
-  …
   {
     "displayName": "United Bank (Connecticut)",
     "id": "unitedbank-28419b",
     "locationSet": { "include": ["peoples_united_bank_ct.geojson"] },
     "note": "Merged into People's United Bank (Q7165802) in 2019, see https://en.wikipedia.org/wiki/United_Financial_Bancorp",
     "tags": {
-      "amenity": "bank",
-      "brand": "United Bank",
-      "brand:wikidata": "Q16959074",
-      "brand:wikipedia": "en:United Financial Bancorp",
-      "name": "United Bank"
+      …
     }
   },
-  …
 ```
 
 &nbsp;
@@ -295,7 +302,6 @@ You should also give each entry a unique `displayName`, so everyone can tell the
 
 
 ```js
-  …
   {
     "displayName": "Price Chopper (Kansas City)",
     "id": "pricechopper-9554e9",
@@ -320,7 +326,6 @@ You should also give each entry a unique `displayName`, so everyone can tell the
       "shop": "supermarket"
     }
   },
-  …
 ```
 
 &nbsp;
@@ -338,7 +343,7 @@ Feature files look like this:
   "properties": {},
   "geometry": {
     "type": "Polygon",
-    "coordinates": [...]
+    "coordinates": […]
   }
 }
 ```
@@ -365,46 +370,6 @@ To rebuild the index, run:
 
 This will output a lot of warnings, which you can help fix!
 
-&nbsp;
-
-### :thinking: &nbsp; Resolve warnings
-
-Warnings mean that you need to edit files under `data/brands/*`.
-The warning output gives a clue about how to fix or suppress the warning.
-If you aren't sure, just ask on GitHub!
-
-&nbsp;
-
-#### Duplicate names
-
-```
-  Warning - Potential duplicate:
-------------------------------------------------------------------------------------------------------
-  If the items are two different businesses,
-    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.
-  If the items are duplicates of the same business,
-    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.
-  If the duplicate item is a generic word,
-    add a filter to config/genericWords.json and delete the unwanted item.
-------------------------------------------------------------------------------------------------------
-  "shop/supermarket|Carrefour" -> duplicates? -> "amenity/fuel|Carrefour"
-  "shop/supermarket|VinMart" -> duplicates? -> "shop/department_store|VinMart"
-```
-
-_What it means:_  These names are commonly tagged differently in OpenStreetMap.  This might be ok, but it might be a mistake.
-
-For "VinMart" we really prefer for it to be tagged as a supermarket.  It's a single brand frequently mistagged.
-* Add `"matchTags": ["shop/department_store"]` to the (preferred) `"shop/supermarket|VinMart"` entry
-* Delete the (not preferred) entry for `"shop/department_store|VinMart"`
-
-For "Carrefour" we know that can be both a supermarket and a fuel station.  It's two different things.
-* Make sure both items have a `brand:wikidata` tag and appropriate `locationSet`.
-
-Existing tagging (you can compare counts in `dist/filtered/names_keep.json`), information at the relevant Wikipedia page or the company's website, and [OpenStreetMap Wiki tag documentation](https://wiki.openstreetmap.org/wiki/Map_Features) all help in deciding how to address duplicate warnings.
-
-If the situation is unclear, one may contact the [local community](https://community.osm.be/) and ask for help.
-
-&nbsp;
 
 ### :hocho: &nbsp; Remove generic names
 
@@ -621,7 +586,7 @@ is a valuable way to get ahead of incorrect tagging.
 
 4. If instances of this brand are commonly mistagged add the `"matchNames": []` key to list these. Again, refer to [here](#card_file_box--about-the-data-files) for syntax.
 
-5. Run `npm run build` and resolve any [duplicate name warnings](#thinking--resolve-warnings).
+5. Run `npm run build`
 
 &nbsp;
 

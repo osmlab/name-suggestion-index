@@ -62,8 +62,8 @@ function buildAll() {
   const output = { nsi: _cache.path };
   writeFileWithMeta('dist/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
 
-  buildJSON();     // nsi-id-presets.json
-  buildXML();      // nsi-josm-presets.json
+  buildIDPresets();     // nsi-id-presets.json
+  buildJOSMPresets();   // nsi-josm-presets.json
   buildTaginfo();
   buildSitemap();
 
@@ -81,7 +81,9 @@ function copyWithMeta(filename) {
 }
 
 
-function buildJSON() {
+// build iD presets
+// https://github.com/openstreetmap/id-tagging-schema
+function buildIDPresets() {
   //
   // First we'll match every NSI item to a source iD preset.
   // The source iD presets look like this:
@@ -131,7 +133,8 @@ function buildJSON() {
 
   const paths = Object.keys(_cache.path).sort(withLocale);
   paths.forEach(tkv => {
-    let items = _cache.path[tkv].items;
+    const properties = _cache.path[tkv].properties || {};
+    const items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
     const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
@@ -140,25 +143,25 @@ function buildJSON() {
     let v = parts[2];
     const tree = trees[t];
 
-    // exception where the NSI key/value doesn't match the iD key/value
-    if (k === 'route') k = 'type/route';
+    let presetPath = `${k}/${v}`;
 
-    let kv = `${k}/${v}`;
-
+    // exceptions where the NSI key/value doesn't match the iD preset path key/value
+    if (k === 'route')                              presetPath = `type/route/${v}`;
+    if (k === 'highway' && v === 'bus_stop')        presetPath = 'public_transport/platform/bus_point';
+    if (k === 'amenity' && v === 'ferry_terminal')  presetPath = 'public_transport/station_ferry';
 
     // Which wikidata tag is considered the "main" tag for this tree?
     const wdTag = tree.mainTag;
 
     // Primary/alternate names may be used as preset search terms
-    const primaryNames = tree.nameTags.primary.map(s => new RegExp(s, 'i'));
-    const alternateNames = tree.nameTags.alternate.map(s => new RegExp(s, 'i'));
+    const primaryName = new RegExp(tree.nameTags.primary, 'i');
+    const alternateName = new RegExp(tree.nameTags.alternate, 'i');
 
     // There are a few exceptions to the name matching regexes.
     // Usually a tag suffix contains a language code like `name:en`, `name:ru`
     // but we want to exclude things like `operator:type`, `name:etymology`, etc..
     // NOTE: here we intentionally exclude `:wikidata`, in `matcher.js` we do not.
-    const notNames = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
-
+    const notName = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
     items.forEach(item => {
       const tags = item.tags;
@@ -177,7 +180,7 @@ function buildJSON() {
         if (!val) return;
 
         if (val === 'parcel_pickup;parcel_mail_in') {    // this one is just special
-          presetID = `${kv}/parcel_pickup_dropoff`;
+          presetID = `${presetPath}/parcel_pickup_dropoff`;
           preset = sourcePresets[presetID];
           if (preset) return;  // it matched
         }
@@ -185,7 +188,7 @@ function buildJSON() {
         // keys like cuisine can contain multiple values, so try each one in order
         let vals = val.split(';');
         for (let i = 0; i < vals.length; i++) {
-          presetID = kv + '/' + vals[i].trim();
+          presetID = presetPath + '/' + vals[i].trim();
           preset = sourcePresets[presetID];
           if (preset) return;   // it matched
         }
@@ -193,7 +196,7 @@ function buildJSON() {
 
       // fallback to `key/value`
       if (!preset) {
-        presetID = kv;
+        presetID = presetPath;
         preset = sourcePresets[presetID];
       }
 
@@ -206,16 +209,13 @@ function buildJSON() {
       // Gather search terms - include all primary/alternate names and matchNames
       // (There is similar code in lib/matcher.js)
       let terms = new Set(item.matchNames || []);
-      Object.keys(tags).forEach(osmkey => {    // Check all tags for alternate names
-        primaryNames.forEach(regex => {
-          if (osmkey === 'name') return;   // exclude `name` tag, as iD prioritizes it above `preset.terms` already
-          if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
+      Object.keys(tags).forEach(osmkey => {
+        if (osmkey === 'name') return;      // exclude `name` tag, as iD prioritizes it above `preset.terms` already
+        if (notName.test(osmkey)) return;   // osmkey is not a namelike tag, skip
+
+        if (primaryName.test(osmkey) || alternateName.test(osmkey)) {
           terms.add(tags[osmkey].toLowerCase());
-        });
-        alternateNames.forEach(regex => {
-          if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
-          terms.add(tags[osmkey].toLowerCase());
-        });
+        }
       });
 
       // generate our target preset
@@ -250,6 +250,17 @@ function buildJSON() {
         }
       }
 
+      // Special rule for "name" fields:
+      // If we're preserving the `name` tag, make sure both "name" and "brand" fields are shown.
+      // This triggers iD to lock the "brand" field but allow edits to the "name" field.
+      const preserveTags = item.preserveTags || properties.preserveTags || [];
+      let fields;
+      if (t === 'brands' && preserveTags.some(s => s === '^name')) {
+        fields = ['name', 'brand', `{${presetID}}`];
+      } else if (t === 'operators' && preserveTags.some(s => s === '^name')) {
+        fields = ['name', 'operator', `{${presetID}}`];
+      }
+
       let targetPreset = {
         name: item.displayName,
         locationSet: item.locationSet,
@@ -260,6 +271,7 @@ function buildJSON() {
 
       if (logoURL)           targetPreset.imageURL = logoURL;
       if (terms.size)        targetPreset.terms = Array.from(terms).sort(withLocale);
+      if (fields)            targetPreset.fields = fields;
       if (preset.reference)  targetPreset.reference = preset.reference;
       targetPreset.tags = sortObject(targetTags);
       targetPreset.addTags = sortObject(item.tags);
@@ -277,9 +289,11 @@ function buildJSON() {
 }
 
 
+// `buildJOSMPresets()`
 // Create JOSM presets using the tree/key/value structure
 // to organize the presets into JOSM preset groups.
-function buildXML() {
+// See:  https://josm.openstreetmap.de/wiki/TaggingPresets
+function buildJOSMPresets() {
   let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
   let presets = root.ele('presets')
     .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
@@ -343,6 +357,9 @@ function buildXML() {
 }
 
 
+// `buildTaginfo()`
+// Create a taginfo project file
+// See:  https://wiki.openstreetmap.org/wiki/Taginfo/Projects
 function buildTaginfo() {
   const distURL = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
   let taginfo = {
@@ -361,7 +378,7 @@ function buildTaginfo() {
 
   // collect all tag pairs
   let tagPairs = {};
-  _cache.id.forEach((item, id) => {
+  _cache.id.forEach(item => {
     for (const k in item.tags) {
       let v = item.tags[k];
 
@@ -385,6 +402,9 @@ function buildTaginfo() {
 }
 
 
+// `buildSitemap()`
+// Create the sitemap for https://nsi.guide
+// See:  https://en.wikipedia.org/wiki/Sitemaps
 function buildSitemap() {
   const changefreq = 'weekly';
   const lastmod = (new Date()).toISOString();
@@ -415,6 +435,8 @@ function buildSitemap() {
 }
 
 
+// `minifySync()`
+// minifies a file
 function minifySync(inPath, outPath) {
   try {
     const contents = fs.readFileSync(inPath, 'utf8');

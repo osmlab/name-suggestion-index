@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "path": "transit/highway/bus_stop",
+    "skipCollection": true,
+    "exclude": {
+      "generic": ["^bus\\s?(station|stop)?$"]
+    }
+  },
+  "items": [
+    {
+      "templateSource": "transit/route/bus",
+      "templateTags": {
+        "highway": "bus_stop",
+        "route": ""
+      }
+    }
+  ]
+}

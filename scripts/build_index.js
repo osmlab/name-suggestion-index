@@ -72,8 +72,8 @@ function loadConfig() {
     // check regexes
     if (which === 'trees') {
       Object.values(data.trees).forEach(tree => {
-        tree.nameTags.primary.forEach(pattern => checkRegex(file, pattern));
-        tree.nameTags.alternate.forEach(pattern => checkRegex(file, pattern));
+        checkRegex(file, tree.nameTags.primary);
+        checkRegex(file, tree.nameTags.alternate);
       });
 
     } else if (which === 'genericWords') {
@@ -246,6 +246,7 @@ function loadIndex() {
   console.time(END);
 
   fileTree.read(_cache, loco);
+  fileTree.expandTemplates(_cache, loco);
   console.timeEnd(END);
 
   const MATCH_INDEX_END = '👍  ' + colors.green(`built match index`);
@@ -328,7 +329,6 @@ function mergeItems() {
 
       } else if (t === 'transit') {
         item.tags.network = n;
-        item.tags.operator = n;
       }
 
       // Insert into index..
@@ -408,48 +408,8 @@ function mergeItems() {
             }
           });
 
-          // Remove redundant brand tags.. (this is temporary code) - #4925
-          // if (/^amenity\/(post|bicycle|car)/.test(kv)) {
-          //   Object.keys(tags).forEach(osmkey => {
-          //     if (/brand/.test(osmkey)) {
-          //       const brandkey = osmkey;
-          //       const operatorkey = brandkey.replace('brand', 'operator');  // `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
-          //       if (tags[operatorkey] && tags[brandkey] === tags[operatorkey]) {
-          //         delete tags[brandkey];
-          //       }
-          //     }
-          //   });
-          // }
-
-          // // For certain 'operator' categories that are kind of like brands,
-          // // copy missing tags the other way too and include names
-          // //  (note: we can change this later if people hate it)
-          // // https://github.com/osmlab/name-suggestion-index/issues/2883#issuecomment-726305200
-          // if (/^amenity\/(bicycle|car)/.test(kv)) {
-          //   Object.keys(tags).forEach(osmkey => {
-          //     // an operator tag (but not `operator:type`)
-          //     if (/operator(?!(:type))/.test(osmkey)) {
-          //       const operatorkey = osmkey;
-          //       const brandkey = operatorkey.replace('operator', 'brand');  // `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
-          //       if (!tags[brandkey]) tags[brandkey] = tags[operatorkey];
-          //       if (!/wiki/.test(operatorkey)) {
-          //         const namekey = operatorkey.replace('operator', 'name');   // `operator`->`name`, `operator:ru`->`name:ru`, etc.
-          //         if (!tags[namekey]) tags[namekey] = tags[operatorkey];
-          //       }
-          //     }
-          //   });
-          // }
-
         } else if (t === 'transit') {
           name = tags.network;
-
-          // If the operator is the same as the network, copy any missing *:wikipedia/*:wikidata tags
-          if (tags.network && tags.operator && tags.network === tags.operator) {
-            if (!tags['operator:wikidata'] && tags['network:wikidata'])    tags['operator:wikidata'] = tags['network:wikidata'];
-            if (!tags['operator:wikipedia'] && tags['network:wikipedia'])  tags['operator:wikipedia'] = tags['network:wikipedia'];
-            if (!tags['network:wikidata'] && tags['operator:wikidata'])    tags['network:wikidata'] = tags['operator:wikidata'];
-            if (!tags['network:wikipedia'] && tags['operator:wikipedia'])  tags['network:wikipedia'] = tags['operator:wikipedia'];
-          }
         }
 
         // If the name can only be reasonably read in one country,
@@ -617,8 +577,10 @@ function checkItems(t) {
           break;
         case 'man_made/flagpole':
           if (!tags['flag:type']) { warnMissingTag.push([display(item), 'flag:type']); }
-          if (!tags['subject']) { warnMissingTag.push([display(item), 'subject']); }
-          if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
+          if (!/^wiphala/.test(item.id)) {
+            if (!tags['subject']) { warnMissingTag.push([display(item), 'subject']); }
+            if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
+          }
           break;
         case 'shop/beauty':
           if (!tags.beauty) { warnMissingTag.push([display(item), 'beauty']); }
