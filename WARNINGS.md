@@ -1,6 +1,6 @@
-## Resolving Warnings
+# Resolving Warnings
 
-### :thinking: &nbsp; Resolve warnings
+## :thinking: &nbsp; Resolve warnings
 
 Warnings mean that you need to edit files under `data/brands/*`.
 The warning output gives a clue about how to fix or suppress the warning.
@@ -8,7 +8,7 @@ If you aren't sure, just ask on GitHub!
 
 &nbsp;
 
-#### Duplicate names
+### Duplicate names
 
 ```
   Warning - Potential duplicate:

@@ -1,10 +1,10 @@
-## Contributing
-
+# Contributing
+<!--
 ### tl;dr
 
-##### 🙋‍♀️ &nbsp; How to help:
+##### :raised_hand: &nbsp; How to help:
 
-<!-- * [Prerequisites & installation instruction in the README](https://github.com/osmlab/name-suggestion-index#prerequisites) -->
+* [Prerequisites & installation instruction in the README](https://github.com/osmlab/name-suggestion-index#prerequisites)
 * `npm run build` will reprocess the files and output warnings
 * Remove generic names - [show me](#hocho--remove-generic-names)
 * Add `brand:wikidata` and `brand:wikipedia` tags - [show me](#female_detective--add-wiki-tags)
@@ -13,61 +13,31 @@
 
 👉 Tip: You can browse the index at https://nsi.guide/ to see which brands are missing Wikidata links, or have incomplete Wikipedia pages.
 
-
-#### Source files (edit these):
-
-The files under `config/*`, `data/*`, and `features/*` can be edited:
-
-- `data/*` - Data files for each feature category, organized by topic and OpenStreetMap tag
-  - `brands/**/*.json`
-  - `flags/**/*.json`
-  - `operators/**/*.json`
-  - `transit/**/*.json`
-
-- `features/*` - GeoJSON files that define custom regions (aka [geofences](https://en.wikipedia.org/wiki/Geo-fence))
-  - `us/new_jersey.geojson`
-  - `ca/quebec.geojson`
-  - and so on…
-
-- `config/*`
-  - `genericWords.json` - Regular expressions used to find and discard generic names
-  - `matchGroups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
-  - `replacements.json` - Mapping of old Wikidata QIDs to replacement new Wikidata/Wikipedia values
-  - `trees.json` - Metadata about subtrees supported in this project
-
-
-#### Generated files (do not edit):
-
-The files under `dist/*` are generated:
-- `dist/nsi.json` - The complete index
-- `dist/dissolved.json` - List of items that we believe may be dissolved based on Wikidata claims
-- `dist/taginfo.json` - List of all tags this project supports (see: https://taginfo.openstreetmap.org/)
-- `dist/wikidata.json` - Cached data retrieved from Wikidata (names, social accounts, logos)
-- `dist/collected/*` - Frequently occuring tags collected from OpenStreetMap
-- `dist/config/*` - A copy of the config files (see below)
-- `dist/filtered/*` - Subset of tags that we are keeping or discarding
-- `dist/presets/*` - Preset files generated for iD and JOSM editors
+ -->
 
 &nbsp;
 
 ## Background
 
-### :world_map: &nbsp; About OpenStreetMap
+## :world_map: &nbsp; About OpenStreetMap
 
 [OpenStreetMap](https://openstreetmap.org) is a free, editable map of the whole world that is being built by volunteers.
 Features on the map are defined using _tags_.  Each tag is a `key=value` pair of text strings.
 
 For example, a McDonald's restaurant might have these tags:
 ```js
-  "amenity": "fast_food"
-  "cuisine": "burger"
-  "name": "McDonald's"
-  … and more tags to record its address, opening hours, and so on.
+  "amenity": "fast_food",
+  "cuisine": "burger",
+  "name": "McDonald's",
+  and more tags to record its address, opening hours, and so on…
 ```
+
+The `amenity=fast_food` tag identifies it as a fast food restaurant.
+
 
 &nbsp;
 
-### :bulb: &nbsp; About the name-suggestion-index
+## :bulb: &nbsp; About the name-suggestion-index
 
 The goal of this project is to define the _most correct tags_ for common features,
 and to link these features to a [Wikidata](https://www.wikidata.org/) QID identifer.
@@ -77,11 +47,45 @@ from a list and not need to worry about the tags being added.
 - This helps the OpenStreetMap project because consumers can use and understand the
 data better when it is tagged consistently.
 
+
 &nbsp;
 
-### :card_file_box: &nbsp; About the data files
+## :card_file_box: &nbsp; Data files
 
-__The `data/*` folder contains many files, which together define the most correct OpenStreetMap names and tags.__
+### Organization
+
+The `data/*` folder contains a lot of files - one file per category.
+
+_Category files_ are organized in a tree/key/value path.  Each category file contains all the items that share an OpenStreetMap key/value tag.
+
+- _tree_ - The highest level of organization - each tree contains categories that follow a similar approach to naming and linking to Wikidata.
+- _key_ - An OpenStreetMap tree key (e.g. "amenity")
+- _value_ - An OpenStreetMap tag value (e.g. "fast_food")
+
+The name-suggestion-index currently supports these trees:
+
+- _brands_ - Branded businesses like restaurants, banks, fuel stations, shops
+identified by `brand`/`brand:wikidata` tags
+- _operators_ - Organizations like post offices, police departments, hospitals
+identified by `operator`/`operator:wikidata` tags
+- _flags_ - Flagpoles hoisting common kinds of flags (national, regional, religious, advertising)
+identified by `flag:wikidata` tag
+- _transit_ - Transit networks (bus, rail, ferry, etc.) and related infrastructure
+identified by `network`/`network:wikidata` tags
+
+
+For example:
+- `data/`
+  - `brands/amenity/fast_food.json`
+  - `brands/shop/supermarket.json`
+  - `operators/amenity/post_office.json`
+  - `flags/man_made/flagpole.json`
+  - `transit/route/bus.json`
+  - and so on…
+
+
+<!--
+##### Collecting items from OpenStreetMap
 
 These files are created by a several step process:
 - Process the OpenStreetMap "planet" data to collect common tags -> for example, `dist/collected/names_all.json`
@@ -93,18 +97,25 @@ The data files are organized by topic and OpenStreetMap tag:
   * `amenity/*.json`
   * `leisure/*.json`
   * `shop/*.json`
-  * and so on...
+  * and so on…
+ -->
 
+### Category file contents
 
-Each item looks like this _(comments added for clarity)_:
+Each category file contains:
+- `properties` - Object containing category-wide properties
+- `items` - Array containing the items in the category
 
-In `brands/amenity/fast_food.json`:
+For example `brands/amenity/fast_food.json` _(comments added for clarity)_:
 
 ```js
-"path": "brands/amenity/fast_food",
-"items": [
+"properties": {                           // CATEGORY PROPERTIES:
+  "path": "brands/amenity/fast_food"      // "path" - the tree/key/value path for this category
   …
-  {
+},
+"items": [                                // An array of items belonging to this category
+  …
+  {                                         // ITEM PROPERTIES:
     "displayName": "McDonald's",            // "displayName" - Name to display in summary screens and lists
     "id": "mcdonalds-658eea",               // "id" - a unique identifier added and generated automatically
     "locationSet": {"include": ["001"]},    // "locationSet" - defines where this brand is valid ("001" = worldwide)
@@ -121,9 +132,11 @@ In `brands/amenity/fast_food.json`:
 ```
 
 There may also be items for McDonald's in other languages!
+For example, this is how McDonald's should be mapped in Japan:
 
 ```js
-  {
+  …
+  {                                         // ITEM PROPERTIES:
     "displayName": "マクドナルド",            // "displayName" - Name to display in summary screens and lists
     "id": "マクドナルド-3e7699",              // "id" - a unique identifier added and generated automatically
     "locationSet": { "include": ["jp"] },   // "locationSet" - defines where this brand is valid ("jp" = Japan)
@@ -140,13 +153,14 @@ There may also be items for McDonald's in other languages!
       "name:ja": "マクドナルド",              // `name:ja` - Add at least one `name:xx` tag that matches `name`
     }
   },
+  …
 ```
 
 &nbsp;
 
-#### Required properties
+#### Item properties
 
-##### `displayName`
+##### `displayName` (required)
 
 The `displayName` can contain anything, but it should be a short text appropriate for display in lists or as preset names in editor software.  This is different from the OpenStreetMap `name` tag.
 
@@ -155,7 +169,6 @@ By convention, if you need to disambiguate between multiple brands with the same
 In `brands/shop/department_store.json`:
 
 ```js
-"path": "brands/shop/department_store",
 "items": [
   …
   {
@@ -194,7 +207,7 @@ Then run `npm run build` which will add the key and generate the value automatic
 The identifiers are stable unless the name, key, value, or locationSet change.
 
 
-##### `locationSet`
+##### `locationSet` (required)
 
 Each item requires a `locationSet` to define where the item is available.  You can define the `locationSet` as an Object with `include` and `exclude` properties:
 
@@ -214,16 +227,12 @@ You can view examples and learn more about working with `locationSets` in the [@
 ⚡️ You can test locationSets on this interactive map:  https://ideditor.github.io/location-conflation/
 
 
-##### `tags`
+##### `tags` (required)
 
 Each item requires a `tags` value.  This is just an Object containing all the OpenStreetMap tags that should be set on the feature.
 
 
-&nbsp;
-
-#### Optional properties
-
-##### `matchNames`/`matchTags`
+##### `matchNames`/`matchTags` (optional)
 
 Brands are often tagged inconsistently in OpenStreetMap.  For example, some mappers write "International House of Pancakes" and others write "IHOP".
 
@@ -232,7 +241,10 @@ This project includes a "fuzzy" matcher that can match alternate names and tags 
 `matchNames` and `matchTags` properties can be used to list the less-preferred alternatives.
 
 ```js
-"path": "brands/amenity/fast_food",     // all items in this file will match the tag `amenity=fast_food`
+"properties": {
+  "path": "brands/amenity/fast_food"      // all items in this file will match the tag `amenity=fast_food`
+  …
+},
 "items": [
   …
   {
@@ -258,21 +270,22 @@ This project includes a "fuzzy" matcher that can match alternate names and tags 
 👉 The matcher code also has some useful automatic behaviors…
 
 You don't need to add `matchNames` for:
-- Name variations in capitalization, punctuation, spacing (the middots common in Japanese names count as punctuation, so "V・ドラッグ" already matches "vドラッグ")
-- Name variations that already appear in the `name`, `brand`, `operator`, `network`.
-- Name variations that already appear in an alternate name tag (e.g. `alt_name`, `short_name`, `official_name`, etc.)
-- Name variations that already appear in any international version of those tags (e.g. `name:en`, `official_name:ja`, etc.)
-- Name variations in diacritic marks (e.g. "Häagen-Dazs" already matches "Haagen-Dazs")
-- Name variations in `&` vs. `and`
+- variations in capitalization, punctuation, spacing (the middots common in Japanese names count as punctuation, so "V・ドラッグ" already matches "vドラッグ")
+- variations that already appear in the `name`, `brand`, `operator`, `network`.
+- variations that already appear in an alternate name tag (e.g. `alt_name`, `short_name`, `official_name`, etc.)
+- variations that already appear in any international version of those tags (e.g. `name:en`, `official_name:ja`, etc.)
+- variations in diacritic marks (e.g. "Häagen-Dazs" already matches "Haagen-Dazs")
+- variations in `&` vs. `and`
 
 You don't need to add `matchTags` for:
-- Tags assigned to _match groups_ (defined in `config/matchGroups.json`). For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware"
-and vice versa. _Tags in a match group will automatically match any other tags in the same match group._
+- Tags assigned to _match groups_ (defined in `config/matchGroups.json`).
+For example, you don't need add `matchTags: ["shop/doityourself"]` to every "shop/hardware" and vice versa.
+_Tags in a match group will automatically match any other tags in the same match group._
 
 👉 Bonus: The build script will automatically remove extra `matchNames` and `matchTags` that are unnecessary.
 
 
-##### `note`
+##### `note` (optional)
 
 You can optionally add a `note` property to any item.  The note can contain any text useful for maintaining the index - for example, information about the brand's status, or a link to a GitHub issue.
 
@@ -328,9 +341,10 @@ You should also give each entry a unique `displayName`, so everyone can tell the
   },
 ```
 
+
 &nbsp;
 
-### Features
+## Features
 
 These are optional `.geojson` files found under the `features/` folder. Each feature file must contain a single GeoJSON `Feature` for a region where a brand  is active. Only `Polygon` and `MultiPolygon` geometries are supported.
 
@@ -359,7 +373,7 @@ The build script will automatically generate an `id` property to match the filen
 * [More than you ever wanted to know about GeoJSON](https://macwright.org/2015/03/23/geojson-second-bite.html)
 
 
-&nbsp;
+<!-- &nbsp;
 
 ## What you can do
 
@@ -369,8 +383,9 @@ To rebuild the index, run:
 * `npm run build`
 
 This will output a lot of warnings, which you can help fix!
+ -->
 
-
+<!--
 ### :hocho: &nbsp; Remove generic names
 
 Some of the common names in the index might not actually be brand names. We want to remove these
@@ -402,11 +417,13 @@ To remove this generic name:
 4. `git diff` - to make sure that the items you wanted to discard are gone (and no others are affected)
 5. If all looks ok, submit a pull request with your changes.
 
+-->
 &nbsp;
 
 ### :female_detective: &nbsp; Add wiki tags
 
-Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that anybody can help with.
+Contributing `*:wikipedia` and `*:wikidata` tags is a very useful task that anybody can help with.
+
 
 #### Example #1 - Worldwide / English brands...
 
@@ -481,6 +498,7 @@ Adding `brand:wikipedia` and `brand:wikidata` tags is a very useful task that an
 
     * Run `npm run build`
     * If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
+
 
 &nbsp;
 
@@ -569,18 +587,19 @@ Because this is a Japanese brand, we will link to the Japanese Wikipedia page.
     * Run `npm run build`
     * If it does not fail with an error, you can submit a pull request with your changes (warnings are OK).
 
+
 &nbsp;
 
-### :convenience_store: &nbsp; Add missing brands
+## :convenience_store: &nbsp; Add missing brands
 
 If it exists, we want to know about it!
 
-Some brands aren't mapped enough (50+ times) to automatically be added to the index so this
-is a valuable way to get ahead of incorrect tagging.
+Some brands haven't been mapped enough on OpenStreetMap (50+ times) to be automatically added to the index.
+If it is a notable brand, you can add it manually to establish a preferred tagging.
 
-1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `shop=food`). Ideally you also have `brand:wikidata` and `brand:wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
+1. Before adding a new brand, the minimum information you should know is the correct tagging required for instances of the brand (`name`, `brand` and what it is - e.g. `amenity=fast_food`). Ideally you also have `brand:wikidata` and `brand:wikipedia` tags for the brand and any other appropriate tags - e.g. `cuisine`.
 
-2. Add your new entry anywhere into the appropriate file under `data/brands/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-data-files) if you're not familiar with the syntax.
+2. Add your new entry anywhere into the appropriate file under `data/**/*` (the files will be sorted alphabetically later) and using the `"tags"` key add all appropriate OSM tags. Refer to [here](#card_file_box--about-the-data-files) if you're not familiar with the syntax.
 
 3. If the brand only has locations in a known set of countries add them to the `"locationSet"` property. This takes an array of [ISO 3166-1 alpha-2 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in lowercase (e.g. `["de", "at", "nl"]`).
 
@@ -588,9 +607,10 @@ is a valuable way to get ahead of incorrect tagging.
 
 5. Run `npm run build`
 
+
 &nbsp;
 
-#### Using Overpass Turbo
+### Using Overpass Turbo
 
 Sometimes you might want to know the locations where a brand name exists in OpenStreetMap.
 Overpass Turbo can show them on a map:
@@ -614,21 +634,22 @@ Because we don't specify a bounding box, this will perform a global query.
 
     <img width="600px" alt="Overpass search for かっぱ寿司" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/overpass.png"/>
 
+
 &nbsp;
 
-### :memo: &nbsp; Edit Wikidata
+## :memo: &nbsp; Edit Wikidata
 
 Editing brand pages on Wikidata is something that anybody can do.  It helps not just our project, but anybody who uses this data for other purposes too!  You can read more about contributing to Wikidata [here](https://www.wikidata.org/wiki/Wikidata:Contribute).
 
-- Add Wikidata pages for brands that don't yet have them.
+- Add Wikidata pages for items that don't yet have them.
 - Improve the labels and descriptions on the Wikidata pages.
 - Translate the labels and descriptions to more languages.
-- Add social media accounts under the "Identifiers" section.  If a brand has a Facebook, Instagram, or Twitter account, we can fetch its logo automatically.
+- Add social media accounts under the "Identifiers" section.  If a brand or organization has a Facebook or Twitter account, we can fetch its logo automatically.
 - Add the NSI identifier (P8253).  This should be a short string like "chipotle-658eea", not a URL.
 
 Tip: The browsable index at https://nsi.guide/ can show you where the Wikidata information is missing or incomplete.
 
-#### Adding properties to Wikidata
+### Adding properties to Wikidata
 
 Social media accounts may be used to automatically fetch logos, which are used by the iD Editor.
 <img width="800px" alt="Adding information on Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata.gif"/>
@@ -637,7 +658,7 @@ Social media links are often displayed on the official web site of a brand, maki
 
 <img width="730px" alt="Checking Twitter references in Wikidata" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/wikidata-applebees-twitter.png"/>
 
-#### Adding references to Wikidata
+### Adding references to Wikidata
 
 Wikidata pages without a matching Wikipedia article should have some additional references by independent sources. For our purposes, the easiest one to add is usually something in form of "this shop brand had N shops on some specific date".
 
@@ -646,6 +667,6 @@ Wikidata pages without a matching Wikipedia article should have some additional 
 
 If adding a general reference, you can use "described at URL" (P973) as a top-level claim.  The ideal would be links to articles in major newspapers that are primarily about the brand in question.  Press releases and articles guest-written by the CEO are not as good.
 
-#### Creating Wikidata pages
+### Creating Wikidata pages
 
 For minor brands there may be no Wikipedia article and it may be [impossible](https://en.wikipedia.org/wiki/Wikipedia:Notability) to create one. In such cases one may still go to [Wikidata](https://www.wikidata.org) and select "[Create a new item](https://www.wikidata.org/wiki/Special:NewItem)" in menu. For such entries it is mandatory to add external identifiers and references in order to comply with Wikidata's notability policies (see section above with animation showing how it can be done).
