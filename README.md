@@ -1,7 +1,7 @@
 [![build](https://github.com/osmlab/name-suggestion-index/workflows/build/badge.svg)](https://github.com/osmlab/name-suggestion-index/actions?query=workflow%3A%22build%22)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 
-# name-suggestion-index (aka "NSI")
+# name-suggestion-index ("NSI")
 
 Canonical features for OpenStreetMap
 
@@ -11,7 +11,10 @@ Canonical features for OpenStreetMap
 The goal of this project is to maintain a [canonical](https://en.wikipedia.org/wiki/Canonicalization)
 list of commonly used features for suggesting consistent spelling and tagging in OpenStreetMap.
 
-[Watch the video](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html) from our talk at State of the Map US 2019 to learn more about this project!
+> <br></br>
+> 👉 &nbsp; [Watch the video](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html)
+from our talk at State of the Map US 2019 to learn more about this project!<br></br>
+> <br></br>
 
 
 ## Browse the index
@@ -48,49 +51,23 @@ Currently used in:
 
 ## About the index
 
-You can learn more from these pages:
-- <https://nsi.guide/> - Browse and search all the data
-- [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute data about brands, transit, and other features to this index
-- [DEVELOPING.md](DEVELOPING.md) - If you are a developer and want to use the name-suggestion-index in your project
-- [MAINTAINING.md](MAINTAINING.md) - How to setup and build the index, sync with wikidata, and make releases
-
-
-### Source files (edit these):
-
-The files under `config/*`, `data/*`, and `features/*` may be edited:
-
-- `data/*` - Data files for each feature category, organized by topic and OpenStreetMap tag
-  - `brands/**/*.json`
-  - `flags/**/*.json`
-  - `operators/**/*.json`
-  - `transit/**/*.json`
-
-- `features/*` - GeoJSON files that define custom regions (aka [geofences](https://en.wikipedia.org/wiki/Geo-fence))
-  - `us/new_jersey.geojson`
-  - `ca/quebec.geojson`
-  - and so on…
-
-- `config/*`
-  - `genericWords.json` - Regular expressions to match generic names (e.g. "store", "noname")
-  - `matchGroups.json` - Groups of OpenStreetMap tags that are considered equivalent for purposes of matching
-  - `replacements.json` - Mapping of old Wikidata QIDs to replacement new Wikidata/Wikipedia values
-  - `trees.json` - Metadata about subtrees supported in this project
-
-
-### Generated files (do not edit):
-
-The files under `dist/*` are generated.
-See [DEVELOPING.md](DEVELOPING.md) for info about the generated files.
+See [the project wiki](https://github.com/osmlab/name-suggestion-index/wiki) for details.
 
 
 ## Participate!
 
-- Read the project [Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
-- See [CONTRIBUTING.md](CONTRIBUTING.md) for info about how to contribute to this index.
+We're always looking for help!
 
-We're always looking for help!  If you have any questions or want to reach out to a maintainer,
-ping `bhousel`,  `1ec5`, or `tas50` on:
+- Read [the Code of Conduct](CODE_OF_CONDUCT.md) and remember to be kind to one another.
+- See [the project wiki](https://github.com/osmlab/name-suggestion-index/wiki) for info about how to contribute to this index.
+
+If you have any questions or want to reach out to a maintainer, ping
+[@bhousel][@bhousel], [@1ec5][@1ec5], or [@tas50][@tas50] on:
 - [OpenStreetMap US Slack](https://slack.openstreetmap.us/) (`#poi` or `#general` channels)
+
+[@bhousel]: https://github.com/bhousel
+[@1ec5]: https://github.com/1ec5
+[@tas50]: https://github.com/tas50
 
 
 ## License
