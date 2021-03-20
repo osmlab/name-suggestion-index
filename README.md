@@ -11,10 +11,10 @@ Canonical features for OpenStreetMap
 The goal of this project is to maintain a [canonical](https://en.wikipedia.org/wiki/Canonicalization)
 list of commonly used features for suggesting consistent spelling and tagging in OpenStreetMap.
 
-> <br></br>
+> <br/>
 > 👉 &nbsp; [Watch the video](https://2019.stateofthemap.us/program/sat/mapping-brands-with-the-name-suggestion-index.html)
-from our talk at State of the Map US 2019 to learn more about this project!<br></br>
-> <br></br>
+from our talk at State of the Map US 2019 to learn more about this project!<br/>
+> <br/>
 
 
 ## Browse the index
