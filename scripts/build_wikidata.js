@@ -2,6 +2,8 @@ const colors = require('colors/safe');
 const crypto = require('crypto');
 const fetch = require('node-fetch');
 const fileTree = require('../lib/file_tree.js');
+const http = require('http');
+const https = require('https');
 const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
 const project = require('../package.json');
 const sortObject = require('../lib/sort_object.js');
@@ -21,6 +23,13 @@ const wbk = require('wikibase-sdk')({
   instance: 'https://www.wikidata.org',
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
+
+// set keepalive for all the connections - see #4948
+const httpAgent = new http.Agent({ keepAlive: true });
+const httpsAgent = new https.Agent({ keepAlive: true });
+const fetchOptions = {
+  agent: (url) => ((url.protocol === 'http:') ? httpAgent : httpsAgent)
+};
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
@@ -194,20 +203,23 @@ function doFetch(index) {
   if (index >= _urls.length) return Promise.resolve();
 
   let currURL = _urls[index];
-
+  let backoff = false;
   console.log(colors.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
 
-  return fetch(currURL)
+  return fetch(currURL, fetchOptions)
     .then(response => {
       if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
       return response.json();
     })
     .then(result => processEntities(result))
     .catch(e => {
-      _warnings.push(e);
-      console.warn(colors.red(e));
+      console.warn(colors.green.bold('fetch error:'));
+      console.warn(colors.white(JSON.stringify(e)));
+      console.warn(colors.green.bold('retrying...'));
+      backoff = true;
+      --index;
     })
-    .then(() => delay(500))
+    .then(() => delay(backoff ? 5000 : 500))
     .then(() => doFetch(++index));
 }
 
@@ -276,10 +288,15 @@ function processEntities(result) {
     target.dissolutions = [];
 
 
-    // P18 - Image (use this for flags)
-    // P154 - Logo Image
-    const imageProp = (meta.what === 'flag' ? 'P18' : 'P154');
-    let imageFile = getClaimValue(entity, imageProp);
+    let imageFile;
+    if (meta.what === 'flag') {
+      // P18 - Image (use this for flags)
+      imageFile = getClaimValue(entity, 'P18');
+    } else {
+      // P154 - Logo Image
+      // P8972 - Small Logo or Icon
+      imageFile = getClaimValue(entity, 'P8972') || getClaimValue(entity, 'P154');
+    }
     if (imageFile) {
       const re = /\.svg$/i;
       if (re.test(imageFile)) {
@@ -640,7 +657,7 @@ function fetchFacebookLogo(qid, username) {
   const m = username.match(/-(\d+)$/);
   if (m) userid = m[1];
 
-  return fetch(logoURL)
+  return fetch(logoURL, fetchOptions)
     .then(response => {
       if (!response.ok) {
         return response.json();  // we should get a response body with more information
@@ -681,7 +698,7 @@ function removeOldNsiClaims() {
       ?guid  ps:P8253  ?nsiId.
     }`;
 
-  return fetch(wbk.sparqlQuery(query))
+  return fetch(wbk.sparqlQuery(query), fetchOptions)
     .then(response => {
       if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
       return response.json();

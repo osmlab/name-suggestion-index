@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "version": "5.0.0-pre",
-    "generated": "2021-02-24T15:04:34.982Z",
+    "version": "5.0.20210317",
+    "generated": "2021-03-17T17:22:17.564Z",
     "url": "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/trees.json",
-    "hash": "ecb3f726478118c7cb1e3e3d1a1416ea"
+    "hash": "2bc0a9c145779af78862e4d0a07867ab"
   },
   "trees": {
     "brands": {
@@ -11,20 +11,16 @@
       "mainTag": "brand:wikidata",
       "sourceTags": ["brand", "name"],
       "nameTags": {
-        "primary": ["^(name|name:\\w+)$"],
-        "alternate": [
-          "^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"
-        ]
+        "primary": "^(name|name:\\w+)$",
+        "alternate": "^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"
       }
     },
     "flags": {
       "emoji": "🚩",
       "mainTag": "flag:wikidata",
       "nameTags": {
-        "primary": ["^(flag:name|flag:name:\\w+)$"],
-        "alternate": [
-          "^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"
-        ]
+        "primary": "^(flag:name|flag:name:\\w+)$",
+        "alternate": "^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"
       }
     },
     "operators": {
@@ -32,8 +28,8 @@
       "mainTag": "operator:wikidata",
       "sourceTags": ["operator"],
       "nameTags": {
-        "primary": ["^(name|name:\\w+|operator|operator:\\w+)$"],
-        "alternate": ["^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"]
+        "primary": "^(name|name:\\w+|operator|operator:\\w+)$",
+        "alternate": "^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"
       }
     },
     "transit": {
@@ -41,10 +37,8 @@
       "mainTag": "network:wikidata",
       "sourceTags": ["network"],
       "nameTags": {
-        "primary": ["^network$"],
-        "alternate": [
-          "^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"
-        ]
+        "primary": "^network$",
+        "alternate": "^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"
       }
     }
   }

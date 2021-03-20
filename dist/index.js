@@ -345,12 +345,12 @@
   matchGroups: matchGroups
   };
 
-  var genericWords = ["^(baseball|basketball|football|soccer|softball|tennis)\\s?(field|court)?$","^\\?+$","^barn$","^bazaa?r$","^bench$","^bou?tique$","^building$","^casa$","^church$","^clubhouse$","^driveway$","^el árbol$","^fountain$","^golf$","^government$","^graveyard$","^greenhouse$","^hofladen$","^librairie$","^magazin","^maison$","^mobile home park$","^no name$","^null$","^obuwie$","^outhouse$","^park$","^pond$","^pool$","^sale$","^shops?$","^skatepark$","^sklep$","^stores?$","^tattoo( studio)?$","^temporary$","^unknown$","^warehouse$","^windmill$","^церковная( лавка)?$"];
+  var genericWords = ["^(barn|bazaa?r|bench|bou?tique|building|casa|church)$","^(baseball|basketball|football|soccer|softball|tennis(halle)?)\\s?(field|court)?$","^(club|green|out|ware)\\s?house$","^(driveway|el árbol|fountain|golf|government|graveyard)$","^(hofladen|librairie|magazine?|maison)$","^(mobile home|skate)?\\s?park$","^(n\\s?\\/?\\s?a|name|no\\s?name|none|null|temporary|test|unknown)$","^(obuwie|pond|pool|sale|shops?|sklep|stores?)$","^\\?+$","^tattoo( studio)?$","^windmill$","^церковная( лавка)?$"];
   var require$$1 = {
   genericWords: genericWords
   };
 
-  var trees = {brands:{emoji:"🍔",mainTag:"brand:wikidata",sourceTags:["brand","name"],nameTags:{primary:["^(name|name:\\w+)$"],alternate:["^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"]}},flags:{emoji:"🚩",mainTag:"flag:wikidata",nameTags:{primary:["^(flag:name|flag:name:\\w+)$"],alternate:["^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"]}},operators:{emoji:"💼",mainTag:"operator:wikidata",sourceTags:["operator"],nameTags:{primary:["^(name|name:\\w+|operator|operator:\\w+)$"],alternate:["^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"]}},transit:{emoji:"🚇",mainTag:"network:wikidata",sourceTags:["network"],nameTags:{primary:["^network$"],alternate:["^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"]}}};
+  var trees = {brands:{emoji:"🍔",mainTag:"brand:wikidata",sourceTags:["brand","name"],nameTags:{primary:"^(name|name:\\w+)$",alternate:"^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"}},flags:{emoji:"🚩",mainTag:"flag:wikidata",nameTags:{primary:"^(flag:name|flag:name:\\w+)$",alternate:"^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"}},operators:{emoji:"💼",mainTag:"operator:wikidata",sourceTags:["operator"],nameTags:{primary:"^(name|name:\\w+|operator|operator:\\w+)$",alternate:"^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"}},transit:{emoji:"🚇",mainTag:"network:wikidata",sourceTags:["network"],nameTags:{primary:"^network$",alternate:"^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"}}};
   var require$$2 = {
   trees: trees
   };
@@ -1340,6 +1340,7 @@
         const exclude = properties.exclude || {};
         (exclude.generic || []).forEach(s => branch.excludeGeneric.set(s, new RegExp(s, 'i')));
         (exclude.named || []).forEach(s => branch.excludeNamed.set(s, new RegExp(s, 'i')));
+        const excludeRegexes = [...branch.excludeGeneric.values(), ...branch.excludeNamed.values()];
 
 
         // ADD ITEMS
@@ -1349,16 +1350,16 @@
 
         // Primary name patterns, match tags to take first
         //  e.g. `name`, `name:ru`
-        const primaryNames = tree.nameTags.primary.map(s => new RegExp(s, 'i'));
+        const primaryName = new RegExp(tree.nameTags.primary, 'i');
 
         // Alternate name patterns, match tags to consider after primary
         //  e.g. `alt_name`, `short_name`, `brand`, `brand:ru`, etc..
-        const alternateNames = tree.nameTags.alternate.map(s => new RegExp(s, 'i'));
+        const alternateName = new RegExp(tree.nameTags.alternate, 'i');
 
         // There are a few exceptions to the name matching regexes.
         // Usually a tag suffix contains a language code like `name:en`, `name:ru`
         // but we want to exclude things like `operator:type`, `name:etymology`, etc..
-        const notNames = /:(colou?r|type|forward|backward|left|right|etymology|pronunciation|wikipedia)$/i;
+        const notName = /:(colou?r|type|forward|backward|left|right|etymology|pronunciation|wikipedia)$/i;
 
         // For certain categories we do not want to match generic KV pairs like `building/yes` or `amenity/yes`
         const skipGenericKV = skipGenericKVMatches(t, k, v);
@@ -1382,8 +1383,7 @@
           });
         });
 
-
-        // Add each item to the matchIndex
+        // For each item, insert all [key, value, name] combinations into the match index
         items.forEach(item => {
           if (!item.id) return;
 
@@ -1405,16 +1405,17 @@
               .concat(Array.from(genericKV));  // #3454 - match some generic tags
           }
 
-          Object.keys(item.tags).forEach(osmkey => {    // Check all tags for "names"
-            primaryNames.forEach(regex => {
-              if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
-              kvTags.forEach(kv => insertName('primary', kv, simplify(item.tags[osmkey]), item.id));
-            });
+          // Index all the namelike tag values
+          Object.keys(item.tags).forEach(osmkey => {
+            if (notName.test(osmkey)) return;   // osmkey is not a namelike tag, skip
+            const osmvalue = item.tags[osmkey];
+            if (!osmvalue || excludeRegexes.some(regex => regex.test(osmvalue))) return;   // osmvalue missing or excluded
 
-            alternateNames.forEach(regex => {
-              if (!regex.test(osmkey) || notNames.test(osmkey)) return;    // osmkey is not a namelike tag, skip
-              kvTags.forEach(kv => insertName('alternate', kv, simplify(item.tags[osmkey]), item.id));
-            });
+            if (primaryName.test(osmkey)) {
+              kvTags.forEach(kv => insertName('primary', kv, simplify(osmvalue), item.id));
+            } else if (alternateName.test(osmkey)) {
+              kvTags.forEach(kv => insertName('alternate', kv, simplify(osmvalue), item.id));
+            }
           });
 
           // Index `matchNames` after indexing all other names..

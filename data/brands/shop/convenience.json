@@ -12,11 +12,11 @@
         "^[eé]pic(erie|ier)$",
         "^aliment(ation|ación|ar[ai])( g[eé]n[eé]rale)?$",
         "^kios(co|k|ko|que)?$",
+        "^magazin\\s?(alimentar|mixt|non-stop)?",
         "^pulper[ií]a$",
         "^smíšené zboží$",
         "^tienda( de (barrio|abarrotes))?$",
-        "^продукт[иы]?$",
-        "^продуктовый( магазин)?$",
+        "^продукт(овый|и|ы)?( магазин)?$",
         "^универ(маг|сам)$",
         "^хүнсний дэлгүүр$",
         "^მარკეტი( \\(market\\))?",
@@ -32,7 +32,8 @@
         "^(меркурий|мечта|мираж|белорусские продукты|продукты 24|натали|надежда|ника)$",
         "^(оазис|околица|олимп|парус|пеликан|престиж|подсолнух|радуга|росинка|ромашка|родник|рассвет|русь)$",
         "^(сельпо|семейный|сказка|солнышко|спутник|солнечный|светлана|удача|ивушка)$",
-        "^(юбилейный|южный|юлия|эконом|шанс|чайка|центральный|хороший|хуторок|фаворит|фортуна|татьяна|тройка|эдем|уют)$"
+        "^(юбилейный|южный|юлия|эконом|шанс|чайка|центральный|хороший|хуторок|фаворит|фортуна|татьяна|тройка|эдем|уют)$",
+        "^(昭和|ロイヤル・ダッチ・)?シェル(石油)?$"
       ]
     }
   },
@@ -252,6 +253,18 @@
         "brand:wikidata": "Q4734197",
         "brand:wikipedia": "en:Aloha Petroleum",
         "name": "Aloha Island Mart",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Amazon Go",
+      "id": "amazongo-f1e40b",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Amazon Fresh",
+        "brand:wikidata": "Q27676067",
+        "brand:wikipedia": "en:Amazon Go",
+        "name": "Amazon Go",
         "shop": "convenience"
       }
     },
@@ -1139,6 +1152,19 @@
         "brand": "Hasty Market",
         "brand:wikidata": "Q58022603",
         "name": "Hasty Market",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "HiperDino Express",
+      "id": "hiperdinoexpress-dd9aae",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "brand": "HiperDino Express",
+        "brand:wikidata": "Q105955317",
+        "operator": "DinoSol",
+        "operator:wikidata": "Q5278478",
+        "operator:wikipedia": "es:Dinosol Supermercados, S.L.",
         "shop": "convenience"
       }
     },
@@ -4073,27 +4099,6 @@
         "name": "全家便利商店",
         "name:en": "FamilyMart",
         "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "昭和シェル",
-      "id": "showashellsekiyu-652b3e",
-      "locationSet": {"include": ["jp"]},
-      "matchNames": ["ロイヤル・ダッチ・シェル", "昭和シェル石油"],
-      "note": "Showa Shell Sekiyu was a subsidiary of Royal Dutch Shell but now operates as its own entity in japan with qid Q277115",
-      "tags": {
-        "brand": "昭和シェル",
-        "brand:en": "Showa Shell Sekiyu",
-        "brand:ja": "昭和シェル",
-        "brand:wikidata": "Q277115",
-        "brand:wikipedia": "en:Showa Shell Sekiyu",
-        "name": "昭和シェル",
-        "name:en": "Showa Shell Sekiyu",
-        "name:ja": "昭和シェル",
-        "shop": "convenience",
-        "short_name": "シェル",
-        "short_name:en": "Shell",
-        "short_name:ja": "シェル"
       }
     },
     {
