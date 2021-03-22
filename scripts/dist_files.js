@@ -58,6 +58,11 @@ function buildAll() {
   copyWithMeta('replacements.json');
   copyWithMeta('trees.json');
 
+  // Refresh some files already in `/dist`, update metadata to match version
+  refreshMeta('wikidata.json');
+  refreshMeta('dissolved.json');
+  refreshMeta('featureCollection.json');
+
   // Write `nsi.json` as a single file containing everything by path
   const output = { nsi: _cache.path };
   writeFileWithMeta('dist/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
@@ -78,6 +83,21 @@ function buildAll() {
 function copyWithMeta(filename) {
   const contents = fs.readFileSync(`config/${filename}`, 'utf8');
   writeFileWithMeta(`dist/${filename}`, contents);
+}
+
+
+function refreshMeta(filename) {
+  const contents = fs.readFileSync(`dist/${filename}`, 'utf8');
+  let json = JSON5.parse(contents);
+  delete json._meta;
+
+  let options = {};
+  if (filename === 'dissolved.json') {
+    options = { maxLength: 100 };
+  } else if (filename === 'featureCollection.json') {
+    options = { maxLength: 9999 };
+  }
+  writeFileWithMeta(`dist/${filename}`, stringify(json, options) + '\n');
 }
 
 
