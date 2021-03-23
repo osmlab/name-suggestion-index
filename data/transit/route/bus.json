@@ -2,7 +2,7 @@
   "properties": {
     "path": "transit/route/bus",
     "exclude": {
-      "generic": ["^bus$"],
+      "generic": ["^bus$", "no"],
       "named": [
         "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban)$"
       ]
@@ -3867,21 +3867,13 @@
         "ter grand est",
         "tim",
         "transport en département",
+        "Fluo Grand Est 67",
         "transport interurbain des mosellans"
       ],
       "tags": {
         "network": "Fluo Grand Est",
         "network:wikidata": "Q89560313",
         "network:wikipedia": "fr:Fluo Grand Est",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Fluo Grand Est 67",
-      "id": "fluograndest67-add5eb",
-      "locationSet": {"include": ["fx"]},
-      "tags": {
-        "network": "Fluo Grand Est 67",
         "route": "bus"
       }
     },
@@ -7405,11 +7397,12 @@
       }
     },
     {
-      "displayName": "Nightbus",
+      "displayName": "Nightbus (Luxembourg)",
       "id": "nightbus-8ff6e7",
       "locationSet": {"include": ["lu"]},
       "tags": {
         "network": "Nightbus",
+        "network:wikidata": "Q56306518",
         "route": "bus"
       }
     },
@@ -7426,15 +7419,9 @@
       }
     },
     {
-      "displayName": "no",
-      "id": "no-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {"network": "no", "route": "bus"}
-    },
-    {
       "displayName": "Noctambus",
       "id": "noctambus-5f704d",
-      "locationSet": {"include": ["ch", "fr"]},
+      "locationSet": {"include": ["ch", "fx"]},
       "tags": {
         "network": "Noctambus",
         "network:wikidata": "Q28122560",
@@ -7445,7 +7432,7 @@
     {
       "displayName": "Noctilien",
       "id": "noctilien-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Noctilien",
         "network:wikidata": "Q1635947",
@@ -7456,7 +7443,7 @@
     {
       "displayName": "Nomad",
       "id": "nomad-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Nomad",
         "network:wikidata": "Q98131290",
@@ -7467,18 +7454,10 @@
     {
       "displayName": "Nomad Car Calvados",
       "id": "nomadcarcalvados-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Nomad Car Calvados",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Noord- en Zuidwest-Friesland en Schiermonnikoog",
-      "id": "noordenzuidwestfrieslandenschiermonnikoog-2f3200",
-      "locationSet": {"include": ["nl"]},
-      "tags": {
-        "network": "Noord- en Zuidwest-Friesland en Schiermonnikoog",
+        "network:wikidata": "Q98131290",
         "route": "bus"
       }
     },
@@ -7486,6 +7465,7 @@
       "displayName": "Noord- en Zuidwest-Fryslân en Schiermonnikoog",
       "id": "noordenzuidwestfryslanenschiermonnikoog-2f3200",
       "locationSet": {"include": ["nl"]},
+      "matchNames": ["Noord- en Zuidwest-Friesland en Schiermonnikoog"],
       "tags": {
         "network": "Noord- en Zuidwest-Fryslân en Schiermonnikoog",
         "route": "bus"
@@ -7507,6 +7487,7 @@
       "tags": {
         "network": "Norderneyer Nahverkehr",
         "network:short": "NNV",
+        "network:wikidata": "Q67079979",
         "operator": "Inselbus Norderney",
         "route": "bus"
       }
@@ -7529,6 +7510,7 @@
       "locationSet": {"include": ["dk"]},
       "tags": {
         "network": "Nordjyllands Trafikselskab",
+        "network:wikidata": "Q3246599",
         "route": "bus"
       }
     },
@@ -7536,7 +7518,11 @@
       "displayName": "NORTA",
       "id": "norta-a21cc9",
       "locationSet": {"include": ["us"]},
-      "tags": {"network": "NORTA", "route": "bus"}
+      "tags": {
+        "network": "NORTA",
+        "network:wikidata": "Q2138272",
+        "route": "bus"
+      }
     },
     {
       "displayName": "Norte",
@@ -7554,11 +7540,12 @@
       }
     },
     {
-      "displayName": "Norwalk Transit",
+      "displayName": "Norwalk Transit (Connecticut)",
       "id": "norwalktransit-a21cc9",
       "locationSet": {"include": ["us"]},
       "tags": {
         "network": "Norwalk Transit",
+        "network:wikidata": "Q7060801",
         "route": "bus"
       }
     },
@@ -7575,13 +7562,21 @@
       "displayName": "NVV",
       "id": "nvv-3b9544",
       "locationSet": {"include": ["de"]},
-      "tags": {"network": "NVV", "route": "bus"}
+      "tags": {
+        "network": "NVV",
+        "network:wikidata": "Q1998056",
+        "route": "bus"
+      }
     },
     {
       "displayName": "NWN",
       "id": "nwn-3b9544",
       "locationSet": {"include": ["de"]},
-      "tags": {"network": "NWN", "route": "bus"}
+      "tags": {
+        "network": "NWN",
+        "network:wikidata": "Q1963806",
+        "route": "bus"
+      }
     },
     {
       "displayName": "NYC Transit",
@@ -7589,6 +7584,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "network": "NYC Transit",
+        "network:wikidata": "Q1325591",
         "route": "bus"
       }
     },
@@ -7596,7 +7592,11 @@
       "displayName": "Nysse",
       "id": "nysse-3d6501",
       "locationSet": {"include": ["fi"]},
-      "tags": {"network": "Nysse", "route": "bus"}
+      "tags": {
+        "network": "Nysse",
+        "network:wikidata": "Q17474475",
+        "route": "bus"
+      }
     },
     {
       "displayName": "Oakville Transit",
@@ -7604,6 +7604,7 @@
       "locationSet": {"include": ["ca"]},
       "tags": {
         "network": "Oakville Transit",
+        "network:wikidata": "Q7074262",
         "route": "bus"
       }
     },
@@ -7630,6 +7631,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "network": "OC Bus",
+        "network:wikidata": "Q7099595",
         "route": "bus"
       }
     },
@@ -7639,6 +7641,7 @@
       "locationSet": {"include": ["ca"]},
       "tags": {
         "network": "OC Transpo",
+        "network:wikidata": "Q3347525",
         "route": "bus"
       }
     },
@@ -7651,7 +7654,7 @@
     {
       "displayName": "Oléane",
       "id": "oleane-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Oléane",
         "network:wikidata": "Q21008239",
@@ -7666,6 +7669,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "network": "ometro",
+        "network:wikidata": "Q6824485",
         "route": "bus"
       }
     },
@@ -7739,7 +7743,7 @@
     {
       "displayName": "Optymo",
       "id": "optymo-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Optymo",
         "network:wikidata": "Q3354509",
@@ -7759,7 +7763,7 @@
     {
       "displayName": "Orizo",
       "id": "orizo-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Orizo",
         "network:wikidata": "Q3537940",
@@ -7771,9 +7775,10 @@
     {
       "displayName": "Ormont Transport",
       "id": "ormonttransport-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Ormont Transport",
+        "network:wikidata": "Q2399714",
         "route": "bus"
       }
     },
@@ -7790,7 +7795,11 @@
       "displayName": "ORT",
       "id": "ort-a21cc9",
       "locationSet": {"include": ["us"]},
-      "tags": {"network": "ORT", "route": "bus"}
+      "tags": {
+        "network": "ORT",
+        "network:wikidata": "Q7116506",
+        "route": "bus"
+      }
     },
     {
       "displayName": "OrtsBus Grindelwald",
@@ -7813,8 +7822,12 @@
     {
       "displayName": "Oscar",
       "id": "oscar-ed7458",
-      "locationSet": {"include": ["fr"]},
-      "tags": {"network": "Oscar", "route": "bus"}
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "network": "Oscar",
+        "network:wikidata": "Q16674433",
+        "route": "bus"
+      }
     },
     {
       "displayName": "OstalbMobil",
@@ -7835,6 +7848,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "network": "Østfold kollektivtrafikk",
+        "network:wikidata": "Q8079265",
         "route": "bus"
       }
     },
@@ -7844,6 +7858,7 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "network": "Östgötatrafiken",
+        "network:wikidata": "Q10728215",
         "route": "bus"
       }
     },
@@ -7870,11 +7885,13 @@
       }
     },
     {
-      "displayName": "Ouibus",
+      "displayName": "BlaBlaBus",
       "id": "ouibus-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["Ouibus"],
       "tags": {
-        "network": "Ouibus",
+        "network": "BlaBlaBus",
+        "network:wikidata": "Q1653380",
         "route": "bus"
       }
     },
@@ -7893,6 +7910,7 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "network": "OVG Sonneberg",
+        "network:wikidata": "Q2023461",
         "route": "bus"
       }
     },
@@ -7917,8 +7935,12 @@
     {
       "displayName": "PAA",
       "id": "paa-ed7458",
-      "locationSet": {"include": ["fr"]},
-      "tags": {"network": "PAA", "route": "bus"}
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "network": "PAA",
+        "network:wikidata": "Q48751971",
+        "route": "bus"
+      }
     },
     {
       "displayName": "Pabianice",
@@ -7933,7 +7955,11 @@
       "displayName": "Pace",
       "id": "pace-a21cc9",
       "locationSet": {"include": ["us"]},
-      "tags": {"network": "Pace", "route": "bus"}
+      "tags": {
+        "network": "Pace",
+        "network:wikidata": "Q3360030",
+        "route": "bus"
+      }
     },
     {
       "displayName": "Paikku",
@@ -7947,7 +7973,7 @@
     {
       "displayName": "Paladin",
       "id": "paladin-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Paladin",
         "network:wikidata": "Q3456694",
@@ -7959,7 +7985,7 @@
     {
       "displayName": "Palm Bus",
       "id": "palmbus-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Palm Bus",
         "network:wikidata": "Q2928666",
@@ -7973,6 +7999,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "network": "Palm Tran",
+        "network:wikidata": "Q7128083",
         "route": "bus"
       }
     },
@@ -8006,7 +8033,7 @@
     {
       "displayName": "Parisis",
       "id": "parisis-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Parisis",
         "route": "bus"
@@ -8027,6 +8054,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "network": "Pasadena Transit",
+        "network:wikidata": "Q7141527",
         "route": "bus"
       }
     },
@@ -8051,7 +8079,7 @@
     {
       "displayName": "Pays Créçois",
       "id": "payscrecois-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Pays Créçois",
         "route": "bus"
@@ -8060,7 +8088,7 @@
     {
       "displayName": "Pays d'Aix mobilité",
       "id": "paysdaixmobilite-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Pays d'Aix mobilité",
         "network:wikidata": "Q3537963",
@@ -8071,7 +8099,7 @@
     {
       "displayName": "Pays de l'Ourcq",
       "id": "paysdelourcq-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Pays de l'Ourcq",
         "route": "bus"
@@ -8080,7 +8108,7 @@
     {
       "displayName": "Pays de Meaux",
       "id": "paysdemeaux-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Pays de Meaux",
         "route": "bus"
@@ -8089,7 +8117,7 @@
     {
       "displayName": "Pays Fertois",
       "id": "paysfertois-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Pays Fertois",
         "route": "bus"
@@ -8098,7 +8126,7 @@
     {
       "displayName": "Pays Voironnais Mobilité",
       "id": "paysvoironnaismobilite-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Pays Voironnais Mobilité",
         "network:wikidata": "Q3537923",
@@ -8109,7 +8137,7 @@
     {
       "displayName": "Pep's",
       "id": "peps-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Pep's",
         "network:wikidata": "Q3456696",
@@ -8124,15 +8152,18 @@
       "locationSet": {"include": ["ca"]},
       "tags": {
         "network": "Peterborough Transit",
+        "network:wikidata": "Q7178037",
         "route": "bus"
       }
     },
     {
-      "displayName": "PH:P2P",
+      "displayName": "P2P",
       "id": "php2p-3785bf",
       "locationSet": {"include": ["ph"]},
+      "matchNames": ["PH:P2P"],
       "tags": {
-        "network": "PH:P2P",
+        "network": "P2P",
+        "network:wikidata": "Q65085330",
         "route": "bus"
       }
     },
@@ -8229,7 +8260,7 @@
     {
       "displayName": "Phébus",
       "id": "phebus-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Phébus",
         "network:wikidata": "Q3456697",
@@ -8269,13 +8300,14 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "network": "PKS Gdynia",
+        "network:wikidata": "Q11801865",
         "route": "bus"
       }
     },
     {
       "displayName": "Plaine de Versailles",
       "id": "plainedeversailles-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Plaine de Versailles",
         "route": "bus"
@@ -8296,6 +8328,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "network": "Plymouth Metrolink",
+        "network:wikidata": "Q7205829",
         "route": "bus"
       }
     },
@@ -8314,7 +8347,7 @@
     {
       "displayName": "Poissy Aval - 2 Rives de Seine",
       "id": "poissyaval2rivesdeseine-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Poissy Aval - 2 Rives de Seine",
         "route": "bus"
@@ -8361,7 +8394,7 @@
     {
       "displayName": "PPP",
       "id": "ppp-ba987e",
-      "locationSet": {"include": ["it"]},
+      "locationSet": {"include": ["si"]},
       "tags": {"network": "PPP", "route": "bus"}
     },
     {
@@ -8379,6 +8412,7 @@
       "locationSet": {"include": ["cz"]},
       "tags": {
         "network": "Pražská integrovaná doprava",
+        "network:wikidata": "Q2108171",
         "route": "bus"
       }
     },
@@ -8388,6 +8422,7 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "network": "Preston Bus",
+        "network:wikidata": "Q7241839",
         "route": "bus"
       }
     },
@@ -8440,7 +8475,11 @@
       "displayName": "PSTA",
       "id": "psta-a21cc9",
       "locationSet": {"include": ["us"]},
-      "tags": {"network": "PSTA", "route": "bus"}
+      "tags": {
+        "network": "PSTA",
+        "network:wikidata": "Q7195535",
+        "route": "bus"
+      }
     },
     {
       "displayName": "PTV - Ballarat Transit",
@@ -8579,6 +8618,7 @@
       "locationSet": {"include": ["in"]},
       "tags": {
         "network": "Pune Mahanagar Parivahan Mahamandal Ltd",
+        "network:wikidata": "Q7260109",
         "route": "bus"
       }
     },
@@ -8586,7 +8626,11 @@
       "displayName": "PVTA",
       "id": "pvta-a21cc9",
       "locationSet": {"include": ["us"]},
-      "tags": {"network": "PVTA", "route": "bus"}
+      "tags": {
+        "network": "PVTA",
+        "network:wikidata": "Q7196828",
+        "route": "bus"
+      }
     },
     {
       "displayName": "PZTP Lipno",
@@ -8594,13 +8638,14 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "network": "PZTP Lipno",
+        "network:wikidata": "Q91011389",
         "route": "bus"
       }
     },
     {
       "displayName": "QUB",
       "id": "qub-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "QUB",
         "network:wikidata": "Q3413895",
@@ -8610,18 +8655,20 @@
       }
     },
     {
-      "displayName": "R.A.T. Brașov",
+      "displayName": "RAT Brașov",
       "id": "ratbrasov-9c403a",
       "locationSet": {"include": ["ro"]},
+      "matchNames": ["R.A.T. Brașov"],
       "tags": {
-        "network": "R.A.T. Brașov",
+        "network": "RAT Brașov",
+        "network:wikidata": "Q7258031",
         "route": "bus"
       }
     },
     {
       "displayName": "R'bus",
       "id": "rbus-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "R'bus",
         "network:wikidata": "Q25397412",
@@ -8650,6 +8697,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "network": "rabbittransit",
+        "network:wikidata": "Q7278624",
         "route": "bus"
       }
     },
@@ -8668,16 +8716,19 @@
       "locationSet": {"include": ["ro"]},
       "tags": {
         "network": "RAT Craiova",
+        "network:wikidata": "Q25399056",
         "route": "bus"
       }
     },
     {
-      "displayName": "RATB (Regia Autonomă de Transport București)",
+      "displayName": "Societatea de Transport București",
       "id": "ratbregiaautonomadetransportbucuresti-9c403a",
       "locationSet": {"include": ["ro"]},
+      "matchNames": ["RATB (Regia Autonomă de Transport București)"],
       "tags": {
-        "network": "RATB (Regia Autonomă de Transport București)",
-        "network:short": "RATB",
+        "network": "Societatea de Transport București",
+        "network:short": "STB",
+        "network:wikidata": "Q2280353",
         "route": "bus"
       }
     },
@@ -8695,11 +8746,13 @@
       }
     },
     {
-      "displayName": "RATP (Regia Autonoma de Transport Public Iasi)",
+      "displayName": "CTP Iași",
       "id": "ratpregiaautonomadetransportpubliciasi-9c403a",
       "locationSet": {"include": ["ro"]},
+      "matchNames": ["RATP (Regia Autonoma de Transport Public Iasi)"],
       "tags": {
-        "network": "RATP (Regia Autonoma de Transport Public Iasi)",
+        "network": "CTP Iași",
+        "network:wikidata": "Q7275888",
         "route": "bus"
       }
     },
@@ -8707,13 +8760,21 @@
       "displayName": "RCT",
       "id": "rct-a21cc9",
       "locationSet": {"include": ["us"]},
-      "tags": {"network": "RCT", "route": "bus"}
+      "tags": {
+        "network": "RCT",
+        "network:wikidata": "Q7330624",
+        "route": "bus"
+      }
     },
     {
       "displayName": "RDS",
       "id": "rds-ed7458",
-      "locationSet": {"include": ["fr"]},
-      "tags": {"network": "RDS", "route": "bus"}
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "network": "RDS",
+        "network:wikidata": "Q28761417",
+        "route": "bus"
+      }
     },
     {
       "displayName": "Rea Vaya",
@@ -8721,6 +8782,7 @@
       "locationSet": {"include": ["za"]},
       "tags": {
         "network": "Rea Vaya",
+        "network:wikidata": "Q7300150",
         "route": "bus"
       }
     },
@@ -8730,6 +8792,7 @@
       "locationSet": {"include": ["ar"]},
       "tags": {
         "network": "Red Tulum",
+        "network:wikidata": "Q105633430",
         "network:wikipedia": "es:Red Tulum",
         "route": "bus"
       }
@@ -8740,6 +8803,7 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "network": "Rede Integrada de Transportes",
+        "network:wikidata": "Q168744",
         "route": "bus"
       }
     },
@@ -8796,6 +8860,7 @@
       "matchNames": ["regionalbus augsburg gmbh"],
       "tags": {
         "network": "Regionalbus Augsburg",
+        "network:wikidata": "Q2138281",
         "route": "bus"
       }
     },
@@ -8805,6 +8870,7 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Regionalbus Ostbayern",
+        "network:wikidata": "Q2138285",
         "route": "bus"
       }
     },
@@ -8814,6 +8880,7 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Regionalverkehr Allgäu",
+        "network:wikidata": "Q2138477",
         "route": "bus"
       }
     },
@@ -8823,6 +8890,7 @@
       "locationSet": {"include": ["at", "de"]},
       "tags": {
         "network": "Regionalverkehr Oberbayern",
+        "network:wikidata": "Q2138493",
         "route": "bus"
       }
     },
@@ -8833,11 +8901,13 @@
       "tags": {"network": "REM", "route": "bus"}
     },
     {
-      "displayName": "Rémi 37",
+      "displayName": "Rémi",
       "id": "remi37-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["Rémi 37"],
       "tags": {
-        "network": "Rémi 37",
+        "network": "Rémi",
+        "network:wikidata": "Q39075313",
         "route": "bus"
       }
     },
@@ -8853,7 +8923,7 @@
     {
       "displayName": "Résalys",
       "id": "resalys-ed7458",
-      "locationSet": {"include": ["fr"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "network": "Résalys",
         "network:wikidata": "Q16674385",
@@ -8861,15 +8931,6 @@
         "operator": "Transdev",
         "operator:wikidata": "Q442637",
         "operator:wikipedia": "fr:Transdev",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Réseau 67",
-      "id": "reseau67-ed7458",
-      "locationSet": {"include": ["fr"]},
-      "tags": {
-        "network": "Réseau 67",
         "route": "bus"
       }
     },
