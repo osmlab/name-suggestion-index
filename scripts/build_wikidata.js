@@ -691,6 +691,8 @@ function fetchFacebookLogo(qid, username) {
 // Find all items in Wikidata with NSI identifier claims (P8253).
 // Remove any old claims where we don't reference that QID anymore.
 function removeOldNsiClaims() {
+  if (!_wbEdit) return Promise.resolve();
+
   const query = `
     SELECT ?qid ?nsiId ?guid
     WHERE {
@@ -729,7 +731,7 @@ function removeOldNsiClaims() {
 // Set `DRYRUN=true` at the beginning of this script to prevent actual edits from happening.
 //
 function processWbEditQueue(queue) {
-  if (!queue.length) return Promise.resolve();
+  if (!queue.length || !_wbEdit) return Promise.resolve();
 
   const request = queue.pop();
   const qid = request.qid;
