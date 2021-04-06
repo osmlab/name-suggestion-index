@@ -1,8 +1,12 @@
 import React from 'react';
 
-export default function Footer() {
+export default function Footer(props) {
+  const index = props.index;
+  const meta = index && index.meta;
+  const version = meta && meta.version;
+  const display = version && `NSI v${version}`;
+
   return (
-    <div className='footer'>
-    </div>
+    <div id='footer'>{display}</div>
   );
 };
