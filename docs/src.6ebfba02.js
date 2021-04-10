@@ -19628,7 +19628,9 @@ function Footer(props) {
   var index = props.index;
   var meta = index && index.meta;
   var version = meta && meta.version;
-  var display = version && "NSI v".concat(version);
+  var generated = meta && meta.generated;
+  var released = generated && new Date(Date.parse(generated));
+  var display = released && version && "NSI v".concat(version, " (Generated: ").concat(released, ")");
   return /*#__PURE__*/_react.default.createElement("div", {
     id: "footer"
   }, display);
