@@ -39,6 +39,7 @@ Building a canonical feature index allows two very useful things:
 *The name-suggestion-index is in use in iD when adding a new item*
 
 Currently used in:
+
 - [iD](https://github.com/openstreetmap/iD) (see above)
 - [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) available
