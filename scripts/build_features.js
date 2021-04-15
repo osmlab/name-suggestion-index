@@ -72,10 +72,11 @@ function collectFeatures() {
       feature = fc[0];
     }
 
-    // Warn if this feature is so small it would better be represented as a circular area.
+    // Warn if this feature is so small/complex it would better be represented as a circular area.
+    let coordLength = countCoordinates(feature.geometry.coordinates);
     let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
     area = Number(area.toFixed(2));
-    if (area < 2000) {
+    if (area < 2000 && coordLength > 15) {
       const extent = geojsonBounds.extent(feature);
       const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
       const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
@@ -90,8 +91,8 @@ function collectFeatures() {
 
     // sort properties
     let obj = {};
-    if (feature.type)       { obj.type = feature.type; }
-    if (feature.id)         { obj.id = feature.id; }
+    if (feature.type)  { obj.type = feature.type; }
+    if (feature.id)    { obj.id = feature.id; }
     if (feature.properties) {
       obj.properties = feature.properties;
       delete obj.properties.id;  // to prevent possiblity of conflicting ids
@@ -135,6 +136,29 @@ function collectFeatures() {
   console.log(`🧩  features:\t${featureCount}`);
   return features;
 }
+
+
+//
+// countCoordinates()
+// Counts the number of coordinates in a GeoJSON Polygon or MultiPolygon
+//
+function countCoordinates(coords) {
+  const a = Array.isArray(coords);
+  const b = a && Array.isArray(coords[0]);
+  const c = b && Array.isArray(coords[0][0]);
+  const d = c && Array.isArray(coords[0][0][0]);
+
+  let length = 0;
+  if (d) {  // Multipolygon
+    coords.forEach(polys => {
+      polys.forEach(rings => length += rings.length);
+    });
+  } else {  // Polygon
+    coords.forEach(rings => length += rings.length);
+  }
+  return length;
+}
+
 
 
 //
