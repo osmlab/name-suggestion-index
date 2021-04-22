@@ -54,6 +54,19 @@
   ],
   "main": "dist/index.js",
   "module": "index.mjs",
+  "nsiguide": "docs/index.html",
+  "targets": {
+    "nsiguide": {
+      "context": "browser",
+      "distDir": "docs",
+      "isLibrary": false,
+      "publicUrl": "./",
+      "optimize": false,
+      "engines": {
+        "browsers": "last 1 version, >1%"
+      }
+    }
+  },
   "scripts": {
     "all": "run-s build dist",
     "appbuild": "npm run docbuild",
@@ -61,7 +74,7 @@
     "dist:files": "node scripts/dist_files.js",
     "dist:javascript": "rollup -c",
     "dist:version": "node scripts/dist_version.js",
-    "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --no-minify --public-url ./ --out-dir docs",
+    "docbuild": "npx parcel build './app/index.html' --target 'nsiguide' --detailed-report 0 --no-source-maps --no-content-hash",
     "build": "run-s build:features build:index",
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
@@ -104,7 +117,7 @@
     "locale-compare": "^1.0.0",
     "node-fetch": "^2.2.0",
     "npm-run-all": "^4.0.0",
-    "parcel-bundler": "^1.12.4",
+    "parcel": "~2.0.0-beta.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
