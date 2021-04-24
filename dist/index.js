@@ -341,19 +341,19 @@
     );
   };
 
-  var matchGroups = {adult_gaming_centre:["amenity/casino","amenity/gambling","leisure/adult_gaming_centre"],beauty:["shop/beauty","shop/hairdresser_supply"],bed:["shop/bed","shop/furniture"],beverages:["shop/alcohol","shop/beverages"],camping:["leisure/park","tourism/camp_site","tourism/caravan_site"],car_parts:["shop/car_parts","shop/car_repair","shop/tires","shop/tyres"],clinic:["amenity/clinic","amenity/doctors","healthcare/clinic","healthcare/dialysis"],confectionery:["shop/candy","shop/chocolate","shop/confectionery"],convenience:["shop/beauty","shop/chemist","shop/convenience","shop/cosmetics","shop/newsagent"],coworking:["amenity/coworking_space","office/coworking","office/coworking_space"],dentist:["amenity/dentist","amenity/doctors","healthcare/dentist"],electronics:["office/telecommunication","shop/computer","shop/electronics","shop/hifi","shop/mobile","shop/mobile_phone","shop/telecommunication"],fabric:["shop/fabric","shop/haberdashery","shop/sewing"],fashion:["shop/accessories","shop/bag","shop/botique","shop/clothes","shop/department_store","shop/fashion","shop/fashion_accessories","shop/sports","shop/shoes"],financial:["amenity/bank","office/accountant","office/financial","office/financial_advisor","office/tax_advisor","shop/tax"],fitness:["leisure/fitness_centre","leisure/fitness_center","leisure/sports_centre","leisure/sports_center"],food:["amenity/pub","amenity/bar","amenity/cafe","amenity/fast_food","amenity/ice_cream","amenity/restaurant","shop/bakery","shop/ice_cream","shop/pastry","shop/tea","shop/coffee"],fuel:["amenity/fuel","shop/gas","shop/convenience;gas","shop/gas;convenience"],gift:["shop/gift","shop/card","shop/cards","shop/stationery"],hardware:["shop/bathroom_furnishing","shop/carpet","shop/diy","shop/doityourself","shop/doors","shop/electrical","shop/flooring","shop/hardware","shop/hardware_store","shop/power_tools","shop/tool_hire","shop/tools","shop/trade"],health_food:["shop/health","shop/health_food","shop/herbalist","shop/nutrition_supplements"],hobby:["shop/electronics","shop/hobby","shop/books","shop/games","shop/collector","shop/toys","shop/model","shop/video_games","shop/anime"],hospital:["amenity/doctors","amenity/hospital","healthcare/hospital"],houseware:["shop/houseware","shop/interior_decoration"],lifeboat_station:["amenity/lifeboat_station","emergency/lifeboat_station","emergency/marine_rescue"],lodging:["tourism/hotel","tourism/motel"],money_transfer:["amenity/money_transfer","shop/money_transfer"],office_supplies:["shop/office_supplies","shop/stationary","shop/stationery"],outdoor:["shop/outdoor","shop/sports"],pharmacy:["amenity/doctors","amenity/pharmacy","healthcare/pharmacy"],playground:["amenity/theme_park","leisure/amusement_arcade","leisure/playground"],rental:["amenity/bicycle_rental","amenity/boat_rental","amenity/car_rental","amenity/truck_rental","amenity/vehicle_rental","shop/rental"],school:["amenity/childcare","amenity/college","amenity/kindergarten","amenity/language_school","amenity/prep_school","amenity/school","amenity/university"],supermarket:["shop/food","shop/frozen_food","shop/greengrocer","shop/grocery","shop/supermarket","shop/wholesale"],variety_store:["shop/variety_store","shop/discount","shop/convenience"],vending:["amenity/vending_machine","shop/vending_machine"],storage:["shop/storage_units","shop/storage_rental"],weight_loss:["amenity/doctors","amenity/weight_clinic","healthcare/counselling","leisure/fitness_centre","office/therapist","shop/beauty","shop/diet","shop/food","shop/health_food","shop/herbalist","shop/nutrition","shop/nutrition_supplements","shop/weight_loss"],wholesale:["shop/wholesale","shop/supermarket","shop/department_store"]};
+  var matchGroups$1 = {adult_gaming_centre:["amenity/casino","amenity/gambling","leisure/adult_gaming_centre"],beauty:["shop/beauty","shop/hairdresser_supply"],bed:["shop/bed","shop/furniture"],beverages:["shop/alcohol","shop/beverages"],camping:["leisure/park","tourism/camp_site","tourism/caravan_site"],car_parts:["shop/car_parts","shop/car_repair","shop/tires","shop/tyres"],clinic:["amenity/clinic","amenity/doctors","healthcare/clinic","healthcare/dialysis"],confectionery:["shop/candy","shop/chocolate","shop/confectionery"],convenience:["shop/beauty","shop/chemist","shop/convenience","shop/cosmetics","shop/newsagent"],coworking:["amenity/coworking_space","office/coworking","office/coworking_space"],dentist:["amenity/dentist","amenity/doctors","healthcare/dentist"],electronics:["office/telecommunication","shop/computer","shop/electronics","shop/hifi","shop/mobile","shop/mobile_phone","shop/telecommunication"],fabric:["shop/fabric","shop/haberdashery","shop/sewing"],fashion:["shop/accessories","shop/bag","shop/botique","shop/clothes","shop/department_store","shop/fashion","shop/fashion_accessories","shop/sports","shop/shoes"],financial:["amenity/bank","office/accountant","office/financial","office/financial_advisor","office/tax_advisor","shop/tax"],fitness:["leisure/fitness_centre","leisure/fitness_center","leisure/sports_centre","leisure/sports_center"],food:["amenity/pub","amenity/bar","amenity/cafe","amenity/fast_food","amenity/ice_cream","amenity/restaurant","shop/bakery","shop/ice_cream","shop/pastry","shop/tea","shop/coffee"],fuel:["amenity/fuel","shop/gas","shop/convenience;gas","shop/gas;convenience"],gift:["shop/gift","shop/card","shop/cards","shop/stationery"],hardware:["shop/bathroom_furnishing","shop/carpet","shop/diy","shop/doityourself","shop/doors","shop/electrical","shop/flooring","shop/hardware","shop/hardware_store","shop/power_tools","shop/tool_hire","shop/tools","shop/trade"],health_food:["shop/health","shop/health_food","shop/herbalist","shop/nutrition_supplements"],hobby:["shop/electronics","shop/hobby","shop/books","shop/games","shop/collector","shop/toys","shop/model","shop/video_games","shop/anime"],hospital:["amenity/doctors","amenity/hospital","healthcare/hospital"],houseware:["shop/houseware","shop/interior_decoration"],lifeboat_station:["amenity/lifeboat_station","emergency/lifeboat_station","emergency/marine_rescue"],lodging:["tourism/hotel","tourism/motel"],money_transfer:["amenity/money_transfer","shop/money_transfer"],office_supplies:["shop/office_supplies","shop/stationary","shop/stationery"],outdoor:["shop/outdoor","shop/sports"],pharmacy:["amenity/doctors","amenity/pharmacy","healthcare/pharmacy"],playground:["amenity/theme_park","leisure/amusement_arcade","leisure/playground"],rental:["amenity/bicycle_rental","amenity/boat_rental","amenity/car_rental","amenity/truck_rental","amenity/vehicle_rental","shop/rental"],school:["amenity/childcare","amenity/college","amenity/kindergarten","amenity/language_school","amenity/prep_school","amenity/school","amenity/university"],supermarket:["shop/food","shop/frozen_food","shop/greengrocer","shop/grocery","shop/supermarket","shop/wholesale"],variety_store:["shop/variety_store","shop/discount","shop/convenience"],vending:["amenity/vending_machine","shop/vending_machine"],storage:["shop/storage_units","shop/storage_rental"],weight_loss:["amenity/doctors","amenity/weight_clinic","healthcare/counselling","leisure/fitness_centre","office/therapist","shop/beauty","shop/diet","shop/food","shop/health_food","shop/herbalist","shop/nutrition","shop/nutrition_supplements","shop/weight_loss"],wholesale:["shop/wholesale","shop/supermarket","shop/department_store"]};
   var require$$0 = {
-  matchGroups: matchGroups
+  matchGroups: matchGroups$1
   };
 
-  var genericWords = ["^(barn|bazaa?r|bench|bou?tique|building|casa|church)$","^(baseball|basketball|football|soccer|softball|tennis(halle)?)\\s?(field|court)?$","^(club|green|out|ware)\\s?house$","^(driveway|el árbol|fountain|golf|government|graveyard)$","^(hofladen|librairie|magazine?|maison)$","^(mobile home|skate)?\\s?park$","^(n\\s?\\/?\\s?a|name|no\\s?name|none|null|temporary|test|unknown)$","^(obuwie|pond|pool|sale|shops?|sklep|stores?)$","^\\?+$","^tattoo( studio)?$","^windmill$","^церковная( лавка)?$"];
+  var genericWords$1 = ["^(barn|bazaa?r|bench|bou?tique|building|casa|church)$","^(baseball|basketball|football|soccer|softball|tennis(halle)?)\\s?(field|court)?$","^(club|green|out|ware)\\s?house$","^(driveway|el árbol|fountain|golf|government|graveyard)$","^(hofladen|librairie|magazine?|maison)$","^(mobile home|skate)?\\s?park$","^(n\\s?\\/?\\s?a|name|no\\s?name|none|null|temporary|test|unknown)$","^(obuwie|pond|pool|sale|shops?|sklep|stores?)$","^\\?+$","^tattoo( studio)?$","^windmill$","^церковная( лавка)?$"];
   var require$$1 = {
-  genericWords: genericWords
+  genericWords: genericWords$1
   };
 
-  var trees = {brands:{emoji:"🍔",mainTag:"brand:wikidata",sourceTags:["brand","name"],nameTags:{primary:"^(name|name:\\w+)$",alternate:"^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"}},flags:{emoji:"🚩",mainTag:"flag:wikidata",nameTags:{primary:"^(flag:name|flag:name:\\w+)$",alternate:"^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"}},operators:{emoji:"💼",mainTag:"operator:wikidata",sourceTags:["operator"],nameTags:{primary:"^(name|name:\\w+|operator|operator:\\w+)$",alternate:"^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"}},transit:{emoji:"🚇",mainTag:"network:wikidata",sourceTags:["network"],nameTags:{primary:"^network$",alternate:"^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"}}};
+  var trees$1 = {brands:{emoji:"🍔",mainTag:"brand:wikidata",sourceTags:["brand","name"],nameTags:{primary:"^(name|name:\\w+)$",alternate:"^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"}},flags:{emoji:"🚩",mainTag:"flag:wikidata",nameTags:{primary:"^(flag:name|flag:name:\\w+)$",alternate:"^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"}},operators:{emoji:"💼",mainTag:"operator:wikidata",sourceTags:["operator"],nameTags:{primary:"^(name|name:\\w+|operator|operator:\\w+)$",alternate:"^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"}},transit:{emoji:"🚇",mainTag:"network:wikidata",sourceTags:["network"],nameTags:{primary:"^network$",alternate:"^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"}}};
   var require$$2 = {
-  trees: trees
+  trees: trees$1
   };
 
   var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -1218,9 +1218,9 @@
       return item;
   }
 
-  const matchGroups$1 = require$$0.matchGroups;
-  const genericWords$1 = require$$1.genericWords;
-  const trees$1 = require$$2.trees;
+  const matchGroups = require$$0.matchGroups;
+  const genericWords = require$$1.genericWords;
+  const trees = require$$2.trees;
 
 
 
@@ -1271,7 +1271,7 @@
     // The `_genericWords` structure matches the contents of genericWords.json to instantiated RegExp objects
     // Map (String 'pattern' -> RegExp),
     let _genericWords = new Map();
-    (genericWords$1 || []).forEach(s => _genericWords.set(s, new RegExp(s, 'i')));
+    (genericWords || []).forEach(s => _genericWords.set(s, new RegExp(s, 'i')));
 
     // The `_itemLocation` structure maps itemIDs to locationSetIDs:
     // {
@@ -1323,7 +1323,7 @@
         const k = parts[1];
         const v = parts[2];
         const thiskv = `${k}/${v}`;
-        const tree = trees$1[t];
+        const tree = trees[t];
 
         let branch = _matchIndex.get(thiskv);
         if (!branch) {
@@ -1371,7 +1371,7 @@
         // Collect alternate tagpairs for this kv category from matchGroups.
         // We might also pick up a few more generic KVs (like `shop/yes`)
         const matchGroupKV = new Set();
-        Object.values(matchGroups$1).forEach(matchGroup => {
+        Object.values(matchGroups).forEach(matchGroup => {
           const inGroup = matchGroup.some(otherkv => otherkv === thiskv);
           if (!inGroup) return;
 
@@ -1635,8 +1635,8 @@
         if (didMatch) return;
 
         // If that didn't work, look in match groups for other pairs considered equivalent to k/v..
-        for (let mg in matchGroups$1) {
-          const matchGroup = matchGroups$1[mg];
+        for (let mg in matchGroups) {
+          const matchGroup = matchGroups[mg];
           const inGroup = matchGroup.some(otherkv => otherkv === kv);
           if (!inGroup) continue;
 
