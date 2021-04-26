@@ -40,6 +40,7 @@ Building a canonical feature index allows two very useful things:
 
 Currently used in:
 
+- [RapiD](https://github.com/facebookincubator/RapiD)
 - [iD](https://github.com/openstreetmap/iD) (see above)
 - [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/Map#TaggingPresets) available
@@ -72,5 +73,5 @@ If you have any questions or want to reach out to a maintainer, ping
 
 ## License
 
-name-suggestion-index is available under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
+**name-suggestion-index** is available under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
 See the [LICENSE.md](LICENSE.md) file for more details.
