@@ -65,29 +65,32 @@ function collectFeatures() {
     }
 
     let feature = geojsonPrecision(geojsonRewind(parsed, true), 5);
-    let fc = feature.features;
+    const fc = feature.features;
 
     // A FeatureCollection with a single feature inside (geojson.io likes to make these).
     if (feature.type === 'FeatureCollection' && Array.isArray(fc) && fc.length === 1) {
       feature = fc[0];
     }
 
-    // Warn if this feature is so small/complex it would better be represented as a circular area.
-    let coordLength = countCoordinates(feature.geometry.coordinates);
-    let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
-    area = Number(area.toFixed(2));
-    if (area < 2000 && coordLength > 15) {
-      const extent = geojsonBounds.extent(feature);
-      const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
-      const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
-      console.warn('');
-      console.warn(colors.yellow(`Warning - GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
-      console.warn('  ' + colors.yellow(file));
-    }
-
     // use the filename as the feature.id
     const id = path.basename(file).toLowerCase();
     feature.id = id;
+
+    // Warn if this feature is so small/complex it would better be represented as a circular area.
+    const except = { 'new_york_city.geojson': true };
+    if (!except[id]) {
+      const coordLength = countCoordinates(feature.geometry.coordinates);
+      let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
+      area = Number(area.toFixed(2));
+      if (area < 2000 && coordLength > 15) {
+        const extent = geojsonBounds.extent(feature);
+        const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
+        const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
+        console.warn('');
+        console.warn(colors.yellow(`Warning - GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
+        console.warn('  ' + colors.yellow(file));
+      }
+    }
 
     // sort properties
     let obj = {};
