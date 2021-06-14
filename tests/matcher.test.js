@@ -25,6 +25,44 @@ describe('index building', () => {
     expect(() => _matcher.buildLocationIndex(data, loco)).not.toThrow();
   });
 
+  test('buildLocationIndex does not throw even with unrecognized locationSet', () => {
+    const bad = {
+      'brands/amenity/fast_food': {
+        'properties': { 'path': 'brands/amenity/fast_food' },
+        'items': [
+          {
+            displayName: 'Garbage',
+            id: 'garbage-abcdef',
+            locationSet: {'include': ['garbage']},
+            tags: {}
+          }
+        ]
+      }
+    }
+    const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});   // mock console.warn
+    expect(() => _matcher.buildLocationIndex(bad, loco)).not.toThrow();
+    spy.mockRestore();
+  });
+
+  test('buildLocationIndex does not throw even with empty locationSet', () => {
+    const bad = {
+      'brands/amenity/fast_food': {
+        'properties': { 'path': 'brands/amenity/fast_food' },
+        'items': [
+          {
+            displayName: 'Garbage',
+            id: 'garbage-abcdef',
+            locationSet: {'include': ['aq'], 'exclude': ['aq']},
+            tags: {}
+          }
+        ]
+      }
+    }
+    const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});   // mock console.warn
+    expect(() => _matcher.buildLocationIndex(bad, loco)).not.toThrow();
+    spy.mockRestore();
+  });
+
   test('match throws if matchIndex not yet built', () => {
     expect(() => _matcher.match('amenity', 'fast_food', 'KFC')).toThrow('not built');
   });
