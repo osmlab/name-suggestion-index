@@ -21,7 +21,7 @@ const trees = require('../config/trees.json').trees;
 
 // We use LocationConflation for validating and processing the locationSets
 const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation');
+const LocationConflation = require('@ideditor/location-conflation').default;
 const loco = new LocationConflation(featureCollection);
 
 
