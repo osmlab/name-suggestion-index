@@ -83,9 +83,9 @@
     "build": "run-s build:features build:index",
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
-    "jest": "node --experimental-vm-modules node_modules/.bin/jest --no-cache --coverage",
+    "tap": "c8 tap --reporter terse --no-cov tests/*.js",
     "lint": "eslint scripts/*.js lib/*.js",
-    "test": "run-s lint build jest",
+    "test": "run-s lint build tap",
     "validate": "node scripts/validate.js",
     "wikicheck": "node scripts/check_wikiTags.js",
     "wikidata": "node scripts/build_wikidata.js"
@@ -109,6 +109,7 @@
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
+    "c8": "^7.7.3",
     "clear": "^0.1.0",
     "colors": "^1.1.2",
     "eslint": "^7.18.0",
@@ -116,7 +117,6 @@
     "geojson-bounds": "^1.0.2",
     "geojson-precision": "^1.0.0",
     "glob": "^7.1.4",
-    "jest": "^27.0.1",
     "json5": "^2.1.3",
     "jsonschema": "^1.2.5",
     "locale-compare": "^1.0.0",
@@ -130,6 +130,7 @@
     "rollup": "^2.36.2",
     "safe-regex": "^2.1.1",
     "shelljs": "^0.8.0",
+    "tap": "^15.0.9",
     "twitter": "^1.7.1",
     "whatwg-fetch": "^3.5.0",
     "wikibase-edit": "^4.7.3",
@@ -138,11 +139,6 @@
   },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-  },
-  "jest": {
-    "moduleFileExtensions": ["ts", "js", "json"],
-    "transform": {},
-    "verbose": true
   },
   "babel": {
     "presets": [
