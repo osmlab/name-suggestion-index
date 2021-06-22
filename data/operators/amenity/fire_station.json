@@ -1,7 +1,13 @@
 {
   "properties": {
     "path": "operators/amenity/fire_station",
-    "exclude": {"generic": ["^fire station$"]}
+    "exclude": {
+      "generic": [
+        "^fire station$",
+        "^straż pożarna$"
+      ],
+      "named": ["^km psp|^zosp rp$"]
+    }
   },
   "items": [
     {
@@ -745,15 +751,6 @@
       }
     },
     {
-      "displayName": "KM PSP Zielona Góra",
-      "id": "kmpspzielonagora-a9e71c",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "amenity": "fire_station",
-        "operator": "KM PSP Zielona Góra"
-      }
-    },
-    {
       "displayName": "Lancashire Fire and Rescue Service",
       "id": "lancashirefireandrescueservice-5355cf",
       "locationSet": {
@@ -1138,6 +1135,7 @@
       "displayName": "Państwowa Straż Pożarna",
       "id": "panstwowastrazpozarna-a9e71c",
       "locationSet": {"include": ["pl"]},
+      "matchNames": ["psp"],
       "tags": {
         "amenity": "fire_station",
         "operator": "Państwowa Straż Pożarna",
@@ -2744,15 +2742,6 @@
         "operator": "West Yorkshire Fire and Rescue Service",
         "operator:wikidata": "Q7987037",
         "operator:wikipedia": "en:West Yorkshire Fire and Rescue Service"
-      }
-    },
-    {
-      "displayName": "ZOSP RP",
-      "id": "zosprp-a9e71c",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "amenity": "fire_station",
-        "operator": "ZOSP RP"
       }
     },
     {
