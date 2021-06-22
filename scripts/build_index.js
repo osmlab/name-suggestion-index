@@ -13,10 +13,10 @@ const withLocale = localeCompare('en-US');
 import { fileTree } from '../lib/file_tree.js';
 import { idgen } from '../lib/idgen.js';
 import { Matcher } from '../lib/matcher.js';
-const matcher = Matcher();
 import { sortObject } from '../lib/sort_object.js';
 import { stemmer } from '../lib/stemmer.js';
 import { validate } from '../lib/validate.js';
+const matcher = new Matcher();
 
 // JSON
 import treesJSON from '../config/trees.json';

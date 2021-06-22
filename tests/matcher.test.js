@@ -15,7 +15,7 @@ const HONGKONG = [114.19, 22.33];
 
 
 test('index building', t => {
-  t.beforeEach(() => t.context.matcher = Matcher());
+  t.beforeEach(() => t.context.matcher = new Matcher());
   t.afterEach(() => t.context.matcher = null);
 
   t.test('buildMatchIndex does not throw', t => {
@@ -80,7 +80,7 @@ test('index building', t => {
 
 
 test('match', t => {
-  t.context.matcher = Matcher();
+  t.context.matcher = new Matcher();
   t.context.matcher.buildMatchIndex(data);
   t.context.matcher.buildLocationIndex(data, loco);
 
