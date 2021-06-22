@@ -1,10 +1,13 @@
-const Matcher = require('../lib/matcher.js');
-const data = require('./matcher.data.json');
+import fs from 'fs';
+import { jest } from '@jest/globals';
+import LocationConflation from '@ideditor/location-conflation';
+import { Matcher } from '../index.mjs';
+
+const data = JSON.parse(fs.readFileSync('./tests/matcher.data.json', 'utf8'));
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation').default;
-const loco = new LocationConflation(featureCollection);
+const featureCollection = JSON.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
+const loco = new LocationConflation.default(featureCollection);
 
 let _matcher;
 
@@ -14,8 +17,8 @@ const HONGKONG = [114.19, 22.33];
 
 
 describe('index building', () => {
-  beforeEach(() => _matcher = Matcher() );
-  afterEach(() => _matcher = null );
+  beforeEach(() => _matcher = Matcher());
+  afterEach(() => _matcher = null);
 
   test('buildMatchIndex does not throw', () => {
     expect(() => _matcher.buildMatchIndex(data)).not.toThrow();

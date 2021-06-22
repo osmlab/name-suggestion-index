@@ -1,4 +1,4 @@
-const stemmer = require('../lib/stemmer.js');
+import { stemmer } from '../index.mjs';
 
 describe('stemmer', () => {
 

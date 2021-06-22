@@ -1,24 +1,27 @@
-const colors = require('colors/safe');
-const fs = require('fs');
-const JSON5 = require('json5');
-const safeRegex = require('safe-regex');
-const shell = require('shelljs');
-const stringify = require('@aitodotai/json-stringify-pretty-compact');
-const withLocale = require('locale-compare')('en-US');
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+import JSON5 from 'json5';
+import localeCompare from 'locale-compare';
+import LocationConflation from '@ideditor/location-conflation';
+import safeRegex from 'safe-regex';
+import shell from 'shelljs';
+import stringify from '@aitodotai/json-stringify-pretty-compact';
 
-const fileTree = require('../lib/file_tree.js');
-const idgen = require('../lib/idgen.js');
-const matcher = require('../lib/matcher.js')();
-const sortObject = require('../lib/sort_object.js');
-const stemmer = require('../lib/stemmer.js');
-const validate = require('../lib/validate.js');
+import { fileTree } from '../lib/file_tree.js';
+import { idgen } from '../lib/idgen.js';
+import { Matcher } from '../lib/matcher.js';
+const matcher = Matcher();
+import { sortObject } from '../lib/sort_object.js';
+import { stemmer } from '../lib/stemmer.js';
+import { validate } from '../lib/validate.js';
+
+const withLocale = localeCompare('en-US');
 
 // metadata about the trees
-const trees = require('../config/trees.json').trees;
+const trees = JSON5.parse(fs.readFileSync('./config/trees.json', 'utf8')).trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation').default;
+const featureCollection = JSON5.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollection);
 
 console.log(colors.blue('-'.repeat(70)));
@@ -54,7 +57,7 @@ console.log('');
 //
 function loadConfig() {
   ['trees', 'replacements', 'genericWords'].forEach(which => {
-    const schema = require(`../schema/${which}.json`);
+    const schema = JSON5.parse(fs.readFileSync(`./schema/${which}.json`, 'utf8'));
     const file = `config/${which}.json`;
     const contents = fs.readFileSync(file, 'utf8');
     let data;

@@ -52,8 +52,13 @@
     "transit",
     "wikidata"
   ],
+  "type": "module",
   "main": "dist/index.js",
-  "module": "index.mjs",
+  "module": "./index.mjs",
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./dist/index.js"
+  },
   "nsiguide": "docs/index.html",
   "targets": {
     "nsiguide": {
@@ -78,7 +83,7 @@
     "build": "run-s build:features build:index",
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
-    "jest": "jest --coverage",
+    "jest": "node --experimental-vm-modules node_modules/.bin/jest --no-cache --coverage",
     "lint": "eslint scripts/*.js lib/*.js",
     "test": "run-s lint build jest",
     "validate": "node scripts/validate.js",
@@ -125,16 +130,19 @@
     "rollup": "^2.36.2",
     "safe-regex": "^2.1.1",
     "shelljs": "^0.8.0",
+    "twitter": "^1.7.1",
     "whatwg-fetch": "^3.5.0",
+    "wikibase-edit": "^4.7.3",
+    "wikibase-sdk": "^7.7.1",
     "xmlbuilder2": "^2.1.2"
   },
-  "optionalDependencies": {
-    "twitter": "^1.7.1",
-    "wikibase-edit": "^4.7.3",
-    "wikibase-sdk": "^7.7.1"
-  },
   "engines": {
-    "node": ">=10"
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": ["ts", "js", "json"],
+    "transform": {},
+    "verbose": true
   },
   "babel": {
     "presets": [

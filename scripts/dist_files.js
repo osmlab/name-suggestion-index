@@ -1,29 +1,31 @@
-const colors = require('colors/safe');
-const fs = require('fs');
-const glob = require('glob');
-const dissolved = require('../dist/dissolved.json').dissolved;
-const fileTree = require('../lib/file_tree.js');
-const JSON5 = require('json5');
-const packageJSON = require('../package.json');
-const shell = require('shelljs');
-const sortObject = require('../lib/sort_object.js');
-const stringify = require('@aitodotai/json-stringify-pretty-compact');
-const wikidata = require('../dist/wikidata.json').wikidata;
-const withLocale = require('locale-compare')('en-US');
-const writeFileWithMeta = require('../lib/write_file_with_meta.js');
-const xmlbuilder2 = require('xmlbuilder2');
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+import glob from 'glob';
+import JSON5 from 'json5';
+import localeCompare from 'locale-compare';
+import LocationConflation from '@ideditor/location-conflation';
+import shell from 'shelljs';
+import stringify from '@aitodotai/json-stringify-pretty-compact';
+import xmlbuilder2 from 'xmlbuilder2';
+
+import { fileTree } from '../lib/file_tree.js';
+import { sortObject } from '../lib/sort_object.js';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
+
+const withLocale = localeCompare('en-US');
+
+// JSON imports
+const dissolved = JSON5.parse(fs.readFileSync('./dist/dissolved.json', 'utf8')).dissolved;
+const packageJSON = JSON5.parse(fs.readFileSync('./package.json', 'utf8'));
+const trees = JSON5.parse(fs.readFileSync('./config/trees.json', 'utf8')).trees;
+const wikidata = JSON5.parse(fs.readFileSync('./dist/wikidata.json', 'utf8')).wikidata;
 
 // iD's presets which we will build on
-const sourcePresets = require('@openstreetmap/id-tagging-schema/dist/presets.json');
-
-// metadata about the trees
-const trees = require('../config/trees.json').trees;
+const sourcePresets = JSON5.parse(fs.readFileSync('./node_modules/@openstreetmap/id-tagging-schema/dist/presets.json', 'utf8'));
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation').default;
+const featureCollection = JSON.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollection);
-
 
 let _cache = {};
 fileTree.read(_cache, loco);

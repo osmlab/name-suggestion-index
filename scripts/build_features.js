@@ -1,19 +1,21 @@
-const colors = require('colors/safe');
-const fs = require('fs');
-const glob = require('glob');
-const JSON5 = require('json5');
-const path = require('path');
-const geojsonArea = require('@mapbox/geojson-area');
-const geojsonBounds = require('geojson-bounds');
-const geojsonPrecision = require('geojson-precision');
-const geojsonRewind = require('@mapbox/geojson-rewind');
-const stringify = require('@aitodotai/json-stringify-pretty-compact');
-const writeFileWithMeta = require('../lib/write_file_with_meta.js');
-const Validator = require('jsonschema').Validator;
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+import geojsonArea from '@mapbox/geojson-area';
+import geojsonBounds from 'geojson-bounds';
+import geojsonPrecision from 'geojson-precision';
+import geojsonRewind from '@mapbox/geojson-rewind';
+import glob from 'glob';
+import JSON5 from 'json5';
+import jsonschema from 'jsonschema';
+import path from 'node:path';
+import stringify from '@aitodotai/json-stringify-pretty-compact';
 
-const geojsonSchema = require('../schema/geojson.json');
-const featureSchema = require('../schema/feature.json');
+import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
+const geojsonSchema = JSON.parse(fs.readFileSync('./schema/geojson.json', 'utf8'));
+const featureSchema = JSON.parse(fs.readFileSync('./schema/feature.json', 'utf8'));
+
+const Validator = jsonschema.Validator;
 let v = new Validator();
 v.addSchema(geojsonSchema, 'http://json.schemastore.org/geojson.json');
 

@@ -1,15 +1,19 @@
-const clearConsole = require('clear');
-const colors = require('colors/safe');
-const fetch = require('node-fetch');
-const fileTree = require('../lib/file_tree.js');
+import clearConsole from 'clear';
+import colors from 'colors/safe.js';
+import fetch from 'node-fetch';
+import fs from 'node:fs';
+import LocationConflation from '@ideditor/location-conflation';
+import wikibase from 'wikibase-sdk';
 
-const wbk = require('wikibase-sdk')({
+import { fileTree } from '../lib/file_tree.js';
+
+const wbk = wikibase({
   instance: 'https://www.wikidata.org',
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation').default;
+// We use LocationConflation for validating and processing the locationSets
+const featureCollection = JSON.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollection);
 
 let _cache = {};

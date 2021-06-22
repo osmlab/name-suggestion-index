@@ -9,12 +9,13 @@
 //
 // Please see README.md for more info
 
-const colors = require('colors/safe');
-const fs = require('fs');
-const osmium = require('osmium');
-const shell = require('shelljs');
-const sortObject = require('../lib/sort_object.js');
-const stringify = require('@aitodotai/json-stringify-pretty-compact');
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+import osmium from 'osmium';
+import shell from 'shelljs';
+import stringify from '@aitodotai/json-stringify-pretty-compact';
+
+import { sortObject } from '../lib/sort_object.js';
 
 if (process.argv.length < 3) {
   console.log('');

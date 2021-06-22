@@ -1,6 +1,7 @@
-const colors = require('colors/safe');
-const fs = require('fs');
-const packageJSON = require('../package.json');
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+
+const packageJSON = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 // YYYYMMDD
 const now = new Date();

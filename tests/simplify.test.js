@@ -1,4 +1,4 @@
-const simplify = require('../lib/simplify.js');
+import { simplify } from '../index.mjs';
 
 describe('simplify', () => {
 

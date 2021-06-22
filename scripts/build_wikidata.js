@@ -1,25 +1,31 @@
-const colors = require('colors/safe');
-const crypto = require('crypto');
-const fetch = require('node-fetch');
-const fileTree = require('../lib/file_tree.js');
-const http = require('http');
-const https = require('https');
-const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
-const project = require('../package.json');
-const sortObject = require('../lib/sort_object.js');
-const stringify = require('@aitodotai/json-stringify-pretty-compact');
-const withLocale = require('locale-compare')('en-US');
-const writeFileWithMeta = require('../lib/write_file_with_meta.js');
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import fetch from 'node-fetch';
+import http from 'node:http';
+import https from 'node:https';
+import { iso1A2Code } from '@ideditor/country-coder';
+import JSON5 from 'json5';
+import localeCompare from 'locale-compare';
+import LocationConflation from '@ideditor/location-conflation';
+import stringify from '@aitodotai/json-stringify-pretty-compact';
+import Twitter from 'Twitter';
+import wikibase from 'wikibase-sdk';
+import wikibaseEdit from 'wikibase-edit';
 
-// metadata about the trees
-const trees = require('../config/trees.json').trees;
+import { sortObject } from '../lib/sort_object.js';
+import { fileTree } from '../lib/file_tree.js';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
+
+const withLocale = localeCompare('en-US');
+const project = JSON5.parse(fs.readFileSync('./package.json', 'utf8'));
+const trees = JSON5.parse(fs.readFileSync('./config/trees.json', 'utf8')).trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation').default;
+const featureCollection = JSON.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollection);
 
-const wbk = require('wikibase-sdk')({
+const wbk = wikibase({
   instance: 'https://www.wikidata.org',
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
@@ -64,7 +70,7 @@ const DRYRUN = false;
 
 let _secrets;
 try {
-  _secrets = require('../config/secrets.json');
+  _secrets = JSON5.parse(fs.readFileSync('./config/secrets.json', 'utf8'));
 } catch (err) { /* ignore */ }
 
 if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
@@ -78,43 +84,30 @@ if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
 
 // To fetch Twitter logos, sign up for API credentials at https://apps.twitter.com/
 // and put them into `config/secrets.json`
-let Twitter;
+
 let _twitterAPIs = [];
 let _twitterAPIIndex = 0;
 if (_secrets && _secrets.twitter) {
-  try {
-    Twitter = require('twitter');
-  } catch (err) {
-    console.warn(colors.yellow('Looks like you don\'t have the optional Twitter package installed...'));
-    console.warn(colors.yellow('Try `npm install twitter` to install it.'));
-  }
-  if (Twitter) {
-    _twitterAPIs = _secrets.twitter.map(s => {
-      return new Twitter({
-        consumer_key: s.twitter_consumer_key,
-        consumer_secret: s.twitter_consumer_secret,
-        access_token_key: s.twitter_access_token_key,
-        access_token_secret: s.twitter_access_token_secret
-      });
+  _twitterAPIs = _secrets.twitter.map(s => {
+    return new Twitter({
+      consumer_key: s.twitter_consumer_key,
+      consumer_secret: s.twitter_consumer_secret,
+      access_token_key: s.twitter_access_token_key,
+      access_token_secret: s.twitter_access_token_secret
     });
-  }
+  });
 }
 
 // To update wikidata
 // add your username/password into `config/secrets.json`
 let _wbEdit;
 if (_secrets && _secrets.wikibase) {
-  try {
-    _wbEdit = require('wikibase-edit')({
-      instance: 'https://www.wikidata.org',
-      credentials: _secrets.wikibase,
-      summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
-      userAgent: `${project.name}/${project.version} (${project.homepage})`,
-    });
-  } catch (err) {
-    console.warn(colors.yellow('Looks like you don\'t have the optional wikibase-edit package installed...'));
-    console.warn(colors.yellow('Try `npm install wikibase-edit` to install it.'));
-  }
+  _wbEdit = wikibaseEdit({
+    instance: 'https://www.wikidata.org',
+    credentials: _secrets.wikibase,
+    summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
+    userAgent: `${project.name}/${project.version} (${project.homepage})`,
+  });
 }
 
 
@@ -531,7 +524,7 @@ function finish() {
   let origWikidata;
   let dissolved = {};
   try {
-    origWikidata = require('../dist/wikidata.json').wikidata;
+    origWikidata = JSON5.parse(fs.readFileSync('./dist/wikidata.json', 'utf8')).wikidata;
   } catch (err) {
     origWikidata = {};
   }
