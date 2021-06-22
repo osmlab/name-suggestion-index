@@ -1,3 +1,4 @@
+// External
 import colors from 'colors/safe.js';
 import fs from 'node:fs';
 import JSON5 from 'json5';
@@ -6,7 +7,9 @@ import LocationConflation from '@ideditor/location-conflation';
 import safeRegex from 'safe-regex';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+const withLocale = localeCompare('en-US');
 
+// Internal
 import { fileTree } from '../lib/file_tree.js';
 import { idgen } from '../lib/idgen.js';
 import { Matcher } from '../lib/matcher.js';
@@ -15,14 +18,13 @@ import { sortObject } from '../lib/sort_object.js';
 import { stemmer } from '../lib/stemmer.js';
 import { validate } from '../lib/validate.js';
 
-const withLocale = localeCompare('en-US');
-
-// metadata about the trees
-const trees = JSON5.parse(fs.readFileSync('./config/trees.json', 'utf8')).trees;
+// JSON
+import treesJSON from '../config/trees.json';
+const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = JSON5.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
-const loco = new LocationConflation(featureCollection);
+import featureCollectionJSON from '../dist/featureCollection.json';
+const loco = new LocationConflation(featureCollectionJSON);
 
 console.log(colors.blue('-'.repeat(70)));
 console.log(colors.blue('🗂   Build index'));

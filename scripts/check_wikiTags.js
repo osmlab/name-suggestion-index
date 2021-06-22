@@ -1,20 +1,22 @@
+// External
 import clearConsole from 'clear';
 import colors from 'colors/safe.js';
 import fetch from 'node-fetch';
-import fs from 'node:fs';
 import LocationConflation from '@ideditor/location-conflation';
 import wikibase from 'wikibase-sdk';
 
+// Internal
 import { fileTree } from '../lib/file_tree.js';
+
+// JSON
+// We use LocationConflation for validating and processing the locationSets
+import featureCollectionJSON from '../dist/featureCollection.json';
+const loco = new LocationConflation(featureCollectionJSON);
 
 const wbk = wikibase({
   instance: 'https://www.wikidata.org',
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
-
-// We use LocationConflation for validating and processing the locationSets
-const featureCollection = JSON.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
-const loco = new LocationConflation(featureCollection);
 
 let _cache = {};
 fileTree.read(_cache, loco);

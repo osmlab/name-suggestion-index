@@ -9,12 +9,14 @@
 //
 // Please see README.md for more info
 
+// External
 import colors from 'colors/safe.js';
 import fs from 'node:fs';
 import osmium from 'osmium';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 
+// Internal
 import { sortObject } from '../lib/sort_object.js';
 
 if (process.argv.length < 3) {

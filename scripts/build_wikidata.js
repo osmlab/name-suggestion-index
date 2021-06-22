@@ -1,3 +1,4 @@
+// External
 import colors from 'colors/safe.js';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
@@ -12,18 +13,21 @@ import stringify from '@aitodotai/json-stringify-pretty-compact';
 import Twitter from 'Twitter';
 import wikibase from 'wikibase-sdk';
 import wikibaseEdit from 'wikibase-edit';
+const withLocale = localeCompare('en-US');
 
+// Internal
 import { sortObject } from '../lib/sort_object.js';
 import { fileTree } from '../lib/file_tree.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
-const withLocale = localeCompare('en-US');
-const project = JSON5.parse(fs.readFileSync('./package.json', 'utf8'));
-const trees = JSON5.parse(fs.readFileSync('./config/trees.json', 'utf8')).trees;
+// JSON
+import packageJSON from '../package.json';
+import treesJSON from '../config/trees.json';
+const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = JSON.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
-const loco = new LocationConflation(featureCollection);
+import featureCollectionJSON from '../dist/featureCollection.json';
+const loco = new LocationConflation(featureCollectionJSON);
 
 const wbk = wikibase({
   instance: 'https://www.wikidata.org',
@@ -106,7 +110,7 @@ if (_secrets && _secrets.wikibase) {
     instance: 'https://www.wikidata.org',
     credentials: _secrets.wikibase,
     summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
-    userAgent: `${project.name}/${project.version} (${project.homepage})`,
+    userAgent: `${packageJSON.name}/${packageJSON.version} (${packageJSON.homepage})`,
   });
 }
 

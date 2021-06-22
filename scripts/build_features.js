@@ -1,3 +1,4 @@
+// External
 import colors from 'colors/safe.js';
 import fs from 'node:fs';
 import geojsonArea from '@mapbox/geojson-area';
@@ -10,14 +11,16 @@ import jsonschema from 'jsonschema';
 import path from 'node:path';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 
+// Internal
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
-const geojsonSchema = JSON.parse(fs.readFileSync('./schema/geojson.json', 'utf8'));
-const featureSchema = JSON.parse(fs.readFileSync('./schema/feature.json', 'utf8'));
+// JSON
+import geojsonSchemaJSON from '../schema/geojson.json';
+import featureSchemaJSON from '../schema/feature.json';
 
 const Validator = jsonschema.Validator;
 let v = new Validator();
-v.addSchema(geojsonSchema, 'http://json.schemastore.org/geojson.json');
+v.addSchema(geojsonSchemaJSON, 'http://json.schemastore.org/geojson.json');
 
 
 console.log(colors.blue('-'.repeat(70)));
@@ -124,7 +127,7 @@ function collectFeatures() {
 
     feature = obj;
 
-    validateFile(file, feature, featureSchema);
+    validateFile(file, feature, featureSchemaJSON);
     prettifyFile(file, feature, contents);
 
     if (files[id]) {

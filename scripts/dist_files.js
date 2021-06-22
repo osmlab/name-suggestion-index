@@ -1,3 +1,4 @@
+// External
 import colors from 'colors/safe.js';
 import fs from 'node:fs';
 import glob from 'glob';
@@ -8,24 +9,29 @@ import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 import xmlbuilder2 from 'xmlbuilder2';
 
+const withLocale = localeCompare('en-US');
+
+// Internal
 import { fileTree } from '../lib/file_tree.js';
 import { sortObject } from '../lib/sort_object.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
-const withLocale = localeCompare('en-US');
+// JSON
+import dissolvedJSON from '../dist/dissolved.json';
+import packageJSON from '../package.json';
+import treesJSON from '../config/trees.json';
+import wikidataJSON from '../dist/wikidata.json';
 
-// JSON imports
-const dissolved = JSON5.parse(fs.readFileSync('./dist/dissolved.json', 'utf8')).dissolved;
-const packageJSON = JSON5.parse(fs.readFileSync('./package.json', 'utf8'));
-const trees = JSON5.parse(fs.readFileSync('./config/trees.json', 'utf8')).trees;
-const wikidata = JSON5.parse(fs.readFileSync('./dist/wikidata.json', 'utf8')).wikidata;
+const dissolved = dissolvedJSON.dissolved;
+const trees = treesJSON.trees;
+const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-const sourcePresets = JSON5.parse(fs.readFileSync('./node_modules/@openstreetmap/id-tagging-schema/dist/presets.json', 'utf8'));
+import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json';
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = JSON.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
-const loco = new LocationConflation(featureCollection);
+import featureCollectionJSON from '../dist/featureCollection.json';
+const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
 fileTree.read(_cache, loco);
@@ -203,7 +209,7 @@ function buildIDPresets() {
 
         if (val === 'parcel_pickup;parcel_mail_in') {    // this one is just special
           presetID = `${presetPath}/parcel_pickup_dropoff`;
-          preset = sourcePresets[presetID];
+          preset = presetsJSON[presetID];
           if (preset) return;  // it matched
         }
 
@@ -211,7 +217,7 @@ function buildIDPresets() {
         let vals = val.split(';');
         for (let i = 0; i < vals.length; i++) {
           presetID = presetPath + '/' + vals[i].trim();
-          preset = sourcePresets[presetID];
+          preset = presetsJSON[presetID];
           if (preset) return;   // it matched
         }
       });
@@ -219,7 +225,7 @@ function buildIDPresets() {
       // fallback to `key/value`
       if (!preset) {
         presetID = presetPath;
-        preset = sourcePresets[presetID];
+        preset = presetsJSON[presetID];
       }
 
       // still no match?
