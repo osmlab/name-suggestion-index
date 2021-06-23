@@ -71,7 +71,7 @@
     "dist:browser": "esbuild ./index.mjs --platform=browser --format=iife --main-fields=module,main --global-name=nsi --bundle --sourcemap --outfile=./dist/javascript/nsi.iife.js",
     "dist:cjs": "esbuild ./index.mjs --platform=node --format=cjs --bundle --sourcemap --outfile=./dist/javascript/nsi.cjs",
     "dist:version": "node scripts/dist_version.js",
-    "docbuild": "esbuild ./app/src/index.jsx  --platform=browser --format=iife --main-fields=module,main --global-name=nsiguide --bundle --minify --sourcemap --outfile=./docs/index.js",
+    "docbuild": "esbuild ./app/src/index.jsx  --platform=browser --target=es2019 --format=iife --main-fields=module,main --global-name=nsiguide --bundle --minify --sourcemap --outfile=./docs/index.js",
     "build": "run-s build:features build:index",
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
