@@ -60,20 +60,7 @@
     "import": "./index.mjs",
     "require": "./dist/javascript/nsi.cjs",
     "browser": "./dist/javascript/nsi.iife.js",
-    "./dist/*": "./dist/*"
-  },
-  "nsiguide": "docs/index.html",
-  "targets": {
-    "nsiguide": {
-      "context": "browser",
-      "distDir": "docs",
-      "isLibrary": false,
-      "publicUrl": "./",
-      "optimize": false,
-      "engines": {
-        "browsers": "last 1 version, >1%"
-      }
-    }
+    "dist/*": "./dist/*"
   },
   "scripts": {
     "all": "run-s build dist",
@@ -84,7 +71,7 @@
     "dist:browser": "esbuild ./index.mjs --platform=browser --format=iife --main-fields=module,main --global-name=nsi --bundle --sourcemap --outfile=./dist/javascript/nsi.iife.js",
     "dist:cjs": "esbuild ./index.mjs --platform=node --format=cjs --bundle --sourcemap --outfile=./dist/javascript/nsi.cjs",
     "dist:version": "node scripts/dist_version.js",
-    "docbuild": "npx parcel build './app/index.html' --target 'nsiguide' --detailed-report 0 --no-source-maps --no-content-hash",
+    "docbuild": "esbuild ./app/src/index.jsx  --platform=browser --format=iife --main-fields=module,main --global-name=nsiguide --bundle --minify --sourcemap --outfile=./docs/index.js",
     "build": "run-s build:features build:index",
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
@@ -101,8 +88,6 @@
   },
   "devDependencies": {
     "@aitodotai/json-stringify-pretty-compact": "^1.3.0",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-react": "^7.12.10",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
@@ -125,7 +110,6 @@
     "locale-compare": "^1.0.0",
     "node-fetch": "^2.2.0",
     "npm-run-all": "^4.0.0",
-    "parcel": "~2.0.0-beta.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -141,10 +125,5 @@
   },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
   }
 }

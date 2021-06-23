@@ -19,19 +19,19 @@ export default function Filters(props) {
     <span className='filterby'>Filter by</span>
 
     <span className='field'>
-      <label for='tt'>Tag Text:</label>
-      <input type='text' id='tt' name='tt' autocorrect='off' size='15'
+      <label htmlFor='tt'>Tag Text:</label>
+      <input type='text' id='tt' name='tt' autoCorrect='off' size='15'
         value={tt} onChange={filtersChanged} />
     </span>
 
     <span className='field'>
-      <label for='cc'>Country Code:</label>
-      <input type='text' id='cc' name='cc' autocorrect='off' maxlength='6' size='3'
+      <label htmlFor='cc'>Country Code:</label>
+      <input type='text' id='cc' name='cc' autoCorrect='off' maxLength='6' size='3'
         value={cc} onChange={filtersChanged} />
     </span>
 
     <span className='field'>
-      <label for='inc'>Incomplete:</label>
+      <label htmlFor='inc'>Incomplete:</label>
       <input type='checkbox' id='inc' name='inc'
         checked={inc} onChange={filtersChanged} />
     </span>

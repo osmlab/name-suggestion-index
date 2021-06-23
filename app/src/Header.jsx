@@ -70,7 +70,7 @@ function Title(props) {
 function TreeSwitcher(props) {
   const t = props.t;
   const others = ['brands', 'flags', 'operators', 'transit'].filter(d => d !== t);
-  const links = others.map(t => (<li><Link to={`index.html?t=${t}`}>{t}/</Link></li>));
+  const links = others.map(t => (<li key={t}><Link to={`index.html?t=${t}`}>{t}/</Link></li>));
   const list = links.length ? (<> see also: <ul>{links}</ul> </>) : null;
 
   return (
