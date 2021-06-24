@@ -1,12 +1,10 @@
 import { test } from 'tap';
 import LocationConflation from '@ideditor/location-conflation';
 import { Matcher } from '../index.mjs';
-
-import fs from 'node:fs';
-const data = JSON.parse(fs.readFileSync('./tests/matcher.data.json', 'utf8'));
+import data from './matcher.data.json';
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = JSON.parse(fs.readFileSync('./dist/featureCollection.json', 'utf8'));
+import featureCollection from '../dist/featureCollection.json';
 const loco = new LocationConflation(featureCollection);
 
 const USA = [-98.58, 39.828];
