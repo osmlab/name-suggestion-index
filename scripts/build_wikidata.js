@@ -9,6 +9,7 @@ import { iso1A2Code } from '@ideditor/country-coder';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@ideditor/location-conflation';
+import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 import Twitter from 'Twitter';
 import wikibase from 'wikibase-sdk';
@@ -51,7 +52,7 @@ const DRYRUN = false;
 // - connect to the Twitter API to fetch logos
 // - connect to the Wikibase API to update NSI identifiers.
 //
-// `config/secrets.json` looks like this:
+// `secrets.json` looks like this:
 // {
 //   "twitter": [
 //     {
@@ -72,9 +73,14 @@ const DRYRUN = false;
 //   }
 // }
 
+// ensure that the secrets file is not in /config anymore:
+shell.config.silent = true;
+shell.mv('-f', './config/secrets.json', './secrets.json');
+shell.config.reset();
+
 let _secrets;
 try {
-  _secrets = JSON5.parse(fs.readFileSync('./config/secrets.json', 'utf8'));
+  _secrets = JSON5.parse(fs.readFileSync('./secrets.json', 'utf8'));
 } catch (err) { /* ignore */ }
 
 if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
