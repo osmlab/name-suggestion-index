@@ -162,7 +162,7 @@ function loadCollected() {
 // Filter the tags collected into _keep and _discard lists
 //
 function filterCollected() {
-  const START = '🏗   ' + colors.yellow(`Filtering values gathered from OSM...`);
+  const START = '🏗   ' + colors.yellow(`Filtering values collected from OSM...`);
   const END = '👍  ' + colors.green(`done filtering`);
   console.log('');
   console.log(START);
