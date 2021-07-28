@@ -555,9 +555,16 @@ function checkItems(t) {
         }
         if (/:wikipedia$/.test(osmkey)) {      // Check '*.wikipedia' tags
           // So many contributors get the wikipedia tags wrong, so let's just reformat it for them.
-          const wp = tags[osmkey] = decodeURIComponent(tags[osmkey]).replace(/_/g, ' ');
-          if (!/^[a-z\-]{2,}:[^_]*$/.test(wp)) {
-            warnFormatWikipedia.push([display(item), wp]);
+          let wp;
+          try {
+            if (!/%25/.test(tags[osmkey])) {  // Skip if there is an encoded '%' in the value (%25 = '%')
+              wp = tags[osmkey] = decodeURIComponent(tags[osmkey]).replace(/_/g, ' ');
+              if (!/^[a-z\-]{2,}:[^_]*$/.test(wp)) {
+                warnFormatWikipedia.push([display(item), wp]);
+              }
+            }
+          } catch (err) {
+            warnFormatWikipedia.push([display(item), tags[osmkey]]);
           }
         }
       });
