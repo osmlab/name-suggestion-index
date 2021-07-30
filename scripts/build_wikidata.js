@@ -805,7 +805,7 @@ function checkWikipediaTags(qid, sitelinks) {
     ['brand', 'operator', 'network'].forEach(osmkey => {
       const wd = item.tags[`${osmkey}:wikidata`];
       const wpOld = item.tags[`${osmkey}:wikipedia`];
-      if (!/%25/.test(wpOld)) return;  // Skip if there is an encoded '%' in the value (%25 = '%')
+      if (/%25/.test(wpOld)) return;  // Skip if there is an encoded '%' in the value (%25 = '%')
 
       if (wd && (wd === qid)) {  // `*:wikidata` tag matches
         if (wpOld && !wikiCount) {            // there was a wikipedia sitelink... but there shouldn't be one for this wikidata qid
