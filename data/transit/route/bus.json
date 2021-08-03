@@ -1058,8 +1058,10 @@
     },
     {
       "displayName": "Baltimore",
-      "id": "baltimore-a21cc9",
-      "locationSet": {"include": ["us"]},
+      "id": "baltimore-5f9bc7",
+      "locationSet": {
+        "include": ["baltimore_and_dc.geojson"]
+      },
       "tags": {
         "network": "Baltimore",
         "route": "bus"
@@ -1067,8 +1069,10 @@
     },
     {
       "displayName": "BaltimoreLink",
-      "id": "baltimorelink-a21cc9",
-      "locationSet": {"include": ["us"]},
+      "id": "baltimorelink-5f9bc7",
+      "locationSet": {
+        "include": ["baltimore_and_dc.geojson"]
+      },
       "tags": {
         "network": "BaltimoreLink",
         "route": "bus"
@@ -6503,6 +6507,23 @@
       }
     },
     {
+      "displayName": "Manchester Transit Authority",
+      "id": "manchestertransitauthority-3a6142",
+      "locationSet": {
+        "include": [[-71.45, 43, 30]]
+      },
+      "matchNames": ["mta"],
+      "tags": {
+        "network": "Manchester Transit Authority",
+        "network:wikidata": "Q16981629",
+        "network:wikipedia": "en:Manchester Transit Authority",
+        "operator": "Manchester Transit Authority",
+        "operator:wikidata": "Q16981629",
+        "operator:wikipedia": "en:Manchester Transit Authority",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Mangaratiba",
       "id": "mangaratiba-2ef076",
       "locationSet": {"include": ["br"]},
@@ -7596,15 +7617,11 @@
       }
     },
     {
-      "displayName": "MTA",
-      "id": "mta-a21cc9",
-      "locationSet": {"include": ["us"]},
-      "tags": {"network": "MTA", "route": "bus"}
-    },
-    {
       "displayName": "MTA Commuter Bus",
-      "id": "mtacommuterbus-a21cc9",
-      "locationSet": {"include": ["us"]},
+      "id": "mtacommuterbus-5f9bc7",
+      "locationSet": {
+        "include": ["baltimore_and_dc.geojson"]
+      },
       "tags": {
         "network": "MTA Commuter Bus",
         "network:wikidata": "Q6718408",
@@ -7625,8 +7642,10 @@
     },
     {
       "displayName": "MTA Maryland",
-      "id": "mtamaryland-a21cc9",
-      "locationSet": {"include": ["us"]},
+      "id": "mtamaryland-5f9bc7",
+      "locationSet": {
+        "include": ["baltimore_and_dc.geojson"]
+      },
       "tags": {
         "network": "MTA Maryland",
         "network:wikidata": "Q1863801",
@@ -8224,6 +8243,11 @@
       "locationSet": {
         "include": ["new_york_city.geojson"]
       },
+      "matchNames": [
+        "mta",
+        "mta new york city transit",
+        "new york city transit"
+      ],
       "tags": {
         "network": "NYC Transit",
         "network:wikidata": "Q1325591",
@@ -15208,9 +15232,9 @@
     },
     {
       "displayName": "WMATA Metrobus",
-      "id": "wmatametrobus-614208",
+      "id": "wmatametrobus-5f9bc7",
       "locationSet": {
-        "include": ["giant_de_md_va.geojson"]
+        "include": ["baltimore_and_dc.geojson"]
       },
       "tags": {
         "network": "WMATA Metrobus",
