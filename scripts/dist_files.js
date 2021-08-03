@@ -158,9 +158,19 @@ function buildIDPresets() {
 
   let targetPresets = {};
   let missing = new Set();
+  let paths = Object.keys(_cache.path);
 
-  const paths = Object.keys(_cache.path).sort(withLocale);
-  paths.forEach(tkv => {
+  // Ferry hack! ⛴
+  // Append a duplicate tkv for Ferry routes so we can generate them twice..
+  // These actually exist as 2 iD presets:
+  // `type/route/ferry` - for a Route Relation
+  // `route/ferry` - for a Way
+  let ferryCount = 0;
+  if (_cache.path['transit/route/ferry']) {
+    paths.push('transit/route/ferry');   // add a duplicate tkv
+  }
+
+  paths.sort(withLocale).forEach(tkv => {
     const properties = _cache.path[tkv].properties || {};
     const items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
@@ -173,10 +183,19 @@ function buildIDPresets() {
 
     let presetPath = `${k}/${v}`;
 
-    // exceptions where the NSI key/value doesn't match the iD preset path key/value
-    if (k === 'route')                              presetPath = `type/route/${v}`;
+    // Exceptions where the NSI key/value doesn't match the iD preset path key/value
+    if (k === 'route')                              presetPath = `type/route/${v}`;   // Route Relation
     if (k === 'highway' && v === 'bus_stop')        presetPath = 'public_transport/platform/bus_point';
     if (k === 'amenity' && v === 'ferry_terminal')  presetPath = 'public_transport/station_ferry';
+
+    // Ferry hack! ⛴
+    if (tkv === 'transit/route/ferry') {
+      if (!ferryCount++) {
+        presetPath = 'type/route/ferry';  // Route Relation
+      } else {
+        presetPath = 'route/ferry';  // Way
+      }
+    }
 
     // Which wikidata tag is considered the "main" tag for this tree?
     const wdTag = tree.mainTag;
