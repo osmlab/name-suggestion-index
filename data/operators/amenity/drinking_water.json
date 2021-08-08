@@ -1,7 +1,18 @@
 {
   "properties": {
     "path": "operators/amenity/drinking_water",
-    "exclude": {"generic": ["^drinking water$"]}
+    "exclude": {"generic": [
+      "^drinking water$",
+      "^yes$"
+    ],
+    "named": [
+      "^gemeinde$",
+      "^ngo$",
+      "^öffentlich$",
+      "^public$",
+      "^private$"
+      ]
+    }
   },
   "items": [
     {
@@ -241,15 +252,6 @@
       }
     },
     {
-      "displayName": "Gemeinde",
-      "id": "gemeinde-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Gemeinde"
-      }
-    },
-    {
       "displayName": "Gemeinde Toblach",
       "id": "gemeindetoblach-3fbe17",
       "locationSet": {"include": ["001"]},
@@ -367,15 +369,6 @@
       }
     },
     {
-      "displayName": "ngo",
-      "id": "ngo-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "ngo"
-      }
-    },
-    {
       "displayName": "NS",
       "id": "ns-3fbe17",
       "locationSet": {"include": ["001"]},
@@ -391,15 +384,6 @@
       "tags": {
         "amenity": "drinking_water",
         "operator": "Oasen"
-      }
-    },
-    {
-      "displayName": "öffentlich",
-      "id": "offentlich-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "öffentlich"
       }
     },
     {
@@ -421,30 +405,12 @@
       }
     },
     {
-      "displayName": "private",
-      "id": "private-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "private"
-      }
-    },
-    {
       "displayName": "Provincia di Brescia",
       "id": "provinciadibrescia-3fbe17",
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "Provincia di Brescia"
-      }
-    },
-    {
-      "displayName": "Public",
-      "id": "public-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Public"
       }
     },
     {
@@ -683,15 +649,6 @@
       "tags": {
         "amenity": "drinking_water",
         "operator": "WVZ"
-      }
-    },
-    {
-      "displayName": "yes",
-      "id": "yes-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "yes"
       }
     },
     {
