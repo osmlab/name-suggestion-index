@@ -38,17 +38,17 @@ out body;
 out skel qt;
 
 {{style:
-node[name=${n}],
-way[name=${n}],
-relation[name=${n}]
+node,
+way,
+relation
 { color:red; fill-color:red; }
-node[${k}=${v}][name=${n}],
-way[${k}=${v}][name=${n}],
-relation[${k}=${v}][name=${n}]
+node[${k}=${v}],
+way[${k}=${v}],
+relation[${k}=${v}]
 { color:yellow; fill-color:yellow; }
-node[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${qid}],
-way[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${qid}],
-relation[${k}=${v}][name=${n}][brand=${bn}][brand:wikidata=${qid}]
+node[${k}=${v}][brand=${bn}][brand:wikidata=${qid}],
+way[${k}=${v}][brand=${bn}][brand:wikidata=${qid}],
+relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
 { color:green; fill-color:green; }
 }}`;
 
@@ -77,17 +77,17 @@ out body;
 out skel qt;
 
 {{style:
-node[operator=${n}],
-way[operator=${n}],
-relation[operator=${n}]
+node,
+way,
+relation
 { color:red; fill-color:red; }
-node[${k}=${v}][operator=${n}],
-way[${k}=${v}][operator=${n}],
-relation[${k}=${v}][operator=${n}]
+node[${k}=${v}],
+way[${k}=${v}],
+relation[${k}=${v}]
 { color:yellow; fill-color:yellow; }
-node[${k}=${v}][operator=${n}][operator:wikidata=${qid}],
-way[${k}=${v}][operator=${n}][operator:wikidata=${qid}],
-relation[${k}=${v}][operator=${n}][operator:wikidata=${qid}]
+node[${k}=${v}][operator:wikidata=${qid}],
+way[${k}=${v}][operator:wikidata=${qid}],
+relation[${k}=${v}][operator:wikidata=${qid}]
 { color:green; fill-color:green; }
 }}`;
 
@@ -104,17 +104,17 @@ out body;
 out skel qt;
 
 {{style:
-node[network=${n}],
-way[network=${n}],
-relation[network=${n}]
+node,
+way,
+relation
 { color:red; fill-color:red; }
-node[${k}=${v}][network=${n}],
-way[${k}=${v}][network=${n}],
-relation[${k}=${v}][network=${n}]
+node[${k}=${v}],
+way[${k}=${v}],
+relation[${k}=${v}]
 { color:yellow; fill-color:yellow; }
-node[${k}=${v}][network=${n}][network:wikidata=${qid}],
-way[${k}=${v}][network=${n}][network:wikidata=${qid}],
-relation[${k}=${v}][network=${n}][network:wikidata=${qid}]
+node[${k}=${v}][network:wikidata=${qid}],
+way[${k}=${v}][network:wikidata=${qid}],
+relation[${k}=${v}][network:wikidata=${qid}]
 { color:green; fill-color:green; }
 }}`;
   }
