@@ -11,3 +11,15 @@
 - [ ] git tag vA.B.C
 - [ ] git push origin main vA.B.C
 - [ ] npm publish
+
+### Purge cache (optional)
+
+```bash
+curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/nsi.min.json'
+curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/dissolved.min.json'
+curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/featureCollection.min.json'
+curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/genericWords.min.json'
+curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/presets/nsi-id-presets.min.json'
+curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/replacements.min.json'
+curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/trees.min.json'
+```
