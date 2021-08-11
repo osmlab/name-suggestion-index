@@ -43,7 +43,15 @@ function Title(props) {
     iconURL = data.icons[kv];
     if (!iconURL) iconURL = data.icons[k];    // fallback to generic key=* icon
     if (!iconURL) iconURL = fallbackIcon;     // fallback to generic icon
+
+    // exceptions:
+    if (kv === 'power/minor_line') {  // iD's power pole icon has a fill
+      iconURL = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/power_pole.svg';
+    } else if (kv === 'route/power') {
+      iconURL = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/power_tower.svg';
+    }
   }
+
   const icon = iconURL ? (<img className='icon' src={iconURL} />) : null;
 
   // pick a title
