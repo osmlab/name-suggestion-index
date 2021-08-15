@@ -3,7 +3,9 @@
     "path": "operators/emergency/ambulance_station",
     "exclude": {
       "generic": ["^ambulance station$"],
-      "named": ["^(national health service|nhs)$"]
+      "named": [
+        "^(london ambulance service nhs trust|national health service|nhs)$"
+      ]
     }
   },
   "items": [
@@ -304,6 +306,7 @@
         "include": ["gb-lon.geojson"]
       },
       "matchNames": [
+        "london ambulance service nhs trust",
         "national health service",
         "nhs"
       ],
@@ -312,15 +315,6 @@
         "operator": "London Ambulance Service",
         "operator:wikidata": "Q1794466",
         "operator:wikipedia": "en:London Ambulance Service"
-      }
-    },
-    {
-      "displayName": "London Ambulance Service NHS Trust",
-      "id": "londonambulanceservicenhstrust-88fc80",
-      "locationSet": {"include": ["gb-eng"]},
-      "tags": {
-        "emergency": "ambulance_station",
-        "operator": "London Ambulance Service NHS Trust"
       }
     },
     {
