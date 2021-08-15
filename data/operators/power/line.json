@@ -1,7 +1,10 @@
 {
   "properties": {
     "path": "operators/power/line",
-    "exclude": {"generic": ["^line$"]}
+    "exclude": {
+      "generic": ["^line$"],
+      "named": ["national grid et"]
+    }
   },
   "items": [
     {
@@ -2940,10 +2943,13 @@
     },
     {
       "displayName": "National Grid",
-      "id": "nationalgrid-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "nationalgrid-2a61eb",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["national grid et"],
       "tags": {
         "operator": "National Grid",
+        "operator:wikidata": "Q1465461",
+        "operator:wikipedia": "National Grid Plc",
         "power": "line"
       }
     },
@@ -2953,15 +2959,6 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "National Grid Corporation of the Philippines",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "National Grid ET",
-      "id": "nationalgridet-116894",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "operator": "National Grid ET",
         "power": "line"
       }
     },
