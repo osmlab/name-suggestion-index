@@ -187,7 +187,8 @@ relation[${k}=${v}][network:wikidata=${qid}]
   function locoDisplay(locationSet, name) {
     const val = JSON.stringify(locationSet);
     const q = encodeURIComponent(val);
-    const href = `https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=${q}`;
+//    const href = `https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=${q}`;
+    const href = `https://location-conflation.com/?referrer=nsi&locationSet=${q}`;
     const title = `View LocationSet for ${name}`;
     return val && (
       <a target='_blank' href={href} title={title}><code dangerouslySetInnerHTML={ highlight(cc, val) } /></a>
