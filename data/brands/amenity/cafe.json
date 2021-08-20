@@ -48,9 +48,9 @@
         "amenity": "cafe",
         "brand": "50嵐",
         "brand:en": "50 Lan",
+        "brand:zh": "50嵐",
         "brand:wikidata":"Q106926258",
         "brand:wikipedia": "zh:五十嵐 (臺灣)",
-        "brand:zh": "50嵐",
         "cuisine": "bubble_tea",
         "name": "50嵐",
         "name:en": "50 Lan",
@@ -90,11 +90,13 @@
         "amenity": "cafe",
         "brand": "85度C",
         "brand:en": "85C Bakery Cafe",
+        "brand:zh": "85度C",
         "brand:wikidata": "Q4644852",
         "brand:wikipedia": "en:85C Bakery Cafe",
         "cuisine": "coffee_shop",
         "name": "85度C",
         "name:en": "85C Bakery Cafe",
+        "name:zh": "85度C",
         "takeaway": "yes"
       }
     },
@@ -575,21 +577,52 @@
     {
       "displayName": "Chatime",
       "id": "chatime-e1ef51",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["001"],"exclude":["cn","tw"]},
       "tags": {
         "amenity": "cafe",
         "brand": "Chatime",
-        "brand:en": "Chatime",
         "brand:wikidata": "Q16829306",
         "brand:wikipedia": "en:Chatime",
-        "brand:zh": "日出茶太",
         "cuisine": "bubble_tea",
         "name": "Chatime",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "日出茶太(Taiwan)",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "日出茶太",
+        "brand:en": "Chatime",
+        "brand:zh": "日出茶太",
+        "brand:wikidata": "Q16829306",
+        "brand:wikipedia": "zh:日出茶太",
+        "cuisine": "bubble_tea",
+        "name": "日出茶太",
         "name:en": "Chatime",
         "name:zh": "日出茶太",
         "takeaway": "yes"
       }
-    },
+    },    
+    {
+      "displayName": "日出茶太(中国大陆)",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "日出茶太",
+        "brand:en": "Chatime",
+        "brand:zh": "日出茶太",
+        "brand:wikidata": "Q16829306",
+        "brand:wikipedia": "zh:日出茶太",
+        "cuisine": "bubble_tea",
+        "name": "日出茶太",
+        "name:en": "Chatime",
+        "name:zh": "日出茶太",
+        "operator":"日太餐饮管理（上海）有限公司",
+        "takeaway": "yes"
+      }
+    }, 
     {
       "displayName": "Cibo Espresso",
       "id": "ciboespresso-70e4e4",
@@ -607,7 +640,7 @@
     {
       "displayName": "CoCo",
       "id": "coco-70e4e4",
-      "locationSet": {"include": ["au"]},
+      "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "cafe",
         "brand": "CoCo",
@@ -627,11 +660,13 @@
         "amenity": "cafe",
         "brand": "CoCo都可",
         "brand:en": "CoCo Fresh Tea & Juice",
+        "brand:zh": "CoCo都可",
         "brand:wikidata": "Q65084369",
         "brand:wikipedia": "zh:CoCo都可",
         "cuisine": "bubble_tea",
         "name": "CoCo都可",
         "name:en": "CoCo Fresh Tea & Juice",
+        "name:zh": "CoCo都可",
         "takeaway": "yes"
       }
     },
@@ -2549,7 +2584,7 @@
       "displayName": "一芳水果茶",
       "id": "yifangtea-60211c",
       "locationSet": {
-        "include": ["cn", "hk", "tw"]
+        "include": ["cn", "hk"]
       },
       "matchNames": ["一芳", "一芳台湾水果茶"],
       "tags": {
@@ -2564,10 +2599,31 @@
         "takeaway": "yes"
       }
     },
+        {
+      "displayName": "一芳水果茶(台灣)",
+      "locationSet": {
+        "include": ["tw"]
+      },
+      "matchNames": ["一芳", "一芳台灣水果茶"],
+      "tags": {
+        "amenity": "cafe",
+        "brand": "一芳水果茶",
+        "brand:en": "Yi Fang Tea",
+        "brand:zh": "一芳水果茶",       
+        "brand:wikidata": "Q66196395",
+        "brand:wikipedia": "zh:一芳水果茶",
+        "cuisine": "bubble_tea",
+        "name": "一芳水果茶",
+        "name:en": "Yi Fang Tea",
+        "name:zh": "一芳水果茶",
+        "operator": "墨力國際股份有限公司",
+        "takeaway": "yes"
+      }
+    },
     {
       "displayName": "上島珈琲店",
       "id": "ueshimacoffeehouse-0cf217",
-      "locationSet": {"include": ["jp"]},
+      "locationSet": {"include": ["jp", "tw"]},
       "matchNames": ["上島珈琲"],
       "tags": {
         "amenity": "cafe",
@@ -2675,24 +2731,6 @@
       }
     },
     {
-      "displayName": "日出茶太",
-      "id": "chatime-7d270d",
-      "locationSet": {"include": ["tw"]},
-      "tags": {
-        "amenity": "cafe",
-        "brand": "日出茶太",
-        "brand:en": "Chatime",
-        "brand:wikidata": "Q16829306",
-        "brand:wikipedia": "zh:日出茶太",
-        "brand:zh": "日出茶太",
-        "cuisine": "bubble_tea",
-        "name": "日出茶太",
-        "name:en": "Chatime",
-        "name:zh": "日出茶太",
-        "takeaway": "yes"
-      }
-    },
-    {
       "displayName": "星乃珈琲店",
       "id": "hoshinocoffee-0cf217",
       "locationSet": {"include": ["jp"]},
@@ -2712,10 +2750,29 @@
     {
       "displayName": "星巴克",
       "id": "starbucks-aa349e",
-      "locationSet": {"include": ["cn", "tw"]},
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "cafe",
         "brand": "星巴克",
+        "brand:en": "Starbucks",
+        "brand:zh": "星巴克",
+        "brand:wikidata": "Q37158",
+        "brand:wikipedia": "zh:星巴克",
+        "brand:zh": "星巴克",
+        "cuisine": "coffee_shop",
+        "name": "星巴克",
+        "name:en": "Starbucks",
+        "name:zh": "星巴克",
+        "takeaway": "yes"
+      }
+    },
+        {
+      "displayName": "星巴克(台灣)",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "星巴克",
+        "brand:zh": "星巴克",
         "brand:en": "Starbucks",
         "brand:wikidata": "Q37158",
         "brand:wikipedia": "zh:星巴克",
@@ -2724,6 +2781,7 @@
         "name": "星巴克",
         "name:en": "Starbucks",
         "name:zh": "星巴克",
+        "operator": "悠旅生活事業股份有限公司",
         "takeaway": "yes"
       }
     },
@@ -2818,15 +2876,19 @@
       "tags": {
         "amenity": "cafe",
         "brand": "貢茶",
+        "brand:zh": "貢茶",
         "brand:en": "Gong Cha",
         "brand:wikidata": "Q5581670",
         "brand:wikipedia": "zh:貢茶 (連鎖店)",
+        "brand:zh-Hans": "贡茶",
         "brand:zh-Hant": "貢茶",
         "cuisine": "bubble_tea",
         "int_name": "Gong Cha",
         "name": "貢茶",
         "name:en": "Gong Cha",
         "name:zh": "貢茶",
+        "name:zh-Hans": "贡茶",
+        "name:zh-Hant": "貢茶",
         "takeaway": "yes"
       }
     },
@@ -2906,6 +2968,99 @@
         "name:en": "Louisa Coffee",
         "name:zh": "路易莎咖啡",
         "takeaway": "yes"
+      }
+    },
+        {
+      "displayName": "大苑子",
+      "id": "dayungs-55bc47",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "大苑子",
+        "brand:en": "DaYung's",
+        "brand:wikidata": "Q67934123",
+        "brand:wikipedia": "zh:大苑子",
+        "brand:zh": "大苑子",
+        "cuisine": "bubble_tea",
+        "name": "大苑子",
+        "name:en": "DaYung's",
+        "name:zh": "大苑子",
+        "amenity": "cafe"
+      }
+    },
+    {
+      "displayName": "清心福全",
+      "id": "chingshin-55bc47",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "清心福全",
+        "brand:en": "Ching Shin",
+        "brand:wikidata": "Q10391229",
+        "brand:wikipedia": "zh:清心福全冷飲站",
+        "brand:zh": "清心福全",
+        "cuisine": "bubble_tea",
+        "name": "清心福全",
+        "name:en": "Ching Shin",
+        "name:zh": "清心福全",
+        "amenity": "cafe"
+      }
+    },
+    {
+      "displayName": "茶湯會",
+      "id": "818e65-55bc47",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "茶湯會",
+        "brand:wikidata": "Q108166023",
+        "cuisine": "bubble_tea",
+        "name": "茶湯會",
+        "name:en": "TP Tea",
+        "name:zh": "茶湯會",
+        "amenity": "cafe"
+      }
+    },
+    {
+      "displayName": "茶的魔手",
+      "id": "6716bb-55bc47",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "茶的魔手",
+        "brand:en": "Tea & Magic Hand",
+        "brand:zh": "茶的魔手",
+        "brand:wikidata": "Q67933727",
+        "cuisine": "bubble_tea",
+        "name": "茶的魔手",
+        "name:en": "Tea & Magic Hand",
+        "name:zh": "茶的魔手",
+        "amenity": "cafe"
+      }
+    },
+    {
+      "displayName": "迷客夏",
+      "id": "milkshop-55bc47",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "迷客夏",
+        "brand:en": "Milkshop",
+        "brand:wikidata": "Q67934215",
+        "brand:wikipedia": "zh:迷客夏",
+        "brand:zh": "迷客夏",
+        "cuisine": "bubble_tea",
+        "name": "迷客夏",
+        "name:en": "Milkshop",
+        "name:zh": "迷客夏",
+        "amenity": "cafe"
+      }
+    },
+    {
+      "displayName": "鮮茶道",
+      "id": "e7db71-55bc47",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "鮮茶道",
+        "brand:wikidata": "Q108166223",
+        "cuisine": "bubble_tea",
+        "name": "鮮茶道",
+        "amenity": "cafe"
       }
     }
   ]
