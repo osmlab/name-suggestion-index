@@ -373,6 +373,7 @@ function processEntities(result) {
     // P576 - Dissolution date
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
+        if (!item.value) return;
         let dissolution = { date: item.value };
 
         if (item.qualifiers) {
