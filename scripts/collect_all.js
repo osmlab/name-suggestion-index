@@ -27,7 +27,7 @@ if (process.argv.length < 3) {
 }
 
 const POIKEYS = ['amenity', 'shop', 'leisure', 'tourism', 'office', 'craft', 'healthcare'];
-const OPERATORKEYS = ['amenity', 'healthcare', 'emergency', 'power', 'route']; //, 'public_transport'];
+const OPERATORKEYS = ['amenity', 'healthcare', 'emergency', 'office', 'power', 'route']; //, 'public_transport'];
 const NETWORKKEYS = ['amenity', 'power', 'route']; //, 'public_transport'];
 
 collect('name', POIKEYS, 50);
