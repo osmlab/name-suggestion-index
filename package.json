@@ -84,6 +84,7 @@
     "build:index": "node scripts/build_index.js",
     "tap": "c8 tap --reporter terse --no-cov tests/*.js",
     "lint": "eslint scripts/*.js lib/*.js",
+    "osmium:setup": "NODE_OPTIONS='' node scripts/osmium_setup.cjs",
     "test": "run-s lint build tap",
     "validate": "node scripts/validate.js",
     "wikicheck": "node scripts/check_wikiTags.js",
