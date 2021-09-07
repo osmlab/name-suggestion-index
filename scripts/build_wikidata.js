@@ -626,11 +626,6 @@ function checkTwitterRateLimit(need) {
   return twitterAPI.client
     .get('application/rate_limit_status', { resources: 'users' })
     .then(result => {
-
-// if (which === 'bhousel'){
-// console.log(stringify(result));
-// }
-// process.exit(0);
       const now = Date.now() / 1000;
       const stats = result.resources.users['/users/:id'];
       const resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
