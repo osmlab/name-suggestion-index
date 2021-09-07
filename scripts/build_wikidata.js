@@ -56,11 +56,17 @@ const DRYRUN = false;
 // {
 //   "twitter": [
 //     {
+//       "name": "name-suggestion-index-staging",
+//       "app_id": "16186858",
+//       "bearer_token": "AAAAAAAAAAAAAAAAAAA…",
 //       "twitter_consumer_key": "",
 //       "twitter_consumer_secret": "",
 //       "twitter_access_token_key": "",
 //       "twitter_access_token_secret": ""
 //     }, {
+//       "name": "name-suggestion-index-dev",
+//       "app_id": "16186940",
+//       "bearer_token": "AAAAAAAAAAAAAAAAAAA…",
 //       "twitter_consumer_key": "",
 //       "twitter_consumer_secret": "",
 //       "twitter_access_token_key": "",
@@ -98,13 +104,28 @@ if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
 let _twitterAPIs = [];
 let _twitterAPIIndex = 0;
 if (_secrets && _secrets.twitter) {
-  _twitterAPIs = _secrets.twitter.map(s => {
-    return new Twitter({
-      consumer_key: s.twitter_consumer_key,
-      consumer_secret: s.twitter_consumer_secret,
-      access_token_key: s.twitter_access_token_key,
-      access_token_secret: s.twitter_access_token_secret
-    });
+  _twitterAPIs = _secrets.twitter.map((s, i) => {
+    let props;
+
+    // if (s.bearer_token) {  // use a bearer token if we have it
+    //   props = {
+    //     consumer_key: s.twitter_consumer_key,
+    //     consumer_secret: s.twitter_consumer_secret,
+    //     bearer_token: s.bearer_token
+    //   };
+    // } else {
+      props = {
+        consumer_key: s.twitter_consumer_key,
+        consumer_secret: s.twitter_consumer_secret,
+        access_token_key: s.twitter_access_token_key,
+        access_token_secret: s.twitter_access_token_secret
+      };
+    // }
+
+    return {
+      name: s.name || i.toString(),
+      client: new Twitter(props)
+    };
   });
 }
 
@@ -598,17 +619,22 @@ function finish() {
 // https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
 // rate limit: 900calls / 15min
 function checkTwitterRateLimit(need) {
-  _twitterAPIIndex = (_twitterAPIIndex + 1) % _twitterAPIs.length;
+  _twitterAPIIndex = (_twitterAPIIndex + 1) % _twitterAPIs.length;  // cycle to next client
   const twitterAPI = _twitterAPIs[_twitterAPIIndex];
-  const which = _twitterAPIs.length > 1 ? (' ' + (_twitterAPIIndex + 1)) : '';
+  const which = twitterAPI.name;
 
-  return twitterAPI
+  return twitterAPI.client
     .get('application/rate_limit_status', { resources: 'users' })
     .then(result => {
+
+// if (which === 'bhousel'){
+// console.log(stringify(result));
+// }
+// process.exit(0);
       const now = Date.now() / 1000;
-      const stats = result.resources.users['/users/show/:id'];
+      const stats = result.resources.users['/users/:id'];
       const resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
-      console.log(colors.green.bold(`Twitter rate status${which}: need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
+      console.log(colors.green.bold(`Twitter rate status '${which}': need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
       if (need > stats.remaining) {
         const delaySec = clamp(resetSec, 10, 60);
         console.log(colors.green.bold(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
@@ -637,7 +663,7 @@ function fetchTwitterUserDetails(qid, username) {
   const target = _wikidata[qid];
   const twitterAPI = _twitterAPIs[_twitterAPIIndex];
 
-  return twitterAPI
+  return twitterAPI.client
     .get('users/show', { screen_name: username })
     .then(user => {
       target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
