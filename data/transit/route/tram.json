@@ -4,7 +4,8 @@
     "exclude": {
       "generic": ["^tram$"],
       "named": [
-        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$"
+        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$",
+        "^ru:municipal$"
       ]
     }
   },
@@ -22,8 +23,10 @@
     },
     {
       "displayName": "Augsburger Verkehrs- und Tarifverbund",
-      "id": "augsburgerverkehrsundtarifverbund-37759c",
-      "locationSet": {"include": ["de"]},
+      "id": "augsburgerverkehrsundtarifverbund-6c92fa",
+      "locationSet": {
+        "include": [[10.76, 48.41, 55]]
+      },
       "tags": {
         "network": "Augsburger Verkehrs- und Tarifverbund",
         "network:short": "AVV",
@@ -51,13 +54,33 @@
       }
     },
     {
-      "displayName": "CTC",
-      "id": "ctc-a89e98",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Carris",
+      "id": "carris-d4b068",
+      "locationSet": {"include": ["pt"]},
       "tags": {
-        "network": "CTC",
-        "network:wikidata": "Q5131931",
-        "network:wikipedia": "en:Clermont Transportation Connection",
+        "network": "Carris",
+        "network:wikidata": "Q1045108",
+        "network:wikipedia": "pt:Companhia Carris de Ferro de Lisboa",
+        "operator": "Carris",
+        "operator:wikidata": "Q1045108",
+        "operator:wikipedia": "pt:Companhia Carris de Ferro de Lisboa",
+        "route": "tram"
+      }
+    },
+    {
+      "displayName": "Cincinnati Bell Connector",
+      "id": "cincinnatibellconnector-4d4771",
+      "locationSet": {
+        "include": ["sorta.geojson"]
+      },
+      "matchNames": ["cincinnati streetcar"],
+      "tags": {
+        "network": "Cincinnati Bell Connector",
+        "network:wikidata": "Q3537097",
+        "network:wikipedia": "en:Cincinnati Bell Connector",
+        "operator": "Southwest Ohio Regional Transit Authority",
+        "operator:wikidata": "Q7571329",
+        "operator:wikipedia": "en:Southwest Ohio Regional Transit Authority",
         "route": "tram"
       }
     },
@@ -278,8 +301,10 @@
     },
     {
       "displayName": "MBTA",
-      "id": "mbta-a89e98",
-      "locationSet": {"include": ["us"]},
+      "id": "mbta-98eeec",
+      "locationSet": {
+        "include": [[-71, 42, 100]]
+      },
       "matchNames": [
         "massachusetts bay transportation authority"
       ],
@@ -414,6 +439,20 @@
       }
     },
     {
+      "displayName": "Portland Streetcar",
+      "id": "portlandstreetcar-a89e98",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "network": "Portland Streetcar",
+        "network:wikidata": "Q1753708",
+        "network:wikipedia": "en:Portland Streetcar",
+        "operator": "TriMet",
+        "operator:wikidata": "Q1766623",
+        "operator:wikipedia": "en:TriMet",
+        "route": "tram"
+      }
+    },
+    {
       "displayName": "PTV - Metropolitan Trams",
       "id": "ptvmetropolitantrams-f14ffe",
       "locationSet": {"include": ["au"]},
@@ -491,15 +530,6 @@
       }
     },
     {
-      "displayName": "ru:municipal",
-      "id": "rumunicipal-f97856",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "ru:municipal",
-        "route": "tram"
-      }
-    },
-    {
       "displayName": "Ruter",
       "id": "ruter-a74636",
       "locationSet": {"include": ["no"]},
@@ -530,8 +560,10 @@
     },
     {
       "displayName": "SEPTA",
-      "id": "septa-a89e98",
-      "locationSet": {"include": ["us"]},
+      "id": "septa-59a881",
+      "locationSet": {
+        "include": [[-75.3, 40.1, 50]]
+      },
       "matchNames": [
         "southeastern pennsylvania transportation authority"
       ],
@@ -647,6 +679,17 @@
         "network": "TNW",
         "network:wikidata": "Q1479394",
         "network:wikipedia": "de:Tarifverbund Nordwestschweiz",
+        "route": "tram"
+      }
+    },
+    {
+      "displayName": "Tramway d'Île de France",
+      "id": "tramwaydiledefrance-3c4b3d",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "network": "Tramway d'Île de France",
+        "network:wikidata": "Q1142114",
+        "network:wikipedia": "fr:Tramway d'Île-de-France",
         "route": "tram"
       }
     },
@@ -1127,7 +1170,7 @@
         "network:wikipedia": "en:Hong Kong Tramways",
         "operator": "RATP Dev Transdev Asia",
         "operator:wikidata": "Q30642347",
-        "operator:wikipedia": "en:RATP Dev Transdev Asia",
+        "operator:wikipedia": "en:RATP Dev Asia",
         "route": "tram"
       }
     }

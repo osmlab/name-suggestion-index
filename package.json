@@ -1,11 +1,12 @@
 {
   "name": "name-suggestion-index",
-  "version": "5.0.20210315",
+  "version": "6.0.20210913",
   "license": "BSD-3-Clause",
   "repository": "github:osmlab/name-suggestion-index",
   "contributors": [
     "Adamant36 (https://github.com/Adamant36)",
     "Andrew Harvey <andrew@alantgeo.com.au> (https://github.com/andrewharvey)",
+    "archpdx <archpdx@pm.me> (https://github.com/arch0345)",
     "ArenaL5 (https://github.com/ArenaL5)",
     "Arthur Eigenbrot (https://github.com/eigenbrot)",
     "Austin Stevens <austinestevens@outlook.com> (https://github.com/aestevens)",
@@ -21,6 +22,7 @@
     "Malcolm Smith (https://github.com/mds08011)",
     "Matthijs Melissen <github@matthijsmelissen.nl> (https://github.com/matthijsmelissen)",
     "Max Erickson (https://github.com/maxerickson)",
+    "m-hue (https://github.com/m-hue)",
     "Michael Lyons (https://github.com/michaelblyons)",
     "Minh Nguyễn <mxn@1ec5.org> (https://github.com/1ec5)",
     "nuxper (https://github.com/nuxper)",
@@ -52,22 +54,38 @@
     "transit",
     "wikidata"
   ],
-  "main": "dist/index.js",
-  "module": "index.mjs",
+  "files": [
+    "index.mjs",
+    "config/",
+    "dist/",
+    "lib/",
+    "schema/"
+  ],
+  "type": "module",
+  "main": "./dist/javascript/nsi.cjs",
+  "module": "./index.mjs",
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./dist/javascript/nsi.cjs",
+    "dist/*": "./dist/*"
+  },
   "scripts": {
     "all": "run-s build dist",
     "appbuild": "npm run docbuild",
     "dist": "run-s dist:version dist:files dist:javascript",
     "dist:files": "node scripts/dist_files.js",
-    "dist:javascript": "rollup -c",
+    "dist:javascript": "run-p dist:browser dist:cjs",
+    "dist:browser": "esbuild ./index.mjs --platform=browser --format=iife --global-name=nsi --bundle --sourcemap --outfile=./dist/javascript/nsi.iife.js",
+    "dist:cjs": "esbuild ./index.mjs --platform=node --format=cjs --bundle --sourcemap --outfile=./dist/javascript/nsi.cjs",
     "dist:version": "node scripts/dist_version.js",
-    "docbuild": "parcel build ./app/index.html --no-source-maps --no-content-hash --no-minify --public-url ./ --out-dir docs",
+    "docbuild": "esbuild ./app/src/index.jsx  --platform=browser --target=es2019 --format=iife --global-name=nsiguide --bundle --minify --sourcemap --outfile=./docs/index.js",
     "build": "run-s build:features build:index",
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
-    "jest": "jest --coverage",
+    "tap": "c8 tap --reporter terse --no-cov tests/*.js",
     "lint": "eslint scripts/*.js lib/*.js",
-    "test": "run-s lint build jest",
+    "osmium:setup": "NODE_OPTIONS='' node scripts/osmium_setup.cjs",
+    "test": "run-s lint build tap",
     "validate": "node scripts/validate.js",
     "wikicheck": "node scripts/check_wikiTags.js",
     "wikidata": "node scripts/build_wikidata.js"
@@ -78,52 +96,42 @@
   },
   "devDependencies": {
     "@aitodotai/json-stringify-pretty-compact": "^1.3.0",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-react": "^7.12.10",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@ideditor/location-conflation": "0.7.0",
+    "@ideditor/location-conflation": "1.0.2",
+    "@mapbox/geojson-area": "^0.2.2",
+    "@mapbox/geojson-rewind": "^0.5.0",
     "@openstreetmap/id-tagging-schema": "~3.0.0",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^11.1.0",
+    "c8": "^7.7.3",
     "clear": "^0.1.0",
     "colors": "^1.1.2",
+    "esbuild": "^0.12.9",
     "eslint": "^7.18.0",
-    "fs-extra": "^9.0.1",
+    "fs-extra": "^10.0.0",
+    "geojson-bounds": "^1.0.2",
     "geojson-precision": "^1.0.0",
-    "geojson-rewind": "^0.3.1",
     "glob": "^7.1.4",
-    "jest": "^26.6.3",
     "json5": "^2.1.3",
     "jsonschema": "^1.2.5",
     "locale-compare": "^1.0.0",
-    "node-fetch": "^2.2.0",
+    "node-fetch": "^3.0.0",
     "npm-run-all": "^4.0.0",
-    "parcel-bundler": "^1.12.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.5",
-    "rollup": "^2.36.2",
     "safe-regex": "^2.1.1",
     "shelljs": "^0.8.0",
-    "whatwg-fetch": "^3.5.0",
-    "xmlbuilder2": "^2.1.2"
-  },
-  "optionalDependencies": {
+    "tap": "^15.0.9",
     "twitter": "^1.7.1",
+    "whatwg-fetch": "^3.5.0",
     "wikibase-edit": "^4.7.3",
-    "wikibase-sdk": "^7.7.1"
+    "wikibase-sdk": "^7.7.1",
+    "xmlbuilder2": "^3.0.1"
   },
   "engines": {
-    "node": ">=10"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   }
 }

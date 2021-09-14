@@ -44,7 +44,7 @@ export default function App() {
     <Switch>
       <Route path='/' render={render}/>
     </Switch>
-    <Footer />
+    <Footer index={appData.index}/>
     </>
   );
 

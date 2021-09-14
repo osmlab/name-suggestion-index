@@ -1,17 +1,21 @@
-const stemmer = require('../lib/stemmer.js');
+import { test } from 'tap';
+import { stemmer } from '../index.mjs';
 
-describe('stemmer', () => {
+test('stemmer', t => {
 
-  test('removes noise', () => {
-    expect(stemmer('First National Bank')).toBe('firstnational');
-    expect(stemmer('Shell Gas')).toBe('shell');
-    expect(stemmer('Verizon Wireless')).toBe('verizon');
+  t.test('removes noise', t => {
+    t.equal(stemmer('First National Bank'), 'firstnational');
+    t.equal(stemmer('Shell Gas'), 'shell');
+    t.equal(stemmer('Verizon Wireless'), 'verizon');
+    t.end();
   });
 
-  test('returns empty string if no input', () => {
-    expect(stemmer()).toBe('');
-    expect(stemmer(null)).toBe('');
-    expect(stemmer({})).toBe('');
+  t.test('returns empty string if no input', t => {
+    t.equal(stemmer(), '');
+    t.equal(stemmer(null), '');
+    t.equal(stemmer({}), '');
+    t.end();
   });
 
+  t.end();
 });

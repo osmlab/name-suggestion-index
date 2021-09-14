@@ -25,10 +25,10 @@ export default function Overview(props) {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/embassy-15.svg';
     wikidataTag = 'flag:wikidata';
   } else if (t === 'operators') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/briefcase.svg';
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/briefcase.svg';
     wikidataTag = 'operator:wikidata';
   } else if (t === 'transit') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@4/icons/board_transit.svg';
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/board_transit.svg';
     wikidataTag = 'network:wikidata';
   }
 
@@ -68,9 +68,16 @@ export default function Overview(props) {
     const kv = `${k}/${v}`;
 
     // pick an icon for this category
-    let icon_url = data.icons[kv];
-    if (!icon_url) icon_url = data.icons[k];    // fallback to generic key=* icon
-    if (!icon_url) icon_url = fallbackIcon;     // fallback to generic icon
+    let iconURL = data.icons[kv];
+    if (!iconURL) iconURL = data.icons[k];    // fallback to generic key=* icon
+    if (!iconURL) iconURL = fallbackIcon;     // fallback to generic icon
+
+    // exceptions:
+    if (kv === 'power/minor_line') {  // iD's power pole icon has a fill
+      iconURL = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/power_pole.svg';
+    } else if (kv === 'route/power') {
+      iconURL = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/power_tower.svg';
+    }
 
     const items = index.path[tkv];
     let count = 0;
@@ -111,7 +118,7 @@ export default function Overview(props) {
     const klass = 'category' + ((!count || (inc && isComplete)) ? ' hide' : '');
     categories.push(
       <div key={tkv} className={klass} >
-      <img className='icon' src={icon_url} />
+      <img className='icon' src={iconURL} />
       <Link to={`index.html?t=${t}&k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
       </div>
     );

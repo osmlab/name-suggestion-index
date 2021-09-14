@@ -5,6 +5,9 @@
       "generic": [
         "^police$",
         "^пол[иі]кл[иі]н[иі]ка( №1)?$"
+      ],
+      "named": [
+        "(corpo forestale dello stato|polizia stradale)"
       ]
     }
   },
@@ -13,12 +16,13 @@
       "displayName": "Arma dei Carabinieri",
       "id": "armadeicarabinieri-f71f16",
       "locationSet": {"include": ["it"]},
+      "matchTags": ["operator/carabinieri"],
       "tags": {
         "amenity": "police",
         "operator": "Arma dei Carabinieri",
         "operator:short": "Carabinieri",
         "operator:wikidata": "Q54852",
-        "operator:wikipedia": "en:Carabinieri"
+        "operator:wikipedia": "it:Arma dei Carabinieri"
       }
     },
     {
@@ -195,8 +199,10 @@
     },
     {
       "displayName": "Chicago Police Department",
-      "id": "chicagopolicedepartment-04d52e",
-      "locationSet": {"include": ["us"]},
+      "id": "chicagopolicedepartment-42a893",
+      "locationSet": {
+        "include": [[-87.65, 41.9, 35]]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Chicago Police Department",
@@ -225,17 +231,6 @@
       "tags": {
         "amenity": "police",
         "operator": "Comunidad de Madrid"
-      }
-    },
-    {
-      "displayName": "Corpo Forestale dello Stato",
-      "id": "corpoforestaledellostato-f71f16",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Corpo Forestale dello Stato",
-        "operator:wikidata": "Q1134650",
-        "operator:wikipedia": "it:Corpo forestale dello Stato"
       }
     },
     {
@@ -380,7 +375,7 @@
     },
     {
       "displayName": "Dyfed–Powys Police",
-      "id": "e51994-03a321",
+      "id": "dyfedpowyspolice-03a321",
       "locationSet": {"include": ["gb-wls"]},
       "tags": {
         "amenity": "police",
@@ -464,7 +459,7 @@
         "operator": "Gendarmerie nationale",
         "operator:ar": "الدرك الوطني",
         "operator:wikidata": "Q3100409",
-        "operator:wikipedia": "fr:Gendarmerie nationale algérienne"
+        "operator:wikipedia": "fr:Gendarmerie nationale (Algérie)"
       }
     },
     {
@@ -476,6 +471,15 @@
         "operator": "Gendarmerie nationale",
         "operator:wikidata": "Q1422336",
         "operator:wikipedia": "en:National Gendarmerie"
+      }
+    },
+    {
+      "displayName": "Governo do Estado de Santa Catarina",
+      "id": "governodoestadodesantacatarina-f7f40a",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Governo do Estado de Santa Catarina"
       }
     },
     {
@@ -492,6 +496,17 @@
         "operator": "Greater Manchester Police",
         "operator:wikidata": "Q5600651",
         "operator:wikipedia": "en:Greater Manchester Police"
+      }
+    },
+    {
+      "displayName": "Guarda Nacional Republicana",
+      "id": "guardanacionalrepublicana-269632",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Guarda Nacional Republicana",
+        "operator:wikidata": "Q1280906",
+        "operator:wikipedia": "pt:Guarda Nacional Republicana"
       }
     },
     {
@@ -529,6 +544,17 @@
       }
     },
     {
+      "displayName": "Guardia Nacional",
+      "id": "guardianacional-793396",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Guardia Nacional",
+        "operator:wikidata": "Q61941046",
+        "operator:wikipedia": "es:Guardia Nacional de México"
+      }
+    },
+    {
       "displayName": "Guardia Nacional Bolivariana de Venezuela",
       "id": "guardianacionalbolivarianadevenezuela-3383b4",
       "locationSet": {"include": ["ve"]},
@@ -558,13 +584,14 @@
     },
     {
       "displayName": "Hampshire Constabulary",
-      "id": "hampshireconstabulary-193ebb",
+      "id": "hampshireconstabulary-01cccd",
       "locationSet": {
-        "include": [
-          "gb-iow.geojson",
-          "gb-south-central.geojson"
-        ]
+        "include": ["gb-south-central.geojson"]
       },
+      "matchNames": [
+        "iow police",
+        "isle of wight police"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Hampshire Constabulary",
@@ -660,6 +687,26 @@
       }
     },
     {
+      "displayName": "Kantonspolizei Bern",
+      "id": "kantonspolizeibern-e64270",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Kantonspolizei Bern",
+        "operator:wikidata": "Q1728095",
+        "operator:wikipedia": "de:Kantonspolizei Bern"
+      }
+    },
+    {
+      "displayName": "Kantonspolizei Schwyz",
+      "id": "kantonspolizeischwyz-e64270",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Kantonspolizei Schwyz"
+      }
+    },
+    {
       "displayName": "Kantonspolizei Thurgau",
       "id": "kantonspolizeithurgau-e64270",
       "locationSet": {"include": ["ch"]},
@@ -667,6 +714,17 @@
         "amenity": "police",
         "operator": "Kantonspolizei Thurgau",
         "operator:wikidata": "Q56705297"
+      }
+    },
+    {
+      "displayName": "Kantonspolizei Zürich",
+      "id": "kantonspolizeizurich-e64270",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Kantonspolizei Zürich",
+        "operator:wikidata": "Q1728099",
+        "operator:wikipedia": "de:Kantonspolizei Zürich"
       }
     },
     {
@@ -680,6 +738,18 @@
         "operator": "Kent Police",
         "operator:wikidata": "Q3195294",
         "operator:wikipedia": "en:Kent Police"
+      }
+    },
+    {
+      "displayName": "Kerala Police",
+      "id": "keralapolice-d0526a",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Kerala Police",
+        "operator:ml": "കേരള പോലീസ്",
+        "operator:wikidata": "Q17064579",
+        "operator:wikipedia": "ml:കേരള പോലീസ്"
       }
     },
     {
@@ -900,8 +970,10 @@
     },
     {
       "displayName": "Los Angeles Police Department",
-      "id": "losangelespolicedepartment-04d52e",
-      "locationSet": {"include": ["us"]},
+      "id": "losangelespolicedepartment-624635",
+      "locationSet": {
+        "include": [[-118, 33.85, 80]]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Los Angeles Police Department",
@@ -984,7 +1056,9 @@
       "tags": {
         "amenity": "police",
         "operator": "Ministerio de Obras Públicas y Transportes",
-        "operator:short": "MOPT"
+        "operator:short": "MOPT",
+        "operator:wikidata": "Q2838952",
+        "operator:wikipedia": "en:Ministry of Public Works and Transport (Costa Rica)"
       }
     },
     {
@@ -1022,6 +1096,15 @@
         "operator": "Mossos d'Esquadra",
         "operator:wikidata": "Q1424346",
         "operator:wikipedia": "es:Mozos de Escuadra"
+      }
+    },
+    {
+      "displayName": "MUP RS",
+      "id": "muprs-0d83c9",
+      "locationSet": {"include": ["ba"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "MUP RS"
       }
     },
     {
@@ -1075,8 +1158,10 @@
     },
     {
       "displayName": "New York Police Department",
-      "id": "newyorkpolicedepartment-04d52e",
-      "locationSet": {"include": ["us"]},
+      "id": "newyorkpolicedepartment-a48e36",
+      "locationSet": {
+        "include": ["new_york_city.geojson"]
+      },
       "matchNames": [
         "new york city police department"
       ],
@@ -1087,6 +1172,18 @@
         "operator:short": "NYPD",
         "operator:wikidata": "Q328473",
         "operator:wikipedia": "en:New York City Police Department"
+      }
+    },
+    {
+      "displayName": "New Zealand Police",
+      "id": "newzealandpolice-6de575",
+      "locationSet": {"include": ["nz"]},
+      "matchNames": ["nz police"],
+      "tags": {
+        "amenity": "police",
+        "operator": "New Zealand Police",
+        "operator:wikidata": "Q12063956",
+        "operator:wikipedia": "en:New Zealand Police"
       }
     },
     {
@@ -1138,7 +1235,7 @@
         "amenity": "police",
         "operator": "Northern Territory Police Force",
         "operator:wikidata": "Q7059043",
-        "operator:wikipedia": "en:Northern Territory Police"
+        "operator:wikipedia": "en:Northern Territory Police Force"
       }
     },
     {
@@ -1228,6 +1325,21 @@
       }
     },
     {
+      "displayName": "Policajný zbor",
+      "id": "policajnyzbor-546d53",
+      "locationSet": {"include": ["sk"]},
+      "matchNames": [
+        "policajný zbor slovenskej republiky"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "Policajný zbor",
+        "operator:short": "PZ",
+        "operator:wikidata": "Q55633341",
+        "operator:wikipedia": "sk:Policajný zbor"
+      }
+    },
+    {
       "displayName": "Police nationale (France)",
       "id": "policenationale-714d2d",
       "locationSet": {"include": ["fr"]},
@@ -1298,7 +1410,9 @@
       "locationSet": {"include": ["ar"]},
       "tags": {
         "amenity": "police",
-        "operator": "Policía de La Pampa"
+        "operator": "Policía de La Pampa",
+        "operator:wikidata": "Q6081699",
+        "operator:wikipedia": "es:Policía de la Provincia de La Pampa"
       }
     },
     {
@@ -1329,7 +1443,9 @@
       "locationSet": {"include": ["ar"]},
       "tags": {
         "amenity": "police",
-        "operator": "Policía de la Provincia de Neuquén"
+        "operator": "Policía de la Provincia de Neuquén",
+        "operator:wikidata": "Q21003376",
+        "operator:wikipedia": "es:Policía de Neuquén"
       }
     },
     {
@@ -1338,7 +1454,20 @@
       "locationSet": {"include": ["ar"]},
       "tags": {
         "amenity": "police",
-        "operator": "Policía de Río Negro"
+        "operator": "Policía de Río Negro",
+        "operator:wikidata": "Q6081705",
+        "operator:wikipedia": "es:Policía de la Provincia de Río Negro"
+      }
+    },
+    {
+      "displayName": "Policía de Santiago del Estero",
+      "id": "policiadesantiagodelestero-e73d55",
+      "locationSet": {"include": ["ar"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Policía de Santiago del Estero",
+        "operator:wikidata": "Q9061412",
+        "operator:wikipedia": "es:Policía de Santiago del Estero"
       }
     },
     {
@@ -1397,11 +1526,13 @@
     },
     {
       "displayName": "Policía Local",
-      "id": "policialocal-d00fc1",
-      "locationSet": {"include": ["001"]},
+      "id": "policialocal-dd66e9",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "police",
-        "operator": "Policía Local"
+        "operator": "Policía Local",
+        "operator:wikidata": "Q1507792",
+        "operator:wikipedia": "es:Policía local de España"
       }
     },
     {
@@ -1725,6 +1856,7 @@
         "operator": "Policía Nacional Bolivariana",
         "operator:en": "Bolivarian National Police",
         "operator:short": "PNB",
+        "operator:wikidata": "Q7209712",
         "operator:wikipedia": "en:Venezuelan National Police"
       }
     },
@@ -1903,7 +2035,7 @@
         "amenity": "police",
         "operator": "Polizei Berlin",
         "operator:wikidata": "Q328480",
-        "operator:wikipedia": "de:Der Polizeipräsident in Berlin"
+        "operator:wikipedia": "de:Polizei Berlin"
       }
     },
     {
@@ -2051,18 +2183,10 @@
       }
     },
     {
-      "displayName": "Polizia",
-      "id": "polizia-f71f16",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Polizia"
-      }
-    },
-    {
       "displayName": "Polizia di Stato",
       "id": "poliziadistato-f71f16",
       "locationSet": {"include": ["it"]},
+      "matchNames": ["polizia"],
       "tags": {
         "amenity": "police",
         "operator": "Polizia di Stato",
@@ -2076,28 +2200,21 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "police",
-        "operator": "Polizia Locale"
+        "operator": "Polizia Locale",
+        "operator:wikidata": "Q61634147",
+        "operator:wikipedia": "it:Polizia locale (Italia)"
       }
     },
     {
       "displayName": "Polizia Municipale",
       "id": "poliziamunicipale-f71f16",
       "locationSet": {"include": ["it"]},
+      "matchNames": ["vigili urbani"],
       "tags": {
         "amenity": "police",
-        "operator": "Polizia Municipale"
-      }
-    },
-    {
-      "displayName": "Polizia Stradale",
-      "id": "poliziastradale-f71f16",
-      "locationSet": {"include": ["it"]},
-      "note": "Highway Patrol; Subgroup of Polizia di Stato",
-      "tags": {
-        "amenity": "police",
-        "operator": "Polizia Stradale",
-        "operator:wikidata": "Q3907573",
-        "operator:wikipedia": "it:Polizia stradale"
+        "operator": "Polizia Municipale",
+        "operator:wikidata": "Q1431981",
+        "operator:wikipedia": "it:Polizia municipale"
       }
     },
     {
@@ -2125,15 +2242,17 @@
     },
     {
       "displayName": "Public Security Police Force of Macau",
-      "id": "publicsecuritypoliceforce-18678f",
-      "locationSet": {"include": ["cn"]},
+      "id": "publicsecuritypoliceforce-ff7137",
+      "locationSet": {"include": ["mo"]},
       "tags": {
         "amenity": "police",
         "operator": "治安警察局",
         "operator:en": "Public Security Police Force",
         "operator:pt": "Polícia de Segurança Pública",
         "operator:short": "CPSP",
-        "operator:wikipedia": "en:Public Security Police Force of Macau"
+        "operator:wikidata": "Q16926796",
+        "operator:wikipedia": "zh:治安警察局",
+        "operator:zh": "治安警察局"
       }
     },
     {
@@ -2173,6 +2292,18 @@
       }
     },
     {
+      "displayName": "Royal Papua New Guinea Constabulary",
+      "id": "royalpapuanewguineaconstabulary-2d366c",
+      "locationSet": {"include": ["pg"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Royal Papua New Guinea Constabulary",
+        "operator:short": "RPNGC",
+        "operator:wikidata": "Q7374681",
+        "operator:wikipedia": "en:Royal Papua New Guinea Constabulary"
+      }
+    },
+    {
       "displayName": "Royal Thai Police",
       "id": "royalthaipolice-951c56",
       "locationSet": {"include": ["th"]},
@@ -2182,6 +2313,7 @@
         "operator:en": "Royal Thai Police",
         "operator:short": "RTP",
         "operator:th": "ตำรวจแห่งชาติ",
+        "operator:wikidata": "Q1831399",
         "operator:wikipedia": "en:Royal Thai Police"
       }
     },
@@ -2194,7 +2326,9 @@
       ],
       "tags": {
         "amenity": "police",
-        "operator": "Secretaria da Segurança Pública do Estado de São Paulo"
+        "operator": "Secretaria da Segurança Pública do Estado de São Paulo",
+        "operator:wikidata": "Q10295162",
+        "operator:wikipedia": "pt:Secretaria de Estado dos Negócios da Segurança Pública de São Paulo"
       }
     },
     {
@@ -2226,6 +2360,7 @@
       "tags": {
         "amenity": "police",
         "operator": "Service de police de la ville de Montréal",
+        "operator:wikidata": "Q1326140",
         "operator:wikipedia": "en:Service de police de la Ville de Montréal"
       }
     },
@@ -2277,6 +2412,17 @@
         "operator": "South Yorkshire Police",
         "operator:wikidata": "Q7569006",
         "operator:wikipedia": "en:South Yorkshire Police"
+      }
+    },
+    {
+      "displayName": "Stadtpolizei Zürich",
+      "id": "stadtpolizeizurich-e64270",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Stadtpolizei Zürich",
+        "operator:wikidata": "Q2327949",
+        "operator:wikipedia": "de:Stadtpolizei Zürich"
       }
     },
     {
@@ -2414,6 +2560,7 @@
         "operator": "กองบัญชาการตำรวจท่องเที่ยว",
         "operator:en": "Tourist Police Bureau",
         "operator:th": "กองบัญชาการตำรวจท่องเที่ยว",
+        "operator:wikidata": "Q58366882",
         "operator:wikipedia": "en:Tourist Police (Thailand)"
       }
     },
@@ -2505,7 +2652,7 @@
         "amenity": "police",
         "operator": "Western Australia Police Force",
         "operator:wikidata": "Q7987488",
-        "operator:wikipedia": "en:Western Australia Police"
+        "operator:wikipedia": "en:Western Australia Police Force"
       }
     },
     {
@@ -2531,7 +2678,22 @@
         "operator": "Министерство Внутренних Дел",
         "operator:en": "Ministry of Internal Affairs",
         "operator:short": "МВД",
+        "operator:wikidata": "Q1192838",
         "operator:wikipedia": "en:Ministry of Internal Affairs (Russia)"
+      }
+    },
+    {
+      "displayName": "刑事警察局",
+      "id": "criminalinvestigationbureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["cib", "刑警"],
+      "tags": {
+        "amenity": "police",
+        "operator": "刑事警察局",
+        "operator:en": "Criminal Investigation Bureau",
+        "operator:wikidata": "Q10891306",
+        "operator:wikipedia": "zh:內政部警政署刑事警察局",
+        "operator:zh": "刑事警察局"
       }
     },
     {
@@ -2555,6 +2717,20 @@
       }
     },
     {
+      "displayName": "國道公路警察局",
+      "id": "nationalhighwaypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["nhp", "nhpb", "國道警察"],
+      "tags": {
+        "amenity": "police",
+        "operator": "國道公路警察局",
+        "operator:en": "National Highway Police Bureau",
+        "operator:wikidata": "Q10891307",
+        "operator:wikipedia": "zh:內政部警政署國道公路警察局",
+        "operator:zh": "國道公路警察局"
+      }
+    },
+    {
       "displayName": "岩手県警察本部",
       "id": "iwateprefecturalpolice-ae5e65",
       "locationSet": {"include": ["jp"]},
@@ -2566,21 +2742,161 @@
       }
     },
     {
-      "displayName": "海巡署",
-      "id": "057e0b-d21a1c",
-      "locationSet": {"include": ["cn", "tw"]},
+      "displayName": "新北市政府警察局",
+      "id": "newtaipeicitypolicedepartment-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "ntpc police",
+        "ntpd",
+        "新北市警察",
+        "新北市警局",
+        "新北警察",
+        "新北警局"
+      ],
       "tags": {
         "amenity": "police",
-        "operator": "海巡署"
+        "oeprator:wikidata": "Q11081385",
+        "operator": "新北市政府警察局",
+        "operator:en": "New Taipei City Police Department",
+        "operator:wikipedia": "zh:新北市政府警察局",
+        "operator:zh": "新北市政府警察局"
+      }
+    },
+    {
+      "displayName": "桃園市政府警察局",
+      "id": "taoyuanpolicedepartment-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "taoyuan police",
+        "typd",
+        "桃園市警察",
+        "桃園市警局",
+        "桃園警察",
+        "桃市警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "oeprator:wikidata": "Q15907660",
+        "operator": "桃園市政府警察局",
+        "operator:en": "Taoyuan Police Department",
+        "operator:wikipedia": "zh:桃園市政府警察局",
+        "operator:zh": "桃園市政府警察局"
+      }
+    },
+    {
+      "displayName": "派出所",
+      "id": "ministryofpublicsecurity-18678f",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "中华人民共和国公安部",
+        "operator:en": "Ministry of Public Security",
+        "operator:wikidata": "Q2346285",
+        "operator:wikipedia": "zh:中华人民共和国公安部",
+        "operator:zh": "中华人民共和国公安部"
+      }
+    },
+    {
+      "displayName": "海巡署",
+      "id": "coastguardadministration-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["cga", "海巡"],
+      "tags": {
+        "amenity": "police",
+        "operator": "海巡署",
+        "operator:en": "Coast Guard Administration",
+        "operator:wikidata": "Q698822",
+        "operator:wikipedia": "zh:海洋委員會海巡署",
+        "operator:zh": "海巡署"
+      }
+    },
+    {
+      "displayName": "臺中市政府警察局",
+      "id": "taichungcitypolicedepartment-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "taichung police",
+        "tcpb",
+        "中市警",
+        "中市警察",
+        "台中市警察",
+        "台中市警局",
+        "台中警察",
+        "臺中市警察",
+        "臺中市警局",
+        "臺中警察"
+      ],
+      "tags": {
+        "amenity": "police",
+        "oeprator:wikidata": "Q15897177",
+        "operator": "臺中市政府警察局",
+        "operator:en": "Taichung City Police Department",
+        "operator:wikipedia": "zh:臺中市政府警察局",
+        "operator:zh": "臺中市政府警察局"
       }
     },
     {
       "displayName": "臺北市政府警察局",
-      "id": "0e7388-c45d37",
+      "id": "taipeicitypolicedepartment-c45d37",
       "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "taipei police",
+        "tcpd",
+        "北市警察",
+        "北市警局",
+        "台北市警察",
+        "台北市警局",
+        "台北警察",
+        "臺北市警察",
+        "臺北市警局",
+        "臺北警察"
+      ],
       "tags": {
         "amenity": "police",
-        "operator": "臺北市政府警察局"
+        "oeprator:wikidata": "Q15903297",
+        "operator": "臺北市政府警察局",
+        "operator:en": "Taipei City Police Department",
+        "operator:wikipedia": "zh:臺北市政府警察局",
+        "operator:zh": "臺北市政府警察局"
+      }
+    },
+    {
+      "displayName": "臺南市政府警察局",
+      "id": "tainancitypolicedepartment-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "taian police",
+        "tnpd",
+        "南市警察",
+        "南市警局",
+        "台南市警察",
+        "台南市警局",
+        "台南警察",
+        "臺南市警察",
+        "臺南市警局",
+        "臺南警察"
+      ],
+      "tags": {
+        "amenity": "police",
+        "oeprator:wikidata": "Q15904106",
+        "operator": "臺南市政府警察局",
+        "operator:en": "Tainan City Police Department",
+        "operator:wikipedia": "zh:臺南市政府警察局",
+        "operator:zh": "臺南市政府警察局"
+      }
+    },
+    {
+      "displayName": "航空警察局",
+      "id": "aviationpolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["ap", "apb", "航警"],
+      "tags": {
+        "amenity": "police",
+        "operator": "航空警察局",
+        "operator:en": "Aviation Police Bureau",
+        "operator:wikidata": "Q15912145",
+        "operator:wikipedia": "zh:內政部警政署航空警察局",
+        "operator:zh": "航空警察局"
       }
     },
     {
@@ -2590,6 +2906,43 @@
       "tags": {
         "amenity": "police",
         "operator": "那覇警察署"
+      }
+    },
+    {
+      "displayName": "鐵路警察局",
+      "id": "railwaypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["rp", "rpb", "路警"],
+      "tags": {
+        "amenity": "police",
+        "operator": "鐵路警察局",
+        "operator:en": "Railway Police Bureau",
+        "operator:wikidata": "Q10891310",
+        "operator:wikipedia": "zh:內政部警政署鐵路警察局",
+        "operator:zh": "鐵路警察局"
+      }
+    },
+    {
+      "displayName": "高雄市政府警察局",
+      "id": "kaohsiungcitypolicedepartment-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "kaohsiung police",
+        "kcpd",
+        "kmph",
+        "高市警察",
+        "高市警局",
+        "高雄市警察",
+        "高雄市警局",
+        "高雄警察"
+      ],
+      "tags": {
+        "amenity": "police",
+        "oeprator:wikidata": "Q15900495",
+        "operator": "高雄市政府警察局",
+        "operator:en": "Kaohsiung City Police Department",
+        "operator:wikipedia": "zh:高雄市政府警察局",
+        "operator:zh": "高雄市政府警察局"
       }
     },
     {

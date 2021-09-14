@@ -1,39 +1,57 @@
-const simplify = require('../lib/simplify.js');
+import { test } from 'tap';
+import { simplify } from '../index.mjs';
 
-describe('simplify', () => {
+test('simplify', t => {
 
-  test('lowercases', () => {
-    expect(simplify('Aldo')).toBe('aldo');
+  t.test('lowercases', t => {
+    t.equal(simplify('Aldo'), 'aldo');
+    t.end();
   });
 
-  test('replaces diacritics', () => {
-    expect(simplify('André')).toBe('andre');
+  t.test('replaces diacritics', t => {
+    t.equal(simplify('André'), 'andre');
+    t.end();
   });
 
-  test('removes spaces', () => {
-    expect(simplify('Jimmy Choo')).toBe('jimmychoo');
+  t.test('removes spaces', t => {
+    t.equal(simplify('Jimmy Choo'), 'jimmychoo');
+    t.end();
   });
 
-  test('removes unprintable unicode (like RTL/LTR marks, zero width space, zero width nonjoiner)', () => {
-    expect(simplify('\u200FJim\u200Bmy\u200CChoo\u200E')).toBe('jimmychoo');
+  t.test('removes various dashes', t => {
+    t.equal(simplify('PTV - Metropolitan'), 'ptvmetropolitan');  // hypen
+    t.equal(simplify('PTV – Metropolitan'), 'ptvmetropolitan');  // en dash (U+2013)
+    t.equal(simplify('PTV — Metropolitan'), 'ptvmetropolitan');  // em dash (U+2014)
+    t.equal(simplify('PTV ― Metropolitan'), 'ptvmetropolitan');  // horizontal bar (U+2015)
+    t.end();
   });
 
-  test('removes punctuation', () => {
-    expect(simplify('K+K Schuh-Center')).toBe('kkschuhcenter');
+  t.test('removes unprintable unicode (like RTL/LTR marks, zero width space, zero width nonjoiner)', t => {
+    t.equal(simplify('\u200FJim\u200Bmy\u200CChoo\u200E'), 'jimmychoo');
+    t.end();
   });
 
-  test('replaces & with and', () => {
-    expect(simplify('Johnston & Murphy')).toBe('johnstonandmurphy');
+  t.test('removes punctuation', t => {
+    t.equal(simplify('K+K Schuh-Center'), 'kkschuhcenter');
+    t.end();
   });
 
-  test('replaces ß (eszett) with ss', () => {
-    expect(simplify('Beßon')).toBe('besson');
+  t.test('replaces & with and', t => {
+    t.equal(simplify('Johnston & Murphy'), 'johnstonandmurphy');
+    t.end();
   });
 
-  test('returns empty string if no input', () => {
-    expect(simplify()).toBe('');
-    expect(simplify(null)).toBe('');
-    expect(simplify({})).toBe('');
+  t.test('replaces ß (eszett) with ss', t => {
+    t.equal(simplify('Beßon'), 'besson');
+    t.end();
   });
 
+  t.test('returns empty string if no input', t => {
+    t.equal(simplify(), '');
+    t.equal(simplify(null), '');
+    t.equal(simplify({}), '');
+    t.end();
+  });
+
+  t.end();
 });

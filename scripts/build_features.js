@@ -1,19 +1,26 @@
-const colors = require('colors/safe');
-const fs = require('fs');
-const glob = require('glob');
-const JSON5 = require('json5');
-const path = require('path');
-const precision = require('geojson-precision');
-const rewind = require('geojson-rewind');
-const stringify = require('@aitodotai/json-stringify-pretty-compact');
-const writeFileWithMeta = require('../lib/write_file_with_meta.js');
-const Validator = require('jsonschema').Validator;
+// External
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+import geojsonArea from '@mapbox/geojson-area';
+import geojsonBounds from 'geojson-bounds';
+import geojsonPrecision from 'geojson-precision';
+import geojsonRewind from '@mapbox/geojson-rewind';
+import glob from 'glob';
+import JSON5 from 'json5';
+import jsonschema from 'jsonschema';
+import path from 'node:path';
+import stringify from '@aitodotai/json-stringify-pretty-compact';
 
-const geojsonSchema = require('../schema/geojson.json');
-const featureSchema = require('../schema/feature.json');
+// Internal
+import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
+// JSON
+import geojsonSchemaJSON from '../schema/geojson.json';
+import featureSchemaJSON from '../schema/feature.json';
+
+const Validator = jsonschema.Validator;
 let v = new Validator();
-v.addSchema(geojsonSchema, 'http://json.schemastore.org/geojson.json');
+v.addSchema(geojsonSchemaJSON, 'http://json.schemastore.org/geojson.json');
 
 
 console.log(colors.blue('-'.repeat(70)));
@@ -62,8 +69,8 @@ function collectFeatures() {
       process.exit(1);
     }
 
-    let feature = precision(rewind(parsed, true), 4);
-    let fc = feature.features;
+    let feature = geojsonPrecision(geojsonRewind(parsed, true), 5);
+    const fc = feature.features;
 
     // A FeatureCollection with a single feature inside (geojson.io likes to make these).
     if (feature.type === 'FeatureCollection' && Array.isArray(fc) && fc.length === 1) {
@@ -74,10 +81,26 @@ function collectFeatures() {
     const id = path.basename(file).toLowerCase();
     feature.id = id;
 
+    // Warn if this feature is so small/complex it would better be represented as a circular area.
+    const except = { 'new_york_city.geojson': true };
+    if (!except[id]) {
+      const coordLength = countCoordinates(feature.geometry.coordinates);
+      let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
+      area = Number(area.toFixed(2));
+      if (area < 2000 && coordLength > 15) {
+        const extent = geojsonBounds.extent(feature);
+        const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
+        const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
+        console.warn('');
+        console.warn(colors.yellow(`Warning - GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
+        console.warn('  ' + colors.yellow(file));
+      }
+    }
+
     // sort properties
     let obj = {};
-    if (feature.type)       { obj.type = feature.type; }
-    if (feature.id)         { obj.id = feature.id; }
+    if (feature.type)  { obj.type = feature.type; }
+    if (feature.id)    { obj.id = feature.id; }
     if (feature.properties) {
       obj.properties = feature.properties;
       delete obj.properties.id;  // to prevent possiblity of conflicting ids
@@ -104,7 +127,7 @@ function collectFeatures() {
 
     feature = obj;
 
-    validateFile(file, feature, featureSchema);
+    validateFile(file, feature, featureSchemaJSON);
     prettifyFile(file, feature, contents);
 
     if (files[id]) {
@@ -121,6 +144,29 @@ function collectFeatures() {
   console.log(`🧩  features:\t${featureCount}`);
   return features;
 }
+
+
+//
+// countCoordinates()
+// Counts the number of coordinates in a GeoJSON Polygon or MultiPolygon
+//
+function countCoordinates(coords) {
+  const a = Array.isArray(coords);
+  const b = a && Array.isArray(coords[0]);
+  const c = b && Array.isArray(coords[0][0]);
+  const d = c && Array.isArray(coords[0][0][0]);
+
+  let length = 0;
+  if (d) {  // Multipolygon
+    coords.forEach(polys => {
+      polys.forEach(rings => length += rings.length);
+    });
+  } else {  // Polygon
+    coords.forEach(rings => length += rings.length);
+  }
+  return length;
+}
+
 
 
 //

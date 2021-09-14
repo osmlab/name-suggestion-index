@@ -2,7 +2,8 @@
   "properties": {
     "path": "brands/shop/furniture",
     "exclude": {
-      "generic": ["^furniture$", "^меб(ель|лі)$"]
+      "generic": ["^furniture$", "^меб(ель|лі)$"],
+      "named": ["dunelm"]
     }
   },
   "items": [
@@ -15,6 +16,18 @@
         "brand:wikidata": "Q10397787",
         "brand:wikipedia": "en:Aaron's, Inc.",
         "name": "Aaron's",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Agata Meble",
+      "id": "agatameble-ad60fa",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "brand": "Agata Meble",
+        "brand:wikidata": "Q9141928",
+        "brand:wikipedia": "pl:Agata (przedsiębiorstwo)",
+        "name": "Agata Meble",
         "shop": "furniture"
       }
     },
@@ -91,6 +104,18 @@
       }
     },
     {
+      "displayName": "ASKO Nábytek",
+      "id": "askonabytek-2a1637",
+      "locationSet": {"include": ["cz", "sk"]},
+      "tags": {
+        "brand": "ASKO Nábytek",
+        "brand:wikidata": "Q58197384",
+        "name": "ASKO Nábytek",
+        "name:sk": "ASKO Nábytok",
+        "shop": "furniture"
+      }
+    },
+    {
       "displayName": "Askona",
       "id": "askona-e999c2",
       "locationSet": {"include": ["ru"]},
@@ -103,22 +128,24 @@
       }
     },
     {
-      "displayName": "Bedmart",
-      "id": "bedmart-a5c7fa",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "brand": "Bedmart",
-        "name": "Bedmart",
-        "shop": "furniture"
-      }
-    },
-    {
       "displayName": "Bellona",
       "id": "bellona-12c613",
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Bellona",
         "name": "Bellona",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "bene",
+      "id": "bene-12c613",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "bene",
+        "brand:wikidata": "Q492301",
+        "brand:wikipedia": "en:Bene AG",
+        "name": "bene",
         "shop": "furniture"
       }
     },
@@ -179,6 +206,22 @@
         "brand:wikidata": "Q13630057",
         "brand:wikipedia": "no:Bohus",
         "name": "Bohus",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Braun Möbel Center",
+      "id": "braunmobelcenter-29dff1",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "braun möbel",
+        "möbel braun"
+      ],
+      "tags": {
+        "brand": "Braun Möbel Center",
+        "brand:wikidata": "Q24331199",
+        "brand:wikipedia": "de:Braun Möbel-Center",
+        "name": "Braun Möbel Center",
         "shop": "furniture"
       }
     },
@@ -320,8 +363,8 @@
     },
     {
       "displayName": "Dänisches Bettenlager",
-      "id": "danischesbettenlager-bc2533",
-      "locationSet": {"include": ["at", "de"]},
+      "id": "danischesbettenlager-29dff1",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "brand": "Dänisches Bettenlager",
         "brand:wikidata": "Q138913",
@@ -354,15 +397,13 @@
       }
     },
     {
-      "displayName": "Dunelm",
-      "id": "dunelm-5a41a5",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": ["dunelm hill"],
+      "displayName": "Domayne",
+      "id": "domayne-0da980",
+      "locationSet": {"include": ["au"]},
       "tags": {
-        "brand": "Dunelm",
-        "brand:wikidata": "Q5315020",
-        "brand:wikipedia": "en:Dunelm Group",
-        "name": "Dunelm",
+        "brand": "Domayne",
+        "brand:wikidata": "Q106224590",
+        "name": "Domayne",
         "shop": "furniture"
       }
     },
@@ -464,6 +505,19 @@
       }
     },
     {
+      "displayName": "Hardeck",
+      "id": "hardeck-29dff1",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["möbel hardeck"],
+      "tags": {
+        "brand": "HARDECK",
+        "brand:wikidata": "Q1957803",
+        "brand:wikipedia": "de:Möbel Hardeck",
+        "name": "HARDECK",
+        "shop": "furniture"
+      }
+    },
+    {
       "displayName": "Harveys",
       "id": "harveys-5a41a5",
       "locationSet": {"include": ["gb"]},
@@ -488,6 +542,18 @@
       }
     },
     {
+      "displayName": "Höffner",
+      "id": "hoffner-29dff1",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "brand": "Höffner",
+        "brand:wikidata": "Q1643397",
+        "brand:wikipedia": "de:Höffner (Möbelhaus)",
+        "name": "Höffner",
+        "shop": "furniture"
+      }
+    },
+    {
       "displayName": "HSL",
       "id": "hsl-5a41a5",
       "locationSet": {"include": ["gb"]},
@@ -501,8 +567,11 @@
     },
     {
       "displayName": "IKEA",
-      "id": "ikea-12c613",
-      "locationSet": {"include": ["001"]},
+      "id": "ikea-738bf8",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn"]
+      },
       "tags": {
         "brand": "IKEA",
         "brand:wikidata": "Q54078",
@@ -525,7 +594,7 @@
     },
     {
       "displayName": "İstikbal",
-      "id": "e58f54-a88d0c",
+      "id": "istikbal-a88d0c",
       "locationSet": {"include": ["tr"]},
       "tags": {
         "brand": "İstikbal",
@@ -550,13 +619,40 @@
     },
     {
       "displayName": "JYSK",
-      "id": "jysk-12c613",
-      "locationSet": {"include": ["001"]},
+      "id": "jysk-646aed",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["de"]
+      },
+      "matchNames": ["dänisches bettenlager"],
       "tags": {
         "brand": "JYSK",
         "brand:wikidata": "Q138913",
         "brand:wikipedia": "en:Jysk",
         "name": "JYSK",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Kartell",
+      "id": "kartell-12c613",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Kartell",
+        "brand:wikidata": "Q97177591",
+        "brand:wikipedia": "de:Kartell (Design)",
+        "name": "Kartell",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Kelebek",
+      "id": "kelebek-12c613",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Kelebek",
+        "brand:wikidata": "Q28729960",
+        "name": "Kelebek",
         "shop": "furniture"
       }
     },
@@ -646,6 +742,19 @@
       }
     },
     {
+      "displayName": "Ligne Roset",
+      "id": "ligneroset-12c613",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Ligne Roset",
+        "brand:wikidata": "Q3442586",
+        "brand:wikipedia": "en:Ligne Roset",
+        "name": "Ligne Roset",
+        "shop": "furniture",
+        "short_name": "Roset"
+      }
+    },
+    {
       "displayName": "LoveSac",
       "id": "lovesac-a5c7fa",
       "locationSet": {"include": ["us"]},
@@ -696,6 +805,30 @@
       }
     },
     {
+      "displayName": "Möbel Kraft",
+      "id": "mobelkraft-29dff1",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "brand": "Möbel Kraft",
+        "brand:wikidata": "Q1957806",
+        "brand:wikipedia": "de:Möbel Kraft",
+        "name": "Möbel Kraft",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Möbel Martin",
+      "id": "mobelmartin-29dff1",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "brand": "Möbel Martin",
+        "brand:wikidata": "Q15836030",
+        "brand:wikipedia": "de:Möbel Martin",
+        "name": "Möbel Martin",
+        "shop": "furniture"
+      }
+    },
+    {
       "displayName": "Möbelix",
       "id": "mobelix-0d6d80",
       "locationSet": {
@@ -735,6 +868,17 @@
       }
     },
     {
+      "displayName": "Mondi",
+      "id": "mondi-a88d0c",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "brand": "Mondi",
+        "brand:wikidata": "Q106803578",
+        "name": "Mondi",
+        "shop": "furniture"
+      }
+    },
+    {
       "displayName": "Monsieur Meuble",
       "id": "monsieurmeuble-18f673",
       "locationSet": {"include": ["fr"]},
@@ -753,7 +897,32 @@
       "tags": {
         "brand": "Multipolster",
         "brand:wikidata": "Q99641150",
+        "brand:wikipedia": "de:Multipolster",
         "name": "Multipolster",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Musterring",
+      "id": "musterring-12c613",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Musterring",
+        "brand:wikidata": "Q1955638",
+        "brand:wikipedia": "de:Musterring",
+        "name": "Musterring",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Nick Scali",
+      "id": "nickscali-0da980",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "brand": "Nick Scali",
+        "brand:wikidata": "Q17053453",
+        "brand:wikipedia": "en:Nick Scali Furniture",
+        "name": "Nick Scali",
         "shop": "furniture"
       }
     },
@@ -770,14 +939,66 @@
       }
     },
     {
-      "displayName": "Poco",
+      "displayName": "Ostermann",
+      "id": "ostermann-29dff1",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "brand": "Ostermann",
+        "brand:wikidata": "Q1431315",
+        "brand:wikipedia": "de:Ostermann (Unternehmen)",
+        "name": "Ostermann",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "PBteen",
+      "id": "pbteen-736374",
+      "locationSet": {
+        "include": ["ae", "kw", "mx", "us"]
+      },
+      "matchNames": ["pottery barn teen"],
+      "tags": {
+        "brand": "Pottery Barn",
+        "brand:wikidata": "Q3400126",
+        "brand:wikipedia": "en:Pottery Barn",
+        "name": "PBteen",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Plana Küchenland",
+      "id": "planakuchenland-29dff1",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "brand": "Plana Küchenland",
+        "brand:wikidata": "Q1576634",
+        "brand:wikipedia": "de:Plana Küchenland",
+        "name": "Plana Küchenland",
+        "shop": "furniture",
+        "short_name": "Plana"
+      }
+    },
+    {
+      "displayName": "POCO",
       "id": "poco-29dff1",
       "locationSet": {"include": ["de"]},
       "tags": {
-        "brand": "Poco",
+        "brand": "POCO",
         "brand:wikidata": "Q1714820",
         "brand:wikipedia": "de:Poco (Möbelhaus)",
-        "name": "Poco",
+        "name": "POCO",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Poltrona Frau",
+      "id": "poltronafrau-12c613",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Poltrona Frau",
+        "brand:wikidata": "Q1477785",
+        "brand:wikipedia": "en:Poltrona Frau",
+        "name": "Poltrona Frau",
         "shop": "furniture"
       }
     },
@@ -802,16 +1023,43 @@
       }
     },
     {
+      "displayName": "porta",
+      "id": "porta-29dff1",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "möbel porta",
+        "porta einrichtungshaus"
+      ],
+      "tags": {
+        "brand": "porta",
+        "brand:porta": "de:Porta Möbel",
+        "brand:wikidata": "Q1576449",
+        "brand:wikipedia": "de:Porta Möbel",
+        "name": "porta",
+        "shop": "furniture"
+      }
+    },
+    {
       "displayName": "Pottery Barn",
-      "id": "potterybarn-e05d51",
-      "locationSet": {
-        "include": ["au", "ca", "mx", "ph", "us"]
-      },
+      "id": "potterybarn-12c613",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Pottery Barn",
         "brand:wikidata": "Q3400126",
         "brand:wikipedia": "en:Pottery Barn",
         "name": "Pottery Barn",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Pottery Barn Kids",
+      "id": "potterybarnkids-12c613",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Pottery Barn",
+        "brand:wikidata": "Q3400126",
+        "brand:wikipedia": "en:Pottery Barn",
+        "name": "Pottery Barn Kids",
         "shop": "furniture"
       }
     },
@@ -843,6 +1091,7 @@
       "displayName": "Restoration Hardware",
       "id": "restorationhardware-a694b9",
       "locationSet": {"include": ["ca", "us"]},
+      "matchNames": ["rh"],
       "tags": {
         "brand": "Restoration Hardware",
         "brand:wikidata": "Q7316207",
@@ -860,6 +1109,18 @@
         "brand:wikidata": "Q3437504",
         "brand:wikipedia": "fr:Roche Bobois",
         "name": "Roche Bobois",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Rolf Benz",
+      "id": "rolfbenz-375bca",
+      "locationSet": {"include": ["de", "lu"]},
+      "tags": {
+        "brand": "Rolf Benz",
+        "brand:wikidata": "Q2163232",
+        "brand:wikipedia": "de:Rolf Benz (Unternehmen)",
+        "name": "Rolf Benz",
         "shop": "furniture"
       }
     },
@@ -900,6 +1161,24 @@
       }
     },
     {
+      "displayName": "Sconto Möbel Sofort",
+      "id": "scontomobelsofort-7ce246",
+      "locationSet": {
+        "include": ["cz", "de", "sk"]
+      },
+      "matchNames": ["sconto sb"],
+      "tags": {
+        "brand": "Sconto Möbel Sofort",
+        "brand:wikidata": "Q2260475",
+        "brand:wikipedia": "de:Sconto Möbel",
+        "name": "Sconto Möbel Sofort",
+        "name:cz": "Sconto Nábytek",
+        "name:sk": "Sconto Nábytok",
+        "shop": "furniture",
+        "short_name": "Sconto"
+      }
+    },
+    {
       "displayName": "ScS",
       "id": "scs-5a41a5",
       "locationSet": {"include": ["gb"]},
@@ -908,6 +1187,29 @@
         "brand:wikidata": "Q19654399",
         "brand:wikipedia": "en:ScS",
         "name": "ScS",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Seats and Sofas",
+      "id": "seatsandsofas-29dff1",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "brand": "Seats and Sofas",
+        "brand:wikidata": "Q107113639",
+        "name": "Seats and Sofas",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "Segmüller",
+      "id": "segmuller-29dff1",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "brand": "Segmüller",
+        "brand:wikidata": "Q1337963",
+        "brand:wikipedia": "de:Segmüller (Möbelhaus)",
+        "name": "Segmüller",
         "shop": "furniture"
       }
     },
@@ -1017,6 +1319,31 @@
       }
     },
     {
+      "displayName": "Z Gallerie",
+      "id": "zgallerie-a5c7fa",
+      "locationSet": {"include": ["us"]},
+      "matchTags": ["shop/interior_decoration"],
+      "tags": {
+        "brand": "Z Gallerie",
+        "brand:wikidata": "Q22078158",
+        "brand:wikipedia": "en:Z Gallerie",
+        "name": "Z Gallerie",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "zurbrüggen",
+      "id": "zurbruggen-29dff1",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "brand": "zurbrüggen",
+        "brand:wikidata": "Q230392",
+        "brand:wikipedia": "de:Zurbrüggen Wohnzentrum",
+        "name": "zurbrüggen",
+        "shop": "furniture"
+      }
+    },
+    {
       "displayName": "Много мебели",
       "id": "c3b771-e999c2",
       "locationSet": {"include": ["ru"]},
@@ -1035,6 +1362,16 @@
       "tags": {
         "brand": "Пинскдрев",
         "name": "Пинскдрев",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "ТриЯ",
+      "id": "484c97-e999c2",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "brand": "ТриЯ",
+        "name": "ТриЯ",
         "shop": "furniture"
       }
     },
@@ -1067,6 +1404,23 @@
         "name": "フランフラン",
         "name:en": "Francfranc",
         "name:ja": "フランフラン",
+        "shop": "furniture"
+      }
+    },
+    {
+      "displayName": "宜家家居",
+      "id": "ikea-b675b4",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["宜家"],
+      "tags": {
+        "brand": "宜家家居",
+        "brand:en": "IKEA",
+        "brand:wikidata": "Q54078",
+        "brand:wikipedia": "zh:宜家家居",
+        "brand:zh": "宜家家居",
+        "name": "宜家家居",
+        "name:en": "IKEA",
+        "name:zh": "宜家家居",
         "shop": "furniture"
       }
     }

@@ -4,19 +4,34 @@
     "exclude": {
       "generic": [
         "^((le|the) )?salo{1,2}n( de)?\\s?(coiffure|fryzjerski|beauté)?\\s?(homme|dame)?$",
-        "^(beauty|nails|nagelstudio)$",
+        "^(beauty|nails|nagelstudio|solarium)$",
         "^coiff(eur|ure)\\s?(homme|dame)?$",
         "^hair\\s?(design|dresser|lounge|salon|studio)$",
-        "^solarium$",
         "^салон красоты$"
+      ],
+      "named": [
+        "^(beauty|happy|hollywood|new york|queen|star|top) nails$"
       ]
     }
   },
   "items": [
     {
+      "displayName": "Amazing Lash Studio",
+      "id": "amazinglashstudio-cc0daa",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "beauty": "eyelash",
+        "brand": "Amazing Lash Studio",
+        "brand:wikidata": "Q108469240",
+        "name": "Amazing Lash Studio",
+        "shop": "beauty"
+      }
+    },
+    {
       "displayName": "AYK Sonnenstudio",
       "id": "ayksonnenstudio-fc55f7",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["ayk"],
       "matchTags": [
         "leisure/tanning_salon",
         "shop/solarium"
@@ -25,17 +40,6 @@
         "beauty": "tanning",
         "brand": "AYK Sonnenstudio",
         "name": "AYK Sonnenstudio",
-        "shop": "beauty"
-      }
-    },
-    {
-      "displayName": "Beauty Nails",
-      "id": "beautynails-0c474f",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "beauty": "nails",
-        "brand": "Beauty Nails",
-        "name": "Beauty Nails",
         "shop": "beauty"
       }
     },
@@ -62,6 +66,18 @@
         "brand": "Body Minute",
         "brand:wikidata": "Q104972220",
         "name": "Body Minute",
+        "shop": "beauty"
+      }
+    },
+    {
+      "displayName": "Brow Studio 7",
+      "id": "browstudio7-4be8e1",
+      "locationSet": {"include": ["ca", "us"]},
+      "tags": {
+        "beauty": "skin_care;waxing;eyebrow;eyelash",
+        "brand": "Brow Studio 7",
+        "brand:wikidata": "Q108410558",
+        "name": "Brow Studio 7",
         "shop": "beauty"
       }
     },
@@ -113,26 +129,14 @@
       }
     },
     {
-      "displayName": "Happy Nails",
-      "id": "happynails-0c474f",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Eyebrow Plus",
+      "id": "eyebrowplus-cc0daa",
+      "locationSet": {"include": ["us"]},
       "tags": {
-        "beauty": "nails",
-        "brand": "Happy Nails",
-        "name": "Happy Nails",
-        "shop": "beauty"
-      }
-    },
-    {
-      "displayName": "Hollywood Nails",
-      "id": "hollywoodnails-b94d85",
-      "locationSet": {
-        "include": ["de", "gb", "us"]
-      },
-      "tags": {
-        "beauty": "nails",
-        "brand": "Hollywood Nails",
-        "name": "Hollywood Nails",
+        "beauty": "eyebrow;hair_removal",
+        "brand": "Eyebrow Plus",
+        "brand:wikidata": "Q108412880",
+        "name": "Eyebrow Plus",
         "shop": "beauty"
       }
     },
@@ -153,6 +157,21 @@
       }
     },
     {
+      "displayName": "McSun",
+      "id": "mcsun-fc55f7",
+      "locationSet": {"include": ["de"]},
+      "matchTags": [
+        "leisure/tanning_salon",
+        "shop/solarium"
+      ],
+      "tags": {
+        "beauty": "tanning",
+        "brand": "McSun",
+        "name": "McSun",
+        "shop": "beauty"
+      }
+    },
+    {
       "displayName": "Nails for You",
       "id": "nailsforyou-8ad523",
       "locationSet": {"include": ["ca"]},
@@ -160,17 +179,6 @@
         "beauty": "nails",
         "brand": "Nails for You",
         "name": "Nails for You",
-        "shop": "beauty"
-      }
-    },
-    {
-      "displayName": "New York Nails",
-      "id": "newyorknails-0c474f",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "beauty": "nails",
-        "brand": "New York Nails",
-        "name": "New York Nails",
         "shop": "beauty"
       }
     },
@@ -205,8 +213,8 @@
     },
     {
       "displayName": "Pro Nails",
-      "id": "pronails-cc0daa",
-      "locationSet": {"include": ["us"]},
+      "id": "pronails-0c474f",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Pro Nails",
         "name": "Pro Nails",
@@ -230,13 +238,17 @@
       }
     },
     {
-      "displayName": "Star Nails",
-      "id": "starnails-0c474f",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Sun Tan City",
+      "id": "suntancity-cc0daa",
+      "locationSet": {"include": ["us"]},
+      "matchTags": [
+        "leisure/tanning_salon",
+        "shop/solarium"
+      ],
       "tags": {
-        "beauty": "nails",
-        "brand": "Star Nails",
-        "name": "Star Nails",
+        "beauty": "tanning",
+        "brand": "Sun Tan City",
+        "name": "Sun Tan City",
         "shop": "beauty"
       }
     },
@@ -285,19 +297,12 @@
       }
     },
     {
-      "displayName": "Top Nails",
-      "id": "topnails-0c474f",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Top Nails",
-        "name": "Top Nails",
-        "shop": "beauty"
-      }
-    },
-    {
       "displayName": "Yves Rocher",
-      "id": "yvesrocher-0c474f",
-      "locationSet": {"include": ["001"]},
+      "id": "yvesrocher-413ef0",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn", "hk", "tw"]
+      },
       "matchNames": ["ив роше"],
       "tags": {
         "beauty": "cosmetics",
@@ -305,6 +310,40 @@
         "brand:wikidata": "Q28496595",
         "brand:wikipedia": "en:Yves Rocher (company)",
         "name": "Yves Rocher",
+        "shop": "beauty"
+      }
+    },
+    {
+      "displayName": "伊夫黎雪",
+      "id": "yvesrocher-a8af93",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "beauty": "cosmetics",
+        "brand": "伊夫黎雪",
+        "brand:en": "Yves Rocher",
+        "brand:wikidata": "Q28496595",
+        "brand:wikipedia": "zh:葉露芝",
+        "brand:zh": "伊夫黎雪",
+        "name": "伊夫黎雪",
+        "name:en": "Yves Rocher",
+        "name:zh": "伊夫黎雪",
+        "shop": "beauty"
+      }
+    },
+    {
+      "displayName": "葉露芝",
+      "id": "yvesrocher-9f1489",
+      "locationSet": {"include": ["hk", "tw"]},
+      "tags": {
+        "beauty": "cosmetics",
+        "brand": "葉露芝",
+        "brand:en": "Yves Rocher",
+        "brand:wikidata": "Q28496595",
+        "brand:wikipedia": "zh:葉露芝",
+        "brand:zh": "葉露芝",
+        "name": "葉露芝",
+        "name:en": "Yves Rocher",
+        "name:zh": "葉露芝",
         "shop": "beauty"
       }
     }

@@ -3,10 +3,21 @@
     "path": "operators/emergency/ambulance_station",
     "exclude": {
       "generic": ["^ambulance station$"],
-      "named": ["^(national health service|nhs)$"]
+      "named": [
+        "^(london ambulance service nhs trust|national health service|nhs)$"
+      ]
     }
   },
   "items": [
+    {
+      "displayName": "ADAC Luftrettung gGmbH",
+      "id": "adacluftrettungggmbh-f76ab2",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "emergency": "ambulance_station",
+        "operator": "ADAC Luftrettung gGmbH"
+      }
+    },
     {
       "displayName": "Ambulance IJsselland",
       "id": "ambulanceijsselland-851507",
@@ -96,8 +107,8 @@
     },
     {
       "displayName": "Brabant-Midden-West",
-      "id": "brabantmiddenwest-f76ab2",
-      "locationSet": {"include": ["001"]},
+      "id": "brabantmiddenwest-851507",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "emergency": "ambulance_station",
         "operator": "Brabant-Midden-West"
@@ -121,6 +132,15 @@
       "tags": {
         "emergency": "ambulance_station",
         "operator": "crued"
+      }
+    },
+    {
+      "displayName": "Cruz Roja",
+      "id": "cruzroja-f76ab2",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "emergency": "ambulance_station",
+        "operator": "Cruz Roja"
       }
     },
     {
@@ -233,6 +253,17 @@
       }
     },
     {
+      "displayName": "Feuerwehr Hamburg",
+      "id": "feuerwehrhamburg-d077c2",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "emergency": "ambulance_station",
+        "operator": "Feuerwehr Hamburg",
+        "operator:wikidata": "Q1409871",
+        "operator:wikipedia": "de:Feuerwehr Hamburg"
+      }
+    },
+    {
       "displayName": "HSE National Ambulance Service",
       "id": "hsenationalambulanceservice-55b9ac",
       "locationSet": {"include": ["ie"]},
@@ -284,6 +315,7 @@
         "include": ["gb-lon.geojson"]
       },
       "matchNames": [
+        "london ambulance service nhs trust",
         "national health service",
         "nhs"
       ],
@@ -360,7 +392,10 @@
       "locationSet": {
         "include": ["au-nsw.geojson"]
       },
-      "matchNames": ["new south wales ambulance"],
+      "matchNames": [
+        "ambulance service of nsw",
+        "new south wales ambulance"
+      ],
       "tags": {
         "emergency": "ambulance_station",
         "operator": "NSW Ambulance",
@@ -489,9 +524,10 @@
     },
     {
       "displayName": "South Central Ambulance Service",
-      "id": "southcentralambulanceservice-7ba859",
+      "id": "southcentralambulanceservice-5ae902",
       "locationSet": {
-        "include": ["gb-south-central.geojson"]
+        "include": ["gb-south-central.geojson"],
+        "exclude": ["gb-iow.geojson"]
       },
       "matchNames": [
         "national health service",
@@ -595,11 +631,14 @@
     },
     {
       "displayName": "St John Ambulance NT",
-      "id": "stjohnambulancent-ad2c62",
-      "locationSet": {"include": ["au"]},
+      "id": "stjohnambulancent-94c74e",
+      "locationSet": {
+        "include": ["au-nt.geojson"]
+      },
       "tags": {
         "emergency": "ambulance_station",
         "operator": "St John Ambulance NT",
+        "operator:wikidata": "Q104876452",
         "operator:wikipedia": "en:St John Ambulance (Northern Territory)"
       }
     },

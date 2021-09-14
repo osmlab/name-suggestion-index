@@ -1,7 +1,13 @@
 {
   "properties": {
     "path": "operators/amenity/fire_station",
-    "exclude": {"generic": ["^fire station$"]}
+    "exclude": {
+      "generic": [
+        "^fire station$",
+        "^straż pożarna$"
+      ],
+      "named": ["^km psp|^zosp rp$"]
+    }
   },
   "items": [
     {
@@ -11,6 +17,15 @@
       "tags": {
         "amenity": "fire_station",
         "operator": "Alcaldía del Distrito Capital"
+      }
+    },
+    {
+      "displayName": "Ankara İtfaiyesi",
+      "id": "ankaraitfaiyesi-65f4f7",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Ankara İtfaiyesi"
       }
     },
     {
@@ -28,12 +43,12 @@
       }
     },
     {
-      "displayName": "Ayuntamiento de Madrid.",
+      "displayName": "Ayuntamiento de Madrid",
       "id": "ayuntamientodemadrid-c979cd",
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "fire_station",
-        "operator": "Ayuntamiento de Madrid."
+        "operator": "Ayuntamiento de Madrid"
       }
     },
     {
@@ -58,6 +73,17 @@
         "operator": "Bedfordshire Fire and Rescue Service",
         "operator:wikidata": "Q4879248",
         "operator:wikipedia": "en:Bedfordshire Fire and Rescue Service"
+      }
+    },
+    {
+      "displayName": "Berliner Feuerwehr",
+      "id": "berlinerfeuerwehr-e05ec0",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Berliner Feuerwehr",
+        "operator:wikidata": "Q821517",
+        "operator:wikipedia": "de:Berliner Feuerwehr"
       }
     },
     {
@@ -181,8 +207,10 @@
     },
     {
       "displayName": "Chicago Fire Department",
-      "id": "chicagofiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "chicagofiredepartment-79af54",
+      "locationSet": {
+        "include": [[-87.65, 41.9, 35]]
+      },
       "tags": {
         "amenity": "fire_station",
         "operator": "Chicago Fire Department",
@@ -192,13 +220,24 @@
     },
     {
       "displayName": "Cincinnati Fire Department",
-      "id": "cincinnatifiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "cincinnatifiredepartment-2acc13",
+      "locationSet": {
+        "include": [[-84.5, 39.16]]
+      },
       "tags": {
         "amenity": "fire_station",
         "operator": "Cincinnati Fire Department",
         "operator:wikidata": "Q16987386",
         "operator:wikipedia": "en:Cincinnati Fire Department"
+      }
+    },
+    {
+      "displayName": "Clackamas Fire District #1",
+      "id": "clackamasfiredistrict1-92f26a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Clackamas Fire District #1"
       }
     },
     {
@@ -243,9 +282,9 @@
     },
     {
       "displayName": "Cornwall Fire and Rescue Service",
-      "id": "cornwallfireandrescueservice-7554c3",
+      "id": "cornwallfireandrescueservice-668361",
       "locationSet": {
-        "include": ["gb-cornwall.geojson"]
+        "include": ["gb-con.geojson"]
       },
       "tags": {
         "amenity": "fire_station",
@@ -279,6 +318,15 @@
         "operator": "County Durham and Darlington Fire and Rescue Service",
         "operator:wikidata": "Q5177664",
         "operator:wikipedia": "en:County Durham and Darlington Fire and Rescue Service"
+      }
+    },
+    {
+      "displayName": "Cuerpo de Bomberos de Bogotá",
+      "id": "cuerpodebomberosdebogota-1d12e3",
+      "locationSet": {"include": ["co"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Cuerpo de Bomberos de Bogotá"
       }
     },
     {
@@ -565,16 +613,21 @@
       }
     },
     {
-      "displayName": "Hampshire Fire and Rescue Service",
-      "id": "hampshirefireandrescueservice-6145a7",
+      "displayName": "Hampshire & Isle of Wight Fire and Rescue Service",
+      "id": "hampshireandisleofwightfireandrescueservice-6145a7",
       "locationSet": {
         "include": ["gb-south-central.geojson"]
       },
+      "matchNames": [
+        "hampshire fire and rescue service",
+        "hiwfrs",
+        "isle of wight fire and rescue service"
+      ],
       "tags": {
         "amenity": "fire_station",
-        "operator": "Hampshire Fire and Rescue Service",
-        "operator:wikidata": "Q5646056",
-        "operator:wikipedia": "en:Hampshire Fire and Rescue Service"
+        "operator": "Hampshire & Isle of Wight Fire and Rescue Service",
+        "operator:wikidata": "Q106317911",
+        "operator:wikipedia": "en:Hampshire & Isle of Wight Fire and Rescue Service"
       }
     },
     {
@@ -625,11 +678,13 @@
     },
     {
       "displayName": "Hulpverleningszone Zone 1",
-      "id": "hulpverleningszonezone1-f24dcc",
-      "locationSet": {"include": ["001"]},
+      "id": "hulpverleningszonezone1-17028f",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "fire_station",
-        "operator": "Hulpverleningszone Zone 1"
+        "operator": "Hulpverleningszone Zone 1",
+        "operator:wikidata": "Q16684022",
+        "operator:wikipedia": "fr:Zone de secours Flandre-Occidentale 1"
       }
     },
     {
@@ -647,8 +702,10 @@
     },
     {
       "displayName": "Indianapolis Fire Department",
-      "id": "indianapolisfiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "indianapolisfiredepartment-d809d2",
+      "locationSet": {
+        "include": [[-86.14, 39.79]]
+      },
       "matchNames": ["ifd"],
       "tags": {
         "amenity": "fire_station",
@@ -667,16 +724,21 @@
       }
     },
     {
-      "displayName": "Isle of Wight Fire and Rescue Service",
-      "id": "isleofwightfireandrescueservice-043a72",
-      "locationSet": {
-        "include": ["gb-iow.geojson"]
-      },
+      "displayName": "İstanbul İtfaiyesi",
+      "id": "istanbulitfaiyesi-65f4f7",
+      "locationSet": {"include": ["tr"]},
       "tags": {
         "amenity": "fire_station",
-        "operator": "Isle of Wight Fire and Rescue Service",
-        "operator:wikidata": "Q6084130",
-        "operator:wikipedia": "en:Isle of Wight Fire and Rescue Service"
+        "operator": "İstanbul İtfaiyesi"
+      }
+    },
+    {
+      "displayName": "İzmir İtfaiyesi",
+      "id": "izmiritfaiyesi-65f4f7",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "İzmir İtfaiyesi"
       }
     },
     {
@@ -701,15 +763,6 @@
         "operator": "Kent Fire and Rescue Service",
         "operator:wikidata": "Q16995624",
         "operator:wikipedia": "en:Kent Fire and Rescue Service"
-      }
-    },
-    {
-      "displayName": "KM PSP Zielona Góra",
-      "id": "kmpspzielonagora-a9e71c",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "amenity": "fire_station",
-        "operator": "KM PSP Zielona Góra"
       }
     },
     {
@@ -776,8 +829,10 @@
     },
     {
       "displayName": "Los Angeles County Fire Department",
-      "id": "losangelescountyfiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "losangelescountyfiredepartment-7d64c3",
+      "locationSet": {
+        "include": [[-118, 33.85, 110]]
+      },
       "matchNames": ["lacfd", "lacofd"],
       "note": "This is the 'county' fire dept (differernt from the one listed below).",
       "tags": {
@@ -789,8 +844,10 @@
     },
     {
       "displayName": "Los Angeles Fire Department",
-      "id": "losangelesfiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "losangelesfiredepartment-434f0c",
+      "locationSet": {
+        "include": [[-118, 33.85, 80]]
+      },
       "matchNames": [
         "la city fire",
         "lafd",
@@ -840,8 +897,10 @@
     },
     {
       "displayName": "Milwaukee Fire Department",
-      "id": "milwaukeefiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "milwaukeefiredepartment-fe5bf1",
+      "locationSet": {
+        "include": [[-87.9, 43.05]]
+      },
       "tags": {
         "amenity": "fire_station",
         "operator": "Milwaukee Fire Department",
@@ -878,8 +937,10 @@
     },
     {
       "displayName": "Minneapolis Fire Department",
-      "id": "minneapolisfiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "minneapolisfiredepartment-b6303c",
+      "locationSet": {
+        "include": [[-93.36, 45, 55]]
+      },
       "tags": {
         "amenity": "fire_station",
         "operator": "Minneapolis Fire Department",
@@ -898,8 +959,10 @@
     },
     {
       "displayName": "New York City Fire Department",
-      "id": "newyorkcityfiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "newyorkcityfiredepartment-6e1cf7",
+      "locationSet": {
+        "include": ["new_york_city.geojson"]
+      },
       "matchNames": [
         "fdny",
         "fire department of the city of new york",
@@ -1095,6 +1158,7 @@
       "displayName": "Państwowa Straż Pożarna",
       "id": "panstwowastrazpozarna-a9e71c",
       "locationSet": {"include": ["pl"]},
+      "matchNames": ["psp"],
       "tags": {
         "amenity": "fire_station",
         "operator": "Państwowa Straż Pożarna",
@@ -1109,6 +1173,29 @@
       "tags": {
         "amenity": "fire_station",
         "operator": "Policía de la Provincia de Misiones"
+      }
+    },
+    {
+      "displayName": "Portland Fire & Rescue",
+      "id": "portlandfireandrescue-92f26a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Portland Fire & Rescue",
+        "operator:wikidata": "Q25001404",
+        "operator:wikipedia": "en:Portland Fire & Rescue"
+      }
+    },
+    {
+      "displayName": "Queensland Fire and Emergency Services",
+      "id": "queenslandfireandemergencyservices-81fd49",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Queensland Fire and Emergency Services",
+        "operator:short": "QFES",
+        "operator:wikidata": "Q7270940",
+        "operator:wikipedia": "en:Queensland Fire and Emergency Services"
       }
     },
     {
@@ -1451,8 +1538,10 @@
     },
     {
       "displayName": "San Francisco Fire Department",
-      "id": "sanfranciscofiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "sanfranciscofiredepartment-e783e7",
+      "locationSet": {
+        "include": [[-122.45, 37.71, 17]]
+      },
       "matchNames": ["sffd"],
       "tags": {
         "amenity": "fire_station",
@@ -1463,8 +1552,10 @@
     },
     {
       "displayName": "San Jose Fire Department",
-      "id": "sanjosefiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "sanjosefiredepartment-f2f943",
+      "locationSet": {
+        "include": [[-121.88, 37.33, 16]]
+      },
       "matchNames": ["sjfd"],
       "tags": {
         "amenity": "fire_station",
@@ -1475,8 +1566,10 @@
     },
     {
       "displayName": "Santa Clara County Fire Department",
-      "id": "santaclaracountyfiredepartment-92f26a",
-      "locationSet": {"include": ["us"]},
+      "id": "santaclaracountyfiredepartment-76bab0",
+      "locationSet": {
+        "include": [[-121.95, 37.35, 25]]
+      },
       "matchNames": ["sccfd"],
       "tags": {
         "amenity": "fire_station",
@@ -1498,8 +1591,8 @@
     },
     {
       "displayName": "SDIS 01",
-      "id": "sdis01-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis01-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 01"
@@ -1507,8 +1600,8 @@
     },
     {
       "displayName": "SDIS 02",
-      "id": "sdis02-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis02-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 02"
@@ -1516,17 +1609,26 @@
     },
     {
       "displayName": "SDIS 04",
-      "id": "sdis04-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis04-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 04"
       }
     },
     {
+      "displayName": "SDIS 05",
+      "id": "sdis05-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 05"
+      }
+    },
+    {
       "displayName": "SDIS 06",
-      "id": "sdis06-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis06-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 06"
@@ -1534,8 +1636,8 @@
     },
     {
       "displayName": "SDIS 08",
-      "id": "sdis08-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis08-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 08"
@@ -1543,17 +1645,26 @@
     },
     {
       "displayName": "SDIS 10",
-      "id": "sdis10-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis10-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 10"
       }
     },
     {
+      "displayName": "SDIS 11",
+      "id": "sdis11-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 11"
+      }
+    },
+    {
       "displayName": "SDIS 12",
-      "id": "sdis12-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis12-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 12"
@@ -1561,8 +1672,8 @@
     },
     {
       "displayName": "SDIS 13",
-      "id": "sdis13-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis13-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 13"
@@ -1570,8 +1681,8 @@
     },
     {
       "displayName": "SDIS 14",
-      "id": "sdis14-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis14-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 14"
@@ -1579,8 +1690,8 @@
     },
     {
       "displayName": "SDIS 17",
-      "id": "sdis17-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis17-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 17"
@@ -1588,8 +1699,8 @@
     },
     {
       "displayName": "SDIS 18",
-      "id": "sdis18-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis18-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 18"
@@ -1597,8 +1708,8 @@
     },
     {
       "displayName": "SDIS 19",
-      "id": "sdis19-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis19-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 19"
@@ -1606,8 +1717,8 @@
     },
     {
       "displayName": "SDIS 21",
-      "id": "sdis21-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis21-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 21"
@@ -1615,17 +1726,26 @@
     },
     {
       "displayName": "SDIS 22",
-      "id": "sdis22-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis22-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 22"
       }
     },
     {
+      "displayName": "SDIS 24",
+      "id": "sdis24-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 24"
+      }
+    },
+    {
       "displayName": "SDIS 25",
-      "id": "sdis25-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis25-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 25"
@@ -1633,17 +1753,26 @@
     },
     {
       "displayName": "SDIS 26",
-      "id": "sdis26-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis26-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 26"
       }
     },
     {
+      "displayName": "SDIS 27",
+      "id": "sdis27-f24dcc",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 27"
+      }
+    },
+    {
       "displayName": "SDIS 28",
-      "id": "sdis28-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis28-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 28"
@@ -1651,8 +1780,8 @@
     },
     {
       "displayName": "SDIS 29",
-      "id": "sdis29-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis29-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 29"
@@ -1660,8 +1789,8 @@
     },
     {
       "displayName": "SDIS 30",
-      "id": "sdis30-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis30-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 30"
@@ -1669,8 +1798,8 @@
     },
     {
       "displayName": "SDIS 31",
-      "id": "sdis31-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis31-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 31"
@@ -1678,8 +1807,8 @@
     },
     {
       "displayName": "SDIS 33",
-      "id": "sdis33-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis33-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 33"
@@ -1687,8 +1816,8 @@
     },
     {
       "displayName": "SDIS 34",
-      "id": "sdis34-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis34-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 34"
@@ -1696,8 +1825,8 @@
     },
     {
       "displayName": "SDIS 35",
-      "id": "sdis35-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis35-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 35"
@@ -1705,8 +1834,8 @@
     },
     {
       "displayName": "SDIS 36",
-      "id": "sdis36-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis36-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 36"
@@ -1714,17 +1843,26 @@
     },
     {
       "displayName": "SDIS 37",
-      "id": "sdis37-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis37-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 37"
       }
     },
     {
+      "displayName": "SDIS 38",
+      "id": "sdis38-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 38"
+      }
+    },
+    {
       "displayName": "SDIS 39",
-      "id": "sdis39-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis39-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 39"
@@ -1732,8 +1870,8 @@
     },
     {
       "displayName": "SDIS 40",
-      "id": "sdis40-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis40-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 40"
@@ -1741,8 +1879,8 @@
     },
     {
       "displayName": "SDIS 41",
-      "id": "sdis41-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis41-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 41"
@@ -1750,17 +1888,26 @@
     },
     {
       "displayName": "SDIS 42",
-      "id": "sdis42-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis42-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 42"
       }
     },
     {
+      "displayName": "SDIS 44",
+      "id": "sdis44-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 44"
+      }
+    },
+    {
       "displayName": "SDIS 45",
-      "id": "sdis45-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis45-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 45"
@@ -1768,8 +1915,8 @@
     },
     {
       "displayName": "SDIS 50",
-      "id": "sdis50-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis50-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 50"
@@ -1777,8 +1924,8 @@
     },
     {
       "displayName": "SDIS 51",
-      "id": "sdis51-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis51-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 51"
@@ -1786,8 +1933,8 @@
     },
     {
       "displayName": "SDIS 52",
-      "id": "sdis52-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis52-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 52"
@@ -1795,8 +1942,8 @@
     },
     {
       "displayName": "SDIS 53",
-      "id": "sdis53-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis53-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 53"
@@ -1804,8 +1951,8 @@
     },
     {
       "displayName": "SDIS 54",
-      "id": "sdis54-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis54-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 54"
@@ -1813,8 +1960,8 @@
     },
     {
       "displayName": "SDIS 55",
-      "id": "sdis55-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis55-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 55"
@@ -1822,8 +1969,8 @@
     },
     {
       "displayName": "SDIS 56",
-      "id": "sdis56-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis56-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 56"
@@ -1831,8 +1978,8 @@
     },
     {
       "displayName": "SDIS 57",
-      "id": "sdis57-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis57-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 57"
@@ -1840,8 +1987,8 @@
     },
     {
       "displayName": "SDIS 58",
-      "id": "sdis58-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis58-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 58"
@@ -1849,26 +1996,44 @@
     },
     {
       "displayName": "SDIS 59",
-      "id": "sdis59-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis59-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 59"
       }
     },
     {
+      "displayName": "SDIS 61",
+      "id": "sdis61-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 61"
+      }
+    },
+    {
       "displayName": "SDIS 62",
-      "id": "sdis62-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis62-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 62"
       }
     },
     {
+      "displayName": "SDIS 63",
+      "id": "sdis63-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 63"
+      }
+    },
+    {
       "displayName": "SDIS 64",
-      "id": "sdis64-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis64-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 64"
@@ -1876,17 +2041,26 @@
     },
     {
       "displayName": "SDIS 67",
-      "id": "sdis67-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis67-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 67"
       }
     },
     {
+      "displayName": "SDIS 68",
+      "id": "sdis68-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 68"
+      }
+    },
+    {
       "displayName": "SDIS 70",
-      "id": "sdis70-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis70-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 70"
@@ -1894,8 +2068,8 @@
     },
     {
       "displayName": "SDIS 71",
-      "id": "sdis71-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis71-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 71"
@@ -1903,8 +2077,8 @@
     },
     {
       "displayName": "SDIS 74",
-      "id": "sdis74-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis74-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 74"
@@ -1912,8 +2086,8 @@
     },
     {
       "displayName": "SDIS 76",
-      "id": "sdis76-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis76-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 76"
@@ -1921,26 +2095,62 @@
     },
     {
       "displayName": "SDIS 77",
-      "id": "sdis77-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis77-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 77"
       }
     },
     {
+      "displayName": "SDIS 78",
+      "id": "sdis78-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 78"
+      }
+    },
+    {
+      "displayName": "SDIS 79",
+      "id": "sdis79-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 79"
+      }
+    },
+    {
+      "displayName": "SDIS 80",
+      "id": "sdis80-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 80"
+      }
+    },
+    {
       "displayName": "SDIS 81",
-      "id": "sdis81-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis81-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 81"
       }
     },
     {
+      "displayName": "SDIS 82",
+      "id": "sdis82-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 82"
+      }
+    },
+    {
       "displayName": "SDIS 83",
-      "id": "sdis83-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis83-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 83"
@@ -1948,8 +2158,8 @@
     },
     {
       "displayName": "SDIS 85",
-      "id": "sdis85-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis85-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 85"
@@ -1957,8 +2167,8 @@
     },
     {
       "displayName": "SDIS 86",
-      "id": "sdis86-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis86-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 86"
@@ -1966,8 +2176,8 @@
     },
     {
       "displayName": "SDIS 87",
-      "id": "sdis87-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis87-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 87"
@@ -1975,29 +2185,57 @@
     },
     {
       "displayName": "SDIS 88",
-      "id": "sdis88-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis88-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 88"
       }
     },
     {
+      "displayName": "SDIS 89",
+      "id": "sdis89-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 89"
+      }
+    },
+    {
       "displayName": "SDIS 91",
-      "id": "sdis91-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis91-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 91"
       }
     },
     {
+      "displayName": "SDIS 95",
+      "id": "sdis95-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDIS 95"
+      }
+    },
+    {
       "displayName": "SDIS 974",
-      "id": "sdis974-3ad59a",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdis974-b36844",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "SDIS 974"
+      }
+    },
+    {
+      "displayName": "SDMIS",
+      "id": "sdmis-b36844",
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["sdis 69"],
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "SDMIS"
       }
     },
     {
@@ -2078,6 +2316,15 @@
       }
     },
     {
+      "displayName": "Stadt Bielefeld",
+      "id": "stadtbielefeld-e05ec0",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Stadt Bielefeld"
+      }
+    },
+    {
       "displayName": "Stadt Bremervörde",
       "id": "stadtbremervorde-e05ec0",
       "locationSet": {"include": ["de"]},
@@ -2102,6 +2349,15 @@
       "tags": {
         "amenity": "fire_station",
         "operator": "Stadt Horb"
+      }
+    },
+    {
+      "displayName": "Stadt Höxter",
+      "id": "stadthoxter-e05ec0",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Stadt Höxter"
       }
     },
     {
@@ -2176,6 +2432,15 @@
       }
     },
     {
+      "displayName": "STIS 67",
+      "id": "stis67-b36844",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "STIS 67"
+      }
+    },
+    {
       "displayName": "Suffolk Fire and Rescue Service",
       "id": "suffolkfireandrescueservice-61f16b",
       "locationSet": {
@@ -2232,6 +2497,17 @@
       }
     },
     {
+      "displayName": "Tualatin Valley Fire and Rescue",
+      "id": "tualatinvalleyfireandrescue-92f26a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Tualatin Valley Fire and Rescue",
+        "operator:wikidata": "Q16902012",
+        "operator:wikipedia": "en:Tualatin Valley Fire and Rescue"
+      }
+    },
+    {
       "displayName": "Tyne and Wear Fire and Rescue Service",
       "id": "tyneandwearfireandrescueservice-c946be",
       "locationSet": {
@@ -2262,6 +2538,17 @@
       "tags": {
         "amenity": "fire_station",
         "operator": "Vancouver Fire and Rescue Services"
+      }
+    },
+    {
+      "displayName": "Veiligheidsregio Groningen",
+      "id": "veiligheidsregiogroningen-0004ee",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "fire_station",
+        "operator": "Veiligheidsregio Groningen",
+        "operator:wikidata": "Q2749099",
+        "operator:wikipedia": "nl:Veiligheidsregio Groningen"
       }
     },
     {
@@ -2571,15 +2858,6 @@
       }
     },
     {
-      "displayName": "ZOSP RP",
-      "id": "zosprp-a9e71c",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "amenity": "fire_station",
-        "operator": "ZOSP RP"
-      }
-    },
-    {
       "displayName": "ГКУ ПО \"Управление ОД в ЧС\"",
       "id": "ede306-ea0501",
       "locationSet": {"include": ["ru"]},
@@ -2736,8 +3014,8 @@
     },
     {
       "displayName": "الحماية المدنية الجزائرية",
-      "id": "604fbb-f24dcc",
-      "locationSet": {"include": ["001"]},
+      "id": "604fbb-6eb318",
+      "locationSet": {"include": ["dz"]},
       "tags": {
         "amenity": "fire_station",
         "operator": "الحماية المدنية الجزائرية"

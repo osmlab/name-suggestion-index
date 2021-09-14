@@ -1,25 +1,36 @@
-const colors = require('colors/safe');
-const crypto = require('crypto');
-const fetch = require('node-fetch');
-const fileTree = require('../lib/file_tree.js');
-const http = require('http');
-const https = require('https');
-const iso1A2Code = require('@ideditor/country-coder').iso1A2Code;
-const project = require('../package.json');
-const sortObject = require('../lib/sort_object.js');
-const stringify = require('@aitodotai/json-stringify-pretty-compact');
-const withLocale = require('locale-compare')('en-US');
-const writeFileWithMeta = require('../lib/write_file_with_meta.js');
+// External
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import fetch from 'node-fetch';
+import http from 'node:http';
+import https from 'node:https';
+import { iso1A2Code } from '@ideditor/country-coder';
+import JSON5 from 'json5';
+import localeCompare from 'locale-compare';
+import LocationConflation from '@ideditor/location-conflation';
+import shell from 'shelljs';
+import stringify from '@aitodotai/json-stringify-pretty-compact';
+import Twitter from 'Twitter';
+import wikibase from 'wikibase-sdk';
+import wikibaseEdit from 'wikibase-edit';
+const withLocale = localeCompare('en-US');
 
-// metadata about the trees
-const trees = require('../config/trees.json').trees;
+// Internal
+import { sortObject } from '../lib/sort_object.js';
+import { fileTree } from '../lib/file_tree.js';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
+
+// JSON
+import packageJSON from '../package.json';
+import treesJSON from '../config/trees.json';
+const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation');
-const loco = new LocationConflation(featureCollection);
+import featureCollectionJSON from '../dist/featureCollection.json';
+const loco = new LocationConflation(featureCollectionJSON);
 
-const wbk = require('wikibase-sdk')({
+const wbk = wikibase({
   instance: 'https://www.wikidata.org',
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
@@ -41,15 +52,21 @@ const DRYRUN = false;
 // - connect to the Twitter API to fetch logos
 // - connect to the Wikibase API to update NSI identifiers.
 //
-// `config/secrets.json` looks like this:
+// `secrets.json` looks like this:
 // {
 //   "twitter": [
 //     {
+//       "name": "name-suggestion-index-staging",
+//       "app_id": "16186858",
+//       "bearer_token": "AAAAAAAAAAAAAAAAAAA…",
 //       "twitter_consumer_key": "",
 //       "twitter_consumer_secret": "",
 //       "twitter_access_token_key": "",
 //       "twitter_access_token_secret": ""
 //     }, {
+//       "name": "name-suggestion-index-dev",
+//       "app_id": "16186940",
+//       "bearer_token": "AAAAAAAAAAAAAAAAAAA…",
 //       "twitter_consumer_key": "",
 //       "twitter_consumer_secret": "",
 //       "twitter_access_token_key": "",
@@ -62,9 +79,14 @@ const DRYRUN = false;
 //   }
 // }
 
+// ensure that the secrets file is not in /config anymore:
+shell.config.silent = true;
+shell.mv('-f', './config/secrets.json', './secrets.json');
+shell.config.reset();
+
 let _secrets;
 try {
-  _secrets = require('../config/secrets.json');
+  _secrets = JSON5.parse(fs.readFileSync('./secrets.json', 'utf8'));
 } catch (err) { /* ignore */ }
 
 if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
@@ -78,43 +100,45 @@ if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
 
 // To fetch Twitter logos, sign up for API credentials at https://apps.twitter.com/
 // and put them into `config/secrets.json`
-let Twitter;
+
 let _twitterAPIs = [];
 let _twitterAPIIndex = 0;
 if (_secrets && _secrets.twitter) {
-  try {
-    Twitter = require('twitter');
-  } catch (err) {
-    console.warn(colors.yellow('Looks like you don\'t have the optional Twitter package installed...'));
-    console.warn(colors.yellow('Try `npm install twitter` to install it.'));
-  }
-  if (Twitter) {
-    _twitterAPIs = _secrets.twitter.map(s => {
-      return new Twitter({
+  _twitterAPIs = _secrets.twitter.map((s, i) => {
+    let props;
+
+    // if (s.bearer_token) {  // use a bearer token if we have it
+    //   props = {
+    //     consumer_key: s.twitter_consumer_key,
+    //     consumer_secret: s.twitter_consumer_secret,
+    //     bearer_token: s.bearer_token
+    //   };
+    // } else {
+      props = {
         consumer_key: s.twitter_consumer_key,
         consumer_secret: s.twitter_consumer_secret,
         access_token_key: s.twitter_access_token_key,
         access_token_secret: s.twitter_access_token_secret
-      });
-    });
-  }
+      };
+    // }
+
+    return {
+      name: s.name || i.toString(),
+      client: new Twitter(props)
+    };
+  });
 }
 
 // To update wikidata
 // add your username/password into `config/secrets.json`
 let _wbEdit;
 if (_secrets && _secrets.wikibase) {
-  try {
-    _wbEdit = require('wikibase-edit')({
-      instance: 'https://www.wikidata.org',
-      credentials: _secrets.wikibase,
-      summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
-      userAgent: `${project.name}/${project.version} (${project.homepage})`,
-    });
-  } catch (err) {
-    console.warn(colors.yellow('Looks like you don\'t have the optional wikibase-edit package installed...'));
-    console.warn(colors.yellow('Try `npm install wikibase-edit` to install it.'));
-  }
+  _wbEdit = wikibaseEdit({
+    instance: 'https://www.wikidata.org',
+    credentials: _secrets.wikibase,
+    summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
+    userAgent: `${packageJSON.name}/${packageJSON.version} (${packageJSON.homepage})`,
+  });
 }
 
 
@@ -370,6 +394,7 @@ function processEntities(result) {
     // P576 - Dissolution date
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
+        if (!item.value) return;
         let dissolution = { date: item.value };
 
         if (item.qualifiers) {
@@ -531,7 +556,7 @@ function finish() {
   let origWikidata;
   let dissolved = {};
   try {
-    origWikidata = require('../dist/wikidata.json').wikidata;
+    origWikidata = JSON5.parse(fs.readFileSync('./dist/wikidata.json', 'utf8')).wikidata;
   } catch (err) {
     origWikidata = {};
   }
@@ -594,17 +619,17 @@ function finish() {
 // https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
 // rate limit: 900calls / 15min
 function checkTwitterRateLimit(need) {
-  _twitterAPIIndex = (_twitterAPIIndex + 1) % _twitterAPIs.length;
+  _twitterAPIIndex = (_twitterAPIIndex + 1) % _twitterAPIs.length;  // cycle to next client
   const twitterAPI = _twitterAPIs[_twitterAPIIndex];
-  const which = _twitterAPIs.length > 1 ? (' ' + (_twitterAPIIndex + 1)) : '';
+  const which = twitterAPI.name;
 
-  return twitterAPI
+  return twitterAPI.client
     .get('application/rate_limit_status', { resources: 'users' })
     .then(result => {
       const now = Date.now() / 1000;
-      const stats = result.resources.users['/users/show/:id'];
+      const stats = result.resources.users['/users/:id'];
       const resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
-      console.log(colors.green.bold(`Twitter rate status${which}: need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
+      console.log(colors.green.bold(`Twitter rate status '${which}': need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
       if (need > stats.remaining) {
         const delaySec = clamp(resetSec, 10, 60);
         console.log(colors.green.bold(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
@@ -633,7 +658,7 @@ function fetchTwitterUserDetails(qid, username) {
   const target = _wikidata[qid];
   const twitterAPI = _twitterAPIs[_twitterAPIIndex];
 
-  return twitterAPI
+  return twitterAPI.client
     .get('users/show', { screen_name: username })
     .then(user => {
       target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
@@ -691,6 +716,8 @@ function fetchFacebookLogo(qid, username) {
 // Find all items in Wikidata with NSI identifier claims (P8253).
 // Remove any old claims where we don't reference that QID anymore.
 function removeOldNsiClaims() {
+  if (!_wbEdit) return Promise.resolve();
+
   const query = `
     SELECT ?qid ?nsiId ?guid
     WHERE {
@@ -729,7 +756,7 @@ function removeOldNsiClaims() {
 // Set `DRYRUN=true` at the beginning of this script to prevent actual edits from happening.
 //
 function processWbEditQueue(queue) {
-  if (!queue.length) return Promise.resolve();
+  if (!queue.length || !_wbEdit) return Promise.resolve();
 
   const request = queue.pop();
   const qid = request.qid;
@@ -800,6 +827,7 @@ function checkWikipediaTags(qid, sitelinks) {
     ['brand', 'operator', 'network'].forEach(osmkey => {
       const wd = item.tags[`${osmkey}:wikidata`];
       const wpOld = item.tags[`${osmkey}:wikipedia`];
+      if (/%25/.test(wpOld)) return;  // Skip if there is an encoded '%' in the value (%25 = '%')
 
       if (wd && (wd === qid)) {  // `*:wikidata` tag matches
         if (wpOld && !wikiCount) {            // there was a wikipedia sitelink... but there shouldn't be one for this wikidata qid

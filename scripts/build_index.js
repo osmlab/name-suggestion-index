@@ -1,25 +1,30 @@
-const colors = require('colors/safe');
-const fs = require('fs');
-const JSON5 = require('json5');
-const safeRegex = require('safe-regex');
-const shell = require('shelljs');
-const stringify = require('@aitodotai/json-stringify-pretty-compact');
-const withLocale = require('locale-compare')('en-US');
+// External
+import colors from 'colors/safe.js';
+import fs from 'node:fs';
+import JSON5 from 'json5';
+import localeCompare from 'locale-compare';
+import LocationConflation from '@ideditor/location-conflation';
+import safeRegex from 'safe-regex';
+import shell from 'shelljs';
+import stringify from '@aitodotai/json-stringify-pretty-compact';
+const withLocale = localeCompare('en-US');
 
-const fileTree = require('../lib/file_tree.js');
-const idgen = require('../lib/idgen.js');
-const matcher = require('../lib/matcher.js')();
-const sortObject = require('../lib/sort_object.js');
-const stemmer = require('../lib/stemmer.js');
-const validate = require('../lib/validate.js');
+// Internal
+import { fileTree } from '../lib/file_tree.js';
+import { idgen } from '../lib/idgen.js';
+import { Matcher } from '../lib/matcher.js';
+import { sortObject } from '../lib/sort_object.js';
+import { stemmer } from '../lib/stemmer.js';
+import { validate } from '../lib/validate.js';
+const matcher = new Matcher();
 
-// metadata about the trees
-const trees = require('../config/trees.json').trees;
+// JSON
+import treesJSON from '../config/trees.json';
+const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = require('../dist/featureCollection.json');
-const LocationConflation = require('@ideditor/location-conflation');
-const loco = new LocationConflation(featureCollection);
+import featureCollectionJSON from '../dist/featureCollection.json';
+const loco = new LocationConflation(featureCollectionJSON);
 
 console.log(colors.blue('-'.repeat(70)));
 console.log(colors.blue('🗂   Build index'));
@@ -54,7 +59,7 @@ console.log('');
 //
 function loadConfig() {
   ['trees', 'replacements', 'genericWords'].forEach(which => {
-    const schema = require(`../schema/${which}.json`);
+    const schema = JSON5.parse(fs.readFileSync(`./schema/${which}.json`, 'utf8'));
     const file = `config/${which}.json`;
     const contents = fs.readFileSync(file, 'utf8');
     let data;
@@ -157,7 +162,7 @@ function loadCollected() {
 // Filter the tags collected into _keep and _discard lists
 //
 function filterCollected() {
-  const START = '🏗   ' + colors.yellow(`Filtering values gathered from OSM...`);
+  const START = '🏗   ' + colors.yellow(`Filtering values collected from OSM...`);
   const END = '👍  ' + colors.green(`done filtering`);
   console.log('');
   console.log(START);
@@ -550,9 +555,16 @@ function checkItems(t) {
         }
         if (/:wikipedia$/.test(osmkey)) {      // Check '*.wikipedia' tags
           // So many contributors get the wikipedia tags wrong, so let's just reformat it for them.
-          const wp = tags[osmkey] = decodeURIComponent(tags[osmkey]).replace(/_/g, ' ');
-          if (!/^[a-z\-]{2,}:[^_]*$/.test(wp)) {
-            warnFormatWikipedia.push([display(item), wp]);
+          let wp;
+          try {
+            if (!/%25/.test(tags[osmkey])) {  // Skip if there is an encoded '%' in the value (%25 = '%')
+              wp = tags[osmkey] = decodeURIComponent(tags[osmkey]).replace(/_/g, ' ');
+              if (!/^[a-z\-]{2,}:[^_]*$/.test(wp)) {
+                warnFormatWikipedia.push([display(item), wp]);
+              }
+            }
+          } catch (err) {
+            warnFormatWikipedia.push([display(item), tags[osmkey]]);
           }
         }
       });

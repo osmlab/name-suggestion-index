@@ -13,28 +13,30 @@
         "^restaurant(e)?(\\suniversit(ário|aire))?$",
         "^sushi\\s?(bar|house)?$",
         "^رستوران$",
-        "^مطعم$",
-        "^早餐店$",
-        "^食堂$"
+        "^مطعم$"
       ],
       "named": [
         "^((da|la|las|el|ristorante|zum|zur)\\s)",
         "^((gasthaus|gasthof|schwarzer)?\\s?(adler|krone|löwen|zur (linde|post)))$",
-        "^(ali baba|adria|alte post|akropolis|amici|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella (vista|napoli))$",
-        "^(belvedere|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|comedor|comida china)$",
-        "^(china (buffet|city|garden|house|king|palace|star|town|wok))$",
-        "^(delphi|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|europa|frohsinn)$",
+        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella (vista|napoli))$",
+        "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|comedor|comida china)$",
+        "^(china (buffet|city|express|garden|house|king|palace|star|town)|chinatown)$",
+        "^(delphi|der grieche|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|europa|frohsinn)$",
         "^(golden dragon|great wall|grüner baum|hellas|hirsch(en)?|hong kong|happy garden)$",
         "^(indian palace|ichiban|il giardino|istanbul|italia|jade garden|jägerhof)$",
-        "^(kirchenwirt|koliba|kreta|kreuz|krone|lamm|le (bistrot|patio))$",
-        "^(l'escale|lemongrass|linde|lindenhof|little (italy|india)|los (amigos|arcos))$",
-        "^(lotus|löwen|maharaja|mamma mia|mandarin|marco polo|marmaris|mediterraneo|mensa|milano|mykonos|mythos)$",
+        "^(kirchenwirt|koliba|kreta|kreuz|krone|kyoto|lamm|le (bistrot|patio))$",
+        "^(l'ardoise|l'escale|lemongrass|linde|lindenhof|little (italy|india)|los (amigos|arcos))$",
+        "^(lotus|löwen|maharaja|mamma mia|mandarin|marco polo|marina|marmaris|mediterraneo|mensa|milano|mykonos|mythos)$",
         "^(namaste|napoli|new china|oasis|ochsen|olympia|osaka|panorama|paradise|parrilla|peking|pho|pinocchio)$",
-        "^(pizza house|pizza king|pomodoro|portofino|poseidon|ratskeller|rhodos)$",
-        "^(pizzeria (italia|milano|napoli|roma|venezia))$",
-        "^(roadhouse|roma|rose|rössl[ei]|saffron|saigon|sakura|san marco|santorini|schützenhaus|shalimar|shanghai|sonne|sphinx)$",
-        "^(sportheim|sternen|syrtaki|taj mahal|taste of india|the kitchen|toscana|tokyo( sushi)?|traube)$",
-        "^(venezia|waldschänke|wok|zorbas)$"
+        "^(pizza house|pizza king|pizza roma|pomodoro|portofino|poseidon|ratskeller|rhodos)$",
+        "^(pizzeria (italia|milano|napoli|primavera|roma|venezia))$",
+        "^(primavera|roadhouse|roma|rose|rössl[ei]|royal|saffron|saigon|sakura|san marco|santorini|schützenhaus|shalimar|shanghai|sonne|sphinx)$",
+        "^(sportheim|sternen|syrtaki|taj mahal|taste of india|the (grill|kitchen)|toscana|tokyo( sushi)?|traube)$",
+        "^(venezia|waldschänke|wok|zorbas)$",
+        "^(早点|早餐店)$",
+        "^兰州拉面$",
+        "^沙县小吃$",
+        "^食堂$"
       ]
     }
   },
@@ -67,16 +69,6 @@
         "name": "3 Brewers",
         "name:fr": "3 Brasseurs",
         "official_name": "Les 3 Brasseurs"
-      }
-    },
-    {
-      "displayName": "Amadeus",
-      "id": "amadeus-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Amadeus",
-        "name": "Amadeus"
       }
     },
     {
@@ -250,6 +242,19 @@
         "brand:wikipedia": "en:Benihana",
         "cuisine": "japanese;teppanyaki;steak",
         "name": "Benihana"
+      }
+    },
+    {
+      "displayName": "Benny & Co.",
+      "id": "bennyandco-e68b16",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Benny & Co.",
+        "brand:wikidata": "Q106963815",
+        "cuisine": "chicken;barbecue;poutine",
+        "name": "Benny & Co.",
+        "takeaway": "yes"
       }
     },
     {
@@ -745,16 +750,6 @@
       }
     },
     {
-      "displayName": "Chinatown",
-      "id": "chinatown-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Chinatown",
-        "name": "Chinatown"
-      }
-    },
-    {
       "displayName": "Chiquito",
       "id": "chiquito-9b5453",
       "locationSet": {"include": ["gb"]},
@@ -874,6 +869,22 @@
       }
     },
     {
+      "displayName": "Cooper's Hawk",
+      "id": "coopershawk-96af40",
+      "locationSet": {"include": ["us"]},
+      "matchTags": ["shop/alcohol", "shop/wine"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Cooper's Hawk",
+        "brand:wikidata": "Q17511079",
+        "brand:wikipedia": "en:Cooper's Hawk Winery & Restaurants",
+        "cuisine": "american",
+        "name": "Cooper's Hawk",
+        "official_name": "Cooper's Hawk Winery & Restaurants",
+        "shop": "wine"
+      }
+    },
+    {
       "displayName": "Copeland's",
       "id": "copelands-96af40",
       "locationSet": {"include": ["us"]},
@@ -928,6 +939,17 @@
         "brand:wikipedia": "en:Cosmo (restaurant)",
         "cuisine": "international",
         "name": "Cosmo"
+      }
+    },
+    {
+      "displayName": "Cosy Club",
+      "id": "cosyclub-9b5453",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Cosy Club",
+        "brand:wikidata": "Q108443521",
+        "cuisine": "british"
       }
     },
     {
@@ -1126,6 +1148,19 @@
       }
     },
     {
+      "displayName": "Egon",
+      "id": "egon-0a0782",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Egon",
+        "brand:wikidata": "Q1298438",
+        "brand:wikipedia": "en:Egon (restaurants)",
+        "cuisine": "pizza;burger;meat;pasta",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Elephant Bar",
       "id": "elephantbar-96af40",
       "locationSet": {"include": ["us"]},
@@ -1315,6 +1350,18 @@
       }
     },
     {
+      "displayName": "Gaucho",
+      "id": "gaucho-9b5453",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Gaucho",
+        "brand:wikidata": "Q108443313",
+        "cuisine": "argentinian",
+        "name": "Gaucho"
+      }
+    },
+    {
       "displayName": "Ginos",
       "id": "ginos-acf031",
       "locationSet": {"include": ["es"]},
@@ -1337,6 +1384,21 @@
         "brand:wikipedia": "en:Giordano's",
         "cuisine": "pizza",
         "name": "Giordano's Pizzeria"
+      }
+    },
+    {
+      "displayName": "Giraffe",
+      "id": "giraffe-c20144",
+      "locationSet": {
+        "include": ["ae", "es", "gb"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Giraffe",
+        "brand:wikidata": "Q5564102",
+        "brand:wikipedia": "en:Giraffe World Kitchen",
+        "cuisine": "international;burger",
+        "name": "Giraffe"
       }
     },
     {
@@ -1426,6 +1488,25 @@
       }
     },
     {
+      "displayName": "Haidilao Hot Pot",
+      "id": "haidilaohotpot-e7fa86",
+      "locationSet": {
+        "include": ["au", "jp", "kr", "sg"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Haidilao Hot Pot",
+        "brand:en": "Haidilao Hot Pot",
+        "brand:wikidata": "Q5638920",
+        "brand:wikipedia": "en:Haidilao",
+        "brand:zh": "海底捞火锅",
+        "cuisine": "chinese;hotpot",
+        "name": "Haidilao Hot Pot",
+        "name:en": "Haidilao Hot Pot",
+        "name:zh": "海底捞火锅"
+      }
+    },
+    {
       "displayName": "Handmade Burger Co.",
       "id": "handmadeburgerco-9b5453",
       "locationSet": {"include": ["gb"]},
@@ -1506,16 +1587,16 @@
       }
     },
     {
-      "displayName": "Hog's Australia's Steakhouse",
-      "id": "hogsaustraliassteakhouse-3c82e9",
+      "displayName": "Hog's Breath Cafe",
+      "id": "hogsbreathcafe-3c82e9",
       "locationSet": {"include": ["au"]},
       "tags": {
         "amenity": "restaurant",
-        "brand": "Hog's Australia's Steakhouse",
+        "brand": "Hog's Breath Cafe",
         "brand:wikidata": "Q5876920",
-        "brand:wikipedia": "en:Hog's Australia's Steakhouse",
+        "brand:wikipedia": "en:Hog's Breath Cafe",
         "cuisine": "steak_house",
-        "name": "Hog's Australia's Steakhouse"
+        "name": "Hog's Breath Cafe"
       }
     },
     {
@@ -1849,6 +1930,16 @@
       }
     },
     {
+      "displayName": "Le Bistro",
+      "id": "lebistro-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Le Bistro",
+        "name": "Le Bistro"
+      }
+    },
+    {
       "displayName": "Ledo Pizza",
       "id": "ledopizza-96af40",
       "locationSet": {"include": ["us"]},
@@ -1902,6 +1993,34 @@
         "name": "3 Brasseurs",
         "name:en": "3 Brewers",
         "official_name": "Les 3 Brasseurs"
+      }
+    },
+    {
+      "displayName": "LITTLE SHEEP",
+      "id": "littlesheep-87010c",
+      "locationSet": {
+        "include": [
+          "au",
+          "id",
+          "jp",
+          "khm",
+          "mn",
+          "nz",
+          "sg"
+        ]
+      },
+      "matchNames": ["xiao fei yang"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "LITTLE SHEEP",
+        "brand:en": "LITTLE SHEEP",
+        "brand:wikidata": "Q5976467",
+        "brand:wikipedia": "zh:小肥羊",
+        "brand:zh": "小肥羊",
+        "cuisine": "chinese;hotpot",
+        "name": "LITTLE SHEEP",
+        "name:en": "LITTLE SHEEP",
+        "name:zh": "小肥羊"
       }
     },
     {
@@ -2007,19 +2126,6 @@
       }
     },
     {
-      "displayName": "Marco's Pizza",
-      "id": "marcospizza-96af40",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Marco's Pizza",
-        "brand:wikidata": "Q6757382",
-        "brand:wikipedia": "en:Marco's Pizza",
-        "cuisine": "pizza",
-        "name": "Marco's Pizza"
-      }
-    },
-    {
       "displayName": "Marie Callender's",
       "id": "mariecallenders-27c30e",
       "locationSet": {"include": ["mx", "us"]},
@@ -2035,16 +2141,6 @@
         "brand:wikipedia": "en:Marie Callender's",
         "cuisine": "american",
         "name": "Marie Callender's"
-      }
-    },
-    {
-      "displayName": "Marina",
-      "id": "marina-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Marina",
-        "name": "Marina"
       }
     },
     {
@@ -2170,6 +2266,19 @@
       }
     },
     {
+      "displayName": "Miller's Ale House",
+      "id": "millersalehouse-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Miller's Ale House",
+        "brand:wikidata": "Q6858987",
+        "brand:wikipedia": "en:Miller's Ale House",
+        "cuisine": "american",
+        "name": "Miller's Ale House"
+      }
+    },
+    {
       "displayName": "Mimi's Cafe",
       "id": "mimiscafe-96af40",
       "locationSet": {"include": ["us"]},
@@ -2192,6 +2301,20 @@
         "brand:wikidata": "Q62075359",
         "cuisine": "thai",
         "name": "MK Restaurants"
+      }
+    },
+    {
+      "displayName": "Mo's",
+      "id": "mos-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "alt_name": "Mo's Seafood & Chowder",
+        "amenity": "restaurant",
+        "brand": "Mo's",
+        "brand:wikidata": "Q17022303",
+        "brand:wikipedia": "en:Mo's Restaurants",
+        "cuisine": "seafood",
+        "name": "Mo's"
       }
     },
     {
@@ -2251,6 +2374,18 @@
         "cuisine": "pizza",
         "name": "Mountain Mike's",
         "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Mowgli Street Food",
+      "id": "mowglistreetfood-9b5453",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Mowgli",
+        "brand:wikidata": "Q108443388",
+        "cuisine": "indian",
+        "name": "Mowgli Street Food"
       }
     },
     {
@@ -2460,6 +2595,16 @@
       }
     },
     {
+      "displayName": "Osteria",
+      "id": "osteria-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Osteria",
+        "name": "Osteria"
+      }
+    },
+    {
       "displayName": "Outback Steakhouse",
       "id": "outbacksteakhouse-2fabb0",
       "locationSet": {"include": ["001"]},
@@ -2529,6 +2674,19 @@
       }
     },
     {
+      "displayName": "Pastini",
+      "id": "pastini-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Pastini",
+        "brand:wikidata": "Q105081476",
+        "brand:wikipedia": "en:Pastini",
+        "cuisine": "italian",
+        "name": "Pastini"
+      }
+    },
+    {
       "displayName": "Pei Wei",
       "id": "peiwei-96af40",
       "locationSet": {"include": ["us"]},
@@ -2554,6 +2712,19 @@
         "brand:wikipedia": "en:Pepper Lunch",
         "cuisine": "steak",
         "name": "Pepper Lunch"
+      }
+    },
+    {
+      "displayName": "Peppes Pizza",
+      "id": "peppespizza-0a0782",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Peppes Pizza",
+        "brand:wikidata": "Q911973",
+        "brand:wikipedia": "en:Peppes Pizza",
+        "cuisine": "pizza",
+        "takeaway": "yes"
       }
     },
     {
@@ -2597,6 +2768,18 @@
       }
     },
     {
+      "displayName": "Pho",
+      "id": "pho-9b5453",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Pho",
+        "brand:wikidata": "Q108443630",
+        "cuisine": "vietnamese",
+        "name": "Pho"
+      }
+    },
+    {
       "displayName": "Phở 24",
       "id": "pho24-d3bf7d",
       "locationSet": {"include": ["vn"]},
@@ -2634,6 +2817,21 @@
         "cuisine": "vietnamese;noodle",
         "name": "Phở Hòa",
         "name:vi": "Phở Hòa"
+      }
+    },
+    {
+      "displayName": "Piemininster",
+      "id": "pieminister-9b5453",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Pieminister",
+        "brand:wikidata": "Q16967078",
+        "brand:wikipedia": "en:Pieminister",
+        "cuisine": "pie",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "yes",
+        "name": "Pieminister"
       }
     },
     {
@@ -2716,17 +2914,6 @@
       }
     },
     {
-      "displayName": "Pizza Roma",
-      "id": "pizzaroma-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Pizza Roma",
-        "cuisine": "pizza",
-        "name": "Pizza Roma"
-      }
-    },
-    {
       "displayName": "PizzaExpress",
       "id": "pizzaexpress-2fabb0",
       "locationSet": {"include": ["001"]},
@@ -2754,9 +2941,9 @@
     },
     {
       "displayName": "Ponderosa Steakhouse",
-      "id": "ponderosasteakhouse-e617a8",
+      "id": "ponderosasteakhouse-56c3a6",
       "locationSet": {
-        "include": ["ae", "eg", "qa", "tw", "us"]
+        "include": ["ae", "eg", "qa", "us"]
       },
       "matchNames": ["ponderosa"],
       "tags": {
@@ -2782,16 +2969,6 @@
         "brand:wikipedia": "en:Prezzo (restaurant)",
         "cuisine": "italian",
         "name": "Prezzo"
-      }
-    },
-    {
-      "displayName": "Primavera",
-      "id": "primavera-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Primavera",
-        "name": "Primavera"
       }
     },
     {
@@ -2880,7 +3057,7 @@
         "amenity": "restaurant",
         "brand": "Rocky Rococo",
         "brand:wikidata": "Q7356002",
-        "brand:wikipedia": "en:Rocky Rococo (pizza chain)",
+        "brand:wikipedia": "en:Rocky Rococo",
         "cuisine": "pizza",
         "name": "Rocky Rococo"
       }
@@ -2926,16 +3103,6 @@
       }
     },
     {
-      "displayName": "Royal",
-      "id": "royal-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Royal",
-        "name": "Royal"
-      }
-    },
-    {
       "displayName": "Ruby Tuesday",
       "id": "rubytuesday-2fabb0",
       "locationSet": {"include": ["001"]},
@@ -2964,6 +3131,40 @@
       }
     },
     {
+      "displayName": "Saizeriya",
+      "id": "saizeriya-10ab86",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn", "hk", "jp", "tw"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Saizeriya",
+        "brand:en": "Saizeriya",
+        "brand:it": "Saizeriya",
+        "brand:ja": "サイゼリヤ",
+        "brand:wikidata": "Q886564",
+        "brand:wikipedia": "en:Saizeriya",
+        "brand:zh": "薩莉亞",
+        "cuisine": "italian",
+        "name": "Saizeriya",
+        "name:en": "Saizeriya",
+        "name:it": "Saizeriya",
+        "name:ja": "サイゼリヤ",
+        "name:zh": "薩莉亞"
+      }
+    },
+    {
+      "displayName": "Sakura Sushi",
+      "id": "sakurasushi-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Sakura Sushi",
+        "name": "Sakura Sushi"
+      }
+    },
+    {
       "displayName": "Saltgrass Steak House",
       "id": "saltgrasssteakhouse-96af40",
       "locationSet": {"include": ["us"]},
@@ -2979,8 +3180,8 @@
     },
     {
       "displayName": "Santa Lucia",
-      "id": "santalucia-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "santalucia-282f19",
+      "locationSet": {"include": ["ch"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Santa Lucia",
@@ -3011,6 +3212,19 @@
         "brand:wikipedia": "fr:Scores",
         "cuisine": "chicken;barbecue",
         "name": "Scores"
+      }
+    },
+    {
+      "displayName": "Seasons 52",
+      "id": "seasons52-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Seasons 52",
+        "brand:wikidata": "Q7441933",
+        "brand:wikipedia": "en:Seasons 52",
+        "cuisine": "american",
+        "name": "Seasons 52"
       }
     },
     {
@@ -3066,6 +3280,37 @@
       }
     },
     {
+      "displayName": "SHOO LOONG KAN",
+      "id": "shooloongkan-ac0b3c",
+      "locationSet": {
+        "include": [
+          "au",
+          "ca",
+          "de",
+          "es",
+          "fr",
+          "jp",
+          "khm",
+          "my",
+          "nz",
+          "sg",
+          "us"
+        ]
+      },
+      "matchNames": ["xiao long kan"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "SHOO LOONG KAN",
+        "brand:en": "SHOO LOONG KAN",
+        "brand:wikidata": "Q108212427",
+        "brand:zh": "小龙坎火锅",
+        "cuisine": "chinese;hotpot",
+        "name": "SHOO LOONG KAN",
+        "name:en": "SHOO LOONG KAN",
+        "name:zh": "小龙坎火锅"
+      }
+    },
+    {
       "displayName": "Signorizza",
       "id": "signorizza-47e37e",
       "locationSet": {"include": ["fx"]},
@@ -3075,6 +3320,20 @@
         "brand:wikidata": "Q101603846",
         "cuisine": "pizza",
         "name": "Signorizza"
+      }
+    },
+    {
+      "displayName": "Sizzle Pie",
+      "id": "sizzlepie-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Sizzle Pie",
+        "brand:wikidata": "Q52459868",
+        "brand:wikipedia": "en:Sizzle Pie",
+        "cuisine": "pizza",
+        "name": "Sizzle Pie",
+        "takeaway": "yes"
       }
     },
     {
@@ -3223,6 +3482,16 @@
       }
     },
     {
+      "displayName": "Sushi Express",
+      "id": "sushiexpress-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Sushi Express",
+        "name": "Sushi Express"
+      }
+    },
+    {
       "displayName": "Sushi King",
       "id": "sushiking-2fabb0",
       "locationSet": {"include": ["001"]},
@@ -3231,6 +3500,16 @@
         "brand": "Sushi King",
         "cuisine": "japanese",
         "name": "Sushi King"
+      }
+    },
+    {
+      "displayName": "Sushi Yama",
+      "id": "sushiyama-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Sushi Yama",
+        "name": "Sushi Yama"
       }
     },
     {
@@ -3310,6 +3589,16 @@
       }
     },
     {
+      "displayName": "The Boathouse",
+      "id": "theboathouse-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "The Boathouse",
+        "name": "The Boathouse"
+      }
+    },
+    {
       "displayName": "The Cheesecake Factory",
       "id": "thecheesecakefactory-96af40",
       "locationSet": {"include": ["us"]},
@@ -3334,6 +3623,18 @@
         "brand:wikipedia": "en:The Counter",
         "cuisine": "burger",
         "name": "The Counter"
+      }
+    },
+    {
+      "displayName": "The Ivy Collection",
+      "id": "theivy-bd06d9",
+      "locationSet": {"include": ["gb", "ie"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "The Ivy Collection",
+        "brand:wikidata": "Q108197462",
+        "cuisine": "british",
+        "name": "The Ivy"
       }
     },
     {
@@ -3362,6 +3663,21 @@
         "brand:wikipedia": "en:The Melting Pot (restaurant)",
         "cuisine": "fondue",
         "name": "The Melting Pot"
+      }
+    },
+    {
+      "displayName": "The Old Spaghetti Factory",
+      "id": "theoldspaghettifactory-e21bab",
+      "locationSet": {
+        "include": ["ca", "jp", "us"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "The Old Spaghetti Factory",
+        "brand:wikidata": "Q7754912",
+        "brand:wikipedia": "en:The Old Spaghetti Factory",
+        "cuisine": "italian",
+        "name": "The Old Spaghetti Factory"
       }
     },
     {
@@ -3512,6 +3828,16 @@
       }
     },
     {
+      "displayName": "Valentino",
+      "id": "valentino-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Valentino",
+        "name": "Valentino"
+      }
+    },
+    {
       "displayName": "Vapiano",
       "id": "vapiano-2fabb0",
       "locationSet": {"include": ["001"]},
@@ -3546,19 +3872,6 @@
         "brand:wikipedia": "en:Village Inn",
         "cuisine": "american",
         "name": "Village Inn"
-      }
-    },
-    {
-      "displayName": "Vips (Asia)",
-      "id": "vips-355122",
-      "locationSet": {"include": ["cn", "kr"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Vips",
-        "brand:wikidata": "Q12599540",
-        "brand:wikipedia": "ko:빕스",
-        "cuisine": "salad;steak_house",
-        "name": "Vips"
       }
     },
     {
@@ -3707,9 +4020,9 @@
     },
     {
       "displayName": "Zambrero",
-      "id": "zambrero-91fcce",
+      "id": "zambrero-1498d5",
       "locationSet": {
-        "include": ["au", "ie", "nl", "th", "us"]
+        "include": ["au", "ie", "nz", "us"]
       },
       "tags": {
         "amenity": "restaurant",
@@ -4171,7 +4484,8 @@
         "brand:en": "Tonden",
         "brand:ja": "とんでん",
         "brand:wikidata": "Q11273585",
-        "brand:wikipedia": "jp:とんでん",
+        "brand:wikipedia": "ja:とんでん",
+        "cuisine": "japanese",
         "name": "とんでん",
         "name:en": "Tonden",
         "name:ja": "とんでん"
@@ -4356,6 +4670,7 @@
         "brand": "三商巧福",
         "brand:wikidata": "Q10865579",
         "brand:wikipedia": "zh:三商巧福",
+        "brand:zh": "三商巧福",
         "cuisine": "taiwanese",
         "name": "三商巧福",
         "name:en": "Mercuries Food",
@@ -4374,10 +4689,35 @@
       "tags": {
         "amenity": "restaurant",
         "brand": "三媽臭臭鍋",
+        "brand:wikidata": "Q108212222",
+        "brand:zh": "三媽臭臭鍋",
         "cuisine": "taiwanese",
         "name": "三媽臭臭鍋",
         "name:en": "Gold Seight",
         "name:zh": "三媽臭臭鍋"
+      }
+    },
+    {
+      "displayName": "东方宫",
+      "id": "dongfanggong-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": [
+        "东方宫兰州拉面",
+        "东方宫兰州牛肉拉面",
+        "东方宫兰州牛肉面",
+        "东方宫牛肉面"
+      ],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "东方宫",
+        "brand:en": "Dongfanggong",
+        "brand:wikidata": "Q108485529",
+        "brand:zh": "东方宫",
+        "cuisine": "chinese",
+        "diet:halal": "yes",
+        "name": "东方宫",
+        "name:en": "Dongfanggong",
+        "name:zh": "东方宫"
       }
     },
     {
@@ -4391,7 +4731,8 @@
         "brand:wikidata": "Q10870490",
         "brand:wikipedia": "zh:东来顺",
         "brand:zh": "东来顺",
-        "cuisine": "chinese",
+        "cuisine": "chinese;hotpot",
+        "diet:halal": "yes",
         "name": "东来顺",
         "name:en": "Dong Lai Shun",
         "name:zh": "东来顺"
@@ -4486,15 +4827,35 @@
     },
     {
       "displayName": "南京大牌档",
-      "id": "e44380-0a8e9b",
+      "id": "njdapaidang-0a8e9b",
       "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "南京大牌档",
+        "brand:en": "njdapaidang",
         "brand:wikidata": "Q48898937",
         "brand:wikipedia": "zh:南京大牌档",
+        "brand:zh": "南京大牌档",
         "cuisine": "chinese",
-        "name": "南京大牌档"
+        "name": "南京大牌档",
+        "name:en": "njdapaidang",
+        "name:zh": "南京大牌档"
+      }
+    },
+    {
+      "displayName": "南城香",
+      "id": "bjncx-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "南城香",
+        "brand:en": "BJNCX",
+        "brand:wikidata": "Q108483950",
+        "brand:zn": "南城香",
+        "cuisine": "chinese",
+        "name": "南城香",
+        "name:en": "BJNCX",
+        "name:zh": "南城香"
       }
     },
     {
@@ -4508,10 +4869,29 @@
         "brand:ja": "味千ラーメン",
         "brand:wikidata": "Q4699761",
         "brand:wikipedia": "zh:味千拉麵",
+        "brand:zn": "味千拉面",
         "cuisine": "ramen",
         "name": "味千拉面",
         "name:en": "Ajisen Ramen",
-        "name:ja": "味千ラーメン"
+        "name:ja": "味千ラーメン",
+        "name:zh": "味千拉面"
+      }
+    },
+    {
+      "displayName": "味爱普思",
+      "id": "vips-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "味爱普思",
+        "brand:en": "Vips",
+        "brand:wikidata": "Q12599540",
+        "brand:wikipedia": "ko:빕스",
+        "brand:zh": "味爱普思",
+        "cuisine": "salad;steak_house",
+        "name": "味爱普思",
+        "name:en": "Vips",
+        "name:zh": "味爱普思"
       }
     },
     {
@@ -4529,6 +4909,23 @@
         "name": "呷哺呷哺",
         "name:en": "Xiabuxiabu",
         "name:zh": "呷哺呷哺"
+      }
+    },
+    {
+      "displayName": "和合谷",
+      "id": "hehegu-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["和合谷国人快餐"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "和合谷",
+        "brand:en": "HeHeGu",
+        "brand:wikidata": "Q108485111",
+        "brand:zh": "和合谷",
+        "cuisine": "chinese",
+        "name": "和合谷",
+        "name:en": "HeHeGu",
+        "name:zh": "和合谷"
       }
     },
     {
@@ -4564,6 +4961,23 @@
         "name": "和食さと",
         "name:en": "Washoku Sato",
         "name:ja": "和食さと"
+      }
+    },
+    {
+      "displayName": "嘉和一品",
+      "id": "porridgejiahe-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["嘉禾一品"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "嘉和一品",
+        "brand:en": "PORRIDGE JIAHE",
+        "brand:wikidata": "Q108483822",
+        "brand:zh": "嘉和一品",
+        "cuisine": "chinese",
+        "name": "嘉和一品",
+        "name:en": "PORRIDGE JIAHE",
+        "name:zh": "嘉和一品"
       }
     },
     {
@@ -4639,6 +5053,22 @@
       }
     },
     {
+      "displayName": "孫東寶台式牛排",
+      "id": "sundongbaobeefsteak-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "孫東寶台式牛排",
+        "brand:en": "SunDongbao Beef Steak",
+        "brand:wikidata:": "Q101084415",
+        "brand:zh": "孫東寶台式牛排",
+        "cuisine": "steak",
+        "name": "孫東寶台式牛排",
+        "name:en": "SunDongbao Beef Steak",
+        "name:zh": "孫東寶台式牛排"
+      }
+    },
+    {
       "displayName": "安楽亭",
       "id": "anrakutei-36ca8e",
       "locationSet": {"include": ["jp"]},
@@ -4656,16 +5086,100 @@
       }
     },
     {
-      "displayName": "弘爺漢堡",
-      "id": "hongyahambuger-aafd63",
-      "locationSet": {"include": ["tw"]},
+      "displayName": "小肥羊",
+      "id": "littlesheep-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["小肥羊火锅"],
       "tags": {
         "amenity": "restaurant",
-        "brand": "弘爺漢堡",
-        "cuisine": "american;breakfast",
-        "name": "弘爺漢堡",
-        "name:en": "Hong Ya Hambuger",
-        "name:zh": "弘爺漢堡"
+        "brand": "小肥羊",
+        "brand:en": "LITTLE SHEEP",
+        "brand:wikidata": "Q5976467",
+        "brand:wikipedia": "zh:小肥羊",
+        "brand:zh": "小肥羊",
+        "cuisine": "chinese;hotpot",
+        "name": "小肥羊",
+        "name:en": "LITTLE SHEEP",
+        "name:zh": "小肥羊"
+      }
+    },
+    {
+      "displayName": "小龙坎火锅",
+      "id": "shooloongkan-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["小龙坎"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "小龙坎火锅",
+        "brand:en": "SHOO LOONG KAN",
+        "brand:wikidata": "Q108212427",
+        "brand:zh": "小龙坎火锅",
+        "cuisine": "chinese;hotpot",
+        "name": "小龙坎火锅",
+        "name:en": "SHOO LOONG KAN",
+        "name:zh": "小龙坎火锅"
+      }
+    },
+    {
+      "displayName": "广州酒家",
+      "id": "guangzhourestaurant-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "广州酒家",
+        "brand:en": "Guangzhou Restaurant",
+        "brand:wikidata": "Q11062214",
+        "brand:wikipedia": "zh:广州酒家",
+        "brand:yue": "廣州酒家",
+        "brand:zh": "广州酒家",
+        "cuisine": "cantonese",
+        "name": "广州酒家",
+        "name:en": "Guangzhou Restaurant",
+        "name:yue": "廣州酒家",
+        "name:zh": "广州酒家"
+      }
+    },
+    {
+      "displayName": "龐德羅莎",
+      "id": "ponderosasteakhouse-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["ponderosa"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "龐德羅莎",
+        "brand:en": "Ponderosa Steakhouse",
+        "brand:wikidata": "Q64038204",
+        "brand:zh": "龐德羅莎",
+        "cuisine": "american;steak;buffet",
+        "name": "龐德羅莎",
+        "name:en": "Ponderosa Steakhouse",
+        "name:zh": "龐德羅莎"
+      }
+    },
+    {
+      "displayName": "张亮麻辣烫",
+      "id": "zhangliangspicyhotpot-789436",
+      "locationSet": {
+        "include": [
+          "au",
+          "cn",
+          "gb",
+          "jp",
+          "nz",
+          "sg",
+          "us"
+        ]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "张亮麻辣烫",
+        "brand:en": "Zhangliang Spicy Hot Pot",
+        "brand:wikidata": "Q108210279",
+        "brand:zh": "张亮麻辣烫",
+        "cuisine": "chinese;hotpot",
+        "name": "张亮麻辣烫",
+        "name:en": "Zhangliang Spicy Hot Pot",
+        "name:zh": "张亮麻辣烫"
       }
     },
     {
@@ -4684,7 +5198,8 @@
         "name:en": "Pizza Hut",
         "name:zh": "必勝客",
         "operator": "富利餐飲股份有限公司",
-        "operator:en": "JARDINE FOOD SERVICES (TAIWAN) CO., LTD."
+        "operator:en": "JARDINE FOOD SERVICES (TAIWAN) CO., LTD.",
+        "operator:zh": "富利餐飲股份有限公司"
       }
     },
     {
@@ -4705,38 +5220,6 @@
       }
     },
     {
-      "displayName": "拉亞漢堡",
-      "id": "layaburger-aafd63",
-      "locationSet": {"include": ["tw"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "拉亞漢堡",
-        "brand:en": "Laya Burger",
-        "brand:wikidata": "Q67933743",
-        "brand:wikipedia": "zh:拉亞漢堡",
-        "brand:zh": "拉亞漢堡",
-        "name": "拉亞漢堡",
-        "name:en": "Laya Burger",
-        "name:zh": "拉亞漢堡"
-      }
-    },
-    {
-      "displayName": "早安美芝城",
-      "id": "goodmorningmacc-aafd63",
-      "locationSet": {"include": ["tw"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "早安美芝城",
-        "brand:en": "Good Morning MACC",
-        "brand:wikidata": "Q30941219",
-        "brand:wikipedia": "zh:早安美芝城",
-        "brand:zh": "早安美芝城",
-        "name": "早安美芝城",
-        "name:en": "Good Morning MACC",
-        "name:zh": "早安美芝城"
-      }
-    },
-    {
       "displayName": "木曽路",
       "id": "kisoji-36ca8e",
       "locationSet": {"include": ["jp"]},
@@ -4754,6 +5237,119 @@
       }
     },
     {
+      "displayName": "来来亭",
+      "id": "rairaitei-36ca8e",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "来来亭",
+        "brand:en": "Rairaitei",
+        "brand:ja": "来来亭",
+        "brand:wikidata": "Q11523703",
+        "brand:wikipedia": "ja:来来亭",
+        "brand:zh": "来来亭",
+        "cuisine": "ramen",
+        "name": "来来亭",
+        "name:en": "Rairaitei",
+        "name:ja": "来来亭",
+        "name:zh": "来来亭"
+      }
+    },
+    {
+      "displayName": "杨国福麻辣烫",
+      "id": "yangguofuspicyhotpot-c61f2f",
+      "locationSet": {
+        "include": [
+          "au",
+          "ca",
+          "cn",
+          "jp",
+          "kr",
+          "sg"
+        ]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "杨国福麻辣烫",
+        "brand:en": "Yangguofu Spicy Hot Pot",
+        "brand:wikidata": "Q108210209",
+        "brand:zh": "杨国福麻辣烫",
+        "cuisine": "chinese;hotpot",
+        "name": "杨国福麻辣烫",
+        "name:en": "Yangguofu Spicy Hot Pot",
+        "name:zh": "杨国福麻辣烫"
+      }
+    },
+    {
+      "displayName": "松鹤楼",
+      "id": "songhelou-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["松鹤楼小馆", "松鹤楼菜馆", "松鹤楼酒楼"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "松鹤楼",
+        "brand:en": "Songhelou",
+        "brand:wikidata": "Q17026438",
+        "brand:wikipedia": "zh:松鹤楼",
+        "brand:zh": "松鹤楼",
+        "cuisine": "chinese",
+        "name": "松鹤楼",
+        "name:en": "Songhelou",
+        "name:zh": "松鹤楼"
+      }
+    },
+    {
+      "displayName": "松鹤面馆",
+      "id": "songhemianguan-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["松鹤楼苏式汤面", "松鹤楼面馆"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "松鹤楼",
+        "brand:en": "Songhelou",
+        "brand:wikidata": "Q17026438",
+        "brand:wikipedia": "zh:松鹤楼",
+        "brand:zh": "松鹤楼",
+        "cuisine": "chinese",
+        "name": "松鹤面馆",
+        "name:en": "SongheMianGuan",
+        "name:zh": "松鹤面馆"
+      }
+    },
+    {
+      "displayName": "梁社漢排骨",
+      "id": "liangshehanbuyfood-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "梁社漢排骨",
+        "brand:en": "Liang She Han Buy Food",
+        "brand:wikidata:": "Q108204804",
+        "brand:zh": "梁社漢排骨",
+        "cuisine": "taiwanese",
+        "name": "梁社漢排骨",
+        "name:en": "Liang She Han Buy Food",
+        "name:zh": "梁社漢排骨"
+      }
+    },
+    {
+      "displayName": "比格披萨",
+      "id": "bigpizza-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["比格自助披萨"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "比格披萨",
+        "brand:en": "Bigpizza",
+        "brand:wikidata": "Q108167598",
+        "brand:zh": "比格披萨",
+        "cuisine": "pizza",
+        "name": "比格披萨",
+        "name:en": "Bigpizza",
+        "name:zh": "比格披萨"
+      }
+    },
+    {
       "displayName": "永和豆浆 (中国)",
       "id": "yonghesoymilk-0a8e9b",
       "locationSet": {"include": ["cn"]},
@@ -4761,6 +5357,8 @@
         "amenity": "restaurant",
         "brand": "永和豆浆",
         "brand:en": "Yonghe Soy Milk",
+        "brand:wikidata": "Q11131335",
+        "brand:wikipedia": "zh:永和豆漿",
         "cuisine": "chinese;breakfast",
         "name": "永和豆浆",
         "name:en": "Yonghe Soy Milk",
@@ -4777,6 +5375,8 @@
         "amenity": "restaurant",
         "brand": "永和豆漿",
         "brand:en": "Yonghe Soy Milk",
+        "brand:wikidata": "Q11131335",
+        "brand:wikipedia": "zh:永和豆漿",
         "cuisine": "chinese;breakfast",
         "name": "永和豆漿",
         "name:en": "Yonghe Soy Milk",
@@ -4787,19 +5387,57 @@
     },
     {
       "displayName": "海底捞火锅",
-      "id": "haidilaohotpot-4ed470",
-      "locationSet": {"include": ["cn", "tw"]},
+      "id": "haidilaohotpot-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["海底捞"],
       "tags": {
         "amenity": "restaurant",
         "brand": "海底捞火锅",
         "brand:en": "Hai Di Lao Hot Pot",
         "brand:wikidata": "Q5638920",
         "brand:wikipedia": "zh:海底捞",
-        "cuisine": "chinese",
+        "cuisine": "chinese;hotpot",
         "name": "海底捞火锅",
         "name:en": "Hai Di Lao Hot Pot",
         "name:zh-Hans": "海底捞火锅",
         "name:zh-Hant": "海底撈火鍋"
+      }
+    },
+    {
+      "displayName": "海底撈火鍋",
+      "id": "haidilaohotpot-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "海底撈火鍋",
+        "brand:en": "Hai Di Lao Hot Pot",
+        "brand:wikidata": "Q5638920",
+        "brand:wikipedia": "zh:海底捞",
+        "brand:zh": "海底撈火鍋",
+        "cuisine": "chinese;hotpot",
+        "name": "海底撈火鍋",
+        "name:en": "Hai Di Lao Hot Pot",
+        "name:zh-Hans": "海底捞火锅",
+        "name:zh-Hant": "海底撈火鍋"
+      }
+    },
+    {
+      "displayName": "点都德",
+      "id": "diandoude-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "点都德",
+        "brand:en": "Diandoude",
+        "brand:wikidata": "Q97780269",
+        "brand:wikipedia": "zh:点都德",
+        "brand:yue": "點都德",
+        "brand:zh": "点都德",
+        "cuisine": "cantonese",
+        "name": "点都德",
+        "name:en": "Diandoude",
+        "name:yue": "點都德",
+        "name:zh": "点都德"
       }
     },
     {
@@ -4836,6 +5474,22 @@
       }
     },
     {
+      "displayName": "田老师红烧肉",
+      "id": "785320-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["田老师"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "田老师红烧肉",
+        "brand:wikidata": "Q108485521",
+        "brand:zh": "田老师红烧肉",
+        "cuisine": "chinese",
+        "diet:halal": "no",
+        "name": "田老师红烧肉",
+        "name:zh": "田老师红烧肉"
+      }
+    },
+    {
       "displayName": "町田商店",
       "id": "machidashouten-36ca8e",
       "locationSet": {"include": ["jp"]},
@@ -4852,20 +5506,19 @@
       }
     },
     {
-      "displayName": "美而美",
-      "id": "meiandmei-aafd63",
+      "displayName": "百八魚場",
+      "id": "fish180-aafd63",
       "locationSet": {"include": ["tw"]},
       "tags": {
         "amenity": "restaurant",
-        "brand": "美而美",
-        "brand:en": "Mei & Mei",
-        "brand:wikidata": "Q56197246",
-        "brand:wikipedia": "zh:美而美",
-        "brand:zh": "美而美",
-        "cuisine": "breakfast",
-        "name": "美而美",
-        "name:en": "Mei & Mei",
-        "name:zh": "美而美"
+        "brand": "百八魚場",
+        "brand:en": "Fish 180",
+        "brand:wikidata": "Q108199211",
+        "brand:zh": "百八魚場",
+        "cuisine": "japanese",
+        "name": "百八魚場",
+        "name:en": "Fish 180",
+        "name:zh": "百八魚場"
       }
     },
     {
@@ -4883,6 +5536,136 @@
         "name": "華屋与兵衛",
         "name:en": "Hanaya Yohei",
         "name:ja": "華屋与兵衛"
+      }
+    },
+    {
+      "displayName": "萨莉亚",
+      "id": "saizeriya-43786b",
+      "locationSet": {"include": ["cn", "hk"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "萨莉亚",
+        "brand:en": "Saizeriya",
+        "brand:wikidata": "Q886564",
+        "brand:wikipedia": "en:Saizeriya",
+        "brand:zh": "萨莉亚",
+        "cuisine": "italian",
+        "name": "萨莉亚",
+        "name:en": "Saizeriya",
+        "name:zh": "萨莉亚"
+      }
+    },
+    {
+      "displayName": "薩莉亞",
+      "id": "saizeriya-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "薩莉亞",
+        "brand:en": "Saizeriya",
+        "brand:it": "Saizeriya",
+        "brand:ja": "サイゼリヤ",
+        "brand:wikidata": "Q886564",
+        "brand:wikipedia": "zh:萨莉亚",
+        "brand:zh": "薩莉亞",
+        "cuisine": "italian",
+        "name": "薩莉亞",
+        "name:en": "Saizeriya",
+        "name:it": "Saizeriya",
+        "name:ja": "サイゼリヤ",
+        "name:zh": "薩莉亞"
+      }
+    },
+    {
+      "displayName": "西部马华",
+      "id": "westernmahua-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": [
+        "西部马华丝路美食",
+        "西部马华牛肉面",
+        "西部马华西域美食"
+      ],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "西部马华",
+        "brand:en": "Western Mahua",
+        "brand:wikidata": "Q108485295",
+        "brand:zh": "西部马华",
+        "cuisine": "chinese",
+        "diet:halal": "yes",
+        "name": "西部马华",
+        "name:en": "Western Mahua",
+        "name:zh": "西部马华"
+      }
+    },
+    {
+      "displayName": "貴族世家",
+      "id": "noblesteak-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "貴族世家",
+        "brand:en": "Noble Steak",
+        "brand:wikidata:": "Q24702031",
+        "brand:zh": "貴族世家",
+        "cuisine": "steak",
+        "name": "貴族世家",
+        "name:en": "Noble Steak",
+        "name:zh": "貴族世家"
+      }
+    },
+    {
+      "displayName": "重庆小天鹅火锅",
+      "id": "cygnet-9461ad",
+      "locationSet": {"include": ["ca", "cn"]},
+      "matchNames": ["小天鹅火锅", "重庆小天鹅"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "重庆小天鹅火锅",
+        "brand:en": "CYGNET",
+        "brand:wikidata": "Q108212568",
+        "brand:zh": "重庆小天鹅火锅",
+        "cuisine": "chinese;hotpot",
+        "name": "重庆小天鹅火锅",
+        "name:en": "CYGNET",
+        "name:zh": "重庆小天鹅火锅"
+      }
+    },
+    {
+      "displayName": "阿香米线",
+      "id": "axiangricenoodles-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["阿香米粉"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "阿香米线",
+        "brand:en": "AXIANG Rice Noodles",
+        "brand:wikidata": "Q108213039",
+        "brand:zh": "阿香米线",
+        "cuisine": "chinese;rice_noodles",
+        "name": "阿香米线",
+        "name:en": "AXIANG Rice Noodles",
+        "name:zh": "阿香米线"
+      }
+    },
+    {
+      "displayName": "陶陶居",
+      "id": "taotaoju-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "alt_name:en": "To To Kui",
+        "amenity": "restaurant",
+        "brand": "陶陶居",
+        "brand:en": "Tao Tao Ju",
+        "brand:wikidata": "Q9012420",
+        "brand:wikipedia": "zh:陶陶居",
+        "brand:yue": "陶陶居",
+        "brand:zh": "陶陶居",
+        "cuisine": "cantonese",
+        "name": "陶陶居",
+        "name:en": "Tao Tao Ju",
+        "name:yue": "陶陶居",
+        "name:zh": "陶陶居"
       }
     },
     {
@@ -4923,22 +5706,6 @@
         "name:nan-TL": "Hóo-tshiu Tiong",
         "name:zh": "鬍鬚張",
         "name:zh-Hant": "鬍鬚張"
-      }
-    },
-    {
-      "displayName": "鮮芋仙",
-      "id": "meetfresh-4ed470",
-      "locationSet": {"include": ["cn", "tw"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "鮮芋仙",
-        "brand:en": "Meet Fresh",
-        "brand:wikidata": "Q11172707",
-        "brand:wikipedia": "zh:鮮芋仙",
-        "cuisine": "taiwanese",
-        "name": "鮮芋仙",
-        "name:en": "Meet Fresh",
-        "name:zh": "鮮芋仙"
       }
     },
     {
