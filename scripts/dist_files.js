@@ -67,6 +67,7 @@ function buildAll() {
   copyWithMeta('trees.json');
 
   // Refresh some files already in `/dist`, update metadata to match version
+  refreshMeta('warnings.json');
   refreshMeta('wikidata.json');
   refreshMeta('dissolved.json');
   refreshMeta('featureCollection.json');

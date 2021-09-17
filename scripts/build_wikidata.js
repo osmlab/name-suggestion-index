@@ -210,7 +210,6 @@ let _urls = wbk.getManyEntities({
 
 let _warnings = [];
 
-
 doFetch()
   .then(() => delay(5000))
   .then(removeOldNsiClaims)
@@ -267,10 +266,9 @@ function processEntities(result) {
 
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
-      const msg = colors.yellow(`Error: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  ⚠️  Entity for "${label}" was deleted.`);
-      _warnings.push(msg);
-      console.warn(msg);
+      const warning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.` };
+      console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+      _warnings.push(warning);
       return;
     }
 
@@ -287,10 +285,9 @@ function processEntities(result) {
 
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
-        const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
-          colors.red(`  Entity for "${label}" missing English label.`);
-        _warnings.push(msg);
-        console.warn(msg);
+        const warning = { qid: qid, msg: `Entity for "${label}" missing English label.` };
+        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        _warnings.push(warning);
       }
     }
 
@@ -421,13 +418,12 @@ function processEntities(result) {
         }
 
         if (dissolution.upgrade) {
-          let msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
-            colors.red(`  ${target.label} might possibly be replaced by ${dissolution.upgrade}`);
+          const warning = { qid: qid, msg: `${target.label} might possibly be replaced by ${dissolution.upgrade}` };
           if (dissolution.countries) {
-            msg += colors.red(`\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`);
+            warning.msg += `\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
           }
-          _warnings.push(msg);
-          console.warn(msg);
+          console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+          _warnings.push(warning);
         }
         target.dissolutions.push(dissolution);
       });
@@ -598,6 +594,7 @@ function finish() {
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
+    writeFileWithMeta('dist/warnings.json', stringify({ warnings: _warnings }) + '\n');
     writeFileWithMeta('dist/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
     writeFileWithMeta('dist/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
 
@@ -607,10 +604,10 @@ function finish() {
 
   console.timeEnd(END);
 
-  // output whatever errors we've gathered
+  // output whatever warnings we've gathered
   if (_warnings.length) {
-    console.log(colors.yellow.bold(`\nError Summary:`));
-    _warnings.forEach(msg => console.warn(colors.red(msg)));
+    console.log(colors.yellow.bold(`\nWarnings:`));
+    _warnings.forEach(warning => console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg)));
   }
 }
 
@@ -664,10 +661,9 @@ function fetchTwitterUserDetails(qid, username) {
       target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
     })
     .catch(e => {
-      const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
-        colors.red(`  Twitter username @${username}: ${JSON.stringify(e)}`);
-      _warnings.push(msg);
-      console.warn(msg);
+      const warning = { qid: qid, msg: `Twitter username @${username}: ${JSON.stringify(e)}` };
+      console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+      _warnings.push(warning);
     });
 }
 
@@ -703,10 +699,9 @@ function fetchFacebookLogo(qid, username) {
         target.identities.facebook = userid;
         return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
       } else {
-        const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}`) +
-          colors.red(`  Facebook username @${username}: ${e}`);
-        _warnings.push(msg);
-        console.warn(msg);
+        const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
+        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        _warnings.push(warning);
       }
     });
 }
@@ -743,7 +738,6 @@ function removeOldNsiClaims() {
     })
     .then(processWbEditQueue)
     .catch(e => {
-      _warnings.push(e);
       console.warn(colors.red(e));
     });
 }
@@ -785,9 +779,9 @@ function processWbEditQueue(queue) {
 
     return task
       .catch(e => {
-        const msg = colors.yellow(`Warning: https://www.wikidata.org/wiki/${qid}  `) + colors.red(e);
-        _warnings.push(msg);
-        console.warn(msg);
+        const warning = { qid: qid, msg: e };
+        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        _warnings.push(warning);
       })
       .then(() => delay(300))
       .then(() => processWbEditQueue(queue));
@@ -833,7 +827,6 @@ function checkWikipediaTags(qid, sitelinks) {
         if (wpOld && !wikiCount) {            // there was a wikipedia sitelink... but there shouldn't be one for this wikidata qid
           delete item.tags[`${osmkey}:wikipedia`];
           const msg = colors.cyan(`${qid} "${item.displayName}" removing old tag "${osmkey}:wikipedia = ${wpOld}" (doesn't match this qid)`);
-          _warnings.push(msg);
           console.warn(msg);
         } else if (wpOld && wikiCount) {        // there was a wikipedia sitelink...
           const m = wpOld.match(/^(\w+):/);     // check the language of it  ('en', 'de', 'zh-yue')
@@ -843,7 +836,6 @@ function checkWikipediaTags(qid, sitelinks) {
             if (wpNew && wpNew !== wpOld) {     // the sitelink we found for this language and qid is different, so replace it
               item.tags[`${osmkey}:wikipedia`] = wpNew;
               const msg = colors.cyan(`${qid} "${item.displayName}" updating tag "${osmkey}:wikipedia = ${wpNew}" (was "${wpOld})"`);
-              _warnings.push(msg);
               console.warn(msg);
             }
           }
@@ -852,7 +844,6 @@ function checkWikipediaTags(qid, sitelinks) {
           if (wpNew) {
             item.tags[`${osmkey}:wikipedia`] = wpNew;
             const msg = colors.cyan(`${qid} "${item.displayName}" adding missing tag "${osmkey}:wikipedia = ${wpNew}"`);
-            _warnings.push(msg);
             console.warn(msg);
           }
         }
