@@ -138,11 +138,11 @@ function checkRegex(fileName, pattern) {
 }
 
 //
-// Load lists of tags collected from OSM from `dist/collected/*`
+// Load lists of tags collected from OSM from https://github.com/ideditor/nsi-collector
 //
 function loadCollected() {
   ['name', 'brand', 'operator', 'network'].forEach(tag => {
-    const file = `dist/collected/${tag}s_all.json`;
+    const file = `./node_modules/@ideditor/nsi-collector/dist/osm/${tag}s_all.json`;
     const contents = fs.readFileSync(file, 'utf8');
     let data;
     try {

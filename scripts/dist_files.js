@@ -56,7 +56,6 @@ function buildAll() {
     'dist/taginfo.json',
     'dist/presets/*',
     'dist/*.min.json',
-    'dist/collected/*.min.json',
     'dist/filtered/*.min.json'
   ]);
 
