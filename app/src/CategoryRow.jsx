@@ -22,12 +22,11 @@ export default function CategoryRow(props) {
   if (item.selected) rowClasses.push('selected');
 
   // setup defaults for this tree..
-  let n, kvn, count, tags, qid, overpassQuery;
+  let n, kvn, tags, qid, overpassQuery;
 
   if (t === 'brands') {
     n = item.tags.brand || item.tags.name;
     kvn = `${k}/${v}|${n}`;
-    count = data.brandCounts[kvn] || '< 50';
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
     let bn = tags['brand'];
@@ -55,7 +54,6 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
   } else if (t === 'flags') {
     n = item.tags['flag:name'];
     kvn = `${k}/${v}|${n}`;
-    count = null;
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
     overpassQuery = `[out:json][timeout:100];
@@ -67,7 +65,6 @@ out skel qt;`;
   } else if (t === 'operators') {
     n = item.tags.operator;
     kvn = `${k}/${v}|${n}`;
-    count = data.operatorCounts[kvn] || '< 10';
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
     overpassQuery = `[out:json][timeout:100];
@@ -94,7 +91,6 @@ relation[${k}=${v}][operator:wikidata=${qid}]
   } else if (t === 'transit') {
     n = item.tags.network;
     kvn = `${k}/${v}|${n}`;
-    count = data.transitCounts[kvn] || '< 10';
     tags = item.tags || {};
     qid = tags['network:wikidata'];
     overpassQuery = `[out:json][timeout:100];
@@ -167,7 +163,6 @@ relation[${k}=${v}][network:wikidata=${qid}]
           { searchWikipediaLink(n) }
         </div>
       </td>
-      <td className='count'>{count}</td>
       <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
       <td className='wikidata'>
         <h3>{label}</h3>
