@@ -321,7 +321,7 @@ function buildIDPresets() {
       if (fields)            targetPreset.fields = fields;
       if (preset.reference)  targetPreset.reference = preset.reference;
       targetPreset.tags = sortObject(targetTags);
-      targetPreset.addTags = sortObject(item.tags);
+      targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
 
       targetPresets[targetID] = targetPreset;
     });
