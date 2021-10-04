@@ -4,17 +4,10 @@
     "exclude": {
       "generic": [
         "^community$",
-        "^elementary school$",
         "^goverment$",
         "^government$",
-        "^high school$",
-        "^intermediate school$",
-        "^jr. high school$",
-        "^junior high school$",
-        "^middle school$",
         "^municipal$",
         "^municipio$",
-        "^primary school$",
         "^privado$",
         "^private aided$",
         "^private un-aided$",
@@ -30,8 +23,7 @@
         "^publico$",
         "^público$",
         "^publique$",
-        "^school$",
-        "^secondary school$"
+        "^school$"
       ]
     }
   },
@@ -39,7 +31,7 @@
     {
       "displayName": "1",
       "id": "1-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cl"]},
       "tags": {
         "amenity": "school",
         "operator": "1"
@@ -48,7 +40,7 @@
     {
       "displayName": "2",
       "id": "2-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cl"]},
       "tags": {
         "amenity": "school",
         "operator": "2"
@@ -57,7 +49,7 @@
     {
       "displayName": "3",
       "id": "3-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cl"]},
       "tags": {
         "amenity": "school",
         "operator": "3"
@@ -66,7 +58,7 @@
     {
       "displayName": "4",
       "id": "4-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cl"]},
       "tags": {
         "amenity": "school",
         "operator": "4"
@@ -75,7 +67,7 @@
     {
       "displayName": "5",
       "id": "5-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cl"]},
       "tags": {
         "amenity": "school",
         "operator": "5"
@@ -2388,9 +2380,13 @@
     {
       "displayName": "Beaverton School District",
       "id": "beavertonschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "school",
+        "operator:type": "public",
+        "operator:wikidata": "Q3791363",
+        "operator:short": "BSD",
+        "operator:wikipedia": "en:Beaverton School District",
         "operator": "Beaverton School District"
       }
     },
@@ -4431,18 +4427,39 @@
     {
       "displayName": "Chicago Public Schools",
       "id": "chicagopublicschools-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "school",
+        "operator:type": "public",
+        "operator:short": "CPS",
+        "operator:wikipedia": "en:Chicago Public Schools",
+        "operator:wikidata": "Q2963340",
         "operator": "Chicago Public Schools"
       }
     },
     {
-      "displayName": "Chino Valley Unified School District",
+      "displayName": "Chino Valley Unified School District (California)",
       "id": "chinovalleyunifiedschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["california.geojson"]},
       "tags": {
         "amenity": "school",
+        "operator:type": "public",
+        "operator:wikidata": "Q5101225",
+        "operator:wikipedia": "en:Chino Valley Unified School District (California)",
+        "operator:short": "CVUSD",
+        "operator": "Chino Valley Unified School District"
+      }
+    },
+    {
+      "displayName": "Chino Valley Unified School District (Arizona)",
+      "id": "chinovalleyunifiedschooldistrict-155571",
+      "locationSet": {"include": ["us"], "exclude": ["california.geojson"]},
+      "tags": {
+        "amenity": "school",
+        "operator:type": "public",
+        "operator:wikidata": "Q5101223",
+        "operator:wikipedia": "en:Chino Valley Unified School District (Arizona)",
+        "operator:short": "CVUSD",
         "operator": "Chino Valley Unified School District"
       }
     },
@@ -4458,9 +4475,13 @@
     {
       "displayName": "Cincinnati Public Schools",
       "id": "cincinnatipublicschools-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "school",
+        "operator:type": "public",
+        "operator:short": "CPS",
+        "operator:wikipedia": "en:Cincinnati Public Schools",
+        "operator:wikidata": "Q3065651",
         "operator": "Cincinnati Public Schools"
       }
     },
@@ -8420,9 +8441,13 @@
     {
       "displayName": "Hillsboro School District",
       "id": "hillsboroschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "school",
+        "operator:wikidata": "Q5763596",
+        "operator:short": "HSD",
+        "operator:type": "public",
+        "operator:wikipedia": "en:Hillsboro School District",
         "operator": "Hillsboro School District"
       }
     },
@@ -13487,9 +13512,13 @@
     {
       "displayName": "New York City Department of Education",
       "id": "newyorkcitydepartmentofeducation-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["new_york_city.geojson"]},
       "tags": {
         "amenity": "school",
+        "operator:type": "public",
+        "operator:short": "NYC Public Schools",
+        "operator:wikidata": "Q408230",
+        "operator:wikipedia": "en:New York City Department of Education",
         "operator": "New York City Department of Education"
       }
     },
@@ -15377,11 +15406,64 @@
       }
     },
     {
-      "displayName": "Portland Public Schools",
+      "displayName": "Portland Public Schools (Oregon)",
       "id": "portlandpublicschools-155571",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": [[-122.6,45.6]]},
       "tags": {
         "amenity": "school",
+        "operator:wikidata": "Q608234",
+        "operator:short": "PPS",
+        "operator:type": "public",
+        "operator:wikipedia": "en:Portland Public Schools (Oregon)",
+        "operator": "Portland Public Schools"
+      }
+    },
+    {
+      "displayName": "Seattle Public Schools",
+      "id": "portlandpublicschools-155571",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "school",
+        "operator:wikidata": "Q3236113",
+        "operator:type": "public",
+        "operator:wikipedia": "en:Seattle Public Schools",
+        "operator": "Seattle Public Schools"
+      }
+    },
+    {
+      "displayName": "Everett School District (Washington)",
+      "id": "portlandpublicschools-155571",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "school",
+        "operator:wikidata": "Q5417059",
+        "operator:type": "public",
+        "operator:wikipedia": "en:Everett School District (Washington)",
+        "operator": "Everett School District"
+      }
+    },
+    {
+      "displayName": "Everett Public Schools (Massachusetts)",
+      "id": "portlandpublicschools-155571",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "school",
+        "operator:wikidata": "Q60763810",
+        "operator:type": "public",
+        "operator:wikipedia": "en:Everett Public Schools (Massachusetts)",
+        "operator": "Everett Public Schools"
+      }
+    },
+    {
+      "displayName": "Portland Public Schools (Maine)",
+      "id": "portlandpublicschools-155571",
+      "locationSet": {"include": [[-70.3,43.7]]},
+      "tags": {
+        "amenity": "school",
+        "operator:wikidata": "Q7232016",
+        "operator:short": "PPS",
+        "operator:type": "public",
+        "operator:wikipedia": "en:Portland Public Schools (Maine)",
         "operator": "Portland Public Schools"
       }
     },
