@@ -542,11 +542,10 @@ function getClaimValue(entity, prop) {
 // - dissolved.json
 //
 function finish() {
-  const START = '🏗   ' + colors.yellow('Writing output files');
-  const END = '👍  ' + colors.green('output files updated');
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Writing output files'));
+  const TIMER = colors.green('👍  output files updated');
+  console.time(TIMER);
 
   // update `wikidata.json` and `dissolved.json`
   let origWikidata;
@@ -602,7 +601,7 @@ function finish() {
     fileTree.write(_cache);
   }
 
-  console.timeEnd(END);
+  console.timeEnd(TIMER);
 
   // output whatever warnings we've gathered
   if (_warnings.length) {

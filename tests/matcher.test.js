@@ -16,17 +16,31 @@ test('index building', t => {
   t.beforeEach(() => t.context.matcher = new Matcher());
   t.afterEach(() => t.context.matcher = null);
 
-  t.test('buildMatchIndex does not throw', t => {
-    t.doesNotThrow(() => t.context.matcher.buildMatchIndex(data));
+  t.test('buildMatchIndex resolves', t => {
+    t.resolves(() => t.context.matcher.buildMatchIndex(data))
+      .then(() => t.end());
+  });
+
+  t.test('buildMatchIndex returns the same promise if called multiple times', t => {
+    const prom1 = t.context.matcher.buildMatchIndex(data);
+    const prom2 = t.context.matcher.buildMatchIndex(data);
+    t.equal(prom1, prom2);
     t.end();
   });
 
-  t.test('buildLocationIndex does not throw', t => {
-    t.doesNotThrow(() => t.context.matcher.buildLocationIndex(data, loco));
+  t.test('buildLocationIndex resolves', t => {
+    t.resolves(() => t.context.matcher.buildLocationIndex(data, loco))
+      .then(() => t.end());
+  });
+
+  t.test('buildLocationIndex returns the same promise if called multiple times', t => {
+    const prom1 = t.context.matcher.buildLocationIndex(data, loco);
+    const prom2 = t.context.matcher.buildLocationIndex(data, loco);
+    t.equal(prom1, prom2);
     t.end();
   });
 
-  t.test('buildLocationIndex does not throw even with unrecognized locationSet', t => {
+  t.test('buildLocationIndex resolves even with unrecognized locationSet', t => {
     const bad = {
       'brands/amenity/fast_food': {
         properties: { path: 'brands/amenity/fast_food' },
@@ -42,12 +56,11 @@ test('index building', t => {
     }
     const orig = console.warn;   // silence console.warn
     console.warn = () => {};
-    t.doesNotThrow(() => t.context.matcher.buildLocationIndex(bad, loco));
-    console.warn = orig;
-    t.end();
+    t.resolves(() => t.context.matcher.buildLocationIndex(bad, loco))
+      .then(() => { console.warn = orig; t.end(); });
   });
 
-  t.test('buildLocationIndex does not throw even with empty locationSet', t => {
+  t.test('buildLocationIndex resolves even with empty locationSet', t => {
     const bad = {
       'brands/amenity/fast_food': {
         properties: { path: 'brands/amenity/fast_food' },
@@ -63,9 +76,8 @@ test('index building', t => {
     }
     const orig = console.warn;   // silence console.warn
     console.warn = () => {};
-    t.doesNotThrow(() => t.context.matcher.buildLocationIndex(bad, loco));
-    console.warn = orig;
-    t.end();
+    t.resolves(() => t.context.matcher.buildLocationIndex(bad, loco))
+      .then(() => { console.warn = orig; t.end(); });
   });
 
   t.test('match throws if matchIndex not yet built', t => {
@@ -78,9 +90,13 @@ test('index building', t => {
 
 
 test('match', t => {
-  t.context.matcher = new Matcher();
-  t.context.matcher.buildMatchIndex(data);
-  t.context.matcher.buildLocationIndex(data, loco);
+  t.before(() => {
+    t.context.matcher = new Matcher();
+    return Promise.all([
+      t.context.matcher.buildMatchIndex(data),
+      t.context.matcher.buildLocationIndex(data, loco)
+    ]);
+  });
 
   // In practice, duplidate ids can't happen anymore.
   // We should find a better way to flag potential duplicates in the index.

@@ -31,27 +31,25 @@ console.log(colors.blue('🗂   Build index'));
 console.log(colors.blue('-'.repeat(70)));
 
 let _config = {};
-loadConfig();
-
 let _cache = {};
-loadIndex();
-
-checkItems('brands');
-checkItems('flags');
-checkItems('operators');
-checkItems('transit');
-
 let _collected = {};
 let _discard = {};
 let _keep = {};
-loadCollected();
-filterCollected();
 
-mergeItems();
+Promise.resolve()
+  .then(() => loadConfig())
+  .then(() => loadIndex())
+  .then(() => checkItems('brands'))
+  .then(() => checkItems('flags'))
+  .then(() => checkItems('operators'))
+  .then(() => checkItems('transit'))
+  .then(() => loadCollected())
+  .then(() => filterCollected())
+  .then(() => mergeItems())
+  .then(() => saveIndex())
+  .catch(err => console.error(err));
 
-saveIndex();
 console.log('');
-
 
 
 //
@@ -162,11 +160,11 @@ function loadCollected() {
 // Filter the tags collected into _keep and _discard lists
 //
 function filterCollected() {
-  const START = '🏗   ' + colors.yellow(`Filtering values collected from OSM...`);
-  const END = '👍  ' + colors.green(`done filtering`);
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Filtering values collected from OSM...'));
+
+  const FILTER_TIMER = colors.green('👍  done filtering');
+  console.time(FILTER_TIMER);
 
   Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
@@ -236,7 +234,7 @@ function filterCollected() {
 
   });
 
-  console.timeEnd(END);
+  console.timeEnd(FILTER_TIMER);
 }
 
 
@@ -244,27 +242,33 @@ function filterCollected() {
 // Load the index files under `data/*`
 //
 function loadIndex() {
-  const START = '🏗   ' + colors.yellow(`Loading index files...`);
-  const END = '👍  ' + colors.green(`done loading`);
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Loading index files...'));
 
-  fileTree.read(_cache, loco);
-  fileTree.expandTemplates(_cache, loco);
-  console.timeEnd(END);
+  const LOAD_TIMER = colors.green('👍  done loading');
+  const MATCH_INDEX_TIMER = colors.green('👍  built match index');
+  const LOCATION_INDEX_TIMER = colors.green('👍  built location index');
 
-  const MATCH_INDEX_END = '👍  ' + colors.green(`built match index`);
-  console.time(MATCH_INDEX_END);
-  matcher.buildMatchIndex(_cache.path);
-  console.timeEnd(MATCH_INDEX_END);
+  return Promise.resolve()
+    .then(() => console.time(LOAD_TIMER))
+    .then(() => fileTree.read(_cache, loco))
+    .then(() => fileTree.expandTemplates(_cache, loco))
+    .then(() => console.timeEnd(LOAD_TIMER))
 
-  // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
-  // We don't need a location index for this script, but it's useful to know.
-  const LOCATION_INDEX_END = '👍  ' + colors.green(`built location index`);
-  console.time(LOCATION_INDEX_END);
-  matcher.buildLocationIndex(_cache.path, loco);
-  console.timeEnd(LOCATION_INDEX_END);
+    .then(() => console.time(MATCH_INDEX_TIMER))
+    .then(() => matcher.buildMatchIndex(_cache.path))
+    .then(() => console.timeEnd(MATCH_INDEX_TIMER))
+
+    // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
+    // We don't need a location index for this script, but it's useful to know.
+    .then(() => console.time(LOCATION_INDEX_TIMER))
+    .then(() => matcher.buildLocationIndex(_cache.path, loco))
+    .then(() => console.timeEnd(LOCATION_INDEX_TIMER))
+
+    .catch(err => {
+      console.error(err);
+      process.exit(1);
+    });
 }
 
 
@@ -272,14 +276,13 @@ function loadIndex() {
 // Save the updated index files under `data/*`
 //
 function saveIndex() {
-  const START = '🏗   ' + colors.yellow(`Saving index files...`);
-  const END = '👍  ' + colors.green(`done saving`);
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Saving index files...'));
 
+  const SAVE_TIMER = '👍  ' + colors.green(`done saving`);
+  console.time(SAVE_TIMER);
   fileTree.write(_cache);
-  console.timeEnd(END);
+  console.timeEnd(SAVE_TIMER);
 }
 
 
@@ -290,12 +293,11 @@ function saveIndex() {
 // - update all items to have whatever tags they should have.
 //
 function mergeItems() {
-  const START = '🏗   ' + colors.yellow(`Merging items...`);
-  const END = '👍  ' + colors.green(`done merging`);
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Merging items...'));
 
+  const MERGE_TIMER = '👍  ' + colors.green(`done merging`);
+  console.time(MERGE_TIMER);
 
   Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
@@ -494,7 +496,7 @@ function mergeItems() {
 
   });
 
-  console.timeEnd(END);
+  console.timeEnd(MERGE_TIMER);
 
   function setLanguageTags(tags, code) {
     if (tags.name)      tags[`name:${code}`] = tags.name;
@@ -511,7 +513,7 @@ function mergeItems() {
 //
 function checkItems(t) {
   console.log('');
-  console.log('🏗   ' + colors.yellow(`Checking ${t}...`));
+  console.log(colors.yellow(`🏗   Checking ${t}...`));
 
   const tree = _config.trees[t];
   const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;

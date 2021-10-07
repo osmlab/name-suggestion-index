@@ -42,12 +42,11 @@ buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + colors.yellow('Building data...');
-  const END = '👍  ' + colors.green('data built');
-
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Building data...'));
+
+  const TIMER = colors.green('👍  data built');
+  console.time(TIMER);
 
   // Start clean
   shell.rm('-f', [
@@ -85,6 +84,8 @@ function buildAll() {
     const minFile = file.replace('.json', '.min.json');
     minifySync(file, minFile);
   });
+
+  console.timeEnd(TIMER);
 }
 
 

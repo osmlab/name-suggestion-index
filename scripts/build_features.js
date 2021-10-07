@@ -30,17 +30,15 @@ buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + colors.yellow('Building features...');
-  const END = '👍  ' + colors.green('features built');
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Building features...'));
 
+  const FEATURE_TIMER = colors.green('👍  features built');
+  console.time(FEATURE_TIMER);
   const features = collectFeatures();
   let featureCollection = { type: 'FeatureCollection', features: features };
   writeFileWithMeta('dist/featureCollection.json', stringify(featureCollection, { maxLength: 9999 }) + '\n');
-
-  console.timeEnd(END);
+  console.timeEnd(FEATURE_TIMER);
 }
 
 
