@@ -4,7 +4,8 @@
     "exclude": {
       "generic": ["^bus$", "^no$"],
       "named": [
-        "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban)$"
+        "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban)$",
+        "^bürgerbus$"
       ]
     }
   },
@@ -1172,7 +1173,7 @@
     {
       "displayName": "BASF-Werkverkehr",
       "id": "basfwerkverkehr-3b9544",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": [[8.42,49.52,5]]},
       "tags": {
         "network": "BASF-Werkverkehr",
         "route": "bus"
@@ -1731,15 +1732,6 @@
       "tags": {"network": "Bucks", "route": "bus"}
     },
     {
-      "displayName": "Bürgerbus",
-      "id": "burgerbus-3b9544",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "network": "Bürgerbus",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Burlington Transit",
       "id": "burlingtontransit-50b470",
       "locationSet": {"include": ["ca"]},
@@ -1880,9 +1872,11 @@
     {
       "displayName": "Busverkehr Emsland-Mitte/Nord",
       "id": "busverkehremslandmittenord-3b9544",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": [[7.32,52.75,50]]},
+      "matchNames": ["BV Emsland-Mitte/Nord"],
       "tags": {
         "network": "Busverkehr Emsland-Mitte/Nord",
+        "network:short": "BVE",
         "network:wikidata": "Q1017814",
         "network:wikipedia": "de:Busverkehr Emsland-Mitte/Nord",
         "route": "bus"
@@ -1907,17 +1901,6 @@
         "network:wikidata": "Q48748644",
         "network:wikipedia": "fr:Bus urbains thononais",
         "operator": "Société de transports de l'agglomération thononaise",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "BVE",
-      "id": "bve-bd0377",
-      "locationSet": {"include": ["de", "nl"]},
-      "tags": {
-        "network": "BVE",
-        "network:wikidata": "Q1017814",
-        "network:wikipedia": "de:Busverkehr Emsland-Mitte/Nord",
         "route": "bus"
       }
     },
