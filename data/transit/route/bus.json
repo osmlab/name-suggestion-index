@@ -4,7 +4,8 @@
     "exclude": {
       "generic": ["^bus$", "^no$"],
       "named": [
-        "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban)$"
+        "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban)$",
+        "^bürgerbus$"
       ]
     }
   },
@@ -1172,7 +1173,7 @@
     {
       "displayName": "BASF-Werkverkehr",
       "id": "basfwerkverkehr-3b9544",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": [[8.42,49.52,5]]},
       "tags": {
         "network": "BASF-Werkverkehr",
         "route": "bus"
@@ -1731,15 +1732,6 @@
       "tags": {"network": "Bucks", "route": "bus"}
     },
     {
-      "displayName": "Bürgerbus",
-      "id": "burgerbus-3b9544",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "network": "Bürgerbus",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Burlington Transit",
       "id": "burlingtontransit-50b470",
       "locationSet": {"include": ["ca"]},
@@ -1880,9 +1872,11 @@
     {
       "displayName": "Busverkehr Emsland-Mitte/Nord",
       "id": "busverkehremslandmittenord-3b9544",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": [[7.32,52.75,50]]},
+      "matchNames": ["BV Emsland-Mitte/Nord"],
       "tags": {
         "network": "Busverkehr Emsland-Mitte/Nord",
+        "network:short": "BVE",
         "network:wikidata": "Q1017814",
         "network:wikipedia": "de:Busverkehr Emsland-Mitte/Nord",
         "route": "bus"
@@ -1907,17 +1901,6 @@
         "network:wikidata": "Q48748644",
         "network:wikipedia": "fr:Bus urbains thononais",
         "operator": "Société de transports de l'agglomération thononaise",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "BVE",
-      "id": "bve-bd0377",
-      "locationSet": {"include": ["de", "nl"]},
-      "tags": {
-        "network": "BVE",
-        "network:wikidata": "Q1017814",
-        "network:wikipedia": "de:Busverkehr Emsland-Mitte/Nord",
         "route": "bus"
       }
     },
@@ -3313,11 +3296,12 @@
       }
     },
     {
-      "displayName": "DE_CO_BUS",
+      "displayName": "Verkehrsgemeinschaft Coburg",
       "id": "decobus-3b9544",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": [[10.96,50.26,50]]},
       "tags": {
-        "network": "DE_CO_BUS",
+        "network": "Verkehrsgemeinschaft Coburg",
+        "network:short": "VGC",
         "network:wikidata": "Q1434428",
         "network:wikipedia": "de:Verkehrsgemeinschaft Coburg",
         "route": "bus"
@@ -5399,15 +5383,6 @@
         "network": "IndyGo",
         "network:wikidata": "Q2196924",
         "network:wikipedia": "en:IndyGo",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Ingolstädter Verkehrsgesellschaft mbH",
-      "id": "ingolstadterverkehrsgesellschaftmbh-3b9544",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "network": "Ingolstädter Verkehrsgesellschaft mbH",
         "route": "bus"
       }
     },
@@ -14866,15 +14841,6 @@
       }
     },
     {
-      "displayName": "Verkehrsgemeinschaft Region Ingolstadt",
-      "id": "verkehrsgemeinschaftregioningolstadt-3b9544",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "network": "Verkehrsgemeinschaft Region Ingolstadt",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Verkehrsgemeinschaft Rendsburg-Eckernförde",
       "id": "verkehrsgemeinschaftrendsburgeckernforde-3b9544",
       "locationSet": {"include": ["de"]},
@@ -15333,10 +15299,15 @@
       }
     },
     {
-      "displayName": "VGI",
+      "displayName": "Verkehrsverbund Großraum Ingolstadt",
       "id": "vgi-3b9544",
       "locationSet": {"include": ["de"]},
-      "tags": {"network": "VGI", "route": "bus"}
+      "matchNames": ["Ingolstädter Verkehrsgesellschaft mbH", "invg", "Verkehrsgemeinschaft Region Ingolstadt"],
+      "tags": {
+        "network": "Verkehrsverbund Großraum Ingolstadt",
+        "network:short": "VGI",
+        "route": "bus"
+      }
     },
     {
       "displayName": "VGN",
@@ -15549,7 +15520,7 @@
     {
       "displayName": "Volkswagen Shuttles",
       "id": "volkswagenshuttles-3b9544",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": [[10.77,52.43,5]]},
       "tags": {
         "network": "Volkswagen Shuttles",
         "route": "bus"
