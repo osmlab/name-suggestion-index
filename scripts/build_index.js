@@ -584,6 +584,9 @@ function checkItems(t) {
         case 'amenity/restaurant':
           if (!tags.cuisine) { warnMissingTag.push([display(item), 'cuisine']); }
           break;
+        case 'amenity/training':
+          if (!tags.training) { warnMissingTag.push([display(item), 'training']); }
+          break;
         case 'amenity/vending_machine':
           if (!tags.vending) { warnMissingTag.push([display(item), 'vending']); }
           break;
@@ -600,7 +603,7 @@ function checkItems(t) {
       }
 
       // Warn if OSM tags contain odd punctuation or spacing..
-      ['cuisine', 'vending', 'beauty', 'gambling'].forEach(osmkey => {
+      ['beauty', 'cuisine', 'gambling', 'training', 'vending'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val && oddChars.test(val)) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
