@@ -11,9 +11,12 @@
         "^(мини)?[ -]?(магазин|маркет)$",
         "^[eé]pic(erie|ier)$",
         "^aliment(ation|ación|ar[ai])( g[eé]n[eé]rale)?$",
+        "^duka la vyakula$",
         "^kios(co|k|ko|que)?$",
         "^magazin\\s?(alimentar|mixt|non-stop)?",
+        "^nafaka$",
         "^pulper[ií]a$",
+        "^retail shop$",
         "^smíšené zboží$",
         "^tienda( de (barrio|abarrotes))?$",
         "^продукт(овый|и|ы)?( магазин)?$",
@@ -77,10 +80,29 @@
     },
     {
       "displayName": "7-Eleven",
-      "id": "7eleven-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "7eleven-dda8d6",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "matchNames": ["7-11", "seven eleven"],
       "matchTags": ["shop/supermarket"],
+      "tags": {
+        "brand": "7-Eleven",
+        "brand:wikidata": "Q259340",
+        "brand:wikipedia": "en:7-Eleven",
+        "name": "7-Eleven",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "7-Eleven (Norge)",
+      "id": "7eleven-2da37b",
+      "locationSet": {"include": ["no"]},
+      "matchNames": ["7-11", "seven eleven"],
+      "matchTags": ["shop/supermarket"],
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "7-Eleven",
         "brand:wikidata": "Q259340",
@@ -1305,6 +1327,8 @@
       "displayName": "ICA",
       "id": "ica-c2a4d7",
       "locationSet": {"include": ["no", "se"]},
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "ICA",
         "brand:wikidata": "Q1663776",
@@ -1391,19 +1415,6 @@
       "tags": {
         "brand": "Jiffy",
         "name": "Jiffy",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Joker",
-      "id": "joker-2da37b",
-      "locationSet": {"include": ["no"]},
-      "matchTags": ["shop/supermarket"],
-      "tags": {
-        "brand": "Joker",
-        "brand:wikidata": "Q716328",
-        "brand:wikipedia": "en:Joker (store)",
-        "name": "Joker",
         "shop": "convenience"
       }
     },
@@ -2694,8 +2705,11 @@
     },
     {
       "displayName": "Spar",
-      "id": "spar-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "spar-dda8d6",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "brand": "Spar",
         "brand:wikidata": "Q610492",
@@ -2705,14 +2719,46 @@
       }
     },
     {
+      "displayName": "Spar (Norge)",
+      "id": "spar-2da37b",
+      "locationSet": {"include": ["no"]},
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "Spar",
+        "brand:wikidata": "Q610492",
+        "brand:wikipedia": "no:Spar",
+        "name": "Spar",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Spar Express",
-      "id": "sparexpress-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "sparexpress-dda8d6",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "Spar",
         "brand:wikidata": "Q610492",
         "brand:wikipedia": "en:SPAR (retailer)",
+        "name": "Spar Express",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Spar Express (Norge)",
+      "id": "sparexpress-2da37b",
+      "locationSet": {"include": ["no"]},
+      "matchTags": ["shop/supermarket"],
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "Spar",
+        "brand:wikidata": "Q610492",
+        "brand:wikipedia": "no:Spar",
         "name": "Spar Express",
         "shop": "convenience"
       }

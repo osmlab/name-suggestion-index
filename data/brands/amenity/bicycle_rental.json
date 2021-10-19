@@ -1,6 +1,7 @@
 {
   "properties": {
     "path": "brands/amenity/bicycle_rental",
+    "preserveTags": ["^name"],
     "exclude": {
       "generic": [
         "^bicycle rental$",
@@ -21,16 +22,6 @@
         "brand:wikipedia": "it:TOBike",
         "name": "[TO]BIKE",
         "operator": "[TO]BIKE"
-      }
-    },
-    {
-      "displayName": "+Bike",
-      "id": "bike-c7dd41",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "+Bike",
-        "network": "+Bike"
       }
     },
     {
@@ -124,14 +115,23 @@
     },
     {
       "displayName": "Bay Wheels",
-      "id": "baywheels-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "baywheels-e229af",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "matchNames": [
+        "bay area bike share",
+        "ford gobike"
+      ],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Bay Wheels",
         "brand:wikidata": "Q16971391",
         "brand:wikipedia": "en:Bay Wheels",
-        "name": "Bay Wheels"
+        "name": "Bay Wheels",
+        "operator": "Motivate",
+        "operator:wikidata": "Q4735954",
+        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
@@ -599,8 +599,10 @@
     },
     {
       "displayName": "Biketown",
-      "id": "biketown-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "biketown-f8e6b8",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Biketown",
@@ -946,8 +948,14 @@
     },
     {
       "displayName": "Capital Bikeshare",
-      "id": "capitalbikeshare-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "capitalbikeshare-f7b29d",
+      "locationSet": {
+        "include": [
+          "us-dc.geojson",
+          "us-md.geojson",
+          "us-va.geojson"
+        ]
+      },
       "matchNames": ["cabi"],
       "tags": {
         "amenity": "bicycle_rental",
@@ -1164,8 +1172,10 @@
     },
     {
       "displayName": "CoGo Bike Share",
-      "id": "cogobikeshare-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "cogobikeshare-919639",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "CoGo Bike Share",
@@ -1263,8 +1273,10 @@
     },
     {
       "displayName": "Divvy",
-      "id": "divvy-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "divvy-6b0679",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Divvy",
@@ -1442,19 +1454,6 @@
         "operator": "Nextbike",
         "operator:wikidata": "Q2351279",
         "operator:wikipedia": "en:Nextbike"
-      }
-    },
-    {
-      "displayName": "Ford GoBike",
-      "id": "fordgobike-97ea79",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "Ford GoBike",
-        "network": "Ford GoBike",
-        "operator": "Motivate",
-        "operator:wikidata": "Q4735954",
-        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {

@@ -7,7 +7,9 @@
         "^(mini|super)?\\s?(market|mart|mercado)( municipal)?$",
         "^(супер)?(магазин|маркет)$",
         "^(スーパー|ハイパー)?マーケット$",
+        "^duka la vyakula$",
         "^élelmiszer(bolt)?$",
+        "^nafaka$",
         "^tienda( de (barrio|abarrotes))?$",
         "^продукт[иы]?$",
         "^универ(маг|сам)$",
@@ -706,6 +708,18 @@
       }
     },
     {
+      "displayName": "Boon's Markt",
+      "id": "boonsmarkt-5811b5",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "brand": "Boon's Markt",
+        "brand:wikidata": "Q97704873",
+        "brand:wikipedia": "nl:Boon's Markt",
+        "name": "Boon's Markt",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Booths",
       "id": "booths-a8278b",
       "locationSet": {"include": ["gb"]},
@@ -781,6 +795,7 @@
       "displayName": "Bunnpris",
       "id": "bunnpris-ed9dd5",
       "locationSet": {"include": ["no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Bunnpris",
         "brand:wikidata": "Q1774634",
@@ -1278,6 +1293,7 @@
         "lilla coop",
         "stora coop"
       ],
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Coop (Sweden)",
         "brand:wikidata": "Q15229319",
@@ -1315,6 +1331,7 @@
       "displayName": "Coop Marked",
       "id": "coopmarked-ed9dd5",
       "locationSet": {"include": ["no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Coop Marked",
         "brand:wikidata": "Q5167703",
@@ -1326,6 +1343,7 @@
       "displayName": "Coop Mega",
       "id": "coopmega-ed9dd5",
       "locationSet": {"include": ["no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Coop Mega",
         "brand:wikidata": "Q4581010",
@@ -1338,6 +1356,7 @@
       "displayName": "Coop Prix",
       "id": "coopprix-ed9dd5",
       "locationSet": {"include": ["no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Coop Prix",
         "brand:wikidata": "Q5167705",
@@ -1810,6 +1829,22 @@
       }
     },
     {
+      "displayName": "E-Mart",
+      "id": "emart-12b833",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "brand": "E-Mart",
+        "brand:en": "E-Mart",
+        "brand:ko": "이마트",
+        "brand:wikidata": "Q490371",
+        "brand:wikipedia": "ko:이마트",
+        "name": "E-Mart",
+        "name:en": "E-Mart",
+        "name:ko": "이마트",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "E. Leclerc",
       "id": "eleclerc-111b05",
       "locationSet": {
@@ -1999,7 +2034,7 @@
       "tags": {
         "brand": "EMTÉ",
         "brand:wikidata": "Q3119122",
-        "brand:wikipedia": "en:EMTÉ",
+        "brand:wikipedia": "nl:EMTÉ Supermarkten",
         "name": "EMTÉ",
         "shop": "supermarket"
       }
@@ -2084,6 +2119,7 @@
       "locationSet": {"include": ["no"]},
       "matchNames": ["coop extra"],
       "matchTags": ["shop/convenience"],
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Extra",
         "brand:wikidata": "Q11964085",
@@ -2739,6 +2775,7 @@
       "displayName": "Hemköp",
       "id": "hemkop-c57afb",
       "locationSet": {"include": ["se"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Hemköp",
         "brand:wikidata": "Q10521746",
@@ -2907,6 +2944,7 @@
       "id": "ica-e39865",
       "locationSet": {"include": ["no", "se"]},
       "matchNames": ["ica supermarket"],
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "ICA",
         "brand:wikidata": "Q1663776",
@@ -2919,6 +2957,7 @@
       "displayName": "ICA Kvantum",
       "id": "icakvantum-c57afb",
       "locationSet": {"include": ["se"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "ICA Kvantum",
         "brand:wikidata": "Q1663776",
@@ -2931,6 +2970,7 @@
       "displayName": "ICA Maxi",
       "id": "icamaxi-e39865",
       "locationSet": {"include": ["no", "se"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "ICA Maxi",
         "brand:wikidata": "Q1663776",
@@ -3130,13 +3170,28 @@
       }
     },
     {
+      "displayName": "Joker",
+      "id": "joker-ed9dd5",
+      "locationSet": {"include": ["no"]},
+      "matchTags": ["shop/convenience"],
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "Joker",
+        "brand:wikidata": "Q716328",
+        "brand:wikipedia": "en:Joker (store)",
+        "name": "Joker",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Jumbo",
       "id": "jumbo-1cf55d",
       "locationSet": {"include": ["be", "nl"]},
+      "matchNames": ["jumbo supermarkt"],
       "tags": {
         "brand": "Jumbo",
         "brand:wikidata": "Q2262314",
-        "brand:wikipedia": "en:Jumbo (supermarket)",
+        "brand:wikipedia": "nl:Jumbo Supermarkten",
         "name": "Jumbo",
         "shop": "supermarket"
       }
@@ -3262,6 +3317,7 @@
       "displayName": "Kiwi",
       "id": "kiwi-2b56aa",
       "locationSet": {"include": ["dk", "no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Kiwi",
         "brand:wikidata": "Q1613639",
@@ -3812,6 +3868,18 @@
       }
     },
     {
+      "displayName": "Marqt",
+      "id": "marqt-5811b5",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "brand": "Marqt",
+        "brand:wikidata": "Q55361811",
+        "brand:wikipedia": "nl:Marqt",
+        "name": "Marqt",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Martin's Super Markets",
       "id": "martinssupermarkets-dde59d",
       "locationSet": {"include": ["us"]},
@@ -3853,6 +3921,7 @@
       "displayName": "Matkroken",
       "id": "matkroken-ed9dd5",
       "locationSet": {"include": ["no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Matkroken",
         "brand:wikidata": "Q11988679",
@@ -3954,6 +4023,18 @@
       }
     },
     {
+      "displayName": "MCD",
+      "id": "mcd-5811b5",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "brand": "MCD",
+        "brand:wikidata": "Q46936596",
+        "brand:wikipedia": "nl:MCD (supermarkt)",
+        "name": "MCD",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "MD",
       "id": "md-0cb133",
       "locationSet": {"include": ["it"]},
@@ -4042,6 +4123,7 @@
       "displayName": "Meny",
       "id": "meny-2b56aa",
       "locationSet": {"include": ["dk", "no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Meny",
         "brand:wikidata": "Q10581720",
@@ -4322,6 +4404,7 @@
       "displayName": "Nærbutikken",
       "id": "naerbutikken-ed9dd5",
       "locationSet": {"include": ["no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Nærbutikken",
         "shop": "supermarket"
@@ -5131,6 +5214,7 @@
       "displayName": "Rema 1000",
       "id": "rema1000-2b56aa",
       "locationSet": {"include": ["dk", "no"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Rema 1000",
         "brand:wikidata": "Q28459",
@@ -5560,12 +5644,29 @@
     },
     {
       "displayName": "Spar",
-      "id": "spar-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "spar-f7b7b7",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "brand": "Spar",
         "brand:wikidata": "Q610492",
         "brand:wikipedia": "en:SPAR (retailer)",
+        "name": "Spar",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Spar (Norge)",
+      "id": "spar-ed9dd5",
+      "locationSet": {"include": ["no"]},
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "Spar",
+        "brand:wikidata": "Q610492",
+        "brand:wikipedia": "no:Spar",
         "name": "Spar",
         "shop": "supermarket"
       }
@@ -6487,6 +6588,7 @@
       "displayName": "Willys",
       "id": "willys-c57afb",
       "locationSet": {"include": ["se"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Willys",
         "brand:wikidata": "Q10720214",
@@ -7624,6 +7726,16 @@
       "tags": {
         "brand": "فروشگاه افق کوروش",
         "name": "فروشگاه افق کوروش",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "فروشگاه رفاه",
+      "id": "9ddc31-c29ef9",
+      "locationSet": {"include": ["ir"]},
+      "tags": {
+        "brand": "فروشگاه رفاه",
+        "name": "فروشگاه رفاه",
         "shop": "supermarket"
       }
     },
