@@ -1,6 +1,7 @@
 {
   "properties": {
     "path": "brands/amenity/bicycle_rental",
+    "preserveTags": ["^name"],
     "exclude": {
       "generic": [
         "^bicycle rental$",
@@ -21,16 +22,6 @@
         "brand:wikipedia": "it:TOBike",
         "name": "[TO]BIKE",
         "operator": "[TO]BIKE"
-      }
-    },
-    {
-      "displayName": "+Bike",
-      "id": "bike-c7dd41",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "+Bike",
-        "network": "+Bike"
       }
     },
     {
@@ -92,8 +83,10 @@
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Århus Kommune",
+        "brand:wikidata": "Q240262",
         "name": "Århus Kommune",
-        "operator": "Århus Kommune"
+        "operator": "Århus Kommune",
+        "operator:wikidata": "Q240262"
       }
     },
     {
@@ -103,7 +96,9 @@
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "BA Ecobici",
+        "brand:wikidata": "Q18419538",
         "network": "BA Ecobici",
+        "network:wikidata": "Q18419538",
         "operator": "Tembici"
       }
     },
@@ -120,14 +115,23 @@
     },
     {
       "displayName": "Bay Wheels",
-      "id": "baywheels-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "baywheels-e229af",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "matchNames": [
+        "bay area bike share",
+        "ford gobike"
+      ],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Bay Wheels",
         "brand:wikidata": "Q16971391",
         "brand:wikipedia": "en:Bay Wheels",
-        "name": "Bay Wheels"
+        "name": "Bay Wheels",
+        "operator": "Motivate",
+        "operator:wikidata": "Q4735954",
+        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
@@ -343,8 +347,11 @@
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Bicincittà",
+        "brand:wikidata": "Q108937937",
         "network": "Bicincittà",
-        "operator": "Bicincittà"
+        "network:wikidata": "Q108937937",
+        "operator": "Bicincittà",
+        "operator:wikidata": "Q108937937"
       }
     },
     {
@@ -592,8 +599,10 @@
     },
     {
       "displayName": "Biketown",
-      "id": "biketown-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "biketown-f8e6b8",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Biketown",
@@ -674,7 +683,8 @@
         "amenity": "bicycle_rental",
         "brand": "BiTS",
         "network": "BiTS",
-        "operator": "Bicincittà"
+        "operator": "Bicincittà",
+        "operator:wikidata": "Q108937937"
       }
     },
     {
@@ -755,9 +765,12 @@
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Boseh",
+        "brand:wikidata": "Q56392276",
         "name": "Boseh",
         "network": "Boseh",
-        "operator": "Boseh"
+        "network:wikidata": "Q56392276",
+        "operator": "Boseh",
+        "operator:wikidata": "Q56392276"
       }
     },
     {
@@ -937,8 +950,14 @@
     },
     {
       "displayName": "Capital Bikeshare",
-      "id": "capitalbikeshare-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "capitalbikeshare-f7b29d",
+      "locationSet": {
+        "include": [
+          "us-dc.geojson",
+          "us-md.geojson",
+          "us-va.geojson"
+        ]
+      },
       "matchNames": ["cabi"],
       "tags": {
         "amenity": "bicycle_rental",
@@ -994,7 +1013,8 @@
         "amenity": "bicycle_rental",
         "brand": "CicloPi",
         "network": "CicloPi",
-        "operator": "BicinCittà"
+        "operator": "BicinCittà",
+        "operator:wikidata": "Q108937937"
       }
     },
     {
@@ -1154,8 +1174,10 @@
     },
     {
       "displayName": "CoGo Bike Share",
-      "id": "cogobikeshare-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "cogobikeshare-919639",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "CoGo Bike Share",
@@ -1253,8 +1275,10 @@
     },
     {
       "displayName": "Divvy",
-      "id": "divvy-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "divvy-6b0679",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Divvy",
@@ -1435,19 +1459,6 @@
       }
     },
     {
-      "displayName": "Ford GoBike",
-      "id": "fordgobike-97ea79",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "Ford GoBike",
-        "network": "Ford GoBike",
-        "operator": "Motivate",
-        "operator:wikidata": "Q4735954",
-        "operator:wikipedia": "en:Motivate (company)"
-      }
-    },
-    {
       "displayName": "frelo",
       "id": "frelo-937152",
       "locationSet": {"include": ["de"]},
@@ -1542,7 +1553,8 @@
         "brand": "GoodBike Padova",
         "brand:wikidata": "Q105555683",
         "network": "GoodBike Padova",
-        "operator": "Bicincittà"
+        "operator": "Bicincittà",
+        "operator:wikidata": "Q108937937"
       }
     },
     {
@@ -2219,7 +2231,8 @@
         "amenity": "bicycle_rental",
         "brand": "MoBike",
         "network": "MoBike",
-        "operator": "BicinCittà"
+        "operator": "BicinCittà",
+        "operator:wikidata": "Q108937937"
       }
     },
     {
@@ -2873,7 +2886,8 @@
         "amenity": "bicycle_rental",
         "brand": "SiPedala",
         "network": "SiPedala",
-        "operator": "BicinCittà"
+        "operator": "BicinCittà",
+        "operator:wikidata": "Q108937937"
       }
     },
     {

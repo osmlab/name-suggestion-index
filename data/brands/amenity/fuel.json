@@ -16,7 +16,9 @@
         "^加油站$"
       ],
       "named": [
-        "^(ind[ei]pend(ent|\\.)|posto|spbu)$"
+        "^(ind[ei]pend(ent|\\.)|posto|spbu)$",
+        "^bandera blanca$",
+        "^branca$"
       ]
     }
   },
@@ -35,10 +37,10 @@
     },
     {
       "displayName": "7-Eleven",
-      "id": "7eleven-16b3c2",
+      "id": "7eleven-d19133",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["pl"]
+        "exclude": ["no", "pl"]
       },
       "matchNames": ["7-11", "seven eleven"],
       "tags": {
@@ -46,6 +48,21 @@
         "brand": "7-Eleven",
         "brand:wikidata": "Q259340",
         "brand:wikipedia": "en:7-Eleven",
+        "name": "7-Eleven"
+      }
+    },
+    {
+      "displayName": "7-Eleven (Norge)",
+      "id": "7eleven-38a742",
+      "locationSet": {"include": ["no"]},
+      "matchNames": ["7-11", "seven eleven"],
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
+      "preserveTags": ["^name"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "7-Eleven",
+        "brand:wikidata": "Q259340",
+        "brand:wikipedia": "no:7-Eleven",
         "name": "7-Eleven"
       }
     },
@@ -175,12 +192,19 @@
     },
     {
       "displayName": "Ale",
-      "id": "ale-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "ale-c14748",
+      "locationSet": {"include": ["br"]},
+      "matchNames": [
+        "posto ale",
+        "posto alesat",
+        "postos ale",
+        "postos satélite"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "Ale",
-        "name": "Ale"
+        "brand:wikidata": "Q9600717",
+        "brand:wikipedia": "pt:AleSat Combustíveis"
       }
     },
     {
@@ -232,11 +256,12 @@
     },
     {
       "displayName": "Alves Bandeira",
-      "id": "alvesbandeira-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "alvesbandeira-bb4e16",
+      "locationSet": {"include": ["pt"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Alves Bandeira",
+        "brand:wikidata": "Q109012157",
         "name": "Alves Bandeira"
       }
     },
@@ -562,19 +587,6 @@
       }
     },
     {
-      "displayName": "Bandera Blanca",
-      "id": "banderablanca-16b3c2",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["pl"]
-      },
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Bandera Blanca",
-        "name": "Bandera Blanca"
-      }
-    },
-    {
       "displayName": "Bangchak",
       "id": "bangchak-16b3c2",
       "locationSet": {
@@ -775,7 +787,8 @@
       "matchNames": [
         "br petrobras",
         "petrobras",
-        "posto br"
+        "posto br",
+        "postos petrobras"
       ],
       "tags": {
         "amenity": "fuel",
@@ -783,16 +796,6 @@
         "brand:wikidata": "Q4836468",
         "brand:wikipedia": "pt:Vibra Energia",
         "name": "BR"
-      }
-    },
-    {
-      "displayName": "Branca",
-      "id": "branca-b3d110",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Branca",
-        "name": "Branca"
       }
     },
     {
@@ -2222,8 +2225,7 @@
         "amenity": "fuel",
         "brand": "Ipiranga",
         "brand:wikidata": "Q2081136",
-        "brand:wikipedia": "pt:Ipiranga (empresa)",
-        "name": "Ipiranga"
+        "brand:wikipedia": "pt:Ipiranga (empresa)"
       }
     },
     {
@@ -4897,6 +4899,30 @@
         "brand": "Ziz",
         "brand:wikidata": "Q88393228",
         "name": "Ziz"
+      }
+    },
+    {
+      "displayName": "ΕΛΙΝΟΙΛ",
+      "id": "a9320e-c67f2c",
+      "locationSet": {"include": ["gr"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "ΕΛΙΝΟΙΛ",
+        "brand:wikidata": "Q12876543",
+        "brand:wikipedia": "el:ΕΛΙΝΟΙΛ",
+        "name": "ΕΛΙΝΟΙΛ"
+      }
+    },
+    {
+      "displayName": "ΕΤΕΚΑ",
+      "id": "1b5559-c67f2c",
+      "locationSet": {"include": ["gr"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "ΕΤΕΚΑ",
+        "brand:wikidata": "Q31283952",
+        "brand:wikipedia": "el:ΕΤΕΚΑ",
+        "name": "ΕΤΕΚΑ"
       }
     },
     {
