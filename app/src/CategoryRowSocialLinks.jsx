@@ -9,29 +9,11 @@ import { faSnapchatSquare } from '@fortawesome/free-brands-svg-icons';
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faVk } from '@fortawesome/free-brands-svg-icons';
 import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
-import { faUnlock } from '@fortawesome/free-solid-svg-icons'; // SSL Unlock icon.
-import { faLock } from '@fortawesome/free-solid-svg-icons'; //SSL lock icon.
-
 
 export default function CategoryRowSocialLinks(props) {
   let items = [];
   let href;
-  let URLcheck; // Used for TRUE / FALSE result from URL Check.
 
-  if (props.website) {
-    href = props.website;
-    URLcheck = href.startsWith("https://"); // Does the URL Start with a secure link?
-
-    if (URLcheck === true) {
-      items.push(
-        <span title='ssl web site'><FontAwesomeIcon icon={faLock} size='lg' /></span>
-      );
-    } else {
-      items.push(
-        <span title='non-ssl web site'><FontAwesomeIcon icon={faUnlock} size='lg' /></span>
-      );
-    }
-  }
   if (props.facebook) {
     href = 'https://www.facebook.com/' + props.facebook;
     items.push(

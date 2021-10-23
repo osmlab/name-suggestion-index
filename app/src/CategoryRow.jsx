@@ -1,8 +1,11 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
 import CategoryRowSocialLinks from './CategoryRowSocialLinks';
 
+import { faUnlock } from '@fortawesome/free-solid-svg-icons'; // SSL Unlock icon.
+import { faLock }   from '@fortawesome/free-solid-svg-icons'; // SSL lock icon.
 
 export default function CategoryRow(props) {
   const data = props.data;
@@ -182,7 +185,6 @@ relation[${k}=${v}][network:wikidata=${qid}]
   function locoDisplay(locationSet, name) {
     const val = JSON.stringify(locationSet);
     const q = encodeURIComponent(val);
-//    const href = `https://ideditor.github.io/location-conflation/?referrer=nsi&locationSet=${q}`;
     const href = `https://location-conflation.com/?referrer=nsi&locationSet=${q}`;
     const title = `View LocationSet for ${name}`;
     return val && (
@@ -245,13 +247,20 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
 
   function siteLink(href) {
+    let FAicon,FAsecure,FAinsecure;
+    FAsecure = <span title='ssl web site'><FontAwesomeIcon icon={faLock} size='lg' /></span>;
+    FAinsecure = <span title='non-ssl web site'><FontAwesomeIcon icon={faUnlock} size='lg' /></span>;
+
+    if (href)
+      FAicon = (href.startsWith("https://")) ? FAsecure : FAinsecure;
+
     return href && (
       <div className='viewlink'>
       <a target='_blank' href={href}>{href}</a>
+      {FAicon}
       </div>
     );
   }
-
 
   function displayTags(tags) {
     let result = '';
