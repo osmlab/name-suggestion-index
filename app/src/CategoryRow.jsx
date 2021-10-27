@@ -268,7 +268,16 @@ relation[${k}=${v}][network:wikidata=${qid}]
       result += `${k}=${tags[k]}
 `;
     });
+
+    result += '<hr/>';
+
+    if (item.matchNames)
+      result += '<strong>matchNames</strong>:<br/>' + item.matchNames + '<br/>';
+    if (item.matchTags)
+      result += '<strong>matchTags</strong>:<br/>' + item.matchTags + '<br/>';
+    if (item.note)
+      result += '<strong>Note</strong>:<br/>' + item.note;
+
     return result;
   }
-
 };
