@@ -108,11 +108,13 @@ input:focus {
 
 /* Sections */
 #header {
-  align-items: center;
+  display: flex;
+  align-items: start;
   padding: 5px 20px;
   background: #111;
   color: #ddd;
   font-weight: bold;
+  flex-direction: column;
 }
 #header a:visited, #header a       { color: #aaf; }
 #header a:hover, #header a:active  { color: #ccf; }
@@ -137,7 +139,7 @@ input:focus {
 }
 
 #darkmode {
-  flex: 0 0 120px;
+  flex: 0 0 90px;
   padding: 5px 10px;
   align-items: center;
   justify-content: flex-start;
@@ -146,6 +148,18 @@ input:focus {
 }
 #darkmode > svg {
   margin: 0 5px;
+}
+
+@media screen and (min-width: 614px) {
+  div#header {
+    flex-direction: row;
+    align-items: center;
+  }
+  div#darkmode {
+    display: flex;
+    padding: 0 28px;
+    align-items: center;
+  }
 }
 
 #darkmode > svg.fa-sun { color: gold; }
@@ -427,3 +441,4 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
