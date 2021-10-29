@@ -124,7 +124,7 @@ input:focus {
 }
 #treeswitcher {
   flex: 0 1 auto;
-  padding: 0 30px;
+  padding: 1em 0;
 }
 #treeswitcher ul {
   flex: 1;
@@ -138,11 +138,10 @@ input:focus {
 
 #darkmode {
   flex: 0 0 120px;
-  padding: 5px 10px;
+  padding: 1em 0;
   align-items: center;
   justify-content: flex-start;
   font-size: 16px;
-  padding: 0 20px;
 }
 #darkmode > svg {
   margin: 0 5px;
@@ -163,6 +162,14 @@ input:focus {
   padding: 20px;
   color: #aaa;
   font-size: 12px;
+}
+@media (min-width: 640px) {
+  div#treeswitcher {
+    padding: 0em 1em;
+  }
+  div#darkmode {
+    padding: 0em 1em;
+  }
 }
 
 
