@@ -10,7 +10,6 @@ import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faVk } from '@fortawesome/free-brands-svg-icons';
 import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 
-
 export default function CategoryRowSocialLinks(props) {
   let items = [];
   let href;

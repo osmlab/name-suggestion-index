@@ -85,8 +85,27 @@
     },
     {
       "displayName": "Europcar",
-      "id": "europcar-d9531a",
-      "locationSet": {"include": ["001"]},
+      "id": "europcar-802794",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["dk", "fi", "no", "se"]
+      },
+      "tags": {
+        "amenity": "car_rental",
+        "brand": "Europcar",
+        "brand:wikidata": "Q1376256",
+        "brand:wikipedia": "en:Europcar",
+        "name": "Europcar"
+      }
+    },
+    {
+      "displayName": "Europcar (Scandinavia)",
+      "id": "europcar-95cde7",
+      "locationSet": {
+        "include": ["dk", "fi", "no", "se"]
+      },
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "car_rental",
         "brand": "Europcar",
