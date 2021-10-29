@@ -168,13 +168,16 @@ input:focus {
 
 /* Filters */
 .filters {
-  display: inline-block;
-  background: #f6f6f6;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-top: 20px;
-  padding: 10px;
-  max-width: 1000px;
+ display: flex;
+ margin: 2em 0;
+ padding: 0.4em 0.8em;
+ flex-direction: column;
+ max-width: auto;
+ border-radius: 4px;
+}
+.filters > * {
+  margin: 0;
+  padding: 0.6em 0.8em;
 }
 .dark .filters {
   background: #464646;
@@ -189,18 +192,21 @@ input:focus {
   border: 1px solid #556;
 }
 .filters .filterby {
-  margin: 8px;
+  margin: 0;
   font-weight: bold;
 }
-.filters .field {
-  margin: 0 10px;
+.filters .field label { margin-right: 0.5em; }
+.filters .field { margin: 0; }
+.filters .field button.clearFilters { margin: 0 !important; }
+
+@media (min-width: 640px) {
+  .filters {
+    flex-direction: row;
+    align-items: center;
+  }
 }
-.filters .field label {
-  margin: 0 5px;
-}
-.filters .field button.clearFilters {
-  margin-left: 15px;
-}
+
+
 
 /* Overview Page */
 div.container {
