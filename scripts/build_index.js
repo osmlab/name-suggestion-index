@@ -386,6 +386,21 @@ function mergeItems() {
         if (t === 'brands') {
           name = tags.brand || tags.name;
 
+          // Seed missing brand tags (for a file that we copied over from the 'operator' tree)
+          if (/^amenity\/post/.test(kv)) {  // post_office, post_box, post_depot only!
+            Object.keys(tags).forEach(osmkey => {
+              if (/operator/.test(osmkey)) {
+                if (osmkey === 'operator:type') return;
+                const operatorkey = osmkey;
+                const brandkey = operatorkey.replace('operator', 'brand');   // `operator`->`brand`, `operator:ru`->`brand:ru`, etc.
+                if (!tags[brandkey]) {
+                  tags[brandkey] = tags[operatorkey];
+                  delete tags[operatorkey];  // remove the redundancy
+                }
+              }
+            });
+          }
+
         } else if (t === 'flags') {
           name = tags['flag:name'];
 
