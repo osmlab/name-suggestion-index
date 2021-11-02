@@ -14,14 +14,6 @@
   "items": [
     {
       "templateExclude": ["upsstore"],
-      "templateSource": "operators/amenity/post_office",
-      "templateTags": {
-        "amenity": "post_box",
-        "name": ""
-      }
-    },
-    {
-      "templateExclude": ["upsstore"],
       "templateSource": "brands/amenity/post_office",
       "templateTags": {
         "amenity": "post_box",
@@ -32,12 +24,23 @@
       }
     },
     {
+      "templateSource": "operators/amenity/post_office",
+      "templateTags": {
+        "amenity": "post_box",
+        "name": ""
+      }
+    },
+    {
       "displayName": "UPS",
       "id": "ups-b58716",
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/4866",
       "locationSet": {"include": ["001"]},
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/4866",
       "tags": {
         "amenity": "post_box",
+        "brand": "UPS",
+        "brand:type": "private",
+        "brand:wikidata": "Q155026",
+        "brand:wikipedia": "en:United Parcel Service",
         "official_name": "United Parcel Service",
         "operator": "UPS",
         "operator:type": "private",
