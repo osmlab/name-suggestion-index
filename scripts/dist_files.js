@@ -74,7 +74,7 @@ function buildAll() {
   ['brands', 'operators', 'transit'].forEach(tree => {
     ['keep', 'discard'].forEach(list => {
       refreshMeta(`filtered/${tree}_${list}.json`);
-    })
+    });
   });
 
   // Write `nsi.json` as a single file containing everything by path

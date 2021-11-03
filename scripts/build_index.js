@@ -5,7 +5,6 @@ import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@ideditor/location-conflation';
 import safeRegex from 'safe-regex';
-import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 const withLocale = localeCompare('en-US');
 
