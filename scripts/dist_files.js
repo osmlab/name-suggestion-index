@@ -71,6 +71,12 @@ function buildAll() {
   refreshMeta('dissolved.json');
   refreshMeta('featureCollection.json');
 
+  ['brands', 'operators', 'transit'].forEach(tree => {
+    ['keep', 'discard'].forEach(list => {
+      refreshMeta(`filtered/${tree}_${list}.json`);
+    })
+  });
+
   // Write `nsi.json` as a single file containing everything by path
   const output = { nsi: _cache.path };
   writeFileWithMeta('dist/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
@@ -97,6 +103,10 @@ function copyWithMeta(filename) {
 function refreshMeta(filename) {
   const contents = fs.readFileSync(`dist/${filename}`, 'utf8');
   let json = JSON5.parse(contents);
+
+  // Preserve any existing metadata, but replace the calculated properties
+  let preserved = Object.assign({}, json._meta);
+  ['version', 'generated', 'url', 'hash'].forEach(prop => delete preserved[prop]);
   delete json._meta;
 
   let options = {};
@@ -105,7 +115,7 @@ function refreshMeta(filename) {
   } else if (filename === 'featureCollection.json') {
     options = { maxLength: 9999 };
   }
-  writeFileWithMeta(`dist/${filename}`, stringify(json, options) + '\n');
+  writeFileWithMeta(`dist/${filename}`, stringify(json, options) + '\n', preserved);
 }
 
 
