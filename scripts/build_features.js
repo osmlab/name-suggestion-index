@@ -37,8 +37,9 @@ function buildAll() {
   console.time(END);
 
   const features = collectFeatures();
-  let featureCollection = { type: 'FeatureCollection', features: features };
-  writeFileWithMeta('dist/featureCollection.json', stringify(featureCollection, { maxLength: 9999 }) + '\n');
+  const featureCollection = { type: 'FeatureCollection', features: features };
+  const stringified = stringify(featureCollection, { maxLength: 9999 }) + '\n';
+  writeFileWithMeta('dist/featureCollection.json', stringified);
 
   console.timeEnd(END);
 }

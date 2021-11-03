@@ -16,9 +16,11 @@ import { Matcher } from '../lib/matcher.js';
 import { sortObject } from '../lib/sort_object.js';
 import { stemmer } from '../lib/stemmer.js';
 import { validate } from '../lib/validate.js';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
 // JSON
+import packageJSON from '../package.json';
 import treesJSON from '../config/trees.json';
 const trees = treesJSON.trees;
 
@@ -41,6 +43,7 @@ checkItems('flags');
 checkItems('operators');
 checkItems('transit');
 
+let _currCollectionDate = 0;
 let _collected = {};
 let _discard = {};
 let _keep = {};
@@ -141,6 +144,12 @@ function checkRegex(fileName, pattern) {
 // Load lists of tags collected from OSM from https://github.com/ideditor/nsi-collector
 //
 function loadCollected() {
+  const rawVersion = packageJSON.devDependencies['@ideditor/nsi-collector'];
+  const matched = rawVersion.match(/[~^]?\d+\.\d+\.(\d+)/);
+  if (matched) {
+    _currCollectionDate = +matched[1];
+  }
+
   ['name', 'brand', 'operator', 'network'].forEach(tag => {
     const file = `./node_modules/@ideditor/nsi-collector/dist/osm/${tag}s_all.json`;
     const contents = fs.readFileSync(file, 'utf8');
@@ -172,11 +181,26 @@ function filterCollected() {
     const tree = _config.trees[t];
     if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) return;
 
-    // Start clean
-    shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
-
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
+    let lastCollectionDate = -1;
+    let contents, data;
+
+    try {  // Load existing "keep" file
+      contents = fs.readFileSync(`dist/filtered/${t}_keep.json`, 'utf8');
+      data = JSON5.parse(contents);
+      lastCollectionDate = +(data._meta.collectionDate) || -1;
+      keep = _keep[t] = data.keep;
+    } catch (err) {
+      /* ignore - we can overwrite the keep file */
+    }
+
+    // Exit here if:
+    // 1. we have data, and..
+    // 2. that data is fresh (newer or same as installed nsi-collector dependency) - #5519
+    if (Object.keys(keep).length && lastCollectionDate >= _currCollectionDate) return;
+
+    // Continue, do filtering, and replace keep/discard files..
 
     // All the collected "names" from OSM start out in discard..
     tree.sourceTags.forEach(tag => {
@@ -231,9 +255,14 @@ function filterCollected() {
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sortObject(discard)) + '\n');
-    fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sortObject(keep)) + '\n');
+    let stringified;
+    const meta = { collectionDate: _currCollectionDate.toString(10) };
 
+    stringified = stringify({ discard: sortObject(discard) }) + '\n';
+    writeFileWithMeta(`dist/filtered/${t}_discard.json`, stringified, meta);
+
+    stringified = stringify({ keep: sortObject(keep) }) + '\n';
+    writeFileWithMeta(`dist/filtered/${t}_keep.json`, stringified, meta);
   });
 
   console.timeEnd(END);
