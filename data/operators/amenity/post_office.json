@@ -352,22 +352,6 @@
       }
     },
     {
-      "displayName": "DHL",
-      "id": "dhl-91a3cc",
-      "locationSet": {"include": ["001"]},
-      "matchNames": [
-        "dhl paketshop",
-        "dhl vertrieb"
-      ],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "DHL",
-        "operator:type": "private",
-        "operator:wikidata": "Q489815",
-        "operator:wikipedia": "en:DHL"
-      }
-    },
-    {
       "displayName": "Die Post",
       "id": "diepost-62a267",
       "locationSet": {"include": ["ch"]},
@@ -401,26 +385,6 @@
       }
     },
     {
-      "displayName": "DPD",
-      "id": "dpd-f556cb",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["bg"]
-      },
-      "matchNames": [
-        "direct parcel distribution cz sro.",
-        "dpd dynamic parcel distribution",
-        "dpd paketshop"
-      ],
-      "note": "Named 'Speedy' in Bulgaria, but uses the DPD logo - #4674",
-      "tags": {
-        "amenity": "post_office",
-        "operator": "DPD",
-        "operator:wikidata": "Q541030",
-        "operator:wikipedia": "de:DPDgroup"
-      }
-    },
-    {
       "displayName": "Eesti Post",
       "id": "eestipost-df7ea1",
       "locationSet": {"include": ["ee"]},
@@ -451,19 +415,6 @@
         "operator": "Fancourier",
         "operator:wikidata": "Q12727984",
         "operator:wikipedia": "ro:FAN Courier Express"
-      }
-    },
-    {
-      "displayName": "FedEx",
-      "id": "fedex-91a3cc",
-      "locationSet": {"include": ["001"]},
-      "matchNames": ["federal express"],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "FedEx",
-        "operator:type": "private",
-        "operator:wikidata": "Q459477",
-        "operator:wikipedia": "en:FedEx"
       }
     },
     {
@@ -724,17 +675,6 @@
       }
     },
     {
-      "displayName": "Mail Boxes Etc.",
-      "id": "mailboxesetc-91a3cc",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Mail Boxes Etc.",
-        "operator:wikidata": "Q1139182",
-        "operator:wikipedia": "en:Mail Boxes Etc."
-      }
-    },
-    {
       "displayName": "Meest",
       "id": "meest-970b0c",
       "locationSet": {"include": ["ua"]},
@@ -948,21 +888,6 @@
       }
     },
     {
-      "displayName": "Post Office (UK)",
-      "id": "postoffice-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": [
-        "post office ltd",
-        "the post office"
-      ],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Post Office",
-        "operator:wikidata": "Q1783168",
-        "operator:wikipedia": "en:Post Office Ltd"
-      }
-    },
-    {
       "displayName": "Poșta Moldovei",
       "id": "postamoldovei-48c390",
       "locationSet": {"include": ["md"]},
@@ -1050,16 +975,6 @@
       }
     },
     {
-      "displayName": "Posten (Norge)",
-      "id": "posten-03f567",
-      "locationSet": {"include": ["no"]},
-      "note": "see https://github.com/osmlab/name-suggestion-index/issues/5561",
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Posten"
-      }
-    },
-    {
       "displayName": "Postes Canada",
       "id": "postescanada-d8ff35",
       "locationSet": {
@@ -1129,17 +1044,6 @@
         "operator": "PTT",
         "operator:wikidata": "Q3079259",
         "operator:wikipedia": "tr:PTT"
-      }
-    },
-    {
-      "displayName": "Royal Mail",
-      "id": "royalmail-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Royal Mail",
-        "operator:wikidata": "Q638098",
-        "operator:wikipedia": "en:Royal Mail"
       }
     },
     {
@@ -1214,20 +1118,6 @@
       }
     },
     {
-      "displayName": "Speedy",
-      "id": "dpd-03f0fb",
-      "locationSet": {"include": ["bg"]},
-      "note": "Operated by DPD, and uses the DPD logo - #4674",
-      "tags": {
-        "alt_name": "Speedy",
-        "amenity": "post_office",
-        "brand": "Speedy",
-        "operator": "DPD",
-        "operator:wikidata": "Q541030",
-        "operator:wikipedia": "en:DPDgroup"
-      }
-    },
-    {
       "displayName": "Sürat Kargo",
       "id": "suratkargo-56f07f",
       "locationSet": {"include": ["tr"]},
@@ -1272,24 +1162,6 @@
         "operator:th": "ไปรษณีย์ไทย",
         "operator:wikidata": "Q6676271",
         "operator:wikipedia": "th:ไปรษณีย์ไทย (บริษัท)"
-      }
-    },
-    {
-      "displayName": "The UPS Store",
-      "id": "theupsstore-2da3fc",
-      "locationSet": {"include": ["ca", "us"]},
-      "matchNames": [
-        "united parcel service",
-        "ups store"
-      ],
-      "matchTags": ["shop/copyshop"],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "The UPS Store",
-        "operator:type": "private",
-        "operator:wikidata": "Q7771029",
-        "operator:wikipedia": "en:The UPS Store",
-        "short_name": "UPS"
       }
     },
     {
@@ -1691,9 +1563,14 @@
       "locationSet": {"include": ["tw"]},
       "matchNames": ["中華郵政公司", "中華郵政股份有限公司"],
       "tags": {
+        "alt_name": "中華郵政;郵局",
         "amenity": "post_office",
         "operator": "中華郵政",
         "operator:en": "Chunghwa Post",
+        "operator:nan": "Tiong-hôa Iû-chèng",
+        "operator:nan-HJ": "中華郵政",
+        "operator:nan-POJ": "Tiong-hôa Iû-chèng",
+        "operator:nan-TL": "Tiong-huâ Iû-tsìng",
         "operator:wikidata": "Q709259",
         "operator:wikipedia": "zh:中華郵政",
         "operator:zh": "中華郵政"
