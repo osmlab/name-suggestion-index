@@ -19,7 +19,6 @@ import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
 // JSON
-import packageJSON from '../package.json';
 import treesJSON from '../config/trees.json';
 const trees = treesJSON.trees;
 
@@ -140,13 +139,21 @@ function checkRegex(fileName, pattern) {
 }
 
 //
-// Load lists of tags collected from OSM from https://github.com/ideditor/nsi-collector
+// Load the version number and the lists of tags collected from:
+// https://github.com/ideditor/nsi-collector
 //
 function loadCollected() {
-  const rawVersion = packageJSON.devDependencies['@ideditor/nsi-collector'];
-  const matched = rawVersion.match(/[~^]?\d+\.\d+\.(\d+)/);
-  if (matched) {
-    _currCollectionDate = +matched[1];
+  try {
+    const file = `./node_modules/@ideditor/nsi-collector/package.json`;
+    const contents = fs.readFileSync(file, 'utf8');
+    const collectorJSON = JSON5.parse(contents);
+    const rawVersion = collectorJSON.version;
+    const matched = rawVersion.match(/[~^]?\d+\.\d+\.(\d+)/);
+    if (matched) {
+      _currCollectionDate = +matched[1];
+    }
+  } catch (err) {
+    console.error(colors.yellow(`Warning - ${err.message} reading 'nsi-collector/package.json'`));
   }
 
   ['name', 'brand', 'operator', 'network'].forEach(tag => {
@@ -175,6 +182,7 @@ function filterCollected() {
   console.log('');
   console.log(START);
   console.time(END);
+  let shownSparkle = false;
 
   Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
@@ -200,6 +208,10 @@ function filterCollected() {
     if (Object.keys(keep).length && lastCollectionDate >= _currCollectionDate) return;
 
     // Continue, do filtering, and replace keep/discard files..
+    if (!shownSparkle) {
+      console.log(colors.yellow(`✨   New nsi-collector version ${_currCollectionDate} (was ${lastCollectionDate}).  Updating filter lists:`));
+      shownSparkle = true;
+    }
 
     // All the collected "names" from OSM start out in discard..
     tree.sourceTags.forEach(tag => {
