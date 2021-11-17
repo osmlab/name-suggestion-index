@@ -4,12 +4,12 @@
     "skipCollection": true,
     "preserveTags": ["^name"],
     "exclude": {
-      "generic": ["^ambulance station$"]
+      "generic": ["^ambulance( station)?$"]
     }
   },
   "items": [
     {
-      "displayName": "Arbeiter-Samariter-Bund",
+      "displayName": "Arbeiter-Samariter-Bund (Deutschland)",
       "id": "arbeitersamariterbund-e7575e",
       "locationSet": {"include": ["de"]},
       "matchNames": ["asb"],
@@ -17,7 +17,25 @@
         "brand": "Arbeiter-Samariter-Bund",
         "brand:wikidata": "Q627071",
         "brand:wikipedia": "de:Arbeiter-Samariter-Bund Deutschland",
-        "emergency": "ambulance_station"
+        "emergency": "ambulance_station",
+        "name": "Arbeiter-Samariter-Bund"
+      }
+    },
+    {
+      "displayName": "Arbeiter-Samariter-Bund (Österreichs)",
+      "id": "arbeitersamariterbund-0c07b2",
+      "locationSet": {"include": ["at"]},
+      "matchNames": [
+        "asb",
+        "asbö",
+        "samariterbund"
+      ],
+      "tags": {
+        "brand": "Arbeiter-Samariter-Bund Österreichs",
+        "brand:wikidata": "Q627072",
+        "brand:wikipedia": "de:Arbeiter-Samariter-Bund Österreichs",
+        "emergency": "ambulance_station",
+        "name": "Arbeiter-Samariter-Bund"
       }
     },
     {
@@ -64,12 +82,13 @@
       "displayName": "Deutsche Lebens-Rettungs-Gesellschaft",
       "id": "deutschelebensrettungsgesellschaft-e7575e",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["dlrg"],
       "tags": {
         "brand": "Deutsche Lebens-Rettungs-Gesellschaft",
         "brand:wikidata": "Q871679",
         "brand:wikipedia": "de:Deutsche Lebens-Rettungs-Gesellschaft",
-        "emergency": "ambulance_station"
+        "emergency": "ambulance_station",
+        "name": "Deutsche Lebens-Rettungs-Gesellschaft",
+        "short_name": "DLRG"
       }
     },
     {
@@ -98,24 +117,36 @@
       "displayName": "Johanniter-Unfall-Hilfe",
       "id": "johanniterunfallhilfe-e7575e",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["johanniter", "juh"],
+      "matchNames": [
+        "die johanniter",
+        "johanniter",
+        "johanniter-unfall-hilfe e.v."
+      ],
       "tags": {
         "brand": "Johanniter-Unfall-Hilfe",
         "brand:wikidata": "Q14751117",
         "brand:wikipedia": "de:Johanniter-Unfall-Hilfe",
-        "emergency": "ambulance_station"
+        "emergency": "ambulance_station",
+        "name": "Johanniter-Unfall-Hilfe",
+        "short_name": "JUH"
       }
     },
     {
       "displayName": "Malteser Hilfsdienst",
       "id": "malteserhilfsdienst-e7575e",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["malteser", "mhd"],
+      "matchNames": [
+        "malteser",
+        "malteser hilfsdienst e.v.",
+        "malteser hilfsdienst ggmbh"
+      ],
       "tags": {
         "brand": "Malteser Hilfsdienst",
         "brand:wikidata": "Q1318397",
         "brand:wikipedia": "de:Malteser Hilfsdienst",
-        "emergency": "ambulance_station"
+        "emergency": "ambulance_station",
+        "name": "Malteser Hilfsdienst",
+        "short_name": "MHD"
       }
     },
     {
