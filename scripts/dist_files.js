@@ -224,7 +224,6 @@ function buildIDPresets() {
       const tags = item.tags;
       const qid = tags[wdTag];
       if (!qid || !/^Q\d+$/.test(qid)) return;   // wikidata tag missing or looks wrong..
-      if (dissolved[item.id]) return;            // dissolved/closed businesses
 
       let presetID, preset;
 
@@ -326,10 +325,12 @@ function buildIDPresets() {
         matchScore: 2
       };
 
-      if (logoURL)           targetPreset.imageURL = logoURL;
-      if (terms.size)        targetPreset.terms = Array.from(terms).sort(withLocale);
-      if (fields)            targetPreset.fields = fields;
-      if (preset.reference)  targetPreset.reference = preset.reference;
+      if (logoURL)             targetPreset.imageURL = logoURL;
+      if (terms.size)          targetPreset.terms = Array.from(terms).sort(withLocale);
+      if (fields)              targetPreset.fields = fields;
+      if (preset.reference)    targetPreset.reference = preset.reference;
+      if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
+
       targetPreset.tags = sortObject(targetTags);
       targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
 
