@@ -3,7 +3,13 @@
     "path": "operators/power/line",
     "exclude": {
       "generic": ["^line$"],
-      "named": ["national grid et"]
+      "named": [
+        "national grid et", 
+        "enbw",
+        "enbw ag",
+        "badenwerk",
+        "badenwerk ag"
+      ]
     }
   },
   "items": [
@@ -366,18 +372,6 @@
         "operator": "Axpo",
         "operator:wikidata": "Q679525",
         "operator:wikipedia": "de:Axpo Power",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "Badenwerk AG",
-      "id": "badenwerkag-d5e323",
-      "locationSet": {"include": ["de"]},
-      "matchNames": ["badenwerk"],
-      "tags": {
-        "operator": "Badenwerk AG",
-        "operator:wikidata": "Q798945",
-        "operator:wikipedia": "de:Badenwerk",
         "power": "line"
       }
     },
@@ -1651,33 +1645,6 @@
       "locationSet": {"include": ["ar"]},
       "tags": {
         "operator": "Empresa Provincial de la Energía de Santa Fe",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "EnBW",
-      "id": "enbw-d5e323",
-      "locationSet": {"include": ["de"]},
-      "matchNames": [
-        "enbw ag",
-        "enbw regional",
-        "enbw regional ag",
-        "energie-versorgung schwaben ag",
-        "neckarwerke"
-      ],
-      "tags": {
-        "operator": "EnBW",
-        "operator:wikidata": "Q644304",
-        "operator:wikipedia": "de:EnBW Energie Baden-Württemberg",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "EnBW Transportnetze AG",
-      "id": "enbwtransportnetzeag-d5e323",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "EnBW Transportnetze AG",
         "power": "line"
       }
     },
@@ -3354,12 +3321,16 @@
       }
     },
     {
-      "displayName": "Netze BW",
+      "displayName": "Netze BW GmbH",
       "id": "netzebw-d5e323",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["netze bw gmbh"],
+      "matchNames": ["netze bw",
+        "enbw regional",
+        "enbw regional ag",
+        "energie-versorgung schwaben ag",
+        "neckarwerke"],
       "tags": {
-        "operator": "Netze BW",
+        "operator": "Netze BW GmbH",
         "operator:wikidata": "Q16854888",
         "operator:wikipedia": "de:Netze BW",
         "power": "line"
@@ -4808,9 +4779,12 @@
       "displayName": "TransnetBW GmbH",
       "id": "transnetbwgmbh-116894",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["enbw transportnetze ag"],
       "tags": {
         "operator": "TransnetBW GmbH",
-        "power": "line"
+        "power": "line",
+        "wikipedia": "de:TransnetBW",
+        "wikidata": "Q1672772"
       }
     },
     {

@@ -1,7 +1,15 @@
 {
   "properties": {
     "path": "operators/route/power",
-    "exclude": {"generic": ["^power$"]}
+    "exclude": {
+      "generic": ["^power$"],
+      "named": [
+        "enbw",
+        "enbw ag",
+        "badenwerk",
+        "badenwerk ag"
+      ]
+    }
   },
   "items": [
     {
@@ -279,17 +287,6 @@
       }
     },
     {
-      "displayName": "EnBW",
-      "id": "enbw-6070b7",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "EnBW",
-        "operator:wikidata": "Q644304",
-        "operator:wikipedia": "de:EnBW Energie Baden-Württemberg",
-        "route": "power"
-      }
-    },
-    {
       "displayName": "Enea",
       "id": "enea-99d878",
       "locationSet": {"include": ["pl"]},
@@ -542,12 +539,12 @@
       }
     },
     {
-      "displayName": "Netze BW",
+      "displayName": "Netze BW GmbH",
       "id": "netzebw-6070b7",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["netze bw gmbh"],
+      "matchNames": ["netze bw"],
       "tags": {
-        "operator": "Netze BW",
+        "operator": "Netze BW GmbH",
         "operator:wikidata": "Q16854888",
         "operator:wikipedia": "de:Netze BW",
         "route": "power"
