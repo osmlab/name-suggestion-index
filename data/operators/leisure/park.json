@@ -3,25 +3,18 @@
     "path": "operators/leisure/park",
     "exclude": {
       "generic": [
+        "^ayuntamiento$",
         "^city$",
         "^goverment$",
         "^p[uú]blico$",
         "^park$",
         "^public$",
-        "^recreation and parks$"
+        "^recreation and parks$",
+        "^shared$"
       ]
     }
   },
   "items": [
-    {
-      "displayName": "Ajuntament de l'Hospitalet de Llobregat",
-      "id": "ajuntamentdelhospitaletdellobregat-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Ajuntament de l'Hospitalet de Llobregat"
-      }
-    },
     {
       "displayName": "Alabama State Parks",
       "id": "alabamastateparks-aefb27",
@@ -48,21 +41,28 @@
       }
     },
     {
-      "displayName": "Allegany County Commissioners",
-      "id": "alleganycountycommissioners-15b72d",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Allegany County",
+      "id": "alleganycountycommissioners-fb928d",
+      "locationSet": {
+        "include": ["us-md.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Allegany County Commissioners"
+        "operator": "Allegany County Commissioners",
+        "operator:type": "public",
+        "operator:wikidata": "Q156257"
       }
     },
     {
       "displayName": "Arboretum de Versailles-Chèvreloup",
-      "id": "arboretumdeversailleschevreloup-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "arboretumdeversailleschevreloup-27583f",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "leisure": "park",
-        "operator": "Arboretum de Versailles-Chèvreloup"
+        "operator": "Arboretum de Versailles-Chèvreloup",
+        "operator:type": "public",
+        "operator:wikidata": "Q2011703",
+        "operator:wikipedia": "fr:Arboretum de Versailles-Chèvreloup"
       }
     },
     {
@@ -93,39 +93,15 @@
       }
     },
     {
-      "displayName": "Army Corps of Engineers",
-      "id": "armycorpsofengineers-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Army Corps of Engineers"
-      }
-    },
-    {
       "displayName": "Auckland Council",
-      "id": "aucklandcouncil-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "aucklandcouncil-0a56ce",
+      "locationSet": {"include": ["nz"]},
       "tags": {
         "leisure": "park",
-        "operator": "Auckland Council"
-      }
-    },
-    {
-      "displayName": "Austin Parks and Recreation Department",
-      "id": "austinparksandrecreationdepartment-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Austin Parks and Recreation Department"
-      }
-    },
-    {
-      "displayName": "Ayuntamiento",
-      "id": "ayuntamiento-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Ayuntamiento"
+        "operator": "Auckland Council",
+        "operator:type": "public",
+        "operator:wikidata": "Q758635",
+        "operator:wikipedia": "en:Auckland Council"
       }
     },
     {
@@ -134,7 +110,10 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "leisure": "park",
-        "operator": "Ayuntamiento de Málaga"
+        "operator": "Ayuntamiento de Málaga",
+        "operator:type": "government",
+        "operator:wikidata": "Q8851",
+        "operator:wikipedia": "es:Málaga"
       }
     },
     {
@@ -405,20 +384,20 @@
     },
     {
       "displayName": "City of Austin",
-      "id": "cityofaustin-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "cityofaustin-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "matchNames": [
+        "austin parks and recreation department",
+        "city of austin parks and recreation"
+      ],
       "tags": {
         "leisure": "park",
-        "operator": "City of Austin"
-      }
-    },
-    {
-      "displayName": "City of Austin Parks and Recreation",
-      "id": "cityofaustinparksandrecreation-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "City of Austin Parks and Recreation"
+        "operator": "City of Austin",
+        "operator:type": "public",
+        "operator:wikidata": "Q16559",
+        "operator:wikipedia": "en:Austin, Texas"
       }
     },
     {
@@ -1965,6 +1944,18 @@
       }
     },
     {
+      "displayName": "l'Hospitalet de Llobregat",
+      "id": "ajuntamentdelhospitaletdellobregat-e4902f",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ajuntament de l'Hospitalet de Llobregat",
+        "operator:type": "government",
+        "operator:wikidata": "Q15470",
+        "operator:wikipedia": "ca:L'Hospitalet de Llobregat"
+      }
+    },
+    {
       "displayName": "Lake Metroparks",
       "id": "lakemetroparks-15b72d",
       "locationSet": {"include": ["001"]},
@@ -2913,15 +2904,6 @@
       }
     },
     {
-      "displayName": "Shared",
-      "id": "shared-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Shared"
-      }
-    },
-    {
       "displayName": "Skokie Park District",
       "id": "skokieparkdistrict-15b72d",
       "locationSet": {"include": ["001"]},
@@ -3191,12 +3173,20 @@
       }
     },
     {
-      "displayName": "U.S. Army Corps of Engineers",
-      "id": "usarmycorpsofengineers-15b72d",
-      "locationSet": {"include": ["001"]},
+      "displayName": "United States Army Corps of Engineers",
+      "id": "unitedstatesarmycorpsofengineers-059b34",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "army corps of engineers",
+        "us army corps of engineers"
+      ],
       "tags": {
         "leisure": "park",
-        "operator": "U.S. Army Corps of Engineers"
+        "operator": "United States Army Corps of Engineers",
+        "operator:short": "USACE",
+        "operator:type": "government",
+        "operator:wikidata": "Q1049334",
+        "operator:wikipedia": "en:United States Army Corps of Engineers"
       }
     },
     {
