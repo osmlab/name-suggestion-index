@@ -7,11 +7,17 @@
         "^city$",
         "^gemeinde$",
         "^gover(no|ment)$",
+        "^municipal(|ity|idad)$",
+        "^municipio$",
         "^p[uú]blico$",
         "^park$",
         "^public$",
         "^recreation and parks$",
         "^shared$"
+      ],
+      "named": [
+        "^greentree condominium$",
+        "^halifax regional centre for education$"
       ]
     }
   },
@@ -2283,74 +2289,79 @@
     },
     {
       "displayName": "Glenview Park District",
-      "id": "glenviewparkdistrict-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "glenviewparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Glenview Park District"
-      }
-    },
-    {
-      "displayName": "Greentree Condominium",
-      "id": "greentreecondominium-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Greentree Condominium"
+        "operator": "Glenview Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064219"
       }
     },
     {
       "displayName": "Grün Stadt Zürich",
-      "id": "grunstadtzurich-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "grunstadtzurich-a987c0",
+      "locationSet": {"include": ["ch"]},
       "tags": {
         "leisure": "park",
-        "operator": "Grün Stadt Zürich"
-      }
-    },
-    {
-      "displayName": "Halifax Regional Centre for Education",
-      "id": "halifaxregionalcentreforeducation-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Halifax Regional Centre for Education"
+        "operator": "Grün Stadt Zürich",
+        "operator:type": "public",
+        "operator:wikidata": "Q1551785"
       }
     },
     {
       "displayName": "Halifax Regional Municipality",
-      "id": "halifaxregionalmunicipality-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "halifaxregionalmunicipality-f40be7",
+      "locationSet": {
+        "include": ["ca-ns.geojson"]
+      },
+      "matchNames": ["halifax", "hrm"],
       "tags": {
         "leisure": "park",
-        "operator": "Halifax Regional Municipality"
+        "operator": "Halifax Regional Municipality",
+        "operator:type": "public",
+        "operator:wikidata": "Q2141"
       }
     },
     {
       "displayName": "Hämeenlinnan kaupunki",
-      "id": "hameenlinnankaupunki-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "hameenlinnankaupunki-b3609d",
+      "locationSet": {"include": ["fi"]},
       "tags": {
         "leisure": "park",
-        "operator": "Hämeenlinnan kaupunki"
+        "operator": "Hämeenlinnan kaupunki",
+        "operator:type": "public",
+        "operator:wikidata": "Q202158",
+        "operator:wikipedia": "fi:Hämeenlinna"
       }
     },
     {
-      "displayName": "Hardin CCB",
-      "id": "hardinccb-15b72d",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Hardin County Conservation",
+      "id": "hardincountyconservation-5303d3",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "matchNames": ["hardin ccb"],
       "tags": {
         "leisure": "park",
-        "operator": "Hardin CCB"
+        "operator": "Hardin County Conservation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064240"
       }
     },
     {
       "displayName": "Harris County Precinct 3",
-      "id": "harriscountyprecinct3-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "harriscountyprecinct3-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Harris County Precinct 3"
+        "operator": "Harris County Precinct 3",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064255"
       }
     },
     {
@@ -2365,30 +2376,28 @@
       }
     },
     {
-      "displayName": "Hillsborough County Parks, Receration and Conservation Department",
-      "id": "hillsboroughcountyparksrecerationandconservationdepartment-15b72d",
+      "displayName": "Hillsborough County (Florida",
+      "id": "hillsboroughcounty-15b72d",
       "locationSet": {"include": ["001"]},
+      "matchNames": [
+        "hillsborough county parks, receration and conservation department"
+      ],
       "tags": {
         "leisure": "park",
-        "operator": "Hillsborough County Parks, Receration and Conservation Department"
-      }
-    },
-    {
-      "displayName": "HRM",
-      "id": "hrm-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "HRM"
+        "operator": "Hillsborough County",
+        "operator:type": "public",
+        "operator:wikidata": "Q488874"
       }
     },
     {
       "displayName": "Hurunui District Council",
-      "id": "hurunuidistrictcouncil-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "hurunuidistrictcouncil-0a56ce",
+      "locationSet": {"include": ["nz"]},
       "tags": {
         "leisure": "park",
-        "operator": "Hurunui District Council"
+        "operator": "Hurunui District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q65606410"
       }
     },
     {
@@ -2424,11 +2433,15 @@
     },
     {
       "displayName": "Incorporated Village of Flower Hill",
-      "id": "incorporatedvillageofflowerhill-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "incorporatedvillageofflowerhill-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Incorporated Village of Flower Hill"
+        "operator": "Incorporated Village of Flower Hill",
+        "operator:type": "public",
+        "operator:wikidata": "Q3451947"
       }
     },
     {
@@ -2448,20 +2461,13 @@
     },
     {
       "displayName": "Instituto Distrital de Recreación y Deporte (IDRD)",
-      "id": "institutodistritalderecreacionydeporteidrd-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "institutodistritalderecreacionydeporteidrd-e0463d",
+      "locationSet": {"include": ["co"]},
       "tags": {
         "leisure": "park",
-        "operator": "Instituto Distrital de Recreación y Deporte (IDRD)"
-      }
-    },
-    {
-      "displayName": "Instituto Salvadoreño de Turismo",
-      "id": "institutosalvadorenodeturismo-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Instituto Salvadoreño de Turismo"
+        "operator": "Instituto Distrital de Recreación y Deporte (IDRD)",
+        "operator:type": "public",
+        "operator:wikidata": "Q28500979"
       }
     },
     {
@@ -2481,47 +2487,66 @@
     },
     {
       "displayName": "Islington Council",
-      "id": "islingtoncouncil-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "islingtoncouncil-777334",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Islington Council"
+        "operator": "Islington Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q6084379"
       }
     },
     {
-      "displayName": "Jackson CCB",
-      "id": "jacksonccb-15b72d",
-      "locationSet": {"include": ["001"]},
+      "displayName": "ISTU",
+      "id": "institutosalvadorenodeturismo-489562",
+      "locationSet": {"include": ["sv"]},
       "tags": {
         "leisure": "park",
-        "operator": "Jackson CCB"
+        "operator": "Instituto Salvadoreño de Turismo",
+        "operator:short": "ISTU",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064317"
+      }
+    },
+    {
+      "displayName": "Jackson County Conservation",
+      "id": "jacksoncountyconservation-5303d3",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "matchNames": ["jackson ccb"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Jackson County Conservation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064391"
       }
     },
     {
       "displayName": "Jaipur Nagar Nigam",
-      "id": "jaipurnagarnigam-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "jaipurnagarnigam-d31221",
+      "locationSet": {"include": ["in"]},
       "tags": {
         "leisure": "park",
-        "operator": "Jaipur Nagar Nigam"
+        "operator": "Jaipur Nagar Nigam",
+        "operator:type": "public",
+        "operator:wikidata": "Q6124132",
+        "operator:wikipedia": "hi:जयपुर नगर निगम"
       }
     },
     {
-      "displayName": "Jefferson County",
-      "id": "jeffersoncounty-15b72d",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Jefferson County (Wisconsin)",
+      "id": "jeffersoncounty-ef1d28",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Jefferson County"
-      }
-    },
-    {
-      "displayName": "Kankakee Valley Park District",
-      "id": "kankakeevalleyparkdistrict-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Kankakee Valley Park District"
+        "operator": "Jefferson County",
+        "operator:type": "public",
+        "operator:wikidata": "Q500958"
       }
     },
     {
@@ -2545,11 +2570,13 @@
     },
     {
       "displayName": "Kapiti Coast District Council",
-      "id": "kapiticoastdistrictcouncil-15b72d",
-      "locationSet": {"include": ["001"]},
+      "id": "kapiticoastdistrictcouncil-0a56ce",
+      "locationSet": {"include": ["nz"]},
       "tags": {
         "leisure": "park",
-        "operator": "Kapiti Coast District Council"
+        "operator": "Kapiti Coast District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q73823769"
       }
     },
     {
@@ -2582,6 +2609,20 @@
       "tags": {
         "leisure": "park",
         "operator": "KMC"
+      }
+    },
+    {
+      "displayName": "KVPD",
+      "id": "kankakeevalleyparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Kankakee Valley Park District",
+        "operator:short": "KVPD",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064433"
       }
     },
     {
@@ -2956,24 +2997,6 @@
       }
     },
     {
-      "displayName": "Municipal",
-      "id": "municipal-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Municipal"
-      }
-    },
-    {
-      "displayName": "Municipalidad",
-      "id": "municipalidad-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Municipalidad"
-      }
-    },
-    {
       "displayName": "Municipalidad de Cipolletti",
       "id": "municipalidaddecipolletti-15b72d",
       "locationSet": {"include": ["001"]},
@@ -3007,24 +3030,6 @@
       "tags": {
         "leisure": "park",
         "operator": "Municipalidad Provincial de Sullana"
-      }
-    },
-    {
-      "displayName": "Municipality",
-      "id": "municipality-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Municipality"
-      }
-    },
-    {
-      "displayName": "Municipio",
-      "id": "municipio-15b72d",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "Municipio"
       }
     },
     {
