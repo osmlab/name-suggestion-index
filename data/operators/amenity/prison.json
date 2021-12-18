@@ -3,13 +3,19 @@
     "path": "operators/amenity/prison",
     "preserveTags": ["^name"],
     "exclude": {
-      "generic": ["^(government|prison)$"]
+      "generic": [
+        "^(government|prison)$",
+        "^监狱管理局$"
+      ]
     }
   },
   "items": [
     {
       "displayName": "Alabama Department of Corrections",
-      "locationSet": {"include": ["us-al.geojson"]},
+      "id": "alabamadepartmentofcorrections-d7c9d5",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
       "matchNames": ["adoc"],
       "tags": {
         "amenity": "prison",
@@ -20,8 +26,14 @@
     },
     {
       "displayName": "Arkansas Department of Corrections",
-      "locationSet": {"include": ["us-ar.geojson"]},
-      "matchNames": ["adc","arkansas department of correction"],
+      "id": "arkansasdepartmentofcorrections-079086",
+      "locationSet": {
+        "include": ["us-ar.geojson"]
+      },
+      "matchNames": [
+        "adc",
+        "arkansas department of correction"
+      ],
       "tags": {
         "amenity": "prison",
         "operator": "Arkansas Department of Corrections",
@@ -43,6 +55,7 @@
     },
     {
       "displayName": "Bureau of Jail Management and Penology",
+      "id": "bureauofjailmanagementandpenology-9fb693",
       "locationSet": {"include": ["ph"]},
       "tags": {
         "amenity": "prison",
@@ -53,7 +66,10 @@
     },
     {
       "displayName": "California Department of Corrections and Rehabilitation",
-      "locationSet": {"include": ["us-ca.geojson"]},
+      "id": "californiadepartmentofcorrectionsandrehabilitation-8f7b9e",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
       "matchNames": ["cdcr"],
       "tags": {
         "amenity": "prison",
@@ -64,17 +80,22 @@
     },
     {
       "displayName": "CoreCivic",
+      "id": "corecivic-6535ca",
       "locationSet": {"include": ["us"]},
-      "matchNames": ["cca","corrections corporation of america"],
+      "matchNames": [
+        "cca",
+        "corrections corporation of america"
+      ],
       "tags": {
         "amenity": "prison",
         "operator": "CoreCivic",
         "operator:wikidata": "Q1135278",
-        "operator:wikipedia": "en:CoreCivic",
+        "operator:wikipedia": "en:CoreCivic"
       }
     },
     {
       "displayName": "Departamento de Administração Prisional",
+      "id": "departamentodeadministracaoprisional-c44f42",
       "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "prison",
@@ -83,8 +104,12 @@
     },
     {
       "displayName": "Department of Corrections",
+      "id": "departmentofcorrections-1f32ed",
       "locationSet": {"include": ["nz"]},
-      "matchNames": ["department of corrections new zealand", "new zealand department of corrections"],
+      "matchNames": [
+        "department of corrections new zealand",
+        "new zealand department of corrections"
+      ],
       "tags": {
         "amenity": "prison",
         "operator": "Department of Corrections",
@@ -96,8 +121,9 @@
     },
     {
       "displayName": "Federal Bureau of Prisons",
+      "id": "federalbureauofprisons-6535ca",
       "locationSet": {"include": ["us"]},
-      "matchNames": ["bop","fbop"],
+      "matchNames": ["bop", "fbop"],
       "tags": {
         "amenity": "prison",
         "operator": "Federal Bureau of Prisons",
@@ -107,7 +133,10 @@
     },
     {
       "displayName": "Florida Department of Corrections",
-      "locationSet": {"include": ["us-fl.geojson"]},
+      "id": "floridadepartmentofcorrections-59f3bf",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
       "tags": {
         "amenity": "prison",
         "operator": "Florida Department of Corrections",
@@ -117,7 +146,10 @@
     },
     {
       "displayName": "Georgia Department of Corrections",
-      "locationSet": {"include": ["us-ga.geojson"]},
+      "id": "georgiadepartmentofcorrections-c92cb0",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
       "matchNames": ["gdc"],
       "tags": {
         "amenity": "prison",
@@ -143,7 +175,10 @@
     },
     {
       "displayName": "Illinois Department of Corrections",
-      "locationSet": {"include": ["us-il.geojson"]},
+      "id": "illinoisdepartmentofcorrections-ab530c",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
       "matchNames": ["idoc"],
       "tags": {
         "amenity": "prison",
@@ -154,7 +189,10 @@
     },
     {
       "displayName": "Indiana Department of Correction",
-      "locationSet": {"include": ["us-in.geojson"]},
+      "id": "indianadepartmentofcorrection-910de5",
+      "locationSet": {
+        "include": ["us-in.geojson"]
+      },
       "matchNames": ["idoc"],
       "tags": {
         "amenity": "prison",
@@ -371,6 +409,15 @@
       "tags": {
         "amenity": "prison",
         "operator": "УФСИН России по Удмуртской Республике"
+      }
+    },
+    {
+      "displayName": "江西省监狱管理局",
+      "id": "90ca3a-3a7478",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "prison",
+        "operator": "江西省监狱管理局"
       }
     }
   ]
