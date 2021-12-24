@@ -12,6 +12,7 @@ const withLocale = localeCompare('en-US');
 import { fileTree } from '../lib/file_tree.js';
 import { idgen } from '../lib/idgen.js';
 import { Matcher } from '../lib/matcher.js';
+import { simplify } from '../lib/simplify.js';
 import { sortObject } from '../lib/sort_object.js';
 import { stemmer } from '../lib/stemmer.js';
 import { validate } from '../lib/validate.js';
@@ -355,13 +356,40 @@ function mergeItems() {
     const tree = _config.trees[t];
     let total = 0;
     let totalNew = 0;
+    let newItems = {};
 
     //
     // INSERT - Look in `_keep` for new items not yet in the index..
     //
     const keeping = _keep[t] || {};
+
+    // Find new items, keeping only the most popular spelling..
     Object.keys(keeping).forEach(kvn => {
+      const count = keeping[kvn];
       const parts = kvn.split('|', 2);     // kvn = "key/value|name"
+      const kv = parts[0];
+      const n = parts[1];
+      const parts2 = kv.split('/', 2);
+      const k = parts2[0];
+      const v = parts2[1];
+
+      const matched = matcher.match(k, v, n);
+      if (matched) return;     // already in the index (or generic)
+
+      // Use the simplified name when comparing spelling popularity
+      const nsimple = simplify(n);
+      const newid = `${k}/${v}|${nsimple}`;
+      const otherNew = newItems[newid];
+
+      // Seen for the first time, or this name is a more popular spelling
+      if (!otherNew || otherNew.count < count) {
+        newItems[newid] = { kvn: kvn, count: count };
+      }
+    });
+
+    // Add the new items
+    Object.values(newItems).forEach(newItem => {
+      const parts = newItem.kvn.split('|', 2);     // kvn = "key/value|name"
       const kv = parts[0];
       const n = parts[1];
       const parts2 = kv.split('/', 2);
@@ -369,10 +397,6 @@ function mergeItems() {
       const v = parts2[1];
       const tkv = `${t}/${k}/${v}`;
 
-      const m = matcher.match(k, v, n);
-      if (m) return;     // already in the index (or generic)
-
-      // A new item!
       let item = { tags: {} };
       item.displayName = n;
       item.locationSet = { include: ['001'] };   // the whole world
