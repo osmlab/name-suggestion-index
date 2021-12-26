@@ -2,7 +2,12 @@
   "properties": {
     "path": "operators/amenity/doctors",
     "preserveTags": ["^name"],
-    "exclude": {"generic": ["^doctors?$"]}
+    "exclude": {
+      "generic": [
+      "^doctors?$",
+      "^Gemeinschaftspraxis$"
+      ]
+    }
   },
   "items": [
     {
@@ -43,16 +48,6 @@
         "amenity": "doctors",
         "healthcare": "doctor",
         "operator": "DR CHIRUGIEN DENTISTE"
-      }
-    },
-    {
-      "displayName": "Gemeinschaftspraxis",
-      "id": "gemeinschaftspraxis-402f23",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "doctors",
-        "healthcare": "doctor",
-        "operator": "Gemeinschaftspraxis"
       }
     },
     {
