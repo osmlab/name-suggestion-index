@@ -2,7 +2,11 @@
   "properties": {
     "path": "operators/amenity/childcare",
     "exclude": {
-      "generic": ["^childcare$", "^daycare$"]
+      "generic": [
+        "^childcare$",
+        "^daycare$",
+        "^educational institute$"
+      ]
     }
   },
   "items": [
@@ -16,12 +20,14 @@
       }
     },
     {
-      "displayName": "AWO",
+      "displayName": "Arbeiterwohlfahrt",
       "id": "awo-cf7bdf",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "childcare",
-        "operator": "AWO"
+        "operator": "Arbeiterwohlfahrt",
+        "operator:short": "AWO",
+        "operator:wikidata": "Q627256"
       }
     },
     {
@@ -61,21 +67,14 @@
       }
     },
     {
-      "displayName": "DRK",
+      "displayName": "Deutsches Rotes Kreuz",
       "id": "drk-cf7bdf",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "childcare",
-        "operator": "DRK"
-      }
-    },
-    {
-      "displayName": "Educational Institute",
-      "id": "educationalinstitute-cf7bdf",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "childcare",
-        "operator": "Educational Institute"
+        "operator": "Deutsches Rotes Kreuz",
+        "operator:short": "DRK",
+        "operator:wikidata": "Q694104"
       }
     },
     {
@@ -108,7 +107,7 @@
     {
       "displayName": "Helsingin kaupunki",
       "id": "helsinginkaupunki-cf7bdf",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fi"]},
       "tags": {
         "amenity": "childcare",
         "operator": "Helsingin kaupunki"
@@ -144,7 +143,7 @@
     {
       "displayName": "Københavns Kommune",
       "id": "kobenhavnskommune-cf7bdf",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["dk"]},
       "tags": {
         "amenity": "childcare",
         "operator": "Københavns Kommune"
@@ -153,7 +152,7 @@
     {
       "displayName": "Mairie de Paris",
       "id": "mairiedeparis-cf7bdf",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "childcare",
         "operator": "Mairie de Paris"
@@ -186,7 +185,7 @@
     {
       "displayName": "Ville de Marseille",
       "id": "villedemarseille-cf7bdf",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "childcare",
         "operator": "Ville de Marseille"
