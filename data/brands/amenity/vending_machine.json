@@ -5,6 +5,8 @@
       "generic": [
         "^(bread|drink(s)?)$",
         "^(schlauch|bilet)omat$",
+        "^(自动|自助)(贩卖|贩售)机$",
+        "^(自动|自助)售货机$",
         "^(自動)?[券販]売機$",
         "^automat na jizdenky$",
         "^horodateur$",
@@ -51,6 +53,24 @@
       }
     },
     {
+      "displayName": "Amazon Hub Locker",
+      "id": "amazonhublocker-e80bf6",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn", "jp"]
+      },
+      "matchNames": ["amazon", "amazon locker"],
+      "preserveTags": ["^name"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Amazon Hub",
+        "brand:wikidata": "Q16974764",
+        "brand:wikipedia": "en:Amazon Locker",
+        "name": "Amazon Hub Locker",
+        "vending": "parcel_pickup;parcel_mail_in"
+      }
+    },
+    {
       "displayName": "Amazon Hub ロッカー",
       "id": "amazonhublocker-bf11a2",
       "locationSet": {"include": ["jp"]},
@@ -69,22 +89,6 @@
         "name": "Amazon Hub ロッカー",
         "name:en": "Amazon Hub Locker",
         "name:ja": "Amazon Hub ロッカー",
-        "vending": "parcel_pickup"
-      }
-    },
-    {
-      "displayName": "Amazon Locker",
-      "id": "amazonlocker-52a344",
-      "locationSet": {
-        "include": ["de", "gb", "us"]
-      },
-      "preserveTags": ["^name"],
-      "tags": {
-        "amenity": "vending_machine",
-        "brand": "Amazon Locker",
-        "brand:wikidata": "Q16974764",
-        "brand:wikipedia": "en:Amazon Locker",
-        "name": "Amazon Locker",
         "vending": "parcel_pickup"
       }
     },
@@ -197,8 +201,10 @@
     },
     {
       "displayName": "BottleDrop",
-      "id": "bottledrop-7e3927",
-      "locationSet": {"include": ["us"]},
+      "id": "bottledrop-54b61f",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "matchTags": ["amenity/recycling"],
       "note": "To be used for self-service stations at partner retailers",
       "tags": {
@@ -224,6 +230,17 @@
         "brand:wikipedia": "de:Bwegt",
         "name": "bwegt",
         "vending": "public_transport_tickets"
+      }
+    },
+    {
+      "displayName": "Chaqwa",
+      "id": "chaqwa-a242c5",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Chaqwa",
+        "brand:wikidata": "Q109265856",
+        "vending": "coffee"
       }
     },
     {
@@ -262,12 +279,9 @@
         "brand": "Deutsche Bahn",
         "brand:wikidata": "Q9322",
         "brand:wikipedia": "de:Deutsche Bahn",
-        "name": "Deutsche Bahn",
-        "official_name": "Deutsche Bahn AG",
-        "operator": "Deutsche Bahn",
-        "operator:wikidata": "Q9322",
-        "operator:wikipedia": "de:Deutsche Bahn",
-        "short_name": "DB",
+        "operator": "DB Vertrieb GmbH",
+        "operator:wikidata": "Q1152124",
+        "operator:wikipedia": "de:DB Vertrieb",
         "vending": "public_transport_tickets"
       }
     },
@@ -292,18 +306,15 @@
       "displayName": "DHL Packstation",
       "id": "dhlpackstation-a242c5",
       "locationSet": {"include": ["de"]},
-      "matchTags": ["amenity/post_box"],
+      "matchNames": ["packstation"],
       "tags": {
-        "alt_name": "Packstation",
         "amenity": "vending_machine",
         "brand": "DHL Packstation",
         "brand:wikidata": "Q1766703",
         "brand:wikipedia": "de:Packstation",
-        "name": "DHL Packstation",
         "operator": "DHL",
         "operator:wikidata": "Q489815",
         "operator:wikipedia": "de:DHL",
-        "short_name": "DHL",
         "vending": "parcel_pickup;parcel_mail_in"
       }
     },
@@ -360,6 +371,18 @@
       }
     },
     {
+      "displayName": "Glacier Water",
+      "id": "glacierwater-7e3927",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Glacier Water",
+        "brand:wikidata": "Q109371103",
+        "name": "Glacier Water",
+        "vending": "water"
+      }
+    },
+    {
       "displayName": "GLS",
       "id": "gls-ceeccb",
       "locationSet": {"include": ["001"]},
@@ -380,7 +403,6 @@
         "amenity": "vending_machine",
         "brand": "Home City Ice",
         "brand:wikidata": "Q5888287",
-        "brand:wikipedia": "simple:Home City Ice",
         "name": "Home City Ice",
         "vending": "ice_cubes"
       }
@@ -420,6 +442,19 @@
       }
     },
     {
+      "displayName": "KeyMe",
+      "id": "keyme-7e3927",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "KeyMe",
+        "brand:wikidata": "Q48965608",
+        "brand:wikipedia": "en:KeyMe",
+        "name": "KeyMe",
+        "vending": "key"
+      }
+    },
+    {
       "displayName": "KIRIN",
       "id": "kirin-bf11a2",
       "locationSet": {"include": ["jp"]},
@@ -454,6 +489,54 @@
       }
     },
     {
+      "displayName": "Lego",
+      "id": "lego-ceeccb",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Lego",
+        "brand:wikidata": "Q170484",
+        "brand:wikipedia": "en:Lego",
+        "name": "Lego",
+        "vending": "toys"
+      }
+    },
+    {
+      "displayName": "MIKA Hundetoiletten",
+      "id": "mika-a242c5",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "MIKA",
+        "brand:wikidata": "Q109336084",
+        "vending": "excrement_bags"
+      }
+    },
+    {
+      "displayName": "Mini Melts",
+      "id": "minimelts-7e3927",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Mini Melts",
+        "brand:wikidata": "Q108922362",
+        "name": "Mini Melts",
+        "vending": "ice_cream"
+      }
+    },
+    {
+      "displayName": "Minute Key",
+      "id": "minutekey-ff8484",
+      "locationSet": {"include": ["ca", "us"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Minute Key",
+        "brand:wikidata": "Q108726953",
+        "name": "Minute Key",
+        "vending": "key"
+      }
+    },
+    {
       "displayName": "Ozon Box",
       "id": "ozonbox-eb9a2c",
       "locationSet": {"include": ["ru"]},
@@ -483,8 +566,13 @@
     },
     {
       "displayName": "Parking Kitty",
-      "id": "parkingkitty-7e3927",
-      "locationSet": {"include": ["us"]},
+      "id": "parkingkitty-fbd0e3",
+      "locationSet": {
+        "include": [
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
       "tags": {
         "amenity": "vending_machine",
         "brand": "Parking Kitty",
@@ -506,6 +594,56 @@
       }
     },
     {
+      "displayName": "PharmaBox",
+      "id": "pharmabox-7e3927",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "PharmaBox",
+        "brand:wikidata": "Q108728294",
+        "name": "PharmaBox",
+        "vending": "chemist"
+      }
+    },
+    {
+      "displayName": "PickPoint",
+      "id": "pickpoint-eb9a2c",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "PickPoint",
+        "brand:wikidata": "Q110276197",
+        "name": "PickPoint",
+        "vending": "parcel_pickup"
+      }
+    },
+    {
+      "displayName": "Primo Water",
+      "id": "primowater-7e3927",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Primo Water",
+        "brand:wikidata": "Q2071102",
+        "brand:wikipedia": "en:Primo Water",
+        "name": "Primo Water",
+        "vending": "water"
+      }
+    },
+    {
+      "displayName": "Proactiv",
+      "id": "proactiv-ceeccb",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Proactiv",
+        "brand:wikidata": "Q6125565",
+        "brand:wikipedia": "en:Proactiv",
+        "name": "Proactiv",
+        "vending": "beauty"
+      }
+    },
+    {
       "displayName": "PUDOステーション",
       "id": "pudostation-bf11a2",
       "locationSet": {"include": ["jp"]},
@@ -522,6 +660,18 @@
         "name:en": "PUDO Station",
         "name:ja": "PUDOステーション",
         "vending": "parcel_pickup"
+      }
+    },
+    {
+      "displayName": "Quick Tag",
+      "id": "quicktag-7e3927",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Quick Tag",
+        "brand:wikidata": "Q108728673",
+        "name": "Quick Tag",
+        "vending": "pet"
       }
     },
     {
@@ -577,6 +727,49 @@
       }
     },
     {
+      "displayName": "Selecta",
+      "id": "selecta-ed4d31",
+      "locationSet": {
+        "include": [
+          "at",
+          "be",
+          "ch",
+          "de",
+          "dk",
+          "es",
+          "fi",
+          "fr",
+          "ie",
+          "it",
+          "li",
+          "lu",
+          "nl",
+          "no",
+          "se",
+          "uk"
+        ]
+      },
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Selecta",
+        "brand:wikidata": "Q472153",
+        "brand:wikipedia": "en:Selecta (company)"
+      }
+    },
+    {
+      "displayName": "Sephora",
+      "id": "sephora-ceeccb",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Sephora",
+        "brand:wikidata": "Q2408041",
+        "brand:wikipedia": "en:Sephora",
+        "name": "Sephora",
+        "vending": "cosmetics"
+      }
+    },
+    {
       "displayName": "Smartpost",
       "id": "smartpost-7a60d4",
       "locationSet": {"include": ["fi"]},
@@ -585,7 +778,7 @@
         "amenity": "vending_machine",
         "brand": "Smartpost",
         "brand:wikidata": "Q7543889",
-        "brand:wikipedia": "fi:SmartPOST",
+        "brand:wikipedia": "fi:Smartpost",
         "name": "Smartpost",
         "vending": "parcel_pickup;parcel_mail_in"
       }
@@ -679,6 +872,7 @@
         "brand": "ОмниСДЭК",
         "brand:en": "OmniCEDK",
         "brand:ru": "ОмниСДЭК",
+        "brand:wikidata": "Q110240113",
         "name": "ОмниСДЭК",
         "name:en": "OmniCDEK",
         "name:ru": "ОмниСДЭК",

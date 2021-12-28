@@ -1,14 +1,16 @@
 {
   "properties": {
     "path": "brands/shop/storage_rental",
-    "exclude": {"generic": ["^storage rental$"]}
+    "exclude": {
+      "generic": ["^(self )?storage( rental)?$"]
+    }
   },
   "items": [
     {
       "displayName": "A-1 Self Storage",
-      "id": "a1selfstorage-7936f4",
+      "id": "a1selfstorage-a05958",
       "locationSet": {
-        "include": ["california.geojson"]
+        "include": ["us-ca.geojson"]
       },
       "tags": {
         "brand": "A-1 Self Storage",
@@ -91,6 +93,38 @@
       }
     },
     {
+      "displayName": "MyPlace-SelfStorage",
+      "id": "myplaceselfstorage-7d575b",
+      "locationSet": {
+        "include": ["at", "ch", "de"]
+      },
+      "matchNames": ["my place"],
+      "tags": {
+        "brand": "MyPlace-SelfStorage",
+        "brand:wikidata": "Q109659129",
+        "name": "MyPlace-SelfStorage",
+        "shop": "storage_rental"
+      }
+    },
+    {
+      "displayName": "Northwest Self Storage",
+      "id": "northwestselfstorage-6af07e",
+      "locationSet": {
+        "include": [
+          "us-id.geojson",
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
+      "matchNames": ["nw self storage"],
+      "tags": {
+        "brand": "Northwest Self Storage",
+        "brand:wikidata": "Q108576211",
+        "name": "Northwest Self Storage",
+        "shop": "storage_rental"
+      }
+    },
+    {
       "displayName": "Public Storage",
       "id": "publicstorage-51c575",
       "locationSet": {"include": ["ca", "us"]},
@@ -106,11 +140,35 @@
       "displayName": "Safestore",
       "id": "safestore-93b48c",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["safestore self storage"],
       "tags": {
         "brand": "Safestore",
         "brand:wikidata": "Q20713915",
         "brand:wikipedia": "en:Safestore",
         "name": "Safestore",
+        "shop": "storage_rental"
+      }
+    },
+    {
+      "displayName": "StorQuest Self Storage",
+      "id": "storquest-7879a0",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "StorQuest Self Storage",
+        "brand:wikidata": "Q109337134",
+        "name": "StorQuest",
+        "shop": "storage_rental"
+      }
+    },
+    {
+      "displayName": "Trojan Storage",
+      "id": "trojanstorage-7879a0",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["trojan"],
+      "tags": {
+        "brand": "Trojan Storage",
+        "brand:wikidata": "Q108917137",
+        "name": "Trojan Storage",
         "shop": "storage_rental"
       }
     },
@@ -150,6 +208,24 @@
         "brand": "UK Storage Company",
         "brand:wikidata": "Q87411468",
         "name": "UK Storage Company",
+        "shop": "storage_rental"
+      }
+    },
+    {
+      "displayName": "West Coast Self-Storage",
+      "id": "westcoastselfstorage-8e2904",
+      "locationSet": {
+        "include": [
+          "us-ca.geojson",
+          "us-nv.geojson",
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "West Coast Self-Storage",
+        "brand:wikidata": "Q110084888",
+        "name": "West Coast Self-Storage",
         "shop": "storage_rental"
       }
     },

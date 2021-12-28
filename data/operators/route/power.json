@@ -1,7 +1,15 @@
 {
   "properties": {
     "path": "operators/route/power",
-    "exclude": {"generic": ["^power$"]}
+    "exclude": {
+      "generic": ["^power$"],
+      "named": [
+        "badenwerk",
+        "badenwerk ag",
+        "enbw",
+        "enbw ag"
+      ]
+    }
   },
   "items": [
     {
@@ -39,6 +47,7 @@
         "operator": "American Electric Power",
         "operator:short": "AEP",
         "operator:wikidata": "Q464092",
+        "operator:wikipedia": "en:American Electric Power",
         "route": "power"
       }
     },
@@ -176,16 +185,16 @@
       }
     },
     {
-      "displayName": "e.dis",
-      "id": "edis-6070b7",
+      "displayName": "E.DIS Netz GmbH",
+      "id": "edisnetzgmbh-6070b7",
       "locationSet": {"include": ["de"]},
       "matchNames": [
-        "e.dis netz gmbh",
+        "e.dis",
         "e.on edis",
         "e.on edis ag"
       ],
       "tags": {
-        "operator": "e.dis",
+        "operator": "E.DIS Netz GmbH",
         "operator:wikidata": "Q1273411",
         "operator:wikipedia": "de:E.DIS",
         "route": "power"
@@ -209,6 +218,7 @@
       "tags": {
         "operator": "E.ON Netz",
         "operator:wikidata": "Q15806976",
+        "operator:wikipedia": "de:E.ON Netz",
         "route": "power"
       }
     },
@@ -273,17 +283,6 @@
         "operator": "Eletronorte",
         "operator:wikidata": "Q10271733",
         "operator:wikipedia": "pt:Eletrobras Eletronorte",
-        "route": "power"
-      }
-    },
-    {
-      "displayName": "EnBW",
-      "id": "enbw-6070b7",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "EnBW",
-        "operator:wikidata": "Q644304",
-        "operator:wikipedia": "de:EnBW Energie Baden-Württemberg",
         "route": "power"
       }
     },
@@ -402,8 +401,13 @@
     },
     {
       "displayName": "Evergy",
-      "id": "evergy-3c8213",
-      "locationSet": {"include": ["us"]},
+      "id": "evergy-ba6e22",
+      "locationSet": {
+        "include": [
+          "us-ks.geojson",
+          "us-mo.geojson"
+        ]
+      },
       "matchNames": [
         "kansas city power and light company",
         "kcp&l",
@@ -432,6 +436,7 @@
       "tags": {
         "operator": "ITAIPU Binacional",
         "operator:wikidata": "Q244169",
+        "operator:wikipedia": "pt:Usina Hidrelétrica de Itaipu",
         "route": "power"
       }
     },
@@ -448,13 +453,24 @@
     },
     {
       "displayName": "Lower Colorado River Authority",
-      "id": "lowercoloradoriverauthority-3c8213",
-      "locationSet": {"include": ["us"]},
+      "id": "lowercoloradoriverauthority-2db3e2",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Lower Colorado River Authority",
         "operator:short": "LCRA",
         "operator:wikidata": "Q16155608",
         "operator:wikipedia": "en:Lower Colorado River Authority",
+        "route": "power"
+      }
+    },
+    {
+      "displayName": "LSW Netz",
+      "id": "lswnetz-6a8196",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "LSW Netz",
         "route": "power"
       }
     },
@@ -488,6 +504,7 @@
       "tags": {
         "operator": "Minera Escondida",
         "operator:wikidata": "Q588433",
+        "operator:wikipedia": "en:Minera Escondida",
         "route": "power"
       }
     },
@@ -497,6 +514,15 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "Missouri Power & Light Company",
+        "route": "power"
+      }
+    },
+    {
+      "displayName": "Mitnetz Strom",
+      "id": "mitnetzstrom-6a8196",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Mitnetz Strom",
         "route": "power"
       }
     },
@@ -513,12 +539,12 @@
       }
     },
     {
-      "displayName": "Netze BW",
-      "id": "netzebw-6070b7",
+      "displayName": "Netze BW GmbH",
+      "id": "netzebwgmbh-6070b7",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["netze bw gmbh"],
+      "matchNames": ["netze bw"],
       "tags": {
-        "operator": "Netze BW",
+        "operator": "Netze BW GmbH",
         "operator:wikidata": "Q16854888",
         "operator:wikipedia": "de:Netze BW",
         "route": "power"
@@ -540,6 +566,7 @@
       "tags": {
         "operator": "NIE Networks",
         "operator:wikidata": "Q7058492",
+        "operator:wikipedia": "en:Northern Ireland Electricity",
         "route": "power"
       }
     },
@@ -550,6 +577,7 @@
       "tags": {
         "operator": "ÖBB",
         "operator:wikidata": "Q83822",
+        "operator:wikipedia": "de:Österreichische Bundesbahnen",
         "route": "power"
       }
     },
@@ -752,6 +780,7 @@
       "tags": {
         "operator": "Transener",
         "operator:wikidata": "Q3537471",
+        "operator:wikipedia": "es:Transener",
         "route": "power"
       }
     },
@@ -795,6 +824,7 @@
         "operator": "Westfalen Weser Netz",
         "operator:short": "WWN",
         "operator:wikidata": "Q21416424",
+        "operator:wikipedia": "de:Westfalen Weser Energie",
         "route": "power"
       }
     },

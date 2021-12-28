@@ -6,7 +6,8 @@
         "^((разливное|живое) )?пиво$",
         "^(alcohol|beer|liquor)( store)?$",
         "^(botiller|licorer)[ií]a$"
-      ]
+      ],
+      "named": ["^abc store$"]
     }
   },
   "items": [
@@ -19,6 +20,16 @@
         "brand": "1. day",
         "brand:wikidata": "Q108149927",
         "name": "1. day",
+        "shop": "alcohol"
+      }
+    },
+    {
+      "displayName": "Alcohol & Tabakoff",
+      "id": "alcoholandtabakoff-059946",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "Alcohol & Tabakoff",
+        "name": "Alcohol & Tabakoff",
         "shop": "alcohol"
       }
     },
@@ -48,8 +59,10 @@
     },
     {
       "displayName": "BC Liquor Store",
-      "id": "bcliquorstore-c2c781",
-      "locationSet": {"include": ["ca"]},
+      "id": "bcliquorstore-0c8640",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
       "tags": {
         "brand": "BC Liquor Store",
         "brand:wikidata": "Q43079557",
@@ -85,8 +98,10 @@
     },
     {
       "displayName": "Binny's Beverage Depot",
-      "id": "binnysbeveragedepot-2740a5",
-      "locationSet": {"include": ["us"]},
+      "id": "binnysbeveragedepot-b97ce0",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
       "tags": {
         "brand": "Binny's Beverage Depot",
         "brand:wikidata": "Q30687714",
@@ -101,6 +116,7 @@
       "locationSet": {"include": ["au"]},
       "tags": {
         "brand": "Bottlemart",
+        "brand:wikidata": "Q102863175",
         "name": "Bottlemart",
         "shop": "alcohol"
       }
@@ -123,7 +139,21 @@
       "locationSet": {"include": ["au"]},
       "tags": {
         "brand": "Cellarbrations",
+        "brand:wikidata": "Q109807592",
         "name": "Cellarbrations",
+        "shop": "alcohol"
+      }
+    },
+    {
+      "displayName": "Clapton Craft",
+      "id": "claptoncraft-3cbb94",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "brand": "Clapton Craft",
+        "brand:wikidata": "Q110154844",
+        "name": "Clapton Craft",
         "shop": "alcohol"
       }
     },
@@ -140,6 +170,28 @@
       }
     },
     {
+      "displayName": "Dirck III",
+      "id": "dirckiii-e09280",
+      "locationSet": {"include": ["nl"]},
+      "matchNames": ["dirck 3"],
+      "tags": {
+        "brand": "Dirck III",
+        "brand:wikidata": "Q109188079",
+        "name": "Dirck III",
+        "shop": "alcohol"
+      }
+    },
+    {
+      "displayName": "Duncan's",
+      "id": "duncans-cb3c62",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "brand": "Duncan's",
+        "name": "Duncan's",
+        "shop": "alcohol"
+      }
+    },
+    {
       "displayName": "Duży Ben",
       "id": "duzyben-48eb32",
       "locationSet": {"include": ["pl"]},
@@ -151,12 +203,26 @@
     },
     {
       "displayName": "Fine Wine & Good Spirits",
-      "id": "finewineandgoodspirits-2740a5",
-      "locationSet": {"include": ["us"]},
+      "id": "finewineandgoodspirits-76c257",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
       "tags": {
         "brand": "Fine Wine & Good Spirits",
         "brand:wikidata": "Q64514776",
         "name": "Fine Wine & Good Spirits",
+        "shop": "alcohol"
+      }
+    },
+    {
+      "displayName": "First Choice Liquor",
+      "id": "firstchoiceliquor-cb3c62",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "brand": "First Choice Liquor",
+        "brand:wikidata": "Q4596269",
+        "brand:wikipedia": "en:First Choice Liquor",
+        "name": "First Choice Liquor",
         "shop": "alcohol"
       }
     },
@@ -185,8 +251,13 @@
     },
     {
       "displayName": "LCBO",
-      "id": "lcbo-c2c781",
-      "locationSet": {"include": ["ca"]},
+      "id": "lcbo-19c622",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "matchNames": [
+        "liquor control board of ontario"
+      ],
       "tags": {
         "brand": "LCBO",
         "brand:wikidata": "Q845263",
@@ -197,8 +268,13 @@
     },
     {
       "displayName": "Liquor Depot",
-      "id": "liquordepot-c2c781",
-      "locationSet": {"include": ["ca"]},
+      "id": "liquordepot-ca0076",
+      "locationSet": {
+        "include": [
+          "ca-ab.geojson",
+          "ca-bc.geojson"
+        ]
+      },
       "tags": {
         "brand": "Liquor Depot",
         "name": "Liquor Depot",
@@ -239,14 +315,17 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "brand": "Mitra",
+        "brand:wikidata": "Q109186241",
         "name": "Mitra",
         "shop": "alcohol"
       }
     },
     {
       "displayName": "New Hampshire Liquor & Wine Outlet",
-      "id": "newhampshireliquorandwineoutlet-2740a5",
-      "locationSet": {"include": ["us"]},
+      "id": "newhampshireliquorandwineoutlet-05db77",
+      "locationSet": {
+        "include": ["us-nh.geojson"]
+      },
       "matchNames": ["nh liquor & wine outlet"],
       "tags": {
         "brand": "New Hampshire Liquor & Wine Outlets",
@@ -272,8 +351,13 @@
     },
     {
       "displayName": "NSLC",
-      "id": "nslc-c2c781",
-      "locationSet": {"include": ["ca"]},
+      "id": "nslc-7529e3",
+      "locationSet": {
+        "include": ["ca-ns.geojson"]
+      },
+      "matchNames": [
+        "nova scotia liquor corporation"
+      ],
       "tags": {
         "brand": "NSLC",
         "brand:wikidata": "Q17018587",
@@ -318,8 +402,10 @@
     },
     {
       "displayName": "SAQ Express",
-      "id": "saqexpress-c2c781",
-      "locationSet": {"include": ["ca"]},
+      "id": "saqexpress-ebcba4",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
       "tags": {
         "brand": "SAQ Express",
         "brand:wikidata": "Q3488077",
@@ -330,8 +416,10 @@
     },
     {
       "displayName": "SAQ Sélection",
-      "id": "saqselection-c2c781",
-      "locationSet": {"include": ["ca"]},
+      "id": "saqselection-ebcba4",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
       "tags": {
         "brand": "SAQ Sélection",
         "brand:wikidata": "Q3488077",
@@ -342,8 +430,10 @@
     },
     {
       "displayName": "Spec's",
-      "id": "specs-2740a5",
-      "locationSet": {"include": ["us"]},
+      "id": "specs-a9ed82",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "brand": "Spec's",
         "brand:wikidata": "Q7574415",
@@ -376,8 +466,10 @@
     },
     {
       "displayName": "The Beer Store",
-      "id": "thebeerstore-c2c781",
-      "locationSet": {"include": ["ca"]},
+      "id": "thebeerstore-19c622",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
       "tags": {
         "brand": "The Beer Store",
         "brand:wikidata": "Q16243674",
@@ -435,6 +527,8 @@
       "displayName": "Vinmonopolet",
       "id": "vinmonopolet-af24f5",
       "locationSet": {"include": ["no"]},
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Vinmonopolet",
         "brand:wikidata": "Q1740534",
@@ -445,13 +539,26 @@
     },
     {
       "displayName": "Virginia ABC",
-      "id": "virginiaabc-2740a5",
-      "locationSet": {"include": ["us"]},
+      "id": "virginiaabc-85cc28",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
       "tags": {
         "brand": "Virginia ABC",
         "brand:wikidata": "Q7934236",
         "brand:wikipedia": "en:Virginia Alcoholic Beverage Control Authority",
         "name": "Virginia ABC",
+        "shop": "alcohol"
+      }
+    },
+    {
+      "displayName": "Аванти",
+      "id": "avanti-059946",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "Аванти",
+        "name": "Аванти",
+        "name:en": "Avanti",
         "shop": "alcohol"
       }
     },
@@ -471,6 +578,7 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Ароматный мир",
+        "brand:wikidata": "Q109852336",
         "name": "Ароматный мир",
         "shop": "alcohol"
       }
@@ -494,7 +602,19 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Винлаб",
+        "brand:wikidata": "Q109907753",
         "name": "Винлаб",
+        "shop": "alcohol"
+      }
+    },
+    {
+      "displayName": "Главпиво",
+      "id": "8e7c78-b9f2fe",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "brand": "Главпиво",
+        "brand:wikidata": "Q110138058",
+        "name": "Главпиво",
         "shop": "alcohol"
       }
     },
@@ -524,22 +644,25 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Градусы",
+        "brand:wikidata": "Q110137876",
         "name": "Градусы",
         "shop": "alcohol"
       }
     },
     {
-      "displayName": "Красное & Белое",
+      "displayName": "Красное&Белое",
       "id": "redandwhite-b9f2fe",
       "locationSet": {"include": ["ru"]},
       "matchNames": ["красное и белое"],
       "tags": {
-        "brand": "Красное & Белое",
+        "brand": "Красное&Белое",
         "brand:en": "Red&White",
+        "brand:ru": "Красное&Белое",
         "brand:wikidata": "Q24933790",
-        "brand:wikipedia": "en:Krasnoe & Beloe",
-        "name": "Красное & Белое",
+        "brand:wikipedia": "ru:Красное&Белое",
+        "name": "Красное&Белое",
         "name:en": "Red&White",
+        "name:ru": "Красное&Белое",
         "shop": "alcohol"
       }
     },
@@ -565,12 +688,25 @@
       }
     },
     {
+      "displayName": "Море пива",
+      "id": "d94189-345467",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "brand": "Море пива",
+        "name": "Море пива",
+        "shop": "alcohol"
+      }
+    },
+    {
       "displayName": "Норман",
-      "id": "63e04d-b9f2fe",
+      "id": "norman-b9f2fe",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Норман",
+        "brand:wikidata": "Q109907481",
         "name": "Норман",
+        "name:en": "Norman",
+        "name:ru": "Норман",
         "shop": "alcohol"
       }
     },
@@ -605,11 +741,23 @@
       }
     },
     {
+      "displayName": "Пивточка",
+      "id": "7a67d2-b9f2fe",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "brand": "Пивточка",
+        "brand:wikidata": "Q110138021",
+        "name": "Пивточка",
+        "shop": "alcohol"
+      }
+    },
+    {
       "displayName": "РосАл",
       "id": "e0b675-b9f2fe",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "РосАл",
+        "brand:wikidata": "Q110137999",
         "name": "РосАл",
         "shop": "alcohol"
       }

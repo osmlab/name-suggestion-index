@@ -149,7 +149,6 @@ test('match', t => {
     t.end();
   });
 
-
   t.test('basic matching, single result', t => {
     t.test('matches exact key/value/name', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'Honey Baked Ham');
@@ -422,6 +421,46 @@ test('match', t => {
     t.end();
   });
 
+  t.test('nothing bad happens if a k/v category is present in multiple trees', t => {
+    t.test('matches an item from the brands tree', t => {
+      const result = t.context.matcher.match('amenity', 'post_office', 'UPS');
+      t.type(result, Array)
+      t.equal(result.length, 1);
+      t.equal(result[0].match, 'alternate');      // 'alternate' = matched the `short_name` tag
+      t.equal(result[0].itemID, 'theupsstore-d4e3fc');
+      t.equal(result[0].kv, 'amenity/post_office');
+      t.equal(result[0].nsimple, 'ups');
+      t.end();
+    });
+    t.test('matches an item from the operators tree', t => {
+      const result = t.context.matcher.match('amenity', 'post_office', 'USPS');
+      t.type(result, Array)
+      t.equal(result.length, 1);
+      t.equal(result[0].match, 'alternate');      // 'alternate' = matched the `short_name` tag
+      t.equal(result[0].itemID, 'unitedstatespostalservice-b9aa24');
+      t.equal(result[0].kv, 'amenity/post_office');
+      t.end();
+    });
+    t.test('matches a generic from the brands tree', t => {
+      const result = t.context.matcher.match('amenity', 'post_office', 'Copyshop');
+      t.type(result, Array)
+      t.equal(result.length, 1);
+      t.equal(result[0].match, 'excludeNamed');   // 'excludeNamed' = matched a named exclude pattern
+      t.equal(result[0].pattern, '/^copyshop$/i');
+      t.equal(result[0].kv, 'amenity/post_office');
+      t.end();
+    });
+    t.test('matches a generic from the operators tree', t => {
+      const result = t.context.matcher.match('amenity', 'post_office', 'Spar');
+      t.type(result, Array)
+      t.equal(result.length, 1);
+      t.equal(result[0].match, 'excludeNamed');   // 'excludeNamed' = matched a named exclude pattern
+      t.equal(result[0].pattern, '/^spar$/i');
+      t.equal(result[0].kv, 'amenity/post_office');
+      t.end();
+    });
+    t.end();
+  });
 
   t.test('transit matching', t => {
     t.test('match on `network` tag', t => {

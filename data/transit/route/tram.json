@@ -4,7 +4,8 @@
     "exclude": {
       "generic": ["^tram$"],
       "named": [
-        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$"
+        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$",
+        "^ru:municipal$"
       ]
     }
   },
@@ -39,6 +40,19 @@
       }
     },
     {
+      "displayName": "Bernmobil",
+      "id": "bernmobil-30adce",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "network": "Bernmobil",
+        "network:wikidata": "Q681700",
+        "network:wikipedia": "de:Bernmobil",
+        "operator": "Städtische Verkehrsbetriebe Bern",
+        "operator:short": "SVB",
+        "route": "tram"
+      }
+    },
+    {
       "displayName": "Bydgoszcz",
       "id": "bydgoszcz-ba1938",
       "locationSet": {"include": ["pl"]},
@@ -53,10 +67,24 @@
       }
     },
     {
+      "displayName": "Carris",
+      "id": "carris-d4b068",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "network": "Carris",
+        "network:wikidata": "Q1045108",
+        "network:wikipedia": "pt:Companhia Carris de Ferro de Lisboa",
+        "operator": "Carris",
+        "operator:wikidata": "Q1045108",
+        "operator:wikipedia": "pt:Companhia Carris de Ferro de Lisboa",
+        "route": "tram"
+      }
+    },
+    {
       "displayName": "Cincinnati Bell Connector",
-      "id": "cincinnatibellconnector-4d4771",
+      "id": "cincinnatibellconnector-373a9e",
       "locationSet": {
-        "include": ["sorta.geojson"]
+        "include": [[-84.41, 39.26, 65]]
       },
       "matchNames": ["cincinnati streetcar"],
       "tags": {
@@ -190,10 +218,10 @@
       "tags": {
         "network": "IDS JMK",
         "network:wikidata": "Q12020731",
-        "network:wikipedia": "cz:Integrovaný dopravní systém Jihomoravského kraje",
-        "operator": "Dopravní podnik města Brna",
+        "network:wikipedia": "cs:Integrovaný dopravní systém Jihomoravského kraje",
+        "operator": "DPMB",
         "operator:wikidata": "Q3700534",
-        "operator:wikipedia": "cz:Dopravní podnik města Brna",
+        "operator:wikipedia": "cs:Dopravní podnik města Brna",
         "route": "tram"
       }
     },
@@ -285,7 +313,7 @@
       }
     },
     {
-      "displayName": "MBTA",
+      "displayName": "MBTA (Massachusetts)",
       "id": "mbta-98eeec",
       "locationSet": {
         "include": [[-71, 42, 100]]
@@ -425,8 +453,10 @@
     },
     {
       "displayName": "Portland Streetcar",
-      "id": "portlandstreetcar-a89e98",
-      "locationSet": {"include": ["us"]},
+      "id": "portlandstreetcar-ab5729",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "network": "Portland Streetcar",
         "network:wikidata": "Q1753708",
@@ -457,8 +487,7 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "network": "Rail Haaglanden",
-        "network:wikidata": "Q1429361",
-        "network:wikipedia": "nl:Haagse tram",
+        "network:wikidata": "Q108718111",
         "operator": "HTM",
         "operator:wikidata": "Q132168",
         "operator:wikipedia": "nl:HTM Personenvervoer",
@@ -471,6 +500,7 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "network": "Rail Rotterdam",
+        "network:wikidata": "Q108718112",
         "route": "tram"
       }
     },
@@ -484,6 +514,16 @@
         "network:wikipedia": "fr:Tramway d'Île-de-France",
         "operator:wikidata": "Q643290",
         "operator:wikipedia": "fr:Régie autonome des transports parisiens",
+        "route": "tram"
+      }
+    },
+    {
+      "displayName": "Regio Utrecht",
+      "id": "regioutrecht-50b0a0",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "network": "Regio Utrecht",
+        "network:wikidata": "Q108742251",
         "route": "tram"
       }
     },
@@ -511,15 +551,6 @@
         "network": "RMV",
         "network:wikidata": "Q314042",
         "network:wikipedia": "de:Rhein-Main-Verkehrsverbund",
-        "route": "tram"
-      }
-    },
-    {
-      "displayName": "ru:municipal",
-      "id": "rumunicipal-f97856",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "ru:municipal",
         "route": "tram"
       }
     },
@@ -587,6 +618,7 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "network": "Stadsvervoer Amsterdam",
+        "network:wikidata": "Q108742702",
         "operator": "GVB",
         "operator:wikidata": "Q1808041",
         "operator:wikipedia": "nl:GVB (Amsterdam)",
@@ -1153,6 +1185,12 @@
         "operator:wikipedia": "ru:Мосгортранс",
         "route": "tram"
       }
+    },
+    {
+      "displayName": "Тула",
+      "id": "32211e-f97856",
+      "locationSet": {"include": ["ru"]},
+      "tags": {"network": "Тула", "route": "tram"}
     },
     {
       "displayName": "香港電車 Hong Kong Tramways",

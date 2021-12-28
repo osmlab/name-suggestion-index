@@ -8,9 +8,6 @@ import Overview from './Overview';
 
 // Load the name-suggestion-index data files
 const DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
-const BRANDS_KEEP = `${DIST}/filtered/brands_keep.min.json`;
-const OPERATORS_KEEP = `${DIST}/filtered/operators_keep.min.json`;
-const TRANSIT_KEEP = `${DIST}/filtered/transit_keep.min.json`;
 const INDEX = `${DIST}/nsi.min.json`;
 const WIKIDATA = `${DIST}/wikidata.min.json`;
 
@@ -20,20 +17,14 @@ const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@1
 
 export default function App() {
   const [filters, setFilters] = useState({});
-  const [brandCounts, brandCountsLoading] = useFetch(BRANDS_KEEP);
-  const [operatorCounts, operatorCountsLoading] = useFetch(OPERATORS_KEEP);
-  const [transitCounts, transitCountsLoading] = useFetch(TRANSIT_KEEP);
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
   const [index, indexLoading] = useIndex(INDEX);
   const [icons, iconsLoading] = useTaginfo(TAGINFO);
 
   const appData = {
-    isLoading: () => (brandCountsLoading || operatorCountsLoading || transitCountsLoading || wikidataLoading || indexLoading || iconsLoading),
+    isLoading: () => (wikidataLoading || indexLoading || iconsLoading),
     filters: filters,
     setFilters: setFilters,
-    brandCounts: brandCounts,
-    operatorCounts: operatorCounts,
-    transitCounts: transitCounts,
     index: index,
     icons: icons,
     wikidata: wikidata.wikidata

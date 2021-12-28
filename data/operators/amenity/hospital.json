@@ -6,15 +6,17 @@
       "generic": [
         "^(govern?ment( authorities)?|govt( hospital)?|municipal|private|public|private not for profit|village)$",
         "^centro (de salud|de saúde|médico)$",
+        "^community$",
         "^hospital$",
+        "^others$",
+        "^privado$",
+        "^private not for profit$",
+        "^subdistrict$",
         "^амбулатор[иі]я$",
         "^инфекционн(ая|ое) (больница|отделение)",
         "^кожно-?венерологический диспансер",
         "^фап$",
-        "^фельдшерско-акушерский пункт$",
-        "others",
-        "privado",
-        "private not for profit"
+        "^фельдшерско-акушерский пункт$"
       ],
       "named": [
         "^(центральна районна лікарня|црб)$",
@@ -38,14 +40,14 @@
       }
     },
     {
-      "displayName": "Advent Health",
+      "displayName": "AdventHealth",
       "id": "adventhealth-888e5a",
       "locationSet": {"include": ["us"]},
       "matchNames": ["adventist health system"],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Advent Health",
+        "operator": "AdventHealth",
         "operator:wikidata": "Q3509447",
         "operator:wikipedia": "en:AdventHealth"
       }
@@ -236,6 +238,19 @@
       }
     },
     {
+      "displayName": "ATOS Kliniken",
+      "id": "atoskliniken-8bb61e",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "ATOS Kliniken",
+        "operator:short": "ATOS",
+        "operator:type": "private",
+        "operator:wikidata": "Q109568262"
+      }
+    },
+    {
       "displayName": "Avera Health",
       "id": "averahealth-888e5a",
       "locationSet": {"include": ["us"]},
@@ -291,7 +306,9 @@
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Baylor Scott & White Health"
+        "operator": "Baylor Scott & White Health",
+        "operator:wikidata": "Q41568258",
+        "operator:wikipedia": "en:Baylor Scott & White Health"
       }
     },
     {
@@ -378,6 +395,31 @@
       }
     },
     {
+      "displayName": "CHI",
+      "id": "catholichealthinitiatives-888e5a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Catholic Health Initiatives",
+        "operator:short": "CHI",
+        "operator:wikidata": "Q5053168",
+        "operator:wikipedia": "en:Catholic Health Initiatives"
+      }
+    },
+    {
+      "displayName": "ChristianaCare",
+      "id": "christianacare-888e5a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "ChristianaCare",
+        "operator:wikidata": "Q16987253",
+        "operator:wikipedia": "en:ChristianaCare"
+      }
+    },
+    {
       "displayName": "CHRISTUS Health",
       "id": "christushealth-888e5a",
       "locationSet": {"include": ["us"]},
@@ -386,7 +428,7 @@
         "healthcare": "hospital",
         "operator": "CHRISTUS Health",
         "operator:wikidata": "Q5011309",
-        "operator:wikipedia": "en:CHRISTUS Health"
+        "operator:wikipedia": "en:Christus Health"
       }
     },
     {
@@ -441,6 +483,16 @@
       }
     },
     {
+      "displayName": "Covenant Health",
+      "id": "covenanthealth-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Covenant Health"
+      }
+    },
+    {
       "displayName": "Cruz Roja",
       "id": "cruzroja-16e9ec",
       "locationSet": {
@@ -484,6 +536,16 @@
       }
     },
     {
+      "displayName": "Department of Public Health Service",
+      "id": "departmentofpublichealthservice-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Department of Public Health Service"
+      }
+    },
+    {
       "displayName": "Devon Partnership NHS Trust",
       "id": "devonpartnershipnhstrust-cd1ad5",
       "locationSet": {
@@ -499,8 +561,14 @@
     },
     {
       "displayName": "Dignity Health",
-      "id": "dignityhealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "dignityhealth-a0d953",
+      "locationSet": {
+        "include": [
+          "us-az.geojson",
+          "us-ca.geojson",
+          "us-nv.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -676,8 +744,8 @@
     },
     {
       "displayName": "Government of Kerala",
-      "id": "governmentofkerala-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "id": "governmentofkerala-585fc8",
+      "locationSet": {"include": ["in"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -718,32 +786,18 @@
       "displayName": "HCA",
       "id": "hca-888e5a",
       "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "hca north florida",
+        "hca west florida",
+        "medical city",
+        "mountainstar health"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "HCA",
         "operator:wikidata": "Q1630431",
         "operator:wikipedia": "en:HCA Healthcare"
-      }
-    },
-    {
-      "displayName": "HCA North Florida",
-      "id": "hcanorthflorida-888e5a",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "HCA North Florida"
-      }
-    },
-    {
-      "displayName": "HCA West Florida",
-      "id": "hcawestflorida-888e5a",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "HCA West Florida"
       }
     },
     {
@@ -817,8 +871,10 @@
     },
     {
       "displayName": "Indiana University Health",
-      "id": "indianauniversityhealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "indianauniversityhealth-8108c1",
+      "locationSet": {
+        "include": ["us-in.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -876,6 +932,16 @@
         "operator": "Intermountain Healthcare",
         "operator:wikidata": "Q6047563",
         "operator:wikipedia": "en:Intermountain Healthcare"
+      }
+    },
+    {
+      "displayName": "IVSS",
+      "id": "ivss-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "IVSS"
       }
     },
     {
@@ -962,6 +1028,23 @@
       }
     },
     {
+      "displayName": "Legacy Medical Group",
+      "id": "legacyhealth-6cad9c",
+      "locationSet": {
+        "include": [
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Legacy Health",
+        "operator:wikidata": "Q6517244",
+        "operator:wikipedia": "en:Legacy Health"
+      }
+    },
+    {
       "displayName": "Ludwig-Maximilians-Universität",
       "id": "ludwigmaximiliansuniversitat-8bb61e",
       "locationSet": {"include": ["de"]},
@@ -975,6 +1058,20 @@
         "operator:short": "LMU",
         "operator:wikidata": "Q55044",
         "operator:wikipedia": "de:Ludwig-Maximilians-Universität München"
+      }
+    },
+    {
+      "displayName": "Maidstone and Tunbridge Wells NHS Trust",
+      "id": "maidstoneandtunbridgewellsnhstrust-634f11",
+      "locationSet": {
+        "include": ["gb-south-east-coast.geojson"]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Maidstone and Tunbridge Wells NHS Trust",
+        "operator:wikidata": "Q16997207",
+        "operator:wikipedia": "en:Maidstone and Tunbridge Wells NHS Trust"
       }
     },
     {
@@ -1048,6 +1145,16 @@
       }
     },
     {
+      "displayName": "Mediclinic",
+      "id": "mediclinic-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Mediclinic"
+      }
+    },
+    {
       "displayName": "Mercy",
       "id": "mercy-888e5a",
       "locationSet": {"include": ["us"]},
@@ -1061,12 +1168,19 @@
     },
     {
       "displayName": "Mercy Health",
-      "id": "mercyhealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "mercyhealth-4cdbcf",
+      "locationSet": {
+        "include": [
+          "us-ky.geojson",
+          "us-oh.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Mercy Health"
+        "operator": "Mercy Health",
+        "operator:wikidata": "Q5053169",
+        "operator:wikipedia": "en:Mercy Health (Ohio and Kentucky)"
       }
     },
     {
@@ -1187,6 +1301,16 @@
         "operator": "Ministério da Saúde",
         "operator:wikidata": "Q4294357",
         "operator:wikipedia": "pt:Ministério da Saúde (Portugal)"
+      }
+    },
+    {
+      "displayName": "Ministerio de Salud - Gobierno de Río Negro",
+      "id": "ministeriodesaludgobiernoderionegro-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Ministerio de Salud - Gobierno de Río Negro"
       }
     },
     {
@@ -1537,13 +1661,25 @@
       }
     },
     {
-      "displayName": "Netcare",
-      "id": "netcare-fbd4f5",
+      "displayName": "National Urban Health Mission",
+      "id": "nationalurbanhealthmission-fbd4f5",
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Netcare"
+        "operator": "National Urban Health Mission"
+      }
+    },
+    {
+      "displayName": "Netcare",
+      "id": "netcare-650276",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Netcare",
+        "operator:wikidata": "Q6998801",
+        "operator:wikipedia": "en:Netcare"
       }
     },
     {
@@ -1560,14 +1696,28 @@
     },
     {
       "displayName": "Northwell Health",
-      "id": "northwellhealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "northwellhealth-27bc64",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Northwell Health",
         "operator:wikidata": "Q7056650",
         "operator:wikipedia": "en:Northwell Health"
+      }
+    },
+    {
+      "displayName": "Novant Health",
+      "id": "novanthealth-888e5a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Novant Health",
+        "operator:wikidata": "Q14956815",
+        "operator:wikipedia": "en:Novant Health"
       }
     },
     {
@@ -1596,8 +1746,10 @@
     },
     {
       "displayName": "OhioHealth",
-      "id": "ohiohealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "ohiohealth-776941",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1616,6 +1768,34 @@
         "operator": "Paracelsus-Kliniken",
         "operator:wikidata": "Q2051237",
         "operator:wikipedia": "de:Paracelsus-Kliniken"
+      }
+    },
+    {
+      "displayName": "Passport Health",
+      "id": "passporthealth-888e5a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Passport Health"
+      }
+    },
+    {
+      "displayName": "PeaceHealth",
+      "id": "peacehealth-1d1c43",
+      "locationSet": {
+        "include": [
+          "us-ak",
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "PeaceHealth",
+        "operator:wikidata": "Q16966652",
+        "operator:wikipedia": "en:PeaceHealth"
       }
     },
     {
@@ -1744,6 +1924,20 @@
       }
     },
     {
+      "displayName": "Samaritan Health Services",
+      "id": "samaritanhealthservices-cfad4c",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Samaritan Health Services",
+        "operator:wikidata": "Q30288491",
+        "operator:wikipedia": "en:Samaritan Health Services"
+      }
+    },
+    {
       "displayName": "Sana Kliniken",
       "id": "sanakliniken-8bb61e",
       "locationSet": {"include": ["de"]},
@@ -1777,6 +1971,26 @@
         "operator": "Schön Klinik",
         "operator:wikidata": "Q2258661",
         "operator:wikipedia": "de:Schön Klinik"
+      }
+    },
+    {
+      "displayName": "Secretaria da Saúde do Estado do Ceará",
+      "id": "secretariadasaudedoestadodoceara-d30bb4",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Secretaria da Saúde do Estado do Ceará"
+      }
+    },
+    {
+      "displayName": "Secretaria Municipal da Saúde de Fortaleza",
+      "id": "secretariamunicipaldasaudedefortaleza-d30bb4",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Secretaria Municipal da Saúde de Fortaleza"
       }
     },
     {
@@ -1859,6 +2073,16 @@
       }
     },
     {
+      "displayName": "Sở Y tế Hà Nội",
+      "id": "soytehanoi-d376e4",
+      "locationSet": {"include": ["vn"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Sở Y tế Hà Nội"
+      }
+    },
+    {
       "displayName": "Somerset NHS Foundation Trust",
       "id": "somersetnhsfoundationtrust-5fb324",
       "locationSet": {
@@ -1874,8 +2098,8 @@
     },
     {
       "displayName": "SSC",
-      "id": "ssc-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "id": "ssc-5e0bc0",
+      "locationSet": {"include": ["mx"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1884,12 +2108,28 @@
     },
     {
       "displayName": "SSM Health",
-      "id": "ssmhealth-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "id": "ssmhealth-888e5a",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "SSM Health"
+        "operator": "SSM Health",
+        "operator:wikidata": "Q7393031",
+        "operator:wikipedia": "en:SSM Health"
+      }
+    },
+    {
+      "displayName": "St. Charles Health System",
+      "id": "stcharleshealthsystem-cfad4c",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "St. Charles Health System",
+        "operator:wikidata": "Q7587516",
+        "operator:wikipedia": "en:St. Charles Health System"
       }
     },
     {
@@ -1938,16 +2178,6 @@
         "operator": "Steward Health Care",
         "operator:wikidata": "Q7615662",
         "operator:wikipedia": "en:Steward Health Care System"
-      }
-    },
-    {
-      "displayName": "subdistrict",
-      "id": "subdistrict-fbd4f5",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "subdistrict"
       }
     },
     {
@@ -2003,6 +2233,21 @@
       }
     },
     {
+      "displayName": "Trinity Health",
+      "id": "trinityhealth-888e5a",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "saint alphonsus health system"
+      ],
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Trinity Health",
+        "operator:wikidata": "Q7842827",
+        "operator:wikipedia": "en:Trinity Health (Livonia, Michigan)"
+      }
+    },
+    {
       "displayName": "TriStar Health",
       "id": "tristarhealth-888e5a",
       "locationSet": {"include": ["us"]},
@@ -2026,8 +2271,14 @@
     },
     {
       "displayName": "UnityPoint Health",
-      "id": "unitypointhealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "unitypointhealth-ac6cc4",
+      "locationSet": {
+        "include": [
+          "us-ia.geojson",
+          "us-il.geojson",
+          "us-wi.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2065,9 +2316,14 @@
     },
     {
       "displayName": "University Hospitals of Cleveland",
-      "id": "universityhospitalsofcleveland-888e5a",
-      "locationSet": {"include": ["us"]},
-      "matchNames": ["university hospitals"],
+      "id": "universityhospitalsofcleveland-776941",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "matchNames": [
+        "lake health",
+        "university hospitals"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2193,7 +2449,7 @@
         "healthcare": "hospital",
         "operator": "醫院管理局 Hospital Authority",
         "operator:wikidata": "Q5908350",
-        "operator:wikipedia": "zh-yue:醫院管理局"
+        "operator:wikipedia": "zh:醫院管理局"
       }
     }
   ]

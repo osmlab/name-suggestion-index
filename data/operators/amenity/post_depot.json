@@ -6,17 +6,6 @@
   },
   "items": [
     {
-      "displayName": "Amazon",
-      "id": "amazon-93b2a6",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "post_depot",
-        "operator": "Amazon",
-        "operator:wikidata": "Q3884",
-        "operator:wikipedia": "en:Amazon (company)"
-      }
-    },
-    {
       "displayName": "An Post",
       "id": "anpost-2f7b40",
       "locationSet": {"include": ["ie"]},
@@ -24,20 +13,22 @@
         "amenity": "post_depot",
         "name": "An Post",
         "operator": "An Post",
+        "operator:type": "public",
         "operator:wikidata": "Q482490",
         "operator:wikipedia": "en:An Post"
       }
     },
     {
       "displayName": "Canada Post",
-      "id": "canadapost-c92f48",
+      "id": "canadapost-dd0253",
       "locationSet": {
         "include": ["ca"],
-        "exclude": ["quebec.geojson"]
+        "exclude": ["ca-qc.geojson"]
       },
       "tags": {
         "amenity": "post_depot",
         "operator": "Canada Post",
+        "operator:type": "public",
         "operator:wikidata": "Q1032001",
         "operator:wikipedia": "en:Canada Post"
       }
@@ -51,35 +42,9 @@
         "amenity": "post_depot",
         "name": "Deutsche Post",
         "operator": "Deutsche Post",
+        "operator:type": "private",
         "operator:wikidata": "Q157645",
         "operator:wikipedia": "de:Deutsche Post AG"
-      }
-    },
-    {
-      "displayName": "DHL",
-      "id": "dhl-93b2a6",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "post_depot",
-        "name": "DHL",
-        "operator": "DHL",
-        "operator:wikidata": "Q489815",
-        "operator:wikipedia": "de:DHL"
-      }
-    },
-    {
-      "displayName": "DPD",
-      "id": "dpd-93b2a6",
-      "locationSet": {"include": ["001"]},
-      "matchNames": [
-        "dpd dynamic parcel distribution"
-      ],
-      "tags": {
-        "amenity": "post_depot",
-        "name": "DPD",
-        "operator": "DPD",
-        "operator:wikidata": "Q541030",
-        "operator:wikipedia": "de:DPDgroup"
       }
     },
     {
@@ -90,6 +55,7 @@
         "amenity": "post_depot",
         "name": "La Poste",
         "operator": "La Poste",
+        "operator:type": "public",
         "operator:wikidata": "Q373724",
         "operator:wikipedia": "fr:La Poste (entreprise française)"
       }
@@ -102,35 +68,22 @@
         "amenity": "post_depot",
         "name": "Royal Mail",
         "operator": "Royal Mail",
+        "operator:type": "private",
         "operator:wikidata": "Q638098",
         "operator:wikipedia": "en:Royal Mail"
       }
     },
     {
-      "displayName": "UPS",
-      "id": "ups-93b2a6",
-      "locationSet": {"include": ["001"]},
+      "displayName": "United States Postal Service",
+      "id": "unitedstatespostalservice-9cb3b1",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "post_depot",
-        "operator": "UPS",
-        "operator:wikidata": "Q155026",
-        "operator:wikipedia": "en:United Parcel Service"
-      }
-    },
-    {
-      "displayName": "Yodel",
-      "id": "yodel-a473cc",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": [
-        "hdn",
-        "home delivery network"
-      ],
-      "tags": {
-        "amenity": "post_depot",
-        "name": "Yodel",
-        "operator": "Yodel",
-        "operator:wikidata": "Q17020712",
-        "operator:wikipedia": "en:Yodel (company)"
+        "operator": "United States Postal Service",
+        "operator:type": "public",
+        "operator:wikidata": "Q668687",
+        "operator:wikipedia": "en:United States Postal Service",
+        "short_name": "USPS"
       }
     }
   ]

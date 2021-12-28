@@ -4,15 +4,29 @@
     "exclude": {
       "generic": [
         "^((le|the) )?salo{1,2}n( de)?\\s?(coiffure|fryzjerski|beauté)?\\s?(homme|dame)?$",
-        "^(beauty|nails|nagelstudio)$",
+        "^(beauty|nails|nagelstudio|solarium)$",
         "^coiff(eur|ure)\\s?(homme|dame)?$",
         "^hair\\s?(design|dresser|lounge|salon|studio)$",
-        "^solarium$",
         "^салон красоты$"
+      ],
+      "named": [
+        "^(beauty|happy|hollywood|new york|pretty|queen|star|top) nails$"
       ]
     }
   },
   "items": [
+    {
+      "displayName": "Amazing Lash Studio",
+      "id": "amazinglashstudio-cc0daa",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "beauty": "eyelash",
+        "brand": "Amazing Lash Studio",
+        "brand:wikidata": "Q108469240",
+        "name": "Amazing Lash Studio",
+        "shop": "beauty"
+      }
+    },
     {
       "displayName": "AYK Sonnenstudio",
       "id": "ayksonnenstudio-fc55f7",
@@ -26,20 +40,6 @@
         "beauty": "tanning",
         "brand": "AYK Sonnenstudio",
         "name": "AYK Sonnenstudio",
-        "shop": "beauty"
-      }
-    },
-    {
-      "displayName": "Beauty Nails",
-      "id": "beautynails-e6f7d8",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cn"]
-      },
-      "tags": {
-        "beauty": "nails",
-        "brand": "Beauty Nails",
-        "name": "Beauty Nails",
         "shop": "beauty"
       }
     },
@@ -66,6 +66,18 @@
         "brand": "Body Minute",
         "brand:wikidata": "Q104972220",
         "name": "Body Minute",
+        "shop": "beauty"
+      }
+    },
+    {
+      "displayName": "Brow Studio 7",
+      "id": "browstudio7-4be8e1",
+      "locationSet": {"include": ["ca", "us"]},
+      "tags": {
+        "beauty": "skin_care;waxing;eyebrow;eyelash",
+        "brand": "Brow Studio 7",
+        "brand:wikidata": "Q108410558",
+        "name": "Brow Studio 7",
         "shop": "beauty"
       }
     },
@@ -98,8 +110,22 @@
       "id": "cosmoprof-4be8e1",
       "locationSet": {"include": ["ca", "us"]},
       "tags": {
+        "beauty": "cosmetics;nails",
         "brand": "Cosmo Prof",
+        "brand:wikidata": "Q109570386",
         "name": "Cosmo Prof",
+        "shop": "beauty"
+      }
+    },
+    {
+      "displayName": "DaVi Nails",
+      "id": "davinails-4be8e1",
+      "locationSet": {"include": ["ca", "us"]},
+      "tags": {
+        "beauty": "nails",
+        "brand": "DaVi Nails",
+        "brand:wikidata": "Q108726836",
+        "name": "DaVi Nails",
         "shop": "beauty"
       }
     },
@@ -117,29 +143,14 @@
       }
     },
     {
-      "displayName": "Happy Nails",
-      "id": "happynails-e6f7d8",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cn"]
-      },
+      "displayName": "Eyebrow Plus",
+      "id": "eyebrowplus-cc0daa",
+      "locationSet": {"include": ["us"]},
       "tags": {
-        "beauty": "nails",
-        "brand": "Happy Nails",
-        "name": "Happy Nails",
-        "shop": "beauty"
-      }
-    },
-    {
-      "displayName": "Hollywood Nails",
-      "id": "hollywoodnails-b94d85",
-      "locationSet": {
-        "include": ["de", "gb", "us"]
-      },
-      "tags": {
-        "beauty": "nails",
-        "brand": "Hollywood Nails",
-        "name": "Hollywood Nails",
+        "beauty": "eyebrow;hair_removal",
+        "brand": "Eyebrow Plus",
+        "brand:wikidata": "Q108412880",
+        "name": "Eyebrow Plus",
         "shop": "beauty"
       }
     },
@@ -186,20 +197,6 @@
       }
     },
     {
-      "displayName": "New York Nails",
-      "id": "newyorknails-e6f7d8",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cn"]
-      },
-      "tags": {
-        "beauty": "nails",
-        "brand": "New York Nails",
-        "name": "New York Nails",
-        "shop": "beauty"
-      }
-    },
-    {
       "displayName": "Palm Beach Tan",
       "id": "palmbeachtan-cc0daa",
       "locationSet": {"include": ["us"]},
@@ -230,11 +227,51 @@
     },
     {
       "displayName": "Pro Nails",
+      "id": "pronails-718fee",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["us"]
+      },
+      "tags": {
+        "beauty": "nails",
+        "brand": "Pro Nails",
+        "brand:wikidata": "Q109570250",
+        "name": "Pro Nails",
+        "shop": "beauty"
+      }
+    },
+    {
+      "displayName": "Pro Nails (USA)",
       "id": "pronails-cc0daa",
       "locationSet": {"include": ["us"]},
       "tags": {
+        "beauty": "nails",
         "brand": "Pro Nails",
         "name": "Pro Nails",
+        "shop": "beauty"
+      }
+    },
+    {
+      "displayName": "Regal Nails",
+      "id": "regalnails-4be8e1",
+      "locationSet": {"include": ["ca", "us"]},
+      "tags": {
+        "beauty": "nails",
+        "brand": "Regal Nails",
+        "brand:wikidata": "Q108918028",
+        "name": "Regal Nails",
+        "shop": "beauty"
+      }
+    },
+    {
+      "displayName": "Seva Beauty",
+      "id": "sevabeauty-cc0daa",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "beauty": "hair;skin_care;waxing;eyebrow;eyelash;cosmetics;makeup",
+        "brand": "Seva Beauty",
+        "brand:wikidata": "Q109329648",
+        "name": "Seva Beauty",
         "shop": "beauty"
       }
     },
@@ -251,20 +288,6 @@
         "brand": "Sola Salons",
         "brand:wikidata": "Q64337426",
         "name": "Sola Salons",
-        "shop": "beauty"
-      }
-    },
-    {
-      "displayName": "Star Nails",
-      "id": "starnails-e6f7d8",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cn"]
-      },
-      "tags": {
-        "beauty": "nails",
-        "brand": "Star Nails",
-        "name": "Star Nails",
         "shop": "beauty"
       }
     },
@@ -324,19 +347,6 @@
         "brand:wikidata": "Q7880076",
         "brand:wikipedia": "en:Ulta Beauty",
         "name": "The Skin Bar at Ulta Beauty",
-        "shop": "beauty"
-      }
-    },
-    {
-      "displayName": "Top Nails",
-      "id": "topnails-e6f7d8",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cn"]
-      },
-      "tags": {
-        "brand": "Top Nails",
-        "name": "Top Nails",
         "shop": "beauty"
       }
     },

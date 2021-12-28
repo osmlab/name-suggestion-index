@@ -1,6 +1,7 @@
 {
   "properties": {
     "path": "brands/amenity/prep_school",
+    "preserveTags": ["^name"],
     "exclude": {"generic": ["^prep school$"]}
   },
   "items": [
@@ -32,7 +33,13 @@
       "displayName": "Kumon (International)",
       "id": "kumon-027246",
       "locationSet": {"include": ["001"]},
-      "matchNames": ["kumon learning center"],
+      "matchNames": [
+        "kumon learning center",
+        "kumon math and reading center"
+      ],
+      "matchTags": [
+        "office/educational_institution"
+      ],
       "tags": {
         "amenity": "prep_school",
         "brand": "Kumon",
