@@ -580,7 +580,7 @@ function mergeItems() {
 
   function setLanguageTags(tags, code) {
     if (tags.name)          tags[`name:${code}`] = tags.name;
-    if (tags.denomination)  tags[`name:${code}`] = tags.denomination
+    if (tags.denomination)  tags[`name:${code}`] = tags.denomination;
     if (tags.brand)         tags[`brand:${code}`] = tags.brand;
     if (tags.operator)      tags[`operator:${code}`] = tags.operator;
     if (tags.network)       tags[`network:${code}`] = tags.network;
