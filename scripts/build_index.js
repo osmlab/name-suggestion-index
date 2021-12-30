@@ -500,7 +500,7 @@ function mergeItems() {
         // https://www.regular-expressions.info/unicode.html
         if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
           // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
-          if (!item.locationSet)  item.locationSet = { include: ['il'] };
+          if (!item.locationSet)  item.locationSet = { include: ['iw'] };
           setLanguageTags(tags, 'he');
         } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
           if (!item.locationSet)  item.locationSet = { include: ['th'] };
