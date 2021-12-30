@@ -38,6 +38,7 @@ let _cache = {};
 loadIndex();
 
 checkItems('brands');
+checkItems('denominations');
 checkItems('flags');
 checkItems('operators');
 checkItems('transit');
@@ -464,6 +465,9 @@ function mergeItems() {
         if (t === 'brands') {
           name = tags.brand || tags.name;
 
+        } else if (t === 'denominations') {
+          name = tags.denomination || tags.name;
+
         } else if (t === 'flags') {
           name = tags['flag:name'];
 
@@ -500,7 +504,7 @@ function mergeItems() {
         // https://www.regular-expressions.info/unicode.html
         if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
           // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
-          if (!item.locationSet)  item.locationSet = { include: ['il'] };
+          if (!item.locationSet)  item.locationSet = { include: ['iw'] };
           setLanguageTags(tags, 'he');
         } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
           if (!item.locationSet)  item.locationSet = { include: ['th'] };
@@ -575,10 +579,11 @@ function mergeItems() {
   console.timeEnd(END);
 
   function setLanguageTags(tags, code) {
-    if (tags.name)      tags[`name:${code}`] = tags.name;
-    if (tags.brand)     tags[`brand:${code}`] = tags.brand;
-    if (tags.operator)  tags[`operator:${code}`] = tags.operator;
-    if (tags.network)   tags[`network:${code}`] = tags.network;
+    if (tags.name)          tags[`name:${code}`] = tags.name;
+    if (tags.denomination)  tags[`name:${code}`] = tags.denomination
+    if (tags.brand)         tags[`brand:${code}`] = tags.brand;
+    if (tags.operator)      tags[`operator:${code}`] = tags.operator;
+    if (tags.network)       tags[`network:${code}`] = tags.network;
   }
 }
 
@@ -660,6 +665,9 @@ function checkItems(t) {
         case 'amenity/fast_food':
         case 'amenity/restaurant':
           if (!tags.cuisine) { warnMissingTag.push([display(item), 'cuisine']); }
+          break;
+        case 'amenity/place_of_worship':
+          if (!tags.religion) { warnMissingTag.push([display(item), 'religion']); }
           break;
         case 'amenity/training':
           if (!tags.training) { warnMissingTag.push([display(item), 'training']); }

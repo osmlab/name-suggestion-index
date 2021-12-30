@@ -21,6 +21,9 @@ export default function Overview(props) {
   if (t === 'brands') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'denominations') {
+    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/place-of-worship-15.svg';
+    wikidataTag = 'denomination:wikidata';
   } else if (t === 'flags') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/embassy-15.svg';
     wikidataTag = 'flag:wikidata';
