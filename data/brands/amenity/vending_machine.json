@@ -3,6 +3,7 @@
     "path": "brands/amenity/vending_machine",
     "exclude": {
       "generic": [
+        "^((自动|自動)|自助)(贩卖|贩售|售货机)机$",
         "^(bread|drink(s)?)$",
         "^(schlauch|bilet)omat$",
         "^(自動)?[券販]売機$",
@@ -51,6 +52,24 @@
       }
     },
     {
+      "displayName": "Amazon Hub Locker",
+      "id": "amazonhublocker-e80bf6",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn", "jp"]
+      },
+      "matchNames": ["amazon", "amazon locker"],
+      "preserveTags": ["^name"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Amazon Hub",
+        "brand:wikidata": "Q16974764",
+        "brand:wikipedia": "en:Amazon Locker",
+        "name": "Amazon Hub Locker",
+        "vending": "parcel_pickup;parcel_mail_in"
+      }
+    },
+    {
       "displayName": "Amazon Hub ロッカー",
       "id": "amazonhublocker-bf11a2",
       "locationSet": {"include": ["jp"]},
@@ -69,22 +88,6 @@
         "name": "Amazon Hub ロッカー",
         "name:en": "Amazon Hub Locker",
         "name:ja": "Amazon Hub ロッカー",
-        "vending": "parcel_pickup"
-      }
-    },
-    {
-      "displayName": "Amazon Locker",
-      "id": "amazonlocker-52a344",
-      "locationSet": {
-        "include": ["de", "gb", "us"]
-      },
-      "preserveTags": ["^name"],
-      "tags": {
-        "amenity": "vending_machine",
-        "brand": "Amazon Locker",
-        "brand:wikidata": "Q16974764",
-        "brand:wikipedia": "en:Amazon Locker",
-        "name": "Amazon Locker",
         "vending": "parcel_pickup"
       }
     },
@@ -235,7 +238,8 @@
       "tags": {
         "amenity": "vending_machine",
         "brand": "Chaqwa",
-        "brand:wikidata": "Q109265856"
+        "brand:wikidata": "Q109265856",
+        "vending": "coffee"
       }
     },
     {
@@ -301,17 +305,15 @@
       "displayName": "DHL Packstation",
       "id": "dhlpackstation-a242c5",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["packstation"],
       "tags": {
-        "alt_name": "Packstation",
         "amenity": "vending_machine",
         "brand": "DHL Packstation",
         "brand:wikidata": "Q1766703",
         "brand:wikipedia": "de:Packstation",
-        "name": "DHL Packstation",
         "operator": "DHL",
         "operator:wikidata": "Q489815",
         "operator:wikipedia": "de:DHL",
-        "short_name": "DHL",
         "vending": "parcel_pickup;parcel_mail_in"
       }
     },
@@ -400,7 +402,6 @@
         "amenity": "vending_machine",
         "brand": "Home City Ice",
         "brand:wikidata": "Q5888287",
-        "brand:wikipedia": "simple:Home City Ice",
         "name": "Home City Ice",
         "vending": "ice_cubes"
       }
@@ -604,6 +605,18 @@
       }
     },
     {
+      "displayName": "PickPoint",
+      "id": "pickpoint-eb9a2c",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "PickPoint",
+        "brand:wikidata": "Q110276197",
+        "name": "PickPoint",
+        "vending": "parcel_pickup"
+      }
+    },
+    {
       "displayName": "Primo Water",
       "id": "primowater-7e3927",
       "locationSet": {"include": ["us"]},
@@ -764,7 +777,7 @@
         "amenity": "vending_machine",
         "brand": "Smartpost",
         "brand:wikidata": "Q7543889",
-        "brand:wikipedia": "fi:SmartPOST",
+        "brand:wikipedia": "fi:Smartpost",
         "name": "Smartpost",
         "vending": "parcel_pickup;parcel_mail_in"
       }
@@ -858,6 +871,7 @@
         "brand": "ОмниСДЭК",
         "brand:en": "OmniCEDK",
         "brand:ru": "ОмниСДЭК",
+        "brand:wikidata": "Q110240113",
         "name": "ОмниСДЭК",
         "name:en": "OmniCDEK",
         "name:ru": "ОмниСДЭК",

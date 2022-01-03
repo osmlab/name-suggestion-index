@@ -3,7 +3,13 @@
     "path": "operators/power/line",
     "exclude": {
       "generic": ["^line$"],
-      "named": ["national grid et"]
+      "named": [
+        "badenwerk",
+        "badenwerk ag",
+        "enbw",
+        "enbw ag",
+        "national grid et"
+      ]
     }
   },
   "items": [
@@ -277,6 +283,23 @@
       }
     },
     {
+      "displayName": "ATCO Electric",
+      "id": "atcoelectric-95aa3c",
+      "locationSet": {
+        "include": [
+          "ca-ab.geojson",
+          "ca-nt.geojson",
+          "ca-yt.geojson"
+        ]
+      },
+      "tags": {
+        "operator": "ATCO Electric",
+        "operator:wikidata": "Q4654598",
+        "operator:wikipedia": "en:ATCO Electric",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "ATEL",
       "id": "atel-34ad9c",
       "locationSet": {"include": ["ch"]},
@@ -370,14 +393,15 @@
       }
     },
     {
-      "displayName": "Badenwerk AG",
-      "id": "badenwerkag-d5e323",
-      "locationSet": {"include": ["de"]},
-      "matchNames": ["badenwerk"],
+      "displayName": "Baltimore Gas & Electric",
+      "id": "baltimoregasandelectric-b654b4",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["bg&e", "bge"],
       "tags": {
-        "operator": "Badenwerk AG",
-        "operator:wikidata": "Q798945",
-        "operator:wikipedia": "de:Badenwerk",
+        "frequency": "60",
+        "operator": "Baltimore Gas and Electric",
+        "operator:wikidata": "Q4852862",
+        "operator:wikipedia": "en:Baltimore Gas and Electric",
         "power": "line"
       }
     },
@@ -1207,16 +1231,16 @@
       }
     },
     {
-      "displayName": "e.dis",
-      "id": "edis-d5e323",
+      "displayName": "E.DIS Netz GmbH",
+      "id": "edisnetzgmbh-d5e323",
       "locationSet": {"include": ["de"]},
       "matchNames": [
-        "e.dis netz gmbh",
+        "e.dis",
         "e.on edis",
         "e.on edis ag"
       ],
       "tags": {
-        "operator": "e.dis",
+        "operator": "E.DIS Netz GmbH",
         "operator:wikidata": "Q1273411",
         "operator:wikipedia": "de:E.DIS",
         "power": "line"
@@ -1655,33 +1679,6 @@
       }
     },
     {
-      "displayName": "EnBW",
-      "id": "enbw-d5e323",
-      "locationSet": {"include": ["de"]},
-      "matchNames": [
-        "enbw ag",
-        "enbw regional",
-        "enbw regional ag",
-        "energie-versorgung schwaben ag",
-        "neckarwerke"
-      ],
-      "tags": {
-        "operator": "EnBW",
-        "operator:wikidata": "Q644304",
-        "operator:wikipedia": "de:EnBW Energie Baden-Württemberg",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "EnBW Transportnetze AG",
-      "id": "enbwtransportnetzeag-d5e323",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "EnBW Transportnetze AG",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Endeavour Energy",
       "id": "endeavourenergy-8d5e75",
       "locationSet": {"include": ["au"]},
@@ -1973,10 +1970,14 @@
     },
     {
       "displayName": "ENMAX",
-      "id": "enmax-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "enmax-a4e32f",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
       "tags": {
         "operator": "ENMAX",
+        "operator:wikidata": "Q5323708",
+        "operator:wikipedia": "en:Enmax",
         "power": "line"
       }
     },
@@ -2009,10 +2010,22 @@
     },
     {
       "displayName": "EPCOR",
-      "id": "epcor-6c988f",
-      "locationSet": {"include": ["ca"]},
+      "id": "epcor-ec456d",
+      "locationSet": {
+        "include": [
+          "ca-ab.geojson",
+          "ca-bc.geojson",
+          "ca-on.geojson",
+          "us-az.geojson",
+          "us-nm.geojson",
+          "us-tx.geojson"
+        ]
+      },
+      "matchNames": ["aqualta", "eltec"],
       "tags": {
         "operator": "EPCOR",
+        "operator:wikidata": "Q5323849",
+        "operator:wikipedia": "en:EPCOR Utilities",
         "power": "line"
       }
     },
@@ -2088,6 +2101,15 @@
       }
     },
     {
+      "displayName": "Evergy",
+      "id": "evergy-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Evergy",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Eversource",
       "id": "eversource-b15319",
       "locationSet": {
@@ -2157,7 +2179,12 @@
       "displayName": "EWZ",
       "id": "ewz-34ad9c",
       "locationSet": {"include": ["ch"]},
-      "tags": {"operator": "EWZ", "power": "line"}
+      "tags": {
+        "operator": "EWZ",
+        "operator:wikidata": "Q1326645",
+        "operator:wikipedia": "de:Elektrizitätswerk der Stadt Zürich",
+        "power": "line"
+      }
     },
     {
       "displayName": "Fingrid",
@@ -2208,11 +2235,29 @@
       }
     },
     {
+      "displayName": "Fjellnett",
+      "id": "fjellnett-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Fjellnett",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "FKEC",
       "id": "fkec-116894",
       "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "FKEC",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Florida Keys Electric Coorerative",
+      "id": "floridakeyselectriccoorerative-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Florida Keys Electric Coorerative",
         "power": "line"
       }
     },
@@ -2239,6 +2284,20 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "Fort Pierce Utilities",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "FortisAlberta",
+      "id": "fortisalberta-a4e32f",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
+      "matchNames": ["aqualta", "eltec"],
+      "tags": {
+        "operator": "FortisAlberta",
+        "operator:wikidata": "Q1438987",
+        "operator:wikipedia": "en:Fortis Inc.",
         "power": "line"
       }
     },
@@ -2610,6 +2669,15 @@
       }
     },
     {
+      "displayName": "INELFE",
+      "id": "inelfe-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "INELFE",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Interchile",
       "id": "interchile-116894",
       "locationSet": {"include": ["001"]},
@@ -2909,6 +2977,15 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Linea",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Linja",
+      "id": "linja-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Linja",
         "power": "line"
       }
     },
@@ -3327,12 +3404,18 @@
       }
     },
     {
-      "displayName": "Netze BW",
-      "id": "netzebw-d5e323",
+      "displayName": "Netze BW GmbH",
+      "id": "netzebwgmbh-d5e323",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["netze bw gmbh"],
+      "matchNames": [
+        "enbw regional",
+        "enbw regional ag",
+        "energie-versorgung schwaben ag",
+        "neckarwerke",
+        "netze bw"
+      ],
       "tags": {
-        "operator": "Netze BW",
+        "operator": "Netze BW GmbH",
         "operator:wikidata": "Q16854888",
         "operator:wikipedia": "de:Netze BW",
         "power": "line"
@@ -4064,6 +4147,15 @@
       }
     },
     {
+      "displayName": "SAMELCO 2",
+      "id": "samelco2-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "SAMELCO 2",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "San Diego Gas & Electric",
       "id": "sandiegogasandelectric-116894",
       "locationSet": {"include": ["001"]},
@@ -4077,10 +4169,14 @@
     },
     {
       "displayName": "SaskPower",
-      "id": "saskpower-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "saskpower-529c96",
+      "locationSet": {
+        "include": ["ca-sk.geojson"]
+      },
       "tags": {
         "operator": "SaskPower",
+        "operator:wikidata": "Q2225615",
+        "operator:wikipedia": "en:SaskPower",
         "power": "line"
       }
     },
@@ -4288,6 +4384,19 @@
         "operator": "Southern California Edison",
         "operator:wikidata": "Q1706317",
         "operator:wikipedia": "en:Southern California Edison",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Southern Maryland Electric Cooperative",
+      "id": "southernmarylandelectriccooperative-b654b4",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["smeco"],
+      "tags": {
+        "frequency": "60",
+        "operator": "Southern Maryland Electric Cooperative",
+        "operator:wikidata": "Q7570123",
+        "operator:wikipedia": "en:Southern Maryland Electric Cooperative",
         "power": "line"
       }
     },
@@ -4535,6 +4644,15 @@
       }
     },
     {
+      "displayName": "Sygnir",
+      "id": "sygnir-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Sygnir",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Tauron",
       "id": "tauron-dffc4e",
       "locationSet": {"include": ["pl"]},
@@ -4693,6 +4811,15 @@
       }
     },
     {
+      "displayName": "TRANSBA S.A.",
+      "id": "transbasa-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "TRANSBA S.A.",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Transelec",
       "id": "transelec-116894",
       "locationSet": {"include": ["001"]},
@@ -4754,8 +4881,11 @@
       "displayName": "TransnetBW GmbH",
       "id": "transnetbwgmbh-116894",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["enbw transportnetze ag"],
       "tags": {
         "operator": "TransnetBW GmbH",
+        "operator:wikidata": "Q1672772",
+        "operator:wikipedia": "de:TransnetBW",
         "power": "line"
       }
     },
@@ -5000,6 +5130,24 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "Vesterålskraft Nett",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Vevig",
+      "id": "vevig-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Vevig",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Vissi",
+      "id": "vissi-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Vissi",
         "power": "line"
       }
     },
@@ -5523,8 +5671,9 @@
     },
     {
       "displayName": "中国電力",
-      "id": "db0b94-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "db0b94-e95322",
+      "locationSet": {"include": ["jp"]},
+      "note": "This 中国 don't means China",
       "tags": {
         "operator": "中国電力",
         "power": "line"
@@ -5532,8 +5681,9 @@
     },
     {
       "displayName": "中国電力株式会社",
-      "id": "dc7674-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "dc7674-e95322",
+      "locationSet": {"include": ["jp"]},
+      "note": "This 中国 don't means China",
       "tags": {
         "operator": "中国電力株式会社",
         "power": "line"
@@ -5541,8 +5691,8 @@
     },
     {
       "displayName": "中部電力",
-      "id": "e0ec69-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "e0ec69-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "中部電力",
         "power": "line"
@@ -5550,8 +5700,8 @@
     },
     {
       "displayName": "中部電力株式会社",
-      "id": "0fa592-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "0fa592-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "中部電力株式会社",
         "power": "line"
@@ -5559,8 +5709,8 @@
     },
     {
       "displayName": "九州電力",
-      "id": "7046fd-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "7046fd-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "九州電力",
         "power": "line"
@@ -5568,8 +5718,8 @@
     },
     {
       "displayName": "九州電力送配電",
-      "id": "78e280-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "78e280-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "九州電力送配電",
         "power": "line"
@@ -5577,8 +5727,8 @@
     },
     {
       "displayName": "北海道電力",
-      "id": "be290e-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "be290e-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "北海道電力",
         "power": "line"
@@ -5586,8 +5736,8 @@
     },
     {
       "displayName": "北海道電力株式会社",
-      "id": "51f8c7-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "51f8c7-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "北海道電力株式会社",
         "power": "line"
@@ -5595,8 +5745,8 @@
     },
     {
       "displayName": "北陸電力",
-      "id": "2da1f7-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "2da1f7-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "北陸電力",
         "power": "line"
@@ -5604,8 +5754,8 @@
     },
     {
       "displayName": "四国電力",
-      "id": "c4dc1d-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "c4dc1d-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "四国電力",
         "power": "line"
@@ -5613,8 +5763,8 @@
     },
     {
       "displayName": "国家电网",
-      "id": "024934-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "024934-cf3c91",
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "operator": "国家电网",
         "power": "line"
@@ -5622,17 +5772,27 @@
     },
     {
       "displayName": "東京電力",
-      "id": "a13c22-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "a13c22-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "東京電力",
         "power": "line"
       }
     },
     {
-      "displayName": "東京電力株式会社",
-      "id": "3f6b76-116894",
+      "displayName": "東京電力パワーグリッド",
+      "id": "f11c21-116894",
       "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "東京電力パワーグリッド",
+        "operator:ja": "東京電力パワーグリッド",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "東京電力株式会社",
+      "id": "3f6b76-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "東京電力株式会社",
         "power": "line"
@@ -5640,8 +5800,8 @@
     },
     {
       "displayName": "東北電力",
-      "id": "6ab6d7-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "6ab6d7-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "東北電力",
         "power": "line"
@@ -5649,8 +5809,8 @@
     },
     {
       "displayName": "沖縄電力",
-      "id": "417df7-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "417df7-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "沖縄電力",
         "power": "line"
@@ -5658,8 +5818,8 @@
     },
     {
       "displayName": "関西電力",
-      "id": "aa8e89-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "aa8e89-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "関西電力",
         "power": "line"
@@ -5667,8 +5827,8 @@
     },
     {
       "displayName": "電源開発",
-      "id": "82d549-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "82d549-e95322",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "電源開発",
         "power": "line"

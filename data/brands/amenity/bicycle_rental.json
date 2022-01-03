@@ -119,21 +119,31 @@
     },
     {
       "displayName": "Bay Wheels",
-      "id": "baywheels-e229af",
+      "id": "baywheels-ea5e04",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": [
+          "us-ca-eastbay.geojson",
+          "us-ca-sanfrancisco.geojson",
+          "us-ca-sanjose.geojson"
+        ]
       },
       "matchNames": [
         "bay area bike share",
-        "ford gobike"
+        "ford gobike",
+        "lyft bike"
       ],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Bay Wheels",
         "brand:wikidata": "Q16971391",
         "brand:wikipedia": "en:Bay Wheels",
+        "fee": "yes",
         "name": "Bay Wheels",
+        "network": "Bay Wheels",
+        "network:wikidata": "Q16971391",
+        "network:wikipedia": "en:Bay Wheels",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -388,8 +398,8 @@
     },
     {
       "displayName": "Bicloo",
-      "id": "bicloo-d06f5d",
-      "locationSet": {"include": ["fx"]},
+      "id": "bicloo-fb0739",
+      "locationSet": {"include": [[-1.6, 47.2]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Bicloo",
@@ -597,15 +607,20 @@
       "locationSet": {
         "include": ["us-or.geojson"]
       },
+      "matchNames": ["lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Biketown",
         "brand:wikidata": "Q28035353",
         "brand:wikipedia": "en:Biketown",
+        "fee": "yes",
+        "name": "Biketown",
         "network": "Biketown",
         "network:wikidata": "Q28035353",
         "network:wikipedia": "en:Biketown",
+        "opening_hours": "24/7",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -797,19 +812,6 @@
       }
     },
     {
-      "displayName": "Brisbane CityCycle",
-      "id": "brisbanecitycycle-da628b",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "Brisbane CityCycle",
-        "network": "Brisbane CityCycle",
-        "operator": "JCDecaux",
-        "operator:wikidata": "Q74877",
-        "operator:wikipedia": "fr:JCDecaux"
-      }
-    },
-    {
       "displayName": "Bruin Bike Share",
       "id": "bruinbikeshare-97ea79",
       "locationSet": {"include": ["us"]},
@@ -957,7 +959,7 @@
     },
     {
       "displayName": "Capital Bikeshare",
-      "id": "capitalbikeshare-f7b29d",
+      "id": "capialbikeshare-f7b29d",
       "locationSet": {
         "include": [
           "us-dc.geojson",
@@ -965,16 +967,20 @@
           "us-va.geojson"
         ]
       },
-      "matchNames": ["cabi"],
+      "matchNames": ["cabi", "lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Capital Bikeshare",
         "brand:wikidata": "Q1034635",
         "brand:wikipedia": "en:Capital Bikeshare",
+        "fee": "yes",
+        "name": "Capial Bikeshare",
         "network": "Capital Bikeshare",
         "network:wikidata": "Q1034635",
         "network:wikipedia": "en:Capital Bikeshare",
+        "opening_hours": "24/7",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -986,6 +992,7 @@
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "carvelo2go",
+        "brand:wikidata": "Q110278232",
         "name": "carvelo2go",
         "operator": "carvelo2go"
       }
@@ -1026,19 +1033,29 @@
     },
     {
       "displayName": "Citi Bike",
-      "id": "citibike-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "citibike-7456a4",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "matchNames": [
+        "lyft bike",
+        "nyc bike share"
+      ],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Citi Bike",
         "brand:wikidata": "Q2974438",
         "brand:wikipedia": "en:Citi Bike",
+        "fee": "yes",
+        "name": "Citi Bike",
         "network": "Citi Bike",
         "network:wikidata": "Q2974438",
         "network:wikipedia": "en:Citi Bike",
-        "operator": "Citi Bike",
-        "operator:wikidata": "Q2974438",
-        "operator:wikipedia": "en:Citi Bike"
+        "opening_hours": "24/7",
+        "operator": "Motivate",
+        "operator:type": "private",
+        "operator:wikidata": "Q4735954",
+        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
@@ -1121,19 +1138,6 @@
       }
     },
     {
-      "displayName": "CityCycle",
-      "id": "citycycle-da628b",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "CityCycle",
-        "network": "CityCycle",
-        "operator": "JCDecaux",
-        "operator:wikidata": "Q74877",
-        "operator:wikipedia": "fr:JCDecaux"
-      }
-    },
-    {
       "displayName": "Cluj Bike",
       "id": "clujbike-8ba172",
       "locationSet": {"include": ["ro"]},
@@ -1183,27 +1187,32 @@
     },
     {
       "displayName": "CoGo Bike Share",
-      "id": "cogobikeshare-919639",
+      "id": "cogo-919639",
       "locationSet": {
         "include": ["us-oh.geojson"]
       },
+      "matchNames": ["lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "CoGo Bike Share",
         "brand:wikidata": "Q91342219",
         "brand:wikipedia": "en:CoGo",
+        "fee": "yes",
+        "name": "CoGo",
         "network": "CoGo Bike Share",
         "network:wikidata": "Q91342219",
         "network:wikipedia": "en:CoGo",
+        "opening_hours": "24/7",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
       "displayName": "Cy'clic",
-      "id": "cyclic-d06f5d",
-      "locationSet": {"include": ["fx"]},
+      "id": "cyclic-aedfa2",
+      "locationSet": {"include": [[1.1, 49.4]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Cy'clic",
@@ -1291,15 +1300,20 @@
       "locationSet": {
         "include": ["us-il.geojson"]
       },
+      "matchNames": ["lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Divvy",
         "brand:wikidata": "Q16973938",
         "brand:wikipedia": "en:Divvy",
+        "fee": "yes",
+        "name": "Divvy",
         "network": "Divvy",
         "network:wikidata": "Q16973938",
         "network:wikipedia": "en:Divvy",
+        "opening_hours": "24/7",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -1826,9 +1840,17 @@
       "locationSet": {"include": ["tw"]},
       "tags": {
         "amenity": "bicycle_rental",
-        "brand": "K Bike",
-        "network": "K Bike",
-        "operator": "金門縣政府"
+        "brand": "金門公共自行車",
+        "brand:en": "K-Bike",
+        "brand:wikidata": "Q30942379",
+        "brand:wikipedia": "zh:金門縣公共自行車租賃系統",
+        "brand:zh": "金門公共自行車",
+        "name": "金門公共自行車",
+        "name:en": "K-Bike",
+        "name:zh": "金門公共自行車",
+        "network": "K-Bike",
+        "operator": "金門縣政府",
+        "operator:type": "government"
       }
     },
     {
@@ -2066,6 +2088,32 @@
         "operator": "JCDecaux",
         "operator:wikidata": "Q74877",
         "operator:wikipedia": "fr:JCDecaux"
+      }
+    },
+    {
+      "displayName": "Lyft Bike",
+      "id": "lyftbike-c321c0",
+      "locationSet": {
+        "include": [
+          "lausd_los_angeles.geojson",
+          "us-co.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "Lyft",
+        "brand:wikidata": "Q17077936",
+        "brand:wikipedia": "en:Lyft",
+        "fee": "yes",
+        "name": "Lyft Bike",
+        "network": "Lyft Bike",
+        "network:wikidata": "Q17077936",
+        "network:wikipedia": "en:Lyft",
+        "opening_hours": "24/7",
+        "operator": "Lyft",
+        "operator:type": "private",
+        "operator:wikidata": "Q4735954",
+        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
@@ -2384,14 +2432,26 @@
       }
     },
     {
-      "displayName": "NYC Bike Share",
-      "id": "nycbikeshare-97ea79",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Nice Ride Minnesota",
+      "id": "nicerideminnesota-231188",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "matchNames": ["lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
-        "brand": "NYC Bike Share",
-        "name": "NYC Bike Share",
-        "operator": "NYC Bike Share"
+        "brand": "Nice Ride Minnesota",
+        "brand:wikidata": "Q16982804",
+        "brand:wikipedia": "en:Nice Ride Minnesota",
+        "fee": "yes",
+        "name": "Nice Ride Minnesota",
+        "network": "Nice Ride Minnesota",
+        "network:wikidata": "Q16982804",
+        "network:wikipedia": "en:Nice Ride Minnesota",
+        "operator": "Motivate",
+        "operator:type": "private",
+        "operator:wikidata": "Q4735954",
+        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
@@ -2888,8 +2948,8 @@
     },
     {
       "displayName": "Sevici",
-      "id": "sevici-f59a8b",
-      "locationSet": {"include": ["es"]},
+      "id": "sevici-e72e4e",
+      "locationSet": {"include": [[-6, 37.4]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Sevici",
@@ -2911,6 +2971,19 @@
         "amenity": "bicycle_rental",
         "brand": "Shymkent Bike",
         "network": "Shymkent Bike"
+      }
+    },
+    {
+      "displayName": "sigo E-Lastenrad Sharing",
+      "id": "sigo-937152",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "sigo",
+        "network": "sigo",
+        "operator": "sigo GmbH",
+        "operator:wikidata": "Q109659526",
+        "operator:wikipedia": "de:Sigo"
       }
     },
     {
@@ -3094,9 +3167,9 @@
         "network": "Styr & Ställ",
         "network:wikidata": "Q6198848",
         "network:wikipedia": "sv:Styr & ställ",
-        "operator": "JCDecaux",
-        "operator:wikidata": "Q74877",
-        "operator:wikipedia": "fr:JCDecaux"
+        "operator": "nextbike",
+        "operator:wikidata": "Q2351279",
+        "operator:wikipedia": "de:Nextbike"
       }
     },
     {
@@ -3381,8 +3454,8 @@
     },
     {
       "displayName": "Valenbisi",
-      "id": "valenbisi-f59a8b",
-      "locationSet": {"include": ["es"]},
+      "id": "valenbisi-630ce5",
+      "locationSet": {"include": [[-0.3, 39.5]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Valenbisi",
@@ -3446,8 +3519,8 @@
     },
     {
       "displayName": "Vélam",
-      "id": "velam-d06f5d",
-      "locationSet": {"include": ["fx"]},
+      "id": "velam-7193ba",
+      "locationSet": {"include": [[2.3, 49.9]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Vélam",
@@ -3560,8 +3633,8 @@
     },
     {
       "displayName": "Vélo'v",
-      "id": "velov-d06f5d",
-      "locationSet": {"include": ["fx"]},
+      "id": "velov-59fa9e",
+      "locationSet": {"include": [[4.8, 45.8]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Vélo'v",
@@ -3607,8 +3680,8 @@
     },
     {
       "displayName": "VéloCité (Mulhouse)",
-      "id": "velocite-d06f5d",
-      "locationSet": {"include": ["fx"]},
+      "id": "velocite-068aec",
+      "locationSet": {"include": [[7.3, 47.8]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "VéloCité",
@@ -3696,8 +3769,8 @@
     },
     {
       "displayName": "vélOstan'lib",
-      "id": "velostanlib-d06f5d",
-      "locationSet": {"include": ["fx"]},
+      "id": "velostanlib-c77569",
+      "locationSet": {"include": [[6.2, 48.7]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "vélOstan'lib",
@@ -3724,8 +3797,8 @@
     },
     {
       "displayName": "VélôToulouse",
-      "id": "velotoulouse-d06f5d",
-      "locationSet": {"include": ["fx"]},
+      "id": "velotoulouse-84a6ff",
+      "locationSet": {"include": [[1.4, 43.6]]},
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "VélôToulouse",
@@ -4157,17 +4230,6 @@
       }
     },
     {
-      "displayName": "南通永安公共自行车公司",
-      "id": "290189-050a29",
-      "locationSet": {"include": ["cn"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "南通永安公共自行车公司",
-        "name": "南通永安公共自行车公司",
-        "operator": "南通永安公共自行车公司"
-      }
-    },
-    {
       "displayName": "巨大機械工業(股)",
       "id": "1d2e94-1bb859",
       "locationSet": {"include": ["tw"]},
@@ -4202,24 +4264,69 @@
     },
     {
       "displayName": "永安行",
-      "id": "196a11-050a29",
-      "locationSet": {"include": ["cn"]},
+      "id": "youonbikeshare-487b9c",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": [
+          [119.40175, 36.83993, 20],
+          [120.89045, 31.98278, 35]
+        ]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "永安行",
+        "brand:en": "Youon Bike Share",
+        "brand:wikidata": "Q109342786",
+        "brand:wikipedia": "zh:永安行",
+        "brand:zh": "永安行",
         "name": "永安行",
-        "operator": "永安行"
+        "name:en": "Youon Bike Share",
+        "name:zh": "永安行",
+        "operator": "永安行",
+        "operator:en": "Youon Bike Share",
+        "operator:zh": "永安行"
       }
     },
     {
-      "displayName": "永安行科技股份有限公司昌邑分公司",
-      "id": "3c28c4-050a29",
-      "locationSet": {"include": ["cn"]},
+      "displayName": "永安行（南通）",
+      "id": "youonbikeshare-c7fe15",
+      "locationSet": {
+        "include": [[120.89045, 31.98278, 35]]
+      },
+      "note": "这仅作为权益之举，不建议各地编辑者如这样建本地关系",
       "tags": {
         "amenity": "bicycle_rental",
-        "brand": "永安行科技股份有限公司昌邑分公司",
-        "name": "永安行科技股份有限公司昌邑分公司",
-        "operator": "永安行科技股份有限公司昌邑分公司"
+        "brand": "永安行",
+        "brand:en": "Youon Bike Share",
+        "brand:wikidata": "Q109342786",
+        "brand:wikipedia": "zh:永安行",
+        "brand:zh": "永安行",
+        "name": "永安行",
+        "name:en": "Youon Bike Share",
+        "name:zh": "永安行",
+        "operator": "南通永安公共自行车公司",
+        "operator:zh": "南通永安公共自行车公司"
+      }
+    },
+    {
+      "displayName": "永安行（昌邑）",
+      "id": "youonbikeshare-4d6e41",
+      "locationSet": {
+        "include": [[119.40175, 36.83993, 35]]
+      },
+      "note": "这仅作为权益之举，不建议各地编辑者如Paradox这样建本地关系",
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "永安行",
+        "brand:en": "Youon Bike Share",
+        "brand:wikidata": "Q109342786",
+        "brand:wikipedia": "zh:永安行",
+        "brand:zh": "永安行",
+        "name": "永安行",
+        "name:en": "Youon Bike Share",
+        "name:zh": "永安行",
+        "operator": "永安行科技股份有限公司昌邑分公司",
+        "operator:zh": "永安行科技股份有限公司昌邑分公司"
       }
     },
     {
@@ -4256,14 +4363,24 @@
       }
     },
     {
-      "displayName": "金門縣政府",
-      "id": "af5935-1bb859",
-      "locationSet": {"include": ["tw"]},
+      "displayName": "青州市公共自行车",
+      "id": "qingzhoupublicbicycle-050a29",
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "bicycle_rental",
-        "brand": "金門縣政府",
-        "name": "金門縣政府",
-        "operator": "金門縣政府"
+        "brand": "青州市公共自行车",
+        "brand:en": "Qing Zhou Public Bicycle",
+        "brand:wikidata": "Q110012327",
+        "brand:zh": "青州市公共自行车",
+        "name": "青州市公共自行车",
+        "name:en": "Qing Zhou Public Bicycle",
+        "name:zh": "青州市公共自行车",
+        "nerwork:zh": "青州市公共自行车",
+        "network": "青州市公共自行车",
+        "network:en": "Qing Zhou Public Bicycle",
+        "network:wikidata": "Q110012327",
+        "operator": "永安行科技股份有限公司",
+        "operator:zh": "永安行科技股份有限公司"
       }
     },
     {

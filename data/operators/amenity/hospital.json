@@ -6,6 +6,7 @@
       "generic": [
         "^(govern?ment( authorities)?|govt( hospital)?|municipal|private|public|private not for profit|village)$",
         "^centro (de salud|de saúde|médico)$",
+        "^community$",
         "^hospital$",
         "^others$",
         "^privado$",
@@ -15,7 +16,8 @@
         "^инфекционн(ая|ое) (больница|отделение)",
         "^кожно-?венерологический диспансер",
         "^фап$",
-        "^фельдшерско-акушерский пункт$"
+        "^фельдшерско-акушерский пункт$",
+        "^医院$"
       ],
       "named": [
         "^(центральна районна лікарня|црб)$",
@@ -234,6 +236,19 @@
         "operator:short": "APHP",
         "operator:wikidata": "Q2867205",
         "operator:wikipedia": "fr:Assistance publique - Hôpitaux de Paris"
+      }
+    },
+    {
+      "displayName": "ATOS Kliniken",
+      "id": "atoskliniken-8bb61e",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "ATOS Kliniken",
+        "operator:short": "ATOS",
+        "operator:type": "private",
+        "operator:wikidata": "Q109568262"
       }
     },
     {
@@ -921,6 +936,16 @@
       }
     },
     {
+      "displayName": "IVSS",
+      "id": "ivss-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "IVSS"
+      }
+    },
+    {
       "displayName": "Johannesbad",
       "id": "johannesbad-8bb61e",
       "locationSet": {"include": ["de"]},
@@ -1037,6 +1062,20 @@
       }
     },
     {
+      "displayName": "Maidstone and Tunbridge Wells NHS Trust",
+      "id": "maidstoneandtunbridgewellsnhstrust-634f11",
+      "locationSet": {
+        "include": ["gb-south-east-coast.geojson"]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Maidstone and Tunbridge Wells NHS Trust",
+        "operator:wikidata": "Q16997207",
+        "operator:wikipedia": "en:Maidstone and Tunbridge Wells NHS Trust"
+      }
+    },
+    {
       "displayName": "Marienhaus",
       "id": "marienhaus-8bb61e",
       "locationSet": {"include": ["de"]},
@@ -1130,8 +1169,13 @@
     },
     {
       "displayName": "Mercy Health",
-      "id": "mercyhealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "mercyhealth-4cdbcf",
+      "locationSet": {
+        "include": [
+          "us-ky.geojson",
+          "us-oh.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1258,6 +1302,16 @@
         "operator": "Ministério da Saúde",
         "operator:wikidata": "Q4294357",
         "operator:wikipedia": "pt:Ministério da Saúde (Portugal)"
+      }
+    },
+    {
+      "displayName": "Ministerio de Salud - Gobierno de Río Negro",
+      "id": "ministeriodesaludgobiernoderionegro-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Ministerio de Salud - Gobierno de Río Negro"
       }
     },
     {
@@ -1605,6 +1659,16 @@
         "healthcare": "hospital",
         "operator": "National Primary Health Care Development Agency",
         "operator:short": "NPHCDA"
+      }
+    },
+    {
+      "displayName": "National Urban Health Mission",
+      "id": "nationalurbanhealthmission-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "National Urban Health Mission"
       }
     },
     {
@@ -2386,7 +2450,7 @@
         "healthcare": "hospital",
         "operator": "醫院管理局 Hospital Authority",
         "operator:wikidata": "Q5908350",
-        "operator:wikipedia": "zh-yue:醫院管理局"
+        "operator:wikipedia": "zh:醫院管理局"
       }
     }
   ]
