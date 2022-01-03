@@ -1,15 +1,8 @@
 {
   "properties": {
     "path": "brands/amenity/recycling",
-    "exclude": {
-      "generic": [
-        "^(altglascontainer|bauhof|biotonne|glascontainer|häckselplatz|recyclinghof|wertstoffhof)$",
-        "^d[ée]ch[èe]tt?erie$",
-        "^recycling$",
-        "^verre$",
-        "^سطل زباله$"
-      ]
-    }
+    "skipCollection": true,
+    "exclude": {"generic": ["^recycling$"]}
   },
   "items": [
     {
@@ -63,7 +56,8 @@
         "amenity": "recycling",
         "brand": "Deutsches Rotes Kreuz",
         "brand:wikidata": "Q694104",
-        "brand:wikipedia": "de:Deutsches Rotes Kreuz"
+        "brand:wikipedia": "de:Deutsches Rotes Kreuz",
+        "recycling_type": "container"
       }
     },
     {
@@ -80,46 +74,6 @@
       }
     },
     {
-      "displayName": "Ecocentro",
-      "id": "ecocentro-247680",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Ecocentro",
-        "name": "Ecocentro"
-      }
-    },
-    {
-      "displayName": "Ecoilha Subterrânea",
-      "id": "ecoilhasubterranea-247680",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Ecoilha Subterrânea",
-        "name": "Ecoilha Subterrânea"
-      }
-    },
-    {
-      "displayName": "Ecoponto",
-      "id": "ecoponto-247680",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Ecoponto",
-        "name": "Ecoponto"
-      }
-    },
-    {
-      "displayName": "Ecopunto",
-      "id": "ecopunto-247680",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Ecopunto",
-        "name": "Ecopunto"
-      }
-    },
-    {
       "displayName": "Islamic Relief",
       "id": "islamicrelief-a9e339",
       "locationSet": {"include": ["gb"]},
@@ -130,19 +84,11 @@
         "brand:wikipedia": "en:Islamic Relief",
         "name": "Islamic Relief",
         "operator": "Islamic Relief",
+        "operator:wikidata": "Q239714",
+        "operator:wikipedia": "en:Islamic Relief",
         "recycling_type": "container",
         "recycling:clothes": "yes",
         "recycling:shoes": "yes"
-      }
-    },
-    {
-      "displayName": "Isola Ecologica",
-      "id": "isolaecologica-247680",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Isola Ecologica",
-        "name": "Isola Ecologica"
       }
     },
     {
@@ -156,6 +102,8 @@
         "brand:wikipedia": "en:Oxfam",
         "name": "Oxfam",
         "operator": "Oxfam",
+        "operator:wikidata": "Q267941",
+        "operator:wikipedia": "en:Oxfam",
         "recycling_type": "container",
         "recycling:clothes": "yes",
         "recycling:shoes": "yes"
@@ -177,26 +125,6 @@
       }
     },
     {
-      "displayName": "Punto Limpio",
-      "id": "puntolimpio-247680",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Punto Limpio",
-        "name": "Punto Limpio"
-      }
-    },
-    {
-      "displayName": "Ressourcerie",
-      "id": "ressourcerie-247680",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Ressourcerie",
-        "name": "Ressourcerie"
-      }
-    },
-    {
       "displayName": "Saint Vincent de Paul",
       "id": "saintvincentdepaul-f8d7ba",
       "locationSet": {"include": ["us"]},
@@ -209,16 +137,6 @@
         "recycling:clothes": "yes",
         "recycling:shoes": "yes",
         "short_name": "SVdP"
-      }
-    },
-    {
-      "displayName": "Sběrný dvůr",
-      "id": "sbernydvur-16d48f",
-      "locationSet": {"include": ["cz"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Sběrný dvůr",
-        "name": "Sběrný dvůr"
       }
     },
     {
@@ -245,6 +163,7 @@
         "brand:wikidata": "Q109717195",
         "name": "TRAID",
         "operator": "TRAID",
+        "operator:wikidata": "Q109717195",
         "recycling_type": "container",
         "recycling:clothes": "yes",
         "recycling:shoes": "yes"
@@ -261,6 +180,7 @@
         "brand:wikidata": "Q110234180",
         "name": "Лѣпта",
         "operator": "Лѣпта",
+        "operator:wikidata": "Q110234180",
         "recycling_type": "container",
         "recycling:clothes": "yes",
         "recycling:shoes": "yes"
@@ -276,22 +196,11 @@
         "brand:wikidata": "Q110234301",
         "name": "Спасибо!",
         "operator": "Спасибо!",
+        "operator:wikidata": "Q110234301",
         "recycling_type": "container",
         "recycling:books": "yes",
         "recycling:clothes": "yes",
         "recycling:shoes": "yes"
-      }
-    },
-    {
-      "displayName": "Экобокс",
-      "id": "ecobox-f85e9d",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Экобокс",
-        "brand:en": "ecobox",
-        "brand:ru": "Экобокс",
-        "name": "Экобокс"
       }
     }
   ]

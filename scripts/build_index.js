@@ -185,6 +185,11 @@ function filterCollected() {
   console.time(END);
   let shownSparkle = false;
 
+  // Before starting, cache genericWords regexes.
+  let genericRegex = _config.genericWords.map(s => new RegExp(s, 'i'));
+  genericRegex.push(new RegExp(/;/, 'i'));   // also discard values with semicolons
+
+
   Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
     if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) return;
@@ -204,17 +209,21 @@ function filterCollected() {
     }
 
     // Exit here if:
-    // 1. we have data, and..
+    // 1. we have data in `keep`, and..
     // 2. that data is fresh (newer or same as installed nsi-collector dependency) - #5519
+    // (comment out this next line to force replace the keep/discard lists)
     if (Object.keys(keep).length && lastCollectionDate >= _currCollectionDate) return;
 
-    // Continue, do filtering, and replace keep/discard files..
+    // Continue, do filtering, and replace keep/discard lists..
     if (!shownSparkle) {
       console.log(colors.yellow(`✨   New nsi-collector version ${_currCollectionDate} (was ${lastCollectionDate}).  Updating filter lists:`));
       shownSparkle = true;
     }
 
-    // All the collected "names" from OSM start out in discard..
+    //
+    // STEP 1:  All the collected "names" from OSM start out in `discard`
+    //
+    keep = {};
     tree.sourceTags.forEach(tag => {
       let collected = _collected[tag];
       for (const kvn in collected) {
@@ -222,46 +231,31 @@ function filterCollected() {
       }
     });
 
-    // Cache the regexes we need for each category
-    let excluders = {};
-
+    //
+    // STEP 2:  Move "names" that aren't excluded from `discard` -> `keep`
+    //
+    let categoryRegex = {};  // regex cache
     for (const kvn in discard) {
-      const parts = kvn.split('|', 2);  // kvn = "key/value|name"
-      const kv = parts[0];
-      const n = parts[1];
+      const [kv, n] = kvn.split('|', 2);  // kvn = "key/value|name"
       const tkv = `${t}/${kv}`;
       const file = `./data/${tkv}.json`;
       const category = _cache.path[tkv];
-      if (!category) continue;          // not a category we track in the index, skip
+      if (!category) continue;   // not a category we track in the index, skip
 
-      const props = category.properties || {};
-      if (props.skipCollection) continue;  // not a category where we want to collect new tags, skip
+      const categoryProps = category.properties || {};
+      if (categoryProps.skipCollection) continue;   // not a category where we want to collect new names, skip
 
-      // If we have a category for this k/v pair in the index, move the name from discard -> keep
-      // ...unless the name matches an exclude pattern
-      if (!excluders[tkv]) {
-        const exclude = props.exclude || {};
+      if (!categoryRegex[tkv]) {
+        const exclude = categoryProps.exclude || {};
         const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
-        excluders[tkv] = excludePatterns.map(s => checkRegex(file, s) || new RegExp(s, 'i'));
+        categoryRegex[tkv] = excludePatterns.map(s => checkRegex(file, s) || new RegExp(s, 'i'));
       }
-      const isExcluded = excluders[tkv].some(regex => regex.test(n));
+      const isExcluded = categoryRegex[tkv].some(re => re.test(n)) || genericRegex.some(re => re.test(n));
       if (!isExcluded) {
         keep[kvn] = discard[kvn];
         delete discard[kvn];
       }
     }
-
-    // Filter by genericWords (move from keep -> discard)
-    _config.genericWords.forEach(s => {
-      const re = new RegExp(s, 'i');
-      for (let kvn in keep) {
-        const name = kvn.split('|', 2)[1];
-        if (re.test(name) || /;/.test(name)) {  // also discard values with semicolons
-          discard[kvn] = keep[kvn];
-          delete keep[kvn];
-        }
-      }
-    });
 
     const discardCount = Object.keys(discard).length;
     const keepCount = Object.keys(keep).length;
@@ -366,12 +360,8 @@ function mergeItems() {
     // Find new items, keeping only the most popular spelling..
     Object.keys(keeping).forEach(kvn => {
       const count = keeping[kvn];
-      const parts = kvn.split('|', 2);     // kvn = "key/value|name"
-      const kv = parts[0];
-      const n = parts[1];
-      const parts2 = kv.split('/', 2);
-      const k = parts2[0];
-      const v = parts2[1];
+      const [kv, n] = kvn.split('|', 2);     // kvn = "key/value|name"
+      const [k, v] = kv.split('/', 2);
 
       const matched = matcher.match(k, v, n);
       if (matched) return;     // already in the index (or generic)
@@ -389,12 +379,8 @@ function mergeItems() {
 
     // Add the new items
     Object.values(newItems).forEach(newItem => {
-      const parts = newItem.kvn.split('|', 2);     // kvn = "key/value|name"
-      const kv = parts[0];
-      const n = parts[1];
-      const parts2 = kv.split('/', 2);
-      const k = parts2[0];
-      const v = parts2[1];
+      const [kv, n] = newItem.kvn.split('|', 2);     // kvn = "key/value|name"
+      const [k, v] = kv.split('/', 2);
       const tkv = `${t}/${k}/${v}`;
 
       let item = { tags: {} };
@@ -432,9 +418,7 @@ function mergeItems() {
       let items = _cache.path[tkv].items;
       if (!Array.isArray(items) || !items.length) return;
 
-      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const k = parts[1];
-      const v = parts[2];
+      const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
       const kv = `${k}/${v}`;
 
       items.forEach(item => {
@@ -611,9 +595,7 @@ function checkItems(t) {
     const items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
-    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const k = parts[1];
-    const v = parts[2];
+    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
     const kv = `${k}/${v}`;
 
     items.forEach(item => {
