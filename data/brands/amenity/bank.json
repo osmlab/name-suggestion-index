@@ -4,10 +4,9 @@
     "exclude": {
       "generic": [
         "^(atm|bank|credit union)$",
+        "^(银行|銀行)$",
         "^cajero automatico bancared$",
-        "^بانک$",
-        "^銀行$",
-        "^银行$"
+        "^بانک$"
       ],
       "named": [
         "^(bank spółdzielczy|lbs|pko)$",
@@ -1077,6 +1076,16 @@
         "brand:wikidata": "Q2882085",
         "brand:wikipedia": "es:Banco de Chile",
         "name": "Banco de Chile"
+      }
+    },
+    {
+      "displayName": "Banco de Córdoba",
+      "id": "bancodecordoba-b7a026",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Banco de Córdoba",
+        "name": "Banco de Córdoba"
       }
     },
     {
@@ -3207,6 +3216,24 @@
       }
     },
     {
+      "displayName": "Busey Bank",
+      "id": "buseybank-8fb7e1",
+      "locationSet": {
+        "include": [
+          "us-il.geojson",
+          "us-in.geojson",
+          "us-mo.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "bank",
+        "brand": "Busey Bank",
+        "brand:wikidata": "Q5001347",
+        "brand:wikipedia": "en:Busey Bank",
+        "name": "Busey Bank"
+      }
+    },
+    {
       "displayName": "BW-Bank",
       "id": "bwbank-1180cf",
       "locationSet": {"include": ["de"]},
@@ -4903,12 +4930,21 @@
       }
     },
     {
-      "displayName": "First National Bank (USA)",
-      "id": "firstnationalbank-6e848a",
+      "displayName": "First National Bank (US)",
+      "id": "firstnationalbank-fdc31a",
       "locationSet": {
-        "include": ["us"],
-        "exclude": ["us-ak.geojson"]
+        "include": [
+          "us-dc.geojson",
+          "us-md.geojson",
+          "us-nc.geojson",
+          "us-oh.geojson",
+          "us-pa.geojson",
+          "us-sc.geojson",
+          "us-va.geojson",
+          "us-wv.geojson"
+        ]
       },
+      "matchNames": ["fnb"],
       "tags": {
         "amenity": "bank",
         "brand": "First National Bank",
@@ -4929,6 +4965,44 @@
         "brand:wikidata": "Q1419496",
         "brand:wikipedia": "en:First National Bank Alaska",
         "name": "First National Bank Alaska"
+      }
+    },
+    {
+      "displayName": "First National Bank of Long Island",
+      "id": "firstnationalbankoflongisland-51c67b",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "amenity": "bank",
+        "brand": "First National Bank of Long Island",
+        "brand:wikidata": "Q110265410",
+        "name": "First National Bank of Long Island"
+      }
+    },
+    {
+      "displayName": "First National Bank of Scotia",
+      "id": "firstnationalbankofscotia-9d21b1",
+      "locationSet": {
+        "include": [[-73.77, 42.88]]
+      },
+      "tags": {
+        "amenity": "bank",
+        "brand": "First National Bank of Scotia",
+        "brand:wikidata": "Q110268571",
+        "name": "First National Bank of Scotia"
+      }
+    },
+    {
+      "displayName": "First Republic Bank",
+      "id": "firstrepublicbank-ea2e2d",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "First Republic Bank",
+        "brand:wikidata": "Q5453752",
+        "brand:wikipedia": "en:First Republic Bank",
+        "name": "First Republic Bank"
       }
     },
     {
@@ -5086,16 +5160,9 @@
     },
     {
       "displayName": "FNB (South Africa)",
-      "id": "fnb-ae9657",
+      "id": "fnb-154feb",
       "locationSet": {
-        "include": [
-          "bw",
-          "mz",
-          "na",
-          "us",
-          "za",
-          "zm"
-        ]
+        "include": ["bw", "mz", "na", "za", "zm"]
       },
       "tags": {
         "amenity": "bank",
@@ -5104,6 +5171,19 @@
         "brand:wikipedia": "en:First National Bank (South Africa)",
         "name": "FNB",
         "official_name": "First National Bank"
+      }
+    },
+    {
+      "displayName": "FNBO",
+      "id": "fnbo-ea2e2d",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "FNBO",
+        "brand:wikidata": "Q5453412",
+        "brand:wikipedia": "en:First National Bank of Omaha",
+        "name": "FNBO",
+        "official_name": "First National Bank of Omaha"
       }
     },
     {
@@ -5957,7 +6037,7 @@
         "brand:en": "KB Kookmin Bank",
         "brand:ko": "KB국민은행",
         "brand:wikidata": "Q496606",
-        "brand:wikipedia": "en:KB Financial Group Inc",
+        "brand:wikipedia": "en:Kookmin Bank",
         "name": "KB국민은행",
         "name:en": "KB Kookmin Bank",
         "name:ko": "KB국민은행"
@@ -5985,6 +6065,18 @@
         "brand:wikidata": "Q1740314",
         "brand:wikipedia": "en:KeyBank",
         "name": "KeyBank"
+      }
+    },
+    {
+      "displayName": "Kiwibank",
+      "id": "kiwibank-279fc5",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Kiwibank",
+        "brand:wikidata": "Q1516341",
+        "brand:wikipedia": "en:Kiwibank",
+        "name": "Kiwibank"
       }
     },
     {
@@ -7596,9 +7688,17 @@
       }
     },
     {
-      "displayName": "Republic Bank (USA)",
-      "id": "republicbank-ea2e2d",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Republic Bank (Kentucky)",
+      "id": "republicbank-6552d3",
+      "locationSet": {
+        "include": [
+          "us-fl.geojson",
+          "us-in.geojson",
+          "us-ky.geojson",
+          "us-oh.geojson",
+          "us-tn.geojson"
+        ]
+      },
       "tags": {
         "amenity": "bank",
         "brand": "Republic Bank",
@@ -7606,6 +7706,24 @@
         "brand:wikipedia": "en:Republic Bank & Trust Company",
         "name": "Republic Bank",
         "official_name": "Republic Bank & Trust Company"
+      }
+    },
+    {
+      "displayName": "Republic Bank (Philadelphia)",
+      "id": "republicbank-9c6083",
+      "locationSet": {
+        "include": [
+          "us-nj.geojson",
+          "us-ny.geojson",
+          "us-pa.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "bank",
+        "brand": "Republic Bank",
+        "brand:wikidata": "Q55316482",
+        "brand:wikipedia": "en:Republic First Bancorp",
+        "name": "Republic Bank"
       }
     },
     {
@@ -10019,16 +10137,24 @@
     },
     {
       "displayName": "Ощадбанк",
-      "id": "statesavingsbankofukraine-c8dc19",
+      "id": "oschadbank-c8dc19",
       "locationSet": {"include": ["ua"]},
       "tags": {
         "amenity": "bank",
         "brand": "Ощадбанк",
-        "brand:en": "State Savings Bank of Ukraine",
+        "brand:en": "Oschadbank",
+        "brand:uk": "Ощадбанк",
         "brand:wikidata": "Q4340839",
         "brand:wikipedia": "uk:Ощадбанк",
         "name": "Ощадбанк",
-        "name:en": "State Savings Bank of Ukraine"
+        "name:en": "Oschadbank",
+        "name:uk": "Ощадбанк",
+        "official_name": "Акціонерне товариство \"Державний ощадний банк України\"",
+        "official_name:en": "Joint Stock Company \"State Savings Bank of Ukraine\"",
+        "official_name:uk": "Акціонерне товариство \"Державний ощадний банк України\"",
+        "short_name": "АТ \"Ощадбанк\"",
+        "short_name:en": "JSC \"Oschadbank\"",
+        "short_name:uk": "АТ \"Ощадбанк\""
       }
     },
     {

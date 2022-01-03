@@ -13,7 +13,8 @@
         "^аптека",
         "^аптечный (пункт|склад)$",
         "^داروخانه( شبانه روزی)?$",
-        "^صيدلية$"
+        "^صيدلية$",
+        "^药店$"
       ],
       "named": [
         "^(adler|bahnhof|brunnen|burg|bären|einhorn|engel|hirsch|hubertus|kur|linden|löwen)[- ]?apotheke$",
@@ -62,6 +63,7 @@
       "displayName": "ADEL",
       "id": "adel-c16414",
       "locationSet": {"include": ["by"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "pharmacy",
         "brand": "ADEL",
@@ -711,18 +713,6 @@
         "brand:wikipedia": "en:Duane Reade",
         "healthcare": "pharmacy",
         "name": "Duane Reade"
-      }
-    },
-    {
-      "displayName": "Eapteka.ru",
-      "id": "eaptekaru-288c27",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "amenity": "pharmacy",
-        "brand": "Eapteka.ru",
-        "brand:wikipedia": "ru:Сбер Еаптека",
-        "healthcare": "pharmacy",
-        "name": "Eapteka.ru"
       }
     },
     {
@@ -2273,6 +2263,7 @@
       "tags": {
         "amenity": "pharmacy",
         "brand": "TopPharm",
+        "brand:wikidata": "Q110277794",
         "healthcare": "pharmacy",
         "name": "TopPharm"
       }
@@ -2469,6 +2460,7 @@
       "tags": {
         "amenity": "pharmacy",
         "brand": "Алоэ",
+        "brand:wikidata": "Q110253348",
         "healthcare": "pharmacy",
         "name": "Алоэ"
       }
@@ -2688,6 +2680,7 @@
       "displayName": "Добрыя леки",
       "id": "288485-c16414",
       "locationSet": {"include": ["by"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "pharmacy",
         "brand": "Добрыя леки",
@@ -2729,18 +2722,6 @@
         "brand": "Здоровье",
         "healthcare": "pharmacy",
         "name": "Здоровье"
-      }
-    },
-    {
-      "displayName": "Зеленая аптека",
-      "id": "2fdf57-c16414",
-      "locationSet": {"include": ["by"]},
-      "matchTags": ["shop/health_food"],
-      "tags": {
-        "amenity": "pharmacy",
-        "brand": "Зеленая аптека",
-        "healthcare": "pharmacy",
-        "name": "Зеленая аптека"
       }
     },
     {
@@ -2822,6 +2803,17 @@
       }
     },
     {
+      "displayName": "Магнит Аптека",
+      "id": "d41fde-f5140f",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Магнит Аптека",
+        "healthcare": "pharmacy",
+        "name": "Магнит Аптека"
+      }
+    },
+    {
       "displayName": "Максавит",
       "id": "a71791-288c27",
       "locationSet": {"include": ["ru"]},
@@ -2891,6 +2883,7 @@
       "tags": {
         "amenity": "pharmacy",
         "brand": "Мелодия здоровья",
+        "brand:wikidata": "Q110278680",
         "healthcare": "pharmacy",
         "name": "Мелодия здоровья"
       }
@@ -2899,6 +2892,7 @@
       "displayName": "Минская Фармация",
       "id": "54df05-c16414",
       "locationSet": {"include": ["by"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "pharmacy",
         "brand": "Минская Фармация",
@@ -2995,6 +2989,7 @@
       "tags": {
         "amenity": "pharmacy",
         "brand": "Первая помощь",
+        "brand:wikidata": "Q110253609",
         "healthcare": "pharmacy",
         "name": "Первая помощь"
       }
@@ -3015,6 +3010,7 @@
       "displayName": "Планета здоровья",
       "id": "b0231d-74ea97",
       "locationSet": {"include": ["by", "ru"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "pharmacy",
         "brand": "Планета здоровья",
@@ -3079,6 +3075,20 @@
         "brand:wikidata": "Q4394431",
         "healthcare": "pharmacy",
         "name": "Ригла"
+      }
+    },
+    {
+      "displayName": "Сбер Еаптека",
+      "id": "ffbae9-288c27",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["eapteka.ru", "еаптека"],
+      "tags": {
+        "amenity": "pharmacy",
+        "brand": "Сбер Еаптека",
+        "brand:wikidata": "Q110253378",
+        "brand:wikipedia": "ru:Сбер Еаптека",
+        "healthcare": "pharmacy",
+        "name": "Сбер Еаптека"
       }
     },
     {
@@ -3173,18 +3183,19 @@
       }
     },
     {
-      "displayName": "Фиалка Аптека",
+      "displayName": "Фиалка",
       "id": "fialka-288c27",
       "locationSet": {"include": ["ru"]},
+      "matchNames": ["фиалка аптека"],
       "tags": {
         "amenity": "pharmacy",
-        "brand": "Фиалка Аптека",
-        "brand:ru": "Фиалка Аптека",
+        "brand": "Фиалка",
+        "brand:ru": "Фиалка",
         "brand:wikidata": "Q109995996",
         "healthcare": "pharmacy",
-        "name": "Фиалка Аптека",
+        "name": "Фиалка",
         "name:en": "Fialka",
-        "name:ru": "Фиалка Аптека"
+        "name:ru": "Фиалка"
       }
     },
     {

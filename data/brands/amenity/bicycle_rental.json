@@ -119,21 +119,31 @@
     },
     {
       "displayName": "Bay Wheels",
-      "id": "baywheels-e229af",
+      "id": "baywheels-ea5e04",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": [
+          "us-ca-eastbay.geojson",
+          "us-ca-sanfrancisco.geojson",
+          "us-ca-sanjose.geojson"
+        ]
       },
       "matchNames": [
         "bay area bike share",
-        "ford gobike"
+        "ford gobike",
+        "lyft bike"
       ],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Bay Wheels",
         "brand:wikidata": "Q16971391",
         "brand:wikipedia": "en:Bay Wheels",
+        "fee": "yes",
         "name": "Bay Wheels",
+        "network": "Bay Wheels",
+        "network:wikidata": "Q16971391",
+        "network:wikipedia": "en:Bay Wheels",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -597,15 +607,20 @@
       "locationSet": {
         "include": ["us-or.geojson"]
       },
+      "matchNames": ["lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Biketown",
         "brand:wikidata": "Q28035353",
         "brand:wikipedia": "en:Biketown",
+        "fee": "yes",
+        "name": "Biketown",
         "network": "Biketown",
         "network:wikidata": "Q28035353",
         "network:wikipedia": "en:Biketown",
+        "opening_hours": "24/7",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -944,7 +959,7 @@
     },
     {
       "displayName": "Capital Bikeshare",
-      "id": "capitalbikeshare-f7b29d",
+      "id": "capialbikeshare-f7b29d",
       "locationSet": {
         "include": [
           "us-dc.geojson",
@@ -952,16 +967,20 @@
           "us-va.geojson"
         ]
       },
-      "matchNames": ["cabi"],
+      "matchNames": ["cabi", "lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Capital Bikeshare",
         "brand:wikidata": "Q1034635",
         "brand:wikipedia": "en:Capital Bikeshare",
+        "fee": "yes",
+        "name": "Capial Bikeshare",
         "network": "Capital Bikeshare",
         "network:wikidata": "Q1034635",
         "network:wikipedia": "en:Capital Bikeshare",
+        "opening_hours": "24/7",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -973,6 +992,7 @@
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "carvelo2go",
+        "brand:wikidata": "Q110278232",
         "name": "carvelo2go",
         "operator": "carvelo2go"
       }
@@ -1013,19 +1033,29 @@
     },
     {
       "displayName": "Citi Bike",
-      "id": "citibike-97ea79",
-      "locationSet": {"include": ["us"]},
+      "id": "citibike-7456a4",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "matchNames": [
+        "lyft bike",
+        "nyc bike share"
+      ],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Citi Bike",
         "brand:wikidata": "Q2974438",
         "brand:wikipedia": "en:Citi Bike",
+        "fee": "yes",
+        "name": "Citi Bike",
         "network": "Citi Bike",
         "network:wikidata": "Q2974438",
         "network:wikipedia": "en:Citi Bike",
-        "operator": "Citi Bike",
-        "operator:wikidata": "Q2974438",
-        "operator:wikipedia": "en:Citi Bike"
+        "opening_hours": "24/7",
+        "operator": "Motivate",
+        "operator:type": "private",
+        "operator:wikidata": "Q4735954",
+        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
@@ -1157,19 +1187,24 @@
     },
     {
       "displayName": "CoGo Bike Share",
-      "id": "cogobikeshare-919639",
+      "id": "cogo-919639",
       "locationSet": {
         "include": ["us-oh.geojson"]
       },
+      "matchNames": ["lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "CoGo Bike Share",
         "brand:wikidata": "Q91342219",
         "brand:wikipedia": "en:CoGo",
+        "fee": "yes",
+        "name": "CoGo",
         "network": "CoGo Bike Share",
         "network:wikidata": "Q91342219",
         "network:wikipedia": "en:CoGo",
+        "opening_hours": "24/7",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -1265,15 +1300,20 @@
       "locationSet": {
         "include": ["us-il.geojson"]
       },
+      "matchNames": ["lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Divvy",
         "brand:wikidata": "Q16973938",
         "brand:wikipedia": "en:Divvy",
+        "fee": "yes",
+        "name": "Divvy",
         "network": "Divvy",
         "network:wikidata": "Q16973938",
         "network:wikipedia": "en:Divvy",
+        "opening_hours": "24/7",
         "operator": "Motivate",
+        "operator:type": "private",
         "operator:wikidata": "Q4735954",
         "operator:wikipedia": "en:Motivate (company)"
       }
@@ -1800,9 +1840,17 @@
       "locationSet": {"include": ["tw"]},
       "tags": {
         "amenity": "bicycle_rental",
-        "brand": "K Bike",
-        "network": "K Bike",
-        "operator": "金門縣政府"
+        "brand": "金門公共自行車",
+        "brand:en": "K-Bike",
+        "brand:wikidata": "Q30942379",
+        "brand:wikipedia": "zh:金門縣公共自行車租賃系統",
+        "brand:zh": "金門公共自行車",
+        "name": "金門公共自行車",
+        "name:en": "K-Bike",
+        "name:zh": "金門公共自行車",
+        "network": "K-Bike",
+        "operator": "金門縣政府",
+        "operator:type": "government"
       }
     },
     {
@@ -2040,6 +2088,32 @@
         "operator": "JCDecaux",
         "operator:wikidata": "Q74877",
         "operator:wikipedia": "fr:JCDecaux"
+      }
+    },
+    {
+      "displayName": "Lyft Bike",
+      "id": "lyftbike-c321c0",
+      "locationSet": {
+        "include": [
+          "lausd_los_angeles.geojson",
+          "us-co.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "Lyft",
+        "brand:wikidata": "Q17077936",
+        "brand:wikipedia": "en:Lyft",
+        "fee": "yes",
+        "name": "Lyft Bike",
+        "network": "Lyft Bike",
+        "network:wikidata": "Q17077936",
+        "network:wikipedia": "en:Lyft",
+        "opening_hours": "24/7",
+        "operator": "Lyft",
+        "operator:type": "private",
+        "operator:wikidata": "Q4735954",
+        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
@@ -2358,14 +2432,26 @@
       }
     },
     {
-      "displayName": "NYC Bike Share",
-      "id": "nycbikeshare-97ea79",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Nice Ride Minnesota",
+      "id": "nicerideminnesota-231188",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "matchNames": ["lyft bike"],
       "tags": {
         "amenity": "bicycle_rental",
-        "brand": "NYC Bike Share",
-        "name": "NYC Bike Share",
-        "operator": "NYC Bike Share"
+        "brand": "Nice Ride Minnesota",
+        "brand:wikidata": "Q16982804",
+        "brand:wikipedia": "en:Nice Ride Minnesota",
+        "fee": "yes",
+        "name": "Nice Ride Minnesota",
+        "network": "Nice Ride Minnesota",
+        "network:wikidata": "Q16982804",
+        "network:wikipedia": "en:Nice Ride Minnesota",
+        "operator": "Motivate",
+        "operator:type": "private",
+        "operator:wikidata": "Q4735954",
+        "operator:wikipedia": "en:Motivate (company)"
       }
     },
     {
@@ -2896,7 +2982,8 @@
         "brand": "sigo",
         "network": "sigo",
         "operator": "sigo GmbH",
-        "operator:wikidata": "Q109659526"
+        "operator:wikidata": "Q109659526",
+        "operator:wikipedia": "de:Sigo"
       }
     },
     {
@@ -4273,17 +4360,6 @@
         "brand": "苏州东大金点物联科技有限公司",
         "name": "苏州东大金点物联科技有限公司",
         "operator": "苏州东大金点物联科技有限公司"
-      }
-    },
-    {
-      "displayName": "金門縣政府",
-      "id": "af5935-1bb859",
-      "locationSet": {"include": ["tw"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "金門縣政府",
-        "name": "金門縣政府",
-        "operator": "金門縣政府"
       }
     },
     {

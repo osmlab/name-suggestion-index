@@ -3,10 +3,9 @@
     "path": "brands/amenity/vending_machine",
     "exclude": {
       "generic": [
+        "^((自动|自動)|自助)(贩卖|贩售|售货机)机$",
         "^(bread|drink(s)?)$",
         "^(schlauch|bilet)omat$",
-        "^(自动|自助)(贩卖|贩售)机$",
-        "^(自动|自助)售货机$",
         "^(自動)?[券販]売機$",
         "^automat na jizdenky$",
         "^horodateur$",
@@ -239,7 +238,8 @@
       "tags": {
         "amenity": "vending_machine",
         "brand": "Chaqwa",
-        "brand:wikidata": "Q109265856"
+        "brand:wikidata": "Q109265856",
+        "vending": "coffee"
       }
     },
     {
@@ -305,17 +305,15 @@
       "displayName": "DHL Packstation",
       "id": "dhlpackstation-a242c5",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["packstation"],
       "tags": {
-        "alt_name": "Packstation",
         "amenity": "vending_machine",
         "brand": "DHL Packstation",
         "brand:wikidata": "Q1766703",
         "brand:wikipedia": "de:Packstation",
-        "name": "DHL Packstation",
         "operator": "DHL",
         "operator:wikidata": "Q489815",
         "operator:wikipedia": "de:DHL",
-        "short_name": "DHL",
         "vending": "parcel_pickup;parcel_mail_in"
       }
     },
@@ -608,12 +606,14 @@
     },
     {
       "displayName": "PickPoint",
-      "id": "pickpoint-ceeccb",
-      "locationSet": {"include": ["001"]},
+      "id": "pickpoint-eb9a2c",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "vending_machine",
         "brand": "PickPoint",
-        "name": "PickPoint"
+        "brand:wikidata": "Q110276197",
+        "name": "PickPoint",
+        "vending": "parcel_pickup"
       }
     },
     {
@@ -871,6 +871,7 @@
         "brand": "ОмниСДЭК",
         "brand:en": "OmniCEDK",
         "brand:ru": "ОмниСДЭК",
+        "brand:wikidata": "Q110240113",
         "name": "ОмниСДЭК",
         "name:en": "OmniCDEK",
         "name:ru": "ОмниСДЭК",
