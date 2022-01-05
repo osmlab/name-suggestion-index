@@ -15,8 +15,8 @@ import stringify from '@aitodotai/json-stringify-pretty-compact';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import geojsonSchemaJSON from '../schema/geojson.json' assert {type: "json"};
-import featureSchemaJSON from '../schema/feature.json' assert {type: "json"};
+import geojsonSchemaJSON from '../schema/geojson.json';
+import featureSchemaJSON from '../schema/feature.json';
 
 const Validator = jsonschema.Validator;
 let v = new Validator();
