@@ -1,35 +1,14 @@
 {
   "properties": {
-    "path": "brands/amenity/parcel_locker"
+    "path": "brands/amenity/parcel_locker",
+    "exclude": {"generic": ["^parcel locker$"]}
   },
   "items": [
     {
-      "displayName": "Paczkomat InPost",
-      "id": "paczkomatinpost-bd9635",
-      "locationSet": {
-        "include": [
-          "pl"
-        ]
-      },
-      "tags": {
-        "amenity": "parcel_locker",
-        "brand": "InPost",
-        "brand:wikidata": "Q3182097",
-        "brand:wikipedia": "pl:InPost",
-        "name": "Paczkomat InPost",
-        "parcel_mail_in": "yes"
-      }
-    },
-    {
       "displayName": "AlzaBox",
-      "id": "alzabox-8bd578",
+      "id": "alzabox-bee63b",
       "locationSet": {
-        "include": [
-          "at",
-          "cz",
-          "hu",
-          "sk"
-        ]
+        "include": ["at", "cz", "hu", "sk"]
       },
       "tags": {
         "amenity": "parcel_locker",
@@ -41,23 +20,13 @@
     },
     {
       "displayName": "Amazon Hub Locker",
-      "id": "amazonhublocker-e80bf6",
+      "id": "amazonhublocker-f85b1f",
       "locationSet": {
-        "include": [
-          "001"
-        ],
-        "exclude": [
-          "cn",
-          "jp"
-        ]
+        "include": ["001"],
+        "exclude": ["cn", "jp"]
       },
-      "matchNames": [
-        "amazon",
-        "amazon locker"
-      ],
-      "preserveTags": [
-        "^name"
-      ],
+      "matchNames": ["amazon", "amazon locker"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Amazon Hub",
@@ -69,19 +38,13 @@
     },
     {
       "displayName": "Amazon Hub ロッカー",
-      "id": "amazonhublocker-bf11a2",
-      "locationSet": {
-        "include": [
-          "jp"
-        ]
-      },
+      "id": "amazonhublocker-5c1de3",
+      "locationSet": {"include": ["jp"]},
       "matchNames": [
         "amazon ロッカー",
         "アマゾン・ハブ・ロッカー"
       ],
-      "preserveTags": [
-        "^name"
-      ],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Amazon Hub ロッカー",
@@ -96,12 +59,8 @@
     },
     {
       "displayName": "Australia Post Parcel Locker",
-      "id": "australiapostparcellocker-3e9a51",
-      "locationSet": {
-        "include": [
-          "au"
-        ]
-      },
+      "id": "australiapostparcellocker-a2f344",
+      "locationSet": {"include": ["au"]},
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Australia Post",
@@ -112,12 +71,8 @@
     },
     {
       "displayName": "BalíkoBOX",
-      "id": "balikobox-c5396b",
-      "locationSet": {
-        "include": [
-          "sk"
-        ]
-      },
+      "id": "balikobox-cda9c4",
+      "locationSet": {"include": ["sk"]},
       "tags": {
         "amenity": "parcel_locker",
         "brand": "BalíkoBOX",
@@ -129,15 +84,9 @@
     },
     {
       "displayName": "DHL Packstation",
-      "id": "dhlpackstation-a242c5",
-      "locationSet": {
-        "include": [
-          "de"
-        ]
-      },
-      "matchNames": [
-        "packstation"
-      ],
+      "id": "dhlpackstation-83cc4d",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["packstation"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "DHL Packstation",
@@ -151,12 +100,8 @@
     },
     {
       "displayName": "Foxpost",
-      "id": "foxpost-1490d1",
-      "locationSet": {
-        "include": [
-          "hu"
-        ]
-      },
+      "id": "foxpost-68603c",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Foxpost",
@@ -165,12 +110,8 @@
     },
     {
       "displayName": "GLS Parcel Locker",
-      "id": "gls-ceeccb",
-      "locationSet": {
-        "include": [
-          "001"
-        ]
-      },
+      "id": "glsparcellocker-6a219a",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "parcel_locker",
         "brand": "GLS",
@@ -181,18 +122,10 @@
     },
     {
       "displayName": "Ozon Box",
-      "id": "ozonbox-eb9a2c",
-      "locationSet": {
-        "include": [
-          "ru"
-        ]
-      },
-      "matchNames": [
-        "постамат ozon box"
-      ],
-      "matchTags": [
-        "amenity/post_box"
-      ],
+      "id": "ozonbox-c00268",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["постамат ozon box"],
+      "matchTags": ["amenity/post_box"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Ozon Box",
@@ -202,13 +135,22 @@
       }
     },
     {
+      "displayName": "Paczkomat InPost",
+      "id": "paczkomatinpost-ce4e28",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "InPost",
+        "brand:wikidata": "Q3182097",
+        "brand:wikipedia": "pl:InPost",
+        "name": "Paczkomat InPost",
+        "parcel_mail_in": "yes"
+      }
+    },
+    {
       "displayName": "PickPoint",
-      "id": "pickpoint-eb9a2c",
-      "locationSet": {
-        "include": [
-          "ru"
-        ]
-      },
+      "id": "pickpoint-c00268",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "parcel_locker",
         "brand": "PickPoint",
@@ -218,15 +160,9 @@
     },
     {
       "displayName": "PUDOステーション",
-      "id": "pudostation-bf11a2",
-      "locationSet": {
-        "include": [
-          "jp"
-        ]
-      },
-      "matchTags": [
-        "amenity/post_box"
-      ],
+      "id": "pudostation-5c1de3",
+      "locationSet": {"include": ["jp"]},
+      "matchTags": ["amenity/post_box"],
       "tags": {
         "alt_name": "プドー・ステーション",
         "amenity": "parcel_locker",
@@ -242,15 +178,9 @@
     },
     {
       "displayName": "Smartpost",
-      "id": "smartpost-7a60d4",
-      "locationSet": {
-        "include": [
-          "fi"
-        ]
-      },
-      "matchTags": [
-        "amenity/post_box"
-      ],
+      "id": "smartpost-0b87cc",
+      "locationSet": {"include": ["fi"]},
+      "matchTags": ["amenity/post_box"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Smartpost",
@@ -262,12 +192,8 @@
     },
     {
       "displayName": "ОмниСДЭК",
-      "id": "omnicdek-eb9a2c",
-      "locationSet": {
-        "include": [
-          "ru"
-        ]
-      },
+      "id": "omnicdek-c00268",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "parcel_locker",
         "brand": "ОмниСДЭК",
@@ -281,12 +207,8 @@
     },
     {
       "displayName": "Продуктомат Утконос",
-      "id": "fe7623-eb9a2c",
-      "locationSet": {
-        "include": [
-          "ru"
-        ]
-      },
+      "id": "fe7623-c00268",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Продуктомат Утконос",
@@ -295,15 +217,9 @@
     },
     {
       "displayName": "はこぽす",
-      "id": "hakopost-bf11a2",
-      "locationSet": {
-        "include": [
-          "jp"
-        ]
-      },
-      "matchTags": [
-        "amenity/post_box"
-      ],
+      "id": "hakopost-5c1de3",
+      "locationSet": {"include": ["jp"]},
+      "matchTags": ["amenity/post_box"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "はこぽす",
