@@ -1,5 +1,5 @@
 // External
-import colors from 'colors/safe.js';
+import chalk from 'chalk';
 import fs from 'node:fs';
 import glob from 'glob';
 import JSON5 from 'json5';
@@ -42,8 +42,8 @@ buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + colors.yellow('Building data...');
-  const END = '👍  ' + colors.green('data built');
+  const START = '🏗   ' + chalk.yellow('Building data...');
+  const END = '👍  ' + chalk.green('data built');
 
   console.log('');
   console.log(START);
@@ -339,7 +339,7 @@ function buildIDPresets() {
   });
 
   missing.forEach(tkv => {
-    console.warn(colors.yellow(`Warning - no iD source preset found for ${tkv}`));
+    console.warn(chalk.yellow(`Warning - no iD source preset found for ${tkv}`));
   });
 
   let output = { presets: targetPresets };
@@ -519,8 +519,8 @@ function minifySync(inPath, outPath) {
     const minified = JSON.stringify(JSON5.parse(contents));
     fs.writeFileSync(outPath, minified);
   } catch (err) {
-    console.error(colors.red(`Error - ${err.message} minifying:`));
-    console.error('  ' + colors.yellow(inPath));
+    console.error(chalk.red(`Error - ${err.message} minifying:`));
+    console.error('  ' + chalk.yellow(inPath));
     process.exit(1);
   }
 }

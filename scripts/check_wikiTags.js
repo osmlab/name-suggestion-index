@@ -1,6 +1,6 @@
 // External
 import clearConsole from 'clear';
-import colors from 'colors/safe.js';
+import chalk from 'chalk';
 import fetch from 'node-fetch';
 import LocationConflation from '@ideditor/location-conflation';
 import wikibase from 'wikibase-sdk';
@@ -136,7 +136,7 @@ function doFetch(index, urls, check) {
   .then(check)
   .catch(e => {
     _errors.push(e);
-    console.error(colors.red(e));
+    console.error(chalk.red(e));
   })
   .then(() => delay(500))
   .then(() => doFetch(++index, urls, check));
@@ -276,86 +276,86 @@ function finish() {
   clearConsole();
 
   if (_errors.length) {
-    console.log(colors.yellow.bold(`\nError Summary:`));
-    _errors.forEach(msg => console.error(colors.red.bold(msg)));
+    console.log(chalk.yellow.bold(`\nError Summary:`));
+    _errors.forEach(msg => console.error(chalk.red.bold(msg)));
   }
 
   if (_wrongFormat.length) {
-    console.error(colors.yellow.bold(`\nError - Wrong format:`));
+    console.error(chalk.yellow.bold(`\nError - Wrong format:`));
     console.error('To resolve these, make sure that the values are in the correct format');
     _wrongFormat.sort();
     _wrongFormat.forEach(msg => console.error(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.red.bold(msg[2])} (${colors.blue.bold(msg[3])}) is in a wrong format`
+      `${chalk.cyan.bold(msg[0])} (${chalk.yellow.bold(msg[1])}): ${chalk.red.bold(msg[2])} (${chalk.blue.bold(msg[3])}) is in a wrong format`
     ));
     console.error('total ' + _wrongFormat.length);
   }
 
   if (_deletedWikidata.length) {
-    console.error(colors.yellow.bold(`\nError - Deleted Wikidata entities:`));
+    console.error(chalk.yellow.bold(`\nError - Deleted Wikidata entities:`));
     console.error('To resolve these, either remove the Wikidata entity from the item or create a new one and add the correct id of the entity');
     _deletedWikidata.sort();
     _deletedWikidata.forEach(msg => console.error(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.red.bold(msg[2])} (${colors.blue.bold(msg[3])}) does not exist or is a redirect`
+      `${chalk.cyan.bold(msg[0])} (${chalk.yellow.bold(msg[1])}): ${chalk.red.bold(msg[2])} (${chalk.blue.bold(msg[3])}) does not exist or is a redirect`
     ));
     console.error('total ' + _deletedWikidata.length);
   }
 
   if (_deletedWikipedia.length) {
-    console.error(colors.yellow.bold(`\nError - Deleted Wikipedia articles:`));
+    console.error(chalk.yellow.bold(`\nError - Deleted Wikipedia articles:`));
     console.error('To resolve these, either remove the Wikipedia article from the item or create a new one and add the correct link to the article');
     _deletedWikipedia.sort();
     _deletedWikipedia.forEach(msg => console.error(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.red.bold(msg[2])} (${msg[3]}) (${colors.blue.bold(msg[4])}) does not exist or is a redirect`
+      `${chalk.cyan.bold(msg[0])} (${chalk.yellow.bold(msg[1])}): ${chalk.red.bold(msg[2])} (${msg[3]}) (${chalk.blue.bold(msg[4])}) does not exist or is a redirect`
     ));
     console.error('total ' + _deletedWikipedia.length);
   }
 
   if (_foundSitelink.length) {
-    console.warn(colors.yellow.bold(`\nWarning - Matched Wikipedia articles:`));
+    console.warn(chalk.yellow.bold(`\nWarning - Matched Wikipedia articles:`));
     console.warn('To resolve these, add a sitelink to the correct item');
     _foundSitelink.sort();
     _foundSitelink.forEach(msg => console.warn(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) has sitelinks to ${colors.green.bold(msg[4])}`
+      `${chalk.cyan.bold(msg[0])} (${chalk.yellow.bold(msg[1])}): ${chalk.yellow.bold(msg[2])} (${chalk.blue.bold(msg[3])}) has sitelinks to ${chalk.green.bold(msg[4])}`
     ));
     console.warn('total ' + _foundSitelink.length);
   }
 
   if (_wrongLink.length) {
-    console.warn(colors.yellow.bold(`\nWarning - Wrong Wikipedia article which is not linked to the Wikidata entity:`));
+    console.warn(chalk.yellow.bold(`\nWarning - Wrong Wikipedia article which is not linked to the Wikidata entity:`));
     console.warn('To resolve these, check whether the Wikidata or the Wikipedia value is wrong and correct one of them');
     _wrongLink.sort();
     _wrongLink.forEach(msg => console.warn(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) is not linked to ${colors.red.bold(msg[4])} but to ${colors.green.bold(msg[5])}`
+      `${chalk.cyan.bold(msg[0])} (${chalk.yellow.bold(msg[1])}): ${chalk.yellow.bold(msg[2])} (${chalk.blue.bold(msg[3])}) is not linked to ${chalk.red.bold(msg[4])} but to ${chalk.green.bold(msg[5])}`
     ));
     console.warn('total ' + _wrongLink.length);
   }
 
   if (_wrongEntity.length) {
-    console.warn(colors.yellow.bold(`\nWarning - Possibly wrong linked Wikidata entity:`));
+    console.warn(chalk.yellow.bold(`\nWarning - Possibly wrong linked Wikidata entity:`));
     console.warn('To resolve these, check whether the Wikidata entity really describes the brand and not something else or follow the hint on how to fix the item');
     _wrongEntity.sort();
     _wrongEntity.forEach(msg => console.warn(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) ${colors.red.bold(msg[4])}: ${msg[5]}`
+      `${chalk.cyan.bold(msg[0])} (${chalk.yellow.bold(msg[1])}): ${chalk.yellow.bold(msg[2])} (${chalk.blue.bold(msg[3])}) ${chalk.red.bold(msg[4])}: ${msg[5]}`
     ));
     console.warn('total ' + _wrongEntity.length);
   }
 
   if (_missingInstance.length) {
-    console.warn(colors.yellow.bold(`\nWarning - Missing sitelink and instance claim (P31) which might lead to a deletion in the future:`));
+    console.warn(chalk.yellow.bold(`\nWarning - Missing sitelink and instance claim (P31) which might lead to a deletion in the future:`));
     console.warn('To resolve these, add an instance claim (P31) or a sitelink to the Wikidata item');
     _missingInstance.sort();
     _missingInstance.forEach(msg => console.warn(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) is missing a sitelink and an instance claim (P31)`
+      `${chalk.cyan.bold(msg[0])} (${chalk.yellow.bold(msg[1])}): ${chalk.yellow.bold(msg[2])} (${chalk.blue.bold(msg[3])}) is missing a sitelink and an instance claim (P31)`
     ));
     console.warn('total ' + _missingInstance.length);
   }
 
   if (_missingReferences.length) {
-    console.warn(colors.yellow.bold(`\nWarning - Missing sitelink and external references which might lead to a deletion in the future:`));
+    console.warn(chalk.yellow.bold(`\nWarning - Missing sitelink and external references which might lead to a deletion in the future:`));
     console.warn('To resolve these, add a reference to an external source or a sitelink to the Wikidata item');
     _missingReferences.sort();
     _missingReferences.forEach(msg => console.warn(
-      `${colors.cyan.bold(msg[0])} (${colors.yellow.bold(msg[1])}): ${colors.yellow.bold(msg[2])} (${colors.blue.bold(msg[3])}) is missing a sitelink and a reference`
+      `${chalk.cyan.bold(msg[0])} (${chalk.yellow.bold(msg[1])}): ${chalk.yellow.bold(msg[2])} (${chalk.blue.bold(msg[3])}) is missing a sitelink and a reference`
     ));
     console.warn('total ' + _missingReferences.length);
   }
