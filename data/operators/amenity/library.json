@@ -4,7 +4,7 @@
     "exclude": {
       "generic": [
         "^county$",
-        "^Gemeinde$",
+        "^gemeinde$",
         "^library$",
         "^public$",
         "^图书馆$"
@@ -509,6 +509,15 @@
       }
     },
     {
+      "displayName": "Freie Universität Berlin",
+      "id": "freieuniversitatberlin-9284e0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "library",
+        "operator": "Freie Universität Berlin"
+      }
+    },
+    {
       "displayName": "Hamilton Public Library (Ontario)",
       "id": "hamiltonpubliclibrary-2d7d05",
       "locationSet": {"include": ["ca"]},
@@ -827,8 +836,10 @@
     },
     {
       "displayName": "Münchner Stadtbibliothek",
-      "id": "munchnerstadtbibliothek-9284e0",
-      "locationSet": {"include": ["de-by.geojson"]},
+      "id": "munchnerstadtbibliothek-9f9ae7",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Münchner Stadtbibliothek",
@@ -968,8 +979,10 @@
     },
     {
       "displayName": "Philipps-Universität Marburg",
-      "id": "philippsuniversitatmarburg-9284e0",
-      "locationSet": {"include": ["de-he.geojson"]},
+      "id": "philippsuniversitatmarburg-3533f8",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Philipps-Universität Marburg",
@@ -1030,17 +1043,6 @@
       "tags": {
         "amenity": "library",
         "operator": "Rochester Public Library"
-      }
-    },
-    {
-      "displayName": "Universitätsbibliothek der RWTH Aachen",
-      "locationSet": {"include": ["de-nw.geojson"]},
-      "matchNames": ["RWTH", "RWTH Aachen"],
-      "tags": {
-        "amenity": "library",
-        "operator": "Universitätsbibliothek der RWTH Aachen",
-        "operator:type": "university",
-        "operator:wikidata": "Q28733446"
       }
     },
     {
@@ -1162,39 +1164,6 @@
       }
     },
     {
-      "displayName": "Universitätsbibliothek der Technischen Universität Berlin",
-      "locationSet": {"include": ["de-be.geojson"]},
-      "matchNames": ["TU", "TU Berlin", "Technische Universität", "Technische Universität Berlin"],
-      "tags": {
-        "amenity": "library",
-        "operator": "Universitätsbibliothek der Technischen Universität Berlin",
-        "operator:type": "university",
-        "operator:wikidata": "Q28650468"
-      }
-    },
-    {
-      "displayName": "Universitätsbibliothek der Freien Universität Berlin",
-      "locationSet": {"include": ["de-be.geojson"]},
-      "matchNames": ["FU", "FU Berlin", "freie universität"],
-      "tags": {
-        "amenity": "library",
-        "operator": "Universitätsbibliothek der Freien Universität Berlin",
-        "operator:type": "university",
-        "operator:wikidata": "Q2496344"
-      }
-    },
-    {
-      "displayName": "Universitätsbibliothek der Humboldt-Universität zu Berlin",
-      "locationSet": {"include": ["de-be.geojson"]},
-      "matchNames": ["HU", "HU Berlin", "Humboldt universität"],
-      "tags": {
-        "amenity": "library",
-        "operator": "Universitätsbibliothek der Humboldt-Universität zu Berlin",
-        "operator:type": "university",
-        "operator:wikidata": "Q1407819"
-      }
-    },
-    {
       "displayName": "UCV: Facultad de Medicina",
       "id": "ucvfacultaddemedicina-9284e0",
       "locationSet": {"include": ["001"]},
@@ -1245,8 +1214,10 @@
     },
     {
       "displayName": "Universität Bonn",
-      "id": "universitatbonn-ef001e",
-      "locationSet": {"include": ["de-nw.geojson"]},
+      "id": "universitatbonn-cac9ca",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Universität Bonn",
@@ -1257,8 +1228,10 @@
     },
     {
       "displayName": "Universität Hamburg",
-      "id": "universitathamburg-ef001e",
-      "locationSet": {"include": ["de-hh.geojson"]},
+      "id": "universitathamburg-bba292",
+      "locationSet": {
+        "include": ["de-hh.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Universität Hamburg",
@@ -1281,8 +1254,10 @@
     },
     {
       "displayName": "Universitäts- und Landesbibliothek Sachsen-Anhalt",
-      "id": "universitatsundlandesbibliotheksachsenanhalt-9284e0",
-      "locationSet": {"include": ["de-st.geojson"]},
+      "id": "universitatsundlandesbibliotheksachsenanhalt-3974e9",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Universitäts- und Landesbibliothek Sachsen-Anhalt",
@@ -1291,15 +1266,86 @@
       }
     },
     {
+      "displayName": "Universitätsbibliothek der Freien Universität Berlin",
+      "id": "universitatsbibliothekderfreienuniversitatberlin-8a11d2",
+      "locationSet": {
+        "include": ["de-be.geojson"]
+      },
+      "matchNames": [
+        "freie universität",
+        "fu",
+        "fu berlin"
+      ],
+      "tags": {
+        "amenity": "library",
+        "operator": "Universitätsbibliothek der Freien Universität Berlin",
+        "operator:type": "university",
+        "operator:wikidata": "Q2496344"
+      }
+    },
+    {
+      "displayName": "Universitätsbibliothek der Humboldt-Universität zu Berlin",
+      "id": "universitatsbibliothekderhumboldtuniversitatzuberlin-8a11d2",
+      "locationSet": {
+        "include": ["de-be.geojson"]
+      },
+      "matchNames": [
+        "hu",
+        "hu berlin",
+        "humboldt universität"
+      ],
+      "tags": {
+        "amenity": "library",
+        "operator": "Universitätsbibliothek der Humboldt-Universität zu Berlin",
+        "operator:type": "university",
+        "operator:wikidata": "Q1407819"
+      }
+    },
+    {
       "displayName": "Universitätsbibliothek der LMU München",
-      "id": "universitatsbibliothekderlmumunchen-9284e0",
-      "locationSet": {"include": ["de-by.geojson"]},
+      "id": "universitatsbibliothekderlmumunchen-9f9ae7",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "matchNames": ["lmu", "lmu münchen"],
       "tags": {
         "amenity": "library",
         "operator": "Universitätsbibliothek der LMU München",
         "operator:type": "university",
         "operator:wikidata": "Q2496326"
+      }
+    },
+    {
+      "displayName": "Universitätsbibliothek der RWTH Aachen",
+      "id": "universitatsbibliothekderrwthaachen-cac9ca",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "matchNames": ["rwth", "rwth aachen"],
+      "tags": {
+        "amenity": "library",
+        "operator": "Universitätsbibliothek der RWTH Aachen",
+        "operator:type": "university",
+        "operator:wikidata": "Q28733446"
+      }
+    },
+    {
+      "displayName": "Universitätsbibliothek der Technischen Universität Berlin",
+      "id": "universitatsbibliothekdertechnischenuniversitatberlin-8a11d2",
+      "locationSet": {
+        "include": ["de-be.geojson"]
+      },
+      "matchNames": [
+        "technische universität",
+        "technische universität berlin",
+        "tu",
+        "tu berlin"
+      ],
+      "tags": {
+        "amenity": "library",
+        "operator": "Universitätsbibliothek der Technischen Universität Berlin",
+        "operator:type": "university",
+        "operator:wikidata": "Q28650468"
       }
     },
     {
