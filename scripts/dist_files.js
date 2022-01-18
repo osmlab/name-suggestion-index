@@ -235,12 +235,6 @@ function buildIDPresets() {
         const val = tags[osmkey];
         if (!val) return;
 
-        if (val === 'parcel_pickup;parcel_mail_in') {    // this one is just special
-          presetID = `${presetPath}/parcel_pickup_dropoff`;
-          preset = presetsJSON[presetID];
-          if (preset) return;  // it matched
-        }
-
         // keys like cuisine can contain multiple values, so try each one in order
         let vals = val.split(';');
         for (let i = 0; i < vals.length; i++) {
