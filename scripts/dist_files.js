@@ -257,8 +257,15 @@ function buildIDPresets() {
       }
 
       // still no match?
+      // fallback to generic like `amenity/yes`, `shop/yes`
       if (!preset) {
+        presetID = k;
+        preset = presetsJSON[presetID];
         missing.add(tkv);
+      }
+      // *still* no match?
+      // bail out of this category
+      if (!preset) {
         return;
       }
 
