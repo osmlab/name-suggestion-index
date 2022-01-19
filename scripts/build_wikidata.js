@@ -1,7 +1,6 @@
 // External
-import colors from 'colors/safe.js';
+import chalk from 'chalk';
 import fs from 'node:fs';
-import crypto from 'node:crypto';
 import fetch from 'node-fetch';
 import http from 'node:http';
 import https from 'node:https';
@@ -90,10 +89,10 @@ try {
 } catch (err) { /* ignore */ }
 
 if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
-  console.error(colors.red('WHOA!'));
-  console.error(colors.yellow('The `config/secrets.json` file format has changed a bit.'));
-  console.error(colors.yellow('We were expecting to find `twitter` or `wikibase` properties.'));
-  console.error(colors.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error(chalk.red('WHOA!'));
+  console.error(chalk.yellow('The `config/secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('We were expecting to find `twitter` or `wikibase` properties.'));
+  console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
 }
@@ -227,7 +226,7 @@ function doFetch(index) {
 
   let currURL = _urls[index];
   let backoff = false;
-  console.log(colors.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
+  console.log(chalk.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
 
   return fetch(currURL, fetchOptions)
     .then(response => {
@@ -236,9 +235,9 @@ function doFetch(index) {
     })
     .then(result => processEntities(result))
     .catch(e => {
-      console.warn(colors.green.bold('fetch error:'));
-      console.warn(colors.white(JSON.stringify(e)));
-      console.warn(colors.green.bold('retrying...'));
+      console.warn(chalk.green.bold('fetch error:'));
+      console.warn(chalk.white(JSON.stringify(e)));
+      console.warn(chalk.green.bold('retrying...'));
       backoff = true;
       --index;
     })
@@ -267,7 +266,7 @@ function processEntities(result) {
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const warning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.` };
-      console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
       return;
     }
@@ -286,7 +285,7 @@ function processEntities(result) {
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
         const warning = { qid: qid, msg: `Entity for "${label}" missing English label.` };
-        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       }
     }
@@ -321,11 +320,7 @@ function processEntities(result) {
     if (imageFile) {
       const re = /\.svg$/i;
       if (re.test(imageFile)) {
-        imageFile = imageFile.replace(/\s/g, '_');   // 'Flag of Alaska.svg' -> 'Flag_of_Alaska.svg'
-        const hash = crypto.createHash('md5').update(imageFile).digest('hex');
-        const x = hash.slice(0, 1);
-        const xx = hash.slice(0, 2);
-        target.logos.wikidata = `https://upload.wikimedia.org/wikipedia/commons/${x}/${xx}/${imageFile}`;
+        target.logos.wikidata = `https://commons.wikimedia.org/wiki/Special:FilePath/${imageFile}`;
       } else {
         target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
           utilQsString({ title: `Special:Redirect/file/${imageFile}`, width: 150 });
@@ -422,7 +417,7 @@ function processEntities(result) {
           if (dissolution.countries) {
             warning.msg += `\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
           }
-          console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+          console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
           _warnings.push(warning);
         }
         target.dissolutions.push(dissolution);
@@ -542,10 +537,11 @@ function getClaimValue(entity, prop) {
 // - dissolved.json
 //
 function finish() {
+  const START = '🏗   ' + chalk.yellow('Writing output files');
+  const END = '👍  ' + chalk.green('output files updated');
   console.log('');
-  console.log(colors.yellow('🏗   Writing output files'));
-  const TIMER = colors.green('👍  output files updated');
-  console.time(TIMER);
+  console.log(START);
+  console.time(END);
 
   // update `wikidata.json` and `dissolved.json`
   let origWikidata;
@@ -601,12 +597,12 @@ function finish() {
     fileTree.write(_cache);
   }
 
-  console.timeEnd(TIMER);
+  console.timeEnd(END);
 
   // output whatever warnings we've gathered
   if (_warnings.length) {
-    console.log(colors.yellow.bold(`\nWarnings:`));
-    _warnings.forEach(warning => console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg)));
+    console.log(chalk.yellow.bold(`\nWarnings:`));
+    _warnings.forEach(warning => console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg)));
   }
 }
 
@@ -625,10 +621,10 @@ function checkTwitterRateLimit(need) {
       const now = Date.now() / 1000;
       const stats = result.resources.users['/users/:id'];
       const resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
-      console.log(colors.green.bold(`Twitter rate status '${which}': need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
+      console.log(chalk.green.bold(`Twitter rate status '${which}': need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
       if (need > stats.remaining) {
         const delaySec = clamp(resetSec, 10, 60);
-        console.log(colors.green.bold(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
+        console.log(chalk.green.bold(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
         return delaySec;
       } else {
         return 0;
@@ -643,7 +639,7 @@ function checkTwitterRateLimit(need) {
       }
     })
     .catch(e => {
-      console.warn(colors.green.bold(`Error: Twitter rate limit: ` + JSON.stringify(e)));
+      console.warn(chalk.green.bold(`Error: Twitter rate limit: ` + JSON.stringify(e)));
     });
 }
 
@@ -661,7 +657,7 @@ function fetchTwitterUserDetails(qid, username) {
     })
     .catch(e => {
       const warning = { qid: qid, msg: `Twitter username @${username}: ${JSON.stringify(e)}` };
-      console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
     });
 }
@@ -699,7 +695,7 @@ function fetchFacebookLogo(qid, username) {
         return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
       } else {
         const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
-        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       }
     });
@@ -737,7 +733,7 @@ function removeOldNsiClaims() {
     })
     .then(processWbEditQueue)
     .catch(e => {
-      console.warn(colors.red(e));
+      console.warn(chalk.red(e));
     });
 }
 
@@ -754,7 +750,7 @@ function processWbEditQueue(queue) {
   const request = queue.pop();
   const qid = request.qid;
   const msg = request.msg;
-  console.log(colors.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
+  console.log(chalk.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
   delete request.qid;
   delete request.msg;
 
@@ -779,7 +775,7 @@ function processWbEditQueue(queue) {
     return task
       .catch(e => {
         const warning = { qid: qid, msg: e };
-        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       })
       .then(() => delay(300))
@@ -825,7 +821,7 @@ function checkWikipediaTags(qid, sitelinks) {
       if (wd && (wd === qid)) {  // `*:wikidata` tag matches
         if (wpOld && !wikiCount) {            // there was a wikipedia sitelink... but there shouldn't be one for this wikidata qid
           delete item.tags[`${osmkey}:wikipedia`];
-          const msg = colors.cyan(`${qid} "${item.displayName}" removing old tag "${osmkey}:wikipedia = ${wpOld}" (doesn't match this qid)`);
+          const msg = chalk.cyan(`${qid} "${item.displayName}" removing old tag "${osmkey}:wikipedia = ${wpOld}" (doesn't match this qid)`);
           console.warn(msg);
         } else if (wpOld && wikiCount) {        // there was a wikipedia sitelink...
           const m = wpOld.match(/^(\w+):/);     // check the language of it  ('en', 'de', 'zh-yue')
@@ -834,7 +830,7 @@ function checkWikipediaTags(qid, sitelinks) {
             let wpNew = wikis[lang];
             if (wpNew && wpNew !== wpOld) {     // the sitelink we found for this language and qid is different, so replace it
               item.tags[`${osmkey}:wikipedia`] = wpNew;
-              const msg = colors.cyan(`${qid} "${item.displayName}" updating tag "${osmkey}:wikipedia = ${wpNew}" (was "${wpOld})"`);
+              const msg = chalk.cyan(`${qid} "${item.displayName}" updating tag "${osmkey}:wikipedia = ${wpNew}" (was "${wpOld})"`);
               console.warn(msg);
             }
           }
@@ -842,7 +838,7 @@ function checkWikipediaTags(qid, sitelinks) {
           let wpNew = chooseWiki(item);         // so we will try to pick one
           if (wpNew) {
             item.tags[`${osmkey}:wikipedia`] = wpNew;
-            const msg = colors.cyan(`${qid} "${item.displayName}" adding missing tag "${osmkey}:wikipedia = ${wpNew}"`);
+            const msg = chalk.cyan(`${qid} "${item.displayName}" adding missing tag "${osmkey}:wikipedia = ${wpNew}"`);
             console.warn(msg);
           }
         }
