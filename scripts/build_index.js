@@ -1,10 +1,11 @@
 // External
-import chalk from 'chalk';
+import colors from 'colors/safe.js';
 import fs from 'node:fs';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@ideditor/location-conflation';
 import safeRegex from 'safe-regex';
+import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 const withLocale = localeCompare('en-US');
 
@@ -12,11 +13,9 @@ const withLocale = localeCompare('en-US');
 import { fileTree } from '../lib/file_tree.js';
 import { idgen } from '../lib/idgen.js';
 import { Matcher } from '../lib/matcher.js';
-import { simplify } from '../lib/simplify.js';
 import { sortObject } from '../lib/sort_object.js';
 import { stemmer } from '../lib/stemmer.js';
 import { validate } from '../lib/validate.js';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
 // JSON
@@ -27,33 +26,30 @@ const trees = treesJSON.trees;
 import featureCollectionJSON from '../dist/featureCollection.json';
 const loco = new LocationConflation(featureCollectionJSON);
 
-console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('🗂   Build index'));
-console.log(chalk.blue('-'.repeat(70)));
+console.log(colors.blue('-'.repeat(70)));
+console.log(colors.blue('🗂   Build index'));
+console.log(colors.blue('-'.repeat(70)));
 
 let _config = {};
-loadConfig();
-
 let _cache = {};
-loadIndex();
-
-checkItems('brands');
-checkItems('flags');
-checkItems('operators');
-checkItems('transit');
-
-let _currCollectionDate = 0;
 let _collected = {};
 let _discard = {};
 let _keep = {};
-loadCollected();
-filterCollected();
 
-mergeItems();
+Promise.resolve()
+  .then(() => loadConfig())
+  .then(() => loadIndex())
+  .then(() => checkItems('brands'))
+  .then(() => checkItems('flags'))
+  .then(() => checkItems('operators'))
+  .then(() => checkItems('transit'))
+  .then(() => loadCollected())
+  .then(() => filterCollected())
+  .then(() => mergeItems())
+  .then(() => saveIndex())
+  .catch(err => console.error(err));
 
-saveIndex();
 console.log('');
-
 
 
 //
@@ -68,8 +64,8 @@ function loadConfig() {
     try {
       data = JSON5.parse(contents);
     } catch (jsonParseError) {
-      console.error(chalk.red(`Error - ${jsonParseError.message} reading:`));
-      console.error('  ' + chalk.yellow(file));
+      console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
+      console.error('  ' + colors.yellow(file));
       process.exit(1);
     }
 
@@ -133,30 +129,16 @@ function loadConfig() {
 // https://stackoverflow.com/a/43872595
 function checkRegex(fileName, pattern) {
   if (!safeRegex(pattern)) {
-    console.error(chalk.red('\nError - Potentially unsafe regular expression:'));
-    console.error('  ' + chalk.yellow(fileName + ': ' + pattern));
+    console.error(colors.red('\nError - Potentially unsafe regular expression:'));
+    console.error('  ' + colors.yellow(fileName + ': ' + pattern));
     process.exit(1);
   }
 }
 
 //
-// Load the version number and the lists of tags collected from:
-// https://github.com/ideditor/nsi-collector
+// Load lists of tags collected from OSM from https://github.com/ideditor/nsi-collector
 //
 function loadCollected() {
-  try {
-    const file = `./node_modules/@ideditor/nsi-collector/package.json`;
-    const contents = fs.readFileSync(file, 'utf8');
-    const collectorJSON = JSON5.parse(contents);
-    const rawVersion = collectorJSON.version;
-    const matched = rawVersion.match(/[~^]?\d+\.\d+\.(\d+)/);
-    if (matched) {
-      _currCollectionDate = +matched[1];
-    }
-  } catch (err) {
-    console.error(chalk.yellow(`Warning - ${err.message} reading 'nsi-collector/package.json'`));
-  }
-
   ['name', 'brand', 'operator', 'network'].forEach(tag => {
     const file = `./node_modules/@ideditor/nsi-collector/dist/osm/${tag}s_all.json`;
     const contents = fs.readFileSync(file, 'utf8');
@@ -164,8 +146,8 @@ function loadCollected() {
     try {
       data = JSON5.parse(contents);
     } catch (jsonParseError) {
-      console.error(chalk.red(`Error - ${jsonParseError.message} reading:`));
-      console.error('  ' + chalk.yellow(file));
+      console.error(colors.red(`Error - ${jsonParseError.message} reading:`));
+      console.error('  ' + colors.yellow(file));
       process.exit(1);
     }
 
@@ -178,52 +160,23 @@ function loadCollected() {
 // Filter the tags collected into _keep and _discard lists
 //
 function filterCollected() {
-  const START = '🏗   ' + chalk.yellow(`Filtering values collected from OSM...`);
-  const END = '👍  ' + chalk.green(`done filtering`);
   console.log('');
-  console.log(START);
-  console.time(END);
-  let shownSparkle = false;
+  console.log(colors.yellow('🏗   Filtering values collected from OSM...'));
 
-  // Before starting, cache genericWords regexes.
-  let genericRegex = _config.genericWords.map(s => new RegExp(s, 'i'));
-  genericRegex.push(new RegExp(/;/, 'i'));   // also discard values with semicolons
-
+  const FILTER_TIMER = colors.green('👍  done filtering');
+  console.time(FILTER_TIMER);
 
   Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
     if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) return;
 
+    // Start clean
+    shell.rm('-f', [`dist/filtered/${t}_keep.json`, `dist/filtered/${t}_discard.json`]);
+
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
-    let lastCollectionDate = -1;
-    let contents, data;
 
-    try {  // Load existing "keep" file
-      contents = fs.readFileSync(`dist/filtered/${t}_keep.json`, 'utf8');
-      data = JSON5.parse(contents);
-      lastCollectionDate = +(data._meta.collectionDate) || -1;
-      keep = _keep[t] = data.keep;
-    } catch (err) {
-      /* ignore - we can overwrite the keep file */
-    }
-
-    // Exit here if:
-    // 1. we have data in `keep`, and..
-    // 2. that data is fresh (newer or same as installed nsi-collector dependency) - #5519
-    // (comment out this next line to force replace the keep/discard lists)
-    if (Object.keys(keep).length && lastCollectionDate >= _currCollectionDate) return;
-
-    // Continue, do filtering, and replace keep/discard lists..
-    if (!shownSparkle) {
-      console.log(chalk.yellow(`✨   New nsi-collector version ${_currCollectionDate} (was ${lastCollectionDate}).  Updating filter lists:`));
-      shownSparkle = true;
-    }
-
-    //
-    // STEP 1:  All the collected "names" from OSM start out in `discard`
-    //
-    keep = {};
+    // All the collected "names" from OSM start out in discard..
     tree.sourceTags.forEach(tag => {
       let collected = _collected[tag];
       for (const kvn in collected) {
@@ -231,47 +184,57 @@ function filterCollected() {
       }
     });
 
-    //
-    // STEP 2:  Move "names" that aren't excluded from `discard` -> `keep`
-    //
-    let categoryRegex = {};  // regex cache
+    // Cache the regexes we need for each category
+    let excluders = {};
+
     for (const kvn in discard) {
-      const [kv, n] = kvn.split('|', 2);  // kvn = "key/value|name"
+      const parts = kvn.split('|', 2);  // kvn = "key/value|name"
+      const kv = parts[0];
+      const n = parts[1];
       const tkv = `${t}/${kv}`;
       const file = `./data/${tkv}.json`;
       const category = _cache.path[tkv];
-      if (!category) continue;   // not a category we track in the index, skip
+      if (!category) continue;          // not a category we track in the index, skip
 
-      const categoryProps = category.properties || {};
-      if (categoryProps.skipCollection) continue;   // not a category where we want to collect new names, skip
+      const props = category.properties || {};
+      if (props.skipCollection) continue;  // not a category where we want to collect new tags, skip
 
-      if (!categoryRegex[tkv]) {
-        const exclude = categoryProps.exclude || {};
+      // If we have a category for this k/v pair in the index, move the name from discard -> keep
+      // ...unless the name matches an exclude pattern
+      if (!excluders[tkv]) {
+        const exclude = props.exclude || {};
         const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
-        categoryRegex[tkv] = excludePatterns.map(s => checkRegex(file, s) || new RegExp(s, 'i'));
+        excluders[tkv] = excludePatterns.map(s => checkRegex(file, s) || new RegExp(s, 'i'));
       }
-      const isExcluded = categoryRegex[tkv].some(re => re.test(n)) || genericRegex.some(re => re.test(n));
+      const isExcluded = excluders[tkv].some(regex => regex.test(n));
       if (!isExcluded) {
         keep[kvn] = discard[kvn];
         delete discard[kvn];
       }
     }
 
+    // Filter by genericWords (move from keep -> discard)
+    _config.genericWords.forEach(s => {
+      const re = new RegExp(s, 'i');
+      for (let kvn in keep) {
+        const name = kvn.split('|', 2)[1];
+        if (re.test(name) || /;/.test(name)) {  // also discard values with semicolons
+          discard[kvn] = keep[kvn];
+          delete keep[kvn];
+        }
+      }
+    });
+
     const discardCount = Object.keys(discard).length;
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    let stringified;
-    const meta = { collectionDate: _currCollectionDate.toString(10) };
+    fs.writeFileSync(`dist/filtered/${t}_discard.json`, stringify(sortObject(discard)) + '\n');
+    fs.writeFileSync(`dist/filtered/${t}_keep.json`, stringify(sortObject(keep)) + '\n');
 
-    stringified = stringify({ discard: sortObject(discard) }) + '\n';
-    writeFileWithMeta(`dist/filtered/${t}_discard.json`, stringified, meta);
-
-    stringified = stringify({ keep: sortObject(keep) }) + '\n';
-    writeFileWithMeta(`dist/filtered/${t}_keep.json`, stringified, meta);
   });
 
-  console.timeEnd(END);
+  console.timeEnd(FILTER_TIMER);
 }
 
 
@@ -279,41 +242,33 @@ function filterCollected() {
 // Load the index files under `data/*`
 //
 function loadIndex() {
-  const START = '🏗   ' + chalk.yellow(`Loading index files...`);
-  const END = '👍  ' + chalk.green(`done loading`);
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Loading index files...'));
 
-  fileTree.read(_cache, loco);
-  fileTree.expandTemplates(_cache, loco);
-  console.timeEnd(END);
+  const LOAD_TIMER = colors.green('👍  done loading');
+  const MATCH_INDEX_TIMER = colors.green('👍  built match index');
+  const LOCATION_INDEX_TIMER = colors.green('👍  built location index');
 
-  const MATCH_INDEX_END = '👍  ' + chalk.green(`built match index`);
-  console.time(MATCH_INDEX_END);
-  matcher.buildMatchIndex(_cache.path);
-  console.timeEnd(MATCH_INDEX_END);
+  return Promise.resolve()
+    .then(() => console.time(LOAD_TIMER))
+    .then(() => fileTree.read(_cache, loco))
+    .then(() => fileTree.expandTemplates(_cache, loco))
+    .then(() => console.timeEnd(LOAD_TIMER))
 
-  let warnMatched = matcher.getWarnings();
-  if (warnMatched.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - matchIndex errors:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  `key/value/name` occurs multiple times in the match index.'));
-    console.warn(chalk.gray('  To resolve these, make sure the key/value/name does not appear in multiple trees'));
-    console.warn(chalk.gray('    (e.g. `amenity/post_office/ups` should not be both a "brand" and an "operator"'));
-    console.warn(chalk.gray('-').repeat(70));
-    warnMatched.forEach(w => console.warn(chalk.yellow(w)));
-    console.warn('total ' + warnMatched.length);
-  }
+    .then(() => console.time(MATCH_INDEX_TIMER))
+    .then(() => matcher.buildMatchIndex(_cache.path))
+    .then(() => console.timeEnd(MATCH_INDEX_TIMER))
 
+    // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
+    // We don't need a location index for this script, but it's useful to know.
+    .then(() => console.time(LOCATION_INDEX_TIMER))
+    .then(() => matcher.buildLocationIndex(_cache.path, loco))
+    .then(() => console.timeEnd(LOCATION_INDEX_TIMER))
 
-
-  // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
-  // We don't need a location index for this script, but it's useful to know.
-  const LOCATION_INDEX_END = '👍  ' + chalk.green(`built location index`);
-  console.time(LOCATION_INDEX_END);
-  matcher.buildLocationIndex(_cache.path, loco);
-  console.timeEnd(LOCATION_INDEX_END);
+    .catch(err => {
+      console.error(err);
+      process.exit(1);
+    });
 }
 
 
@@ -321,14 +276,13 @@ function loadIndex() {
 // Save the updated index files under `data/*`
 //
 function saveIndex() {
-  const START = '🏗   ' + chalk.yellow(`Saving index files...`);
-  const END = '👍  ' + chalk.green(`done saving`);
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Saving index files...'));
 
+  const SAVE_TIMER = '👍  ' + colors.green(`done saving`);
+  console.time(SAVE_TIMER);
   fileTree.write(_cache);
-  console.timeEnd(END);
+  console.timeEnd(SAVE_TIMER);
 }
 
 
@@ -339,50 +293,34 @@ function saveIndex() {
 // - update all items to have whatever tags they should have.
 //
 function mergeItems() {
-  const START = '🏗   ' + chalk.yellow(`Merging items...`);
-  const END = '👍  ' + chalk.green(`done merging`);
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Merging items...'));
 
+  const MERGE_TIMER = '👍  ' + colors.green(`done merging`);
+  console.time(MERGE_TIMER);
 
   Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
     let total = 0;
     let totalNew = 0;
-    let newItems = {};
 
     //
     // INSERT - Look in `_keep` for new items not yet in the index..
     //
     const keeping = _keep[t] || {};
-
-    // Find new items, keeping only the most popular spelling..
     Object.keys(keeping).forEach(kvn => {
-      const count = keeping[kvn];
-      const [kv, n] = kvn.split('|', 2);     // kvn = "key/value|name"
-      const [k, v] = kv.split('/', 2);
-
-      const matched = matcher.match(k, v, n);
-      if (matched) return;     // already in the index (or generic)
-
-      // Use the simplified name when comparing spelling popularity
-      const nsimple = simplify(n);
-      const newid = `${k}/${v}|${nsimple}`;
-      const otherNew = newItems[newid];
-
-      // Seen for the first time, or this name is a more popular spelling
-      if (!otherNew || otherNew.count < count) {
-        newItems[newid] = { kvn: kvn, count: count };
-      }
-    });
-
-    // Add the new items
-    Object.values(newItems).forEach(newItem => {
-      const [kv, n] = newItem.kvn.split('|', 2);     // kvn = "key/value|name"
-      const [k, v] = kv.split('/', 2);
+      const parts = kvn.split('|', 2);     // kvn = "key/value|name"
+      const kv = parts[0];
+      const n = parts[1];
+      const parts2 = kv.split('/', 2);
+      const k = parts2[0];
+      const v = parts2[1];
       const tkv = `${t}/${k}/${v}`;
 
+      const m = matcher.match(k, v, n);
+      if (m) return;     // already in the index (or generic)
+
+      // A new item!
       let item = { tags: {} };
       item.displayName = n;
       item.locationSet = { include: ['001'] };   // the whole world
@@ -418,7 +356,9 @@ function mergeItems() {
       let items = _cache.path[tkv].items;
       if (!Array.isArray(items) || !items.length) return;
 
-      const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+      const k = parts[1];
+      const v = parts[2];
       const kv = `${k}/${v}`;
 
       items.forEach(item => {
@@ -484,7 +424,7 @@ function mergeItems() {
         // https://www.regular-expressions.info/unicode.html
         if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
           // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
-          if (!item.locationSet)  item.locationSet = { include: ['iw'] };
+          if (!item.locationSet)  item.locationSet = { include: ['il'] };
           setLanguageTags(tags, 'he');
         } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
           if (!item.locationSet)  item.locationSet = { include: ['th'] };
@@ -556,7 +496,7 @@ function mergeItems() {
 
   });
 
-  console.timeEnd(END);
+  console.timeEnd(MERGE_TIMER);
 
   function setLanguageTags(tags, code) {
     if (tags.name)      tags[`name:${code}`] = tags.name;
@@ -573,11 +513,12 @@ function mergeItems() {
 //
 function checkItems(t) {
   console.log('');
-  console.log('🏗   ' + chalk.yellow(`Checking ${t}...`));
+  console.log(colors.yellow(`🏗   Checking ${t}...`));
 
   const tree = _config.trees[t];
   const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
 
+  let warnMatched = matcher.getWarnings();
   let warnDuplicate = [];
   let warnFormatWikidata = [];
   let warnFormatWikipedia = [];
@@ -595,7 +536,9 @@ function checkItems(t) {
     const items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
-    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const k = parts[1];
+    const v = parts[2];
     const kv = `${k}/${v}`;
 
     items.forEach(item => {
@@ -643,9 +586,6 @@ function checkItems(t) {
         case 'amenity/restaurant':
           if (!tags.cuisine) { warnMissingTag.push([display(item), 'cuisine']); }
           break;
-        case 'amenity/training':
-          if (!tags.training) { warnMissingTag.push([display(item), 'training']); }
-          break;
         case 'amenity/vending_machine':
           if (!tags.vending) { warnMissingTag.push([display(item), 'vending']); }
           break;
@@ -662,7 +602,7 @@ function checkItems(t) {
       }
 
       // Warn if OSM tags contain odd punctuation or spacing..
-      ['beauty', 'cuisine', 'gambling', 'training', 'vending'].forEach(osmkey => {
+      ['cuisine', 'vending', 'beauty', 'gambling'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val && oddChars.test(val)) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
@@ -716,62 +656,78 @@ function checkItems(t) {
     });
   });
 
+  if (warnMatched.length) {
+    console.warn(colors.yellow('\n⚠️   Warning - Ambiguous matches:'));
+    console.warn(colors.gray('-').repeat(70));
+    console.warn(colors.gray('  If the items are the different, make sure they have different locationSets (e.g. "us", "ca"'));
+    console.warn(colors.gray('  If the items are the same, remove extra `matchTags` or `matchNames`.  Remember:'));
+    console.warn(colors.gray('  - Name matching ignores letter case, punctuation, spacing, and diacritical marks (é vs e). '));
+    console.warn(colors.gray('    No need to add `matchNames` for variations in these.'));
+    console.warn(colors.gray('  - Tag matching automatically includes other similar tags in the same match group.'));
+    console.warn(colors.gray('    No need to add `matchTags` for similar tags.  see `config/matchGroups.json`'));
+    console.warn(colors.gray('-').repeat(70));
+    warnMatched.forEach(w => console.warn(
+      colors.yellow('  "' + w[0] + '"') + ' -> matches? -> ' + colors.yellow('"' + w[1] + '"')
+    ));
+    console.warn('total ' + warnMatched.length);
+  }
+
   if (warnMissingTag.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Missing tag:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  To resolve these, add the missing tag.'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(colors.yellow('\n⚠️   Warning - Missing tag:'));
+    console.warn(colors.gray('-').repeat(70));
+    console.warn(colors.gray('  To resolve these, add the missing tag.'));
+    console.warn(colors.gray('-').repeat(70));
     warnMissingTag.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> missing tag? -> ' + chalk.yellow('"' + w[1] + '"')
+      colors.yellow('  "' + w[0] + '"') + ' -> missing tag? -> ' + colors.yellow('"' + w[1] + '"')
     ));
     console.warn('total ' + warnMissingTag.length);
   }
 
   if (warnFormatTag.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Unusual OpenStreetMap tag:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  To resolve these, make sure the OpenStreetMap tag is correct.'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(colors.yellow('\n⚠️   Warning - Unusual OpenStreetMap tag:'));
+    console.warn(colors.gray('-').repeat(70));
+    console.warn(colors.gray('  To resolve these, make sure the OpenStreetMap tag is correct.'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatTag.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> unusual tag? -> ' + chalk.yellow('"' + w[1] + '"')
+      colors.yellow('  "' + w[0] + '"') + ' -> unusual tag? -> ' + colors.yellow('"' + w[1] + '"')
     ));
     console.warn('total ' + warnFormatTag.length);
   }
 
   if (warnDuplicate.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Potential duplicate:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  If the items are two different businesses,'));
-    console.warn(chalk.gray('    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.'));
-    console.warn(chalk.gray('  If the items are duplicates of the same business,'));
-    console.warn(chalk.gray('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
-    console.warn(chalk.gray('  If the duplicate item is a generic word,'));
-    console.warn(chalk.gray('    add a filter to config/filter_brands.json and delete the unwanted item.'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(colors.yellow('\n⚠️   Warning - Potential duplicate:'));
+    console.warn(colors.gray('-').repeat(70));
+    console.warn(colors.gray('  If the items are two different businesses,'));
+    console.warn(colors.gray('    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.'));
+    console.warn(colors.gray('  If the items are duplicates of the same business,'));
+    console.warn(colors.gray('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
+    console.warn(colors.gray('  If the duplicate item is a generic word,'));
+    console.warn(colors.gray('    add a filter to config/filter_brands.json and delete the unwanted item.'));
+    console.warn(colors.gray('-').repeat(70));
     warnDuplicate.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + chalk.yellow('"' + w[1] + '"')
+      colors.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + colors.yellow('"' + w[1] + '"')
     ));
     console.warn('total ' + warnDuplicate.length);
   }
 
   if (warnFormatWikidata.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Incorrect `wikidata` format:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  To resolve these, make sure "*:wikidata" tag looks like "Q191615".'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(colors.yellow('\n⚠️   Warning - Incorrect `wikidata` format:'));
+    console.warn(colors.gray('-').repeat(70));
+    console.warn(colors.gray('  To resolve these, make sure "*:wikidata" tag looks like "Q191615".'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatWikidata.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
+      colors.yellow('  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
     ));
     console.warn('total ' + warnFormatWikidata.length);
   }
 
   if (warnFormatWikipedia.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Incorrect `wikipedia` format:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  To resolve these, make sure "*:wikipedia" tag looks like "en:Pizza Hut".'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(colors.yellow('\n⚠️   Warning - Incorrect `wikipedia` format:'));
+    console.warn(colors.gray('-').repeat(70));
+    console.warn(colors.gray('  To resolve these, make sure "*:wikipedia" tag looks like "en:Pizza Hut".'));
+    console.warn(colors.gray('-').repeat(70));
     warnFormatWikipedia.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> "*:wikipedia": ' + '"' + w[1] + '"'
+      colors.yellow('  "' + w[0] + '"') + ' -> "*:wikipedia": ' + '"' + w[1] + '"'
     ));
     console.warn('total ' + warnFormatWikipedia.length);
   }
@@ -779,7 +735,7 @@ function checkItems(t) {
   const pctWd = total > 0 ? (totalWd * 100 / total).toFixed(1) : 0;
 
   console.log('');
-  console.info(chalk.blue.bold(`${tree.emoji}  ${t}/* completeness:`));
-  console.info(chalk.blue.bold(`    ${total} total`));
-  console.info(chalk.blue.bold(`    ${totalWd} (${pctWd}%) with a '${tree.mainTag}' tag`));
+  console.info(colors.blue.bold(`${tree.emoji}  ${t}/* completeness:`));
+  console.info(colors.blue.bold(`    ${total} total`));
+  console.info(colors.blue.bold(`    ${totalWd} (${pctWd}%) with a '${tree.mainTag}' tag`));
 }

@@ -1,5 +1,5 @@
 // External
-import chalk from 'chalk';
+import colors from 'colors/safe.js';
 import fs from 'node:fs';
 import glob from 'glob';
 import JSON5 from 'json5';
@@ -42,12 +42,11 @@ buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + chalk.yellow('Building data...');
-  const END = '👍  ' + chalk.green('data built');
-
   console.log('');
-  console.log(START);
-  console.time(END);
+  console.log(colors.yellow('🏗   Building data...'));
+
+  const TIMER = colors.green('👍  data built');
+  console.time(TIMER);
 
   // Start clean
   shell.rm('-f', [
@@ -71,12 +70,6 @@ function buildAll() {
   refreshMeta('dissolved.json');
   refreshMeta('featureCollection.json');
 
-  ['brands', 'operators', 'transit'].forEach(tree => {
-    ['keep', 'discard'].forEach(list => {
-      refreshMeta(`filtered/${tree}_${list}.json`);
-    });
-  });
-
   // Write `nsi.json` as a single file containing everything by path
   const output = { nsi: _cache.path };
   writeFileWithMeta('dist/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
@@ -91,6 +84,8 @@ function buildAll() {
     const minFile = file.replace('.json', '.min.json');
     minifySync(file, minFile);
   });
+
+  console.timeEnd(TIMER);
 }
 
 
@@ -103,10 +98,6 @@ function copyWithMeta(filename) {
 function refreshMeta(filename) {
   const contents = fs.readFileSync(`dist/${filename}`, 'utf8');
   let json = JSON5.parse(contents);
-
-  // Preserve any existing metadata, but replace the calculated properties
-  let preserved = Object.assign({}, json._meta);
-  ['version', 'generated', 'url', 'hash'].forEach(prop => delete preserved[prop]);
   delete json._meta;
 
   let options = {};
@@ -115,7 +106,7 @@ function refreshMeta(filename) {
   } else if (filename === 'featureCollection.json') {
     options = { maxLength: 9999 };
   }
-  writeFileWithMeta(`dist/${filename}`, stringify(json, options) + '\n', preserved);
+  writeFileWithMeta(`dist/${filename}`, stringify(json, options) + '\n');
 }
 
 
@@ -224,6 +215,7 @@ function buildIDPresets() {
       const tags = item.tags;
       const qid = tags[wdTag];
       if (!qid || !/^Q\d+$/.test(qid)) return;   // wikidata tag missing or looks wrong..
+      if (dissolved[item.id]) return;            // dissolved/closed businesses
 
       let presetID, preset;
 
@@ -325,12 +317,10 @@ function buildIDPresets() {
         matchScore: 2
       };
 
-      if (logoURL)             targetPreset.imageURL = logoURL;
-      if (terms.size)          targetPreset.terms = Array.from(terms).sort(withLocale);
-      if (fields)              targetPreset.fields = fields;
-      if (preset.reference)    targetPreset.reference = preset.reference;
-      if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
-
+      if (logoURL)           targetPreset.imageURL = logoURL;
+      if (terms.size)        targetPreset.terms = Array.from(terms).sort(withLocale);
+      if (fields)            targetPreset.fields = fields;
+      if (preset.reference)  targetPreset.reference = preset.reference;
       targetPreset.tags = sortObject(targetTags);
       targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
 
@@ -339,7 +329,7 @@ function buildIDPresets() {
   });
 
   missing.forEach(tkv => {
-    console.warn(chalk.yellow(`Warning - no iD source preset found for ${tkv}`));
+    console.warn(colors.yellow(`Warning - no iD source preset found for ${tkv}`));
   });
 
   let output = { presets: targetPresets };
@@ -394,29 +384,11 @@ function buildJOSMPresets() {
     if (k !== kPrev)  kGroup = tGroup.ele('group').att('name', k);
     if (v !== vPrev)  vGroup = kGroup.ele('group').att('name', v);
 
-    // Choose allowable geometries for the category
-    let presetType;
-    if (t === 'flags') {
-      presetType = 'node';
-    } else if (k === 'route') {
-      if (v === 'ferry') {  // Ferry hack! ⛴
-        presetType = 'way,closedway,relation';
-      } else {
-        presetType = 'relation';
-      }
-    } else if (k === 'power' && (v === 'line' || v === 'minor_line')) {
-      presetType = 'way,closedway';
-    } else if (k === 'power' && (v === 'pole' || v === 'tower')) {
-      presetType = 'node';
-    } else {
-      presetType = 'node,closedway,multipolygon';   // default for POIs
-    }
-
     items.forEach(item => {
       let preset = vGroup
         .ele('item')
         .att('name', item.displayName)
-        .att('type', presetType);
+        .att('type', 'node,closedway,multipolygon');
 
       for (const osmkey in item.tags) {
         preset.ele('key').att('key', osmkey).att('value', item.tags[osmkey]);
@@ -519,8 +491,8 @@ function minifySync(inPath, outPath) {
     const minified = JSON.stringify(JSON5.parse(contents));
     fs.writeFileSync(outPath, minified);
   } catch (err) {
-    console.error(chalk.red(`Error - ${err.message} minifying:`));
-    console.error('  ' + chalk.yellow(inPath));
+    console.error(colors.red(`Error - ${err.message} minifying:`));
+    console.error('  ' + colors.yellow(inPath));
     process.exit(1);
   }
 }
