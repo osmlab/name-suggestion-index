@@ -2,18 +2,11 @@
   "properties": {
     "path": "operators/amenity/telephone",
     "preserveTags": ["^name"],
-    "exclude": {"generic": ["^(tele)?phone$"]}
+    "exclude": {
+      "generic": ["^-$", "^(tele)?phone$"]
+    }
   },
   "items": [
-    {
-      "displayName": "-",
-      "id": "d41d8c-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "-"
-      }
-    },
     {
       "displayName": "A1",
       "id": "a1-2be02b",
@@ -96,7 +89,7 @@
       }
     },
     {
-      "displayName": "BT (formerly British Telecom)",
+      "displayName": "BT (British Telecom)",
       "id": "bt-2be02b",
       "locationSet": {"include": ["001"]},
       "matchNames": [
@@ -108,7 +101,7 @@
         "amenity": "telephone",
         "operator": "BT",
         "operator:wikidata": "Q593786",
-        "operator:wikipedia": "en:BT_Group"
+        "operator:wikipedia": "en:BT Group"
       }
     },
     {
@@ -160,14 +153,12 @@
       "displayName": "Deutsche Telekom",
       "id": "deutschetelekom-2be02b",
       "locationSet": {"include": ["001"]},
-      "matchNames": [
-        "deutsche telekom ag"
-      ],
+      "matchNames": ["deutsche telekom ag"],
       "tags": {
         "amenity": "telephone",
         "operator": "Deutsche Telekom",
         "operator:wikidata": "Q9396",
-        "operator:wikipedia": "de:Deutsche_Telekom",
+        "operator:wikipedia": "de:Deutsche Telekom"
       }
     },
     {
@@ -641,14 +632,12 @@
       "displayName": "Telekom Deutschland",
       "id": "telekomdeutschland-2be02b",
       "locationSet": {"include": ["001"]},
-      "matchNames": [
-        "Telekom Deutschland GmbH"
-      ],
+      "matchNames": ["telekom deutschland gmbh"],
       "tags": {
         "amenity": "telephone",
         "operator": "Telekom Deutschland",
         "operator:wikidata": "Q2401704",
-        "operator:wikipedia": "de:Telekom_Deutschland"
+        "operator:wikipedia": "de:Telekom Deutschland"
       }
     },
     {
