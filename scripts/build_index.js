@@ -656,13 +656,16 @@ function checkItems(t) {
             if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
           }
           break;
+        case 'office/government':
+          if (!tags.vending) { warnMissingTag.push([display(item), 'government']); }
+          break;
         case 'shop/beauty':
           if (!tags.beauty) { warnMissingTag.push([display(item), 'beauty']); }
           break;
       }
 
       // Warn if OSM tags contain odd punctuation or spacing..
-      ['beauty', 'cuisine', 'gambling', 'training', 'vending'].forEach(osmkey => {
+      ['beauty', 'cuisine', 'gambling', 'government', 'training', 'vending'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val && oddChars.test(val)) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
