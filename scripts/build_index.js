@@ -656,9 +656,6 @@ function checkItems(t) {
             if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
           }
           break;
-        case 'office/government':
-          if (!tags.vending) { warnMissingTag.push([display(item), 'government']); }
-          break;
         case 'shop/beauty':
           if (!tags.beauty) { warnMissingTag.push([display(item), 'beauty']); }
           break;
