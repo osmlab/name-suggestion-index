@@ -6,6 +6,12 @@
       "generic": [
         "^(charging station|oplaadpunt|stromtankstelle)$",
         "^(e-bike )?ladestation$"
+      ],
+      "named": [
+        "^eb elbil as$",
+        "^europark as$",
+        "^jernbaneverket$",
+        "kommune"
       ]
     }
   },
@@ -23,8 +29,11 @@
     },
     {
       "displayName": "ABB",
-      "id": "abb-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "abb-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "ABB",
@@ -67,10 +76,10 @@
     },
     {
       "displayName": "ALDI",
-      "id": "aldi-8308b9",
+      "id": "aldi-224ad0",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["de"]
+        "exclude": ["de", "no"]
       },
       "tags": {
         "amenity": "charging_station",
@@ -242,6 +251,15 @@
       }
     },
     {
+      "displayName": "Be Charge",
+      "id": "becharge-2c5517",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Be Charge"
+      }
+    },
+    {
       "displayName": "be emobil",
       "id": "beemobil-1299a8",
       "locationSet": {"include": ["de"]},
@@ -264,21 +282,21 @@
       }
     },
     {
-      "displayName": "Bee",
-      "id": "bee-c9e89f",
-      "locationSet": {"include": ["se"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Bee"
-      }
-    },
-    {
       "displayName": "BEW",
       "id": "bew-1299a8",
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "BEW"
+      }
+    },
+    {
+      "displayName": "BGE",
+      "id": "bge-c22d3a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "BGE"
       }
     },
     {
@@ -319,30 +337,6 @@
       }
     },
     {
-      "displayName": "BKK",
-      "id": "bkk-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "brand": "BKK",
-        "brand:wikidata": "Q4891601",
-        "brand:wikipedia": "no:Eviny",
-        "name": "BKK",
-        "operator": "BKK",
-        "operator:wikidata": "Q4891601",
-        "operator:wikipedia": "no:Eviny"
-      }
-    },
-    {
-      "displayName": "BKK Nett AS for Hordaland fylkeskommune",
-      "id": "bkknettasforhordalandfylkeskommune-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "BKK Nett AS for Hordaland fylkeskommune"
-      }
-    },
-    {
       "displayName": "Blink",
       "id": "blink-994ed4",
       "locationSet": {"include": ["us"]},
@@ -376,8 +370,11 @@
     },
     {
       "displayName": "BMW",
-      "id": "bmw-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "bmw-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "BMW",
@@ -408,8 +405,11 @@
     },
     {
       "displayName": "Bosch eBike Systems",
-      "id": "boschebikesystems-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "boschebikesystems-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "brand": "Bosch eBike Systems",
@@ -540,15 +540,6 @@
       }
     },
     {
-      "displayName": "Charge365",
-      "id": "charge365-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Charge365"
-      }
-    },
-    {
       "displayName": "Chargefox",
       "id": "chargefox-943805",
       "locationSet": {"include": ["au"]},
@@ -600,8 +591,11 @@
     },
     {
       "displayName": "ChargePoint",
-      "id": "chargepoint-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "chargepoint-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "brand": "ChargePoint",
@@ -739,6 +733,15 @@
         "operator": "Copec",
         "operator:wikidata": "Q1130956",
         "operator:wikipedia": "de:Copec"
+      }
+    },
+    {
+      "displayName": "CSDD",
+      "id": "csdd-c22d3a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "CSDD"
       }
     },
     {
@@ -937,15 +940,6 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "EasyGo"
-      }
-    },
-    {
-      "displayName": "EB Elbil AS",
-      "id": "ebelbilas-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "EB Elbil AS"
       }
     },
     {
@@ -1373,17 +1367,6 @@
       }
     },
     {
-      "displayName": "EuroPark AS",
-      "id": "europarkas-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "EuroPark AS",
-        "operator:wikidata": "Q5411568",
-        "operator:wikipedia": "no:EuroPark"
-      }
-    },
-    {
       "displayName": "EV Power",
       "id": "evpower-a1285d",
       "locationSet": {"include": ["pt"]},
@@ -1608,24 +1591,6 @@
       }
     },
     {
-      "displayName": "Fortum",
-      "id": "fortum-c6312f",
-      "locationSet": {
-        "include": ["fi", "no", "se"]
-      },
-      "matchNames": ["fortum charge & drive"],
-      "tags": {
-        "amenity": "charging_station",
-        "brand": "Fortum",
-        "brand:wikidata": "Q1439075",
-        "brand:wikipedia": "en:Fortum",
-        "name": "Fortum",
-        "operator": "Fortum",
-        "operator:wikidata": "Q1439075",
-        "operator:wikipedia": "en:Fortum"
-      }
-    },
-    {
       "displayName": "Freshmile",
       "id": "freshmile-f6553b",
       "locationSet": {"include": ["fr"]},
@@ -1730,8 +1695,11 @@
     },
     {
       "displayName": "Gogoro 電池交換站",
-      "id": "62c656-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "62c656-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "brand": "Gogoro 電池交換站",
@@ -1788,19 +1756,6 @@
       }
     },
     {
-      "displayName": "Grønn kontakt",
-      "id": "gronnkontakt-c454f0",
-      "locationSet": {"include": ["no", "se"]},
-      "tags": {
-        "amenity": "charging_station",
-        "brand": "Grønn kontakt",
-        "brand:wikidata": "Q100821564",
-        "name": "Grønn kontakt",
-        "operator": "Grønn kontakt",
-        "operator:wikidata": "Q100821564"
-      }
-    },
-    {
       "displayName": "Groupe E",
       "id": "groupee-086737",
       "locationSet": {"include": ["ch"]},
@@ -1840,8 +1795,11 @@
     },
     {
       "displayName": "Hyundai",
-      "id": "hyundai-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "hyundai-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Hyundai",
@@ -1953,27 +1911,6 @@
       }
     },
     {
-      "displayName": "Ionity",
-      "id": "ionity-7f623e",
-      "locationSet": {"include": ["150"]},
-      "matchNames": ["ionity gmbh"],
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Ionity",
-        "operator:wikidata": "Q42717773",
-        "operator:wikipedia": "en:IONITY"
-      }
-    },
-    {
-      "displayName": "Ishavsveien",
-      "id": "ishavsveien-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Ishavsveien"
-      }
-    },
-    {
       "displayName": "Ísorka",
       "id": "isorka-8fcd5a",
       "locationSet": {"include": ["is"]},
@@ -2001,17 +1938,6 @@
         "operator": "Izivia",
         "operator:wikidata": "Q86671322",
         "operator:wikipedia": "fr:Izivia"
-      }
-    },
-    {
-      "displayName": "Jernbaneverket",
-      "id": "jernbaneverket-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Jernbaneverket",
-        "operator:wikidata": "Q1687698",
-        "operator:wikipedia": "no:Jernbaneverket"
       }
     },
     {
@@ -2172,8 +2098,11 @@
     },
     {
       "displayName": "Lidl",
-      "id": "lidl-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "lidl-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Lidl",
@@ -2261,15 +2190,6 @@
         "operator": "Mennekes",
         "operator:wikidata": "Q1262665",
         "operator:wikipedia": "de:Mennekes (Unternehmen)"
-      }
-    },
-    {
-      "displayName": "Mer",
-      "id": "mer-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Mer"
       }
     },
     {
@@ -2470,8 +2390,11 @@
     },
     {
       "displayName": "Nissan",
-      "id": "nissan-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "nissan-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Nissan",
@@ -2531,15 +2454,6 @@
       }
     },
     {
-      "displayName": "Oppegård kommune",
-      "id": "oppegardkommune-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Oppegård kommune"
-      }
-    },
-    {
       "displayName": "Orka náttúrunnar",
       "id": "orkanatturunnar-8fcd5a",
       "locationSet": {"include": ["is"]},
@@ -2559,15 +2473,6 @@
         "operator": "Orlen",
         "operator:wikidata": "Q971649",
         "operator:wikipedia": "pl:Polski Koncern Naftowy Orlen"
-      }
-    },
-    {
-      "displayName": "Oslo kommune",
-      "id": "oslokommune-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Oslo kommune"
       }
     },
     {
@@ -2677,8 +2582,11 @@
     },
     {
       "displayName": "Porsche",
-      "id": "porsche-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "porsche-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Porsche",
@@ -2769,24 +2677,6 @@
       }
     },
     {
-      "displayName": "Recharge",
-      "id": "recharge-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Recharge"
-      }
-    },
-    {
-      "displayName": "Recharge Charge & Drive",
-      "id": "rechargechargeanddrive-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Recharge Charge & Drive"
-      }
-    },
-    {
       "displayName": "Rede Piloto",
       "id": "redepiloto-a1285d",
       "locationSet": {"include": ["pt"]},
@@ -2797,8 +2687,11 @@
     },
     {
       "displayName": "Renault",
-      "id": "renault-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "renault-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Renault",
@@ -2871,13 +2764,11 @@
     },
     {
       "displayName": "Ringeriks-kraft AS",
-      "id": "ringerikskraftas-476d58",
-      "locationSet": {"include": ["no"]},
+      "id": "ringerikskraftas-c22d3a",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Ringeriks-kraft AS",
-        "operator:wikidata": "Q11997886",
-        "operator:wikipedia": "no:Ringeriks-Kraft"
+        "operator": "Ringeriks-kraft AS"
       }
     },
     {
@@ -2944,6 +2835,15 @@
       }
     },
     {
+      "displayName": "SAK",
+      "id": "sak-c22d3a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "SAK"
+      }
+    },
+    {
       "displayName": "Salzburg AG",
       "id": "salzburgag-3f60da",
       "locationSet": {"include": ["at"]},
@@ -2956,8 +2856,11 @@
     },
     {
       "displayName": "Schneider Electric",
-      "id": "schneiderelectric-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "schneiderelectric-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Schneider Electric",
@@ -3038,6 +2941,15 @@
       }
     },
     {
+      "displayName": "SEGMA",
+      "id": "segma-c22d3a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "SEGMA"
+      }
+    },
+    {
       "displayName": "SemaConnect",
       "id": "semaconnect-994ed4",
       "locationSet": {"include": ["us"]},
@@ -3086,13 +2998,15 @@
     },
     {
       "displayName": "Shell",
-      "id": "shell-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "shell-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Shell",
-        "operator:wikidata": "Q154950",
-        "operator:wikipedia": "en:Royal Dutch Shell"
+        "operator:wikidata": "Q110716465"
       }
     },
     {
@@ -3268,6 +3182,19 @@
         "operator": "Stadtwerke Augsburg",
         "operator:wikidata": "Q2328426",
         "operator:wikipedia": "de:Stadtwerke Augsburg"
+      }
+    },
+    {
+      "displayName": "Stadtwerke Baden-Baden",
+      "id": "stadtwerkebadenbaden-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Stadtwerke Baden-Baden",
+        "operator:wikidata": "Q15638722",
+        "operator:wikipedia": "de:Stadtwerke Baden-Baden"
       }
     },
     {
@@ -3534,15 +3461,6 @@
       }
     },
     {
-      "displayName": "Stavanger kommune",
-      "id": "stavangerkommune-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Stavanger kommune"
-      }
-    },
-    {
       "displayName": "STAWAG",
       "id": "stawag-1299a8",
       "locationSet": {"include": ["de"]},
@@ -3573,17 +3491,6 @@
         "operator": "Stromnetz Hamburg",
         "operator:wikidata": "Q18028215",
         "operator:wikipedia": "de:Stromnetz Hamburg"
-      }
-    },
-    {
-      "displayName": "Sunnfjord energi",
-      "id": "sunnfjordenergi-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Sunnfjord energi",
-        "operator:wikidata": "Q20553162",
-        "operator:wikipedia": "nn:Sunnfjord Energi"
       }
     },
     {
@@ -3770,22 +3677,16 @@
     },
     {
       "displayName": "Total",
-      "id": "total-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "total-28ff7e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["no"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Total",
         "operator:wikidata": "Q154037",
         "operator:wikipedia": "en:TotalEnergies"
-      }
-    },
-    {
-      "displayName": "Trondheim kommune, Miljøenheten",
-      "id": "trondheimkommunemiljoenheten-476d58",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Trondheim kommune, Miljøenheten"
       }
     },
     {
