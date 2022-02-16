@@ -1,10 +1,11 @@
 import { test } from 'tap';
 import LocationConflation from '@ideditor/location-conflation';
 import { Matcher } from '../index.mjs';
-import data from './matcher.data.json';
+
+import data from './matcher.data.json' assert {type: 'json'};
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollection from '../dist/featureCollection.json';
+import featureCollection from '../dist/featureCollection.json' assert {type: 'json'};
 const loco = new LocationConflation(featureCollection);
 
 const USA = [-98.58, 39.828];

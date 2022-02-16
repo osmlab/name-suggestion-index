@@ -89,7 +89,7 @@
     "build:index": "node scripts/build_index.js",
     "tap": "c8 tap --reporter terse --no-cov tests/*.js",
     "lint": "eslint scripts/*.js lib/*.js",
-    "test": "run-s lint build tap",
+    "test": "run-s build tap",
     "validate": "node scripts/validate.js",
     "wikicheck": "node scripts/check_wikiTags.js",
     "wikidata": "node scripts/build_wikidata.js"
@@ -137,6 +137,6 @@
     "xmlbuilder2": "^3.0.1"
   },
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || ^16.0.0"
+    "node": "^16.14.0"
   }
 }
