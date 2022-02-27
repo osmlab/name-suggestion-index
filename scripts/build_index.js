@@ -368,6 +368,7 @@ function mergeItems() {
 
       // Use the simplified name when comparing spelling popularity
       const nsimple = simplify(n);
+      if (!nsimple) return;  // invalid, or the name contains only punctuation?
       const newid = `${k}/${v}|${nsimple}`;
       const otherNew = newItems[newid];
 
