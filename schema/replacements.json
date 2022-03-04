@@ -1,0 +1,45 @@
+{
+  "title": "replacements.json",
+  "description": "JSON Schema for config/replacements.json",
+  "$comment": "The contents of this file should contain simple QID replacements that can be done in bulk.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["replacements"],
+  "properties": {
+
+    "replacements": {
+      "description": "(required) Legacy Wikidata QID identifiers that should be replaced with new QID identifiers.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+
+        "^Q\\d+$": {
+          "description": "(required) The legacy Wikidata QID.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["wikidata"],
+          "properties": {
+
+            "wikidata": {
+              "description": "(required) The replacement Wikidata QID.",
+              "type": "string"
+            },
+
+            "wikipedia": {
+              "description": "(optional) The replacement Wikipedia value.",
+              "type": "string"
+            },
+
+            "note": {
+              "description": "(optional) An optional note - can contain anything about the item.",
+              "type": "string"
+            }
+
+          }
+        }
+
+      }
+    }
+
+  }
+}

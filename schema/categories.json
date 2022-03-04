@@ -1,0 +1,289 @@
+{
+  "title": "categories.json",
+  "description": "JSON Schema for name-suggestion-index category files",
+  "type": "object",
+  "required": ["properties", "items"],
+  "additionalProperties": false,
+  "properties": {
+
+    "properties": {
+      "description": "(required) An Object containing properties for this category",
+      "type": "object",
+      "required": ["path"],
+      "additionalProperties": false,
+      "properties": {
+
+        "path": {
+          "description": "(required) The path for this category in the form tree/key/value",
+          "type": "string",
+          "pattern": "^\\S+/\\S+/\\S+$"
+        },
+
+        "preserveTags": {
+          "description": "(optional) For tags matching these patterns, NSI should not replace an existing value in OSM",
+          "$ref": "#/definitions/preserveTags"
+        },
+
+        "skipCollection": {
+          "description": "(optional) If 'true', skip the step to collect new items from the OSM planet",
+          "type": "boolean",
+          "default": false
+        },
+
+        "exclude": {
+          "description": "(optional) Patterns to match names that should be excluded from this category",
+          "type": "object",
+          "required": [],
+          "additionalProperties": false,
+
+          "properties": {
+            "generic": {
+              "description": "(optional) Patterns to match generic names that should be excluded (e.g. 'restaurant', 'burger') ",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "format": "regex"
+              }
+            },
+            "named": {
+              "description": "(optional) Patterns to match proper names to exclude from this category (e.g. 'china wok', 'pizza king')",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "format": "regex"
+              }
+            }
+          }
+        }
+
+      }
+    },
+
+    "items": {
+      "description": "(required) The items in this category",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "anyOf": [
+          { "$ref": "#/definitions/normalItem" },
+          { "$ref": "#/definitions/templateItem" }
+        ]
+      }
+    }
+
+  },
+
+  "definitions": {
+    "locationSet": {
+      "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["include"],
+      "properties": {
+
+        "include": {
+          "description": "(required) locations included",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              { "$ref": "#/definitions/countryCoder" },
+              { "$ref": "#/definitions/circularArea" },
+              { "$ref": "#/definitions/geojsonFilename" }
+            ]
+          }
+        },
+
+        "exclude": {
+          "description": "(optional) locations excluded",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              { "$ref": "#/definitions/countryCoder" },
+              { "$ref": "#/definitions/circularArea" },
+              { "$ref": "#/definitions/geojsonFilename" }
+            ]
+          }
+        }
+      }
+    },
+
+    "countryCoder": {
+      "$comment": "See country-coder documentation for compatible values: https://github.com/ideditor/country-coder#readme",
+      "description": "A country code (ISO 3166-1, United Nations M49, or anything recognized by country-coder)",
+      "type": "string"
+    },
+
+    "circularArea": {
+      "description": "A circular area defined as [longitude, latitude, radius?]. If not specified, radius will default to 25km.",
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+
+    "geojsonFilename": {
+      "description": "A filename for one of the custom geojson features in this project",
+      "type": "string",
+      "pattern": "^.*\\.geojson$"
+    },
+
+    "preserveTags": {
+      "description": "(optional) For tags matching these patterns, NSI should not replace an existing value in OSM",
+      "examples": ["^name"],
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "format": "regex"
+      }
+    },
+
+    "notTags": {
+      "description": "A list of properties that we never want as tags, this is to prevent common mistakes",
+      "type": "object",
+      "properties": {
+        "displayName":     { "not" : {} },
+        "exclude":         { "not" : {} },
+        "id":              { "not" : {} },
+        "include":         { "not" : {} },
+        "locationSet":     { "not" : {} },
+        "matchNames":      { "not" : {} },
+        "matchTags":       { "not" : {} },
+        "path":            { "not" : {} },
+        "preserveTags":    { "not" : {} },
+        "note":            { "not" : {} },
+        "skipCollection":  { "not" : {} },
+        "tags":            { "not" : {} },
+        "templateSource":  { "not" : {} },
+        "templateTags":    { "not" : {} }
+      }
+    },
+
+    "normalItem": {
+      "description": "A normal item (not a template item)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["displayName", "locationSet", "tags"],
+      "properties": {
+
+        "displayName": {
+          "description": "(required) A display name for this entry.",
+          "type": "string"
+        },
+
+        "id": {
+          "description": "(generated) A unique identifier generated automatically.",
+          "type": "string"
+        },
+
+        "locationSet": {
+          "$comment": "See location-conflation documentation for compatible values: https://github.com/ideditor/location-conflation#readme",
+          "description": "(required) included and excluded locations for this item",
+          "$ref": "#/definitions/locationSet"
+        },
+
+        "matchNames": {
+          "description": "(optional) An array of alternate but less-desired names.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+
+        "matchTags": {
+          "description": "(optional) An array of alternate but less-desired tag-pairs.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^\\S+/\\S+$"
+          }
+        },
+
+        "preserveTags": {
+          "description": "(optional) For tags matching these patterns, NSI should not replace an existing value in OSM",
+          "$ref": "#/definitions/preserveTags"
+        },
+
+        "note": {
+          "description": "(optional) An optional note - can contain anything about the item.",
+          "type": "string"
+        },
+
+        "tags": {
+          "$comment": "Exclude properties that should appear elsewhere to avoid common mistakes",
+          "description": "(required) OpenStreetMap tags to associate with this item",
+          "type": "object",
+          "allOf": [
+            { "$ref": "#/definitions/notTags" }
+          ],
+          "anyOf": [
+            { "required": ["brand"] },
+            { "required": ["flag:name", "flag:type"] },
+            { "required": ["operator"] },
+            { "required": ["network"] }
+          ]
+        }
+
+      }
+    },
+
+    "templateItem": {
+      "description": "Template items get expanded into normal items when the index is built",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["templateSource", "templateTags"],
+      "properties": {
+
+        "note": {
+          "description": "(optional) An optional note - can contain anything about the item.",
+          "type": "string"
+        },
+
+        "templateInclude": {
+          "description": "(optional) Patterns to match source item IDs to be included (if not specified, all source items are included)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "regex"
+          }
+        },
+
+        "templateExclude": {
+          "description": "(optional) Patterns to match source item IDs to be excluded (if not specified, all source items are included)",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "regex"
+          }
+        },
+
+        "templateSource": {
+          "description": "(required) A tree/key/value path to use as the source of the expanded items",
+          "examples": ["operators/amenity/post_office"],
+          "type": "string",
+          "pattern": "^\\S+/\\S+/\\S+$"
+        },
+
+        "templateTags": {
+          "$comment": "Exclude properties that should appear elsewhere to avoid common mistakes",
+          "description": "(required) OpenStreetMap tags to change from the source tags",
+          "type": "object",
+          "allOf": [
+            { "$ref": "#/definitions/notTags" }
+          ]
+        }
+      }
+    }
+
+  }
+}

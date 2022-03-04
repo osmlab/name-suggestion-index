@@ -1,0 +1,67 @@
+{
+  "title": "trees.json",
+  "description": "JSON Schema for config/trees.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["trees"],
+  "properties": {
+
+    "trees": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+
+        "^\\S+$": {
+          "description": "(required) The name of the tree (e.g. 'brands')",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["emoji", "mainTag", "nameTags"],
+          "properties": {
+
+            "emoji": {
+              "description": "(required) An emoji used for logging and output (e.g. '🍔')",
+              "type": "string"
+            },
+
+            "mainTag": {
+              "description": "(required) An OSM tag that this tree uses as the main tag (e.g. 'brand:wikidata')",
+              "type": "string",
+              "pattern": "^\\S+$"
+            },
+
+            "sourceTags": {
+              "description": "(optional) Tags from OSM to collect namelike values",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^\\S+$"
+              }
+            },
+
+            "nameTags": {
+              "description": "(required) OSM tags that can contain namelike values to be indexed by the matcher",
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["primary", "alternate"],
+              "properties": {
+                "primary": {
+                  "description": "(required) Patterns for matching primary name tags (e.g. 'name')",
+                  "type": "string",
+                  "format": "regex"
+                },
+                "alternate": {
+                  "description": "(required) Patterns for matching alternate name tags (e.g. 'short_name', 'alt_name')",
+                  "type": "string",
+                  "format": "regex"
+                }
+              }
+            }
+
+          }
+        }
+
+      }
+    }
+  }
+}
