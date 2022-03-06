@@ -1,0 +1,20 @@
+{
+  "title": "genericWords.json",
+  "description": "JSON Schema for config/genericWords.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["genericWords"],
+  "properties": {
+
+    "genericWords": {
+      "description": "(required) An array of regular expressions to match generic words to discard.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "format": "regex"
+      }
+    }
+
+  }
+}
