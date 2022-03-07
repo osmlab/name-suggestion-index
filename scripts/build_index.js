@@ -368,6 +368,7 @@ function mergeItems() {
 
       // Use the simplified name when comparing spelling popularity
       const nsimple = simplify(n);
+      if (!nsimple) return;  // invalid, or the name contains only punctuation?
       const newid = `${k}/${v}|${nsimple}`;
       const otherNew = newItems[newid];
 
@@ -662,7 +663,7 @@ function checkItems(t) {
       }
 
       // Warn if OSM tags contain odd punctuation or spacing..
-      ['beauty', 'cuisine', 'gambling', 'training', 'vending'].forEach(osmkey => {
+      ['beauty', 'cuisine', 'gambling', 'government', 'training', 'vending'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val && oddChars.test(val)) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
