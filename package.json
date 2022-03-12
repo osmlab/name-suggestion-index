@@ -1,6 +1,6 @@
 {
   "name": "name-suggestion-index",
-  "version": "6.0.20220124",
+  "version": "6.0.20220307",
   "license": "BSD-3-Clause",
   "repository": "github:osmlab/name-suggestion-index",
   "contributors": [
@@ -89,7 +89,7 @@
     "build:index": "node scripts/build_index.js",
     "tap": "c8 tap --reporter terse --no-cov tests/*.js",
     "lint": "eslint scripts/*.js lib/*.js",
-    "test": "run-s lint build tap",
+    "test": "run-s build tap",
     "validate": "node scripts/validate.js",
     "wikicheck": "node scripts/check_wikiTags.js",
     "wikidata": "node scripts/build_wikidata.js"
@@ -105,7 +105,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@ideditor/location-conflation": "1.0.2",
-    "@ideditor/nsi-collector": "^1.0.20220115",
+    "@ideditor/nsi-collector": "^1.0.20220129",
     "@mapbox/geojson-area": "^0.2.2",
     "@mapbox/geojson-rewind": "^0.5.0",
     "@openstreetmap/id-tagging-schema": "~3.2.0",
@@ -137,6 +137,6 @@
     "xmlbuilder2": "^3.0.1"
   },
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || ^16.0.0"
+    "node": "^16.14.0"
   }
 }

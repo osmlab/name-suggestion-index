@@ -20,11 +20,11 @@ import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
 // JSON
-import treesJSON from '../config/trees.json';
+import treesJSON from '../config/trees.json' assert {type: 'json'};
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json';
+import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
 const loco = new LocationConflation(featureCollectionJSON);
 
 console.log(chalk.blue('-'.repeat(70)));
@@ -368,6 +368,7 @@ function mergeItems() {
 
       // Use the simplified name when comparing spelling popularity
       const nsimple = simplify(n);
+      if (!nsimple) return;  // invalid, or the name contains only punctuation?
       const newid = `${k}/${v}|${nsimple}`;
       const otherNew = newItems[newid];
 
@@ -662,7 +663,7 @@ function checkItems(t) {
       }
 
       // Warn if OSM tags contain odd punctuation or spacing..
-      ['beauty', 'cuisine', 'gambling', 'training', 'vending'].forEach(osmkey => {
+      ['beauty', 'cuisine', 'gambling', 'government', 'training', 'vending'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val && oddChars.test(val)) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);

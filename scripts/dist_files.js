@@ -17,20 +17,20 @@ import { sortObject } from '../lib/sort_object.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import dissolvedJSON from '../dist/dissolved.json';
-import packageJSON from '../package.json';
-import treesJSON from '../config/trees.json';
-import wikidataJSON from '../dist/wikidata.json';
+import dissolvedJSON from '../dist/dissolved.json' assert {type: 'json'};
+import packageJSON from '../package.json' assert {type: 'json'};
+import treesJSON from '../config/trees.json' assert {type: 'json'};
+import wikidataJSON from '../dist/wikidata.json' assert {type: 'json'};
 
 const dissolved = dissolvedJSON.dissolved;
 const trees = treesJSON.trees;
 const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json';
+import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json' assert {type: 'json'};
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json';
+import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
@@ -229,7 +229,7 @@ function buildIDPresets() {
 
       // Sometimes we can choose a more specific iD preset then `key/value`..
       // Attempt to match a `key/value/extravalue`
-      const tryKeys = ['beauty', 'clothes', 'cuisine', 'healthcare:speciality', 'religion', 'social_facility', 'sport', 'vending'];
+      const tryKeys = ['beauty', 'clothes', 'cuisine', 'government', 'healthcare:speciality', 'religion', 'social_facility', 'sport', 'vending'];
       tryKeys.forEach(osmkey => {
         if (preset) return;    // matched one already
         const val = tags[osmkey];

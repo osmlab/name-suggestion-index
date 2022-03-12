@@ -10,7 +10,7 @@ import { fileTree } from '../lib/file_tree.js';
 
 // JSON
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json';
+import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
 const loco = new LocationConflation(featureCollectionJSON);
 
 const wbk = wikibase({
