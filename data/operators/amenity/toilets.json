@@ -1,18 +1,22 @@
 {
-    "properties": {
-      "path": "operators/amenity/toilets"
-    },
-    "items": [
-      {
-        "displayName": "SANIFAIR",
-        "locationSet": {"include": ["de", "at", "nl", "cz", "pl"]},
-        "tags": {
-          "amenity": "toilets",
-          "access": "yes",
-          "brand": "SANIFAIR",
-          "operator": "SANIFAIR GmbH",
-          "operator:wikidata": "Q104814416"
-        }
+  "properties": {
+    "path": "operators/amenity/toilets",
+    "exclude": {"generic": ["^toilets$"]}
+  },
+  "items": [
+    {
+      "displayName": "SANIFAIR",
+      "id": "sanifairgmbh-99935b",
+      "locationSet": {
+        "include": ["at", "cz", "de", "nl", "pl"]
+      },
+      "tags": {
+        "access": "yes",
+        "amenity": "toilets",
+        "brand": "SANIFAIR",
+        "operator": "SANIFAIR GmbH",
+        "operator:wikidata": "Q104814416"
       }
-    ]
+    }
+  ]
 }
