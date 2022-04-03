@@ -1,7 +1,23 @@
 {
   "properties": {
     "path": "operators/amenity/toilets",
-    "exclude": {"generic": ["^toilets$"]}
+    "exclude": {
+      "generic": [
+        "^bar$",
+        "^camping(platz)?$",
+        "^community$",
+        "^council$",
+        "^gemeinde$",
+        "^mairie$",
+        "^mosque toilet$",
+        "^municipal$",
+        "^ngo$",
+        "^pu(b|p)lic( toilet(s)?)?$",
+        "^school$",
+        "^toilet(s)?$",
+        "^toilettes publiques$"
+      ]
+    }
   },
   "items": [
     {
@@ -56,15 +72,6 @@
       "tags": {
         "amenity": "toilets",
         "operator": "Asda"
-      }
-    },
-    {
-      "displayName": "Bar",
-      "id": "bar-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Bar"
       }
     },
     {
@@ -149,24 +156,6 @@
       }
     },
     {
-      "displayName": "Camping",
-      "id": "camping-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Camping"
-      }
-    },
-    {
-      "displayName": "Campingplatz",
-      "id": "campingplatz-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Campingplatz"
-      }
-    },
-    {
       "displayName": "CARE/HCR",
       "id": "carehcr-48c608",
       "locationSet": {"include": ["001"]},
@@ -195,8 +184,10 @@
     },
     {
       "displayName": "City of Calgary",
-      "id": "cityofcalgary-48c608",
-      "locationSet": {"include": ["001"]},
+      "id": "cityofcalgary-fa5474",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "City of Calgary"
@@ -204,8 +195,11 @@
     },
     {
       "displayName": "City of Ottawa",
-      "id": "cityofottawa-48c608",
-      "locationSet": {"include": ["001"]},
+      "id": "cityofottawa-7c1906",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "matchNames": ["ottawa"],
       "tags": {
         "amenity": "toilets",
         "operator": "City of Ottawa"
@@ -218,24 +212,6 @@
       "tags": {
         "amenity": "toilets",
         "operator": "Commune d'Anglet"
-      }
-    },
-    {
-      "displayName": "community",
-      "id": "community-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "community"
-      }
-    },
-    {
-      "displayName": "Council",
-      "id": "council-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Council"
       }
     },
     {
@@ -380,15 +356,6 @@
       "tags": {
         "amenity": "toilets",
         "operator": "FUTAKO TAMAGAWA RISE"
-      }
-    },
-    {
-      "displayName": "Gemeinde",
-      "id": "gemeinde-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Gemeinde"
       }
     },
     {
@@ -545,15 +512,6 @@
       }
     },
     {
-      "displayName": "Mairie",
-      "id": "mairie-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Mairie"
-      }
-    },
-    {
       "displayName": "Mairie de Bidart",
       "id": "mairiedebidart-48c608",
       "locationSet": {"include": ["001"]},
@@ -617,30 +575,13 @@
       }
     },
     {
-      "displayName": "Mosque toilet",
-      "id": "mosquetoilet-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Mosque toilet"
-      }
-    },
-    {
-      "displayName": "municipal",
-      "id": "municipal-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "municipal"
-      }
-    },
-    {
       "displayName": "National Park Service",
-      "id": "nationalparkservice-48c608",
-      "locationSet": {"include": ["001"]},
+      "id": "nationalparkservice-a5d9f0",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "National Park Service"
+        "operator": "National Park Service",
+        "operator:short": "NPS"
       }
     },
     {
@@ -671,30 +612,12 @@
       }
     },
     {
-      "displayName": "ngo",
-      "id": "ngo-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "ngo"
-      }
-    },
-    {
       "displayName": "Nordseeheilbad Cuxhaven GmbH",
       "id": "nordseeheilbadcuxhavengmbh-48c608",
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "toilets",
         "operator": "Nordseeheilbad Cuxhaven GmbH"
-      }
-    },
-    {
-      "displayName": "NPS",
-      "id": "nps-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "NPS"
       }
     },
     {
@@ -734,15 +657,6 @@
       }
     },
     {
-      "displayName": "Ottawa",
-      "id": "ottawa-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Ottawa"
-      }
-    },
-    {
       "displayName": "Oxfam",
       "id": "oxfam-48c608",
       "locationSet": {"include": ["001"]},
@@ -753,8 +667,8 @@
     },
     {
       "displayName": "Parks Canada",
-      "id": "parkscanada-48c608",
-      "locationSet": {"include": ["001"]},
+      "id": "parkscanada-ab7656",
+      "locationSet": {"include": ["ca"]},
       "tags": {
         "amenity": "toilets",
         "operator": "Parks Canada"
@@ -776,42 +690,6 @@
       "tags": {
         "amenity": "toilets",
         "operator": "Philmont Scout Ranch"
-      }
-    },
-    {
-      "displayName": "public",
-      "id": "public-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "public"
-      }
-    },
-    {
-      "displayName": "Public toilet",
-      "id": "publictoilet-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Public toilet"
-      }
-    },
-    {
-      "displayName": "Public Toilets",
-      "id": "publictoilets-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Public Toilets"
-      }
-    },
-    {
-      "displayName": "Puplic toilet",
-      "id": "puplictoilet-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Puplic toilet"
       }
     },
     {
@@ -898,15 +776,6 @@
       "tags": {
         "amenity": "toilets",
         "operator": "SBB"
-      }
-    },
-    {
-      "displayName": "school",
-      "id": "school-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "school"
       }
     },
     {
@@ -1054,24 +923,6 @@
       }
     },
     {
-      "displayName": "toilet",
-      "id": "toilet-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "toilet"
-      }
-    },
-    {
-      "displayName": "Toilettes Publiques",
-      "id": "toilettespubliques-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Toilettes Publiques"
-      }
-    },
-    {
       "displayName": "Trenes Argentinos",
       "id": "trenesargentinos-48c608",
       "locationSet": {"include": ["001"]},
@@ -1118,29 +969,13 @@
     },
     {
       "displayName": "United States Forest Service",
-      "id": "unitedstatesforestservice-48c608",
-      "locationSet": {"include": ["001"]},
+      "id": "unitedstatesforestservice-a5d9f0",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["us forest service"],
       "tags": {
         "amenity": "toilets",
-        "operator": "United States Forest Service"
-      }
-    },
-    {
-      "displayName": "US Forest Service",
-      "id": "usforestservice-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "US Forest Service"
-      }
-    },
-    {
-      "displayName": "USFS",
-      "id": "usfs-48c608",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "USFS"
+        "operator": "United States Forest Service",
+        "operator:short": "USFS"
       }
     },
     {
@@ -1235,8 +1070,10 @@
     },
     {
       "displayName": "Washington Department of Fish and Wildlife",
-      "id": "washingtondepartmentoffishandwildlife-48c608",
-      "locationSet": {"include": ["001"]},
+      "id": "washingtondepartmentoffishandwildlife-6e9e2e",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "Washington Department of Fish and Wildlife"
