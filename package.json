@@ -1,6 +1,6 @@
 {
   "name": "name-suggestion-index",
-  "version": "6.0.20220411",
+  "version": "6.0.20220425",
   "license": "BSD-3-Clause",
   "repository": "github:osmlab/name-suggestion-index",
   "contributors": [
@@ -93,7 +93,6 @@
     "lint": "eslint scripts/*.js lib/*.js",
     "test": "run-s build tap",
     "validate": "node scripts/validate.js",
-    "wikicheck": "node scripts/check_wikiTags.js",
     "wikidata": "node scripts/build_wikidata.js"
   },
   "dependencies": {
@@ -139,6 +138,6 @@
     "xmlbuilder2": "^3.0.2"
   },
   "engines": {
-    "node": "^16.14.0"
+    "node": ">=16.14"
   }
 }
