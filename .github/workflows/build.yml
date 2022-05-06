@@ -9,13 +9,16 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.14]
+        node-version: [16.14, 18]
 
     steps:
     - uses: actions/checkout@v2

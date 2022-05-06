@@ -109,8 +109,7 @@ function loadConfig() {
         let replacement = data.replacements[qid];
         let cleaned = {
           note:      replacement.note,
-          wikidata:  replacement.wikidata,
-          wikipedia: replacement.wikipedia
+          wikidata:  replacement.wikidata
         };
         replacement = cleaned;
       });
@@ -517,15 +516,16 @@ function mergeItems() {
 
         // Perform common tag cleanups here..
         Object.keys(tags).forEach(osmkey => {
-          // `website` tag should be the website for that location, not the website for the brand..
-          if (osmkey === 'website') {
+          // Remove tags we're not including in this index
+          // anything ending in `website` or `wikipedia` - #5275, #6481
+          if (/(website|wikipedia)$/.test(osmkey)) {
             delete tags[osmkey];
             return;
           }
 
-          // Replace QID/Wikipedia replacements
-          const matchTag = osmkey.match(/^(\w+):wikidata$/);
-          if (matchTag) {                         // Look at '*:wikidata' tags
+          // Perform Wikidata QID replacements
+          // anything ending in `wikidata`
+          if (/wikidata$/.test(osmkey)) {
             const wd = tags[osmkey];
             const replace = _config.replacements[wd];    // If it matches a QID in the replacement list...
 
@@ -534,14 +534,6 @@ function mergeItems() {
                 tags[osmkey] = replace.wikidata;
               } else {
                 delete tags[osmkey];
-              }
-            }
-            if (replace && replace.wikipedia !== undefined) {  // replace or delete `*:wikipedia` tag
-              const wpkey = matchTag[1] + ':wikipedia';
-              if (replace.wikipedia) {
-                tags[wpkey] = replace.wikipedia;
-              } else {
-                delete tags[wpkey];
               }
             }
           }
@@ -581,7 +573,6 @@ function checkItems(t) {
 
   let warnDuplicate = [];
   let warnFormatWikidata = [];
-  let warnFormatWikipedia = [];
   let warnMissingTag = [];
   let warnFormatTag = [];
   let seenName = {};
@@ -611,20 +602,6 @@ function checkItems(t) {
           const wd = tags[osmkey];
           if (!/^Q\d+$/.test(wd)) {
             warnFormatWikidata.push([display(item), wd]);
-          }
-        }
-        if (/:wikipedia$/.test(osmkey)) {      // Check '*.wikipedia' tags
-          // So many contributors get the wikipedia tags wrong, so let's just reformat it for them.
-          let wp;
-          try {
-            if (!/%25/.test(tags[osmkey])) {  // Skip if there is an encoded '%' in the value (%25 = '%')
-              wp = tags[osmkey] = decodeURIComponent(tags[osmkey]).replace(/_/g, ' ');
-              if (!/^[a-z\-]{2,}:[^_]*$/.test(wp)) {
-                warnFormatWikipedia.push([display(item), wp]);
-              }
-            }
-          } catch (err) {
-            warnFormatWikipedia.push([display(item), tags[osmkey]]);
           }
         }
       });
@@ -663,7 +640,7 @@ function checkItems(t) {
       }
 
       // Warn if OSM tags contain odd punctuation or spacing..
-      ['beauty', 'cuisine', 'gambling', 'government', 'training', 'vending'].forEach(osmkey => {
+      ['beauty', 'cuisine', 'flush:disposal', 'gambling', 'government', 'sport', 'training', 'vending'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val && oddChars.test(val)) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
@@ -676,8 +653,8 @@ function checkItems(t) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
         }
       });
-      // Warn if user put `wikidata`/`wikipedia` instead of `brand:wikidata`/`brand:wikipedia`
-      ['wikipedia', 'wikidata'].forEach(osmkey => {
+      // Warn if user put `wikidata` instead of `brand:wikidata`
+      ['wikidata'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
@@ -764,17 +741,6 @@ function checkItems(t) {
       chalk.yellow('  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
     ));
     console.warn('total ' + warnFormatWikidata.length);
-  }
-
-  if (warnFormatWikipedia.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Incorrect `wikipedia` format:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  To resolve these, make sure "*:wikipedia" tag looks like "en:Pizza Hut".'));
-    console.warn(chalk.gray('-').repeat(70));
-    warnFormatWikipedia.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> "*:wikipedia": ' + '"' + w[1] + '"'
-    ));
-    console.warn('total ' + warnFormatWikipedia.length);
   }
 
   const pctWd = total > 0 ? (totalWd * 100 / total).toFixed(1) : 0;

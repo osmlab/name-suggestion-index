@@ -296,11 +296,6 @@ function processEntities(result) {
       target.description = description;
     }
 
-    // Get sitelinks to supply missing `*:wikipedia` tags - #4716, #4747
-    if (entity.sitelinks) {
-      checkWikipediaTags(qid, entity.sitelinks);
-    }
-
     // Process claims below here...
     if (!entity.claims) return;
     target.logos = {};
@@ -592,9 +587,6 @@ function finish() {
     writeFileWithMeta('dist/warnings.json', stringify({ warnings: _warnings }) + '\n');
     writeFileWithMeta('dist/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
     writeFileWithMeta('dist/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
-
-    // Write filetree too, in case we updated some of these with `*:wikipedia` tags - #4716
-    fileTree.write(_cache);
   }
 
   console.timeEnd(END);
@@ -780,164 +772,6 @@ function processWbEditQueue(queue) {
       })
       .then(() => delay(300))
       .then(() => processWbEditQueue(queue));
-  }
-}
-
-
-// `checkWikipediaTags`
-// Look at the wikidata sitelinks for this qid and
-// - assign `*:wikipedia` tags that are missing - #4716
-// - correct `*:wikipedia` tags that look wrong - #4747
-// Note, skip assigning `*:wikipedia` for 'flags' tree for now.
-function checkWikipediaTags(qid, sitelinks) {
-  // Convert sitelinks to OSM wikipedia tags..
-  let wikis = {};
-  Object.keys(sitelinks).forEach(code => {
-    const sitelink = sitelinks[code];
-    const site = sitelink.site;
-    const title = sitelink.title;
-    if (!site || !title) return null;
-
-    const m = site.match(/(\w+)wiki$/);     // 'enwiki', 'dewiki', 'zh_yuewiki', etc
-    if (!m) return null;
-    if (m[1] === 'commons') return null;    // skip 'commonswiki'
-
-    const lang = m[1].replace(/_/g, '-');   // 'zh_yue' -> 'zh-yue'
-    wikis[lang] = `${lang}:${title}`;
-  });
-
-  const wikiCount = Object.keys(wikis).length;
-
-  // which NSI items use this qid?
-  Array.from(_qidItems[qid]).forEach(id => {
-    const item = _cache.id.get(id);
-    if (item.fromTemplate) return;  // skip items expanded from templates
-
-    ['brand', 'operator', 'network'].forEach(osmkey => {
-      const wd = item.tags[`${osmkey}:wikidata`];
-      const wpOld = item.tags[`${osmkey}:wikipedia`];
-      if (/%25/.test(wpOld)) return;  // Skip if there is an encoded '%' in the value (%25 = '%')
-
-      if (wd && (wd === qid)) {  // `*:wikidata` tag matches
-        if (wpOld && !wikiCount) {            // there was a wikipedia sitelink... but there shouldn't be one for this wikidata qid
-          delete item.tags[`${osmkey}:wikipedia`];
-          const msg = chalk.cyan(`${qid} "${item.displayName}" removing old tag "${osmkey}:wikipedia = ${wpOld}" (doesn't match this qid)`);
-          console.warn(msg);
-        } else if (wpOld && wikiCount) {        // there was a wikipedia sitelink...
-          const m = wpOld.match(/^(\w+):/);     // check the language of it  ('en', 'de', 'zh-yue')
-          if (m) {
-            const lang = m[1];
-            let wpNew = wikis[lang];
-            if (wpNew && wpNew !== wpOld) {     // the sitelink we found for this language and qid is different, so replace it
-              item.tags[`${osmkey}:wikipedia`] = wpNew;
-              const msg = chalk.cyan(`${qid} "${item.displayName}" updating tag "${osmkey}:wikipedia = ${wpNew}" (was "${wpOld})"`);
-              console.warn(msg);
-            }
-          }
-        } else if (!wpOld) {                    // there was no sitelink before...
-          let wpNew = chooseWiki(item);         // so we will try to pick one
-          if (wpNew) {
-            item.tags[`${osmkey}:wikipedia`] = wpNew;
-            const msg = chalk.cyan(`${qid} "${item.displayName}" adding missing tag "${osmkey}:wikipedia = ${wpNew}"`);
-            console.warn(msg);
-          }
-        }
-      }
-    });
-  });
-
-
-  // Attempt to guess what language this item is, and pick a reasonable wikipedia tag for it
-  // This code is terrible and nobody should do this.
-  function chooseWiki(item) {
-    if (!wikiCount) return null;
-
-    const cc = item.locationSet.include[0];   // first location in the locationSet
-    if (typeof cc !== 'string') return null;
-
-    const name = item.displayName;
-    let tryLangs = ['en'];                    // always fallback to enwiki
-
-    // https://en.wikipedia.org/wiki/Unicode_block
-    if (/[\u0370-\u03FF]/.test(name)) {          // Greek
-      tryLangs.push('el');
-    } else if (/[\u0590-\u05FF]/.test(name)) {   // Hebrew
-      tryLangs.push('he');
-    } else if (/[\u0600-\u06FF]/.test(name)) {   // Arabic
-      tryLangs.push('ar');
-    } else if (/[\u0750-\u077F]/.test(name)) {   // Arabic
-      tryLangs.push('ar');
-    } else if (/[\u08A0-\u08FF]/.test(name)) {   // Arabic
-      tryLangs.push('ar');
-    } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
-      tryLangs.push('th');
-    } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
-      tryLangs.push('my');
-    } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
-      tryLangs.push('ko');
-    } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
-      tryLangs.push('tl');
-    } else if (/[\u1800-\u18AF]/.test(name)) {   // Mongolian
-      tryLangs.push('mn');
-    } else if (/[\u1F00-\u1FFF]/.test(name)) {   // Greek
-      tryLangs.push('el');
-    } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
-      tryLangs.push('ja');
-    } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
-      tryLangs.push('ko');
-    } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
-      tryLangs.push('ko');
-    } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
-      tryLangs.push('ko');
-    } else if (cc === 'de' || cc === 'at' || cc === 'ch') {     // German
-      tryLangs.push('de');
-    } else if (cc === 'fr' || cc === 'fx' || cc === 'be') {     // French
-      tryLangs.push('fr');
-    } else if (cc === 'es' || cc === 'mx' || cc === 'ar') {     // Spanish (better include Argentina here or they may get Arabic)
-      tryLangs.push('es');
-    } else if (cc === 'gr' || cc === 'cy') {    // Greek (note gr/el) (better include Cyprus here or they may get Welsh)
-      tryLangs.push('el');
-    } else if (cc === 'pt' || cc === 'br') {    // Portuguese
-      tryLangs.push('pt');
-    } else if (cc === 'ru' || cc === 'by') {    // Russian
-      tryLangs.push('ru');
-    } else if (cc === 'ua') {                   // Ukranian, then Russian (note ua/uk)
-      tryLangs.push('ru', 'uk');
-    } else if (cc === 'dk') {                   // Danish (note dk/da)
-      tryLangs.push('da');
-    } else if (cc === 'se') {                   // Swedish (note se/sv)
-      tryLangs.push('sv');
-    } else if (cc === 'cz') {                   // Czech (note cz/cs)
-      tryLangs.push('cs');
-    } else if (cc === 'jp') {                   // Japanese (note jp/ja)
-      tryLangs.push('ja');
-    } else if (cc === 'rs') {                   // Serbian (note rs/sr)
-      tryLangs.push('sr');
-    } else if (cc === 'in') {                   // India / Hindi
-      tryLangs.push('hi');
-    } else if (cc === 'hk') {                   // Cantonese, then Standard Chinese
-      tryLangs.push('zh', 'zh-yue');
-    } else if (cc === 'cn') {                   // Standard Chinese
-      tryLangs.push('zh');
-    } else if (cc === 'ca') {                   // Canada, pick English (so they don't end up with Catalan)
-      tryLangs.push('en');
-    } else {
-      // Just guess the country code as the language code..
-      // At this point we are hoping that rare wiki languages don't have articles for rare qids
-      tryLangs.push(cc);
-    }
-
-    while (tryLangs.length) {
-      const lang = tryLangs.pop();
-      if (wikis[lang]) return wikis[lang];
-    }
-
-    // We've exhausted the guesses, just return the first wiki we find..
-    for (const lang in wikis) {
-      return wikis[lang];
-    }
-
-    return null;
   }
 }
 

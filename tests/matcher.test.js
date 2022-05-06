@@ -197,12 +197,6 @@ test('match', t => {
       t.end();
     });
 
-    t.test('does not match on `*:wikipedia` tag', t => {
-      const result = t.context.matcher.match('amenity', 'fast_food', 'en:The Honey Baked Ham Company');
-      t.equal(result, null);
-      t.end();
-    });
-
     t.test('does not match on `*:etymology` tag', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'Ignore Me');
       t.equal(result, null);
@@ -499,12 +493,6 @@ test('match', t => {
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = matched the `network:wikidata` tag
       t.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
-      t.end();
-    });
-
-    t.test('does not match on `network:wikipedia` tag', t => {
-      const result = t.context.matcher.match('route', 'train', 'de:Verkehrs- und Tarifverbund Stuttgart');
-      t.equal(result, null);
       t.end();
     });
 
