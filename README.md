@@ -46,6 +46,7 @@ Currently used in:
 - [osmfeatures](https://github.com/westnordost/osmfeatures)
 - [Go Map!!](https://github.com/bryceco/GoMap)
 - [StreetComplete](https://github.com/streetcomplete/StreetComplete/blob/master/buildSrc/src/main/java/UpdateNsiPresetsTask.kt)
+- [Every Door](https://github.com/Zverik/every_door)
 
 ## About the index
 
