@@ -4,7 +4,7 @@
     "exclude": {
       "generic": ["^bus$", "^no$"],
       "named": [
-        "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban|interurbana)$",
+        "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban|urbano|interurbana)$",
         "^bürgerbus$",
         "^校车$",
         "광주시 공영버스"
@@ -8942,7 +8942,7 @@
     {
       "displayName": "Municipal - San Isidro",
       "id": "municipalsanisidro-a45453",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "network": "Municipal - San Isidro",
         "route": "bus"
@@ -9243,13 +9243,21 @@
       "displayName": "NBus",
       "id": "nbus-cbced8",
       "locationSet": {"include": ["es"]},
-      "tags": {"network": "NBus", "route": "bus"}
+      "tags": {
+        "network": "NBus",
+        "network:wikidata": "Q74445218",
+        "route": "bus"
+      }
     },
     {
       "displayName": "NCT",
       "id": "nct-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {"network": "NCT", "route": "bus"}
+      "locationSet": {"include": ["gb-eng"]},
+      "tags": {
+        "network": "NCT",
+        "network:wikidata": "Q7063616",
+        "route": "bus"
+      }
     },
     {
       "displayName": "NCTD",
@@ -10133,7 +10141,7 @@
     {
       "displayName": "Pärnu linn",
       "id": "parnulinn-a45453",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["ee"]},
       "tags": {
         "network": "Pärnu linn",
         "route": "bus"
@@ -13599,9 +13607,11 @@
     {
       "displayName": "STU (Sistema de Transporte Universitario)",
       "id": "stusistemadetransporteuniversitario-a45453",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["mx"]},
+      "matchNames": ["STU (Sistema de Transporte Universitario)"],
       "tags": {
-        "network": "STU (Sistema de Transporte Universitario)",
+        "network": "Sistema de Transporte Universitario",
+        "network:short": "STU",
         "route": "bus"
       }
     },
@@ -14544,7 +14554,7 @@
     {
       "displayName": "Tibus",
       "id": "tibus-a45453",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {"network": "Tibus", "route": "bus"}
     },
     {
@@ -15824,15 +15834,6 @@
       }
     },
     {
-      "displayName": "Urbano",
-      "id": "urbano-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "network": "Urbano",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Urbano Ancona",
       "id": "urbanoancona-ba987e",
       "locationSet": {"include": ["it"]},
@@ -16776,8 +16777,11 @@
     {
       "displayName": "VGS",
       "id": "vgs-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {"network": "VGS", "route": "bus"}
+      "locationSet": {"include": ["de-st.geojson", "de-th.geojson"]},
+      "tags": {
+        "network": "VGS",
+        "network:wikidata": "Q2516298",
+        "route": "bus"}
     },
     {
       "displayName": "VGW",
@@ -18408,9 +18412,10 @@
     {
       "displayName": "ביתר עילית",
       "id": "1cf8c5-a45453",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["il"]},
       "tags": {
         "network": "ביתר עילית",
+        "network:en": "Beitar Illit",
         "network:he": "ביתר עילית",
         "route": "bus"
       }
@@ -19232,14 +19237,14 @@
     {
       "displayName": "泸州公交",
       "id": "5bcf78-a45453",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cn"]},
       "tags": {"network": "泸州公交", "route": "bus"}
     },
     {
       "displayName": "济南公交(济南公交集团)",
       "id": "jinanpublictransport-ceb753",
       "locationSet": {
-        "include": [[117.1140042, 36.6507007, 80]]
+        "include": [[117.114, 36.651, 80]]
       },
       "matchNames": ["济南公交——济南公交公司"],
       "note": "济南公交不含郊区线路",
