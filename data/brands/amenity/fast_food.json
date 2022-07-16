@@ -8472,7 +8472,7 @@
         "brand:zh": "大家樂",
         "brand:zh-Hans": "大家乐",
         "brand:zh-Hant": "大家樂",
-        "cuisine": "chinese",
+        "cuisine": "hong_kong",
         "name": "大家樂 Café de Coral",
         "name:en": "Café de Coral",
         "name:zh": "大家樂",
@@ -8493,7 +8493,7 @@
         "brand:zh": "大快活",
         "brand:zh-Hans": "大快活",
         "brand:zh-Hant": "大快活",
-        "cuisine": "chinese",
+        "cuisine": "hong_kong",
         "name": "大快活 Fairwood",
         "name:en": "Fairwood",
         "name:zh": "大快活",
@@ -8776,12 +8776,11 @@
       "locationSet": {
         "include": [
           "cn",
-          "hk",
           "jp",
-          "mo",
           "sg",
           "tw"
-        ]
+        ],
+        "exclude": ["hk","mo"]
       },
       "tags": {
         "amenity": "fast_food",
@@ -8993,7 +8992,7 @@
         "brand:en": "Maxim's MX",
         "brand:wikidata": "Q7213063",
         "brand:zh": "美心MX",
-        "cuisine": "chinese",
+        "cuisine": "hong_kong",
         "name": "美心MX Maxim's MX",
         "name:en": "Maxim's MX",
         "name:zh": "美心MX",
@@ -9229,7 +9228,10 @@
     {
       "displayName": "食其家",
       "id": "sukiya-65b4e8",
-      "locationSet": {"include": ["cn"]},
+      "locationSet": {
+        "include": ["cn","tw"]
+      , "exclude": ["hk"]
+      },
       "tags": {
         "amenity": "fast_food",
         "brand": "すき家",
@@ -9240,8 +9242,25 @@
         "cuisine": "beef_bowl",
         "name": "食其家",
         "name:en": "Sukiya",
-        "name:ja": "食其家",
+        "name:ja": "すき家",
         "name:zh": "食其家",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Sukiya",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "すき家 Sukiya",
+        "brand:en": "Sukiya",
+        "brand:ja": "すき家",
+        "brand:wikidata": "Q6137375",
+        "cuisine": "beef_bowl",
+        "name": "すき家 Sukiya",
+        "name:en": "Sukiya",
+        "name:ja": "すき家",
+        "int_name:zh": "食其家",
         "takeaway": "yes"
       }
     },
