@@ -551,11 +551,18 @@ function mergeItems() {
 
   console.timeEnd(END);
 
+
+  // Copy main tag value to local tag value, but only if local value not assigned yet
+  // re: 6788#issuecomment-1188024213
   function setLanguageTags(tags, code) {
-    if (tags.name)      tags[`name:${code}`] = tags.name;
-    if (tags.brand)     tags[`brand:${code}`] = tags.brand;
-    if (tags.operator)  tags[`operator:${code}`] = tags.operator;
-    if (tags.network)   tags[`network:${code}`] = tags.network;
+    ['name', 'brand', 'operator', 'network'].forEach(k => {
+      const v = tags[k];
+      const loc_k = `${k}:${code}`;   // e.g. `name:ja`
+      const loc_v = tags[loc_k];
+      if (v && !loc_v) {
+        tags[loc_k] = v;
+      }
+    });
   }
 }
 
