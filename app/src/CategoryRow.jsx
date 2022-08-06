@@ -35,9 +35,7 @@ export default function CategoryRow(props) {
     let bn = tags['brand'];
     overpassQuery = `[out:json][timeout:100];
 (nwr["name"="${n}"];);
-out body;
->;
-out skel qt;
+out center;
 
 {{style:
 node,
@@ -72,9 +70,7 @@ out skel qt;`;
     qid = tags['flag:wikidata'];
     overpassQuery = `[out:json][timeout:100];
 (nwr["flag:name"="${n}"];);
-out body;
->;
-out skel qt;`;
+out center;`;
 
   } else if (t === 'operators') {
     n = item.tags.operator;
@@ -83,9 +79,7 @@ out skel qt;`;
     qid = tags['operator:wikidata'];
     overpassQuery = `[out:json][timeout:100];
 (nwr["operator"="${n}"];);
-out body;
->;
-out skel qt;
+out center;
 
 {{style:
 node,
