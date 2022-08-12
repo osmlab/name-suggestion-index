@@ -13,6 +13,7 @@
   },
   "items": [
     {
+      "note": "Auto create post boxes for all brand post offices except FedEx, UPSStore",
       "templateExclude": ["fedex", "upsstore"],
       "templateSource": "brands/amenity/post_office",
       "templateTags": {
@@ -23,9 +24,21 @@
       }
     },
     {
+      "note": "Auto create post boxes for all operator post offices except Swiss Post",
+      "templateExclude": ["diepost"],
       "templateSource": "operators/amenity/post_office",
       "templateTags": {
         "amenity": "post_box",
+        "name": ""
+      }
+    },
+    {
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/6919",
+      "templateInclude": ["diepost"],
+      "templateSource": "operators/amenity/post_office",
+      "templateTags": {
+        "amenity": "post_box",
+        "colour": "yellow",
         "name": ""
       }
     },
