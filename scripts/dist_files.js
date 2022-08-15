@@ -1,5 +1,5 @@
 // External
-import colors from 'colors/safe.js';
+import chalk from 'chalk';
 import fs from 'node:fs';
 import glob from 'glob';
 import JSON5 from 'json5';
@@ -17,20 +17,20 @@ import { sortObject } from '../lib/sort_object.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import dissolvedJSON from '../dist/dissolved.json';
-import packageJSON from '../package.json';
-import treesJSON from '../config/trees.json';
-import wikidataJSON from '../dist/wikidata.json';
+import dissolvedJSON from '../dist/dissolved.json' assert {type: 'json'};
+import packageJSON from '../package.json' assert {type: 'json'};
+import treesJSON from '../config/trees.json' assert {type: 'json'};
+import wikidataJSON from '../dist/wikidata.json' assert {type: 'json'};
 
 const dissolved = dissolvedJSON.dissolved;
 const trees = treesJSON.trees;
 const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json';
+import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json' assert {type: 'json'};
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json';
+import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
@@ -42,8 +42,8 @@ buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + colors.yellow('Building data...');
-  const END = '👍  ' + colors.green('data built');
+  const START = '🏗   ' + chalk.yellow('Building data...');
+  const END = '👍  ' + chalk.green('data built');
 
   console.log('');
   console.log(START);
@@ -229,17 +229,11 @@ function buildIDPresets() {
 
       // Sometimes we can choose a more specific iD preset then `key/value`..
       // Attempt to match a `key/value/extravalue`
-      const tryKeys = ['beauty', 'clothes', 'cuisine', 'healthcare:speciality', 'religion', 'social_facility', 'sport', 'vending'];
+      const tryKeys = ['beauty', 'clothes', 'cuisine', 'flush:disposal', 'government', 'healthcare:speciality', 'religion', 'social_facility', 'sport', 'tower:type', 'vending'];
       tryKeys.forEach(osmkey => {
         if (preset) return;    // matched one already
         const val = tags[osmkey];
         if (!val) return;
-
-        if (val === 'parcel_pickup;parcel_mail_in') {    // this one is just special
-          presetID = `${presetPath}/parcel_pickup_dropoff`;
-          preset = presetsJSON[presetID];
-          if (preset) return;  // it matched
-        }
 
         // keys like cuisine can contain multiple values, so try each one in order
         let vals = val.split(';');
@@ -257,8 +251,15 @@ function buildIDPresets() {
       }
 
       // still no match?
+      // fallback to generic like `amenity/yes`, `shop/yes`
       if (!preset) {
+        presetID = k;
+        preset = presetsJSON[presetID];
         missing.add(tkv);
+      }
+      // *still* no match?
+      // bail out of this category
+      if (!preset) {
         return;
       }
 
@@ -339,7 +340,7 @@ function buildIDPresets() {
   });
 
   missing.forEach(tkv => {
-    console.warn(colors.yellow(`Warning - no iD source preset found for ${tkv}`));
+    console.warn(chalk.yellow(`Warning - no iD source preset found for ${tkv}`));
   });
 
   let output = { presets: targetPresets };
@@ -519,8 +520,8 @@ function minifySync(inPath, outPath) {
     const minified = JSON.stringify(JSON5.parse(contents));
     fs.writeFileSync(outPath, minified);
   } catch (err) {
-    console.error(colors.red(`Error - ${err.message} minifying:`));
-    console.error('  ' + colors.yellow(inPath));
+    console.error(chalk.red(`Error - ${err.message} minifying:`));
+    console.error('  ' + chalk.yellow(inPath));
     process.exit(1);
   }
 }
