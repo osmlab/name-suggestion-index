@@ -12,7 +12,8 @@
 - [ ] git push origin main vA.B.C
 - [ ] npm publish
 
-### Purge cache (optional)
+### Purge JSDelivr CDN cache
+Include any URLs that iD/RapiD/others might request.
 
 ```bash
 curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/nsi.min.json'
