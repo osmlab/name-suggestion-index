@@ -10,6 +10,7 @@ import Overview from './Overview';
 const DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
 const INDEX = `${DIST}/nsi.min.json`;
 const WIKIDATA = `${DIST}/wikidata.min.json`;
+const WARNINGS = `${DIST}/warnings.json`; // Not the min-version as this isn't updated during 'npm run wikidata'.
 
 // We can use iD's taginfo file to pick icons
 const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@1.0.0/dist/taginfo.min.json';
@@ -18,16 +19,18 @@ const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@1
 export default function App() {
   const [filters, setFilters] = useState({});
   const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
+  const [warnings, warningsLoading] = useFetch(WARNINGS);
   const [index, indexLoading] = useIndex(INDEX);
   const [icons, iconsLoading] = useTaginfo(TAGINFO);
 
   const appData = {
-    isLoading: () => (wikidataLoading || indexLoading || iconsLoading),
+    isLoading: () => (wikidataLoading || warningsLoading  || indexLoading || iconsLoading),
     filters: filters,
     setFilters: setFilters,
     index: index,
     icons: icons,
-    wikidata: wikidata.wikidata
+    wikidata: wikidata.wikidata,
+    warnings: warnings
   };
 
   return (
