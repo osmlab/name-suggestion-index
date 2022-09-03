@@ -9,6 +9,7 @@ export default function Overview(props) {
   const t = props.t;
   const data = props.data;
   const index = data.index;
+  const warnings = data.warnings.warnings;
 
   // filters
   const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
@@ -30,6 +31,8 @@ export default function Overview(props) {
   } else if (t === 'transit') {
     fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/board_transit.svg';
     wikidataTag = 'network:wikidata';
+  } else if (t === 'warnings') {
+    wikidataTag = 'warning:wikidata';
   }
 
   // only render these components if we are loading a supported tree..
@@ -41,22 +44,64 @@ export default function Overview(props) {
   if (data.isLoading()) {
     message = 'Loading, please wait...';
   } else {
-    paths = Object.keys(index.path).filter(tkv => tkv.split('/')[0] === t);
-    if (!paths.length) {
-      message = `No entries found for "${t}".`;
+    if (t === 'warnings') {
+      message = 'warnings';
+    } else {
+      paths = Object.keys(index.path).filter(tkv => tkv.split('/')[0] === t);
+      if (!paths.length) {
+        message = `No entries found for "${t}".`;
+      }
     }
   }
 
   if (message) {
-    return (
-      <>
-      {instructions}
-      {filters}
-      <div className='container'>
-      {message}
-      </div>
+    if (message === 'warnings') {
+      /* output warnings */
+
+      let wikierrors = [];
+      warnings.forEach(warning => {
+        let href    = "https://www.wikidata.org/wiki/" + warning.qid;
+        let title   = "View Wikidata for item " + warning.qid;
+        let message = warning.msg.name ? warning.msg.name : warning.msg;
+
+        wikierrors.push(
+          <tr>
+            <td><a href={href} title={title}>{warning.qid}</a></td>
+            <td>{message}</td>
+          </tr>
+        );
+      });
+
+      return (
+        <>
+        {instructions}
+
+        <table className='summary'>
+         <caption>Table of {wikierrors.length} Wikidata Errors!</caption>
+         <thead>
+          <tr>
+           <th>Wikidata</th>
+           <th>Error Message</th>
+          </tr>
+         </thead>
+         <tbody>
+           {wikierrors}
+         </tbody>
+        </table>
       </>
-    );
+      );
+    } else {
+      /* output brands / flags / operators */
+      return (
+        <>
+        {instructions}
+        {filters}
+        <div className='container'>
+        {message}
+        </div>
+        </>
+      );
+    }
   }
 
   const categories = [];
