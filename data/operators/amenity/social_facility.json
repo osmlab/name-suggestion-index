@@ -264,7 +264,10 @@
     {
       "displayName": "Croix Rouge",
       "id": "croixrouge-01cce6",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["fr", "be", "lu", "ca"]
+      },
       "tags": {
         "amenity": "social_facility",
         "operator": "Croix Rouge"
@@ -274,11 +277,49 @@
       "displayName": "Croix-Rouge Française",
       "id": "croixrougefrancaise-d425ed",
       "locationSet": {"include": ["fr"]},
+      "matchNames": ["Croix-Rouge"],
       "tags": {
         "amenity": "social_facility",
         "operator": "Croix-Rouge Française",
         "operator:short": "CRF",
         "operator:wikidata": "Q3003244"
+      }
+    },
+    {
+      "displayName": "Croix-Rouge de Belgique",
+      "locationSet": {"include": ["be"]},
+      "matchNames": ["Croix-Rouge Belge", "Croix-Rouge"],
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Croix-Rouge de Belgique",
+        "operator:short": "CRB",
+        "operator:wikidata": "Q2537361"
+      }
+    },
+    {
+      "displayName": "Canadian Red Cross",
+      "locationSet": {"include": ["ca"]},
+      "matchNames": ["Croix-Rouge", "Red Cross", "Canadian Red Cross Society", "La Société canadienne de la Croix-Rouge"],
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Canadian Red Cross",
+        "operator:en": "Canadian Red Cross",
+        "operator:fr": "Croix-Rouge canadienne",
+        "operator:short": "CRC",
+        "operator:wikidata": "Q5030521"
+      }
+    },
+    {
+      "displayName": "Croix-Rouge luxembourgeoise",
+      "locationSet": {"include": ["lu"]},
+      "matchNames": ["Croix-Rouge", "Rotes Kreuz"],
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Croix-Rouge luxembourgeoise",
+        "operator:de": "Luxemburgisches Rotes Kreuz",
+        "operator:fr": "Croix-Rouge luxembourgeoise",
+        "operator:lb": "Lëtzebuergesche Roude Kräiz",
+        "operator:wikidata": "Q13102234"
       }
     },
     {
