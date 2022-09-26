@@ -8,10 +8,23 @@
   },
   "items": [
     {
+      "note": "Auto create bus stops for all bus routes except Софийски градски транспорт",
+      "templateExclude": ["88763d"],
       "templateSource": "transit/route/bus",
       "templateTags": {
         "highway": "bus_stop",
         "route": ""
+      }
+    },
+    {
+      "displayName": "Софийски градски транспорт",
+      "id": "88763d-bac764",
+      "locationSet": {"include": ["bg"]},
+      "note": "Exclude operator for this one, see https://github.com/osmlab/name-suggestion-index/issues/7054",
+      "tags": {
+        "highway": "bus_stop",
+        "network": "Софийски градски транспорт",
+        "network:wikidata": "Q7257712"
       }
     }
   ]
