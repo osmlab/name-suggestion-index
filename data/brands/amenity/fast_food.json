@@ -975,11 +975,12 @@
     },
     {
       "displayName": "Call a Pizza",
-      "id": "callapizza-658eea",
-      "locationSet": {"include": ["001"]},
+      "id": "callapizza-6ea233",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "fast_food",
         "brand": "Call a Pizza",
+        "brand:wikidata": "Q1027107",
         "name": "Call a Pizza",
         "takeaway": "yes"
       }
@@ -1943,6 +1944,7 @@
       "tags": {
         "amenity": "fast_food",
         "brand": "El Rinconsito",
+        "brand:wikidata": "Q114187652",
         "cuisine": "mexican",
         "name": "El Rinconsito",
         "takeaway": "yes"
@@ -2122,8 +2124,13 @@
     },
     {
       "displayName": "Ezell's Chicken",
-      "id": "ezellschicken-4d2ff4",
-      "locationSet": {"include": ["us"]},
+      "id": "ezellschicken-c26124",
+      "locationSet": {
+        "include": [
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
       "tags": {
         "alt_name": "Ezell's Famous Chicken",
         "amenity": "fast_food",
@@ -2166,8 +2173,8 @@
     },
     {
       "displayName": "Fatburger",
-      "id": "fatburger-4d2ff4",
-      "locationSet": {"include": ["us","ca"]},
+      "id": "fatburger-d2abf0",
+      "locationSet": {"include": ["ca", "us"]},
       "tags": {
         "amenity": "fast_food",
         "brand": "Fatburger",
@@ -3094,6 +3101,7 @@
       "tags": {
         "amenity": "fast_food",
         "brand": "Izzo's Illegal Burrito",
+        "brand:wikidata": "Q110780418",
         "cuisine": "mexican",
         "name": "Izzo's Illegal Burrito",
         "short_name": "Izzo's",
@@ -4438,6 +4446,7 @@
     },
     {
       "displayName": "Neat Burger",
+      "id": "neatburger-8fc2fb",
       "locationSet": {
         "include": [
           "gb-lon.geojson",
@@ -5015,12 +5024,13 @@
       }
     },
     {
-      "displayName": "Pizza Max",
-      "id": "pizzamax-658eea",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Pizza Max (Germany)",
+      "id": "pizzamax-6ea233",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "fast_food",
         "brand": "Pizza Max",
+        "brand:wikidata": "Q114189329",
         "name": "Pizza Max",
         "takeaway": "yes"
       }
@@ -6074,25 +6084,6 @@
         "brand:wikidata": "Q108413837",
         "cuisine": "japanese",
         "name": "Suki Hana",
-        "takeaway": "yes"
-      }
-    },
-    {
-      "displayName": "Sukiya",
-      "id": "sukiya-9f9722",
-      "locationSet": {"include": ["hk"]},
-      "note": "According to HK community, sukiya only use ja and en name in HK, so don't change to '食其家 Sukiya'",
-      "tags": {
-        "amenity": "fast_food",
-        "brand": "すき家 Sukiya",
-        "brand:en": "Sukiya",
-        "brand:ja": "すき家",
-        "brand:wikidata": "Q6137375",
-        "cuisine": "beef_bowl",
-        "name": "すき家 Sukiya",
-        "name:en": "Sukiya",
-        "name:ja": "すき家",
-        "name:zh": "食其家",
         "takeaway": "yes"
       }
     },
@@ -8295,7 +8286,7 @@
       }
     },
     {
-      "displayName": "すき家",
+      "displayName": "すき家 (Japan)",
       "id": "sukiya-3e7699",
       "locationSet": {"include": ["jp"]},
       "tags": {
@@ -8308,6 +8299,46 @@
         "name": "すき家",
         "name:en": "Sukiya",
         "name:ja": "すき家",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "すき家 (Taiwan)",
+      "id": "sukiya-60a4d5",
+      "locationSet": {"include": ["tw"]},
+      "note": "According to TW community, sukiya only use ja name in TW, so don't change 'name' to '食其家' or 'Sukiya'",
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "すき家",
+        "brand:en": "Sukiya",
+        "brand:ja": "すき家",
+        "brand:wikidata": "Q6137375",
+        "brand:zh": "食其家",
+        "cuisine": "beef_bowl",
+        "name": "すき家",
+        "name:en": "Sukiya",
+        "name:ja": "すき家",
+        "name:zh": "食其家",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "すき家 Sukiya",
+      "id": "sukiya-9f9722",
+      "locationSet": {"include": ["hk"]},
+      "note": "According to HK community, sukiya only use ja and en name in HK, so don't change 'name/brand' to '食其家 Sukiya'",
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "すき家 Sukiya",
+        "brand:en": "Sukiya",
+        "brand:ja": "すき家",
+        "brand:wikidata": "Q6137375",
+        "brand:zh": "食其家",
+        "cuisine": "beef_bowl",
+        "name": "すき家 Sukiya",
+        "name:en": "Sukiya",
+        "name:ja": "すき家",
+        "name:zh": "食其家",
         "takeaway": "yes"
       }
     },
@@ -8739,6 +8770,34 @@
       }
     },
     {
+      "displayName": "丹丹漢堡",
+      "id": "dandanhamburger-60a4d5",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["丹丹"],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "丹丹漢堡",
+        "brand:en": "Dandan Hamburger",
+        "brand:nan": "Tan-tan Hàn-pó",
+        "brand:nan-HJ": "丹丹漢堡",
+        "brand:nan-POJ": "Tan-tan Hàn-pó",
+        "brand:nan-TL": "Tan-tan Hàn-pó",
+        "brand:wikidata": "Q30948118",
+        "brand:zh": "丹丹漢堡",
+        "brand:zh-Hant": "丹丹漢堡",
+        "cuisine": "burger",
+        "name": "丹丹漢堡",
+        "name:en": "Dandan Hamburger",
+        "name:nan": "Tan-tan Hàn-pó",
+        "name:nan-HJ": "丹丹漢堡",
+        "name:nan-POJ": "Tan-tan Hàn-pó",
+        "name:nan-TL": "Tan-tan Hàn-pó",
+        "name:zh": "丹丹漢堡",
+        "name:zh-Hant": "丹丹漢堡",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "八方雲集",
       "id": "eightway-2ee3fc",
       "locationSet": {
@@ -8771,7 +8830,7 @@
         "brand:zh-Hans": "八方云集",
         "brand:zh-Hant": "八方雲集",
         "cuisine": "dumplings",
-        "name": "八方雲集",
+        "name": "八方雲集 Bafang Dumpling",
         "name:en": "Bafang Dumpling",
         "name:zh": "八方雲集",
         "name:zh-Hans": "八方云集",
@@ -8811,11 +8870,15 @@
         "brand:ja": "吉野家",
         "brand:wikidata": "Q776272",
         "brand:zh": "吉野家",
+        "brand:zh-Hans": "吉野家",
+        "brand:zh-Hant": "吉野家",
         "cuisine": "beef_bowl",
         "name": "吉野家",
         "name:en": "Yoshinoya",
         "name:ja": "吉野家",
         "name:zh": "吉野家",
+        "name:zh-Hans": "吉野家",
+        "name:zh-Hant": "吉野家",
         "takeaway": "yes"
       }
     },
@@ -9137,6 +9200,7 @@
       "displayName": "早安美芝城",
       "id": "goodmorningmacc-60a4d5",
       "locationSet": {"include": ["tw"]},
+      "matchNames": ["美芝城"],
       "tags": {
         "amenity": "fast_food",
         "brand": "早安美芝城",
@@ -9182,6 +9246,7 @@
         "brand:en": "Matsuya",
         "brand:ja": "松屋",
         "brand:wikidata": "Q848773",
+        "brand:zh": "松屋",
         "cuisine": "japanese",
         "name": "松屋",
         "name:en": "Matsuya",
@@ -9274,6 +9339,7 @@
       "displayName": "漢堡王",
       "id": "burgerking-60a4d5",
       "locationSet": {"include": ["tw"]},
+      "matchNames": ["bk"],
       "tags": {
         "amenity": "fast_food",
         "brand": "漢堡王",
@@ -9293,6 +9359,7 @@
       "displayName": "瑞麟美而美",
       "id": "rueilinmeiandmei-60a4d5",
       "locationSet": {"include": ["tw"]},
+      "matchNames": ["美而美"],
       "tags": {
         "amenity": "fast_food",
         "brand": "瑞麟美而美",
@@ -9383,11 +9450,19 @@
         "amenity": "fast_food",
         "brand": "繼光香香雞",
         "brand:en": "J&G Fried Chicken",
-        "brand:wikidata": "Q10565787",
+        "brand:nan": "Kè-kong Hiong-hiong-koe",
+        "brand:nan-HJ": "繼光香香雞",
+        "brand:nan-POJ": "Kè-kong Hiong-hiong-koe",
+        "brand:nan-TL": "Kè-Kong Hiong-hiong-kue",
+        "brand:wikidata": "Q110256533",
         "brand:zh": "繼光香香雞",
         "cuisine": "fried_food",
         "name": "繼光香香雞",
         "name:en": "J&G Fried Chicken",
+        "name:nan": "Kè-kong Hiong-hiong-koe",
+        "name:nan-HJ": "繼光香香雞",
+        "name:nan-POJ": "Kè-kong Hiong-hiong-koe",
+        "name:nan-TL": "Kè-Kong Hiong-hiong-kue",
         "name:zh": "繼光香香雞",
         "takeaway": "yes"
       }
@@ -9638,14 +9713,14 @@
     },
     {
       "displayName": "食其家",
-      "id": "sukiya-2ee3fc",
+      "id": "sukiya-19ae3c",
       "locationSet": {
-        "include": ["cn", "tw"],
-        "exclude": ["hk"]
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
       },
       "tags": {
         "amenity": "fast_food",
-        "brand": "すき家",
+        "brand": "食其家",
         "brand:en": "Sukiya",
         "brand:ja": "すき家",
         "brand:wikidata": "Q6137375",
@@ -9653,7 +9728,7 @@
         "cuisine": "beef_bowl",
         "name": "食其家",
         "name:en": "Sukiya",
-        "name:ja": "食其家",
+        "name:ja": "すき家",
         "name:zh": "食其家",
         "takeaway": "yes"
       }
@@ -9662,6 +9737,7 @@
       "displayName": "麥當勞",
       "id": "mcdonalds-60a4d5",
       "locationSet": {"include": ["tw"]},
+      "matchNames": ["大m"],
       "tags": {
         "amenity": "fast_food",
         "brand": "麥當勞",
