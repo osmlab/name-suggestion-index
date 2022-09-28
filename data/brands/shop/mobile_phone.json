@@ -963,11 +963,25 @@
     {
       "displayName": "Vodafone",
       "id": "vodafone-ee5434",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ua"]
+      },
       "matchNames": ["vodafone shop"],
       "tags": {
         "brand": "Vodafone",
         "brand:wikidata": "Q122141",
+        "name": "Vodafone",
+        "shop": "mobile_phone"
+      }
+    },
+    {
+      "displayName": "Vodafone (Україна)",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": ["vodafone shop", "mts", "водафон", "мтс"],
+      "tags": {
+        "brand": "Vodafone",
+        "brand:wikidata": "Q846031",
         "name": "Vodafone",
         "shop": "mobile_phone"
       }
@@ -1162,7 +1176,7 @@
       "displayName": "МТС",
       "id": "mts-7eb9e6",
       "locationSet": {
-        "include": ["by", "ru", "ua"]
+        "include": ["by", "ru"]
       },
       "tags": {
         "brand": "МТС",
