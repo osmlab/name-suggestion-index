@@ -4,11 +4,12 @@
     "exclude": {
       "generic": ["^line$"],
       "named": [
-        "badenwerk",
-        "badenwerk ag",
-        "enbw",
-        "enbw ag",
-        "national grid et"
+        "^badenwerk ag$",
+        "^badenwerk$",
+        "^britned$",
+        "^enbw ag$",
+        "^enbw$",
+        "^national grid et$"
       ]
     }
   },
@@ -559,17 +560,6 @@
       "tags": {
         "operator": "Brazos Electric",
         "operator:wikidata": "Q4959009",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "BritNed",
-      "id": "britned-822cd8",
-      "locationSet": {
-        "include": ["gb-eng", "nl"]
-      },
-      "tags": {
-        "operator": "BritNed",
         "power": "line"
       }
     },
@@ -1486,8 +1476,8 @@
     },
     {
       "displayName": "EEB",
-      "id": "eeb-2a61eb",
-      "locationSet": {"include": ["gb"]},
+      "id": "eeb-ddc6a3",
+      "locationSet": {"include": ["br"]},
       "tags": {"operator": "EEB", "power": "line"}
     },
     {
@@ -1575,8 +1565,9 @@
     },
     {
       "displayName": "Electricity North West",
-      "id": "electricitynorthwest-2a61eb",
-      "locationSet": {"include": ["gb"]},
+      "id": "electricitynorthwest-11f3a5",
+      "locationSet": {"include": ["gb-eng"]},
+      "matchNames": ["enwl"],
       "tags": {
         "operator": "Electricity North West",
         "operator:wikidata": "Q5357804",
@@ -3427,6 +3418,16 @@
       }
     },
     {
+      "displayName": "Manx Utilities",
+      "id": "manxutilities-be061e",
+      "locationSet": {"include": ["im"]},
+      "tags": {
+        "operator": "Manx Utilities",
+        "operator:wikidata": "Q96391881",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Maritime Electric",
       "id": "maritimeelectric-6c988f",
       "locationSet": {"include": ["ca"]},
@@ -3630,6 +3631,7 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "operator": "Mutual Energy",
+        "operator:wikidata": "Q112882722",
         "power": "line"
       }
     },
@@ -3672,8 +3674,10 @@
     },
     {
       "displayName": "National Grid",
-      "id": "nationalgrid-2a61eb",
-      "locationSet": {"include": ["gb"]},
+      "id": "nationalgrid-036c1a",
+      "locationSet": {
+        "include": ["au", "gb-eng", "us"]
+      },
       "matchNames": [
         "national grid et",
         "national grid plc",
@@ -3682,19 +3686,6 @@
       "tags": {
         "operator": "National Grid",
         "operator:wikidata": "Q1465461",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "National Grid Electricity Distribution",
-      "locationSet": {"include": ["gb-eng"]},
-      "matchNames": [
-        "western power",
-        "western power distribution"
-      ],
-      "tags": {
-        "operator": "National Grid Electricity Distribution",
-        "operator:wikidata": "Q7988183",
         "power": "line"
       }
     },
@@ -3710,6 +3701,20 @@
       }
     },
     {
+      "displayName": "National Grid Electricity Distribution",
+      "id": "nationalgridelectricitydistribution-11f3a5",
+      "locationSet": {"include": ["gb-eng"]},
+      "matchNames": [
+        "western power",
+        "western power distribution"
+      ],
+      "tags": {
+        "operator": "National Grid Electricity Distribution",
+        "operator:wikidata": "Q7988183",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "NB Power",
       "id": "nbpower-d59b81",
       "locationSet": {
@@ -3720,15 +3725,6 @@
         "operator:en": "NB Power",
         "operator:fr": "Énergie NB",
         "operator:wikidata": "Q749716",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "NEDL",
-      "id": "nedl-2a61eb",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "operator": "NEDL",
         "power": "line"
       }
     },
@@ -3889,6 +3885,7 @@
       "displayName": "Northern Powergrid",
       "id": "northernpowergrid-11f3a5",
       "locationSet": {"include": ["gb-eng"]},
+      "matchNames": ["nedl", "yedl"],
       "tags": {
         "operator": "Northern Powergrid",
         "operator:wikidata": "Q7058871",
@@ -4672,25 +4669,25 @@
       }
     },
     {
-      "displayName": "Scottish Hydro Electric Transmission",
-      "id": "scottishhydroelectrictransmission-2a61eb",
+      "displayName": "Scottish and Southern Energy (SSE)",
+      "id": "scottishandsouthernenergy-2a61eb",
       "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "scottish hydro electric power distribution",
+        "southern electric"
+      ],
       "tags": {
-        "operator": "Scottish Hydro Electric Transmission",
+        "operator": "Scottish and Southern Energy",
+        "operator:wikidata": "Q493854",
         "power": "line"
       }
     },
     {
       "displayName": "Scottish Power",
-      "id": "scottishpower-2a61eb",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": [
-        "sp distribution",
-        "sp energy networks"
-      ],
+      "id": "scottishpower-116894",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "Scottish Power",
-        "operator:wikidata": "Q1778417",
         "power": "line"
       }
     },
@@ -4874,11 +4871,31 @@
       }
     },
     {
-      "displayName": "SP Transmission",
-      "id": "sptransmission-2a61eb",
+      "displayName": "SP Energy Networks",
+      "id": "spenergynetworks-2a61eb",
       "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "scottish power energy networks",
+        "sp distribution",
+        "sp manweb"
+      ],
+      "tags": {
+        "operator": "SP Energy Networks",
+        "operator:wikidata": "Q1778417",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "SP Transmission",
+      "id": "sptransmission-cd3045",
+      "locationSet": {"include": ["gb-sct"]},
+      "matchNames": [
+        "scottish power transmission"
+      ],
+      "note": "Operates the electricity transmission network in southern Scotland.",
       "tags": {
         "operator": "SP Transmission",
+        "operator:wikidata": "Q114436108",
         "power": "line"
       }
     },
@@ -4928,6 +4945,20 @@
       "tags": {
         "operator": "SSE",
         "operator:wikidata": "Q493854",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "SSEN Transmission",
+      "id": "ssentransmission-cd3045",
+      "locationSet": {"include": ["gb-sct"]},
+      "matchNames": [
+        "scottish hydro electric transmission"
+      ],
+      "note": "Operates the electricity transmission network in northern Scotland.",
+      "tags": {
+        "operator": "SSEN Transmission",
+        "operator:wikidata": "Q114423668",
         "power": "line"
       }
     },
@@ -5891,15 +5922,6 @@
       "tags": {
         "operator": "Xcel Energy",
         "operator:wikidata": "Q1486956",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "YEDL",
-      "id": "yedl-2a61eb",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "operator": "YEDL",
         "power": "line"
       }
     },
