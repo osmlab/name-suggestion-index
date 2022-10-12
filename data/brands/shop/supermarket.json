@@ -317,8 +317,11 @@
     },
     {
       "displayName": "Amazon Fresh",
-      "id": "amazonfresh-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "amazonfresh-21d28e",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn"]
+      },
       "tags": {
         "brand": "Amazon Fresh",
         "brand:wikidata": "Q4740834",
@@ -915,8 +918,11 @@
     },
     {
       "displayName": "Carrefour",
-      "id": "carrefour-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "carrefour-9ea2a0",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn", "tw"]
+      },
       "tags": {
         "brand": "Carrefour",
         "brand:wikidata": "Q217599",
@@ -6397,26 +6403,6 @@
       }
     },
     {
-      "displayName": "Tigre Amico",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "brand": "Tigre Amico",
-        "brand:wikidata": "Q114567814",
-        "name": "Tigre Amico",
-        "shop": "supermarket"
-      }
-    },
-    {
-      "displayName": "Tigre",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "brand": "Tigre",
-        "brand:wikidata": "Q114567803",
-        "name": "Tigre",
-        "shop": "supermarket"
-      }
-    },
-    {
       "displayName": "Supersol",
       "id": "supersol-0a1807",
       "locationSet": {
@@ -6678,7 +6664,19 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "brand": "Tigre",
+        "brand:wikidata": "Q114567803",
         "name": "Tigre",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Tigre Amico",
+      "id": "tigreamico-0cb133",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "brand": "Tigre Amico",
+        "brand:wikidata": "Q114567814",
+        "name": "Tigre Amico",
         "shop": "supermarket"
       }
     },
@@ -9351,11 +9349,16 @@
     },
     {
       "displayName": "万代",
-      "id": "bd8719-fe0970",
+      "id": "mandai-fe0970",
       "locationSet": {"include": ["jp"]},
       "tags": {
         "brand": "万代",
+        "brand:en": "MANDAI",
+        "brand:ja": "万代",
+        "brand:wikidata": "Q11353756",
         "name": "万代",
+        "name:en": "MANDAI",
+        "name:ja": "万代",
         "shop": "supermarket"
       }
     },
@@ -9525,9 +9528,13 @@
     },
     {
       "displayName": "家乐福",
-      "id": "carrefour-eda947",
-      "locationSet": {"include": ["cn"]},
+      "id": "carrefour-3265be",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
       "matchNames": ["家乐福超市"],
+      "note": "Looks like Carrefour leaves HK, so don't need new entry.",
       "tags": {
         "brand": "家乐福",
         "brand:en": "Carrefour",
