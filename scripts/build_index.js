@@ -538,6 +538,15 @@ function mergeItems() {
             }
           }
         });
+        
+        // Perform locationSet country code replacements
+        Object.keys(_config.countryReplacements).forEach(country => {
+          [item.locationSet.include, item.locationSet.exclude].forEach(v => {
+            if (v) {
+              normalizeCountryCode(v, country);
+            }
+          }
+        }
 
         // regenerate id here, in case the locationSet has changed
         const locationID = loco.validateLocationSet(item.locationSet).id;
@@ -563,6 +572,16 @@ function mergeItems() {
         tags[loc_k] = v;
       }
     });
+  }
+
+  function normalizeCountryCode(countries, country) {
+    const index = countries.indexOf(country)
+    if (index >= 0) {
+      const replace = _config.countryReplacements[country];
+      if (replace && replace.country !== undefined) {
+        countries[index] = replace.country
+      }
+    }
   }
 }
 
