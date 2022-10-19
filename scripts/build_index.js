@@ -60,7 +60,7 @@ console.log('');
 // Load, validate, cleanup config files
 //
 function loadConfig() {
-  ['trees', 'replacements', 'genericWords'].forEach(which => {
+  ['trees', 'replacements', 'genericWords', 'countryReplacements'].forEach(which => {
     const schema = JSON5.parse(fs.readFileSync(`./schema/${which}.json`, 'utf8'));
     const file = `config/${which}.json`;
     const contents = fs.readFileSync(file, 'utf8');
@@ -117,6 +117,18 @@ function loadConfig() {
 
     } else if (which === 'genericWords') {
       data.genericWords = data.genericWords.map(s => s.toLowerCase()).sort(withLocale);
+
+    } else if (which === 'countryReplacements') {
+      Object.keys(data.countryReplacements).forEach(country => {
+        let countryReplacement = data.countryReplacements[country];
+        let cleaned = {
+          note:      countryReplacement.note,
+          country:  countryReplacement.wikidata
+        };
+        countryReplacement = cleaned;
+      });
+      data.countryReplacements = sortObject(data.countryReplacements);
+
     }
 
     // Lowercase and sort the files for consistency, save them that way.
