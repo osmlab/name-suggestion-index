@@ -60,6 +60,7 @@ function buildAll() {
   ]);
 
   // Copy some files from `/config` to `/dist`, adding metadata
+  copyWithMeta('countryReplacements.json');
   copyWithMeta('genericWords.json');
   copyWithMeta('matchGroups.json');
   copyWithMeta('replacements.json');
