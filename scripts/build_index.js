@@ -545,8 +545,8 @@ function mergeItems() {
             if (v) {
               normalizeCountryCode(v, country);
             }
-          }
-        }
+          });
+        });
 
         // regenerate id here, in case the locationSet has changed
         const locationID = loco.validateLocationSet(item.locationSet).id;
@@ -575,11 +575,11 @@ function mergeItems() {
   }
 
   function normalizeCountryCode(countries, country) {
-    const index = countries.indexOf(country)
+    const index = countries.indexOf(country.toLowerCase())
     if (index >= 0) {
-      const replace = _config.countryReplacements[country];
+      const replace = _config.countryReplacements[country.toLowerCase()];
       if (replace && replace.country !== undefined) {
-        countries[index] = replace.country
+        countries[index] = replace.country.toLowerCase()
       }
     }
   }
