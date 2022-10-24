@@ -12,7 +12,8 @@
         "^(h[oô]tel )?((zur )?post|de france|de la gare|строитель)$",
         "^(h[oô]tel )?(astoria|belvedere|central|city|colonial|continental|europa)\\s?(h[oô]tel)?$",
         "^(h[oô]tel )?(grand|imperial|krone|palace|panorama|park|plaza|royal|victoria)\\s?(h[oô]tel)?$",
-        "^budget inn$"
+        "^budget inn$",
+        "^(酒店|旅馆)$",
       ]
     }
   },
@@ -3177,6 +3178,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "文华东方酒店集团",
         "brand:en": "Mandarin Oriental Hotel",
@@ -3244,7 +3246,8 @@
     {
       "displayName": "秋果酒店",
       "id": "qiuguohotel-af4cd2",
-      "locationSet": {"include": ["cn"]},
+      "locationSet": {"include": ["cn"],"exclude":["hk","mo"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "秋果酒店",
         "brand:en": "Qiuguo Hotel",
