@@ -12,6 +12,7 @@
         "^(h[oô]tel )?((zur )?post|de france|de la gare|строитель)$",
         "^(h[oô]tel )?(astoria|belvedere|central|city|colonial|continental|europa)\\s?(h[oô]tel)?$",
         "^(h[oô]tel )?(grand|imperial|krone|palace|panorama|park|plaza|royal|victoria)\\s?(h[oô]tel)?$",
+        "^(酒店|旅馆)$",
         "^budget inn$"
       ]
     }
@@ -149,8 +150,34 @@
     },
     {
       "displayName": "Anantara",
-      "id": "anantara-779ccb",
-      "locationSet": {"include": ["001"]},
+      "id": "anantara-e8534c",
+      "locationSet": {
+        "include": [
+          "ae",
+          "br",
+          "cn",
+          "es",
+          "fr",
+          "hu",
+          "id",
+          "ie",
+          "it",
+          "kh",
+          "mu",
+          "mv",
+          "my",
+          "mz",
+          "nl",
+          "om",
+          "pt",
+          "qa",
+          "sc",
+          "th",
+          "tn",
+          "vn",
+          "zm"
+        ]
+      },
       "tags": {
         "brand": "Anantara",
         "name": "Anantara",
@@ -213,10 +240,33 @@
     },
     {
       "displayName": "AVANI",
-      "id": "avanihotelsandresorts-779ccb",
-      "locationSet": {"include": ["001"]},
+      "id": "avanihotelsandresorts-e9c192",
+      "locationSet": {
+        "include": [
+          "ae",
+          "au",
+          "bw",
+          "id",
+          "kh",
+          "kr",
+          "la",
+          "lk",
+          "ls",
+          "my",
+          "mz",
+          "na",
+          "nz",
+          "om",
+          "pt",
+          "sc",
+          "th",
+          "vn",
+          "zm"
+        ]
+      },
       "tags": {
         "brand": "Avani Hotels & Resorts",
+        "brand:wikidata": "Q48989823",
         "name": "Avani Hotels & Resorts",
         "tourism": "hotel"
       }
@@ -1869,13 +1919,90 @@
       }
     },
     {
+      "displayName": "NH Collection Hotels",
+      "id": "nhcollectionhotels-f05c75",
+      "locationSet": {
+        "include": [
+          "ad",
+          "ar",
+          "at",
+          "be",
+          "cl",
+          "co",
+          "cu",
+          "cz",
+          "de",
+          "dk",
+          "ec",
+          "es",
+          "fr",
+          "hu",
+          "it",
+          "mx",
+          "nl",
+          "pt",
+          "qa",
+          "us-ny.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "NH Collection Hotels",
+        "brand:wikidata": "Q1604631",
+        "name": "NH Collection Hotels",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "NH Hotels",
-      "id": "nhhotel-779ccb",
-      "locationSet": {"include": ["001"]},
+      "id": "nhhotel-e9b4fb",
+      "locationSet": {
+        "include": [
+          "ad",
+          "ar",
+          "at",
+          "be",
+          "br",
+          "ch",
+          "cl",
+          "co",
+          "cu",
+          "cz",
+          "de",
+          "es",
+          "fr",
+          "hu",
+          "it",
+          "lu",
+          "mx",
+          "nl",
+          "pl",
+          "pt"
+        ]
+      },
       "tags": {
         "brand": "NH Hotels",
         "brand:wikidata": "Q1604631",
         "name": "NH Hotel",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "nhow",
+      "id": "nhow-e87c8c",
+      "locationSet": {
+        "include": [
+          "be",
+          "de",
+          "fr",
+          "gb-eng",
+          "it",
+          "nl"
+        ]
+      },
+      "tags": {
+        "brand": "nhow",
+        "brand:wikidata": "Q1604631",
+        "name": "nhow",
         "tourism": "hotel"
       }
     },
@@ -1898,6 +2025,26 @@
         "brand": "Novotel",
         "brand:wikidata": "Q420545",
         "name": "Novotel",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "Oaks Hotels",
+      "id": "oakshotelsresortsandsuites-bc2db3",
+      "locationSet": {
+        "include": [
+          "ae",
+          "au",
+          "cn",
+          "in",
+          "nz",
+          "qa"
+        ]
+      },
+      "tags": {
+        "brand": "Oaks Hotels, Resorts & Suites",
+        "brand:wikidata": "Q23073772",
+        "name": "Oaks Hotels, Resorts & Suites",
         "tourism": "hotel"
       }
     },
@@ -2147,6 +2294,7 @@
       "displayName": "Red Lion Hotels",
       "id": "redlionhotels-6ac210",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["red lion"],
       "tags": {
         "brand": "Red Lion Hotels",
         "brand:wikidata": "Q25047720",
@@ -2595,6 +2743,18 @@
       }
     },
     {
+      "displayName": "Tivoli",
+      "id": "tivolihotelsandresorts-0f28e2",
+      "locationSet": {
+        "include": ["br", "cn", "pt", "qa"]
+      },
+      "tags": {
+        "brand": "Tivoli Hotels & Resorts",
+        "name": "Tivoli Hotels & Resorts",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "TownePlace Suites",
       "id": "towneplacesuites-cf4e07",
       "locationSet": {"include": ["ca", "us"]},
@@ -3018,6 +3178,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "文华东方酒店集团",
         "brand:en": "Mandarin Oriental Hotel",
@@ -3083,6 +3244,25 @@
       }
     },
     {
+      "displayName": "秋果酒店",
+      "id": "qiuguohotel-28932e",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "秋果酒店",
+        "brand:en": "Qiuguo Hotel",
+        "brand:wikidata": "Q109415285",
+        "brand:zh": "秋果酒店",
+        "name": "秋果酒店",
+        "name:en": "Qiuguo Hotel",
+        "name:zh": "秋果酒店",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "速8酒店",
       "id": "super8-af4cd2",
       "locationSet": {"include": ["cn"]},
@@ -3093,7 +3273,7 @@
         "brand:wikidata": "Q5364003",
         "brand:zh": "速8酒店",
         "name": "速8酒店",
-        "name:en": "Super_8",
+        "name:en": "Super 8",
         "name:zh": "速8酒店",
         "tourism": "hotel"
       }

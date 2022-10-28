@@ -13,14 +13,19 @@
   },
   "items": [
     {
-      "note": "Auto create post boxes for all brand post offices except FedEx, UPSStore",
-      "templateExclude": ["fedex", "upsstore"],
+      "note": "Auto create post boxes for all brand post offices - a few exceptions",
+      "templateExclude": [
+        "fedex",
+        "orlen",
+        "upsstore"
+      ],
       "templateSource": "brands/amenity/post_office",
       "templateTags": {
         "amenity": "post_box",
         "name": "",
         "operator": "{source.tags.brand}",
-        "operator:wikidata": "{source.tags.brand:wikidata}"
+        "operator:wikidata": "{source.tags.brand:wikidata}",
+        "shop": ""
       }
     },
     {
@@ -29,7 +34,8 @@
       "templateSource": "operators/amenity/post_office",
       "templateTags": {
         "amenity": "post_box",
-        "name": ""
+        "name": "",
+        "shop": ""
       }
     },
     {

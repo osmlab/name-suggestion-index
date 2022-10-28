@@ -338,6 +338,11 @@ function saveIndex() {
 // - update all items to have whatever tags they should have.
 //
 function mergeItems() {
+  // Any country codes which should be replaced by more standard ones in the locationSets
+  const countryReplacements = {
+    'uk': 'gb',  // Exceptionally reserved, United Kingdom is officially assigned the alpha-2 code GB
+  }
+
   const START = '🏗   ' + chalk.yellow(`Merging items...`);
   const END = '👍  ' + chalk.green(`done merging`);
   console.log('');
@@ -539,6 +544,15 @@ function mergeItems() {
           }
         });
 
+        // Perform locationSet country code replacements
+        Object.keys(countryReplacements).forEach(country => {
+          [item.locationSet.include, item.locationSet.exclude].forEach(v => {
+            if (v) {
+              normalizeCountryCode(v, country);
+            }
+          });
+        });
+
         // regenerate id here, in case the locationSet has changed
         const locationID = loco.validateLocationSet(item.locationSet).id;
         item.id = idgen(item, tkv, locationID);
@@ -563,6 +577,16 @@ function mergeItems() {
         tags[loc_k] = v;
       }
     });
+  }
+
+  function normalizeCountryCode(countries, country) {
+    const index = countries.indexOf(country.toLowerCase())
+    if (index >= 0) {
+      const replace = countryReplacements[country.toLowerCase()];
+      if (replace && replace.country !== undefined) {
+        countries[index] = replace.country.toLowerCase()
+      }
+    }
   }
 }
 
