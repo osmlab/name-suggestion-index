@@ -2,16 +2,18 @@
   "properties": {
     "path": "brands/amenity/atm",
     "skipCollection": true,
+    "preserveTags": ["^name"],
     "exclude": {"generic": ["^atm$"]}
   },
   "items": [
     {
+      "note": "Auto create ATMs for all banks (remove names per #7236)",
       "templateSource": "brands/amenity/bank",
       "templateTags": {
         "amenity": "atm",
+        "name": "",
         "operator": "{source.tags.brand}",
-        "operator:wikidata": "{source.tags.brand:wikidata}",
-        "operator:wikipedia": "{source.tags.brand:wikipedia}"
+        "operator:wikidata": "{source.tags.brand:wikidata}"
       }
     },
     {
@@ -23,8 +25,7 @@
       "tags": {
         "amenity": "atm",
         "brand": "Allpoint",
-        "brand:wikidata": "Q4733264",
-        "name": "Allpoint"
+        "brand:wikidata": "Q4733264"
       }
     },
     {
@@ -34,8 +35,7 @@
       "matchTags": ["amenity/bank"],
       "tags": {
         "amenity": "atm",
-        "brand": "American Crypto ATM",
-        "name": "American Crypto ATM"
+        "brand": "American Crypto ATM"
       }
     },
     {
@@ -46,8 +46,7 @@
       "tags": {
         "amenity": "atm",
         "brand": "Banco24Horas",
-        "brand:wikidata": "Q4854069",
-        "name": "Banco24Horas"
+        "brand:wikidata": "Q4854069"
       }
     },
     {
@@ -69,8 +68,7 @@
       "tags": {
         "amenity": "atm",
         "brand": "Bitcoin Depot",
-        "brand:wikidata": "Q109824499",
-        "name": "Bitcoin Depot"
+        "brand:wikidata": "Q109824499"
       }
     },
     {
@@ -93,8 +91,7 @@
       "tags": {
         "amenity": "atm",
         "brand": "Cardtronics",
-        "brand:wikidata": "Q50239180",
-        "name": "Cardtronics"
+        "brand:wikidata": "Q50239180"
       }
     },
     {
@@ -105,8 +102,7 @@
       "tags": {
         "amenity": "atm",
         "brand": "CO-OP Financial Services",
-        "brand:wikidata": "Q5013238",
-        "name": "CO-OP Financial Services"
+        "brand:wikidata": "Q5013238"
       }
     },
     {
@@ -116,8 +112,7 @@
       "tags": {
         "amenity": "atm",
         "brand": "CoinFlip",
-        "brand:wikidata": "Q109850256",
-        "name": "CoinFlip"
+        "brand:wikidata": "Q109850256"
       }
     },
     {
@@ -127,8 +122,7 @@
       "tags": {
         "amenity": "atm",
         "brand": "Coinsource",
-        "brand:wikidata": "Q109850339",
-        "name": "Coinsource"
+        "brand:wikidata": "Q109850339"
       }
     },
     {
@@ -142,7 +136,6 @@
         "amenity": "atm",
         "brand": "Euronet",
         "brand:wikidata": "Q5412010",
-        "name": "Euronet",
         "operator": "Euronet",
         "operator:wikidata": "Q5412010"
       }
@@ -155,7 +148,6 @@
         "amenity": "atm",
         "brand": "Geldmaat",
         "brand:wikidata": "Q74051230",
-        "name": "Geldmaat",
         "operator": "Geldmaat",
         "operator:wikidata": "Q74051230"
       }
@@ -167,8 +159,7 @@
       "tags": {
         "amenity": "atm",
         "brand": "LibertyX",
-        "brand:wikidata": "Q109287417",
-        "name": "LibertyX"
+        "brand:wikidata": "Q109287417"
       }
     },
     {
@@ -179,7 +170,6 @@
         "amenity": "atm",
         "brand": "MEPS",
         "brand:wikidata": "Q6741957",
-        "name": "MEPS",
         "operator": "MEPS",
         "operator:wikidata": "Q6741957"
       }
@@ -192,10 +182,9 @@
         "amenity": "atm",
         "brand": "NoteMachine",
         "brand:wikidata": "Q104368525",
-        "name": "NoteMachine",
         "operator": "NoteMachine",
-        "operator:wikidata": "Q104368525",
-        "short_name": "NMATM"
+        "operator:short": "NMATM",
+        "operator:wikidata": "Q104368525"
       }
     },
     {
@@ -206,7 +195,6 @@
         "amenity": "atm",
         "brand": "Postamat",
         "brand:wikidata": "Q3909447",
-        "name": "Postamat",
         "operator": "Poste Italiane",
         "operator:wikidata": "Q495026"
       }
@@ -227,19 +215,15 @@
       "displayName": "Тинькофф Банк",
       "id": "tinkoffbank-da35c8",
       "locationSet": {"include": ["ru"]},
+      "matchNames": ["tinkoff", "тинькофф"],
       "tags": {
-        "alt_name:ru": "Тинькофф",
         "amenity": "atm",
         "brand": "Тинькофф Банк",
         "brand:en": "Tinkoff Bank",
         "brand:fa": "بانک تینکوف",
         "brand:he": "בנק טינקוף",
         "brand:ru": "Тинькофф Банк",
-        "brand:wikidata": "Q4457878",
-        "name": "Тинькофф Банк",
-        "name:en": "Tinkoff Bank",
-        "name:he": "בנק טינקוף",
-        "name:ru": "Тинькофф Банк"
+        "brand:wikidata": "Q4457878"
       }
     }
   ]

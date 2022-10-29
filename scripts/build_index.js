@@ -338,6 +338,11 @@ function saveIndex() {
 // - update all items to have whatever tags they should have.
 //
 function mergeItems() {
+  // Any country codes which should be replaced by more standard ones in the locationSets
+  const countryReplacements = {
+    'uk': 'gb',  // Exceptionally reserved, United Kingdom is officially assigned the alpha-2 code GB
+  }
+
   const START = '🏗   ' + chalk.yellow(`Merging items...`);
   const END = '👍  ' + chalk.green(`done merging`);
   console.log('');
@@ -539,6 +544,15 @@ function mergeItems() {
           }
         });
 
+        // Perform locationSet country code replacements
+        Object.keys(countryReplacements).forEach(country => {
+          [item.locationSet.include, item.locationSet.exclude].forEach(v => {
+            if (v) {
+              normalizeCountryCode(v, country);
+            }
+          });
+        });
+
         // regenerate id here, in case the locationSet has changed
         const locationID = loco.validateLocationSet(item.locationSet).id;
         item.id = idgen(item, tkv, locationID);
@@ -551,11 +565,28 @@ function mergeItems() {
 
   console.timeEnd(END);
 
+
+  // Copy main tag value to local tag value, but only if local value not assigned yet
+  // re: 6788#issuecomment-1188024213
   function setLanguageTags(tags, code) {
-    if (tags.name)      tags[`name:${code}`] = tags.name;
-    if (tags.brand)     tags[`brand:${code}`] = tags.brand;
-    if (tags.operator)  tags[`operator:${code}`] = tags.operator;
-    if (tags.network)   tags[`network:${code}`] = tags.network;
+    ['name', 'brand', 'operator', 'network'].forEach(k => {
+      const v = tags[k];
+      const loc_k = `${k}:${code}`;   // e.g. `name:ja`
+      const loc_v = tags[loc_k];
+      if (v && !loc_v) {
+        tags[loc_k] = v;
+      }
+    });
+  }
+
+  function normalizeCountryCode(countries, country) {
+    const index = countries.indexOf(country.toLowerCase())
+    if (index >= 0) {
+      const replace = countryReplacements[country.toLowerCase()];
+      if (replace && replace.country !== undefined) {
+        countries[index] = replace.country.toLowerCase()
+      }
+    }
   }
 }
 

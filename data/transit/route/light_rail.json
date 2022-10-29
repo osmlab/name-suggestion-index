@@ -11,12 +11,12 @@
   "items": [
     {
       "displayName": "Baltimore Light RailLink",
-      "id": "lightraillink-486c34",
+      "id": "baltimorelightraillink-486c34",
       "locationSet": {
         "include": ["baltimore_and_dc.geojson"]
       },
       "tags": {
-        "network": "Light RailLink",
+        "network": "Baltimore Light RailLink",
         "network:wikidata": "Q3333820",
         "operator": "Maryland Transit Administration",
         "operator:wikidata": "Q1863801",
@@ -49,8 +49,10 @@
     },
     {
       "displayName": "DART",
-      "id": "dart-2d6c3f",
-      "locationSet": {"include": ["us"]},
+      "id": "dart-f91feb",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "network": "DART",
         "network:wikidata": "Q380660",
@@ -198,6 +200,15 @@
       }
     },
     {
+      "displayName": "MBTA",
+      "id": "mbta-55ac4f",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "network": "MBTA",
+        "route": "light_rail"
+      }
+    },
+    {
       "displayName": "Metro de Palma",
       "id": "metrodepalma-7240fe",
       "locationSet": {"include": ["es"]},
@@ -336,8 +347,10 @@
     },
     {
       "displayName": "RTD (Denver)",
-      "id": "rtd-2d6c3f",
-      "locationSet": {"include": ["us"]},
+      "id": "rtd-81bfa8",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
       "tags": {
         "network": "RTD",
         "network:wikidata": "Q7309183",
@@ -421,6 +434,25 @@
       }
     },
     {
+      "displayName": "Trambahía",
+      "id": "trambahia-7240fe",
+      "locationSet": {"include": ["es"]},
+      "matchNames": [
+        "cádiz",
+        "cercanias cadiz",
+        "tranvia bahia",
+        "tren tranvía de la bahía de cádiz"
+      ],
+      "matchTags": ["route/train", "route/tram"],
+      "tags": {
+        "network": "Trambahía",
+        "network:wikidata": "Q6151804",
+        "operator": "Renfe",
+        "operator:wikidata": "Q2476154",
+        "route": "light_rail"
+      }
+    },
+    {
       "displayName": "Verkehrs- und Tarifverbund Stuttgart",
       "id": "verkehrsundtarifverbundstuttgart-453eb8",
       "locationSet": {
@@ -450,6 +482,16 @@
         "network:wikidata": "Q1553051",
         "operator": "DB Regio Mitte",
         "operator:wikidata": "Q18853",
+        "route": "light_rail"
+      }
+    },
+    {
+      "displayName": "VOR",
+      "id": "vor-ddc932",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "network": "VOR",
+        "network:wikidata": "Q2516485",
         "route": "light_rail"
       }
     },
@@ -492,18 +534,26 @@
       "id": "lightrail-2cb03a",
       "locationSet": {"include": ["hk"]},
       "tags": {
+        "brand": "輕鐵 Light Rail",
+        "brand:en": "Light Rail",
+        "brand:wikidata": "Q3083033",
+        "brand:zh": "輕鐵",
         "network": "輕鐵 Light Rail",
         "network:en": "Light Rail",
         "network:wikidata": "Q3083033",
         "network:zh": "輕鐵",
-        "network:zh-Hans": "轻铁",
-        "network:zh-Hant": "輕鐵",
-        "operator": "香港鐵路有限公司 MTR Corporation",
-        "operator:en": "MTR Corporation",
+        "operator": "香港鐵路有限公司 MTR Corporation Limited",
+        "operator:en": "MTR Corporation Limited",
         "operator:wikidata": "Q1479375",
         "operator:zh": "香港鐵路有限公司",
-        "operator:zh-Hans": "香港铁路有限公司",
-        "operator:zh-Hant": "香港鐵路有限公司",
+        "public_transport:network": "港鐵 MTR",
+        "public_transport:network:en": "MTR",
+        "public_transport:network:wikidata": "Q14751",
+        "public_transport:network:zh": "港鐵",
+        "railway:network": "輕鐵 Light Rail",
+        "railway:network:en": "Light Rail",
+        "railway:network:wikidata": "Q3083033",
+        "railway:network:zh": "輕鐵",
         "route": "light_rail"
       }
     }

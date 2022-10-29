@@ -10,14 +10,22 @@
         "^(парикмахер(ская)?|персона|перукарня)$",
         "^coiff(eur|ure)\\s?(homme|dame)?$",
         "^haar(genau|monie|scharf)$",
-        "^hair\\s?(design|dresser|lounge|salon|studio)$",
+        "^hair\\s?(design|dresser|lounge|salon|studio|style)$",
+        "^kadeřnictví$",
         "^peluquer[ií]a$",
+        "^peluquería unisex$",
         "^salão de beleza$",
         "^салон красоты$",
         "^حلاق$"
       ],
       "named": [
-        "^(figaro|haarwerk|the cutting room|стиль|локон|шарм|fodrászat)$"
+        "^(figaro|haarwerk|the cutting room|стиль|локон|шарм|fodrászat)$",
+        "^art of hair$",
+        "^biguine$",
+        "^espace coiffure$",
+        "^glamour$",
+        "^new look$",
+        "^schnittpunkt$"
       ]
     }
   },
@@ -34,16 +42,6 @@
       }
     },
     {
-      "displayName": "Art of Hair",
-      "id": "artofhair-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Art of Hair",
-        "name": "Art of Hair",
-        "shop": "hairdresser"
-      }
-    },
-    {
       "displayName": "Barbershop by Timpson",
       "id": "barbershopbytimpson-afda3f",
       "locationSet": {"include": ["gb"]},
@@ -52,16 +50,6 @@
         "brand:wikidata": "Q7807658",
         "male": "yes",
         "name": "Barbershop by Timpson",
-        "shop": "hairdresser"
-      }
-    },
-    {
-      "displayName": "Biguine",
-      "id": "biguine-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Biguine",
-        "name": "Biguine",
         "shop": "hairdresser"
       }
     },
@@ -159,16 +147,6 @@
       }
     },
     {
-      "displayName": "Espace Coiffure",
-      "id": "espacecoiffure-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Espace Coiffure",
-        "name": "Espace Coiffure",
-        "shop": "hairdresser"
-      }
-    },
-    {
       "displayName": "Essanelle",
       "id": "essanelle-b30c9d",
       "locationSet": {"include": ["de"]},
@@ -249,16 +227,6 @@
       }
     },
     {
-      "displayName": "Glamour",
-      "id": "glamour-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Glamour",
-        "name": "Glamour",
-        "shop": "hairdresser"
-      }
-    },
-    {
       "displayName": "Great Clips",
       "id": "greatclips-46af32",
       "locationSet": {"include": ["ca", "us"]},
@@ -292,6 +260,17 @@
       }
     },
     {
+      "displayName": "Haircut Express",
+      "id": "haircutexpress-f52df8",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "brand": "Haircut Express",
+        "brand:wikidata": "Q113227889",
+        "name": "Haircut Express",
+        "shop": "hairdresser"
+      }
+    },
+    {
       "displayName": "Hairkiller",
       "id": "hairkiller-173527",
       "locationSet": {
@@ -310,6 +289,7 @@
       "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "brand": "Headmasters",
+        "brand:wikidata": "Q113700332",
         "name": "Headmasters",
         "shop": "hairdresser"
       }
@@ -369,16 +349,6 @@
       }
     },
     {
-      "displayName": "Kadeřnictví",
-      "id": "kadernictvi-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Kadeřnictví",
-        "name": "Kadeřnictví",
-        "shop": "hairdresser"
-      }
-    },
-    {
       "displayName": "Kirpykla",
       "id": "kirpykla-1e6f8d",
       "locationSet": {"include": ["lt"]},
@@ -418,16 +388,29 @@
       "locationSet": {"include": ["ca"]},
       "tags": {
         "brand": "Magicuts",
+        "brand:wikidata": "Q113004753",
         "name": "Magicuts",
         "shop": "hairdresser"
       }
     },
     {
       "displayName": "Marco Aldany",
-      "id": "marcoaldany-ece769",
-      "locationSet": {"include": ["001"]},
+      "id": "marcoaldany-d15f75",
+      "locationSet": {
+        "include": [
+          "es",
+          "hn",
+          "in",
+          "ma",
+          "mx",
+          "pa",
+          "pe",
+          "pl"
+        ]
+      },
       "tags": {
         "brand": "Marco Aldany",
+        "brand:wikidata": "Q112095114",
         "name": "Marco Aldany",
         "shop": "hairdresser"
       }
@@ -444,12 +427,12 @@
       }
     },
     {
-      "displayName": "New Look",
-      "id": "newlook-ece769",
+      "displayName": "New Style",
+      "id": "newstyle-ece769",
       "locationSet": {"include": ["001"]},
       "tags": {
-        "brand": "New Look",
-        "name": "New Look",
+        "brand": "New Style",
+        "name": "New Style",
         "shop": "hairdresser"
       }
     },
@@ -472,16 +455,6 @@
         "brand": "Passaró",
         "brand:wikidata": "Q109264394",
         "name": "Passaró",
-        "shop": "hairdresser"
-      }
-    },
-    {
-      "displayName": "Peluquería Unisex",
-      "id": "peluqueriaunisex-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Peluquería Unisex",
-        "name": "Peluquería Unisex",
         "shop": "hairdresser"
       }
     },
@@ -575,16 +548,6 @@
       }
     },
     {
-      "displayName": "Schnittpunkt",
-      "id": "schnittpunkt-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Schnittpunkt",
-        "name": "Schnittpunkt",
-        "shop": "hairdresser"
-      }
-    },
-    {
       "displayName": "SmartStyle by Regis",
       "id": "smartstyle-46af32",
       "locationSet": {"include": ["ca", "us"]},
@@ -647,22 +610,13 @@
     },
     {
       "displayName": "Tchip",
-      "id": "tchip-40f1cc",
-      "locationSet": {"include": ["fr"]},
+      "id": "tchip-426627",
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["tchip coiffure"],
       "tags": {
         "brand": "Tchip",
         "brand:wikidata": "Q62871250",
         "name": "Tchip",
-        "shop": "hairdresser"
-      }
-    },
-    {
-      "displayName": "Tchip Coiffure",
-      "id": "tchipcoiffure-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Tchip Coiffure",
-        "name": "Tchip Coiffure",
         "shop": "hairdresser"
       }
     },
@@ -774,6 +728,16 @@
       "tags": {
         "brand": "Каприз",
         "name": "Каприз",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Светлана",
+      "id": "e18b4b-ece769",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Светлана",
+        "name": "Светлана",
         "shop": "hairdresser"
       }
     },

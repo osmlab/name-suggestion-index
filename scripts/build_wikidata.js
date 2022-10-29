@@ -308,9 +308,10 @@ function processEntities(result) {
       // P18 - Image (use this for flags)
       imageFile = getClaimValue(entity, 'P18');
     } else {
-      // P154 - Logo Image
       // P8972 - Small Logo or Icon
-      imageFile = getClaimValue(entity, 'P8972') || getClaimValue(entity, 'P154');
+      // P154 - Logo Image
+      // P94 - Coat of Arms Image
+      imageFile = getClaimValue(entity, 'P8972') || getClaimValue(entity, 'P154') || getClaimValue(entity, 'P94');
     }
     if (imageFile) {
       const re = /\.svg$/i;

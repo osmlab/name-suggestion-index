@@ -5,9 +5,11 @@
     "exclude": {
       "generic": [
         "^(bar|bistro|pub)$",
+        "^(bistrot|buvette|cave|maquis)$",
         "^(commercial )?hotel$",
-        "^bistrot$",
-        "^irish pub$"
+        "^irish pub$",
+        "^kocsma$",
+        "^söröző$"
       ],
       "named": [
         "^(black horse|coach and horses|cross keys|crown inn|kings arms|kings head|new inn)$",
@@ -89,26 +91,6 @@
         "brand": "Brewhouse & Kitchen",
         "brand:wikidata": "Q110420544",
         "microbrewery": "yes"
-      }
-    },
-    {
-      "displayName": "Buvette",
-      "id": "buvette-296a9c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "Buvette",
-        "name": "Buvette"
-      }
-    },
-    {
-      "displayName": "Cave",
-      "id": "cave-296a9c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "Cave",
-        "name": "Cave"
       }
     },
     {
@@ -195,26 +177,6 @@
       }
     },
     {
-      "displayName": "Kocsma",
-      "id": "kocsma-296a9c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "Kocsma",
-        "name": "Kocsma"
-      }
-    },
-    {
-      "displayName": "Maquis",
-      "id": "maquis-296a9c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "Maquis",
-        "name": "Maquis"
-      }
-    },
-    {
       "displayName": "MásQMenos",
       "id": "masqmenos-575688",
       "locationSet": {
@@ -230,8 +192,13 @@
     },
     {
       "displayName": "McMenamins",
-      "id": "mcmenamins-41045b",
-      "locationSet": {"include": ["us"]},
+      "id": "mcmenamins-3769c3",
+      "locationSet": {
+        "include": [
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
       "tags": {
         "amenity": "pub",
         "brand": "McMenamins",
@@ -261,6 +228,34 @@
         "brand:wikidata": "Q65930663",
         "cuisine": "british",
         "name": "Pitcher & Piano"
+      }
+    },
+    {
+      "displayName": "Robinsons",
+      "id": "robinsons-eaed91",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["robinsons brewery"],
+      "tags": {
+        "amenity": "pub",
+        "brand": "Robinsons",
+        "brand:wikidata": "Q7353116",
+        "brewery": "Robinsons",
+        "operator": "Robinsons",
+        "operator:wikidata": "Q7353116"
+      }
+    },
+    {
+      "displayName": "Samuel Smith",
+      "id": "samuelsmith-eaed91",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["sam smith"],
+      "tags": {
+        "amenity": "pub",
+        "brand": "Samuel Smith",
+        "brand:wikidata": "Q7412675",
+        "brewery": "Samuel Smith",
+        "operator": "Samuel Smith",
+        "operator:wikidata": "Q7412675"
       }
     },
     {
@@ -297,16 +292,6 @@
         "cuisine": "pizza",
         "name": "Schmizza Public House",
         "takeaway": "yes"
-      }
-    },
-    {
-      "displayName": "Söröző",
-      "id": "sorozo-296a9c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "Söröző",
-        "name": "Söröző"
       }
     },
     {
@@ -352,6 +337,16 @@
         "amenity": "pub",
         "brand": "The George Inn",
         "name": "The George Inn"
+      }
+    },
+    {
+      "displayName": "The Globe",
+      "id": "theglobe-296a9c",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "pub",
+        "brand": "The Globe",
+        "name": "The Globe"
       }
     },
     {
@@ -444,6 +439,22 @@
       }
     },
     {
+      "displayName": "八剣伝",
+      "id": "hakkenden-0435b9",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "pub",
+        "brand": "八剣伝",
+        "brand:en": "Hakkenden",
+        "brand:ja": "八剣伝",
+        "brand:wikidata": "Q114783141",
+        "name": "八剣伝",
+        "name:en": "Hakkenden",
+        "name:ja": "八剣伝",
+        "name:wikidata": "Q114783141"
+      }
+    },
+    {
       "displayName": "和民",
       "id": "watami-0435b9",
       "locationSet": {"include": ["jp"]},
@@ -460,8 +471,8 @@
     },
     {
       "displayName": "庄や",
-      "id": "5d7ca5-296a9c",
-      "locationSet": {"include": ["001"]},
+      "id": "5d7ca5-0435b9",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "pub",
         "brand": "庄や",

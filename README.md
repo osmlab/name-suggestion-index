@@ -42,10 +42,11 @@ Currently used in:
 - [iD](https://github.com/openstreetmap/iD) (see above)
 - [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/TaggingPresetPreference) available
-- [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)
+- [Osmose](http://osmose.openstreetmap.fr/en/errors?item=3130)
 - [osmfeatures](https://github.com/westnordost/osmfeatures)
 - [Go Map!!](https://github.com/bryceco/GoMap)
 - [StreetComplete](https://github.com/streetcomplete/StreetComplete/blob/master/buildSrc/src/main/java/UpdateNsiPresetsTask.kt)
+- [Every Door](https://github.com/Zverik/every_door)
 
 ## About the index
 

@@ -3,44 +3,64 @@
     "path": "operators/amenity/telephone",
     "preserveTags": ["^name"],
     "exclude": {
-      "generic": ["^-$", "^(tele)?phone$"]
+      "generic": [
+        "^-$",
+        "^(tele)?phone$",
+        "^locutorio$",
+        "^telecom$"
+      ]
     }
   },
   "items": [
     {
       "displayName": "A1",
-      "id": "a1-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "a1-1e9ebd",
+      "locationSet": {"include": ["at"]},
+      "matchNames": [
+        "a1 telekom austria",
+        "telekom",
+        "telekom ag",
+        "telekom austria"
+      ],
       "tags": {
         "amenity": "telephone",
-        "operator": "A1"
+        "operator": "A1",
+        "operator:wikidata": "Q279847"
       }
     },
     {
-      "displayName": "Altice",
-      "id": "altice-2be02b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Altice Portugal",
+      "id": "alticeportugal-b47ccc",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": [
+        "altice",
+        "portugal telecom",
+        "pt"
+      ],
       "tags": {
         "amenity": "telephone",
-        "operator": "Altice"
+        "operator": "Altice Portugal",
+        "operator:wikidata": "Q2105426"
       }
     },
     {
       "displayName": "Antel",
-      "id": "antel-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "antel-106ca3",
+      "locationSet": {"include": ["uy"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Antel"
+        "operator": "Antel",
+        "operator:wikidata": "Q295780"
       }
     },
     {
       "displayName": "Arqiva",
-      "id": "arqiva-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "arqiva-190dbf",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Arqiva"
+        "operator": "Arqiva",
+        "operator:wikidata": "Q4795774"
       }
     },
     {
@@ -55,30 +75,36 @@
       }
     },
     {
-      "displayName": "Bezeq",
-      "id": "bezeq-2be02b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Bell MTS",
+      "id": "bellmts-c4f09e",
+      "locationSet": {
+        "include": ["ca-mb.geojson"]
+      },
+      "matchNames": ["mts"],
       "tags": {
         "amenity": "telephone",
-        "operator": "Bezeq"
+        "operator": "Bell MTS",
+        "operator:wikidata": "Q1890462"
       }
     },
     {
       "displayName": "Brasil Telecom",
-      "id": "brasiltelecom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "brasiltelecom-2d3d8d",
+      "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Brasil Telecom"
+        "operator": "Brasil Telecom",
+        "operator:wikidata": "Q899130"
       }
     },
     {
       "displayName": "BSNL",
-      "id": "bsnl-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "bsnl-b0ab99",
+      "locationSet": {"include": ["in"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "BSNL"
+        "operator": "BSNL",
+        "operator:wikidata": "Q278834"
       }
     },
     {
@@ -98,26 +124,28 @@
     },
     {
       "displayName": "CANTV",
-      "id": "cantv-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "cantv-da1b5a",
+      "locationSet": {"include": ["ve"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "CANTV"
+        "operator": "CANTV",
+        "operator:wikidata": "Q4302263"
       }
     },
     {
       "displayName": "Claro",
-      "id": "claro-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "claro-6490cd",
+      "locationSet": {"include": ["419"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Claro"
+        "operator": "Claro",
+        "operator:wikidata": "Q1770208"
       }
     },
     {
       "displayName": "CRT/Brasil Telecom",
-      "id": "crtbrasiltelecom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "crtbrasiltelecom-2d3d8d",
+      "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "telephone",
         "operator": "CRT/Brasil Telecom"
@@ -125,11 +153,12 @@
     },
     {
       "displayName": "Cyta",
-      "id": "cyta-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "cyta-414160",
+      "locationSet": {"include": ["q644636"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Cyta"
+        "operator": "Cyta",
+        "operator:wikidata": "Q3565273"
       }
     },
     {
@@ -139,7 +168,10 @@
       "matchNames": [
         "deutsche post",
         "deutsche post ag",
+        "deutsche telekom",
+        "post",
         "t-com",
+        "telecom",
         "telekom",
         "telekom ag",
         "telekom deutschland",
@@ -147,43 +179,48 @@
       ],
       "tags": {
         "amenity": "telephone",
-        "brand": "Deutsche Telekom",
-        "brand:wikidata": "Q9396",
         "operator": "Deutsche Telekom AG",
         "operator:wikidata": "Q9396"
       }
     },
     {
       "displayName": "Eir",
-      "id": "eir-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "eir-c8bb0f",
+      "locationSet": {"include": ["ie"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Eir"
-      }
-    },
-    {
-      "displayName": "ETC",
-      "id": "etc-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "ETC"
+        "operator": "Eir",
+        "operator:wikidata": "Q3049473"
       }
     },
     {
       "displayName": "ETECSA",
-      "id": "etecsa-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "etecsa-e894e6",
+      "locationSet": {"include": ["cu"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "ETECSA"
+        "operator": "ETECSA",
+        "operator:wikidata": "Q490323"
+      }
+    },
+    {
+      "displayName": "ethio telecom",
+      "id": "ethiotelecom-636f14",
+      "locationSet": {"include": ["et"]},
+      "matchNames": [
+        "etc",
+        "ethiopian telecommunications corporation"
+      ],
+      "tags": {
+        "amenity": "telephone",
+        "operator": "ethio telecom",
+        "operator:wikidata": "Q5403583"
       }
     },
     {
       "displayName": "Futel",
-      "id": "futel-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "futel-d49842",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "telephone",
         "operator": "Futel"
@@ -191,8 +228,8 @@
     },
     {
       "displayName": "Infocus Public Networks Ltd",
-      "id": "infocuspublicnetworksltd-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "infocuspublicnetworksltd-190dbf",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "telephone",
         "operator": "Infocus Public Networks Ltd"
@@ -200,26 +237,28 @@
     },
     {
       "displayName": "Invitel",
-      "id": "invitel-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "invitel-a3dfca",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Invitel"
+        "operator": "Invitel",
+        "operator:wikidata": "Q372983"
       }
     },
     {
       "displayName": "KCom",
-      "id": "kcom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "kcom-190dbf",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "KCom"
+        "operator": "KCom",
+        "operator:wikidata": "Q15995238"
       }
     },
     {
       "displayName": "kt링커스",
-      "id": "80505e-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "80505e-9fd277",
+      "locationSet": {"include": ["kr"]},
       "tags": {
         "amenity": "telephone",
         "operator": "kt링커스",
@@ -227,18 +266,9 @@
       }
     },
     {
-      "displayName": "Locutorio",
-      "id": "locutorio-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Locutorio"
-      }
-    },
-    {
       "displayName": "Logitel",
-      "id": "logitel-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "logitel-eff826",
+      "locationSet": {"include": ["mx"]},
       "tags": {
         "amenity": "telephone",
         "operator": "Logitel"
@@ -246,20 +276,13 @@
     },
     {
       "displayName": "Magyar Telekom",
-      "id": "magyartelekom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "magyartelekom-a3dfca",
+      "locationSet": {"include": ["hu"]},
+      "matchNames": ["magyar telekom nyrt."],
       "tags": {
         "amenity": "telephone",
-        "operator": "Magyar Telekom"
-      }
-    },
-    {
-      "displayName": "Magyar Telekom Nyrt.",
-      "id": "magyartelekomnyrt-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Magyar Telekom Nyrt."
+        "operator": "Magyar Telekom",
+        "operator:wikidata": "Q458944"
       }
     },
     {
@@ -268,22 +291,14 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Movistar"
-      }
-    },
-    {
-      "displayName": "MTS",
-      "id": "mts-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "MTS"
+        "operator": "Movistar",
+        "operator:wikidata": "Q967735"
       }
     },
     {
       "displayName": "MTS Allstream",
-      "id": "mtsallstream-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "mtsallstream-25374a",
+      "locationSet": {"include": ["ca"]},
       "tags": {
         "amenity": "telephone",
         "operator": "MTS Allstream"
@@ -291,8 +306,8 @@
     },
     {
       "displayName": "New World Payphones",
-      "id": "newworldpayphones-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "newworldpayphones-190dbf",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "telephone",
         "operator": "New World Payphones"
@@ -304,6 +319,7 @@
       "locationSet": {
         "include": ["jp-ntt-east.geojson"]
       },
+      "matchNames": ["東日本電信電話"],
       "tags": {
         "amenity": "telephone",
         "operator": "東日本電信電話株式会社",
@@ -331,8 +347,8 @@
     },
     {
       "displayName": "O2",
-      "id": "o2-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "o2-f67c67",
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "amenity": "telephone",
         "operator": "O2"
@@ -340,20 +356,46 @@
     },
     {
       "displayName": "Oi",
-      "id": "oi-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "oi-2d3d8d",
+      "locationSet": {"include": ["br"]},
+      "matchNames": ["telemar"],
       "tags": {
         "amenity": "telephone",
-        "operator": "Oi"
+        "operator": "Oi",
+        "operator:wikidata": "Q1538731"
       }
     },
     {
-      "displayName": "OPT",
-      "id": "opt-2be02b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Ooredoo",
+      "id": "ooredoo-19d03a",
+      "locationSet": {"include": ["qa"]},
+      "matchNames": ["qtel"],
       "tags": {
         "amenity": "telephone",
-        "operator": "OPT"
+        "operator": "Ooredoo",
+        "operator:wikidata": "Q919935"
+      }
+    },
+    {
+      "displayName": "OPT (Nouvelle-Calédonie)",
+      "id": "officedespostesettelecommunicationsdenouvellecaledonie-32dfcb",
+      "locationSet": {"include": ["nc"]},
+      "tags": {
+        "amenity": "telephone",
+        "operator": "Office des postes et télécommunications de Nouvelle-Calédonie",
+        "operator:short": "OPT",
+        "operator:wikidata": "Q3349600"
+      }
+    },
+    {
+      "displayName": "OPT (Polynésie française)",
+      "id": "officedespostesettelecommunicationsdepolynesiefrancaise-6c2af3",
+      "locationSet": {"include": ["pf"]},
+      "tags": {
+        "amenity": "telephone",
+        "operator": "Office des postes et télécommunications de Polynésie française",
+        "operator:short": "OPT",
+        "operator:wikidata": "Q3349602"
       }
     },
     {
@@ -362,52 +404,28 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Orange"
+        "operator": "Orange",
+        "operator:wikidata": "Q1431486"
       }
     },
     {
       "displayName": "OTE",
-      "id": "ote-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "ote-9da549",
+      "locationSet": {"include": ["gr"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "OTE"
-      }
-    },
-    {
-      "displayName": "P&T",
-      "id": "pandt-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "P&T"
-      }
-    },
-    {
-      "displayName": "Pacific Telemanagement Services",
-      "id": "pacifictelemanagementservices-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Pacific Telemanagement Services"
+        "operator": "OTE",
+        "operator:wikidata": "Q206678"
       }
     },
     {
       "displayName": "PLDT",
-      "id": "pldt-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "pldt-795ee8",
+      "locationSet": {"include": ["ph"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "PLDT"
-      }
-    },
-    {
-      "displayName": "Portugal Telecom",
-      "id": "portugaltelecom-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Portugal Telecom"
+        "operator": "PLDT",
+        "operator:wikidata": "Q644167"
       }
     },
     {
@@ -420,36 +438,43 @@
       }
     },
     {
-      "displayName": "PT",
-      "id": "pt-2be02b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "POST Luxembourg",
+      "id": "postluxembourg-0ddef4",
+      "locationSet": {"include": ["lu"]},
+      "matchNames": ["p&t"],
       "tags": {
         "amenity": "telephone",
-        "operator": "PT"
+        "operator": "POST Luxembourg",
+        "operator:wikidata": "Q1570910"
       }
     },
     {
-      "displayName": "Qtel",
-      "id": "qtel-2be02b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "PTS",
+      "id": "pts-d49842",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "pacific telemanagement services"
+      ],
       "tags": {
         "amenity": "telephone",
-        "operator": "Qtel"
+        "operator": "PTS",
+        "operator:wikidata": "Q7122727"
       }
     },
     {
       "displayName": "R",
-      "id": "r-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "r-57fa2c",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "R"
+        "operator": "R",
+        "operator:wikidata": "Q3326234"
       }
     },
     {
       "displayName": "RBL Telecom",
-      "id": "rbltelecom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "rbltelecom-2b48ae",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "telephone",
         "operator": "RBL Telecom"
@@ -457,35 +482,29 @@
     },
     {
       "displayName": "Romtelecom",
-      "id": "romtelecom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "romtelecom-273726",
+      "locationSet": {"include": ["ro"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Romtelecom"
-      }
-    },
-    {
-      "displayName": "Spark",
-      "id": "spark-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Spark"
+        "operator": "Romtelecom",
+        "operator:wikidata": "Q4118400"
       }
     },
     {
       "displayName": "Spark New Zealand",
-      "id": "sparknewzealand-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "sparknewzealand-2e73ba",
+      "locationSet": {"include": ["nz"]},
+      "matchNames": ["spark", "spark nz"],
       "tags": {
         "amenity": "telephone",
-        "operator": "Spark New Zealand"
+        "operator": "Spark New Zealand",
+        "operator:wikidata": "Q1549526"
       }
     },
     {
       "displayName": "Spectrum Interactive",
-      "id": "spectruminteractive-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "spectruminteractive-190dbf",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "telephone",
         "operator": "Spectrum Interactive"
@@ -493,38 +512,24 @@
     },
     {
       "displayName": "Swisscom",
-      "id": "swisscom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "swisscom-2e827a",
+      "locationSet": {"include": ["ch"]},
+      "matchNames": ["swisscom (schweiz) ag"],
       "tags": {
         "amenity": "telephone",
-        "operator": "Swisscom"
+        "operator": "Swisscom",
+        "operator:wikidata": "Q644324"
       }
     },
     {
-      "displayName": "Swisscom (Schweiz) AG",
-      "id": "swisscomschweizag-2be02b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Telecom Malaysia",
+      "id": "telecommalaysia-f8aa27",
+      "locationSet": {"include": ["my"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Swisscom (Schweiz) AG"
-      }
-    },
-    {
-      "displayName": "Telecom",
-      "id": "telecom-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telecom"
-      }
-    },
-    {
-      "displayName": "Telecom Italia",
-      "id": "telecomitalia-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telecom Italia"
+        "operator": "Telecom Malaysia",
+        "operator:short": "TM",
+        "operator:wikidata": "Q1640639"
       }
     },
     {
@@ -533,16 +538,18 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Telefónica"
+        "operator": "Telefónica",
+        "operator:wikidata": "Q160229"
       }
     },
     {
       "displayName": "Telefónica de Argentina S.A.",
-      "id": "telefonicadeargentinasa-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "telefonicadeargentinasa-b0400a",
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Telefónica de Argentina S.A."
+        "operator": "Telefónica de Argentina S.A.",
+        "operator:wikidata": "Q3517292"
       }
     },
     {
@@ -582,75 +589,43 @@
       }
     },
     {
-      "displayName": "Telekom",
-      "id": "telekom-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telekom"
-      }
-    },
-    {
-      "displayName": "Telekom AG",
-      "id": "telekomag-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telekom AG"
-      }
-    },
-    {
-      "displayName": "Telekom Austria",
-      "id": "telekomaustria-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telekom Austria"
-      }
-    },
-    {
-      "displayName": "Telemar",
-      "id": "telemar-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telemar"
-      }
-    },
-    {
       "displayName": "Telenor",
       "id": "telenor-2be02b",
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Telenor"
+        "operator": "Telenor",
+        "operator:wikidata": "Q3517292"
       }
     },
     {
       "displayName": "Telkom",
-      "id": "telkom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "telkom-37d783",
+      "locationSet": {"include": ["za"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Telkom"
+        "operator": "Telkom",
+        "operator:wikidata": "Q1818970"
       }
     },
     {
       "displayName": "Telmex",
-      "id": "telmex-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "telmex-eff826",
+      "locationSet": {"include": ["mx"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Telmex"
+        "operator": "Telmex",
+        "operator:wikidata": "Q1420164"
       }
     },
     {
       "displayName": "Telstra",
-      "id": "telstra-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "telstra-c9cd58",
+      "locationSet": {"include": ["au"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Telstra"
+        "operator": "Telstra",
+        "operator:wikidata": "Q721162"
       }
     },
     {
@@ -664,63 +639,56 @@
       }
     },
     {
-      "displayName": "TIM",
-      "id": "tim-2be02b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Tigo",
+      "id": "tigo-9cae6a",
+      "locationSet": {"include": ["co"]},
+      "matchNames": ["une"],
       "tags": {
         "amenity": "telephone",
-        "operator": "TIM"
+        "operator": "Tigo",
+        "operator:wikidata": "Q6155026"
       }
     },
     {
-      "displayName": "TIM S.p.A.",
-      "id": "timspa-2be02b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "TIM (Italia)",
+      "id": "tim-dc727e",
+      "locationSet": {"include": ["it"]},
+      "matchNames": [
+        "telecom italia",
+        "tim s.p.a."
+      ],
       "tags": {
         "amenity": "telephone",
-        "operator": "TIM S.p.A."
-      }
-    },
-    {
-      "displayName": "TM",
-      "id": "tm-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "TM"
+        "operator": "TIM",
+        "operator:wikidata": "Q144617"
       }
     },
     {
       "displayName": "TOT",
-      "id": "tot-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "tot-c8699e",
+      "locationSet": {"include": ["th"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "TOT"
+        "operator": "TOT",
+        "operator:wikidata": "Q1590599"
       }
     },
     {
       "displayName": "Türk Telekom",
-      "id": "turktelekom-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "turktelekom-665e92",
+      "locationSet": {"include": ["tr"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Türk Telekom"
-      }
-    },
-    {
-      "displayName": "UNE",
-      "id": "une-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "UNE"
+        "operator": "Türk Telekom",
+        "operator:wikidata": "Q263700"
       }
     },
     {
       "displayName": "Uni Stuttgart",
-      "id": "unistuttgart-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "unistuttgart-a7a2b7",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "telephone",
         "operator": "Uni Stuttgart"
@@ -728,26 +696,28 @@
     },
     {
       "displayName": "Vivo",
-      "id": "vivo-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "vivo-2d3d8d",
+      "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Vivo"
+        "operator": "Vivo",
+        "operator:wikidata": "Q1428656"
       }
     },
     {
       "displayName": "ΟΤΕ",
-      "id": "387537-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "387537-9da549",
+      "locationSet": {"include": ["gr"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "ΟΤΕ"
+        "operator": "ΟΤΕ",
+        "operator:wikidata": "Q206678"
       }
     },
     {
       "displayName": "АТС",
-      "id": "534afc-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "534afc-6db49f",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "telephone",
         "operator": "АТС"
@@ -755,44 +725,29 @@
     },
     {
       "displayName": "Башинформсвязь",
-      "id": "137ef4-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "137ef4-6db49f",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "Башинформсвязь"
+        "operator": "Башинформсвязь",
+        "operator:wikidata": "Q4080105"
       }
     },
     {
       "displayName": "Белтелеком",
-      "id": "672155-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "672155-ab9526",
+      "locationSet": {"include": ["by"]},
+      "matchNames": ["руп «белтелеком»"],
       "tags": {
         "amenity": "telephone",
-        "operator": "Белтелеком"
-      }
-    },
-    {
-      "displayName": "ОАО \"Ростелеком\"",
-      "id": "489110-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "ОАО \"Ростелеком\""
-      }
-    },
-    {
-      "displayName": "ПАО «Ростелеком»",
-      "id": "a9dd80-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "ПАО «Ростелеком»"
+        "operator": "Белтелеком",
+        "operator:wikidata": "Q4082979"
       }
     },
     {
       "displayName": "Россвязь",
-      "id": "9c761b-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "9c761b-6db49f",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "telephone",
         "operator": "Россвязь"
@@ -800,39 +755,29 @@
     },
     {
       "displayName": "Ростелеком",
-      "id": "b6fed5-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "b6fed5-6db49f",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": [
+        "оао \"ростелеком\"",
+        "пао «ростелеком»",
+        "центртелеком"
+      ],
       "tags": {
         "amenity": "telephone",
-        "operator": "Ростелеком"
-      }
-    },
-    {
-      "displayName": "РУП «Белтелеком»",
-      "id": "f04d42-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "РУП «Белтелеком»"
-      }
-    },
-    {
-      "displayName": "Центртелеком",
-      "id": "e264c1-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Центртелеком"
+        "operator": "Ростелеком",
+        "operator:wikidata": "Q1477012"
       }
     },
     {
       "displayName": "בזק",
-      "id": "4272eb-2be02b",
-      "locationSet": {"include": ["001"]},
+      "id": "bezeq-f642b6",
+      "locationSet": {"include": ["il"]},
       "tags": {
         "amenity": "telephone",
         "operator": "בזק",
-        "operator:he": "בזק"
+        "operator:en": "Bezeq",
+        "operator:he": "בזק",
+        "operator:wikidata": "Q853619"
       }
     },
     {

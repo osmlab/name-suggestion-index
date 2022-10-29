@@ -1,6 +1,7 @@
 {
   "properties": {
     "path": "brands/amenity/parcel_locker",
+    "preserveTags": ["^name"],
     "exclude": {"generic": ["^parcel locker$"]}
   },
   "items": [
@@ -32,25 +33,11 @@
     },
     {
       "displayName": "Amazon Hub Locker",
-      "id": "amazonhublocker-ee488f",
+      "id": "amazonhublocker-f85b1f",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["cn", "de", "jp"]
+        "exclude": ["cn", "jp"]
       },
-      "matchNames": ["amazon", "amazon locker"],
-      "preserveTags": ["^name"],
-      "tags": {
-        "amenity": "parcel_locker",
-        "brand": "Amazon Hub",
-        "brand:wikidata": "Q16974764",
-        "name": "Amazon Hub Locker",
-        "parcel_mail_in": "yes"
-      }
-    },
-    {
-      "displayName": "Amazon Hub Locker (Deutschland)",
-      "id": "amazonhublocker-83cc4d",
-      "locationSet": {"include": ["de"]},
       "matchNames": ["amazon", "amazon locker"],
       "preserveTags": ["^name"],
       "tags": {
@@ -89,6 +76,17 @@
         "brand": "Australia Post",
         "brand:wikidata": "Q1142936",
         "name": "Australia Post Parcel Locker"
+      }
+    },
+    {
+      "displayName": "automat przesyłkowy AliExpress",
+      "id": "aliexpress-ce4e28",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "AliExpress",
+        "brand:wikidata": "Q29904317",
+        "parcel_pickup": "yes"
       }
     },
     {
@@ -157,6 +155,41 @@
       }
     },
     {
+      "displayName": "DPD Pickup Station",
+      "id": "dpdpickupstation-ce4e28",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "DPD Pickup Station",
+        "brand:wikidata": "Q114273730",
+        "operator": "DPD",
+        "operator:wikidata": "Q541030",
+        "parcel_pickup": "yes"
+      }
+    },
+    {
+      "displayName": "easybox",
+      "id": "easybox-e32bf4",
+      "locationSet": {"include": ["hu", "ro"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "easybox",
+        "brand:wikidata": "Q114496224",
+        "operator": "Sameday",
+        "operator:wikidata": "Q114417096"
+      }
+    },
+    {
+      "displayName": "Evri",
+      "id": "evri-ad77d0",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["hermes", "hermes locker"],
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Evri"
+      }
+    },
+    {
       "displayName": "Foxpost",
       "id": "foxpost-68603c",
       "locationSet": {"include": ["hu"]},
@@ -175,6 +208,34 @@
         "brand": "GLS",
         "brand:wikidata": "Q366182",
         "name": "GLS Parcel Locker"
+      }
+    },
+    {
+      "displayName": "Growing Communities",
+      "id": "growingcommunities-6089a2",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Growing Communities",
+        "brand:wikidata": "Q109768523",
+        "name": "Growing Communities"
+      }
+    },
+    {
+      "displayName": "Instabox",
+      "id": "instabox-f97fed",
+      "locationSet": {
+        "include": ["de", "dk", "nl", "no", "se"]
+      },
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Instabox",
+        "brand:wikidata": "Q109923726",
+        "name": "Instabox",
+        "parcel_mail_in": "no",
+        "parcel_pickup": "yes"
       }
     },
     {
@@ -219,6 +280,29 @@
       }
     },
     {
+      "displayName": "Meest",
+      "id": "meest-7c151e",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": ["міст"],
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Meest",
+        "brand:wikidata": "Q25432124",
+        "name": "Meest"
+      }
+    },
+    {
+      "displayName": "Mondial Relay",
+      "id": "mondialrelay-318f10",
+      "locationSet": {"include": ["be", "fr"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Mondial Relay",
+        "brand:wikidata": "Q3320547",
+        "parcel_mail_in": "yes"
+      }
+    },
+    {
       "displayName": "My Post 24",
       "id": "mypost24-237d95",
       "locationSet": {"include": ["ch"]},
@@ -246,7 +330,8 @@
         "amenity": "parcel_locker",
         "brand": "Orlen Paczka",
         "brand:wikidata": "Q110457879",
-        "operator": "ORLEN S.A",
+        "operator": "Orlen",
+        "operator:wikidata": "Q110457879",
         "parcel_mail_in": "yes",
         "parcel_pickup": "yes"
       }
@@ -317,6 +402,16 @@
         "operator": "PostNord Danmark",
         "operator:wikidata": "Q1334647",
         "parcel_mail_in": "yes"
+      }
+    },
+    {
+      "displayName": "Parcel shop - DExpress",
+      "id": "parcelshopdexpress-6a219a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Parcel shop - DExpress",
+        "name": "Parcel shop - DExpress"
       }
     },
     {
@@ -417,6 +512,18 @@
       }
     },
     {
+      "displayName": "Rozetka",
+      "id": "rozetka-7c151e",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": ["розетка"],
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Rozetka",
+        "brand:wikidata": "Q12072279",
+        "name": "Rozetka"
+      }
+    },
+    {
       "displayName": "Smartpost",
       "id": "smartpost-0b87cc",
       "locationSet": {"include": ["fi"]},
@@ -460,6 +567,21 @@
       }
     },
     {
+      "displayName": "Нова Пошта",
+      "id": "novaposhta-7c151e",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Нова Пошта",
+        "brand:en": "Nova Poshta",
+        "brand:uk": "Нова Пошта",
+        "brand:wikidata": "Q12133863",
+        "name": "Нова Пошта",
+        "name:en": "Nova Poshta",
+        "name:uk": "Нова Пошта"
+      }
+    },
+    {
       "displayName": "ОмниСДЭК",
       "id": "omnicdek-c00268",
       "locationSet": {"include": ["ru"]},
@@ -498,6 +620,95 @@
         "name": "はこぽす",
         "name:en": "Hakopost",
         "name:ja": "はこぽす"
+      }
+    },
+    {
+      "displayName": "丰巢",
+      "id": "hivebox-a0c60b",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "丰巢",
+        "brand:en": "Hive Box",
+        "brand:wikidata": "Q96076112",
+        "brand:zh": "丰巢",
+        "name": "丰巢",
+        "name:en": "Hive Box",
+        "name:zh": "丰巢"
+      }
+    },
+    {
+      "displayName": "智郵寄 iPostal Kiosk",
+      "id": "ipostalkiosk-a94f22",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "香港郵政 Hongkong Post",
+        "brand:en": "Hongkong Post",
+        "brand:wikidata": "Q196631",
+        "brand:zh": "香港郵政",
+        "name": "智郵寄 iPostal Kiosk",
+        "name:en": "iPostal Kiosk",
+        "name:zh": "智郵寄",
+        "operator": "香港郵政 Hongkong Post",
+        "operator:en": "Hongkong Post",
+        "operator:wikidata": "Q196631",
+        "operator:zh": "香港郵政",
+        "parcel_mail_in": "yes",
+        "payment:alipay_HK": "yes",
+        "payment:octopus": "yes",
+        "payment:payme": "yes",
+        "payment:unionpay": "yes",
+        "payment:wechat": "yes"
+      }
+    },
+    {
+      "displayName": "智郵站 iPostal Station",
+      "id": "ipostalstation-a94f22",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "香港郵政 Hongkong Post",
+        "brand:en": "Hongkong Post",
+        "brand:wikidata": "Q196631",
+        "brand:zh": "香港郵政",
+        "name": "智郵站 iPostal Station",
+        "name:en": "iPostal Station",
+        "name:zh": "智郵站",
+        "operator": "香港郵政 Hongkong Post",
+        "operator:en": "Hongkong Post",
+        "operator:wikidata": "Q196631",
+        "operator:zh": "香港郵政",
+        "parcel_pickup": "yes"
+      }
+    },
+    {
+      "displayName": "順便智能櫃 EF Locker",
+      "id": "sflocker-a94f22",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "順豐速運 SF Express",
+        "brand:en": "SF Express",
+        "brand:wikidata": "Q7390019",
+        "brand:zh": "順豐速運",
+        "name": "順便智能櫃 SF Locker",
+        "name:en": "SF Locker",
+        "name:zh": "順便智能櫃",
+        "operator": "順豐速運 SF Express",
+        "operator:en": "SF Express",
+        "operator:wikidata": "Q7390019",
+        "operator:zh": "順豐速運",
+        "parcel_mail_in": "yes",
+        "parcel_pickup": "yes",
+        "payment:alipay_HK": "yes",
+        "payment:octopus": "yes",
+        "payment:payme": "yes",
+        "payment:unionpay": "yes",
+        "payment:wechat": "yes"
       }
     }
   ]

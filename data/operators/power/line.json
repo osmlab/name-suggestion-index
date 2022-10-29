@@ -4,11 +4,12 @@
     "exclude": {
       "generic": ["^line$"],
       "named": [
-        "badenwerk",
-        "badenwerk ag",
-        "enbw",
-        "enbw ag",
-        "national grid et"
+        "^badenwerk ag$",
+        "^badenwerk$",
+        "^britned$",
+        "^enbw ag$",
+        "^enbw$",
+        "^national grid et$"
       ]
     }
   },
@@ -39,26 +40,36 @@
     },
     {
       "displayName": "AEP",
-      "id": "aep-b654b4",
+      "id": "americanelectricpower-b654b4",
       "locationSet": {"include": ["us"]},
-      "matchNames": [
-        "aep ohio",
-        "aep texas",
-        "american electric power",
-        "apco",
-        "appalachian power",
-        "i&m",
-        "indiana michigan power",
-        "indiana michigan power company",
-        "kentucky power",
-        "pso",
-        "public service company of oklahoma",
-        "southwestern electric power company",
-        "swepco"
-      ],
       "tags": {
-        "operator": "AEP",
+        "operator": "American Electric Power",
+        "operator:short": "AEP",
         "operator:wikidata": "Q464092",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "AEP Ohio",
+      "id": "aepohio-b6ef1d",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "operator": "AEP Ohio",
+        "operator:wikidata": "Q109015295",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "AEP Texas",
+      "id": "aeptexas-2d9f43",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "operator": "AEP Texas",
+        "operator:wikidata": "Q109015560",
         "power": "line"
       }
     },
@@ -136,33 +147,6 @@
       "tags": {
         "operator": "Alabama Power",
         "operator:wikidata": "Q4705296",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "Alcan",
-      "id": "alcan-6c988f",
-      "locationSet": {"include": ["ca"]},
-      "tags": {
-        "operator": "Alcan",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "Allegheny Power",
-      "id": "alleghenypower-b654b4",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "Allegheny Power",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "Allegheny Power Services",
-      "id": "alleghenypowerservices-b654b4",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "Allegheny Power Services",
         "power": "line"
       }
     },
@@ -258,6 +242,24 @@
       "note": "Missing wikidata page",
       "tags": {
         "operator": "Anaheim Public Utilities",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "APCO",
+      "id": "appalachianpower-33137a",
+      "locationSet": {
+        "include": [
+          "us-tn.geojson",
+          "us-va.geojson",
+          "us-wv.geojson"
+        ]
+      },
+      "matchNames": ["appalachian power company"],
+      "tags": {
+        "operator": "Appalachian Power",
+        "operator:short": "APCO",
+        "operator:wikidata": "Q109013941",
         "power": "line"
       }
     },
@@ -376,6 +378,12 @@
         "operator:wikidata": "Q783723",
         "power": "line"
       }
+    },
+    {
+      "displayName": "AÜW",
+      "id": "auw-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {"operator": "AÜW", "power": "line"}
     },
     {
       "displayName": "Avacon",
@@ -505,9 +513,9 @@
       "displayName": "Bonneville Power Administration",
       "id": "bonnevillepoweradministration-b654b4",
       "locationSet": {"include": ["us"]},
-      "matchNames": ["bpa"],
       "tags": {
         "operator": "Bonneville Power Administration",
+        "operator:short": "BPA",
         "operator:wikidata": "Q2910288",
         "power": "line"
       }
@@ -520,6 +528,19 @@
         "operator": "Botswana Power",
         "operator:short": "BPC",
         "operator:wikidata": "Q4948910",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "BPU",
+      "id": "kansascityboardofpublicutilities-beff6d",
+      "locationSet": {
+        "include": ["us-ks.geojson"]
+      },
+      "tags": {
+        "operator": "Kansas City Board of Public Utilities",
+        "operator:short": "BPU",
+        "operator:wikidata": "Q29641882",
         "power": "line"
       }
     },
@@ -543,17 +564,6 @@
       }
     },
     {
-      "displayName": "BritNed",
-      "id": "britned-822cd8",
-      "locationSet": {
-        "include": ["gb-eng", "nl"]
-      },
-      "tags": {
-        "operator": "BritNed",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Brookings Muncipal Utilities",
       "id": "brookingsmuncipalutilities-b654b4",
       "locationSet": {"include": ["us"]},
@@ -568,6 +578,20 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "Bryan Texas Utilities",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Burgenland Energie",
+      "id": "burgenlandenergieag-7a29cb",
+      "locationSet": {"include": ["at"]},
+      "matchNames": [
+        "energie burgenland",
+        "energie burgenland ag"
+      ],
+      "tags": {
+        "operator": "Burgenland Energie AG",
+        "operator:wikidata": "Q15808094",
         "power": "line"
       }
     },
@@ -855,6 +879,15 @@
       }
     },
     {
+      "displayName": "City of Concord",
+      "id": "cityofconcord-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "City of Concord",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "City of Lakeland",
       "id": "cityoflakeland-b654b4",
       "locationSet": {"include": ["us"]},
@@ -883,15 +916,6 @@
       }
     },
     {
-      "displayName": "CL&P",
-      "id": "clandp-b654b4",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "CL&P",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Clark Electric Distribution Company",
       "id": "clarkelectricdistributioncompany-53cceb",
       "locationSet": {"include": ["ph"]},
@@ -902,8 +926,10 @@
     },
     {
       "displayName": "Clark Public Utilities",
-      "id": "clarkpublicutilities-b654b4",
-      "locationSet": {"include": ["us"]},
+      "id": "clarkpublicutilities-fa4900",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
       "tags": {
         "operator": "Clark Public Utilities",
         "operator:wikidata": "Q20712245",
@@ -1159,15 +1185,6 @@
       }
     },
     {
-      "displayName": "Dayton",
-      "id": "dayton-b654b4",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "Dayton",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Dayton Power & Light",
       "id": "daytonpowerandlight-b654b4",
       "locationSet": {"include": ["us"]},
@@ -1265,6 +1282,15 @@
       }
     },
     {
+      "displayName": "Duke Energy Progress",
+      "id": "dukeenergyprogress-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Duke Energy Progress",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "E.DIS Netz GmbH",
       "id": "edisnetzgmbh-3723c9",
       "locationSet": {
@@ -1350,6 +1376,21 @@
       "tags": {
         "operator": "Eastland Network",
         "operator:wikidata": "Q108450243",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "ECG",
+      "id": "ecg-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {"operator": "ECG", "power": "line"}
+    },
+    {
+      "displayName": "EDELCA",
+      "id": "edelca-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "EDELCA",
         "power": "line"
       }
     },
@@ -1453,8 +1494,8 @@
     },
     {
       "displayName": "EEB",
-      "id": "eeb-2a61eb",
-      "locationSet": {"include": ["gb"]},
+      "id": "eeb-ddc6a3",
+      "locationSet": {"include": ["br"]},
       "tags": {"operator": "EEB", "power": "line"}
     },
     {
@@ -1462,6 +1503,12 @@
       "id": "eed-74d56c",
       "locationSet": {"include": ["hu"]},
       "tags": {"operator": "EED", "power": "line"}
+    },
+    {
+      "displayName": "EFL",
+      "id": "efl-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {"operator": "EFL", "power": "line"}
     },
     {
       "displayName": "EGAT",
@@ -1536,8 +1583,9 @@
     },
     {
       "displayName": "Electricity North West",
-      "id": "electricitynorthwest-2a61eb",
-      "locationSet": {"include": ["gb"]},
+      "id": "electricitynorthwest-11f3a5",
+      "locationSet": {"include": ["gb-eng"]},
+      "matchNames": ["enwl"],
       "tags": {
         "operator": "Electricity North West",
         "operator:wikidata": "Q5357804",
@@ -1755,6 +1803,12 @@
       }
     },
     {
+      "displayName": "EMS",
+      "id": "ems-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {"operator": "EMS", "power": "line"}
+    },
+    {
       "displayName": "Endeavour Energy",
       "id": "endeavourenergy-8d5e75",
       "locationSet": {"include": ["au"]},
@@ -1924,6 +1978,15 @@
       }
     },
     {
+      "displayName": "Energex",
+      "id": "energex-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Energex",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Energie AG",
       "id": "energieag-116894",
       "locationSet": {"include": ["001"]},
@@ -1934,20 +1997,20 @@
       }
     },
     {
-      "displayName": "Energie Burgenland AG",
-      "id": "energieburgenlandag-7a29cb",
-      "locationSet": {"include": ["at"]},
-      "tags": {
-        "operator": "Energie Burgenland AG",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Energie und Wasser Potsdam GmbH",
       "id": "energieundwasserpotsdamgmbh-d5e323",
       "locationSet": {"include": ["de"]},
       "tags": {
         "operator": "Energie und Wasser Potsdam GmbH",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Energienetze Steiermark",
+      "id": "energienetzesteiermark-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Energienetze Steiermark",
         "power": "line"
       }
     },
@@ -2045,6 +2108,15 @@
       "locationSet": {"include": ["pe"]},
       "tags": {
         "operator": "Enersur",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "ENERTRAG",
+      "id": "enertrag-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "ENERTRAG",
         "power": "line"
       }
     },
@@ -2365,6 +2437,15 @@
       }
     },
     {
+      "displayName": "Fayetteville Public Works",
+      "id": "fayettevillepublicworks-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Fayetteville Public Works",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Fingrid",
       "id": "fingrid-17e9a7",
       "locationSet": {"include": ["fi"]},
@@ -2437,6 +2518,7 @@
       },
       "matchNames": [
         "flordia power and light",
+        "florida power & light co",
         "fpl"
       ],
       "tags": {
@@ -2484,6 +2566,18 @@
       "tags": {
         "operator": "Fortum",
         "operator:wikidata": "Q1439075",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Four County EMC",
+      "id": "fourcountyemc-86b821",
+      "locationSet": {
+        "include": ["us-nc.geojson"]
+      },
+      "tags": {
+        "operator": "Four County EMC",
+        "operator:wikidata": "Q114366906",
         "power": "line"
       }
     },
@@ -2610,6 +2704,15 @@
       }
     },
     {
+      "displayName": "Greenville Utilities Commission",
+      "id": "greenvilleutilitiescommission-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Greenville Utilities Commission",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Groupe E",
       "id": "groupee-34ad9c",
       "locationSet": {"include": ["ch"]},
@@ -2705,15 +2808,6 @@
       "tags": {
         "operator": "Haugaland Kraft Nett",
         "operator:wikidata": "Q11974449",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "Hawaii Electric Light",
-      "id": "hawaiielectriclight-b654b4",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "Hawaii Electric Light",
         "power": "line"
       }
     },
@@ -2817,6 +2911,17 @@
       }
     },
     {
+      "displayName": "Idaho Power",
+      "id": "idahopower-b654b4",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["idaho power company"],
+      "tags": {
+        "operator": "Idaho Power",
+        "operator:wikidata": "Q3147780",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "illwerke vkw",
       "id": "illwerkevkw-7a29cb",
       "locationSet": {"include": ["at"]},
@@ -2835,12 +2940,42 @@
     },
     {
       "displayName": "Imperial Irrigation District",
-      "id": "imperialirrigationdistrict-b654b4",
-      "locationSet": {"include": ["us"]},
+      "id": "imperialirrigationdistrict-eefbc4",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
       "tags": {
         "operator": "Imperial Irrigation District",
         "operator:short": "IID",
         "operator:wikidata": "Q16985775",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Independence Power and Light",
+      "id": "independencepowerandlight-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Independence Power and Light",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Indiana Michigan Power",
+      "id": "indianamichiganpower-e5a7c1",
+      "locationSet": {
+        "include": [
+          "us-in.geojson",
+          "us-mi.geojson"
+        ]
+      },
+      "matchNames": [
+        "indiana michigan power company"
+      ],
+      "tags": {
+        "operator": "Indiana Michigan Power",
+        "operator:short": "I&M",
+        "operator:wikidata": "Q109016008",
         "power": "line"
       }
     },
@@ -2947,6 +3082,15 @@
       }
     },
     {
+      "displayName": "Jones-Onslow EMC",
+      "id": "jonesonslowemc-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Jones-Onslow EMC",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "JR東日本",
       "id": "eastjapanrailwaycompany-e95322",
       "locationSet": {"include": ["jp"]},
@@ -2997,6 +3141,18 @@
       "tags": {
         "operator": "KELAG",
         "operator:wikidata": "Q1453452",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Kentucky Power",
+      "id": "kentuckypower-ab6528",
+      "locationSet": {
+        "include": ["us-ky.geojson"]
+      },
+      "tags": {
+        "operator": "Kentucky Power",
+        "operator:wikidata": "Q109016012",
         "power": "line"
       }
     },
@@ -3209,6 +3365,24 @@
       }
     },
     {
+      "displayName": "Lnett",
+      "id": "lnett-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Lnett",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Lockhart Power",
+      "id": "lockhartpower-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Lockhart Power",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Lofotkraft",
       "id": "lofotkraft-e0b869",
       "locationSet": {"include": ["no"]},
@@ -3307,6 +3481,25 @@
       }
     },
     {
+      "displayName": "Mantiqueira Transmissora de Energia",
+      "id": "mantiqueiratransmissoradeenergia-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Mantiqueira Transmissora de Energia",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Manx Utilities",
+      "id": "manxutilities-be061e",
+      "locationSet": {"include": ["im"]},
+      "tags": {
+        "operator": "Manx Utilities",
+        "operator:wikidata": "Q96391881",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Maritime Electric",
       "id": "maritimeelectric-6c988f",
       "locationSet": {"include": ["ca"]},
@@ -3334,6 +3527,15 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "Marshall Municipal Utilities",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Maui Electric Company",
+      "id": "mauielectriccompany-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Maui Electric Company",
         "power": "line"
       }
     },
@@ -3497,10 +3699,11 @@
     },
     {
       "displayName": "Mutual Energy",
-      "id": "mutualenergy-2a61eb",
-      "locationSet": {"include": ["gb"]},
+      "id": "mutualenergy-a6966c",
+      "locationSet": {"include": ["gb-nir"]},
       "tags": {
         "operator": "Mutual Energy",
+        "operator:wikidata": "Q112882722",
         "power": "line"
       }
     },
@@ -3543,8 +3746,10 @@
     },
     {
       "displayName": "National Grid",
-      "id": "nationalgrid-2a61eb",
-      "locationSet": {"include": ["gb"]},
+      "id": "nationalgrid-036c1a",
+      "locationSet": {
+        "include": ["au", "gb-eng", "us"]
+      },
       "matchNames": [
         "national grid et",
         "national grid plc",
@@ -3568,6 +3773,29 @@
       }
     },
     {
+      "displayName": "National Grid Electricity Distribution",
+      "id": "nationalgridelectricitydistribution-11f3a5",
+      "locationSet": {"include": ["gb-eng"]},
+      "matchNames": [
+        "western power",
+        "western power distribution"
+      ],
+      "tags": {
+        "operator": "National Grid Electricity Distribution",
+        "operator:wikidata": "Q7988183",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "National Grid Electricity Distribution Plc",
+      "id": "nationalgridelectricitydistributionplc-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "National Grid Electricity Distribution Plc",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "NB Power",
       "id": "nbpower-d59b81",
       "locationSet": {
@@ -3578,15 +3806,6 @@
         "operator:en": "NB Power",
         "operator:fr": "Énergie NB",
         "operator:wikidata": "Q749716",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "NEDL",
-      "id": "nedl-2a61eb",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "operator": "NEDL",
         "power": "line"
       }
     },
@@ -3612,6 +3831,13 @@
       "displayName": "Netz NÖ",
       "id": "netzno-7a29cb",
       "locationSet": {"include": ["at"]},
+      "matchNames": [
+        "evn netz",
+        "netz niederösterreich",
+        "netz niederösterreich gmbh",
+        "nö netz",
+        "nö netz ag"
+      ],
       "tags": {
         "operator": "Netz NÖ",
         "operator:wikidata": "Q109512632",
@@ -3655,6 +3881,26 @@
       "note": "Might be related to Städtische Werke Magdeburg (SWM)",
       "tags": {
         "operator": "Netze Magdeburg GmbH",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Nevada Power Company",
+      "id": "nevadapowercompany-21bd89",
+      "locationSet": {
+        "include": ["us-nv.geojson"]
+      },
+      "tags": {
+        "operator": "Nevada Power Company",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Newfoundland and Labrador Hydro",
+      "id": "newfoundlandandlabradorhydro-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Newfoundland and Labrador Hydro",
         "power": "line"
       }
     },
@@ -3720,9 +3966,19 @@
       "displayName": "Northern Powergrid",
       "id": "northernpowergrid-11f3a5",
       "locationSet": {"include": ["gb-eng"]},
+      "matchNames": ["nedl", "npg", "yedl"],
       "tags": {
         "operator": "Northern Powergrid",
         "operator:wikidata": "Q7058871",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Northern States Power (Wisconsin)",
+      "id": "northernstatespowerwisconsin-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Northern States Power (Wisconsin)",
         "power": "line"
       }
     },
@@ -3732,6 +3988,16 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "NORTHWESTERN ENERGY LLC",
+        "operator:wikidata": "Q7053620",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Nova Scotia Power",
+      "id": "novascotiapower-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Nova Scotia Power",
         "power": "line"
       }
     },
@@ -3890,13 +4156,25 @@
       }
     },
     {
+      "displayName": "Pacific Power",
+      "id": "pacificpower-4146e4",
+      "locationSet": {
+        "include": [
+          "us-ca.geojson",
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
+      "tags": {
+        "operator": "Pacific Power",
+        "operator:wikidata": "Q2045479",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "PacifiCorp",
       "id": "pacificorp-b654b4",
       "locationSet": {"include": ["us"]},
-      "matchNames": [
-        "pacific power",
-        "rocky mountain power"
-      ],
       "tags": {
         "operator": "PacifiCorp",
         "operator:wikidata": "Q2045479",
@@ -3989,6 +4267,15 @@
       }
     },
     {
+      "displayName": "PKP Energetyka",
+      "id": "pkpenergetyka-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "PKP Energetyka",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "PLN",
       "id": "pln-f1e749",
       "locationSet": {"include": ["id"]},
@@ -4000,12 +4287,17 @@
     },
     {
       "displayName": "PNM",
-      "id": "pnm-b654b4",
-      "locationSet": {"include": ["us"]},
-      "matchNames": ["texas new mexico power"],
+      "id": "publicservicecompanyofnewmexico-07c80d",
+      "locationSet": {
+        "include": [
+          "us-az.geojson",
+          "us-nm.geojson"
+        ]
+      },
       "tags": {
-        "operator": "PNM",
-        "operator:wikidata": "Q7119849",
+        "operator": "Public Service Company of New Mexico",
+        "operator:short": "PNM",
+        "operator:wikidata": "Q112271592",
         "power": "line"
       }
     },
@@ -4023,9 +4315,9 @@
       "displayName": "Portland General Electric",
       "id": "portlandgeneralelectric-b654b4",
       "locationSet": {"include": ["us"]},
-      "matchNames": ["pge"],
       "tags": {
         "operator": "Portland General Electric",
+        "operator:short": "PGE",
         "operator:wikidata": "Q7231939",
         "power": "line"
       }
@@ -4168,6 +4460,19 @@
       }
     },
     {
+      "displayName": "PSO",
+      "id": "publicservicecompanyofoklahoma-bcec93",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "operator": "Public Service Company of Oklahoma",
+        "operator:short": "PSO",
+        "operator:wikidata": "Q109016015",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Puget Sound Energy",
       "id": "pugetsoundenergy-b654b4",
       "locationSet": {"include": ["us"]},
@@ -4239,6 +4544,15 @@
       }
     },
     {
+      "displayName": "Resolute Forest Products",
+      "id": "resoluteforestproducts-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Resolute Forest Products",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "RFI",
       "id": "rfi-b6e02f",
       "locationSet": {"include": ["it"]},
@@ -4264,10 +4578,39 @@
       }
     },
     {
+      "displayName": "Rio Tinto Alcan",
+      "id": "riotintoalcan-f669fe",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "matchNames": ["alcan"],
+      "tags": {
+        "operator": "Rio Tinto Alcan",
+        "operator:wikidata": "Q2022261",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "RNT",
       "id": "rnt-bb6fb3",
       "locationSet": {"include": ["ao"]},
       "tags": {"operator": "RNT", "power": "line"}
+    },
+    {
+      "displayName": "Rocky Mountain Power",
+      "id": "rockymountainpower-5acb27",
+      "locationSet": {
+        "include": [
+          "us-id.geojson",
+          "us-ut.geojson",
+          "us-wy.geojson"
+        ]
+      },
+      "tags": {
+        "operator": "Rocky Mountain Power",
+        "operator:wikidata": "Q2045479",
+        "power": "line"
+      }
     },
     {
       "displayName": "Romande Energie",
@@ -4416,25 +4759,25 @@
       }
     },
     {
-      "displayName": "Scottish Hydro Electric Transmission",
-      "id": "scottishhydroelectrictransmission-2a61eb",
+      "displayName": "Scottish and Southern Energy (SSE)",
+      "id": "scottishandsouthernenergy-2a61eb",
       "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "scottish hydro electric power distribution",
+        "southern electric"
+      ],
       "tags": {
-        "operator": "Scottish Hydro Electric Transmission",
+        "operator": "Scottish and Southern Energy",
+        "operator:wikidata": "Q493854",
         "power": "line"
       }
     },
     {
       "displayName": "Scottish Power",
-      "id": "scottishpower-2a61eb",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": [
-        "sp distribution",
-        "sp energy networks"
-      ],
+      "id": "scottishpower-116894",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "Scottish Power",
-        "operator:wikidata": "Q1778417",
         "power": "line"
       }
     },
@@ -4489,6 +4832,15 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "Sharyland Utilities",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Sierra Pacific Power Company",
+      "id": "sierrapacificpowercompany-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Sierra Pacific Power Company",
         "power": "line"
       }
     },
@@ -4561,6 +4913,17 @@
       }
     },
     {
+      "displayName": "South Carolina Gas & Electric",
+      "id": "southcarolinagasandelectric-ae69b6",
+      "locationSet": {
+        "include": ["us-sc.geojson"]
+      },
+      "tags": {
+        "operator": "South Carolina Gas & Electric",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "South Plains Electric Cooperative",
       "id": "southplainselectriccooperative-b654b4",
       "locationSet": {"include": ["us"]},
@@ -4598,20 +4961,44 @@
       }
     },
     {
-      "displayName": "SP Transmission",
-      "id": "sptransmission-2a61eb",
+      "displayName": "SP Energy Networks",
+      "id": "spenergynetworks-2a61eb",
       "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "scottish power energy networks",
+        "sp distribution",
+        "sp manweb"
+      ],
+      "tags": {
+        "operator": "SP Energy Networks",
+        "operator:wikidata": "Q1778417",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "SP Transmission",
+      "id": "sptransmission-cd3045",
+      "locationSet": {"include": ["gb-sct"]},
+      "matchNames": [
+        "scottish power transmission"
+      ],
+      "note": "Operates the electricity transmission network in southern Scotland.",
       "tags": {
         "operator": "SP Transmission",
+        "operator:wikidata": "Q114436108",
         "power": "line"
       }
     },
     {
       "displayName": "Springfield Utility Board",
-      "id": "springfieldutilityboard-b654b4",
-      "locationSet": {"include": ["us"]},
+      "id": "springfieldutilityboard-c9a7db",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "operator": "Springfield Utility Board",
+        "operator:short": "SUB",
+        "operator:wikidata": "Q114835124",
         "power": "line"
       }
     },
@@ -4636,6 +5023,12 @@
       }
     },
     {
+      "displayName": "SSD",
+      "id": "ssd-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {"operator": "SSD", "power": "line"}
+    },
+    {
       "displayName": "SSE",
       "id": "sse-116894",
       "locationSet": {"include": ["001"]},
@@ -4646,6 +5039,20 @@
       "tags": {
         "operator": "SSE",
         "operator:wikidata": "Q493854",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "SSEN Transmission",
+      "id": "ssentransmission-cd3045",
+      "locationSet": {"include": ["gb-sct"]},
+      "matchNames": [
+        "scottish hydro electric transmission"
+      ],
+      "note": "Operates the electricity transmission network in northern Scotland.",
+      "tags": {
+        "operator": "SSEN Transmission",
+        "operator:wikidata": "Q114423668",
         "power": "line"
       }
     },
@@ -4822,6 +5229,15 @@
       }
     },
     {
+      "displayName": "Sunflower Electric Power Corporation",
+      "id": "sunflowerelectricpowercorporation-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Sunflower Electric Power Corporation",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Süwag Energie",
       "id": "suwagenergie-65a0b6",
       "locationSet": {
@@ -4850,6 +5266,23 @@
       "tags": {
         "operator": "Svenska Kraftnät",
         "operator:wikidata": "Q942801",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "SWEPCO",
+      "id": "southwesternelectricpowercompany-43998f",
+      "locationSet": {
+        "include": [
+          "us-ar.geojson",
+          "us-la.geojson",
+          "us-tx.geojson"
+        ]
+      },
+      "tags": {
+        "operator": "Southwestern Electric Power Company",
+        "operator:short": "SWEPCO",
+        "operator:wikidata": "Q109016018",
         "power": "line"
       }
     },
@@ -5040,6 +5473,19 @@
       }
     },
     {
+      "displayName": "Texas-New Mexico Power",
+      "id": "texasnewmexicopower-2d9f43",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "operator": "Texas-New Mexico Power",
+        "operator:short": "TNMP",
+        "operator:wikidata": "Q112271571",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Thüringer Energienetze",
       "id": "thuringerenergienetze-77b3b8",
       "locationSet": {
@@ -5182,6 +5628,15 @@
       }
     },
     {
+      "displayName": "Tri-State G & T Assn, Inc",
+      "id": "tristategandtassninc-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Tri-State G & T Assn, Inc",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Trønderenergi Nett",
       "id": "tronderenerginett-e0b869",
       "locationSet": {"include": ["no"]},
@@ -5213,9 +5668,31 @@
       "displayName": "UK Power Networks",
       "id": "ukpowernetworks-11f3a5",
       "locationSet": {"include": ["gb-eng"]},
+      "matchNames": [
+        "eastern power networks",
+        "edf energy",
+        "edf energy networks",
+        "edf energy networks ltd",
+        "eeb",
+        "epn",
+        "london power networks",
+        "lpn",
+        "south eastern power networks",
+        "southern power networks",
+        "spn"
+      ],
       "tags": {
         "operator": "UK Power Networks",
         "operator:wikidata": "Q7864927",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Umatilla Electric Cooperative",
+      "id": "umatillaelectriccooperative-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Umatilla Electric Cooperative",
         "power": "line"
       }
     },
@@ -5412,6 +5889,15 @@
       }
     },
     {
+      "displayName": "Vorarlberger Energienetze GmbH",
+      "id": "vorarlbergerenergienetzegmbh-116894",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Vorarlberger Energienetze GmbH",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Watertown Municipal Utilities",
       "id": "watertownmunicipalutilities-b654b4",
       "locationSet": {"include": ["us"]},
@@ -5464,17 +5950,6 @@
         "operator": "Western Area Power Administration",
         "operator:short": "WAPA",
         "operator:wikidata": "Q7987459",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "Western Power Distribution",
-      "id": "westernpowerdistribution-2a61eb",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": ["western power"],
-      "tags": {
-        "operator": "Western Power Distribution",
-        "operator:wikidata": "Q7988183",
         "power": "line"
       }
     },
@@ -5558,15 +6033,6 @@
       }
     },
     {
-      "displayName": "YEDL",
-      "id": "yedl-2a61eb",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "operator": "YEDL",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "ΔΕΗ",
       "id": "788cf3-8d1dd6",
       "locationSet": {"include": ["gr"]},
@@ -5636,6 +6102,43 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "Волиньобленерго",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Електроразпределение Юг",
+      "id": "d6c8f4-9f81c6",
+      "locationSet": {"include": ["bg"]},
+      "matchNames": ["evn", "евн"],
+      "tags": {
+        "operator": "Електроразпределение Юг",
+        "operator:wikidata": "Q113610915",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "ЕРМ Запад",
+      "id": "acf1d3-9f81c6",
+      "locationSet": {"include": ["bg"]},
+      "matchNames": [
+        "cez",
+        "чез",
+        "чез разпределение"
+      ],
+      "tags": {
+        "operator": "ЕРМ Запад",
+        "operator:wikidata": "Q104831094",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "ЕРП Север",
+      "id": "74cdb5-9f81c6",
+      "locationSet": {"include": ["bg"]},
+      "matchNames": ["energo-pro", "енерго-про"],
+      "tags": {
+        "operator": "ЕРП Север",
+        "operator:wikidata": "Q113610665",
         "power": "line"
       }
     },
