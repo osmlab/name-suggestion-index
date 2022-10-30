@@ -1,9 +1,9 @@
 // External
-import colors from 'colors/safe.js';
+import chalk from 'chalk';
 import fs from 'node:fs';
 
 // JSON
-import packageJSON from '../package.json';
+import packageJSON from '../package.json' assert {type: 'json'};
 
 // YYYYMMDD
 const now = new Date();
@@ -15,7 +15,7 @@ const oldVersion = packageJSON.version;
 const newVersion = oldVersion.replace(/(\d){8}/, `${yyyy}${mm}${dd}`);
 
 if (newVersion !== oldVersion) {
-  console.log('🎉  ' + colors.green('Bumping package version to ') + colors.green.bold(`v${newVersion}`));
+  console.log('🎉  ' + chalk.green('Bumping package version to ') + chalk.green.bold(`v${newVersion}`));
   const output = Object.assign(packageJSON, { version: newVersion });
   fs.writeFileSync('package.json', JSON.stringify(output, null, 2) + '\n');
 }

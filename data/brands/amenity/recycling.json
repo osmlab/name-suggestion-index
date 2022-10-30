@@ -1,17 +1,48 @@
 {
   "properties": {
     "path": "brands/amenity/recycling",
-    "exclude": {
-      "generic": [
-        "^(altglascontainer|bauhof|biotonne|glascontainer|häckselplatz|recyclinghof|wertstoffhof)$",
-        "^d[ée]ch[èe]tt?erie$",
-        "^recycling$",
-        "^verre$",
-        "^سطل زباله$"
-      ]
-    }
+    "skipCollection": true,
+    "exclude": {"generic": ["^recycling$"]}
   },
   "items": [
+    {
+      "displayName": "Arbeiter-Samariter-Bund",
+      "id": "arbeitersamariterbund-f6fab4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["asb"],
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Arbeiter-Samariter-Bund",
+        "brand:wikidata": "Q627071",
+        "recycling_type": "container"
+      }
+    },
+    {
+      "displayName": "Arbeiterwohlfahrt",
+      "id": "arbeiterwohlfahrt-f6fab4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["awo"],
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Arbeiterwohlfahrt",
+        "brand:wikidata": "Q627256",
+        "recycling_type": "container"
+      }
+    },
+    {
+      "displayName": "Bayerisches Rotes Kreuz",
+      "id": "bayerischesroteskreuz-ec47a1",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "matchNames": ["brk"],
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Bayerisches Rotes Kreuz",
+        "brand:wikidata": "Q812433",
+        "recycling_type": "container"
+      }
+    },
     {
       "displayName": "BottleDrop Express",
       "id": "bottledropexpress-95a314",
@@ -51,70 +82,137 @@
       }
     },
     {
+      "displayName": "Caritas (Deutschland)",
+      "id": "caritas-f6fab4",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Caritas",
+        "brand:wikidata": "Q29508174",
+        "recycling_type": "container"
+      }
+    },
+    {
+      "displayName": "Depozīta punkts",
+      "id": "depozitapunkts-831330",
+      "locationSet": {"include": ["lv"]},
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Depozīta punkts",
+        "brand:wikidata": "Q110979381",
+        "name": "Depozīta punkts",
+        "recycling_type": "centre",
+        "recycling:cans": "yes",
+        "recycling:glass_bottles": "yes",
+        "recycling:plastic_bottles": "yes"
+      }
+    },
+    {
       "displayName": "Deutsches Rotes Kreuz",
       "id": "deutschesroteskreuz-f6fab4",
       "locationSet": {"include": ["de"]},
       "matchNames": [
         "deutsches rotes kreuz e.v.",
+        "drk",
         "rotes kreuz"
       ],
       "tags": {
         "amenity": "recycling",
         "brand": "Deutsches Rotes Kreuz",
         "brand:wikidata": "Q694104",
-        "brand:wikipedia": "de:Deutsches Rotes Kreuz",
-        "name": "Deutsches Rotes Kreuz",
-        "short_name": "DRK"
+        "recycling_type": "container"
       }
     },
     {
-      "displayName": "Ecocentro",
-      "id": "ecocentro-247680",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Diakonie",
+      "id": "diakonie-f6fab4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "diakoniewerk",
+        "diakonisches werk"
+      ],
       "tags": {
         "amenity": "recycling",
-        "brand": "Ecocentro",
-        "name": "Ecocentro"
+        "brand": "Diakonie",
+        "brand:wikidata": "Q126501",
+        "recycling_type": "container"
       }
     },
     {
-      "displayName": "Ecoilha Subterrânea",
-      "id": "ecoilhasubterranea-247680",
-      "locationSet": {"include": ["001"]},
+      "displayName": "ecoATM",
+      "id": "ecoatm-f8d7ba",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "recycling",
-        "brand": "Ecoilha Subterrânea",
-        "name": "Ecoilha Subterrânea"
+        "brand": "ecoATM",
+        "brand:wikidata": "Q108793413",
+        "name": "ecoATM",
+        "recycling_type": "vending_machine",
+        "recycling:mobile_phones": "yes"
       }
     },
     {
-      "displayName": "Ecoponto",
-      "id": "ecoponto-247680",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Islamic Relief",
+      "id": "islamicrelief-a9e339",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "recycling",
-        "brand": "Ecoponto",
-        "name": "Ecoponto"
+        "brand": "Islamic Relief",
+        "brand:wikidata": "Q239714",
+        "name": "Islamic Relief",
+        "operator": "Islamic Relief",
+        "operator:wikidata": "Q239714",
+        "recycling_type": "container",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes"
       }
     },
     {
-      "displayName": "Ecopunto",
-      "id": "ecopunto-247680",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Kolpingwerk",
+      "id": "kolpingwerk-f6fab4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "kolping",
+        "kolping recycling gmbh"
+      ],
       "tags": {
         "amenity": "recycling",
-        "brand": "Ecopunto",
-        "name": "Ecopunto"
+        "brand": "Kolpingwerk",
+        "brand:wikidata": "Q315825",
+        "recycling_type": "container"
       }
     },
     {
-      "displayName": "Isola Ecologica",
-      "id": "isolaecologica-247680",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Malteser Hilfsdienst",
+      "id": "malteserhilfsdienst-f6fab4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "malteser",
+        "malteser hilfdienst",
+        "malteser hilfdienst e.v.",
+        "malteser hilfsdienst e.v."
+      ],
       "tags": {
         "amenity": "recycling",
-        "brand": "Isola Ecologica",
-        "name": "Isola Ecologica"
+        "brand": "Malteser Hilfsdienst",
+        "brand:short": "MHD",
+        "brand:wikidata": "Q1318397",
+        "recycling_type": "container"
+      }
+    },
+    {
+      "displayName": "Oxfam",
+      "id": "oxfam-a9e339",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Oxfam",
+        "brand:wikidata": "Q267941",
+        "operator": "Oxfam",
+        "operator:wikidata": "Q267941",
+        "recycling_type": "container",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes"
       }
     },
     {
@@ -125,7 +223,6 @@
         "amenity": "recycling",
         "brand": "Planet Aid",
         "brand:wikidata": "Q7201055",
-        "brand:wikipedia": "en:Planet Aid",
         "name": "Planet Aid",
         "recycling_type": "container",
         "recycling:clothes": "yes",
@@ -133,23 +230,18 @@
       }
     },
     {
-      "displayName": "Punto Limpio",
-      "id": "puntolimpio-247680",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Recolight",
+      "id": "recolight-a9e339",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "recycling",
-        "brand": "Punto Limpio",
-        "name": "Punto Limpio"
-      }
-    },
-    {
-      "displayName": "Ressourcerie",
-      "id": "ressourcerie-247680",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "brand": "Ressourcerie",
-        "name": "Ressourcerie"
+        "brand": "Recolight",
+        "brand:wikidata": "Q111370781",
+        "name": "Recolight",
+        "operator": "Recolight",
+        "operator:wikidata": "Q111370781",
+        "recycling_type": "container",
+        "recycling:low_energy_bulbs": "yes"
       }
     },
     {
@@ -168,17 +260,20 @@
       }
     },
     {
-      "displayName": "Sběrný dvůr",
-      "id": "sbernydvur-16d48f",
-      "locationSet": {"include": ["cz"]},
+      "displayName": "The Salvation Army",
+      "id": "thesalvationarmy-a9e339",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["salvation army"],
       "tags": {
         "amenity": "recycling",
-        "brand": "Sběrný dvůr",
-        "name": "Sběrný dvůr"
+        "brand": "The Salvation Army",
+        "brand:wikidata": "Q188307",
+        "recycling_type": "container",
+        "recycling:clothes": "yes"
       }
     },
     {
-      "displayName": "The Salvation Army",
+      "displayName": "The Salvation Army (US)",
       "id": "thesalvationarmy-f8d7ba",
       "locationSet": {"include": ["us"]},
       "matchNames": ["salvation army"],
@@ -186,21 +281,95 @@
         "amenity": "recycling",
         "brand": "The Salvation Army",
         "brand:wikidata": "Q188307",
-        "brand:wikipedia": "en:The Salvation Army",
         "name": "The Salvation Army",
+        "recycling_type": "container",
         "recycling:clothes": "yes"
       }
     },
     {
-      "displayName": "Экобокс",
-      "id": "ecobox-f85e9d",
+      "displayName": "TRAID",
+      "id": "traid-a9e339",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "brand": "TRAID",
+        "brand:wikidata": "Q109717195",
+        "name": "TRAID",
+        "operator": "TRAID",
+        "operator:wikidata": "Q109717195",
+        "recycling_type": "container",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes"
+      }
+    },
+    {
+      "displayName": "USAgain",
+      "id": "usagain-f8d7ba",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "recycling",
+        "brand": "USAgain",
+        "brand:wikidata": "Q107673127",
+        "name": "USAgain",
+        "name:pronunciation": "ˈjuz əˈɡɛn",
+        "recycling_type": "container",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes"
+      }
+    },
+    {
+      "displayName": "Лѣпта",
+      "id": "b6327b-f85e9d",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["лепта"],
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Лѣпта",
+        "brand:wikidata": "Q110234180",
+        "name": "Лѣпта",
+        "operator": "Лѣпта",
+        "operator:wikidata": "Q110234180",
+        "recycling_type": "container",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes"
+      }
+    },
+    {
+      "displayName": "Спасибо!",
+      "id": "e4ddd4-f85e9d",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "recycling",
-        "brand": "Экобокс",
-        "brand:en": "ecobox",
-        "brand:ru": "Экобокс",
-        "name": "Экобокс"
+        "brand": "Спасибо!",
+        "brand:wikidata": "Q110234301",
+        "name": "Спасибо!",
+        "operator": "Спасибо!",
+        "operator:wikidata": "Q110234301",
+        "recycling_type": "container",
+        "recycling:books": "yes",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes"
+      }
+    },
+    {
+      "displayName": "綠在區區 GREEN@COMMUNITY",
+      "id": "greencommunity-f66c52",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "recycling",
+        "brand": "綠在區區 GREEN@COMMUNITY",
+        "brand:en": "GREEN@COMMUNITY",
+        "brand:wikidata": "Q111079364",
+        "brand:zh": "綠在區區",
+        "brand:zh-Hans": "绿在区区",
+        "brand:zh-Hant": "綠在區區",
+        "owner": "環境保護署 Environmental Protection Department",
+        "owner:en": "Environmental Protection Department",
+        "owner:wikidata": "Q841892",
+        "owner:zh": "環境保護署",
+        "owner:zh-Hans": "环境保护署",
+        "owner:zh-Hant": "環境保護署",
+        "recycling_type": "centre"
       }
     }
   ]

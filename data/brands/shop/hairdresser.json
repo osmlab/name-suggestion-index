@@ -10,14 +10,22 @@
         "^(парикмахер(ская)?|персона|перукарня)$",
         "^coiff(eur|ure)\\s?(homme|dame)?$",
         "^haar(genau|monie|scharf)$",
-        "^hair\\s?(design|dresser|lounge|salon|studio)$",
+        "^hair\\s?(design|dresser|lounge|salon|studio|style)$",
+        "^kadeřnictví$",
         "^peluquer[ií]a$",
+        "^peluquería unisex$",
         "^salão de beleza$",
         "^салон красоты$",
         "^حلاق$"
       ],
       "named": [
-        "^(figaro|haarwerk|the cutting room|стиль|локон|шарм|fodrászat)$"
+        "^(figaro|haarwerk|the cutting room|стиль|локон|шарм|fodrászat)$",
+        "^art of hair$",
+        "^biguine$",
+        "^espace coiffure$",
+        "^glamour$",
+        "^new look$",
+        "^schnittpunkt$"
       ]
     }
   },
@@ -34,35 +42,27 @@
       }
     },
     {
-      "displayName": "Art of Hair",
-      "id": "artofhair-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Art of Hair",
-        "name": "Art of Hair",
-        "shop": "hairdresser"
-      }
-    },
-    {
       "displayName": "Barbershop by Timpson",
       "id": "barbershopbytimpson-afda3f",
       "locationSet": {"include": ["gb"]},
       "tags": {
         "brand": "Timpson",
         "brand:wikidata": "Q7807658",
-        "brand:wikipedia": "en:Timpson (retailer)",
         "male": "yes",
         "name": "Barbershop by Timpson",
         "shop": "hairdresser"
       }
     },
     {
-      "displayName": "Biguine",
-      "id": "biguine-ece769",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Blue Tit",
+      "id": "bluetit-23df39",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
       "tags": {
-        "brand": "Biguine",
-        "name": "Biguine",
+        "brand": "Blue Tit",
+        "brand:wikidata": "Q111356184",
+        "name": "Blue Tit",
         "shop": "hairdresser"
       }
     },
@@ -119,7 +119,6 @@
       "tags": {
         "brand": "Cutters",
         "brand:wikidata": "Q106940660",
-        "brand:wikipedia": "no:Cutters",
         "name": "Cutters",
         "shop": "hairdresser"
       }
@@ -142,19 +141,8 @@
       "tags": {
         "brand": "Drybar",
         "brand:wikidata": "Q18352685",
-        "brand:wikipedia": "en:Drybar",
         "female": "yes",
         "name": "Drybar",
-        "shop": "hairdresser"
-      }
-    },
-    {
-      "displayName": "Espace Coiffure",
-      "id": "espacecoiffure-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Espace Coiffure",
-        "name": "Espace Coiffure",
         "shop": "hairdresser"
       }
     },
@@ -176,7 +164,6 @@
       "tags": {
         "brand": "Fantastic Sams",
         "brand:wikidata": "Q5434222",
-        "brand:wikipedia": "en:Fantastic Sams",
         "name": "Fantastic Sams",
         "official_name": "Fantastic Sams Cut & Color",
         "shop": "hairdresser"
@@ -200,7 +187,6 @@
       "tags": {
         "brand": "First Choice Haircutters",
         "brand:wikidata": "Q5452622",
-        "brand:wikipedia": "en:First Choice Haircutters",
         "name": "First Choice Haircutters",
         "shop": "hairdresser"
       }
@@ -236,18 +222,7 @@
       "tags": {
         "brand": "Gidor",
         "brand:wikidata": "Q1523182",
-        "brand:wikipedia": "de:Gidor",
         "name": "Gidor",
-        "shop": "hairdresser"
-      }
-    },
-    {
-      "displayName": "Glamour",
-      "id": "glamour-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Glamour",
-        "name": "Glamour",
         "shop": "hairdresser"
       }
     },
@@ -258,7 +233,6 @@
       "tags": {
         "brand": "Great Clips",
         "brand:wikidata": "Q5598967",
-        "brand:wikipedia": "en:Great Clips",
         "name": "Great Clips",
         "shop": "hairdresser"
       }
@@ -270,7 +244,6 @@
       "tags": {
         "brand": "Hair Cuttery",
         "brand:wikidata": "Q5639484",
-        "brand:wikipedia": "en:Hair Cuttery",
         "name": "Hair Cuttery",
         "shop": "hairdresser"
       }
@@ -283,6 +256,17 @@
         "brand": "Hair Express",
         "brand:wikidata": "Q57550814",
         "name": "Hair Express",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Haircut Express",
+      "id": "haircutexpress-f52df8",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "brand": "Haircut Express",
+        "brand:wikidata": "Q113227889",
+        "name": "Haircut Express",
         "shop": "hairdresser"
       }
     },
@@ -305,6 +289,7 @@
       "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "brand": "Headmasters",
+        "brand:wikidata": "Q113700332",
         "name": "Headmasters",
         "shop": "hairdresser"
       }
@@ -317,6 +302,36 @@
         "brand": "Igorance",
         "brand:wikidata": "Q88181481",
         "name": "Igorance",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Image Studios",
+      "id": "imagestudios-0d42d5",
+      "locationSet": {
+        "include": [
+          "us-ca.geojson",
+          "us-co.geojson",
+          "us-fl.geojson",
+          "us-ga.geojson",
+          "us-ky.geojson",
+          "us-mo.geojson",
+          "us-nc.geojson",
+          "us-nj.geojson",
+          "us-nv.geojson",
+          "us-ny.geojson",
+          "us-oh.geojson",
+          "us-or.geojson",
+          "us-sc.geojson",
+          "us-tn.geojson",
+          "us-tx.geojson",
+          "us-ut.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Image Studios",
+        "brand:wikidata": "Q110998819",
+        "name": "Image Studios",
         "shop": "hairdresser"
       }
     },
@@ -352,7 +367,6 @@
       "tags": {
         "brand": "Klier",
         "brand:wikidata": "Q1465159",
-        "brand:wikipedia": "de:Klier Hair Group",
         "name": "Klier",
         "shop": "hairdresser"
       }
@@ -364,7 +378,6 @@
       "tags": {
         "brand": "Klipp",
         "brand:wikidata": "Q1737304",
-        "brand:wikipedia": "de:Klipp Frisör",
         "name": "Klipp",
         "shop": "hairdresser"
       }
@@ -375,16 +388,29 @@
       "locationSet": {"include": ["ca"]},
       "tags": {
         "brand": "Magicuts",
+        "brand:wikidata": "Q113004753",
         "name": "Magicuts",
         "shop": "hairdresser"
       }
     },
     {
       "displayName": "Marco Aldany",
-      "id": "marcoaldany-ece769",
-      "locationSet": {"include": ["001"]},
+      "id": "marcoaldany-d15f75",
+      "locationSet": {
+        "include": [
+          "es",
+          "hn",
+          "in",
+          "ma",
+          "mx",
+          "pa",
+          "pe",
+          "pl"
+        ]
+      },
       "tags": {
         "brand": "Marco Aldany",
+        "brand:wikidata": "Q112095114",
         "name": "Marco Aldany",
         "shop": "hairdresser"
       }
@@ -401,12 +427,12 @@
       }
     },
     {
-      "displayName": "New Look",
-      "id": "newlook-ece769",
+      "displayName": "New Style",
+      "id": "newstyle-ece769",
       "locationSet": {"include": ["001"]},
       "tags": {
-        "brand": "New Look",
-        "name": "New Look",
+        "brand": "New Style",
+        "name": "New Style",
         "shop": "hairdresser"
       }
     },
@@ -433,16 +459,6 @@
       }
     },
     {
-      "displayName": "Peluquería Unisex",
-      "id": "peluqueriaunisex-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Peluquería Unisex",
-        "name": "Peluquería Unisex",
-        "shop": "hairdresser"
-      }
-    },
-    {
       "displayName": "QBハウス",
       "id": "qbhouse-946510",
       "locationSet": {"include": ["jp"]},
@@ -452,10 +468,47 @@
         "brand:en": "QB HOUSE",
         "brand:ja": "QBハウス",
         "brand:wikidata": "Q11297528",
-        "brand:wikipedia": "ja:キュービーネット",
         "name": "QBハウス",
         "name:en": "QB HOUSE",
         "name:ja": "QBハウス",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Regis Salons (UK)",
+      "id": "regissalons-afda3f",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["rg salons"],
+      "tags": {
+        "brand": "Regis Salons",
+        "brand:wikidata": "Q110166032",
+        "name": "Regis Salons",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Regis Salons (US)",
+      "id": "regis-28f1a5",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "alt_name": "Regis Salons",
+        "brand": "Regis",
+        "brand:wikidata": "Q7309325",
+        "name": "Regis",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Ruffians",
+      "id": "ruffians-d849d6",
+      "locationSet": {
+        "include": ["gb-lon.geojson", "gb-sct"]
+      },
+      "tags": {
+        "brand": "Ruffians",
+        "brand:wikidata": "Q111499433",
+        "male": "yes",
+        "name": "Ruffians",
         "shop": "hairdresser"
       }
     },
@@ -482,13 +535,25 @@
       }
     },
     {
+      "displayName": "Sassoon Salon",
+      "id": "sassoonsalon-5069d9",
+      "locationSet": {
+        "include": ["ca", "de", "gb", "us"]
+      },
+      "tags": {
+        "brand": "Sassoon Salon",
+        "brand:wikidata": "Q111356294",
+        "name": "Sassoon Salon",
+        "shop": "hairdresser"
+      }
+    },
+    {
       "displayName": "SmartStyle by Regis",
       "id": "smartstyle-46af32",
       "locationSet": {"include": ["ca", "us"]},
       "tags": {
         "brand": "Regis",
         "brand:wikidata": "Q7309325",
-        "brand:wikipedia": "en:Regis Corporation",
         "name": "SmartStyle",
         "shop": "hairdresser"
       }
@@ -539,29 +604,19 @@
       "tags": {
         "brand": "Supercuts",
         "brand:wikidata": "Q7643239",
-        "brand:wikipedia": "en:Supercuts",
         "name": "Supercuts",
         "shop": "hairdresser"
       }
     },
     {
       "displayName": "Tchip",
-      "id": "tchip-40f1cc",
-      "locationSet": {"include": ["fr"]},
+      "id": "tchip-426627",
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["tchip coiffure"],
       "tags": {
         "brand": "Tchip",
         "brand:wikidata": "Q62871250",
         "name": "Tchip",
-        "shop": "hairdresser"
-      }
-    },
-    {
-      "displayName": "Tchip Coiffure",
-      "id": "tchipcoiffure-ece769",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Tchip Coiffure",
-        "name": "Tchip Coiffure",
         "shop": "hairdresser"
       }
     },
@@ -584,7 +639,6 @@
         "alt_name": "Ulta Salon",
         "brand": "Ulta Beauty",
         "brand:wikidata": "Q7880076",
-        "brand:wikipedia": "en:Ulta Beauty",
         "name": "The Salon at Ulta Beauty",
         "shop": "hairdresser"
       }
@@ -597,7 +651,6 @@
       "tags": {
         "brand": "InStyle",
         "brand:wikidata": "Q2629237",
-        "brand:wikipedia": "en:InStyle",
         "name": "The SALON by InStyle",
         "shop": "hairdresser"
       }
@@ -609,7 +662,6 @@
       "tags": {
         "brand": "Toni & Guy",
         "brand:wikidata": "Q324784",
-        "brand:wikipedia": "en:Toni & Guy",
         "name": "Toni & Guy",
         "shop": "hairdresser"
       }
@@ -676,6 +728,16 @@
       "tags": {
         "brand": "Каприз",
         "name": "Каприз",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Светлана",
+      "id": "e18b4b-ece769",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Светлана",
+        "name": "Светлана",
         "shop": "hairdresser"
       }
     },

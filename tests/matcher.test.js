@@ -1,10 +1,11 @@
 import { test } from 'tap';
 import LocationConflation from '@ideditor/location-conflation';
 import { Matcher } from '../index.mjs';
-import data from './matcher.data.json';
+
+import data from './matcher.data.json' assert {type: 'json'};
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollection from '../dist/featureCollection.json';
+import featureCollection from '../dist/featureCollection.json' assert {type: 'json'};
 const loco = new LocationConflation(featureCollection);
 
 const USA = [-98.58, 39.828];
@@ -193,12 +194,6 @@ test('match', t => {
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
       t.equal(result[0].kv, 'amenity/fast_food');
       t.equal(result[0].nsimple, 'q5893363');
-      t.end();
-    });
-
-    t.test('does not match on `*:wikipedia` tag', t => {
-      const result = t.context.matcher.match('amenity', 'fast_food', 'en:The Honey Baked Ham Company');
-      t.equal(result, null);
       t.end();
     });
 
@@ -498,12 +493,6 @@ test('match', t => {
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = matched the `network:wikidata` tag
       t.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
-      t.end();
-    });
-
-    t.test('does not match on `network:wikipedia` tag', t => {
-      const result = t.context.matcher.match('route', 'train', 'de:Verkehrs- und Tarifverbund Stuttgart');
-      t.equal(result, null);
       t.end();
     });
 

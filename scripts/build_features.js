@@ -1,5 +1,5 @@
 // External
-import colors from 'colors/safe.js';
+import chalk from 'chalk';
 import fs from 'node:fs';
 import geojsonArea from '@mapbox/geojson-area';
 import geojsonBounds from 'geojson-bounds';
@@ -15,23 +15,23 @@ import stringify from '@aitodotai/json-stringify-pretty-compact';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import geojsonSchemaJSON from '../schema/geojson.json';
-import featureSchemaJSON from '../schema/feature.json';
+import geojsonSchemaJSON from '../schema/geojson.json' assert {type: 'json'};
+import featureSchemaJSON from '../schema/feature.json' assert {type: 'json'};
 
 const Validator = jsonschema.Validator;
 let v = new Validator();
 v.addSchema(geojsonSchemaJSON, 'http://json.schemastore.org/geojson.json');
 
 
-console.log(colors.blue('-'.repeat(70)));
-console.log(colors.blue('🧩  Build features'));
-console.log(colors.blue('-'.repeat(70)));
+console.log(chalk.blue('-'.repeat(70)));
+console.log(chalk.blue('🧩  Build features'));
+console.log(chalk.blue('-'.repeat(70)));
 buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + colors.yellow('Building features...');
-  const END = '👍  ' + colors.green('features built');
+  const START = '🏗   ' + chalk.yellow('Building features...');
+  const END = '👍  ' + chalk.green('features built');
   console.log('');
   console.log(START);
   console.time(END);
@@ -55,8 +55,8 @@ function collectFeatures() {
 
   glob.sync('features/**/*', { nodir: true }).forEach(file => {
     if (!/\.geojson$/.test(file)) {
-      console.error(colors.red(`Error - file should have a .geojson extension:`));
-      console.error('  ' + colors.yellow(file));
+      console.error(chalk.red(`Error - file should have a .geojson extension:`));
+      console.error('  ' + chalk.yellow(file));
       process.exit(1);
     }
 
@@ -65,8 +65,8 @@ function collectFeatures() {
     try {
       parsed = JSON5.parse(contents);
     } catch (jsonParseError) {
-      console.error(colors.red(`Error - ${jsonParseError.message} in:`));
-      console.error('  ' + colors.yellow(file));
+      console.error(chalk.red(`Error - ${jsonParseError.message} in:`));
+      console.error('  ' + chalk.yellow(file));
       process.exit(1);
     }
 
@@ -82,21 +82,21 @@ function collectFeatures() {
     const id = path.basename(file).toLowerCase();
     feature.id = id;
 
-    // Warn if this feature is so small/complex it would better be represented as a circular area.
-    const except = { 'new_york_city.geojson': true };
-    if (!except[id]) {
-      const coordLength = countCoordinates(feature.geometry.coordinates);
-      let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
-      area = Number(area.toFixed(2));
-      if (area < 2000 && coordLength > 15) {
-        const extent = geojsonBounds.extent(feature);
-        const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
-        const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
-        console.warn('');
-        console.warn(colors.yellow(`Warning - GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
-        console.warn('  ' + colors.yellow(file));
-      }
-    }
+    // // Warn if this feature is so small/complex it would better be represented as a circular area.
+    // const except = { 'new_york_city.geojson': true };
+    // if (!except[id]) {
+    //   const coordLength = countCoordinates(feature.geometry.coordinates);
+    //   let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
+    //   area = Number(area.toFixed(2));
+    //   if (area < 2000 && coordLength > 15) {
+    //     const extent = geojsonBounds.extent(feature);
+    //     const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
+    //     const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
+    //     console.warn('');
+    //     console.warn(chalk.yellow(`Warning - GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
+    //     console.warn('  ' + chalk.yellow(file));
+    //   }
+    // }
 
     // sort properties
     let obj = {};
@@ -111,13 +111,13 @@ function collectFeatures() {
 
     if (feature.geometry) {
       if (feature.geometry.type !== 'Polygon' && feature.geometry.type !== 'MultiPolygon') {
-        console.error(colors.red('Error - Feature type must be "Polygon" or "MultiPolygon" in:'));
-        console.error('  ' + colors.yellow(file));
+        console.error(chalk.red('Error - Feature type must be "Polygon" or "MultiPolygon" in:'));
+        console.error('  ' + chalk.yellow(file));
         process.exit(1);
       }
       if (!feature.geometry.coordinates) {
-        console.error(colors.red('Error - Feature missing coordinates in:'));
-        console.error('  ' + colors.yellow(file));
+        console.error(chalk.red('Error - Feature missing coordinates in:'));
+        console.error('  ' + chalk.yellow(file));
         process.exit(1);
       }
       obj.geometry = {
@@ -132,9 +132,9 @@ function collectFeatures() {
     prettifyFile(file, feature, contents);
 
     if (files[id]) {
-      console.error(colors.red('Error - Duplicate filenames: ') + colors.yellow(id));
-      console.error('  ' + colors.yellow(files[id]));
-      console.error('  ' + colors.yellow(file));
+      console.error(chalk.red('Error - Duplicate filenames: ') + chalk.yellow(id));
+      console.error('  ' + chalk.yellow(files[id]));
+      console.error('  ' + chalk.yellow(file));
       process.exit(1);
     }
     features.push(feature);
@@ -177,13 +177,13 @@ function countCoordinates(coords) {
 function validateFile(file, resource, schema) {
   const validationErrors = v.validate(resource, schema).errors;
   if (validationErrors.length) {
-    console.error(colors.red('Error - Schema validation:'));
-    console.error('  ' + colors.yellow(file + ': '));
+    console.error(chalk.red('Error - Schema validation:'));
+    console.error('  ' + chalk.yellow(file + ': '));
     validationErrors.forEach(error => {
       if (error.property) {
-        console.error('  ' + colors.yellow(error.property + ' ' + error.message));
+        console.error('  ' + chalk.yellow(error.property + ' ' + error.message));
       } else {
-        console.error('  ' + colors.yellow(error));
+        console.error('  ' + chalk.yellow(error));
       }
     });
     process.exit(1);

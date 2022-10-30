@@ -7,6 +7,25 @@
   },
   "items": [
     {
+      "displayName": "Best Express",
+      "id": "bestexpress-047f43",
+      "locationSet": {
+        "include": ["in", "my", "sg", "th"],
+        "exclude": ["cn"]
+      },
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Best Express",
+        "brand:en": "Best Express",
+        "brand:wikidata": "Q22099540",
+        "brand:zh": "百世快递",
+        "operator": "Best Express",
+        "operator:en": "Best Express",
+        "operator:wikidata": "Q22099540",
+        "operator:zh": "百世快递"
+      }
+    },
+    {
       "displayName": "DHL",
       "id": "dhl-27cb18",
       "locationSet": {"include": ["001"]},
@@ -18,7 +37,6 @@
         "amenity": "post_office",
         "brand": "DHL",
         "brand:wikidata": "Q489815",
-        "brand:wikipedia": "en:DHL",
         "name": "DHL"
       }
     },
@@ -38,33 +56,80 @@
         "amenity": "post_office",
         "brand": "DPD",
         "brand:wikidata": "Q541030",
-        "brand:wikipedia": "de:DPDgroup",
         "name": "DPD"
       }
     },
     {
-      "displayName": "FedEx",
-      "id": "fedex-27cb18",
+      "displayName": "Estafeta",
+      "id": "estafeta-d15952",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Estafeta",
+        "brand:wikidata": "Q108185876",
+        "name": "Estafeta"
+      }
+    },
+    {
+      "displayName": "FedEx Office",
+      "id": "fedexoffice-27cb18",
+      "locationSet": {"include": ["001"]},
+      "matchNames": ["federal express"],
+      "matchTags": ["shop/copyshop"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "FedEx",
+        "brand:wikidata": "Q459477",
+        "name": "FedEx Office",
+        "shop": "copyshop"
+      }
+    },
+    {
+      "displayName": "FedEx Ship Center",
+      "id": "fedexshipcenter-27cb18",
       "locationSet": {"include": ["001"]},
       "matchNames": ["federal express"],
       "tags": {
         "amenity": "post_office",
         "brand": "FedEx",
         "brand:wikidata": "Q459477",
-        "brand:wikipedia": "en:FedEx",
-        "name": "FedEx"
+        "name": "FedEx Ship Center"
       }
     },
     {
       "displayName": "Mail Boxes Etc.",
       "id": "mailboxesetc-27cb18",
       "locationSet": {"include": ["001"]},
+      "matchTags": ["shop/copyshop"],
       "tags": {
         "amenity": "post_office",
         "brand": "Mail Boxes Etc.",
         "brand:wikidata": "Q1139182",
-        "brand:wikipedia": "en:Mail Boxes Etc.",
-        "name": "Mail Boxes Etc."
+        "name": "Mail Boxes Etc.",
+        "shop": "copyshop"
+      }
+    },
+    {
+      "displayName": "Orlen Paczka",
+      "id": "orlenpaczka-4d399f",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Orlen Paczka",
+        "brand:wikidata": "Q110457879",
+        "operator": "Orlen",
+        "operator:wikidata": "Q110457879"
+      }
+    },
+    {
+      "displayName": "Paquetexpress",
+      "id": "paquetexpress-d15952",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Paquetexpress",
+        "brand:wikidata": "Q113207758",
+        "name": "Paquetexpress"
       }
     },
     {
@@ -78,8 +143,7 @@
       "tags": {
         "amenity": "post_office",
         "brand": "Post Office",
-        "brand:wikidata": "Q1783168",
-        "brand:wikipedia": "en:Post Office Ltd"
+        "brand:wikidata": "Q1783168"
       }
     },
     {
@@ -90,8 +154,7 @@
       "tags": {
         "amenity": "post_office",
         "brand": "Posten",
-        "brand:wikidata": "Q1815701",
-        "brand:wikipedia": "no:Posten Norge"
+        "brand:wikidata": "Q1815701"
       }
     },
     {
@@ -101,8 +164,7 @@
       "tags": {
         "amenity": "post_office",
         "brand": "Royal Mail",
-        "brand:wikidata": "Q638098",
-        "brand:wikipedia": "en:Royal Mail"
+        "brand:wikidata": "Q638098"
       }
     },
     {
@@ -115,10 +177,8 @@
         "amenity": "post_office",
         "brand": "Speedy",
         "brand:wikidata": "Q541030",
-        "brand:wikipedia": "en:DPDgroup",
         "operator": "DPD",
-        "operator:wikidata": "Q541030",
-        "operator:wikipedia": "en:DPDgroup"
+        "operator:wikidata": "Q541030"
       }
     },
     {
@@ -134,9 +194,197 @@
         "amenity": "post_office",
         "brand": "The UPS Store",
         "brand:wikidata": "Q7771029",
-        "brand:wikipedia": "en:The UPS Store",
         "name": "The UPS Store",
+        "shop": "copyshop",
         "short_name": "UPS"
+      }
+    },
+    {
+      "displayName": "СДЭК",
+      "id": "5ac048-1328c6",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "СДЭК",
+        "brand:wikidata": "Q28665980",
+        "name": "СДЭК"
+      }
+    },
+    {
+      "displayName": "中国邮政",
+      "id": "chinapost-de5f7a",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": [
+        "ems",
+        "中国邮政速递",
+        "中国邮政速递物流",
+        "邮政",
+        "邮政速递"
+      ],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "中国邮政",
+        "brand:en": "China Post",
+        "brand:wikidata": "Q1066476",
+        "brand:zh": "中国邮政",
+        "name": "中国邮政",
+        "name:en": "China Post",
+        "name:zh": "中国邮政"
+      }
+    },
+    {
+      "displayName": "中通快递",
+      "id": "ztoexpress-de5f7a",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "中通快递",
+        "brand:en": "ZTO Express",
+        "brand:wikidata": "Q10876705",
+        "brand:zh": "中通快递",
+        "name": "中通快递",
+        "name:en": "ZTO Express",
+        "name:zh": "中通快递",
+        "short_name": "中通"
+      }
+    },
+    {
+      "displayName": "京东物流",
+      "id": "jdlogistics-de5f7a",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["京东快递", "京东派"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "京东物流",
+        "brand:en": "JD Logistics",
+        "brand:wikidata": "Q67936681",
+        "brand:zh": "京东物流",
+        "name": "京东物流",
+        "name:en": "JD Logistics",
+        "name:zh": "京东物流",
+        "short_name": "京东"
+      }
+    },
+    {
+      "displayName": "圆通速递",
+      "id": "ytoexpress-de5f7a",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["圆通快递"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "圆通速递",
+        "brand:en": "YTO Express",
+        "brand:wikidata": "Q10926656",
+        "brand:zh": "圆通速递",
+        "name": "圆通速递",
+        "name:en": "YTO Express",
+        "name:zh": "圆通速递",
+        "short_name": "圆通"
+      }
+    },
+    {
+      "displayName": "德邦快递",
+      "id": "depponexpress-de5f7a",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["德邦物流"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "德邦快递",
+        "brand:en": "Deppon Express",
+        "brand:wikidata": "Q109378877",
+        "brand:zh": "德邦快递",
+        "name": "德邦快递",
+        "name:en": "Deppon Express",
+        "name:zh": "德邦快递",
+        "short_name": "德邦"
+      }
+    },
+    {
+      "displayName": "申通快递",
+      "id": "stoexpress-de5f7a",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "申通快递",
+        "brand:en": "STO Express",
+        "brand:wikidata": "Q10426347",
+        "brand:zh": "申通快递",
+        "name": "申通快递",
+        "name:en": "STO Express",
+        "name:zh": "申通快递",
+        "short_name": "申通"
+      }
+    },
+    {
+      "displayName": "菜鸟驿站",
+      "id": "cainiao-de5f7a",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "菜鸟驿站",
+        "brand:en": "CAI NIAO",
+        "brand:wikidata": "Q16947973",
+        "brand:zh": "菜鸟驿站",
+        "name": "菜鸟驿站",
+        "name:en": "CAI NIAO",
+        "name:zh": "菜鸟驿站"
+      }
+    },
+    {
+      "displayName": "韵达速递",
+      "id": "yundaexpress-de5f7a",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["韵达快递"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "韵达速递",
+        "brand:en": "Yunda Express",
+        "brand:wikidata": "Q17010677",
+        "brand:zh": "韵达速递",
+        "name": "韵达速递",
+        "name:en": "Yunda Express",
+        "name:zh": "韵达速递",
+        "short_name": "韵达"
+      }
+    },
+    {
+      "displayName": "順豐速運 SF Express",
+      "id": "sfexpress-5291fc",
+      "locationSet": {"include": ["hk"]},
+      "matchNames": ["順豐快遞", "順豐速遞"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "順豐速運 SF Express",
+        "brand:en": "SF Express",
+        "brand:wikidata": "Q7390019",
+        "brand:zh": "順豐速運",
+        "brand:zh-Hans": "顺丰速运",
+        "brand:zh-Hant": "順豐速運",
+        "name": "順豐速運 SF Express",
+        "name:en": "SF Express",
+        "name:zh": "順豐速運",
+        "name:zh-Hans": "顺丰速运",
+        "name:zh-Hant": "順豐速運"
+      }
+    },
+    {
+      "displayName": "顺丰速运",
+      "id": "sfexpress-316e92",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk"]
+      },
+      "matchNames": ["顺丰快递"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "顺丰速运",
+        "brand:en": "SF Express",
+        "brand:wikidata": "Q7390019",
+        "brand:zh": "顺丰速运",
+        "name": "顺丰速运",
+        "name:en": "SF Express",
+        "name:zh": "顺丰速运",
+        "short_name": "顺丰"
       }
     }
   ]

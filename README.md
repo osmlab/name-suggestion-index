@@ -5,7 +5,6 @@
 
 Canonical features for OpenStreetMap
 
-
 ## What is it?
 
 The goal of this project is to maintain a [canonical](https://en.wikipedia.org/wiki/Canonicalization)
@@ -20,7 +19,6 @@ list of commonly used features for suggesting consistent spelling and tagging in
 You can browse the name-suggestion-index and check Wikidata links for accuracy at <https://nsi.guide>.
 
 <img width="600px" alt="nsi.guide" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/nsi_guide.png"/>
-
 
 ## How it's used
 
@@ -44,16 +42,15 @@ Currently used in:
 - [iD](https://github.com/openstreetmap/iD) (see above)
 - [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/TaggingPresetPreference) available
-- [Osmose](http://osmose.openstreetmap.fr/en/errors/?item=3130)
+- [Osmose](http://osmose.openstreetmap.fr/en/errors?item=3130)
 - [osmfeatures](https://github.com/westnordost/osmfeatures)
 - [Go Map!!](https://github.com/bryceco/GoMap)
 - [StreetComplete](https://github.com/streetcomplete/StreetComplete/blob/master/buildSrc/src/main/java/UpdateNsiPresetsTask.kt)
-
+- [Every Door](https://github.com/Zverik/every_door)
 
 ## About the index
 
 See [the project wiki](https://github.com/osmlab/name-suggestion-index/wiki) for details.
-
 
 ## Participate!
 
@@ -69,7 +66,6 @@ If you have any questions or want to reach out to a maintainer, ping
 [@bhousel]: https://github.com/bhousel
 [@1ec5]: https://github.com/1ec5
 [@tas50]: https://github.com/tas50
-
 
 ## License
 

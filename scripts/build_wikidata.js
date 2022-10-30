@@ -1,7 +1,6 @@
 // External
-import colors from 'colors/safe.js';
+import chalk from 'chalk';
 import fs from 'node:fs';
-import crypto from 'node:crypto';
 import fetch from 'node-fetch';
 import http from 'node:http';
 import https from 'node:https';
@@ -22,12 +21,12 @@ import { fileTree } from '../lib/file_tree.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import packageJSON from '../package.json';
-import treesJSON from '../config/trees.json';
+import packageJSON from '../package.json' assert {type: 'json'};
+import treesJSON from '../config/trees.json' assert {type: 'json'};
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json';
+import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
 const loco = new LocationConflation(featureCollectionJSON);
 
 const wbk = wikibase({
@@ -90,10 +89,10 @@ try {
 } catch (err) { /* ignore */ }
 
 if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
-  console.error(colors.red('WHOA!'));
-  console.error(colors.yellow('The `config/secrets.json` file format has changed a bit.'));
-  console.error(colors.yellow('We were expecting to find `twitter` or `wikibase` properties.'));
-  console.error(colors.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error(chalk.red('WHOA!'));
+  console.error(chalk.yellow('The `config/secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('We were expecting to find `twitter` or `wikibase` properties.'));
+  console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
 }
@@ -227,7 +226,7 @@ function doFetch(index) {
 
   let currURL = _urls[index];
   let backoff = false;
-  console.log(colors.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
+  console.log(chalk.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
 
   return fetch(currURL, fetchOptions)
     .then(response => {
@@ -236,9 +235,9 @@ function doFetch(index) {
     })
     .then(result => processEntities(result))
     .catch(e => {
-      console.warn(colors.green.bold('fetch error:'));
-      console.warn(colors.white(JSON.stringify(e)));
-      console.warn(colors.green.bold('retrying...'));
+      console.warn(chalk.green.bold('fetch error:'));
+      console.warn(chalk.white(JSON.stringify(e)));
+      console.warn(chalk.green.bold('retrying...'));
       backoff = true;
       --index;
     })
@@ -267,7 +266,7 @@ function processEntities(result) {
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const warning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.` };
-      console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
       return;
     }
@@ -286,7 +285,7 @@ function processEntities(result) {
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
         const warning = { qid: qid, msg: `Entity for "${label}" missing English label.` };
-        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       }
     }
@@ -295,11 +294,6 @@ function processEntities(result) {
     let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
     if (description) {
       target.description = description;
-    }
-
-    // Get sitelinks to supply missing `*:wikipedia` tags - #4716, #4747
-    if (entity.sitelinks) {
-      checkWikipediaTags(qid, entity.sitelinks);
     }
 
     // Process claims below here...
@@ -314,18 +308,15 @@ function processEntities(result) {
       // P18 - Image (use this for flags)
       imageFile = getClaimValue(entity, 'P18');
     } else {
-      // P154 - Logo Image
       // P8972 - Small Logo or Icon
-      imageFile = getClaimValue(entity, 'P8972') || getClaimValue(entity, 'P154');
+      // P154 - Logo Image
+      // P94 - Coat of Arms Image
+      imageFile = getClaimValue(entity, 'P8972') || getClaimValue(entity, 'P154') || getClaimValue(entity, 'P94');
     }
     if (imageFile) {
       const re = /\.svg$/i;
       if (re.test(imageFile)) {
-        imageFile = imageFile.replace(/\s/g, '_');   // 'Flag of Alaska.svg' -> 'Flag_of_Alaska.svg'
-        const hash = crypto.createHash('md5').update(imageFile).digest('hex');
-        const x = hash.slice(0, 1);
-        const xx = hash.slice(0, 2);
-        target.logos.wikidata = `https://upload.wikimedia.org/wikipedia/commons/${x}/${xx}/${imageFile}`;
+        target.logos.wikidata = `https://commons.wikimedia.org/wiki/Special:FilePath/${imageFile}`;
       } else {
         target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
           utilQsString({ title: `Special:Redirect/file/${imageFile}`, width: 150 });
@@ -422,7 +413,7 @@ function processEntities(result) {
           if (dissolution.countries) {
             warning.msg += `\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
           }
-          console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+          console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
           _warnings.push(warning);
         }
         target.dissolutions.push(dissolution);
@@ -542,8 +533,8 @@ function getClaimValue(entity, prop) {
 // - dissolved.json
 //
 function finish() {
-  const START = '🏗   ' + colors.yellow('Writing output files');
-  const END = '👍  ' + colors.green('output files updated');
+  const START = '🏗   ' + chalk.yellow('Writing output files');
+  const END = '👍  ' + chalk.green('output files updated');
   console.log('');
   console.log(START);
   console.time(END);
@@ -597,17 +588,14 @@ function finish() {
     writeFileWithMeta('dist/warnings.json', stringify({ warnings: _warnings }) + '\n');
     writeFileWithMeta('dist/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
     writeFileWithMeta('dist/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
-
-    // Write filetree too, in case we updated some of these with `*:wikipedia` tags - #4716
-    fileTree.write(_cache);
   }
 
   console.timeEnd(END);
 
   // output whatever warnings we've gathered
   if (_warnings.length) {
-    console.log(colors.yellow.bold(`\nWarnings:`));
-    _warnings.forEach(warning => console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg)));
+    console.log(chalk.yellow.bold(`\nWarnings:`));
+    _warnings.forEach(warning => console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg)));
   }
 }
 
@@ -626,10 +614,10 @@ function checkTwitterRateLimit(need) {
       const now = Date.now() / 1000;
       const stats = result.resources.users['/users/:id'];
       const resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
-      console.log(colors.green.bold(`Twitter rate status '${which}': need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
+      console.log(chalk.green.bold(`Twitter rate status '${which}': need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
       if (need > stats.remaining) {
         const delaySec = clamp(resetSec, 10, 60);
-        console.log(colors.green.bold(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
+        console.log(chalk.green.bold(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
         return delaySec;
       } else {
         return 0;
@@ -644,7 +632,7 @@ function checkTwitterRateLimit(need) {
       }
     })
     .catch(e => {
-      console.warn(colors.green.bold(`Error: Twitter rate limit: ` + JSON.stringify(e)));
+      console.warn(chalk.green.bold(`Error: Twitter rate limit: ` + JSON.stringify(e)));
     });
 }
 
@@ -662,7 +650,7 @@ function fetchTwitterUserDetails(qid, username) {
     })
     .catch(e => {
       const warning = { qid: qid, msg: `Twitter username @${username}: ${JSON.stringify(e)}` };
-      console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
     });
 }
@@ -700,7 +688,7 @@ function fetchFacebookLogo(qid, username) {
         return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
       } else {
         const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
-        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       }
     });
@@ -738,7 +726,7 @@ function removeOldNsiClaims() {
     })
     .then(processWbEditQueue)
     .catch(e => {
-      console.warn(colors.red(e));
+      console.warn(chalk.red(e));
     });
 }
 
@@ -755,7 +743,7 @@ function processWbEditQueue(queue) {
   const request = queue.pop();
   const qid = request.qid;
   const msg = request.msg;
-  console.log(colors.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
+  console.log(chalk.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
   delete request.qid;
   delete request.msg;
 
@@ -780,169 +768,11 @@ function processWbEditQueue(queue) {
     return task
       .catch(e => {
         const warning = { qid: qid, msg: e };
-        console.warn(colors.yellow(warning.qid.padEnd(12)) + colors.red(warning.msg));
+        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       })
       .then(() => delay(300))
       .then(() => processWbEditQueue(queue));
-  }
-}
-
-
-// `checkWikipediaTags`
-// Look at the wikidata sitelinks for this qid and
-// - assign `*:wikipedia` tags that are missing - #4716
-// - correct `*:wikipedia` tags that look wrong - #4747
-// Note, skip assigning `*:wikipedia` for 'flags' tree for now.
-function checkWikipediaTags(qid, sitelinks) {
-  // Convert sitelinks to OSM wikipedia tags..
-  let wikis = {};
-  Object.keys(sitelinks).forEach(code => {
-    const sitelink = sitelinks[code];
-    const site = sitelink.site;
-    const title = sitelink.title;
-    if (!site || !title) return null;
-
-    const m = site.match(/(\w+)wiki$/);     // 'enwiki', 'dewiki', 'zh_yuewiki', etc
-    if (!m) return null;
-    if (m[1] === 'commons') return null;    // skip 'commonswiki'
-
-    const lang = m[1].replace(/_/g, '-');   // 'zh_yue' -> 'zh-yue'
-    wikis[lang] = `${lang}:${title}`;
-  });
-
-  const wikiCount = Object.keys(wikis).length;
-
-  // which NSI items use this qid?
-  Array.from(_qidItems[qid]).forEach(id => {
-    const item = _cache.id.get(id);
-    if (item.fromTemplate) return;  // skip items expanded from templates
-
-    ['brand', 'operator', 'network'].forEach(osmkey => {
-      const wd = item.tags[`${osmkey}:wikidata`];
-      const wpOld = item.tags[`${osmkey}:wikipedia`];
-      if (/%25/.test(wpOld)) return;  // Skip if there is an encoded '%' in the value (%25 = '%')
-
-      if (wd && (wd === qid)) {  // `*:wikidata` tag matches
-        if (wpOld && !wikiCount) {            // there was a wikipedia sitelink... but there shouldn't be one for this wikidata qid
-          delete item.tags[`${osmkey}:wikipedia`];
-          const msg = colors.cyan(`${qid} "${item.displayName}" removing old tag "${osmkey}:wikipedia = ${wpOld}" (doesn't match this qid)`);
-          console.warn(msg);
-        } else if (wpOld && wikiCount) {        // there was a wikipedia sitelink...
-          const m = wpOld.match(/^(\w+):/);     // check the language of it  ('en', 'de', 'zh-yue')
-          if (m) {
-            const lang = m[1];
-            let wpNew = wikis[lang];
-            if (wpNew && wpNew !== wpOld) {     // the sitelink we found for this language and qid is different, so replace it
-              item.tags[`${osmkey}:wikipedia`] = wpNew;
-              const msg = colors.cyan(`${qid} "${item.displayName}" updating tag "${osmkey}:wikipedia = ${wpNew}" (was "${wpOld})"`);
-              console.warn(msg);
-            }
-          }
-        } else if (!wpOld) {                    // there was no sitelink before...
-          let wpNew = chooseWiki(item);         // so we will try to pick one
-          if (wpNew) {
-            item.tags[`${osmkey}:wikipedia`] = wpNew;
-            const msg = colors.cyan(`${qid} "${item.displayName}" adding missing tag "${osmkey}:wikipedia = ${wpNew}"`);
-            console.warn(msg);
-          }
-        }
-      }
-    });
-  });
-
-
-  // Attempt to guess what language this item is, and pick a reasonable wikipedia tag for it
-  // This code is terrible and nobody should do this.
-  function chooseWiki(item) {
-    if (!wikiCount) return null;
-
-    const cc = item.locationSet.include[0];   // first location in the locationSet
-    if (typeof cc !== 'string') return null;
-
-    const name = item.displayName;
-    let tryLangs = ['en'];                    // always fallback to enwiki
-
-    // https://en.wikipedia.org/wiki/Unicode_block
-    if (/[\u0370-\u03FF]/.test(name)) {          // Greek
-      tryLangs.push('el');
-    } else if (/[\u0590-\u05FF]/.test(name)) {   // Hebrew
-      tryLangs.push('he');
-    } else if (/[\u0600-\u06FF]/.test(name)) {   // Arabic
-      tryLangs.push('ar');
-    } else if (/[\u0750-\u077F]/.test(name)) {   // Arabic
-      tryLangs.push('ar');
-    } else if (/[\u08A0-\u08FF]/.test(name)) {   // Arabic
-      tryLangs.push('ar');
-    } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
-      tryLangs.push('th');
-    } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
-      tryLangs.push('my');
-    } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
-      tryLangs.push('ko');
-    } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
-      tryLangs.push('tl');
-    } else if (/[\u1800-\u18AF]/.test(name)) {   // Mongolian
-      tryLangs.push('mn');
-    } else if (/[\u1F00-\u1FFF]/.test(name)) {   // Greek
-      tryLangs.push('el');
-    } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
-      tryLangs.push('ja');
-    } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
-      tryLangs.push('ko');
-    } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
-      tryLangs.push('ko');
-    } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
-      tryLangs.push('ko');
-    } else if (cc === 'de' || cc === 'at' || cc === 'ch') {     // German
-      tryLangs.push('de');
-    } else if (cc === 'fr' || cc === 'fx' || cc === 'be') {     // French
-      tryLangs.push('fr');
-    } else if (cc === 'es' || cc === 'mx' || cc === 'ar') {     // Spanish (better include Argentina here or they may get Arabic)
-      tryLangs.push('es');
-    } else if (cc === 'gr' || cc === 'cy') {    // Greek (note gr/el) (better include Cyprus here or they may get Welsh)
-      tryLangs.push('el');
-    } else if (cc === 'pt' || cc === 'br') {    // Portuguese
-      tryLangs.push('pt');
-    } else if (cc === 'ru' || cc === 'by') {    // Russian
-      tryLangs.push('ru');
-    } else if (cc === 'ua') {                   // Ukranian, then Russian (note ua/uk)
-      tryLangs.push('ru', 'uk');
-    } else if (cc === 'dk') {                   // Danish (note dk/da)
-      tryLangs.push('da');
-    } else if (cc === 'se') {                   // Swedish (note se/sv)
-      tryLangs.push('sv');
-    } else if (cc === 'cz') {                   // Czech (note cz/cs)
-      tryLangs.push('cs');
-    } else if (cc === 'jp') {                   // Japanese (note jp/ja)
-      tryLangs.push('ja');
-    } else if (cc === 'rs') {                   // Serbian (note rs/sr)
-      tryLangs.push('sr');
-    } else if (cc === 'in') {                   // India / Hindi
-      tryLangs.push('hi');
-    } else if (cc === 'hk') {                   // Cantonese, then Standard Chinese
-      tryLangs.push('zh', 'zh-yue');
-    } else if (cc === 'cn') {                   // Standard Chinese
-      tryLangs.push('zh');
-    } else if (cc === 'ca') {                   // Canada, pick English (so they don't end up with Catalan)
-      tryLangs.push('en');
-    } else {
-      // Just guess the country code as the language code..
-      // At this point we are hoping that rare wiki languages don't have articles for rare qids
-      tryLangs.push(cc);
-    }
-
-    while (tryLangs.length) {
-      const lang = tryLangs.pop();
-      if (wikis[lang]) return wikis[lang];
-    }
-
-    // We've exhausted the guesses, just return the first wiki we find..
-    for (const lang in wikis) {
-      return wikis[lang];
-    }
-
-    return null;
   }
 }
 

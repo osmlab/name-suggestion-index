@@ -13,33 +13,65 @@
   },
   "items": [
     {
-      "templateExclude": ["upsstore"],
+      "note": "Auto create post boxes for all brand post offices - a few exceptions",
+      "templateExclude": [
+        "fedex",
+        "orlen",
+        "upsstore"
+      ],
       "templateSource": "brands/amenity/post_office",
       "templateTags": {
         "amenity": "post_box",
         "name": "",
         "operator": "{source.tags.brand}",
         "operator:wikidata": "{source.tags.brand:wikidata}",
-        "operator:wikipedia": "{source.tags.brand:wikipedia}"
+        "shop": ""
       }
     },
     {
+      "note": "Auto create post boxes for all operator post offices except Swiss Post",
+      "templateExclude": ["diepost"],
       "templateSource": "operators/amenity/post_office",
       "templateTags": {
         "amenity": "post_box",
+        "name": "",
+        "shop": ""
+      }
+    },
+    {
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/6919",
+      "templateInclude": ["diepost"],
+      "templateSource": "operators/amenity/post_office",
+      "templateTags": {
+        "amenity": "post_box",
+        "colour": "yellow",
         "name": ""
+      }
+    },
+    {
+      "displayName": "FedEx",
+      "id": "fedex-b58716",
+      "locationSet": {"include": ["001"]},
+      "note": "https://github.com/osmlab/name-suggestion-index/issues/5749",
+      "tags": {
+        "amenity": "post_box",
+        "brand": "FedEx",
+        "brand:wikidata": "Q459477",
+        "operator": "FedEx",
+        "operator:type": "private",
+        "operator:wikidata": "Q459477"
       }
     },
     {
       "displayName": "PIN Mail",
       "id": "pinmail-225eac",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["pin"],
       "tags": {
         "amenity": "post_box",
         "operator": "PIN Mail",
         "operator:type": "private",
-        "operator:wikidata": "Q1342288",
-        "operator:wikipedia": "de:PIN Mail"
+        "operator:wikidata": "Q1342288"
       }
     },
     {
@@ -50,14 +82,11 @@
       "tags": {
         "amenity": "post_box",
         "brand": "UPS",
-        "brand:type": "private",
         "brand:wikidata": "Q155026",
-        "brand:wikipedia": "en:United Parcel Service",
         "official_name": "United Parcel Service",
         "operator": "UPS",
         "operator:type": "private",
-        "operator:wikidata": "Q155026",
-        "operator:wikipedia": "en:United Parcel Service"
+        "operator:wikidata": "Q155026"
       }
     }
   ]

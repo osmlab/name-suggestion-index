@@ -1,6 +1,7 @@
 {
   "properties": {
     "path": "operators/amenity/clinic",
+    "preserveTags": ["^name"],
     "exclude": {
       "generic": [
         "^(clinic|urgent\\s?care)$",
@@ -8,13 +9,17 @@
         "^(consultorio|municipal|private(_profit)?|priv[eé]{0,2}|public)$",
         "^(polyclinique|poliklinika)$",
         "^centro (de salud|de saúde|médico)$",
+        "^combination$",
+        "^gov$",
         "^health (sub )?center$",
+        "^ministerio de salud$",
         "^ngo$",
         "^unidade?( básica)? de (saúde|salud)$",
         "^амбулатор[иі]я$",
         "^фап$",
         "^фельдшерско-акушерский пункт$",
-        "^درمانگاه$"
+        "^درمانگاه$",
+        "^诊所$"
       ]
     }
   },
@@ -31,6 +36,19 @@
       }
     },
     {
+      "displayName": "Akron Children's Hospital",
+      "id": "akronchildrenshospital-0ca787",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Akron Children's Hospital",
+        "operator:short": "ACH",
+        "operator:type": "private",
+        "operator:wikidata": "Q4701673"
+      }
+    },
+    {
       "displayName": "Asepeyo",
       "id": "asepeyo-edc4ef",
       "locationSet": {"include": ["es"]},
@@ -39,8 +57,7 @@
         "healthcare": "clinic",
         "name": "Asepeyo",
         "operator": "Asepeyo",
-        "operator:wikidata": "Q11906879",
-        "operator:wikipedia": "es:Asepeyo"
+        "operator:wikidata": "Q11906879"
       }
     },
     {
@@ -51,6 +68,16 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "ASL 3 Genovese"
+      }
+    },
+    {
+      "displayName": "ASL Roma 2",
+      "id": "aslroma2-87fe57",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "ASL Roma 2"
       }
     },
     {
@@ -71,8 +98,17 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "ASSE",
-        "operator:wikidata": "Q5657845",
-        "operator:wikipedia": "en:State Health Services Administration"
+        "operator:wikidata": "Q5657845"
+      }
+    },
+    {
+      "displayName": "Aurora Health Care",
+      "id": "aurorahealthcare-0ca787",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Aurora Health Care"
       }
     },
     {
@@ -85,8 +121,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Avon and Wiltshire Mental Health Partnership NHS Trust",
-        "operator:wikidata": "Q4829257",
-        "operator:wikipedia": "en:Avon and Wiltshire Mental Health Partnership NHS Trust"
+        "operator:wikidata": "Q4829257"
       }
     },
     {
@@ -97,8 +132,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Banner Health",
-        "operator:wikidata": "Q4856918",
-        "operator:wikipedia": "en:Banner Health"
+        "operator:wikidata": "Q4856918"
       }
     },
     {
@@ -109,8 +143,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "CCSS",
-        "operator:wikidata": "Q5174896",
-        "operator:wikipedia": "en:Costa Rican Social Security Fund"
+        "operator:wikidata": "Q5174896"
       }
     },
     {
@@ -124,28 +157,30 @@
       }
     },
     {
-      "displayName": "ChristianaCare",
-      "id": "christianacare-0ca787",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "ChristianaCare",
-        "operator:wikidata": "Q16987253",
-        "operator:wikipedia": "en:ChristianaCare"
-      }
-    },
-    {
       "displayName": "CityMD",
-      "id": "citymd-0ca787",
-      "locationSet": {"include": ["us"]},
+      "id": "citymd-1972a2",
+      "locationSet": {
+        "include": [
+          "us-nj.geojson",
+          "us-ny.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
         "name": "CityMD",
         "operator": "CityMD",
-        "operator:wikidata": "Q22295471",
-        "operator:wikipedia": "en:CityMD"
+        "operator:wikidata": "Q22295471"
+      }
+    },
+    {
+      "displayName": "Cleveland Clinic",
+      "id": "clevelandclinic-0ca787",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Cleveland Clinic"
       }
     },
     {
@@ -159,16 +194,14 @@
       }
     },
     {
-      "displayName": "combination",
-      "id": "combination-194da3",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cn"]
-      },
+      "displayName": "Concentra",
+      "id": "concentra-0ca787",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "combination"
+        "operator": "Concentra",
+        "operator:wikidata": "Q5158304"
       }
     },
     {
@@ -191,8 +224,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Cornwall Partnership NHS Foundation Trust",
-        "operator:wikidata": "Q16988175",
-        "operator:wikipedia": "en:Cornwall Partnership NHS Foundation Trust"
+        "operator:wikidata": "Q16988175"
       }
     },
     {
@@ -210,8 +242,7 @@
         "healthcare:speciality": "dialysis",
         "name": "DaVita Dialysis",
         "operator": "DaVita Dialysis",
-        "operator:wikidata": "Q5207184",
-        "operator:wikipedia": "de:DaVita"
+        "operator:wikidata": "Q5207184"
       }
     },
     {
@@ -244,8 +275,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Devon Partnership NHS Trust",
-        "operator:wikidata": "Q16988718",
-        "operator:wikipedia": "en:Devon Partnership NHS Trust"
+        "operator:wikidata": "Q16988718"
       }
     },
     {
@@ -260,7 +290,6 @@
         "name": "Dialysis Clinic",
         "operator": "Dialysis Clinic",
         "operator:wikidata": "Q5270633",
-        "operator:wikipedia": "en:Dialysis Clinic, Inc.",
         "short_name": "DCI"
       }
     },
@@ -274,8 +303,25 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Dorset HealthCare University NHS Foundation Trust",
-        "operator:wikidata": "Q16988978",
-        "operator:wikipedia": "en:Dorset HealthCare University NHS Foundation Trust"
+        "operator:wikidata": "Q16988978"
+      }
+    },
+    {
+      "displayName": "Duly Health & Care",
+      "id": "dulyhealthandcare-15fccf",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "matchNames": [
+        "dmg",
+        "duly",
+        "dupage medical group"
+      ],
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Duly Health & Care",
+        "operator:wikidata": "Q43896861"
       }
     },
     {
@@ -286,8 +332,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Essalud",
-        "operator:wikidata": "Q6123930",
-        "operator:wikipedia": "es:Seguro Social de Salud del Perú"
+        "operator:wikidata": "Q6123930"
       }
     },
     {
@@ -300,8 +345,7 @@
         "healthcare:speciality": "dialysis",
         "name": "Fresenius Kidney Care",
         "operator": "Fresenius Kidney Care",
-        "operator:wikidata": "Q650259",
-        "operator:wikipedia": "en:Fresenius Medical Care"
+        "operator:wikidata": "Q650259"
       }
     },
     {
@@ -314,17 +358,13 @@
         "healthcare:speciality": "dialysis",
         "name": "Fresenius Medical Care",
         "operator": "Fresenius Medical Care",
-        "operator:wikidata": "Q650259",
-        "operator:wikipedia": "en:Fresenius Medical Care"
+        "operator:wikidata": "Q650259"
       }
     },
     {
       "displayName": "GAMC",
-      "id": "gamc-194da3",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cn"]
-      },
+      "id": "gamc-6d7468",
+      "locationSet": {"include": ["bo"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -339,8 +379,28 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Generalitat Valenciana",
-        "operator:wikidata": "Q2477285",
-        "operator:wikipedia": "es:Generalidad Valenciana"
+        "operator:wikidata": "Q2477285"
+      }
+    },
+    {
+      "displayName": "Ghana Health Service",
+      "id": "ghanahealthservice-7981f3",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Ghana Health Service",
+        "operator:wikidata": "Q5555350"
+      }
+    },
+    {
+      "displayName": "Gobierno Autónomo Municipal de Cochabamba",
+      "id": "gobiernoautonomomunicipaldecochabamba-55c168",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Gobierno Autónomo Municipal de Cochabamba"
       }
     },
     {
@@ -351,8 +411,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Gobierno de la Ciudad de Buenos Aires",
-        "operator:wikidata": "Q16571953",
-        "operator:wikipedia": "es:Gobierno de la Ciudad de Buenos Aires"
+        "operator:wikidata": "Q16571953"
       }
     },
     {
@@ -363,18 +422,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Gobierno Regional",
-        "operator:wikidata": "Q3824815",
-        "operator:wikipedia": "en:Regional Governments of Peru"
-      }
-    },
-    {
-      "displayName": "Gov",
-      "id": "gov-55c168",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Gov"
+        "operator:wikidata": "Q3824815"
       }
     },
     {
@@ -396,8 +444,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Great Ormond Street Hospital for Children NHS Foundation Trust",
-        "operator:wikidata": "Q19873658",
-        "operator:wikipedia": "en:Great Ormond Street Hospital for Children NHS Foundation Trust"
+        "operator:wikidata": "Q19873658"
       }
     },
     {
@@ -413,18 +460,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Greater Manchester Mental Health NHS Foundation Trust",
-        "operator:wikidata": "Q16993309",
-        "operator:wikipedia": "en:Greater Manchester Mental Health NHS Foundation Trust"
-      }
-    },
-    {
-      "displayName": "Hartford HealthCare",
-      "id": "hartfordhealthcare-0ca787",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Hartford HealthCare"
+        "operator:wikidata": "Q16993309"
       }
     },
     {
@@ -445,8 +481,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "HCA",
-        "operator:wikidata": "Q1630431",
-        "operator:wikipedia": "en:HCA Healthcare"
+        "operator:wikidata": "Q1630431"
       }
     },
     {
@@ -458,8 +493,7 @@
         "healthcare": "clinic",
         "operator": "Health Service Executive",
         "operator:short": "HSE",
-        "operator:wikidata": "Q5690681",
-        "operator:wikipedia": "en:Health Service Executive"
+        "operator:wikidata": "Q5690681"
       }
     },
     {
@@ -474,8 +508,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Helios Kliniken",
-        "operator:wikidata": "Q1254151",
-        "operator:wikipedia": "de:Helios Kliniken"
+        "operator:wikidata": "Q1254151"
       }
     },
     {
@@ -488,8 +521,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Imperial College Healthcare NHS Trust",
-        "operator:wikidata": "Q14956770",
-        "operator:wikipedia": "en:Imperial College Healthcare NHS Trust"
+        "operator:wikidata": "Q14956770"
       }
     },
     {
@@ -500,8 +532,31 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "IMSS",
-        "operator:wikidata": "Q904999",
-        "operator:wikipedia": "es:Instituto Mexicano del Seguro Social"
+        "operator:wikidata": "Q904999"
+      }
+    },
+    {
+      "displayName": "Instituto Mexicano del Seguro Social",
+      "id": "institutomexicanodelsegurosocial-093f43",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Instituto Mexicano del Seguro Social",
+        "operator:en": "Mexican Social Security Institute",
+        "operator:es": "Instituto Mexicano del Seguro Social",
+        "operator:wikidata": "Q904999"
+      }
+    },
+    {
+      "displayName": "Intermountain Healthcare",
+      "id": "intermountainhealthcare-0ca787",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Intermountain Healthcare",
+        "operator:wikidata": "Q6047563"
       }
     },
     {
@@ -514,8 +569,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Isle of Wight NHS Trust",
-        "operator:wikidata": "Q16995139",
-        "operator:wikipedia": "en:Isle of Wight NHS Trust"
+        "operator:wikidata": "Q16995139"
       }
     },
     {
@@ -526,8 +580,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Junta de Andalucía",
-        "operator:wikidata": "Q2743342",
-        "operator:wikipedia": "es:Junta de Andalucía"
+        "operator:wikidata": "Q2743342"
       }
     },
     {
@@ -539,8 +592,7 @@
         "healthcare": "clinic",
         "operator": "Kaiser Permanente",
         "operator:short": "KP",
-        "operator:wikidata": "Q1721601",
-        "operator:wikipedia": "en:Kaiser Permanente"
+        "operator:wikidata": "Q1721601"
       }
     },
     {
@@ -552,8 +604,17 @@
         "healthcare": "clinic",
         "operator": "Kementerian Kesihatan Malaysia",
         "operator:short": "KKM",
-        "operator:wikidata": "Q4294352",
-        "operator:wikipedia": "en:Ministry of Health (Malaysia)"
+        "operator:wikidata": "Q4294352"
+      }
+    },
+    {
+      "displayName": "Klinik Hietzing",
+      "id": "klinikhietzing-55c168",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Klinik Hietzing"
       }
     },
     {
@@ -568,25 +629,7 @@
         "name:ms": "Klinik Mediviron",
         "name:zh": "马安药房",
         "operator": "Klinik Mediviron",
-        "operator:wikidata": "Q97498892",
-        "operator:wikipedia": "ms:Klinik Mediviron"
-      }
-    },
-    {
-      "displayName": "Legacy Medical Group",
-      "id": "legacyhealth-a30f15",
-      "locationSet": {
-        "include": [
-          "us-or.geojson",
-          "us-wa.geojson"
-        ]
-      },
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Legacy Health",
-        "operator:wikidata": "Q6517244",
-        "operator:wikipedia": "en:Legacy Health"
+        "operator:wikidata": "Q97498892"
       }
     },
     {
@@ -597,8 +640,20 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Lehigh Valley Health Network",
-        "operator:wikidata": "Q30280680",
-        "operator:wikipedia": "en:Lehigh Valley Health Network"
+        "operator:wikidata": "Q30280680"
+      }
+    },
+    {
+      "displayName": "Maidstone and Tunbridge Wells NHS Trust",
+      "id": "maidstoneandtunbridgewellsnhstrust-c8e3c4",
+      "locationSet": {
+        "include": ["gb-south-east-coast.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Maidstone and Tunbridge Wells NHS Trust",
+        "operator:wikidata": "Q16997207"
       }
     },
     {
@@ -609,8 +664,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Marshfield Clinic",
-        "operator:wikidata": "Q17020389",
-        "operator:wikipedia": "en:Marshfield Clinic"
+        "operator:wikidata": "Q17020389"
       }
     },
     {
@@ -622,20 +676,32 @@
         "healthcare": "clinic",
         "operator": "Médecins sans frontières",
         "operator:short": "MSF",
-        "operator:wikidata": "Q49330",
-        "operator:wikipedia": "en:Médecins Sans Frontières"
+        "operator:wikidata": "Q49330"
       }
     },
     {
-      "displayName": "Mercy",
-      "id": "mercy-0ca787",
+      "displayName": "MedExpress",
+      "id": "medexpress-0ca787",
       "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Mercy",
-        "operator:wikidata": "Q19896177",
-        "operator:wikipedia": "en:Mercy (healthcare organization)"
+        "operator": "MedExpress",
+        "operator:wikidata": "Q102183820"
+      }
+    },
+    {
+      "displayName": "Medische Zending",
+      "id": "medischezending-903c7c",
+      "locationSet": {"include": ["sr"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Medische Zending",
+        "operator:official": "Medische Zending Primary Health Care Suriname",
+        "operator:short": "MZPHCS;MZ",
+        "operator:type": "public",
+        "operator:wikidata": "Q25230853"
       }
     },
     {
@@ -652,8 +718,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Michigan Medicine",
-        "operator:wikidata": "Q7895758",
-        "operator:wikipedia": "en:Michigan Medicine"
+        "operator:wikidata": "Q7895758"
       }
     },
     {
@@ -664,8 +729,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Ministère de la Santé du Burkina Faso",
-        "operator:wikidata": "Q50037858",
-        "operator:wikipedia": "fr:Ministère de la Santé (Burkina Faso)"
+        "operator:wikidata": "Q50037858"
       }
     },
     {
@@ -686,8 +750,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Ministério da Saúde",
-        "operator:wikidata": "Q6867090",
-        "operator:wikipedia": "pt:Ministério da Saúde (Brasil)"
+        "operator:wikidata": "Q6867090"
       }
     },
     {
@@ -698,18 +761,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Ministério da Saúde",
-        "operator:wikidata": "Q4294357",
-        "operator:wikipedia": "pt:Ministério da Saúde (Portugal)"
-      }
-    },
-    {
-      "displayName": "Ministerio de Salud",
-      "id": "ministeriodesalud-55c168",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Ministerio de Salud"
+        "operator:wikidata": "Q4294357"
       }
     },
     {
@@ -731,8 +783,7 @@
         "healthcare": "clinic",
         "operator": "Ministerio de Salud del Perú",
         "operator:short": "MINSA",
-        "operator:wikidata": "Q3065012",
-        "operator:wikipedia": "en:Ministry of Health (Peru)"
+        "operator:wikidata": "Q3065012"
       }
     },
     {
@@ -754,8 +805,7 @@
         "healthcare": "clinic",
         "operator": "Ministerio de Salud Pública",
         "operator:short": "MINSAP",
-        "operator:wikidata": "Q5970641",
-        "operator:wikipedia": "en:Ministry of Public Health (Thailand)"
+        "operator:wikidata": "Q5970641"
       }
     },
     {
@@ -784,8 +834,7 @@
         "operator": "Ministry of Health",
         "operator:en": "Ministry of Health",
         "operator:id": "Kementerian Kesehatan",
-        "operator:wikidata": "Q12490745",
-        "operator:wikipedia": "id:Kementerian Kesehatan Republik Indonesia"
+        "operator:wikidata": "Q12490745"
       }
     },
     {
@@ -796,8 +845,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Ministry of Health and Sanitation",
-        "operator:wikidata": "Q21044897",
-        "operator:wikipedia": "en:Ministry of Health and Sanitation (Sierra Leone)"
+        "operator:wikidata": "Q21044897"
       }
     },
     {
@@ -808,8 +856,17 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Ministry of Public Health",
-        "operator:wikidata": "Q5970641",
-        "operator:wikipedia": "th:กระทรวงสาธารณสุข (ประเทศไทย)"
+        "operator:wikidata": "Q5970641"
+      }
+    },
+    {
+      "displayName": "MINSAL",
+      "id": "minsal-55c168",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "MINSAL"
       }
     },
     {
@@ -860,32 +917,33 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "NHS",
-        "operator:wikidata": "Q918396",
-        "operator:wikipedia": "en:National Health Service"
+        "operator:wikidata": "Q918396"
       }
     },
     {
-      "displayName": "Northwell Health",
-      "id": "northwellhealth-0ca787",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Novosalus",
+      "id": "novosalus-2b695d",
+      "locationSet": {"include": ["in"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Northwell Health",
-        "operator:wikidata": "Q7056650",
-        "operator:wikipedia": "en:Northwell Health"
+        "operator": "Novosalus"
       }
     },
     {
-      "displayName": "Novant Health",
-      "id": "novanthealth-0ca787",
-      "locationSet": {"include": ["us"]},
+      "displayName": "NYU Langone Health",
+      "id": "nyulangonehealth-1972a2",
+      "locationSet": {
+        "include": [
+          "us-nj.geojson",
+          "us-ny.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Novant Health",
-        "operator:wikidata": "Q14956815",
-        "operator:wikipedia": "en:Novant Health"
+        "operator": "NYU Langone Health",
+        "operator:wikidata": "Q6956114"
       }
     },
     {
@@ -903,8 +961,7 @@
         "healthcare": "clinic",
         "operator": "Oregon Health & Science University",
         "operator:short": "OHSU",
-        "operator:wikidata": "Q282097",
-        "operator:wikipedia": "en:Oregon Health & Science University"
+        "operator:wikidata": "Q282097"
       }
     },
     {
@@ -916,8 +973,7 @@
         "healthcare": "clinic",
         "name": "One Medical",
         "operator": "1Life Healthcare",
-        "operator:wikidata": "Q85727717",
-        "operator:wikipedia": "en:1Life Healthcare"
+        "operator:wikidata": "Q85727717"
       }
     },
     {
@@ -928,18 +984,32 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Osakidetza",
-        "operator:wikidata": "Q3822645",
-        "operator:wikipedia": "es:Osakidetza-Servicio Vasco de Salud"
+        "operator:wikidata": "Q3822645"
       }
     },
     {
       "displayName": "Passport Health",
-      "id": "passporthealth-55c168",
-      "locationSet": {"include": ["001"]},
+      "id": "passporthealth-e1ad58",
+      "locationSet": {
+        "include": ["ca", "mx", "us"]
+      },
+      "matchTags": ["amenity/hospital"],
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Passport Health"
+        "operator": "Passport Health",
+        "operator:wikidata": "Q30270336"
+      }
+    },
+    {
+      "displayName": "Patient First",
+      "id": "patientfirst-0ca787",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Patient First",
+        "operator:wikidata": "Q7144966"
       }
     },
     {
@@ -956,18 +1026,26 @@
       "displayName": "Planned Parenthood",
       "id": "plannedparenthood-0ca787",
       "locationSet": {"include": ["us"]},
-      "matchTags": [
-        "amenity/social_facility",
-        "healthcare/counselling"
-      ],
+      "matchTags": ["amenity/social_facility"],
       "tags": {
         "amenity": "clinic",
         "healthcare": "counselling",
         "healthcare:counselling": "antenatal;sexual",
         "name": "Planned Parenthood",
         "operator": "Planned Parenthood",
-        "operator:wikidata": "Q2553262",
-        "operator:wikipedia": "en:Planned Parenthood"
+        "operator:wikidata": "Q2553262"
+      }
+    },
+    {
+      "displayName": "PM Pediatrics",
+      "id": "pmpediatrics-0ca787",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "healthcare:speciality": "paediatrics",
+        "operator": "PM Pediatrics",
+        "operator:wikidata": "Q111445007"
       }
     },
     {
@@ -999,8 +1077,7 @@
         "healthcare": "clinic",
         "name": "Posyandu",
         "operator": "Posyandu",
-        "operator:wikidata": "Q12506263",
-        "operator:wikipedia": "id:Pos Pelayanan Terpadu"
+        "operator:wikidata": "Q12506263"
       }
     },
     {
@@ -1014,6 +1091,16 @@
       }
     },
     {
+      "displayName": "Prefeitura da Cidade do Rio de Janeiro",
+      "id": "prefeituradacidadedoriodejaneiro-5f4b12",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura da Cidade do Rio de Janeiro"
+      }
+    },
+    {
       "displayName": "Prefeitura de Camocim",
       "id": "prefeituradecamocim-5f4b12",
       "locationSet": {"include": ["br"]},
@@ -1021,6 +1108,26 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Prefeitura de Camocim"
+      }
+    },
+    {
+      "displayName": "Prefeitura do Natal",
+      "id": "prefeituradonatal-5f4b12",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura do Natal"
+      }
+    },
+    {
+      "displayName": "Prefeitura do Rio de Janeiro",
+      "id": "prefeituradoriodejaneiro-5f4b12",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura do Rio de Janeiro"
       }
     },
     {
@@ -1048,12 +1155,22 @@
     },
     {
       "displayName": "Prefeitura Municipal de Blumenau",
-      "id": "prefeituramunicipaldeblumenau-55c168",
-      "locationSet": {"include": ["001"]},
+      "id": "prefeituramunicipaldeblumenau-5f4b12",
+      "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Prefeitura Municipal de Blumenau"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal de Chapecó",
+      "id": "prefeituramunicipaldechapeco-5f4b12",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura Municipal de Chapecó"
       }
     },
     {
@@ -1064,6 +1181,16 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Prefeitura Municipal de Florianópolis"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal de Pomerode",
+      "id": "prefeituramunicipaldepomerode-55c168",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura Municipal de Pomerode"
       }
     },
     {
@@ -1084,8 +1211,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Providence Health & Services",
-        "operator:wikidata": "Q7252430",
-        "operator:wikipedia": "en:Providence Health & Services"
+        "operator:wikidata": "Q7252430"
       }
     },
     {
@@ -1119,6 +1245,36 @@
       }
     },
     {
+      "displayName": "Regina Maria",
+      "id": "reginamaria-7d9042",
+      "locationSet": {"include": ["ro"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Regina Maria"
+      }
+    },
+    {
+      "displayName": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa Poznań",
+      "id": "regionalnecentrumkrwiodawstwaikrwiolecznictwapoznan-73e20b",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa Poznań"
+      }
+    },
+    {
+      "displayName": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa w Bydgoszczy",
+      "id": "regionalnecentrumkrwiodawstwaikrwiolecznictwawbydgoszczy-73e20b",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa w Bydgoszczy"
+      }
+    },
+    {
       "displayName": "Rhön-Klinikum",
       "id": "rhonklinikum-ee9e20",
       "locationSet": {"include": ["de"]},
@@ -1126,8 +1282,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Rhön-Klinikum",
-        "operator:wikidata": "Q573604",
-        "operator:wikipedia": "de:Rhön-Klinikum"
+        "operator:wikidata": "Q573604"
       }
     },
     {
@@ -1138,8 +1293,20 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "SACYL",
-        "operator:wikidata": "Q6116740",
-        "operator:wikipedia": "es:Sacyl"
+        "operator:wikidata": "Q6116740"
+      }
+    },
+    {
+      "displayName": "Saltzer Health",
+      "id": "saltzerhealth-802e45",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Saltzer Health",
+        "operator:wikidata": "Q110744466"
       }
     },
     {
@@ -1152,8 +1319,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Samaritan Health Services",
-        "operator:wikidata": "Q30288491",
-        "operator:wikipedia": "en:Samaritan Health Services"
+        "operator:wikidata": "Q30288491"
       }
     },
     {
@@ -1164,8 +1330,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Sana Kliniken",
-        "operator:wikidata": "Q2220152",
-        "operator:wikipedia": "de:Sana Kliniken"
+        "operator:wikidata": "Q2220152"
       }
     },
     {
@@ -1196,6 +1361,16 @@
       }
     },
     {
+      "displayName": "Secretaria de Saúde",
+      "id": "secretariadesaude-5f4b12",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Secretaria de Saúde"
+      }
+    },
+    {
       "displayName": "Secretaria de Saúde de Caruaru",
       "id": "secretariadesaudedecaruaru-5f4b12",
       "locationSet": {"include": ["br"]},
@@ -1214,6 +1389,16 @@
         "healthcare": "clinic",
         "operator": "Secretaria Especial de Saúde Indígena",
         "operator:short": "SESAI"
+      }
+    },
+    {
+      "displayName": "Secretaria Municipal da Saúde",
+      "id": "secretariamunicipaldasaude-55c168",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Secretaria Municipal da Saúde"
       }
     },
     {
@@ -1255,8 +1440,7 @@
         "healthcare": "clinic",
         "operator": "Servicio Andaluz de Salud",
         "operator:short": "SAS",
-        "operator:wikidata": "Q4753529",
-        "operator:wikipedia": "es:Servicio Andaluz de Salud"
+        "operator:wikidata": "Q4753529"
       }
     },
     {
@@ -1268,8 +1452,7 @@
         "healthcare": "clinic",
         "operator": "Servicio de Salud de Castilla-La Mancha",
         "operator:short": "SESCAM",
-        "operator:wikidata": "Q5665691",
-        "operator:wikipedia": "es:Servicio de Salud de Castilla-La Mancha"
+        "operator:wikidata": "Q5665691"
       }
     },
     {
@@ -1281,8 +1464,7 @@
         "healthcare": "clinic",
         "operator": "Servicio Extremeño de Salud",
         "operator:short": "SES",
-        "operator:wikidata": "Q6126026",
-        "operator:wikipedia": "es:Servicio Extremeño de Salud"
+        "operator:wikidata": "Q6126026"
       }
     },
     {
@@ -1294,8 +1476,7 @@
         "healthcare": "clinic",
         "operator": "Servicio Madrileño de Salud",
         "operator:short": "SERMAS",
-        "operator:wikidata": "Q6126030",
-        "operator:wikipedia": "es:Servicio Madrileño de Salud"
+        "operator:wikidata": "Q6126030"
       }
     },
     {
@@ -1307,8 +1488,7 @@
         "healthcare": "clinic",
         "operator": "Serviço Nacional de Saúde",
         "operator:short": "SNS",
-        "operator:wikidata": "Q1299901",
-        "operator:wikipedia": "pt:Serviço Nacional de Saúde"
+        "operator:wikidata": "Q1299901"
       }
     },
     {
@@ -1325,8 +1505,7 @@
         "operator": "Servizo Galego de Saúde",
         "operator:short": "SERGAS",
         "operator:type": "public",
-        "operator:wikidata": "Q3393183",
-        "operator:wikipedia": "es:Servicio Gallego de Salud"
+        "operator:wikidata": "Q3393183"
       }
     },
     {
@@ -1338,8 +1517,7 @@
         "healthcare": "clinic",
         "operator": "Sistema Único de Saúde",
         "operator:short": "SUS",
-        "operator:wikidata": "Q7531056",
-        "operator:wikipedia": "pt:Sistema Único de Saúde"
+        "operator:wikidata": "Q7531056"
       }
     },
     {
@@ -1352,8 +1530,17 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Somerset NHS Foundation Trust",
-        "operator:wikidata": "Q96405998",
-        "operator:wikipedia": "en:Somerset NHS Foundation Trust"
+        "operator:wikidata": "Q96405998"
+      }
+    },
+    {
+      "displayName": "Somogy Megyei Kaposi Mór Oktató Kórház",
+      "id": "somogymegyeikaposimoroktatokorhaz-133339",
+      "locationSet": {"include": ["hu"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Somogy Megyei Kaposi Mór Oktató Kórház"
       }
     },
     {
@@ -1395,8 +1582,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "T.C. Sağlık Bakanlığı",
-        "operator:wikidata": "Q4294365",
-        "operator:wikipedia": "tr:Türkiye Cumhuriyeti Sağlık Bakanlığı"
+        "operator:wikidata": "Q4294365"
       }
     },
     {
@@ -1408,8 +1594,33 @@
         "healthcare": "clinic",
         "name": "Terveystalo",
         "operator": "Terveystalo",
-        "operator:wikidata": "Q11897034",
-        "operator:wikipedia": "fi:Terveystalo"
+        "operator:wikidata": "Q11897034"
+      }
+    },
+    {
+      "displayName": "UC San Diego Health",
+      "id": "ucsandiegohealth-40b2ce",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "UC San Diego Health",
+        "operator:wikidata": "Q3547155"
+      }
+    },
+    {
+      "displayName": "UCLA Health",
+      "id": "uclahealth-40b2ce",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "UCLA Health",
+        "operator:wikidata": "Q18394900"
       }
     },
     {
@@ -1426,8 +1637,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "UnityPoint Health",
-        "operator:wikidata": "Q17078774",
-        "operator:wikipedia": "en:UnityPoint Health"
+        "operator:wikidata": "Q17078774"
       }
     },
     {
@@ -1440,8 +1650,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "University Hospitals Dorset NHS Foundation Trust",
-        "operator:wikidata": "Q99964922",
-        "operator:wikipedia": "en:University Hospitals Dorset NHS Foundation Trust"
+        "operator:wikidata": "Q99964922"
       }
     },
     {
@@ -1453,6 +1662,16 @@
         "healthcare": "clinic",
         "operator": "UPMC",
         "operator:wikidata": "Q30281140"
+      }
+    },
+    {
+      "displayName": "UW Health",
+      "id": "uwhealth-0ca787",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "UW Health"
       }
     },
     {
@@ -1475,7 +1694,6 @@
         "name": "VA Clinic",
         "operator": "VA",
         "operator:wikidata": "Q6580225",
-        "operator:wikipedia": "en:Veterans Health Administration",
         "short_name": "VA"
       }
     },
@@ -1498,8 +1716,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Vivantes",
-        "operator:wikidata": "Q878059",
-        "operator:wikipedia": "de:Vivantes"
+        "operator:wikidata": "Q878059"
       }
     },
     {
@@ -1512,8 +1729,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Yeovil District Hospital NHS Foundation Trust",
-        "operator:wikidata": "Q8052494",
-        "operator:wikipedia": "en:Yeovil District Hospital NHS Foundation Trust"
+        "operator:wikidata": "Q8052494"
       }
     },
     {
@@ -1526,7 +1742,6 @@
         "name": "ZoomCare",
         "operator": "ZoomCare",
         "operator:wikidata": "Q64120374",
-        "operator:wikipedia": "en:ZoomCare",
         "urgent_care": "yes"
       }
     },
@@ -1583,8 +1798,7 @@
         "operator": "כללית",
         "operator:en": "Clalit Healthcare Services",
         "operator:he": "כללית",
-        "operator:wikidata": "Q2028422",
-        "operator:wikipedia": "he:שירותי בריאות כללית"
+        "operator:wikidata": "Q2028422"
       }
     },
     {
@@ -1597,8 +1811,7 @@
         "operator": "מכבי",
         "operator:en": "Maccabi Healthcare Services",
         "operator:he": "מכבי",
-        "operator:wikidata": "Q2907040",
-        "operator:wikipedia": "he:מכבי שירותי בריאות"
+        "operator:wikidata": "Q2907040"
       }
     },
     {
@@ -1623,8 +1836,7 @@
         "name:th": "โรงพยาบาลส่งเสริมสุขภาพตำบล",
         "operator": "โรงพยาบาลส่งเสริมสุขภาพตำบล",
         "operator:th": "โรงพยาบาลส่งเสริมสุขภาพตำบล",
-        "operator:wikidata": "Q16306413",
-        "operator:wikipedia": "th:โรงพยาบาลส่งเสริมสุขภาพตำบล"
+        "operator:wikidata": "Q16306413"
       }
     }
   ]

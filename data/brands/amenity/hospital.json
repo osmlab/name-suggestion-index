@@ -1,0 +1,39 @@
+{
+  "properties": {
+    "path": "brands/amenity/hospital",
+    "skipCollection": true,
+    "preserveTags": ["^emergency$", "^name"],
+    "exclude": {
+      "generic": [
+        "^(govern?ment( authorities)?|govt( hospital)?|municipal|private|public|private not for profit|village)$",
+        "^centro (de salud|de saúde|médico)$",
+        "^community$",
+        "^hospital$",
+        "^others$",
+        "^privado$",
+        "^private not for profit$",
+        "^subdistrict$",
+        "^амбулатор[иі]я$",
+        "^инфекционн(ая|ое) (больница|отделение)",
+        "^кожно-?венерологический диспансер",
+        "^фап$",
+        "^фельдшерско-акушерский пункт$"
+      ]
+    }
+  },
+  "items": [
+    {
+      "displayName": "Deutsches Rotes Kreuz",
+      "id": "deutschesroteskreuz-befdb8",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["drk", "rotes kreuz"],
+      "tags": {
+        "amenity": "hospital",
+        "brand": "Deutsches Rotes Kreuz",
+        "brand:wikidata": "Q694104",
+        "healthcare": "hospital",
+        "name": "Deutsches Rotes Kreuz"
+      }
+    }
+  ]
+}

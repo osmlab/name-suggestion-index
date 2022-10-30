@@ -2,7 +2,11 @@
   "properties": {
     "path": "brands/healthcare/sample_collection",
     "exclude": {
-      "generic": ["^sample collection$"]
+      "generic": [
+        "^laborato(ire|ry)( d'analyses médicales)?$",
+        "^sample collection?$",
+        "^пол[иі]кл[иі]н[иі]ка( №1)?$"
+      ]
     }
   },
   "items": [
@@ -37,6 +41,19 @@
         "healthcare": "sample_collection",
         "name": "Douglass Hanly Moir",
         "short_name": "DHM"
+      }
+    },
+    {
+      "displayName": "Labtests",
+      "id": "labtests-04a251",
+      "locationSet": {
+        "include": ["nz-auk.geojson"]
+      },
+      "tags": {
+        "brand": "Labtests",
+        "brand:wikidata": "Q113312315",
+        "healthcare": "sample_collection",
+        "name": "Labtests"
       }
     },
     {

@@ -1,9 +1,48 @@
 {
   "properties": {
     "path": "operators/leisure/park",
-    "exclude": {"generic": ["^park$"]}
+    "exclude": {
+      "generic": [
+        "^ayuntamiento$",
+        "^city$",
+        "^gemeinde$",
+        "^gover(no|ment)$",
+        "^mairie$",
+        "^municipal(|ity|idad)$",
+        "^municipio$",
+        "^p[uú]blic(o)?$",
+        "^park$",
+        "^prefeitura (municipal)?$",
+        "^prefeitura$",
+        "^recreation and parks$",
+        "^shared$"
+      ],
+      "named": [
+        "^greentree condominium$",
+        "^halifax regional centre for education$",
+        "^lancaster new city homeowners association, brighton$",
+        "^parco nord milano$",
+        "^paseo del sol community association$"
+      ]
+    }
   },
   "items": [
+    {
+      "displayName": "Abbotsford Parks, Recreation & Culture",
+      "id": "abbotsfordparksrecreationandculture-b3cf59",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "matchNames": [
+        "city of abbotsford, department of parks, recreation & culture"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Abbotsford Parks, Recreation & Culture",
+        "operator:type": "public",
+        "operator:wikidata": "Q110063681"
+      }
+    },
     {
       "displayName": "Alabama State Parks",
       "id": "alabamastateparks-aefb27",
@@ -30,6 +69,39 @@
       }
     },
     {
+      "displayName": "Allegany County",
+      "id": "alleganycountycommissioners-fb928d",
+      "locationSet": {
+        "include": ["us-md.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Allegany County Commissioners",
+        "operator:type": "public",
+        "operator:wikidata": "Q156257"
+      }
+    },
+    {
+      "displayName": "Anderson Island Parks and Recreation District",
+      "id": "andersonislandparksandrecreationdistrict-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Anderson Island Parks and Recreation District"
+      }
+    },
+    {
+      "displayName": "Arboretum de Versailles-Chèvreloup",
+      "id": "arboretumdeversailleschevreloup-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Arboretum de Versailles-Chèvreloup",
+        "operator:type": "public",
+        "operator:wikidata": "Q2011703"
+      }
+    },
+    {
       "displayName": "Arizona State Parks",
       "id": "arizonastateparks-1fe561",
       "locationSet": {
@@ -39,8 +111,7 @@
         "leisure": "park",
         "operator": "Arizona State Parks",
         "operator:type": "public",
-        "operator:wikidata": "Q4791409",
-        "operator:wikipedia": "en:Arizona State Parks (government)"
+        "operator:wikidata": "Q4791409"
       }
     },
     {
@@ -57,6 +128,140 @@
       }
     },
     {
+      "displayName": "Arlington County Department of Parks and Recreation",
+      "id": "arlingtoncountydepartmentofparksandrecreation-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Arlington County Department of Parks and Recreation",
+        "operator:type": "public"
+      }
+    },
+    {
+      "displayName": "Arlington Heights Park District",
+      "id": "arlingtonheightsparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Arlington Heights Park District",
+        "operator:short": "AHPD",
+        "operator:type": "public",
+        "operator:wikidata": "Q4792332"
+      }
+    },
+    {
+      "displayName": "Auckland Council",
+      "id": "aucklandcouncil-9b811e",
+      "locationSet": {
+        "include": ["nz-auk.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Auckland Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q758635"
+      }
+    },
+    {
+      "displayName": "Ayuntamiento de Málaga",
+      "id": "ayuntamientodemalaga-e4902f",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ayuntamiento de Málaga",
+        "operator:type": "government",
+        "operator:wikidata": "Q8851"
+      }
+    },
+    {
+      "displayName": "Bainbridge Island Metro Park & Recreation District",
+      "id": "bainbridgeislandmetroparkandrecreationdistrict-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "matchNames": [
+        "bainbridge island parks and recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Bainbridge Island Metro Park & Recreation District",
+        "operator:type": "public",
+        "operator:wikidata": "Q110062887"
+      }
+    },
+    {
+      "displayName": "Baltimore County Department of Recreation & Parks",
+      "id": "baltimorecountydepartmentofrecreationandparks-fb928d",
+      "locationSet": {
+        "include": ["us-md.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Baltimore County Department of Recreation and Parks",
+        "operator:type": "public",
+        "operator:wikidata": "Q110062941"
+      }
+    },
+    {
+      "displayName": "Barnet Council",
+      "id": "barnetcouncil-777334",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Barnet Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q4861611"
+      }
+    },
+    {
+      "displayName": "BBMP",
+      "id": "bruhatbengalurumahanagarapalike-d31221",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "ಬೃಹತ್ ಬೆಂಗಳೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ",
+        "operator:en": "Bruhat Bengaluru Mahanagara Palike",
+        "operator:ka": "ಬೃಹತ್ ಬೆಂಗಳೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ",
+        "operator:short": "BBMP",
+        "operator:type": "government",
+        "operator:wikidata": "Q4978693"
+      }
+    },
+    {
+      "displayName": "BCRP",
+      "id": "baltimorecitydepartmentofrecreationandparks-07d097",
+      "locationSet": {
+        "include": ["baltimore.geojson"]
+      },
+      "matchNames": [
+        "baltimore city recreation and parks"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Baltimore City Department of Recreation & Parks",
+        "operator:short": "BCRP",
+        "operator:type": "public",
+        "operator:wikidata": "Q110062922"
+      }
+    },
+    {
+      "displayName": "Belfast City Council",
+      "id": "belfastcitycouncil-fe9c0f",
+      "locationSet": {"include": ["gb-nir"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Belfast City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q55934837"
+      }
+    },
+    {
       "displayName": "Bend Park & Recreation District",
       "id": "bendparkandrecreationdistrict-9db284",
       "locationSet": {
@@ -67,8 +272,113 @@
         "leisure": "park",
         "operator": "Bend Park & Recreation District",
         "operator:type": "public",
-        "operator:wikidata": "Q4886991",
-        "operator:wikipedia": "en:Bend Park & Recreation District"
+        "operator:wikidata": "Q4886991"
+      }
+    },
+    {
+      "displayName": "Birmingham Park and Recreation",
+      "id": "birminghamparkandrecreationboard-aefb27",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
+      "matchNames": [
+        "birmingham parks and recreation board"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Birmingham Park and Recreation Board",
+        "operator:type": "public",
+        "operator:wikidata": "Q110062982"
+      }
+    },
+    {
+      "displayName": "Blacksburg Parks and Recreation",
+      "id": "blacksburgparksandrecreation-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Blacksburg Parks and Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110062985"
+      }
+    },
+    {
+      "displayName": "BMC (Bhubaneswar)",
+      "id": "bhubaneswarmunicipalcorporation-f088cd",
+      "locationSet": {"include": [[85.8, 20.2]]},
+      "tags": {
+        "leisure": "park",
+        "operator": "ଭୁବନେଶ୍ୱର ମହାନ‌ଗର ନିଗମ",
+        "operator:en": "Bhubaneswar Municipal Corporation",
+        "operator:or": "ଭୁବନେଶ୍ୱର ମହାନ‌ଗର ନିଗମ",
+        "operator:short": "BMC",
+        "operator:type": "government",
+        "operator:wikidata": "Q4046093"
+      }
+    },
+    {
+      "displayName": "BMC (Brihanmumbai)",
+      "id": "brihanmumbaimunicipalcorporation-690040",
+      "locationSet": {
+        "include": [[72.9, 19.1, 30]]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "बृहन्मुंबई महानगरपालिका",
+        "operator:en": "Brihanmumbai Municipal Corporation",
+        "operator:mr": "बृहन्मुंबई महानगरपालिका",
+        "operator:short": "BMC",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Bolingbrook Park District",
+      "id": "bolingbrookparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Bolingbrook Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q111214103"
+      }
+    },
+    {
+      "displayName": "BREC",
+      "id": "brec-4221d5",
+      "locationSet": {
+        "include": ["us-la.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "BREC",
+        "operator:type": "public",
+        "operator:wikidata": "Q110063067"
+      }
+    },
+    {
+      "displayName": "Brisbane City Council",
+      "id": "brisbanecitycouncil-f88a26",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Brisbane City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q917682"
+      }
+    },
+    {
+      "displayName": "Buffalo Grove Park District",
+      "id": "buffalogroveparkdistrict-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Buffalo Grove Park District"
       }
     },
     {
@@ -82,8 +392,181 @@
         "leisure": "park",
         "operator": "California Department of Parks and Recreation",
         "operator:type": "public",
-        "operator:wikidata": "Q2933976",
-        "operator:wikipedia": "en:California State Parks"
+        "operator:wikidata": "Q2933976"
+      }
+    },
+    {
+      "displayName": "Câmara Municipal de Lisboa",
+      "id": "camaramunicipaldelisboa-1913f6",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Câmara Municipal de Lisboa",
+        "operator:type": "government",
+        "operator:wikidata": "Q30255955"
+      }
+    },
+    {
+      "displayName": "Canyon Lake Property Owners Association",
+      "id": "canyonlakepropertyownersassociation-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Canyon Lake Property Owners Association",
+        "operator:type": "private",
+        "operator:wikidata": "Q110063605"
+      }
+    },
+    {
+      "displayName": "Capital Development Authority (Islamabad)",
+      "id": "capitaldevelopmentauthority-0d1b38",
+      "locationSet": {"include": ["pk"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Capital Development Authority",
+        "operator:short": "CDA",
+        "operator:wikidata": "Q5035545"
+      }
+    },
+    {
+      "displayName": "Carol Stream Park District",
+      "id": "carolstreamparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Carol Stream Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q114358374"
+      }
+    },
+    {
+      "displayName": "Carson City",
+      "id": "carsoncity-130a83",
+      "locationSet": {
+        "include": ["us-nv.geojson"]
+      },
+      "matchNames": [
+        "carson city parks and recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Carson City",
+        "operator:type": "public",
+        "operator:wikidata": "Q40881"
+      }
+    },
+    {
+      "displayName": "Cartersville Parks and Recreation",
+      "id": "cartersvilleparksandrecreation-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Cartersville Parks and Recreation"
+      }
+    },
+    {
+      "displayName": "CASC",
+      "id": "casc-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "CASC"
+      }
+    },
+    {
+      "displayName": "Central Regional District",
+      "id": "centralregionaldistrict-b3cf59",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "matchNames": ["crd parks"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Central Regional District",
+        "operator:short": "CRD",
+        "operator:type": "public",
+        "operator:wikidata": "Q550219"
+      }
+    },
+    {
+      "displayName": "Chehalem Park and Recreation District",
+      "id": "chehalemparkandrecreationdistrict-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Chehalem Park and Recreation District",
+        "operator:type": "public",
+        "operator:wikidata": "Q110063670"
+      }
+    },
+    {
+      "displayName": "Chesterfield County Parks and Recreation",
+      "id": "chesterfieldcountyparksandrecreation-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Chesterfield County Parks and Recreation"
+      }
+    },
+    {
+      "displayName": "Chicago Heights Park District",
+      "id": "chicagoheightsparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Chicago Heights Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q30286803"
+      }
+    },
+    {
+      "displayName": "Chicago Park District",
+      "id": "chicagoparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "matchNames": ["chicago parks district"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Chicago Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q2963322"
+      }
+    },
+    {
+      "displayName": "Christchurch City Council",
+      "id": "christchurchcitycouncil-b93ce4",
+      "locationSet": {
+        "include": ["nz-can.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Christchurch City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q5109064"
+      }
+    },
+    {
+      "displayName": "City of Ann Arbor",
+      "id": "cityofannarbor-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Ann Arbor",
+        "operator:type": "public",
+        "operator:wikidata": "Q485172"
       }
     },
     {
@@ -96,8 +579,89 @@
         "leisure": "park",
         "operator": "City of Ashland",
         "operator:type": "public",
-        "operator:wikidata": "Q450100",
-        "operator:wikipedia": "en:Ashland, Oregon"
+        "operator:wikidata": "Q450100"
+      }
+    },
+    {
+      "displayName": "City of Ashland (Wisconsin)",
+      "id": "cityofashland-ef1d28",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Ashland",
+        "operator:type": "public",
+        "operator:wikidata": "Q725594"
+      }
+    },
+    {
+      "displayName": "City of Ashtabula",
+      "id": "cityofashtabula-c0c15b",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Ashtabula",
+        "operator:type": "public",
+        "operator:wikidata": "Q726287"
+      }
+    },
+    {
+      "displayName": "City of Auburn (Washington)",
+      "id": "cityofauburn-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Auburn",
+        "operator:type": "public",
+        "operator:wikidata": "Q661595"
+      }
+    },
+    {
+      "displayName": "City of Austin",
+      "id": "cityofaustin-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "matchNames": [
+        "austin parks and recreation department",
+        "city of austin parks and recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Austin",
+        "operator:type": "public",
+        "operator:wikidata": "Q16559"
+      }
+    },
+    {
+      "displayName": "City of Battle Creek",
+      "id": "cityofbattlecreek-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Battle Creek",
+        "operator:type": "public",
+        "operator:wikidata": "Q810998"
+      }
+    },
+    {
+      "displayName": "City of Battle Ground",
+      "id": "cityofbattleground-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Battle Ground",
+        "operator:type": "public",
+        "operator:wikidata": "Q810999"
       }
     },
     {
@@ -110,8 +674,492 @@
         "leisure": "park",
         "operator": "City of Beaverton",
         "operator:type": "public",
-        "operator:wikidata": "Q81856",
-        "operator:wikipedia": "en:Beaverton, Oregon"
+        "operator:wikidata": "Q81856"
+      }
+    },
+    {
+      "displayName": "City of Belleair",
+      "id": "cityofbelleair-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Belleair",
+        "operator:type": "public",
+        "operator:wikidata": "Q2092758"
+      }
+    },
+    {
+      "displayName": "City of Bellevue (Iowa)",
+      "id": "cityofbellevue-5303d3",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Bellevue",
+        "operator:type": "public",
+        "operator:wikidata": "Q815958"
+      }
+    },
+    {
+      "displayName": "City of Bellevue (Washington)",
+      "id": "cityofbellevue-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Bellevue",
+        "operator:type": "public",
+        "operator:wikidata": "Q214164"
+      }
+    },
+    {
+      "displayName": "City of Bellingham",
+      "id": "cityofbellingham-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Bellingham",
+        "operator:type": "public",
+        "operator:wikidata": "Q430267"
+      }
+    },
+    {
+      "displayName": "City of Blaine (Minnesota)",
+      "id": "cityofblaine-853554",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Blaine",
+        "operator:type": "public",
+        "operator:wikidata": "Q881140"
+      }
+    },
+    {
+      "displayName": "City of Blaine (Washington)",
+      "id": "cityofblaine-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Blaine",
+        "operator:type": "public",
+        "operator:wikidata": "Q1144380"
+      }
+    },
+    {
+      "displayName": "City of Boise",
+      "id": "cityofboise-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "matchNames": [
+        "boise parks and recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Boise",
+        "operator:type": "public",
+        "operator:wikidata": "Q35775"
+      }
+    },
+    {
+      "displayName": "City of Boulder",
+      "id": "cityofboulder-0900ba",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Boulder",
+        "operator:type": "public",
+        "operator:wikidata": "Q192517"
+      }
+    },
+    {
+      "displayName": "City of Boynton Beach",
+      "id": "cityofboyntonbeach-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Boynton Beach",
+        "operator:type": "public",
+        "operator:wikidata": "Q896048"
+      }
+    },
+    {
+      "displayName": "City of Bremerton",
+      "id": "cityofbremerton-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Bremerton",
+        "operator:type": "public",
+        "operator:wikidata": "Q695417"
+      }
+    },
+    {
+      "displayName": "City of Brentwood (California)",
+      "id": "cityofbrentwood-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Brentwood",
+        "operator:type": "public",
+        "operator:wikidata": "Q846426"
+      }
+    },
+    {
+      "displayName": "City of Brentwood (Missouri)",
+      "id": "cityofbrentwood-5e2224",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Brentwood",
+        "operator:type": "public",
+        "operator:wikidata": "Q965612"
+      }
+    },
+    {
+      "displayName": "City of Buffalo",
+      "id": "cityofbuffalo-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "matchNames": [
+        "city of buffalo division of parks & recreation",
+        "city of buffalo parks & recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Buffalo",
+        "operator:type": "public",
+        "operator:wikidata": "Q40435"
+      }
+    },
+    {
+      "displayName": "City of Caldwell (Idaho)",
+      "id": "cityofcaldwell-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Caldwell",
+        "operator:type": "public",
+        "operator:wikidata": "Q849592"
+      }
+    },
+    {
+      "displayName": "City of Calgary",
+      "id": "cityofcalgary-85dee0",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Calgary",
+        "operator:type": "public",
+        "operator:wikidata": "Q36312"
+      }
+    },
+    {
+      "displayName": "City of Camas",
+      "id": "cityofcamas-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "matchNames": ["camas"],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Camas",
+        "operator:type": "public",
+        "operator:wikidata": "Q1507709"
+      }
+    },
+    {
+      "displayName": "City of Canning",
+      "id": "cityofcanning-7b192d",
+      "locationSet": {
+        "include": ["au-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Canning",
+        "operator:type": "government",
+        "operator:wikidata": "Q585453"
+      }
+    },
+    {
+      "displayName": "City of Cape Town",
+      "id": "cityofcapetown-1d1c6d",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Cape Town",
+        "operator:type": "government",
+        "operator:wikidata": "Q1185115"
+      }
+    },
+    {
+      "displayName": "City of Casey",
+      "id": "cityofcasey-3b6b12",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Casey",
+        "operator:type": "government",
+        "operator:wikidata": "Q1756241"
+      }
+    },
+    {
+      "displayName": "City of Chandler",
+      "id": "cityofchandler-1fe561",
+      "locationSet": {
+        "include": ["us-az.geojson"]
+      },
+      "matchNames": [
+        "chandler parks and recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Chandler",
+        "operator:type": "public",
+        "operator:wikidata": "Q49272"
+      }
+    },
+    {
+      "displayName": "City of Charleston (South Carolina)",
+      "id": "cityofcharleston-35a23d",
+      "locationSet": {
+        "include": ["us-sc.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Charleston",
+        "operator:type": "public",
+        "operator:wikidata": "Q47716"
+      }
+    },
+    {
+      "displayName": "City of Clearwater",
+      "id": "cityofclearwater-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Clearwater",
+        "operator:type": "public",
+        "operator:wikidata": "Q244146"
+      }
+    },
+    {
+      "displayName": "City of Cleveland (Ohio)",
+      "id": "cityofcleveland-c0c15b",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Cleveland",
+        "operator:type": "public",
+        "operator:wikidata": "Q37320"
+      }
+    },
+    {
+      "displayName": "City of Coeur d'Alene",
+      "id": "cityofcoeurdalene-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Coeur d'Alene",
+        "operator:type": "public",
+        "operator:wikidata": "Q499681"
+      }
+    },
+    {
+      "displayName": "City of Coquitlam",
+      "id": "cityofcoquitlam-fc15e4",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Coquitlam"
+      }
+    },
+    {
+      "displayName": "City of Corinth",
+      "id": "cityofcorinth-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Corinth",
+        "operator:type": "public",
+        "operator:wikidata": "Q974334"
+      }
+    },
+    {
+      "displayName": "City of Cornelius",
+      "id": "cityofcornelius-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Cornelius",
+        "operator:type": "public",
+        "operator:wikidata": "Q1822776"
+      }
+    },
+    {
+      "displayName": "City of Corvallis",
+      "id": "cityofcorvallis-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "matchNames": [
+        "corvallis parks & recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Corvallis",
+        "operator:type": "public",
+        "operator:wikidata": "Q748474"
+      }
+    },
+    {
+      "displayName": "City of Delta",
+      "id": "cityofdelta-b3cf59",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Delta",
+        "operator:type": "public",
+        "operator:wikidata": "Q851838"
+      }
+    },
+    {
+      "displayName": "City of Denton",
+      "id": "cityofdenton-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Denton",
+        "operator:type": "public",
+        "operator:wikidata": "Q128306"
+      }
+    },
+    {
+      "displayName": "City of Des Moines (Iowa)",
+      "id": "cityofdesmoines-5303d3",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Des Moines"
+      }
+    },
+    {
+      "displayName": "City of Des Moines (Washington)",
+      "id": "cityofdesmoines-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Des Moines"
+      }
+    },
+    {
+      "displayName": "City of Detroit",
+      "id": "cityofdetroit-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Detroit",
+        "operator:type": "public",
+        "operator:wikidata": "Q12439"
+      }
+    },
+    {
+      "displayName": "City of Dover (Deleware)",
+      "id": "cityofdover-bce3f1",
+      "locationSet": {
+        "include": ["us-de.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Dover",
+        "operator:type": "public",
+        "operator:wikidata": "Q33518"
+      }
+    },
+    {
+      "displayName": "City of Edmonton",
+      "id": "cityofedmonton-85dee0",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Edmonton",
+        "operator:type": "public",
+        "operator:wikidata": "Q2096"
+      }
+    },
+    {
+      "displayName": "City of Emeryville",
+      "id": "cityofemeryville-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Emeryville",
+        "operator:type": "public",
+        "operator:wikidata": "Q499178"
+      }
+    },
+    {
+      "displayName": "City of Erie",
+      "id": "cityoferie-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Erie",
+        "operator:type": "public",
+        "operator:wikidata": "Q234061"
       }
     },
     {
@@ -127,8 +1175,146 @@
         "leisure": "park",
         "operator": "City of Eugene",
         "operator:type": "public",
-        "operator:wikidata": "Q171224",
-        "operator:wikipedia": "en:Eugene, Oregon"
+        "operator:wikidata": "Q171224"
+      }
+    },
+    {
+      "displayName": "City of Fairview",
+      "id": "cityoffairview-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Fairview",
+        "operator:type": "public",
+        "operator:wikidata": "Q2682017"
+      }
+    },
+    {
+      "displayName": "City of Farmington",
+      "id": "cityoffarmington-c18344",
+      "locationSet": {
+        "include": ["us-nm.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Farmington",
+        "operator:type": "public",
+        "operator:wikidata": "Q1012695"
+      }
+    },
+    {
+      "displayName": "City of Fayetteville (Arkansas)",
+      "id": "cityoffayetteville-2e75ab",
+      "locationSet": {
+        "include": ["us-ar.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Fayetteville",
+        "operator:type": "public",
+        "operator:wikidata": "Q219526"
+      }
+    },
+    {
+      "displayName": "City of Fontana",
+      "id": "cityoffontana-15b72d",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Fontana"
+      }
+    },
+    {
+      "displayName": "City of Forest Grove",
+      "id": "cityofforestgrove-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Forest Grove",
+        "operator:type": "public",
+        "operator:wikidata": "Q3448655"
+      }
+    },
+    {
+      "displayName": "City of Geneva (New York)",
+      "id": "cityofgeneva-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Geneva",
+        "operator:type": "public",
+        "operator:wikidata": "Q1378284"
+      }
+    },
+    {
+      "displayName": "City of Gladstone (Missouri)",
+      "id": "cityofgladstone-5e2224",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Gladstone",
+        "operator:type": "public",
+        "operator:wikidata": "Q968179"
+      }
+    },
+    {
+      "displayName": "City of Gladstone (Oregon)",
+      "id": "cityofgladstone-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Gladstone",
+        "operator:type": "public",
+        "operator:wikidata": "Q1778831"
+      }
+    },
+    {
+      "displayName": "City of Gloversville",
+      "id": "cityofgloversville-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Gloversville",
+        "operator:type": "public",
+        "operator:wikidata": "Q1380511"
+      }
+    },
+    {
+      "displayName": "City of Grand Ledge",
+      "id": "cityofgrandledge-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Grand Ledge",
+        "operator:type": "public",
+        "operator:wikidata": "Q3295695"
+      }
+    },
+    {
+      "displayName": "City of Greeley",
+      "id": "cityofgreeley-0900ba",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Greeley",
+        "operator:type": "public",
+        "operator:wikidata": "Q94274"
       }
     },
     {
@@ -141,8 +1327,7 @@
         "leisure": "park",
         "operator": "City of Gresham",
         "operator:type": "public",
-        "operator:wikidata": "Q81844",
-        "operator:wikipedia": "en:Gresham, Oregon"
+        "operator:wikidata": "Q81844"
       }
     },
     {
@@ -155,8 +1340,46 @@
         "leisure": "park",
         "operator": "City of Happy Valley",
         "operator:type": "public",
-        "operator:wikidata": "Q1778806",
-        "operator:wikipedia": "en:Happy Valley, Oregon"
+        "operator:wikidata": "Q1778806"
+      }
+    },
+    {
+      "displayName": "City of Hartford (Connecticut)",
+      "id": "cityofhartford-e713eb",
+      "locationSet": {
+        "include": ["us-ct.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Hartford",
+        "operator:type": "public",
+        "operator:wikidata": "Q33486"
+      }
+    },
+    {
+      "displayName": "City of Hartford (Wisconsin)",
+      "id": "cityofhartford-ef1d28",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Hartford",
+        "operator:type": "public",
+        "operator:wikidata": "Q1569368"
+      }
+    },
+    {
+      "displayName": "City of Highland Village",
+      "id": "cityofhighlandvillage-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Highland Village",
+        "operator:type": "public",
+        "operator:wikidata": "Q250908"
       }
     },
     {
@@ -169,8 +1392,72 @@
         "leisure": "park",
         "operator": "City of Hillsboro",
         "operator:type": "public",
-        "operator:wikidata": "Q81824",
-        "operator:wikipedia": "en:Hillsboro, Oregon"
+        "operator:wikidata": "Q81824"
+      }
+    },
+    {
+      "displayName": "City of Idaho Falls",
+      "id": "cityofidahofalls-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Idaho Falls",
+        "operator:type": "public",
+        "operator:wikidata": "Q496360"
+      }
+    },
+    {
+      "displayName": "City of Jacksonville",
+      "id": "cityofjacksonville-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Jacksonville",
+        "operator:type": "public",
+        "operator:wikidata": "Q16568"
+      }
+    },
+    {
+      "displayName": "City of Kamloops",
+      "id": "cityofkamloops-b3cf59",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Kamloops",
+        "operator:type": "public",
+        "operator:wikidata": "Q473209"
+      }
+    },
+    {
+      "displayName": "City of Keizer",
+      "id": "cityofkeizer-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Keizer",
+        "operator:type": "public",
+        "operator:wikidata": "Q1762871"
+      }
+    },
+    {
+      "displayName": "City of Knoxville (Tennessee)",
+      "id": "cityofknoxville-742928",
+      "locationSet": {
+        "include": ["us-tn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Knoxville",
+        "operator:type": "public",
+        "operator:wikidata": "Q185582"
       }
     },
     {
@@ -183,8 +1470,163 @@
         "leisure": "park",
         "operator": "City of Lake Oswego",
         "operator:type": "public",
-        "operator:wikidata": "Q983805",
-        "operator:wikipedia": "en:Lake Oswego, Oregon"
+        "operator:wikidata": "Q983805"
+      }
+    },
+    {
+      "displayName": "City of Lakewood (California)",
+      "id": "cityoflakewood-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lakewood",
+        "operator:type": "public",
+        "operator:wikidata": "Q838757"
+      }
+    },
+    {
+      "displayName": "City of Lakewood (Colorado)",
+      "id": "cityoflakewood-0900ba",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lakewood",
+        "operator:type": "public",
+        "operator:wikidata": "Q462804"
+      }
+    },
+    {
+      "displayName": "City of Lakewood (Ohio)",
+      "id": "cityoflakewood-c0c15b",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lakewood",
+        "operator:type": "public",
+        "operator:wikidata": "Q570990"
+      }
+    },
+    {
+      "displayName": "City of Lakewood Parks and Recreation",
+      "id": "cityoflakewoodparksandrecreation-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lakewood Parks and Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110063758"
+      }
+    },
+    {
+      "displayName": "City of Lancaster (California)",
+      "id": "cityoflancaster-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lancaster",
+        "operator:type": "public",
+        "operator:wikidata": "Q494711"
+      }
+    },
+    {
+      "displayName": "City of Lancaster (Pennsylvania)",
+      "id": "cityoflancaster-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lancaster",
+        "operator:type": "public",
+        "operator:wikidata": "Q320514"
+      }
+    },
+    {
+      "displayName": "City of Lansing",
+      "id": "cityoflansing-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lansing",
+        "operator:type": "public",
+        "operator:wikidata": "Q28237"
+      }
+    },
+    {
+      "displayName": "City of Lewiston",
+      "id": "cityoflewiston-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lewiston",
+        "operator:type": "public",
+        "operator:wikidata": "Q505539"
+      }
+    },
+    {
+      "displayName": "City of Lincoln (Nebraska)",
+      "id": "cityoflincoln-01fc82",
+      "locationSet": {
+        "include": ["us-ne.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Lincoln",
+        "operator:type": "public",
+        "operator:wikidata": "Q28260"
+      }
+    },
+    {
+      "displayName": "City of Mahtomedi",
+      "id": "cityofmahtomedi-853554",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Mahtomedi",
+        "operator:type": "public",
+        "operator:wikidata": "Q1924308"
+      }
+    },
+    {
+      "displayName": "City of Markham",
+      "id": "cityofmarkham-62b82e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Markham",
+        "operator:type": "public",
+        "operator:wikidata": "Q44016"
+      }
+    },
+    {
+      "displayName": "City of Martinez",
+      "id": "cityofmartinez-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Martinez",
+        "operator:type": "public",
+        "operator:wikidata": "Q506439"
       }
     },
     {
@@ -197,8 +1639,163 @@
         "leisure": "park",
         "operator": "City of Medford",
         "operator:type": "public",
-        "operator:wikidata": "Q836663",
-        "operator:wikipedia": "en:Medford, Oregon"
+        "operator:wikidata": "Q836663"
+      }
+    },
+    {
+      "displayName": "City of Meridian",
+      "id": "cityofmeridian-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Meridian",
+        "operator:type": "public",
+        "operator:wikidata": "Q1085274"
+      }
+    },
+    {
+      "displayName": "City of Mesa",
+      "id": "cityofmesa-1fe561",
+      "locationSet": {
+        "include": ["us-az.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Mesa",
+        "operator:type": "public",
+        "operator:wikidata": "Q49261"
+      }
+    },
+    {
+      "displayName": "City of Miami",
+      "id": "cityofmiami-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Miami",
+        "operator:type": "public",
+        "operator:wikidata": "Q8652"
+      }
+    },
+    {
+      "displayName": "City of Middletown (Connecticut)",
+      "id": "cityofmiddletown-e713eb",
+      "locationSet": {
+        "include": ["us-ct.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Middletown",
+        "operator:type": "public",
+        "operator:wikidata": "Q49192"
+      }
+    },
+    {
+      "displayName": "City of Middletown (New York)",
+      "id": "cityofmiddletown-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Middletown",
+        "operator:type": "public",
+        "operator:wikidata": "Q304801"
+      }
+    },
+    {
+      "displayName": "City of Mountlake Terrace",
+      "id": "cityofmountlaketerrace-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Mountlake Terrace",
+        "operator:type": "public",
+        "operator:wikidata": "Q1507087"
+      }
+    },
+    {
+      "displayName": "City of Nampa",
+      "id": "cityofnampa-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Nampa",
+        "operator:type": "public",
+        "operator:wikidata": "Q622633"
+      }
+    },
+    {
+      "displayName": "City of Napa",
+      "id": "cityofnapa-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Napa",
+        "operator:type": "public",
+        "operator:wikidata": "Q60537"
+      }
+    },
+    {
+      "displayName": "City of Norfolk (Virginia)",
+      "id": "cityofnorfolk-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Norfolk",
+        "operator:type": "public",
+        "operator:wikidata": "Q49231"
+      }
+    },
+    {
+      "displayName": "City of Norman",
+      "id": "cityofnorman-930c38",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Norman",
+        "operator:type": "public",
+        "operator:wikidata": "Q40347"
+      }
+    },
+    {
+      "displayName": "City of Norwich",
+      "id": "cityofnorwich-e713eb",
+      "locationSet": {
+        "include": ["us-ct.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Norwich",
+        "operator:type": "public",
+        "operator:wikidata": "Q631402"
+      }
+    },
+    {
+      "displayName": "City of Oklahoma City",
+      "id": "cityofoklahomacity-930c38",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Oklahoma City",
+        "operator:type": "public",
+        "operator:wikidata": "Q34863"
       }
     },
     {
@@ -214,8 +1811,103 @@
         "leisure": "park",
         "operator": "City of Oregon City",
         "operator:type": "public",
-        "operator:wikidata": "Q849596",
-        "operator:wikipedia": "en:Oregon City, Oregon"
+        "operator:wikidata": "Q849596"
+      }
+    },
+    {
+      "displayName": "City of Orlando",
+      "id": "cityoforlando-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "matchNames": ["orlando"],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Orlando",
+        "operator:type": "public",
+        "operator:wikidata": "Q49233"
+      }
+    },
+    {
+      "displayName": "City of Orting",
+      "id": "cityoforting-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Orting",
+        "operator:type": "public",
+        "operator:wikidata": "Q1515932"
+      }
+    },
+    {
+      "displayName": "City of Ottawa",
+      "id": "cityofottawa-62b82e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "matchNames": ["ottawa"],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Ottawa",
+        "operator:type": "public",
+        "operator:wikidata": "Q1930"
+      }
+    },
+    {
+      "displayName": "City of Phoenix (Arizona)",
+      "id": "cityofphoenix-1fe561",
+      "locationSet": {
+        "include": ["us-az.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Phoenix",
+        "operator:type": "public",
+        "operator:wikidata": "Q16556"
+      }
+    },
+    {
+      "displayName": "City of Pocatello",
+      "id": "cityofpocatello-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Pocatello",
+        "operator:type": "public",
+        "operator:wikidata": "Q320729"
+      }
+    },
+    {
+      "displayName": "City of Port Huron",
+      "id": "cityofporthuron-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Port Huron",
+        "operator:type": "public",
+        "operator:wikidata": "Q1000222"
+      }
+    },
+    {
+      "displayName": "City of Portland (Maine)",
+      "id": "cityofportland-82e140",
+      "locationSet": {
+        "include": ["us-me.geojson"]
+      },
+      "matchNames": [
+        "portland parks & recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Portland",
+        "operator:type": "public",
+        "operator:wikidata": "Q49201"
       }
     },
     {
@@ -231,8 +1923,176 @@
         "leisure": "park",
         "operator": "City of Portland",
         "operator:type": "public",
-        "operator:wikidata": "Q6106",
-        "operator:wikipedia": "en:Portland, Oregon"
+        "operator:wikidata": "Q6106"
+      }
+    },
+    {
+      "displayName": "City of Redlands",
+      "id": "cityofredlands-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Redlands",
+        "operator:type": "public",
+        "operator:wikidata": "Q753830"
+      }
+    },
+    {
+      "displayName": "City of Regina",
+      "id": "cityofregina-ff43b4",
+      "locationSet": {
+        "include": ["ca-sk.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Regina",
+        "operator:type": "public",
+        "operator:wikidata": "Q2123"
+      }
+    },
+    {
+      "displayName": "City of Richmond (Canada)",
+      "id": "cityofrichmond-b3cf59",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Richmond",
+        "operator:type": "public",
+        "operator:wikidata": "Q236837"
+      }
+    },
+    {
+      "displayName": "City of Richmond (Indiana)",
+      "id": "cityofrichmond-86dc7f",
+      "locationSet": {
+        "include": ["us-in.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Richmond",
+        "operator:type": "public",
+        "operator:wikidata": "Q548664"
+      }
+    },
+    {
+      "displayName": "City of Richmond (Virginia)",
+      "id": "cityofrichmond-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Richmond",
+        "operator:type": "public",
+        "operator:wikidata": "Q43421"
+      }
+    },
+    {
+      "displayName": "City of Rochester (Michigan)",
+      "id": "cityofrochester-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Rochester",
+        "operator:type": "public",
+        "operator:wikidata": "Q1018266"
+      }
+    },
+    {
+      "displayName": "City of Rochester (Minnesota)",
+      "id": "cityofrochester-853554",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Rochester",
+        "operator:type": "public",
+        "operator:wikidata": "Q486479"
+      }
+    },
+    {
+      "displayName": "City of Rochester (New Hampshire)",
+      "id": "cityofrochester-97a560",
+      "locationSet": {
+        "include": ["us-nh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Rochester",
+        "operator:type": "public",
+        "operator:wikidata": "Q985354"
+      }
+    },
+    {
+      "displayName": "City of Rochester (New York)",
+      "id": "cityofrochester-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Rochester",
+        "operator:type": "public",
+        "operator:wikidata": "Q49218"
+      }
+    },
+    {
+      "displayName": "City of Rocklin",
+      "id": "cityofrocklin-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Rocklin",
+        "operator:type": "public",
+        "operator:wikidata": "Q984599"
+      }
+    },
+    {
+      "displayName": "City of Rolla, Missouri",
+      "id": "cityofrollamissouri-5e2224",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Rolla, Missouri",
+        "operator:type": "public",
+        "operator:wikidata": "Q955386"
+      }
+    },
+    {
+      "displayName": "City of Roseburg",
+      "id": "cityofroseburg-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Roseburg",
+        "operator:type": "public",
+        "operator:wikidata": "Q846170"
+      }
+    },
+    {
+      "displayName": "City of Roseville (California)",
+      "id": "cityofroseville-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Roseville",
+        "operator:type": "public",
+        "operator:wikidata": "Q491340"
       }
     },
     {
@@ -245,8 +2105,59 @@
         "leisure": "park",
         "operator": "City of Salem",
         "operator:type": "public",
-        "operator:wikidata": "Q43919",
-        "operator:wikipedia": "en:Salem, Oregon"
+        "operator:wikidata": "Q43919"
+      }
+    },
+    {
+      "displayName": "City of San Antonio",
+      "id": "cityofsanantonio-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of San Antonio",
+        "operator:type": "public",
+        "operator:wikidata": "Q975"
+      }
+    },
+    {
+      "displayName": "City of Santa Fe",
+      "id": "cityofsantafe-c18344",
+      "locationSet": {
+        "include": ["us-nm.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Santa Fe",
+        "operator:type": "public",
+        "operator:wikidata": "Q38555"
+      }
+    },
+    {
+      "displayName": "City of Schertz",
+      "id": "cityofschertz-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Schertz",
+        "operator:type": "public",
+        "operator:wikidata": "Q974055"
+      }
+    },
+    {
+      "displayName": "City of Scottsdale",
+      "id": "cityofscottsdale-1fe561",
+      "locationSet": {
+        "include": ["us-az.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Scottsdale",
+        "operator:type": "public",
+        "operator:wikidata": "Q49221"
       }
     },
     {
@@ -259,8 +2170,72 @@
         "leisure": "park",
         "operator": "City of Sherwood",
         "operator:type": "public",
-        "operator:wikidata": "Q2639776",
-        "operator:wikipedia": "en:Sherwood, Oregon"
+        "operator:wikidata": "Q2639776"
+      }
+    },
+    {
+      "displayName": "City of Staunton",
+      "id": "cityofstaunton-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Staunton",
+        "operator:type": "public",
+        "operator:wikidata": "Q502250"
+      }
+    },
+    {
+      "displayName": "City of Stuart",
+      "id": "cityofstuart-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Stuart",
+        "operator:type": "public",
+        "operator:wikidata": "Q988744"
+      }
+    },
+    {
+      "displayName": "City of Surrey",
+      "id": "cityofsurrey-b3cf59",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Surrey",
+        "operator:type": "public",
+        "operator:wikidata": "Q390583"
+      }
+    },
+    {
+      "displayName": "City of Sydney",
+      "id": "cityofsydney-11d7e5",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Sydney",
+        "operator:type": "government",
+        "operator:wikidata": "Q1094194"
+      }
+    },
+    {
+      "displayName": "City of Tallahassee",
+      "id": "cityoftallahassee-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Tallahassee",
+        "operator:type": "public",
+        "operator:wikidata": "Q37043"
       }
     },
     {
@@ -273,8 +2248,33 @@
         "leisure": "park",
         "operator": "City of Tigard",
         "operator:type": "public",
-        "operator:wikidata": "Q1444136",
-        "operator:wikipedia": "en:Tigard, Oregon"
+        "operator:wikidata": "Q1444136"
+      }
+    },
+    {
+      "displayName": "City of Toronto",
+      "id": "cityoftoronto-62b82e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Toronto",
+        "operator:type": "public",
+        "operator:wikidata": "Q172"
+      }
+    },
+    {
+      "displayName": "City Of Tracy (California)",
+      "id": "cityoftracy-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City Of Tracy",
+        "operator:type": "public",
+        "operator:wikidata": "Q953409"
       }
     },
     {
@@ -287,8 +2287,7 @@
         "leisure": "park",
         "operator": "City of Troutdale",
         "operator:type": "public",
-        "operator:wikidata": "Q426942",
-        "operator:wikipedia": "en:Troutdale, Oregon"
+        "operator:wikidata": "Q426942"
       }
     },
     {
@@ -301,8 +2300,20 @@
         "leisure": "park",
         "operator": "City of Tualatin",
         "operator:type": "public",
-        "operator:wikidata": "Q1762839",
-        "operator:wikipedia": "en:Tualatin, Oregon"
+        "operator:wikidata": "Q1762839"
+      }
+    },
+    {
+      "displayName": "City of Twin Falls",
+      "id": "cityoftwinfalls-e3f3ca",
+      "locationSet": {
+        "include": ["us-id.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Twin Falls",
+        "operator:type": "public",
+        "operator:wikidata": "Q548384"
       }
     },
     {
@@ -311,12 +2322,114 @@
       "locationSet": {
         "include": ["us-wa.geojson"]
       },
+      "matchNames": ["vancouver"],
       "tags": {
         "leisure": "park",
         "operator": "City of Vancouver",
         "operator:type": "public",
-        "operator:wikidata": "Q234053",
-        "operator:wikipedia": "en:Vancouver, Washington"
+        "operator:wikidata": "Q234053"
+      }
+    },
+    {
+      "displayName": "City of Vaughan",
+      "id": "cityofvaughan-62b82e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Vaughan",
+        "operator:type": "public",
+        "operator:wikidata": "Q44013"
+      }
+    },
+    {
+      "displayName": "City of Wanneroo",
+      "id": "cityofwanneroo-7b192d",
+      "locationSet": {
+        "include": ["au-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Wanneroo",
+        "operator:type": "government",
+        "operator:wikidata": "Q543262"
+      }
+    },
+    {
+      "displayName": "City of Warren (Michigan)",
+      "id": "cityofwarren-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Warren"
+      }
+    },
+    {
+      "displayName": "City of Warren (Minnesota)",
+      "id": "cityofwarren-853554",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Warren"
+      }
+    },
+    {
+      "displayName": "City of Warren (Pennsylvania)",
+      "id": "cityofwarren-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Warren"
+      }
+    },
+    {
+      "displayName": "City of Washougal",
+      "id": "cityofwashougal-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "matchNames": ["washougal"],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Washougal",
+        "operator:type": "public",
+        "operator:wikidata": "Q986371"
+      }
+    },
+    {
+      "displayName": "City of Waterloo",
+      "id": "cityofwaterloo-8068ce",
+      "locationSet": {
+        "include": [[-80.54, 43.46, 10]]
+      },
+      "matchNames": ["waterloo city council"],
+      "note": "Ontario, Canada",
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Waterloo",
+        "operator:type": "government",
+        "operator:wikidata": "Q7974219"
+      }
+    },
+    {
+      "displayName": "City of Watsonville",
+      "id": "cityofwatsonville-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "matchNames": ["watsonville, city of"],
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Watsonville",
+        "operator:type": "public",
+        "operator:wikidata": "Q913543"
       }
     },
     {
@@ -329,8 +2442,20 @@
         "leisure": "park",
         "operator": "City of West Linn",
         "operator:type": "public",
-        "operator:wikidata": "Q932097",
-        "operator:wikipedia": "en:West Linn, Oregon"
+        "operator:wikidata": "Q932097"
+      }
+    },
+    {
+      "displayName": "City of Wilmington (Deleware)",
+      "id": "cityofwilmington-bce3f1",
+      "locationSet": {
+        "include": ["us-de.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Wilmington",
+        "operator:type": "public",
+        "operator:wikidata": "Q174224"
       }
     },
     {
@@ -343,8 +2468,59 @@
         "leisure": "park",
         "operator": "City of Wilsonville",
         "operator:type": "public",
-        "operator:wikidata": "Q1762801",
-        "operator:wikipedia": "en:Wilsonville, Oregon"
+        "operator:wikidata": "Q1762801"
+      }
+    },
+    {
+      "displayName": "City of Winnipeg",
+      "id": "cityofwinnipeg-3d8c8b",
+      "locationSet": {
+        "include": ["ca-mb.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Winnipeg",
+        "operator:type": "public",
+        "operator:wikidata": "Q2135"
+      }
+    },
+    {
+      "displayName": "City of Winter Park",
+      "id": "winterpark-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Winter Park",
+        "operator:type": "public",
+        "operator:wikidata": "Q986641"
+      }
+    },
+    {
+      "displayName": "City of Woodbury (Minnesota)",
+      "id": "cityofwoodbury-853554",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "City of Woodbury",
+        "operator:type": "public",
+        "operator:wikidata": "Q862672"
+      }
+    },
+    {
+      "displayName": "Clackamas County",
+      "id": "clackamascounty-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Clackamas County",
+        "operator:type": "public",
+        "operator:wikidata": "Q484404"
       }
     },
     {
@@ -357,8 +2533,46 @@
         "leisure": "park",
         "operator": "Clark County",
         "operator:type": "public",
-        "operator:wikidata": "Q156287",
-        "operator:wikipedia": "en:Clark County, Washington"
+        "operator:wikidata": "Q156287"
+      }
+    },
+    {
+      "displayName": "Cleveland Metroparks",
+      "id": "clevelandmetroparks-c0c15b",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Cleveland Metroparks",
+        "operator:type": "public",
+        "operator:wikidata": "Q5132190"
+      }
+    },
+    {
+      "displayName": "Clutha District Council",
+      "id": "cluthadistrictcouncil-a83a4e",
+      "locationSet": {
+        "include": ["nz-ota.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Clutha District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q65617189"
+      }
+    },
+    {
+      "displayName": "Clyde Park District",
+      "id": "clydeparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Clyde Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112220888"
       }
     },
     {
@@ -373,8 +2587,184 @@
         "operator": "Colorado Parks & Wildlife",
         "operator:short": "CPW",
         "operator:type": "public",
-        "operator:wikidata": "Q5148857",
-        "operator:wikipedia": "en:Colorado Parks and Wildlife"
+        "operator:wikidata": "Q5148857"
+      }
+    },
+    {
+      "displayName": "Comune di Brescia",
+      "id": "comunedibrescia-d995cd",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Comune di Brescia",
+        "operator:type": "public",
+        "operator:wikidata": "Q6221"
+      }
+    },
+    {
+      "displayName": "Comune di Carrara",
+      "id": "comunedicarrara-d995cd",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Comune di Carrara",
+        "operator:type": "public",
+        "operator:wikidata": "Q13372"
+      }
+    },
+    {
+      "displayName": "Comune di Rosà",
+      "id": "comunedirosa-d995cd",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Comune di Rosà",
+        "operator:type": "public",
+        "operator:wikidata": "Q46589"
+      }
+    },
+    {
+      "displayName": "County of Maui",
+      "id": "countyofmaui-ea65bf",
+      "locationSet": {"include": ["us-hi"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "County of Maui",
+        "operator:type": "public",
+        "operator:wikidata": "Q111409"
+      }
+    },
+    {
+      "displayName": "Cowichan Valley Regional District",
+      "id": "cowichanvalleyregionaldistrict-b3cf59",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Cowichan Valley Regional District",
+        "operator:short": "CVRD",
+        "operator:type": "public",
+        "operator:wikidata": "Q1138212"
+      }
+    },
+    {
+      "displayName": "Crystal Lake Park District",
+      "id": "crystallakeparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Crystal Lake Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064003"
+      }
+    },
+    {
+      "displayName": "Cuttack Development Authority",
+      "id": "ccuttackdevelopmentauthority-d31221",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "CCuttack Development Authority",
+        "operator:short": "CDA",
+        "operator:wikidata": "Q5196919"
+      }
+    },
+    {
+      "displayName": "Denizli Büyükşehir Belediyesi",
+      "id": "denizlibuyuksehirbelediyesi-2ed982",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Denizli Büyükşehir Belediyesi"
+      }
+    },
+    {
+      "displayName": "Des Plaines Park District",
+      "id": "desplainesparkdistrict-c27ed0",
+      "locationSet": {
+        "include": [[-87.9, 42.04, 10]]
+      },
+      "note": "Near Chicago, Illinois",
+      "tags": {
+        "leisure": "park",
+        "operator": "Des Plaines Park District",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Dinas Kota Surabaya",
+      "id": "dinaskotasurabaya-eab1bf",
+      "locationSet": {"include": ["id"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Dinas Kota Surabaya",
+        "operator:type": "government",
+        "operator:wikidata": "Q11462"
+      }
+    },
+    {
+      "displayName": "Downers Grove Park District",
+      "id": "downersgroveparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Downers Grove Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112060184"
+      }
+    },
+    {
+      "displayName": "DPR",
+      "id": "durhamparksandrecreation-dc7d2a",
+      "locationSet": {
+        "include": ["us-nc.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Durham Parks & Recreation",
+        "operator:short": "DPR",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064011"
+      }
+    },
+    {
+      "displayName": "East Bay Regional Park District",
+      "id": "eastbayregionalparkdistrict-dc1787",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "East Bay Regional Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q4116375"
+      }
+    },
+    {
+      "displayName": "Emaverde",
+      "id": "emaverde-14104f",
+      "locationSet": {"include": ["bo"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Emaverde",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064027"
+      }
+    },
+    {
+      "displayName": "Emavra",
+      "id": "emavra-14104f",
+      "locationSet": {"include": ["bo"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Emavra",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064070"
       }
     },
     {
@@ -392,8 +2782,82 @@
         "operator": "New Mexico Department of Energy, Minerals, and Natural Resources",
         "operator:short": "EMNRD",
         "operator:type": "public",
-        "operator:wikidata": "Q7010172",
-        "operator:wikipedia": "en:New Mexico Department of Energy, Minerals, and Natural Resources"
+        "operator:wikidata": "Q7010172"
+      }
+    },
+    {
+      "displayName": "Empresa Municipal de Áreas Verdes y Recreación Alternativa",
+      "id": "empresamunicipaldeareasverdesyrecreacionalternativa-14104f",
+      "locationSet": {"include": ["bo"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Empresa Municipal de Áreas Verdes y Recreación Alternativa"
+      }
+    },
+    {
+      "displayName": "Erewash Borough Council",
+      "id": "erewashboroughcouncil-165719",
+      "locationSet": {
+        "include": ["gb-east-midlands.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Erewash Borough Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q73072621"
+      }
+    },
+    {
+      "displayName": "Evanston Parks & Recreation",
+      "id": "evanstonparksandrecreation-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "matchNames": ["evanston park district"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Evanston Parks & Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064075"
+      }
+    },
+    {
+      "displayName": "Fairfax County Park Authority",
+      "id": "fairfaxcountyparkauthority-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Fairfax County Park Authority",
+        "operator:type": "public",
+        "operator:wikidata": "Q5430163"
+      }
+    },
+    {
+      "displayName": "Fargo Park District",
+      "id": "fargoparkdistrict-20a56e",
+      "locationSet": {
+        "include": ["us-nd.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Fargo Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064081"
+      }
+    },
+    {
+      "displayName": "Five Rivers MetroParks",
+      "id": "fiveriversmetroparks-c0c15b",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Five Rivers MetroParks",
+        "operator:type": "public",
+        "operator:wikidata": "Q5456114"
       }
     },
     {
@@ -407,8 +2871,106 @@
         "operator": "Florida State Parks",
         "operator:short": "FSP",
         "operator:type": "public",
-        "operator:wikidata": "Q5461615",
-        "operator:wikipedia": "en:Florida State Parks"
+        "operator:wikidata": "Q5461615"
+      }
+    },
+    {
+      "displayName": "Forest Preserve District of Cook County",
+      "id": "forestpreservedistrictofcookcounty-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Forest Preserve District of Cook County",
+        "operator:type": "public",
+        "operator:wikidata": "Q5469080"
+      }
+    },
+    {
+      "displayName": "Forestry England",
+      "id": "forestryengland-0421ca",
+      "locationSet": {"include": ["gb-eng"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Forestry England",
+        "operator:type": "government",
+        "operator:wikidata": "Q16981179"
+      }
+    },
+    {
+      "displayName": "Fox Valley Park District",
+      "id": "foxvalleyparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Fox Valley Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q8565229"
+      }
+    },
+    {
+      "displayName": "GAMLP",
+      "id": "gamlp-14104f",
+      "locationSet": {"include": ["bo"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "GAMLP",
+        "operator:type": "government",
+        "operator:wikidata": "Q25410165"
+      }
+    },
+    {
+      "displayName": "GAMS",
+      "id": "gams-14104f",
+      "locationSet": {"include": ["bo"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "GAMS",
+        "operator:type": "government",
+        "operator:wikidata": "Q110064087"
+      }
+    },
+    {
+      "displayName": "GCCC",
+      "id": "goldcoastcitycouncil-3b6b12",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Gold Coast City Council",
+        "operator:short": "GCCC",
+        "operator:type": "government",
+        "operator:wikidata": "Q30267253"
+      }
+    },
+    {
+      "displayName": "Gedling Borough Council",
+      "id": "gedlingboroughcouncil-165719",
+      "locationSet": {
+        "include": ["gb-east-midlands.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Gedling Borough Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q73072632"
+      }
+    },
+    {
+      "displayName": "Geneva Park District",
+      "id": "genevaparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Geneva Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112157564"
       }
     },
     {
@@ -425,6 +2987,142 @@
       }
     },
     {
+      "displayName": "Glen Ellyn Park District",
+      "id": "glenellynparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Glen Ellyn Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112057709"
+      }
+    },
+    {
+      "displayName": "Glencoe Park District",
+      "id": "glencoeparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Glencoe Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112220906"
+      }
+    },
+    {
+      "displayName": "Glenview Park District",
+      "id": "glenviewparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Glenview Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064219"
+      }
+    },
+    {
+      "displayName": "Great Parks of Hamilton County",
+      "id": "greatparksofhamiltoncounty-c0c15b",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Great Parks of Hamilton County",
+        "operator:wikidata": "Q19863721"
+      }
+    },
+    {
+      "displayName": "Grün Stadt Zürich",
+      "id": "grunstadtzurich-a987c0",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Grün Stadt Zürich",
+        "operator:type": "public",
+        "operator:wikidata": "Q1551785"
+      }
+    },
+    {
+      "displayName": "Hackney Council",
+      "id": "hackneycouncil-777334",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Hackney Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q5637369"
+      }
+    },
+    {
+      "displayName": "Halifax Regional Municipality",
+      "id": "halifaxregionalmunicipality-f40be7",
+      "locationSet": {
+        "include": ["ca-ns.geojson"]
+      },
+      "matchNames": ["halifax", "hrm"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Halifax Regional Municipality",
+        "operator:type": "public",
+        "operator:wikidata": "Q2141"
+      }
+    },
+    {
+      "displayName": "Hämeenlinnan kaupunki",
+      "id": "hameenlinnankaupunki-b3609d",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Hämeenlinnan kaupunki",
+        "operator:type": "public",
+        "operator:wikidata": "Q202158"
+      }
+    },
+    {
+      "displayName": "Hammond Parks & Recreation",
+      "id": "hammondparksandrecreation-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Hammond Parks & Recreation"
+      }
+    },
+    {
+      "displayName": "Hardin County Conservation",
+      "id": "hardincountyconservation-5303d3",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "matchNames": ["hardin ccb"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Hardin County Conservation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064240"
+      }
+    },
+    {
+      "displayName": "Harris County Precinct 3",
+      "id": "harriscountyprecinct3-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Harris County Precinct 3",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064255"
+      }
+    },
+    {
       "displayName": "Hawaii Division of State Parks",
       "id": "hawaiidivisionofstateparks-ea65bf",
       "locationSet": {"include": ["us-hi"]},
@@ -433,6 +3131,44 @@
         "operator": "Hawaii Division of State Parks",
         "operator:type": "public",
         "operator:wikidata": "Q109328405"
+      }
+    },
+    {
+      "displayName": "Hillsborough County (Florida)",
+      "id": "hillsboroughcounty-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "matchNames": [
+        "hillsborough county parks, receration and conservation department"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Hillsborough County",
+        "operator:type": "public",
+        "operator:wikidata": "Q488874"
+      }
+    },
+    {
+      "displayName": "Hurunui District Council",
+      "id": "hurunuidistrictcouncil-b93ce4",
+      "locationSet": {
+        "include": ["nz-can.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Hurunui District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q65606410"
+      }
+    },
+    {
+      "displayName": "IAM",
+      "id": "iam-53ffa5",
+      "locationSet": {"include": ["mo"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "IAM"
       }
     },
     {
@@ -447,8 +3183,7 @@
         "operator": "Idaho Department of Parks and Recreation",
         "operator:short": "IDPR",
         "operator:type": "public",
-        "operator:wikidata": "Q30258114",
-        "operator:wikipedia": "en:Idaho Department of Parks and Recreation"
+        "operator:wikidata": "Q30258114"
       }
     },
     {
@@ -462,8 +3197,20 @@
         "operator": "Illinois Department of Natural Resources",
         "operator:short": "Illinois DNR",
         "operator:type": "public",
-        "operator:wikidata": "Q16846582",
-        "operator:wikipedia": "en:Illinois Department of Natural Resources"
+        "operator:wikidata": "Q16846582"
+      }
+    },
+    {
+      "displayName": "Incorporated Village of Flower Hill",
+      "id": "incorporatedvillageofflowerhill-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Incorporated Village of Flower Hill",
+        "operator:type": "public",
+        "operator:wikidata": "Q3451947"
       }
     },
     {
@@ -477,8 +3224,18 @@
         "operator": "Indiana Department of Natural Resources",
         "operator:short": "Indiana DNR",
         "operator:type": "public",
-        "operator:wikidata": "Q6023149",
-        "operator:wikipedia": "en:Indiana Department of Natural Resources"
+        "operator:wikidata": "Q6023149"
+      }
+    },
+    {
+      "displayName": "Instituto Distrital de Recreación y Deporte (IDRD)",
+      "id": "institutodistritalderecreacionydeporteidrd-e0463d",
+      "locationSet": {"include": ["co"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Instituto Distrital de Recreación y Deporte (IDRD)",
+        "operator:type": "public",
+        "operator:wikidata": "Q28500979"
       }
     },
     {
@@ -492,8 +3249,139 @@
         "operator": "Iowa Department of Natural Resources",
         "operator:short": "Iowa DNR",
         "operator:type": "public",
-        "operator:wikidata": "Q6064364",
-        "operator:wikipedia": "en:Iowa Department of Natural Resources"
+        "operator:wikidata": "Q6064364"
+      }
+    },
+    {
+      "displayName": "Islington Council",
+      "id": "islingtoncouncil-777334",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Islington Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q6084379"
+      }
+    },
+    {
+      "displayName": "ISTU",
+      "id": "institutosalvadorenodeturismo-489562",
+      "locationSet": {"include": ["sv"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Instituto Salvadoreño de Turismo",
+        "operator:short": "ISTU",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064317"
+      }
+    },
+    {
+      "displayName": "Jackson County (Michigan)",
+      "id": "jacksoncounty-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Jackson County"
+      }
+    },
+    {
+      "displayName": "Jackson County (Minnesota)",
+      "id": "jacksoncounty-853554",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Jackson County"
+      }
+    },
+    {
+      "displayName": "Jackson County (Oregon)",
+      "id": "jacksoncounty-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Jackson County"
+      }
+    },
+    {
+      "displayName": "Jackson County (Wisconsin)",
+      "id": "jacksoncounty-ef1d28",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Jackson County"
+      }
+    },
+    {
+      "displayName": "Jackson County Conservation",
+      "id": "jacksoncountyconservation-5303d3",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "matchNames": ["jackson ccb"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Jackson County Conservation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064391"
+      }
+    },
+    {
+      "displayName": "Jaipur Nagar Nigam",
+      "id": "jaipurnagarnigam-d31221",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Jaipur Nagar Nigam",
+        "operator:type": "public",
+        "operator:wikidata": "Q6124132"
+      }
+    },
+    {
+      "displayName": "Jefferson County (Wisconsin)",
+      "id": "jeffersoncounty-ef1d28",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Jefferson County",
+        "operator:type": "public",
+        "operator:wikidata": "Q500958"
+      }
+    },
+    {
+      "displayName": "Johnson County Park and Recreation District",
+      "id": "johnsoncountyparkandrecreationdistrict-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Johnson County Park and Recreation District",
+        "operator:short": "JCPRD",
+        "operator:wikidata": "Q111943500"
+      }
+    },
+    {
+      "displayName": "Kankakee Valley Park District",
+      "id": "kankakeevalleyparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Kankakee Valley Park District",
+        "operator:short": "KVPD",
+        "operator:type": "public",
+        "operator:wikidata": "Q110064433"
       }
     },
     {
@@ -511,8 +3399,20 @@
         "operator": "Kansas Department of Wildlife & Parks",
         "operator:short": "KDWP",
         "operator:type": "public",
-        "operator:wikidata": "Q14689717",
-        "operator:wikipedia": "en:Kansas Department of Wildlife, Parks and Tourism"
+        "operator:wikidata": "Q14689717"
+      }
+    },
+    {
+      "displayName": "Kāpiti Coast District Council",
+      "id": "kapiticoastdistrictcouncil-465cf6",
+      "locationSet": {
+        "include": ["nz-wgn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Kāpiti Coast District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q73823769"
       }
     },
     {
@@ -530,6 +3430,158 @@
       }
     },
     {
+      "displayName": "Kitsap County Parks",
+      "id": "kitsapcountyparks-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Kitsap County Parks",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072145"
+      }
+    },
+    {
+      "displayName": "KMC",
+      "id": "kolkatamunicipalcorporation-d31221",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "কলকাতা পৌরসংস্থা",
+        "operator:bn": "কলকাতা পৌরসংস্থা",
+        "operator:en": "Kolkata Municipal Corporation",
+        "operator:short": "KMC",
+        "operator:type": "government",
+        "operator:wikidata": "Q3350560"
+      }
+    },
+    {
+      "displayName": "l'Hospitalet de Llobregat",
+      "id": "ajuntamentdelhospitaletdellobregat-e4902f",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ajuntament de l'Hospitalet de Llobregat",
+        "operator:type": "government",
+        "operator:wikidata": "Q15470"
+      }
+    },
+    {
+      "displayName": "Lake Metroparks",
+      "id": "lakemetroparks-c0c15b",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Lake Metroparks",
+        "operator:type": "public",
+        "operator:wikidata": "Q84833648"
+      }
+    },
+    {
+      "displayName": "Lambeth Council",
+      "id": "lambethcouncil-777334",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Lambeth Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q6481450"
+      }
+    },
+    {
+      "displayName": "Lane County (Oregon)",
+      "id": "lanecounty-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Lane County",
+        "operator:type": "public",
+        "operator:wikidata": "Q495409"
+      }
+    },
+    {
+      "displayName": "Lane Cove Council",
+      "id": "lanecovecouncil-11d7e5",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Lane Cove Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q32311"
+      }
+    },
+    {
+      "displayName": "Lincolnwood Parks and Recreation",
+      "id": "lincolnwoodparksandrecreation-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "matchNames": ["lincolnwood park district"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Lincolnwood Parks and Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072249"
+      }
+    },
+    {
+      "displayName": "Lisle Park District",
+      "id": "lisleparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Lisle Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q111212363"
+      }
+    },
+    {
+      "displayName": "Lismore City Council",
+      "id": "lismorecitycouncil-11d7e5",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Lismore City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q753599"
+      }
+    },
+    {
+      "displayName": "Little Rock Parks & Recreation",
+      "id": "littlerockparksandrecreation-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Little Rock Parks & Recreation"
+      }
+    },
+    {
+      "displayName": "Logan City Council",
+      "id": "logancitycouncil-f88a26",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Logan City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q30267313"
+      }
+    },
+    {
       "displayName": "Louisiana State Parks",
       "id": "louisianaofficeofstateparks-4221d5",
       "locationSet": {
@@ -543,6 +3595,162 @@
       }
     },
     {
+      "displayName": "Louisville Parks and Recreation",
+      "id": "louisvilleparksandrecreation-9af01b",
+      "locationSet": {
+        "include": ["us-ky.geojson"]
+      },
+      "matchNames": [
+        "louisville metro parks and recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Louisville Parks and Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072380"
+      }
+    },
+    {
+      "displayName": "Lower Merion Township",
+      "id": "lowermeriontownship-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Lower Merion Township",
+        "operator:type": "public",
+        "operator:wikidata": "Q2879328"
+      }
+    },
+    {
+      "displayName": "Maine Bureau of Parks and Lands",
+      "id": "mainebureauofparksandlands-82e140",
+      "locationSet": {
+        "include": ["us-me.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Maine Bureau of Parks and Lands",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072411"
+      }
+    },
+    {
+      "displayName": "Mairie d'Ambilly",
+      "id": "mairiedambilly-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Mairie d'Ambilly",
+        "operator:type": "public",
+        "operator:wikidata": "Q333093"
+      }
+    },
+    {
+      "displayName": "Mairie d'Annemasse",
+      "id": "mairiedannemasse-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Mairie d'Annemasse",
+        "operator:type": "public",
+        "operator:wikidata": "Q212901"
+      }
+    },
+    {
+      "displayName": "Mairie de Montrouge",
+      "id": "mairiedemontrouge-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Mairie de Montrouge",
+        "operator:type": "public",
+        "operator:wikidata": "Q241021"
+      }
+    },
+    {
+      "displayName": "Majlis Bandaraya Pulau Pinang",
+      "id": "majlisbandarayapulaupinang-369792",
+      "locationSet": {"include": ["my"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Majlis Bandaraya Pulau Pinang"
+      }
+    },
+    {
+      "displayName": "Manitoba Conservation",
+      "id": "manitobaconservation-3d8c8b",
+      "locationSet": {
+        "include": ["ca-mb.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Manitoba Conservation",
+        "operator:type": "public",
+        "operator:wikidata": "Q6749981"
+      }
+    },
+    {
+      "displayName": "Maple Grove Parks and Recreation",
+      "id": "maplegroveparksandrecreation-853554",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "matchNames": [
+        "city of maple grove parks & recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Maple Grove Parks and Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110063767"
+      }
+    },
+    {
+      "displayName": "Marietta Parks & Recreation",
+      "id": "mariettaparksandrecreation-c2abce",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
+      "matchNames": [
+        "city of marietta parks & recreation"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Marietta Parks & Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110063769"
+      }
+    },
+    {
+      "displayName": "Martin County (Florida)",
+      "id": "martincounty-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Martin County",
+        "operator:type": "public",
+        "operator:wikidata": "Q648752"
+      }
+    },
+    {
+      "displayName": "Maryland State Parks",
+      "id": "marylandparkservice-fb928d",
+      "locationSet": {
+        "include": ["us-md.geojson"]
+      },
+      "note": "Maybe those 2 name should be matchNames in taginfo: 'Maryland Department of Natural Resources Maryland Park Service' and 'Maryland Department of Natural Resources, Maryland Park Service'",
+      "tags": {
+        "leisure": "park",
+        "operator": "Maryland Park Service",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072482"
+      }
+    },
+    {
       "displayName": "MDWFP",
       "id": "mississippidepartmentofwildlifefisheriesandparks-97a1c6",
       "locationSet": {
@@ -553,8 +3761,16 @@
         "operator": "Mississippi Department of Wildlife, Fisheries and Parks",
         "operator:short": "MDWFP",
         "operator:type": "public",
-        "operator:wikidata": "Q6879141",
-        "operator:wikipedia": "en:Mississippi Department of Wildlife, Fisheries, and Parks"
+        "operator:wikidata": "Q6879141"
+      }
+    },
+    {
+      "displayName": "Merkezefendi Belediyesi",
+      "id": "merkezefendibelediyesi-2ed982",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Merkezefendi Belediyesi"
       }
     },
     {
@@ -567,8 +3783,35 @@
         "leisure": "park",
         "operator": "Metro",
         "operator:type": "public",
-        "operator:wikidata": "Q10793118",
-        "operator:wikipedia": "en:Metro (Oregon regional government)"
+        "operator:wikidata": "Q10793118"
+      }
+    },
+    {
+      "displayName": "Metro Parks Tacoma",
+      "id": "metroparkstacoma-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Metro Parks Tacoma",
+        "operator:short": "MPT",
+        "operator:type": "public",
+        "operator:wikidata": "Q12061743"
+      }
+    },
+    {
+      "displayName": "Metro Vancouver Regional Parks",
+      "id": "metrovancouverregionalparks-b3cf59",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "matchNames": ["metro vancouver parks"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Metro Vancouver Regional Parks",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072524"
       }
     },
     {
@@ -582,8 +3825,36 @@
         "operator": "Michigan Department of Natural Resources",
         "operator:short": "Michigan DNR",
         "operator:type": "public",
-        "operator:wikidata": "Q6837532",
-        "operator:wikipedia": "en:Michigan Department of Natural Resources"
+        "operator:wikidata": "Q6837532"
+      }
+    },
+    {
+      "displayName": "Millcreek Township (Pennsylvania)",
+      "id": "millcreektownship-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Millcreek Township",
+        "operator:type": "public",
+        "operator:wikidata": "Q6858683"
+      }
+    },
+    {
+      "displayName": "Milwaukee County Parks",
+      "id": "milwaukeecountyparks-ef1d28",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "matchNames": [
+        "milwaukee county park system"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Milwaukee County Parks",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072573"
       }
     },
     {
@@ -598,8 +3869,7 @@
         "operator": "Minnesota Department of Natural Resources",
         "operator:short": "Minnesota DNR",
         "operator:type": "public",
-        "operator:wikidata": "Q6868223",
-        "operator:wikipedia": "en:Minnesota Department of Natural Resources"
+        "operator:wikidata": "Q6868223"
       }
     },
     {
@@ -616,6 +3886,18 @@
       }
     },
     {
+      "displayName": "MMCB",
+      "id": "magistratmestaceskebudejovice-63f1de",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Magistrát města České Budějovice",
+        "operator:short": "MMCB",
+        "operator:type": "public",
+        "operator:wikidata": "Q16506"
+      }
+    },
+    {
       "displayName": "Montana State Parks",
       "id": "montanadepartmentoffishwildlifeandparks-7d0f2d",
       "locationSet": {
@@ -627,8 +3909,115 @@
         "operator": "Montana Department of Fish, Wildlife and Parks",
         "operator:short": "Montana FWP",
         "operator:type": "public",
-        "operator:wikidata": "Q17019742",
-        "operator:wikipedia": "en:Montana Department of Fish, Wildlife and Parks"
+        "operator:wikidata": "Q17019742"
+      }
+    },
+    {
+      "displayName": "Montgomery Parks",
+      "id": "montgomeryparks-fb928d",
+      "locationSet": {
+        "include": ["us-md.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Montgomery Parks",
+        "operator:type": "public",
+        "operator:wikidata": "Q61359691"
+      }
+    },
+    {
+      "displayName": "Moreton Bay Regional Council",
+      "id": "moretonbayregionalcouncil-8d759d",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Moreton Bay Regional Council"
+      }
+    },
+    {
+      "displayName": "Morton Grove Park District",
+      "id": "mortongroveparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Morton Grove Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072677"
+      }
+    },
+    {
+      "displayName": "Mount Prospect Park District",
+      "id": "mountprospectparkdistrict-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Mount Prospect Park District"
+      }
+    },
+    {
+      "displayName": "Municipalidad de Cipolletti",
+      "id": "municipalidaddecipolletti-2881cb",
+      "locationSet": {"include": ["ar"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Municipalidad de Cipolletti",
+        "operator:type": "public",
+        "operator:wikidata": "Q1014306"
+      }
+    },
+    {
+      "displayName": "Municipalidad de Neuquén",
+      "id": "municipalidaddeneuquen-2881cb",
+      "locationSet": {"include": ["ar"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Municipalidad de Neuquén"
+      }
+    },
+    {
+      "displayName": "Municipalidad de Salsipuedes",
+      "id": "municipalidaddesalsipuedes-2881cb",
+      "locationSet": {"include": ["ar"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Municipalidad de Salsipuedes",
+        "operator:type": "public",
+        "operator:wikidata": "Q3400944"
+      }
+    },
+    {
+      "displayName": "Municipalidad de Ushuaia",
+      "id": "municipalidaddeushuaia-2881cb",
+      "locationSet": {"include": ["ar"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Municipalidad de Ushuaia",
+        "operator:type": "public",
+        "operator:wikidata": "Q44254"
+      }
+    },
+    {
+      "displayName": "Municipalidad Provincial de Sullana",
+      "id": "municipalidadprovincialdesullana-2a5779",
+      "locationSet": {"include": ["pe"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Municipalidad Provincial de Sullana",
+        "operator:type": "public",
+        "operator:wikidata": "Q510413"
+      }
+    },
+    {
+      "displayName": "Município de Maputo",
+      "id": "municipiodemaputo-840c65",
+      "locationSet": {"include": ["mz"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Município de Maputo",
+        "operator:type": "public",
+        "operator:wikidata": "Q3889"
       }
     },
     {
@@ -641,8 +4030,7 @@
         "leisure": "park",
         "operator": "Naperville Park District",
         "operator:type": "public",
-        "operator:wikidata": "Q6964855",
-        "operator:wikipedia": "en:Naperville Park District"
+        "operator:wikidata": "Q6964855"
       }
     },
     {
@@ -658,8 +4046,67 @@
         "operator": "National Park Service",
         "operator:short": "NPS",
         "operator:type": "public",
-        "operator:wikidata": "Q308439",
-        "operator:wikipedia": "en:National Park Service"
+        "operator:wikidata": "Q308439"
+      }
+    },
+    {
+      "displayName": "National Parks Board",
+      "id": "nationalparksboard-671a98",
+      "locationSet": {"include": ["sg"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "National Parks Board",
+        "operator:short": "NParks",
+        "operator:wikidata": "Q6974762"
+      }
+    },
+    {
+      "displayName": "National Trust",
+      "id": "nationaltrust-8367e0",
+      "locationSet": {
+        "include": ["gb-eng", "gb-nir", "gb-wls"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "National Trust",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q333515"
+      }
+    },
+    {
+      "displayName": "National Trust for Scotland",
+      "id": "nationaltrustforscotland-5433bf",
+      "locationSet": {"include": ["gb-sct"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "National Trust for Scotland",
+        "operator:short": "NTS",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q599997"
+      }
+    },
+    {
+      "displayName": "National Trust of Australia",
+      "id": "nationaltrustofaustralia-8d759d",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "National Trust of Australia",
+        "operator:wikidata": "Q569207"
+      }
+    },
+    {
+      "displayName": "NCC",
+      "id": "nationalcapitalcommission-62b82e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "National Capital Commission",
+        "operator:short": "NCC",
+        "operator:type": "government",
+        "operator:wikidata": "Q613449"
       }
     },
     {
@@ -669,7 +4116,7 @@
         "include": ["us-or.geojson"]
       },
       "matchNames": [
-        "north clackamas parks and rec"
+        "north clackamas parks and recreation"
       ],
       "tags": {
         "leisure": "park",
@@ -694,8 +4141,17 @@
         "operator": "Nebraska Game and Parks Commission",
         "operator:short": "NGPC",
         "operator:type": "public",
-        "operator:wikidata": "Q6984719",
-        "operator:wikipedia": "en:Nebraska Game and Parks Commission"
+        "operator:wikidata": "Q6984719"
+      }
+    },
+    {
+      "displayName": "Nelson City Council",
+      "id": "nelsoncitycouncil-0a56ce",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Nelson City Council",
+        "operator:wikidata": "Q6990429"
       }
     },
     {
@@ -710,6 +4166,32 @@
         "operator": "Nevada State Parks",
         "operator:type": "public",
         "operator:wikidata": "Q109292599"
+      }
+    },
+    {
+      "displayName": "Newport News Green Foundation",
+      "id": "newportnewsgreenfoundation-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Newport News Green Foundation",
+        "operator:type": "public",
+        "operator:wikidata": "Q110072942"
+      }
+    },
+    {
+      "displayName": "Niles Park District",
+      "id": "nilesparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Niles Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q110073017"
       }
     },
     {
@@ -743,8 +4225,90 @@
         "leisure": "park",
         "operator": "North Dakota Parks and Recreation Department",
         "operator:type": "public",
-        "operator:wikidata": "Q60774299",
-        "operator:wikipedia": "en:North Dakota Parks and Recreation Department"
+        "operator:wikidata": "Q60774299"
+      }
+    },
+    {
+      "displayName": "Northern Beaches Council",
+      "id": "northernbeachescouncil-11d7e5",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Northern Beaches Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q24050090"
+      }
+    },
+    {
+      "displayName": "Nottingham City Council",
+      "id": "nottinghamcitycouncil-165719",
+      "locationSet": {
+        "include": ["gb-east-midlands.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Nottingham City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q7063612"
+      }
+    },
+    {
+      "displayName": "Nova Scotia Provincial Parks",
+      "id": "novascotiaprovincialparks-f40be7",
+      "locationSet": {
+        "include": ["ca-ns.geojson"]
+      },
+      "matchNames": [
+        "ns department of natural resources"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Nova Scotia Provincial Parks",
+        "operator:type": "public",
+        "operator:wikidata": "Q110073137"
+      }
+    },
+    {
+      "displayName": "NY State Parks",
+      "id": "newyorkstateofficeofparksrecreationandhistoricpreservation-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "New York State Office of Parks, Recreation and Historic Preservation",
+        "operator:type": "public",
+        "operator:wikidata": "Q1706660"
+      }
+    },
+    {
+      "displayName": "NYC Parks",
+      "id": "newyorkcitydepartmentofparksandrecreation-995a14",
+      "locationSet": {
+        "include": ["new_york_city.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "New York City Department of Parks and Recreation",
+        "operator:short": "NYC Parks",
+        "operator:type": "public",
+        "operator:wikidata": "Q1894232"
+      }
+    },
+    {
+      "displayName": "NYSDEC",
+      "id": "newyorkstatedepartmentofenvironmentalconservation-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "New York State Department of Environmental Conservation",
+        "operator:short": "NYSDEC",
+        "operator:type": "public",
+        "operator:wikidata": "Q3339061"
       }
     },
     {
@@ -761,6 +4325,58 @@
       }
     },
     {
+      "displayName": "Oklahoma County",
+      "id": "oklahomacounty-930c38",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Oklahoma County",
+        "operator:type": "public",
+        "operator:wikidata": "Q485038"
+      }
+    },
+    {
+      "displayName": "Oklahoma Department of Wildlife Conservation",
+      "id": "oklahomadepartmentofwildlifeconservation-930c38",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Oklahoma Department of Wildlife Conservation",
+        "operator:type": "public",
+        "operator:wikidata": "Q7082205"
+      }
+    },
+    {
+      "displayName": "Ontario Parks",
+      "id": "ontarioparks-62b82e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Ontario Parks",
+        "operator:type": "public",
+        "operator:wikidata": "Q3364902"
+      }
+    },
+    {
+      "displayName": "Orange County Parks & Recreation",
+      "id": "orangecountyparksandrecreation-38b713",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Orange County Parks & Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q21020929"
+      }
+    },
+    {
       "displayName": "Oregon State Parks",
       "id": "oregonparksandrecreationdepartment-9db284",
       "locationSet": {
@@ -771,8 +4387,430 @@
         "leisure": "park",
         "operator": "Oregon Parks and Recreation Department",
         "operator:type": "public",
-        "operator:wikidata": "Q7101287",
-        "operator:wikipedia": "en:Oregon Parks and Recreation Department"
+        "operator:wikidata": "Q7101287"
+      }
+    },
+    {
+      "displayName": "Oswegoland Park District",
+      "id": "oswegolandparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Oswegoland Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112134936"
+      }
+    },
+    {
+      "displayName": "Palatine Park District",
+      "id": "palatineparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Palatine Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112220961"
+      }
+    },
+    {
+      "displayName": "Pamukkale Belediyesi",
+      "id": "pamukkalebelediyesi-2ed982",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Pamukkale Belediyesi"
+      }
+    },
+    {
+      "displayName": "Park District of Highland Park",
+      "id": "parkdistrictofhighlandpark-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Park District of Highland Park"
+      }
+    },
+    {
+      "displayName": "Park District of Oak Park",
+      "id": "parkdistrictofoakpark-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Park District of Oak Park",
+        "operator:short": "PDOP",
+        "operator:type": "public",
+        "operator:wikidata": "Q112220982"
+      }
+    },
+    {
+      "displayName": "Park Ridge Park District",
+      "id": "parkridgeparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Park Ridge Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112221067"
+      }
+    },
+    {
+      "displayName": "Parks Canada",
+      "id": "parkscanada-fc15e4",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Parks Canada",
+        "operator:wikidata": "Q349487"
+      }
+    },
+    {
+      "displayName": "Parks Victoria",
+      "id": "parksvictoria-3b6b12",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Parks Victoria",
+        "operator:wikidata": "Q3365478"
+      }
+    },
+    {
+      "displayName": "Pendik Belediyesi",
+      "id": "pendikbelediyesi-2ed982",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Pendik Belediyesi",
+        "operator:type": "government",
+        "operator:wikidata": "Q857056"
+      }
+    },
+    {
+      "displayName": "Pennsylvania Bureau of State Parks",
+      "id": "pennsylvaniabureauofstateparks-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Pennsylvania Bureau of State Parks"
+      }
+    },
+    {
+      "displayName": "Peoria Park District",
+      "id": "peoriaparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Peoria Park District",
+        "operator:short": "PPD",
+        "operator:type": "public",
+        "operator:wikidata": "Q112221103"
+      }
+    },
+    {
+      "displayName": "PGL LP",
+      "id": "pgllp-d6816a",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "PGL LP",
+        "operator:type": "public",
+        "operator:wikidata": "Q7603225"
+      }
+    },
+    {
+      "displayName": "Phoenixville Borough",
+      "id": "phoenixvilleborough-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Phoenixville Borough",
+        "operator:type": "public",
+        "operator:wikidata": "Q1181862"
+      }
+    },
+    {
+      "displayName": "Plaine Commune",
+      "id": "plainecommune-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Plaine Commune"
+      }
+    },
+    {
+      "displayName": "Plainfield Park District",
+      "id": "plainfieldparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Plainfield Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q111209760"
+      }
+    },
+    {
+      "displayName": "PNCC",
+      "id": "pncc-0a56ce",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "PNCC"
+      }
+    },
+    {
+      "displayName": "Portsmouth Parks and Recreation",
+      "id": "portsmouthparksandrecreation-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Portsmouth Parks and Recreation"
+      }
+    },
+    {
+      "displayName": "Prefeitura de Catalão",
+      "id": "prefeituradecatalao-4fe732",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Prefeitura de Catalão",
+        "operator:type": "government",
+        "operator:wikidata": "Q35135"
+      }
+    },
+    {
+      "displayName": "Prefeitura de Fortaleza",
+      "id": "prefeituradefortaleza-4fe732",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Prefeitura de Fortaleza",
+        "operator:type": "government",
+        "operator:wikidata": "Q43463"
+      }
+    },
+    {
+      "displayName": "Prefeitura de Juiz de Fora",
+      "id": "prefeituradejuizdefora-4fe732",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Prefeitura de Juiz de Fora",
+        "operator:type": "government",
+        "operator:wikidata": "Q193019"
+      }
+    },
+    {
+      "displayName": "Prefeitura de Ribeirão Pires",
+      "id": "prefeituraderibeiraopires-4fe732",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Prefeitura de Ribeirão Pires",
+        "operator:type": "government",
+        "operator:wikidata": "Q927935"
+      }
+    },
+    {
+      "displayName": "Prefeitura de Rio Verde",
+      "id": "prefeituraderioverde-4fe732",
+      "locationSet": {"include": ["br"]},
+      "matchNames": ["pmrv"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Prefeitura de Rio Verde",
+        "operator:type": "government",
+        "operator:wikidata": "Q942064"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal de Paulínia",
+      "id": "prefeituramunicipaldepaulinia-4fe732",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Prefeitura Municipal de Paulínia",
+        "operator:type": "government",
+        "operator:wikidata": "Q40706"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal de Santarém",
+      "id": "prefeituramunicipaldesantarem-4fe732",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Prefeitura Municipal de Santarém",
+        "operator:type": "government",
+        "operator:wikidata": "Q659450"
+      }
+    },
+    {
+      "displayName": "Prince George's County Department of Parks and Recreation",
+      "id": "princegeorgescountydepartmentofparksandrecreation-fb928d",
+      "locationSet": {
+        "include": ["us-md.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Prince George's County Department of Parks and Recreation",
+        "operator:type": "public",
+        "operator:wikidata": "Q62029847"
+      }
+    },
+    {
+      "displayName": "Puerto Pacifico",
+      "id": "puertopacifico-fb7751",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Puerto Pacifico"
+      }
+    },
+    {
+      "displayName": "Roselle Park District",
+      "id": "roselleparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Roselle Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q114357550"
+      }
+    },
+    {
+      "displayName": "Rother District Council",
+      "id": "rotherdistrictcouncil-4c36e5",
+      "locationSet": {
+        "include": ["gb-south-east-coast.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Rother District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q73072720"
+      }
+    },
+    {
+      "displayName": "Saint Paul Department of Parks and Recreation",
+      "id": "saintpauldepartmentofparksandrecreation-853554",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Saint Paul Department of Parks and Recreation"
+      }
+    },
+    {
+      "displayName": "San José Parks, Recreation and Neighborhood Services",
+      "id": "sanjoseparksrecreationandneighborhoodservices-15b72d",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "San José Parks, Recreation and Neighborhood Services"
+      }
+    },
+    {
+      "displayName": "SDMC",
+      "id": "southdelhimunicipalcorporation-d31221",
+      "locationSet": {"include": ["in"]},
+      "matchNames": [
+        "south delhi municipal corporation (s.d.m.c.)"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "South Delhi Municipal Corporation",
+        "operator:short": "SDMC",
+        "operator:type": "government",
+        "operator:wikidata": "Q17083576"
+      }
+    },
+    {
+      "displayName": "Secretaria Municipal de Serviços Públicos Municipais de Laranjal Paulista",
+      "id": "secretariamunicipaldeservicospublicosmunicipaisdelaranjalpaulista-4fe732",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Secretaria Municipal de Serviços Públicos Municipais de Laranjal Paulista"
+      }
+    },
+    {
+      "displayName": "Servicio de Parques de Lima",
+      "id": "serviciodeparquesdelima-2a5779",
+      "locationSet": {"include": ["pe"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Servicio de Parques de Lima",
+        "operator:type": "public",
+        "operator:wikidata": "Q30083612"
+      }
+    },
+    {
+      "displayName": "Seyhan Belediyesi",
+      "id": "seyhanbelediyesi-2ed982",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Seyhan Belediyesi"
+      }
+    },
+    {
+      "displayName": "Skokie Park District",
+      "id": "skokieparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Skokie Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112228684"
+      }
+    },
+    {
+      "displayName": "Smyrna Parks & Recreation",
+      "id": "smyrnaparksandrecreation-c2abce",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Smyrna Parks & Recreation"
+      }
+    },
+    {
+      "displayName": "Somerset West and Taunton Council",
+      "id": "somersetwestandtauntoncouncil-09986d",
+      "locationSet": {
+        "include": ["gb-som.geojson"]
+      },
+      "matchNames": ["sw&t", "swt"],
+      "tags": {
+        "leisure": "park",
+        "operator": "Somerset West and Taunton Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q60790331"
       }
     },
     {
@@ -803,8 +4841,121 @@
         "operator": "South Dakota Department of Game, Fish, and Parks",
         "operator:short": "GFP",
         "operator:type": "public",
-        "operator:wikidata": "Q55633565",
-        "operator:wikipedia": "en:South Dakota Department of Game, Fish, and Parks"
+        "operator:wikidata": "Q55633565"
+      }
+    },
+    {
+      "displayName": "South Whitehall Township",
+      "id": "southwhitehalltownship-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "South Whitehall Township",
+        "operator:type": "public",
+        "operator:wikidata": "Q7568934"
+      }
+    },
+    {
+      "displayName": "Southwest Michigan Land Conservancy",
+      "id": "southwestmichiganlandconservancy-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Southwest Michigan Land Conservancy",
+        "operator:type": "public",
+        "operator:wikidata": "Q58817235"
+      }
+    },
+    {
+      "displayName": "Springfield Park District",
+      "id": "springfieldparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "matchNames": [
+        "springfield parks district"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "Springfield Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q23073350"
+      }
+    },
+    {
+      "displayName": "Stadt Innsbruck",
+      "id": "stadtinnsbruck-6ed0ea",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Stadt Innsbruck"
+      }
+    },
+    {
+      "displayName": "Stadt Norden",
+      "id": "stadtnorden-a7fb0c",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Stadt Norden",
+        "operator:type": "government",
+        "operator:wikidata": "Q492366"
+      }
+    },
+    {
+      "displayName": "Stadt Witten",
+      "id": "stadtwitten-afee1b",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Stadt Witten",
+        "operator:type": "government",
+        "operator:wikidata": "Q3764"
+      }
+    },
+    {
+      "displayName": "Story CCB",
+      "id": "storyccb-5303d3",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Story CCB"
+      }
+    },
+    {
+      "displayName": "Sunshine Coast Council",
+      "id": "sunshinecoastcouncil-f88a26",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Sunshine Coast Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q1065035"
+      }
+    },
+    {
+      "displayName": "Tasman District Council",
+      "id": "tasmandistrictcouncil-1585a5",
+      "locationSet": {
+        "include": ["nz-tas.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Tasman District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q7687392"
       }
     },
     {
@@ -821,6 +4972,19 @@
       }
     },
     {
+      "displayName": "Texas Historical Commission",
+      "id": "texashistoricalcommission-8bfd34",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Texas Historical Commission",
+        "operator:type": "public",
+        "operator:wikidata": "Q2397965"
+      }
+    },
+    {
       "displayName": "Texas Parks & Wildlife",
       "id": "texasparksandwildlifedepartment-8bfd34",
       "locationSet": {
@@ -832,8 +4996,31 @@
         "operator": "Texas Parks and Wildlife Department",
         "operator:short": "TPWD",
         "operator:type": "public",
-        "operator:wikidata": "Q7707904",
-        "operator:wikipedia": "en:Texas Parks and Wildlife Department"
+        "operator:wikidata": "Q7707904"
+      }
+    },
+    {
+      "displayName": "The Parks Trust",
+      "id": "theparkstrust-122ca7",
+      "locationSet": {
+        "include": ["gb-mik.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "The Parks Trust",
+        "operator:wikidata": "Q6861252"
+      }
+    },
+    {
+      "displayName": "The Royal Parks",
+      "id": "theroyalparks-777334",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "The Royal Parks",
+        "operator:wikidata": "Q7761716"
       }
     },
     {
@@ -851,8 +5038,223 @@
         "operator": "Tualatin Hills Park & Recreation District",
         "operator:short": "THPRD",
         "operator:type": "public",
-        "operator:wikidata": "Q7850598",
-        "operator:wikipedia": "en:Tualatin Hills Park & Recreation District"
+        "operator:wikidata": "Q7850598"
+      }
+    },
+    {
+      "displayName": "Timaru District Council",
+      "id": "timarudistrictcouncil-b93ce4",
+      "locationSet": {
+        "include": ["nz-can.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Timaru District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q65601656"
+      }
+    },
+    {
+      "displayName": "Town of Abingdon",
+      "id": "townofabingdon-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Abingdon",
+        "operator:type": "public",
+        "operator:wikidata": "Q137919"
+      }
+    },
+    {
+      "displayName": "Town of Alva",
+      "id": "townofalva-930c38",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Alva",
+        "operator:type": "public",
+        "operator:wikidata": "Q998914"
+      }
+    },
+    {
+      "displayName": "Town of Amherst (Massachusetts)",
+      "id": "townofamherst-58b3db",
+      "locationSet": {
+        "include": ["us-ma.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Amherst",
+        "operator:type": "public",
+        "operator:wikidata": "Q49164"
+      }
+    },
+    {
+      "displayName": "Town of Amherst (New Hampshire)",
+      "id": "townofamherst-97a560",
+      "locationSet": {
+        "include": ["us-nh.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Amherst",
+        "operator:type": "public",
+        "operator:wikidata": "Q2323115"
+      }
+    },
+    {
+      "displayName": "Town of Amherst (New York)",
+      "id": "townofamherst-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Amherst",
+        "operator:type": "public",
+        "operator:wikidata": "Q470592"
+      }
+    },
+    {
+      "displayName": "Town of Drayton Valley",
+      "id": "townofdraytonvalley-85dee0",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Drayton Valley",
+        "operator:type": "public",
+        "operator:wikidata": "Q1022731"
+      }
+    },
+    {
+      "displayName": "Town of East Hartford",
+      "id": "townofeasthartford-e713eb",
+      "locationSet": {
+        "include": ["us-ct.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of East Hartford",
+        "operator:type": "public",
+        "operator:wikidata": "Q754618"
+      }
+    },
+    {
+      "displayName": "Town of Grimsby",
+      "id": "townofgrimsby-fc15e4",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Grimsby"
+      }
+    },
+    {
+      "displayName": "Town of Hempstead",
+      "id": "townofhempstead-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Hempstead"
+      }
+    },
+    {
+      "displayName": "Town of Manchester",
+      "id": "townofmanchester-e713eb",
+      "locationSet": {
+        "include": ["us-ct.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Manchester",
+        "operator:type": "public",
+        "operator:wikidata": "Q753909"
+      }
+    },
+    {
+      "displayName": "Town of North Hempstead",
+      "id": "townofnorthhempstead-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of North Hempstead",
+        "operator:type": "public",
+        "operator:wikidata": "Q2723817"
+      }
+    },
+    {
+      "displayName": "Town of Saint John",
+      "id": "townofsaintjohn-86dc7f",
+      "locationSet": {
+        "include": ["us-in.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Saint John",
+        "operator:type": "public",
+        "operator:wikidata": "Q3287753"
+      }
+    },
+    {
+      "displayName": "Town of Steilacoom",
+      "id": "townofsteilacoom-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Steilacoom",
+        "operator:type": "public",
+        "operator:wikidata": "Q1507851"
+      }
+    },
+    {
+      "displayName": "Town of Vienna",
+      "id": "townofvienna-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Town of Vienna",
+        "operator:type": "public",
+        "operator:wikidata": "Q1002926"
+      }
+    },
+    {
+      "displayName": "Tredyffrin Township",
+      "id": "tredyffrintownship-dc67ca",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Tredyffrin Township",
+        "operator:type": "public",
+        "operator:wikidata": "Q7837498"
+      }
+    },
+    {
+      "displayName": "United States Army Corps of Engineers",
+      "id": "unitedstatesarmycorpsofengineers-059b34",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "army corps of engineers",
+        "us army corps of engineers"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "United States Army Corps of Engineers",
+        "operator:short": "USACE",
+        "operator:type": "government",
+        "operator:wikidata": "Q1049334"
       }
     },
     {
@@ -866,6 +5268,208 @@
         "operator": "Utah State Parks",
         "operator:type": "public",
         "operator:wikidata": "Q109292618"
+      }
+    },
+    {
+      "displayName": "Village of Bourbonnais",
+      "id": "villageofbourbonnais-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Village of Bourbonnais",
+        "operator:type": "public",
+        "operator:wikidata": "Q2110162"
+      }
+    },
+    {
+      "displayName": "Village of Fayetteville",
+      "id": "villageoffayetteville-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Village of Fayetteville",
+        "operator:type": "public",
+        "operator:wikidata": "Q3461710"
+      }
+    },
+    {
+      "displayName": "Village of Waunakee",
+      "id": "villageofwaunakee-ef1d28",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Village of Waunakee",
+        "operator:type": "public",
+        "operator:wikidata": "Q1246532"
+      }
+    },
+    {
+      "displayName": "Ville d'Istres",
+      "id": "villedistres-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ville d'Istres",
+        "operator:type": "government",
+        "operator:wikidata": "Q203759"
+      }
+    },
+    {
+      "displayName": "Ville de Fontaine",
+      "id": "villedefontaine-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ville de Fontaine",
+        "operator:type": "government",
+        "operator:wikidata": "Q838235"
+      }
+    },
+    {
+      "displayName": "Ville de Lyon",
+      "id": "villedelyon-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ville de Lyon",
+        "operator:type": "government",
+        "operator:wikidata": "Q456"
+      }
+    },
+    {
+      "displayName": "Ville de Montréal",
+      "id": "villedemontreal-15b72d",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ville de Montréal"
+      }
+    },
+    {
+      "displayName": "Ville de Nantes",
+      "id": "villedenantes-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ville de Nantes",
+        "operator:type": "government",
+        "operator:wikidata": "Q12191"
+      }
+    },
+    {
+      "displayName": "Ville de Nicolet",
+      "id": "villedenicolet-8d83b2",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Ville de Nicolet",
+        "operator:type": "public",
+        "operator:wikidata": "Q141595"
+      }
+    },
+    {
+      "displayName": "Ville de Reims",
+      "id": "villedereims-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Ville de Reims",
+        "operator:type": "government",
+        "operator:wikidata": "Q41876"
+      }
+    },
+    {
+      "displayName": "Villenave-d'Ornon",
+      "id": "villenavedornon-27583f",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Villenave-d'Ornon",
+        "operator:type": "government",
+        "operator:wikidata": "Q235733"
+      }
+    },
+    {
+      "displayName": "Virginia Department of Transportation",
+      "id": "virginiadepartmentoftransportation-414f19",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Virginia Department of Transportation",
+        "operator:short": "VDOT",
+        "operator:type": "government",
+        "operator:wikidata": "Q7934247"
+      }
+    },
+    {
+      "displayName": "Waimakariri District Council",
+      "id": "waimakariridistrictcouncil-b93ce4",
+      "locationSet": {
+        "include": ["nz-can.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Waimakariri District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q71866858"
+      }
+    },
+    {
+      "displayName": "Waitaki District Council",
+      "id": "waitakidistrictcouncil-a83a4e",
+      "locationSet": {
+        "include": ["nz-ota.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Waitaki District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q73720239"
+      }
+    },
+    {
+      "displayName": "Walla Walla District, Army Corps of Engineers",
+      "id": "wallawalladistrictarmycorpsofengineers-059b34",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Walla Walla District, Army Corps of Engineers"
+      }
+    },
+    {
+      "displayName": "Warrenville Park District",
+      "id": "warrenvilleparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Warrenville Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q111213006"
+      }
+    },
+    {
+      "displayName": "Washington County (Oregon)",
+      "id": "washingtoncounty-9db284",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Washington County",
+        "operator:type": "public",
+        "operator:wikidata": "Q484538"
       }
     },
     {
@@ -883,6 +5487,73 @@
       }
     },
     {
+      "displayName": "West Chicago Park District",
+      "id": "westchicagoparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "West Chicago Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112058771"
+      }
+    },
+    {
+      "displayName": "West Fargo Park District",
+      "id": "westfargoparkdistrict-20a56e",
+      "locationSet": {
+        "include": ["us-nd.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "West Fargo Park District"
+      }
+    },
+    {
+      "displayName": "West Virginia DNR",
+      "id": "westvirginiadivisionofnaturalresources-0e9e9f",
+      "locationSet": {
+        "include": ["us-wv.geojson"]
+      },
+      "matchNames": [
+        "wv division of natural resources"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "West Virginia Division of Natural Resources",
+        "operator:short": "West Virginia DNR",
+        "operator:type": "public",
+        "operator:wikidata": "Q7986847"
+      }
+    },
+    {
+      "displayName": "Western Springs Park District",
+      "id": "westernspringsparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Western Springs Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112228971"
+      }
+    },
+    {
+      "displayName": "Wheaton Park District",
+      "id": "wheatonparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Wheaton Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q17091394"
+      }
+    },
+    {
       "displayName": "Willamalane",
       "id": "willamalaneparkandrecreationdistrict-9db284",
       "locationSet": {
@@ -892,8 +5563,59 @@
         "leisure": "park",
         "operator": "Willamalane Park and Recreation District",
         "operator:type": "public",
-        "operator:wikidata": "Q8003279",
-        "operator:wikipedia": "en:Willamalane Park and Recreation District"
+        "operator:wikidata": "Q8003279"
+      }
+    },
+    {
+      "displayName": "Willoughby City Council",
+      "id": "willoughbycitycouncil-11d7e5",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Willoughby City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q634933"
+      }
+    },
+    {
+      "displayName": "Wilmette Park District",
+      "id": "wilmetteparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Wilmette Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112228979"
+      }
+    },
+    {
+      "displayName": "Winfield Park District",
+      "id": "winfieldparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Winfield Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q111221769"
+      }
+    },
+    {
+      "displayName": "Winnetka Park District",
+      "id": "winnetkaparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Winnetka Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q112228982"
       }
     },
     {
@@ -908,8 +5630,20 @@
         "operator": "Wisconsin Department of Natural Resources",
         "operator:short": "Wisconsin DNR",
         "operator:type": "public",
-        "operator:wikidata": "Q1467508",
-        "operator:wikipedia": "en:Wisconsin Department of Natural Resources"
+        "operator:wikidata": "Q1467508"
+      }
+    },
+    {
+      "displayName": "Woodridge Park District",
+      "id": "woodridgeparkdistrict-17eabc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Woodridge Park District",
+        "operator:type": "public",
+        "operator:wikidata": "Q111213095"
       }
     },
     {
@@ -924,8 +5658,387 @@
         "operator": "Wyoming Division of State Parks and Historic Sites",
         "operator:short": "WYO Parks",
         "operator:type": "public",
-        "operator:wikidata": "Q8040334",
-        "operator:wikipedia": "en:Wyoming Division of State Parks and Historic Sites"
+        "operator:wikidata": "Q8040334"
+      }
+    },
+    {
+      "displayName": "Yakima Parks & Recreation",
+      "id": "yakimaparksandrecreation-6c188f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Yakima Parks & Recreation"
+      }
+    },
+    {
+      "displayName": "Zarząd Zieleni Miejskiej w Krakowie",
+      "id": "zarzadzielenimiejskiejwkrakowie-d6816a",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "Zarząd Zieleni Miejskiej w Krakowie"
+      }
+    },
+    {
+      "displayName": "강동구청",
+      "id": "58f637-e2593f",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "강동구청",
+        "operator:ko": "강동구청"
+      }
+    },
+    {
+      "displayName": "안성시",
+      "id": "0bd2a5-e2593f",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "안성시",
+        "operator:ko": "안성시"
+      }
+    },
+    {
+      "displayName": "안양시",
+      "id": "45b691-e2593f",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "안양시",
+        "operator:ko": "안양시"
+      }
+    },
+    {
+      "displayName": "춘천시 경관과",
+      "id": "5be7b3-e2593f",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "춘천시 경관과",
+        "operator:ko": "춘천시 경관과"
+      }
+    },
+    {
+      "displayName": "ひたちなか市",
+      "id": "b349be-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "ひたちなか市",
+        "operator:ja": "ひたちなか市"
+      }
+    },
+    {
+      "displayName": "世田谷区",
+      "id": "ef87eb-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "世田谷区"
+      }
+    },
+    {
+      "displayName": "中野区",
+      "id": "070eb1-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "中野区"
+      }
+    },
+    {
+      "displayName": "今治市",
+      "id": "c318d2-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "今治市"
+      }
+    },
+    {
+      "displayName": "仙台市",
+      "id": "e2ad4e-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "仙台市"
+      }
+    },
+    {
+      "displayName": "会津若松市 花と緑の課",
+      "id": "aabdcb-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "会津若松市 花と緑の課",
+        "operator:ja": "会津若松市 花と緑の課"
+      }
+    },
+    {
+      "displayName": "八千代市",
+      "id": "94b900-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "八千代市"
+      }
+    },
+    {
+      "displayName": "名古屋市",
+      "id": "bf9c17-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "名古屋市"
+      }
+    },
+    {
+      "displayName": "品川区",
+      "id": "9b71a0-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "品川区"
+      }
+    },
+    {
+      "displayName": "土佐清水市",
+      "id": "3fac03-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "土佐清水市"
+      }
+    },
+    {
+      "displayName": "堺市",
+      "id": "0d2762-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "堺市"
+      }
+    },
+    {
+      "displayName": "大和郡山市",
+      "id": "826de4-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "大和郡山市"
+      }
+    },
+    {
+      "displayName": "大田区",
+      "id": "431e24-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "大田区"
+      }
+    },
+    {
+      "displayName": "宮崎市",
+      "id": "d8b538-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "宮崎市"
+      }
+    },
+    {
+      "displayName": "寝屋川市公園みどり課",
+      "id": "3789c9-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "寝屋川市公園みどり課",
+        "operator:ja": "寝屋川市公園みどり課"
+      }
+    },
+    {
+      "displayName": "平塚市",
+      "id": "98c9aa-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "平塚市"
+      }
+    },
+    {
+      "displayName": "康樂及文化事務署 Leisure and Cultural Services Department",
+      "id": "leisureandculturalservicesdepartment-30eaed",
+      "locationSet": {"include": ["hk"]},
+      "matchNames": ["康文署"],
+      "tags": {
+        "leisure": "park",
+        "operator": "康樂及文化事務署 Leisure and Cultural Services Department",
+        "operator:en": "Leisure and Cultural Services Department",
+        "operator:short": "康文署 LCSD",
+        "operator:short:en": "LCSD",
+        "operator:short:zh": "康文署",
+        "operator:wikidata": "Q2353346",
+        "operator:zh": "康樂及文化事務署",
+        "operator:zh-Hans": "康乐及文化事务署",
+        "operator:zh-Hant": "康樂及文化事務署"
+      }
+    },
+    {
+      "displayName": "文京区",
+      "id": "96a521-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "文京区"
+      }
+    },
+    {
+      "displayName": "日本中央競馬会",
+      "id": "71cdb4-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "日本中央競馬会"
+      }
+    },
+    {
+      "displayName": "札幌市",
+      "id": "e1715c-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "札幌市"
+      }
+    },
+    {
+      "displayName": "東京都",
+      "id": "c81c00-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "東京都"
+      }
+    },
+    {
+      "displayName": "東京都府中市",
+      "id": "d961bb-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "東京都府中市"
+      }
+    },
+    {
+      "displayName": "東京都青梅市",
+      "id": "6551d5-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "東京都青梅市"
+      }
+    },
+    {
+      "displayName": "板橋区",
+      "id": "77db3d-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "板橋区"
+      }
+    },
+    {
+      "displayName": "深圳市公园管理中心",
+      "id": "273b14-caf390",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "深圳市公园管理中心",
+        "operator:wikidata": "Q113625158",
+        "operator:zh": "深圳市公园管理中心"
+      }
+    },
+    {
+      "displayName": "渋谷区",
+      "id": "3ac18c-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "渋谷区"
+      }
+    },
+    {
+      "displayName": "町田市",
+      "id": "113880-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "町田市"
+      }
+    },
+    {
+      "displayName": "盛岡市",
+      "id": "68ddf0-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "盛岡市"
+      }
+    },
+    {
+      "displayName": "練馬区",
+      "id": "bc4696-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "練馬区"
+      }
+    },
+    {
+      "displayName": "豊川市",
+      "id": "a86a0c-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "豊川市"
+      }
+    },
+    {
+      "displayName": "豊橋市",
+      "id": "03e5a7-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "豊橋市"
+      }
+    },
+    {
+      "displayName": "那覇市",
+      "id": "030961-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "那覇市"
+      }
+    },
+    {
+      "displayName": "青梅市",
+      "id": "98f747-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "青梅市"
+      }
+    },
+    {
+      "displayName": "香芝市",
+      "id": "a840db-1b6974",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "香芝市"
       }
     }
   ]
