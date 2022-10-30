@@ -263,7 +263,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
 `;
     });
 
-    if (item.matchNames || item.matchTags || item.preserveTags)
+    if (item.matchNames || item.matchTags || item.note || item.preserveTags)
       result += '<hr/>';
 
     if (item.matchNames)
