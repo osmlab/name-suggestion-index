@@ -131,7 +131,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
         <div className='viewlink'>
           { searchOverpassLink(n, overpassQuery) }<br/>
           { searchGoogleLink(n) }<br/>
-          { searchWikipediaLink(n) }
+          { searchWikidataLink(n) }
         </div>
       </td>
       <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -157,7 +157,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
         <div className='viewlink'>
           { searchOverpassLink(n, overpassQuery) }<br/>
           { searchGoogleLink(n) }<br/>
-          { searchWikipediaLink(n) }
+          { searchWikidataLink(n) }
         </div>
       </td>
       <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -204,11 +204,11 @@ relation[${k}=${v}][network:wikidata=${qid}]
     return (<a target='_blank' href={href} title={title}>Search Google</a>);
   }
 
-  function searchWikipediaLink(name) {
+  function searchWikidataLink(name) {
     const q = encodeURIComponent(name);
-    const href = `https://google.com/search?q=${q}+site%3Awikipedia.org`;
-    const title = `Search Wikipedia for ${name}`;
-    return (<a target='_blank' href={href} title={title}>Search Wikipedia</a>);
+    const href = `https://google.com/search?q=${q}+site%3Awikidata.org`;
+    const title = `Search Wikidata for ${name}`;
+    return (<a target='_blank' href={href} title={title}>Search Wikidata</a>);
   }
 
 
