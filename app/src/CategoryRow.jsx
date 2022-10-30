@@ -263,7 +263,8 @@ relation[${k}=${v}][network:wikidata=${qid}]
 `;
     });
 
-    result += '<hr/>';
+    if (item.matchNames || item.matchTags || item.preserveTags)
+      result += '<hr/>';
 
     if (item.matchNames)
       result += '<strong>matchNames</strong>:<br/>' + item.matchNames + '<br/>';
@@ -271,6 +272,8 @@ relation[${k}=${v}][network:wikidata=${qid}]
       result += '<strong>matchTags</strong>:<br/>' + item.matchTags + '<br/>';
     if (item.note)
       result += '<strong>Note</strong>:<br/>' + item.note;
+    if (item.preserveTags)
+      result += '<strong>preserveTags</strong>:<br/>' + item.preserveTags;
 
     return result;
   }
