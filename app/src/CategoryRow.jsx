@@ -34,7 +34,7 @@ export default function CategoryRow(props) {
     qid = tags['brand:wikidata'];
     let bn = tags['brand'];
     overpassQuery = `[out:json][timeout:100];
-(nwr["name"="${n}"];);
+(nwr[\'name\'=\'${n}\'];);
 out center;
 
 {{style:
@@ -58,7 +58,7 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr["flag:name"="${n}"];);
+(nwr[\'flag:name\'=\'${n}\'];);
 out center;`;
 
   } else if (t === 'operators') {
@@ -67,7 +67,7 @@ out center;`;
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr["operator"="${n}"];);
+(nwr[\'operator\'=\'${n}\'];);
 out center;
 
 {{style:
@@ -91,7 +91,7 @@ relation[${k}=${v}][operator:wikidata=${qid}]
     tags = item.tags || {};
     qid = tags['network:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr["network"="${n}"];);
+(nwr[\'network\'=\'${n}\'];);
 out body;
 >;
 out skel qt;
