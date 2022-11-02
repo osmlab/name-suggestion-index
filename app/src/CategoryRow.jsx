@@ -34,7 +34,7 @@ export default function CategoryRow(props) {
     qid = tags['brand:wikidata'];
     let bn = tags['brand'];
     overpassQuery = `[out:json][timeout:100];
-(nwr["name"="${n}"];);
+(nwr[\'name\'=\'${n}\'];);
 out center;
 
 {{style:
@@ -58,7 +58,7 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr["flag:name"="${n}"];);
+(nwr[\'flag:name\'=\'${n}\'];);
 out center;`;
 
   } else if (t === 'operators') {
@@ -67,7 +67,7 @@ out center;`;
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr["operator"="${n}"];);
+(nwr[\'operator\'=\'${n}\'];);
 out center;
 
 {{style:
@@ -91,7 +91,7 @@ relation[${k}=${v}][operator:wikidata=${qid}]
     tags = item.tags || {};
     qid = tags['network:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr["network"="${n}"];);
+(nwr[\'network\'=\'${n}\'];);
 out body;
 >;
 out skel qt;
@@ -131,7 +131,10 @@ relation[${k}=${v}][network:wikidata=${qid}]
         <div className='viewlink'>
           { searchOverpassLink(n, overpassQuery) }<br/>
           { searchGoogleLink(n) }<br/>
+          <strong>Search:&nbsp;</strong>
           { searchWikipediaLink(n) }
+          &nbsp;/&nbsp;
+          { searchWikidataLink(n) }
         </div>
       </td>
       <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -157,7 +160,10 @@ relation[${k}=${v}][network:wikidata=${qid}]
         <div className='viewlink'>
           { searchOverpassLink(n, overpassQuery) }<br/>
           { searchGoogleLink(n) }<br/>
+          <strong>Search:&nbsp;</strong>
           { searchWikipediaLink(n) }
+          &nbsp;/&nbsp;
+          { searchWikidataLink(n) }
         </div>
       </td>
       <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -208,9 +214,15 @@ relation[${k}=${v}][network:wikidata=${qid}]
     const q = encodeURIComponent(name);
     const href = `https://google.com/search?q=${q}+site%3Awikipedia.org`;
     const title = `Search Wikipedia for ${name}`;
-    return (<a target='_blank' href={href} title={title}>Search Wikipedia</a>);
+    return (<a target='_blank' href={href} title={title}>Wikipedia</a>);
   }
 
+  function searchWikidataLink(name) {
+    const q = encodeURIComponent(name);
+    const href = `https://google.com/search?q=${q}+site%3Awikidata.org`;
+    const title = `Search Wikidata for ${name}`;
+    return (<a target='_blank' href={href} title={title}>Wikidata</a>);
+  }
 
   function searchOverpassLink(name, overpassQuery) {
     const q = encodeURIComponent(overpassQuery);
