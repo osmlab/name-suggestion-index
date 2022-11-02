@@ -54,8 +54,6 @@ function collectFeatures() {
   let files = {};
 
   glob.sync('features/**/*', { nodir: true }).forEach(file => {
-    if (/\.md$/i.test(file)) return;  // ignore markdown/readme files - #7292
-
     if (!/\.geojson$/.test(file)) {
       console.error(chalk.red(`Error - file should have a .geojson extension:`));
       console.error('  ' + chalk.yellow(file));
