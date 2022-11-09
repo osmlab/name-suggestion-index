@@ -283,7 +283,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
     if (item.matchTags)
       result += '<strong>matchTags</strong>:<br/>' + item.matchTags + '<br/>';
     if (item.note)
-      result += '<strong>Note</strong>:<br/>' + item.note;
+      result += '<strong>Note</strong>:<br/>' + item.note + '<br/>';
     if (item.preserveTags)
       result += '<strong>preserveTags</strong>:<br/>' + item.preserveTags;
 
