@@ -30,6 +30,7 @@ Areas of Great Britain targeted with a feature using [ISO_3166-2:GB](https://en.
 - [gb-dor.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-dor.geojson%22%5D%7D&referrer=nsi) - County of Dorset
 - [gb-nsm.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-nsm.geojson%22%5D%7D&referrer=nsi) - County of North Somerset
 - [gb-som.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-som.geojson%22%5D%7D&referrer=nsi) - County of Somerset
+- [gb-wil.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-wil.geojson%22%5D%7D&referrer=nsi) - County of Wiltshire
 
 Areas of Great Britain targeted with a feature not using [ISO_3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
