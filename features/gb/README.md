@@ -10,6 +10,7 @@ The following areas are included as part of [country-coder](https://github.com/i
 Areas of Great Britain targeted with a feature using [ISO_3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
 - [gb-bst.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bst.geojson%22%5D%7D&referrer=nsi) - City of Bristol
+- [gb-lnd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lnd.geojson%22%5D%7D&referrer=nsi) - City of London (small central area)
 - [gb-ply.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-ply.geojson%22%5D%7D&referrer=nsi) - City of Plymouth
 
 - [gb-bas.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bas.geojson%22%5D%7D&referrer=nsi) - County of Bath and North East Somerset
