@@ -7,7 +7,7 @@ The following areas are included as part of [country-coder](https://github.com/i
 - [gb-sct](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-sct%22%5D%7D&referrer=nsi) - The Country of Scotland
 - [gb-wls](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-wls%22%5D%7D&referrer=nsi) - The Country of Wales
 
-The follwing areas are [Regions of England](https://en.wikipedia.org/wiki/Regions_of_England)
+The following areas are [Regions of England](https://en.wikipedia.org/wiki/Regions_of_England)
 - [gb-north-east.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-north-east.geojson%22%5D%7D&referrer=nsi) - North East
 - [gb-north-west.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-north-west.geojson%22%5D%7D&referrer=nsi) - North West
 - [gb-yorkshire.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-yorkshire.geojson%22%5D%7D&referrer=nsi) - Yorkshire and the Humber
