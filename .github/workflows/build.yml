@@ -1,0 +1,39 @@
+name: Build
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'Deploy') && github.repository == 'osmlab/name-suggestion-index'"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3 # If you're using actions/checkout@v3 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        with:
+          branch: main # The branch the action should deploy to.
+          folder: . # The folder the action should deploy.
+          clean: false # Automatically remove deleted files from the deploy branch
+          commit-message: "npm run build"
