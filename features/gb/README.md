@@ -24,6 +24,7 @@ Areas of Great Britain targeted with a feature using [ISO_3166-2:GB](https://en.
 - [gb-bst.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bst.geojson%22%5D%7D&referrer=nsi) - City of Bristol
 - [gb-lnd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lnd.geojson%22%5D%7D&referrer=nsi) - City of London (small central area, use [gb-lon.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lon.geojson%22%5D%7D&referrer=nsi) for London as a whole)
 - [gb-ply.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-ply.geojson%22%5D%7D&referrer=nsi) - City of Plymouth
+- [gb-swd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swd.geojson%22%5D%7D&referrer=nsi) - Borough of Swindon
 - [gb-bas.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bas.geojson%22%5D%7D&referrer=nsi) - County of Bath and North East Somerset
 - [gb-con.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-con.geojson%22%5D%7D&referrer=nsi) - County of Cornwall
 - [gb-dev.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-dev.geojson%22%5D%7D&referrer=nsi) - County of Devon
