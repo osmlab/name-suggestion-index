@@ -1,5 +1,7 @@
 [![build](https://github.com/osmlab/name-suggestion-index/workflows/build/badge.svg)](https://github.com/osmlab/name-suggestion-index/actions?query=workflow%3A%22build%22)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
+[![](https://data.jsdelivr.com/v1/package/npm/name-suggestion-index/badge?style=rounded)](https://www.jsdelivr.com/package/npm/name-suggestion-index)
+
 
 # name-suggestion-index ("NSI")
 
