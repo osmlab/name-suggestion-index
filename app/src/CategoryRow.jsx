@@ -29,12 +29,13 @@ export default function CategoryRow(props) {
 
   if (t === 'brands') {
     n = item.tags.brand || item.tags.name;
+    n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
     let bn = tags['brand'];
     overpassQuery = `[out:json][timeout:100];
-(nwr[\'name\'=\'${n}\'];);
+(nwr["name"="${n}"];);
 out center;
 
 {{style:
@@ -54,20 +55,22 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
 
   } else if (t === 'flags') {
     n = item.tags['flag:name'];
+    n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr[\'flag:name\'=\'${n}\'];);
+(nwr["flag:name"="${n}"];);
 out center;`;
 
   } else if (t === 'operators') {
     n = item.tags.operator;
+    n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr[\'operator\'=\'${n}\'];);
+(nwr["operator"="${n}"];);
 out center;
 
 {{style:
@@ -87,11 +90,12 @@ relation[${k}=${v}][operator:wikidata=${qid}]
 
   } else if (t === 'transit') {
     n = item.tags.network;
+    n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['network:wikidata'];
     overpassQuery = `[out:json][timeout:100];
-(nwr[\'network\'=\'${n}\'];);
+(nwr["network"="${n}"];);
 out body;
 >;
 out skel qt;
