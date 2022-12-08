@@ -6,10 +6,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
-  # Configure check for outdated GitHub Actions actions in workflows.
-  # See: https://docs.github.com/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
+      interval: "monthly"
   - package-ecosystem: "github-actions"
-    directory: "/" # Check the repository's workflows under /.github/workflows/
+    directory: "/"
     schedule:
-      interval: "daily"
+      interval: "monthly"
