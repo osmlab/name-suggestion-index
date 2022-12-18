@@ -90,7 +90,8 @@ relation[${k}=${v}][operator:wikidata=${qid}]
 
   } else if (t === 'transit') {
     n = item.tags.network;
-    n = n.replaceAll('"','\\\"');
+    if (n != null)
+      n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['network:wikidata'];
