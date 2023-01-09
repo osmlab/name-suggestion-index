@@ -3908,10 +3908,9 @@
       "displayName": "National Grid",
       "id": "nationalgrid-036c1a",
       "locationSet": {
-        "include": ["au", "gb-eng", "us"]
+        "include": ["au", "us"]
       },
       "matchNames": [
-        "national grid et",
         "national grid plc",
         "new england power company"
       ],
@@ -3938,7 +3937,8 @@
       "locationSet": {"include": ["gb-eng"]},
       "matchNames": [
         "western power",
-        "western power distribution"
+        "western power distribution",
+        "national grid electricity distribution plc"
       ],
       "tags": {
         "operator": "National Grid Electricity Distribution",
@@ -3947,12 +3947,18 @@
       }
     },
     {
-      "displayName": "National Grid Electricity Distribution Plc",
-      "id": "nationalgridelectricitydistributionplc-116894",
-      "locationSet": {"include": ["001"]},
+      "displayName": "National Grid Electricity Transmission",
+      "locationSet": {
+        "include": ["gb-eng"]
+      },
+      "matchNames": [
+        "national grid plc",
+        "national grid et"
+      ],
       "tags": {
-        "operator": "National Grid Electricity Distribution Plc",
-        "power": "line"
+        "operator": "National Grid Electricity Transmission",
+        "operator:wikidata": "Q114453512",
+        "power": "substation"
       }
     },
     {
@@ -4956,25 +4962,20 @@
       }
     },
     {
-      "displayName": "Scottish and Southern Energy (SSE)",
+      "displayName": "Scottish and Southern Electricity Networks (SSEN)",
       "id": "scottishandsouthernenergy-2a61eb",
       "locationSet": {"include": ["gb"]},
       "matchNames": [
         "scottish hydro electric power distribution",
-        "southern electric"
+        "southern electric",
+        "ssen",
+        "sse",
+        "scottish and southern energy",
+        "scottish hydro electric"
       ],
       "tags": {
-        "operator": "Scottish and Southern Energy",
-        "operator:wikidata": "Q493854",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "Scottish Power",
-      "id": "scottishpower-116894",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "operator": "Scottish Power",
+        "operator": "Scottish and Southern Electricity Networks",
+        "operator:wikidata": "Q43080530",
         "power": "line"
       }
     },
@@ -5173,11 +5174,12 @@
       "matchNames": [
         "scottish power energy networks",
         "sp distribution",
-        "sp manweb"
+        "sp manweb",
+        "scottish power"
       ],
       "tags": {
         "operator": "SP Energy Networks",
-        "operator:wikidata": "Q1778417",
+        "operator:wikidata": "Q116022116",
         "power": "line"
       }
     },
@@ -5239,20 +5241,6 @@
       "id": "ssd-116894",
       "locationSet": {"include": ["001"]},
       "tags": {"operator": "SSD", "power": "line"}
-    },
-    {
-      "displayName": "SSE",
-      "id": "sse-116894",
-      "locationSet": {"include": ["001"]},
-      "matchNames": [
-        "scottish & southern energy",
-        "sse power distribution"
-      ],
-      "tags": {
-        "operator": "SSE",
-        "operator:wikidata": "Q493854",
-        "power": "line"
-      }
     },
     {
       "displayName": "SSEN Transmission",
@@ -5900,7 +5888,8 @@
         "lpn",
         "south eastern power networks",
         "southern power networks",
-        "spn"
+        "spn",
+        "uk power networks plc"
       ],
       "tags": {
         "operator": "UK Power Networks",
