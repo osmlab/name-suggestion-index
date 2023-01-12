@@ -799,7 +799,7 @@ node[${n}=${s}][operator:wikidata=${v}],
 way[${n}=${s}][operator:wikidata=${v}],
 relation[${n}=${s}][operator:wikidata=${v}]
 { color:green; fill-color:green; }
-}}`):r==="transit"&&(l=a.tags.network,l=l.replaceAll('"','\\"'),f=`${n}/${s}|${l}`,m=a.tags||{},v=m["network:wikidata"],z=`[out:json][timeout:100];
+}}`):r==="transit"&&(l=a.tags.network,l!=null&&(l=l.replaceAll('"','\\"')),f=`${n}/${s}|${l}`,m=a.tags||{},v=m["network:wikidata"],z=`[out:json][timeout:100];
 (nwr["network"="${l}"];);
 out body;
 >;
