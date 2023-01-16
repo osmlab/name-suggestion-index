@@ -13,6 +13,7 @@
         "^דלק$",
         "^پمپ (بنزین|گاز)$",
         "^محط[هة] وقود$",
+        "^加(气|汽|氣)站$",
         "^加油站$"
       ],
       "named": [
@@ -360,7 +361,7 @@
         "brand": "apollostation",
         "brand:en": "apollostation",
         "brand:ja": "アポロステーション",
-        "brand:wikidata": "Q2216770",
+        "brand:wikidata": "Q114731101",
         "name": "apollostation",
         "name:en": "apollostation",
         "name:ja": "アポロステーション"
@@ -819,10 +820,26 @@
     },
     {
       "displayName": "Caltex",
-      "id": "caltex-16b3c2",
+      "id": "caltex-5153a3",
       "locationSet": {
-        "include": ["001"],
-        "exclude": ["pl"]
+        "include": [
+          "ae",
+          "au",
+          "eg",
+          "hk",
+          "id",
+          "kh",
+          "kr",
+          "lk",
+          "my",
+          "ph",
+          "pk",
+          "sa",
+          "sg",
+          "th",
+          "vn",
+          "za"
+        ]
       },
       "tags": {
         "amenity": "fuel",
@@ -1396,6 +1413,35 @@
       }
     },
     {
+      "displayName": "ED",
+      "id": "ed-b3d110",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "ED",
+        "name": "ED"
+      }
+    },
+    {
+      "displayName": "EG Australia",
+      "id": "egaustralia-9ed9c0",
+      "locationSet": {"include": ["au"]},
+      "matchNames": [
+        "caltex woolworths",
+        "woolworths caltex",
+        "woolworths petrol"
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Ampol",
+        "brand:wikidata": "Q4748528",
+        "fuel:discount": "Woolworths",
+        "name": "EG Australia",
+        "operator": "EG Australia",
+        "operator:wikidata": "Q5023980"
+      }
+    },
+    {
       "displayName": "Ego",
       "id": "ego-e8f712",
       "locationSet": {"include": ["it"]},
@@ -1501,6 +1547,42 @@
       }
     },
     {
+      "displayName": "ENEOS",
+      "id": "eneos-fbe2e4",
+      "locationSet": {"include": ["jp"]},
+      "matchNames": [
+        "esso",
+        "mobil",
+        "tonen general",
+        "エッソ",
+        "エッソ石油",
+        "エネオス エネジェット",
+        "ゼネラル",
+        "モービル"
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "ENEOS",
+        "brand:en": "ENEOS",
+        "brand:ja": "エネオス",
+        "brand:wikidata": "Q1640290",
+        "name": "ENEOS",
+        "name:en": "ENEOS",
+        "name:ja": "エネオス"
+      }
+    },
+    {
+      "displayName": "Enercoop",
+      "id": "enercoop-e8f712",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Enercoop",
+        "brand:wikidata": "Q24936353",
+        "name": "Enercoop"
+      }
+    },
+    {
       "displayName": "Energas",
       "id": "energas-e8f712",
       "locationSet": {"include": ["it"]},
@@ -1582,9 +1664,11 @@
       "displayName": "Essar",
       "id": "essar-853965",
       "locationSet": {"include": ["gb", "in"]},
+      "matchNames": ["essar enegry", "essar oil"],
       "tags": {
         "amenity": "fuel",
         "brand": "Essar",
+        "brand:wikidata": "Q5399372",
         "name": "Essar"
       }
     },
@@ -1637,7 +1721,22 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Europam",
+        "brand:wikidata": "Q115268198",
         "name": "Europam"
+      }
+    },
+    {
+      "displayName": "Everfuel",
+      "id": "everfuel-06f3d9",
+      "locationSet": {
+        "include": ["de", "dk", "nl", "no"]
+      },
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Everfuel",
+        "brand:wikidata": "Q114905024",
+        "fuel:LH2": "yes",
+        "name": "Everfuel"
       }
     },
     {
@@ -1817,6 +1916,7 @@
       "displayName": "G.A.S.",
       "id": "gas-088dbb",
       "locationSet": {"include": ["nz"]},
+      "matchNames": ["gasoline alley services"],
       "tags": {
         "amenity": "fuel",
         "brand": "G.A.S.",
@@ -1831,6 +1931,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "G500",
+        "brand:wikidata": "Q115215326",
         "name": "G500"
       }
     },
@@ -1855,17 +1956,14 @@
       }
     },
     {
-      "displayName": "GALP",
-      "id": "galp-16b3c2",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["pl"]
-      },
+      "displayName": "Galp",
+      "id": "galp-57abaf",
+      "locationSet": {"include": ["es", "pt"]},
+      "note": "no name, see #7359, #29",
       "tags": {
         "amenity": "fuel",
-        "brand": "GALP",
-        "brand:wikidata": "Q1492739",
-        "name": "GALP"
+        "brand": "Galp",
+        "brand:wikidata": "Q1492739"
       }
     },
     {
@@ -2427,12 +2525,15 @@
       "displayName": "JA-SS",
       "id": "jass-fbe2e4",
       "locationSet": {"include": ["jp"]},
-      "matchNames": ["ja"],
       "tags": {
         "amenity": "fuel",
-        "brand": "JA-SS",
+        "brand": "JA",
+        "brand:en": "JA",
+        "brand:ja": "ジェイエー",
         "brand:wikidata": "Q11225213",
-        "name": "JA-SS"
+        "name": "JA-SS",
+        "name:en": "JA-SS",
+        "name:ja": "ジェイエイ-エスエス"
       }
     },
     {
@@ -2638,6 +2739,16 @@
         "brand": "Kwik Trip",
         "brand:wikidata": "Q6450420",
         "name": "Kwik Trip"
+      }
+    },
+    {
+      "displayName": "Lake Oil",
+      "id": "lakeoil-b3d110",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Lake Oil",
+        "name": "Lake Oil"
       }
     },
     {
@@ -2886,8 +2997,11 @@
     },
     {
       "displayName": "METRO",
-      "id": "metro-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "metro-00df76",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["au"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "METRO",
@@ -2899,6 +3013,7 @@
       "displayName": "Metro Petroleum",
       "id": "metropetroleum-9ed9c0",
       "locationSet": {"include": ["au"]},
+      "matchNames": ["metro"],
       "tags": {
         "amenity": "fuel",
         "brand": "Metro Petroleum",
@@ -3075,6 +3190,18 @@
         "brand": "Naftë",
         "brand:wikidata": "Q108322433",
         "name": "Naftë"
+      }
+    },
+    {
+      "displayName": "Nayara",
+      "id": "nayara-989925",
+      "locationSet": {"include": ["in"]},
+      "matchNames": ["nayara energy"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Nayara",
+        "brand:wikidata": "Q1360409",
+        "name": "Nayara"
       }
     },
     {
@@ -3263,6 +3390,16 @@
       }
     },
     {
+      "displayName": "Pacific",
+      "id": "pacific-b3d110",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Pacific",
+        "name": "Pacific"
+      }
+    },
+    {
       "displayName": "Pacific Pride",
       "id": "pacificpride-c5cf43",
       "locationSet": {"include": ["us"]},
@@ -3271,6 +3408,17 @@
         "brand": "Pacific Pride",
         "brand:wikidata": "Q7122637",
         "name": "Pacific Pride"
+      }
+    },
+    {
+      "displayName": "PAK'nSAVE Fuel",
+      "id": "paknsavefuel-088dbb",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "PAK'nSAVE Fuel",
+        "brand:wikidata": "Q115215489",
+        "name": "PAK'nSAVE Fuel"
       }
     },
     {
@@ -3441,7 +3589,7 @@
       "displayName": "Petron",
       "id": "petron-21bb35",
       "locationSet": {"include": ["my", "ph"]},
-      "matchNames": ["Petron Gas Station"],
+      "matchNames": ["petron gas station"],
       "tags": {
         "amenity": "fuel",
         "brand": "Petron",
@@ -3483,6 +3631,16 @@
       }
     },
     {
+      "displayName": "Petrosol",
+      "id": "petrosol-b3d110",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Petrosol",
+        "name": "Petrosol"
+      }
+    },
+    {
       "displayName": "Phillips 66",
       "id": "phillips66-c5cf43",
       "locationSet": {"include": ["us"]},
@@ -3502,6 +3660,16 @@
         "brand": "Phoenix",
         "brand:wikidata": "Q7186949",
         "name": "Phoenix"
+      }
+    },
+    {
+      "displayName": "Pieprzyk",
+      "id": "pieprzyk-b3d110",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Pieprzyk",
+        "name": "Pieprzyk"
       }
     },
     {
@@ -3697,6 +3865,17 @@
       }
     },
     {
+      "displayName": "Qazaq Oil",
+      "id": "qazaqoil-6daebb",
+      "locationSet": {"include": ["kz"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Qazaq Oil",
+        "brand:wikidata": "Q115190155",
+        "name": "Qazaq Oil"
+      }
+    },
+    {
       "displayName": "Qstar",
       "id": "qstar-a1affa",
       "locationSet": {"include": ["se"]},
@@ -3777,6 +3956,20 @@
         "amenity": "fuel",
         "brand": "Raiffeisen",
         "name": "Raiffeisen"
+      }
+    },
+    {
+      "displayName": "RD Petroleum",
+      "id": "rdpetroleum-088dbb",
+      "locationSet": {"include": ["nz"]},
+      "matchNames": ["rd", "rdp"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "RD Petroleum",
+        "brand:wikidata": "Q115565889",
+        "name": "RD Petroleum",
+        "operator": "BP",
+        "operator:wikidata": "Q152057"
       }
     },
     {
@@ -4158,10 +4351,9 @@
     },
     {
       "displayName": "Sol",
-      "id": "sol-16b3c2",
+      "id": "sol-6e9b5c",
       "locationSet": {
-        "include": ["001"],
-        "exclude": ["pl"]
+        "include": ["029", "gf", "gy", "sr"]
       },
       "tags": {
         "amenity": "fuel",
@@ -5051,17 +5243,6 @@
       }
     },
     {
-      "displayName": "Woolworths Petrol",
-      "id": "woolworthspetrol-9ed9c0",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Ampol",
-        "brand:wikidata": "Q5023980",
-        "name": "Woolworths Petrol"
-      }
-    },
-    {
       "displayName": "XTR",
       "id": "xtr-04874d",
       "locationSet": {"include": ["ca"]},
@@ -5331,6 +5512,19 @@
       }
     },
     {
+      "displayName": "Кнез Петрол",
+      "id": "3f8528-a971aa",
+      "locationSet": {"include": ["rs"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Кнез Петрол",
+        "brand:wikidata": "Q86849682",
+        "name": "Кнез Петрол",
+        "name:sr": "Кнез Петрол",
+        "name:sr-Latn": "Knez Petrol"
+      }
+    },
+    {
       "displayName": "КНП",
       "id": "6ee0a7-b3d110",
       "locationSet": {"include": ["001"]},
@@ -5492,6 +5686,16 @@
         "brand": "ОМВ",
         "brand:wikidata": "Q168238",
         "name": "ОМВ"
+      }
+    },
+    {
+      "displayName": "Опти",
+      "id": "6155f5-b3d110",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Опти",
+        "name": "Опти"
       }
     },
     {
@@ -5989,6 +6193,16 @@
       }
     },
     {
+      "displayName": "گازوئیل",
+      "id": "1c8dad-b3d110",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "گازوئیل",
+        "name": "گازوئیل"
+      }
+    },
+    {
       "displayName": "محطة",
       "id": "95219a-7d34dd",
       "locationSet": {
@@ -6116,45 +6330,6 @@
       }
     },
     {
-      "displayName": "エネオス",
-      "id": "eneos-fbe2e4",
-      "locationSet": {"include": ["jp"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "エネオス",
-        "brand:en": "ENEOS",
-        "brand:ja": "エネオス",
-        "brand:wikidata": "Q1640290",
-        "name": "エネオス",
-        "name:en": "ENEOS",
-        "name:ja": "エネオス"
-      }
-    },
-    {
-      "displayName": "エネオス エネジェット",
-      "id": "enejet-fbe2e4",
-      "locationSet": {"include": ["jp"]},
-      "matchNames": [
-        "esso",
-        "mobil",
-        "tonen general",
-        "エッソ",
-        "エッソ石油",
-        "ゼネラル",
-        "モービル"
-      ],
-      "tags": {
-        "amenity": "fuel",
-        "brand": "エネオス エネジェット",
-        "brand:en": "ENEOS Enejet",
-        "brand:ja": "エネオス エネジェット",
-        "brand:wikidata": "Q11289795",
-        "name": "エネジェット",
-        "name:en": "EneJet",
-        "name:ja": "エネジェット"
-      }
-    },
-    {
       "displayName": "キグナス石油",
       "id": "kygnus-fbe2e4",
       "locationSet": {"include": ["jp"]},
@@ -6184,6 +6359,21 @@
         "name:en": "Cosmo",
         "name:ja": "コスモ",
         "official_name": "コスモ石油"
+      }
+    },
+    {
+      "displayName": "ホクレンSS",
+      "id": "hokurenss-fbe2e4",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "ホクレン",
+        "brand:en": "Hokuren",
+        "brand:ja": "ホクレン",
+        "brand:wikidata": "Q114880707",
+        "name": "ホクレンSS",
+        "name:en": "Hokuren SS",
+        "name:ja": "ホクレンSS"
       }
     },
     {
@@ -6239,8 +6429,11 @@
     },
     {
       "displayName": "中国石化",
-      "id": "sinopec-e4b6c0",
-      "locationSet": {"include": ["cn"]},
+      "id": "sinopec-7eecbc",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk"]
+      },
       "matchNames": [
         "sinopec fuel",
         "中国石化 sinopec",
@@ -6262,8 +6455,11 @@
     },
     {
       "displayName": "中国石油",
-      "id": "petrochina-e4b6c0",
-      "locationSet": {"include": ["cn"]},
+      "id": "petrochina-7eecbc",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk"]
+      },
       "matchNames": [
         "中国石油 petrochina",
         "中国石油加油站",
@@ -6281,6 +6477,44 @@
         "name": "中国石油",
         "name:en": "PetroChina",
         "name:zh": "中国石油"
+      }
+    },
+    {
+      "displayName": "中國石化 Sinopec",
+      "id": "sinopec-a5d248",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "中國石化 Sinopec",
+        "brand:en": "Sinopec",
+        "brand:wikidata": "Q831445",
+        "brand:zh": "中國石化",
+        "brand:zh-Hans": "中国石化",
+        "brand:zh-Hant": "中國石化",
+        "name": "中國石化 Sinopec",
+        "name:en": "Sinopec",
+        "name:zh": "中國石化",
+        "name:zh-Hans": "中国石化",
+        "name:zh-Hant": "中國石化"
+      }
+    },
+    {
+      "displayName": "中國石油 PetroChina",
+      "id": "petrochina-a5d248",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "中國石油 PetroChina",
+        "brand:en": "PetroChina",
+        "brand:wikidata": "Q503182",
+        "brand:zh": "中國石油",
+        "brand:zh-Hans": "中国石油",
+        "brand:zh-Hant": "中國石油",
+        "name": "中國石油 PetroChina",
+        "name:en": "PetroChina",
+        "name:zh": "中國石油",
+        "name:zh-Hans": "中国石油",
+        "name:zh-Hant": "中國石油"
       }
     },
     {
@@ -6317,17 +6551,17 @@
     },
     {
       "displayName": "出光",
-      "id": "idemitsukosan-fbe2e4",
+      "id": "idemitsu-fbe2e4",
       "locationSet": {"include": ["jp"]},
-      "matchNames": ["idemitsu"],
+      "matchNames": ["idemitsu kosan"],
       "tags": {
         "amenity": "fuel",
         "brand": "出光",
-        "brand:en": "Idemitsu Kosan",
+        "brand:en": "Idemitsu",
         "brand:ja": "出光",
         "brand:wikidata": "Q2216770",
         "name": "出光",
-        "name:en": "Idemitsu Kosan",
+        "name:en": "Idemitsu",
         "name:ja": "出光"
       }
     },
@@ -6378,6 +6612,26 @@
       }
     },
     {
+      "displayName": "好市多加油站",
+      "id": "costcogasoline-db3418",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "costco",
+        "costco gas",
+        "costco wholesale"
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "好市多加油站",
+        "brand:en": "Costco Gasoline",
+        "brand:wikidata": "Q715583",
+        "brand:zh": "好市多加油站",
+        "name": "好市多加油站",
+        "name:en": "Costco Gasoline",
+        "name:zh": "好市多加油站"
+      }
+    },
+    {
       "displayName": "广西交投",
       "id": "cd5eeb-e4b6c0",
       "locationSet": {"include": ["cn"]},
@@ -6395,22 +6649,18 @@
     },
     {
       "displayName": "昭和シェル",
-      "id": "showashellsekiyu-fbe2e4",
+      "id": "showashell-fbe2e4",
       "locationSet": {"include": ["jp"]},
       "matchNames": ["ロイヤル・ダッチ・シェル", "昭和シェル石油"],
-      "note": "Showa Shell Sekiyu was a subsidiary of Royal Dutch Shell but now operates as its own entity in japan with qid Q277115",
       "tags": {
         "amenity": "fuel",
-        "brand": "昭和シェル",
-        "brand:en": "Showa Shell Sekiyu",
-        "brand:ja": "昭和シェル",
-        "brand:wikidata": "Q277115",
+        "brand": "シェル",
+        "brand:en": "Shell",
+        "brand:ja": "シェル",
+        "brand:wikidata": "Q110716465",
         "name": "昭和シェル",
-        "name:en": "Showa Shell Sekiyu",
-        "name:ja": "昭和シェル",
-        "short_name": "シェル",
-        "short_name:en": "Shell",
-        "short_name:ja": "シェル"
+        "name:en": "Showa Shell",
+        "name:ja": "昭和シェル"
       }
     },
     {

@@ -29,6 +29,7 @@ export default function CategoryRow(props) {
 
   if (t === 'brands') {
     n = item.tags.brand || item.tags.name;
+    n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
@@ -54,6 +55,7 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
 
   } else if (t === 'flags') {
     n = item.tags['flag:name'];
+    n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
@@ -63,6 +65,7 @@ out center;`;
 
   } else if (t === 'operators') {
     n = item.tags.operator;
+    n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
@@ -87,6 +90,8 @@ relation[${k}=${v}][operator:wikidata=${qid}]
 
   } else if (t === 'transit') {
     n = item.tags.network;
+    if (n != null)
+      n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['network:wikidata'];
@@ -131,7 +136,10 @@ relation[${k}=${v}][network:wikidata=${qid}]
         <div className='viewlink'>
           { searchOverpassLink(n, overpassQuery) }<br/>
           { searchGoogleLink(n) }<br/>
+          <strong>Search:&nbsp;</strong>
           { searchWikipediaLink(n) }
+          &nbsp;/&nbsp;
+          { searchWikidataLink(n) }
         </div>
       </td>
       <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -157,7 +165,10 @@ relation[${k}=${v}][network:wikidata=${qid}]
         <div className='viewlink'>
           { searchOverpassLink(n, overpassQuery) }<br/>
           { searchGoogleLink(n) }<br/>
+          <strong>Search:&nbsp;</strong>
           { searchWikipediaLink(n) }
+          &nbsp;/&nbsp;
+          { searchWikidataLink(n) }
         </div>
       </td>
       <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
@@ -208,9 +219,15 @@ relation[${k}=${v}][network:wikidata=${qid}]
     const q = encodeURIComponent(name);
     const href = `https://google.com/search?q=${q}+site%3Awikipedia.org`;
     const title = `Search Wikipedia for ${name}`;
-    return (<a target='_blank' href={href} title={title}>Search Wikipedia</a>);
+    return (<a target='_blank' href={href} title={title}>Wikipedia</a>);
   }
 
+  function searchWikidataLink(name) {
+    const q = encodeURIComponent(name);
+    const href = `https://google.com/search?q=${q}+site%3Awikidata.org`;
+    const title = `Search Wikidata for ${name}`;
+    return (<a target='_blank' href={href} title={title}>Wikidata</a>);
+  }
 
   function searchOverpassLink(name, overpassQuery) {
     const q = encodeURIComponent(overpassQuery);
@@ -263,14 +280,17 @@ relation[${k}=${v}][network:wikidata=${qid}]
 `;
     });
 
-    result += '<hr/>';
+    if (item.matchNames || item.matchTags || item.note || item.preserveTags)
+      result += '<hr/>';
 
     if (item.matchNames)
       result += '<strong>matchNames</strong>:<br/>' + item.matchNames + '<br/>';
     if (item.matchTags)
       result += '<strong>matchTags</strong>:<br/>' + item.matchTags + '<br/>';
     if (item.note)
-      result += '<strong>Note</strong>:<br/>' + item.note;
+      result += '<strong>Note</strong>:<br/>' + item.note + '<br/>';
+    if (item.preserveTags)
+      result += '<strong>preserveTags</strong>:<br/>' + item.preserveTags;
 
     return result;
   }

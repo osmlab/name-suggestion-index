@@ -12,7 +12,7 @@ const INDEX = `${DIST}/nsi.min.json`;
 const WIKIDATA = `${DIST}/wikidata.min.json`;
 
 // We can use iD's taginfo file to pick icons
-const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@1.0.0/dist/taginfo.min.json';
+const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@latest/dist/taginfo.min.json';
 
 
 export default function App() {
