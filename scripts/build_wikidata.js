@@ -172,15 +172,15 @@ Object.keys(_cache.path).forEach(tkv => {
 
       // What to set P31 "instance of" to if missing
       if (osmtag === 'brand') {
-        _qidMetadata[qid] = { p31: 'Q4830453', what: 'business' };
+        _qidMetadata[qid] = { what: 'business', p31: 'Q4830453' };
       } else if (osmtag === 'flag') {
-        _qidMetadata[qid] = { p31: 'Q14660', what: 'flag' };
+        _qidMetadata[qid] = { what: 'flag', p31: 'Q14660' };
       } else if (osmtag === 'network') {
-        _qidMetadata[qid] = { p31: 'Q924286', what: 'transport network' };
+        _qidMetadata[qid] = { what: 'transport network', p31: 'Q924286' };
       } else if (osmtag === 'subject') {
-        _qidMetadata[qid] = { p31: 'Q43229', what: 'subject' };
+        _qidMetadata[qid] = { what: 'subject' };  // skip p31, a subject can be anything - #7661
       } else {
-        _qidMetadata[qid] = { p31: 'Q43229', what: 'organization' };
+        _qidMetadata[qid] = { what: 'organization',  p31: 'Q43229' };
       }
 
       const isMainTag = (wdTag === trees[t].mainTag);
@@ -426,7 +426,7 @@ function processEntities(result) {
 
     // If P31 "instance of" is missing, set it to a resonable value.
     const instanceOf = getClaimValue(entity, 'P31');
-    if (!instanceOf) {
+    if (!instanceOf && meta.p31) {
       const msg = `Setting P31 "instance of" = ${meta.p31} "${meta.what}" for ${qid}`;
       wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: meta.p31, msg: msg });
     }
