@@ -13,7 +13,7 @@
         "^דלק$",
         "^پمپ (بنزین|گاز)$",
         "^محط[هة] وقود$",
-        "^加(气|汽)站$",
+        "^加(气|汽|氣)站$",
         "^加油站$"
       ],
       "named": [
@@ -820,10 +820,26 @@
     },
     {
       "displayName": "Caltex",
-      "id": "caltex-16b3c2",
+      "id": "caltex-5153a3",
       "locationSet": {
-        "include": ["001"],
-        "exclude": ["pl"]
+        "include": [
+          "ae",
+          "au",
+          "eg",
+          "hk",
+          "id",
+          "kh",
+          "kr",
+          "lk",
+          "my",
+          "ph",
+          "pk",
+          "sa",
+          "sg",
+          "th",
+          "vn",
+          "za"
+        ]
       },
       "tags": {
         "amenity": "fuel",
@@ -1404,6 +1420,25 @@
         "amenity": "fuel",
         "brand": "ED",
         "name": "ED"
+      }
+    },
+    {
+      "displayName": "EG Australia",
+      "id": "egaustralia-9ed9c0",
+      "locationSet": {"include": ["au"]},
+      "matchNames": [
+        "caltex woolworths",
+        "woolworths caltex",
+        "woolworths petrol"
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Ampol",
+        "brand:wikidata": "Q4748528",
+        "fuel:discount": "Woolworths",
+        "name": "EG Australia",
+        "operator": "EG Australia",
+        "operator:wikidata": "Q5023980"
       }
     },
     {
@@ -4316,10 +4351,9 @@
     },
     {
       "displayName": "Sol",
-      "id": "sol-16b3c2",
+      "id": "sol-6e9b5c",
       "locationSet": {
-        "include": ["001"],
-        "exclude": ["pl"]
+        "include": ["029", "gf", "gy", "sr"]
       },
       "tags": {
         "amenity": "fuel",
@@ -5209,17 +5243,6 @@
       }
     },
     {
-      "displayName": "Woolworths Petrol",
-      "id": "woolworthspetrol-9ed9c0",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Ampol",
-        "brand:wikidata": "Q5023980",
-        "name": "Woolworths Petrol"
-      }
-    },
-    {
       "displayName": "XTR",
       "id": "xtr-04874d",
       "locationSet": {"include": ["ca"]},
@@ -5486,6 +5509,19 @@
         "brand:wikidata": "Q60966526",
         "name": "КЛО",
         "name:en": "Klo"
+      }
+    },
+    {
+      "displayName": "Кнез Петрол",
+      "id": "3f8528-a971aa",
+      "locationSet": {"include": ["rs"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Кнез Петрол",
+        "brand:wikidata": "Q86849682",
+        "name": "Кнез Петрол",
+        "name:sr": "Кнез Петрол",
+        "name:sr-Latn": "Knez Petrol"
       }
     },
     {
@@ -6393,8 +6429,11 @@
     },
     {
       "displayName": "中国石化",
-      "id": "sinopec-e4b6c0",
-      "locationSet": {"include": ["cn"]},
+      "id": "sinopec-7eecbc",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk"]
+      },
       "matchNames": [
         "sinopec fuel",
         "中国石化 sinopec",
@@ -6416,8 +6455,11 @@
     },
     {
       "displayName": "中国石油",
-      "id": "petrochina-e4b6c0",
-      "locationSet": {"include": ["cn"]},
+      "id": "petrochina-7eecbc",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk"]
+      },
       "matchNames": [
         "中国石油 petrochina",
         "中国石油加油站",
@@ -6435,6 +6477,44 @@
         "name": "中国石油",
         "name:en": "PetroChina",
         "name:zh": "中国石油"
+      }
+    },
+    {
+      "displayName": "中國石化 Sinopec",
+      "id": "sinopec-a5d248",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "中國石化 Sinopec",
+        "brand:en": "Sinopec",
+        "brand:wikidata": "Q831445",
+        "brand:zh": "中國石化",
+        "brand:zh-Hans": "中国石化",
+        "brand:zh-Hant": "中國石化",
+        "name": "中國石化 Sinopec",
+        "name:en": "Sinopec",
+        "name:zh": "中國石化",
+        "name:zh-Hans": "中国石化",
+        "name:zh-Hant": "中國石化"
+      }
+    },
+    {
+      "displayName": "中國石油 PetroChina",
+      "id": "petrochina-a5d248",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "中國石油 PetroChina",
+        "brand:en": "PetroChina",
+        "brand:wikidata": "Q503182",
+        "brand:zh": "中國石油",
+        "brand:zh-Hans": "中国石油",
+        "brand:zh-Hant": "中國石油",
+        "name": "中國石油 PetroChina",
+        "name:en": "PetroChina",
+        "name:zh": "中國石油",
+        "name:zh-Hans": "中国石油",
+        "name:zh-Hant": "中國石油"
       }
     },
     {
@@ -6529,6 +6609,26 @@
         "name": "国家管网",
         "name:en": "PipeChina",
         "name:zh": "国家管网"
+      }
+    },
+    {
+      "displayName": "好市多加油站",
+      "id": "costcogasoline-db3418",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "costco",
+        "costco gas",
+        "costco wholesale"
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "好市多加油站",
+        "brand:en": "Costco Gasoline",
+        "brand:wikidata": "Q715583",
+        "brand:zh": "好市多加油站",
+        "name": "好市多加油站",
+        "name:en": "Costco Gasoline",
+        "name:zh": "好市多加油站"
       }
     },
     {
