@@ -29,7 +29,8 @@ export default function CategoryRow(props) {
 
   if (t === 'brands') {
     n = item.tags.brand || item.tags.name;
-    n = n.replaceAll('"','\\\"');
+    if (n != null)
+      n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
@@ -55,7 +56,8 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
 
   } else if (t === 'flags') {
     n = item.tags['flag:name'];
-    n = n.replaceAll('"','\\\"');
+    if (n != null)
+      n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
@@ -65,7 +67,8 @@ out center;`;
 
   } else if (t === 'operators') {
     n = item.tags.operator;
-    n = n.replaceAll('"','\\\"');
+    if (n != null)
+      n = n.replaceAll('"','\\\"');
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
