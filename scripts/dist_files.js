@@ -229,7 +229,7 @@ function buildIDPresets() {
 
       // Sometimes we can choose a more specific iD preset then `key/value`..
       // Attempt to match a `key/value/extravalue`
-      const tryKeys = ['beauty', 'clothes', 'cuisine', 'flush:disposal', 'government', 'healthcare:speciality', 'religion', 'social_facility', 'sport', 'tower:type', 'vending'];
+      const tryKeys = ['beauty', 'clothes', 'cuisine', 'flush:disposal', 'government', 'healthcare:speciality', 'park_ride', 'religion', 'social_facility', 'sport', 'tower:type', 'vending'];
       tryKeys.forEach(osmkey => {
         if (preset) return;    // matched one already
         const val = tags[osmkey];
