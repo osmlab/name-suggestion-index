@@ -5,7 +5,7 @@
 
 # name-suggestion-index ("NSI")
 
-Canonical features for OpenStreetMap
+Canonical features for OpenStreetMap, collected manually and via the [NSI Collector](https://github.com/ideditor/nsi-collector) planet scan.
 
 ## What is it?
 
