@@ -318,11 +318,14 @@ relation[${k}=${v}][network:wikidata=${qid}]
         /* Post Boxes use multiple templates */
         result += '<strong>Master templates:</strong><br/>';
         result += '<a href="/index.html?t=brands&amp;k=amenity&amp;v=post_office">/brands/amenity/post_office.json</a><br/>';
+        result += 'Search brands template master for <a href="/index.html?t=brands&amp;k=amenity&amp;v=post_office&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
         result += '<a href="/index.html?t=operators&amp;k=amenity&amp;v=post_office">/operators/amenity/post_office.json</a><br/>';
+        result += 'Search operators template master for <a href="/index.html?t=operators&amp;k=amenity&amp;v=post_office&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
       } else {
         /* All the rest use a single template */
         result += '<strong>Master template:</strong><br/>';
         result += '<a href="' + url + '">' + text + '</a><br/>';
+        result += 'Search template master for <a href="' + url + '&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
       }
     }
 
