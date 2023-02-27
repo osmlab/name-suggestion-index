@@ -304,6 +304,9 @@ relation[${k}=${v}][network:wikidata=${qid}]
       if ((t=='operators') && (k=='power') && (v=='transformer'))
         {url = '/index.html?t=operators&amp;k=power&amp;v=substation'; text = '/operators/power/substation.json';}
 
+      if ((t=='operators') && (k=='pipeline') && (v=='substation'))
+        {url = '/index.html?t=operators&amp;k=man_made&amp;v=pipeline'; text = 'operators/man_made/pipeline.json';}
+
       if ((t=='operators') && (k=='man_made') && ((v=='water_tower') || (v=='water_works')))
         {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; text = '/operators/office/water_utility.json';}
 
