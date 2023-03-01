@@ -1,7 +1,7 @@
 // External
 import chalk from 'chalk';
 import fs from 'node:fs';
-import glob from 'glob';
+import { globSync } from 'glob';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@ideditor/location-conflation';
@@ -87,7 +87,7 @@ function buildAll() {
   buildSitemap();
 
   // minify all .json files under dist/
-  glob.sync(`dist/**/*.json`).forEach(file => {
+  globSync(`dist/**/*.json`).forEach(file => {
     const minFile = file.replace('.json', '.min.json');
     minifySync(file, minFile);
   });

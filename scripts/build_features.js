@@ -5,7 +5,7 @@ import geojsonArea from '@mapbox/geojson-area';
 import geojsonBounds from 'geojson-bounds';
 import geojsonPrecision from 'geojson-precision';
 import geojsonRewind from '@mapbox/geojson-rewind';
-import glob from 'glob';
+import { globSync } from 'glob';
 import JSON5 from 'json5';
 import jsonschema from 'jsonschema';
 import path from 'node:path';
@@ -53,7 +53,7 @@ function collectFeatures() {
   let features = [];
   let files = {};
 
-  glob.sync('features/**/*', { nodir: true }).forEach(file => {
+  globSync('features/**/*', { nodir: true }).forEach(file => {
     if (/\.md$/i.test(file)) return;  // ignore markdown/readme files - #7292
 
     if (!/\.geojson$/.test(file)) {
