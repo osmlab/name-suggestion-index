@@ -9,7 +9,9 @@ import { globSync } from 'glob';
 import JSON5 from 'json5';
 import jsonschema from 'jsonschema';
 import path from 'node:path';
+import localeCompare from 'locale-compare';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+const withLocale = localeCompare('en-US');
 
 // Internal
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
@@ -142,6 +144,9 @@ function collectFeatures() {
     features.push(feature);
     files[id] = file;
   });
+
+  // sort features by id, see: 800ca866f
+  features.sort((a, b) => withLocale(a.id, b.id))
 
   const featureCount = Object.keys(files).length;
   console.log(`🧩  features:\t${featureCount}`);
