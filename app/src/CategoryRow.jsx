@@ -204,6 +204,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
   function highlight(needle, haystack) {
     let html = haystack;
     if (needle) {
+      needle = needle.replaceAll('+', '\\+'); // escape the + symbol.
       const re = new RegExp('\(' + needle + '\)', 'gi');
       html = html.replace(re, '<mark>$1</mark>');
     }
