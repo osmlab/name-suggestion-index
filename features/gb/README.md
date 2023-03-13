@@ -1,6 +1,6 @@
 # Features targeting Great Britain
 
-The following areas are included as part of [country-coder](https://github.com/ideditor/country-coder) and don't need their own feature.
+The following areas are included as part of [country-coder](https://github.com/rapideditor/country-coder) and don't need their own feature.
 
 - [gb-eng](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-eng%22%5D%7D&referrer=nsi) - The Country of England
 - [gb-nir](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-nir%22%5D%7D&referrer=nsi) - The province of Northern Ireland

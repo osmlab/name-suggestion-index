@@ -1,6 +1,6 @@
 # Features targeting Australia
 
-The following area is included as part of [country-coder](https://github.com/ideditor/country-coder) and doesn't need its own feature.
+The following area is included as part of [country-coder](https://github.com/rapideditor/country-coder) and doesn't need its own feature.
 
 - [au-tas](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22au-tas%22%5D%7D&referrer=nsi) - Tasmania
 
