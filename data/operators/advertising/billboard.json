@@ -1,10 +1,12 @@
 {
   "properties": {
-    "path": "operators/advertising/billboard"
+    "path": "operators/advertising/billboard",
+    "exclude": {"generic": ["^billboard$"]}
   },
   "items": [
     {
       "displayName": "Clear Channel",
+      "id": "clearchanneluk-7bfab1",
       "locationSet": {"include": ["gb"]},
       "tags": {
         "advertising": "billboard",
@@ -14,7 +16,17 @@
     },
     {
       "displayName": "Global",
-      "locationSet": {"include": ["ca","es","gb","ie","nl","us"]},
+      "id": "global-451da4",
+      "locationSet": {
+        "include": [
+          "ca",
+          "es",
+          "gb",
+          "ie",
+          "nl",
+          "us"
+        ]
+      },
       "tags": {
         "advertising": "billboard",
         "operator": "Global"
