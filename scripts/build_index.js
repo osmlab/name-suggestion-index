@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import fs from 'node:fs';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
-import LocationConflation from '@ideditor/location-conflation';
+import LocationConflation from '@rapideditor/location-conflation';
 import safeRegex from 'safe-regex';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 const withLocale = localeCompare('en-US');

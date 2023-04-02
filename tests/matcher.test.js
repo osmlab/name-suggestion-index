@@ -1,5 +1,5 @@
 import { test } from 'tap';
-import LocationConflation from '@ideditor/location-conflation';
+import LocationConflation from '@rapideditor/location-conflation';
 import { Matcher } from '../index.mjs';
 
 import data from './matcher.data.json' assert {type: 'json'};
