@@ -8,6 +8,7 @@ import { faPinterestSquare } from '@fortawesome/free-brands-svg-icons';
 import { faSnapchatSquare } from '@fortawesome/free-brands-svg-icons';
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faVk } from '@fortawesome/free-brands-svg-icons';
+import { faWeibo } from '@fortawesome/free-brands-svg-icons';
 import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 
 export default function CategoryRowSocialLinks(props) {
@@ -48,6 +49,12 @@ export default function CategoryRowSocialLinks(props) {
     href = 'https://vk.com/' + props.vk;
     items.push(
       <a key='vk' target='_blank' href={href}><FontAwesomeIcon icon={faVk} size='lg' /></a>
+    );
+  }
+  if (props.weibo) {
+    href = 'https://weibo.com/' + props.weibo;
+    items.push(
+      <a key='weibo' target='_blank' href={href}><FontAwesomeIcon icon={faWeibo} size='lg' /></a>
     );
   }
   if (props.snapchat) {
