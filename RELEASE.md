@@ -13,7 +13,7 @@
 - [ ] npm publish
 
 ### Purge JSDelivr CDN cache
-Include any URLs that iD/RapiD/others might request.
+Include any URLs that iD/Rapid/others might request.
 
 ```bash
 curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/nsi.min.json'
