@@ -367,6 +367,12 @@ function processEntities(result) {
       target.identities.vk = vkUser;
     }
 
+    // P3579 - Sina Weibo user ID
+    const weiboUser = getClaimValue(entities, 'P3579');
+    if (weiboUser) {
+      target.identities.weibo = weiboUser;
+    }
+
     // P3836 - Pinterest ID
     const pinterestUser = getClaimValue(entity, 'P3836');
     if (pinterestUser) {
