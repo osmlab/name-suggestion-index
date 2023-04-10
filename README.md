@@ -40,7 +40,7 @@ Building a canonical feature index allows two very useful things:
 
 Currently used in:
 
-- [RapiD](https://github.com/facebookincubator/RapiD)
+- [Rapid](https://github.com/facebook/Rapid)
 - [iD](https://github.com/openstreetmap/iD) (see above)
 - [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/TaggingPresetPreference) available
