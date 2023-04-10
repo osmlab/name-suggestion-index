@@ -368,7 +368,7 @@ function processEntities(result) {
     }
 
     // P3579 - Sina Weibo user ID
-    const weiboUser = getClaimValue(entities, 'P3579');
+    const weiboUser = getClaimValue(entity, 'P3579');
     if (weiboUser) {
       target.identities.weibo = weiboUser;
     }
