@@ -385,6 +385,12 @@ function processEntities(result) {
       target.identities.linkedin = linkedinUser;
     }
 
+    // P7650 - Weixin (WeChat) ID
+    const weixinUser = getClaimValue(entity, 'P7650');
+    if (weixinUser) {
+      target.identities.weixin = weixinUser;
+    }
+
     // P576 - Dissolution date
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
