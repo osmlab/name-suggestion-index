@@ -9,6 +9,7 @@ import { faSnapchatSquare } from '@fortawesome/free-brands-svg-icons';
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faVk } from '@fortawesome/free-brands-svg-icons';
 import { faWeibo } from '@fortawesome/free-brands-svg-icons';
+import { faWeixin } from '@fortawesome/free-brands-svg-icons';
 import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 
 export default function CategoryRowSocialLinks(props) {
@@ -55,6 +56,12 @@ export default function CategoryRowSocialLinks(props) {
     href = 'https://weibo.com/' + props.weibo;
     items.push(
       <a key='weibo' target='_blank' href={href}><FontAwesomeIcon icon={faWeibo} size='lg' /></a>
+    );
+  }
+  if (props.weixin) {
+    href = 'https://open.weixin.qq.com/qr/code?username=' + props.weixin;
+    items.push(
+      <a key='weixin' target='_blank' href={href}><FontAwesomeIcon icon={faWeixin} size='lg' /></a>
     );
   }
   if (props.snapchat) {
