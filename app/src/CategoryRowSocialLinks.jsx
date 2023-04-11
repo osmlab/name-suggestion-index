@@ -6,6 +6,7 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faPinterestSquare } from '@fortawesome/free-brands-svg-icons';
 import { faSnapchatSquare } from '@fortawesome/free-brands-svg-icons';
+import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { faVk } from '@fortawesome/free-brands-svg-icons';
 import { faWeibo } from '@fortawesome/free-brands-svg-icons';
@@ -32,6 +33,12 @@ export default function CategoryRowSocialLinks(props) {
     href = 'https://www.instagram.com/' + props.instagram;
     items.push(
       <a key='instagram' target='_blank' href={href}><FontAwesomeIcon icon={faInstagram} size='lg' /></a>
+    );
+  }
+  if (props.tiktok) {
+    href = 'https://tiktok.com/@' + props.tiktok;
+    items.push(
+      <a key='tiktok' target='_blank' href={href}><FontAwesomeIcon icon={faTiktok} size='lg' /></a>
     );
   }
   if (props.pinterest) {

@@ -385,6 +385,12 @@ function processEntities(result) {
       target.identities.linkedin = linkedinUser;
     }
 
+    // P7085 - TikTok username
+    const tiktokUser = getClaimValue(entity, 'P7085');
+    if (tiktokUser) {
+      target.identities.tiktok = tiktokUser;
+    }
+
     // P7650 - Weixin (WeChat) ID
     const weixinUser = getClaimValue(entity, 'P7650');
     if (weixinUser) {
