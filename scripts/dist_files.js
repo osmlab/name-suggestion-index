@@ -1,10 +1,10 @@
 // External
 import chalk from 'chalk';
 import fs from 'node:fs';
-import glob from 'glob';
+import { globSync } from 'glob';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
-import LocationConflation from '@ideditor/location-conflation';
+import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 import xmlbuilder2 from 'xmlbuilder2';
@@ -87,7 +87,7 @@ function buildAll() {
   buildSitemap();
 
   // minify all .json files under dist/
-  glob.sync(`dist/**/*.json`).forEach(file => {
+  globSync(`dist/**/*.json`).forEach(file => {
     const minFile = file.replace('.json', '.min.json');
     minifySync(file, minFile);
   });
@@ -229,7 +229,7 @@ function buildIDPresets() {
 
       // Sometimes we can choose a more specific iD preset then `key/value`..
       // Attempt to match a `key/value/extravalue`
-      const tryKeys = ['beauty', 'clothes', 'cuisine', 'flush:disposal', 'government', 'healthcare:speciality', 'religion', 'social_facility', 'sport', 'tower:type', 'vending'];
+      const tryKeys = ['beauty', 'clothes', 'cuisine', 'flush:disposal', 'government', 'healthcare:speciality', 'park_ride', 'religion', 'social_facility', 'sport', 'tower:type', 'vending'];
       tryKeys.forEach(osmkey => {
         if (preset) return;    // matched one already
         const val = tags[osmkey];

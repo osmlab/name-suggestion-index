@@ -4,10 +4,10 @@ import fs from 'node:fs';
 import fetch from 'node-fetch';
 import http from 'node:http';
 import https from 'node:https';
-import { iso1A2Code } from '@ideditor/country-coder';
+import { iso1A2Code } from '@rapideditor/country-coder';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
-import LocationConflation from '@ideditor/location-conflation';
+import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 import Twitter from 'Twitter';
@@ -367,6 +367,12 @@ function processEntities(result) {
       target.identities.vk = vkUser;
     }
 
+    // P3579 - Sina Weibo user ID
+    const weiboUser = getClaimValue(entity, 'P3579');
+    if (weiboUser) {
+      target.identities.weibo = weiboUser;
+    }
+
     // P3836 - Pinterest ID
     const pinterestUser = getClaimValue(entity, 'P3836');
     if (pinterestUser) {
@@ -377,6 +383,18 @@ function processEntities(result) {
     const linkedinUser = getClaimValue(entity, 'P4264');
     if (linkedinUser) {
       target.identities.linkedin = linkedinUser;
+    }
+
+    // P7085 - TikTok username
+    const tiktokUser = getClaimValue(entity, 'P7085');
+    if (tiktokUser) {
+      target.identities.tiktok = tiktokUser;
+    }
+
+    // P7650 - Weixin (WeChat) ID
+    const weixinUser = getClaimValue(entity, 'P7650');
+    if (weixinUser) {
+      target.identities.weixin = weixinUser;
     }
 
     // P576 - Dissolution date

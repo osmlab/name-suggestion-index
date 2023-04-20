@@ -5,11 +5,13 @@ import geojsonArea from '@mapbox/geojson-area';
 import geojsonBounds from 'geojson-bounds';
 import geojsonPrecision from 'geojson-precision';
 import geojsonRewind from '@mapbox/geojson-rewind';
-import glob from 'glob';
+import { globSync } from 'glob';
 import JSON5 from 'json5';
 import jsonschema from 'jsonschema';
 import path from 'node:path';
+import localeCompare from 'locale-compare';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+const withLocale = localeCompare('en-US');
 
 // Internal
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
@@ -53,7 +55,7 @@ function collectFeatures() {
   let features = [];
   let files = {};
 
-  glob.sync('features/**/*', { nodir: true }).forEach(file => {
+  globSync('features/**/*', { nodir: true }).forEach(file => {
     if (/\.md$/i.test(file)) return;  // ignore markdown/readme files - #7292
 
     if (!/\.geojson$/.test(file)) {
@@ -142,6 +144,9 @@ function collectFeatures() {
     features.push(feature);
     files[id] = file;
   });
+
+  // sort features by id, see: 800ca866f
+  features.sort((a, b) => withLocale(a.id, b.id))
 
   const featureCount = Object.keys(files).length;
   console.log(`🧩  features:\t${featureCount}`);

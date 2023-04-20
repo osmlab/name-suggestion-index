@@ -4,7 +4,7 @@
     "preserveTags": ["^name"],
     "exclude": {
       "generic": [
-        "^(auto serwis|car repair)$",
+        "^(auto (serwis|service)|car repair)$",
         "^(mécanique|tyres|wulkanizacja|vulcanizare)$",
         "^(вулканизация|шиномонтаж)$",
         "^borrachar[ií]a$",
@@ -15,7 +15,9 @@
         "^авто(рынок|ремонт|сервис|запчасти|электрик|запчастини)?$",
         "^автома(г|газин|стерская)?$",
         "^автосервис\\+шиномонтаж$",
-        "^замена масла$"
+        "^автосервіс$",
+        "^замена масла$",
+        "^сто$"
       ]
     }
   },
@@ -95,6 +97,18 @@
       }
     },
     {
+      "displayName": "Auto Plus",
+      "id": "autoplus-878d90",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Auto Plus",
+        "brand:wikidata": "Q65121114",
+        "name": "Auto Plus",
+        "official_name": "Auto Plus Professional Service Center",
+        "shop": "car_repair"
+      }
+    },
+    {
       "displayName": "AUTOFIT",
       "id": "autofit-c95f1a",
       "locationSet": {"include": ["de"]},
@@ -124,6 +138,17 @@
         "brand": "AutoPartner",
         "brand:wikidata": "Q110510294",
         "name": "AutoPartner",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "AUTOPRIMO",
+      "id": "autoprimo-98e3a2",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "brand": "AUTOPRIMO",
+        "brand:wikidata": "Q117610578",
+        "name": "AUTOPRIMO",
         "shop": "car_repair"
       }
     },
@@ -761,23 +786,33 @@
       }
     },
     {
-      "displayName": "Mycar",
-      "id": "mycar-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Mycar",
-        "name": "Mycar",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "mycar Tyre & Auto",
       "id": "mycartyreandauto-c3960a",
       "locationSet": {"include": ["au"]},
+      "matchNames": ["mycar"],
       "tags": {
         "brand": "mycar Tyre & Auto",
         "brand:wikidata": "Q106224674",
         "name": "mycar Tyre & Auto",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "NAPA AutoCare Center",
+      "id": "napaautocarecenter-3fdb50",
+      "locationSet": {"include": ["ca", "us"]},
+      "matchNames": [
+        "napa",
+        "napa autocare",
+        "napa autocare collision center",
+        "napa autocare mechanical center",
+        "napa autocare truck center"
+      ],
+      "preserveTags": ["^name$"],
+      "tags": {
+        "brand": "NAPA AutoCare Center",
+        "brand:wikidata": "Q6970842",
+        "name": "NAPA AutoCare Center",
         "shop": "car_repair"
       }
     },
@@ -935,6 +970,17 @@
       "tags": {
         "brand": "Precision Tune Auto Care",
         "name": "Precision Tune Auto Care",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "Précisium",
+      "id": "precisium-98e3a2",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "brand": "Précisium",
+        "brand:wikidata": "Q117604969",
+        "name": "Précisium",
         "shop": "car_repair"
       }
     },
@@ -1133,6 +1179,17 @@
       }
     },
     {
+      "displayName": "Top Garage",
+      "id": "topgarage-98e3a2",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "brand": "Top Garage",
+        "brand:wikidata": "Q117602800",
+        "name": "Top Garage",
+        "shop": "car_repair"
+      }
+    },
+    {
       "displayName": "Toyota",
       "id": "toyota-dc8719",
       "locationSet": {"include": ["001"]},
@@ -1262,28 +1319,6 @@
         "brand": "Колесо",
         "name": "Колесо",
         "name:en": "Koleso",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "СТО",
-      "id": "1d84c6-e23c5d",
-      "locationSet": {
-        "include": [
-          "by",
-          "ge",
-          "kg",
-          "kz",
-          "md",
-          "ru",
-          "tj",
-          "ua",
-          "uz"
-        ]
-      },
-      "tags": {
-        "brand": "СТО",
-        "name": "СТО",
         "shop": "car_repair"
       }
     },

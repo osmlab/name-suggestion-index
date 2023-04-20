@@ -34,9 +34,9 @@ function Title(props) {
     } else if (t === 'flags') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/embassy-15.svg';
     } else if (t === 'operators') {
-      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/briefcase.svg';
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/briefcase.svg';
     } else if (t === 'transit') {
-      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/board_transit.svg';
+      fallbackIcon = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/board_transit.svg';
     }
 
     const kv = `${k}/${v}`;
@@ -46,9 +46,9 @@ function Title(props) {
 
     // exceptions:
     if (kv === 'power/minor_line') {  // iD's power pole icon has a fill
-      iconURL = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/power_pole.svg';
+      iconURL = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/power_pole.svg';
     } else if (kv === 'route/power') {
-      iconURL = 'https://cdn.jsdelivr.net/npm/@ideditor/temaki@5/icons/power_tower.svg';
+      iconURL = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/power_tower.svg';
     }
   }
 

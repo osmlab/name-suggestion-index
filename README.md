@@ -5,7 +5,7 @@
 
 # name-suggestion-index ("NSI")
 
-Canonical features for OpenStreetMap
+Canonical features for OpenStreetMap, collected manually and via the [NSI Collector](https://github.com/ideditor/nsi-collector) planet scan.
 
 ## What is it?
 
@@ -40,7 +40,7 @@ Building a canonical feature index allows two very useful things:
 
 Currently used in:
 
-- [RapiD](https://github.com/facebookincubator/RapiD)
+- [Rapid](https://github.com/facebook/Rapid)
 - [iD](https://github.com/openstreetmap/iD) (see above)
 - [Vespucci](http://vespucci.io/tutorials/name_suggestions/)
 - [JOSM presets](https://josm.openstreetmap.de/wiki/Help/Preferences/TaggingPresetPreference) available
@@ -49,6 +49,7 @@ Currently used in:
 - [Go Map!!](https://github.com/bryceco/GoMap)
 - [StreetComplete](https://github.com/streetcomplete/StreetComplete/blob/master/buildSrc/src/main/java/UpdateNsiPresetsTask.kt)
 - [Every Door](https://github.com/Zverik/every_door)
+- [All The Places](https://github.com/alltheplaces/alltheplaces)
 
 ## About the index
 
