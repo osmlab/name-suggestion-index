@@ -2650,15 +2650,6 @@
       }
     },
     {
-      "displayName": "Fitchburg Gas and Electric Light Company",
-      "id": "fitchburggasandelectriclightcompany-b654b4",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "Fitchburg Gas and Electric Light Company",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Fjellnett",
       "id": "fjellnett-e0b869",
       "locationSet": {"include": ["no"]},
@@ -6152,9 +6143,21 @@
     {
       "displayName": "Unitil",
       "id": "unitil-116894",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {
+        "include": [
+          "us-nh.geojson",
+          "us-ma.geojson",
+          "us-me.geojson"
+        ]
+      },
+      "matchNames": [
+        "fitchburg gas and electric light company",
+        "concord electric company",
+        "exeter and hampton electric company"
+      ],
       "tags": {
         "operator": "Unitil",
+        "operator:wikidata": "Q17144598",
         "power": "line"
       }
     },
