@@ -300,8 +300,6 @@ function buildIDPresets() {
           logoURL = logoURLs.wikidata;
         } else if (logoURLs.facebook) {
           logoURL = logoURLs.facebook;
-        } else if (logoURLs.twitter) {
-          logoURL = logoURLs.twitter;
         } else {
           logoURL = logoURLs.wikidata;
         }
