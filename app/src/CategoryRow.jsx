@@ -184,7 +184,6 @@ relation[${k}=${v}][network:wikidata=${qid}]
       </td>
       <td className='logo'>{ logo(logos.wikidata) }</td>
       <td className='logo'>{ fblogo(identities.facebook, logos.facebook) }</td>
-      <td className='logo'>{ logo(logos.twitter) }</td>
       </tr>
     );
   }
@@ -287,7 +286,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
     /* Add an <hr/> line break only if addational information will be displayed. */
     if (item.matchNames || item.matchTags || item.note || item.preserveTags || item.fromTemplate)
       result += '<hr/>';
-    
+
     /* Are the items being drawn from a template? 'item.fromTemplate' is set to true in nsi.json if templated. */
     if (item.fromTemplate) {
       let url,text;

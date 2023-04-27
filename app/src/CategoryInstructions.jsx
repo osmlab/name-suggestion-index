@@ -31,7 +31,7 @@ export default function CategoryInstructions(props) {
   // Flags don't have Facebook accounts
   let social = '';
   if (t !== 'flags') {
-    social = `You can add the ${itemType}'s Facebook or Twitter usernames, and this project will pick up the logos later.`;
+    social = `You can add the ${itemType}'s Facebook username, and this project will pick up the logos later.`;
   }
 
   return (

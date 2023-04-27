@@ -10,7 +10,6 @@ import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
-import Twitter from 'Twitter';
 import wikibase from 'wikibase-sdk';
 import wikibaseEdit from 'wikibase-edit';
 const withLocale = localeCompare('en-US');
@@ -48,30 +47,10 @@ const DRYRUN = false;
 
 // First, try to load the user's secrets.
 // This is optional but needed if you want this script to:
-// - connect to the Twitter API to fetch logos
 // - connect to the Wikibase API to update NSI identifiers.
 //
 // `secrets.json` looks like this:
 // {
-//   "twitter": [
-//     {
-//       "name": "name-suggestion-index-staging",
-//       "app_id": "16186858",
-//       "bearer_token": "AAAAAAAAAAAAAAAAAAA…",
-//       "twitter_consumer_key": "",
-//       "twitter_consumer_secret": "",
-//       "twitter_access_token_key": "",
-//       "twitter_access_token_secret": ""
-//     }, {
-//       "name": "name-suggestion-index-dev",
-//       "app_id": "16186940",
-//       "bearer_token": "AAAAAAAAAAAAAAAAAAA…",
-//       "twitter_consumer_key": "",
-//       "twitter_consumer_secret": "",
-//       "twitter_access_token_key": "",
-//       "twitter_access_token_secret": ""
-//     }
-//   ],
 //   "wikibase": {
 //     "username": "my-wikidata-username",
 //     "password": "my-wikidata-password"
@@ -88,45 +67,15 @@ try {
   _secrets = JSON5.parse(fs.readFileSync('./secrets.json', 'utf8'));
 } catch (err) { /* ignore */ }
 
-if (_secrets && !_secrets.twitter && !_secrets.wikibase) {
+if (_secrets && !_secrets.wikibase) {
   console.error(chalk.red('WHOA!'));
   console.error(chalk.yellow('The `config/secrets.json` file format has changed a bit.'));
-  console.error(chalk.yellow('We were expecting to find `twitter` or `wikibase` properties.'));
+  console.error(chalk.yellow('We were expecting to find a `wikibase` property.'));
   console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
 }
 
-// To fetch Twitter logos, sign up for API credentials at https://apps.twitter.com/
-// and put them into `config/secrets.json`
-
-let _twitterAPIs = [];
-let _twitterAPIIndex = 0;
-if (_secrets && _secrets.twitter) {
-  _twitterAPIs = _secrets.twitter.map((s, i) => {
-    let props;
-
-    // if (s.bearer_token) {  // use a bearer token if we have it
-    //   props = {
-    //     consumer_key: s.twitter_consumer_key,
-    //     consumer_secret: s.twitter_consumer_secret,
-    //     bearer_token: s.bearer_token
-    //   };
-    // } else {
-      props = {
-        consumer_key: s.twitter_consumer_key,
-        consumer_secret: s.twitter_consumer_secret,
-        access_token_key: s.twitter_access_token_key,
-        access_token_secret: s.twitter_access_token_secret
-      };
-    // }
-
-    return {
-      name: s.name || i.toString(),
-      client: new Twitter(props)
-    };
-  });
-}
 
 // To update wikidata
 // add your username/password into `config/secrets.json`
@@ -249,11 +198,10 @@ function doFetch(index) {
 //
 // `processEntities`
 // Here we process the fetched results from the Wikidata API,
-// then schedule followup API calls to the Twitter/Facebook APIs,
+// then schedule followup API calls to the Facebook API,
 // then eventually resolves when all that work is done.
 //
 function processEntities(result) {
-  let twitterQueue = [];
   let facebookQueue = [];
   let wbEditQueue = [];
 
@@ -333,7 +281,6 @@ function processEntities(result) {
     const twitterUser = getClaimValue(entity, 'P2002');
     if (twitterUser) {
       target.identities.twitter = twitterUser;
-      twitterQueue.push({ qid: qid, username: twitterUser });    // queue logo fetch
     }
 
     // P2003 - Instagram ID
@@ -496,15 +443,8 @@ function processEntities(result) {
 
   });  // foreach qid
 
-  if (_twitterAPIs.length && twitterQueue.length) {
-    return checkTwitterRateLimit(twitterQueue.length)
-      .then(() => Promise.all( twitterQueue.map(obj => fetchTwitterUserDetails(obj.qid, obj.username)) ))
-      .then(() => Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) ))
-      .then(() => processWbEditQueue(wbEditQueue));
-  } else {
-    return Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) )
-      .then(() => processWbEditQueue(wbEditQueue));
-  }
+  return Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) )
+    .then(() => processWbEditQueue(wbEditQueue));
 }
 
 
@@ -546,9 +486,10 @@ function getClaimValue(entity, prop) {
 
 
 // `finish`
-// Wrap up, write files
-// - wikidata.json
-// - dissolved.json
+// Wrap up, write files:
+// - `warnings.json`
+// - `wikidata.json`
+// - `dissolved.json`
 //
 function finish() {
   const START = '🏗   ' + chalk.yellow('Writing output files');
@@ -557,29 +498,10 @@ function finish() {
   console.log(START);
   console.time(END);
 
-  // update `wikidata.json` and `dissolved.json`
-  let origWikidata;
   let dissolved = {};
-  try {
-    origWikidata = JSON5.parse(fs.readFileSync('./dist/wikidata.json', 'utf8')).wikidata;
-  } catch (err) {
-    origWikidata = {};
-  }
 
   Object.keys(_wikidata).forEach(qid => {
     let target = _wikidata[qid];
-
-    // if we haven't been able to access the Twitter API, don't overwrite the Twitter data - #3569
-    if (!_twitterAPIs.length) {
-      const origTarget = origWikidata[qid];
-      ['identities', 'logos'].forEach(prop => {
-        const origTwitter = origTarget && origTarget[prop] && origTarget[prop].twitter;
-        if (origTwitter) {
-          target[prop] = target[prop] || {};
-          target[prop].twitter = origTwitter;
-        }
-      });
-    }
 
     // sort the properties that we are keeping..
     ['identities', 'logos', 'dissolutions'].forEach(prop => {
@@ -610,67 +532,11 @@ function finish() {
 
   console.timeEnd(END);
 
-  // output whatever warnings we've gathered
+  // `console.warn` whatever warnings we've gathered
   if (_warnings.length) {
     console.log(chalk.yellow.bold(`\nWarnings:`));
     _warnings.forEach(warning => console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg)));
   }
-}
-
-
-// check Twitter rate limit status
-// https://developer.twitter.com/en/docs/developer-utilities/rate-limit-status/api-reference/get-application-rate_limit_status
-// rate limit: 900calls / 15min
-function checkTwitterRateLimit(need) {
-  _twitterAPIIndex = (_twitterAPIIndex + 1) % _twitterAPIs.length;  // cycle to next client
-  const twitterAPI = _twitterAPIs[_twitterAPIIndex];
-  const which = twitterAPI.name;
-
-  return twitterAPI.client
-    .get('application/rate_limit_status', { resources: 'users' })
-    .then(result => {
-      const now = Date.now() / 1000;
-      const stats = result.resources.users['/users/:id'];
-      const resetSec = Math.ceil(stats.reset - now) + 30;  // +30sec in case server time is different
-      console.log(chalk.green.bold(`Twitter rate status '${which}': need ${need}, remaining ${stats.remaining}, resets in ${resetSec} seconds...`));
-      if (need > stats.remaining) {
-        const delaySec = clamp(resetSec, 10, 60);
-        console.log(chalk.green.bold(`Twitter rate limit exceeded, pausing for ${delaySec} seconds...`));
-        return delaySec;
-      } else {
-        return 0;
-      }
-    })
-    .then(sec => {
-      if (sec > 0) {
-        return delay(sec * 1000)
-          .then(() => checkTwitterRateLimit(need));
-      } else {
-        return Promise.resolve();
-      }
-    })
-    .catch(e => {
-      console.warn(chalk.green.bold(`Error: Twitter rate limit: ` + JSON.stringify(e)));
-    });
-}
-
-
-// https://developer.twitter.com/en/docs/accounts-and-users/user-profile-images-and-banners.html
-// https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-show
-function fetchTwitterUserDetails(qid, username) {
-  const target = _wikidata[qid];
-  const twitterAPI = _twitterAPIs[_twitterAPIIndex];
-
-  return twitterAPI.client
-    .get('users/show', { screen_name: username })
-    .then(user => {
-      target.logos.twitter = user.profile_image_url_https.replace('_normal', '_bigger');
-    })
-    .catch(e => {
-      const warning = { qid: qid, msg: `Twitter username @${username}: ${JSON.stringify(e)}` };
-      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
-      _warnings.push(warning);
-    });
 }
 
 

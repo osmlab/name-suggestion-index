@@ -157,7 +157,6 @@ export default function Category(props) {
       <th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
       <th className='logo'>Commons Logo</th>
       <th className='logo'>Facebook Logo</th>
-      <th className='logo'>Twitter Logo</th>
       </tr>
       </thead>
 
