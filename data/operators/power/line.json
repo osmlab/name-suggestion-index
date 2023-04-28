@@ -892,17 +892,6 @@
       }
     },
     {
-      "displayName": "Compagnie Ivorienne d'Électricite",
-      "locationSet": {"include": ["ci"]},
-      "matchNames": ["cie", "compagnie ivorienne d'electricite"],
-      "tags": {
-        "operator": "Compagnie Ivorienne d'Électricite",
-        "operator:short": "CIE",
-        "operator:wikidata": "Q2989790",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "China Southern Powergrid",
       "id": "chinasouthernpowergrid-cf3c91",
       "locationSet": {"include": ["cn"]},
@@ -1140,13 +1129,24 @@
     },
     {
       "displayName": "Communauté Électrique du Bénin",
+      "id": "communauteelectriquedubenin-e991ad",
       "locationSet": {"include": ["bj", "tg"]},
       "note": "Operates in Benin and Togo",
-      "matchNames": ["ceb", "communaute electrique du benin"],
       "tags": {
         "operator": "Communauté Électrique du Bénin",
         "operator:short": "CEB",
         "operator:wikidata": "Q5153983",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Compagnie Ivorienne d'Électricite",
+      "id": "compagnieivoriennedelectricite-736c80",
+      "locationSet": {"include": ["ci"]},
+      "tags": {
+        "operator": "Compagnie Ivorienne d'Électricite",
+        "operator:short": "CIE",
+        "operator:wikidata": "Q2989790",
         "power": "line"
       }
     },
@@ -1671,12 +1671,15 @@
     },
     {
       "displayName": "EGTC",
-      "matchNames": ["electricity generation & transmission company"],
+      "id": "egtc-66f37f",
       "locationSet": {"include": ["sl"]},
+      "matchNames": [
+        "electricity generation & transmission company"
+      ],
       "tags": {
         "operator": "EGTC",
         "operator:wikidata": "Q117864256",
-        "power": "substation"
+        "power": "line"
       }
     },
     {
@@ -1719,17 +1722,6 @@
       }
     },
     {
-      "displayName": "Electricity Company of Ghana",
-      "locationSet": {"include": ["gh"]},
-      "matchNames": ["ecg"],
-      "tags": {
-        "operator": "Electricity Company of Ghana",
-        "operator:short": "ECG",
-        "operator:wikidata": "Q16733491",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Electricidade de Moçambique",
       "id": "electricidadedemocambique-8757c0",
       "locationSet": {"include": ["mz"]},
@@ -1748,6 +1740,17 @@
         "operator": "Électricité de Mayotte",
         "operator:short": "EDM",
         "operator:wikidata": "Q60849817",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Electricity Company of Ghana",
+      "id": "electricitycompanyofghana-a4e165",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "operator": "Electricity Company of Ghana",
+        "operator:short": "ECG",
+        "operator:wikidata": "Q16733491",
         "power": "line"
       }
     },
@@ -2871,8 +2874,9 @@
     },
     {
       "displayName": "Ghana Grid Company",
-      "matchNames": ["gridco"],
+      "id": "ghanagridcompany-a4e165",
       "locationSet": {"include": ["gh"]},
+      "matchNames": ["gridco"],
       "tags": {
         "operator": "Ghana Grid Company",
         "operator:wikidata": "Q16733560",
@@ -3613,12 +3617,13 @@
     },
     {
       "displayName": "Liberia Electricity Corporation",
+      "id": "liberiaelectricitycorporation-b554f3",
       "locationSet": {"include": ["lr"]},
       "tags": {
-        "power": "line",
         "operator": "Liberia Electricity Corporation",
         "operator:short": "LEC",
-        "operator:wikidata": "Q117848927"
+        "operator:wikidata": "Q117848927",
+        "power": "line"
       }
     },
     {
@@ -4141,8 +4146,11 @@
     },
     {
       "displayName": "NEDCo",
+      "id": "nedco-a4e165",
       "locationSet": {"include": ["gh"]},
-      "matchNames": ["Northern Electricity Distribution Company"],
+      "matchNames": [
+        "northern electricity distribution company"
+      ],
       "tags": {
         "operator": "NEDCo",
         "operator:wikidata": "Q16733950",
@@ -5209,20 +5217,21 @@
       }
     },
     {
-      "displayName": "Senelec",
-      "locationSet": {"include": ["sn"]},
-      "tags": {
-        "operator": "Senelec",
-        "operator:wikidata": "Q3488511",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Seminole Electric Cooperative",
       "id": "seminoleelectriccooperative-b654b4",
       "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "Seminole Electric Cooperative",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Senelec",
+      "id": "senelec-2f9919",
+      "locationSet": {"include": ["sn"]},
+      "tags": {
+        "operator": "Senelec",
+        "operator:wikidata": "Q3488511",
         "power": "line"
       }
     },
@@ -5339,6 +5348,7 @@
     },
     {
       "displayName": "Societe Beninoise d'Energie Electrique",
+      "id": "societebeninoisedenergieelectrique-b8385e",
       "locationSet": {"include": ["bj"]},
       "tags": {
         "operator": "Societe Beninoise d'Energie Electrique",
@@ -5981,7 +5991,10 @@
     },
     {
       "displayName": "Transco CLSG",
-      "locationSet": {"include": ["ci", "lr", "sl", "gq"]},
+      "id": "transcoclsg-7bc8e3",
+      "locationSet": {
+        "include": ["ci", "gq", "lr", "sl"]
+      },
       "tags": {
         "operator": "Transco CLSG",
         "operator:wikidata": "Q117846302",
