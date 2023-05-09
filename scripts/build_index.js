@@ -583,8 +583,8 @@ function mergeItems() {
     const index = countries.indexOf(country.toLowerCase())
     if (index >= 0) {
       const replace = countryReplacements[country.toLowerCase()];
-      if (replace && replace.country !== undefined) {
-        countries[index] = replace.country.toLowerCase()
+      if (replace && replace !== undefined) {
+        countries[index] = replace.toLowerCase()
       }
     }
   }
