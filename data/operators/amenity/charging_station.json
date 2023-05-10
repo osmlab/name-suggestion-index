@@ -12,7 +12,9 @@
         "^europark as$",
         "^jernbaneverket$",
         "kommune",
-        "privat"
+        "privat",
+        "polar",
+        "rolec"
       ]
     }
   },
@@ -384,14 +386,13 @@
     {
       "displayName": "Be.EV",
       "id": "beev-116e8a",
-      "locationSet": {
-        "include": [
-          "gb-greater-manchester.geojson"
-        ]
-      },
+      "locationSet": {"include": ["gb-eng"]},
+      "matchNames": ["iduna"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Be.EV"
+        "brand": "Be.EV",
+        "operator": "Iduna",
+        "operator:wikidata": "Q118263083"
       }
     },
     {
@@ -1228,15 +1229,6 @@
       }
     },
     {
-      "displayName": "ecarNI",
-      "id": "ecarni-6ad204",
-      "locationSet": {"include": ["gb-nir"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "ecarNI"
-      }
-    },
-    {
       "displayName": "eCarUp",
       "id": "ecarup-086737",
       "locationSet": {"include": ["ch"]},
@@ -1253,16 +1245,6 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Ecotap"
-      }
-    },
-    {
-      "displayName": "Ecotricity",
-      "id": "ecotricity-0793ce",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Ecotricity",
-        "operator:wikidata": "Q5333901"
       }
     },
     {
@@ -1761,22 +1743,23 @@
     {
       "displayName": "ESB ecars",
       "id": "esbecars-179e3e",
-      "locationSet": {"include": ["ie"]},
-      "matchNames": ["esb"],
+      "locationSet": {"include": ["ie", "gb-nir"]},
+      "matchNames": ["esb", "ecarni"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "ESB ecars",
-        "operator:wikidata": "Q3050566"
+        "operator": "ESB Group",
+        "operator:wikidata": "Q3050566",
+        "brand": "ecars"
       }
     },
     {
-      "displayName": "ESB EV Solutions",
-      "id": "esbevsolutions-0793ce",
+      "displayName": "ESB Energy",
       "locationSet": {"include": ["gb"]},
-      "matchNames": ["esb"],
+      "matchNames": ["esb", "esb ev solutions"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "ESB EV Solutions"
+        "operator": "ESB Energy",
+        "operator:wikidata": "Q118261834"
       }
     },
     {
@@ -2342,6 +2325,7 @@
       "displayName": "Gridserve",
       "id": "gridserve-0793ce",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["ecotricity", "electric highway"],
       "tags": {
         "amenity": "charging_station",
         "name": "Gridserve",
@@ -3555,15 +3539,6 @@
       }
     },
     {
-      "displayName": "POLAR",
-      "id": "polar-0793ce",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "POLAR"
-      }
-    },
-    {
       "displayName": "Porsche",
       "id": "porsche-28ff7e",
       "locationSet": {
@@ -3810,15 +3785,6 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Robert Bosch GmbH"
-      }
-    },
-    {
-      "displayName": "Rolec",
-      "id": "rolec-0793ce",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Rolec"
       }
     },
     {
