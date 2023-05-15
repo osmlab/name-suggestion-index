@@ -12,24 +12,13 @@
         "^europark as$",
         "^jernbaneverket$",
         "kommune",
-        "privat",
         "polar",
+        "privat",
         "rolec"
       ]
     }
   },
   "items": [
-    {
-      "displayName": "SureCharge",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "charging_station",
-        "brand": "SureCharge",
-        "brand:wikidata": "Q118382836",
-        "operator": "FM Conway",
-        "operator:wikidata": "Q20711690"
-      }
-    },
     {
       "displayName": "7-Eleven",
       "id": "7eleven-994ed4",
@@ -396,9 +385,8 @@
     },
     {
       "displayName": "Be.EV",
-      "id": "beev-116e8a",
+      "id": "iduna-3c1cb1",
       "locationSet": {"include": ["gb-eng"]},
-      "matchNames": ["iduna"],
       "tags": {
         "amenity": "charging_station",
         "brand": "Be.EV",
@@ -1753,18 +1741,30 @@
     },
     {
       "displayName": "ESB ecars",
-      "id": "esbecars-179e3e",
-      "locationSet": {"include": ["ie", "gb-nir"]},
-      "matchNames": ["esb", "ecarni"],
+      "id": "esbgroup-881c56",
+      "locationSet": {
+        "include": ["gb-nir", "ie"]
+      },
+      "matchNames": ["ecarni", "esb"],
       "tags": {
         "amenity": "charging_station",
+        "brand": "ecars",
         "operator": "ESB Group",
-        "operator:wikidata": "Q3050566",
-        "brand": "ecars"
+        "operator:wikidata": "Q3050566"
+      }
+    },
+    {
+      "displayName": "ESB ecars",
+      "id": "esbecars-c22d3a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "ESB ecars"
       }
     },
     {
       "displayName": "ESB Energy",
+      "id": "esbenergy-0793ce",
       "locationSet": {"include": ["gb"]},
       "matchNames": ["esb", "esb ev solutions"],
       "tags": {
@@ -2336,7 +2336,10 @@
       "displayName": "Gridserve",
       "id": "gridserve-0793ce",
       "locationSet": {"include": ["gb"]},
-      "matchNames": ["ecotricity", "electric highway"],
+      "matchNames": [
+        "ecotricity",
+        "electric highway"
+      ],
       "tags": {
         "amenity": "charging_station",
         "name": "Gridserve",
@@ -4753,6 +4756,18 @@
       }
     },
     {
+      "displayName": "SureCharge",
+      "id": "fmconway-0793ce",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "SureCharge",
+        "brand:wikidata": "Q118382836",
+        "operator": "FM Conway",
+        "operator:wikidata": "Q20711690"
+      }
+    },
+    {
       "displayName": "Süwag",
       "id": "suwag-1299a8",
       "locationSet": {"include": ["de"]},
@@ -4774,7 +4789,7 @@
     },
     {
       "displayName": "Swarco",
-      "id": "swarco-c22d3a",
+      "id": "swarco-0793ce",
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "charging_station",
