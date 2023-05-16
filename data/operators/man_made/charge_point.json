@@ -1,18 +1,19 @@
 {
   "properties": {
-    "path": "brands/amenity/charge_point",
+    "path": "operators/man_made/charge_point",
     "skipCollection": true,
     "preserveTags": ["^name"],
     "exclude": {"generic": ["^charge_point$"]}
   },
   "items": [
     {
-      "note": "Auto create charge point for each charging station (remove names per #8115)",
-      "templateSource": "brands/amenity/charging_station",
+      "note": "Auto create charge_point for each charging_station (remove names per #8115)",
+      "templateSource": "operators/amenity/charging_station",
       "templateTags": {
-        "amenity": "charge_point",
+        "amenity": "",
         "brand": "{source.tags.brand}",
         "brand:wikidata": "{source.tags.brand:wikidata}",
+        "man_made": "charge_point",
         "name": "",
         "operator": "{source.tags.operator}",
         "operator:wikidata": "{source.tags.operator:wikidata}"
