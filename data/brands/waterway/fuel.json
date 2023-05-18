@@ -1,0 +1,40 @@
+{
+  "properties": {
+    "path": "brands/waterway/fuel",
+    "preserveTags": ["^name"],
+    "exclude": {
+      "generic": [
+        "^((drummed|independent|جایگاه) )?(cng|filling|fuel|gas|gpl|gnv|lpg|petrol)( (station|pump))?$",
+        "^(gasoline(ra)?|minipump|station service|tankstelle)$",
+        "^(аг?зс|газ|мережа азс приват|магазин при азс|метан|октан|пропан)$",
+        "^(газовая )?заправка$",
+        "^d[eé]p[oô]t de gaz$",
+        "^stacja (benzynowa|paliw)$",
+        "^агнкс( метан)?$",
+        "^דלק$",
+        "^پمپ (بنزین|گاز)$",
+        "^محط[هة] وقود$",
+        "^加(气|汽|氣)站$",
+        "^加油站$"
+      ],
+      "named": [
+        "^(ind[ei]pend(ent|\\.)|posto|spbu)$",
+        "^bandera blanca$",
+        "^branca$"
+      ]
+    }
+  },
+  "items": [
+    {
+      "displayName": "GOfuel",
+      "id": "gofuel-1a11f1",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "brand": "GOfuel",
+        "brand:wikidata": "Q118464732",
+        "name": "GOfuel",
+        "waterway": "fuel"
+      }
+    }
+  ]
+}
