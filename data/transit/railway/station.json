@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "path": "transit/railway/station",
+    "skipCollection": true,
+    "preserveTags": ["^public_transport$"],
+    "exclude": {"generic": ["^station$"]}
+  },
+  "items": [
+    {
+      "note": "Auto create railway/station for all route/train - #7576, #4765",
+      "templateSource": "transit/route/train",
+      "templateTags": {
+        "public_transport": "station",
+        "railway": "station",
+        "route": "",
+        "train": "yes"
+      }
+    }
+  ]
+}
