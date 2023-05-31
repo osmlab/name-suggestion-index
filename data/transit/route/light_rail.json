@@ -36,20 +36,6 @@
       }
     },
     {
-      "displayName": "CTrain",
-      "locationSet": {
-        "include": ["ca-ab.geojson"]
-      },
-      "matchNames": ["calgary lrt", "calgary transit", "c-train", "ct"],
-      "tags": {
-        "network": "CTrain",
-        "network:wikidata": "Q1022321",
-        "operator": "Calgary Transit",
-        "operator:wikidata": "Q143630",
-        "route": "light_rail"
-      }
-    },
-    {
       "displayName": "Circumvesuviana",
       "id": "circumvesuviana-cd1190",
       "locationSet": {"include": ["it"]},
@@ -58,6 +44,21 @@
         "network:wikidata": "Q867565",
         "operator": "Ente Autonomo Volturno",
         "operator:wikidata": "Q3726202",
+        "route": "light_rail"
+      }
+    },
+    {
+      "displayName": "CTrain",
+      "id": "ctrain-8bcf03",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
+      "matchNames": ["calgary lrt", "ct"],
+      "tags": {
+        "network": "CTrain",
+        "network:wikidata": "Q1022321",
+        "operator": "Calgary Transit",
+        "operator:wikidata": "Q143630",
         "route": "light_rail"
       }
     },
@@ -116,10 +117,14 @@
     },
     {
       "displayName": "Edmonton LRT",
+      "id": "edmontonlrt-8bcf03",
       "locationSet": {
         "include": ["ca-ab.geojson"]
       },
-      "matchNames": ["edmonton transit service", "edmonton transit system", "ets"],
+      "matchNames": [
+        "edmonton transit system",
+        "ets"
+      ],
       "tags": {
         "network": "Edmonton LRT",
         "network:wikidata": "Q1285861",
