@@ -116,7 +116,14 @@ function loadConfig() {
       data.replacements = sortObject(data.replacements);
 
     } else if (which === 'genericWords') {
-      data.genericWords = data.genericWords.map(s => s.toLowerCase()).sort(withLocale);
+      data.genericWords = data.genericWords.map(s => {
+        if (/İ/.test(s)) {   // Avoid toLowerCasing this one, it changes - #8261
+          return s.trim();
+        } else {
+          return s.trim().toLowerCase();
+        }
+      })
+      .sort(withLocale);
     }
 
     // Lowercase and sort the files for consistency, save them that way.

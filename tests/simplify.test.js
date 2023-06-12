@@ -46,6 +46,12 @@ test('simplify', t => {
     t.end();
   });
 
+  t.test('replaces İ (0130) or i̇ (0069 0307) with i', t => {   // #5017, #8261 for examples
+    t.equal(simplify('İnşaat'), 'insaat');
+    t.equal(simplify('i̇nşaat'), 'insaat');
+    t.end();
+  });
+
   t.test('returns empty string if no input', t => {
     t.equal(simplify(), '');
     t.equal(simplify(null), '');
