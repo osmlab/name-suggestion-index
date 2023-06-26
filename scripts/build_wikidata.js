@@ -284,6 +284,12 @@ function processEntities(result) {
       target.identities.website = officialWebsite;
     }
 
+    // P11707 - location URL match pattern
+    const urlMatchPatterns = getClaimValues(entity, 'P11707');
+    if (urlMatchPatterns) {
+      target.urlMatchPatterns = urlMatchPatterns;
+    }
+
     // P2002 - Twitter username
     const twitterUser = getClaimValue(entity, 'P2002');
     if (twitterUser) {
