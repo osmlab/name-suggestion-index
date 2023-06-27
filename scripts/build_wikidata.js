@@ -249,6 +249,7 @@ function processEntities(result) {
     target.logos = {};
     target.identities = {};
     target.dissolutions = [];
+    target.officialWebsites = [];
 
 
     let imageFile;
@@ -272,9 +273,21 @@ function processEntities(result) {
     }
 
     // P856 - official website
+    const officialWebsites = getClaimValues(entity, 'P856');
+    if (officialWebsites) {
+      target.officialWebsites = officialWebsites;
+    }
+
+    // P856 - official website
     const officialWebsite = getClaimValue(entity, 'P856');
     if (officialWebsite) {
       target.identities.website = officialWebsite;
+    }
+
+    // P11707 - location URL match pattern
+    const urlMatchPatterns = getClaimValues(entity, 'P11707');
+    if (urlMatchPatterns) {
+      target.urlMatchPatterns = urlMatchPatterns;
     }
 
     // P2002 - Twitter username
@@ -450,7 +463,7 @@ function processEntities(result) {
 
 // `getClaimValue`
 // Get the claim value, considering any claim rank..
-//   - disregard any claimes with an end date qualifier in the past
+//   - disregard any claims with an end date qualifier in the past
 //   - disregard any claims with "deprecated" rank
 //   - accept immediately any claim with "preferred" rank
 //   - return the latest claim with "normal" rank
@@ -482,6 +495,44 @@ function getClaimValue(entity, prop) {
     if (c.rank === 'preferred') return value;  // return immediately
   }
   return value;
+}
+
+// `getClaimValues`
+// Get all the claim values
+//   - disregard any claims with an end date qualifier in the past
+//   - disregard any claims with "deprecated" rank
+//   - push any claims with "preferred" rank to the front
+function getClaimValues(entity, prop) {
+  if (!entity.claims) return;
+  if (!entity.claims[prop]) return;
+
+  let values = [];
+  for (let i = 0; i < entity.claims[prop].length; i++) {
+    const c = entity.claims[prop][i];
+    if (c.rank === 'deprecated') continue;
+    if (c.mainsnak.snaktype !== 'value') continue;
+
+    // skip if we find an end time qualifier - P582
+    let ended = false;
+    const qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
+    for (let j = 0; j < qualifiers.length; j++) {
+      const q = qualifiers[j];
+      if (q.snaktype !== 'value') continue;
+      const enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
+      if (new Date() > enddate) {
+        ended = true;
+        break;
+      }
+    }
+    if (ended) continue;
+
+    if (c.rank === 'preferred'){  // List preferred values first
+      values.unshift(c.mainsnak.datavalue.value);
+    } else {
+      values.push(c.mainsnak.datavalue.value);
+    }
+  }
+  return values;
 }
 
 
