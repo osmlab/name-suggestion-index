@@ -17,8 +17,8 @@ export default function CategoryRow(props) {
   const v = props.v;
 
   // filters (used here for highlighting)
-  const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
-  const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
+  const tt = ((data.filters?.tt) || '').toLowerCase().trim();
+  const cc = ((data.filters?.cc) || '').toLowerCase().trim();
 
   const rowClasses = [];
   if (item.filtered) rowClasses.push('hide');
@@ -29,8 +29,9 @@ export default function CategoryRow(props) {
 
   if (t === 'brands') {
     n = item.tags.brand || item.tags.name;
-    if (n != null)
+    if (n != null) {
       n = n.replaceAll('"','\\\"');
+    }
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
@@ -56,8 +57,9 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
 
   } else if (t === 'flags') {
     n = item.tags['flag:name'];
-    if (n != null)
+    if (n != null) {
       n = n.replaceAll('"','\\\"');
+    }
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
@@ -67,8 +69,9 @@ out center;`;
 
   } else if (t === 'operators') {
     n = item.tags.operator;
-    if (n != null)
+    if (n != null) {
       n = n.replaceAll('"','\\\"');
+    }
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
@@ -93,8 +96,9 @@ relation[${k}=${v}][operator:wikidata=${qid}]
 
   } else if (t === 'transit') {
     n = item.tags.network;
-    if (n != null)
+    if (n != null) {
       n = n.replaceAll('"','\\\"');
+    }
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['network:wikidata'];
@@ -261,12 +265,13 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
 
   function siteLink(href) {
-    let FAicon,FAsecure,FAinsecure;
+    let FAicon, FAsecure, FAinsecure;
     FAsecure = <span title='ssl web site'><FontAwesomeIcon icon={faLock} size='lg' /></span>;
     FAinsecure = <span title='non-ssl web site'><FontAwesomeIcon icon={faUnlock} size='lg' /></span>;
 
-    if (href)
+    if (href) {
       FAicon = (href.startsWith("https://")) ? FAsecure : FAinsecure;
+    }
 
     return href && (
       <div className='viewlink'>
@@ -289,7 +294,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
     /* Are the items being drawn from a template? 'item.fromTemplate' is set to true in nsi.json if templated. */
     if (item.fromTemplate) {
-      let url,text;
+      let url, text;
 
       /* Brands */
       if ((t=='brands') && (k=='amenity') && (v=='atm'))

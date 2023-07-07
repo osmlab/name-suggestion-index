@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import CategoryInstructions from './CategoryInstructions';
 import CategoryRow from './CategoryRow';
@@ -10,7 +10,8 @@ export default function Category(props) {
   const data = props.data;
   const index = data.index;
 
-  const hash = props.location.hash;
+  const location = useLocation();
+  const hash = location.hash;
   let slug = hash && hash.slice(1);   // remove leading '#'
 
   let t = props.t;
@@ -78,9 +79,9 @@ export default function Category(props) {
   }
 
   // filters
-  const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
-  const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
-  const inc = !!(data.filters && data.filters.inc);
+  const tt = ((data.filters?.tt) || '').toLowerCase().trim();
+  const cc = ((data.filters?.cc) || '').toLowerCase().trim();
+  const inc = !!(data.filters?.inc);
 
   const rows = items.map(item => {
     // calculate slug

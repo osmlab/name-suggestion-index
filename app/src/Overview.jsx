@@ -11,9 +11,9 @@ export default function Overview(props) {
   const index = data.index;
 
   // filters
-  const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
-  const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
-  const inc = !!(data.filters && data.filters.inc);
+  const tt = ((data.filters?.tt) || '').toLowerCase().trim();
+  const cc = ((data.filters?.cc) || '').toLowerCase().trim();
+  const inc = !!(data.filters?.inc);
 
 
   // setup defaults for this tree..

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 import Category from './Category';
 import Header from './Header';
@@ -21,7 +21,7 @@ export default function App() {
   const [index, indexLoading] = useIndex(INDEX);
   const [icons, iconsLoading] = useTaginfo(TAGINFO);
 
-  const appData = {
+  const appState = {
     isLoading: () => (wikidataLoading || indexLoading || iconsLoading),
     filters: filters,
     setFilters: setFilters,
@@ -30,19 +30,31 @@ export default function App() {
     wikidata: wikidata.wikidata
   };
 
+  // A hack so react-router will work with a local `file://` url
+  // Determine what the "basename" needs to be.
+  // If we're on a site like `https://nsi.guide`, it will just end up as '/'
+  let pathArr = window.location.pathname.split('/');
+  pathArr.pop();  // pop index.html
+  const basename = pathArr.join('/') + '/';
+
   return (
     <>
-    <Switch>
-      <Route path='/' render={render}/>
-    </Switch>
-    <Footer index={appData.index}/>
+    <BrowserRouter basename={basename}>
+      <Routes>
+        <Route path="*" element={ <Main /> } />
+      </Routes>
+    </BrowserRouter>
+    <Footer index={appState.index}/>
     </>
   );
 
 
-  function render(routeProps) {
-    const oldSearch = routeProps.location.search;
-    const oldHash = routeProps.location.hash;
+  function Main() {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const oldSearch = location.search;
+    const oldHash = location.hash;
     let newSearch = oldSearch;
     let newHash = oldHash;
     let params = stringQs(oldSearch);
@@ -51,7 +63,7 @@ export default function App() {
 
     // sync up the filtering params with the querystring params
     ['tt', 'cc', 'inc'].forEach(k => {
-      if (appData.isLoading() && params[k]) {   // early render (user has not typed yet)
+      if (appState.isLoading() && params[k]) {   // early render (user has not typed yet)
         filters[k] = params[k];                 // querystring overrides filters
       } else {
         if (filters[k]) {                       // after that
@@ -63,8 +75,8 @@ export default function App() {
     });
 
     // if passed an `id` param, lookup that item and override the `t`, `k`, `v` params
-    if (!appData.isLoading() && params.id) {
-      const item = appData.index.id[params.id];
+    if (!appState.isLoading() && params.id) {
+      const item = appState.index.id[params.id];
       if (item) {
         const parts = item.tkv.split('/', 3);     // tkv = 'tree/key/value'
         params.t = parts[0];
@@ -86,27 +98,27 @@ export default function App() {
 
     // replace url state if it has changed
     if (newSearch !== oldSearch || newHash !== oldHash) {
-      routeProps.location.search = newSearch;
-      routeProps.location.hash = newHash;
-      routeProps.history.replace(routeProps.location);
+      location.search = newSearch;
+      location.hash = newHash;
+      navigate(location);
     }
 
     // finally render the page
     if ((params.k && params.v) || params.id) {
       return (
         <>
-        <Header {...params} data={appData} />
+        <Header {...params} data={appState} />
         <div id='content'>
-        <Category {...routeProps} {...params} data={appData} />
+        <Category {...params} data={appState} />
         </div>
         </>
       );
     } else {
       return (
         <>
-        <Header {...params} data={appData} />
+        <Header {...params} data={appState} />
         <div id='content'>
-        <Overview {...routeProps} {...params} data={appData} />
+        <Overview {...params} data={appState} />
         </div>
         </>
       );
