@@ -55,6 +55,17 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
 { color:green; fill-color:green; }
 }}`;
 
+} else if (t === 'denominations') {
+  n = item.tags.denomination;
+  kvn = `${k}/${v}|${n}`;
+  tags = item.tags || {};
+  qid = tags['denomination:wikidata'];
+  overpassQuery = `[out:json][timeout:100];
+(nwr["denomination"="${n}"];);
+out body;
+>;
+out skel qt;`;
+
   } else if (t === 'flags') {
     n = item.tags['flag:name'];
     if (n != null) {

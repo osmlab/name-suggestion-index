@@ -70,7 +70,9 @@ export default function Category(props) {
   let wikidataTag;
   if (t === 'brands') {
     wikidataTag = 'brand:wikidata';
-  } else if (t === 'flags') {
+  } else if (t === 'denominations') {
+    wikidataTag = 'denomination:wikidata';
+  }else if (t === 'flags') {
     wikidataTag = 'flag:wikidata';
   } else if (t === 'operators') {
     wikidataTag = 'operator:wikidata';

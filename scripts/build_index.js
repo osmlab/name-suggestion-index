@@ -38,6 +38,7 @@ let _cache = {};
 loadIndex();
 
 checkItems('brands');
+checkItems('denominations');
 checkItems('flags');
 checkItems('operators');
 checkItems('transit');
@@ -460,6 +461,9 @@ function mergeItems() {
         if (t === 'brands') {
           name = tags.brand || tags.name;
 
+        } else if (t === 'denominations') {
+          name = tags.denomination || tags.name;
+
         } else if (t === 'flags') {
           name = tags['flag:name'];
 
@@ -576,7 +580,7 @@ function mergeItems() {
   // Copy main tag value to local tag value, but only if local value not assigned yet
   // re: 6788#issuecomment-1188024213
   function setLanguageTags(tags, code) {
-    ['name', 'brand', 'operator', 'network'].forEach(k => {
+    ['name', 'denomination', 'brand', 'operator', 'network'].forEach(k => {
       const v = tags[k];
       const loc_k = `${k}:${code}`;   // e.g. `name:ja`
       const loc_v = tags[loc_k];
@@ -658,6 +662,9 @@ function checkItems(t) {
         case 'amenity/fast_food':
         case 'amenity/restaurant':
           if (!tags.cuisine) { warnMissingTag.push([display(item), 'cuisine']); }
+          break;
+        case 'amenity/place_of_worship':
+          if (!tags.religion) { warnMissingTag.push([display(item), 'religion']); }
           break;
         case 'amenity/training':
           if (!tags.training) { warnMissingTag.push([display(item), 'training']); }

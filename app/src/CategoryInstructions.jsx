@@ -11,6 +11,11 @@ export default function CategoryInstructions(props) {
     itemType = 'brand';
     logo = 'logos';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'denominations') {
+    a = 'a';
+    itemType = 'denomination';
+    logo = 'a commons logo';
+    wikidataTag = 'denomination:wikidata';
   } else if (t === 'flags') {
     a = 'a';
     itemType = 'flag';

@@ -9,6 +9,9 @@ export default function OverviewInstructions(props) {
   if (t === 'brands') {
     itemType = 'brand';
     wikidataTag = 'brand:wikidata';
+  } else if (t === 'denominations') {
+    itemType = 'denomination';
+    wikidataTag = 'denomination:wikidata';
   } else if (t === 'flags') {
     itemType = 'flag';
     wikidataTag = 'flag:wikidata';
