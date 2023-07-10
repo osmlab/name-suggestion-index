@@ -284,13 +284,15 @@ function buildIDPresets() {
         targetTags[k] = tags[k] || preset.tags[k];
       }
 
-      // Prefer a wiki commons logo sometimes.. openstreetmap/iD#6361
+      // Prefer a wiki commons logo sometimes.. 
+      // Related issues list: openstreetmap/iD#6361, #2798, #3122, #8042, #8373
       const preferCommons = {
         Q177054: true,    // Burger King
         Q524757: true,    // KFC
         Q779845: true,    // CBA
         Q1205312: true,   // In-N-Out
-        Q10443115: true   // Carlings
+        Q10443115: true,   // Carlings
+        Q38076: true   // McDonald's
       };
 
       let logoURL;
