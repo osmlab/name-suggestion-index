@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons'; // SSL Unlock icon.
 import { faLock }   from '@fortawesome/free-solid-svg-icons'; // SSL lock icon.
 
-import { AppContext, getFilterParams } from './AppContext';
+import { AppContext, getFilterParams, stripDiacritics } from './AppContext';
 import { CategoryRowSocialLinks} from './CategoryRowSocialLinks';
 
 
@@ -220,6 +220,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
   function highlight(needle, haystack) {
     let html = haystack;
     if (needle) {
+      // needle = stripDiacritics(needle);
       needle = needle.replaceAll('+', '\\+'); // escape the + symbol.
       const re = new RegExp('\(' + needle + '\)', 'gi');
       html = html.replace(re, '<mark>$1</mark>');

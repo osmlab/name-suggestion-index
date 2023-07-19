@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import diacritics from 'diacritics';
 
 import { Category } from './Category';
 import { Header } from './Header';
@@ -256,20 +257,21 @@ export function isItemFiltered(context, filters, item) {
 
   // check 'text'
   if (filters.tt) {
+    const needle = stripDiacritics(filters.tt);
     let match = false;
 
     // check tag keys, values, and matchNames
     const toCheck = new Set();
     for (const [key, val] of Object.entries(item.tags)) {
-      toCheck.add(key.toLowerCase());
-      toCheck.add(val.toLowerCase());
+      toCheck.add(stripDiacritics(key));
+      toCheck.add(stripDiacritics(val));
     }
     for (const name of (item.matchNames || [])) {
-      toCheck.add(name.toLowerCase());
+      toCheck.add(stripDiacritics(name));
     }
 
-    for (const str of toCheck) {
-      if (str.includes(filters.tt)) {
+    for (const haystack of toCheck) {
+      if (haystack.includes(needle)) {
         match = true;
         break;
       }
@@ -279,6 +281,7 @@ export function isItemFiltered(context, filters, item) {
 
   // check 'country code'
   if (filters.cc) {
+    const needle = stripDiacritics(filters.cc);
     let match = false;
 
     // check locationset include
@@ -286,10 +289,10 @@ export function isItemFiltered(context, filters, item) {
     const toCheck = new Set();
     for (const code of (item.locationSet.include || [])) {
       if (typeof code !== 'string') continue;
-      toCheck.add(code.toLowerCase());
+      toCheck.add(stripDiacritics(code));
     }
-    for (const str of toCheck) {
-      if (str.includes(filters.cc)) {
+    for (const haystack of toCheck) {
+      if (haystack.includes(needle)) {
         match = true;
         break;
       }
@@ -320,4 +323,16 @@ export function isItemFiltered(context, filters, item) {
   }
 
   return false;
+}
+
+
+//
+export function stripDiacritics(str) {
+  if (typeof str !== 'string') return '';
+
+  return diacritics.remove(
+    str
+      .replace(/(İ|i̇)/ig, 'i')
+      .toLowerCase()
+  );
 }
