@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppContext, getFilterParams, qsString } from './AppContext';
+import { AppContext, isItemFiltered, getFilterParams, qsString } from './AppContext';
 import { CategoryInstructions } from './CategoryInstructions';
 import { CategoryRow } from './CategoryRow';
 
@@ -11,7 +11,7 @@ export function Category() {
   const index = context.index;
   const params = context.params;
   const hash = context.hash;
-  let itemID = hash && hash.slice(1);   // remove leading '#'
+  let selectedID = hash && hash.slice(1);   // remove leading '#'
 
   const t = params.t;
   const k = params.k;
@@ -27,10 +27,10 @@ export function Category() {
     message = 'Loading, please wait...';
 
   } else {
-    if (itemID) {   // if passed an `id` verify that it exists
-      const item = index.id[itemID];
+    if (selectedID) {   // if passed an `id` verify that it exists
+      const item = index.id[selectedID];
       if (!item) {
-        message = `No item found for "${itemID}".`;
+        message = `No item found for "${selectedID}".`;
       }
     }
 
@@ -52,12 +52,12 @@ export function Category() {
     );
 
   } else {    // if no message, we're re-rendering after data has finished loading..
-    // If there was a itemID in the URL, scroll to it.
+    // If there was a selectedID in the URL, scroll to it.
     // Browser may have tried this already on initial render before data was there.
     // This component will render and return the rows, so scroll to the row after a delay.
-    if (itemID) {
+    if (selectedID) {
       window.setTimeout(function() {
-        const el = document.getElementById(itemID);
+        const el = document.getElementById(selectedID);
         if (el) {
           el.scrollIntoView();
         }
@@ -65,49 +65,9 @@ export function Category() {
     }
   }
 
-  // setup defaults for this tree..
-  let wikidataTag;
-  if (t === 'brands') {
-    wikidataTag = 'brand:wikidata';
-  } else if (t === 'flags') {
-    wikidataTag = 'flag:wikidata';
-  } else if (t === 'operators') {
-    wikidataTag = 'operator:wikidata';
-  } else if (t === 'transit') {
-    wikidataTag = 'network:wikidata';
-  }
-
-
   const rows = items.map(item => {
-    // class as selected if we have an itemID in the hash
-    item.selected = (item.id === itemID);
-
-    // apply filters
-    if (filters.dis === 'true' && !context.dissolved[item.id]) {
-      item.filtered = true;
-    } else if (filters.tt) {
-      const tags = Object.entries(item.tags) || [];
-      item.filtered = (tags.length && tags.every(
-        ([key, val]) => (!key.toLowerCase().includes(filters.tt) && !val.toLowerCase().includes(filters.tt))
-      ));
-    } else if (filters.cc) {  // todo: fix countrycode filters - #4077
-      const codes = item.locationSet.include || [];
-      item.filtered = (codes.length && codes.every(
-        code => (typeof code !== 'string' || !code.toLowerCase().includes(filters.cc))
-      ));
-    } else {
-      delete item.filtered;
-    }
-
-    if (!item.filtered) {
-      const tags = item.tags || {};
-      const qid = tags[wikidataTag];
-      const wd = context.wikidata[qid] || {};
-      const logos = wd.logos || {};
-      const hasLogo = Object.keys(logos).length;
-      item.filtered = (filters.inc && hasLogo);
-    }
-
+    item.selected = (item.id === selectedID);
+    item.filtered = isItemFiltered(context, filters, item);
     return (
       <CategoryRow key={item.id} item={item} />
     );

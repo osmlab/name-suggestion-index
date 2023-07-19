@@ -18,13 +18,13 @@ export function Filters() {
       <span className='filterby'>Filter by</span>
 
       <span className='field'>
-        <label htmlFor='tt'>Tag Text:</label>
-        <input type='text' id='tt' name='tt' autoCorrect='off' size='15' value={filters.tt} onChange={filtersChanged} />
+        <label htmlFor='tt'>Text:</label>
+        <input type='text' id='tt' name='tt' autoCorrect='off' size='15' value={filters.tt || ''} onChange={filtersChanged} />
       </span>
 
       <span className='field'>
         <label htmlFor='cc'>Country Code:</label>
-        <input type='text' id='cc' name='cc' autoCorrect='off' maxLength='6' size='3' value={filters.cc} onChange={filtersChanged} />
+        <input type='text' id='cc' name='cc' autoCorrect='off' maxLength='6' size='3' value={filters.cc || ''} onChange={filtersChanged} />
       </span>
 
       <span className='field'>

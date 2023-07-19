@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppContext, getFilterParams, qsString } from './AppContext';
+import { AppContext, isItemFiltered, getFilterParams, qsString } from './AppContext';
 import { OverviewInstructions } from './OverviewInstructions';
 
 
@@ -52,6 +52,11 @@ export function Overview() {
 //      { wikidataTag ? OverviewInstructions() : null }
 
 
+  // For the counting code below, we'll apply the filtering rules but without 'inc',
+  // so we can properly count complete vs incomplete.
+  let f = Object.assign({}, filters);  // copy
+  delete f.inc;
+
   // Display the categories under this tree.
   const categories = [];
   for (const tkv of paths.sort()) {
@@ -75,34 +80,15 @@ export function Overview() {
     let complete = 0;
 
     for (const item of items) {
-      // apply filters
-      if (filters.dis === 'true' && !context.dissolved[item.id]) {
-        item.filtered = true;
-      } else if (filters.tt) {
-        const tags = Object.entries(item.tags);
-        item.filtered = (tags.length && tags.every(
-          ([key, val]) => (!key.toLowerCase().includes(filters.tt) && !val.toLowerCase().includes(filters.tt))
-        ));
-      } else if (filters.cc) {  // todo: fix countrycode filters - #4077
-        const codes = (item.locationSet.include || []);
-        item.filtered = (codes.length && codes.every(
-          (code) => (typeof code !== 'string' || !code.toLowerCase().includes(filters.cc))
-        ));
-      } else {
-        delete item.filtered;
-      }
-
-      const tags = item.tags || {};
-      const qid = tags[wikidataTag];
-      const wd = context.wikidata[qid] || {};
-      const logos = wd.logos || {};
-      if (!item.filtered) {
+      const isFiltered = isItemFiltered(context, f, item);  // f = filters without 'inc'
+      if (!isFiltered) {
         count++;
+        const tags = item.tags || {};
+        const qid = tags[wikidataTag];
+        const wd = context.wikidata[qid] || {};
+        const logos = wd.logos || {};
         if (Object.keys(logos).length) {
           complete++;
-          if (filters.inc) {
-            item.filtered = true;
-          }
         }
       }
     }

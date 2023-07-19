@@ -241,3 +241,83 @@ export function getFilterParams(params) {
   if (dis) result.dis = 'true';
   return result;
 }
+
+
+// Determines if the given item is filtered by the given filtering rules.
+// true if the item is filtered (hidden), false if not filtered (visible)
+export function isItemFiltered(context, filters, item) {
+  const params = context.params;
+  const t = params.t;
+
+  // check 'dissolved'
+  if (filters.dis === 'true' && !context.dissolved[item.id]) {
+    return true;
+  }
+
+  // check 'text'
+  if (filters.tt) {
+    let match = false;
+
+    // check tag keys, values, and matchNames
+    const toCheck = new Set();
+    for (const [key, val] of Object.entries(item.tags)) {
+      toCheck.add(key.toLowerCase());
+      toCheck.add(val.toLowerCase());
+    }
+    for (const name of (item.matchNames || [])) {
+      toCheck.add(name.toLowerCase());
+    }
+
+    for (const str of toCheck) {
+      if (str.includes(filters.tt)) {
+        match = true;
+        break;
+      }
+    }
+    if (!match) return true;
+  }
+
+  // check 'country code'
+  if (filters.cc) {
+    let match = false;
+
+    // check locationset include
+    // todo: improve countrycode filters - #4077
+    const toCheck = new Set();
+    for (const code of (item.locationSet.include || [])) {
+      if (typeof code !== 'string') continue;
+      toCheck.add(code.toLowerCase());
+    }
+    for (const str of toCheck) {
+      if (str.includes(filters.cc)) {
+        match = true;
+        break;
+      }
+    }
+    if (!match) return true;
+  }
+
+  // check 'incomplete'
+  // if we have wikidata tag and at least one logo, it's "complete"
+  if (filters.inc === 'true') {
+    let wikidataTag;
+    if (t === 'brands') {
+      wikidataTag = 'brand:wikidata';
+    } else if (t === 'flags') {
+      wikidataTag = 'flag:wikidata';
+    } else if (t === 'operators') {
+      wikidataTag = 'operator:wikidata';
+    } else if (t === 'transit') {
+      wikidataTag = 'network:wikidata';
+    }
+
+    const tags = item.tags || {};
+    const qid = tags[wikidataTag];
+    const wd = context.wikidata[qid] || {};
+    const logos = wd.logos || {};
+
+    if (Object.keys(logos).length) return true;
+  }
+
+  return false;
+}
