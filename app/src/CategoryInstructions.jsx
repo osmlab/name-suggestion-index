@@ -1,10 +1,13 @@
-import React from 'react';
+import { useContext } from 'react';
+import { AppContext } from './AppContext';
 
 
-export default function CategoryInstructions(props) {
+export function CategoryInstructions() {
+  const context = useContext(AppContext);
+  const params = context.params;
+  const t = params.t;
+
   // setup defaults for this tree..
-  const t = props.t;
-
   let a, itemType, logo, wikidataTag;
   if (t === 'brands') {
     a = 'a';
@@ -35,17 +38,15 @@ export default function CategoryInstructions(props) {
   }
 
   return (
-    <>
     <div className='instructions'>Some things you can do here:
-    <ul>
-    <li>Is {a} {itemType} missing or something is incorrect? <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/issues'>Open an issue</a> or pull request to add it!</li>
-    <li>Click the "Search Overpass Turbo" link to see where the {itemType} is mapped in OpenStreetMap.</li>
-    <li>If a record is missing a <code>'{wikidataTag}'</code> tag, you can do the research to add it to our project, or filter it out if it is not {a} {itemType}.<br/>
-      See <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md'>CONTRIBUTING.md</a> for more info.</li>
-    <li>If a record with a <code>'{wikidataTag}'</code> tag has a poor description or is missing {logo}, click the Wikidata link and edit the Wikidata page.<br/>{social}</li>
-    <li>If an entry you wish to edit is generated from a template, you may need to edit the original (master) template if the values match, or create a seperate new entry if the values will be different.</li>
-    </ul>
+      <ul>
+      <li>Is {a} {itemType} missing or something is incorrect? <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/issues'>Open an issue</a> or pull request to add it!</li>
+      <li>Click the "Search Overpass Turbo" link to see where the {itemType} is mapped in OpenStreetMap.</li>
+      <li>If a record is missing a <code>'{wikidataTag}'</code> tag, you can do the research to add it to our project, or filter it out if it is not {a} {itemType}.<br/>
+        See <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md'>CONTRIBUTING.md</a> for more info.</li>
+      <li>If a record with a <code>'{wikidataTag}'</code> tag has a poor description or is missing {logo}, click the Wikidata link and edit the Wikidata page.<br/>{social}</li>
+      <li>If an entry you wish to edit is generated from a template, you may need to edit the original (master) template if the values match, or create a seperate new entry if the values will be different.</li>
+      </ul>
     </div>
-    </>
   );
 };

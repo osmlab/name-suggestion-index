@@ -1,8 +1,10 @@
-import React from 'react';
+import { useContext } from 'react';
+import { AppContext } from './AppContext';
 
-export default function Footer(props) {
-  const index = props.index;
-  const meta = index?.meta;
+
+export function Footer() {
+  const context = useContext(AppContext);
+  const meta = context.index?.meta;
   const version = meta?.version;
   const generated = meta?.generated;
   const released = generated && new Date(Date.parse(generated));

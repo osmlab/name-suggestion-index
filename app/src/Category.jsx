@@ -1,36 +1,34 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
-import CategoryInstructions from './CategoryInstructions';
-import CategoryRow from './CategoryRow';
-import Filters from './Filters';
+import { AppContext } from './AppContext';
+import { CategoryInstructions } from './CategoryInstructions';
+import { CategoryRow } from './CategoryRow';
+import { Filters } from './Filters';
 
 
-export default function Category(props) {
-  const data = props.data;
-  const index = data.index;
+export function Category() {
+  const context = useContext(AppContext);
+  const index = context.index;
+  const params = context.params;
+  const hash = context.hash;
+  let itemID = hash && hash.slice(1);   // remove leading '#'
 
-  const location = useLocation();
-  const hash = location.hash;
-  let slug = hash && hash.slice(1);   // remove leading '#'
-
-  let t = props.t;
-  let k = props.k;
-  let v = props.v;
+  let t = params.t;
+  let k = params.k;
+  let v = params.v;
   let tkv = `${t}/${k}/${v}`;
   let message;
   let items;
 
-  if (data.isLoading()) {
+  if (context.isLoading()) {
     message = 'Loading, please wait...';
 
   } else {
-    if (props.id) {   // if passed an `id` prop, that overrides the `t`, `k`, `v` props
-      const item = index.id[props.id];
-      if (item) {
-        slug = encodeURI(item.id);
-      } else {
-        message = `No item found for "${props.id}".`;
+    if (itemID) {   // if passed an `id` verify that it exists
+      const item = index.id[itemID];
+      if (!item) {
+        message = `No item found for "${itemID}".`;
       }
     }
 
@@ -44,21 +42,21 @@ export default function Category(props) {
     return (
       <>
       <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
-      <CategoryInstructions t={t} />
-      <Filters data={data} />
+      <CategoryInstructions/>
+      <Filters/>
       <div className='summary'>
       {message}
       </div>
       </>
     );
 
-  } else {    // re-rendering after data has finished loading..
-    // If there was a slug in the URL, scroll to it.
+  } else {    // if no message, we're re-rendering after data has finished loading..
+    // If there was a itemID in the URL, scroll to it.
     // Browser may have tried this already on initial render before data was there.
     // This component will render and return the rows, so scroll to the row after a delay.
-    if (slug) {
+    if (itemID) {
       window.setTimeout(function() {
-        const el = document.getElementById(slug);
+        const el = document.getElementById(itemID);
         if (el) {
           el.scrollIntoView();
         }
@@ -79,27 +77,24 @@ export default function Category(props) {
   }
 
   // filters
-  const tt = ((data.filters?.tt) || '').toLowerCase().trim();
-  const cc = ((data.filters?.cc) || '').toLowerCase().trim();
-  const inc = !!(data.filters?.inc);
+  const tt = (params.tt || '').toLowerCase().trim();
+  const cc = (params.cc || '').toLowerCase().trim();
+  const inc = (params.inc || '').toLowerCase().trim() === 'true';
 
   const rows = items.map(item => {
-    // calculate slug
-    item.slug = encodeURI(item.id);
-
-    // apply selection if slug in URL matches slug
-    item.selected = slug === item.slug;
+    // class as selected if we have an itemID in the hash
+    item.selected = (item.id === itemID);
 
     // apply filters
     if (tt) {
-      const tags = Object.entries(item.tags);
+      const tags = Object.entries(item.tags) || [];
       item.filtered = (tags.length && tags.every(
-        (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
+        ([key, val]) => (key.toLowerCase().indexOf(tt) === -1 && val.toLowerCase().indexOf(tt) === -1)
       ));
     } else if (cc) {  // todo: fix countrycode filters - #4077
-      const codes = (item.locationSet.include || []);
+      const codes = item.locationSet.include || [];
       item.filtered = (codes.length && codes.every(
-        (code) => (typeof code !== 'string' || code.toLowerCase().indexOf(cc) === -1)
+        code => (typeof code !== 'string' || code.toLowerCase().indexOf(cc) === -1)
       ));
     } else {
       delete item.filtered;
@@ -108,66 +103,58 @@ export default function Category(props) {
     if (!item.filtered) {
       const tags = item.tags || {};
       const qid = tags[wikidataTag];
-      const wd = data.wikidata[qid] || {};
+      const wd = context.wikidata[qid] || {};
       const logos = wd.logos || {};
       const hasLogo = Object.keys(logos).length;
       item.filtered = (inc && hasLogo);
     }
 
     return (
-      <CategoryRow key={item.id} {...props} item={item} />
+      <CategoryRow key={item.id} item={item} />
     );
   });
 
-  if (t === 'flags') {
-    return (
-      <>
-      <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
-      <CategoryInstructions t={t} />
-      <Filters data={data} />
 
-      <table className='summary'>
-      <thead>
+  let headerRow;
+  if (t === 'flags') {  // Flags don't have social links / Facebook logo
+    headerRow = (
       <tr>
       <th>Name<br/>ID<br/>Locations</th>
       <th>OpenStreetMap Tags<hr/>NSI Hints</th>
       <th>Wikidata Name/Description<br/>Official Website</th>
       <th className='logo'>Commons Logo</th>
       </tr>
-      </thead>
-
-      <tbody>
-      {rows}
-      </tbody>
-
-      </table>
-      </>
     );
   } else {
-    return (
-      <>
-      <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
-      <CategoryInstructions t={t} />
-      <Filters data={data} />
-
-      <table className='summary'>
-      <thead>
+    headerRow = (
       <tr>
       <th>Name<br/>ID<br/>Locations</th>
       <th>OpenStreetMap Tags<hr/>NSI Hints</th>
       <th>Wikidata Name/Description<br/>Official Website<br/>Social Links</th>
       <th className='logo'>Commons Logo</th>
       <th className='logo'>Facebook Logo</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      {rows}
-      </tbody>
-
-      </table>
-      </>
+    </tr>
     );
   }
+
+
+  return (
+    <>
+    <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
+    <CategoryInstructions/>
+    <Filters/>
+
+    <table className='summary'>
+    <thead>
+    {headerRow}
+    </thead>
+
+    <tbody>
+    {rows}
+    </tbody>
+
+    </table>
+    </>
+  );
 
 };

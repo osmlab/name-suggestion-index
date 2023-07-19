@@ -1,6 +1,4 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -13,7 +11,8 @@ import { faWeibo } from '@fortawesome/free-brands-svg-icons';
 import { faWeixin } from '@fortawesome/free-brands-svg-icons';
 import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 
-export default function CategoryRowSocialLinks(props) {
+
+export function CategoryRowSocialLinks(props) {
   let items = [];
   let href;
 

@@ -1,15 +1,18 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
+import { AppContext } from './AppContext';
 
-export default function Header(props) {
+
+export function Header() {
+
   return (
     <div id='header' className='hasCols'>
-      { Title(props) }
-      { TreeSwitcher(props) }
+      { Title() }
+      { TreeSwitcher() }
       { DarkMode() }
       { GitHub() }
     </div>
@@ -17,17 +20,16 @@ export default function Header(props) {
 };
 
 
-function Title(props) {
-  const data = props.data;
-  const index = data.index;
-
-  const t = props.t;
-  const k = props.k;
-  const v = props.v;
+function Title() {
+  const context = useContext(AppContext);
+  const params = context.params;
+  const t = params.t;
+  const k = params.k;
+  const v = params.v;
 
   // try to pick an icon
   let iconURL;
-  if (!data.isLoading() && k && v) {
+  if (!context.isLoading() && k && v) {
     let fallbackIcon;
     if (t === 'brands') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
@@ -40,9 +42,9 @@ function Title(props) {
     }
 
     const kv = `${k}/${v}`;
-    iconURL = data.icons[kv];
-    if (!iconURL) iconURL = data.icons[k];    // fallback to generic key=* icon
-    if (!iconURL) iconURL = fallbackIcon;     // fallback to generic icon
+    iconURL = context.icons[kv];
+    if (!iconURL) iconURL = context.icons[k];   // fallback to generic key=* icon
+    if (!iconURL) iconURL = fallbackIcon;       // fallback to generic icon
 
     // exceptions:
     if (kv === 'power/minor_line') {  // iD's power pole icon has a fill
@@ -68,23 +70,21 @@ function Title(props) {
   }
 
   return (
-    <div id='title'>
-    <h1>{icon}{title}</h1>
-    </div>
+    <div id='title'><h1>{icon}{title}</h1></div>
   );
 }
 
 
-function TreeSwitcher(props) {
-  const t = props.t;
+function TreeSwitcher() {
+  const context = useContext(AppContext);
+  const params = context.params;
+  const t = params.t;
   const others = ['brands', 'flags', 'operators', 'transit'].filter(d => d !== t);
   const links = others.map(t => (<li key={t}><Link to={`index.html?t=${t}`}>{t}/</Link></li>));
   const list = links.length ? (<> see also: <ul>{links}</ul> </>) : null;
 
   return (
-    <div id='treeswitcher'>
-    {list}
-    </div>
+    <div id='treeswitcher'>{list}</div>
   );
 }
 
@@ -132,9 +132,9 @@ function DarkMode() {
 function GitHub() {
   return (
     <div id='octocat'>
-    <a href='https://github.com/osmlab/name-suggestion-index' target='_blank'>
-    <FontAwesomeIcon icon={faGithub} size='2x' />
-    </a>
+      <a href='https://github.com/osmlab/name-suggestion-index' target='_blank'>
+        <FontAwesomeIcon icon={faGithub} size='2x' />
+      </a>
     </div>
   );
 }

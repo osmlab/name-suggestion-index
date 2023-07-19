@@ -1,20 +1,21 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import OverviewInstructions from './OverviewInstructions';
-import Filters from './Filters';
+import { AppContext } from './AppContext';
+import { OverviewInstructions } from './OverviewInstructions';
+import { Filters } from './Filters';
 
 
-export default function Overview(props) {
-  const t = props.t;
-  const data = props.data;
-  const index = data.index;
+export function Overview() {
+  const context = useContext(AppContext);
+  const index = context.index;
+  const params = context.params;
+  const t = params.t;
 
   // filters
-  const tt = ((data.filters?.tt) || '').toLowerCase().trim();
-  const cc = ((data.filters?.cc) || '').toLowerCase().trim();
-  const inc = !!(data.filters?.inc);
-
+  const tt = (params.tt || '').toLowerCase().trim();
+  const cc = (params.cc || '').toLowerCase().trim();
+  const inc = (params.inc || '').toLowerCase().trim() === 'true';
 
   // setup defaults for this tree..
   let fallbackIcon, wikidataTag;
@@ -32,13 +33,9 @@ export default function Overview(props) {
     wikidataTag = 'network:wikidata';
   }
 
-  // only render these components if we are loading a supported tree..
-  const instructions = wikidataTag ? OverviewInstructions({t: t}) : null;
-  const filters = wikidataTag ? Filters({data: data}) : null;
-
   let message;
   let paths;
-  if (data.isLoading()) {
+  if (context.isLoading()) {
     message = 'Loading, please wait...';
   } else {
     paths = Object.keys(index.path).filter(tkv => tkv.split('/')[0] === t);
@@ -47,30 +44,30 @@ export default function Overview(props) {
     }
   }
 
+  // Display a message if the data isn't ready yet, or if this is not an actual tree.
   if (message) {
     return (
       <>
-      {instructions}
-      {filters}
       <div className='container'>
       {message}
       </div>
       </>
     );
   }
+//      { wikidataTag ? OverviewInstructions() : null }
+//      { wikidataTag ? Filters() : null }
 
+
+  // Display the categories under this tree.
   const categories = [];
-  paths.sort().forEach(tkv => {
-    const parts = tkv.split('/', 3);
-    const t = parts[0];
-    const k = parts[1];
-    const v = parts[2];
+  for (const tkv of paths.sort()) {
+    const [t, k, v] = tkv.split('/', 3);
     const kv = `${k}/${v}`;
 
     // pick an icon for this category
-    let iconURL = data.icons[kv];
-    if (!iconURL) iconURL = data.icons[k];    // fallback to generic key=* icon
-    if (!iconURL) iconURL = fallbackIcon;     // fallback to generic icon
+    let iconURL = context.icons[kv];
+    if (!iconURL) iconURL = context.icons[k];    // fallback to generic key=* icon
+    if (!iconURL) iconURL = fallbackIcon;        // fallback to generic icon
 
     // exceptions:
     if (kv === 'power/minor_line') {  // iD's power pole icon has a fill
@@ -83,7 +80,7 @@ export default function Overview(props) {
     let count = 0;
     let complete = 0;
 
-    items.forEach(item => {
+    for (const item of items) {
       // apply filters
       if (tt) {
         const tags = Object.entries(item.tags);
@@ -101,7 +98,7 @@ export default function Overview(props) {
 
       const tags = item.tags || {};
       const qid = tags[wikidataTag];
-      const wd = data.wikidata[qid] || {};
+      const wd = context.wikidata[qid] || {};
       const logos = wd.logos || {};
       if (!item.filtered) {
         count++;
@@ -112,7 +109,7 @@ export default function Overview(props) {
           }
         }
       }
-    });
+    }
 
     const isComplete = (complete === count);
     const klass = 'category' + ((!count || (inc && isComplete)) ? ' hide' : '');
@@ -122,12 +119,12 @@ export default function Overview(props) {
       <Link to={`index.html?t=${t}&k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
       </div>
     );
-  });
+  }
 
   return (
     <>
-    {instructions}
-    {filters}
+    <OverviewInstructions/>
+    <Filters/>
     <div className='container'>
     {categories}
     </div>

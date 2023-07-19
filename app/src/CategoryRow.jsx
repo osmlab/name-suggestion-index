@@ -1,24 +1,26 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import CategoryRowSocialLinks from './CategoryRowSocialLinks';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons'; // SSL Unlock icon.
 import { faLock }   from '@fortawesome/free-solid-svg-icons'; // SSL lock icon.
 
-export default function CategoryRow(props) {
-  const data = props.data;
-  if (data.isLoading()) return;
+import { AppContext } from './AppContext';
+import { CategoryRowSocialLinks} from './CategoryRowSocialLinks';
 
+
+export function CategoryRow(props) {
   const item = props.item;
-  const t = props.t;
-  const k = props.k;
-  const v = props.v;
+  const context = useContext(AppContext);
+  if (context.isLoading()) return;
 
+  const params = context.params;
+  const t = params.t;
+  const k = params.k;
+  const v = params.v;
   // filters (used here for highlighting)
-  const tt = ((data.filters?.tt) || '').toLowerCase().trim();
-  const cc = ((data.filters?.cc) || '').toLowerCase().trim();
+  const tt = (params.tt || '').toLowerCase().trim();
+  const cc = (params.cc || '').toLowerCase().trim();
 
   const rowClasses = [];
   if (item.filtered) rowClasses.push('hide');
@@ -124,18 +126,18 @@ relation[${k}=${v}][network:wikidata=${qid}]
 }}`;
   }
 
-  const wd = data.wikidata[qid] || {};
+  const wd = context.wikidata[qid] || {};
   const label = wd.label || '';
   const description = wd.description ? '"' + wd.description + '"' : '';
   const identities = wd.identities || {};
   const logos = wd.logos || {};
 
-  if (t === 'flags') {
+  if (t === 'flags') {    // Flags don't have social links / Facebook logo
     return (
       <tr className={rowClasses.join(' ') || null} >
       <td className='namesuggest'>
-        <h3 className='slug' id={item.slug}>
-          <a href={`#${item.slug}`}>#</a>
+        <h3 className='slug' id={item.id}>
+          <a href={`#${item.id}`}>#</a>
           <span className='anchor'>{item.displayName}</span>
         </h3>
         <div className='nsikey'><pre>{item.id}</pre></div>
@@ -163,8 +165,8 @@ relation[${k}=${v}][network:wikidata=${qid}]
     return (
       <tr className={rowClasses.join(' ') || null} >
       <td className='namesuggest'>
-        <h3 className='slug' id={item.slug}>
-          <a href={`#${item.slug}`}>#</a>
+        <h3 className='slug' id={item.id}>
+          <a href={`#${item.id}`}>#</a>
           <span className='anchor'>{item.displayName}</span>
         </h3>
         <div className='nsikey'><pre>{item.id}</pre></div>
