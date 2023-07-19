@@ -1,11 +1,7 @@
 import { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { AppContext, AppContextProvider } from './AppContext';
-import { Category } from './Category';
-import { Header } from './Header';
-import { Footer } from './Footer';
-import { Overview } from './Overview';
+import { AppContextProvider } from './AppContext';
 
 
 // A hack so react-router will work with a local `file://` url

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Category } from './Category';
 import { Header } from './Header';
+import { Filters } from './Filters'
 import { Footer } from './Footer';
 import { Overview } from './Overview';
 
@@ -109,6 +110,7 @@ export function AppContextProvider() {
   return (
     <AppContext.Provider value={appState}>
       <Header/>
+      <Filters/>
       <div id='content'>
         { (params.k && params.v) ? <Category/> : <Overview/> }
       </div>
@@ -199,7 +201,7 @@ function useTaginfo(url) {
 
 
 // convert a query string to an object of `k=v` pairs
-function stringQs(str) {
+export function stringQs(str) {
   let i = 0;  // advance past any leading '?' or '#' characters
   while (i < str.length && (str[i] === '?' || str[i] === '#')) i++;
   str = str.slice(i);
@@ -215,7 +217,7 @@ function stringQs(str) {
 
 
 // convert an object of `k=v` pairs to a querystring
-function qsString(obj) {
+export function qsString(obj) {
   return Object.keys(obj).map(key => {
     return encodeURIComponent(key) + '=' + (encodeURIComponent(obj[key]));
   }).join('&');

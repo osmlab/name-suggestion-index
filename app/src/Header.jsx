@@ -4,17 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import { AppContext } from './AppContext';
+import { AppContext, qsString } from './AppContext';
 
 
 export function Header() {
-
   return (
     <div id='header' className='hasCols'>
-      { Title() }
-      { TreeSwitcher() }
-      { DarkMode() }
-      { GitHub() }
+      <Title/>
+      <TreeSwitcher/>
+      <DarkMode/>
+      <GitHub/>
     </div>
   );
 };
@@ -79,10 +78,22 @@ function TreeSwitcher() {
   const context = useContext(AppContext);
   const params = context.params;
   const t = params.t;
-  const others = ['brands', 'flags', 'operators', 'transit'].filter(d => d !== t);
-  const links = others.map(t => (<li key={t}><Link to={`index.html?t=${t}`}>{t}/</Link></li>));
-  const list = links.length ? (<> see also: <ul>{links}</ul> </>) : null;
+  const tt = (params.tt || '').toLowerCase().trim();
+  const cc = (params.cc || '').toLowerCase().trim();
+  const inc = (params.inc || '').toLowerCase().trim() === 'true';
 
+  const others = ['brands', 'flags', 'operators', 'transit'].filter(d => d !== t);
+  const links = others.map(t => {
+    const linkparams = { t: t };
+    if (tt) linkparams.tt = tt;
+    if (cc) linkparams.cc = cc;
+    if (inc) linkparams.inc = inc;
+    return (
+      <li key={t}><Link to={'index.html?' + qsString(linkparams)}>{t}/</Link></li>
+    )
+  });
+
+  const list = links.length ? (<> see also: <ul>{links}</ul> </>) : null;
   return (
     <div id='treeswitcher'>{list}</div>
   );

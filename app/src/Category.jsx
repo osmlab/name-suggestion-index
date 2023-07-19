@@ -1,10 +1,9 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppContext } from './AppContext';
+import { AppContext, qsString } from './AppContext';
 import { CategoryInstructions } from './CategoryInstructions';
 import { CategoryRow } from './CategoryRow';
-import { Filters } from './Filters';
 
 
 export function Category() {
@@ -14,12 +13,23 @@ export function Category() {
   const hash = context.hash;
   let itemID = hash && hash.slice(1);   // remove leading '#'
 
-  let t = params.t;
-  let k = params.k;
-  let v = params.v;
-  let tkv = `${t}/${k}/${v}`;
+  const t = params.t;
+  const k = params.k;
+  const v = params.v;
+  const tkv = `${t}/${k}/${v}`;
   let message;
   let items;
+
+  // filters
+  const tt = (params.tt || '').toLowerCase().trim();
+  const cc = (params.cc || '').toLowerCase().trim();
+  const inc = (params.inc || '').toLowerCase().trim() === 'true';
+
+  const backparams = { t: t };
+  if (tt) backparams.tt = tt;
+  if (cc) backparams.cc = cc;
+  if (inc) backparams.inc = inc;
+
 
   if (context.isLoading()) {
     message = 'Loading, please wait...';
@@ -41,9 +51,8 @@ export function Category() {
   if (message) {
     return (
       <>
-      <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
+      <div className='nav'><Link to={'index.html?' + qsString(backparams)}>↑ Back to {t}/</Link></div>
       <CategoryInstructions/>
-      <Filters/>
       <div className='summary'>
       {message}
       </div>
@@ -76,10 +85,6 @@ export function Category() {
     wikidataTag = 'network:wikidata';
   }
 
-  // filters
-  const tt = (params.tt || '').toLowerCase().trim();
-  const cc = (params.cc || '').toLowerCase().trim();
-  const inc = (params.inc || '').toLowerCase().trim() === 'true';
 
   const rows = items.map(item => {
     // class as selected if we have an itemID in the hash
@@ -140,19 +145,15 @@ export function Category() {
 
   return (
     <>
-    <div className='nav'><Link to={`index.html?t=${t}`}>↑ Back to {t}/</Link></div>
+    <div className='nav'><Link to={'index.html?' + qsString(backparams)}>↑ Back to {t}/</Link></div>
     <CategoryInstructions/>
-    <Filters/>
-
     <table className='summary'>
     <thead>
     {headerRow}
     </thead>
-
     <tbody>
     {rows}
     </tbody>
-
     </table>
     </>
   );

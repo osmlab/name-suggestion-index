@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppContext } from './AppContext';
+import { AppContext, qsString } from './AppContext';
 import { OverviewInstructions } from './OverviewInstructions';
-import { Filters } from './Filters';
 
 
 export function Overview() {
@@ -55,7 +54,6 @@ export function Overview() {
     );
   }
 //      { wikidataTag ? OverviewInstructions() : null }
-//      { wikidataTag ? Filters() : null }
 
 
   // Display the categories under this tree.
@@ -113,10 +111,16 @@ export function Overview() {
 
     const isComplete = (complete === count);
     const klass = 'category' + ((!count || (inc && isComplete)) ? ' hide' : '');
+
+    const linkparams = { t: t, k: k, v: v };
+    if (tt) linkparams.tt = tt;
+    if (cc) linkparams.cc = cc;
+    if (inc) linkparams.inc = inc;
+
     categories.push(
       <div key={tkv} className={klass} >
       <img className='icon' src={iconURL} />
-      <Link to={`index.html?t=${t}&k=${k}&v=${v}`}>{`${kv} (${complete}/${count})`}</Link>
+      <Link to={'index.html?' + qsString(linkparams)}>{`${kv} (${complete}/${count})`}</Link>
       </div>
     );
   }
@@ -124,7 +128,6 @@ export function Overview() {
   return (
     <>
     <OverviewInstructions/>
-    <Filters/>
     <div className='container'>
     {categories}
     </div>
