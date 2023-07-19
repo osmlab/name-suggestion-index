@@ -17,7 +17,7 @@ body {
 }
 
 #root        { background: #f6f6f6; color: #333; }
-#root.dark   { background: #2a2a2a; color: #bbb; }
+#root.dark   { background: #222; color: #aaa; }
 
 .hasCols { display: flex; flex-flow: row nowrap; }
 .hasRows { display: flex; flex-flow: column nowrap; }
@@ -258,7 +258,7 @@ table.summary {
   margin-top: 20px;
 }
 .dark table.summary {
-  border: 1px solid #555;
+  border: 1px solid #444;
 }
 table.summary th {
   position: sticky;
@@ -272,16 +272,16 @@ table.summary th {
   z-index: 1; /* stay on top when scrolling */
 }
 .dark table.summary th {
-  background: #1a1a1a;
+  background: #111;
   color: #999;
-  border: 1px solid #555;
+  border: 1px solid #444;
 }
 
 tbody tr.selected {
   background-color: #ffe;
 }
 .dark tbody tr.selected {
-  background-color: #3a3a30;
+  background-color: #3a3a35;
 }
 
 tbody td {
@@ -292,7 +292,7 @@ tbody td {
   vertical-align: top;
 }
 .dark tbody td {
-  border: 1px solid #555;
+  border: 1px solid #444;
 }
 
 tbody h3.slug::before {
@@ -317,6 +317,13 @@ tbody td.namesuggest {
 }
 tbody .nsikey {
   overflow-x: auto;
+}
+tbody .dissolved {
+  color: #f33;
+  font-weight: bold;
+}
+.dark tbody .dissolved {
+  color: #b22;
 }
 tbody .locations {
   overflow-x: auto;

@@ -76,15 +76,17 @@ export function Overview() {
 
     for (const item of items) {
       // apply filters
-      if (filters.tt) {
+      if (filters.dis === 'true' && !context.dissolved[item.id]) {
+        item.filtered = true;
+      } else if (filters.tt) {
         const tags = Object.entries(item.tags);
         item.filtered = (tags.length && tags.every(
-          (pair) => (pair[0].toLowerCase().indexOf(filters.tt) === -1 && pair[1].toLowerCase().indexOf(filters.tt) === -1)
+          ([key, val]) => (!key.toLowerCase().includes(filters.tt) && !val.toLowerCase().includes(filters.tt))
         ));
       } else if (filters.cc) {  // todo: fix countrycode filters - #4077
         const codes = (item.locationSet.include || []);
         item.filtered = (codes.length && codes.every(
-          (code) => (typeof code !== 'string' || code.toLowerCase().indexOf(filters.cc) === -1)
+          (code) => (typeof code !== 'string' || !code.toLowerCase().includes(filters.cc))
         ));
       } else {
         delete item.filtered;

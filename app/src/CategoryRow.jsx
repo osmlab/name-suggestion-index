@@ -20,6 +20,17 @@ export function CategoryRow(props) {
   const v = params.v;
   const filters = getFilterParams(params);   // filters are used here for highlighting
 
+  // Determine dissolutation date (if any)
+  const dissolvedInfo = context.dissolved[item.id];
+  let dissolved;
+  if (Array.isArray(dissolvedInfo)) {
+    const first = dissolvedInfo[0]?.date;
+    const dissolvedDate = first && new Date(Date.parse(first));
+    if (dissolvedDate) {
+      dissolved = (<div className='dissolved'>(Dissolved { dissolvedDate.getFullYear() })</div>);
+    }
+  }
+
   const rowClasses = [];
   if (item.filtered) rowClasses.push('hide');
   if (item.selected) rowClasses.push('selected');
@@ -138,6 +149,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
           <a href={`#${item.id}`}>#</a>
           <span className='anchor'>{item.displayName}</span>
         </h3>
+        {dissolved}
         <div className='nsikey'><pre>{item.id}</pre></div>
         <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
         <div className='viewlink'>
@@ -167,6 +179,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
           <a href={`#${item.id}`}>#</a>
           <span className='anchor'>{item.displayName}</span>
         </h3>
+        {dissolved}
         <div className='nsikey'><pre>{item.id}</pre></div>
         <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
         <div className='viewlink'>

@@ -11,6 +11,7 @@ import { Overview } from './Overview';
 const DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
 const INDEX = `${DIST}/nsi.min.json`;
 const WIKIDATA = `${DIST}/wikidata.min.json`;
+const DISSOLVED = `${DIST}/dissolved.min.json`;
 
 // We can use iD's taginfo file to pick icons
 const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@latest/dist/taginfo.min.json';
@@ -19,9 +20,10 @@ const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@l
 export const AppContext = createContext(null);
 
 export function AppContextProvider() {
-  const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
   const [index, indexLoading] = useNsi(INDEX);
   const [icons, iconsLoading] = useTaginfo(TAGINFO);
+  const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
+  const [dissolved, dissolvedLoading] = useFetch(DISSOLVED);
   const [params, setParams] = useState({});
   const [hash, setHash] = useState('');
   const location = useLocation();
@@ -76,7 +78,7 @@ export function AppContextProvider() {
 
     // Put params in this order
     const newParams = {};
-    ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc'].forEach(k => {
+    ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc', 'dis'].forEach(k => {
       if (params[k]) {
         newParams[k] = params[k];
       } else if (k === 't') {       // if no tree specified,
@@ -99,8 +101,9 @@ export function AppContextProvider() {
   const appState = {
     index: index,
     icons: icons,
+    dissolved: dissolved.dissolved,
     wikidata: wikidata.wikidata,
-    isLoading: () => (indexLoading || iconsLoading || wikidataLoading),
+    isLoading: () => (indexLoading || iconsLoading || wikidataLoading || dissolvedLoading),
     params: params,
     setParams: setParams,
     hash: hash,
@@ -229,10 +232,12 @@ export function getFilterParams(params) {
   const tt = (params.tt || '').toLowerCase().trim();
   const cc = (params.cc || '').toLowerCase().trim();
   const inc = (params.inc || '').toLowerCase().trim() === 'true';
+  const dis = (params.dis || '').toLowerCase().trim() === 'true';
 
   const result = {};
   if (tt) result.tt = tt;
   if (cc) result.cc = cc;
   if (inc) result.inc = 'true';
+  if (dis) result.dis = 'true';
   return result;
 }

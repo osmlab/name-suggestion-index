@@ -10,7 +10,7 @@ export function Filters() {
   const params = context.params;
   const setParams = context.setParams;
   const filters = getFilterParams(params);
-  const klass = 'filters' + ((filters.tt || filters.cc || filters.inc) ? ' active' : '');
+  const klass = 'filters' + (Object.keys(filters).length ? ' active' : '');
 
   return (
     <div className={klass}>
@@ -30,6 +30,11 @@ export function Filters() {
       <span className='field'>
         <label htmlFor='inc'>Incomplete:</label>
         <input type='checkbox' id='inc' name='inc' checked={filters.inc === 'true'} onChange={filtersChanged} />
+      </span>
+
+      <span className='field'>
+        <label htmlFor='dis'>Dissolved:</label>
+        <input type='checkbox' id='dis' name='dis' checked={filters.dis === 'true'} onChange={filtersChanged} />
       </span>
 
       <span className='field'>
@@ -63,9 +68,9 @@ export function Filters() {
     event.target.blur();
 
     const newParams = Object.assign({}, params);  // copy
-    delete newParams.tt;
-    delete newParams.cc;
-    delete newParams.inc;
+    for (const k of ['tt', 'cc', 'inc', 'dis']) {
+      delete newParams[k];
+    }
 
     setParams(newParams);
   }
