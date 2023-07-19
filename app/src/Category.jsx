@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppContext, qsString } from './AppContext';
+import { AppContext, getFilterParams, qsString } from './AppContext';
 import { CategoryInstructions } from './CategoryInstructions';
 import { CategoryRow } from './CategoryRow';
 
@@ -20,16 +20,8 @@ export function Category() {
   let message;
   let items;
 
-  // filters
-  const tt = (params.tt || '').toLowerCase().trim();
-  const cc = (params.cc || '').toLowerCase().trim();
-  const inc = (params.inc || '').toLowerCase().trim() === 'true';
-
-  const backparams = { t: t };
-  if (tt) backparams.tt = tt;
-  if (cc) backparams.cc = cc;
-  if (inc) backparams.inc = inc;
-
+  const filters = getFilterParams(params);
+  const backparams = Object.assign({ t: t }, filters);
 
   if (context.isLoading()) {
     message = 'Loading, please wait...';
@@ -91,15 +83,15 @@ export function Category() {
     item.selected = (item.id === itemID);
 
     // apply filters
-    if (tt) {
+    if (filters.tt) {
       const tags = Object.entries(item.tags) || [];
       item.filtered = (tags.length && tags.every(
-        ([key, val]) => (key.toLowerCase().indexOf(tt) === -1 && val.toLowerCase().indexOf(tt) === -1)
+        ([key, val]) => (key.toLowerCase().indexOf(filters.tt) === -1 && val.toLowerCase().indexOf(filters.tt) === -1)
       ));
-    } else if (cc) {  // todo: fix countrycode filters - #4077
+    } else if (filters.cc) {  // todo: fix countrycode filters - #4077
       const codes = item.locationSet.include || [];
       item.filtered = (codes.length && codes.every(
-        code => (typeof code !== 'string' || code.toLowerCase().indexOf(cc) === -1)
+        code => (typeof code !== 'string' || code.toLowerCase().indexOf(filters.cc) === -1)
       ));
     } else {
       delete item.filtered;
@@ -111,7 +103,7 @@ export function Category() {
       const wd = context.wikidata[qid] || {};
       const logos = wd.logos || {};
       const hasLogo = Object.keys(logos).length;
-      item.filtered = (inc && hasLogo);
+      item.filtered = (filters.inc && hasLogo);
     }
 
     return (

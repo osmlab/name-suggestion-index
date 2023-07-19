@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons'; // SSL Unlock icon.
 import { faLock }   from '@fortawesome/free-solid-svg-icons'; // SSL lock icon.
 
-import { AppContext } from './AppContext';
+import { AppContext, getFilterParams } from './AppContext';
 import { CategoryRowSocialLinks} from './CategoryRowSocialLinks';
 
 
@@ -18,9 +18,7 @@ export function CategoryRow(props) {
   const t = params.t;
   const k = params.k;
   const v = params.v;
-  // filters (used here for highlighting)
-  const tt = (params.tt || '').toLowerCase().trim();
-  const cc = (params.cc || '').toLowerCase().trim();
+  const filters = getFilterParams(params);   // filters are used here for highlighting
 
   const rowClasses = [];
   if (item.filtered) rowClasses.push('hide');
@@ -151,7 +149,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
           { searchWikidataLink(n) }
         </div>
       </td>
-      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
+      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(filters.tt, displayTags(tags)) } /></td>
       <td className='wikidata'>
         <h3>{label}</h3>
         <span>{description}</span><br/>
@@ -180,7 +178,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
           { searchWikidataLink(n) }
         </div>
       </td>
-      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
+      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(filters.tt, displayTags(tags)) } /></td>
       <td className='wikidata'>
         <h3>{label}</h3>
         <span>{description}</span><br/>
@@ -201,7 +199,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
     const href = `https://location-conflation.com/?referrer=nsi&locationSet=${q}`;
     const title = `View LocationSet for ${name}`;
     return val && (
-      <a target='_blank' href={href} title={title}><code dangerouslySetInnerHTML={ highlight(cc, val) } /></a>
+      <a target='_blank' href={href} title={title}><code dangerouslySetInnerHTML={ highlight(filters.cc, val) } /></a>
     );
   }
 

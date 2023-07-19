@@ -2,19 +2,15 @@ import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
-import { AppContext } from './AppContext';
+import { AppContext, getFilterParams } from './AppContext';
 
 
 export function Filters() {
   const context = useContext(AppContext);
   const params = context.params;
   const setParams = context.setParams;
-
-  // filters
-  const tt = (params.tt || '').toLowerCase().trim();
-  const cc = (params.cc || '').toLowerCase().trim();
-  const inc = (params.inc || '').toLowerCase().trim() === 'true';
-  const klass = 'filters' + ((tt || cc || inc) ? ' active' : '');
+  const filters = getFilterParams(params);
+  const klass = 'filters' + ((filters.tt || filters.cc || filters.inc) ? ' active' : '');
 
   return (
     <div className={klass}>
@@ -23,17 +19,17 @@ export function Filters() {
 
       <span className='field'>
         <label htmlFor='tt'>Tag Text:</label>
-        <input type='text' id='tt' name='tt' autoCorrect='off' size='15' value={tt} onChange={filtersChanged} />
+        <input type='text' id='tt' name='tt' autoCorrect='off' size='15' value={filters.tt} onChange={filtersChanged} />
       </span>
 
       <span className='field'>
         <label htmlFor='cc'>Country Code:</label>
-        <input type='text' id='cc' name='cc' autoCorrect='off' maxLength='6' size='3' value={cc} onChange={filtersChanged} />
+        <input type='text' id='cc' name='cc' autoCorrect='off' maxLength='6' size='3' value={filters.cc} onChange={filtersChanged} />
       </span>
 
       <span className='field'>
         <label htmlFor='inc'>Incomplete:</label>
-        <input type='checkbox' id='inc' name='inc' checked={inc} onChange={filtersChanged} />
+        <input type='checkbox' id='inc' name='inc' checked={filters.inc === 'true'} onChange={filtersChanged} />
       </span>
 
       <span className='field'>

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import { AppContext, qsString } from './AppContext';
+import { AppContext, getFilterParams, qsString } from './AppContext';
 
 
 export function Header() {
@@ -78,16 +78,11 @@ function TreeSwitcher() {
   const context = useContext(AppContext);
   const params = context.params;
   const t = params.t;
-  const tt = (params.tt || '').toLowerCase().trim();
-  const cc = (params.cc || '').toLowerCase().trim();
-  const inc = (params.inc || '').toLowerCase().trim() === 'true';
+  const filters = getFilterParams(params);
 
   const others = ['brands', 'flags', 'operators', 'transit'].filter(d => d !== t);
   const links = others.map(t => {
-    const linkparams = { t: t };
-    if (tt) linkparams.tt = tt;
-    if (cc) linkparams.cc = cc;
-    if (inc) linkparams.inc = inc;
+    const linkparams = Object.assign({ t: t }, filters);
     return (
       <li key={t}><Link to={'index.html?' + qsString(linkparams)}>{t}/</Link></li>
     )

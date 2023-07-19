@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppContext, qsString } from './AppContext';
+import { AppContext, getFilterParams, qsString } from './AppContext';
 import { OverviewInstructions } from './OverviewInstructions';
 
 
@@ -9,12 +9,8 @@ export function Overview() {
   const context = useContext(AppContext);
   const index = context.index;
   const params = context.params;
+  const filters = getFilterParams(params);
   const t = params.t;
-
-  // filters
-  const tt = (params.tt || '').toLowerCase().trim();
-  const cc = (params.cc || '').toLowerCase().trim();
-  const inc = (params.inc || '').toLowerCase().trim() === 'true';
 
   // setup defaults for this tree..
   let fallbackIcon, wikidataTag;
@@ -80,15 +76,15 @@ export function Overview() {
 
     for (const item of items) {
       // apply filters
-      if (tt) {
+      if (filters.tt) {
         const tags = Object.entries(item.tags);
         item.filtered = (tags.length && tags.every(
-          (pair) => (pair[0].toLowerCase().indexOf(tt) === -1 && pair[1].toLowerCase().indexOf(tt) === -1)
+          (pair) => (pair[0].toLowerCase().indexOf(filters.tt) === -1 && pair[1].toLowerCase().indexOf(filters.tt) === -1)
         ));
-      } else if (cc) {  // todo: fix countrycode filters - #4077
+      } else if (filters.cc) {  // todo: fix countrycode filters - #4077
         const codes = (item.locationSet.include || []);
         item.filtered = (codes.length && codes.every(
-          (code) => (typeof code !== 'string' || code.toLowerCase().indexOf(cc) === -1)
+          (code) => (typeof code !== 'string' || code.toLowerCase().indexOf(filters.cc) === -1)
         ));
       } else {
         delete item.filtered;
@@ -102,7 +98,7 @@ export function Overview() {
         count++;
         if (Object.keys(logos).length) {
           complete++;
-          if (inc) {
+          if (filters.inc) {
             item.filtered = true;
           }
         }
@@ -110,12 +106,8 @@ export function Overview() {
     }
 
     const isComplete = (complete === count);
-    const klass = 'category' + ((!count || (inc && isComplete)) ? ' hide' : '');
-
-    const linkparams = { t: t, k: k, v: v };
-    if (tt) linkparams.tt = tt;
-    if (cc) linkparams.cc = cc;
-    if (inc) linkparams.inc = inc;
+    const klass = 'category' + ((!count || (filters.inc && isComplete)) ? ' hide' : '');
+    const linkparams = Object.assign({ t: t, k: k, v: v }, filters);
 
     categories.push(
       <div key={tkv} className={klass} >

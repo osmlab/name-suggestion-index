@@ -222,3 +222,17 @@ export function qsString(obj) {
     return encodeURIComponent(key) + '=' + (encodeURIComponent(obj[key]));
   }).join('&');
 }
+
+
+// Gets the filtering params from the url params and cleans them up
+export function getFilterParams(params) {
+  const tt = (params.tt || '').toLowerCase().trim();
+  const cc = (params.cc || '').toLowerCase().trim();
+  const inc = (params.inc || '').toLowerCase().trim() === 'true';
+
+  const result = {};
+  if (tt) result.tt = tt;
+  if (cc) result.cc = cc;
+  if (inc) result.inc = 'true';
+  return result;
+}
