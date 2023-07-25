@@ -8,8 +8,11 @@
   },
   "items": [
     {
-      "note": "Auto create bus stops for all bus routes except Софийски градски транспорт",
-      "templateExclude": ["88763d"],
+      "note": "Auto create bus stops for all bus routes, exceptions below that use multi-network stops",
+      "templateExclude": [
+        "88763d-61eaf0",
+        "rapidklbus-9c952e"
+      ],
       "templateSource": "transit/route/bus",
       "templateTags": {
         "highway": "bus_stop",
