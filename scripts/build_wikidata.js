@@ -273,7 +273,7 @@ function processEntities(result) {
     }
 
     // P856 - official website
-    const officialWebsites = getClaimValues(entity, 'P856');
+    const officialWebsites = getClaimValues(entity, 'P856', true);
     if (officialWebsites) {
       target.officialWebsites = officialWebsites;
     }
@@ -285,7 +285,7 @@ function processEntities(result) {
     }
 
     // P11707 - location URL match pattern
-    const urlMatchPatterns = getClaimValues(entity, 'P11707');
+    const urlMatchPatterns = getClaimValues(entity, 'P11707', false);
     if (urlMatchPatterns) {
       target.urlMatchPatterns = urlMatchPatterns;
     }
@@ -499,17 +499,17 @@ function getClaimValue(entity, prop) {
 
 // `getClaimValues`
 // Get all the claim values
-//   - disregard any claims with an end date qualifier in the past
-//   - disregard any claims with "deprecated" rank
+//   - optionally disregard any claims with an end date qualifier in the past
+//   - optionally disregard any claims with "deprecated" rank
 //   - push any claims with "preferred" rank to the front
-function getClaimValues(entity, prop) {
+function getClaimValues(entity, prop, includeDeprecated) {
   if (!entity.claims) return;
   if (!entity.claims[prop]) return;
 
   let values = [];
   for (let i = 0; i < entity.claims[prop].length; i++) {
     const c = entity.claims[prop][i];
-    if (c.rank === 'deprecated') continue;
+    if (c.rank === 'deprecated' && !includeDeprecated) continue;
     if (c.mainsnak.snaktype !== 'value') continue;
 
     // skip if we find an end time qualifier - P582
@@ -524,7 +524,7 @@ function getClaimValues(entity, prop) {
         break;
       }
     }
-    if (ended) continue;
+    if (ended && !includeDeprecated) continue;
 
     if (c.rank === 'preferred'){  // List preferred values first
       values.unshift(c.mainsnak.datavalue.value);
