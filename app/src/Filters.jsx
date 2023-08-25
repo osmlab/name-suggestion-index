@@ -30,7 +30,7 @@ export function Filters() {
 
       <span className='field'>
         <label htmlFor='inc'>Incomplete:</label>
-        <input type='checkbox' id='inc' name='inc' checked={filters.inc === 'true'} onChange={Keychanged} />
+        <input type='checkbox' id='inc' name='inc' checked={filters.inc === 'true'} onChange={filtersChanged} />
       </span>
 
       <span className='field'>
