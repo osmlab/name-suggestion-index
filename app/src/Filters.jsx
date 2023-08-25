@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 import { AppContext, getFilterParams } from './AppContext';
+import { pathExistsSync } from 'fs-extra';
 
 
 export function Filters() {
@@ -10,7 +11,7 @@ export function Filters() {
   const params = context.params;
   const setParams = context.setParams;
   const filters = getFilterParams(params);
-  const klass = 'filters' + (Object.keys(filters).length ? ' active' : '');
+  const klass = 'filters' + (Object.keys(filters).length ? 'active' : '');
 
   return (
     <div className={klass}>
@@ -29,7 +30,7 @@ export function Filters() {
 
       <span className='field'>
         <label htmlFor='inc'>Incomplete:</label>
-        <input type='checkbox' id='inc' name='inc' checked={filters.inc === 'true'} onChange={filtersChanged} />
+        <input type='checkbox' id='inc' name='inc' checked={filters.inc === 'true'} onChange={Keychanged} />
       </span>
 
       <span className='field'>
@@ -44,15 +45,21 @@ export function Filters() {
   );
 
 
+
+
   function filtersChanged(event) {
     let val;
+    if(event.target.type === "text"){
+      val = event.target.value.replace(/ /g, ' ');
+    }
+
     if (event.target.type === 'checkbox') {
       val = event.target.checked ? 'true' : '';
     } else {
       val = event.target.value || '';
     }
 
-    const newParams = Object.assign({}, params);  // copy
+    const newParams = Object.assign({}, params); // copy
     if (val) {
       newParams[event.target.name] = val;
     } else {
