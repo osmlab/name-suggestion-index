@@ -49,14 +49,11 @@ export function Filters() {
 
   function filtersChanged(event) {
     let val;
-    if(event.target.type === "text"){
-      val = event.target.value.replace(/ /g, ' ');
-    }
 
     if (event.target.type === 'checkbox') {
       val = event.target.checked ? 'true' : '';
     } else {
-      val = event.target.value || '';
+      val = event.target.value.replace(/ /g, '_') || '';
     }
 
     const newParams = Object.assign({}, params); // copy
