@@ -334,6 +334,7 @@ export function stripDiacritics(str) {
     str
       .replace(/(İ|i̇)/ig, 'i')
       .toLowerCase()
+      .replace(/ /g, "_")
       .trim()
   );
 }

@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 import { AppContext, getFilterParams } from './AppContext';
-import { pathExistsSync } from 'fs-extra';
 
 
 export function Filters() {
@@ -53,7 +52,7 @@ export function Filters() {
     if (event.target.type === 'checkbox') {
       val = event.target.checked ? 'true' : '';
     } else {
-      val = event.target.value.replace(/ /g, '_') || '';
+      val = event.target.value || '';
     }
 
     const newParams = Object.assign({}, params); // copy
