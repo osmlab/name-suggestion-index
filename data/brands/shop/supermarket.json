@@ -431,6 +431,7 @@
       "displayName": "Asda",
       "id": "asda-a8278b",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["asda stores limited"],
       "tags": {
         "brand": "Asda",
         "brand:wikidata": "Q297410",
@@ -1064,10 +1065,10 @@
     },
     {
       "displayName": "Carrefour",
-      "id": "carrefour-9ea2a0",
+      "id": "carrefour-2679f0",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["cn", "tw"]
+        "exclude": ["cn", "tr", "tw"]
       },
       "tags": {
         "brand": "Carrefour",
@@ -1107,6 +1108,17 @@
         "brand": "Carrefour Market",
         "brand:wikidata": "Q2689639",
         "name": "Carrefour Market",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "CarrefourSA",
+      "id": "carrefoursa-5b5772",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "brand": "CarrefourSA",
+        "brand:wikidata": "Q28870164",
+        "name": "CarrefourSA",
         "shop": "supermarket"
       }
     },
@@ -2111,6 +2123,7 @@
       "displayName": "E-Center",
       "id": "ecenter-0a839e",
       "locationSet": {"include": ["de"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "EDEKA",
         "brand:wikidata": "Q701755",
@@ -2254,6 +2267,7 @@
       "displayName": "EDEKA aktiv markt",
       "id": "edekaaktivmarkt-0a839e",
       "locationSet": {"include": ["de"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "EDEKA",
         "brand:wikidata": "Q701755",
@@ -3272,6 +3286,8 @@
       "displayName": "HIT",
       "id": "hit-0a839e",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["hit ullrich"],
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "HIT",
         "brand:wikidata": "Q1548713",
@@ -5192,6 +5208,7 @@
       "id": "nahundgut-0a839e",
       "locationSet": {"include": ["de"]},
       "matchNames": ["nah & gut"],
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "EDEKA",
         "brand:wikidata": "Q701755",
@@ -5203,6 +5220,7 @@
       "displayName": "Nahkauf",
       "id": "nahkauf-0a839e",
       "locationSet": {"include": ["de"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Nahkauf",
         "brand:wikidata": "Q57515238",
@@ -5597,6 +5615,7 @@
         "penny market",
         "penny markt"
       ],
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "PENNY",
         "brand:wikidata": "Q284688",
@@ -5928,6 +5947,7 @@
       "displayName": "Publix",
       "id": "publix-dde59d",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["publix super market"],
       "tags": {
         "brand": "Publix",
         "brand:wikidata": "Q672170",
@@ -6099,12 +6119,22 @@
       "displayName": "REWE",
       "id": "rewe-0a839e",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["rewe city"],
       "preserveTags": ["^name"],
       "tags": {
         "brand": "REWE",
         "brand:wikidata": "Q16968817",
         "name": "REWE",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "REWE City",
+      "locationSet": {"include": ["de"]},
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "REWE",
+        "brand:wikidata": "Q16968817",
+        "name": "REWE City",
         "shop": "supermarket"
       }
     },
@@ -6477,6 +6507,17 @@
         "brand": "ShopRite",
         "brand:wikidata": "Q7501097",
         "name": "ShopRite",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Shopwise",
+      "id": "shopwise-49e134",
+      "locationSet": {"include": ["ph"]},
+      "tags": {
+        "brand": "Shopwise",
+        "brand:wikidata": "Q118674375",
+        "name": "Shopwise",
         "shop": "supermarket"
       }
     },
@@ -7551,17 +7592,6 @@
         "brand": "Trader Joe's",
         "brand:wikidata": "Q688825",
         "name": "Trader Joe's",
-        "shop": "supermarket"
-      }
-    },
-    {
-      "displayName": "Treff 3000",
-      "id": "treff3000-0a839e",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "brand": "EDEKA",
-        "brand:wikidata": "Q701755",
-        "name": "Treff 3000",
         "shop": "supermarket"
       }
     },
@@ -8676,6 +8706,17 @@
         "brand:en": "Komandor",
         "brand:wikidata": "Q61876152",
         "name": "Командор",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Копійка",
+      "id": "e23c32-94881c",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "brand": "Копійка",
+        "brand:wikidata": "Q116871080",
+        "name": "Копійка",
         "shop": "supermarket"
       }
     },
@@ -10002,8 +10043,10 @@
     },
     {
       "displayName": "シティ",
-      "id": "city-fe0970",
-      "locationSet": {"include": ["jp"]},
+      "id": "city-c0ae3d",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "brand": "シティ",
         "brand:en": "CITY",
@@ -10017,8 +10060,10 @@
     },
     {
       "displayName": "シティマート",
-      "id": "citymart-fe0970",
-      "locationSet": {"include": ["jp"]},
+      "id": "citymart-c0ae3d",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "brand": "シティ",
         "brand:en": "CITY",
@@ -10493,8 +10538,10 @@
     },
     {
       "displayName": "ラッキー",
-      "id": "lucky-fe0970",
-      "locationSet": {"include": ["jp"]},
+      "id": "lucky-c0ae3d",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "brand": "ラッキー",
         "brand:en": "LUCKY",
@@ -10510,8 +10557,10 @@
     },
     {
       "displayName": "ラッキーマート",
-      "id": "luckymart-fe0970",
-      "locationSet": {"include": ["jp"]},
+      "id": "luckymart-c0ae3d",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "brand": "ラッキー",
         "brand:en": "LUCKY",

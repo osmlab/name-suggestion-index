@@ -1,6 +1,6 @@
 {
   "name": "name-suggestion-index",
-  "version": "6.0.20230807",
+  "version": "6.0.20230825",
   "license": "BSD-3-Clause",
   "repository": "github:osmlab/name-suggestion-index",
   "contributors": [
@@ -80,7 +80,7 @@
     "dist/*": "./dist/*"
   },
   "scripts": {
-    "all": "run-s build dist",
+    "all": "run-s build wikidata dist",
     "appbuild": "npm run docbuild",
     "dist": "run-s dist:version dist:files dist:javascript",
     "dist:files": "node scripts/dist_files.js",
@@ -111,7 +111,7 @@
     "@ideditor/nsi-collector": "^1.0.20230619",
     "@mapbox/geojson-area": "^0.2.2",
     "@mapbox/geojson-rewind": "^0.5.2",
-    "@openstreetmap/id-tagging-schema": "~6.3.0",
+    "@openstreetmap/id-tagging-schema": "~6.4.1",
     "@rapideditor/location-conflation": "~1.2.1",
     "c8": "^8.0.0",
     "chalk": "5.3.0",
