@@ -230,7 +230,7 @@ export function qsString(obj) {
 
 // Gets the filtering params from the url params and cleans them up
 export function getFilterParams(params) {
-  const tt = (params.tt || '').toLowerCase().trim();
+  const tt = (params.tt || '').toLowerCase();
   const cc = (params.cc || '').toLowerCase().trim();
   const inc = (params.inc || '').toLowerCase().trim() === 'true';
   const dis = (params.dis || '').toLowerCase().trim() === 'true';
@@ -334,5 +334,7 @@ export function stripDiacritics(str) {
     str
       .replace(/(İ|i̇)/ig, 'i')
       .toLowerCase()
+      .replace(/ /g, "_")
+      .trim()
   );
 }
