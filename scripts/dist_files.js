@@ -229,7 +229,7 @@ function buildIDPresets() {
 
       // Sometimes we can choose a more specific iD preset then `key/value`..
       // Attempt to match a `key/value/extravalue`
-      const tryKeys = ['beauty', 'clothes', 'cuisine', 'fast_food', 'government', 'healthcare:speciality', 'microbrewery', 'organic', 'park_ride', 'recycling_type', 'religion', 'second_hand', 'self_service', 'social_facility', 'sport', 'toilets:disposal', 'tower:type', 'vending', 'waste'];
+      const tryKeys = ['beauty', 'clothes', 'cuisine', 'fast_food', 'government', 'healthcare:speciality', 'recycling_type', 'religion', 'social_facility', 'sport', 'toilets:disposal', 'tower:type', 'vending', 'waste'];
       tryKeys.forEach(osmkey => {
         if (preset) return;    // matched one already
         const val = tags[osmkey];
@@ -243,6 +243,27 @@ function buildIDPresets() {
           if (preset) return;   // it matched
         }
       });
+
+      if (!preset) {
+        // Attempt to check whether specialized preset is set using a some key
+        // with value 'yes' or 'only' e.g. 'organic=only'
+        const tryFlags = ['microbrewery', 'organic', 'park_ride', 'second_hand', 'self_service'];
+        tryFlags.every(osmkey => {
+          const val = tags[osmkey];
+          if (!val) return true;
+
+          const checkPresetID = presetPath + '/' + osmkey;
+          const checkPreset = presetsJSON[checkPresetID];
+          if (!checkPreset) return true;
+
+          if (val === checkPreset.tags[osmkey]) {
+            presetID = checkPresetID;
+            preset = checkPreset;
+            return false;
+          }
+          return true;
+        });
+      }
 
       // fallback to `key/value`
       if (!preset) {
