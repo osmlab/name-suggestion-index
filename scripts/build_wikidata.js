@@ -259,8 +259,12 @@ function processEntities(result) {
     } else {
       // P8972 - Small Logo or Icon
       // P154 - Logo Image
+      // P158 - Seal Image
       // P94 - Coat of Arms Image
-      imageFile = getClaimValue(entity, 'P8972') || getClaimValue(entity, 'P154') || getClaimValue(entity, 'P94');
+      imageFile = getClaimValue(entity, 'P8972') ||
+        getClaimValue(entity, 'P154') ||
+        getClaimValue(entity, 'P158') ||
+        getClaimValue(entity, 'P94');
     }
     if (imageFile) {
       const re = /\.svg$/i;
