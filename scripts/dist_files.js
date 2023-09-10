@@ -290,9 +290,10 @@ function buildIDPresets() {
       }
 
       // fallback to `key/value`
-      if (!preset) {
-        presetID = presetPath;
-        preset = presetsJSON[presetID];
+      if (!preset && childPresets.size === 1) {
+        const presetKV = childPresets.entries().next().value;
+        presetID = presetKV[0];
+        preset = presetKV[1];
       }
 
       // still no match?
