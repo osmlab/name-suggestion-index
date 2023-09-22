@@ -611,19 +611,19 @@ function fetchFacebookLogo(qid, username) {
   const m = username.match(/-(\d+)$/);
   if (m) userid = m[1];
 
-  return fetch(logoURL, fetchOptions)
-    .then(response => {
-      if (!response.ok) {
-        return response.json();  // we should get a response body with more information
-      }
-      if (response.headers.get('content-md5') !== 'OMs/UjwLoIRaoKN19eGYeQ==') {  // question-mark image #2750
-        target.logos.facebook = logoURL;
-      }
-      return {};
-    })
+  // Can specify no redirect to fetch json and speed up this process
+  return fetch(`${logoURL}&redirect=0`, fetchOptions)
+    .then(response => response.json())
     .then(json => {
-      if (json && json.error && json.error.message) {
+      if (!json) return true;
+
+      if (json.error && json.error.message) {
         throw new Error(json.error.message);
+      }
+
+      // Default profile pictures aren't useful to the index #2750
+      if (json.data && !json.data.is_silhouette) {
+        target.logos.facebook = logoURL;
       }
       return true;
     })
