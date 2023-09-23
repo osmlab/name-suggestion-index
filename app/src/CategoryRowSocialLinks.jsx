@@ -46,8 +46,12 @@ export function CategoryRowSocialLinks(props) {
       <a key='pinterest' target='_blank' href={href}><FontAwesomeIcon icon={faPinterestSquare} size='lg' /></a>
     );
   }
-  if (props.youtube) {
-    href = 'https://www.youtube.com/channel/' + props.youtube;
+  if (props.youtube || props.youtubeHandle) {
+    if (props.youtube) {
+      href = 'https://www.youtube.com/channel/' + props.youtube;
+    } else {
+      href = 'https://www.youtube.com/@' + props.youtubeHandle;
+    }
     items.push(
       <a key='youtube' target='_blank' href={href}><FontAwesomeIcon icon={faYoutubeSquare} size='lg' /></a>
     );
