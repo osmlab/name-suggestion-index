@@ -318,6 +318,12 @@ function processEntities(result) {
     if (youtubeUser) {
       target.identities.youtube = youtubeUser;
     }
+    
+    // P11245 - YouTube Handle
+    const youtubeHandle = getClaimValue(entity, 'P2397');
+    if (youtubeHandle) {
+      target.identities.youtubeHandle = youtubeHandle;
+    }
 
     // P2984 - Snapchat ID
     const snapchatUser = getClaimValue(entity, 'P2984');
