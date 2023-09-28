@@ -1948,10 +1948,10 @@
     },
     {
       "displayName": "Banco Santander",
-      "id": "bancosantander-a7b4fd",
+      "id": "bancosantander-d92a4d",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["pl"]
+        "exclude": ["gb", "pl", "us"]
       },
       "matchNames": [
         "santander",
@@ -4252,17 +4252,6 @@
       }
     },
     {
-      "displayName": "Cariparma",
-      "id": "cariparma-7b36b5",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "bank",
-        "brand": "Cariparma",
-        "brand:wikidata": "Q2938832",
-        "name": "Cariparma"
-      }
-    },
-    {
       "displayName": "Carisbo",
       "id": "carisbo-7b36b5",
       "locationSet": {"include": ["it"]},
@@ -5001,11 +4990,11 @@
     },
     {
       "displayName": "Crédit Agricole",
-      "id": "creditagricole-23021c",
+      "id": "creditagricole-e0f11e",
       "locationSet": {
-        "include": ["001"],
-        "exclude": ["rs"]
+        "include": ["eg", "fr", "pl", "ua"]
       },
+      "matchNames": ["crédit agricole bank"],
       "tags": {
         "amenity": "bank",
         "brand": "Crédit Agricole",
@@ -5017,6 +5006,7 @@
       "displayName": "Crédit agricole du Maroc (القرض الفلاحي)",
       "id": "77b207-11534a",
       "locationSet": {"include": ["ma"]},
+      "matchNames": ["crédit agricole"],
       "tags": {
         "amenity": "bank",
         "brand": "Crédit agricole du Maroc القرض الفلاحي",
@@ -5026,6 +5016,18 @@
         "name": "Crédit agricole du Maroc القرض الفلاحي",
         "name:ar": "القرض الفلاحي",
         "name:fr": "Crédit agricole du Maroc"
+      }
+    },
+    {
+      "displayName": "Crédit Agricole Italia",
+      "id": "creditagricole-7b36b5",
+      "locationSet": {"include": ["it"]},
+      "matchNames": ["cariparma"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "Crédit Agricole",
+        "brand:wikidata": "Q2938832",
+        "name": "Crédit Agricole"
       }
     },
     {
@@ -7002,6 +7004,17 @@
       }
     },
     {
+      "displayName": "Idea Bank (România)",
+      "id": "ideabank-9a9a30",
+      "locationSet": {"include": ["ro"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Idea Bank",
+        "brand:wikidata": "Q7362554",
+        "name": "Idea Bank"
+      }
+    },
+    {
       "displayName": "Idea Bank (Україна)",
       "id": "ideabank-c8dc19",
       "locationSet": {"include": ["ua"]},
@@ -8721,21 +8734,15 @@
     },
     {
       "displayName": "OTP Bank",
-      "id": "otpbank-675816",
+      "id": "otpbank-744c89",
       "locationSet": {
-        "include": ["al", "hr", "md", "ro", "rs"]
+        "include": ["al", "md", "ro"]
       },
-      "matchNames": [
-        "vojvođanska banka",
-        "војвођанска банка"
-      ],
       "tags": {
         "amenity": "bank",
         "brand": "OTP Bank",
         "brand:wikidata": "Q912778",
         "name": "OTP Bank",
-        "name:hr": "OTP banka",
-        "name:sr": "ОТП банка",
         "short_name": "OTP"
       }
     },
@@ -8753,6 +8760,37 @@
         "name": "OTP Bank",
         "name:en": "OTP Bank",
         "name:uk": "ОТП Банк"
+      }
+    },
+    {
+      "displayName": "OTP banka (Hrvatska)",
+      "id": "otpbanka-6f3d3b",
+      "locationSet": {"include": ["hr"]},
+      "matchNames": ["otp", "otp bank"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "OTP banka",
+        "brand:wikidata": "Q31198593",
+        "name": "OTP banka"
+      }
+    },
+    {
+      "displayName": "OTP banka (Србија)",
+      "id": "otpbanka-e9ea45",
+      "locationSet": {"include": ["rs"]},
+      "matchNames": [
+        "otp",
+        "vojvođanska banka",
+        "војвођанска банка"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "OTP banka",
+        "brand:wikidata": "Q7552914",
+        "name": "OTP banka",
+        "name:en": "OTP bank",
+        "name:sr": "ОТП банка",
+        "name:sr-Latn": "OTP banka"
       }
     },
     {
@@ -8945,7 +8983,11 @@
       "displayName": "Piraeus Bank (Україна)",
       "id": "piraeusbank-c8dc19",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["piraeus"],
+      "matchNames": [
+        "piraeus",
+        "piraeus bank icb",
+        "піреус банк мкб"
+      ],
       "tags": {
         "amenity": "bank",
         "brand": "Piraeus Bank",
@@ -9109,18 +9151,15 @@
     },
     {
       "displayName": "ProCredit Bank",
-      "id": "procreditbank-db23e7",
+      "id": "procreditbank-f3fcbc",
       "locationSet": {
         "include": [
           "al",
           "ba",
           "de-he.geojson",
-          "ge",
           "gr",
           "md",
-          "mk",
           "ro",
-          "rs",
           "xk"
         ]
       },
@@ -9130,6 +9169,19 @@
         "brand": "ProCredit Bank",
         "brand:wikidata": "Q567304",
         "name": "ProCredit Bank"
+      }
+    },
+    {
+      "displayName": "ProCredit Bank (Северна Македонија)",
+      "id": "procreditbank-39118c",
+      "locationSet": {"include": ["mk"]},
+      "matchNames": ["procredit", "прокредит"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "ProCredit Bank",
+        "brand:wikidata": "Q20567486",
+        "name": "ProCredit Bank",
+        "name:mk": "ПроКредит Банка"
       }
     },
     {
@@ -9146,6 +9198,21 @@
         "name": "ProCredit Bank",
         "name:en": "ProCredit Bank",
         "name:uk": "ПроКредит Банк"
+      }
+    },
+    {
+      "displayName": "ProCredit banka (Србија)",
+      "id": "procreditbanka-e9ea45",
+      "locationSet": {"include": ["rs"]},
+      "matchNames": ["procredit", "прокредит"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "ProCredit banka",
+        "brand:wikidata": "Q122811249",
+        "name": "ProCredit banka",
+        "name:en": "ProCredit Bank",
+        "name:sr": "ПроКредит банка",
+        "name:sr-Latn": "ProCredit banka"
       }
     },
     {
@@ -9786,6 +9853,7 @@
       "displayName": "Santander (UK)",
       "id": "santander-e1e9d0",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["santander bank"],
       "tags": {
         "amenity": "bank",
         "brand": "Santander",
@@ -11845,13 +11913,21 @@
     },
     {
       "displayName": "А-Банк",
-      "id": "13a122-c8dc19",
+      "id": "abank-c8dc19",
       "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "accent-bank",
+        "акцент-банк"
+      ],
       "tags": {
         "amenity": "bank",
         "brand": "А-Банк",
+        "brand:en": "A-Bank",
+        "brand:uk": "А-Банк",
         "brand:wikidata": "Q28705400",
-        "name": "А-Банк"
+        "name": "А-Банк",
+        "name:en": "A-Bank",
+        "name:uk": "А-Банк"
       }
     },
     {
@@ -12013,14 +12089,18 @@
     },
     {
       "displayName": "Банк Львів",
-      "id": "7e03ec-c8dc19",
+      "id": "banklviv-c8dc19",
       "locationSet": {"include": ["ua"]},
       "matchNames": ["львів"],
       "tags": {
         "amenity": "bank",
         "brand": "Банк Львів",
+        "brand:en": "Bank Lviv",
+        "brand:uk": "Банк Львів",
         "brand:wikidata": "Q12119076",
-        "name": "Банк Львів"
+        "name": "Банк Львів",
+        "name:en": "Bank Lviv",
+        "name:uk": "Банк Львів"
       }
     },
     {
@@ -12654,9 +12734,11 @@
         "amenity": "bank",
         "brand": "ПриватБанк",
         "brand:en": "PrivatBank",
+        "brand:uk": "ПриватБанк",
         "brand:wikidata": "Q1515015",
         "name": "ПриватБанк",
-        "name:en": "PrivatBank"
+        "name:en": "PrivatBank",
+        "name:uk": "ПриватБанк"
       }
     },
     {
@@ -12704,7 +12786,7 @@
         "brand": "ПроКредит Банк",
         "brand:bg": "ПроКредит Банк",
         "brand:en": "ProCredit Bank",
-        "brand:wikidata": "Q15841030",
+        "brand:wikidata": "Q122763238",
         "name": "ПроКредит Банк",
         "name:bg": "ПроКредит Банк",
         "name:en": "ProCredit Bank"
@@ -12736,9 +12818,11 @@
         "amenity": "bank",
         "brand": "ПУМБ",
         "brand:en": "First Ukrainian International Bank",
+        "brand:uk": "ПУМБ",
         "brand:wikidata": "Q4341156",
         "name": "ПУМБ",
-        "name:en": "First Ukrainian International Bank"
+        "name:en": "First Ukrainian International Bank",
+        "name:uk": "ПУМБ"
       }
     },
     {
@@ -12960,13 +13044,18 @@
     },
     {
       "displayName": "Таскомбанк",
-      "id": "a70483-c8dc19",
+      "id": "tascombank-c8dc19",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["тас"],
       "tags": {
         "amenity": "bank",
         "brand": "Таскомбанк",
+        "brand:en": "Tascombank",
+        "brand:uk": "Таскомбанк",
         "brand:wikidata": "Q28669246",
-        "name": "Таскомбанк"
+        "name": "Таскомбанк",
+        "name:en": "Tascombank",
+        "name:uk": "Таскомбанк"
       }
     },
     {
@@ -13286,6 +13375,22 @@
         "brand:ka": "ლიბერთი ბანკი",
         "brand:wikidata": "Q6541585",
         "name": "ლიბერთი ბანკი"
+      }
+    },
+    {
+      "displayName": "პროკრედიტ ბანკი",
+      "id": "procreditbank-293074",
+      "locationSet": {"include": ["ge"]},
+      "matchNames": ["procredit"],
+      "tags": {
+        "amenity": "bank",
+        "brand": "პროკრედიტ ბანკი",
+        "brand:en": "ProCredit Bank",
+        "brand:ka": "პროკრედიტ ბანკი",
+        "brand:wikidata": "Q122763256",
+        "name": "პროკრედიტ ბანკი",
+        "name:en": "ProCredit Bank",
+        "name:ka": "პროკრედიტ ბანკი"
       }
     },
     {
