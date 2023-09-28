@@ -1,24 +1,35 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import CategoryRowSocialLinks from './CategoryRowSocialLinks';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUnlock } from '@fortawesome/free-solid-svg-icons'; // SSL Unlock icon.
 import { faLock }   from '@fortawesome/free-solid-svg-icons'; // SSL lock icon.
 
-export default function CategoryRow(props) {
-  const data = props.data;
-  if (data.isLoading()) return;
+import { AppContext, getFilterParams, stripDiacritics } from './AppContext';
+import { CategoryRowSocialLinks} from './CategoryRowSocialLinks';
 
+
+export function CategoryRow(props) {
   const item = props.item;
-  const t = props.t;
-  const k = props.k;
-  const v = props.v;
+  const context = useContext(AppContext);
+  if (context.isLoading()) return;
 
-  // filters (used here for highlighting)
-  const tt = ((data.filters && data.filters.tt) || '').toLowerCase().trim();
-  const cc = ((data.filters && data.filters.cc) || '').toLowerCase().trim();
+  const params = context.params;
+  const t = params.t;
+  const k = params.k;
+  const v = params.v;
+  const filters = getFilterParams(params);   // filters are used here for highlighting
+
+  // Determine dissolutation date (if any)
+  const dissolvedInfo = context.dissolved[item.id];
+  let dissolved;
+  if (Array.isArray(dissolvedInfo)) {
+    const first = dissolvedInfo[0]?.date;
+    const dissolvedDate = first && new Date(Date.parse(first));
+    if (dissolvedDate) {
+      dissolved = (<div className='dissolved'>(Dissolved { dissolvedDate.getFullYear() })</div>);
+    }
+  }
 
   const rowClasses = [];
   if (item.filtered) rowClasses.push('hide');
@@ -29,8 +40,9 @@ export default function CategoryRow(props) {
 
   if (t === 'brands') {
     n = item.tags.brand || item.tags.name;
-    if (n != null)
+    if (n != null) {
       n = n.replaceAll('"','\\\"');
+    }
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
@@ -56,8 +68,9 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
 
   } else if (t === 'flags') {
     n = item.tags['flag:name'];
-    if (n != null)
+    if (n != null) {
       n = n.replaceAll('"','\\\"');
+    }
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
@@ -67,8 +80,9 @@ out center;`;
 
   } else if (t === 'operators') {
     n = item.tags.operator;
-    if (n != null)
+    if (n != null) {
       n = n.replaceAll('"','\\\"');
+    }
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
@@ -93,8 +107,9 @@ relation[${k}=${v}][operator:wikidata=${qid}]
 
   } else if (t === 'transit') {
     n = item.tags.network;
-    if (n != null)
+    if (n != null) {
       n = n.replaceAll('"','\\\"');
+    }
     kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['network:wikidata'];
@@ -120,20 +135,21 @@ relation[${k}=${v}][network:wikidata=${qid}]
 }}`;
   }
 
-  const wd = data.wikidata[qid] || {};
+  const wd = context.wikidata[qid] || {};
   const label = wd.label || '';
   const description = wd.description ? '"' + wd.description + '"' : '';
   const identities = wd.identities || {};
   const logos = wd.logos || {};
 
-  if (t === 'flags') {
+  if (t === 'flags') {    // Flags don't have social links / Facebook logo
     return (
       <tr className={rowClasses.join(' ') || null} >
       <td className='namesuggest'>
-        <h3 className='slug' id={item.slug}>
-          <a href={`#${item.slug}`}>#</a>
+        <h3 className='slug' id={item.id}>
+          <a href={`#${item.id}`}>#</a>
           <span className='anchor'>{item.displayName}</span>
         </h3>
+        {dissolved}
         <div className='nsikey'><pre>{item.id}</pre></div>
         <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
         <div className='viewlink'>
@@ -145,7 +161,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
           { searchWikidataLink(n) }
         </div>
       </td>
-      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
+      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(filters.tt, displayTags(tags)) } /></td>
       <td className='wikidata'>
         <h3>{label}</h3>
         <span>{description}</span><br/>
@@ -159,10 +175,11 @@ relation[${k}=${v}][network:wikidata=${qid}]
     return (
       <tr className={rowClasses.join(' ') || null} >
       <td className='namesuggest'>
-        <h3 className='slug' id={item.slug}>
-          <a href={`#${item.slug}`}>#</a>
+        <h3 className='slug' id={item.id}>
+          <a href={`#${item.id}`}>#</a>
           <span className='anchor'>{item.displayName}</span>
         </h3>
+        {dissolved}
         <div className='nsikey'><pre>{item.id}</pre></div>
         <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
         <div className='viewlink'>
@@ -174,7 +191,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
           { searchWikidataLink(n) }
         </div>
       </td>
-      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(tt, displayTags(tags)) } /></td>
+      <td className='tags'><pre className='tags' dangerouslySetInnerHTML={ highlight(filters.tt, displayTags(tags)) } /></td>
       <td className='wikidata'>
         <h3>{label}</h3>
         <span>{description}</span><br/>
@@ -195,7 +212,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
     const href = `https://location-conflation.com/?referrer=nsi&locationSet=${q}`;
     const title = `View LocationSet for ${name}`;
     return val && (
-      <a target='_blank' href={href} title={title}><code dangerouslySetInnerHTML={ highlight(cc, val) } /></a>
+      <a target='_blank' href={href} title={title}><code dangerouslySetInnerHTML={ highlight(filters.cc, val) } /></a>
     );
   }
 
@@ -203,6 +220,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
   function highlight(needle, haystack) {
     let html = haystack;
     if (needle) {
+      // needle = stripDiacritics(needle);
       needle = needle.replaceAll('+', '\\+'); // escape the + symbol.
       const re = new RegExp('\(' + needle + '\)', 'gi');
       html = html.replace(re, '<mark>$1</mark>');
@@ -261,12 +279,13 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
 
   function siteLink(href) {
-    let FAicon,FAsecure,FAinsecure;
+    let FAicon, FAsecure, FAinsecure;
     FAsecure = <span title='ssl web site'><FontAwesomeIcon icon={faLock} size='lg' /></span>;
     FAinsecure = <span title='non-ssl web site'><FontAwesomeIcon icon={faUnlock} size='lg' /></span>;
 
-    if (href)
+    if (href) {
       FAicon = (href.startsWith("https://")) ? FAsecure : FAinsecure;
+    }
 
     return href && (
       <div className='viewlink'>
@@ -289,7 +308,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
     /* Are the items being drawn from a template? 'item.fromTemplate' is set to true in nsi.json if templated. */
     if (item.fromTemplate) {
-      let url,text;
+      let url, text;
 
       /* Brands */
       if ((t=='brands') && (k=='amenity') && (v=='atm'))

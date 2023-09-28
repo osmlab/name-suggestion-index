@@ -1,19 +1,18 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faPinterestSquare } from '@fortawesome/free-brands-svg-icons';
 import { faSnapchatSquare } from '@fortawesome/free-brands-svg-icons';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
-import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+import { faSquareXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faVk } from '@fortawesome/free-brands-svg-icons';
 import { faWeibo } from '@fortawesome/free-brands-svg-icons';
 import { faWeixin } from '@fortawesome/free-brands-svg-icons';
 import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 
-export default function CategoryRowSocialLinks(props) {
+
+export function CategoryRowSocialLinks(props) {
   let items = [];
   let href;
 
@@ -26,7 +25,7 @@ export default function CategoryRowSocialLinks(props) {
   if (props.twitter) {
     href = 'https://twitter.com/' + props.twitter;
     items.push(
-      <a key='twitter' target='_blank' href={href}><FontAwesomeIcon icon={faTwitterSquare} size='lg' /></a>
+      <a key='twitter' target='_blank' href={href}><FontAwesomeIcon icon={faSquareXTwitter} size='lg' /></a>
     );
   }
   if (props.instagram) {
@@ -47,8 +46,12 @@ export default function CategoryRowSocialLinks(props) {
       <a key='pinterest' target='_blank' href={href}><FontAwesomeIcon icon={faPinterestSquare} size='lg' /></a>
     );
   }
-  if (props.youtube) {
-    href = 'https://www.youtube.com/channel/' + props.youtube;
+  if (props.youtube || props.youtubeHandle) {
+    if (props.youtube) {
+      href = 'https://www.youtube.com/channel/' + props.youtube;
+    } else {
+      href = 'https://www.youtube.com/@' + props.youtubeHandle;
+    }
     items.push(
       <a key='youtube' target='_blank' href={href}><FontAwesomeIcon icon={faYoutubeSquare} size='lg' /></a>
     );

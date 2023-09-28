@@ -99,10 +99,20 @@
       }
     },
     {
-      "displayName": "AT",
-      "id": "at-44bbb3",
-      "locationSet": {"include": ["001"]},
-      "tags": {"network": "AT", "route": "train"}
+      "displayName": "AT (Auckland Transport)",
+      "id": "at-8a95ba",
+      "locationSet": {
+        "include": [
+          "nz-auk.geojson",
+          "nz-wko.geojson"
+        ]
+      },
+      "matchNames": ["auckland transport"],
+      "tags": {
+        "network": "AT",
+        "network:wikidata": "Q4819567",
+        "route": "train"
+      }
     },
     {
       "displayName": "Augsburger Verkehrs- und Tarifverbund",
@@ -1381,10 +1391,11 @@
     },
     {
       "displayName": "PNR Metro Commuter",
-      "id": "pnrmetrocommuter-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "pnrmetrocommuter-42a55e",
+      "locationSet": {"include": ["ph"]},
       "tags": {
         "network": "PNR Metro Commuter",
+        "network:wikidata": "Q18388218",
         "route": "train"
       }
     },
@@ -2116,11 +2127,13 @@
       }
     },
     {
-      "displayName": "TransLink",
-      "id": "translink-cffedd",
-      "locationSet": {"include": ["au"]},
+      "displayName": "Translink",
+      "id": "translink-53220b",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "tags": {
-        "network": "TransLink",
+        "network": "Translink",
         "network:wikidata": "Q7833625",
         "route": "train"
       }
@@ -2519,6 +2532,21 @@
       }
     },
     {
+      "displayName": "West Coast Express",
+      "id": "westcoastexpress-36ddae",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "network": "West Coast Express",
+        "network:short": "WCE",
+        "network:wikidata": "Q1675085",
+        "operator": "TransLink",
+        "operator:wikidata": "Q1142140",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "West Somerset Railway",
       "id": "westsomersetrailway-2c56d6",
       "locationSet": {
@@ -2624,6 +2652,7 @@
       "displayName": "Укрзалізниця",
       "id": "ukrainianrailways-216244",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["ukrzaliznytsia"],
       "tags": {
         "network": "Укрзалізниця",
         "network:en": "Ukrainian Railways",
@@ -2638,10 +2667,34 @@
     },
     {
       "displayName": "სს \"საქართველოს რკინიგზა\"",
-      "id": "dd43c0-44bbb3",
-      "locationSet": {"include": ["001"]},
+      "id": "dd43c0-3afe4e",
+      "locationSet": {"include": ["ge"]},
       "tags": {
         "network": "სს \"საქართველოს რკინიგზა\"",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "การรถไฟแห่งประเทศไทย",
+      "id": "staterailwayofthailand-245bec",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "network": "การรถไฟแห่งประเทศไทย",
+        "network:en": "State Railway of Thailand",
+        "network:th": "การรถไฟแห่งประเทศไทย",
+        "network:wikidata": "Q2165702",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "รถไฟฟ้าชานเมือง สายสีแดง",
+      "id": "srtredlines-245bec",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "network": "รถไฟฟ้าชานเมือง สายสีแดง",
+        "network:en": "SRT Red Lines",
+        "network:th": "รถไฟฟ้าชานเมือง สายสีแดง",
+        "network:wikidata": "Q2542280",
         "route": "train"
       }
     },
@@ -2742,7 +2795,7 @@
         "network:nan-HJ": "台灣高鐵",
         "network:nan-POJ": "Tâi-oân Ko-thih",
         "network:nan-TL": "Tâi-uân Ko-thih",
-        "network:short_name": "THSR",
+        "network:short": "THSR",
         "network:wikidata": "Q706198",
         "network:zh": "台灣高鐵",
         "operator": "台灣高速鐵路股份有限公司",

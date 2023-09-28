@@ -220,6 +220,13 @@ function buildIDPresets() {
     // NOTE: here we intentionally exclude `:wikidata`, in `matcher.js` we do not.
     const notName = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
+    let childPresets = new Map();
+    for (const checkPath in presetsJSON){
+      if (checkPath.startsWith(presetPath)) {
+        childPresets.set(checkPath, presetsJSON[checkPath]);
+      }
+    }
+
     items.forEach(item => {
       const tags = item.tags;
       const qid = tags[wdTag];
@@ -229,25 +236,64 @@ function buildIDPresets() {
 
       // Sometimes we can choose a more specific iD preset then `key/value`..
       // Attempt to match a `key/value/extravalue`
-      const tryKeys = ['beauty', 'clothes', 'cuisine', 'flush:disposal', 'government', 'healthcare:speciality', 'park_ride', 'religion', 'social_facility', 'sport', 'tower:type', 'vending'];
-      tryKeys.forEach(osmkey => {
-        if (preset) return;    // matched one already
-        const val = tags[osmkey];
-        if (!val) return;
+      if (childPresets.size > 1) {
+        // The best iD preset for an NSI entry is determined by count of tags that have
+        // matched (more is better) and position for multi-value tags (e.g. cuisine)
+        let matchTagsCount = 0;
+        let matchSemicolonRating = 0;
 
-        // keys like cuisine can contain multiple values, so try each one in order
-        let vals = val.split(';');
-        for (let i = 0; i < vals.length; i++) {
-          presetID = presetPath + '/' + vals[i].trim();
-          preset = presetsJSON[presetID];
-          if (preset) return;   // it matched
-        }
-      });
+        let matchPresetPath;
+        let matchPreset;
+
+        childPresets.forEach(function(checkPreset, checkPresetPath) {
+          const checkPresetTags = Object.entries(checkPreset.tags);
+          let currentMatchSemicolonRating = 0;
+
+          const isPresetMatch = checkPresetTags.every(kv => {
+            // Tags that NSI allows to process as multi-valued
+            const semicolonSplittedKeys = ['beauty', 'clothes', 'cuisine', 'healthcare:speciality', 'social_facility', 'sport', 'vending', 'waste'];
+            const idKey = kv[0];
+            const idVal = kv[1];
+
+            const nsiVal = tags[idKey];
+            if (!nsiVal) {
+              return false;
+            }
+            if (semicolonSplittedKeys.includes(idKey)) {
+              const vals = nsiVal.split(';');
+              const findResult = vals.indexOf(idVal);
+              if (-1 === findResult) {
+                return false
+              }
+              // For a smaller element index rating will be higher
+              currentMatchSemicolonRating -= findResult;
+              return true;
+            }
+            return (idVal === nsiVal);
+          });
+
+          // If rating of current element is higher than the saved one, we overwrite saved
+          if (isPresetMatch
+            && ((checkPresetTags.length > matchTagsCount)
+              || (checkPresetTags.length === matchTagsCount
+                && currentMatchSemicolonRating > matchSemicolonRating))) {
+            matchTagsCount = checkPresetTags.length;
+            matchSemicolonRating = currentMatchSemicolonRating;
+            matchPresetPath = checkPresetPath;
+            matchPreset = checkPreset;
+          }
+        });
+
+        console.assert("Preset must already be selected", matchPresetPath);
+        presetID = matchPresetPath;
+        preset = matchPreset;
+      }
 
       // fallback to `key/value`
-      if (!preset) {
-        presetID = presetPath;
-        preset = presetsJSON[presetID];
+      if (!preset && childPresets.size === 1) {
+        const presetKV = childPresets.entries().next().value;
+        presetID = presetKV[0];
+        preset = presetKV[1];
       }
 
       // still no match?
@@ -284,13 +330,15 @@ function buildIDPresets() {
         targetTags[k] = tags[k] || preset.tags[k];
       }
 
-      // Prefer a wiki commons logo sometimes.. openstreetmap/iD#6361
+      // Prefer a wiki commons logo sometimes.. 
+      // Related issues list: openstreetmap/iD#6361, #2798, #3122, #8042, #8373
       const preferCommons = {
         Q177054: true,    // Burger King
         Q524757: true,    // KFC
         Q779845: true,    // CBA
         Q1205312: true,   // In-N-Out
-        Q10443115: true   // Carlings
+        Q10443115: true,   // Carlings
+        Q38076: true   // McDonald's
       };
 
       let logoURL;
@@ -459,7 +507,7 @@ function buildTaginfo() {
 
       // Don't export every value for many tags this project uses..
       // ('tag matches any of these')(?!('not followed by :type'))
-      if (/(brand|country|flag|name|network|operator|owner|subject)(?!(:type))/.test(k)) {
+      if (/(brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
         v = '*';
       }
 

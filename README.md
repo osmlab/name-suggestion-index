@@ -20,7 +20,7 @@ list of commonly used features for suggesting consistent spelling and tagging in
 
 You can browse the name-suggestion-index and check Wikidata links for accuracy at <https://nsi.guide>.
 
-<img width="600px" alt="nsi.guide" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/nsi_guide.png"/>
+<img alt="nsi.guide" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/nsi.png"/>
 
 ## How it's used
 
