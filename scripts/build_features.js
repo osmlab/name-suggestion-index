@@ -11,6 +11,7 @@ import jsonschema from 'jsonschema';
 import path from 'node:path';
 import localeCompare from 'locale-compare';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+import { feature as coderFeature } from '@rapideditor/country-coder';
 const withLocale = localeCompare('en-US');
 
 // Internal
@@ -85,6 +86,14 @@ function collectFeatures() {
     // use the filename as the feature.id
     const id = path.basename(file).toLowerCase();
     feature.id = id;
+
+    const idStem = id.substring(0, id.lastIndexOf('.')).toUpperCase();
+    const ccFeature = coderFeature(idStem);
+    if (ccFeature && ccFeature.properties.aliases && ccFeature.properties.aliases.includes(idStem)) {
+      console.error(chalk.red(`Duplicated feature in NSI and country-coder: ${id}. Please remove it from NSI`));
+      console.error(ccFeature);
+      process.exit(1);
+    }
 
     // // Warn if this feature is so small/complex it would better be represented as a circular area.
     // const except = { 'new_york_city.geojson': true };
