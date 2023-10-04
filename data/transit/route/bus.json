@@ -2020,12 +2020,6 @@
       "tags": {"network": "BRT", "route": "bus"}
     },
     {
-      "displayName": "BRT (Iran)",
-      "id": "brt-5a64e7",
-      "locationSet": {"include": ["ir"]},
-      "tags": {"network": "BRT", "route": "bus"}
-    },
-    {
       "displayName": "BRT (Lagos, Nigeria)",
       "id": "lagosbusrapidtransitsystem-85801e",
       "locationSet": {"include": ["ng"]},
@@ -2063,6 +2057,12 @@
         "operator:wikidata": "Q4836731",
         "route": "bus"
       }
+    },
+    {
+      "displayName": "BRT (ایران)",
+      "id": "brt-5a64e7",
+      "locationSet": {"include": ["ir"]},
+      "tags": {"network": "BRT", "route": "bus"}
     },
     {
       "displayName": "BRT (日本)",
@@ -5220,6 +5220,15 @@
       "tags": {
         "network": "Foughal Bus Kenitra",
         "network:wikidata": "Q114853749",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "FR:STAR",
+      "id": "frstar-a45453",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "network": "FR:STAR",
         "route": "bus"
       }
     },
@@ -12851,8 +12860,8 @@
     },
     {
       "displayName": "ru:regional",
-      "id": "ruregional-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "ruregional-15dd1a",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "network": "ru:regional",
         "route": "bus"
@@ -14452,13 +14461,26 @@
       }
     },
     {
-      "displayName": "STAR",
-      "id": "star-add5eb",
-      "locationSet": {"include": ["fx"]},
-      "matchNames": ["fr:star"],
+      "displayName": "STAR (Rennes)",
+      "id": "star-7ed087",
+      "locationSet": {
+        "include": [[-1.7114, 48.1082, 30]]
+      },
       "tags": {
         "network": "STAR",
         "network:wikidata": "Q3480422",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "STAR (Roanne)",
+      "id": "star-81dad7",
+      "locationSet": {
+        "include": [[3.9742, 46.0851, 30]]
+      },
+      "tags": {
+        "network": "STAR",
+        "network:wikidata": "Q3488202",
         "route": "bus"
       }
     },
@@ -17300,10 +17322,12 @@
     },
     {
       "displayName": "Värmlandstrafik",
-      "id": "varmlandstrafik-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "varmlandstrafik-783b59",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "network": "Värmlandstrafik",
+        "network:sv": "Värmlandstrafik",
+        "network:wikidata": "Q7944363",
         "route": "bus"
       }
     },
@@ -19487,20 +19511,33 @@
     },
     {
       "displayName": "Αστικό ΚΤΕΛ Ηρακλείου",
-      "id": "ktelheraklion-7e8526",
+      "id": "heraklioncitybus-7e8526",
       "locationSet": {"include": ["gr"]},
+      "matchNames": [
+        "αστικές συγκοινωνίες ηρακλείου",
+        "αστικο ηρακλειου"
+      ],
       "tags": {
         "network": "Αστικό ΚΤΕΛ Ηρακλείου",
-        "network:en": "KTEL Heraklion",
+        "network:el": "Αστικό ΚΤΕΛ Ηρακλείου",
+        "network:en": "Heraklion City Bus",
+        "network:wikidata": "Q122847980",
         "route": "bus"
       }
     },
     {
       "displayName": "ΑΣΤΙΚΟ ΚΤΕΛ ΛΑΡΙΣΑΣ",
-      "id": "51d7e2-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "larissapublictransport-7e8526",
+      "locationSet": {"include": ["gr"]},
+      "matchNames": [
+        "αστικες συγκοινωνιες λαρισας",
+        "αστικές συγκοινωνίες λάρισας"
+      ],
       "tags": {
         "network": "ΑΣΤΙΚΟ ΚΤΕΛ ΛΑΡΙΣΑΣ",
+        "network:el": "ΑΣΤΙΚΟ ΚΤΕΛ ΛΑΡΙΣΑΣ",
+        "network:en": "Larissa Public Transport",
+        "network:wikidata": "Q122847982",
         "route": "bus"
       }
     },
@@ -20641,6 +20678,7 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "network": "嘉定公交",
+        "network:wikidata": "Q115117799",
         "network:zh": "嘉定公交",
         "route": "bus"
       }
@@ -20700,9 +20738,17 @@
     },
     {
       "displayName": "大亚湾公交",
-      "id": "e6520c-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {"network": "大亚湾公交", "route": "bus"}
+      "id": "e6520c-af9653",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {
+        "network": "大亚湾公交",
+        "network:wikidata": "Q122436410",
+        "network:zh": "大亚湾公交",
+        "route": "bus"
+      }
     },
     {
       "displayName": "大台南公車",
@@ -20869,8 +20915,8 @@
     },
     {
       "displayName": "市内線",
-      "id": "8a0aeb-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "8a0aeb-9701b7",
+      "locationSet": {"include": ["jp"]},
       "tags": {"network": "市内線", "route": "bus"}
     },
     {
@@ -20879,6 +20925,7 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "network": "常州公交",
+        "network:wikidata": "Q115117860",
         "network:zh": "常州公交",
         "route": "bus"
       }
@@ -21093,7 +21140,11 @@
       "displayName": "池田市内線",
       "id": "b0caf7-9701b7",
       "locationSet": {"include": ["jp"]},
-      "tags": {"network": "池田市内線", "route": "bus"}
+      "tags": {
+        "network": "池田市内線",
+        "network:ja": "池田市内線",
+        "route": "bus"
+      }
     },
     {
       "displayName": "汨罗城乡巴士",
@@ -21144,8 +21195,7 @@
       "locationSet": {
         "include": [[117.114, 36.651, 80]]
       },
-      "matchNames": ["济南公交——济南公交公司"],
-      "note": "济南公交不含郊区线路",
+      "note": "不含郊区线路",
       "tags": {
         "network": "济南公交",
         "network:en": "Jinan Public Transport",

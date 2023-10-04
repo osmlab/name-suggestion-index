@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <title>Warnings generated when running the wikidata script</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+      body {
+        background-color: #f6f6f6;
+        color: #333;
+        font-family: "-apple-system", BlinkMacSystemFont,
+              "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+              "Fira Sans", "Droid Sans", "Helvetica Neue", "Arial",
+              sans-serif;
+      }
+      code {
+        background-color: #d5edf7;
+        font-weight: bold;
+      }
+      table {
+        border: 1px solid black;
+      }
+      table thead tr th {
+        margin:  0;
+        padding: 2px;
+        border-bottom: 1px dashed black;
+        background-color: #dae7f0;
+      }
+      table tbody tr td {
+        margin: 10px 0;
+        padding: 10px 5px;
+        border-bottom: 1px dashed black;
+      }
+      table tbody tr td:first-child {
+        width: 10%;
+        text-align: center;
+        vertical-align: text-top;
+      }
+      table tbody tr:nth-child(odd) {
+        background-color: #f0e9e1;
+      }
+    </style>
+
+    <script>
+      async function nsiWikiWarnings() {
+        //let warningsFile = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/warnings.json";
+        let warningsFile = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/warnings.min.json";
+
+        // Use 'fetch' to grab the raw 'warnings.json' or 'warnings.min.json' file from GitHub and place the JSON data in an object variable.
+        const allWarningsFile = await fetch(warningsFile);
+        const allWarningsData = await allWarningsFile.json();
+
+        // We only want the warning data, not the meta data (except the generated timestamp).
+        const allWarnings = allWarningsData['warnings'];
+        let generated = new Date(Date.parse(allWarningsData._meta.generated));
+            generated = generated.getDate() + "/" + (generated.getMonth() + 1) + "/" + generated.getFullYear();
+
+
+        // Loop through each warning and add a <table> (<tr>) row for each warning.
+        let tableRows = "";
+        let thisMatch, rowClass;
+
+        allWarnings.forEach(warning => {
+          // Assign each row an error type (default 'other') for the 'class' attribute, allowing for possible filtering / styling later. 
+          rowClass = "other";
+
+          // An "unresolved-redirect" won't be a string, it'll be an object, so check for that first, and set the 'warning.msg.name' as the 'warning.msg'.
+          warning.msg = warning.msg.name ? warning.msg.name : warning.msg;
+
+          // If the warning is a standard Facebook warning, and includes the Facebook Developers link, make the link an active hyperlink.
+          if (warning.msg.match("https://developers.facebook.com/docs/graph-api")) {
+            warning.msg = warning.msg.replace("https://developers.facebook.com/docs/graph-api",
+                                   "<a href=\"https://developers.facebook.com/docs/graph-api\">https://developers.facebook.com/docs/graph-api</a>");
+            rowClass = "facebookerror";
+          }
+
+          // If the warning is about a replacment Wikidata entry, make the suggested replacment a hyperlink.
+          if (warning.msg.match("might possibly be replaced by")) {
+            thisMatch = warning.msg.match(/Q[0-9]+/); // Grab the new Wiki QID, including the letter Q.
+            warning.msg = warning.msg.replace(thisMatch,"<a href=\"https://www.wikidata.org/wiki/" + thisMatch + "\">" + thisMatch + "</a>");
+            rowClass = "replacewiki";
+          }
+
+          // The wikidata doesn't have an English label.
+          if (warning.msg.match("missing English label")) {
+            rowClass = "englishlabel";
+          }
+
+          // The wikidata was deleted.
+          if (warning.msg.match("was deleted")) {
+            rowClass = "deleted";
+          }
+
+          // The wikidata has an unresolved-redirect.
+          if (warning.msg.match("unresolved-redirect")) {
+            rowClass = "unresolved";
+          }
+
+          tableRows += "<tr class=\"" + rowClass + "\">";
+          tableRows += "<td><a href=\"https://www.wikidata.org/wiki/" + warning.qid + "\">" + warning.qid + "</a></td>";
+          tableRows += "<td>" + warning.msg + "</td>";
+          tableRows += "</tr>";
+        });
+
+        const wikiTable1 = document.getElementById("wikidataWarningsTable");
+        const wikiTableBody = wikiTable1.getElementsByTagName("tbody");
+        const wikiTableCaption = wikiTable1.getElementsByTagName("caption");
+
+        wikiTableBody[0].innerHTML = tableRows;
+        wikiTableCaption[0].innerHTML = "Table of " + allWarnings.length + " Wikidata Errors (generated " + generated + ")!";
+      }
+
+      // Run the function nsiWikiWarnings() when the DOM has loaded.
+      window.addEventListener("load", nsiWikiWarnings());
+    </script>
+  </head>
+  <body>
+    <p><a href="https://nsi.guide">nsi.guide</a></p>
+
+    <h1>Wikidata Warnings</h1>
+
+    <p>The table below shows all the warnings generated when "<code>npm run wikidata</code>" is run.</p>
+
+    <p>
+    When the command "<code>npm run wikidata</code>" is run by a maintainer of the project,
+    this will connect to Wikidata directly and attempt to download logos and descriptions for each
+    entry within the Name Suggestion Index (<abbr title="Name Suggestion Index">NSI</abbr>).
+    </p>
+
+    <p>
+    Sometimes, Wikidata won't be able to provide the data the <abbr title="Name Suggestion Index">NSI</abbr> is
+    looking for, and will return an error message. These error messages are displayed below. Common errors are
+    social media accounts listed in a Wikidata entry which are out of date, or simply incorrect. Some branded
+    Facebook accounts are set to require the user to be logged in when browsing (i.e. missing permissions), which is something the
+    <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment. 
+    </p>
+
+    <p>
+    An <strong>unresolved-redirect</strong> is when the Wikidata entry
+    the <abbr title="Name Suggestion Index">NSI</abbr> links to is redirecting to a different (possibly newer)
+    Wikidata entry. In this instance, the Wikidata reference will need to be updated within
+    the <abbr title="Name Suggestion Index">NSI</abbr> data itself.
+    </p>
+
+    <p>
+    If you can, simply click on a Wikidata link below, and check to see if the error can be fixed. Please note that
+    fixing an error will not remove the error message below until "<code>npm run wikidata</code>" has been run again.
+    </p>
+
+    <p>
+    If a Wikidata entry has been deleted, it might be possible to request that it is reinstated by the Wiki admin who deleted it.
+    </p>
+
+    <table id="wikidataWarningsTable">
+      <caption>Table of Wikidata Errors!</caption>
+      <thead>
+        <tr>
+          <th>Wikidata</th>
+          <th>Error Message</th>
+        </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td colspan=2>Warnings will be listed here, unless an error occurs, or if JavaScript is turned off!</td>
+         </tr>
+       </tbody>
+     </table>
+  </body>
+</html>
