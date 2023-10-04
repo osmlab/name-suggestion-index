@@ -22,8 +22,8 @@
       ],
       "named": [
         "^famiglia cooperativa$",
-        "^migros bank$",
-        "^migrosbank$",
+        "^migros\\s?bank$",
+        "^the co-operative food$",
         "^караван$",
         "^семейный$"
       ]
@@ -552,6 +552,17 @@
       }
     },
     {
+      "displayName": "Bazaar",
+      "id": "bazaar-37450e",
+      "locationSet": {"include": ["gr"]},
+      "tags": {
+        "brand": "Bazaar",
+        "brand:wikidata": "Q4875086",
+        "name": "Bazaar",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Bel Air",
       "id": "belair-097dbf",
       "locationSet": {
@@ -714,7 +725,7 @@
       }
     },
     {
-      "displayName": "Billa (Czechia)",
+      "displayName": "Billa (Česko)",
       "id": "billa-8e6809",
       "locationSet": {"include": ["cz"]},
       "tags": {
@@ -1909,18 +1920,6 @@
       }
     },
     {
-      "displayName": "denn's Biomarkt",
-      "id": "dennsbiomarkt-6367d0",
-      "locationSet": {"include": ["at", "de"]},
-      "tags": {
-        "brand": "denn's Biomarkt",
-        "brand:wikidata": "Q48883773",
-        "name": "denn's Biomarkt",
-        "organic": "only",
-        "shop": "supermarket"
-      }
-    },
-    {
       "displayName": "Denner",
       "id": "denner-704edb",
       "locationSet": {"include": ["ch", "li"]},
@@ -1928,6 +1927,20 @@
         "brand": "Denner",
         "brand:wikidata": "Q379911",
         "name": "Denner",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Denns BioMarkt",
+      "id": "dennsbiomarkt-6367d0",
+      "locationSet": {"include": ["at", "de"]},
+      "tags": {
+        "brand": "Denns BioMarkt",
+        "brand:wikidata": "Q48883773",
+        "name": "Denns BioMarkt",
+        "operator": "Dennree GmbH",
+        "operator:wikidata": "Q1189641",
+        "organic": "only",
         "shop": "supermarket"
       }
     },
@@ -3925,7 +3938,7 @@
       }
     },
     {
-      "displayName": "Konzum (Czechia)",
+      "displayName": "Konzum (Česko)",
       "id": "konzum-261d20",
       "locationSet": {"include": ["cz", "sk"]},
       "tags": {
@@ -4964,7 +4977,7 @@
       }
     },
     {
-      "displayName": "Metro (Peru)",
+      "displayName": "Metro (Perú)",
       "id": "metro-acfc90",
       "locationSet": {"include": ["pe"]},
       "tags": {
@@ -5690,10 +5703,45 @@
       "displayName": "Pick n Pay",
       "id": "picknpay-72ca7c",
       "locationSet": {"include": ["na", "za"]},
+      "matchNames": [
+        "pick and pay",
+        "pick and pay family",
+        "pick n pay family"
+      ],
       "tags": {
         "brand": "Pick n Pay",
         "brand:wikidata": "Q7190735",
         "name": "Pick n Pay",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Pick n Pay Hyper",
+      "id": "picknpayhyper-72ca7c",
+      "locationSet": {"include": ["na", "za"]},
+      "matchNames": [
+        "pick and pay hyper",
+        "pnp hyper"
+      ],
+      "tags": {
+        "brand": "Pick n Pay Hyper",
+        "brand:wikidata": "Q7190735",
+        "name": "Pick n Pay Hyper",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Pick n Pay Super",
+      "id": "picknpaysuper-72ca7c",
+      "locationSet": {"include": ["na", "za"]},
+      "matchNames": [
+        "pick and pay super",
+        "pnp super"
+      ],
+      "tags": {
+        "brand": "Pick n Pay Super",
+        "brand:wikidata": "Q7190735",
+        "name": "Pick n Pay Super",
         "shop": "supermarket"
       }
     },
@@ -7391,25 +7439,6 @@
       }
     },
     {
-      "displayName": "The Co-operative Food",
-      "id": "thecooperativefood-a8278b",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": [
-        "central england co-operative",
-        "chelmsford star co-operative society",
-        "coop",
-        "heart of england co-operative society",
-        "midcounties co-operative",
-        "southern co-operative"
-      ],
-      "tags": {
-        "brand": "The Co-operative Food",
-        "brand:wikidata": "Q107617274",
-        "name": "The Co-operative Food",
-        "shop": "supermarket"
-      }
-    },
-    {
       "displayName": "The Food Warehouse",
       "id": "thefoodwarehouse-a8278b",
       "locationSet": {"include": ["gb"]},
@@ -7479,6 +7508,7 @@
       "tags": {
         "brand": "Thrash! Траш!",
         "brand:en": "Thrash!",
+        "brand:uk": "Траш!",
         "brand:wikidata": "Q56364758",
         "name": "Thrash! Траш!",
         "name:en": "Thrash!",
@@ -8501,6 +8531,7 @@
       "displayName": "Велмарт",
       "id": "62e010-94881c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["velmart"],
       "tags": {
         "brand": "Велмарт",
         "brand:wikidata": "Q121004370",
@@ -8716,6 +8747,7 @@
       "displayName": "ЕКО маркет",
       "id": "72c317-94881c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["eko market"],
       "tags": {
         "brand": "ЕКО маркет",
         "brand:wikidata": "Q12103350",
@@ -9135,9 +9167,11 @@
       "tags": {
         "brand": "Сільпо",
         "brand:en": "Silpo",
+        "brand:uk": "Сільпо",
         "brand:wikidata": "Q4419434",
         "name": "Сільпо",
         "name:en": "Silpo",
+        "name:uk": "Сільпо",
         "shop": "supermarket"
       }
     },
