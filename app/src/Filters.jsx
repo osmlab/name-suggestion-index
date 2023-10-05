@@ -10,7 +10,7 @@ export function Filters() {
   const params = context.params;
   const setParams = context.setParams;
   const filters = getFilterParams(params);
-  const klass = 'filters' + (Object.keys(filters).length ? 'active' : '');
+  const klass = 'filters' + (Object.keys(filters).length ? ' active' : '');
 
   return (
     <div className={klass}>
