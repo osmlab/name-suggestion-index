@@ -678,7 +678,7 @@ function checkItems(t) {
       }
 
       // Warn if OSM tags contain odd punctuation or spacing..
-      ['beauty', 'cuisine', 'flush:disposal', 'gambling', 'government', 'sport', 'training', 'vending'].forEach(osmkey => {
+      ['beauty', 'cuisine', 'gambling', 'government', 'sport', 'training', 'vending'].forEach(osmkey => {
         const val = tags[osmkey];
         if (val && oddChars.test(val)) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
