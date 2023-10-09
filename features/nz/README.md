@@ -5,7 +5,7 @@ Regions of New Zealand targeted with a feature using [ISO_3166-2:NZ](https://en.
 - [nz-auk.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-auk.geojson%22%5D%7D&referrer=nsi) - Auckland
 - [nz-bop.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-bop.geojson%22%5D%7D&referrer=nsi) - Bay of Plenty
 - [nz-can.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-can.geojson%22%5D%7D&referrer=nsi) - Canterbury
-- [nz-cit.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-cit.geojson%22%5D%7D&referrer=nsi) - Chatham Islands Territory
+- [nz-cit](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-cit%22%5D%7D&referrer=nsi) - Chatham Islands Territory
 - [nz-gis.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-gis.geojson%22%5D%7D&referrer=nsi) - Gisborne
 - [nz-wgn.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-wgn.geojson%22%5D%7D&referrer=nsi) - Greater Wellington
 - [nz-hkb.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-hkb.geojson%22%5D%7D&referrer=nsi) - Hawke's Bay
