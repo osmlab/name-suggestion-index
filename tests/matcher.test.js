@@ -40,7 +40,7 @@ test('index building', t => {
           }
         ]
       }
-    }
+    };
     const orig = console.warn;   // silence console.warn
     console.warn = () => {};
     t.doesNotThrow(() => t.context.matcher.buildLocationIndex(bad, loco));
@@ -61,7 +61,7 @@ test('index building', t => {
           }
         ]
       }
-    }
+    };
     const orig = console.warn;   // silence console.warn
     console.warn = () => {};
     t.doesNotThrow(() => t.context.matcher.buildLocationIndex(bad, loco));
@@ -83,7 +83,7 @@ test('match', t => {
   t.context.matcher.buildMatchIndex(data);
   t.context.matcher.buildLocationIndex(data, loco);
 
-  // In practice, duplidate ids can't happen anymore.
+  // In practice, duplicated ids can't happen anymore.
   // We should find a better way to flag potential duplicates in the index.
   t.test('getWarnings', t => {
     const warnings  = t.context.matcher.getWarnings();
@@ -101,7 +101,7 @@ test('match', t => {
   t.test('excluded/generic name matching', t => {
     t.test('matches excluded generic pattern with main tagpair', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'Food Court');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
       t.equal(result[0].pattern, '/^(fast food|food court)$/i');
@@ -111,7 +111,7 @@ test('match', t => {
 
     t.test('match excluded generic pattern with alternate tagpair in matchGroups', t => {
       const result = t.context.matcher.match('amenity', 'cafe', 'Food Court');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
       t.equal(result[0].pattern, '/^(fast food|food court)$/i');
@@ -120,7 +120,7 @@ test('match', t => {
     });
     t.test('match globally excluded generic pattern from genericWords.json', t => {
       const result = t.context.matcher.match('amenity', 'cafe', '???');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
       t.equal(result[0].pattern, '/^\\?+$/i');
@@ -130,7 +130,7 @@ test('match', t => {
 
     t.test('matches excluded name pattern with main tagpair', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'Kebabai');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'excludeNamed');      // 'excludeNamed' = matched a named exclude pattern
       t.equal(result[0].pattern, '/^(city (grill|pizza)|kebabai)$/i');
@@ -139,7 +139,7 @@ test('match', t => {
     });
     t.test('match excluded name pattern with alternate tagpair in matchGroups', t => {
       const result = t.context.matcher.match('amenity', 'cafe', 'Kebabai');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'excludeNamed');      // 'excludeNamed' = matched a named exclude pattern
       t.equal(result[0].pattern, '/^(city (grill|pizza)|kebabai)$/i');
@@ -153,7 +153,7 @@ test('match', t => {
   t.test('basic matching, single result', t => {
     t.test('matches exact key/value/name', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'Honey Baked Ham');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');      // 'primary' = matched the `name` tag
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -166,7 +166,7 @@ test('match', t => {
 
     t.test('match on `official_name` tag', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'The Honey Baked Ham Company');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = an alternate tag like `official_name`
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -177,7 +177,7 @@ test('match', t => {
 
     t.test('match on local `name:*` tag', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'Honig Bebackener Schinken');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');      // localized `name:*` tags are 'primary' matches too
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -188,7 +188,7 @@ test('match', t => {
 
     t.test('match on `*:wikidata` tag', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'Q5893363');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // `brand:wikidata` qid values are 'alternate' matches too
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -205,7 +205,7 @@ test('match', t => {
 
     t.test('fuzzy match name', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'HoNeyBaKed\thäm!');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -216,7 +216,7 @@ test('match', t => {
 
     t.test('match alternate tagpairs in matchTags', t => {
       const result = t.context.matcher.match('shop', 'deli', 'Honey Baked Ham');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -227,7 +227,7 @@ test('match', t => {
 
     t.test('match alternate names in matchNames', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'honey baked ham company');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');             // 'alternate' = matchNames are 'alternate' matches
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -238,7 +238,7 @@ test('match', t => {
 
     t.test('match alternate tagpairs in matchGroups', t => {
       const result = t.context.matcher.match('amenity', 'cafe', 'honey baked ham');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -249,7 +249,7 @@ test('match', t => {
 
     t.test('match generic tagpair amenity/yes', t => {
       const result = t.context.matcher.match('amenity', 'yes', 'honey baked ham');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -260,7 +260,7 @@ test('match', t => {
 
     t.test('match generic tagpair shop/yes', t => {
       const result = t.context.matcher.match('shop', 'yes', 'honey baked ham');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');        // the name still makes this a 'primary' match
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -271,7 +271,7 @@ test('match', t => {
 
     t.test('match generic tagpair building/yes', t => {
       const result = t.context.matcher.match('building', 'yes', 'honey baked ham');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       t.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -286,7 +286,7 @@ test('match', t => {
   t.test('advanced matching, multiple result', t => {
     t.test('matches KFC with unspecified location, results sort by area descending', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'KFC');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 3);
 
       t.equal(result[0].match, 'primary');            // 'primary' = matched the `name` tag
@@ -314,7 +314,7 @@ test('match', t => {
 
     t.test('matches KFC in USA', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'KFC', USA);
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');        // 'primary' = matched the `name` tag
       t.equal(result[0].itemID, 'kfc-658eea');    // KFC worldwide
@@ -333,7 +333,7 @@ test('match', t => {
 
     t.test('matches PFK in Quebec', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'PFK', QUEBEC);
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');        // 'primary' = matched the `name` tag
       t.equal(result[0].itemID, 'pfk-a54c14');
@@ -341,7 +341,7 @@ test('match', t => {
     });
     t.test('matches KFC in Quebec, but sorts PFK first', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'KFC', QUEBEC);
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 2);
       t.equal(result[0].match, 'primary');        // 'primary' = matched the `name:en` tag
       t.equal(result[0].itemID, 'pfk-a54c14');    // quebec area = 1821913 km²
@@ -357,7 +357,7 @@ test('match', t => {
 
     t.test('matches 肯德基 in China', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', '肯德基', HONGKONG);
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');        // 'primary' = matched the `name` tag
       t.equal(result[0].itemID, 'kfc-1ff19c');
@@ -365,7 +365,7 @@ test('match', t => {
     });
     t.test('matches KFC in China, but sorts 肯德基 first', t => {
       const result = t.context.matcher.match('amenity', 'fast_food', 'KFC', HONGKONG);
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 2);
       t.equal(result[0].match, 'primary');        // 'primary' = matched the `name:en` tag
       t.equal(result[0].itemID, 'kfc-1ff19c');    // china area = 10386875 km²
@@ -381,7 +381,7 @@ test('match', t => {
 
     t.test('matches Gap with unspecified location, sorts primary before alternate', t => {
       const result = t.context.matcher.match('shop', 'clothes', 'Gap');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 2);
 
       t.equal(result[0].match, 'primary');            // 'primary' = matched the `name` tag
@@ -402,7 +402,7 @@ test('match', t => {
 
     t.test('matches Baby Gap with unspecified location, sorts primary before alternate', t => {
       const result = t.context.matcher.match('shop', 'clothes', 'Baby Gap');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');            // 'primary' = matched the `name` tag
       t.equal(result[0].itemID, 'babygap-0a21d9');    // Baby Gap
@@ -419,7 +419,7 @@ test('match', t => {
   t.test('nothing bad happens if a k/v category is present in multiple trees', t => {
     t.test('matches an item from the brands tree', t => {
       const result = t.context.matcher.match('amenity', 'post_office', 'UPS');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');      // 'alternate' = matched the `short_name` tag
       t.equal(result[0].itemID, 'theupsstore-d4e3fc');
@@ -429,7 +429,7 @@ test('match', t => {
     });
     t.test('matches an item from the operators tree', t => {
       const result = t.context.matcher.match('amenity', 'post_office', 'USPS');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');      // 'alternate' = matched the `short_name` tag
       t.equal(result[0].itemID, 'unitedstatespostalservice-b9aa24');
@@ -438,7 +438,7 @@ test('match', t => {
     });
     t.test('matches a generic from the brands tree', t => {
       const result = t.context.matcher.match('amenity', 'post_office', 'Copyshop');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'excludeNamed');   // 'excludeNamed' = matched a named exclude pattern
       t.equal(result[0].pattern, '/^copyshop$/i');
@@ -447,7 +447,7 @@ test('match', t => {
     });
     t.test('matches a generic from the operators tree', t => {
       const result = t.context.matcher.match('amenity', 'post_office', 'Spar');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'excludeNamed');   // 'excludeNamed' = matched a named exclude pattern
       t.equal(result[0].pattern, '/^spar$/i');
@@ -460,7 +460,7 @@ test('match', t => {
   t.test('transit matching', t => {
     t.test('match on `network` tag', t => {
       const result = t.context.matcher.match('route', 'train', 'verkehrs und tarifverbund stuttgart');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');      // 'primary' = matched the `network` tag
       t.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
@@ -471,7 +471,7 @@ test('match', t => {
 
     t.test('match on `network:short` tag', t => {
       const result = t.context.matcher.match('route', 'train', 'VVS');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = matched the `network:short` tag
       t.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
@@ -480,7 +480,7 @@ test('match', t => {
 
     t.test('match on `network:guid` tag', t => {
       const result = t.context.matcher.match('route', 'train', 'DE-BW-VVS');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = matched the `network:guid` tag
       t.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
@@ -489,7 +489,7 @@ test('match', t => {
 
     t.test('match on `network:wikidata` tag', t => {
       const result = t.context.matcher.match('route', 'train', 'Q2516108');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = matched the `network:wikidata` tag
       t.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
@@ -515,7 +515,7 @@ test('match', t => {
   t.test('flag matching', t => {
     t.test('match on `flag:name/subject` tag', t => {
       const result = t.context.matcher.match('man_made', 'flagpole', 'New Zealand');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');    // 'primary' = matched the `flag:name` tag
       t.equal(result[0].itemID, 'newzealand-e5dc93');
@@ -529,7 +529,7 @@ test('match', t => {
 
     t.test('match on `country` tag', t => {
       const result = t.context.matcher.match('man_made', 'flagpole', 'NZ');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = matched the `country` tag
       t.equal(result[0].itemID, 'newzealand-e5dc93');
@@ -540,7 +540,7 @@ test('match', t => {
 
     t.test('match on `flag:wikidata` tag', t => {
       const result = t.context.matcher.match('man_made', 'flagpole', 'Q160260');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = matched the `flag:wikidata` tag
       t.equal(result[0].itemID, 'newzealand-e5dc93');
@@ -551,7 +551,7 @@ test('match', t => {
 
     t.test('match on `subject:wikidata` tag', t => {
       const result = t.context.matcher.match('man_made', 'flagpole', 'Q664');
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'alternate');    // 'alternate' = matched the `subject:wikidata` tag
       t.equal(result[0].itemID, 'newzealand-e5dc93');
@@ -574,7 +574,7 @@ test('match', t => {
 
     t.test('matches state flag of Georgia before country flag of Georgia in USA', t => {
       const result = t.context.matcher.match('man_made', 'flagpole', 'georgia', USA);
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 2);
 
       t.equal(result[0].match, 'primary');            // 'primary' = matched the `flag:name` tag
@@ -595,7 +595,7 @@ test('match', t => {
 
     t.test('matches only country flag of Georgia outside the USA', t => {
       const result = t.context.matcher.match('man_made', 'flagpole', 'georgia', HONGKONG);
-      t.type(result, Array)
+      t.type(result, Array);
       t.equal(result.length, 1);
       t.equal(result[0].match, 'primary');            // 'primary' = matched the `flag:name` tag
       t.equal(result[0].itemID, 'georgia-e5dc93');    // Georgia, the country

@@ -5,7 +5,7 @@ import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import safeRegex from 'safe-regex';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 const withLocale = localeCompare('en-US');
 
 // Internal
@@ -14,14 +14,12 @@ import { idgen } from '../lib/idgen.js';
 import { Matcher } from '../lib/matcher.js';
 import { simplify } from '../lib/simplify.js';
 import { sortObject } from '../lib/sort_object.js';
-import { stemmer } from '../lib/stemmer.js';
 import { validate } from '../lib/validate.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
 // JSON
-import treesJSON from '../config/trees.json' assert {type: 'json'};
-const trees = treesJSON.trees;
+
 
 // We use LocationConflation for validating and processing the locationSets
 import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
@@ -348,7 +346,7 @@ function mergeItems() {
   // Any country codes which should be replaced by more standard ones in the locationSets
   const countryReplacements = {
     'uk': 'gb',  // Exceptionally reserved, United Kingdom is officially assigned the alpha-2 code GB
-  }
+  };
 
   const START = '🏗   ' + chalk.yellow(`Merging items...`);
   const END = '👍  ' + chalk.green(`done merging`);
@@ -510,7 +508,7 @@ function mergeItems() {
         } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
           if (!item.locationSet)  item.locationSet = { include: ['ph'] };
           setLanguageTags(tags, 'tl');
-        } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
+        } else if (/[\u3040-\u30FF]/.test(name)) {   // Hiragana or Katakana
           if (!item.locationSet)  item.locationSet = { include: ['jp'] };
           setLanguageTags(tags, 'ja');
         } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
@@ -587,11 +585,11 @@ function mergeItems() {
   }
 
   function normalizeCountryCode(countries, country) {
-    const index = countries.indexOf(country.toLowerCase())
+    const index = countries.indexOf(country.toLowerCase());
     if (index >= 0) {
       const replace = countryReplacements[country.toLowerCase()];
       if (replace && replace !== undefined) {
-        countries[index] = replace.toLowerCase()
+        countries[index] = replace.toLowerCase();
       }
     }
   }
@@ -613,7 +611,6 @@ function checkItems(t) {
   let warnFormatWikidata = [];
   let warnMissingTag = [];
   let warnFormatTag = [];
-  let seenName = {};
 
   let total = 0;      // total items
   let totalWd = 0;    // total items with wikidata
@@ -625,7 +622,7 @@ function checkItems(t) {
     const items = _cache.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
-    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const [, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
     const kv = `${k}/${v}`;
 
     items.forEach(item => {
@@ -698,37 +695,6 @@ function checkItems(t) {
           warnFormatTag.push([display(item), `${osmkey} = ${val}`]);
         }
       });
-
-
-// TODO ?
-  //     // Warn about "new" (no wikidata) items that may duplicate an "existing" (has wikidata) item.
-  //     // The criteria for this warning is:
-  //     // - One of the items has no `brand:wikidata`
-  //     // - The items have nearly the same name
-  //     // - The items have the same locationSet (or the one without wikidata is worldwide)
-  //     const name = tags.name || tags.brand;
-  //     const stem = stemmer(name) || name;
-  //     const itemwd = tags[tree.mainTag];
-  //     const itemls = loco.validateLocationSet(item.locationSet).id;
-
-  //     if (!seenName[stem]) seenName[stem] = new Set();
-  //     seenName[stem].add(item);
-
-  //     if (seenName[stem].size > 1) {
-  //       seenName[stem].forEach(other => {
-  //         if (other.id === item.id) return;   // skip self
-  //         const otherwd = other.tags[tree.mainTag];
-  //         const otherls = loco.validateLocationSet(other.locationSet).id;
-
-  //         // pick one of the items without a wikidata tag to be the "duplicate"
-  //         if (!itemwd && (itemls === otherls || itemls === '+[Q2]')) {
-  //           warnDuplicate.push([display(item), display(other)]);
-  //         } else if (!otherwd && (otherls === itemls || otherls === '+[Q2]')) {
-  //           warnDuplicate.push([display(other), display(item)]);
-  //         }
-  //       });
-  //     }
-
     });
   });
 

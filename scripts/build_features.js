@@ -1,8 +1,6 @@
 // External
 import chalk from 'chalk';
 import fs from 'node:fs';
-import geojsonArea from '@mapbox/geojson-area';
-import geojsonBounds from 'geojson-bounds';
 import geojsonPrecision from 'geojson-precision';
 import geojsonRewind from '@mapbox/geojson-rewind';
 import { globSync } from 'glob';
@@ -10,7 +8,7 @@ import JSON5 from 'json5';
 import jsonschema from 'jsonschema';
 import path from 'node:path';
 import localeCompare from 'locale-compare';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 const withLocale = localeCompare('en-US');
 
 // Internal
@@ -86,22 +84,6 @@ function collectFeatures() {
     const id = path.basename(file).toLowerCase();
     feature.id = id;
 
-    // // Warn if this feature is so small/complex it would better be represented as a circular area.
-    // const except = { 'new_york_city.geojson': true };
-    // if (!except[id]) {
-    //   const coordLength = countCoordinates(feature.geometry.coordinates);
-    //   let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
-    //   area = Number(area.toFixed(2));
-    //   if (area < 2000 && coordLength > 15) {
-    //     const extent = geojsonBounds.extent(feature);
-    //     const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
-    //     const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
-    //     console.warn('');
-    //     console.warn(chalk.yellow(`Warning - GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
-    //     console.warn('  ' + chalk.yellow(file));
-    //   }
-    // }
-
     // sort properties
     let obj = {};
     if (feature.type)  { obj.type = feature.type; }
@@ -146,35 +128,12 @@ function collectFeatures() {
   });
 
   // sort features by id, see: 800ca866f
-  features.sort((a, b) => withLocale(a.id, b.id))
+  features.sort((a, b) => withLocale(a.id, b.id));
 
   const featureCount = Object.keys(files).length;
   console.log(`🧩  features:\t${featureCount}`);
   return features;
 }
-
-
-//
-// countCoordinates()
-// Counts the number of coordinates in a GeoJSON Polygon or MultiPolygon
-//
-function countCoordinates(coords) {
-  const a = Array.isArray(coords);
-  const b = a && Array.isArray(coords[0]);
-  const c = b && Array.isArray(coords[0][0]);
-  const d = c && Array.isArray(coords[0][0][0]);
-
-  let length = 0;
-  if (d) {  // Multipolygon
-    coords.forEach(polys => {
-      polys.forEach(rings => length += rings.length);
-    });
-  } else {  // Polygon
-    coords.forEach(rings => length += rings.length);
-  }
-  return length;
-}
-
 
 
 //

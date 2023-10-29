@@ -9,7 +9,7 @@ import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 import wikibase from 'wikibase-sdk';
 import wikibaseEdit from 'wikibase-edit';
 const withLocale = localeCompare('en-US');
@@ -762,12 +762,6 @@ function enLabelForQID(qid) {
 
 function delay(msec) {
   return new Promise(resolve => setTimeout(resolve, msec));
-}
-
-
-// Clamp a number between min and max
-function clamp(num, min, max) {
-  return Math.min(Math.max(num, min), max);
 }
 
 

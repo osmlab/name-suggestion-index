@@ -6,7 +6,7 @@ import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 import xmlbuilder2 from 'xmlbuilder2';
 
 const withLocale = localeCompare('en-US');
@@ -263,7 +263,7 @@ function buildIDPresets() {
               const vals = nsiVal.split(';');
               const findResult = vals.indexOf(idVal);
               if (-1 === findResult) {
-                return false
+                return false;
               }
               // For a smaller element index rating will be higher
               currentMatchSemicolonRating -= findResult;

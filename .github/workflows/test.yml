@@ -29,6 +29,9 @@ jobs:
     - run: npm install
       env:
         FORCE_COLOR: 2
+    - run: npm run lint
+      env:
+        FORCE_COLOR: 2
     - run: npm run test
       env:
         FORCE_COLOR: 2
