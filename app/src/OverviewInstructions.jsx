@@ -33,7 +33,7 @@ export function OverviewInstructions() {
       in <a target='_blank' href='https://www.wikidata.org'>Wikidata</a>, a free and open knowledge database.
       <br/>
       You can help us by adding {t} to the index, matching {t} to Wikidata identifiers,
-      or improving the {t}' Wikidata pages.<br/>
+      or <a target='_blank' href='wikidata-warnings.htm'>improving</a> the {t}' Wikidata pages.<br/>
       <br/>
       Below is a list of categories used by OpenStreetMap. Each category displays a count of {t} <strong>"(complete / total)"</strong>,
       where "complete" means the {t} have been matched to a Wikidata identifier and a logo.<br/>

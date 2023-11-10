@@ -107,7 +107,7 @@
       "displayName": "Azərpoçt",
       "id": "3a476b-ab1104",
       "locationSet": {"include": ["az"]},
-      "matchNames": ["azerpost"],
+      "matchNames": ["azerpoçt", "azerpost"],
       "tags": {
         "amenity": "post_office",
         "operator": "Azərpoçt",
@@ -214,7 +214,8 @@
       "locationSet": {"include": ["cl"]},
       "tags": {
         "amenity": "post_office",
-        "operator": "Chilexpress"
+        "operator": "Chilexpress",
+        "operator:wikidata": "Q120969879"
       }
     },
     {
@@ -359,7 +360,7 @@
       "locationSet": {"include": ["ua"]},
       "tags": {
         "amenity": "post_office",
-        "operator": "Делівері",
+        "operator": "Delivery",
         "operator:en": "Delivery",
         "operator:uk": "Делівері",
         "operator:wikidata": "Q104092221"
@@ -488,16 +489,6 @@
       }
     },
     {
-      "displayName": "Georgian Post",
-      "id": "georgianpost-791091",
-      "locationSet": {"include": ["ge"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Georgian Post",
-        "operator:wikidata": "Q12869041"
-      }
-    },
-    {
       "displayName": "Ghana Post",
       "id": "ghanapost-aa5324",
       "locationSet": {"include": ["gh"]},
@@ -516,15 +507,6 @@
         "amenity": "post_office",
         "operator": "GLS",
         "operator:wikidata": "Q366182"
-      }
-    },
-    {
-      "displayName": "Government of India",
-      "id": "governmentofindia-45da12",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Government of India"
       }
     },
     {
@@ -589,6 +571,7 @@
       "id": "indiapost-45da12",
       "locationSet": {"include": ["in"]},
       "matchNames": [
+        "government of india",
         "indian post",
         "indian postal service"
       ],
@@ -613,9 +596,9 @@
       "id": "institutopostaltelegraficodevenezuela-de64fe",
       "locationSet": {"include": ["ve"]},
       "tags": {
-        "alt_name": "IPOSTEL",
         "amenity": "post_office",
         "operator": "Instituto Postal Telegráfico de Venezuela",
+        "operator:short": "IPOSTEL",
         "operator:wikidata": "Q30061585"
       }
     },
@@ -668,6 +651,7 @@
       "id": "justin-970b0c",
       "locationSet": {"include": ["ua"]},
       "matchNames": ["джаст ін"],
+      "matchTags": ["office/post_office"],
       "tags": {
         "amenity": "post_office",
         "operator": "Justin",
@@ -691,6 +675,17 @@
         "amenity": "post_office",
         "operator": "La Poste",
         "operator:wikidata": "Q373724"
+      }
+    },
+    {
+      "displayName": "La Poste Monaco",
+      "id": "lapostemonaco-65cd93",
+      "locationSet": {"include": ["mc"]},
+      "matchNames": ["la poste"],
+      "tags": {
+        "amenity": "post_office",
+        "operator": "La Poste Monaco",
+        "operator:wikidata": "Q3821074"
       }
     },
     {
@@ -774,7 +769,8 @@
       "matchNames": [
         "meest express",
         "міст",
-        "міст експрес"
+        "міст експрес",
+        "тзов «торговий дім «міст експрес»"
       ],
       "tags": {
         "amenity": "post_office",
@@ -836,29 +832,21 @@
     },
     {
       "displayName": "Nova Post",
-      "id": "novapost-78f484",
+      "id": "novapost-de5963",
       "locationSet": {
-        "include": ["cz", "lt", "pl"]
+        "include": [
+          "cz",
+          "de-be.geojson",
+          "lt",
+          "pl",
+          "ro",
+          "sk"
+        ]
       },
       "tags": {
         "amenity": "post_office",
         "operator": "Nova Post",
         "operator:wikidata": "Q118613846"
-      }
-    },
-    {
-      "displayName": "Oʻzbekiston Pochtasi",
-      "id": "4e9bff-9811e4",
-      "locationSet": {"include": ["uz"]},
-      "matchNames": [
-        "ozbekiston pochtasi",
-        "ozbеkiston pochtasi",
-        "ozbеkiston pochtasi aj"
-      ],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Oʻzbekiston Pochtasi",
-        "operator:wikidata": "Q105227651"
       }
     },
     {
@@ -888,8 +876,8 @@
       "tags": {
         "amenity": "post_office",
         "operator": "Organización Coordinadora Argentina",
-        "operator:wikidata": "Q5172887",
-        "short_name": "OCA"
+        "operator:short": "OCA",
+        "operator:wikidata": "Q5172887"
       }
     },
     {
@@ -1112,6 +1100,16 @@
       }
     },
     {
+      "displayName": "Poste San Marino",
+      "id": "postesanmarino-b5563e",
+      "locationSet": {"include": ["sm"]},
+      "tags": {
+        "amenity": "post_office",
+        "operator": "Poste San Marino",
+        "operator:wikidata": "Q3696341"
+      }
+    },
+    {
       "displayName": "Pošte Srpske",
       "id": "postesrpske-736d07",
       "locationSet": {"include": ["ba"]},
@@ -1252,8 +1250,8 @@
       "tags": {
         "amenity": "post_office",
         "operator": "South African Post Office",
-        "operator:wikidata": "Q7565777",
-        "short_name": "SAPO"
+        "operator:short": "SAPO",
+        "operator:wikidata": "Q7565777"
       }
     },
     {
@@ -1351,6 +1349,22 @@
       }
     },
     {
+      "displayName": "UzPost",
+      "id": "uzpost-9811e4",
+      "locationSet": {"include": ["uz"]},
+      "matchNames": [
+        "o’zbеkiston pochtasi",
+        "oʻzbekiston pochtasi",
+        "ozbekiston pochtasi",
+        "ozbеkiston pochtasi aj"
+      ],
+      "tags": {
+        "amenity": "post_office",
+        "operator": "UzPost",
+        "operator:wikidata": "Q105227651"
+      }
+    },
+    {
       "displayName": "Vietnam Post",
       "id": "vietnampost-c0dded",
       "locationSet": {"include": ["vn"]},
@@ -1423,8 +1437,8 @@
         "operator": "Ελληνικά Ταχυδρομεία",
         "operator:el": "Ελληνικά Ταχυδρομεία",
         "operator:en": "Hellenic Post",
-        "operator:wikidata": "Q1275135",
-        "short_name": "ΕΛΤΑ"
+        "operator:short": "ΕΛΤΑ",
+        "operator:wikidata": "Q1275135"
       }
     },
     {
@@ -1455,12 +1469,13 @@
     },
     {
       "displayName": "Български пощи",
-      "id": "6d0749-03f0fb",
+      "id": "bulgarianposts-03f0fb",
       "locationSet": {"include": ["bg"]},
       "matchNames": ["български пощи еад"],
       "tags": {
         "amenity": "post_office",
         "operator": "Български пощи",
+        "operator:en": "Bulgarian Posts",
         "operator:wikidata": "Q2880826"
       }
     },
@@ -1507,12 +1522,13 @@
     },
     {
       "displayName": "Қазпошта",
-      "id": "426ee4-58ab80",
+      "id": "kazpost-58ab80",
       "locationSet": {"include": ["kz"]},
-      "matchNames": ["казпошта"],
+      "matchNames": ["казпошта", "қазпочта"],
       "tags": {
         "amenity": "post_office",
         "operator": "Қазпошта",
+        "operator:en": "Kazpost",
         "operator:kk": "Қазпошта",
         "operator:ru": "Казпочта",
         "operator:wikidata": "Q746263"
@@ -1533,13 +1549,16 @@
       "id": "530f2c-970b0c",
       "locationSet": {"include": ["ua"]},
       "matchNames": [
+        "new post",
         "nova poshta",
         "nova post",
+        "відділення нова пошта",
         "нова пошта №1",
         "нова пошта №2",
         "нова пошта №3",
         "нова пошта №4",
         "нова пошта, відділення №1",
+        "тов нова пошта",
         "товариство з обмеженою відповідальністю \"нова пошта\""
       ],
       "tags": {
@@ -1595,15 +1614,35 @@
     },
     {
       "displayName": "Укрпошта",
-      "id": "c8edb5-970b0c",
+      "id": "ukrposhta-970b0c",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["ат укрпошта", "пошта"],
+      "matchNames": [
+        "ат укрпошта",
+        "пат \"укрпошта\"",
+        "пошта",
+        "удппз \"укрпошта\"",
+        "укрпочта"
+      ],
       "tags": {
         "amenity": "post_office",
         "operator": "Укрпошта",
-        "operator:ru": "Укрпочта",
+        "operator:en": "Ukrposhta",
+        "operator:ru": "Укрпошта",
         "operator:uk": "Укрпошта",
         "operator:wikidata": "Q2470783"
+      }
+    },
+    {
+      "displayName": "საქართველოს ფოსტა",
+      "id": "georgianpost-791091",
+      "locationSet": {"include": ["ge"]},
+      "matchNames": ["შპს საქართველოს ფოსტა"],
+      "tags": {
+        "amenity": "post_office",
+        "operator": "საქართველოს ფოსტა",
+        "operator:en": "Georgian Post",
+        "operator:ka": "საქართველოს ფოსტა",
+        "operator:wikidata": "Q12869041"
       }
     },
     {
@@ -1619,18 +1658,6 @@
       }
     },
     {
-      "displayName": "البريد الإيراني",
-      "id": "iranpost-05a404",
-      "locationSet": {"include": ["ir"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "البريد الإيراني",
-        "operator:ar": "البريد الإيراني",
-        "operator:en": "Iran Post",
-        "operator:wikidata": "Q6066851"
-      }
-    },
-    {
       "displayName": "البريد العراقي",
       "id": "iraqpost-371d69",
       "locationSet": {"include": ["iq"]},
@@ -1641,6 +1668,19 @@
         "operator:ar": "البريد العراقي",
         "operator:en": "Iraq Post",
         "operator:wikidata": "Q12184443"
+      }
+    },
+    {
+      "displayName": "شرکت پست جمهوری اسلامی ایران",
+      "id": "iranpost-05a404",
+      "locationSet": {"include": ["ir"]},
+      "matchNames": ["البريد الإيراني"],
+      "tags": {
+        "amenity": "post_office",
+        "operator": "شرکت پست جمهوری اسلامی ایران",
+        "operator:en": "Iran Post",
+        "operator:fa": "شرکت پست جمهوری اسلامی ایران",
+        "operator:wikidata": "Q6066851"
       }
     },
     {
@@ -1712,10 +1752,10 @@
         "operator": "日本郵便",
         "operator:en": "Japan Post",
         "operator:ja": "日本郵便",
-        "operator:wikidata": "Q11509260",
-        "short_name": "郵便局",
-        "short_name:en": "JP",
-        "short_name:ja": "郵便局"
+        "operator:short": "郵便局",
+        "operator:short:en": "JP",
+        "operator:short:ja": "郵便局",
+        "operator:wikidata": "Q11509260"
       }
     },
     {

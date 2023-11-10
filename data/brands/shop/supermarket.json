@@ -22,8 +22,8 @@
       ],
       "named": [
         "^famiglia cooperativa$",
-        "^migros bank$",
-        "^migrosbank$",
+        "^migros\\s?bank$",
+        "^the co-operative food$",
         "^караван$",
         "^семейный$"
       ]
@@ -244,6 +244,7 @@
           "pt"
         ]
       },
+      "matchNames": ["aldi france"],
       "note": "countries in which ALDI Nord group is active",
       "tags": {
         "brand": "ALDI",
@@ -267,6 +268,11 @@
           "us"
         ]
       },
+      "matchNames": [
+        "aldi australia",
+        "aldi uk",
+        "aldi usa"
+      ],
       "note": "countries in which ALDI Süd group is active",
       "tags": {
         "brand": "ALDI",
@@ -431,7 +437,10 @@
       "displayName": "Asda",
       "id": "asda-a8278b",
       "locationSet": {"include": ["gb"]},
-      "matchNames": ["asda stores limited"],
+      "matchNames": [
+        "asda stores limited",
+        "asda supercentre"
+      ],
       "tags": {
         "brand": "Asda",
         "brand:wikidata": "Q297410",
@@ -539,6 +548,17 @@
         "brand:wikidata": "Q809994",
         "name": "basic",
         "organic": "only",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Bazaar",
+      "id": "bazaar-37450e",
+      "locationSet": {"include": ["gr"]},
+      "tags": {
+        "brand": "Bazaar",
+        "brand:wikidata": "Q4875086",
+        "name": "Bazaar",
         "shop": "supermarket"
       }
     },
@@ -705,7 +725,7 @@
       }
     },
     {
-      "displayName": "Billa (Czechia)",
+      "displayName": "Billa (Česko)",
       "id": "billa-8e6809",
       "locationSet": {"include": ["cz"]},
       "tags": {
@@ -1664,6 +1684,17 @@
       }
     },
     {
+      "displayName": "Coop.fi",
+      "id": "coopfi-0cb133",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "brand": "Coop.fi",
+        "brand:wikidata": "Q4004707",
+        "name": "Coop.fi",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "CoopCompact",
       "id": "coopcompact-5811b5",
       "locationSet": {"include": ["nl"]},
@@ -1889,18 +1920,6 @@
       }
     },
     {
-      "displayName": "denn's Biomarkt",
-      "id": "dennsbiomarkt-6367d0",
-      "locationSet": {"include": ["at", "de"]},
-      "tags": {
-        "brand": "denn's Biomarkt",
-        "brand:wikidata": "Q48883773",
-        "name": "denn's Biomarkt",
-        "organic": "only",
-        "shop": "supermarket"
-      }
-    },
-    {
       "displayName": "Denner",
       "id": "denner-704edb",
       "locationSet": {"include": ["ch", "li"]},
@@ -1908,6 +1927,20 @@
         "brand": "Denner",
         "brand:wikidata": "Q379911",
         "name": "Denner",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Denns BioMarkt",
+      "id": "dennsbiomarkt-6367d0",
+      "locationSet": {"include": ["at", "de"]},
+      "tags": {
+        "brand": "Denns BioMarkt",
+        "brand:wikidata": "Q48883773",
+        "name": "Denns BioMarkt",
+        "operator": "Dennree GmbH",
+        "operator:wikidata": "Q1189641",
+        "organic": "only",
         "shop": "supermarket"
       }
     },
@@ -1941,7 +1974,11 @@
       "locationSet": {
         "include": ["ar", "br", "es"]
       },
-      "matchNames": ["supermercado dia"],
+      "matchNames": [
+        "dia argentina",
+        "dia supermercado",
+        "supermercado dia"
+      ],
       "tags": {
         "brand": "Dia",
         "brand:wikidata": "Q925132",
@@ -2365,6 +2402,19 @@
       }
     },
     {
+      "displayName": "Erewhon",
+      "id": "erewhon-097dbf",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "brand": "Erewhon",
+        "brand:wikidata": "Q105628552",
+        "name": "Erewhon",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Eroski",
       "id": "eroski-9c34f5",
       "locationSet": {"include": ["es", "gi"]},
@@ -2425,6 +2475,7 @@
       "displayName": "EuroSpin",
       "id": "eurospin-a66db7",
       "locationSet": {"include": ["it", "si"]},
+      "matchNames": ["eurospin italia"],
       "tags": {
         "brand": "EuroSpin",
         "brand:wikidata": "Q1374674",
@@ -2676,6 +2727,24 @@
         "brand": "Foods Co",
         "brand:wikidata": "Q5465282",
         "name": "Foods Co",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Foodtown",
+      "id": "foodtown-3ea0d2",
+      "locationSet": {
+        "include": [
+          "us-ct.geojson",
+          "us-nj.geojson",
+          "us-ny.geojson",
+          "us-pa.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Foodtown",
+        "brand:wikidata": "Q5465575",
+        "name": "Foodtown",
         "shop": "supermarket"
       }
     },
@@ -3323,6 +3392,7 @@
       "displayName": "Hofer",
       "id": "hofer-83285c",
       "locationSet": {"include": ["at", "si"]},
+      "matchNames": ["hofer österreich"],
       "tags": {
         "brand": "Hofer",
         "brand:wikidata": "Q15815751",
@@ -3664,7 +3734,10 @@
       "displayName": "Jumbo",
       "id": "jumbo-1cf55d",
       "locationSet": {"include": ["be", "nl"]},
-      "matchNames": ["jumbo supermarkt"],
+      "matchNames": [
+        "jumbo supermarkt",
+        "jumbo supermarkten"
+      ],
       "preserveTags": ["^name"],
       "tags": {
         "brand": "Jumbo",
@@ -3896,7 +3969,7 @@
       }
     },
     {
-      "displayName": "Konzum (Czechia)",
+      "displayName": "Konzum (Česko)",
       "id": "konzum-261d20",
       "locationSet": {"include": ["cz", "sk"]},
       "tags": {
@@ -4137,6 +4210,13 @@
         "include": ["001"],
         "exclude": ["bg", "rs"]
       },
+      "matchNames": [
+        "lidl deutschland",
+        "lidl españa",
+        "lidl france",
+        "lidl italia",
+        "lidl polska"
+      ],
       "tags": {
         "brand": "Lidl",
         "brand:wikidata": "Q151954",
@@ -4912,6 +4992,17 @@
       }
     },
     {
+      "displayName": "Metro (Cyprus)",
+      "id": "metro-42dc97",
+      "locationSet": {"include": ["cy"]},
+      "tags": {
+        "brand": "Metro",
+        "brand:wikidata": "Q6715491",
+        "name": "Metro",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Metro (Ontario & Quebec)",
       "id": "metro-7dcd78",
       "locationSet": {
@@ -4928,7 +5019,7 @@
       }
     },
     {
-      "displayName": "Metro (Peru)",
+      "displayName": "Metro (Perú)",
       "id": "metro-acfc90",
       "locationSet": {"include": ["pe"]},
       "tags": {
@@ -5301,6 +5392,7 @@
       "locationSet": {
         "include": ["de", "dk", "pl"]
       },
+      "matchNames": ["netto polska"],
       "tags": {
         "brand": "Netto",
         "brand:wikidata": "Q552652",
@@ -5483,6 +5575,18 @@
       }
     },
     {
+      "displayName": "Odin",
+      "id": "odin-5811b5",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "brand": "Odin",
+        "brand:wikidata": "Q122904022",
+        "name": "Odin",
+        "organic": "yes",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "OK Foods",
       "id": "okfoods-6d06e8",
       "locationSet": {
@@ -5653,10 +5757,45 @@
       "displayName": "Pick n Pay",
       "id": "picknpay-72ca7c",
       "locationSet": {"include": ["na", "za"]},
+      "matchNames": [
+        "pick and pay",
+        "pick and pay family",
+        "pick n pay family"
+      ],
       "tags": {
         "brand": "Pick n Pay",
         "brand:wikidata": "Q7190735",
         "name": "Pick n Pay",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Pick n Pay Hyper",
+      "id": "picknpayhyper-72ca7c",
+      "locationSet": {"include": ["na", "za"]},
+      "matchNames": [
+        "pick and pay hyper",
+        "pnp hyper"
+      ],
+      "tags": {
+        "brand": "Pick n Pay Hyper",
+        "brand:wikidata": "Q7190735",
+        "name": "Pick n Pay Hyper",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Pick n Pay Super",
+      "id": "picknpaysuper-72ca7c",
+      "locationSet": {"include": ["na", "za"]},
+      "matchNames": [
+        "pick and pay super",
+        "pnp super"
+      ],
+      "tags": {
+        "brand": "Pick n Pay Super",
+        "brand:wikidata": "Q7190735",
+        "name": "Pick n Pay Super",
         "shop": "supermarket"
       }
     },
@@ -5892,8 +6031,8 @@
     },
     {
       "displayName": "Profi Loco",
-      "id": "profiloco-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "profiloco-62a473",
+      "locationSet": {"include": ["ro"]},
       "tags": {
         "brand": "Profi Loco",
         "name": "Profi Loco",
@@ -5902,8 +6041,8 @@
     },
     {
       "displayName": "Profi Super",
-      "id": "profisuper-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "profisuper-62a473",
+      "locationSet": {"include": ["ro"]},
       "tags": {
         "brand": "Profi Super",
         "name": "Profi Super",
@@ -6129,6 +6268,7 @@
     },
     {
       "displayName": "REWE City",
+      "id": "rewecity-0a839e",
       "locationSet": {"include": ["de"]},
       "preserveTags": ["^name"],
       "tags": {
@@ -6253,9 +6393,20 @@
       }
     },
     {
-      "displayName": "Safeway",
-      "id": "safeway-986a24",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Safeway Canada",
+      "id": "safeway-76454b",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "brand": "Safeway",
+        "brand:wikidata": "Q17111901",
+        "name": "Safeway",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Safeway US",
+      "id": "safeway-dde59d",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Safeway",
         "brand:wikidata": "Q1508234",
@@ -6376,6 +6527,18 @@
         "brand": "Scotmid",
         "brand:wikidata": "Q7435719",
         "name": "Scotmid",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Seafood City",
+      "id": "seafoodcity-dde59d",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Seafood City",
+        "brand:wikidata": "Q7440359",
+        "cuisine": "asian",
+        "name": "Seafood City",
         "shop": "supermarket"
       }
     },
@@ -7137,6 +7300,17 @@
       }
     },
     {
+      "displayName": "Supermercados MAS",
+      "id": "supermercadosmas-0513f1",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "brand": "Supermercados MAS",
+        "brand:wikidata": "Q120764436",
+        "name": "Supermercados MAS",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Supermercati Zazzeron",
       "id": "supermercatizazzeron-0cb133",
       "locationSet": {"include": ["it"]},
@@ -7330,25 +7504,6 @@
       }
     },
     {
-      "displayName": "The Co-operative Food",
-      "id": "thecooperativefood-a8278b",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": [
-        "central england co-operative",
-        "chelmsford star co-operative society",
-        "coop",
-        "heart of england co-operative society",
-        "midcounties co-operative",
-        "southern co-operative"
-      ],
-      "tags": {
-        "brand": "The Co-operative Food",
-        "brand:wikidata": "Q107617274",
-        "name": "The Co-operative Food",
-        "shop": "supermarket"
-      }
-    },
-    {
       "displayName": "The Food Warehouse",
       "id": "thefoodwarehouse-a8278b",
       "locationSet": {"include": ["gb"]},
@@ -7418,6 +7573,7 @@
       "tags": {
         "brand": "Thrash! Траш!",
         "brand:en": "Thrash!",
+        "brand:uk": "Траш!",
         "brand:wikidata": "Q56364758",
         "name": "Thrash! Траш!",
         "name:en": "Thrash!",
@@ -7902,6 +8058,7 @@
       "displayName": "Vomar",
       "id": "vomar-5811b5",
       "locationSet": {"include": ["nl"]},
+      "matchNames": ["vomar voordeelmarkt"],
       "tags": {
         "brand": "Vomar",
         "brand:wikidata": "Q3202837",
@@ -8346,7 +8503,11 @@
       "displayName": "АТБ-Маркет",
       "id": "atbmarket-94881c",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["атб"],
+      "matchNames": [
+        "атб",
+        "супермаркет атб",
+        "тов \"атб-маркет\""
+      ],
       "matchTags": ["shop/convenience"],
       "tags": {
         "brand": "АТБ-Маркет",
@@ -8415,6 +8576,7 @@
       "displayName": "Близенько",
       "id": "106d49-94881c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["близько"],
       "tags": {
         "brand": "Близенько",
         "brand:wikidata": "Q117670418",
@@ -8439,6 +8601,7 @@
       "displayName": "Велмарт",
       "id": "62e010-94881c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["velmart"],
       "tags": {
         "brand": "Велмарт",
         "brand:wikidata": "Q121004370",
@@ -8654,6 +8817,7 @@
       "displayName": "ЕКО маркет",
       "id": "72c317-94881c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["eko market"],
       "tags": {
         "brand": "ЕКО маркет",
         "brand:wikidata": "Q12103350",
@@ -9073,9 +9237,11 @@
       "tags": {
         "brand": "Сільпо",
         "brand:en": "Silpo",
+        "brand:uk": "Сільпо",
         "brand:wikidata": "Q4419434",
         "name": "Сільпо",
         "name:en": "Silpo",
+        "name:uk": "Сільпо",
         "shop": "supermarket"
       }
     },
@@ -9126,6 +9292,7 @@
       "displayName": "Фантастико",
       "id": "fantastiko-56b425",
       "locationSet": {"include": ["bg"]},
+      "matchNames": ["fantastico"],
       "tags": {
         "brand": "Фантастико",
         "brand:bg": "Фантастико",
@@ -10634,6 +10801,25 @@
       }
     },
     {
+      "displayName": "东方冷库",
+      "id": "dflk-24a030",
+      "locationSet": {
+        "include": [[117.1140042, 36.6507007, 50]]
+      },
+      "note": "仅限山东济南章丘，画圈为济南城市群",
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "东方冷库",
+        "brand:en": "DFLK",
+        "brand:wikidata": "Q123025086",
+        "brand:zh": "东方冷库",
+        "name": "东方冷库",
+        "name:en": "DFLK",
+        "name:zh": "东方冷库",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "中百佳乐家",
       "id": "jialejia-eda947",
       "locationSet": {"include": ["cn"]},
@@ -10836,6 +11022,23 @@
       }
     },
     {
+      "displayName": "宜味客",
+      "id": "eweke-eda947",
+      "locationSet": {"include": ["cn"]},
+      "note": "仅限山东潍坊",
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "宜味客",
+        "brand:en": "E-WEKE",
+        "brand:wikidata": "Q123025082",
+        "brand:zh": "宜味客",
+        "name": "宜味客",
+        "name:en": "E-WEKE",
+        "name:zh": "宜味客",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "家乐福",
       "id": "carrefour-3265be",
       "locationSet": {
@@ -10852,6 +11055,22 @@
         "name": "家乐福",
         "name:en": "Carrefour",
         "name:zh": "家乐福",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "家家悦",
+      "id": "jiajiayue-eda947",
+      "locationSet": {"include": ["cn"]},
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "家家悦",
+        "brand:en": "JIAJIAYUE",
+        "brand:wikidata": "Q123025078",
+        "brand:zh": "家家悦",
+        "name": "家家悦",
+        "name:en": "JIAJIAYUE",
+        "name:zh": "家家悦",
         "shop": "supermarket"
       }
     },
@@ -11081,6 +11300,25 @@
       }
     },
     {
+      "displayName": "济南华联超市",
+      "id": "jinanhualian-24a030",
+      "locationSet": {
+        "include": [[117.1140042, 36.6507007, 50]]
+      },
+      "note": "仅限山东济南，画圈为济南城市群",
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "济南华联超市",
+        "brand:en": "Jinan Hualian",
+        "brand:wikidata": "Q123025079",
+        "brand:zh": "济南华联超市",
+        "name": "济南华联超市",
+        "name:en": "Jinan Hualian",
+        "name:zh": "济南华联超市",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "物美",
       "id": "wumart-eda947",
       "locationSet": {"include": ["cn"]},
@@ -11118,6 +11356,23 @@
         "operator:zh": "屈臣氏集團",
         "operator:zh-Hans": "屈臣氏集团",
         "operator:zh-Hant": "屈臣氏集團",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "百姓量贩",
+      "id": "baixing-eda947",
+      "locationSet": {"include": ["cn"]},
+      "note": "仅限河南",
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "百姓量贩",
+        "brand:en": "BAIXING",
+        "brand:wikidata": "Q123025089",
+        "brand:zh": "百姓量贩",
+        "name": "百姓量贩",
+        "name:en": "BAIXING",
+        "name:zh": "百姓量贩",
         "shop": "supermarket"
       }
     },
@@ -11204,6 +11459,23 @@
         "name": "西友",
         "name:en": "Seiyu",
         "name:ja": "西友",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "银座超市",
+      "id": "inzone-eda947",
+      "locationSet": {"include": ["cn"]},
+      "note": "仅限山东、河北、河南",
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "银座超市",
+        "brand:en": "Inzone",
+        "brand:wikidata": "Q123025090",
+        "brand:zh": "银座超市",
+        "name": "银座超市",
+        "name:en": "Inzone",
+        "name:zh": "银座超市",
         "shop": "supermarket"
       }
     },
