@@ -245,7 +245,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
   function searchWikidataLink(name) {
     const q = encodeURIComponent(name);
-    const href = `https://google.com/search?q=${q}+site%3Awikidata.org`;
+    const href = `https://www.wikidata.org/?search=${q}`;
     const title = `Search Wikidata for ${name}`;
     return (<a target='_blank' href={href} title={title}>Wikidata</a>);
   }
