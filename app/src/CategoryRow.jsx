@@ -313,6 +313,8 @@ relation[${k}=${v}][network:wikidata=${qid}]
       /* Brands */
       if ((t=='brands') && (k=='amenity') && (v=='atm'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=bank'; text = '/brands/amenity/bank.json';}
+      if ((t=='brands') && (k=='man_made') && (v=='charge_point'))
+        {url = '/index.html?t=brands&amp;k=amenity&amp;v=charging_station'; text = '/brands/amenity/charging_station.json';}
 
       /* Operators */
       if ((t=='operators') && (k=='leisure') && (v=='nature_reserve'))
