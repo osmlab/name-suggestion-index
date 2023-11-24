@@ -21,7 +21,7 @@
       "named": [
         "^((da|la|las|el|ristorante|zum|zur)\\s)",
         "^((gasthaus|gasthof|schwarzer)?\\s?(adler|krone|löwen|zur (linde|post)))$",
-        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella (vista|napoli))$",
+        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella ?(vista|napoli))$",
         "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|comedor|comida china)$",
         "^(china (buffet|city|express|garden|house|king|palace|star|town)|chinatown)$",
         "^(delphi|der grieche|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|eden|europa|frohsinn|fuji)$",
@@ -332,16 +332,19 @@
         "amenity": "restaurant",
         "brand": "Bar + Block",
         "brand:wikidata": "Q117599706",
+        "cuisine": "steak_house;breakfast",
         "name": "Bar + Block"
       }
     },
     {
       "displayName": "Basilico",
-      "id": "basilico-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "basilico-9b5453",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Basilico",
+        "brand:wikidata": "Q123397327",
+        "cuisine": "pizza",
         "name": "Basilico"
       }
     },
@@ -434,16 +437,6 @@
         "brand:wikidata": "Q4883362",
         "cuisine": "italian",
         "name": "Bella Italia"
-      }
-    },
-    {
-      "displayName": "Bellavista",
-      "id": "bellavista-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Bellavista",
-        "name": "Bellavista"
       }
     },
     {
@@ -818,6 +811,7 @@
         "amenity": "restaurant",
         "brand": "Bubba's 33",
         "brand:wikidata": "Q119359352",
+        "cuisine": "pizza;burger;bar&grill",
         "name": "Bubba's 33"
       }
     },
@@ -3914,6 +3908,27 @@
       }
     },
     {
+      "displayName": "Moxie's",
+      "id": "moxies-12e5ab",
+      "locationSet": {
+        "include": [
+          "ca",
+          "us-az.geojson",
+          "us-fl.geojson",
+          "us-ma.geojson",
+          "us-tx.geojson"
+        ]
+      },
+      "matchNames": ["moxie's grill & bar"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Moxie's",
+        "brand:wikidata": "Q6927497",
+        "cuisine": "bar&grill",
+        "name": "Moxie's"
+      }
+    },
+    {
       "displayName": "Mr. Greek",
       "id": "mrgreek-e68b16",
       "locationSet": {"include": ["ca"]},
@@ -5792,6 +5807,20 @@
       }
     },
     {
+      "displayName": "The Works",
+      "id": "theworks-f8643e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "The Works",
+        "brand:wikidata": "Q123410138",
+        "cuisine": "burger",
+        "name": "The Works"
+      }
+    },
+    {
       "displayName": "Thyme",
       "id": "thyme-9b5453",
       "locationSet": {"include": ["gb"]},
@@ -7512,6 +7541,24 @@
         "name": "安楽亭",
         "name:en": "Anrakutei",
         "name:ja": "安楽亭"
+      }
+    },
+    {
+      "displayName": "宜味客",
+      "id": "eweke-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "note": "仅限山东潍坊",
+      "preserveTags": ["^name"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "宜味客",
+        "brand:en": "E-WEKE",
+        "brand:wikidata": "Q123025082",
+        "brand:zh": "宜味客",
+        "cuisine": "chinese;fast_food",
+        "name": "宜味客",
+        "name:en": "E-WEKE",
+        "name:zh": "宜味客"
       }
     },
     {

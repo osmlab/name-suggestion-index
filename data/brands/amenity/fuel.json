@@ -126,23 +126,16 @@
     },
     {
       "displayName": "Agip",
-      "id": "agip-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "agip-025116",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ch", "it"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "Agip",
         "brand:wikidata": "Q377915",
         "name": "Agip"
-      }
-    },
-    {
-      "displayName": "Agip Eni",
-      "id": "agipeni-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Agip Eni",
-        "name": "Agip Eni"
       }
     },
     {
@@ -308,27 +301,6 @@
         "brand": "ANP",
         "brand:wikidata": "Q119198381",
         "name": "ANP"
-      }
-    },
-    {
-      "displayName": "Api",
-      "id": "api-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Api",
-        "brand:wikidata": "Q646807",
-        "name": "Api"
-      }
-    },
-    {
-      "displayName": "Api-Ip",
-      "id": "apiip-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Api-Ip",
-        "name": "Api-Ip"
       }
     },
     {
@@ -1716,25 +1688,13 @@
       "locationSet": {
         "include": ["at", "ch", "fr", "it"]
       },
-      "matchNames": ["agip/eni"],
+      "matchNames": ["agip/eni", "eni station"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "fuel",
         "brand": "Eni",
         "brand:wikidata": "Q565594",
         "name": "Eni"
-      }
-    },
-    {
-      "displayName": "Eni Station",
-      "id": "enistation-4e932a",
-      "locationSet": {
-        "include": ["at", "ch", "fr", "it"]
-      },
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Eni",
-        "brand:wikidata": "Q565594",
-        "name": "Eni Station"
       }
     },
     {
@@ -1762,17 +1722,6 @@
         "brand": "Equador",
         "brand:wikidata": "Q119851742",
         "name": "Equador"
-      }
-    },
-    {
-      "displayName": "Erg",
-      "id": "erg-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Erg",
-        "brand:wikidata": "Q739503",
-        "name": "Erg"
       }
     },
     {
@@ -2692,6 +2641,12 @@
         "include": ["001"],
         "exclude": ["pl"]
       },
+      "matchNames": [
+        "api",
+        "api/ip",
+        "erg",
+        "totalerg"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "IP",
@@ -5023,6 +4978,17 @@
       }
     },
     {
+      "displayName": "Stinson",
+      "id": "stinson-04874d",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Stinson",
+        "brand:wikidata": "Q123410161",
+        "name": "Stinson"
+      }
+    },
+    {
       "displayName": "Sunoco",
       "id": "sunoco-c5cf43",
       "locationSet": {"include": ["us"]},
@@ -5260,7 +5226,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Tesoro",
-        "brand:wikidata": "Q2037080",
+        "brand:wikidata": "Q123414862",
         "name": "Tesoro"
       }
     },
@@ -5407,17 +5373,6 @@
         "brand": "TotalEnergies",
         "brand:wikidata": "Q154037",
         "name": "TotalEnergies"
-      }
-    },
-    {
-      "displayName": "TotalErg",
-      "id": "totalerg-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "TotalErg",
-        "brand:wikidata": "Q3995933",
-        "name": "TotalErg"
       }
     },
     {
@@ -5933,6 +5888,7 @@
       "displayName": "Z",
       "id": "z-088dbb",
       "locationSet": {"include": ["nz"]},
+      "matchNames": ["z energy"],
       "tags": {
         "amenity": "fuel",
         "brand": "Z",
@@ -6065,6 +6021,8 @@
       "id": "69e648-ed4144",
       "locationSet": {"include": ["ua"]},
       "matchNames": [
+        "brsm",
+        "brsm-nafta",
         "азк брсм-нафта",
         "азс брсм",
         "брсм"

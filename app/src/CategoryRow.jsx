@@ -245,7 +245,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
   function searchWikidataLink(name) {
     const q = encodeURIComponent(name);
-    const href = `https://google.com/search?q=${q}+site%3Awikidata.org`;
+    const href = `https://www.wikidata.org/?search=${q}`;
     const title = `Search Wikidata for ${name}`;
     return (<a target='_blank' href={href} title={title}>Wikidata</a>);
   }
@@ -313,6 +313,8 @@ relation[${k}=${v}][network:wikidata=${qid}]
       /* Brands */
       if ((t=='brands') && (k=='amenity') && (v=='atm'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=bank'; text = '/brands/amenity/bank.json';}
+      if ((t=='brands') && (k=='man_made') && (v=='charge_point'))
+        {url = '/index.html?t=brands&amp;k=amenity&amp;v=charging_station'; text = '/brands/amenity/charging_station.json';}
 
       /* Operators */
       if ((t=='operators') && (k=='leisure') && (v=='nature_reserve'))
