@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "path": "transit/public_transport/station_light_rail",
+    "skipCollection": true,
+    "preserveTags": ["^public_transport$"],
+    "exclude": {
+      "generic": ["^light rail station$"]
+    }
+  },
+  "items": [
+    {
+      "note": "Auto create public_transport/station_light_rail for all route/light_rail - #9020",
+      "templateSource": "transit/route/light_rail",
+      "templateTags": {
+        "light_rail": "yes",
+        "public_transport": "station",
+        "railway": "station",
+        "route": "",
+        "station": "light_rail"
+      }
+    }
+  ]
+}
