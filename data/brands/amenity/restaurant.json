@@ -21,7 +21,7 @@
       "named": [
         "^((da|la|las|el|ristorante|zum|zur)\\s)",
         "^((gasthaus|gasthof|schwarzer)?\\s?(adler|krone|löwen|zur (linde|post)))$",
-        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella (vista|napoli))$",
+        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella ?(vista|napoli))$",
         "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|comedor|comida china)$",
         "^(china (buffet|city|express|garden|house|king|palace|star|town)|chinatown)$",
         "^(delphi|der grieche|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|eden|europa|frohsinn|fuji)$",
@@ -37,6 +37,7 @@
         "^(sportheim|sternen|syrtaki|taj mahal|taste of india|the (grill|kitchen)|toscana|tokyo( sushi)?|traube)$",
         "^(umami|valentino|venezia|waldschänke|wok|zorbas)$",
         "^(早点|早餐店)$",
+        "^thai kitchen$",
         "^兰州拉面$",
         "^沙县小吃$",
         "^食堂$"
@@ -332,16 +333,19 @@
         "amenity": "restaurant",
         "brand": "Bar + Block",
         "brand:wikidata": "Q117599706",
+        "cuisine": "steak_house;breakfast",
         "name": "Bar + Block"
       }
     },
     {
       "displayName": "Basilico",
-      "id": "basilico-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "basilico-9b5453",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Basilico",
+        "brand:wikidata": "Q123397327",
+        "cuisine": "pizza",
         "name": "Basilico"
       }
     },
@@ -434,16 +438,6 @@
         "brand:wikidata": "Q4883362",
         "cuisine": "italian",
         "name": "Bella Italia"
-      }
-    },
-    {
-      "displayName": "Bellavista",
-      "id": "bellavista-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Bellavista",
-        "name": "Bellavista"
       }
     },
     {
@@ -818,6 +812,7 @@
         "amenity": "restaurant",
         "brand": "Bubba's 33",
         "brand:wikidata": "Q119359352",
+        "cuisine": "pizza;burger;bar&grill",
         "name": "Bubba's 33"
       }
     },
@@ -2207,6 +2202,18 @@
       }
     },
     {
+      "displayName": "Grimaldi's Pizzeria",
+      "id": "grimaldispizzeria-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Grimaldi's Pizzeria",
+        "brand:wikidata": "Q564256",
+        "cuisine": "pizza",
+        "name": "Grimaldi's Pizzeria"
+      }
+    },
+    {
       "displayName": "Gringo's Mexican Kitchen",
       "id": "gringosmexicankitchen-5297f1",
       "locationSet": {
@@ -3400,6 +3407,20 @@
       }
     },
     {
+      "displayName": "Main Event",
+      "id": "mainevent-96af40",
+      "locationSet": {"include": ["us"]},
+      "matchTags": ["leisure/amusement_arcade"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Main Event",
+        "brand:wikidata": "Q56062981",
+        "cuisine": "american",
+        "leisure": "amusement_arcade",
+        "name": "Main Event"
+      }
+    },
+    {
       "displayName": "Mama Roma",
       "id": "mamaroma-642268",
       "locationSet": {"include": ["ru"]},
@@ -3742,6 +3763,9 @@
       "displayName": "Miller & Carter",
       "id": "millerandcarter-9b5453",
       "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "miller and carter steakhouse"
+      ],
       "tags": {
         "amenity": "restaurant",
         "brand": "Miller & Carter",
@@ -3914,6 +3938,27 @@
       }
     },
     {
+      "displayName": "Moxie's",
+      "id": "moxies-12e5ab",
+      "locationSet": {
+        "include": [
+          "ca",
+          "us-az.geojson",
+          "us-fl.geojson",
+          "us-ma.geojson",
+          "us-tx.geojson"
+        ]
+      },
+      "matchNames": ["moxie's grill & bar"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Moxie's",
+        "brand:wikidata": "Q6927497",
+        "cuisine": "bar&grill",
+        "name": "Moxie's"
+      }
+    },
+    {
       "displayName": "Mr. Greek",
       "id": "mrgreek-e68b16",
       "locationSet": {"include": ["ca"]},
@@ -3935,6 +3980,33 @@
         "brand:wikidata": "Q6928929",
         "cuisine": "steak_house",
         "name": "Mr. Mike's"
+      }
+    },
+    {
+      "displayName": "Naf Naf Grill",
+      "id": "nafnafgrill-8ff1c6",
+      "locationSet": {
+        "include": [
+          "us-fl.geojson",
+          "us-ga.geojson",
+          "us-il.geojson",
+          "us-in.geojson",
+          "us-mn.geojson",
+          "us-nj.geojson",
+          "us-oh.geojson",
+          "us-pa.geojson",
+          "us-sc.geojson",
+          "us-tn.geojson",
+          "us-tx.geojson",
+          "us-wi.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Naf Naf Grill",
+        "brand:wikidata": "Q111901442",
+        "cuisine": "middle_eastern",
+        "name": "Naf Naf Grill"
       }
     },
     {
@@ -4219,19 +4291,6 @@
         "brand:wikidata": "Q115587987",
         "cuisine": "steak_house;barbecue",
         "name": "Original Roadhouse Grill"
-      }
-    },
-    {
-      "displayName": "Osmow's",
-      "id": "osmows-85c92c",
-      "locationSet": {"include": ["ca", "us"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Osmow's",
-        "brand:wikidata": "Q115048716",
-        "cuisine": "mediterranean;shawarma",
-        "name": "Osmow's",
-        "takeaway": "yes"
       }
     },
     {
@@ -4804,6 +4863,18 @@
         "amenity": "restaurant",
         "brand": "Restaurante Popular",
         "name": "Restaurante Popular"
+      }
+    },
+    {
+      "displayName": "RibCrib",
+      "id": "ribcrib-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "RibCrib",
+        "brand:wikidata": "Q7322197",
+        "cuisine": "barbecue",
+        "name": "RibCrib"
       }
     },
     {
@@ -5387,6 +5458,18 @@
       }
     },
     {
+      "displayName": "State & Main",
+      "id": "stateandmain-e68b16",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "State & Main",
+        "brand:wikidata": "Q118744509",
+        "cuisine": "american",
+        "name": "State & Main"
+      }
+    },
+    {
       "displayName": "Stonehouse Pizza & Carvery",
       "id": "stonehousepizzaandcarvery-9b5453",
       "locationSet": {"include": ["gb"]},
@@ -5639,17 +5722,6 @@
       }
     },
     {
-      "displayName": "Thai Kitchen",
-      "id": "thaikitchen-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Thai Kitchen",
-        "cuisine": "thai",
-        "name": "Thai Kitchen"
-      }
-    },
-    {
       "displayName": "The Breakfast Club",
       "id": "thebreakfastclub-37e076",
       "locationSet": {"include": ["gb-eng"]},
@@ -5789,6 +5861,20 @@
         "brand:wikidata": "Q110465528",
         "cuisine": "greek",
         "name": "The Real Greek"
+      }
+    },
+    {
+      "displayName": "The Works",
+      "id": "theworks-f8643e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "The Works",
+        "brand:wikidata": "Q123410138",
+        "cuisine": "burger",
+        "name": "The Works"
       }
     },
     {
@@ -7512,6 +7598,24 @@
         "name": "安楽亭",
         "name:en": "Anrakutei",
         "name:ja": "安楽亭"
+      }
+    },
+    {
+      "displayName": "宜味客",
+      "id": "eweke-0a8e9b",
+      "locationSet": {"include": ["cn"]},
+      "note": "仅限山东潍坊",
+      "preserveTags": ["^name"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "宜味客",
+        "brand:en": "E-WEKE",
+        "brand:wikidata": "Q123025082",
+        "brand:zh": "宜味客",
+        "cuisine": "chinese;fast_food",
+        "name": "宜味客",
+        "name:en": "E-WEKE",
+        "name:zh": "宜味客"
       }
     },
     {
