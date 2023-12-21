@@ -98,9 +98,9 @@
     "build": "run-s build:features build:index",
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
-    "tap": "c8 tap --reporter terse --no-cov tests/*.js",
+    "test": "run-s build test:node",
+    "test:node": "c8 node --test tests/",
     "lint": "eslint scripts/*.js lib/*.js",
-    "test": "run-s build tap",
     "validate": "node scripts/validate.js",
     "wikidata": "node scripts/build_wikidata.js"
   },
@@ -138,7 +138,6 @@
     "react-router-dom": "^6.21.1",
     "safe-regex": "^2.1.1",
     "shelljs": "^0.8.5",
-    "tap": "^16.3.10",
     "wikibase-edit": "^5.3.3",
     "wikibase-sdk": "^9.2.4",
     "xmlbuilder2": "^3.1.1"
