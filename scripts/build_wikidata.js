@@ -211,6 +211,12 @@ function processEntities(result) {
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
 
+    if (!!entity.redirects) {
+      const warning = { qid: qid, msg: `wikidata redirects to ${entity.redirects.to}` };
+      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+      _warnings.push(warning);
+    }
+
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const warning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.` };
