@@ -210,12 +210,12 @@ test('match', async t => {
     });
 
     await t.test('match alternate tagpairs in matchTags', t => {
-      const result = _matcher.match('shop', 'deli', 'Honey Baked Ham');
+      const result = _matcher.match('shop', 'butcher', 'Honey Baked Ham');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
-      assert.equal(result[0].kv, 'shop/deli');            // `shop/deli` is alternate pair in matchTags
+      assert.equal(result[0].kv, 'shop/butcher');            // `shop/butcher` is alternate pair in matchTags
       assert.equal(result[0].nsimple, 'honeybakedham');
     });
 
