@@ -1,7 +1,6 @@
 // External
 import chalk from 'chalk';
 import fs from 'node:fs';
-import fetch from 'node-fetch';
 import http from 'node:http';
 import https from 'node:https';
 import { iso1A2Code } from '@rapideditor/country-coder';
@@ -324,7 +323,7 @@ function processEntities(result) {
     if (youtubeUser) {
       target.identities.youtube = youtubeUser;
     }
-    
+
     // P11245 - YouTube Handle
     const youtubeHandle = getClaimValue(entity, 'P2397');
     if (youtubeHandle) {
