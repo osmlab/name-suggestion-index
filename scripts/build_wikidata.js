@@ -376,6 +376,8 @@ function processEntities(result) {
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
         if (!item.value) return;
+        if (item.qualifiers?.P1011 === 'Q168678') return;  // skip if excluding = brand name, see #9134
+
         let dissolution = { date: item.value };
 
         if (item.qualifiers) {
