@@ -283,8 +283,8 @@
       }
     },
     {
-      "displayName": "APCO",
-      "id": "appalachianpower-33137a",
+      "displayName": "Appalachian Power",
+      "id": "appalachianpowercompany-33137a",
       "locationSet": {
         "include": [
           "us-tn.geojson",
@@ -292,10 +292,9 @@
           "us-wv.geojson"
         ]
       },
-      "matchNames": ["appalachian power company"],
+      "matchNames": ["apco", "appalachian power"],
       "tags": {
-        "operator": "Appalachian Power",
-        "operator:short": "APCO",
+        "operator": "Appalachian Power Company",
         "operator:wikidata": "Q109013941",
         "power": "line"
       }
@@ -2211,18 +2210,19 @@
       }
     },
     {
-      "displayName": "enercity",
-      "id": "enercity-9e30b0",
+      "displayName": "enercity Netz",
+      "id": "enercitynetz-9e30b0",
       "locationSet": {
         "include": ["de-ni.geojson"]
       },
       "matchNames": [
+        "enercity",
         "enercity netzgesellschaft mbh",
         "stadtwerke_hannover_ag"
       ],
       "tags": {
-        "operator": "enercity",
-        "operator:wikidata": "Q1669141",
+        "operator": "enercity Netz",
+        "operator:wikidata": "Q123018653",
         "power": "line"
       }
     },
@@ -2260,10 +2260,13 @@
     },
     {
       "displayName": "Energex",
-      "id": "energex-116894",
-      "locationSet": {"include": ["001"]},
+      "id": "energex-189d90",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "tags": {
         "operator": "Energex",
+        "operator:wikidata": "Q5376841",
         "power": "line"
       }
     },
@@ -2737,7 +2740,7 @@
       }
     },
     {
-      "displayName": "EVN (Austria)",
+      "displayName": "EVN (Österreich)",
       "id": "evn-7a29cb",
       "locationSet": {"include": ["at"]},
       "matchNames": ["evn ag"],
@@ -2748,7 +2751,7 @@
       }
     },
     {
-      "displayName": "EVN (Vietnam)",
+      "displayName": "EVN (Việt Nam)",
       "id": "evn-e72a33",
       "locationSet": {"include": ["vn"]},
       "tags": {
@@ -3551,6 +3554,8 @@
         "operator:en": "East Japan Railway Company",
         "operator:ja": "東日本旅客鉄道",
         "operator:short": "JR東日本",
+        "operator:short:en": "JR East",
+        "operator:short:ja": "JR東日本",
         "operator:wikidata": "Q499071",
         "power": "line"
       }
@@ -3565,6 +3570,8 @@
         "operator:en": "Central Japan Railway Company",
         "operator:ja": "東海旅客鉄道",
         "operator:short": "JR東海",
+        "operator:short:en": "JR Central",
+        "operator:short:ja": "JR東海",
         "operator:wikidata": "Q513679",
         "power": "line"
       }
@@ -4822,7 +4829,8 @@
       "locationSet": {"include": ["id"]},
       "matchNames": [
         "pt perusahaan listrik negara",
-        "pt pln (persero)"
+        "pt pln (persero)",
+        "pln"
       ],
       "tags": {
         "operator": "Perusahaan Listrik Negara",
@@ -4886,16 +4894,6 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "PKP Energetyka",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "PLN",
-      "id": "pln-f1e749",
-      "locationSet": {"include": ["id"]},
-      "tags": {
-        "operator": "PLN",
-        "operator:wikidata": "Q4201636",
         "power": "line"
       }
     },
@@ -4986,6 +4984,19 @@
       "tags": {
         "operator": "Powercor",
         "operator:wikidata": "Q7236677",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Powerlink",
+      "id": "powerlink-189d90",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
+      "matchNames": ["powerlink queensland"],
+      "tags": {
+        "operator": "Powerlink",
+        "operator:wikidata": "Q7236786",
         "power": "line"
       }
     },
@@ -6770,6 +6781,17 @@
       }
     },
     {
+      "displayName": "Východoslovenská distribučná",
+      "id": "vychodoslovenskadistribucna-1baa28",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "operator": "Východoslovenská distribučná",
+        "operator:short": "VSD",
+        "operator:wikidata": "Q96136456",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Washington-St. Tammany Electric Cooperative",
       "id": "washingtonsttammanyelectriccooperative-116894",
       "locationSet": {"include": ["001"]},
@@ -7314,6 +7336,7 @@
       "tags": {
         "operator": "中国南方电网",
         "operator:en": "China Southern Power Grid",
+        "operator:wikidata": "Q209039",
         "operator:zh": "中国南方电网",
         "power": "line"
       }

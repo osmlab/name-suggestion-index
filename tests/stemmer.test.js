@@ -1,21 +1,19 @@
-import { test } from 'tap';
+import { after, before, test } from 'node:test';
+import { strict as assert } from 'node:assert';
 import { stemmer } from '../index.mjs';
 
-test('stemmer', t => {
+test('stemmer', async t => {
 
-  t.test('removes noise', t => {
-    t.equal(stemmer('First National Bank'), 'firstnational');
-    t.equal(stemmer('Shell Gas'), 'shell');
-    t.equal(stemmer('Verizon Wireless'), 'verizon');
-    t.end();
+  await t.test('removes noise', t => {
+    assert.equal(stemmer('First National Bank'), 'firstnational');
+    assert.equal(stemmer('Shell Gas'), 'shell');
+    assert.equal(stemmer('Verizon Wireless'), 'verizon');
   });
 
-  t.test('returns empty string if no input', t => {
-    t.equal(stemmer(), '');
-    t.equal(stemmer(null), '');
-    t.equal(stemmer({}), '');
-    t.end();
+  await t.test('returns empty string if no input', t => {
+    assert.equal(stemmer(), '');
+    assert.equal(stemmer(null), '');
+    assert.equal(stemmer({}), '');
   });
 
-  t.end();
 });

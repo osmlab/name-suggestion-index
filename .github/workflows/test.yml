@@ -1,6 +1,3 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: test
 
 on:
@@ -9,8 +6,8 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions:
-  contents: read
+env:
+  FORCE_COLOR: 2
 
 jobs:
   test:
@@ -18,17 +15,16 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.14, 18, 20]
+        node-version: [18, 20]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-      env:
-        FORCE_COLOR: 2
+    - run: |
+        echo "::remove-matcher owner=eslint-compact::"
+        echo "::remove-matcher owner=eslint-stylish::"
     - run: npm run test
-      env:
-        FORCE_COLOR: 2

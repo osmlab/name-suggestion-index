@@ -46,6 +46,7 @@
         "^(昭和|ロイヤル・ダッチ・)?シェル(石油)?$",
         "^караван$",
         "^лукошко$",
+        "^руслан$",
         "^смак$"
       ]
     }
@@ -81,7 +82,13 @@
         "include": ["001"],
         "exclude": ["jp", "kr", "no"]
       },
-      "matchNames": ["7-11", "seven eleven"],
+      "matchNames": [
+        "7-11",
+        "7-eleven australia",
+        "7-eleven canada",
+        "7-eleven philippines",
+        "seven eleven"
+      ],
       "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "7-Eleven",
@@ -181,7 +188,7 @@
       }
     },
     {
-      "displayName": "abc (Poland)",
+      "displayName": "abc (Polska)",
       "id": "abc-95f41b",
       "locationSet": {"include": ["pl"]},
       "matchTags": ["shop/supermarket"],
@@ -274,6 +281,9 @@
       "displayName": "Allsup's",
       "id": "allsups-f1e40b",
       "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "allsup's convenience store"
+      ],
       "tags": {
         "brand": "Allsup's",
         "brand:wikidata": "Q4733292",
@@ -402,7 +412,7 @@
     {
       "displayName": "Ampol Foodary",
       "id": "ampolfoodary-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["au"]},
       "tags": {
         "brand": "Ampol Foodary",
         "name": "Ampol Foodary",
@@ -582,6 +592,19 @@
       }
     },
     {
+      "displayName": "Becker's",
+      "id": "beckers-e144dd",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "brand": "Becker's",
+        "brand:wikidata": "Q2893476",
+        "name": "Becker's",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "BellStores",
       "id": "bellstores-147d98",
       "locationSet": {
@@ -599,10 +622,50 @@
       "displayName": "Best-one",
       "id": "bestone-232829",
       "locationSet": {"include": ["gb"]},
+      "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "Best-one",
         "brand:wikidata": "Q4896532",
         "name": "Best-one",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Big Apple",
+      "id": "bigapple-bdefe5",
+      "locationSet": {
+        "include": [
+          "us-me.geojson",
+          "us-nh.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Big Apple",
+        "brand:wikidata": "Q123617635",
+        "name": "Big Apple",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Big Bee",
+      "id": "bigbee-eea72f",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "brand": "Big Bee",
+        "brand:wikidata": "Q123409887",
+        "name": "Big Bee",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Big C",
+      "id": "bigc-298a73",
+      "locationSet": {"include": ["hk"]},
+      "matchNames": ["abouthai", "阿布泰"],
+      "tags": {
+        "brand": "Big C",
+        "brand:wikidata": "Q858665",
+        "name": "Big C",
         "shop": "convenience"
       }
     },
@@ -696,6 +759,21 @@
         "brand": "Bonjour",
         "brand:wikidata": "Q110278299",
         "name": "Bonjour",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Box",
+      "id": "box-023e9c",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "box експрес маркет",
+        "експрес маркет box"
+      ],
+      "tags": {
+        "brand": "Box",
+        "brand:wikidata": "Q122467049",
+        "name": "Box",
         "shop": "convenience"
       }
     },
@@ -832,7 +910,10 @@
       "displayName": "Casey's General Store",
       "id": "caseysgeneralstore-f1e40b",
       "locationSet": {"include": ["us"]},
-      "matchNames": ["caseys"],
+      "matchNames": [
+        "casey's carry out pizza",
+        "caseys"
+      ],
       "tags": {
         "brand": "Casey's General Store",
         "brand:wikidata": "Q2940968",
@@ -888,7 +969,7 @@
     {
       "displayName": "Cenex",
       "id": "cenex-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Cenex",
         "name": "Cenex",
@@ -984,6 +1065,7 @@
       "id": "circlek-4d6b4b",
       "locationSet": {"include": ["001"]},
       "matchNames": [
+        "circle k canada",
         "mac's convenience stores",
         "ok",
         "ok-mart"
@@ -1045,6 +1127,9 @@
       "displayName": "Co-op Daily",
       "id": "coopdaily-232829",
       "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "east of england co-operative foodstore"
+      ],
       "tags": {
         "brand": "Co-op Daily",
         "brand:wikidata": "Q107589681",
@@ -1112,6 +1197,17 @@
         "brand": "CocciMarket City",
         "brand:wikidata": "Q90020481",
         "name": "CocciMarket City",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Coen Markets Inc",
+      "id": "coenmarketsinc-f1e40b",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Coen Markets Inc",
+        "brand:wikidata": "Q122856721",
+        "name": "Coen Markets Inc",
         "shop": "convenience"
       }
     },
@@ -1323,7 +1419,19 @@
       "locationSet": {"include": ["gb", "ie"]},
       "tags": {
         "brand": "Day-Today",
+        "brand:wikidata": "Q121435331",
         "name": "Day-Today",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Day-Today Express",
+      "id": "daytodayexpress-232829",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "brand": "Day-Today",
+        "brand:wikidata": "Q121435331",
+        "name": "Day-Today Express",
         "shop": "convenience"
       }
     },
@@ -1400,6 +1508,17 @@
       "tags": {
         "brand": "Diona",
         "name": "Diona",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Direkten",
+      "id": "direkten-f5adeb",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "brand": "Direkten",
+        "brand:wikidata": "Q105693281",
+        "name": "Direkten",
         "shop": "convenience"
       }
     },
@@ -1632,6 +1751,17 @@
       }
     },
     {
+      "displayName": "Food Plus",
+      "id": "foodplus-232829",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "brand": "Food Plus",
+        "brand:wikidata": "Q122829106",
+        "name": "Food Plus",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Four Square",
       "id": "foursquare-7a43a8",
       "locationSet": {"include": ["nz"]},
@@ -1689,6 +1819,16 @@
       }
     },
     {
+      "displayName": "Freshmart",
+      "id": "freshmart-bb8a09",
+      "locationSet": {"include": ["id"]},
+      "tags": {
+        "brand": "Freshmart",
+        "name": "Freshmart",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Friendly Grocer",
       "id": "friendlygrocer-0b0ae9",
       "locationSet": {"include": ["au"]},
@@ -1724,7 +1864,7 @@
     {
       "displayName": "Gama",
       "id": "gama-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Gama",
         "name": "Gama",
@@ -1830,10 +1970,11 @@
     },
     {
       "displayName": "Gulf Express",
-      "id": "gulfexpress-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "gulfexpress-f1e40b",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Gulf Express",
+        "brand:wikidata": "Q124073193",
         "name": "Gulf Express",
         "shop": "convenience"
       }
@@ -1847,6 +1988,23 @@
         "brand": "Gutkauf",
         "brand:wikidata": "Q112253146",
         "name": "Gutkauf",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Haffner's",
+      "id": "haffners-1aebc2",
+      "locationSet": {
+        "include": [
+          "us-ma.geojson",
+          "us-me.geojson",
+          "us-nh.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Haffner's",
+        "brand:wikidata": "Q124150984",
+        "name": "Haffner's",
         "shop": "convenience"
       }
     },
@@ -1952,30 +2110,6 @@
       }
     },
     {
-      "displayName": "ICA",
-      "id": "ica-c2a4d7",
-      "locationSet": {"include": ["no", "se"]},
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
-      "preserveTags": ["^name"],
-      "tags": {
-        "brand": "ICA",
-        "brand:wikidata": "Q1663776",
-        "name": "ICA",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "ICA Nära",
-      "id": "icanara-f5adeb",
-      "locationSet": {"include": ["se"]},
-      "tags": {
-        "brand": "ICA Nära",
-        "brand:wikidata": "Q1663776",
-        "name": "ICA Nära",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "IDEA",
       "id": "idea-8f21d6",
       "locationSet": {"include": ["me", "rs"]},
@@ -2058,6 +2192,7 @@
       "displayName": "Irving",
       "id": "irving-16ec4d",
       "locationSet": {"include": ["ca", "us"]},
+      "matchNames": ["irving oil"],
       "tags": {
         "brand": "Irving",
         "brand:wikidata": "Q1673286",
@@ -2210,7 +2345,7 @@
       }
     },
     {
-      "displayName": "Konzum (Czechia)",
+      "displayName": "Konzum (Česko)",
       "id": "konzum-65ae8a",
       "locationSet": {"include": ["cz", "sk"]},
       "tags": {
@@ -2284,6 +2419,17 @@
         "brand": "Kwik Trip",
         "brand:wikidata": "Q6450420",
         "name": "Kwik Trip",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "KwikSpar",
+      "id": "kwikspar-c7b713",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "brand": "KwikSpar",
+        "brand:wikidata": "Q610492",
+        "name": "KwikSpar",
         "shop": "convenience"
       }
     },
@@ -2509,7 +2655,7 @@
     {
       "displayName": "Magnum",
       "id": "magnum-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["kz"]},
       "tags": {
         "brand": "Magnum",
         "name": "Magnum",
@@ -2556,16 +2702,6 @@
         "brand": "Marathon",
         "brand:wikidata": "Q458363",
         "name": "Marathon",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Market \\ Xırdalan",
-      "id": "marketxirdalan-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Market \\ Xırdalan",
-        "name": "Market \\ Xırdalan",
         "shop": "convenience"
       }
     },
@@ -2712,6 +2848,18 @@
       "tags": {
         "brand": "Mesra",
         "name": "Mesra",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "MetroMart",
+      "id": "metromart-7a43a8",
+      "locationSet": {"include": ["nz"]},
+      "matchTags": ["shop/supermarket"],
+      "tags": {
+        "brand": "MetroMart",
+        "brand:wikidata": "Q121642943",
+        "name": "MetroMart",
         "shop": "convenience"
       }
     },
@@ -3025,6 +3173,18 @@
       }
     },
     {
+      "displayName": "Night 'n Day",
+      "id": "nightnday-7a43a8",
+      "locationSet": {"include": ["nz"]},
+      "matchTags": ["shop/supermarket"],
+      "tags": {
+        "brand": "Night 'n Day",
+        "brand:wikidata": "Q111955183",
+        "name": "Night 'n Day",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "NightOwl",
       "id": "nightowl-0b0ae9",
       "locationSet": {"include": ["au"]},
@@ -3039,6 +3199,10 @@
       "displayName": "Nisa",
       "id": "nisa-232829",
       "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "nisa retail",
+        "nisalocally"
+      ],
       "preserveTags": ["^name"],
       "tags": {
         "brand": "Nisa",
@@ -3081,7 +3245,7 @@
     {
       "displayName": "Oba Market",
       "id": "obamarket-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["az"]},
       "tags": {
         "brand": "Oba Market",
         "name": "Oba Market",
@@ -3327,6 +3491,17 @@
       }
     },
     {
+      "displayName": "Pick n Pay Express",
+      "id": "picknpayexpress-c7b713",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "brand": "Pick n Pay Express",
+        "brand:wikidata": "Q122764443",
+        "name": "Pick n Pay Express",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Pilot",
       "id": "pilot-16ec4d",
       "locationSet": {"include": ["ca", "us"]},
@@ -3355,6 +3530,7 @@
       "id": "premier-232829",
       "locationSet": {"include": ["gb"]},
       "matchNames": ["premier stores"],
+      "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "Premier",
         "brand:wikidata": "Q7240340",
@@ -3435,6 +3611,33 @@
         "brand": "QuickChek",
         "brand:wikidata": "Q7271689",
         "name": "QuickChek",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Quickie",
+      "id": "quickie-f902d0",
+      "locationSet": {
+        "include": [
+          "ca-on.geojson",
+          "ca-qc.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Quickie",
+        "brand:wikidata": "Q123410085",
+        "name": "Quickie",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Quickshop",
+      "id": "quickshop-c7b713",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "brand": "Quickshop",
+        "brand:wikidata": "Q122764368",
+        "name": "Quickshop",
         "shop": "convenience"
       }
     },
@@ -3586,6 +3789,24 @@
       }
     },
     {
+      "displayName": "Rocket",
+      "id": "rocket-db1ce1",
+      "locationSet": {
+        "include": [
+          "us-ca.geojson",
+          "us-co.geojson",
+          "us-or.geojson",
+          "us-wa.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Rocket",
+        "brand:wikidata": "Q121513516",
+        "name": "Rocket",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Rotten Robbie",
       "id": "rottenrobbie-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -3668,6 +3889,7 @@
       "displayName": "Scotmid",
       "id": "scotmid-232829",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["scotmid co-operative"],
       "tags": {
         "brand": "Scotmid",
         "brand:wikidata": "Q7435719",
@@ -3768,6 +3990,19 @@
       }
     },
     {
+      "displayName": "Shop'N Drive",
+      "id": "shopndrive-232829",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "brand": "Shop'N Drive",
+        "brand:wikidata": "Q107439152",
+        "name": "Shop'N Drive",
+        "operator": "Rontec",
+        "operator:wikidata": "Q107439152",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Shop&Go (Romania)",
       "id": "shopandgo-597303",
       "locationSet": {"include": ["ro"]},
@@ -3851,7 +4086,7 @@
     {
       "displayName": "Six",
       "id": "six-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["mx"]},
       "tags": {
         "brand": "Six",
         "name": "Six",
@@ -3897,6 +4132,7 @@
         "include": ["001"],
         "exclude": ["ge", "no"]
       },
+      "matchNames": ["spar ni"],
       "tags": {
         "brand": "Spar",
         "brand:wikidata": "Q610492",
@@ -4180,26 +4416,6 @@
       }
     },
     {
-      "displayName": "The Co-operative Food",
-      "id": "thecooperativefood-232829",
-      "locationSet": {"include": ["gb"]},
-      "matchNames": [
-        "central england co-operative",
-        "chelmsford star co-operative society",
-        "coop",
-        "heart of england co-operative society",
-        "midcounties co-operative",
-        "radstock co-operative society",
-        "southern co-operative"
-      ],
-      "tags": {
-        "brand": "The Co-operative Food",
-        "brand:wikidata": "Q107617274",
-        "name": "The Co-operative Food",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Thorntons",
       "id": "thorntons-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -4226,7 +4442,7 @@
       "displayName": "Tiger Mart",
       "id": "tigermart-4d6b4b",
       "locationSet": {"include": ["001"]},
-      "matchNames": ["exxon"],
+      "matchNames": ["exxon", "exxon tiger mart"],
       "tags": {
         "brand": "Tiger Mart",
         "brand:wikidata": "Q57643977",
@@ -4310,7 +4526,7 @@
     {
       "displayName": "TRD",
       "id": "trd-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cu"]},
       "tags": {
         "brand": "TRD",
         "name": "TRD",
@@ -4436,6 +4652,17 @@
       }
     },
     {
+      "displayName": "USave (UK)",
+      "id": "usave-232829",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "brand": "USave",
+        "brand:wikidata": "Q121435010",
+        "name": "USave",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "uSmile 昆仑好客",
       "id": "usmile-da9ca7",
       "locationSet": {"include": ["cn"]},
@@ -4498,6 +4725,18 @@
         "brand": "Viva",
         "brand:wikidata": "Q168238",
         "name": "Viva",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Viva Billa",
+      "id": "vivabilla-65ae8a",
+      "locationSet": {"include": ["cz", "sk"]},
+      "matchTags": ["shop/supermarket"],
+      "tags": {
+        "brand": "Viva Billa",
+        "brand:wikidata": "Q124305949",
+        "name": "Viva Billa",
         "shop": "convenience"
       }
     },
@@ -4567,6 +4806,17 @@
       }
     },
     {
+      "displayName": "Welcome",
+      "id": "welcome-232829",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "brand": "Welcome",
+        "brand:wikidata": "Q123004215",
+        "name": "Welcome",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Wesco",
       "id": "wesco-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -4629,6 +4879,17 @@
         "brand": "XtraMart",
         "brand:wikidata": "Q119586946",
         "name": "XtraMart",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Yesway",
+      "id": "yesway-f1e40b",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Yesway",
+        "brand:wikidata": "Q75851666",
+        "name": "Yesway",
         "shop": "convenience"
       }
     },
@@ -4818,6 +5079,7 @@
       "displayName": "Близенько",
       "id": "106d49-023e9c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["близько"],
       "tags": {
         "brand": "Близенько",
         "brand:wikidata": "Q117670418",
@@ -4922,6 +5184,7 @@
       "displayName": "Делві",
       "id": "292dce-023e9c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["delvi"],
       "tags": {
         "brand": "Делві",
         "brand:wikidata": "Q117866197",
@@ -5024,6 +5287,7 @@
       "displayName": "Квартал",
       "id": "212655-023e9c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["kvartal"],
       "tags": {
         "brand": "Квартал",
         "brand:wikidata": "Q25446563",
@@ -5053,15 +5317,21 @@
     },
     {
       "displayName": "Коло",
-      "id": "kolo-023e9c",
+      "id": "a22748-023e9c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "kolo",
+        "produkty kolo",
+        "магазин коло",
+        "магазин коло тебе",
+        "продукти коло",
+        "продукти коло дому",
+        "продукти коло тебе"
+      ],
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Коло",
         "brand:wikidata": "Q95000076",
-        "name": "Коло",
-        "name:en": "Kolo",
-        "name:ru": "Коло",
-        "name:uk": "Коло",
         "shop": "convenience"
       }
     },
@@ -5208,7 +5478,11 @@
       "displayName": "Мікс Март",
       "id": "c92d51-023e9c",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["мікс березень"],
+      "matchNames": [
+        "miks mart",
+        "mix mart",
+        "мікс березень"
+      ],
       "tags": {
         "brand": "Мікс Март",
         "brand:wikidata": "Q116795587",
@@ -5399,18 +5673,6 @@
       }
     },
     {
-      "displayName": "Руслан",
-      "id": "e0bca4-2604ca",
-      "locationSet": {
-        "include": ["kz", "ru", "ua"]
-      },
-      "tags": {
-        "brand": "Руслан",
-        "name": "Руслан",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Садко",
       "id": "d3e941-4d6b4b",
       "locationSet": {"include": ["001"]},
@@ -5464,6 +5726,7 @@
       "displayName": "Сім23",
       "id": "1e259f-023e9c",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["sim23"],
       "tags": {
         "brand": "Сім23",
         "brand:wikidata": "Q107167415",
@@ -6139,21 +6402,6 @@
       }
     },
     {
-      "displayName": "價真棧 PrizeMart",
-      "id": "prizemart-298a73",
-      "locationSet": {"include": ["hk"]},
-      "tags": {
-        "brand": "價真棧 PrizeMart",
-        "brand:en": "PrizeMart",
-        "brand:wikidata": "Q117269648",
-        "brand:zh": "價真棧",
-        "name": "價真棧 PrizeMart",
-        "name:en": "PrizeMart",
-        "name:zh": "價真棧",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "優品360 Best Mart 360",
       "id": "bestmart360-298a73",
       "locationSet": {"include": ["hk"]},
@@ -6342,7 +6590,7 @@
       "tags": {
         "brand": "美宜佳",
         "brand:en": "Meiyijia",
-        "brand:wikidata": "Q97300244",
+        "brand:wikidata": "Q55719551",
         "brand:zh": "美宜佳",
         "name": "美宜佳",
         "name:en": "Meiyijia",
@@ -6407,21 +6655,6 @@
         "name": "超市发",
         "name:en": "bjcsf",
         "name:zh": "超市发",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "阿布泰 AbouThai",
-      "id": "abouthai-298a73",
-      "locationSet": {"include": ["hk"]},
-      "tags": {
-        "brand": "阿布泰 AbouThai",
-        "brand:en": "AbouThai",
-        "brand:wikidata": "Q86730159",
-        "brand:zh": "阿布泰",
-        "name": "阿布泰 AbouThai",
-        "name:en": "AbouThai",
-        "name:zh": "阿布泰",
         "shop": "convenience"
       }
     }

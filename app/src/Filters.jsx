@@ -44,15 +44,18 @@ export function Filters() {
   );
 
 
+
+
   function filtersChanged(event) {
     let val;
+
     if (event.target.type === 'checkbox') {
       val = event.target.checked ? 'true' : '';
     } else {
       val = event.target.value || '';
     }
 
-    const newParams = Object.assign({}, params);  // copy
+    const newParams = Object.assign({}, params); // copy
     if (val) {
       newParams[event.target.name] = val;
     } else {

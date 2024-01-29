@@ -13,6 +13,7 @@
         "^máquina de tickets$",
         "^milchtankstelle$",
         "^pa(r|cz)komat$",
+        "^parkometr",
         "^parkscheinautomat$",
         "^parquímetro$",
         "^vending machine$",
@@ -166,13 +167,19 @@
       }
     },
     {
-      "displayName": "Boss",
-      "id": "boss-ceeccb",
-      "locationSet": {"include": ["001"]},
+      "displayName": "BOSS",
+      "id": "boss-bf11a2",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "vending_machine",
-        "brand": "Boss",
-        "name": "Boss"
+        "brand": "BOSS",
+        "brand:en": "BOSS",
+        "brand:ja": "ボス",
+        "brand:wikidata": "Q4947502",
+        "name": "BOSS",
+        "name:en": "BOSS",
+        "name:ja": "ボス",
+        "vending": "coffee"
       }
     },
     {
@@ -248,7 +255,7 @@
         "include": ["001"],
         "exclude": ["hk", "jp"]
       },
-      "matchNames": ["coke"],
+      "matchNames": ["coca-cola vending", "coke"],
       "tags": {
         "amenity": "vending_machine",
         "brand": "Coca-Cola",
@@ -350,12 +357,14 @@
     },
     {
       "displayName": "Distributore di acqua Aqvagold",
-      "id": "distributorediacquaaqvagold-13a866",
+      "id": "aqvagold-13a866",
       "locationSet": {"include": ["it"]},
+      "matchNames": [
+        "distributore di acqua aqvagold"
+      ],
       "tags": {
         "amenity": "vending_machine",
-        "brand": "Distributore di acqua Aqvagold",
-        "name": "Distributore di acqua Aqvagold",
+        "brand": "Aqvagold",
         "vending": "water"
       }
     },
@@ -527,6 +536,8 @@
       "displayName": "KeyMe",
       "id": "keyme-7e3927",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["keyme locksmiths"],
+      "matchTags": ["craft/locksmith"],
       "tags": {
         "amenity": "vending_machine",
         "brand": "KeyMe",
@@ -632,6 +643,7 @@
       "displayName": "Minute Key",
       "id": "minutekey-ff8484",
       "locationSet": {"include": ["ca", "us"]},
+      "matchTags": ["craft/locksmith"],
       "tags": {
         "amenity": "vending_machine",
         "brand": "Minute Key",
@@ -712,17 +724,6 @@
       }
     },
     {
-      "displayName": "Parkometr podstrefa A",
-      "id": "parkometrpodstrefaa-bd9635",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "amenity": "vending_machine",
-        "brand": "Parkometr podstrefa A",
-        "name": "Parkometr podstrefa A",
-        "vending": "parking_tickets"
-      }
-    },
-    {
       "displayName": "ParkPlus (Calgary)",
       "id": "parkplus-b46c08",
       "locationSet": {"include": ["ca"]},
@@ -799,6 +800,7 @@
       "displayName": "Redbox",
       "id": "redbox-7e3927",
       "locationSet": {"include": ["us"]},
+      "matchTags": ["shop/music", "shop/video"],
       "tags": {
         "amenity": "vending_machine",
         "brand": "Redbox",
@@ -938,7 +940,8 @@
       "tags": {
         "amenity": "vending_machine",
         "brand": "teika",
-        "brand:wikidata": "Q115475314"
+        "brand:wikidata": "Q115475314",
+        "vending": "food;drinks"
       }
     },
     {
@@ -1205,7 +1208,6 @@
       "displayName": "サントリー",
       "id": "suntory-bf11a2",
       "locationSet": {"include": ["jp"]},
-      "matchNames": ["boss", "ボス"],
       "tags": {
         "amenity": "vending_machine",
         "brand": "サントリー",
