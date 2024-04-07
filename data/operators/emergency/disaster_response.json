@@ -1,11 +1,17 @@
 {
   "properties": {
-    "path": "operators/emergency/disaster_response"
+    "path": "operators/emergency/disaster_response",
+    "exclude": {
+      "generic": ["^disaster response$"]
+    }
   },
   "items": [
     {
       "displayName": "ACT State Emergency Service",
-      "locationSet": {"include": ["au-act.geojson"]},
+      "id": "actstateemergencyservice-5fddb6",
+      "locationSet": {
+        "include": ["au-act.geojson"]
+      },
       "tags": {
         "emergency": "disaster_response",
         "operator": "ACT State Emergency Service",
@@ -13,8 +19,23 @@
       }
     },
     {
+      "displayName": "DFES State Emergency Service",
+      "id": "dfesstateemergencyservice-2f6045",
+      "locationSet": {
+        "include": ["au-wa.geojson"]
+      },
+      "tags": {
+        "emergency": "disaster_response",
+        "operator": "DFES State Emergency Service",
+        "operator:wikidata": "Q111654262"
+      }
+    },
+    {
       "displayName": "NSW State Emergency Service",
-      "locationSet": {"include": ["au-nsw.geojson"]},
+      "id": "nswstateemergencyservice-5c3990",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "tags": {
         "emergency": "disaster_response",
         "operator": "NSW State Emergency Service",
@@ -23,7 +44,10 @@
     },
     {
       "displayName": "NT State Emergency Service",
-      "locationSet": {"include": ["au-nt.geojson"]},
+      "id": "ntstateemergencyservice-d703f0",
+      "locationSet": {
+        "include": ["au-nt.geojson"]
+      },
       "tags": {
         "emergency": "disaster_response",
         "operator": "NT State Emergency Service",
@@ -32,7 +56,10 @@
     },
     {
       "displayName": "Queensland State Emergency Service",
-      "locationSet": {"include": ["au-qld.geojson"]},
+      "id": "queenslandstateemergencyservice-bbaa23",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "tags": {
         "emergency": "disaster_response",
         "operator": "Queensland State Emergency Service",
@@ -41,7 +68,10 @@
     },
     {
       "displayName": "South Australian State Emergency Service",
-      "locationSet": {"include": ["au-sa.geojson"]},
+      "id": "southaustralianstateemergencyservice-ee4c67",
+      "locationSet": {
+        "include": ["au-sa.geojson"]
+      },
       "tags": {
         "emergency": "disaster_response",
         "operator": "South Australian State Emergency Service",
@@ -50,6 +80,7 @@
     },
     {
       "displayName": "Tasmania State Emergency Service",
+      "id": "tasmaniastateemergencyservice-5e5d18",
       "locationSet": {"include": ["au-tas"]},
       "tags": {
         "emergency": "disaster_response",
@@ -59,21 +90,15 @@
     },
     {
       "displayName": "Victoria State Emergency Service",
-      "locationSet": {"include": ["au-vic.geojson"]},
+      "id": "victoriastateemergencyservice-c5f233",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "emergency": "disaster_response",
         "operator": "Victoria State Emergency Service",
         "operator:wikidata": "Q7927057"
       }
-    },
-    {
-      "displayName": "DFES State Emergency Service",
-      "locationSet": {"include": ["au-wa.geojson"]},
-      "tags": {
-        "emergency": "disaster_response",
-        "operator": "DFES State Emergency Service",
-        "operator:wikidata": "Q111654262"
-      }
-    },
+    }
   ]
 }
