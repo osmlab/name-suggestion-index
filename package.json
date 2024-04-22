@@ -1,6 +1,6 @@
 {
   "name": "name-suggestion-index",
-  "version": "6.0.20240413",
+  "version": "6.0.20240422",
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
@@ -86,7 +86,7 @@
     "dist/*": "./dist/*"
   },
   "scripts": {
-    "all": "run-s build dist",
+    "all": "run-s build wikidata dist",
     "appbuild": "npm run docbuild",
     "dist": "run-s dist:version dist:files dist:javascript",
     "dist:files": "node scripts/dist_files.js",
