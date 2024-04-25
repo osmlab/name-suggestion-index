@@ -48,15 +48,20 @@ const DRYRUN = false;
 // This is optional but needed if you want this script to:
 // - connect to the Wikibase API to update NSI identifiers.
 //
+// An OAuth 1.0a application is needed to obtain required credentials which can be registered via
+// https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose/oauth1a
+//
 // `secrets.json` looks like this:
 // {
 //   "wikibase": {
-//     "username": "my-wikidata-username",
-//     "password": "my-wikidata-password"
+//     "oauth": {
+//       "consumer_key": "consumer-token",
+//       "consumer_secret": "consumer-secret",
+//       "token": "access-token",
+//       "token_secret": "access-secret"
+//     }
 //   }
 // }
-
-// ensure that the secrets file is not in /config anymore:
 shell.config.silent = true;
 shell.mv('-f', './config/secrets.json', './secrets.json');
 shell.config.reset();
@@ -68,8 +73,17 @@ try {
 
 if (_secrets && !_secrets.wikibase) {
   console.error(chalk.red('WHOA!'));
-  console.error(chalk.yellow('The `config/secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
   console.error(chalk.yellow('We were expecting to find a `wikibase` property.'));
+  console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error('');
+  process.exit(1);
+}
+
+if (_secrets.wikibase && !_secrets.wikibase.oauth) {
+  console.error(chalk.red('WHOA!'));
+  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('We were expecting to find an `oauth` property.'));
   console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
@@ -77,7 +91,7 @@ if (_secrets && !_secrets.wikibase) {
 
 
 // To update wikidata
-// add your username/password into `config/secrets.json`
+// add your oauth credentials into `./secrets.json`
 let _wbEdit;
 if (_secrets && _secrets.wikibase) {
   _wbEdit = wikibaseEdit({
