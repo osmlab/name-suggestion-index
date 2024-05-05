@@ -1,4 +1,4 @@
-[![build](https://github.com/osmlab/name-suggestion-index/workflows/build/badge.svg)](https://github.com/osmlab/name-suggestion-index/actions?query=workflow%3A%22build%22)
+[![build](https://github.com/osmlab/name-suggestion-index/workflows/test/badge.svg)](https://github.com/osmlab/name-suggestion-index/actions?query=workflow%3A%22test%22)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 [![](https://data.jsdelivr.com/v1/package/npm/name-suggestion-index/badge?style=rounded)](https://www.jsdelivr.com/package/npm/name-suggestion-index)
 
@@ -47,7 +47,7 @@ Currently used in:
 - [Osmose](http://osmose.openstreetmap.fr/en/errors?item=3130)
 - [osmfeatures](https://github.com/westnordost/osmfeatures)
 - [Go Map!!](https://github.com/bryceco/GoMap)
-- [StreetComplete](https://github.com/streetcomplete/StreetComplete/blob/master/buildSrc/src/main/java/UpdateNsiPresetsTask.kt)
+- [StreetComplete](https://streetcomplete.app/) (and [SCEE](https://github.com/Helium314/SCEE))
 - [Every Door](https://github.com/Zverik/every_door)
 - [All The Places](https://github.com/alltheplaces/alltheplaces)
 

@@ -127,33 +127,33 @@
       }
     },
     {
-      "displayName": "BoxNow (Bulgaria)",
-      "id": "boxnow-8234c4",
-      "locationSet": {"include": ["bg"]},
-      "tags": {
-        "amenity": "parcel_locker",
-        "brand": "BoxNow",
-        "brand:wikidata": "Q117195372"
-      }
-    },
-    {
-      "displayName": "BoxNow (Croatia)",
+      "displayName": "Box Now (Hrvatska)",
       "id": "boxnow-30ebd7",
       "locationSet": {"include": ["hr"]},
       "tags": {
         "amenity": "parcel_locker",
-        "brand": "BoxNow",
+        "brand": "Box Now",
         "brand:wikidata": "Q117195375"
       }
     },
     {
-      "displayName": "BoxNow (Greece)",
+      "displayName": "Box Now (Ελλάδα)",
       "id": "boxnow-510af3",
       "locationSet": {"include": ["gr"]},
       "tags": {
         "amenity": "parcel_locker",
-        "brand": "BoxNow",
+        "brand": "Box Now",
         "brand:wikidata": "Q117195376"
+      }
+    },
+    {
+      "displayName": "Box Now (България)",
+      "id": "boxnow-8234c4",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Box Now",
+        "brand:wikidata": "Q117195372"
       }
     },
     {
@@ -210,6 +210,7 @@
     },
     {
       "displayName": "DHL POP BOX",
+      "id": "dhlpopbox-ce4e28",
       "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "parcel_locker",
@@ -222,14 +223,56 @@
     },
     {
       "displayName": "DPD Pickup Station",
-      "id": "dpdpickupstation-946abd",
-      "locationSet": {"include": ["pl", "ro"]},
+      "id": "dpdpickupstation-63abf7",
+      "locationSet": {
+        "include": [
+          "ar",
+          "at",
+          "be",
+          "by",
+          "ch",
+          "cn",
+          "cz",
+          "de",
+          "ee",
+          "fr",
+          "gb",
+          "hr",
+          "hu",
+          "ie",
+          "kz",
+          "lt",
+          "lu",
+          "lv",
+          "nl",
+          "pl",
+          "pt",
+          "ro",
+          "ru",
+          "si",
+          "sk",
+          "za"
+        ]
+      },
       "tags": {
         "amenity": "parcel_locker",
         "brand": "DPD Pickup Station",
         "brand:wikidata": "Q114273730",
         "operator": "DPD",
         "operator:wikidata": "Q541030",
+        "parcel_pickup": "yes"
+      }
+    },
+    {
+      "displayName": "DSV Locker",
+      "id": "dsvlocker-6115c3",
+      "locationSet": {"include": ["za"]},
+      "matchNames": ["dsv"],
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "DSV Locker",
+        "brand:wikidata": "Q1155771",
+        "parcel_mail_in": "yes",
         "parcel_pickup": "yes"
       }
     },
@@ -280,14 +323,14 @@
       }
     },
     {
-      "displayName": "GLS Parcel Locker",
-      "id": "glsparcellocker-6a219a",
+      "displayName": "GLS",
+      "id": "gls-6a219a",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["gls parcel locker"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "GLS",
-        "brand:wikidata": "Q366182",
-        "name": "GLS Parcel Locker"
+        "brand:wikidata": "Q366182"
       }
     },
     {
@@ -338,7 +381,7 @@
         "brand": "Instabox",
         "brand:wikidata": "Q109923726",
         "name": "Instabox",
-        "parcel_mail_in": "no",
+        "parcel_mail_in": "returns_only",
         "parcel_pickup": "yes"
       }
     },
@@ -408,7 +451,8 @@
       "matchNames": [
         "meest express",
         "міст",
-        "міст експрес"
+        "міст експрес",
+        "поштомат meest"
       ],
       "matchTags": ["amenity/post_box"],
       "tags": {
@@ -776,6 +820,32 @@
       }
     },
     {
+      "displayName": "Tamburi",
+      "id": "tamburi-82dce7",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Tamburi",
+        "brand:wikidata": "Q125176523",
+        "parcel_mail_in": "yes",
+        "parcel_pickup": "yes"
+      }
+    },
+    {
+      "displayName": "Yeep",
+      "id": "yeep-ad77d0",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["pick up, drop off", "pudo"],
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Yeep",
+        "brand:wikidata": "Q123421114",
+        "name": "Yeep",
+        "parcel_mail_in": "yes",
+        "parcel_pickup": "yes"
+      }
+    },
+    {
       "displayName": "Еконтомат",
       "id": "econt-8234c4",
       "locationSet": {"include": ["bg"]},
@@ -795,12 +865,13 @@
     },
     {
       "displayName": "Қазпошта",
-      "id": "426ee4-a244bc",
+      "id": "kazpost-a244bc",
       "locationSet": {"include": ["kz"]},
-      "matchNames": ["казпошта"],
+      "matchNames": ["казпошта", "қазпочта"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Қазпошта",
+        "brand:en": "Kazpost",
         "brand:kk": "Қазпошта",
         "brand:ru": "Казпочта",
         "brand:wikidata": "Q746263"
@@ -810,7 +881,12 @@
       "displayName": "Нова Пошта",
       "id": "530f2c-7c151e",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["nova poshta", "nova post"],
+      "matchNames": [
+        "new post",
+        "nova poshta",
+        "nova post",
+        "поштомат нова пошта"
+      ],
       "matchTags": ["amenity/post_box"],
       "tags": {
         "amenity": "parcel_locker",
@@ -898,6 +974,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "matchNames": ["丰巢快递柜", "丰巢柜"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "丰巢",

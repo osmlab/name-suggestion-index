@@ -1,7 +1,6 @@
 // External
 import chalk from 'chalk';
 import fs from 'node:fs';
-import fetch from 'node-fetch';
 import http from 'node:http';
 import https from 'node:https';
 import { iso1A2Code } from '@rapideditor/country-coder';
@@ -49,15 +48,20 @@ const DRYRUN = false;
 // This is optional but needed if you want this script to:
 // - connect to the Wikibase API to update NSI identifiers.
 //
+// An OAuth 1.0a application is needed to obtain required credentials which can be registered via
+// https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose/oauth1a
+//
 // `secrets.json` looks like this:
 // {
 //   "wikibase": {
-//     "username": "my-wikidata-username",
-//     "password": "my-wikidata-password"
+//     "oauth": {
+//       "consumer_key": "consumer-token",
+//       "consumer_secret": "consumer-secret",
+//       "token": "access-token",
+//       "token_secret": "access-secret"
+//     }
 //   }
 // }
-
-// ensure that the secrets file is not in /config anymore:
 shell.config.silent = true;
 shell.mv('-f', './config/secrets.json', './secrets.json');
 shell.config.reset();
@@ -69,8 +73,17 @@ try {
 
 if (_secrets && !_secrets.wikibase) {
   console.error(chalk.red('WHOA!'));
-  console.error(chalk.yellow('The `config/secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
   console.error(chalk.yellow('We were expecting to find a `wikibase` property.'));
+  console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error('');
+  process.exit(1);
+}
+
+if (_secrets.wikibase && !_secrets.wikibase.oauth) {
+  console.error(chalk.red('WHOA!'));
+  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('We were expecting to find an `oauth` property.'));
   console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
@@ -78,7 +91,7 @@ if (_secrets && !_secrets.wikibase) {
 
 
 // To update wikidata
-// add your username/password into `config/secrets.json`
+// add your oauth credentials into `./secrets.json`
 let _wbEdit;
 if (_secrets && _secrets.wikibase) {
   _wbEdit = wikibaseEdit({
@@ -211,6 +224,12 @@ function processEntities(result) {
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
 
+    if (!!entity.redirects) {
+      const warning = { qid: qid, msg: `wikidata redirects to ${entity.redirects.to}` };
+      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+      _warnings.push(warning);
+    }
+
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const warning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.` };
@@ -277,7 +296,7 @@ function processEntities(result) {
     }
 
     // P856 - official website
-    const officialWebsites = getClaimValues(entity, 'P856');
+    const officialWebsites = getClaimValues(entity, 'P856', true);
     if (officialWebsites) {
       target.officialWebsites = officialWebsites;
     }
@@ -289,7 +308,7 @@ function processEntities(result) {
     }
 
     // P11707 - location URL match pattern
-    const urlMatchPatterns = getClaimValues(entity, 'P11707');
+    const urlMatchPatterns = getClaimValues(entity, 'P11707', false);
     if (urlMatchPatterns) {
       target.urlMatchPatterns = urlMatchPatterns;
     }
@@ -317,6 +336,12 @@ function processEntities(result) {
     const youtubeUser = getClaimValue(entity, 'P2397');
     if (youtubeUser) {
       target.identities.youtube = youtubeUser;
+    }
+
+    // P11245 - YouTube Handle
+    const youtubeHandle = getClaimValue(entity, 'P2397');
+    if (youtubeHandle) {
+      target.identities.youtubeHandle = youtubeHandle;
     }
 
     // P2984 - Snapchat ID
@@ -365,6 +390,10 @@ function processEntities(result) {
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
         if (!item.value) return;
+
+        const excluding = item.qualifiers?.P1011 ?? [];
+        if (excluding.includes('Q168678')) return;  // but skip if 'excluding' = 'brand name', see #9134
+
         let dissolution = { date: item.value };
 
         if (item.qualifiers) {
@@ -503,17 +532,17 @@ function getClaimValue(entity, prop) {
 
 // `getClaimValues`
 // Get all the claim values
-//   - disregard any claims with an end date qualifier in the past
-//   - disregard any claims with "deprecated" rank
+//   - optionally disregard any claims with an end date qualifier in the past
+//   - optionally disregard any claims with "deprecated" rank
 //   - push any claims with "preferred" rank to the front
-function getClaimValues(entity, prop) {
+function getClaimValues(entity, prop, includeDeprecated) {
   if (!entity.claims) return;
   if (!entity.claims[prop]) return;
 
   let values = [];
   for (let i = 0; i < entity.claims[prop].length; i++) {
     const c = entity.claims[prop][i];
-    if (c.rank === 'deprecated') continue;
+    if (c.rank === 'deprecated' && !includeDeprecated) continue;
     if (c.mainsnak.snaktype !== 'value') continue;
 
     // skip if we find an end time qualifier - P582
@@ -528,7 +557,7 @@ function getClaimValues(entity, prop) {
         break;
       }
     }
-    if (ended) continue;
+    if (ended && !includeDeprecated) continue;
 
     if (c.rank === 'preferred'){  // List preferred values first
       values.unshift(c.mainsnak.datavalue.value);
@@ -605,19 +634,19 @@ function fetchFacebookLogo(qid, username) {
   const m = username.match(/-(\d+)$/);
   if (m) userid = m[1];
 
-  return fetch(logoURL, fetchOptions)
-    .then(response => {
-      if (!response.ok) {
-        return response.json();  // we should get a response body with more information
-      }
-      if (response.headers.get('content-md5') !== 'OMs/UjwLoIRaoKN19eGYeQ==') {  // question-mark image #2750
-        target.logos.facebook = logoURL;
-      }
-      return {};
-    })
+  // Can specify no redirect to fetch json and speed up this process
+  return fetch(`${logoURL}&redirect=0`, fetchOptions)
+    .then(response => response.json())
     .then(json => {
-      if (json && json.error && json.error.message) {
+      if (!json) return true;
+
+      if (json.error && json.error.message) {
         throw new Error(json.error.message);
+      }
+
+      // Default profile pictures aren't useful to the index #2750
+      if (json.data && !json.data.is_silhouette) {
+        target.logos.facebook = logoURL;
       }
       return true;
     })

@@ -245,7 +245,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
   function searchWikidataLink(name) {
     const q = encodeURIComponent(name);
-    const href = `https://google.com/search?q=${q}+site%3Awikidata.org`;
+    const href = `https://www.wikidata.org/?search=${q}`;
     const title = `Search Wikidata for ${name}`;
     return (<a target='_blank' href={href} title={title}>Wikidata</a>);
   }
@@ -310,33 +310,10 @@ relation[${k}=${v}][network:wikidata=${qid}]
     if (item.fromTemplate) {
       let url, text;
 
-      /* Brands */
-      if ((t=='brands') && (k=='amenity') && (v=='atm'))
-        {url = '/index.html?t=brands&amp;k=amenity&amp;v=bank'; text = '/brands/amenity/bank.json';}
+      url = `/index.html?t=${t}&amp;k=${k}&amp;v=${v}`;
+      text = `/${t}/${k}/${v}.json`;
 
-      /* Operators */
-      if ((t=='operators') && (k=='leisure') && (v=='nature_reserve'))
-        {url = '/index.html?t=operators&amp;k=leisure&amp;v=park'; text = '/operators/leisure/park.json';}
-
-      if ((t=='operators') && (k=='power') && ((v=='minor_line') || (v=='pole') || (v=='tower')))
-        {url = '/index.html?t=operators&amp;k=power&amp;v=line'; text = '/operators/power/line.json';}
-      if ((t=='operators') && (k=='power') && (v=='transformer'))
-        {url = '/index.html?t=operators&amp;k=power&amp;v=substation'; text = '/operators/power/substation.json';}
-
-      if ((t=='operators') && (k=='pipeline') && (v=='substation'))
-        {url = '/index.html?t=operators&amp;k=man_made&amp;v=pipeline'; text = 'operators/man_made/pipeline.json';}
-
-      if ((t=='operators') && (k=='man_made') && ((v=='water_tower') || (v=='water_works')))
-        {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; text = '/operators/office/water_utility.json';}
-
-      /* Transit */
-      if ((t=='transit') && (k=='highway') && (v=='bus_stop'))
-        {url = '/index.html?t=transit&amp;k=route&amp;v=bus'; text = '/transit/route/bus.json';}
-
-      if ((t=='transit') && (k=='amenity') && (v=='ferry_terminal'))
-        {url = '/index.html?t=transit&amp;k=route&amp;v=ferry'; text = '/transit/route/ferry.json';}
-
-      if ((t=='operators') && (k=='amenity') && (v=='post_box')) {
+      if (v=='post_box') {
         /* Post Boxes use multiple templates */
         result += '<strong>Master templates:</strong><br/>';
         result += '<a href="/index.html?t=brands&amp;k=amenity&amp;v=post_office">/brands/amenity/post_office.json</a><br/>';

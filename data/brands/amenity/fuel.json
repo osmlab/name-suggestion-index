@@ -100,10 +100,10 @@
     },
     {
       "displayName": "Afriquia",
-      "id": "afriquia-16b3c2",
+      "id": "afriquia-d0fa88",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["pl"]
+        "exclude": ["ma", "pl"]
       },
       "tags": {
         "amenity": "fuel",
@@ -114,35 +114,31 @@
     },
     {
       "displayName": "Afriquia أفريقيا",
-      "id": "3331ce-144a57",
+      "id": "afriquia-144a57",
       "locationSet": {"include": ["ma"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Afriquia أفريقيا",
+        "brand:ar": "أفريقيا",
+        "brand:en": "Afriquia",
         "brand:wikidata": "Q56300032",
         "name": "Afriquia أفريقيا",
-        "name:ar": "أفريقيا"
+        "name:ar": "أفريقيا",
+        "name:en": "Afriquia"
       }
     },
     {
       "displayName": "Agip",
-      "id": "agip-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "agip-025116",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ch", "it"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "Agip",
         "brand:wikidata": "Q377915",
         "name": "Agip"
-      }
-    },
-    {
-      "displayName": "Agip Eni",
-      "id": "agipeni-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Agip Eni",
-        "name": "Agip Eni"
       }
     },
     {
@@ -302,33 +298,12 @@
       "displayName": "ANP",
       "id": "anp-ed4144",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["анп"],
+      "matchNames": ["азс anp", "анп"],
       "tags": {
         "amenity": "fuel",
         "brand": "ANP",
         "brand:wikidata": "Q119198381",
         "name": "ANP"
-      }
-    },
-    {
-      "displayName": "Api",
-      "id": "api-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Api",
-        "brand:wikidata": "Q646807",
-        "name": "Api"
-      }
-    },
-    {
-      "displayName": "Api-Ip",
-      "id": "apiip-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Api-Ip",
-        "name": "Api-Ip"
       }
     },
     {
@@ -465,8 +440,8 @@
     },
     {
       "displayName": "Astron Energy",
-      "id": "astronenergy-0ba9a1",
-      "locationSet": {"include": ["za"]},
+      "id": "astronenergy-d9e54e",
+      "locationSet": {"include": ["bw", "za"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Astron Energy",
@@ -655,6 +630,17 @@
       }
     },
     {
+      "displayName": "Berkman",
+      "id": "berkman-6cdea6",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Berkman",
+        "brand:wikidata": "Q121742717",
+        "name": "Berkman"
+      }
+    },
+    {
       "displayName": "Best",
       "id": "best-b3d110",
       "locationSet": {"include": ["001"]},
@@ -720,6 +706,17 @@
         "brand": "bi1",
         "brand:wikidata": "Q56325139",
         "name": "bi1"
+      }
+    },
+    {
+      "displayName": "Big D Oil",
+      "id": "bigdoil-c5cf43",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Big D Oil",
+        "brand:wikidata": "Q123118540",
+        "name": "Big D Oil"
       }
     },
     {
@@ -808,6 +805,7 @@
       "displayName": "BVS",
       "id": "bvs-ed4144",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["бвс", "бвс ритейл"],
       "tags": {
         "amenity": "fuel",
         "brand": "BVS",
@@ -875,13 +873,13 @@
     },
     {
       "displayName": "Carenex (カーエネクス)",
-      "id": "carenex-cfbbeb",
-      "locationSet": {"include": ["ja"]},
+      "id": "carenex-fbe2e4",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Carenex",
-        "brand:": "カーエネクス",
         "brand:en": "Carenex",
+        "brand:ja": "カーエネクス",
         "brand:wikidata": "Q119998631",
         "name": "Carenex",
         "name:en": "Carenex",
@@ -1242,9 +1240,19 @@
     },
     {
       "displayName": "Costco Gasoline",
-      "id": "costcogasoline-73aa20",
+      "id": "costcogasoline-fa9ed8",
       "locationSet": {
-        "include": ["au", "ca", "mx", "us"]
+        "include": [
+          "au",
+          "ca",
+          "es",
+          "gb",
+          "is",
+          "jp",
+          "mx",
+          "nz",
+          "us"
+        ]
       },
       "matchNames": [
         "costco",
@@ -1673,6 +1681,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Energas",
+        "brand:wikidata": "Q124623439",
         "name": "Energas"
       }
     },
@@ -1701,28 +1710,25 @@
     },
     {
       "displayName": "Eni",
-      "id": "eni-4e932a",
+      "id": "eni-ca7332",
       "locationSet": {
-        "include": ["at", "ch", "fr", "it"]
+        "include": [
+          "at",
+          "ch",
+          "cy",
+          "de",
+          "es",
+          "fr",
+          "it"
+        ]
       },
+      "matchNames": ["agip/eni", "eni station"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "fuel",
         "brand": "Eni",
         "brand:wikidata": "Q565594",
         "name": "Eni"
-      }
-    },
-    {
-      "displayName": "Eni Station",
-      "id": "enistation-4e932a",
-      "locationSet": {
-        "include": ["at", "ch", "fr", "it"]
-      },
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Eni",
-        "brand:wikidata": "Q565594",
-        "name": "Eni Station"
       }
     },
     {
@@ -1753,21 +1759,14 @@
       }
     },
     {
-      "displayName": "Erg",
-      "id": "erg-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "Erg",
-        "brand:wikidata": "Q739503",
-        "name": "Erg"
-      }
-    },
-    {
       "displayName": "Essar",
       "id": "essar-853965",
       "locationSet": {"include": ["gb", "in"]},
-      "matchNames": ["essar enegry", "essar oil"],
+      "matchNames": [
+        "essar enegry",
+        "essar oil",
+        "essar petroleum"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "Essar",
@@ -1777,10 +1776,10 @@
     },
     {
       "displayName": "Esso",
-      "id": "esso-206565",
+      "id": "esso-053960",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["jp", "pl", "th"]
+        "exclude": ["br", "jp", "pl", "th"]
       },
       "matchNames": [
         "esso canada",
@@ -1796,10 +1795,10 @@
     },
     {
       "displayName": "Esso Express",
-      "id": "essoexpress-16b3c2",
+      "id": "essoexpress-4973ca",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["pl"]
+        "exclude": ["br", "pl"]
       },
       "tags": {
         "amenity": "fuel",
@@ -1894,11 +1893,23 @@
           "us-wi.geojson"
         ]
       },
+      "matchNames": ["fast stop (growmark)"],
       "tags": {
         "amenity": "fuel",
         "brand": "FAST STOP",
         "brand:wikidata": "Q116734101",
         "name": "FAST STOP"
+      }
+    },
+    {
+      "displayName": "Fastrac",
+      "id": "fastrac-c5cf43",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Fastrac",
+        "brand:wikidata": "Q117324848",
+        "name": "Fastrac"
       }
     },
     {
@@ -2004,11 +2015,8 @@
     },
     {
       "displayName": "Fred Meyer",
-      "id": "fredmeyer-16b3c2",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["pl"]
-      },
+      "id": "fredmeyer-c5cf43",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Fred Meyer",
@@ -2203,6 +2211,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Giap",
+        "brand:wikidata": "Q107609037",
         "name": "Giap"
       }
     },
@@ -2319,10 +2328,10 @@
     },
     {
       "displayName": "Gulf",
-      "id": "gulf-16b3c2",
+      "id": "gulf-c8d6b9",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["pl"]
+        "exclude": ["ge", "pl"]
       },
       "tags": {
         "amenity": "fuel",
@@ -2375,6 +2384,23 @@
         "brand": "Haan",
         "brand:wikidata": "Q92553521",
         "name": "Haan"
+      }
+    },
+    {
+      "displayName": "Haffner's",
+      "id": "haffners-5050cd",
+      "locationSet": {
+        "include": [
+          "us-ma.geojson",
+          "us-me.geojson",
+          "us-nh.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Haffner's",
+        "brand:wikidata": "Q124150984",
+        "name": "Haffner's"
       }
     },
     {
@@ -2569,6 +2595,18 @@
       }
     },
     {
+      "displayName": "IGL (Indraprastha Gas Limited)",
+      "id": "igl-989925",
+      "locationSet": {"include": ["in"]},
+      "matchNames": ["indraprastha gas limited"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "IGL",
+        "brand:wikidata": "Q125553945",
+        "name": "IGL"
+      }
+    },
+    {
       "displayName": "INA",
       "id": "ina-f27d94",
       "locationSet": {
@@ -2653,7 +2691,10 @@
         "include": ["001"],
         "exclude": ["pl"]
       },
-      "matchNames": ["intermarché super"],
+      "matchNames": [
+        "intermarché contact",
+        "intermarché super"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "Intermarché",
@@ -2680,6 +2721,12 @@
         "include": ["001"],
         "exclude": ["pl"]
       },
+      "matchNames": [
+        "api",
+        "api/ip",
+        "erg",
+        "totalerg"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "IP",
@@ -2837,6 +2884,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Kastrati",
+        "brand:wikidata": "Q123238025",
         "name": "Kastrati"
       }
     },
@@ -2847,6 +2895,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Keropetrol",
+        "brand:wikidata": "Q124336939",
         "name": "Keropetrol"
       }
     },
@@ -2959,6 +3008,24 @@
       }
     },
     {
+      "displayName": "Kwik Star",
+      "id": "kwikstar-1d29fd",
+      "locationSet": {
+        "include": [
+          "us-ia.geojson",
+          "us-il.geojson",
+          "us-sd.geojson"
+        ]
+      },
+      "note": "Alternative brand for Kwik Trip",
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Kwik Star",
+        "brand:wikidata": "Q123269534",
+        "name": "Kwik Star"
+      }
+    },
+    {
       "displayName": "Kwik Trip",
       "id": "kwiktrip-c5cf43",
       "locationSet": {"include": ["us"]},
@@ -3009,6 +3076,18 @@
         "amenity": "fuel",
         "brand": "Liberty",
         "brand:wikidata": "Q96781174",
+        "name": "Liberty"
+      }
+    },
+    {
+      "displayName": "Liberty Oil (AU)",
+      "id": "liberty-9ed9c0",
+      "locationSet": {"include": ["au"]},
+      "matchNames": ["liberty oil"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Liberty",
+        "brand:wikidata": "Q106687078",
         "name": "Liberty"
       }
     },
@@ -3152,7 +3231,7 @@
       "displayName": "Marshal",
       "id": "marshal-ed4144",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["маршал"],
+      "matchNames": ["азс marshal", "маршал"],
       "tags": {
         "amenity": "fuel",
         "brand": "Marshal",
@@ -3424,6 +3503,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "N1",
+        "brand:wikidata": "Q30668223",
         "name": "N1"
       }
     },
@@ -3452,7 +3532,10 @@
       "displayName": "Nayara",
       "id": "nayara-989925",
       "locationSet": {"include": ["in"]},
-      "matchNames": ["nayara energy"],
+      "matchNames": [
+        "nayara energy",
+        "nayara petroleum"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "Nayara",
@@ -3470,6 +3553,17 @@
         "brand": "Neste",
         "brand:wikidata": "Q616376",
         "name": "Neste"
+      }
+    },
+    {
+      "displayName": "Nordoel",
+      "id": "nordoel-495186",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Nordoel",
+        "brand:wikidata": "Q1759888",
+        "name": "Nordoel"
       }
     },
     {
@@ -3579,6 +3673,18 @@
       }
     },
     {
+      "displayName": "OK (NL)",
+      "id": "ok-6cdea6",
+      "locationSet": {"include": ["nl"]},
+      "preserveTags": ["^name"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "OK",
+        "brand:wikidata": "Q123472183",
+        "name": "OK"
+      }
+    },
+    {
       "displayName": "OKQ8",
       "id": "okq8-a1affa",
       "locationSet": {"include": ["se"]},
@@ -3611,6 +3717,17 @@
       }
     },
     {
+      "displayName": "Olís",
+      "id": "olis-3ac543",
+      "locationSet": {"include": ["is"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Olís",
+        "brand:wikidata": "Q16423452",
+        "name": "Olís"
+      }
+    },
+    {
       "displayName": "OMV",
       "id": "omv-b3d110",
       "locationSet": {"include": ["001"]},
@@ -3639,14 +3756,15 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Orkan",
+        "brand:wikidata": "Q124349830",
         "name": "Orkan"
       }
     },
     {
       "displayName": "Orlen",
-      "id": "orlen-8d7d05",
+      "id": "orlen-5730fb",
       "locationSet": {
-        "include": ["de", "hu", "lt", "pl"]
+        "include": ["de", "hu", "lt", "pl", "sk"]
       },
       "tags": {
         "amenity": "fuel",
@@ -3676,6 +3794,17 @@
         "brand": "Oxxo",
         "brand:wikidata": "Q1342538",
         "name": "Oxxo"
+      }
+    },
+    {
+      "displayName": "Pace",
+      "id": "pace-20aed2",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Pace",
+        "brand:wikidata": "Q122829220",
+        "name": "Pace"
       }
     },
     {
@@ -3714,7 +3843,11 @@
       "displayName": "Parallel",
       "id": "parallel-ed4144",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["parallel.ua", "паралель"],
+      "matchNames": [
+        "parallel.ua",
+        "паралель",
+        "паралельний"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "Parallel",
@@ -3887,9 +4020,20 @@
       }
     },
     {
-      "displayName": "Petrom",
-      "id": "petrom-b3d110",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Petrom (MA)",
+      "id": "petrom-144a57",
+      "locationSet": {"include": ["ma"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Petrom",
+        "brand:wikidata": "Q110028558",
+        "name": "Petrom"
+      }
+    },
+    {
+      "displayName": "Petrom (MD & RO)",
+      "id": "petrom-871b5c",
+      "locationSet": {"include": ["md", "ro"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Petrom",
@@ -3960,6 +4104,17 @@
         "amenity": "fuel",
         "brand": "Petrosol",
         "name": "Petrosol"
+      }
+    },
+    {
+      "displayName": "Peut",
+      "id": "peut-6cdea6",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Peut",
+        "brand:wikidata": "Q122904449",
+        "name": "Peut"
       }
     },
     {
@@ -4042,8 +4197,10 @@
     },
     {
       "displayName": "Preem",
-      "id": "preem-a611ce",
-      "locationSet": {"include": ["pl", "se"]},
+      "id": "preem-906b06",
+      "locationSet": {
+        "include": ["dk", "no", "pl", "se"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "Preem",
@@ -4063,7 +4220,7 @@
       }
     },
     {
-      "displayName": "Primax (Peru)",
+      "displayName": "Primax (Perú)",
       "id": "primax-877762",
       "locationSet": {"include": ["pe"]},
       "tags": {
@@ -4362,6 +4519,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Retitalia",
+        "brand:wikidata": "Q119135752",
         "name": "Retitalia"
       }
     },
@@ -4395,10 +4553,8 @@
     },
     {
       "displayName": "Rompetrol",
-      "id": "rompetrol-cd5088",
-      "locationSet": {
-        "include": ["ge", "md", "ro"]
-      },
+      "id": "rompetrol-871b5c",
+      "locationSet": {"include": ["md", "ro"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Rompetrol",
@@ -4528,6 +4684,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "San Marco Petroli",
+        "brand:wikidata": "Q124623464",
         "name": "San Marco Petroli"
       }
     },
@@ -4596,14 +4753,15 @@
     },
     {
       "displayName": "Shell",
-      "id": "shell-4a6616",
+      "id": "shell-00679c",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["au", "jp"]
+        "exclude": ["jp"]
       },
       "matchNames": [
         "posto shell",
         "shell gas station",
+        "shell oil",
         "shell petrol station",
         "shell service station",
         "shell station",
@@ -4730,7 +4888,7 @@
       }
     },
     {
-      "displayName": "Socar",
+      "displayName": "SOCAR",
       "id": "socar-619b60",
       "locationSet": {
         "include": [
@@ -4745,9 +4903,9 @@
       },
       "tags": {
         "amenity": "fuel",
-        "brand": "Socar",
+        "brand": "SOCAR",
         "brand:wikidata": "Q1622293",
-        "name": "Socar"
+        "name": "SOCAR"
       }
     },
     {
@@ -4776,8 +4934,8 @@
     },
     {
       "displayName": "SOLATO",
-      "id": "solato-cfbbeb",
-      "locationSet": {"include": ["ja"]},
+      "id": "solato-fbe2e4",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "fuel",
         "brand": "SOLATO",
@@ -4957,6 +5115,28 @@
       }
     },
     {
+      "displayName": "Stinson",
+      "id": "stinson-04874d",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Stinson",
+        "brand:wikidata": "Q123410161",
+        "name": "Stinson"
+      }
+    },
+    {
+      "displayName": "Stop & Shop",
+      "id": "stopandshop-c5cf43",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Stop & Shop",
+        "brand:wikidata": "Q3658429",
+        "name": "Stop & Shop"
+      }
+    },
+    {
       "displayName": "Sunoco",
       "id": "sunoco-c5cf43",
       "locationSet": {"include": ["us"]},
@@ -5066,6 +5246,17 @@
       }
     },
     {
+      "displayName": "Tank S",
+      "id": "tanks-6cdea6",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Tank S",
+        "brand:wikidata": "Q122904613",
+        "name": "Tank S"
+      }
+    },
+    {
       "displayName": "Tanka",
       "id": "tanka-a1affa",
       "locationSet": {"include": ["se"]},
@@ -5087,9 +5278,20 @@
       }
     },
     {
+      "displayName": "TanQyou",
+      "id": "tanqyou-6cdea6",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "TanQyou",
+        "brand:wikidata": "Q124152477",
+        "name": "TanQyou"
+      }
+    },
+    {
       "displayName": "Teboil",
-      "id": "teboil-1c8a41",
-      "locationSet": {"include": ["fi"]},
+      "id": "teboil-2a28c8",
+      "locationSet": {"include": ["fi", "ru"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Teboil",
@@ -5163,10 +5365,13 @@
     },
     {
       "displayName": "Tesco",
-      "id": "tesco-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "tesco-99b029",
+      "locationSet": {
+        "include": ["cz", "gb", "sk"]
+      },
       "matchNames": [
         "tesco esso express",
+        "tesco petrol filling station",
         "tesco petrol station"
       ],
       "tags": {
@@ -5183,7 +5388,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Tesoro",
-        "brand:wikidata": "Q2037080",
+        "brand:wikidata": "Q123414862",
         "name": "Tesoro"
       }
     },
@@ -5214,14 +5419,14 @@
       }
     },
     {
-      "displayName": "Tinq",
+      "displayName": "TinQ",
       "id": "tinq-56839d",
       "locationSet": {"include": ["de", "nl"]},
       "tags": {
         "amenity": "fuel",
-        "brand": "Tinq",
+        "brand": "TinQ",
         "brand:wikidata": "Q2132028",
-        "name": "Tinq"
+        "name": "TinQ"
       }
     },
     {
@@ -5236,7 +5441,7 @@
       }
     },
     {
-      "displayName": "Tom Thumb",
+      "displayName": "Tom Thumb (US TX)",
       "id": "tomthumb-bc7b86",
       "locationSet": {
         "include": ["us-tx.geojson"]
@@ -5246,6 +5451,24 @@
         "brand": "Tom Thumb",
         "brand:wikidata": "Q7817826",
         "name": "Tom Thumb"
+      }
+    },
+    {
+      "displayName": "TomThumb (US AL, FL, MS, TN)",
+      "id": "tomthumb-06d38e",
+      "locationSet": {
+        "include": [
+          "us-al.geojson",
+          "us-fl.geojson",
+          "us-ms.geojson",
+          "us-tn.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "fuel",
+        "brand": "TomThumb",
+        "brand:wikidata": "Q123012206",
+        "name": "TomThumb"
       }
     },
     {
@@ -5276,6 +5499,7 @@
       "id": "total-b3d110",
       "locationSet": {"include": ["001"]},
       "matchNames": ["station total"],
+      "note": "Total is/has rebranded to TotalEnergies, this should probably be removed or offered in less countries in the future. https://en.wikipedia.org/wiki/TotalEnergies#2021%E2%80%93present:_Rebranding_to_TotalEnergies",
       "tags": {
         "amenity": "fuel",
         "brand": "Total",
@@ -5322,24 +5546,13 @@
     },
     {
       "displayName": "TotalEnergies",
-      "id": "totalenergies-495186",
-      "locationSet": {"include": ["de"]},
+      "id": "totalenergies-b3d110",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "fuel",
         "brand": "TotalEnergies",
         "brand:wikidata": "Q154037",
         "name": "TotalEnergies"
-      }
-    },
-    {
-      "displayName": "TotalErg",
-      "id": "totalerg-e8f712",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "TotalErg",
-        "brand:wikidata": "Q3995933",
-        "name": "TotalErg"
       }
     },
     {
@@ -5350,6 +5563,17 @@
         "amenity": "fuel",
         "brand": "Trạm xăng",
         "name": "Trạm xăng"
+      }
+    },
+    {
+      "displayName": "Truck Stop",
+      "id": "truckstop-0ba9a1",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Truck Stop",
+        "brand:wikidata": "Q3054251",
+        "name": "Truck Stop"
       }
     },
     {
@@ -5415,7 +5639,7 @@
       "displayName": "U.GO",
       "id": "ugo-ed4144",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["glusco"],
+      "matchNames": ["glusco", "глуско ритейл"],
       "tags": {
         "amenity": "fuel",
         "brand": "U.GO",
@@ -5454,13 +5678,18 @@
       "displayName": "Ukrnafta",
       "id": "ukrnafta-ed4144",
       "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "азс ukrnafta",
+        "азс укрнафта",
+        "пат укрнафта"
+      ],
       "tags": {
         "amenity": "fuel",
-        "brand": "Укрнафта",
+        "brand": "Ukrnafta",
         "brand:en": "Ukrnafta",
         "brand:uk": "Укрнафта",
         "brand:wikidata": "Q2447961",
-        "name": "Укрнафта",
+        "name": "Ukrnafta",
         "name:en": "Ukrnafta",
         "name:uk": "Укрнафта"
       }
@@ -5481,8 +5710,8 @@
     },
     {
       "displayName": "Unioil",
-      "id": "unioil-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "unioil-289efc",
+      "locationSet": {"include": ["ph"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Unioil",
@@ -5526,8 +5755,8 @@
     },
     {
       "displayName": "Uno-X",
-      "id": "unox-0b8509",
-      "locationSet": {"include": ["dk"]},
+      "id": "unox-9449e0",
+      "locationSet": {"include": ["dk", "no"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Uno-X",
@@ -5539,6 +5768,10 @@
       "displayName": "UPG",
       "id": "upg-ed4144",
       "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "ukrainian petroleum group",
+        "юкрейніан петролеум груп"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "UPG",
@@ -5741,7 +5974,12 @@
       "displayName": "WOG",
       "id": "wog-ed4144",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["вог"],
+      "matchNames": [
+        "азк wog",
+        "азс wog",
+        "вог",
+        "тов \"вог рітейл\""
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "WOG",
@@ -5797,11 +6035,13 @@
     },
     {
       "displayName": "YX",
-      "id": "yx-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "yx-9449e0",
+      "locationSet": {"include": ["dk", "no"]},
+      "matchNames": ["yx energi"],
       "tags": {
         "amenity": "fuel",
         "brand": "YX",
+        "brand:wikidata": "Q4580519",
         "name": "YX"
       }
     },
@@ -5816,20 +6056,10 @@
       }
     },
     {
-      "displayName": "YX Energi",
-      "id": "yxenergi-9449e0",
-      "locationSet": {"include": ["dk", "no"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "YX Energi",
-        "brand:wikidata": "Q4580519",
-        "name": "YX Energi"
-      }
-    },
-    {
       "displayName": "Z",
       "id": "z-088dbb",
       "locationSet": {"include": ["nz"]},
+      "matchNames": ["z energy"],
       "tags": {
         "amenity": "fuel",
         "brand": "Z",
@@ -5908,8 +6138,10 @@
       "locationSet": {"include": ["ua"]},
       "matchNames": [
         "avias",
+        "avias plus",
         "авиас плюс",
-        "авіас плюс"
+        "авіас плюс",
+        "азс авіас"
       ],
       "tags": {
         "amenity": "fuel",
@@ -5959,6 +6191,13 @@
       "displayName": "БРСМ-Нафта",
       "id": "69e648-ed4144",
       "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "brsm",
+        "brsm-nafta",
+        "азк брсм-нафта",
+        "азс брсм",
+        "брсм"
+      ],
       "tags": {
         "amenity": "fuel",
         "brand": "БРСМ-Нафта",
@@ -6122,6 +6361,7 @@
       "displayName": "Маркет",
       "id": "818678-ed4144",
       "locationSet": {"include": ["ua"]},
+      "matchNames": ["market", "азс маркет"],
       "tags": {
         "amenity": "fuel",
         "brand": "Маркет",
@@ -6193,9 +6433,11 @@
         "amenity": "fuel",
         "brand": "ОККО",
         "brand:en": "OKKO",
+        "brand:uk": "ОККО",
         "brand:wikidata": "Q2045483",
         "name": "ОККО",
-        "name:en": "OKKO"
+        "name:en": "OKKO",
+        "name:uk": "ОККО"
       }
     },
     {
@@ -6229,19 +6471,21 @@
       }
     },
     {
-      "displayName": "Опти",
+      "displayName": "ОПТИ",
       "id": "6155f5-14ecc6",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "fuel",
-        "brand": "Опти",
-        "name": "Опти"
+        "brand": "ОПТИ",
+        "brand:wikidata": "Q109356512",
+        "name": "ОПТИ"
       }
     },
     {
       "displayName": "Петрол",
       "id": "petrol-b450da",
       "locationSet": {"include": ["bg"]},
+      "matchNames": ["petrol", "petrol ad"],
       "note": "https://github.com/osmlab/name-suggestion-index/issues/6552",
       "tags": {
         "amenity": "fuel",
@@ -6413,13 +6657,34 @@
       }
     },
     {
-      "displayName": "გულფი",
-      "id": "b22879-b3d110",
-      "locationSet": {"include": ["001"]},
+      "displayName": "გალფი",
+      "id": "gulf-7489db",
+      "locationSet": {"include": ["ge"]},
+      "matchNames": ["გულფი"],
       "tags": {
         "amenity": "fuel",
-        "brand": "გულფი",
-        "name": "გულფი"
+        "brand": "გალფი",
+        "brand:en": "Gulf",
+        "brand:ka": "გალფი",
+        "brand:wikidata": "Q5617505",
+        "name": "გალფი",
+        "name:en": "Gulf",
+        "name:ka": "გალფი"
+      }
+    },
+    {
+      "displayName": "რომპეტროლი",
+      "id": "rompetrol-7489db",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "რომპეტროლი",
+        "brand:en": "Rompetrol",
+        "brand:ka": "რომპეტროლი",
+        "brand:wikidata": "Q1788862",
+        "name": "რომპეტროლი",
+        "name:en": "Rompetrol",
+        "name:ka": "რომპეტროლი"
       }
     },
     {
@@ -6434,11 +6699,11 @@
       "tags": {
         "amenity": "fuel",
         "brand": "სოკარი",
-        "brand:en": "Socar",
+        "brand:en": "SOCAR",
         "brand:ka": "სოკარი",
         "brand:wikidata": "Q1622293",
         "name": "სოკარი",
-        "name:en": "Socar",
+        "name:en": "SOCAR",
         "name:ka": "სოკარი"
       }
     },

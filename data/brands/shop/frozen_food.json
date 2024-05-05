@@ -1,7 +1,13 @@
 {
   "properties": {
     "path": "brands/shop/frozen_food",
-    "exclude": {"generic": ["^frozen food$"]}
+    "exclude": {
+      "generic": [
+        "^frozen food$",
+        "^заморожена їжа$"
+      ],
+      "named": ["^домашні напівфабрикати$"]
+    }
   },
   "items": [
     {
@@ -100,7 +106,10 @@
       "locationSet": {
         "include": ["be", "fr", "lu"]
       },
-      "matchNames": ["picard surgelés"],
+      "matchNames": [
+        "picard sa",
+        "picard surgelés"
+      ],
       "tags": {
         "brand": "Picard",
         "brand:wikidata": "Q3382454",
@@ -120,13 +129,48 @@
       }
     },
     {
-      "displayName": "Галя Балувана",
+      "displayName": "Wesoła Pani",
+      "id": "wesolapani-ec5a92",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "brand": "Wesoła Pani",
+        "brand:wikidata": "Q123240454",
+        "shop": "frozen_food"
+      }
+    },
+    {
+      "displayName": "Домашні напівфабрикати «Галя Балувана»",
       "id": "538c69-b89636",
       "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "galia baluvana",
+        "halia baluvana",
+        "балувана галя",
+        "домашні напівфабрикати галя балувана"
+      ],
       "tags": {
         "brand": "Галя Балувана",
         "brand:wikidata": "Q117744813",
         "name": "Галя Балувана",
+        "shop": "frozen_food"
+      }
+    },
+    {
+      "displayName": "Елікатні радощі життя!",
+      "id": "elikatniproducts-b89636",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "elika",
+        "еліка",
+        "елікатні радощі життя!",
+        "єліка"
+      ],
+      "tags": {
+        "brand": "Елікатні продукти",
+        "brand:en": "Elikatni Products",
+        "brand:uk": "Елікатні продукти",
+        "brand:wikidata": "Q123848582",
+        "name": "Елікатні продукти",
         "shop": "frozen_food"
       }
     }
