@@ -257,10 +257,11 @@
     },
     {
       "displayName": "ALDI (ALDI Nord group)",
-      "id": "aldi-0723b0",
+      "id": "aldi-be20c9",
       "locationSet": {
         "include": [
           "be",
+          "dk",
           "es",
           "fr",
           "lu",
@@ -308,21 +309,26 @@
       }
     },
     {
-      "displayName": "ALDI Nord",
-      "id": "aldinord-0a839e",
-      "locationSet": {"include": ["de"]},
+      "displayName": "ALDI Nord (DE)",
+      "id": "aldi-813759",
+      "locationSet": {
+        "include": ["de"],
+        "exclude": ["aldi-sued.geojson"]
+      },
       "note": "German ALDI Nord branding",
       "tags": {
         "brand": "ALDI Nord",
         "brand:wikidata": "Q41171373",
-        "name": "ALDI Nord",
+        "name": "ALDI",
         "shop": "supermarket"
       }
     },
     {
-      "displayName": "ALDI Süd",
-      "id": "aldisud-0a839e",
-      "locationSet": {"include": ["de"]},
+      "displayName": "ALDI Süd (DE)",
+      "id": "aldisud-e4a24f",
+      "locationSet": {
+        "include": ["aldi-sued.geojson"]
+      },
       "note": "German ALDI Süd branding",
       "tags": {
         "brand": "ALDI Süd",
@@ -690,8 +696,12 @@
       "locationSet": {"include": ["th", "vn"]},
       "tags": {
         "brand": "Big C",
+        "brand:en": "Big C",
+        "brand:th": "บิ๊กซี",
         "brand:wikidata": "Q858665",
         "name": "Big C",
+        "name:en": "Big C",
+        "name:th": "บิ๊กซี",
         "shop": "supermarket"
       }
     },
@@ -781,6 +791,17 @@
         "brand": "Billa Plus",
         "brand:wikidata": "Q115431077",
         "name": "Billa Plus",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Billa Днес",
+      "id": "4e4d77-56b425",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "Billa Днес",
+        "brand:wikidata": "Q124377887",
+        "name": "Billa Днес",
         "shop": "supermarket"
       }
     },
@@ -1148,8 +1169,8 @@
     },
     {
       "displayName": "Carrefour Contact",
-      "id": "carrefourcontact-c16b1c",
-      "locationSet": {"include": ["fr"]},
+      "id": "carrefourcontact-e52941",
+      "locationSet": {"include": ["fr", "it"]},
       "tags": {
         "brand": "Carrefour Contact",
         "brand:wikidata": "Q2940188",
@@ -1172,6 +1193,7 @@
       "displayName": "CarrefourSA",
       "id": "carrefoursa-5b5772",
       "locationSet": {"include": ["tr"]},
+      "matchNames": ["carrefour"],
       "tags": {
         "brand": "CarrefourSA",
         "brand:wikidata": "Q28870164",
@@ -1225,6 +1247,45 @@
         "name": "CBA",
         "name:bg": "ЦБА",
         "operator": "ЦБА България",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "CBA Kome",
+      "id": "cbakome-56b425",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "CBA Kome",
+        "brand:bg": "ЦБА Коме",
+        "brand:wikidata": "Q124736748",
+        "name": "CBA Kome",
+        "name:bg": "ЦБА Коме",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "CBA Болеро",
+      "id": "ea2f7e-56b425",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "CBA Болеро",
+        "brand:bg": "ЦБА Болеро",
+        "brand:wikidata": "Q124736758",
+        "name": "CBA Болеро",
+        "name:bg": "ЦБА Болеро",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "CBA Класико",
+      "id": "c5e5d4-56b425",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "CBA Класико",
+        "brand:bg": "ЦБА Класико",
+        "brand:wikidata": "Q124736768",
+        "name": "CBA Класико",
+        "name:bg": "ЦБА Класико",
         "shop": "supermarket"
       }
     },
@@ -1353,6 +1414,17 @@
         "brand": "City Market",
         "brand:wikidata": "Q5123299",
         "name": "City Market",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "CJ Supermarket",
+      "id": "cjsupermarket-fd4d8d",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "brand": "CJ Express",
+        "brand:wikidata": "Q125874457",
+        "name": "CJ Supermarket",
         "shop": "supermarket"
       }
     },
@@ -1643,7 +1715,7 @@
       "displayName": "COOP Jednota",
       "id": "coopjednota-261d20",
       "locationSet": {"include": ["cz", "sk"]},
-      "matchNames": ["jednota"],
+      "matchNames": ["coop", "jednota"],
       "tags": {
         "brand": "COOP Jednota",
         "brand:wikidata": "Q41629254",
@@ -2026,8 +2098,8 @@
     },
     {
       "displayName": "Dialprix",
-      "id": "dialprix-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "dialprix-0513f1",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "brand": "Dialprix",
         "name": "Dialprix",
@@ -2127,6 +2199,7 @@
       "displayName": "Dollar General Market",
       "id": "dollargeneralmarket-dde59d",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["dg market"],
       "matchTags": [
         "shop/convenience",
         "shop/variety_store"
@@ -2220,19 +2293,6 @@
         "brand": "E.Leclerc",
         "brand:wikidata": "Q1273376",
         "name": "E.Leclerc",
-        "shop": "supermarket"
-      }
-    },
-    {
-      "displayName": "E.Leclerc Drive",
-      "id": "eleclercdrive-c16b1c",
-      "locationSet": {"include": ["fr"]},
-      "matchNames": ["leclerc drive"],
-      "tags": {
-        "brand": "E.Leclerc Drive",
-        "brand:wikidata": "Q1273376",
-        "drive_through": "only",
-        "name": "E.Leclerc Drive",
         "shop": "supermarket"
       }
     },
@@ -2402,6 +2462,25 @@
         "brand": "El Jamón",
         "brand:wikidata": "Q6135982",
         "name": "El Jamón",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "El Super",
+      "id": "elsuper-b82f18",
+      "locationSet": {
+        "include": [
+          "us-az.geojson",
+          "us-ca.geojson",
+          "us-nm.geojson",
+          "us-nv.geojson",
+          "us-tx.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "El Super",
+        "brand:wikidata": "Q124810916",
+        "name": "El Super",
         "shop": "supermarket"
       }
     },
@@ -3133,6 +3212,17 @@
       }
     },
     {
+      "displayName": "Griya",
+      "id": "griya-9b33de",
+      "locationSet": {"include": ["id"]},
+      "tags": {
+        "brand": "Griya",
+        "brand:wikidata": "Q124353081",
+        "name": "Griya",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Grocery Outlet",
       "id": "groceryoutlet-dde59d",
       "locationSet": {"include": ["us"]},
@@ -3557,6 +3647,7 @@
       "displayName": "IGA",
       "id": "iga-166dbe",
       "locationSet": {"include": ["ca", "us"]},
+      "matchNames": ["iga extra"],
       "preserveTags": ["^name"],
       "tags": {
         "brand": "IGA",
@@ -4354,8 +4445,24 @@
       "tags": {
         "alt_name": "Tesco Lotus",
         "brand": "Lotus's",
+        "brand:en": "Lotus's",
+        "brand:th": "โลตัส",
         "brand:wikidata": "Q2378901",
         "name": "Lotus's",
+        "name:en": "Lotus's",
+        "name:th": "โลตัส",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Lotus's go fresh",
+      "id": "lotussgofresh-a5f134",
+      "locationSet": {"include": ["my", "th"]},
+      "tags": {
+        "alt_name": "Tesco Lotus Express",
+        "brand": "Lotus's go fresh",
+        "brand:wikidata": "Q125937967",
+        "name": "Lotus's go fresh",
         "shop": "supermarket"
       }
     },
@@ -4491,8 +4598,8 @@
     },
     {
       "displayName": "Magnum",
-      "id": "magnum-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "magnum-8f26de",
+      "locationSet": {"include": ["kz"]},
       "tags": {
         "brand": "Magnum",
         "name": "Magnum",
@@ -4683,6 +4790,17 @@
       }
     },
     {
+      "displayName": "Mas",
+      "id": "mas-42dc97",
+      "locationSet": {"include": ["cy"]},
+      "tags": {
+        "brand": "Mas",
+        "brand:wikidata": "Q122957534",
+        "name": "Mas",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "masymas (Hijos de Luis Rodríguez)",
       "id": "masymas-d9d175",
       "locationSet": {
@@ -4826,7 +4944,7 @@
         "include": ["ee", "lt", "lv"]
       },
       "tags": {
-        "brand": "Maxima X",
+        "brand": "Maxima",
         "brand:wikidata": "Q1881222",
         "name": "Maxima X",
         "shop": "supermarket"
@@ -4839,7 +4957,7 @@
         "include": ["ee", "lt", "lv", "pl"]
       },
       "tags": {
-        "brand": "Maxima XX",
+        "brand": "Maxima",
         "brand:wikidata": "Q1881222",
         "name": "Maxima XX",
         "shop": "supermarket"
@@ -4851,9 +4969,8 @@
       "locationSet": {
         "include": ["ee", "lt", "lv", "pl"]
       },
-      "matchNames": ["maxima"],
       "tags": {
-        "brand": "Maxima XXX",
+        "brand": "Maxima",
         "brand:wikidata": "Q1881222",
         "name": "Maxima XXX",
         "shop": "supermarket"
@@ -5535,6 +5652,18 @@
       }
     },
     {
+      "displayName": "Nilgiri's",
+      "id": "nilgiris-9ef8f9",
+      "locationSet": {"include": ["in"]},
+      "matchNames": ["nilgiris 1905"],
+      "tags": {
+        "brand": "Nilgiri's",
+        "brand:wikidata": "Q17079567",
+        "name": "Nilgiri's",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Nisa Extra",
       "id": "nisaextra-a8278b",
       "locationSet": {"include": ["gb"]},
@@ -5599,6 +5728,24 @@
         "brand": "Northern Store",
         "brand:wikidata": "Q7754361",
         "name": "Northern Store",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Northgate Market",
+      "id": "northgatemarket-097dbf",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "matchNames": [
+        "northgate",
+        "northgate gonzalez",
+        "northgate gonzalez market"
+      ],
+      "tags": {
+        "brand": "Northgate Market",
+        "brand:wikidata": "Q124810943",
+        "name": "Northgate Market",
         "shop": "supermarket"
       }
     },
@@ -5781,7 +5928,7 @@
       }
     },
     {
-      "displayName": "PENNY",
+      "displayName": "Penny",
       "id": "penny-55dfd6",
       "locationSet": {
         "include": [
@@ -5799,9 +5946,9 @@
       ],
       "preserveTags": ["^name"],
       "tags": {
-        "brand": "PENNY",
+        "brand": "Penny",
         "brand:wikidata": "Q284688",
-        "name": "PENNY",
+        "name": "Penny",
         "shop": "supermarket"
       }
     },
@@ -6102,7 +6249,8 @@
       "id": "proficity-62a473",
       "locationSet": {"include": ["ro"]},
       "tags": {
-        "brand": "Profi City",
+        "brand": "Profi",
+        "brand:wikidata": "Q956664",
         "name": "Profi City",
         "shop": "supermarket"
       }
@@ -6112,7 +6260,8 @@
       "id": "profiloco-62a473",
       "locationSet": {"include": ["ro"]},
       "tags": {
-        "brand": "Profi Loco",
+        "brand": "Profi",
+        "brand:wikidata": "Q956664",
         "name": "Profi Loco",
         "shop": "supermarket"
       }
@@ -6122,7 +6271,8 @@
       "id": "profisuper-62a473",
       "locationSet": {"include": ["ro"]},
       "tags": {
-        "brand": "Profi Super",
+        "brand": "Profi",
+        "brand:wikidata": "Q956664",
         "name": "Profi Super",
         "shop": "supermarket"
       }
@@ -6833,6 +6983,18 @@
       }
     },
     {
+      "displayName": "Simpli Namdhari's",
+      "id": "simplinamdharis-9ef8f9",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "brand": "Simpli Namdhari's",
+        "brand:wikidata": "Q124374340",
+        "diet:vegetarian": "yes",
+        "name": "Simpli Namdhari's",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Simply Market",
       "id": "simplymarket-986a24",
       "locationSet": {"include": ["001"]},
@@ -7086,6 +7248,17 @@
       }
     },
     {
+      "displayName": "Star Bazaar",
+      "id": "starbazaar-9ef8f9",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "brand": "Star Bazaar",
+        "brand:wikidata": "Q124175958",
+        "name": "Star Bazaar",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Stater Bros.",
       "id": "staterbros-dde59d",
       "locationSet": {"include": ["us"]},
@@ -7277,6 +7450,18 @@
       }
     },
     {
+      "displayName": "Super Indo",
+      "id": "superindo-9b33de",
+      "locationSet": {"include": ["id"]},
+      "matchTags": ["shop/convenience"],
+      "tags": {
+        "brand": "Super Indo",
+        "brand:wikidata": "Q12518060",
+        "name": "Super Indo",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Super Metro",
       "id": "supermetro-49e134",
       "locationSet": {"include": ["ph"]},
@@ -7396,6 +7581,20 @@
         "brand:wikidata": "Q105955304",
         "operator": "DinoSol",
         "operator:wikidata": "Q5278478",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Superior Grocers",
+      "id": "superiorgrocers-097dbf",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "matchNames": ["superior"],
+      "tags": {
+        "brand": "Superior Grocers",
+        "brand:wikidata": "Q124810975",
+        "name": "Superior Grocers",
         "shop": "supermarket"
       }
     },
@@ -7569,8 +7768,8 @@
     },
     {
       "displayName": "Terno",
-      "id": "terno-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "terno-4ccde8",
+      "locationSet": {"include": ["sk"]},
       "tags": {
         "brand": "Terno",
         "name": "Terno",
@@ -7834,9 +8033,12 @@
       "locationSet": {"include": ["th"]},
       "tags": {
         "brand": "Tops",
+        "brand:en": "Tops",
         "brand:th": "ท็อปส์",
         "brand:wikidata": "Q7825140",
         "name": "Tops",
+        "name:en": "Tops",
+        "name:th": "ท็อปส์",
         "shop": "supermarket"
       }
     },
@@ -8145,6 +8347,17 @@
       }
     },
     {
+      "displayName": "Vishal Mega Mart",
+      "id": "vishalmegamart-9ef8f9",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "brand": "Vishal Mega Mart",
+        "brand:wikidata": "Q124374377",
+        "name": "Vishal Mega Mart",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "VOI",
       "id": "voi-36e991",
       "locationSet": {"include": ["ch"]},
@@ -8216,8 +8429,8 @@
     },
     {
       "displayName": "Walmart Neighborhood Market",
-      "id": "walmartneighborhoodmarket-166dbe",
-      "locationSet": {"include": ["ca", "us"]},
+      "id": "walmartneighborhoodmarket-dde59d",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Walmart",
         "brand:wikidata": "Q483551",
@@ -8435,6 +8648,17 @@
         "name:en": "Yerevan City",
         "name:hy": "Երևան Սիթի",
         "name:ru": "Ереван Сити",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Yogya",
+      "id": "yogya-9b33de",
+      "locationSet": {"include": ["id"]},
+      "tags": {
+        "brand": "Yogya",
+        "brand:wikidata": "Q124353073",
+        "name": "Yogya",
         "shop": "supermarket"
       }
     },
@@ -8731,6 +8955,17 @@
         "brand:wikidata": "Q66133376",
         "name": "Булмаг",
         "name:en": "BulMag",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Бурлекс",
+      "id": "1b9c5d-56b425",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "Бурлекс",
+        "brand:wikidata": "Q124736705",
+        "name": "Бурлекс",
         "shop": "supermarket"
       }
     },
@@ -9530,6 +9765,77 @@
       }
     },
     {
+      "displayName": "აგროჰაბი",
+      "id": "agrohub-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "აგროჰაბი",
+        "brand:en": "Agrohub",
+        "brand:ka": "აგროჰაბი",
+        "brand:ru": "Агрохаб",
+        "name": "აგროჰაბი",
+        "name:en": "Agrohub",
+        "name:ka": "აგროჰაბი",
+        "name:ru": "Агрохаб",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "გუდვილი",
+      "id": "goodwill-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "გუდვილი",
+        "brand:en": "Goodwill",
+        "brand:ka": "გუდვილი",
+        "brand:ru": "Гудвилл",
+        "brand:wikidata": "Q118799213",
+        "name": "გუდვილი",
+        "name:en": "Goodwill",
+        "name:ka": "გუდვილი",
+        "name:ru": "Гудвилл",
+        "operator:wikidata": "Q118799213",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "ვილმარტი",
+      "id": "willmart-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "ვილმარტი",
+        "brand:en": "Willmart",
+        "brand:ka": "ვილმარტი",
+        "brand:ru": "Виллмарт",
+        "brand:wikidata": "Q118793042",
+        "name": "ვილმარტი",
+        "name:en": "Willmart",
+        "name:ka": "ვილმარტი",
+        "name:ru": "Виллмарт",
+        "operator:wikidata": "Q118793042",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "კარფური მარკეტი",
+      "id": "carrefourmarket-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "კარფური",
+        "brand:en": "Carrefour",
+        "brand:ka": "კარფური",
+        "brand:ru": "Карфур",
+        "brand:wikidata": "Q217599",
+        "name": "კარფური მარკეტი",
+        "name:en": "Carrefour Market",
+        "name:ka": "კარფური მარკეტი",
+        "name:ru": "Карфур Маркет",
+        "operator": "შპს მაჯიდ ალ ფუტაიმ ჰიპერმარკეტს ჯორჯია",
+        "operator:ka": "შპს მაჯიდ ალ ფუტაიმ ჰიპერმარკეტს ჯორჯია",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "მაგნიტი",
       "id": "2c9305-873b68",
       "locationSet": {"include": ["ge"]},
@@ -9584,6 +9890,36 @@
         "name": "სპარი",
         "name:en": "Spar",
         "name:ka": "სპარი",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "ფრესკო",
+      "id": "fresco-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "ფრესკო",
+        "brand:en": "Fresco",
+        "brand:ka": "ფრესკო",
+        "brand:ru": "Фреско",
+        "name": "ფრესკო",
+        "name:en": "Fresco",
+        "name:ka": "ფრესკო",
+        "name:ru": "Фреско",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "ჯიბე",
+      "id": "jibe-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "ჯიბე ქეშ & ქერი",
+        "brand:ka": "ჯიბე ქეშ & ქერი",
+        "name": "ჯიბე",
+        "name:en": "Jibe",
+        "name:ka": "ჯიბე",
+        "name:ru": "Джибе",
         "shop": "supermarket"
       }
     },
@@ -11395,6 +11731,7 @@
       "displayName": "永辉超市",
       "id": "yonghuisuperstores-eda947",
       "locationSet": {"include": ["cn"]},
+      "matchNames": ["永辉"],
       "matchTags": ["shop/convenience"],
       "tags": {
         "brand": "永辉超市",
@@ -11429,6 +11766,7 @@
       "locationSet": {
         "include": [[117.1140042, 36.6507007, 50]]
       },
+      "matchNames": ["济南华联"],
       "note": "仅限山东济南，画圈为济南城市群",
       "preserveTags": ["^name"],
       "tags": {
