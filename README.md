@@ -1,4 +1,4 @@
-[![build](https://github.com/osmlab/name-suggestion-index/workflows/test/badge.svg)](https://github.com/osmlab/name-suggestion-index/actions?query=workflow%3A%22test%22)
+[![build](https://github.com/osmlab/name-suggestion-index/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/osmlab/name-suggestion-index/actions/workflows/test.yml)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 [![](https://data.jsdelivr.com/v1/package/npm/name-suggestion-index/badge?style=rounded)](https://www.jsdelivr.com/package/npm/name-suggestion-index)
 
