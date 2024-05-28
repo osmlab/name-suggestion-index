@@ -33,21 +33,6 @@
       }
     },
     {
-      "displayName": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
-      "locationSet": {"include": ["th"]},
-      "matchNames": ["ธ.ก.ส.","BAAC"],
-      "tags": {
-        "amenity": "bank",
-        "brand": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
-        "brand:th": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
-        "brand:en": "Bank for Agriculture and Agricultural Co-operatives",
-        "brand:wikidata": "Q23043470",
-        "name": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
-        "name:th": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
-        "name:en": "Bank for Agriculture and Agricultural Co-operatives"
-      }
-    },
-    {
       "displayName": "1st Security Bank",
       "id": "1stsecuritybank-181391",
       "locationSet": {
@@ -185,12 +170,11 @@
     },
     {
       "displayName": "Access Bank",
-      "id": "accessbank-175004",
+      "id": "accessbank-193d4e",
       "locationSet": {
         "include": [
           "cd",
           "gb",
-          "gh",
           "gm",
           "mz",
           "rw",
@@ -2402,7 +2386,7 @@
     },
     {
       "displayName": "Bank of Africa",
-      "id": "bankofafrica-0bcfcb",
+      "id": "bankofafrica-dae5c5",
       "locationSet": {
         "include": [
           "bf",
@@ -2413,7 +2397,6 @@
           "dj",
           "et",
           "fr",
-          "gh",
           "ke",
           "mg",
           "ml",
@@ -4398,6 +4381,17 @@
       }
     },
     {
+      "displayName": "Canadian Western Bank",
+      "id": "canadianwesternbank-e1345b",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Canadian Western Bank",
+        "brand:wikidata": "Q1032408",
+        "name": "Canadian Western Bank"
+      }
+    },
+    {
       "displayName": "Canara Bank",
       "id": "canarabank-34f411",
       "locationSet": {"include": ["in"]},
@@ -4785,6 +4779,20 @@
         "brand": "CIMB Niaga",
         "brand:wikidata": "Q5011747",
         "name": "CIMB Niaga"
+      }
+    },
+    {
+      "displayName": "Citadele",
+      "id": "citadele-2d4942",
+      "locationSet": {"include": ["lv"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Citadele bank",
+        "brand:en": "Citadele bank",
+        "brand:lv": "Citadele banka",
+        "brand:ru": "Citadele bank",
+        "brand:wikidata": "Q14239556",
+        "name": "Citadele"
       }
     },
     {
@@ -5733,8 +5741,11 @@
     },
     {
       "displayName": "Ecobank",
-      "id": "ecobank-b7a026",
-      "locationSet": {"include": ["001"]},
+      "id": "ecobank-8a3497",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["gh"]
+      },
       "matchNames": ["agence ecobank"],
       "tags": {
         "amenity": "bank",
@@ -6013,19 +6024,6 @@
       }
     },
     {
-      "displayName": "FBNBank Ghana",
-      "id": "fbnbank-9d35ea",
-      "locationSet": {"include": ["gh"]},
-      "tags": {
-        "amenity": "bank",
-        "brand": "First Bank of Nigeria",
-        "brand:wikidata": "Q5452342",
-        "name": "FBNBank",
-        "operator": "FBNBank Ghana Limited",
-        "operator:type": "public"
-      }
-    },
-    {
       "displayName": "Federal Bank",
       "id": "federalbank-34f411",
       "locationSet": {"include": ["in"]},
@@ -6093,7 +6091,10 @@
         "amenity": "bank",
         "brand": "Fidelity Bank",
         "brand:wikidata": "Q5446778",
-        "name": "Fidelity Bank"
+        "name": "Fidelity Bank",
+        "operator": "Fidelity Bank Ghana Limited",
+        "operator:type": "public",
+        "operator:wikidata": "Q5446778"
       }
     },
     {
@@ -6239,6 +6240,20 @@
         "brand": "Fio banka",
         "brand:wikidata": "Q12016657",
         "name": "Fio banka"
+      }
+    },
+    {
+      "displayName": "First Atlantic Bank",
+      "id": "firstatlanticbank-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "First Atlantic Bank",
+        "brand:wikidata": "Q30688785",
+        "name": "First Atlantic Bank",
+        "operator": "First Atlantic Bank (Ghana) Limited",
+        "operator:type": "private",
+        "operator:wikidata": "Q30688785"
       }
     },
     {
@@ -6718,6 +6733,20 @@
       }
     },
     {
+      "displayName": "FirstBank Ghana",
+      "id": "firstbankghana-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "First Bank of Nigeria",
+        "brand:wikidata": "Q5452342",
+        "name": "FirstBank Ghana",
+        "old_name": "FBNBank",
+        "operator": "FBNBank Ghana Limited",
+        "operator:type": "public"
+      }
+    },
+    {
       "displayName": "Flagstar Bank",
       "id": "flagstarbank-ea2e2d",
       "locationSet": {"include": ["us"]},
@@ -6837,11 +6866,15 @@
       "displayName": "GCB Bank",
       "id": "gcbbank-9d35ea",
       "locationSet": {"include": ["gh"]},
+      "matchNames": ["ghana commercial bank"],
       "tags": {
         "amenity": "bank",
         "brand": "GCB Bank",
         "brand:wikidata": "Q1521346",
-        "name": "GCB Bank"
+        "name": "GCB Bank",
+        "operator": "GCB Bank Limited",
+        "operator:type": "public",
+        "operator:wikidata": "Q1521346"
       }
     },
     {
@@ -8840,6 +8873,21 @@
       }
     },
     {
+      "displayName": "National Investment Bank (Ghana)",
+      "id": "nationalinvestmentbank-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "National Investment Bank",
+        "brand:wikidata": "Q6973844",
+        "name": "National Investment Bank",
+        "operator": "National Investment Bank Limited",
+        "operator:type": "parastatal",
+        "operator:wikidata": "Q6973844",
+        "short_name": "NIB"
+      }
+    },
+    {
       "displayName": "Nationwide",
       "id": "nationwide-e1e9d0",
       "locationSet": {"include": ["gb"]},
@@ -9008,7 +9056,7 @@
     },
     {
       "displayName": "Nordea",
-      "id": "nordea-75b368",
+      "id": "nordea-5e8542",
       "locationSet": {
         "include": [
           "dk",
@@ -9017,7 +9065,6 @@
           "gb",
           "lt",
           "no",
-          "pl",
           "se",
           "us"
         ]
@@ -9244,6 +9291,20 @@
         "brand:wikidata": "Q879591",
         "name": "Oldenburgische Landesbank",
         "short_name": "OLB"
+      }
+    },
+    {
+      "displayName": "OmniBSIC Bank",
+      "id": "omnibsicbank-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "OmniBSIC Bank",
+        "brand:wikidata": "Q96397377",
+        "name": "OmniBSIC Bank",
+        "operator": "OmniBSIC Bank Ghana Limited",
+        "operator:type": "private",
+        "operator:wikidata": "Q96397377"
       }
     },
     {
@@ -9911,6 +9972,20 @@
       }
     },
     {
+      "displayName": "Prudential Bank",
+      "id": "prudentialbank-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Prudential Bank",
+        "brand:wikidata": "Q7252979",
+        "name": "Prudential Bank",
+        "operator": "Prudential Bank Limited",
+        "operator:type": "private",
+        "operator:wikidata": "Q7252979"
+      }
+    },
+    {
       "displayName": "Prvá stavebná sporiteľňa",
       "id": "prvastavebnasporitelna-6a1dfb",
       "locationSet": {"include": ["sk"]},
@@ -10292,6 +10367,20 @@
         "brand": "Republic Bank",
         "brand:wikidata": "Q7314386",
         "name": "Republic Bank"
+      }
+    },
+    {
+      "displayName": "Republic Bank (Ghana)",
+      "id": "republicbank-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Republic Bank",
+        "brand:wikidata": "Q7314386",
+        "name": "Republic Bank",
+        "operator": "Republic Bank Ghana Limited",
+        "operator:type": "public",
+        "operator:wikidata": "Q4039966"
       }
     },
     {
@@ -10942,7 +11031,7 @@
     },
     {
       "displayName": "Société Générale",
-      "id": "societegenerale-08fac1",
+      "id": "societegenerale-703d51",
       "locationSet": {
         "include": ["001"],
         "exclude": [
@@ -10950,6 +11039,7 @@
           "bg",
           "ci",
           "fr",
+          "gh",
           "ma",
           "qa",
           "sa"
@@ -10972,6 +11062,20 @@
         "brand": "SG",
         "brand:wikidata": "Q270363",
         "name": "SG"
+      }
+    },
+    {
+      "displayName": "Société Générale (Ghana)",
+      "id": "societegenerale-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Société Générale",
+        "brand:wikidata": "Q270363",
+        "name": "Société Générale",
+        "operator": "Société Générale Ghana Limited",
+        "operator:type": "public",
+        "operator:wikidata": "Q7390038"
       }
     },
     {
@@ -11224,13 +11328,29 @@
     },
     {
       "displayName": "Stanbic Bank",
-      "id": "stanbicbank-b7a026",
-      "locationSet": {"include": ["001"]},
+      "id": "stanbicbank-8a3497",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["gh"]
+      },
       "tags": {
         "amenity": "bank",
         "brand": "Stanbic Bank",
         "brand:wikidata": "Q7597999",
         "name": "Stanbic Bank"
+      }
+    },
+    {
+      "displayName": "Stanbic Bank (Ghana)",
+      "id": "stanbicbank-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Standard Bank",
+        "brand:wikidata": "Q1576610",
+        "name": "Stanbic Bank",
+        "operator": "Stanbic Bank Ghana Limited",
+        "operator:type": "public"
       }
     },
     {
@@ -11246,10 +11366,10 @@
     },
     {
       "displayName": "Standard Chartered",
-      "id": "standardchartered-df101c",
+      "id": "standardchartered-7273f3",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["cn"]
+        "exclude": ["cn", "gh"]
       },
       "matchNames": ["standard chartered bank"],
       "tags": {
@@ -11570,25 +11690,28 @@
       }
     },
     {
-      "displayName": "TD Bank",
+      "displayName": "TD Bank (Canada)",
+      "id": "td-e1345b",
+      "locationSet": {"include": ["ca"]},
+      "matchNames": ["td bank"],
+      "tags": {
+        "alt_name": "TD Canada Trust",
+        "amenity": "bank",
+        "brand": "TD",
+        "brand:wikidata": "Q1080670",
+        "name": "TD"
+      }
+    },
+    {
+      "displayName": "TD Bank (USA)",
       "id": "tdbank-ea2e2d",
       "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "bank",
         "brand": "TD Bank",
         "brand:wikidata": "Q7669891",
-        "name": "TD Bank"
-      }
-    },
-    {
-      "displayName": "TD Canada Trust",
-      "id": "tdcanadatrust-e1345b",
-      "locationSet": {"include": ["ca"]},
-      "tags": {
-        "amenity": "bank",
-        "brand": "TD Canada Trust",
-        "brand:wikidata": "Q1080670",
-        "name": "TD Canada Trust"
+        "name": "TD Bank",
+        "short_name": "TD"
       }
     },
     {
@@ -12187,6 +12310,21 @@
         "name": "Universal Bank",
         "name:en": "Universal Bank",
         "name:uk": "Універсал Банк"
+      }
+    },
+    {
+      "displayName": "Universal Merchant Bank",
+      "id": "universalmerchantbank-9d35ea",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Universal Merchant Bank",
+        "brand:wikidata": "Q19604603",
+        "name": "Universal Merchant Bank",
+        "operator": "Universal Merchant Bank Limited",
+        "operator:type": "private",
+        "operator:wikidata": "Q19604603",
+        "short_name": "UMB"
       }
     },
     {
@@ -14277,11 +14415,54 @@
       "locationSet": {"include": ["ge"]},
       "tags": {
         "amenity": "bank",
+        "bic": "CBASGE22",
         "brand": "ბაზისბანკი",
-        "brand:en": "Basisbank",
+        "brand:en": "BasisBank",
         "brand:ka": "ბაზისბანკი",
+        "brand:ru": "БазисБанк",
         "brand:wikidata": "Q16365625",
-        "name": "ბაზისბანკი"
+        "name": "ბაზისბანკი",
+        "name:en": "BasisBank",
+        "name:ka": "ბაზისბანკი",
+        "name:ru": "БазисБанк",
+        "operator:wikidata": "Q16365625"
+      }
+    },
+    {
+      "displayName": "ბანკი ქართუ",
+      "id": "cartubank-293074",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "bank",
+        "bic": "CRTUGE22",
+        "brand": "ბანკი ქართუ",
+        "brand:en": "Cartu Bank",
+        "brand:ka": "ბანკი ქართუ",
+        "brand:ru": "Карту Банк",
+        "name": "ბანკი ქართუ",
+        "name:en": "Cartu Bank",
+        "name:ka": "ბანკი ქართუ",
+        "name:ru": "Карту Банк"
+      }
+    },
+    {
+      "displayName": "ზირაათ ბანკი",
+      "id": "ziraatbank-293074",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "bank",
+        "bic": "TCZBGE22",
+        "brand": "ზირაათ ბანკი",
+        "brand:en": "Ziraat Bank",
+        "brand:ka": "ზირაათ ბანკი",
+        "brand:ru": "Зираат Банк",
+        "brand:tr": "Ziraat Bankası",
+        "brand:wikidata": "Q696003",
+        "name": "ზირაათ ბანკი",
+        "name:en": "Ziraat Bank",
+        "name:ka": "ზირაათ ბანკი",
+        "name:ru": "Зираат Банк",
+        "name:tr": "Ziraat Bankası"
       }
     },
     {
@@ -14290,24 +14471,97 @@
       "locationSet": {"include": ["ge"]},
       "tags": {
         "amenity": "bank",
+        "bic": "TBCBGE22",
         "brand": "თიბისი ბანკი",
         "brand:en": "TBC Bank",
         "brand:ka": "თიბისი ბანკი",
+        "brand:ru": "ТиБиСи Банк",
         "brand:wikidata": "Q2620975",
-        "name": "თიბისი ბანკი"
+        "name": "თიბისი ბანკი",
+        "name:en": "TBC Bank",
+        "name:ka": "თიბისი ბანკი",
+        "name:ru": "ТиБиСи Банк",
+        "operator:wikidata": "Q2620975",
+        "short_name:en": "TBC",
+        "short_name:ka": "თიბისი",
+        "short_name:ru": "ТиБиСи"
+      }
+    },
+    {
+      "displayName": "იშბანკი",
+      "id": "isbank-293074",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "bank",
+        "bic": "ISBKGE22",
+        "brand": "იშბანკი",
+        "brand:en": "IsBank",
+        "brand:ka": "იშბანკი",
+        "brand:ru": "ИшБанк",
+        "brand:tr": "İşBank",
+        "brand:wikidata": "Q909613",
+        "name": "იშბანკი",
+        "name:en": "IsBank",
+        "name:ka": "იშბანკი",
+        "name:ru": "ИшБанк",
+        "name:tr": "İşBank",
+        "operator": "სს იშბანკი საქართველო",
+        "operator:ka": "სს იშბანკი საქართველო"
+      }
+    },
+    {
+      "displayName": "კრედო ბანკი",
+      "id": "credobank-293074",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "bank",
+        "bic": "JSCRGE22",
+        "brand": "კრედო ბანკი",
+        "brand:en": "Credo Bank",
+        "brand:ka": "კრედო ბანკი",
+        "brand:ru": "Кредо Банк",
+        "name": "კრედო ბანკი",
+        "name:en": "Credo Bank",
+        "name:ka": "კრედო ბანკი",
+        "name:ru": "Кредо Банк",
+        "short_name:en": "Credo",
+        "short_name:ka": "კრედო",
+        "short_name:ru": "Кредо"
+      }
+    },
+    {
+      "displayName": "კრისტალი",
+      "id": "crystal-293074",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "კრისტალი",
+        "brand:en": "Crystal",
+        "brand:ka": "კრისტალი",
+        "brand:ru": "Кристал",
+        "name": "კრისტალი",
+        "name:en": "Crystal",
+        "name:ka": "კრისტალი",
+        "name:ru": "Кристал"
       }
     },
     {
       "displayName": "ლიბერთი ბანკი",
-      "id": "libertybank-293074",
+      "id": "liberty-293074",
       "locationSet": {"include": ["ge"]},
       "tags": {
         "amenity": "bank",
-        "brand": "ლიბერთი ბანკი",
-        "brand:en": "Liberty Bank",
-        "brand:ka": "ლიბერთი ბანკი",
+        "bic": "LBRTGE22",
+        "brand": "ლიბერთი",
+        "brand:en": "Liberty",
+        "brand:ka": "ლიბერთი",
+        "brand:ru": "Либерти",
         "brand:wikidata": "Q6541585",
-        "name": "ლიბერთი ბანკი"
+        "name": "ლიბერთი",
+        "name:en": "Liberty",
+        "name:ka": "ლიბერთი",
+        "name:ru": "Либерти",
+        "operator:wikidata": "Q6541585"
       }
     },
     {
@@ -14317,26 +14571,93 @@
       "matchNames": ["procredit"],
       "tags": {
         "amenity": "bank",
+        "bic": "MIBGGE22",
         "brand": "პროკრედიტ ბანკი",
         "brand:en": "ProCredit Bank",
         "brand:ka": "პროკრედიტ ბანკი",
-        "brand:wikidata": "Q122763256",
+        "brand:ru": "ПроКредит Банк",
         "name": "პროკრედიტ ბანკი",
         "name:en": "ProCredit Bank",
-        "name:ka": "პროკრედიტ ბანკი"
+        "name:ka": "პროკრედიტ ბანკი",
+        "name:ru": "ПроКредит Банк"
+      }
+    },
+    {
+      "displayName": "რე|ბანკი",
+      "id": "c01edb-293074",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "bank",
+        "bic": "PAHAGE22",
+        "brand": "რე|ბანკი",
+        "brand:en": "Re|Bank",
+        "brand:ka": "რე|ბანკი",
+        "brand:ru": "Ре|Банк",
+        "name": "რე|ბანკი",
+        "name:en": "Re|Bank",
+        "name:ka": "რე|ბანკი",
+        "name:ru": "Ре|Банк",
+        "operator": "პაშა ბანკი საქართველო",
+        "operator:ka": "პაშა ბანკი საქართველო"
       }
     },
     {
       "displayName": "საქართველოს ბანკი",
-      "id": "bankofgeorgia-293074",
+      "id": "solo-293074",
       "locationSet": {"include": ["ge"]},
       "tags": {
         "amenity": "bank",
+        "bic": "BAGAGE22",
         "brand": "საქართველოს ბანკი",
         "brand:en": "Bank of Georgia",
         "brand:ka": "საქართველოს ბანკი",
+        "brand:ru": "Банк Грузии",
+        "brand:tr": "Gürcistan Bankası",
         "brand:wikidata": "Q2469733",
-        "name": "საქართველოს ბანკი"
+        "name": "სოლო",
+        "name:en": "Solo",
+        "name:ka": "სოლო",
+        "name:ru": "Соло",
+        "operator:wikidata": "Q2469733"
+      }
+    },
+    {
+      "displayName": "ტერაბანკი",
+      "id": "terabank-293074",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "bank",
+        "bic": "TEBAGE22",
+        "brand": "ტერაბანკი",
+        "brand:en": "Terabank",
+        "brand:ka": "ტერაბანკი",
+        "brand:ru": "Терабанк",
+        "name": "ტერაბანკი",
+        "name:en": "Terabank",
+        "name:ka": "ტერაბანკი",
+        "name:ru": "Терабанк"
+      }
+    },
+    {
+      "displayName": "ხალიკ ბანკი",
+      "id": "halykbank-293074",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "bank",
+        "bic": "HABGGE22",
+        "brand": "ხალიკ ბანკი",
+        "brand:en": "Halyk Bank",
+        "brand:ka": "ხალიკ ბანკი",
+        "brand:kk": "Халық Банкі",
+        "brand:ru": "Халык Банк",
+        "brand:wikidata": "Q1046186",
+        "name": "ხალიკ ბანკი",
+        "name:en": "Halyk Bank",
+        "name:ka": "ხალიკ ბანკი",
+        "name:kk": "Халық Банкі",
+        "name:ru": "Халык Банк",
+        "operator": "ხალიკ ბანკი საქართველო",
+        "operator:ka": "ხალიკ ბანკი საქართველო"
       }
     },
     {
@@ -15368,6 +15689,22 @@
         "name": "ธนาคารไทยพาณิชย์",
         "name:en": "Siam Commercial Bank",
         "name:th": "ธนาคารไทยพาณิชย์"
+      }
+    },
+    {
+      "displayName": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
+      "id": "bankforagricultureandagriculturalcooperatives-3229f1",
+      "locationSet": {"include": ["th"]},
+      "matchNames": ["baac", "ธ.ก.ส."],
+      "tags": {
+        "amenity": "bank",
+        "brand": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
+        "brand:en": "Bank for Agriculture and Agricultural Co-operatives",
+        "brand:th": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
+        "brand:wikidata": "Q23043470",
+        "name": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
+        "name:en": "Bank for Agriculture and Agricultural Co-operatives",
+        "name:th": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร"
       }
     },
     {
