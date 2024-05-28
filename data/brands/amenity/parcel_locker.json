@@ -182,6 +182,21 @@
       }
     },
     {
+      "displayName": "de Buren",
+      "id": "deburen-476b76",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "de Buren",
+        "brand:wikidata": "Q119648956",
+        "name": "de Buren",
+        "operator": "de Buren",
+        "operator:wikidata": "Q119648956",
+        "parcel_mail_in": "yes",
+        "parcel_pickup": "yes"
+      }
+    },
+    {
       "displayName": "DHL Packstation",
       "id": "dhlpackstation-83cc4d",
       "locationSet": {"include": ["de"]},
@@ -209,6 +224,21 @@
       }
     },
     {
+      "displayName": "DHL Pakketautomaat",
+      "id": "dhlpakketautomaat-476b76",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "DHL",
+        "brand:wikidata": "Q489815",
+        "name": "DHL Pakketautomaat",
+        "operator": "DHL Parcel",
+        "operator:wikidata": "Q489815",
+        "parcel_mail_in": "yes",
+        "parcel_pickup": "yes"
+      }
+    },
+    {
       "displayName": "DHL POP BOX",
       "id": "dhlpopbox-ce4e28",
       "locationSet": {"include": ["pl"]},
@@ -216,6 +246,20 @@
         "amenity": "parcel_locker",
         "brand": "DHL Pop Box",
         "brand:wikidata": "Q115568785",
+        "operator": "DHL",
+        "operator:wikidata": "Q489815",
+        "parcel_mail_in": "yes"
+      }
+    },
+    {
+      "displayName": "DHL Poststation",
+      "id": "dhlpoststation-83cc4d",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["poststation"],
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "DHL Poststation",
+        "brand:wikidata": "Q1766703",
         "operator": "DHL",
         "operator:wikidata": "Q489815",
         "parcel_mail_in": "yes"
@@ -361,6 +405,7 @@
           "pt"
         ]
       },
+      "matchNames": ["locker inpost"],
       "preserveTags": ["^name"],
       "tags": {
         "amenity": "parcel_locker",
@@ -415,23 +460,27 @@
       }
     },
     {
-      "displayName": "Locker InPost",
-      "id": "lockerinpost-6a219a",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "parcel_locker",
-        "brand": "Locker InPost",
-        "name": "Locker InPost"
-      }
-    },
-    {      
       "displayName": "Latvijas Pasts",
+      "id": "latvijaspasts-e45cee",
       "locationSet": {"include": ["lv"]},
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Latvijas Pasts",
         "brand:wikidata": "Q1807088",
         "name": "Latvijas Pasts"
+      }
+    },
+    {
+      "displayName": "Locker.ge Parcel Locker",
+      "id": "lockerge-303b81",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Locker.ge",
+        "brand:ka": "Locker.ge",
+        "name": "Locker.ge",
+        "name:en": "Locker.ge",
+        "name:ka": "Locker.ge"
       }
     },
     {
@@ -527,14 +576,18 @@
     },
     {
       "displayName": "Omniva",
-      "id": "omniva-49b665",
-      "locationSet": {"include": ["ee"]},
+      "id": "omniva-b4a3f3",
+      "locationSet": {
+        "include": ["ee", "lt", "lv"]
+      },
       "matchNames": ["eesti post"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Omniva",
         "brand:wikidata": "Q282457",
-        "name": "Omniva"
+        "name": "Omniva",
+        "parcel_mail_in": "yes",
+        "parcel_pickup": "yes"
       }
     },
     {
@@ -720,6 +773,21 @@
       }
     },
     {
+      "displayName": "PostNL Pakketautomaat",
+      "id": "postnlpakketautomaat-476b76",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "PostNL",
+        "brand:wikidata": "Q5921598",
+        "name": "PostNL Pakketautomaat",
+        "operator": "PostNL",
+        "operator:wikidata": "Q5921598",
+        "parcel_mail_in": "yes",
+        "parcel_pickup": "yes"
+      }
+    },
+    {
       "displayName": "PS Paketomat",
       "id": "pspaketomat-8c1608",
       "locationSet": {"include": ["si"]},
@@ -843,7 +911,10 @@
     },
     {
       "displayName": "Venipak",
-      "locationSet": {"include": ["ee", "lt", "lv"]},
+      "id": "venipak-b4a3f3",
+      "locationSet": {
+        "include": ["ee", "lt", "lv"]
+      },
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Venipak",
