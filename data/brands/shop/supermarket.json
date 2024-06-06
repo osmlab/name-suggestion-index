@@ -31,6 +31,21 @@
   },
   "items": [
     {
+      "displayName": "里仁",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "里仁",
+        "brand:en": "Leezen",
+        "brand:zh": "里仁",
+        "brand:wikidata": "Q126368246",
+        "name": "里仁",
+        "name:en": "Leezen",
+        "name:zh": "里仁",
+        "organic": "only",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "365discount",
       "id": "365discount-072052",
       "locationSet": {"include": ["dk"]},
@@ -256,11 +271,12 @@
       }
     },
     {
-      "displayName": "ALDI (ALDI Nord group)",
-      "id": "aldi-be20c9",
+      "displayName": "Aldi (Aldi Nord group)",
+      "id": "aldi-f04bde",
       "locationSet": {
         "include": [
           "be",
+          "de",
           "dk",
           "es",
           "fr",
@@ -268,22 +284,23 @@
           "nl",
           "pl",
           "pt"
-        ]
+        ],
+        "exclude": ["aldi-sued.geojson"]
       },
-      "matchNames": ["aldi france"],
-      "note": "countries in which ALDI Nord group is active",
+      "matchNames": ["aldi france", "aldi nord"],
       "tags": {
-        "brand": "ALDI",
+        "brand": "Aldi",
         "brand:wikidata": "Q41171373",
-        "name": "ALDI",
+        "name": "Aldi",
         "shop": "supermarket"
       }
     },
     {
-      "displayName": "ALDI (ALDI Süd group)",
-      "id": "aldi-68f0e3",
+      "displayName": "Aldi (Aldi Süd group)",
+      "id": "aldi-df6cd1",
       "locationSet": {
         "include": [
+          "aldi-sued.geojson",
           "au",
           "ch",
           "cn",
@@ -296,44 +313,15 @@
       },
       "matchNames": [
         "aldi australia",
+        "aldi süd",
         "aldi suisse",
         "aldi uk",
         "aldi usa"
       ],
-      "note": "countries in which ALDI Süd group is active",
       "tags": {
-        "brand": "ALDI",
+        "brand": "Aldi",
         "brand:wikidata": "Q41171672",
-        "name": "ALDI",
-        "shop": "supermarket"
-      }
-    },
-    {
-      "displayName": "ALDI Nord (DE)",
-      "id": "aldi-813759",
-      "locationSet": {
-        "include": ["de"],
-        "exclude": ["aldi-sued.geojson"]
-      },
-      "note": "German ALDI Nord branding",
-      "tags": {
-        "brand": "ALDI Nord",
-        "brand:wikidata": "Q41171373",
-        "name": "ALDI",
-        "shop": "supermarket"
-      }
-    },
-    {
-      "displayName": "ALDI Süd (DE)",
-      "id": "aldisud-e4a24f",
-      "locationSet": {
-        "include": ["aldi-sued.geojson"]
-      },
-      "note": "German ALDI Süd branding",
-      "tags": {
-        "brand": "ALDI Süd",
-        "brand:wikidata": "Q41171672",
-        "name": "ALDI Süd",
+        "name": "Aldi",
         "shop": "supermarket"
       }
     },
@@ -624,6 +612,16 @@
       }
     },
     {
+      "displayName": "Beta",
+      "id": "beta-858077",
+      "locationSet": {"include": ["lv"]},
+      "tags": {
+        "brand": "Beta",
+        "name": "Beta",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Bhat-Bhateni Super Market",
       "id": "bhatbhatenisupermarket-e40c68",
       "locationSet": {"include": ["np"]},
@@ -696,8 +694,12 @@
       "locationSet": {"include": ["th", "vn"]},
       "tags": {
         "brand": "Big C",
+        "brand:en": "Big C",
+        "brand:th": "บิ๊กซี",
         "brand:wikidata": "Q858665",
         "name": "Big C",
+        "name:en": "Big C",
+        "name:th": "บิ๊กซี",
         "shop": "supermarket"
       }
     },
@@ -1165,8 +1167,8 @@
     },
     {
       "displayName": "Carrefour Contact",
-      "id": "carrefourcontact-c16b1c",
-      "locationSet": {"include": ["fr"]},
+      "id": "carrefourcontact-e52941",
+      "locationSet": {"include": ["fr", "it"]},
       "tags": {
         "brand": "Carrefour Contact",
         "brand:wikidata": "Q2940188",
@@ -1189,6 +1191,7 @@
       "displayName": "CarrefourSA",
       "id": "carrefoursa-5b5772",
       "locationSet": {"include": ["tr"]},
+      "matchNames": ["carrefour"],
       "tags": {
         "brand": "CarrefourSA",
         "brand:wikidata": "Q28870164",
@@ -1402,6 +1405,17 @@
       }
     },
     {
+      "displayName": "City Gross",
+      "id": "citygross-c57afb",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "brand": "City Gross",
+        "brand:wikidata": "Q10453555",
+        "name": "City Gross",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "City Market",
       "id": "citymarket-986a24",
       "locationSet": {"include": ["001"]},
@@ -1409,6 +1423,17 @@
         "brand": "City Market",
         "brand:wikidata": "Q5123299",
         "name": "City Market",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "CJ Supermarket",
+      "id": "cjsupermarket-fd4d8d",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "brand": "CJ Express",
+        "brand:wikidata": "Q125874457",
+        "name": "CJ Supermarket",
         "shop": "supermarket"
       }
     },
@@ -1699,7 +1724,7 @@
       "displayName": "COOP Jednota",
       "id": "coopjednota-261d20",
       "locationSet": {"include": ["cz", "sk"]},
-      "matchNames": ["jednota"],
+      "matchNames": ["coop", "jednota"],
       "tags": {
         "brand": "COOP Jednota",
         "brand:wikidata": "Q41629254",
@@ -2183,6 +2208,7 @@
       "displayName": "Dollar General Market",
       "id": "dollargeneralmarket-dde59d",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["dg market"],
       "matchTags": [
         "shop/convenience",
         "shop/variety_store"
@@ -2276,19 +2302,6 @@
         "brand": "E.Leclerc",
         "brand:wikidata": "Q1273376",
         "name": "E.Leclerc",
-        "shop": "supermarket"
-      }
-    },
-    {
-      "displayName": "E.Leclerc Drive",
-      "id": "eleclercdrive-c16b1c",
-      "locationSet": {"include": ["fr"]},
-      "matchNames": ["leclerc drive"],
-      "tags": {
-        "brand": "E.Leclerc Drive",
-        "brand:wikidata": "Q1273376",
-        "drive_through": "only",
-        "name": "E.Leclerc Drive",
         "shop": "supermarket"
       }
     },
@@ -2489,6 +2502,17 @@
         "brand": "Elli",
         "brand:wikidata": "Q701755",
         "name": "Elli",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Elvi",
+      "id": "elvi-858077",
+      "locationSet": {"include": ["lv"]},
+      "tags": {
+        "brand": "Elvi",
+        "brand:wikidata": "Q20560513",
+        "name": "Elvi",
         "shop": "supermarket"
       }
     },
@@ -3643,6 +3667,7 @@
       "displayName": "IGA",
       "id": "iga-166dbe",
       "locationSet": {"include": ["ca", "us"]},
+      "matchNames": ["iga extra"],
       "preserveTags": ["^name"],
       "tags": {
         "brand": "IGA",
@@ -4440,8 +4465,24 @@
       "tags": {
         "alt_name": "Tesco Lotus",
         "brand": "Lotus's",
+        "brand:en": "Lotus's",
+        "brand:th": "โลตัส",
         "brand:wikidata": "Q2378901",
         "name": "Lotus's",
+        "name:en": "Lotus's",
+        "name:th": "โลตัส",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Lotus's go fresh",
+      "id": "lotussgofresh-a5f134",
+      "locationSet": {"include": ["my", "th"]},
+      "tags": {
+        "alt_name": "Tesco Lotus Express",
+        "brand": "Lotus's go fresh",
+        "brand:wikidata": "Q125937967",
+        "name": "Lotus's go fresh",
         "shop": "supermarket"
       }
     },
@@ -5907,7 +5948,7 @@
       }
     },
     {
-      "displayName": "PENNY",
+      "displayName": "Penny",
       "id": "penny-55dfd6",
       "locationSet": {
         "include": [
@@ -5925,9 +5966,9 @@
       ],
       "preserveTags": ["^name"],
       "tags": {
-        "brand": "PENNY",
+        "brand": "Penny",
         "brand:wikidata": "Q284688",
-        "name": "PENNY",
+        "name": "Penny",
         "shop": "supermarket"
       }
     },
@@ -6497,15 +6538,39 @@
       }
     },
     {
-      "displayName": "Rimi",
-      "id": "rimi-45f6bc",
+      "displayName": "Rimi Hyper",
+      "id": "rimihyper-45f6bc",
       "locationSet": {
         "include": ["ee", "lt", "lv"]
       },
       "tags": {
         "brand": "Rimi",
         "brand:wikidata": "Q3741108",
-        "name": "Rimi",
+        "name": "Rimi Hyper",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Rimi Mini",
+      "id": "rimimini-043b09",
+      "locationSet": {"include": ["ee", "lv"]},
+      "tags": {
+        "brand": "Rimi",
+        "brand:wikidata": "Q3741108",
+        "name": "Rimi Mini",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Rimi Super",
+      "id": "rimisuper-45f6bc",
+      "locationSet": {
+        "include": ["ee", "lt", "lv"]
+      },
+      "tags": {
+        "brand": "Rimi",
+        "brand:wikidata": "Q3741108",
+        "name": "Rimi Super",
         "shop": "supermarket"
       }
     },
@@ -6958,6 +7023,18 @@
         "brand": "Sigma",
         "brand:wikidata": "Q3977979",
         "name": "Sigma",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Simpli Namdhari's",
+      "id": "simplinamdharis-9ef8f9",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "brand": "Simpli Namdhari's",
+        "brand:wikidata": "Q124374340",
+        "diet:vegetarian": "yes",
+        "name": "Simpli Namdhari's",
         "shop": "supermarket"
       }
     },
@@ -7721,7 +7798,20 @@
       }
     },
     {
-      "displayName": "Tempo",
+      "displayName": "Tempo (Slovakia)",
+      "id": "tempo-4ccde8",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "brand": "Tempo",
+        "brand:wikidata": "Q41629254",
+        "name": "Tempo",
+        "operator": "COOP Jednota",
+        "operator:wikidata": "Q41629254",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Tempo (Србија)",
       "id": "tempo-b83687",
       "locationSet": {"include": ["rs"]},
       "tags": {
@@ -8000,9 +8090,12 @@
       "locationSet": {"include": ["th"]},
       "tags": {
         "brand": "Tops",
+        "brand:en": "Tops",
         "brand:th": "ท็อปส์",
         "brand:wikidata": "Q7825140",
         "name": "Tops",
+        "name:en": "Tops",
+        "name:th": "ท็อปส์",
         "shop": "supermarket"
       }
     },
@@ -8311,6 +8404,17 @@
       }
     },
     {
+      "displayName": "Vishal Mega Mart",
+      "id": "vishalmegamart-9ef8f9",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "brand": "Vishal Mega Mart",
+        "brand:wikidata": "Q124374377",
+        "name": "Vishal Mega Mart",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "VOI",
       "id": "voi-36e991",
       "locationSet": {"include": ["ch"]},
@@ -8382,8 +8486,8 @@
     },
     {
       "displayName": "Walmart Neighborhood Market",
-      "id": "walmartneighborhoodmarket-166dbe",
-      "locationSet": {"include": ["ca", "us"]},
+      "id": "walmartneighborhoodmarket-dde59d",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Walmart",
         "brand:wikidata": "Q483551",
@@ -9718,6 +9822,77 @@
       }
     },
     {
+      "displayName": "აგროჰაბი",
+      "id": "agrohub-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "აგროჰაბი",
+        "brand:en": "Agrohub",
+        "brand:ka": "აგროჰაბი",
+        "brand:ru": "Агрохаб",
+        "name": "აგროჰაბი",
+        "name:en": "Agrohub",
+        "name:ka": "აგროჰაბი",
+        "name:ru": "Агрохаб",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "გუდვილი",
+      "id": "goodwill-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "გუდვილი",
+        "brand:en": "Goodwill",
+        "brand:ka": "გუდვილი",
+        "brand:ru": "Гудвилл",
+        "brand:wikidata": "Q118799213",
+        "name": "გუდვილი",
+        "name:en": "Goodwill",
+        "name:ka": "გუდვილი",
+        "name:ru": "Гудвилл",
+        "operator:wikidata": "Q118799213",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "ვილმარტი",
+      "id": "willmart-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "ვილმარტი",
+        "brand:en": "Willmart",
+        "brand:ka": "ვილმარტი",
+        "brand:ru": "Виллмарт",
+        "brand:wikidata": "Q118793042",
+        "name": "ვილმარტი",
+        "name:en": "Willmart",
+        "name:ka": "ვილმარტი",
+        "name:ru": "Виллмарт",
+        "operator:wikidata": "Q118793042",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "კარფური მარკეტი",
+      "id": "carrefourmarket-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "კარფური",
+        "brand:en": "Carrefour",
+        "brand:ka": "კარფური",
+        "brand:ru": "Карфур",
+        "brand:wikidata": "Q217599",
+        "name": "კარფური მარკეტი",
+        "name:en": "Carrefour Market",
+        "name:ka": "კარფური მარკეტი",
+        "name:ru": "Карфур Маркет",
+        "operator": "შპს მაჯიდ ალ ფუტაიმ ჰიპერმარკეტს ჯორჯია",
+        "operator:ka": "შპს მაჯიდ ალ ფუტაიმ ჰიპერმარკეტს ჯორჯია",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "მაგნიტი",
       "id": "2c9305-873b68",
       "locationSet": {"include": ["ge"]},
@@ -9772,6 +9947,36 @@
         "name": "სპარი",
         "name:en": "Spar",
         "name:ka": "სპარი",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "ფრესკო",
+      "id": "fresco-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "ფრესკო",
+        "brand:en": "Fresco",
+        "brand:ka": "ფრესკო",
+        "brand:ru": "Фреско",
+        "name": "ფრესკო",
+        "name:en": "Fresco",
+        "name:ka": "ფრესკო",
+        "name:ru": "Фреско",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "ჯიბე",
+      "id": "jibe-873b68",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "ჯიბე ქეშ & ქერი",
+        "brand:ka": "ჯიბე ქეშ & ქერი",
+        "name": "ჯიბე",
+        "name:en": "Jibe",
+        "name:ka": "ჯიბე",
+        "name:ru": "Джибе",
         "shop": "supermarket"
       }
     },
@@ -10668,6 +10873,21 @@
         "name": "タイヨー",
         "name:en": "Taiyo",
         "name:ja": "タイヨー",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "ツルヤ",
+      "id": "tsuruya-fe0970",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "brand": "ツルヤ",
+        "brand:en": "Tsuruya",
+        "brand:ja": "ツルヤ",
+        "brand:wikidata": "Q11318832",
+        "name": "ツルヤ",
+        "name:en": "Tsuruya",
+        "name:ja": "ツルヤ",
         "shop": "supermarket"
       }
     },
@@ -11583,6 +11803,7 @@
       "displayName": "永辉超市",
       "id": "yonghuisuperstores-eda947",
       "locationSet": {"include": ["cn"]},
+      "matchNames": ["永辉"],
       "matchTags": ["shop/convenience"],
       "tags": {
         "brand": "永辉超市",
@@ -11617,6 +11838,7 @@
       "locationSet": {
         "include": [[117.1140042, 36.6507007, 50]]
       },
+      "matchNames": ["济南华联"],
       "note": "仅限山东济南，画圈为济南城市群",
       "preserveTags": ["^name"],
       "tags": {
@@ -11718,6 +11940,21 @@
         "name": "相鉄ローゼン",
         "name:en": "Sotetsu Rosen",
         "name:ja": "相鉄ローゼン",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "綿半スーパーセンター",
+      "id": "watahansupercenter-fe0970",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "brand": "綿半スーパーセンター",
+        "brand:en": "Watahan Super Center",
+        "brand:ja": "綿半スーパーセンター",
+        "brand:wikidata": "Q126189811",
+        "name": "綿半スーパーセンター",
+        "name:en": "Watahan Super Center",
+        "name:ja": "綿半スーパーセンター",
         "shop": "supermarket"
       }
     },

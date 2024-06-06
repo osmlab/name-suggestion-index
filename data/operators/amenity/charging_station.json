@@ -124,44 +124,60 @@
       }
     },
     {
-      "displayName": "ALDI",
-      "id": "aldi-224ad0",
+      "displayName": "Aldi (Aldi Nord group)",
+      "id": "aldi-cd362b",
       "locationSet": {
-        "include": ["001"],
-        "exclude": ["de", "no"]
+        "include": [
+          "be",
+          "de",
+          "dk",
+          "es",
+          "fr",
+          "lu",
+          "nl",
+          "pl",
+          "pt"
+        ],
+        "exclude": ["aldi-sued.geojson"]
       },
+      "matchNames": [
+        "aldi france",
+        "aldi gmbh & co. kg",
+        "aldi nord"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "ALDI",
-        "operator:wikidata": "Q125054"
-      }
-    },
-    {
-      "displayName": "ALDI GmbH & Co. KG",
-      "id": "aldigmbhandcokg-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "ALDI GmbH & Co. KG"
-      }
-    },
-    {
-      "displayName": "ALDI Nord",
-      "id": "aldinord-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "ALDI Nord",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171373"
       }
     },
     {
-      "displayName": "ALDI Süd",
-      "id": "aldisud-1299a8",
-      "locationSet": {"include": ["de"]},
+      "displayName": "Aldi (Aldi Süd group)",
+      "id": "aldi-d58f5a",
+      "locationSet": {
+        "include": [
+          "aldi-sued.geojson",
+          "au",
+          "ch",
+          "cn",
+          "gb",
+          "hu",
+          "ie",
+          "it",
+          "us"
+        ]
+      },
+      "matchNames": [
+        "aldi australia",
+        "aldi gmbh & co. kg",
+        "aldi süd",
+        "aldi suisse",
+        "aldi uk",
+        "aldi usa"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "ALDI Süd",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171672"
       }
     },
@@ -534,8 +550,8 @@
     },
     {
       "displayName": "Blink",
-      "id": "blink-994ed4",
-      "locationSet": {"include": ["us"]},
+      "id": "blink-74901a",
+      "locationSet": {"include": ["gb", "us"]},
       "tags": {
         "amenity": "charging_station",
         "brand": "Blink",
@@ -770,6 +786,7 @@
       "locationSet": {
         "include": [[4.376, 50.844, 10]]
       },
+      "matchNames": ["pitpoint (cng)"],
       "tags": {
         "amenity": "charging_station",
         "name": "charge.brussels",
@@ -857,6 +874,7 @@
       "displayName": "Circuit électrique",
       "id": "circuitelectrique-67089a",
       "locationSet": {"include": ["ca"]},
+      "matchNames": ["le circuit électrique"],
       "tags": {
         "amenity": "charging_station",
         "brand": "Circuit électrique",
@@ -1281,7 +1299,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "eborn"
+        "operator": "eborn",
+        "operator:wikidata": "Q126000881"
       }
     },
     {
@@ -1949,6 +1968,20 @@
       }
     },
     {
+      "displayName": "EVC EV Chargers",
+      "id": "evc-0793ce",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "ev chargers ltd",
+        "ev chargers uk"
+      ],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "EVC",
+        "operator:wikidata": "Q123527456"
+      }
+    },
+    {
       "displayName": "EVCE",
       "id": "evce-a1285d",
       "locationSet": {"include": ["pt"]},
@@ -2038,6 +2071,16 @@
         "amenity": "charging_station",
         "operator": "EVN",
         "operator:wikidata": "Q48784884"
+      }
+    },
+    {
+      "displayName": "EVN (Österreich)",
+      "id": "evn-3f60da",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "EVN",
+        "operator:wikidata": "Q872140"
       }
     },
     {
@@ -2973,16 +3016,6 @@
       }
     },
     {
-      "displayName": "Le Circuit Électrique",
-      "id": "lecircuitelectrique-67089a",
-      "locationSet": {"include": ["ca"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Le Circuit Électrique",
-        "operator:wikidata": "Q24934590"
-      }
-    },
-    {
       "displayName": "Leasys",
       "id": "leasys-c22d3a",
       "locationSet": {"include": ["001"]},
@@ -3199,7 +3232,6 @@
       "matchNames": ["mercedes"],
       "tags": {
         "amenity": "charging_station",
-        "brand:wikidata": "Q36008",
         "operator": "Mercedes-Benz",
         "operator:wikidata": "Q36008"
       }
@@ -3680,12 +3712,12 @@
       }
     },
     {
-      "displayName": "Plug’n Roll",
+      "displayName": "Plug'n Roll",
       "id": "plugnroll-086737",
       "locationSet": {"include": ["ch"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Plug’n Roll",
+        "operator": "Plug'n Roll",
         "operator:wikidata": "Q115241443"
       }
     },
@@ -3847,6 +3879,19 @@
       }
     },
     {
+      "displayName": "Red E",
+      "id": "rede-994ed4",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "Red E",
+        "brand:wikidata": "Q125246195",
+        "name": "Red E",
+        "operator": "Red E",
+        "operator:wikidata": "Q125246195"
+      }
+    },
+    {
       "displayName": "Rede Piloto",
       "id": "redepiloto-a1285d",
       "locationSet": {"include": ["pt"]},
@@ -3905,7 +3950,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Révéo"
+        "operator": "Révéo",
+        "operator:wikidata": "Q125960237"
       }
     },
     {
