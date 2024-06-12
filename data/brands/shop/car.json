@@ -146,16 +146,6 @@
       }
     },
     {
-      "displayName": "Bugatti",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Bugatti",
-        "brand:wikidata": "Q2308012",
-        "name": "Bugatti",
-        "shop": "car"
-      }
-    },
-    {
       "displayName": "BMW",
       "id": "bmw-13eeb7",
       "locationSet": {"include": ["001"]},
@@ -178,6 +168,17 @@
       }
     },
     {
+      "displayName": "Bugatti",
+      "id": "bugatti-13eeb7",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Bugatti",
+        "brand:wikidata": "Q2308012",
+        "name": "Bugatti",
+        "shop": "car"
+      }
+    },
+    {
       "displayName": "Buick",
       "id": "buick-738dde",
       "locationSet": {
@@ -192,14 +193,17 @@
     },
     {
       "displayName": "BYD",
-      "id": "byd-c7952c",
+      "id": "byd-d4df28",
       "locationSet": {
-        "include": ["001", "hk", "mo"],
-        "exclude": ["cn"]
+        "include": ["001"],
+        "exclude": ["q19188"]
       },
-      "matchNames": ["build your dreams"],
+      "matchNames": [
+        "build your dreams",
+        "byd auto"
+      ],
       "tags": {
-        "brand": "BYD Auto",
+        "brand": "BYD",
         "brand:wikidata": "Q27423",
         "name": "BYD",
         "shop": "car"
@@ -493,8 +497,11 @@
     },
     {
       "displayName": "Honda",
-      "id": "honda-13eeb7",
-      "locationSet": {"include": ["001"]},
+      "id": "honda-0b5c82",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["jp"]
+      },
       "matchNames": ["honda cars"],
       "tags": {
         "brand": "Honda",
@@ -727,13 +734,14 @@
       }
     },
     {
-      "displayName": "Lotus Cars",
-      "id": "lotuscars-13eeb7",
+      "displayName": "Lotus",
+      "id": "lotus-13eeb7",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["lotus cars"],
       "tags": {
-        "brand": "Lotus Cars",
+        "brand": "Lotus",
         "brand:wikidata": "Q35935",
-        "name": "Lotus Cars",
+        "name": "Lotus",
         "shop": "car"
       }
     },
@@ -741,6 +749,7 @@
       "displayName": "Lucid Motors",
       "id": "lucidmotors-870a08",
       "locationSet": {"include": ["ca", "us"]},
+      "matchNames": ["lucid"],
       "tags": {
         "brand": "Lucid Motors",
         "brand:wikidata": "Q28027517",
@@ -881,8 +890,11 @@
     },
     {
       "displayName": "Nissan",
-      "id": "nissan-13eeb7",
-      "locationSet": {"include": ["001"]},
+      "id": "nissan-0b5c82",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["jp"]
+      },
       "tags": {
         "brand": "Nissan",
         "brand:wikidata": "Q20165",
@@ -926,7 +938,7 @@
       }
     },
     {
-      "displayName": "Polestar Spaces",
+      "displayName": "Polestar",
       "id": "polestar-adf3f2",
       "locationSet": {
         "include": [
@@ -995,6 +1007,7 @@
       "displayName": "Renault",
       "id": "renault-13eeb7",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["garage renault"],
       "tags": {
         "brand": "Renault",
         "brand:wikidata": "Q6686",
@@ -1027,24 +1040,26 @@
       }
     },
     {
-      "displayName": "Rivian Spaces",
-      "id": "rivianspaces-870a08",
+      "displayName": "Rivian",
+      "id": "rivian-870a08",
       "locationSet": {"include": ["ca", "us"]},
+      "matchNames": ["rivian spaces"],
       "tags": {
-        "brand": "Rivian Spaces",
+        "brand": "Rivian",
         "brand:wikidata": "Q7338847",
-        "name": "Rivian Spaces",
+        "name": "Rivian",
         "shop": "car"
       }
     },
     {
-      "displayName": "Rolls-Royce Motor Cars",
-      "id": "rollsroycemotorcars-13eeb7",
+      "displayName": "Rolls-Royce",
+      "id": "rollsroyce-13eeb7",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["rolls royce motor cars"],
       "tags": {
-        "brand": "Rolls-Royce Motor Cars",
+        "brand": "Rolls-Royce",
         "brand:wikidata": "Q234803",
-        "name": "Rolls-Royce Motor Cars",
+        "name": "Rolls-Royce",
         "shop": "car"
       }
     },
@@ -1124,10 +1139,10 @@
     },
     {
       "displayName": "Tesla",
-      "id": "tesla-8ae848",
+      "id": "tesla-7c40a3",
       "locationSet": {
-        "include": ["001", "hk", "mo"],
-        "exclude": ["cn", "tw"]
+        "include": ["001"],
+        "exclude": ["q19188", "tw"]
       },
       "matchNames": ["tesla motors"],
       "tags": {
@@ -1139,8 +1154,11 @@
     },
     {
       "displayName": "Toyota",
-      "id": "toyota-13eeb7",
-      "locationSet": {"include": ["001"]},
+      "id": "toyota-0b5c82",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["jp"]
+      },
       "matchNames": ["toyota usa"],
       "tags": {
         "brand": "Toyota",
@@ -1174,6 +1192,7 @@
     },
     {
       "displayName": "Volkswagen Commercial Vehicles",
+      "id": "volkswagencommercialvehicles-13eeb7",
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Volkswagen Commercial Vehicles",
@@ -1267,12 +1286,14 @@
     },
     {
       "displayName": "スズキアリーナ",
-      "id": "b8fc2e-27c9bc",
+      "id": "suzukiarena-27c9bc",
       "locationSet": {"include": ["jp"]},
       "tags": {
         "brand": "スズキアリーナ",
+        "brand:en": "Suzuki Arena",
         "brand:ja": "スズキアリーナ",
         "name": "スズキアリーナ",
+        "name:en": "Suzuki Arena",
         "name:ja": "スズキアリーナ",
         "shop": "car"
       }
@@ -1416,11 +1437,8 @@
     },
     {
       "displayName": "比亚迪",
-      "id": "byd-985889",
-      "locationSet": {
-        "include": ["cn"],
-        "exclude": ["hk", "mo"]
-      },
+      "id": "byd-8e423b",
+      "locationSet": {"include": ["q19188"]},
       "matchNames": ["比亚迪汽车"],
       "tags": {
         "brand": "比亚迪",
@@ -1435,10 +1453,9 @@
     },
     {
       "displayName": "特斯拉",
-      "id": "tesla-7e0cc6",
+      "id": "tesla-048197",
       "locationSet": {
-        "include": ["cn", "tw"],
-        "exclude": ["hk", "mo"]
+        "include": ["q19188", "tw"]
       },
       "tags": {
         "brand": "特斯拉",
