@@ -238,12 +238,11 @@
       }
     },
     {
-      "displayName": "Aldi (Aldi Nord group)",
-      "id": "aldi-e2c48b",
+      "displayName": "ALDI (ALDI Nord group)",
+      "id": "aldi-0f3159",
       "locationSet": {
         "include": [
           "be",
-          "de",
           "dk",
           "es",
           "fr",
@@ -251,26 +250,21 @@
           "nl",
           "pl",
           "pt"
-        ],
-        "exclude": ["aldi-sued.geojson"]
+        ]
       },
-      "matchNames": [
-        "aldi france",
-        "aldi gmbh & co. kg",
-        "aldi nord"
-      ],
+      "matchNames": ["aldi france", "aldi nord"],
+      "note": "countries in which ALDI Nord group is active",
       "tags": {
-        "operator": "Aldi",
+        "operator": "ALDI",
         "operator:wikidata": "Q41171373",
         "power": "generator"
       }
     },
     {
-      "displayName": "Aldi (Aldi Süd group)",
-      "id": "aldi-dcb7db",
+      "displayName": "ALDI (ALDI Süd group)",
+      "id": "aldi-2fe7a2",
       "locationSet": {
         "include": [
-          "aldi-sued.geojson",
           "au",
           "ch",
           "cn",
@@ -283,14 +277,43 @@
       },
       "matchNames": [
         "aldi australia",
-        "aldi gmbh & co. kg",
         "aldi süd",
         "aldi suisse",
         "aldi uk",
         "aldi usa"
       ],
+      "note": "countries in which ALDI Süd group is active",
       "tags": {
-        "operator": "Aldi",
+        "operator": "ALDI",
+        "operator:wikidata": "Q41171672",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "ALDI Nord (DE)",
+      "id": "aldinord-8532fd",
+      "locationSet": {
+        "include": ["de"],
+        "exclude": ["aldi-sued.geojson"]
+      },
+      "matchNames": ["aldi gmbh & co. kg"],
+      "note": "German ALDI Nord branding",
+      "tags": {
+        "operator": "ALDI Nord",
+        "operator:wikidata": "Q41171373",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "ALDI Süd (DE)",
+      "id": "aldisud-63ded7",
+      "locationSet": {
+        "include": ["aldi-sued.geojson"]
+      },
+      "matchNames": ["aldi gmbh & co. kg"],
+      "note": "German ALDI Süd branding",
+      "tags": {
+        "operator": "ALDI Süd",
         "operator:wikidata": "Q41171672",
         "power": "generator"
       }

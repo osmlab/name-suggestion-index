@@ -68,11 +68,12 @@
     },
     {
       "displayName": "Agrisnellaad",
-      "id": "agrisnellaad-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "agrisnellaad-fa6152",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Agrisnellaad"
+        "operator": "Agrisnellaad",
+        "operator:wikidata": "Q126403386"
       }
     },
     {
@@ -125,11 +126,10 @@
     },
     {
       "displayName": "Aldi (Aldi Nord group)",
-      "id": "aldi-cd362b",
+      "id": "aldi-0a40bd",
       "locationSet": {
         "include": [
           "be",
-          "de",
           "dk",
           "es",
           "fr",
@@ -140,11 +140,7 @@
         ],
         "exclude": ["aldi-sued.geojson"]
       },
-      "matchNames": [
-        "aldi france",
-        "aldi gmbh & co. kg",
-        "aldi nord"
-      ],
+      "matchNames": ["aldi france", "aldi nord"],
       "tags": {
         "amenity": "charging_station",
         "operator": "Aldi",
@@ -153,10 +149,9 @@
     },
     {
       "displayName": "Aldi (Aldi Süd group)",
-      "id": "aldi-d58f5a",
+      "id": "aldi-141059",
       "locationSet": {
         "include": [
-          "aldi-sued.geojson",
           "au",
           "ch",
           "cn",
@@ -169,11 +164,43 @@
       },
       "matchNames": [
         "aldi australia",
-        "aldi gmbh & co. kg",
         "aldi süd",
         "aldi suisse",
         "aldi uk",
         "aldi usa"
+      ],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Aldi",
+        "operator:wikidata": "Q41171672"
+      }
+    },
+    {
+      "displayName": "ALDI Nord (DE)",
+      "id": "aldi-de3fd8",
+      "locationSet": {
+        "include": ["de"],
+        "exclude": ["aldi-sued.geojson"]
+      },
+      "matchNames": [
+        "aldi gmbh & co. kg",
+        "aldi nord"
+      ],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Aldi",
+        "operator:wikidata": "Q41171373"
+      }
+    },
+    {
+      "displayName": "ALDI Süd (DE)",
+      "id": "aldi-fee10d",
+      "locationSet": {
+        "include": ["aldi-sued.geojson"]
+      },
+      "matchNames": [
+        "aldi gmbh & co. kg",
+        "aldi süd"
       ],
       "tags": {
         "amenity": "charging_station",
@@ -888,6 +915,16 @@
         "operator:en": "Electric Circuit",
         "operator:fr": "Circuit électrique",
         "operator:wikidata": "Q24934590"
+      }
+    },
+    {
+      "displayName": "City Charging",
+      "id": "citycharging-fa6152",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "City Charging",
+        "operator:wikidata": "Q126405534"
       }
     },
     {
@@ -3656,21 +3693,23 @@
       }
     },
     {
+      "displayName": "Park&Charge",
+      "id": "parkandcharge-fa6152",
+      "locationSet": {"include": ["nl"]},
+      "matchNames": ["park n charge"],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Park&Charge",
+        "operator:wikidata": "Q126404473"
+      }
+    },
+    {
       "displayName": "Parkering Göteborg",
       "id": "parkeringgoteborg-c22d3a",
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "Parkering Göteborg"
-      }
-    },
-    {
-      "displayName": "PARKnCHARGE",
-      "id": "parkncharge-c22d3a",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "PARKnCHARGE"
       }
     },
     {
