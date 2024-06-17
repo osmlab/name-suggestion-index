@@ -26,6 +26,32 @@
   },
   "items": [
     {
+      "note": "Auto create shop/car_repair from shop/car brands, but exclude car dealers (#9643)",
+      "templateExclude": [
+        "americascarmart",
+        "arnoldclark",
+        "autonation",
+        "autoworld",
+        "avis",
+        "bigmotor",
+        "bristolstreetmotors",
+        "byrider",
+        "carmax",
+        "carshop",
+        "cazoo",
+        "drivetime",
+        "enterprise",
+        "hertz",
+        "lagence",
+        "netz",
+        "nextage",
+        "niospace",
+        "webuyanycar"
+      ],
+      "templateSource": "brands/shop/car",
+      "templateTags": {"shop": "car_repair"}
+    },
+    {
       "displayName": "123 Pare-Brise",
       "id": "123parebrise-98e3a2",
       "locationSet": {"include": ["fr"]},
@@ -33,16 +59,6 @@
         "brand": "123 Pare-Brise",
         "brand:wikidata": "Q120734061",
         "name": "123 Pare-Brise",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Chrysler",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Chrysler",
-        "brand:wikidata": "Q29610",
-        "name": "Chrysler",
         "shop": "car_repair"
       }
     },
@@ -88,17 +104,6 @@
       }
     },
     {
-      "displayName": "Abarth",
-      "id": "abarth-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Abarth",
-        "brand:wikidata": "Q26823",
-        "name": "Abarth",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Active Green + Ross",
       "id": "activegreenross-9c9847",
       "locationSet": {
@@ -130,17 +135,6 @@
         "brand": "ATS Euromaster",
         "brand:wikidata": "Q4654920",
         "name": "ATS Euromaster",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Audi",
-      "id": "audi-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Audi",
-        "brand:wikidata": "Q23317",
-        "name": "Audi",
         "shop": "car_repair"
       }
     },
@@ -201,16 +195,6 @@
       }
     },
     {
-      "displayName": "Lancia",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Lancia",
-        "brand:wikidata": "Q35896",
-        "name": "Lancia",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Autotaalglas",
       "id": "autotaalglas-854910",
       "locationSet": {"include": ["nl"]},
@@ -243,17 +227,6 @@
         "brand": "BestDrive",
         "brand:wikidata": "Q63057183",
         "name": "BestDrive",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "BMW",
-      "id": "bmw-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "BMW",
-        "brand:wikidata": "Q26678",
-        "name": "BMW",
         "shop": "car_repair"
       }
     },
@@ -343,34 +316,12 @@
       }
     },
     {
-      "displayName": "Chevrolet",
-      "id": "chevrolet-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Chevrolet",
-        "brand:wikidata": "Q29570",
-        "name": "Chevrolet",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Christian Brothers Automotive",
       "id": "christianbrothersautomotive-878d90",
       "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Christian Brothers Automotive",
         "name": "Christian Brothers Automotive",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Citroën",
-      "id": "citroen-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Citroën",
-        "brand:wikidata": "Q6746",
-        "name": "Citroën",
         "shop": "car_repair"
       }
     },
@@ -498,27 +449,6 @@
       }
     },
     {
-      "displayName": "Fiat",
-      "id": "fiat-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Fiat",
-        "brand:wikidata": "Q27597",
-        "name": "Fiat",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Fiat Professional",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Fiat Professional",
-        "brand:wikidata": "Q1146494",
-        "name": "Fiat Professional",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Firestone",
       "id": "firestone-a35932",
       "locationSet": {
@@ -554,17 +484,6 @@
       }
     },
     {
-      "displayName": "Ford",
-      "id": "ford-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Ford",
-        "brand:wikidata": "Q44294",
-        "name": "Ford",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Formula One Autocentres",
       "id": "formulaoneautocentres-3b6d68",
       "locationSet": {"include": ["gb"]},
@@ -589,21 +508,6 @@
         "name": "France Pare-Brise",
         "shop": "car_repair",
         "short_name": "FPB"
-      }
-    },
-    {
-      "displayName": "Genesis",
-      "id": "genesis-dc8719",
-      "locationSet": {"include": ["001"]},
-      "matchNames": [
-        "genesis motor",
-        "genesis motors"
-      ],
-      "tags": {
-        "brand": "Genesis",
-        "brand:wikidata": "Q21451523",
-        "name": "Genesis",
-        "shop": "car_repair"
       }
     },
     {
@@ -695,39 +599,6 @@
       }
     },
     {
-      "displayName": "Honda",
-      "id": "honda-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Honda",
-        "brand:wikidata": "Q9584",
-        "name": "Honda",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Hyundai",
-      "id": "hyundai-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Hyundai",
-        "brand:wikidata": "Q55931",
-        "name": "Hyundai",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Jeep",
-      "id": "jeep-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Jeep",
-        "brand:wikidata": "Q30113",
-        "name": "Jeep",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Jiffy Lube",
       "id": "jiffylube-3fdb50",
       "locationSet": {"include": ["ca", "us"]},
@@ -764,17 +635,6 @@
       }
     },
     {
-      "displayName": "Lexus",
-      "id": "lexus-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Lexus",
-        "brand:wikidata": "Q35919",
-        "name": "Lexus",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "LINE-X",
       "id": "linex-3fdb50",
       "locationSet": {"include": ["ca", "us"]},
@@ -782,17 +642,6 @@
         "brand": "LINE-X",
         "brand:wikidata": "Q122462764",
         "name": "LINE-X",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Lucid Motors",
-      "id": "lucidmotors-3fdb50",
-      "locationSet": {"include": ["ca", "us"]},
-      "tags": {
-        "brand": "Lucid Motors",
-        "brand:wikidata": "Q28027517",
-        "name": "Lucid Motors",
         "shop": "car_repair"
       }
     },
@@ -821,28 +670,6 @@
         "brand:wikidata": "Q107699834",
         "name": "mac OIL",
         "service:vehicle:oil_change": "yes",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Mazda",
-      "id": "mazda-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Mazda",
-        "brand:wikidata": "Q35996",
-        "name": "Mazda",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "McLaren",
-      "id": "mclaren-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "McLaren",
-        "brand:wikidata": "Q1351854",
-        "name": "McLaren",
         "shop": "car_repair"
       }
     },
@@ -881,17 +708,6 @@
         "brand": "Mekonomen",
         "brand:wikidata": "Q10580079",
         "name": "Mekonomen",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Mercedes-Benz",
-      "id": "mercedesbenz-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Mercedes-Benz",
-        "brand:wikidata": "Q36008",
-        "name": "Mercedes-Benz",
         "shop": "car_repair"
       }
     },
@@ -1055,17 +871,6 @@
       }
     },
     {
-      "displayName": "Nissan",
-      "id": "nissan-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Nissan",
-        "brand:wikidata": "Q20165",
-        "name": "Nissan",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Norauto",
       "id": "norauto-388a61",
       "locationSet": {
@@ -1136,17 +941,6 @@
       }
     },
     {
-      "displayName": "Opel",
-      "id": "opel-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Opel",
-        "brand:wikidata": "Q40966",
-        "name": "Opel",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Pep Boys",
       "id": "pepboys-878d90",
       "locationSet": {"include": ["us"]},
@@ -1154,17 +948,6 @@
         "brand": "Pep Boys",
         "brand:wikidata": "Q3375007",
         "name": "Pep Boys",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Peugeot",
-      "id": "peugeot-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Peugeot",
-        "brand:wikidata": "Q6742",
-        "name": "Peugeot",
         "shop": "car_repair"
       }
     },
@@ -1269,29 +1052,6 @@
         "brand": "Quickpoint",
         "brand:wikidata": "Q110510602",
         "name": "Quickpoint",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Renault",
-      "id": "renault-dc8719",
-      "locationSet": {"include": ["001"]},
-      "matchNames": ["garage renault"],
-      "tags": {
-        "brand": "Renault",
-        "brand:wikidata": "Q6686",
-        "name": "Renault",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Rivian Service Center",
-      "id": "rivianservicecenter-3fdb50",
-      "locationSet": {"include": ["ca", "us"]},
-      "tags": {
-        "brand": "Rivian Service Center",
-        "brand:wikidata": "Q7338847",
-        "name": "Rivian Service Center",
         "shop": "car_repair"
       }
     },
@@ -1409,17 +1169,6 @@
       }
     },
     {
-      "displayName": "Subaru",
-      "id": "subaru-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Subaru",
-        "brand:wikidata": "Q172741",
-        "name": "Subaru",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Sullivan Tire",
       "id": "sullivantire-bb46ab",
       "locationSet": {
@@ -1481,17 +1230,6 @@
       }
     },
     {
-      "displayName": "Suzuki",
-      "id": "suzuki-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Suzuki",
-        "brand:wikidata": "Q181642",
-        "name": "Suzuki",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Take 5 Oil Change",
       "id": "take5oilchange-3fdb50",
       "locationSet": {"include": ["ca", "us"]},
@@ -1522,17 +1260,6 @@
         "brand": "Top Garage",
         "brand:wikidata": "Q117602800",
         "name": "Top Garage",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Toyota",
-      "id": "toyota-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Toyota",
-        "brand:wikidata": "Q53268",
-        "name": "Toyota",
         "shop": "car_repair"
       }
     },
@@ -1628,28 +1355,6 @@
       }
     },
     {
-      "displayName": "Volkswagen",
-      "id": "volkswagen-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Volkswagen",
-        "brand:wikidata": "Q246",
-        "name": "Volkswagen",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Volvo",
-      "id": "volvo-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Volvo",
-        "brand:wikidata": "Q215293",
-        "name": "Volvo",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Vulcanizadora",
       "id": "vulcanizadora-dc8719",
       "locationSet": {"include": ["001"]},
@@ -1700,6 +1405,21 @@
         "brand": "Колесо",
         "name": "Колесо",
         "name:en": "Koleso",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "بترومين إكسبرس",
+      "id": "petrominexpress-78a956",
+      "locationSet": {"include": ["sa"]},
+      "tags": {
+        "brand": "بترومين إكسبرس",
+        "brand:ar": "بترومين إكسبرس",
+        "brand:en": "Petromin Express",
+        "brand:wikidata": "Q7179006",
+        "name": "بترومين إكسبرس",
+        "name:ar": "بترومين إكسبرس",
+        "name:en": "Petromin Express",
         "shop": "car_repair"
       }
     },
