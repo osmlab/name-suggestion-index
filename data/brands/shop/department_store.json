@@ -94,6 +94,10 @@
           "us-ga.geojson"
         ]
       },
+      "matchNames": [
+        "bealls outlet",
+        "bealls outlets"
+      ],
       "tags": {
         "brand": "Bealls",
         "brand:wikidata": "Q4876153",
@@ -534,13 +538,21 @@
       }
     },
     {
-      "displayName": "Galeria Kaufhof",
-      "id": "galeriakaufhof-ca042d",
+      "displayName": "Galeria",
+      "id": "galeria-ca042d",
       "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "galeria kaufhof",
+        "galeria kaufhof gmbh",
+        "karstadt",
+        "karstadt kaufhof",
+        "karstadt warenhaus",
+        "karstadt warenhaus gmbh"
+      ],
       "tags": {
-        "brand": "Galeria Kaufhof",
-        "brand:wikidata": "Q322598",
-        "name": "Galeria Kaufhof",
+        "brand": "Galeria",
+        "brand:wikidata": "Q80220059",
+        "name": "Galeria",
         "shop": "department_store"
       }
     },
@@ -568,8 +580,12 @@
     },
     {
       "displayName": "Giant Tiger",
-      "id": "gianttiger-63d0ba",
-      "locationSet": {"include": ["ca"]},
+      "id": "gianttiger-07b2aa",
+      "locationSet": {
+        "include": ["ca"],
+        "exclude": ["ca-qc.geojson"]
+      },
+      "matchNames": ["tigre geant"],
       "tags": {
         "brand": "Giant Tiger",
         "brand:wikidata": "Q5558429",
@@ -662,6 +678,7 @@
           "qa"
         ]
       },
+      "matchNames": ["hema b.v."],
       "tags": {
         "brand": "HEMA",
         "brand:wikidata": "Q903805",
@@ -755,17 +772,6 @@
         "brand": "Kmart",
         "brand:wikidata": "Q6421682",
         "name": "K Hub",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "Karstadt",
-      "id": "karstadt-ca042d",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "brand": "Karstadt",
-        "brand:wikidata": "Q182910",
-        "name": "Karstadt",
         "shop": "department_store"
       }
     },
@@ -927,7 +933,8 @@
       "locationSet": {"include": ["001"]},
       "matchNames": ["marks & spencer outlet"],
       "tags": {
-        "brand": "M&S Outlet",
+        "brand": "Marks & Spencer",
+        "brand:short": "M&S",
         "brand:wikidata": "Q714491",
         "name": "M&S Outlet",
         "shop": "department_store"
@@ -1009,16 +1016,14 @@
     },
     {
       "displayName": "Marks & Spencer",
-      "id": "marksandspencer-679c9d",
+      "id": "marksandspencer-611e9c",
       "locationSet": {
-        "include": ["gb", "gr", "ie", "ru"]
+        "include": ["gb", "gr", "ie", "in", "ru"]
       },
-      "matchNames": [
-        "m and s",
-        "маркс и спенсер"
-      ],
+      "matchNames": ["маркс и спенсер"],
       "tags": {
         "brand": "Marks & Spencer",
+        "brand:short": "M&S",
         "brand:wikidata": "Q714491",
         "name": "Marks & Spencer",
         "shop": "department_store"
@@ -1254,6 +1259,17 @@
       }
     },
     {
+      "displayName": "Runnings",
+      "id": "runnings-592fe0",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Runnings",
+        "brand:wikidata": "Q125924536",
+        "name": "Runnings",
+        "shop": "department_store"
+      }
+    },
+    {
       "displayName": "Saks Fifth Avenue",
       "id": "saksfifthavenue-53f9e5",
       "locationSet": {"include": ["ca", "us"]},
@@ -1417,6 +1433,20 @@
       }
     },
     {
+      "displayName": "Tigre Géant",
+      "id": "tigregeant-f68020",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "matchNames": ["giant tiger"],
+      "tags": {
+        "brand": "Tigre Géant",
+        "brand:wikidata": "Q5558429",
+        "name": "Tigre Géant",
+        "shop": "department_store"
+      }
+    },
+    {
       "displayName": "TJ Maxx",
       "id": "tjmaxx-592fe0",
       "locationSet": {"include": ["us"]},
@@ -1472,8 +1502,10 @@
     },
     {
       "displayName": "Walmart",
-      "id": "walmart-03e633",
-      "locationSet": {"include": ["001"]},
+      "id": "walmart-36cadd",
+      "locationSet": {
+        "include": ["ca", "in", "mx", "us"]
+      },
       "tags": {
         "brand": "Walmart",
         "brand:wikidata": "Q483551",

@@ -507,7 +507,7 @@ function buildTaginfo() {
 
       // Don't export every value for many tags this project uses..
       // ('tag matches any of these')(?!('not followed by :type'))
-      if (/(brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
+      if (/(bic|brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
         v = '*';
       }
 

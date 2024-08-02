@@ -534,6 +534,11 @@ function mergeItems() {
             delete tags[osmkey];
             return;
           }
+          // anything starting with `contact:` - #9505
+          if (/^contact:/.test(osmkey)) {
+            delete tags[osmkey];
+            return;
+          }
 
           // Perform Wikidata QID replacements
           // anything ending in `wikidata`

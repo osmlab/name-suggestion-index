@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "path": "transit/public_transport/station_subway",
+    "skipCollection": true,
+    "preserveTags": ["^public_transport$"],
+    "exclude": {"generic": ["^subway station$"]}
+  },
+  "items": [
+    {
+      "note": "Auto create public_transport/station_subway for all route/subway - #9020",
+      "templateSource": "transit/route/subway",
+      "templateTags": {
+        "public_transport": "station",
+        "railway": "station",
+        "route": "",
+        "station": "subway",
+        "subway": "yes"
+      }
+    }
+  ]
+}

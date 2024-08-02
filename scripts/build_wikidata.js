@@ -1,7 +1,6 @@
 // External
 import chalk from 'chalk';
 import fs from 'node:fs';
-import fetch from 'node-fetch';
 import http from 'node:http';
 import https from 'node:https';
 import { iso1A2Code } from '@rapideditor/country-coder';
@@ -49,15 +48,20 @@ const DRYRUN = false;
 // This is optional but needed if you want this script to:
 // - connect to the Wikibase API to update NSI identifiers.
 //
+// An OAuth 1.0a application is needed to obtain required credentials which can be registered via
+// https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose/oauth1a
+//
 // `secrets.json` looks like this:
 // {
 //   "wikibase": {
-//     "username": "my-wikidata-username",
-//     "password": "my-wikidata-password"
+//     "oauth": {
+//       "consumer_key": "consumer-token",
+//       "consumer_secret": "consumer-secret",
+//       "token": "access-token",
+//       "token_secret": "access-secret"
+//     }
 //   }
 // }
-
-// ensure that the secrets file is not in /config anymore:
 shell.config.silent = true;
 shell.mv('-f', './config/secrets.json', './secrets.json');
 shell.config.reset();
@@ -69,8 +73,17 @@ try {
 
 if (_secrets && !_secrets.wikibase) {
   console.error(chalk.red('WHOA!'));
-  console.error(chalk.yellow('The `config/secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
   console.error(chalk.yellow('We were expecting to find a `wikibase` property.'));
+  console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error('');
+  process.exit(1);
+}
+
+if (_secrets.wikibase && !_secrets.wikibase.oauth) {
+  console.error(chalk.red('WHOA!'));
+  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('We were expecting to find an `oauth` property.'));
   console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
@@ -78,7 +91,7 @@ if (_secrets && !_secrets.wikibase) {
 
 
 // To update wikidata
-// add your username/password into `config/secrets.json`
+// add your oauth credentials into `./secrets.json`
 let _wbEdit;
 if (_secrets && _secrets.wikibase) {
   _wbEdit = wikibaseEdit({
@@ -211,6 +224,12 @@ function processEntities(result) {
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
 
+    if (!!entity.redirects) {
+      const warning = { qid: qid, msg: `wikidata redirects to ${entity.redirects.to}` };
+      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+      _warnings.push(warning);
+    }
+
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const warning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.` };
@@ -318,7 +337,7 @@ function processEntities(result) {
     if (youtubeUser) {
       target.identities.youtube = youtubeUser;
     }
-    
+
     // P11245 - YouTube Handle
     const youtubeHandle = getClaimValue(entity, 'P2397');
     if (youtubeHandle) {
@@ -371,6 +390,10 @@ function processEntities(result) {
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
         if (!item.value) return;
+
+        const excluding = item.qualifiers?.P1011 ?? [];
+        if (excluding.includes('Q168678')) return;  // but skip if 'excluding' = 'brand name', see #9134
+
         let dissolution = { date: item.value };
 
         if (item.qualifiers) {
