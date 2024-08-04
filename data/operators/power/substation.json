@@ -554,7 +554,8 @@
         "bayernwerk ag",
         "bayernwerk netz gmbh",
         "e.on bayern",
-        "isar-amperwerke"
+        "isar-amperwerke",
+        "Isar-Amperwerke AG"
       ],
       "tags": {
         "operator": "Bayernwerk Netz",
@@ -1967,16 +1968,6 @@
       }
     },
     {
-      "displayName": "EAM",
-      "id": "eam-7ff171",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "EAM",
-        "operator:wikidata": "Q17486810",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "EAM Netz",
       "id": "eamnetz-a64edc",
       "locationSet": {
@@ -1988,7 +1979,7 @@
           "de-th.geojson"
         ]
       },
-      "matchNames": ["energienetz mitte"],
+      "matchNames": ["energienetz mitte", "Eon Mitte", "eam"],
       "tags": {
         "operator": "EAM Netz",
         "operator:wikidata": "Q124377769",
@@ -3101,24 +3092,6 @@
       }
     },
     {
-      "displayName": "Eon Mitte",
-      "id": "eonmitte-fc3a87",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "operator": "Eon Mitte",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "EON-Hanse",
-      "id": "eonhanse-fc3a87",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "operator": "EON-Hanse",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "EPCOR",
       "id": "epcor-b7915e",
       "locationSet": {
@@ -4007,7 +3980,7 @@
       "displayName": "HanseWerk",
       "id": "hansewerk-7ff171",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["hansewerk ag"],
+      "matchNames": ["hansewerk ag", "EON-Hanse"],
       "tags": {
         "operator": "HanseWerk",
         "operator:wikidata": "Q18287350",
@@ -4310,9 +4283,10 @@
     {
       "displayName": "Innogy",
       "id": "innogy-fc3a87",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "operator": "Innogy",
+        "operator:wikidata": "Q2124721",
         "power": "substation"
       }
     },
@@ -4373,15 +4347,6 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "ISalten Nett",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "Isar-Amperwerke AG",
-      "id": "isaramperwerkeag-fc3a87",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "operator": "Isar-Amperwerke AG",
         "power": "substation"
       }
     },
@@ -5222,22 +5187,14 @@
       }
     },
     {
-      "displayName": "MVV Energie",
-      "id": "mvvenergie-7ff171",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "MVV Energie",
-        "operator:short": "MVV",
-        "operator:wikidata": "Q1882061",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "MVV Netze GmbH",
+      "displayName": "MVV Netze",
       "id": "mvvnetzegmbh-fc3a87",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de-bw.geojson"]},
+      "matchNames": ["MVV Energie", "MVV Netze GmbH"],
       "tags": {
-        "operator": "MVV Netze GmbH",
+        "operator": "MVV Netze",
+        "operator:short": "MVV",
+        "operator:wikidata": "Q128479606",
         "power": "substation"
       }
     },
@@ -5827,19 +5784,6 @@
       }
     },
     {
-      "displayName": "Oberhessische Versorgungsbetriebe AG",
-      "id": "oberhessischeversorgungsbetriebeag-43eb08",
-      "locationSet": {
-        "include": ["de-he.geojson"]
-      },
-      "tags": {
-        "operator": "Oberhessische Versorgungsbetriebe AG",
-        "operator:short": "OVAG",
-        "operator:wikidata": "Q1345284",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "Ohio Power",
       "id": "ohiopower-7dabf9",
       "locationSet": {
@@ -5993,11 +5937,13 @@
       }
     },
     {
-      "displayName": "ovagNetz",
+      "displayName": "ovag Netz",
       "id": "ovagnetz-fc3a87",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de-he.geojson"]},
+      "matchNames": ["Oberhessische Versorgungsbetriebe AG", "ovag", "ovagnetz", , "ovag netz gmbh"],
       "tags": {
-        "operator": "ovagNetz",
+        "operator": "ovag Netz",
+        "operator:wikidata": "Q128480682",
         "power": "substation"
       }
     },
@@ -7148,7 +7094,7 @@
     {
       "displayName": "Städtische Werke Angermünde GmbH",
       "id": "stadtischewerkeangermundegmbh-fc3a87",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de-bb.geojson"]},
       "tags": {
         "operator": "Städtische Werke Angermünde GmbH",
         "power": "substation"
@@ -7496,9 +7442,12 @@
     {
       "displayName": "Stadtwerke Herne",
       "id": "stadtwerkeherne-fc3a87",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de-nw.geojson"]},
+      "matchNames": ["Stadtwerke Herne AG"],
       "tags": {
         "operator": "Stadtwerke Herne",
+        "operator:short": "STWH",
+        "operator:wikidata": "Q113465084",
         "power": "substation"
       }
     },
@@ -8651,20 +8600,12 @@
       }
     },
     {
-      "displayName": "Thüga AG",
-      "id": "thugaag-fc3a87",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "operator": "Thüga AG",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "Thüga Energie",
       "id": "thugaenergie-dda049",
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
+      "matchNames": ["Thüga AG"],
       "tags": {
         "operator": "Thüga Energie",
         "operator:wikidata": "Q124485873",
