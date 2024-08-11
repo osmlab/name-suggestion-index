@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "path": "operators/amenity/veterinary",
+    "preserveTags": ["^name"],
+    "exclude": {
+      "generic": [
+        "^(cabinet |clinique )?vétérinaire$",
+        "^(cl[ií]nica )?veterinari[ao]$",
+        "^ambulatorio veterinario$",
+        "^tierarztpraxis$",
+        "^veterinary( hospital)?$",
+        "^ветеринарная аптека$",
+        "^ветеринарная клиника$",
+        "^ветлечебница$"
+      ],
+      "named": [
+        "^government veterinary hospital$",
+        "^kleintierpraxis$",
+        "^ветаптека$"
+      ]
+    }
+  },
+  "items": [
+    {
+      "displayName": "Thrive Pet Healthcare",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "veterinary",
+        "operator": "Thrive Pet Healthcare",
+        "operator:wikidata": "Q121438667"
+      }
+    }
+  ]
+}
