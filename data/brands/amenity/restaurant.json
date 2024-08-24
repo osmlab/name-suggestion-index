@@ -14,6 +14,7 @@
         "^pizz(ari|eri)?a$",
         "^restaurant(e)?(\\suniversit(ário|aire))?$",
         "^restoran$",
+        "^Rumah Makan$",
         "^sushi\\s?(bar|house)?$",
         "^رستوران$",
         "^مطعم$"
@@ -21,11 +22,11 @@
       "named": [
         "^((da|la|las|el|ristorante|zum|zur)\\s)",
         "^((gasthaus|gasthof|schwarzer)?\\s?(adler|krone|löwen|zur (linde|post)))$",
-        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|amigos|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella ?(vista|napoli))$",
-        "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|comedor|comida china)$",
+        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|amigos|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella ?(vista|Vita|napoli))$",
+        "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|Castello|comedor|comida china)$",
         "^(china (buffet|city|express|garden|house|king|palace|star|town)|chinatown)$",
-        "^(delphi|der grieche|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|eden|europa|frohsinn|fuji)$",
-        "^(golden dragon|great wall|grüner baum|hellas|hirsch(en)?|hong kong|happy garden)$",
+        "^(delphi|der grieche|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|eden|europa|Flamingo|frohsinn|fuji)$",
+        "^(golden (dragon|wok)|great wall|grüner baum|hellas|hirsch(en)?|hong kong|happy garden|Hua Han)$",
         "^(indian palace|ichiban|il giardino|istanbul|italia|jade garden|jägerhof|yamato)$",
         "^(kirchenwirt|koliba|kreta|kreuz|krone|kyoto|lamm|le (bistrot|patio))$",
         "^(l'ardoise|l'escale|le bistro|lemongrass|linde|lindenhof|little (italy|india)|los (amigos|arcos))$",
@@ -34,10 +35,9 @@
         "^(pizza house|pizza king|pizza roma|pomodoro|portofino|poseidon|ratskeller|rhodos|veranda)$",
         "^(pizzeria (italia|milano|napoli|primavera|roma|venezia))$",
         "^(primavera|roadhouse|roma|rose|rossini|rössl[ei]|royal|saffron|saigon|sakura|san marco|santorini|santa maria|schützenhaus|shalimar|shanghai|sonne|sphinx)$",
-        "^(sportheim|sternen|syrtaki|taj mahal|taste of india|the (grill|kitchen)|toscana|tokyo( sushi)?|traube)$",
+        "^(sportheim|sternen|syrtaki|taj mahal|taste of india|thai kitchen|the (grill|kitchen)|toscana|tokyo( sushi)?|traube)$",
         "^(umami|valentino|venezia|waldschänke|wok|zorbas)$",
         "^(早点|早餐店)$",
-        "^thai kitchen$",
         "^兰州拉面$",
         "^沙县小吃$",
         "^食堂$"
@@ -157,6 +157,7 @@
         "amenity": "restaurant",
         "brand": "ALEX",
         "brand:wikidata": "Q18018122",
+        "cuisine": "breakfast;burger;international;steak_house",
         "name": "ALEX"
       }
     },
@@ -552,16 +553,6 @@
         "brand:wikidata": "Q4883362",
         "cuisine": "italian",
         "name": "Bella Italia"
-      }
-    },
-    {
-      "displayName": "Bella Vita",
-      "id": "bellavita-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Bella Vita",
-        "name": "Bella Vita"
       }
     },
     {
@@ -1101,6 +1092,7 @@
         "amenity": "restaurant",
         "brand": "Cactus Club Cafe",
         "brand:wikidata": "Q5016149",
+        "cuisine": "international",
         "name": "Cactus Club Cafe"
       }
     },
@@ -1112,6 +1104,7 @@
         "amenity": "restaurant",
         "brand": "Cafe & Bar Celona",
         "brand:wikidata": "Q1025499",
+        "cuisine": "burger;coffee_shop;international",
         "name": "Cafe & Bar Celona"
       }
     },
@@ -1123,6 +1116,7 @@
         "amenity": "restaurant",
         "brand": "Cafe Del Sol",
         "brand:wikidata": "Q17310688",
+        "cuisine": "international",
         "name": "Cafe Del Sol"
       }
     },
@@ -1226,6 +1220,7 @@
         "amenity": "restaurant",
         "brand": "Caravan",
         "brand:wikidata": "Q114771226",
+        "cuisine": "coffee_shop;international",
         "name": "Caravan"
       }
     },
@@ -1257,21 +1252,13 @@
     {
       "displayName": "Casey's",
       "id": "caseys-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us"]},
+      "note": "many items with this set of tags are probably mistagged - see Q2940968",
       "tags": {
         "amenity": "restaurant",
         "brand": "Casey's",
+        "cuisine": "pizza",
         "name": "Casey's"
-      }
-    },
-    {
-      "displayName": "Castello",
-      "id": "castello-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Castello",
-        "name": "Castello"
       }
     },
     {
@@ -1900,6 +1887,7 @@
         "amenity": "restaurant",
         "brand": "De Beren",
         "brand:wikidata": "Q57076079",
+        "cuisine": "burger;chicken;grill;vegetarian",
         "name": "De Beren"
       }
     },
@@ -2049,6 +2037,7 @@
         "amenity": "restaurant",
         "brand": "Doppio Malto",
         "brand:wikidata": "Q125285187",
+        "cuisine": "burger;italian;steak_house",
         "name": "Doppio Malto"
       }
     },
@@ -2094,6 +2083,7 @@
         "amenity": "restaurant",
         "brand": "Earls",
         "brand:wikidata": "Q5326525",
+        "cuisine": "american",
         "name": "Earls"
       }
     },
@@ -2272,16 +2262,6 @@
       }
     },
     {
-      "displayName": "Flamingo",
-      "id": "flamingo-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Flamingo",
-        "name": "Flamingo"
-      }
-    },
-    {
       "displayName": "Flat Iron",
       "id": "flatiron-e997f8",
       "locationSet": {
@@ -2352,6 +2332,7 @@
         "amenity": "restaurant",
         "brand": "Fournos Bakery",
         "brand:wikidata": "Q116740976",
+        "cuisine": "breakfast;fine_dining",
         "name": "Fournos Bakery"
       }
     },
@@ -2593,16 +2574,6 @@
         "brand:wikidata": "Q4039560",
         "cuisine": "american;buffet",
         "name": "Golden Corral"
-      }
-    },
-    {
-      "displayName": "Golden Wok",
-      "id": "goldenwok-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Golden Wok",
-        "name": "Golden Wok"
       }
     },
     {
@@ -2949,6 +2920,7 @@
         "amenity": "restaurant",
         "brand": "Honest Greens",
         "brand:wikidata": "Q116859710",
+        "cuisine": "organic",
         "name": "Honest Greens"
       }
     },
@@ -3003,16 +2975,6 @@
         "brand:wikidata": "Q648898",
         "cuisine": "american",
         "name": "House of Blues"
-      }
-    },
-    {
-      "displayName": "Hua Han",
-      "id": "huahan-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Hua Han",
-        "name": "Hua Han"
       }
     },
     {
@@ -3123,6 +3085,7 @@
         "amenity": "restaurant",
         "brand": "Interspar Restaurant",
         "brand:wikidata": "Q15820339",
+        "cuisine": "regional",
         "name": "Interspar Restaurant"
       }
     },
@@ -3282,6 +3245,7 @@
         "amenity": "restaurant",
         "brand": "Joey",
         "brand:wikidata": "Q24191943",
+        "cuisine": "regional",
         "name": "Joey"
       }
     },
@@ -3338,6 +3302,7 @@
         "brand:hy": "Կարաս",
         "brand:ru": "Карас",
         "brand:wikidata": "Q118347445",
+        "cuisine": "regional",
         "name": "Կարաս",
         "name:en": "Karas",
         "name:hy": "Կարաս",
@@ -3361,6 +3326,7 @@
         "amenity": "restaurant",
         "brand": "Kauai",
         "brand:wikidata": "Q116498799",
+        "cuisine": "breakfast;burger;salad",
         "name": "Kauai"
       }
     },
@@ -5670,16 +5636,6 @@
         "dog": "yes",
         "name": "Rudy's Neapolitan Pizza",
         "takeaway": "yes"
-      }
-    },
-    {
-      "displayName": "Rumah Makan",
-      "id": "rumahmakan-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Rumah Makan",
-        "name": "Rumah Makan"
       }
     },
     {
