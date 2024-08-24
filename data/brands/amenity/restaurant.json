@@ -14,7 +14,7 @@
         "^pizz(ari|eri)?a$",
         "^restaurant(e)?(\\suniversit(ário|aire))?$",
         "^restoran$",
-        "^rumah makan$",
+        "^(rumah|Warung) makan$",
         "^sushi\\s?(bar|house)?$",
         "^رستوران$",
         "^مطعم$"
@@ -32,11 +32,12 @@
         "^(l'ardoise|l'escale|le bistro|lemongrass|linde|lindenhof|little (italy|india)|los (amigos|arcos))$",
         "^(lotus|löwen|maharaja|mama lishe|mamma mia|mandarin|marco polo|marina|marmaris|mediterraneo|mensa|milano|mona lisa|mykonos|mythos)$",
         "^(namaste|napoli|new china|oasis|ochsen|olympia|osaka|panda|panorama|paradise|parrilla|peking|pho|pinocchio)$",
-        "^(pizza house|pizza king|pizza roma|pomodoro|portofino|poseidon|ratskeller|rhodos|veranda)$",
+        "^(pizza house|pizza king|pizza roma|pomodoro|portofino|poseidon|ratskeller|rhodos|veranda|Restaurante Popular)$",
         "^(pizzeria (italia|milano|napoli|primavera|roma|venezia))$",
         "^(primavera|roadhouse|roma|rose|rossini|rössl[ei]|royal|saffron|saigon|sakura|san marco|santorini|santa maria|schützenhaus|shalimar|shanghai|sonne|sphinx)$",
-        "^(sportheim|sternen|syrtaki|taj mahal|taste of india|thai kitchen|the (grill|kitchen)|toscana|tokyo( sushi)?|traube)$",
-        "^(umami|valentino|venezia|waldschänke|wok|zorbas)$",
+        "^(sportheim|sternen|syrtaki|taj mahal|taste of india|thai kitchen|the (grill|kitchen)|Tony's Pizza|toscana|tokyo( sushi)?|traube)$",
+        "^(umami|valentino|venezia|Verona|waldschänke|wok|zorbas)$",
+        "^전주식당$",
         "^(早点|早餐店)$",
         "^兰州拉面$",
         "^沙县小吃$",
@@ -3358,10 +3359,12 @@
     {
       "displayName": "Köfteci Yusuf",
       "id": "kofteciyusuf-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["tr"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Köfteci Yusuf",
+        "brand:wikidata": "Q126125081",
+        "cuisine": "turkish",
         "name": "Köfteci Yusuf"
       }
     },
@@ -3490,6 +3493,7 @@
         "amenity": "restaurant",
         "brand": "La Place",
         "brand:wikidata": "Q2041183",
+        "cuisine": "burger;chicken;pizza",
         "name": "La Place"
       }
     },
@@ -3825,6 +3829,7 @@
         "amenity": "restaurant",
         "brand": "Lunch Garden",
         "brand:wikidata": "Q2491217",
+        "cuisine": "regional",
         "name": "Lunch Garden"
       }
     },
@@ -3848,6 +3853,7 @@
         "amenity": "restaurant",
         "brand": "Madero",
         "brand:wikidata": "Q115206711",
+        "cuisine": "burger",
         "name": "Madero"
       }
     },
@@ -4002,6 +4008,7 @@
         "amenity": "restaurant",
         "brand": "Mary Grace",
         "brand:wikidata": "Q123196663",
+        "cuisine": "pastry;sandwich",
         "name": "Mary Grace"
       }
     },
@@ -4235,6 +4242,7 @@
         "amenity": "restaurant",
         "brand": "Mildreds",
         "brand:wikidata": "Q110694603",
+        "cuisine": "international",
         "diet:vegan": "only",
         "name": "Mildreds"
       }
@@ -5435,10 +5443,11 @@
     {
       "displayName": "Ready Pizza",
       "id": "readypizza-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cr"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Ready Pizza",
+        "cuisine": "pizza",
         "name": "Ready Pizza"
       }
     },
@@ -5466,16 +5475,6 @@
         "cuisine": "burger",
         "name": "Red Robin",
         "official_name": "Red Robin Gourmet Burgers and Brews"
-      }
-    },
-    {
-      "displayName": "Restaurante Popular",
-      "id": "restaurantepopular-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Restaurante Popular",
-        "name": "Restaurante Popular"
       }
     },
     {
@@ -5558,6 +5557,7 @@
         "amenity": "restaurant",
         "brand": "Romantik Hotels & Restaurants",
         "brand:wikidata": "Q126075497",
+        "cuisine": "fine_dining",
         "name": "Romantik Restaurant"
       }
     },
@@ -6291,10 +6291,11 @@
     {
       "displayName": "Sushiko",
       "id": "sushiko-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Sushiko",
+        "cuisine": "sushi",
         "name": "Sushiko"
       }
     },
@@ -6633,6 +6634,7 @@
         "amenity": "restaurant",
         "brand": "Thyme",
         "brand:wikidata": "Q120645568",
+        "cuisine": "bar&grill",
         "name": "Thyme"
       }
     },
@@ -6709,16 +6711,6 @@
         "brand:wikidata": "Q2213883",
         "cuisine": "barbecue",
         "name": "Tony Roma's"
-      }
-    },
-    {
-      "displayName": "Tony's Pizza",
-      "id": "tonyspizza-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Tony's Pizza",
-        "name": "Tony's Pizza"
       }
     },
     {
@@ -6847,16 +6839,6 @@
       }
     },
     {
-      "displayName": "Verona",
-      "id": "verona-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Verona",
-        "name": "Verona"
-      }
-    },
-    {
       "displayName": "Victoria",
       "id": "victoria-2fabb0",
       "locationSet": {"include": ["001"]},
@@ -6954,16 +6936,6 @@
         "brand:wikidata": "Q17032457",
         "cuisine": "burger;bar&grill",
         "name": "Wahlburgers"
-      }
-    },
-    {
-      "displayName": "Warung Makan",
-      "id": "warungmakan-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Warung Makan",
-        "name": "Warung Makan"
       }
     },
     {
@@ -7242,6 +7214,7 @@
         "brand": "김밥천국",
         "brand:ko": "김밥천국",
         "brand:wikidata": "Q12587435",
+        "cuisine": "gimbap",
         "name": "김밥천국",
         "name:ko": "김밥천국"
       }
@@ -7249,11 +7222,12 @@
     {
       "displayName": "남원추어탕",
       "id": "461f63-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["kr"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "남원추어탕",
         "brand:ko": "남원추어탕",
+        "cuisine": "korean",
         "name": "남원추어탕",
         "name:ko": "남원추어탕"
       }
@@ -7276,11 +7250,12 @@
     {
       "displayName": "본죽",
       "id": "f6fad3-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["kr"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "본죽",
         "brand:ko": "본죽",
+        "cuisine": "congee",
         "name": "본죽",
         "name:ko": "본죽"
       }
@@ -7299,18 +7274,6 @@
         "name": "빕스",
         "name:en": "Vips",
         "name:ko": "빕스"
-      }
-    },
-    {
-      "displayName": "전주식당",
-      "id": "1c1be4-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "전주식당",
-        "brand:ko": "전주식당",
-        "name": "전주식당",
-        "name:ko": "전주식당"
       }
     },
     {
@@ -7793,12 +7756,16 @@
     {
       "displayName": "ブロンコビリー",
       "id": "8fdc33-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "ブロンコビリー",
+        "brand:en": "Bronco Billy",
         "brand:ja": "ブロンコビリー",
+        "brand:wikidata": "Q11335154",
+        "cuisine": "steak_house",
         "name": "ブロンコビリー",
+        "name:en": "Bronco Billy",
         "name:ja": "ブロンコビリー"
       }
     },
@@ -8031,12 +7998,16 @@
     {
       "displayName": "丸源ラーメン",
       "id": "7662bb-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "丸源ラーメン",
+        "brand:en": "Marugen Ramen",
         "brand:ja": "丸源ラーメン",
+        "brand:wikidata": "Q99735903",
+        "cuisine": "ramen",
         "name": "丸源ラーメン",
+        "name:en": "Marugen Ramen",
         "name:ja": "丸源ラーメン"
       }
     },
