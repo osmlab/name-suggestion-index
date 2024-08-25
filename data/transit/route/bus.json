@@ -2,9 +2,10 @@
   "properties": {
     "path": "transit/route/bus",
     "exclude": {
-      "generic": ["^bus$", "^no$"],
+      "generic": ["^autobuz$", "^bus$", "^no$"],
       "named": [
         "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban|urbano|yellow buses|interurbana)$",
+        "^b$",
         "^bürgerbus$",
         "^校车$",
         "광주시 공영버스"
@@ -147,10 +148,15 @@
     },
     {
       "displayName": "AggieSpirit",
-      "id": "aggiespirit-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "aggiespirit-071d6c",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "network": "AggieSpirit",
+        "network:wikidata": "Q129718034",
+        "operator": "Texas A&M University Transportation Services",
+        "operator:wikidata": "Q129718560",
         "route": "bus"
       }
     },
@@ -345,8 +351,8 @@
     },
     {
       "displayName": "Ales'y",
-      "id": "alesy-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "alesy-ed7458",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "network": "Ales'y",
         "route": "bus"
@@ -463,8 +469,8 @@
     },
     {
       "displayName": "AltiGo",
-      "id": "altigo-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "altigo-ed7458",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "network": "AltiGo",
         "route": "bus"
@@ -604,10 +610,11 @@
     },
     {
       "displayName": "Amtrak Thruway",
-      "id": "amtrakthruway-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "amtrakthruway-a21cc9",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "network": "Amtrak Thruway",
+        "network:wikidata": "Q4748907",
         "route": "bus"
       }
     },
@@ -662,8 +669,8 @@
     },
     {
       "displayName": "Angkot Kota Medan",
-      "id": "angkotkotamedan-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "angkotkotamedan-87ebe4",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "network": "Angkot Kota Medan",
         "route": "bus"
@@ -698,8 +705,8 @@
     },
     {
       "displayName": "Angkutan Tangerang",
-      "id": "angkutantangerang-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "angkutantangerang-87ebe4",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "network": "Angkutan Tangerang",
         "route": "bus"
@@ -936,8 +943,8 @@
     },
     {
       "displayName": "Asociația de Dezvoltare Intercomunitară pentru Transport Public București – Ilfov",
-      "id": "asociatiadedezvoltareintercomunitarapentrutransportpublicbucurestiilfov-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "asociatiadedezvoltareintercomunitarapentrutransportpublicbucurestiilfov-9c403a",
+      "locationSet": {"include": ["ro"]},
       "tags": {
         "network": "Asociația de Dezvoltare Intercomunitară pentru Transport Public București – Ilfov",
         "route": "bus"
@@ -1190,15 +1197,6 @@
       }
     },
     {
-      "displayName": "Autobus de Monaco",
-      "id": "autobusdemonaco-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "network": "Autobus de Monaco",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Autobuses Interurbanos de Madrid",
       "id": "autobusesinterurbanosdemadrid-cbced8",
       "locationSet": {"include": ["es"]},
@@ -1246,10 +1244,11 @@
     },
     {
       "displayName": "Autobuses Urbanos de Jerez",
-      "id": "autobusesurbanosdejerez-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "autobusesurbanosdejerez-cbced8",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Autobuses Urbanos de Jerez",
+        "network:wikidata": "Q48781656",
         "route": "bus"
       }
     },
@@ -1292,28 +1291,21 @@
     },
     {
       "displayName": "Autobusos de Lleida",
-      "id": "autobusosdelleida-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "autobusosdelleida-cbced8",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Autobusos de Lleida",
+        "network:wikidata": "Q8209629",
         "route": "bus"
       }
     },
     {
       "displayName": "Autobusy we Wrocławiu",
-      "id": "autobusywewroclawiu-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "autobusywewroclawiu-9340cc",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "network": "Autobusy we Wrocławiu",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Autobuz",
-      "id": "autobuz-9c403a",
-      "locationSet": {"include": ["ro"]},
-      "tags": {
-        "network": "Autobuz",
+        "network:wikidata": "Q9162527",
         "route": "bus"
       }
     },
@@ -1408,12 +1400,6 @@
         "operator": "Azienda Napoletana Mobilità",
         "route": "bus"
       }
-    },
-    {
-      "displayName": "B",
-      "id": "b-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {"network": "B", "route": "bus"}
     },
     {
       "displayName": "B-Line",
@@ -1621,17 +1607,24 @@
       }
     },
     {
-      "displayName": "BATA",
-      "id": "bata-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {"network": "BATA", "route": "bus"}
-    },
-    {
       "displayName": "batauto.ge",
       "id": "batautoge-6eac88",
       "locationSet": {"include": ["ge"]},
       "tags": {
         "network": "batauto.ge",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Bay Area Transportation Authority",
+      "id": "bayareatransportationauthority-770517",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "network": "Bay Area Transportation Authority",
+        "network:short": "BATA",
+        "network:wikidata": "Q20710576",
         "route": "bus"
       }
     },
@@ -2179,8 +2172,8 @@
     },
     {
       "displayName": "Brodnica",
-      "id": "brodnica-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "brodnica-9340cc",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "network": "Brodnica",
         "route": "bus"
@@ -2316,8 +2309,8 @@
     },
     {
       "displayName": "BürgerBus Fredenbeck",
-      "id": "burgerbusfredenbeck-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "burgerbusfredenbeck-3b9544",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "BürgerBus Fredenbeck",
         "route": "bus"
@@ -2325,8 +2318,8 @@
     },
     {
       "displayName": "Bürgerbus Remscheid",
-      "id": "burgerbusremscheid-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "burgerbusremscheid-3b9544",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Bürgerbus Remscheid",
         "route": "bus"
@@ -2595,11 +2588,14 @@
       }
     },
     {
-      "displayName": "CAMBUS",
-      "id": "cambus-a45453",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Cambus",
+      "id": "cambus-3c4d25",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
       "tags": {
-        "network": "CAMBUS",
+        "network": "Cambus",
+        "network:wikidata": "Q5025682",
         "route": "bus"
       }
     },
@@ -3777,6 +3773,18 @@
       "tags": {
         "network": "Comox Valley Regional Transit System",
         "network:wikidata": "Q5155250",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Compagnie des Autobus de Monaco",
+      "id": "compagniedesautobusdemonaco-1d5ba5",
+      "locationSet": {"include": ["mc"]},
+      "matchNames": ["autobus de monaco"],
+      "tags": {
+        "network": "Compagnie des Autobus de Monaco",
+        "network:short": "CAM",
+        "network:wikidata": "Q1121143",
         "route": "bus"
       }
     },
@@ -9340,6 +9348,23 @@
       }
     },
     {
+      "displayName": "Merrimack Valley Transit",
+      "id": "merrimackvalleytransit-e9c159",
+      "locationSet": {
+        "include": [
+          "us-ma.geojson",
+          "us-nh.geojson"
+        ]
+      },
+      "matchNames": ["mvrta"],
+      "tags": {
+        "network": "Merrimack Valley Transit",
+        "network:short": "MeVa",
+        "network:wikidata": "Q6820290",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Mestský bus",
       "id": "mestskybus-a45453",
       "locationSet": {"include": ["001"]},
@@ -10773,12 +10798,6 @@
         "operator:wikidata": "Q110544427",
         "route": "bus"
       }
-    },
-    {
-      "displayName": "MVRTA",
-      "id": "mvrta-a45453",
-      "locationSet": {"include": ["001"]},
-      "tags": {"network": "MVRTA", "route": "bus"}
     },
     {
       "displayName": "MVTA",
