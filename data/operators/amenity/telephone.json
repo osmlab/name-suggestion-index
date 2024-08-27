@@ -76,7 +76,7 @@
     {
       "displayName": "Bell Aliant",
       "id": "bellaliant-2be02b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["ca"]},
       "tags": {
         "amenity": "telephone",
         "operator": "Bell Aliant"
@@ -271,7 +271,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "telephone",
-        "operator": "JCDecaux"
+        "operator": "JCDecaux",
+        "operator:wikidata": "Q74877"
       }
     },
     {
@@ -287,7 +288,7 @@
     {
       "displayName": "KT",
       "id": "kt-2be02b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["kr"]},
       "tags": {
         "amenity": "telephone",
         "operator": "KT"
@@ -388,15 +389,6 @@
         "operator:short:en": "NTT West",
         "operator:short:ja": "NTT西日本",
         "operator:wikidata": "Q11628418"
-      }
-    },
-    {
-      "displayName": "O2",
-      "id": "o2-f67c67",
-      "locationSet": {"include": ["cz"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "O2"
       }
     },
     {
@@ -582,7 +574,15 @@
     {
       "displayName": "Telefónica",
       "id": "telefonica-2be02b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ar", "br"]
+      },
+      "matchNames": [
+        "Telefónica de España, SAU",
+        "Telefónica España",
+        "Telefónica S. A."
+      ],
       "tags": {
         "amenity": "telephone",
         "operator": "Telefónica",
@@ -590,12 +590,14 @@
       }
     },
     {
-      "displayName": "Telefônica Brasil S.A.",
+      "displayName": "Telefônica Brasil",
       "id": "telefonicabrasilsa-2be02b",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["br"]},
+      "matchNames": ["Telefônica Brasil S.A."],
       "tags": {
         "amenity": "telephone",
-        "operator": "Telefônica Brasil S.A."
+        "operator": "Telefônica Brasil",
+        "operator:wikidata": "Q20059505"
       }
     },
     {
@@ -606,42 +608,6 @@
         "amenity": "telephone",
         "operator": "Telefónica de Argentina S.A.",
         "operator:wikidata": "Q3517292"
-      }
-    },
-    {
-      "displayName": "Telefónica de España, SAU",
-      "id": "telefonicadeespanasau-57fa2c",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telefónica de España, SAU"
-      }
-    },
-    {
-      "displayName": "Telefónica España",
-      "id": "telefonicaespana-57fa2c",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telefónica España"
-      }
-    },
-    {
-      "displayName": "Telefónica O2",
-      "id": "telefonicao2-2be02b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telefónica O2"
-      }
-    },
-    {
-      "displayName": "Telefónica S. A.",
-      "id": "telefonicasa-57fa2c",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "amenity": "telephone",
-        "operator": "Telefónica S. A."
       }
     },
     {
