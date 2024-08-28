@@ -3,14 +3,18 @@
     "path": "operators/man_made/surveillance",
     "exclude": {
       "generic": [
+        "^City$",
+        "^domaine public$",
         "^embassy$",
         "^govt$",
         "^mairie$",
         "^městská policie$",
         "^municipalité$",
-        "^poli(ce|zei)$",
+        "^poli(ce|zei|smyndigheten)$",
         "^polic[íi]a nacional$",
         "^policía de la ciudad$",
+        "^Private owner$",
+        "^privé \\(Hopital\\)$",
         "^surveillance$"
       ],
       "named": [
@@ -59,7 +63,7 @@
     {
       "displayName": "agglo pays de Dreux",
       "id": "agglopaysdedreux-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "agglo pays de Dreux"
@@ -68,7 +72,7 @@
     {
       "displayName": "Ajuntament de Barcelona",
       "id": "ajuntamentdebarcelona-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["es"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Ajuntament de Barcelona"
@@ -77,7 +81,7 @@
     {
       "displayName": "Ajuntament de Castelló de la Plana",
       "id": "ajuntamentdecastellodelaplana-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["es"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Ajuntament de Castelló de la Plana"
@@ -186,7 +190,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "APCOA"
+        "operator": "APCOA",
+        "operator:wikidata": "Q296108"
       }
     },
     {
@@ -203,19 +208,11 @@
       "displayName": "Aral",
       "id": "aral-2b1420",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["Aral AG"],
       "tags": {
         "man_made": "surveillance",
         "operator": "Aral",
         "operator:wikidata": "Q565734"
-      }
-    },
-    {
-      "displayName": "Aral AG",
-      "id": "aralag-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Aral AG"
       }
     },
     {
@@ -260,7 +257,7 @@
     {
       "displayName": "Autopista Litoral Sul",
       "id": "autopistalitoralsul-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["br"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Autopista Litoral Sul"
@@ -561,12 +558,14 @@
       }
     },
     {
-      "displayName": "Ç.O.S.B.",
+      "displayName": "Çerkezköy Organize Sanayi Bölgesi",
       "id": "cosb-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["tr"]},
+      "matchNames": ["Ç.O.S.B."],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ç.O.S.B."
+        "operator": "Çerkezköy Organize Sanayi Bölgesi",
+        "operator:short": "ÇOSB"
       }
     },
     {
@@ -629,7 +628,7 @@
     {
       "displayName": "CANARD",
       "id": "canard-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "CANARD"
@@ -661,7 +660,7 @@
     {
       "displayName": "CBC",
       "id": "cbc-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["si"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "CBC"
@@ -670,7 +669,7 @@
     {
       "displayName": "CCR ViaCosteira",
       "id": "ccrviacosteira-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["br"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "CCR ViaCosteira"
@@ -728,7 +727,7 @@
     {
       "displayName": "Champaign Police Department",
       "id": "champaignpolicedepartment-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us-il.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Champaign Police Department"
@@ -769,7 +768,7 @@
     {
       "displayName": "CISEM",
       "id": "cisem-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "CISEM"
@@ -782,15 +781,6 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Cité Judiciaire"
-      }
-    },
-    {
-      "displayName": "City",
-      "id": "city-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "City"
       }
     },
     {
@@ -809,7 +799,7 @@
     {
       "displayName": "City of Edinburgh Council",
       "id": "cityofedinburghcouncil-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "City of Edinburgh Council"
@@ -898,7 +888,7 @@
     {
       "displayName": "Commune d'Albi",
       "id": "communedalbi-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Commune d'Albi"
@@ -917,7 +907,7 @@
     {
       "displayName": "Commune d'Uccle - Gemeente Ukkel",
       "id": "communeducclegemeenteukkel-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Commune d'Uccle - Gemeente Ukkel"
@@ -1046,7 +1036,7 @@
     {
       "displayName": "Comune di Pecetto Torinese",
       "id": "comunedipecettotorinese-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["it"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Comune di Pecetto Torinese"
@@ -1065,7 +1055,7 @@
     {
       "displayName": "Comune di San Giuliano Milanese",
       "id": "comunedisangiulianomilanese-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["it"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Comune di San Giuliano Milanese"
@@ -1153,10 +1143,11 @@
     {
       "displayName": "Crédit Mutuel",
       "id": "creditmutuel-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Crédit Mutuel"
+        "operator": "Crédit Mutuel",
+        "operator:wikidata": "Q642627"
       }
     },
     {
@@ -1181,7 +1172,7 @@
     {
       "displayName": "CSU du Valparisis",
       "id": "csuduvalparisis-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "CSU du Valparisis"
@@ -1309,15 +1300,6 @@
       }
     },
     {
-      "displayName": "domaine public",
-      "id": "domainepublic-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "domaine public"
-      }
-    },
-    {
       "displayName": "DSAT",
       "id": "dsat-3810f7",
       "locationSet": {"include": ["mo"]},
@@ -1406,12 +1388,14 @@
       }
     },
     {
-      "displayName": "Embassy of Poland",
+      "displayName": "Embassy of Poland, Vienna",
       "id": "embassyofpoland-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["at"]},
+      "matchNames": ["Embassy of Poland"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Embassy of Poland"
+        "operator": "Embassy of Poland, Vienna",
+        "operator:wikidata": "Q5369829"
       }
     },
     {
@@ -1568,7 +1552,7 @@
     {
       "displayName": "Gemeente Groningen",
       "id": "gemeentegroningen-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Gemeente Groningen"
@@ -1577,7 +1561,7 @@
     {
       "displayName": "Gemeente Nijmegen",
       "id": "gemeentenijmegen-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Gemeente Nijmegen"
@@ -1606,7 +1590,7 @@
     {
       "displayName": "Greater Geelong City Council",
       "id": "greatergeelongcitycouncil-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["au"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Greater Geelong City Council"
@@ -1655,7 +1639,7 @@
     {
       "displayName": "HEM",
       "id": "hem-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "HEM"
@@ -1696,7 +1680,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Hornbach"
+        "operator": "Hornbach",
+        "operator:wikidata": "Q685926"
       }
     },
     {
@@ -1762,7 +1747,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Intermarché"
+        "operator": "Intermarché",
+        "operator:wikidata": "Q3153200"
       }
     },
     {
@@ -1783,7 +1769,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "JET"
+        "operator": "JET",
+        "operator:wikidata": "Q568940"
       }
     },
     {
@@ -1802,7 +1789,7 @@
     {
       "displayName": "JP LPT",
       "id": "jplpt-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["si"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "JP LPT"
@@ -1814,7 +1801,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Kaufland"
+        "operator": "Kaufland",
+        "operator:wikidata": "Q685967"
       }
     },
     {
@@ -1836,12 +1824,13 @@
       }
     },
     {
-      "displayName": "Kik",
+      "displayName": "KiK",
       "id": "kik-9c1a6c",
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Kik"
+        "operator": "KiK",
+        "operator:wikidata": "Q883965"
       }
     },
     {
@@ -1874,7 +1863,7 @@
     {
       "displayName": "La Banque Postale",
       "id": "labanquepostale-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "La Banque Postale"
@@ -1944,7 +1933,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Leroy Merlin"
+        "operator": "Leroy Merlin",
+        "operator:wikidata": "Q889624"
       }
     },
     {
@@ -1953,7 +1943,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Lidl"
+        "operator": "Lidl",
+        "operator:wikidata": "Q151954"
       }
     },
     {
@@ -1987,7 +1978,7 @@
     {
       "displayName": "LOOMIS Deutschland",
       "id": "loomisdeutschland-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "LOOMIS Deutschland"
@@ -2014,7 +2005,7 @@
     {
       "displayName": "Mairie Beauvais",
       "id": "mairiebeauvais-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Mairie Beauvais"
@@ -2144,7 +2135,7 @@
     {
       "displayName": "mairie Villemeux-sur-Eure",
       "id": "mairievillemeuxsureure-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "mairie Villemeux-sur-Eure"
@@ -2182,7 +2173,7 @@
     {
       "displayName": "Massachusetts Department of Transportation",
       "id": "massachusettsdepartmentoftransportation-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us-ma.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Massachusetts Department of Transportation"
@@ -2207,12 +2198,14 @@
       }
     },
     {
-      "displayName": "MBTA",
+      "displayName": "Massachusetts Bay Transportation Authority",
       "id": "mbta-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us-ma.geojson"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "MBTA"
+        "operator": "Massachusetts Bay Transportation Authority",
+        "operator:short": "MBTA",
+        "operator:wikidata": "Q171985"
       }
     },
     {
@@ -2274,7 +2267,7 @@
     {
       "displayName": "Mestká poliícia RK",
       "id": "mestkapoliiciark-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["si"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Mestká poliícia RK"
@@ -2310,7 +2303,7 @@
     {
       "displayName": "Městská policie Beroun",
       "id": "mestskapolicieberoun-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Beroun"
@@ -2319,7 +2312,7 @@
     {
       "displayName": "Městská policie Bílovec",
       "id": "mestskapoliciebilovec-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Bílovec"
@@ -2328,7 +2321,7 @@
     {
       "displayName": "Městská policie Blansko",
       "id": "mestskapolicieblansko-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Blansko"
@@ -2337,7 +2330,7 @@
     {
       "displayName": "Městská policie Bohumín",
       "id": "mestskapoliciebohumin-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Bohumín"
@@ -2346,7 +2339,7 @@
     {
       "displayName": "Městská policie Boskovice",
       "id": "mestskapolicieboskovice-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Boskovice"
@@ -2355,7 +2348,7 @@
     {
       "displayName": "Městská policie Brandýs n.L.-Stará Boleslav",
       "id": "mestskapoliciebrandysnlstaraboleslav-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Brandýs n.L.-Stará Boleslav"
@@ -2373,7 +2366,7 @@
     {
       "displayName": "Městská policie Česká Lípa",
       "id": "mestskapolicieceskalipa-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Česká Lípa"
@@ -2382,7 +2375,7 @@
     {
       "displayName": "Městská policie Český Těšín",
       "id": "mestskapolicieceskytesin-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Český Těšín"
@@ -2391,7 +2384,7 @@
     {
       "displayName": "Městská policie Cheb",
       "id": "mestskapoliciecheb-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Cheb"
@@ -2400,7 +2393,7 @@
     {
       "displayName": "Městská policie Děčín",
       "id": "mestskapoliciedecin-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Děčín"
@@ -2409,7 +2402,7 @@
     {
       "displayName": "Městská policie Dvůr Králové nad Labem",
       "id": "mestskapoliciedvurkralovenadlabem-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Dvůr Králové nad Labem"
@@ -2418,7 +2411,7 @@
     {
       "displayName": "Městská policie Frýdek-Místek",
       "id": "mestskapoliciefrydekmistek-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Frýdek-Místek"
@@ -2427,7 +2420,7 @@
     {
       "displayName": "Městská policie Frýdlant nad Ostravicí",
       "id": "mestskapoliciefrydlantnadostravici-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Frýdlant nad Ostravicí"
@@ -2436,7 +2429,7 @@
     {
       "displayName": "Městská policie Havířov",
       "id": "mestskapoliciehavirov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Havířov"
@@ -2445,7 +2438,7 @@
     {
       "displayName": "Městská policie Havlíčkův Brod",
       "id": "mestskapoliciehavlickuvbrod-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Havlíčkův Brod"
@@ -2454,7 +2447,7 @@
     {
       "displayName": "Městská policie Hluboká nad Vltavou",
       "id": "mestskapoliciehlubokanadvltavou-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Hluboká nad Vltavou"
@@ -2463,7 +2456,7 @@
     {
       "displayName": "Městská policie Holešov",
       "id": "mestskapolicieholesov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Holešov"
@@ -2472,7 +2465,7 @@
     {
       "displayName": "Městská policie Hradec Králové",
       "id": "mestskapoliciehradeckralove-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Hradec Králové"
@@ -2481,7 +2474,7 @@
     {
       "displayName": "Městská policie Jeseník",
       "id": "mestskapoliciejesenik-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Jeseník"
@@ -2490,25 +2483,25 @@
     {
       "displayName": "Městská policie Jindřichův Hradec",
       "id": "mestskapoliciejindrichuvhradec-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Jindřichův Hradec"
       }
     },
     {
-      "displayName": "Městská Policie Kadaň",
+      "displayName": "Městská policie Kadaň",
       "id": "mestskapoliciekadan-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Městská Policie Kadaň"
+        "operator": "Městská policie Kadaň"
       }
     },
     {
       "displayName": "Městská policie Karlovy Vary",
       "id": "mestskapoliciekarlovyvary-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Karlovy Vary"
@@ -2517,7 +2510,7 @@
     {
       "displayName": "Městská policie Kladno",
       "id": "mestskapoliciekladno-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Kladno"
@@ -2526,7 +2519,7 @@
     {
       "displayName": "Městská policie Kojetín",
       "id": "mestskapoliciekojetin-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Kojetín"
@@ -2535,7 +2528,7 @@
     {
       "displayName": "Městská policie Kolín",
       "id": "mestskapoliciekolin-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Kolín"
@@ -2544,7 +2537,7 @@
     {
       "displayName": "Městská policie Kostelec nad Orlicí",
       "id": "mestskapoliciekostelecnadorlici-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Kostelec nad Orlicí"
@@ -2553,7 +2546,7 @@
     {
       "displayName": "Městská policie Kroměříž",
       "id": "mestskapoliciekromeriz-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Kroměříž"
@@ -2562,7 +2555,7 @@
     {
       "displayName": "Městská policie Kyjov",
       "id": "mestskapoliciekyjov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Kyjov"
@@ -2571,7 +2564,7 @@
     {
       "displayName": "Městská policie Lanškroun",
       "id": "mestskapolicielanskroun-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Lanškroun"
@@ -2580,7 +2573,7 @@
     {
       "displayName": "Městská policie Litoměřice",
       "id": "mestskapolicielitomerice-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Litoměřice"
@@ -2589,7 +2582,7 @@
     {
       "displayName": "Městská policie Litomyšl",
       "id": "mestskapolicielitomysl-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Litomyšl"
@@ -2598,7 +2591,7 @@
     {
       "displayName": "Městská policie Litovel",
       "id": "mestskapolicielitovel-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Litovel"
@@ -2607,7 +2600,7 @@
     {
       "displayName": "Městská policie Lomnice nad Popelkou",
       "id": "mestskapolicielomnicenadpopelkou-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Lomnice nad Popelkou"
@@ -2616,7 +2609,7 @@
     {
       "displayName": "Městská policie Louny",
       "id": "mestskapolicielouny-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Louny"
@@ -2625,7 +2618,7 @@
     {
       "displayName": "Městská policie Modřice",
       "id": "mestskapoliciemodrice-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Modřice"
@@ -2634,7 +2627,7 @@
     {
       "displayName": "Městská policie Nejdek",
       "id": "mestskapolicienejdek-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Nejdek"
@@ -2643,7 +2636,7 @@
     {
       "displayName": "Městská policie Nový Bor",
       "id": "mestskapolicienovybor-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Nový Bor"
@@ -2652,7 +2645,7 @@
     {
       "displayName": "Městská policie Nový Jičín",
       "id": "mestskapolicienovyjicin-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Nový Jičín"
@@ -2661,7 +2654,7 @@
     {
       "displayName": "Městská policie Opava",
       "id": "mestskapolicieopava-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Opava"
@@ -2670,7 +2663,7 @@
     {
       "displayName": "Městská policie Orlová",
       "id": "mestskapolicieorlova-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Orlová"
@@ -2679,7 +2672,7 @@
     {
       "displayName": "Městská policie Ostrava",
       "id": "mestskapolicieostrava-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Ostrava"
@@ -2688,7 +2681,7 @@
     {
       "displayName": "Městská policie Písek",
       "id": "mestskapoliciepisek-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Písek"
@@ -2697,7 +2690,7 @@
     {
       "displayName": "Městská policie Příbram",
       "id": "mestskapoliciepribram-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Příbram"
@@ -2706,7 +2699,7 @@
     {
       "displayName": "Městská policie Prostějov",
       "id": "mestskapolicieprostejov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Prostějov"
@@ -2715,7 +2708,7 @@
     {
       "displayName": "Městská policie Říčany u Prahy",
       "id": "mestskapoliciericanyuprahy-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Říčany u Prahy"
@@ -2724,7 +2717,7 @@
     {
       "displayName": "Městská policie Rokycany",
       "id": "mestskapolicierokycany-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Rokycany"
@@ -2733,7 +2726,7 @@
     {
       "displayName": "Městská policie Roudnice nad Labem",
       "id": "mestskapolicieroudnicenadlabem-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Roudnice nad Labem"
@@ -2742,7 +2735,7 @@
     {
       "displayName": "Městská policie Soběslav",
       "id": "mestskapoliciesobeslav-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Soběslav"
@@ -2751,7 +2744,7 @@
     {
       "displayName": "Městská policie Šternberk",
       "id": "mestskapoliciesternberk-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Šternberk"
@@ -2760,7 +2753,7 @@
     {
       "displayName": "Městská policie Stříbro",
       "id": "mestskapoliciestribro-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Stříbro"
@@ -2769,7 +2762,7 @@
     {
       "displayName": "Městská policie Šumperk",
       "id": "mestskapoliciesumperk-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Šumperk"
@@ -2778,7 +2771,7 @@
     {
       "displayName": "Městská policie Tábor",
       "id": "mestskapolicietabor-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Tábor"
@@ -2787,7 +2780,7 @@
     {
       "displayName": "Městská policie Tišnov",
       "id": "mestskapolicietisnov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Tišnov"
@@ -2796,7 +2789,7 @@
     {
       "displayName": "Městská policie Třebíč",
       "id": "mestskapolicietrebic-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Třebíč"
@@ -2805,7 +2798,7 @@
     {
       "displayName": "Městská policie Trutnov",
       "id": "mestskapolicietrutnov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Trutnov"
@@ -2814,25 +2807,25 @@
     {
       "displayName": "Městská policie Turnov",
       "id": "mestskapolicieturnov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Turnov"
       }
     },
     {
-      "displayName": "Městská Policie Ústí nad Labem",
+      "displayName": "Městská policie Ústí nad Labem",
       "id": "mestskapolicieustinadlabem-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Městská Policie Ústí nad Labem"
+        "operator": "Městská policie Ústí nad Labem"
       }
     },
     {
       "displayName": "Městská policie Valašské Meziříčí",
       "id": "mestskapolicievalasskemezirici-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Valašské Meziříčí"
@@ -2841,7 +2834,7 @@
     {
       "displayName": "Městská policie Velké Meziříčí",
       "id": "mestskapolicievelkemezirici-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Velké Meziříčí"
@@ -2850,7 +2843,7 @@
     {
       "displayName": "Městská policie Veselí nad Lužnicí",
       "id": "mestskapolicieveselinadluznici-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Veselí nad Lužnicí"
@@ -2859,7 +2852,7 @@
     {
       "displayName": "Městská policie Vítkov",
       "id": "mestskapolicievitkov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Vítkov"
@@ -2868,7 +2861,7 @@
     {
       "displayName": "Městská policie Vlašim",
       "id": "mestskapolicievlasim-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Vlašim"
@@ -2877,7 +2870,7 @@
     {
       "displayName": "Městská policie Vyškov",
       "id": "mestskapolicievyskov-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Vyškov"
@@ -2886,7 +2879,7 @@
     {
       "displayName": "Městská policie Žatec",
       "id": "mestskapoliciezatec-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Žatec"
@@ -2895,7 +2888,7 @@
     {
       "displayName": "Městská policie Žďár nad Sázavou",
       "id": "mestskapoliciezdarnadsazavou-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Žďár nad Sázavou"
@@ -2904,7 +2897,7 @@
     {
       "displayName": "Městská policie Znojmo",
       "id": "mestskapolicieznojmo-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Městská policie Znojmo"
@@ -3063,7 +3056,7 @@
     {
       "displayName": "Municipalidad de Roldán",
       "id": "municipalidadderoldan-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Municipalidad de Roldán"
@@ -3099,7 +3092,7 @@
     {
       "displayName": "Municipalité du Val d'Hazey",
       "id": "municipaliteduvaldhazey-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Municipalité du Val d'Hazey"
@@ -3108,7 +3101,7 @@
     {
       "displayName": "Municipality of Rotterdam",
       "id": "municipalityofrotterdam-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Municipality of Rotterdam"
@@ -3150,10 +3143,11 @@
     {
       "displayName": "National Park Service",
       "id": "nationalparkservice-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "National Park Service"
+        "operator": "National Park Service",
+        "operator:wikidata": "Q308439"
       }
     },
     {
@@ -3187,7 +3181,7 @@
     {
       "displayName": "New Hampshire Bureau of Turnpikes",
       "id": "newhampshirebureauofturnpikes-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us-nh.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "New Hampshire Bureau of Turnpikes"
@@ -3245,7 +3239,7 @@
     {
       "displayName": "Northern Transcon Railcams - Otter Tail Channel",
       "id": "northerntransconrailcamsottertailchannel-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us-mn.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Northern Transcon Railcams - Otter Tail Channel"
@@ -3368,10 +3362,11 @@
     {
       "displayName": "Orlen",
       "id": "orlen-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Orlen"
+        "operator": "Orlen",
+        "operator:wikidata": "Q971649"
       }
     },
     {
@@ -3437,7 +3432,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Penny"
+        "operator": "Penny",
+        "operator:wikidata": "Q284688"
       }
     },
     {
@@ -3488,16 +3484,17 @@
     {
       "displayName": "Police nationale",
       "id": "policenationale-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Police nationale"
+        "operator": "Police nationale",
+        "operator:wikidata": "Q121484"
       }
     },
     {
       "displayName": "Policia Local de Granollers",
       "id": "policialocaldegranollers-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Policia Local de Granollers"
@@ -3532,15 +3529,6 @@
       }
     },
     {
-      "displayName": "Polismyndigheten",
-      "id": "polismyndigheten-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Polismyndigheten"
-      }
-    },
-    {
       "displayName": "Politie Leuven",
       "id": "politieleuven-fe27ed",
       "locationSet": {"include": ["be"]},
@@ -3570,7 +3558,7 @@
     {
       "displayName": "Polizei Aachen",
       "id": "polizeiaachen-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Polizei Aachen"
@@ -3579,7 +3567,7 @@
     {
       "displayName": "Polizei Görlitz",
       "id": "polizeigorlitz-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Polizei Görlitz"
@@ -3651,7 +3639,7 @@
     {
       "displayName": "Port Autonome de Papeete",
       "id": "portautonomedepapeete-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["pf"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Port Autonome de Papeete"
@@ -3694,27 +3682,9 @@
       }
     },
     {
-      "displayName": "Private owner",
-      "id": "privateowner-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Private owner"
-      }
-    },
-    {
-      "displayName": "privé (Hopital)",
-      "id": "privehopital-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "privé (Hopital)"
-      }
-    },
-    {
       "displayName": "Provincie Groningen",
       "id": "provinciegroningen-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Provincie Groningen"
@@ -3861,7 +3831,7 @@
     {
       "displayName": "Schreiber",
       "id": "schreiber-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Schreiber"
@@ -3923,7 +3893,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Shell"
+        "operator": "Shell",
+        "operator:wikidata": "Q154950"
       }
     },
     {
@@ -3962,7 +3933,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Société Générale"
+        "operator": "Société Générale",
+        "operator:wikidata": "Q270363"
       }
     },
     {
@@ -3999,18 +3971,41 @@
       }
     },
     {
-      "displayName": "Sparkasse",
+      "displayName": "Steiermärkische Sparkasse",
       "id": "sparkasse-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["at"]},
+      "matchNames": ["Sparkasse"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Sparkasse"
+        "operator": "Steiermärkische Sparkasse",
+        "operator:wikidata": "Q1555572"
+      }
+    },
+    {
+      "displayName": "Sparkasse (Germany)",
+      "id": "sparkasse-9c1a6c",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Sparkasse",
+        "operator:wikidata": "Q13601825"
+      }
+    },
+    {
+      "displayName": "Sudtiroler Sparkasse",
+      "id": "sparkasse-9c1a6c",
+      "locationSet": {"include": ["it"]},
+      "matchNames": ["Sparkasse"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Sudtiroler Sparkasse",
+        "operator:wikidata": "Q3661920"
       }
     },
     {
       "displayName": "Sparkasse Spree-Neiße",
       "id": "sparkassespreeneisse-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Sparkasse Spree-Neiße"
@@ -4019,7 +4014,7 @@
     {
       "displayName": "SPF Finances",
       "id": "spffinances-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "SPF Finances"
@@ -4046,7 +4041,7 @@
     {
       "displayName": "Springfield Police Department",
       "id": "springfieldpolicedepartment-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us-il.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Springfield Police Department"
@@ -4055,7 +4050,7 @@
     {
       "displayName": "SSP",
       "id": "ssp-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["br"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "SSP"
@@ -4100,7 +4095,7 @@
     {
       "displayName": "Stadt Bonn",
       "id": "stadtbonn-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Stadt Bonn"
@@ -4205,7 +4200,7 @@
     {
       "displayName": "Star",
       "id": "star-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Star"
@@ -4244,7 +4239,7 @@
     {
       "displayName": "Straż Miejska Zdw",
       "id": "strazmiejskazdw-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Straż Miejska Zdw"
@@ -4271,7 +4266,7 @@
     {
       "displayName": "Sûreté Ferroviaire SNCF",
       "id": "sureteferroviairesncf-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Sûreté Ferroviaire SNCF"
@@ -4388,7 +4383,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "TNT"
+        "operator": "TNT",
+        "operator:wikidata": "Q1105744"
       }
     },
     {
@@ -4412,27 +4408,20 @@
       }
     },
     {
-      "displayName": "Total",
-      "id": "total-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Total"
-      }
-    },
-    {
       "displayName": "TotalEnergies",
       "id": "totalenergies-9c1a6c",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["Total"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "TotalEnergies"
+        "operator": "TotalEnergies",
+        "operator:wikidata": "Q154037"
       }
     },
     {
       "displayName": "Tournus",
       "id": "tournus-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Tournus"
@@ -4441,7 +4430,7 @@
     {
       "displayName": "Trafikverket",
       "id": "trafikverket-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["se"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Trafikverket"
@@ -4450,7 +4439,7 @@
     {
       "displayName": "Transdev Saint-Étienne",
       "id": "transdevsaintetienne-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Transdev Saint-Étienne"
@@ -4523,12 +4512,14 @@
       }
     },
     {
-      "displayName": "UDOT",
+      "displayName": "Utah Department of Transportation",
       "id": "udot-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us-ut.geojson"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "UDOT"
+        "operator": "Utah Department of Transportation",
+        "operator:short": "UDOT",
+        "operator:wikidata": "Q2506783"
       }
     },
     {
@@ -4600,7 +4591,7 @@
     {
       "displayName": "UOCT",
       "id": "uoct-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "UOCT"
@@ -4609,7 +4600,7 @@
     {
       "displayName": "UOCT O'Higgins",
       "id": "uoctohiggins-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["cl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "UOCT O'Higgins"
@@ -4726,7 +4717,7 @@
     {
       "displayName": "Ville de Fontaine",
       "id": "villedefontaine-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Ville de Fontaine"
@@ -4742,12 +4733,13 @@
       }
     },
     {
-      "displayName": "Ville de la Ciotat +33442088900",
+      "displayName": "Ville de la Ciotat",
       "id": "villedelaciotat33442088900-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["Ville de la Ciotat +33442088900"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de la Ciotat +33442088900"
+        "operator": "Ville de la Ciotat"
       }
     },
     {
@@ -4836,7 +4828,7 @@
     {
       "displayName": "Ville de Port-la-Nouvelle",
       "id": "villedeportlanouvelle-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Ville de Port-la-Nouvelle"
@@ -4863,7 +4855,7 @@
     {
       "displayName": "Ville de Saint-Étienne",
       "id": "villedesaintetienne-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Ville de Saint-Étienne"
@@ -4965,7 +4957,7 @@
     {
       "displayName": "Virtual Railfan",
       "id": "virtualrailfan-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["ca", "us"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Virtual Railfan"
@@ -4986,7 +4978,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Volksbank"
+        "operator": "Volksbank",
+        "operator:wikidata": "Q695110"
       }
     },
     {
@@ -5001,7 +4994,7 @@
     {
       "displayName": "Vumacam",
       "id": "vumacam-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["za"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Vumacam"
@@ -5058,7 +5051,7 @@
     {
       "displayName": "WebCam.NL",
       "id": "webcamnl-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["nl","at","es"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "WebCam.NL"
@@ -5067,7 +5060,7 @@
     {
       "displayName": "WebCamera",
       "id": "webcamera-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fx","jp","pl"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "WebCamera"
@@ -5076,7 +5069,7 @@
     {
       "displayName": "West Suffolk Council",
       "id": "westsuffolkcouncil-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "West Suffolk Council"
@@ -5121,7 +5114,7 @@
     {
       "displayName": "Wisconsin Department of Transportation",
       "id": "wisconsindepartmentoftransportation-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["us-wi.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Wisconsin Department of Transportation"
@@ -5259,7 +5252,7 @@
     {
       "displayName": "ZP5339",
       "id": "zp5339-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "ZP5339"
@@ -5268,7 +5261,7 @@
     {
       "displayName": "ZP5341",
       "id": "zp5341-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "ZP5341"
@@ -5277,7 +5270,7 @@
     {
       "displayName": "ZP5343",
       "id": "zp5343-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "ZP5343"
@@ -5286,7 +5279,7 @@
     {
       "displayName": "ZP5344",
       "id": "zp5344-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "ZP5344"
