@@ -204,8 +204,11 @@
     },
     {
       "displayName": "Ameren",
-      "id": "ameren-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "ameren-b27b77",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": ["us-mo.geojson"]
+      },
       "tags": {
         "operator": "Ameren",
         "operator:wikidata": "Q462984",
@@ -214,9 +217,14 @@
     },
     {
       "displayName": "Ameren Missouri",
-      "id": "amerenmissouri-2ac081",
-      "locationSet": {"include": ["us"]},
-      "matchNames": ["union electric co - (mo)"],
+      "id": "amerenmissouri-9a90cc",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
+      "matchNames": [
+        "ameren",
+        "union electric co - (mo)"
+      ],
       "tags": {
         "operator": "Ameren Missouri",
         "operator:wikidata": "Q7885672",
@@ -1181,8 +1189,11 @@
     },
     {
       "displayName": "Entergy",
-      "id": "entergy-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "entergy-9ec78b",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": ["us-la.geojson"]
+      },
       "tags": {
         "operator": "Entergy",
         "operator:wikidata": "Q1344587",
@@ -1191,9 +1202,17 @@
     },
     {
       "displayName": "Entergy Louisiana",
-      "id": "entergylouisiana-2ac081",
-      "locationSet": {"include": ["us"]},
-      "matchNames": ["entergy louisiana llc"],
+      "id": "entergylouisiana-87cc41",
+      "locationSet": {
+        "include": [
+          "us-ar.geojson",
+          "us-la.geojson"
+        ]
+      },
+      "matchNames": [
+        "entergy",
+        "entergy louisiana llc"
+      ],
       "tags": {
         "operator": "Entergy Louisiana",
         "operator:wikidata": "Q87759318",

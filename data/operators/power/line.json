@@ -264,16 +264,29 @@
     },
     {
       "displayName": "Ameren",
-      "id": "ameren-b654b4",
-      "locationSet": {"include": ["us"]},
-      "matchNames": [
-        "ameren illinois",
-        "ameren missouri"
-      ],
+      "id": "ameren-858afb",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": ["us-mo.geojson"]
+      },
+      "matchNames": ["ameren illinois"],
       "tags": {
         "frequency": "60",
         "operator": "Ameren",
         "operator:wikidata": "Q462984",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Ameren Missouri",
+      "id": "amerenmissouri-f274f2",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
+      "matchNames": ["ameren"],
+      "tags": {
+        "operator": "Ameren Missouri",
+        "operator:wikidata": "Q7885672",
         "power": "line"
       }
     },
@@ -1943,11 +1956,12 @@
       }
     },
     {
-      "displayName": "Dow Chemical",
-      "id": "dowchemical-b654b4",
+      "displayName": "Dow Chemical Company",
+      "id": "dowchemicalcompany-b654b4",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["dow chemical"],
       "tags": {
-        "operator": "Dow Chemical",
+        "operator": "Dow Chemical Company",
         "operator:wikidata": "Q855639",
         "power": "line"
       }
@@ -3607,6 +3621,18 @@
       }
     },
     {
+      "displayName": "Florida Public Utilities",
+      "id": "floridapublicutilities-05df97",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "operator": "Florida Public Utilities",
+        "operator:short": "FPUC",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Fort Pierce Utilities",
       "id": "fortpierceutilities-b654b4",
       "locationSet": {"include": ["us"]},
@@ -3657,17 +3683,6 @@
       "tags": {
         "operator": "Four County EMC",
         "operator:wikidata": "Q114366906",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "FPUC",
-      "id": "fpuc-05df97",
-      "locationSet": {
-        "include": ["us-fl.geojson"]
-      },
-      "tags": {
-        "operator": "FPUC",
         "power": "line"
       }
     },
@@ -4254,6 +4269,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "Invenergy",
+        "operator:wikidata": "Q6059803",
         "power": "line"
       }
     },
@@ -4433,6 +4449,7 @@
       },
       "tags": {
         "operator": "KAMO Power",
+        "operator:wikidata": "Q115691589",
         "power": "line"
       }
     },
@@ -4476,6 +4493,7 @@
       "matchNames": ["kentucky utilities"],
       "tags": {
         "operator": "Kentucky Utilities Company",
+        "operator:wikidata": "Q6392416",
         "power": "line"
       }
     },
@@ -4622,13 +4640,14 @@
       }
     },
     {
-      "displayName": "Lansing Board of Water and Light",
+      "displayName": "Lansing Board of Water & Light",
       "id": "lansingboardofwaterandlight-a1df2e",
       "locationSet": {
         "include": ["us-mi.geojson"]
       },
       "tags": {
-        "operator": "Lansing Board of Water and Light",
+        "operator": "Lansing Board of Water & Light",
+        "operator:wikidata": "Q17030936",
         "power": "line"
       }
     },
@@ -4761,6 +4780,7 @@
       },
       "tags": {
         "operator": "Lincoln Electric System",
+        "operator:wikidata": "Q127653596",
         "power": "line"
       }
     },
@@ -4840,13 +4860,14 @@
       }
     },
     {
-      "displayName": "Louisville Gas and Electric",
+      "displayName": "Louisville Gas & Electric",
       "id": "louisvillegasandelectric-ab6528",
       "locationSet": {
         "include": ["us-ky.geojson"]
       },
       "tags": {
-        "operator": "Louisville Gas and Electric",
+        "operator": "Louisville Gas & Electric",
+        "operator:wikidata": "Q6689482",
         "power": "line"
       }
     },
@@ -5040,6 +5061,8 @@
       },
       "tags": {
         "operator": "Memphis Light, Gas and Water",
+        "operator:short": "MLGW",
+        "operator:wikidata": "Q6815841",
         "power": "line"
       }
     },
@@ -5061,6 +5084,7 @@
       },
       "tags": {
         "operator": "Met-Ed",
+        "operator:wikidata": "Q117108227",
         "power": "line"
       }
     },
@@ -5199,16 +5223,6 @@
       }
     },
     {
-      "displayName": "MLGW",
-      "id": "mlgw-b654b4",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "MLGW",
-        "operator:wikidata": "Q6815841",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "Modesto Irrigation District",
       "id": "modestoirrigationdistrict-eefbc4",
       "locationSet": {
@@ -5216,6 +5230,7 @@
       },
       "tags": {
         "operator": "Modesto Irrigation District",
+        "operator:wikidata": "Q6889224",
         "power": "line"
       }
     },
@@ -5397,6 +5412,7 @@
       },
       "tags": {
         "operator": "Nebraska Public Power District",
+        "operator:wikidata": "Q6984770",
         "power": "line"
       }
     },

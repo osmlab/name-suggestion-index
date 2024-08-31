@@ -261,15 +261,28 @@
     },
     {
       "displayName": "Ameren",
-      "id": "ameren-301545",
-      "locationSet": {"include": ["us"]},
-      "matchNames": [
-        "ameren illinois",
-        "ameren missouri"
-      ],
+      "id": "ameren-8ed706",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": ["us-mo.geojson"]
+      },
+      "matchNames": ["ameren illinois"],
       "tags": {
         "operator": "Ameren",
         "operator:wikidata": "Q462984",
+        "power": "substation"
+      }
+    },
+    {
+      "displayName": "Ameren Missouri",
+      "id": "amerenmissouri-9508de",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
+      "matchNames": ["ameren"],
+      "tags": {
+        "operator": "Ameren Missouri",
+        "operator:wikidata": "Q7885672",
         "power": "substation"
       }
     },
@@ -967,16 +980,20 @@
       }
     },
     {
-      "displayName": "Carroll Electric Cooperative Corporation",
-      "id": "carrollelectriccooperativecorporation-a7f382",
+      "displayName": "Carroll Electric Cooperative",
+      "id": "carrollelectriccooperative-a7f382",
       "locationSet": {
         "include": [
           "us-ar.geojson",
           "us-mo.geojson"
         ]
       },
+      "matchNames": [
+        "carroll electric cooperative corporation"
+      ],
       "tags": {
-        "operator": "Carroll Electric Cooperative Corporation",
+        "operator": "Carroll Electric Cooperative",
+        "operator:wikidata": "Q5046558",
         "power": "substation"
       }
     },
@@ -1983,11 +2000,12 @@
       }
     },
     {
-      "displayName": "Dow Chemical",
-      "id": "dowchemical-301545",
+      "displayName": "Dow Chemical Company",
+      "id": "dowchemicalcompany-301545",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["dow chemical"],
       "tags": {
-        "operator": "Dow Chemical",
+        "operator": "Dow Chemical Company",
         "operator:wikidata": "Q855639",
         "power": "substation"
       }
@@ -3500,8 +3518,15 @@
     },
     {
       "displayName": "Entergy",
-      "id": "entergy-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "entergy-442494",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": [
+          "us-ar.geojson",
+          "us-la.geojson",
+          "us-ms.geojson"
+        ]
+      },
       "tags": {
         "operator": "Entergy",
         "operator:wikidata": "Q1344587",
@@ -3514,6 +3539,7 @@
       "locationSet": {
         "include": ["us-ar.geojson"]
       },
+      "matchNames": ["entergy"],
       "tags": {
         "operator": "Entergy Arkansas",
         "power": "substation"
@@ -3521,8 +3547,14 @@
     },
     {
       "displayName": "Entergy Louisiana",
-      "id": "entergylouisiana-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "entergylouisiana-3e5609",
+      "locationSet": {
+        "include": [
+          "us-ar.geojson",
+          "us-la.geojson"
+        ]
+      },
+      "matchNames": ["entergy"],
       "tags": {
         "operator": "Entergy Louisiana",
         "operator:wikidata": "Q87759318",
@@ -3538,6 +3570,7 @@
           "us-ms.geojson"
         ]
       },
+      "matchNames": ["entergy"],
       "tags": {
         "operator": "Entergy Mississippi",
         "power": "substation"
@@ -5932,6 +5965,8 @@
       },
       "tags": {
         "operator": "Memphis Light, Gas and Water",
+        "operator:short": "MLGW",
+        "operator:wikidata": "Q6815841",
         "power": "substation"
       }
     },
@@ -6082,16 +6117,6 @@
       "tags": {
         "operator": "MITNETZ Strom",
         "operator:wikidata": "Q56199578",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "MLGW",
-      "id": "mlgw-301545",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "MLGW",
-        "operator:wikidata": "Q6815841",
         "power": "substation"
       }
     },
@@ -11099,6 +11124,7 @@
       },
       "tags": {
         "operator": "West Penn Power",
+        "operator:wikidata": "Q129774858",
         "power": "substation"
       }
     },
