@@ -2213,18 +2213,14 @@
       }
     },
     {
-      "displayName": "EDP Renewables",
-      "id": "edprenewables-cca89d",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["es"]
-      },
+      "displayName": "EDP Renewables North America",
+      "id": "edprenewablesnorthamerica-58f53b",
+      "locationSet": {"include": ["mx", "us"]},
+      "matchNames": ["edp renewables"],
       "tags": {
-        "operator": "EDP Renewables",
-        "operator:en": "EDP Renewables",
-        "operator:pt": "EDP Renováveis",
+        "operator": "EDP Renewables North America",
         "operator:short": "EDPR",
-        "operator:wikidata": "Q1274362",
+        "operator:wikidata": "Q5322866",
         "power": "generator"
       }
     },
@@ -2233,11 +2229,29 @@
       "id": "edprenovablesespana-ae5946",
       "locationSet": {"include": ["es"]},
       "matchNames": [
+        "edp renewables",
         "edp renovables españa s.l.u",
-        "edp renovables españa s.l.u - edp"
+        "edp renovables españa s.l.u - edp",
+        "edp renováveis"
       ],
       "tags": {
         "operator": "EDP Renovables España",
+        "operator:short": "EDPR",
+        "operator:wikidata": "Q1274362",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "EDP Renováveis",
+      "id": "edprenovaveis-ecaffb",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["es", "mx", "us"]
+      },
+      "tags": {
+        "operator": "EDP Renováveis",
+        "operator:en": "EDP Renewables",
+        "operator:short": "EDPR",
         "operator:wikidata": "Q1274362",
         "power": "generator"
       }
@@ -2852,8 +2866,14 @@
     },
     {
       "displayName": "Entergy Louisiana",
-      "id": "entergylouisiana-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "entergylouisiana-35de23",
+      "locationSet": {
+        "include": [
+          "us-ar.geojson",
+          "us-la.geojson"
+        ]
+      },
+      "matchNames": ["entergy"],
       "tags": {
         "operator": "Entergy Louisiana",
         "operator:wikidata": "Q87759318",
@@ -3447,6 +3467,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "Formosa Plastics",
+        "operator:wikidata": "Q16241638",
         "power": "generator"
       }
     },
