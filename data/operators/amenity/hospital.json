@@ -4,13 +4,12 @@
     "preserveTags": ["^emergency$", "^name"],
     "exclude": {
       "generic": [
-        "^(govern?ment( authorities)?|govt( hospital)?|municipal|private|public|private not for profit|village)$",
+        "^(govern?ment( authorities)?|govt( hospital)?|municipal|priva(do|te)|public|private not for profit|village)$",
         "^centro (de salud|de saúde|médico)$",
         "^community$",
         "^hospital$",
         "^others$",
-        "^privado$",
-        "^private not for profit$",
+        "^secretaria (de (estado da|)|(municipal |)(da|de)) saúde$",
         "^subdistrict$",
         "^амбулатор[иі]я$",
         "^инфекционн(ая|ое) (больница|отделение)",
@@ -126,18 +125,6 @@
       }
     },
     {
-      "displayName": "Allgemeine Hospitalgesellschaft",
-      "id": "allgemeinehospitalgesellschaft-8bb61e",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Allgemeine Hospitalgesellschaft",
-        "operator:short": "AHG",
-        "operator:wikidata": "Q292807"
-      }
-    },
-    {
       "displayName": "Allina Health",
       "id": "allinahealth-888e5a",
       "locationSet": {"include": ["us"]},
@@ -214,12 +201,18 @@
     },
     {
       "displayName": "Aspirus",
-      "id": "aspirus-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "aspirus-1d4590",
+      "locationSet": {
+        "include": [
+          "us-mi.geojson",
+          "us-wi.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Aspirus"
+        "operator": "Aspirus",
+        "operator:wikidata": "Q30270800"
       }
     },
     {
@@ -317,13 +310,44 @@
       }
     },
     {
-      "displayName": "Baptist Health",
-      "id": "baptisthealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Baptist Health (Alabama)",
+      "id": "baptisthealth-b8842b",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Baptist Health"
+      }
+    },
+    {
+      "displayName": "Baptist Health (Florida)",
+      "id": "baptisthealth-b94cef",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Baptist Health",
+        "operator:wikidata": "Q4857639"
+      }
+    },
+    {
+      "displayName": "Baptist Health (Indiana-Kentucky)",
+      "id": "baptisthealth-0f0486",
+      "locationSet": {
+        "include": [
+          "us-in.geojson",
+          "us-ky.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Baptist Health",
+        "operator:wikidata": "Q110932481"
       }
     },
     {
@@ -381,13 +405,25 @@
       }
     },
     {
-      "displayName": "Bon Secours Health System",
-      "id": "bonsecourshealthsystem-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Bon Secours Health System (Ireland)",
+      "id": "bonsecourshealthsystem-467fad",
+      "locationSet": {"include": ["ie"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Bon Secours Health System"
+        "operator": "Bon Secours Health System",
+        "operator:wikidata": "Q16255112"
+      }
+    },
+    {
+      "displayName": "Bon Secours Health System (US)",
+      "id": "bonsecourshealthsystem-888e5a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Bon Secours Health System",
+        "operator:wikidata": "Q30286406"
       }
     },
     {
@@ -443,7 +479,8 @@
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Centura Health"
+        "operator": "Centura Health",
+        "operator:wikidata": "Q110940557"
       }
     },
     {
@@ -566,6 +603,16 @@
         "healthcare": "hospital",
         "operator": "Covenant Health",
         "operator:wikidata": "Q5178997"
+      }
+    },
+    {
+      "displayName": "Croydon University Hospital",
+      "id": "croydonuniversityhospital-b0b612",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Croydon University Hospital"
       }
     },
     {
@@ -897,6 +944,16 @@
       }
     },
     {
+      "displayName": "Gobierno de la Ciudad de Buenos Aires",
+      "id": "gobiernodelaciudaddebuenosaires-b92ad7",
+      "locationSet": {"include": ["ar"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Gobierno de la Ciudad de Buenos Aires"
+      }
+    },
+    {
       "displayName": "Gobierno Regional (Perú)",
       "id": "gobiernoregional-d29164",
       "locationSet": {"include": ["pe"]},
@@ -975,6 +1032,16 @@
       }
     },
     {
+      "displayName": "Healthscope",
+      "id": "healthscope-86ebc0",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Healthscope"
+      }
+    },
+    {
       "displayName": "Helios Kliniken",
       "id": "helioskliniken-8bb61e",
       "locationSet": {"include": ["de"]},
@@ -990,13 +1057,18 @@
       }
     },
     {
-      "displayName": "Hospital Kuala Lumpur (HKL)",
-      "id": "hospitalkualalumpurhkl-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Hospital Kuala Lumpur",
+      "id": "hospitalkualalumpur-a918ec",
+      "locationSet": {"include": ["my"]},
+      "matchNames": [
+        "hospital kuala lumpur (hkl)"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Hospital Kuala Lumpur (HKL)"
+        "operator": "Hospital Kuala Lumpur",
+        "operator:short": "HKL",
+        "operator:wikidata": "Q7350107"
       }
     },
     {
@@ -1090,6 +1162,17 @@
       }
     },
     {
+      "displayName": "Instituto Hondureño de Seguridad Social",
+      "id": "institutohondurenodeseguridadsocial-9989b9",
+      "locationSet": {"include": ["hn"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Instituto Hondureño de Seguridad Social",
+        "operator:short": "IHSS"
+      }
+    },
+    {
       "displayName": "Instituto Mexicano del Seguro Social",
       "id": "institutomexicanodelsegurosocial-5e0bc0",
       "locationSet": {"include": ["mx"]},
@@ -1176,7 +1259,8 @@
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "KentuckyOne Health"
+        "operator": "KentuckyOne Health",
+        "operator:wikidata": "Q30282191"
       }
     },
     {
@@ -1302,12 +1386,13 @@
     },
     {
       "displayName": "MALC",
-      "id": "malc-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "id": "malc-05a29f",
+      "locationSet": {"include": ["pk"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "MALC"
+        "operator": "MALC",
+        "operator:wikidata": "Q6762734"
       }
     },
     {
@@ -1359,13 +1444,30 @@
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Mayo Clinic Health System"
+        "operator": "Mayo Clinic Health System",
+        "operator:wikidata": "Q110932693"
+      }
+    },
+    {
+      "displayName": "Médecins Sans Frontières",
+      "id": "medecinssansfrontieres-fbd4f5",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Médecins Sans Frontières",
+        "operator:short": "MSF",
+        "operator:wikidata": "Q49330"
       }
     },
     {
       "displayName": "Median Kliniken",
       "id": "mediankliniken-8bb61e",
       "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "ahg",
+        "allgemeine hospitalgesellschaft"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1466,6 +1568,16 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Merit Health"
+      }
+    },
+    {
+      "displayName": "Metro Pavia Health System",
+      "id": "metropaviahealthsystem-6bb1b7",
+      "locationSet": {"include": ["pr"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Metro Pavia Health System"
       }
     },
     {
@@ -1572,6 +1684,16 @@
         "healthcare": "hospital",
         "operator": "Ministério da Saúde",
         "operator:wikidata": "Q4294357"
+      }
+    },
+    {
+      "displayName": "Ministerio de Salud - Gobierno de la Provincia del Neuquén",
+      "id": "ministeriodesaludgobiernodelaprovinciadelneuquen-b92ad7",
+      "locationSet": {"include": ["ar"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Ministerio de Salud - Gobierno de la Provincia del Neuquén"
       }
     },
     {
@@ -1972,6 +2094,16 @@
       }
     },
     {
+      "displayName": "Niederösterreichische Landeskliniken-Holding",
+      "id": "niederosterreichischelandesklinikenholding-7f2aa5",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Niederösterreichische Landeskliniken-Holding"
+      }
+    },
+    {
       "displayName": "North West Department of Health",
       "id": "northwestdepartmentofhealth-650276",
       "locationSet": {"include": ["za"]},
@@ -2068,6 +2200,16 @@
       }
     },
     {
+      "displayName": "Nuffield Health",
+      "id": "nuffieldhealth-b0b612",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Nuffield Health"
+      }
+    },
+    {
       "displayName": "Ochsner Health System",
       "id": "ochsnerhealthsystem-888e5a",
       "locationSet": {"include": ["us"]},
@@ -2093,12 +2235,13 @@
     },
     {
       "displayName": "Osakidetza",
-      "id": "osakidetza-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "id": "osakidetza-34fe48",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Osakidetza"
+        "operator": "Osakidetza",
+        "operator:wikidata": "Q3822645"
       }
     },
     {
@@ -2127,6 +2270,16 @@
         "healthcare": "hospital",
         "operator": "PeaceHealth",
         "operator:wikidata": "Q16966652"
+      }
+    },
+    {
+      "displayName": "PPHI Sindh",
+      "id": "pphisindh-05a29f",
+      "locationSet": {"include": ["pk"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "PPHI Sindh"
       }
     },
     {
@@ -2217,13 +2370,26 @@
       }
     },
     {
-      "displayName": "Ramsay Health Care",
-      "id": "ramsayhealthcare-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Ramsay Health Care (Australia)",
+      "id": "ramsayhealthcare-86ebc0",
+      "locationSet": {"include": ["au"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Ramsay Health Care"
+        "operator": "Ramsay Health Care",
+        "operator:wikidata": "Q17054333"
+      }
+    },
+    {
+      "displayName": "Ramsay Health Care UK",
+      "id": "ramsayhealthcareuk-b0b612",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["ramsay health care"],
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Ramsay Health Care UK",
+        "operator:wikidata": "Q20047299"
       }
     },
     {
@@ -2246,6 +2412,21 @@
         "healthcare": "hospital",
         "operator": "Rhön-Klinikum",
         "operator:wikidata": "Q573604"
+      }
+    },
+    {
+      "displayName": "Rochester Regional Health",
+      "id": "rochesterregionalhealth-27bc64",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "matchNames": ["rochester regional"],
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Rochester Regional Health",
+        "operator:type": "private_non_profit",
+        "operator:wikidata": "Q7353978"
       }
     },
     {
@@ -2350,16 +2531,6 @@
       }
     },
     {
-      "displayName": "Secretaria da Saúde",
-      "id": "secretariadasaude-fbd4f5",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Secretaria da Saúde"
-      }
-    },
-    {
       "displayName": "Secretaria da Saúde do Estado do Ceará",
       "id": "secretariadasaudedoestadodoceara-d30bb4",
       "locationSet": {"include": ["br"]},
@@ -2370,16 +2541,6 @@
       }
     },
     {
-      "displayName": "Secretaria de Estado da Saúde",
-      "id": "secretariadeestadodasaude-fbd4f5",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Secretaria de Estado da Saúde"
-      }
-    },
-    {
       "displayName": "Secretaria Municipal da Saúde de Fortaleza",
       "id": "secretariamunicipaldasaudedefortaleza-d30bb4",
       "locationSet": {"include": ["br"]},
@@ -2387,16 +2548,6 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Secretaria Municipal da Saúde de Fortaleza"
-      }
-    },
-    {
-      "displayName": "Secretaria Municipal de Saúde",
-      "id": "secretariamunicipaldesaude-d30bb4",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Secretaria Municipal de Saúde"
       }
     },
     {
@@ -2599,12 +2750,15 @@
     },
     {
       "displayName": "Texas Department of Aging and Disability Services",
-      "id": "texasdepartmentofaginganddisabilityservices-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "texasdepartmentofaginganddisabilityservices-12e3f7",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Texas Department of Aging and Disability Services"
+        "operator": "Texas Department of Aging and Disability Services",
+        "operator:wikidata": "Q7707626"
       }
     },
     {
@@ -2746,6 +2900,22 @@
       }
     },
     {
+      "displayName": "UR Medicine",
+      "id": "universityofrochestermedicalcenter-27bc64",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "matchNames": ["urmc"],
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "University of Rochester Medical Center",
+        "operator:short": "UR Medicine",
+        "operator:type": "university",
+        "operator:wikidata": "Q7896217"
+      }
+    },
+    {
       "displayName": "VA Medical Center",
       "id": "veteranshealthadministration-888e5a",
       "locationSet": {"include": ["us"]},
@@ -2772,12 +2942,13 @@
     },
     {
       "displayName": "Västra Götalandsregionen",
-      "id": "vastragotalandsregionen-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "id": "vastragotalandsregionen-653dc5",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Västra Götalandsregionen"
+        "operator": "Västra Götalandsregionen",
+        "operator:wikidata": "Q3233447"
       }
     },
     {

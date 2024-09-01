@@ -2,7 +2,7 @@
   "properties": {
     "path": "operators/emergency/phone",
     "exclude": {
-      "generic": ["^phone$"],
+      "generic": ["^phone|campus police$"],
       "named": [
         "^deutsche telekom$",
         "^straßenmeisterei$"
@@ -31,8 +31,10 @@
     },
     {
       "displayName": "Adelphi Public Safety & Transportation",
-      "id": "adelphipublicsafetyandtransportation-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "adelphipublicsafetyandtransportation-c2fcbd",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
       "tags": {
         "emergency": "phone",
         "operator": "Adelphi Public Safety & Transportation"
@@ -176,11 +178,14 @@
     },
     {
       "displayName": "Brown University",
-      "id": "brownuniversity-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "brownuniversity-0bc0f6",
+      "locationSet": {
+        "include": ["us-ri.geojson"]
+      },
       "tags": {
         "emergency": "phone",
-        "operator": "Brown University"
+        "operator": "Brown University",
+        "operator:wikidata": "Q49114"
       }
     },
     {
@@ -190,15 +195,6 @@
       "tags": {
         "emergency": "phone",
         "operator": "C5 CDMX"
-      }
-    },
-    {
-      "displayName": "Campus Police",
-      "id": "campuspolice-d9e125",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "emergency": "phone",
-        "operator": "Campus Police"
       }
     },
     {
@@ -230,11 +226,14 @@
     },
     {
       "displayName": "Clemson University",
-      "id": "clemsonuniversity-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "clemsonuniversity-ce3621",
+      "locationSet": {
+        "include": ["us-sc.geojson"]
+      },
       "tags": {
         "emergency": "phone",
-        "operator": "Clemson University"
+        "operator": "Clemson University",
+        "operator:wikidata": "Q631066"
       }
     },
     {
@@ -254,7 +253,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "CSU, Chico Police Department"
+        "operator": "CSU, Chico Police Department",
+        "operator:wikidata": "Q120751629"
       }
     },
     {
@@ -374,11 +374,23 @@
     },
     {
       "displayName": "Generalna Dyrekcja Dróg Krajowych i Autostrad",
-      "id": "generalnadyrekcjadrogkrajowychiautostrad-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "generalnadyrekcjadrogkrajowychiautostrad-cf0612",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "emergency": "phone",
         "operator": "Generalna Dyrekcja Dróg Krajowych i Autostrad"
+      }
+    },
+    {
+      "displayName": "Hope College",
+      "id": "hopecollege-4b3b14",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "emergency": "phone",
+        "operator": "Hope College",
+        "operator:wikidata": "Q2475371"
       }
     },
     {
@@ -407,10 +419,25 @@
       }
     },
     {
+      "displayName": "Lafayette College",
+      "id": "lafayettecollege-db5f36",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "emergency": "phone",
+        "operator": "Lafayette College",
+        "operator:wikidata": "Q1592074"
+      }
+    },
+    {
       "displayName": "Landesbetrieb Straßenbau NRW",
       "id": "landesbetriebstrassenbaunrw-3876cc",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["straßen.nrw"],
+      "matchNames": [
+        "landesbetrieb straßenbau nordrhein-westfalen",
+        "straßen.nrw"
+      ],
       "tags": {
         "emergency": "phone",
         "operator": "Landesbetrieb Straßenbau NRW",
@@ -426,6 +453,17 @@
       "tags": {
         "emergency": "phone",
         "operator": "Marquette University Department of Public Safety"
+      }
+    },
+    {
+      "displayName": "McGill University",
+      "id": "mcgilluniversity-3673d4",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "tags": {
+        "emergency": "phone",
+        "operator": "McGill University"
       }
     },
     {
@@ -448,7 +486,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "MIT"
+        "operator": "MIT",
+        "operator:wikidata": "Q49108"
       }
     },
     {
@@ -492,8 +531,8 @@
     },
     {
       "displayName": "Network Rail",
-      "id": "networkrail-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "networkrail-89d420",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "emergency": "phone",
         "operator": "Network Rail"
@@ -511,11 +550,14 @@
     },
     {
       "displayName": "North Carolina State University",
-      "id": "northcarolinastateuniversity-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "northcarolinastateuniversity-ca5227",
+      "locationSet": {
+        "include": ["us-nc.geojson"]
+      },
       "tags": {
         "emergency": "phone",
-        "operator": "North Carolina State University"
+        "operator": "North Carolina State University",
+        "operator:wikidata": "Q1132346"
       }
     },
     {
@@ -563,11 +605,15 @@
     },
     {
       "displayName": "Rochester Institute of Technology",
-      "id": "rochesterinstituteoftechnology-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "rochesterinstituteoftechnology-c2fcbd",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
       "tags": {
         "emergency": "phone",
-        "operator": "Rochester Institute of Technology"
+        "operator": "Rochester Institute of Technology",
+        "operator:short": "RIT",
+        "operator:wikidata": "Q2140778"
       }
     },
     {
@@ -599,11 +645,14 @@
     },
     {
       "displayName": "Sacred Heart Medical Center at Riverbend",
-      "id": "sacredheartmedicalcenteratriverbend-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "sacredheartmedicalcenteratriverbend-84ad95",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "emergency": "phone",
-        "operator": "Sacred Heart Medical Center at Riverbend"
+        "operator": "Sacred Heart Medical Center at Riverbend",
+        "operator:wikidata": "Q7397238"
       }
     },
     {
@@ -643,7 +692,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "SDSU Police Department"
+        "operator": "SDSU Police Department",
+        "operator:wikidata": "Q120751640"
       }
     },
     {
@@ -654,7 +704,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "Seattle University"
+        "operator": "Seattle University",
+        "operator:wikidata": "Q615873"
       }
     },
     {
@@ -667,12 +718,26 @@
       }
     },
     {
-      "displayName": "Slippery Rock University",
-      "id": "slipperyrockuniversity-d9e125",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Shippensburg University Police Department",
+      "id": "shippensburguniversitypolicedepartment-db5f36",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
       "tags": {
         "emergency": "phone",
-        "operator": "Slippery Rock University"
+        "operator": "Shippensburg University Police Department"
+      }
+    },
+    {
+      "displayName": "Slippery Rock University",
+      "id": "slipperyrockuniversity-db5f36",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
+      "tags": {
+        "emergency": "phone",
+        "operator": "Slippery Rock University",
+        "operator:wikidata": "Q1799642"
       }
     },
     {
@@ -691,8 +756,8 @@
     },
     {
       "displayName": "Stadt Karlsruhe",
-      "id": "stadtkarlsruhe-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "stadtkarlsruhe-3876cc",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "emergency": "phone",
         "operator": "Stadt Karlsruhe"
@@ -708,6 +773,18 @@
         "emergency": "phone",
         "operator": "Stadtwerke Augsburg",
         "operator:wikidata": "Q2328426"
+      }
+    },
+    {
+      "displayName": "Stanford University",
+      "id": "stanforduniversity-a22ec8",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "emergency": "phone",
+        "operator": "Stanford University",
+        "operator:wikidata": "Q41506"
       }
     },
     {
@@ -728,7 +805,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "Texas Woman's University"
+        "operator": "Texas Woman's University",
+        "operator:wikidata": "Q3468361"
       }
     },
     {
@@ -754,7 +832,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "Towson University"
+        "operator": "Towson University",
+        "operator:wikidata": "Q1474129"
       }
     },
     {
@@ -782,20 +861,20 @@
     },
     {
       "displayName": "Trenes Argentinos",
-      "id": "trenesargentinos-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "trenesargentinos-91d45d",
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "emergency": "phone",
         "operator": "Trenes Argentinos"
       }
     },
     {
-      "displayName": "U.S Customs and Border Protection",
+      "displayName": "U.S. Customs and Border Protection",
       "id": "uscustomsandborderprotection-dc8817",
       "locationSet": {"include": ["us"]},
       "tags": {
         "emergency": "phone",
-        "operator": "U.S Customs and Border Protection",
+        "operator": "U.S. Customs and Border Protection",
         "operator:short": "CBP",
         "operator:wikidata": "Q368804"
       }
@@ -813,8 +892,10 @@
     },
     {
       "displayName": "UF Police Department",
-      "id": "ufpolicedepartment-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "ufpolicedepartment-c0aeb4",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
       "tags": {
         "emergency": "phone",
         "operator": "UF Police Department"
@@ -828,7 +909,42 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "UMass Lowell"
+        "operator": "UMass Lowell",
+        "operator:wikidata": "Q15143"
+      }
+    },
+    {
+      "displayName": "UNH Police",
+      "id": "unhpolice-ec47aa",
+      "locationSet": {
+        "include": ["us-nh.geojson"]
+      },
+      "tags": {
+        "emergency": "phone",
+        "operator": "UNH Police"
+      }
+    },
+    {
+      "displayName": "University at Buffalo",
+      "id": "universityatbuffalo-c2fcbd",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "emergency": "phone",
+        "operator": "University at Buffalo",
+        "operator:wikidata": "Q681025"
+      }
+    },
+    {
+      "displayName": "University of Alabama Police Department",
+      "id": "universityofalabamapolicedepartment-b53a22",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
+      "tags": {
+        "emergency": "phone",
+        "operator": "University of Alabama Police Department"
       }
     },
     {
@@ -898,8 +1014,8 @@
     },
     {
       "displayName": "Verkehrsbetriebe Karlsruhe GmbH",
-      "id": "verkehrsbetriebekarlsruhegmbh-d9e125",
-      "locationSet": {"include": ["001"]},
+      "id": "verkehrsbetriebekarlsruhegmbh-3876cc",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "emergency": "phone",
         "operator": "Verkehrsbetriebe Karlsruhe GmbH"
@@ -916,6 +1032,16 @@
       }
     },
     {
+      "displayName": "VicRoads",
+      "id": "vicroads-e6a219",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "emergency": "phone",
+        "operator": "VicRoads",
+        "operator:wikidata": "Q1320887"
+      }
+    },
+    {
       "displayName": "Virginia Tech",
       "id": "virginiatech-1efc6c",
       "locationSet": {
@@ -923,7 +1049,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "Virginia Tech"
+        "operator": "Virginia Tech",
+        "operator:wikidata": "Q65379"
       }
     },
     {
@@ -961,6 +1088,17 @@
       }
     },
     {
+      "displayName": "WSW mobil",
+      "id": "wswmobil-3876cc",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["wsw mobil gmbh"],
+      "tags": {
+        "emergency": "phone",
+        "operator": "WSW mobil",
+        "operator:wikidata": "Q44880072"
+      }
+    },
+    {
       "displayName": "Yale University",
       "id": "yaleuniversity-2ea36d",
       "locationSet": {
@@ -968,7 +1106,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "Yale University"
+        "operator": "Yale University",
+        "operator:wikidata": "Q49112"
       }
     },
     {
