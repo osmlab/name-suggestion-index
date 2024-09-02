@@ -125,12 +125,12 @@
       }
     },
     {
-      "displayName": "Aes Andes",
+      "displayName": "AES Andes",
       "id": "aesandes-0e0bfd",
       "locationSet": {"include": ["ar", "cl"]},
       "matchNames": ["aes gener"],
       "tags": {
-        "operator": "Aes Andes",
+        "operator": "AES Andes",
         "operator:wikidata": "Q4651363",
         "power": "generator"
       }
@@ -244,8 +244,10 @@
     },
     {
       "displayName": "Alabama Power",
-      "id": "alabamapower-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "alabamapower-f81226",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
       "tags": {
         "operator": "Alabama Power",
         "operator:wikidata": "Q4705296",
@@ -544,6 +546,7 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "operator": "Anesco",
+        "operator:wikidata": "Q108565133",
         "power": "generator"
       }
     },
@@ -705,8 +708,10 @@
     },
     {
       "displayName": "Austin Energy",
-      "id": "austinenergy-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "austinenergy-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Austin Energy",
         "operator:wikidata": "Q4823071",
@@ -725,11 +730,11 @@
     },
     {
       "displayName": "Axpo",
-      "id": "axpo-b18b84",
-      "locationSet": {"include": ["ch"]},
+      "id": "axpo-5b591a",
+      "locationSet": {"include": ["ch", "li"]},
       "tags": {
         "operator": "Axpo",
-        "operator:wikidata": "Q792617",
+        "operator:wikidata": "Q679525",
         "power": "generator"
       }
     },
@@ -1108,11 +1113,16 @@
       }
     },
     {
-      "displayName": "British Solar Renewables Ltd.",
-      "id": "britishsolarrenewablesltd-9ac094",
+      "displayName": "British Solar Renewables",
+      "id": "britishsolarrenewables-9ac094",
       "locationSet": {"include": ["gb"]},
+      "matchNames": [
+        "british solar renewables ltd."
+      ],
       "tags": {
-        "operator": "British Solar Renewables Ltd.",
+        "operator": "British Solar Renewables",
+        "operator:short": "BSR",
+        "operator:wikidata": "Q108565198",
         "power": "generator"
       }
     },
@@ -1552,11 +1562,12 @@
       }
     },
     {
-      "displayName": "Colbún S.A.",
-      "id": "colbunsa-daaa5a",
+      "displayName": "Colbún",
+      "id": "colbun-daaa5a",
       "locationSet": {"include": ["cl"]},
+      "matchNames": ["colbún s.a."],
       "tags": {
-        "operator": "Colbún S.A.",
+        "operator": "Colbún",
         "operator:wikidata": "Q2982375",
         "power": "generator"
       }
@@ -1628,11 +1639,15 @@
       }
     },
     {
-      "displayName": "Compañía Eólica Aragonesa, S.A. (CEASA)",
-      "id": "companiaeolicaaragonesasaceasa-ae5946",
+      "displayName": "Compañía Eólica Aragonesa",
+      "id": "companiaeolicaaragonesa-ae5946",
       "locationSet": {"include": ["es"]},
+      "matchNames": [
+        "compañía eólica aragonesa, s.a. (ceasa)"
+      ],
       "tags": {
-        "operator": "Compañía Eólica Aragonesa, S.A. (CEASA)",
+        "operator": "Compañía Eólica Aragonesa",
+        "operator:short": "CEASA",
         "power": "generator"
       }
     },
@@ -1705,8 +1720,10 @@
     },
     {
       "displayName": "CPS Energy",
-      "id": "cpsenergy-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "cpsenergy-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "CPS Energy",
         "operator:wikidata": "Q5013736",
@@ -1742,11 +1759,12 @@
       }
     },
     {
-      "displayName": "DB Energie GmbH",
-      "id": "dbenergiegmbh-b8ae25",
+      "displayName": "DB Energie",
+      "id": "dbenergie-b8ae25",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["db energie gmbh"],
       "tags": {
-        "operator": "DB Energie GmbH",
+        "operator": "DB Energie",
         "operator:wikidata": "Q1152043",
         "power": "generator"
       }
@@ -1825,11 +1843,12 @@
       }
     },
     {
-      "displayName": "Deutsche Bahn AG",
-      "id": "deutschebahnag-b8ae25",
+      "displayName": "Deutsche Bahn",
+      "id": "deutschebahn-b8ae25",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["deutsche bahn ag"],
       "tags": {
-        "operator": "Deutsche Bahn AG",
+        "operator": "Deutsche Bahn",
         "operator:wikidata": "Q9322",
         "power": "generator"
       }
@@ -1849,6 +1868,7 @@
       "locationSet": {"include": ["ae"]},
       "tags": {
         "operator": "DEWA",
+        "operator:wikidata": "Q1262868",
         "power": "generator"
       }
     },
@@ -1922,13 +1942,30 @@
       }
     },
     {
-      "displayName": "Dominion Energy South Carolina, Inc",
-      "id": "dominionenergysouthcarolinainc-3f646f",
+      "displayName": "Dominion Energy",
+      "id": "dominionenergy-c58391",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": ["us-sc.geojson"]
+      },
+      "tags": {
+        "operator": "Dominion Energy",
+        "operator:wikidata": "Q677464",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Dominion Energy South Carolina",
+      "id": "dominionenergysouthcarolina-3f646f",
       "locationSet": {
         "include": ["us-sc.geojson"]
       },
+      "matchNames": [
+        "dominion energy",
+        "dominion energy south carolina, inc"
+      ],
       "tags": {
-        "operator": "Dominion Energy South Carolina, Inc",
+        "operator": "Dominion Energy South Carolina",
         "operator:wikidata": "Q114367619",
         "power": "generator"
       }
@@ -2509,8 +2546,8 @@
     },
     {
       "displayName": "Endesa",
-      "id": "endesa-74685d",
-      "locationSet": {"include": ["001"]},
+      "id": "endesa-ae5946",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "operator": "Endesa",
         "operator:wikidata": "Q1275336",
@@ -2528,8 +2565,8 @@
     },
     {
       "displayName": "Eneco",
-      "id": "eneco-7c4044",
-      "locationSet": {"include": ["nl"]},
+      "id": "eneco-59360d",
+      "locationSet": {"include": ["be", "nl"]},
       "matchNames": ["eneco groep n.v."],
       "tags": {
         "operator": "Eneco",
@@ -2597,8 +2634,8 @@
     },
     {
       "displayName": "Enercon",
-      "id": "enercon-74685d",
-      "locationSet": {"include": ["001"]},
+      "id": "enercon-b8ae25",
+      "locationSet": {"include": ["de"]},
       "matchNames": ["enercon gmbh"],
       "tags": {
         "operator": "Enercon",
@@ -2617,8 +2654,10 @@
     },
     {
       "displayName": "Energia",
-      "id": "energia-1f8ba0",
-      "locationSet": {"include": ["ie"]},
+      "id": "energia-8a255d",
+      "locationSet": {
+        "include": ["gb-nir", "ie"]
+      },
       "tags": {
         "operator": "Energia",
         "operator:wikidata": "Q7934801",
@@ -2739,8 +2778,10 @@
     },
     {
       "displayName": "Enertrag",
-      "id": "enertrag-74685d",
-      "locationSet": {"include": ["001"]},
+      "id": "enertrag-a301bb",
+      "locationSet": {
+        "include": ["de", "fx", "pl", "za"]
+      },
       "tags": {
         "operator": "Enertrag",
         "operator:wikidata": "Q1341596",
@@ -2868,11 +2909,13 @@
       }
     },
     {
-      "displayName": "Entega",
-      "id": "entega-b8ae25",
-      "locationSet": {"include": ["de"]},
+      "displayName": "entega",
+      "id": "entega-57cee2",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
       "tags": {
-        "operator": "Entega",
+        "operator": "entega",
         "operator:wikidata": "Q1563486",
         "power": "generator"
       }

@@ -47,6 +47,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Å Energi Vannkraft",
+        "operator:wikidata": "Q75704087",
         "power": "line"
       }
     },
@@ -361,6 +362,7 @@
       "locationSet": {"include": ["py"]},
       "tags": {
         "operator": "ANDE",
+        "operator:wikidata": "Q5657818",
         "power": "line"
       }
     },
@@ -706,6 +708,8 @@
       "locationSet": {"include": ["bz"]},
       "tags": {
         "operator": "Belize Electricity Limited",
+        "operator:short": "BEL",
+        "operator:wikidata": "Q4882970",
         "power": "line"
       }
     },
@@ -911,16 +915,19 @@
       }
     },
     {
-      "displayName": "Carroll Electric Cooperative Corporation",
-      "id": "carrollelectriccooperativecorporation-3a58f1",
+      "displayName": "Carroll Electric Cooperative",
+      "id": "carrollelectriccooperative-3a58f1",
       "locationSet": {
         "include": [
           "us-ar.geojson",
           "us-mo.geojson"
         ]
       },
+      "matchNames": [
+        "carroll electric cooperative corporation"
+      ],
       "tags": {
-        "operator": "Carroll Electric Cooperative Corporation",
+        "operator": "Carroll Electric Cooperative",
         "operator:wikidata": "Q5046558",
         "power": "line"
       }
@@ -1056,8 +1063,10 @@
     },
     {
       "displayName": "Central Electric Power Co-Op",
-      "id": "centralelectricpowercoop-b654b4",
-      "locationSet": {"include": ["us"]},
+      "id": "centralelectricpowercoop-f274f2",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
       "tags": {
         "operator": "Central Electric Power Co-Op",
         "power": "line"
@@ -1512,7 +1521,11 @@
       "displayName": "CNR",
       "id": "cnr-e3be4c",
       "locationSet": {"include": ["fx"]},
-      "tags": {"operator": "CNR", "power": "line"}
+      "tags": {
+        "operator": "CNR",
+        "operator:wikidata": "Q1121170",
+        "power": "line"
+      }
     },
     {
       "displayName": "Codelco Chile",
@@ -1844,7 +1857,11 @@
       "displayName": "CSG",
       "id": "csg-cf3c91",
       "locationSet": {"include": ["cn"]},
-      "tags": {"operator": "CSG", "power": "line"}
+      "tags": {
+        "operator": "CSG",
+        "operator:wikidata": "Q209039",
+        "power": "line"
+      }
     },
     {
       "displayName": "CTEEP",
@@ -1930,11 +1947,12 @@
       }
     },
     {
-      "displayName": "DB Energie GmbH",
-      "id": "dbenergiegmbh-d5e323",
+      "displayName": "DB Energie",
+      "id": "dbenergie-d5e323",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["db energie gmbh"],
       "tags": {
-        "operator": "DB Energie GmbH",
+        "operator": "DB Energie",
         "operator:wikidata": "Q1152043",
         "power": "line"
       }
@@ -1978,8 +1996,8 @@
     },
     {
       "displayName": "Department of Power Transmission and System Control",
-      "id": "departmentofpowertransmissionandsystemcontrol-97fc17",
-      "locationSet": {"include": ["my"]},
+      "id": "departmentofpowertransmissionandsystemcontrol-b2cc4d",
+      "locationSet": {"include": ["mm"]},
       "tags": {
         "operator": "Department of Power Transmission and System Control",
         "power": "line"
@@ -1991,6 +2009,7 @@
       "locationSet": {"include": ["ae"]},
       "tags": {
         "operator": "DEWA",
+        "operator:wikidata": "Q1262868",
         "power": "line"
       }
     },
@@ -2014,11 +2033,27 @@
     },
     {
       "displayName": "Dominion Energy",
-      "id": "dominionenergy-b654b4",
-      "locationSet": {"include": ["us"]},
+      "id": "dominionenergy-48be4c",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": ["us-sc.geojson"]
+      },
       "tags": {
         "operator": "Dominion Energy",
         "operator:wikidata": "Q677464",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Dominion Energy South Carolina",
+      "id": "dominionenergysouthcarolina-ae69b6",
+      "locationSet": {
+        "include": ["us-sc.geojson"]
+      },
+      "matchNames": ["dominion energy"],
+      "tags": {
+        "operator": "Dominion Energy South Carolina",
+        "operator:wikidata": "Q114367619",
         "power": "line"
       }
     },
@@ -2197,9 +2232,12 @@
     },
     {
       "displayName": "East Kentucky Power Cooperative",
-      "id": "eastkentuckypowercooperative-ab6528",
+      "id": "eastkentuckypowercooperative-037ea9",
       "locationSet": {
-        "include": ["us-ky.geojson"]
+        "include": [
+          "us-in.geojson",
+          "us-ky.geojson"
+        ]
       },
       "matchNames": [
         "east kentucky power cooperative, inc."
@@ -2544,8 +2582,8 @@
     },
     {
       "displayName": "Elering",
-      "id": "elering-079142",
-      "locationSet": {"include": ["et"]},
+      "id": "elering-d57d1a",
+      "locationSet": {"include": ["ee"]},
       "tags": {
         "operator": "Elering",
         "operator:wikidata": "Q5359452",
@@ -2913,20 +2951,12 @@
       "locationSet": {"include": ["pl"]},
       "matchNames": [
         "energa operator",
-        "energa operator oddział toruń"
+        "energa operator oddział toruń",
+        "energa-operator sa"
       ],
       "tags": {
         "operator": "Energa",
         "operator:wikidata": "Q9253957",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ENERGA-OPERATOR SA",
-      "id": "energaoperatorsa-dffc4e",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "operator": "ENERGA-OPERATOR SA",
         "power": "line"
       }
     },
@@ -2957,6 +2987,8 @@
       "locationSet": {"include": ["pt"]},
       "tags": {
         "operator": "Energias de Portugal",
+        "operator:short": "EDP",
+        "operator:wikidata": "Q1341222",
         "power": "line"
       }
     },
@@ -2967,6 +2999,7 @@
       "note": "There seems to be an Austrian, Czech, and potentially German and Swiss company of the same name. Further research needed.",
       "tags": {
         "operator": "Energie AG",
+        "operator:wikidata": "Q1231542",
         "power": "line"
       }
     },
@@ -3107,24 +3140,27 @@
       }
     },
     {
-      "displayName": "ENERTRAG",
-      "id": "enertrag-116894",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Enertrag",
+      "id": "enertrag-33ce8b",
+      "locationSet": {
+        "include": ["de", "fx", "pl", "za"]
+      },
       "tags": {
-        "operator": "ENERTRAG",
+        "operator": "Enertrag",
         "operator:wikidata": "Q1341596",
         "power": "line"
       }
     },
     {
-      "displayName": "ENERVIE Vernetzt GmbH",
-      "id": "enervievernetztgmbh-fe2846",
+      "displayName": "ENERVIE Vernetzt",
+      "id": "enervievernetzt-fe2846",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": ["enervie vernetzt gmbh"],
       "tags": {
-        "operator": "ENERVIE Vernetzt GmbH",
-        "operator:wikidata": "Q1341587",
+        "operator": "ENERVIE Vernetzt",
+        "operator:wikidata": "Q124422786",
         "power": "line"
       }
     },
@@ -3134,13 +3170,14 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "operator": "Enexis",
+        "operator:wikidata": "Q2036673",
         "power": "line"
       }
     },
     {
       "displayName": "Engie",
-      "id": "engie-34bf95",
-      "locationSet": {"include": ["fr"]},
+      "id": "engie-116894",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "Engie",
         "operator:wikidata": "Q13416787",

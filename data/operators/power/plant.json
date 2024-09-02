@@ -37,6 +37,7 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "operator": "A2A",
+        "operator:wikidata": "Q279978",
         "power": "plant"
       }
     },
@@ -94,26 +95,26 @@
       }
     },
     {
-      "displayName": "AES",
-      "id": "aes-87be82",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cl"]
-      },
-      "tags": {
-        "operator": "AES",
-        "operator:wikidata": "Q291508",
-        "power": "plant"
-      }
-    },
-    {
       "displayName": "AES Andes",
-      "id": "aesandes-da5611",
-      "locationSet": {"include": ["cl"]},
+      "id": "aesandes-bc90e6",
+      "locationSet": {"include": ["ar", "cl"]},
       "matchNames": ["aes", "aes gener"],
       "tags": {
         "operator": "AES Andes",
         "operator:wikidata": "Q4651363",
+        "power": "plant"
+      }
+    },
+    {
+      "displayName": "AES Corporation",
+      "id": "aescorporation-12344d",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ar", "cl"]
+      },
+      "tags": {
+        "operator": "AES Corporation",
+        "operator:wikidata": "Q291508",
         "power": "plant"
       }
     },
@@ -558,6 +559,7 @@
       "locationSet": {"include": ["mx"]},
       "tags": {
         "operator": "Comisión Federal de Electricidad",
+        "operator:short": "CFE",
         "operator:wikidata": "Q1114680",
         "power": "plant"
       }
@@ -669,8 +671,11 @@
     },
     {
       "displayName": "Dominion Energy",
-      "id": "dominionenergy-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "dominionenergy-ff5e26",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": ["us-sc.geojson"]
+      },
       "tags": {
         "operator": "Dominion Energy",
         "operator:wikidata": "Q677464",
@@ -679,9 +684,12 @@
     },
     {
       "displayName": "Dominion Energy South Carolina",
-      "id": "dominionenergysouthcarolina-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "dominionenergysouthcarolina-f65593",
+      "locationSet": {
+        "include": ["us-sc.geojson"]
+      },
       "matchNames": [
+        "dominion energy",
         "dominion energy south carolina, inc"
       ],
       "tags": {
@@ -763,8 +771,8 @@
     },
     {
       "displayName": "Duke Energy Progress",
-      "id": "dukeenergyprogress-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "dukeenergyprogress-2ac081",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "Duke Energy Progress",
         "operator:wikidata": "Q1264404",
