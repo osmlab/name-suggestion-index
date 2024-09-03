@@ -4026,6 +4026,16 @@
       }
     },
     {
+      "displayName": "Green Genius",
+      "id": "greengenius-f48411",
+      "locationSet": {"include": ["lt"]},
+      "matchNames": ["uab green genius"],
+      "tags": {
+        "operator": "Green Genius",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Green Investment Group",
       "id": "greeninvestmentgroup-c79aa4",
       "locationSet": {"include": ["pl"]},
@@ -6833,10 +6843,13 @@
     },
     {
       "displayName": "SachsenEnergie",
-      "id": "sachsenenergie-b8ae25",
-      "locationSet": {"include": ["de"]},
+      "id": "sachsenenergie-1f61f0",
+      "locationSet": {
+        "include": ["de-sn.geojson"]
+      },
       "tags": {
         "operator": "SachsenEnergie",
+        "operator:wikidata": "Q104758900",
         "power": "generator"
       }
     },
@@ -6851,8 +6864,10 @@
     },
     {
       "displayName": "Salt River Project",
-      "id": "saltriverproject-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "saltriverproject-7494e7",
+      "locationSet": {
+        "include": ["us-az.geojson"]
+      },
       "tags": {
         "operator": "Salt River Project",
         "operator:short": "SRP",
@@ -6944,9 +6959,13 @@
     },
     {
       "displayName": "SaskPower",
-      "id": "saskpower-acf614",
+      "id": "saskpower-167375",
       "locationSet": {
-        "include": ["ca-sk.geojson"]
+        "include": [
+          "ca-ab.geojson",
+          "ca-mb.geojson",
+          "ca-sk.geojson"
+        ]
       },
       "tags": {
         "operator": "SaskPower",
@@ -7275,8 +7294,8 @@
     },
     {
       "displayName": "SNCF Réseau",
-      "id": "sncfreseau-ebc5ae",
-      "locationSet": {"include": ["fr"]},
+      "id": "sncfreseau-33d749",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "operator": "SNCF Réseau",
         "operator:wikidata": "Q21605526",
@@ -7693,8 +7712,10 @@
     },
     {
       "displayName": "SunEdison",
-      "id": "sunedison-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "sunedison-9a0961",
+      "locationSet": {
+        "include": ["ca", "us", "za"]
+      },
       "matchNames": ["sunedision"],
       "tags": {
         "operator": "SunEdison",
@@ -8089,8 +8110,8 @@
     },
     {
       "displayName": "Trustpower",
-      "id": "trustpower-7b0614",
-      "locationSet": {"include": ["nz"]},
+      "id": "trustpower-239f09",
+      "locationSet": {"include": ["au", "nz"]},
       "tags": {
         "operator": "Trustpower",
         "operator:wikidata": "Q2456640",
@@ -8144,30 +8165,11 @@
       }
     },
     {
-      "displayName": "U.S. Bureau of Reclamation",
-      "id": "usbureauofreclamation-19ecba",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "U.S. Bureau of Reclamation",
-        "operator:wikidata": "Q1010548",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "UAB European Energy Lithuania",
       "id": "uabeuropeanenergylithuania-f48411",
       "locationSet": {"include": ["lt"]},
       "tags": {
         "operator": "UAB European Energy Lithuania",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "UAB Green genius",
-      "id": "uabgreengenius-f48411",
-      "locationSet": {"include": ["lt"]},
-      "tags": {
-        "operator": "UAB Green genius",
         "power": "generator"
       }
     },
@@ -8218,12 +8220,25 @@
       }
     },
     {
-      "displayName": "Uniper Kraftwerke GmbH",
-      "id": "uniperkraftwerkegmbh-b8ae25",
+      "displayName": "Uniper Kraftwerke",
+      "id": "uniperkraftwerke-b8ae25",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["uniper kraftwerke gmbh"],
       "tags": {
-        "operator": "Uniper Kraftwerke GmbH",
+        "operator": "Uniper Kraftwerke",
         "operator:wikidata": "Q1273399",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "United States Bureau of Reclamation",
+      "id": "unitedstatesbureauofreclamation-19ecba",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["u s bureau of reclamation"],
+      "tags": {
+        "operator": "United States Bureau of Reclamation",
+        "operator:short": "USBR",
+        "operator:wikidata": "Q1010548",
         "power": "generator"
       }
     },
@@ -8307,9 +8322,9 @@
     },
     {
       "displayName": "Vattenfall",
-      "id": "vattenfall-2af48b",
+      "id": "vattenfall-c18b00",
       "locationSet": {
-        "include": ["001"],
+        "include": ["150"],
         "exclude": ["de", "gb", "nl"]
       },
       "matchNames": ["vattenfall ab"],
@@ -8321,14 +8336,14 @@
     },
     {
       "displayName": "Vattenfall (Deutschland)",
-      "id": "vattenfallgmbh-b8ae25",
+      "id": "vattenfall-b8ae25",
       "locationSet": {"include": ["de"]},
       "matchNames": [
-        "vattenfall",
-        "vattenfall europe"
+        "vattenfall europe",
+        "vattenfall gmbh"
       ],
       "tags": {
-        "operator": "Vattenfall GmbH",
+        "operator": "Vattenfall",
         "operator:wikidata": "Q1649778",
         "power": "generator"
       }
@@ -8389,9 +8404,9 @@
     },
     {
       "displayName": "Ventient Energy",
-      "id": "ventientenergy-19eee7",
+      "id": "ventientenergy-32f5c4",
       "locationSet": {
-        "include": ["be", "gr", "pt"]
+        "include": ["be", "gb", "pt"]
       },
       "tags": {
         "operator": "Ventient Energy",
@@ -8546,7 +8561,7 @@
       }
     },
     {
-      "displayName": "Virginia Electric and Power Company",
+      "displayName": "Virginia Electric & Power Company",
       "id": "virginiaelectricandpowercompany-a84d3b",
       "locationSet": {
         "include": [
@@ -8557,7 +8572,8 @@
         ]
       },
       "tags": {
-        "operator": "Virginia Electric and Power Company",
+        "operator": "Virginia Electric & Power Company",
+        "operator:wikidata": "Q117834539",
         "power": "generator"
       }
     },
@@ -8623,8 +8639,8 @@
     },
     {
       "displayName": "Voltalia",
-      "id": "voltalia-ebc5ae",
-      "locationSet": {"include": ["fr"]},
+      "id": "voltalia-cc560c",
+      "locationSet": {"include": ["fr", "gr"]},
       "tags": {
         "operator": "Voltalia",
         "operator:wikidata": "Q57593821",
@@ -9066,11 +9082,14 @@
       }
     },
     {
-      "displayName": "Wisconsin Public Service",
-      "id": "wisconsinpublicservice-19ecba",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Wisconsin Public Service Corporation",
+      "id": "wisconsinpublicservicecorporation-27c60c",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "matchNames": ["wisconsin public service"],
       "tags": {
-        "operator": "Wisconsin Public Service",
+        "operator": "Wisconsin Public Service Corporation",
         "operator:short": "WPS",
         "operator:wikidata": "Q8027253",
         "power": "generator"
