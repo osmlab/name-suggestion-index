@@ -69,7 +69,7 @@
       }
     },
     {
-      "displayName": "Alaska State Parks",
+      "displayName": "Alaska Division of Parks & Outdoor Recreation",
       "id": "alaskadivisionofparksandoutdoorrecreation-50e0e1",
       "locationSet": {"include": ["us-ak"]},
       "matchNames": ["alaska state parks"],
@@ -274,7 +274,7 @@
       }
     },
     {
-      "displayName": "Baltimore County Department of Recreation & Parks",
+      "displayName": "Baltimore County Department of Recreation and Parks",
       "id": "baltimorecountydepartmentofrecreationandparks-fb928d",
       "locationSet": {
         "include": ["us-md.geojson"]
@@ -506,11 +506,13 @@
       "tags": {
         "leisure": "park",
         "operator": "Bureau of Land Management",
+        "operator:short": "BLM",
+        "operator:type": "public",
         "operator:wikidata": "Q1010556"
       }
     },
     {
-      "displayName": "California State Parks",
+      "displayName": "California Department of Parks and Recreation",
       "id": "californiadepartmentofparksandrecreation-dc1787",
       "locationSet": {
         "include": ["us-ca.geojson"]
@@ -2022,7 +2024,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "City of Lincoln City"
+        "operator": "City of Lincoln City",
+        "operator:wikidata": "Q988751"
       }
     },
     {
@@ -2033,7 +2036,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "City of Los Angeles"
+        "operator": "City of Los Angeles",
+        "operator:wikidata": "Q65"
       }
     },
     {
@@ -3213,7 +3217,7 @@
       }
     },
     {
-      "displayName": "Colorado Parks & Wildlife",
+      "displayName": "Colorado Parks and Wildlife",
       "id": "coloradoparksandwildlife-0900ba",
       "locationSet": {
         "include": ["us-co.geojson"]
@@ -3221,7 +3225,7 @@
       "matchNames": ["colorado state parks"],
       "tags": {
         "leisure": "park",
-        "operator": "Colorado Parks & Wildlife",
+        "operator": "Colorado Parks and Wildlife",
         "operator:short": "CPW",
         "operator:type": "public",
         "operator:wikidata": "Q5148857"
@@ -3474,24 +3478,6 @@
         "operator": "Emavra",
         "operator:type": "public",
         "operator:wikidata": "Q110064070"
-      }
-    },
-    {
-      "displayName": "EMNRD",
-      "id": "newmexicodepartmentofenergymineralsandnaturalresources-1fe561",
-      "locationSet": {
-        "include": ["us-az.geojson"]
-      },
-      "matchNames": [
-        "new mexico (energy, minerals, and natural resources department)",
-        "new mexico state parks"
-      ],
-      "tags": {
-        "leisure": "park",
-        "operator": "New Mexico Department of Energy, Minerals, and Natural Resources",
-        "operator:short": "EMNRD",
-        "operator:type": "public",
-        "operator:wikidata": "Q7010172"
       }
     },
     {
@@ -4023,7 +4009,7 @@
       }
     },
     {
-      "displayName": "Idaho State Parks & Recreation",
+      "displayName": "Idaho Department of Parks and Recreation",
       "id": "idahodepartmentofparksandrecreation-e3f3ca",
       "locationSet": {
         "include": ["us-id.geojson"]
@@ -4286,7 +4272,7 @@
       }
     },
     {
-      "displayName": "Kansas Wildlife & Parks",
+      "displayName": "Kansas Department of Wildlife & Parks",
       "id": "kansasdepartmentofwildlifeandparks-3287b4",
       "locationSet": {
         "include": ["us-ks.geojson"]
@@ -4326,15 +4312,15 @@
       }
     },
     {
-      "displayName": "Kentucky State Parks",
-      "id": "kentuckydeparmentofparks-9af01b",
+      "displayName": "Kentucky Department of Parks",
+      "id": "kentuckydepartmentofparks-9af01b",
       "locationSet": {
         "include": ["us-ky.geojson"]
       },
       "matchNames": ["kentucky state parks"],
       "tags": {
         "leisure": "park",
-        "operator": "Kentucky Deparment of Parks",
+        "operator": "Kentucky Department of Parks",
         "operator:type": "public",
         "operator:wikidata": "Q109328420"
       }
@@ -4551,11 +4537,12 @@
       }
     },
     {
-      "displayName": "Louisiana State Parks",
+      "displayName": "Louisiana Office of State Parks",
       "id": "louisianaofficeofstateparks-4221d5",
       "locationSet": {
         "include": ["us-la.geojson"]
       },
+      "matchNames": ["louisiana state parks"],
       "tags": {
         "leisure": "park",
         "operator": "Louisiana Office of State Parks",
@@ -4745,11 +4732,12 @@
       }
     },
     {
-      "displayName": "Maryland State Parks",
+      "displayName": "Maryland Park Service",
       "id": "marylandparkservice-fb928d",
       "locationSet": {
         "include": ["us-md.geojson"]
       },
+      "matchNames": ["maryland state parks"],
       "note": "Maybe those 2 name should be matchNames in taginfo: 'Maryland Department of Natural Resources Maryland Park Service' and 'Maryland Department of Natural Resources, Maryland Park Service'",
       "tags": {
         "leisure": "park",
@@ -4963,7 +4951,7 @@
       }
     },
     {
-      "displayName": "Montana State Parks",
+      "displayName": "Montana Department of Fish, Wildlife and Parks",
       "id": "montanadepartmentoffishwildlifeandparks-7d0f2d",
       "locationSet": {
         "include": ["us-mt.geojson"]
@@ -5266,12 +5254,46 @@
       "locationSet": {
         "include": ["us-nv.geojson"]
       },
-      "matchNames": ["idaho state parks"],
       "tags": {
         "leisure": "park",
         "operator": "Nevada State Parks",
         "operator:type": "public",
         "operator:wikidata": "Q109292599"
+      }
+    },
+    {
+      "displayName": "New Mexico EMNRD",
+      "id": "newmexicodepartmentofenergymineralsandnaturalresources-1fe561",
+      "locationSet": {
+        "include": ["us-az.geojson"]
+      },
+      "matchNames": [
+        "new mexico (energy, minerals, and natural resources department)",
+        "new mexico state parks"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "New Mexico Department of Energy, Minerals, and Natural Resources",
+        "operator:short": "EMNRD",
+        "operator:type": "public",
+        "operator:wikidata": "Q7010172"
+      }
+    },
+    {
+      "displayName": "New York State OPRHP",
+      "id": "newyorkstateofficeofparksrecreationandhistoricpreservation-932a36",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "matchNames": [
+        "new york state parks",
+        "ny state parks"
+      ],
+      "tags": {
+        "leisure": "park",
+        "operator": "New York State Office of Parks, Recreation and Historic Preservation",
+        "operator:type": "public",
+        "operator:wikidata": "Q1706660"
       }
     },
     {
@@ -5319,7 +5341,7 @@
       }
     },
     {
-      "displayName": "North Carolina State Parks",
+      "displayName": "North Carolina Division of Parks and Recreation",
       "id": "northcarolinadivisionofparksandrecreation-dc7d2a",
       "locationSet": {
         "include": ["us-nc.geojson"]
@@ -5336,13 +5358,14 @@
       }
     },
     {
-      "displayName": "North Dakota Parks & Recreation",
+      "displayName": "North Dakota Parks and Recreation Department",
       "id": "northdakotaparksandrecreationdepartment-20a56e",
       "locationSet": {
         "include": ["us-nd.geojson"]
       },
       "matchNames": [
         "north dakota parks & rec",
+        "north dakota parks & recreation",
         "north dakota state parks"
       ],
       "tags": {
@@ -5403,19 +5426,6 @@
         "operator": "Nova Scotia Provincial Parks",
         "operator:type": "public",
         "operator:wikidata": "Q110073137"
-      }
-    },
-    {
-      "displayName": "NY State Parks",
-      "id": "newyorkstateofficeofparksrecreationandhistoricpreservation-932a36",
-      "locationSet": {
-        "include": ["us-ny.geojson"]
-      },
-      "tags": {
-        "leisure": "park",
-        "operator": "New York State Office of Parks, Recreation and Historic Preservation",
-        "operator:type": "public",
-        "operator:wikidata": "Q1706660"
       }
     },
     {
@@ -5549,7 +5559,7 @@
       }
     },
     {
-      "displayName": "Oregon State Parks",
+      "displayName": "Oregon Parks and Recreation Department",
       "id": "oregonparksandrecreationdepartment-9db284",
       "locationSet": {
         "include": ["us-or.geojson"]
@@ -6110,7 +6120,7 @@
       }
     },
     {
-      "displayName": "South Dakota Game, Fish, & Parks",
+      "displayName": "South Dakota GFP",
       "id": "southdakotadepartmentofgamefishandparks-2c4d84",
       "locationSet": {
         "include": ["us-sd.geojson"]
@@ -6341,7 +6351,7 @@
       }
     },
     {
-      "displayName": "Texas Parks & Wildlife",
+      "displayName": "Texas Parks and Wildlife Department",
       "id": "texasparksandwildlifedepartment-8bfd34",
       "locationSet": {
         "include": ["us-tx.geojson"]
@@ -7007,7 +7017,7 @@
       }
     },
     {
-      "displayName": "Washington State Parks",
+      "displayName": "Washington State Parks and Recreation Commission",
       "id": "washingtonstateparksandrecreationcommission-6c188f",
       "locationSet": {
         "include": ["us-wa.geojson"]
