@@ -12,7 +12,9 @@
         "^sem afectação$",
         "^unknown - conflicting data sources$"
       ],
-      "named": ["^DNR and Somerset Soil Conservation District$"]
+      "named": [
+        "^dnr and somerset soil conservation district$"
+      ]
     }
   },
   "items": [
@@ -27,9 +29,11 @@
     },
     {
       "displayName": "Administración de Parques Nacionales",
-      "id": "administracionparquesnacionales-8282c4",
+      "id": "administraciondeparquesnacionales-8282c4",
       "locationSet": {"include": ["ar"]},
-      "matchNames": ["Administración Parques Nacionales"],
+      "matchNames": [
+        "administración parques nacionales"
+      ],
       "tags": {
         "boundary": "protected_area",
         "operator": "Administración de Parques Nacionales",
@@ -218,14 +222,15 @@
       }
     },
     {
-      "displayName": "BNRC",
-      "id": "bnrc-dd28c3",
+      "displayName": "Berkshire Natural Resources Council",
+      "id": "berkshirenaturalresourcescouncil-dd28c3",
       "locationSet": {
         "include": ["us-ma.geojson"]
       },
       "tags": {
         "boundary": "protected_area",
-        "operator": "BNRC",
+        "operator": "Berkshire Natural Resources Council",
+        "operator:short": "BNRC",
         "operator:wikidata": "Q4892281"
       }
     },
@@ -273,6 +278,20 @@
         "operator:wikidata": "Q1010548",
         "ownership": "national",
         "protected": "perpetuity"
+      }
+    },
+    {
+      "displayName": "Bureau of State Parks and Recreation (Massachusetts)",
+      "id": "bureauofstateparksandrecreation-dd28c3",
+      "locationSet": {
+        "include": ["us-ma.geojson"]
+      },
+      "matchNames": [
+        "dcr - division of state parks and recreation"
+      ],
+      "tags": {
+        "boundary": "protected_area",
+        "operator": "Bureau of State Parks and Recreation"
       }
     },
     {
@@ -392,15 +411,17 @@
     },
     {
       "displayName": "Committee of Management (Victoria)",
-      "id": "committeeofmanagement-b5b751",
-      "locationSet": {"include": ["au-vic.geojson"]},
+      "id": "committeeofmanagement-261f43",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
         "operator": "Committee of Management"
       }
     },
     {
-      "displayName": "Commonwealth DCCEEW (Australia)",
+      "displayName": "Commonwealth DCCEEW",
       "id": "commonwealthdepartmentofclimatechangeenergytheenvironmentandwater-b5b751",
       "locationSet": {"include": ["au"]},
       "tags": {
@@ -510,6 +531,39 @@
       }
     },
     {
+      "displayName": "DBCA (Western Australia)",
+      "id": "departmentofbiodiversityconservationandattractions-245152",
+      "locationSet": {
+        "include": ["au-wa.geojson"]
+      },
+      "matchNames": [
+        "western australian department of biodiversity, conservation and attractions"
+      ],
+      "tags": {
+        "boundary": "protected_area",
+        "operator": "Department of Biodiversity, Conservation and Attractions",
+        "operator:short": "DBCA",
+        "operator:wikidata": "Q60760112"
+      }
+    },
+    {
+      "displayName": "DEECA (Victoria)",
+      "id": "departmentofenergyenvironmentandclimateaction-261f43",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
+      "matchNames": [
+        "delwp",
+        "victorian department of environment land water and planning"
+      ],
+      "tags": {
+        "boundary": "protected_area",
+        "operator": "Department of Energy, Environment and Climate Action",
+        "operator:short": "DEECA",
+        "operator:wikidata": "Q115804184"
+      }
+    },
+    {
       "displayName": "Delaware Division of Fish and Wildlife",
       "id": "delawaredivisionoffishandwildlife-429456",
       "locationSet": {
@@ -537,30 +591,6 @@
       }
     },
     {
-      "displayName": "DEECA (Victoria)",
-      "id": "delwp-b5b751",
-      "locationSet": {"include": ["au-vic.geojson"]},
-      "matchNames": ["DELWP","Victorian Department of Environment Land Water and Planning"],
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Department of Energy, Environment and Climate Action"
-        "operator:short": "DEECA",
-        "operator:wikidata": "Q115804184"
-      }
-    },
-    {
-      "displayName": "DEW (South Australia)",
-      "id": "departmentforenvironmentandwater-b5b751",
-      "locationSet": {"include": ["au-sa.geojson"]},
-      "matchNames": ["Department of Environment, Water and Natural Resources (South Australia)"],
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Department for Environment and Water",
-        "operator:short": "DEW",
-        "operator:wikidata": "Q5260295"
-      }
-    },
-    {
       "displayName": "Department of Conservation (New Zealand)",
       "id": "departmentofconservation-997671",
       "locationSet": {"include": ["nz"]},
@@ -569,19 +599,6 @@
         "boundary": "protected_area",
         "operator": "Department of Conservation",
         "operator:wikidata": "Q1191417"
-      }
-    },
-    {
-      "displayName": "Massachusetts Department of Fish & Game",
-      "id": "departmentoffishandgame-dd28c3",
-      "locationSet": {
-        "include": ["us-ma.geojson"]
-      },
-      "matchNames": ["Department of Fish and Game"],
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Massachusetts Department of Fish & Game",
-        "operator:wikidata": "Q30258915"
       }
     },
     {
@@ -607,38 +624,19 @@
       }
     },
     {
-      "displayName": "NRE Tasmania",
-      "id": "departmentofnaturalresourcesandenvironmenttasmania-3bca28",
-      "locationSet": {"include": ["au-tas"]},
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Department of Natural Resources and Environment Tasmania",
-        "operator:wikidata": "Q16956288"
-      }
-    },
-    {
-      "displayName": "Parks and Wildlife Service (Western Australia)",
-      "id": "q21538546-245152",
+      "displayName": "DEW (South Australia)",
+      "id": "departmentforenvironmentandwater-c25f98",
       "locationSet": {
-        "include": ["au-wa.geojson"]
-      },
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Parks and Wildlife Service"
-      }
-    },
-    {
-      "displayName": "Bureau of State Parks and Recreation (Massachusetts)",
-      "id": "divisionofstateparksandrecreation-dd28c3",
-      "locationSet": {
-        "include": ["us-ma.geojson"]
+        "include": ["au-sa.geojson"]
       },
       "matchNames": [
-        "dcr - division of state parks and recreation"
+        "department of environment, water and natural resources (south australia)"
       ],
       "tags": {
         "boundary": "protected_area",
-        "operator": "Bureau of State Parks and Recreation"
+        "operator": "Department for Environment and Water",
+        "operator:short": "DEW",
+        "operator:wikidata": "Q5260295"
       }
     },
     {
@@ -796,8 +794,10 @@
     },
     {
       "displayName": "Forestry Corporation of NSW",
-      "id": "forestrycorporationofnsw-b5b751",
-      "locationSet": {"include": ["au-nsw.geojson"]},
+      "id": "forestrycorporationofnsw-292b9d",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
         "operator": "Forestry Corporation of NSW",
@@ -806,9 +806,11 @@
     },
     {
       "displayName": "Forestry SA",
-      "id": "forestrysouthaustralia-b5b751",
-      "locationSet": {"include": ["au-sa.geojson"]},
-      "matchNames": ["Forestry South Australia"],
+      "id": "forestrysa-c25f98",
+      "locationSet": {
+        "include": ["au-sa.geojson"]
+      },
+      "matchNames": ["forestry south australia"],
       "tags": {
         "boundary": "protected_area",
         "operator": "Forestry SA",
@@ -1434,6 +1436,21 @@
       }
     },
     {
+      "displayName": "Massachusetts Department of Fish & Game",
+      "id": "massachusettsdepartmentoffishandgame-dd28c3",
+      "locationSet": {
+        "include": ["us-ma.geojson"]
+      },
+      "matchNames": [
+        "department of fish and game"
+      ],
+      "tags": {
+        "boundary": "protected_area",
+        "operator": "Massachusetts Department of Fish & Game",
+        "operator:wikidata": "Q30258915"
+      }
+    },
+    {
       "displayName": "Metro Vancouver Parks",
       "id": "metrovancouverparks-dc06ea",
       "locationSet": {
@@ -1757,7 +1774,7 @@
       }
     },
     {
-      "displayName": "New York City Department of Environmental Protection, Bureau of Water Supply",
+      "displayName": "New York City DEP, Bureau of Water Supply",
       "id": "newyorkcitydepartmentofenvironmentalprotectionbureauofwatersupply-d6ebd5",
       "locationSet": {
         "include": ["new_york_city.geojson"]
@@ -1768,7 +1785,7 @@
       }
     },
     {
-      "displayName": "New York State Department of Environmental Conservation",
+      "displayName": "New York State DEC",
       "id": "newyorkstatedepartmentofenvironmentalconservation-b02294",
       "locationSet": {
         "include": ["us-ny.geojson"]
@@ -1780,7 +1797,7 @@
       }
     },
     {
-      "displayName": "New York State Office of Parks, Recreation and Historic Preservation",
+      "displayName": "New York State OPRHP",
       "id": "newyorkstateofficeofparksrecreationandhistoricpreservation-b02294",
       "locationSet": {
         "include": ["us-ny.geojson"]
@@ -1865,6 +1882,16 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Nova Scotia Nature Trust"
+      }
+    },
+    {
+      "displayName": "NRE Tasmania",
+      "id": "departmentofnaturalresourcesandenvironmenttasmania-3bca28",
+      "locationSet": {"include": ["au-tas"]},
+      "tags": {
+        "boundary": "protected_area",
+        "operator": "Department of Natural Resources and Environment Tasmania",
+        "operator:wikidata": "Q16956288"
       }
     },
     {
@@ -1983,20 +2010,12 @@
         "include": ["au-wa.geojson"]
       },
       "matchNames": [
+        "parks and wildlife service, western australia",
         "wa-department of parks and wildlife (dpaw)"
       ],
       "tags": {
         "boundary": "protected_area",
         "operator": "Parks and Wildlife Service"
-      }
-    },
-    {
-      "displayName": "Parks and Wildlife Service, Western Australia",
-      "id": "parksandwildlifeservicewesternaustralia-b5b751",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Parks and Wildlife Service, Western Australia"
       }
     },
     {
@@ -2010,8 +2029,10 @@
     },
     {
       "displayName": "Parks Victoria",
-      "id": "parksvictoria-b5b751",
-      "locationSet": {"include": ["au"]},
+      "id": "parksvictoria-261f43",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
         "operator": "Parks Victoria",
@@ -3353,17 +3374,6 @@
         "boundary": "protected_area",
         "operator": "Washington State Parks and Recreation Commission",
         "operator:wikidata": "Q7972267"
-      }
-    },
-    {
-      "displayName": "DBCA (Western Australia)",
-      "id": "westernaustraliandepartmentofbiodiversityconservationandattractions-b5b751",
-      "locationSet": {"include": ["au-wa.geojson"]},
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Department of Biodiversity, Conservation and Attractions",
-        "operator:short": "DBCA",
-        "operator:wikidata": "Q60760112"
       }
     },
     {
