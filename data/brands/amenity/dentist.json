@@ -7,15 +7,15 @@
         "^(dentist[ae]?|дантист)$",
         "^cabinet dentaire$",
         "^consultorio odontológico$",
-        "^dental care$",
-        "^dental( (clinic|surgery))?$",
+        "^dental( (care|clinic|surgery|office))?$",
         "^family dentistry$",
-        "^zahnarzt(praxis)?$",
-        "^стоматолог$",
-        "^стоматология$",
-        "^стоматологія$"
+        "^zahn(arzt(praxis)?|medizin)$",
+        "^стоматолог(ия|ія)?$"
       ],
-      "named": ["^стоматологическая поликлиника$"]
+      "named": [
+        "^family dental care$",
+        "^стоматологическая поликлиника$"
+      ]
     }
   },
   "items": [
@@ -105,6 +105,17 @@
       }
     },
     {
+      "displayName": "Dentalia",
+      "id": "dentalia-e18215",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "amenity": "dentist",
+        "brand": "Dentalia",
+        "healthcare": "dentist",
+        "name": "Dentalia"
+      }
+    },
+    {
       "displayName": "DentalWorks",
       "id": "dentalworks-f3d61f",
       "locationSet": {
@@ -190,6 +201,24 @@
         "brand:wikidata": "Q6430587",
         "healthcare": "dentist",
         "name": "Kool Smiles"
+      }
+    },
+    {
+      "displayName": "MEINDENTIST",
+      "id": "meindentist-d9b135",
+      "locationSet": {
+        "include": [
+          "de-bb.geojson",
+          "de-be.geojson"
+        ]
+      },
+      "preserveTags": ["^name"],
+      "tags": {
+        "amenity": "dentist",
+        "brand": "MEINDENTIST",
+        "brand:wikidata": "Q127611277",
+        "healthcare": "dentist",
+        "name": "MeinDentist"
       }
     },
     {
@@ -383,8 +412,10 @@
     },
     {
       "displayName": "Улыбка",
-      "id": "a1a834-1194d5",
-      "locationSet": {"include": ["001"]},
+      "id": "a1a834-37a285",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "amenity": "dentist",
         "brand": "Улыбка",

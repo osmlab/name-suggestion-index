@@ -1,7 +1,12 @@
 {
   "properties": {
     "path": "operators/route/railway",
-    "exclude": {"generic": ["^railway|tracks?$"]}
+    "exclude": {
+      "generic": ["^railway|tracks?$"],
+      "named": [
+        "(db netz|db infrago|db station|deutsche bahn)"
+      ]
+    }
   },
   "items": [
     {
@@ -31,6 +36,15 @@
       "tags": {
         "operator": "Banedanmark",
         "operator:wikidata": "Q806420",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "BLS",
+      "id": "bls-c5a8f6",
+      "locationSet": {"include": ["ch", "it"]},
+      "tags": {
+        "operator": "BLS",
         "route": "railway"
       }
     },
@@ -170,26 +184,6 @@
       }
     },
     {
-      "displayName": "DB Netz AG",
-      "id": "dbnetzag-5b17c6",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "DB Netz AG",
-        "operator:wikidata": "Q896765",
-        "route": "railway"
-      }
-    },
-    {
-      "displayName": "Deutsche Bahn",
-      "id": "deutschebahn-5b17c6",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "Deutsche Bahn",
-        "operator:wikidata": "Q9322",
-        "route": "railway"
-      }
-    },
-    {
       "displayName": "ETS/RFV",
       "id": "euskaltrenbidesarearedferroviariavasca-eeecbf",
       "locationSet": {"include": ["es", "fx"]},
@@ -216,6 +210,17 @@
         "operator": "Ferrocarrils de la Generalitat de Catalunya",
         "operator:short": "FGC",
         "operator:wikidata": "Q83819",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "GIO Rail",
+      "id": "giorail-a83027",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "operator": "GIO Rail",
         "route": "railway"
       }
     },
@@ -285,6 +290,15 @@
       }
     },
     {
+      "displayName": "Irish Rail",
+      "id": "irishrail-8601a8",
+      "locationSet": {"include": ["ie"]},
+      "tags": {
+        "operator": "Irish Rail",
+        "route": "railway"
+      }
+    },
+    {
       "displayName": "JR九州",
       "id": "kyushurailwaycompany-c878da",
       "locationSet": {"include": ["jp"]},
@@ -347,10 +361,13 @@
     },
     {
       "displayName": "Los Angeles County Metropolitan Transportation Authority",
-      "id": "losangelescountymetropolitantransportationauthority-954af4",
-      "locationSet": {"include": ["001"]},
+      "id": "losangelescountymetropolitantransportationauthority-86f3a2",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
       "tags": {
         "operator": "Los Angeles County Metropolitan Transportation Authority",
+        "operator:wikidata": "Q3259702",
         "route": "railway"
       }
     },
@@ -432,6 +449,15 @@
       "tags": {
         "operator": "Ontario Southland Railway",
         "operator:wikidata": "Q7094908",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "Philippine National Railways",
+      "id": "philippinenationalrailways-c5c786",
+      "locationSet": {"include": ["ph"]},
+      "tags": {
+        "operator": "Philippine National Railways",
         "route": "railway"
       }
     },
@@ -731,18 +757,27 @@
       }
     },
     {
-      "displayName": "臺灣鐵路管理局",
-      "id": "taiwanrailwaysadministration-140976",
+      "displayName": "國營臺灣鐵路股份有限公司",
+      "id": "48bbdc-140976",
       "locationSet": {"include": ["tw"]},
-      "matchNames": ["台灣鐵路管理局", "臺鐵"],
       "tags": {
-        "operator": "臺灣鐵路管理局",
-        "operator:en": "Taiwan Railways Administration",
-        "operator:hak": "Thòi-vân Thiet-lu Kón-lî-khiu̍k",
-        "operator:nan": "Tâi-oân Thih-lō͘ Koán-lí-kio̍k",
-        "operator:nan-HJ": "臺灣鐵路管理局",
-        "operator:nan-POJ": "Tâi-oân Thih-lō͘ Koán-lí-kio̍k",
-        "operator:nan-TL": "Tâi-uân Thih-lōo Kuán-lí-kio̍k",
+        "operator": "國營臺灣鐵路股份有限公司",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "臺灣鐵路公司",
+      "id": "taiwanrailwaycorporation-140976",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["台灣鐵路管理局", "臺灣鐵路管理局", "臺鐵"],
+      "tags": {
+        "operator": "臺灣鐵路公司",
+        "operator:en": "Taiwan Railway Corporation",
+        "operator:hak": "Thòi-vân Thiet-lu Kûng-sṳ̂",
+        "operator:nan": "Tâi-oân Thih-lō͘ Kong-si",
+        "operator:nan-HJ": "臺灣鐵路公司",
+        "operator:nan-POJ": "Tâi-oân Thih-lō͘ Kong-si",
+        "operator:nan-TL": "Tâi-uân Thih-lōo Kong-si",
         "operator:short": "台鐵",
         "operator:short:en": "TRA",
         "operator:short:nan": "Tâi-thih",
@@ -750,8 +785,8 @@
         "operator:short:nan-POJ": "Tâi-thih",
         "operator:short:nan-TL": "Tâi-thih",
         "operator:short:zh": "台鐵",
-        "operator:wikidata": "Q697926",
-        "operator:zh": "臺灣鐵路管理局",
+        "operator:wikidata": "Q112151129",
+        "operator:zh": "臺灣鐵路公司",
         "route": "railway"
       }
     },

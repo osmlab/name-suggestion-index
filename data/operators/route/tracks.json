@@ -1,7 +1,12 @@
 {
   "properties": {
     "path": "operators/route/tracks",
-    "exclude": {"generic": ["^railway|tracks?$"]}
+    "exclude": {
+      "generic": ["^railway|tracks?$"],
+      "named": [
+        "(db netz|db infrago|db station|deutsche bahn)"
+      ]
+    }
   },
   "items": [
     {
@@ -21,16 +26,6 @@
       "locationSet": {"include": ["ro"]},
       "tags": {
         "operator": "CFR Infrastructură",
-        "route": "tracks"
-      }
-    },
-    {
-      "displayName": "DB Netz AG",
-      "id": "dbnetzag-7a762a",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "DB Netz AG",
-        "operator:wikidata": "Q896765",
         "route": "tracks"
       }
     },
@@ -63,6 +58,7 @@
       "locationSet": {"include": ["hr"]},
       "tags": {
         "operator": "HŽ Infrastruktura",
+        "operator:wikidata": "Q102035872",
         "route": "tracks"
       }
     },
@@ -149,6 +145,16 @@
       "tags": {
         "operator": "SŽ Infrastruktura",
         "operator:wikidata": "Q101424662",
+        "route": "tracks"
+      }
+    },
+    {
+      "displayName": "ŽSR",
+      "id": "zsr-5c437f",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "operator": "ŽSR",
+        "operator:wikidata": "Q393524",
         "route": "tracks"
       }
     }

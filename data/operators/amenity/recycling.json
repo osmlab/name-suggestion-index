@@ -12,7 +12,8 @@
         "^verre$",
         "^waste management$",
         "^سطل زباله$"
-      ]
+      ],
+      "named": ["goodwill"]
     }
   },
   "items": [
@@ -67,6 +68,7 @@
         "include": ["de-nw.geojson"]
       },
       "matchNames": [
+        "abv kreis viersen",
         "abv kreis viersen, stadt viersen"
       ],
       "tags": {
@@ -172,15 +174,6 @@
       }
     },
     {
-      "displayName": "ABV Kreis Viersen",
-      "id": "abvkreisviersen-91c985",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "operator": "ABV Kreis Viersen"
-      }
-    },
-    {
       "displayName": "Acea Pinerolese Industriale Spa",
       "id": "aceapineroleseindustrialespa-94eaae",
       "locationSet": {"include": ["it"]},
@@ -205,6 +198,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Actifrip"
+      }
+    },
+    {
+      "displayName": "Afvalstoffendienst",
+      "id": "afvalstoffendienst-fcd61b",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Afvalstoffendienst"
       }
     },
     {
@@ -248,6 +250,15 @@
       }
     },
     {
+      "displayName": "Ajuntament de L'Hospitalet de Llobregat",
+      "id": "ajuntamentdelhospitaletdellobregat-49dabd",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Ajuntament de L'Hospitalet de Llobregat"
+      }
+    },
+    {
       "displayName": "Ajuntament de Riba-roja de Túria",
       "id": "ajuntamentderibarojadeturia-49dabd",
       "locationSet": {"include": ["es"]},
@@ -272,6 +283,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Ajuntament de Santa Coloma de Gramenet"
+      }
+    },
+    {
+      "displayName": "Ajuntament de Santa Eulària des Riu",
+      "id": "ajuntamentdesantaeulariadesriu-49dabd",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Ajuntament de Santa Eulària des Riu"
       }
     },
     {
@@ -379,6 +399,15 @@
       }
     },
     {
+      "displayName": "Amarsul",
+      "id": "amarsul-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Amarsul"
+      }
+    },
+    {
       "displayName": "Amiu (Genova)",
       "id": "amiu-94eaae",
       "locationSet": {"include": ["it"]},
@@ -416,8 +445,8 @@
     },
     {
       "displayName": "AREA",
-      "id": "area-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "area-94eaae",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "recycling",
         "operator": "AREA"
@@ -433,9 +462,20 @@
       }
     },
     {
+      "displayName": "AS Eesti Keskkonnateenused",
+      "id": "aseestikeskkonnateenused-964b6d",
+      "locationSet": {"include": ["ee"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "AS Eesti Keskkonnateenused"
+      }
+    },
+    {
       "displayName": "Asekol",
-      "id": "asekol-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "asekol-a83183",
+      "locationSet": {
+        "include": ["cz", "pl", "sk"]
+      },
       "tags": {
         "amenity": "recycling",
         "operator": "Asekol"
@@ -470,8 +510,10 @@
     },
     {
       "displayName": "Astral (Toronto)",
-      "id": "astral-6d7601",
-      "locationSet": {"include": ["ca"]},
+      "id": "astral-d16161",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
       "tags": {
         "amenity": "recycling",
         "operator": "Astral"
@@ -571,7 +613,10 @@
       "locationSet": {
         "include": ["de-by.geojson"]
       },
-      "matchNames": ["stadt augsburg (aws)"],
+      "matchNames": [
+        "aws",
+        "stadt augsburg (aws)"
+      ],
       "tags": {
         "amenity": "recycling",
         "operator": "AWS Augsburg",
@@ -584,7 +629,7 @@
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
-      "matchNames": ["stadt stuttgart"],
+      "matchNames": ["aws", "stadt stuttgart"],
       "tags": {
         "amenity": "recycling",
         "operator": "AWS Stuttgart",
@@ -639,8 +684,8 @@
     },
     {
       "displayName": "Ayuntamiento de Madrid",
-      "id": "ayuntamientodemadrid-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "ayuntamientodemadrid-49dabd",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Ayuntamiento de Madrid"
@@ -685,11 +730,14 @@
     },
     {
       "displayName": "Bartow County",
-      "id": "bartowcounty-624e31",
-      "locationSet": {"include": ["us"]},
+      "id": "bartowcounty-bddb39",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
       "tags": {
         "amenity": "recycling",
-        "operator": "Bartow County"
+        "operator": "Bartow County",
+        "operator:wikidata": "Q488181"
       }
     },
     {
@@ -776,18 +824,48 @@
       }
     },
     {
-      "displayName": "Bowling Green State University",
-      "id": "bowlinggreenstateuniversity-624e31",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Bourgogne Recyclage",
+      "id": "bourgognerecyclage-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
-        "operator": "Bowling Green State University"
+        "operator": "Bourgogne Recyclage"
+      }
+    },
+    {
+      "displayName": "Bowling Green State University",
+      "id": "bowlinggreenstateuniversity-5e5980",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Bowling Green State University",
+        "operator:wikidata": "Q895457"
+      }
+    },
+    {
+      "displayName": "Brangeon Environnement",
+      "id": "brangeonenvironnement-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Brangeon Environnement"
+      }
+    },
+    {
+      "displayName": "BreEnt GmbH",
+      "id": "breentgmbh-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "BreEnt GmbH"
       }
     },
     {
       "displayName": "BRF Norra Guldheden Nr 1",
-      "id": "brfnorraguldhedennr1-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "brfnorraguldhedennr1-43c9f4",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "recycling",
         "operator": "BRF Norra Guldheden Nr 1"
@@ -844,12 +922,39 @@
       }
     },
     {
+      "displayName": "BTV Lohsa",
+      "id": "btvlohsa-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "BTV Lohsa"
+      }
+    },
+    {
       "displayName": "CACL",
       "id": "cacl-011ab0",
       "locationSet": {"include": ["gy"]},
       "tags": {
         "amenity": "recycling",
         "operator": "CACL"
+      }
+    },
+    {
+      "displayName": "Caen la Mer",
+      "id": "caenlamer-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Caen la Mer"
+      }
+    },
+    {
+      "displayName": "CALITOM Service public des déchets de Charente",
+      "id": "calitomservicepublicdesdechetsdecharente-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "CALITOM Service public des déchets de Charente"
       }
     },
     {
@@ -952,6 +1057,7 @@
       "displayName": "Chrysalide Ressourcerie",
       "id": "chrysalideressourcerie-59e4c1",
       "locationSet": {"include": ["fx"]},
+      "matchNames": ["chrysalide"],
       "tags": {
         "amenity": "recycling",
         "operator": "Chrysalide Ressourcerie"
@@ -965,6 +1071,15 @@
         "amenity": "recycling",
         "operator": "Circulus",
         "operator:wikidata": "Q58225800"
+      }
+    },
+    {
+      "displayName": "Circulus-Berkel",
+      "id": "circulusberkel-fcd61b",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Circulus-Berkel"
       }
     },
     {
@@ -1003,7 +1118,8 @@
       },
       "tags": {
         "amenity": "recycling",
-        "operator": "City of Denton"
+        "operator": "City of Denton",
+        "operator:wikidata": "Q128306"
       }
     },
     {
@@ -1024,7 +1140,20 @@
       },
       "tags": {
         "amenity": "recycling",
-        "operator": "City of Lawrence"
+        "operator": "City of Lawrence",
+        "operator:wikidata": "Q493840"
+      }
+    },
+    {
+      "displayName": "City of Modesto",
+      "id": "cityofmodesto-2532c6",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "amenity": "recycling",
+        "operator": "City of Modesto",
+        "operator:wikidata": "Q204561"
       }
     },
     {
@@ -1035,7 +1164,8 @@
       },
       "tags": {
         "amenity": "recycling",
-        "operator": "City of Vaughan"
+        "operator": "City of Vaughan",
+        "operator:wikidata": "Q44013"
       }
     },
     {
@@ -1131,8 +1261,8 @@
     },
     {
       "displayName": "Communauté d'agglomération Pays Basque",
-      "id": "communautedagglomerationpaysbasque-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "communautedagglomerationpaysbasque-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Communauté d'agglomération Pays Basque"
@@ -1154,6 +1284,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Communauté de communes des Pays du Sel et du Vermois"
+      }
+    },
+    {
+      "displayName": "Communauté de communes du Béarn des Gaves",
+      "id": "communautedecommunesdubearndesgaves-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Communauté de communes du Béarn des Gaves"
       }
     },
     {
@@ -1233,9 +1372,27 @@
       }
     },
     {
+      "displayName": "Communauté du Pays Voironnais",
+      "id": "communautedupaysvoironnais-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Communauté du Pays Voironnais"
+      }
+    },
+    {
+      "displayName": "Communauté urbaine du Grand Reims",
+      "id": "communauteurbainedugrandreims-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Communauté urbaine du Grand Reims"
+      }
+    },
+    {
       "displayName": "Compostri",
-      "id": "compostri-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "compostri-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Compostri"
@@ -1298,6 +1455,15 @@
       }
     },
     {
+      "displayName": "Coved",
+      "id": "coved-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Coved"
+      }
+    },
+    {
       "displayName": "Cumbria Waste Management Ltd",
       "id": "cumbriawastemanagementltd-79fa96",
       "locationSet": {"include": ["gb"]},
@@ -1327,6 +1493,24 @@
       }
     },
     {
+      "displayName": "Cyclad",
+      "id": "cyclad-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Cyclad"
+      }
+    },
+    {
+      "displayName": "CYCLAD Syndicat mixte de collecte et de traitement des ordures ménagères du Nord Charente-Maritime",
+      "id": "cycladsyndicatmixtedecollecteetdetraitementdesorduresmenageresdunordcharentemaritime-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "CYCLAD Syndicat mixte de collecte et de traitement des ordures ménagères du Nord Charente-Maritime"
+      }
+    },
+    {
       "displayName": "Dansk Røde Kors",
       "id": "danskrodekors-67373b",
       "locationSet": {"include": ["dk"]},
@@ -1335,6 +1519,15 @@
         "amenity": "recycling",
         "operator": "Dansk Røde Kors",
         "operator:wikidata": "Q12307527"
+      }
+    },
+    {
+      "displayName": "dar",
+      "id": "dar-fcd61b",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "dar"
       }
     },
     {
@@ -1366,8 +1559,8 @@
     },
     {
       "displayName": "Den Haag",
-      "id": "denhaag-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "denhaag-fcd61b",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Den Haag"
@@ -1404,6 +1597,15 @@
       }
     },
     {
+      "displayName": "Deutsches Rotes Kreuz Kreisverband Saarbrücken e.V.",
+      "id": "deutschesroteskreuzkreisverbandsaarbruckenev-79fa96",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Deutsches Rotes Kreuz Kreisverband Saarbrücken e.V."
+      }
+    },
+    {
       "displayName": "Devon County Council",
       "id": "devoncountycouncil-ad06a1",
       "locationSet": {
@@ -1413,6 +1615,15 @@
         "amenity": "recycling",
         "operator": "Devon County Council",
         "operator:wikidata": "Q6385990"
+      }
+    },
+    {
+      "displayName": "Diakonie Broumov",
+      "id": "diakoniebroumov-778b5b",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Diakonie Broumov"
       }
     },
     {
@@ -1428,6 +1639,24 @@
       }
     },
     {
+      "displayName": "Die Johanniter",
+      "id": "diejohanniter-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Die Johanniter"
+      }
+    },
+    {
+      "displayName": "Douarnenez Communauté",
+      "id": "douarnenezcommunaute-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Douarnenez Communauté"
+      }
+    },
+    {
       "displayName": "DRK Kreisverband Bonn e.V.",
       "id": "drkkreisverbandbonnev-15b788",
       "locationSet": {
@@ -1436,6 +1665,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "DRK Kreisverband Bonn e.V."
+      }
+    },
+    {
+      "displayName": "Durance Luberon Verdon Agglomération",
+      "id": "duranceluberonverdonagglomeration-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Durance Luberon Verdon Agglomération"
       }
     },
     {
@@ -1479,6 +1717,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Eco-Emballages"
+      }
+    },
+    {
+      "displayName": "Ecobeirão",
+      "id": "ecobeirao-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Ecobeirão"
       }
     },
     {
@@ -1562,6 +1809,15 @@
       }
     },
     {
+      "displayName": "Entsorgung Herne",
+      "id": "entsorgungherne-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Entsorgung Herne"
+      }
+    },
+    {
       "displayName": "Entsorgungs- und Servicebetrieb Bocholt",
       "id": "entsorgungsundservicebetriebbocholt-15b788",
       "locationSet": {
@@ -1607,12 +1863,39 @@
       }
     },
     {
+      "displayName": "EPT Paris Terres d'Envol",
+      "id": "eptparisterresdenvol-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "EPT Paris Terres d'Envol"
+      }
+    },
+    {
+      "displayName": "ERSUC",
+      "id": "ersuc-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "ERSUC"
+      }
+    },
+    {
       "displayName": "ERZ",
       "id": "erz-c59bef",
       "locationSet": {"include": ["ch"]},
       "tags": {
         "amenity": "recycling",
         "operator": "ERZ"
+      }
+    },
+    {
+      "displayName": "Esterra",
+      "id": "esterra-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Esterra"
       }
     },
     {
@@ -1683,6 +1966,15 @@
       }
     },
     {
+      "displayName": "FCC BEC, s.r.o.",
+      "id": "fccbecsro-778b5b",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "FCC BEC, s.r.o."
+      }
+    },
+    {
       "displayName": "Fehr",
       "id": "fehr-6737d9",
       "locationSet": {"include": ["de"]},
@@ -1699,6 +1991,15 @@
         "amenity": "recycling",
         "operator": "Fife Council",
         "operator:wikidata": "Q28530258"
+      }
+    },
+    {
+      "displayName": "FKF",
+      "id": "fkf-b316be",
+      "locationSet": {"include": ["hu"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "FKF"
       }
     },
     {
@@ -1730,6 +2031,17 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Fretex"
+      }
+    },
+    {
+      "displayName": "Friedensdorf International",
+      "id": "friedensdorfinternational-6737d9",
+      "locationSet": {"include": ["de"]},
+      "preserveTags": ["Aktion Friedensdorf"],
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Friedensdorf International",
+        "operator:wikidata": "Q1456718"
       }
     },
     {
@@ -1828,6 +2140,15 @@
       }
     },
     {
+      "displayName": "Gemeente Rotterdam",
+      "id": "gemeenterotterdam-fcd61b",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Gemeente Rotterdam"
+      }
+    },
+    {
       "displayName": "Gemeente Utrechtse Heuvelrug",
       "id": "gemeenteutrechtseheuvelrug-fcd61b",
       "locationSet": {"include": ["nl"]},
@@ -1845,6 +2166,15 @@
         "amenity": "recycling",
         "operator": "Gemeente Zaanstad",
         "operator:wikidata": "Q9978"
+      }
+    },
+    {
+      "displayName": "gemeente Zoetermeer",
+      "id": "gemeentezoetermeer-fcd61b",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "gemeente Zoetermeer"
       }
     },
     {
@@ -1941,6 +2271,15 @@
       }
     },
     {
+      "displayName": "Grand Annecy",
+      "id": "grandannecy-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Grand Annecy"
+      }
+    },
+    {
       "displayName": "Grand Lyon",
       "id": "grandlyon-59e4c1",
       "locationSet": {"include": ["fx"]},
@@ -1960,11 +2299,24 @@
     },
     {
       "displayName": "Grotex Recycling GmbH",
-      "id": "grotexrecyclinggmbh-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "grotexrecyclinggmbh-6737d9",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Grotex Recycling GmbH"
+      }
+    },
+    {
+      "displayName": "Grupo Empresarial del Reciclaje",
+      "id": "grupoempresarialdelreciclaje-ffc4b3",
+      "locationSet": {"include": ["cu"]},
+      "matchNames": [
+        "grupo empresarial del reciclaje - ger"
+      ],
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Grupo Empresarial del Reciclaje",
+        "operator:short": "GER"
       }
     },
     {
@@ -1978,8 +2330,8 @@
     },
     {
       "displayName": "GSAK",
-      "id": "gsak-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "gsak-6737d9",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "recycling",
         "operator": "GSAK"
@@ -2067,8 +2419,8 @@
     },
     {
       "displayName": "Human Bridge",
-      "id": "humanbridge-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "humanbridge-43c9f4",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Human Bridge"
@@ -2114,6 +2466,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Hygea"
+      }
+    },
+    {
+      "displayName": "Idélux",
+      "id": "idelux-980be7",
+      "locationSet": {"include": ["be"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Idélux"
       }
     },
     {
@@ -2253,18 +2614,10 @@
       }
     },
     {
-      "displayName": "Jakob Becker",
-      "id": "jakobbecker-91c985",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "operator": "Jakob Becker"
-      }
-    },
-    {
       "displayName": "Jakob Becker Entsorgungs-GmbH",
       "id": "jakobbeckerentsorgungsgmbh-6737d9",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["jakob becker"],
       "tags": {
         "amenity": "recycling",
         "operator": "Jakob Becker Entsorgungs-GmbH",
@@ -2330,6 +2683,15 @@
       }
     },
     {
+      "displayName": "K + K Textilrecycling GmbH",
+      "id": "kktextilrecyclinggmbh-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "K + K Textilrecycling GmbH"
+      }
+    },
+    {
       "displayName": "Kapaklı Belediyesi",
       "id": "kapaklibelediyesi-65a8bd",
       "locationSet": {"include": ["tr"]},
@@ -2340,8 +2702,8 @@
     },
     {
       "displayName": "Karl Meyer AG",
-      "id": "karlmeyerag-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "karlmeyerag-6737d9",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Karl Meyer AG"
@@ -2367,11 +2729,23 @@
     },
     {
       "displayName": "Kent State University",
-      "id": "kentstateuniversity-624e31",
-      "locationSet": {"include": ["us"]},
+      "id": "kentstateuniversity-5e5980",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
       "tags": {
         "amenity": "recycling",
-        "operator": "Kent State University"
+        "operator": "Kent State University",
+        "operator:wikidata": "Q1473615"
+      }
+    },
+    {
+      "displayName": "Kirkens Bymisjon",
+      "id": "kirkensbymisjon-3e1966",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Kirkens Bymisjon"
       }
     },
     {
@@ -2430,6 +2804,15 @@
       }
     },
     {
+      "displayName": "Kredsløb",
+      "id": "kredslob-67373b",
+      "locationSet": {"include": ["dk"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Kredsløb"
+      }
+    },
+    {
       "displayName": "Kreiswerke Cochem-Zell (Abfallwirtschaft)",
       "id": "kreiswerkecochemzellabfallwirtschaft-886dbb",
       "locationSet": {
@@ -2438,6 +2821,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Kreiswerke Cochem-Zell (Abfallwirtschaft)"
+      }
+    },
+    {
+      "displayName": "Kringwinkel",
+      "id": "kringwinkel-980be7",
+      "locationSet": {"include": ["be"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Kringwinkel"
       }
     },
     {
@@ -2452,12 +2844,48 @@
       }
     },
     {
+      "displayName": "Kuldīgas komunālie pakalpojumi",
+      "id": "kuldigaskomunaliepakalpojumi-402c21",
+      "locationSet": {"include": ["lv"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Kuldīgas komunālie pakalpojumi"
+      }
+    },
+    {
       "displayName": "La Bouquinerie du Sart",
       "id": "labouquineriedusart-59e4c1",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "La Bouquinerie du Sart"
+      }
+    },
+    {
+      "displayName": "La Chiffo",
+      "id": "lachiffo-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "La Chiffo"
+      }
+    },
+    {
+      "displayName": "Lakeuden Etappi Oy",
+      "id": "lakeudenetappioy-3e65e0",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Lakeuden Etappi Oy"
+      }
+    },
+    {
+      "displayName": "Lalandia",
+      "id": "lalandia-67373b",
+      "locationSet": {"include": ["dk"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Lalandia"
       }
     },
     {
@@ -2468,6 +2896,15 @@
         "amenity": "recycling",
         "operator": "Lancashire County Council",
         "operator:wikidata": "Q6386149"
+      }
+    },
+    {
+      "displayName": "Lancaster City Council",
+      "id": "lancastercitycouncil-79fa96",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Lancaster City Council"
       }
     },
     {
@@ -2490,6 +2927,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Landkreis Prignitz"
+      }
+    },
+    {
+      "displayName": "Landkreis Rosenheim",
+      "id": "landkreisrosenheim-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Landkreis Rosenheim"
       }
     },
     {
@@ -2539,8 +2985,8 @@
     },
     {
       "displayName": "Le Mans métropole",
-      "id": "lemansmetropole-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "lemansmetropole-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Le Mans métropole"
@@ -2574,6 +3020,15 @@
       }
     },
     {
+      "displayName": "Leeds City Council",
+      "id": "leedscitycouncil-79fa96",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Leeds City Council"
+      }
+    },
+    {
       "displayName": "Leger des Heils",
       "id": "legerdesheils-fcd61b",
       "locationSet": {"include": ["nl"]},
@@ -2598,6 +3053,16 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Les Petits Riens - Spullenhulp"
+      }
+    },
+    {
+      "displayName": "Lidl",
+      "id": "lidl-91c985",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Lidl",
+        "operator:wikidata": "Q151954"
       }
     },
     {
@@ -2634,6 +3099,24 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Linz AG Abfall"
+      }
+    },
+    {
+      "displayName": "LIPASAM",
+      "id": "lipasam-49dabd",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "LIPASAM"
+      }
+    },
+    {
+      "displayName": "LIPOR",
+      "id": "lipor-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "LIPOR"
       }
     },
     {
@@ -2733,12 +3216,32 @@
       }
     },
     {
+      "displayName": "MARE",
+      "id": "mare-49dabd",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "MARE"
+      }
+    },
+    {
       "displayName": "Marius Pedersen,a.s.",
       "id": "mariuspedersenas-d6ea52",
       "locationSet": {"include": ["sk"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Marius Pedersen,a.s."
+      }
+    },
+    {
+      "displayName": "Maxima",
+      "id": "maxima-3da616",
+      "locationSet": {
+        "include": ["ee", "lt", "lv"]
+      },
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Maxima"
       }
     },
     {
@@ -2772,6 +3275,15 @@
       }
     },
     {
+      "displayName": "MEL",
+      "id": "mel-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "MEL"
+      }
+    },
+    {
       "displayName": "Město Sokolov",
       "id": "mestosokolov-778b5b",
       "locationSet": {"include": ["cz"]},
@@ -2796,6 +3308,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Métropole de Lyon"
+      }
+    },
+    {
+      "displayName": "Métropôle européenne de Lille",
+      "id": "metropoleeuropeennedelille-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Métropôle européenne de Lille"
       }
     },
     {
@@ -2835,6 +3356,24 @@
       }
     },
     {
+      "displayName": "Morrisons",
+      "id": "morrisons-79fa96",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Morrisons"
+      }
+    },
+    {
+      "displayName": "Morrisons Foundation",
+      "id": "morrisonsfoundation-79fa96",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Morrisons Foundation"
+      }
+    },
+    {
       "displayName": "Movar",
       "id": "movar-43c9f4",
       "locationSet": {"include": ["se"]},
@@ -2862,12 +3401,30 @@
       }
     },
     {
+      "displayName": "Nantes Métropole",
+      "id": "nantesmetropole-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Nantes Métropole"
+      }
+    },
+    {
       "displayName": "Nausicaa",
       "id": "nausicaa-94eaae",
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Nausicaa"
+      }
+    },
+    {
+      "displayName": "Newport City Council",
+      "id": "newportcitycouncil-79fa96",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Newport City Council"
       }
     },
     {
@@ -2911,6 +3468,15 @@
       }
     },
     {
+      "displayName": "Obec Tuchlovice",
+      "id": "obectuchlovice-778b5b",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Obec Tuchlovice"
+      }
+    },
+    {
       "displayName": "ODEBRECHT",
       "id": "odebrecht-ade6e6",
       "locationSet": {"include": ["br"]},
@@ -2930,8 +3496,8 @@
     },
     {
       "displayName": "OOO \"Прозрачный источник\"",
-      "id": "fd4155-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "fd4155-7bdc35",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "recycling",
         "operator": "OOO \"Прозрачный источник\""
@@ -2947,6 +3513,15 @@
       }
     },
     {
+      "displayName": "Paris Ouest La Défense",
+      "id": "parisouestladefense-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Paris Ouest La Défense"
+      }
+    },
+    {
       "displayName": "Parish of St. Helier",
       "id": "parishofsthelier-ca1d6d",
       "locationSet": {"include": ["je"]},
@@ -2956,12 +3531,47 @@
       }
     },
     {
+      "displayName": "Pirkan Putkikeräys Oy",
+      "id": "pirkanputkikeraysoy-3e65e0",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Pirkan Putkikeräys Oy"
+      }
+    },
+    {
       "displayName": "Plaine Commune",
       "id": "plainecommune-59e4c1",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Plaine Commune"
+      }
+    },
+    {
+      "displayName": "plastmasa.ge Batumi",
+      "id": "c84fd6-edfb3b",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "access": "yes",
+        "amenity": "recycling",
+        "operator": "შპს „ბათუმის სანდასუფთავება“",
+        "operator:ka": "შპს „ბათუმის სანდასუფთავება“",
+        "operator:type": "government",
+        "recycling_type": "container"
+      }
+    },
+    {
+      "displayName": "plastmasa.ge Tbilisi",
+      "id": "13d3ba-edfb3b",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "access": "yes",
+        "amenity": "recycling",
+        "operator": "შპს „თბილსერვის ჯგუფი“",
+        "operator:ka": "შპს „თბილსერვის ჯგუფი“",
+        "operator:type": "government",
+        "recycling_type": "container"
       }
     },
     {
@@ -3003,6 +3613,15 @@
       }
     },
     {
+      "displayName": "Prefeitura Municipal de Fortaleza",
+      "id": "prefeituramunicipaldefortaleza-ade6e6",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Prefeitura Municipal de Fortaleza"
+      }
+    },
+    {
       "displayName": "PreZero",
       "id": "prezero-6737d9",
       "locationSet": {"include": ["de"]},
@@ -3019,6 +3638,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Profittex GmbH"
+      }
+    },
+    {
+      "displayName": "Provence Alpes Agglomération",
+      "id": "provencealpesagglomeration-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Provence Alpes Agglomération"
       }
     },
     {
@@ -3042,6 +3670,15 @@
       }
     },
     {
+      "displayName": "Ragn-Sells AS",
+      "id": "ragnsellsas-836d19",
+      "locationSet": {"include": ["ee", "no"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Ragn-Sells AS"
+      }
+    },
+    {
       "displayName": "RCM-CORBEILLES2022-COM-ENV",
       "id": "rcmcorbeilles2022comenv-ce9522",
       "locationSet": {"include": ["mf"]},
@@ -3061,8 +3698,8 @@
     },
     {
       "displayName": "Recycom",
-      "id": "recycom-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "recycom-e380cc",
+      "locationSet": {"include": ["gr"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Recycom"
@@ -3075,6 +3712,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Récylum"
+      }
+    },
+    {
+      "displayName": "Red Barnet",
+      "id": "redbarnet-67373b",
+      "locationSet": {"include": ["dk"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Red Barnet"
       }
     },
     {
@@ -3126,12 +3772,59 @@
       }
     },
     {
+      "displayName": "Resíduos do Nordeste",
+      "id": "residuosdonordeste-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Resíduos do Nordeste"
+      }
+    },
+    {
+      "displayName": "Resiestrela",
+      "id": "resiestrela-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Resiestrela"
+      }
+    },
+    {
+      "displayName": "Resinorte",
+      "id": "resinorte-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Resinorte"
+      }
+    },
+    {
       "displayName": "Retextil Recycling International",
       "id": "retextilrecyclinginternational-6737d9",
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Retextil Recycling International"
+      }
+    },
+    {
+      "displayName": "Return-It",
+      "id": "encorppacific-32c482",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "matchNames": ["bottle depot"],
+      "tags": {
+        "amenity": "recycling",
+        "brand": "Return-It",
+        "operator": "Encorp Pacific",
+        "operator:type": "private",
+        "operator:wikidata": "Q47508504",
+        "recycling_type": "centre",
+        "recycling:beverage_cartons": "yes",
+        "recycling:cans": "yes",
+        "recycling:glass_bottles": "yes",
+        "recycling:plastic_bottles": "yes"
       }
     },
     {
@@ -3145,8 +3838,8 @@
     },
     {
       "displayName": "Rhenus Logistic",
-      "id": "rhenuslogistic-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "rhenuslogistic-6737d9",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Rhenus Logistic"
@@ -3163,12 +3856,41 @@
       }
     },
     {
+      "displayName": "Rimi",
+      "id": "rimi-3da616",
+      "locationSet": {
+        "include": ["ee", "lt", "lv"]
+      },
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Rimi"
+      }
+    },
+    {
       "displayName": "Rinki",
       "id": "rinki-3e65e0",
       "locationSet": {"include": ["fi"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Rinki"
+      }
+    },
+    {
+      "displayName": "Rinki Oy",
+      "id": "rinkioy-3e65e0",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Rinki Oy"
+      }
+    },
+    {
+      "displayName": "Roba Amiga",
+      "id": "robaamiga-49dabd",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Roba Amiga"
       }
     },
     {
@@ -3210,21 +3932,22 @@
       }
     },
     {
-      "displayName": "S.K.C",
-      "id": "skc-91c985",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "recycling",
-        "operator": "S.K.C"
-      }
-    },
-    {
       "displayName": "S.K.C. Textilrecycling KG",
-      "id": "skctextilrecyclingkg-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "skctextilrecyclingkg-6737d9",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["s.k.c"],
       "tags": {
         "amenity": "recycling",
         "operator": "S.K.C. Textilrecycling KG"
+      }
+    },
+    {
+      "displayName": "Sainsbury's",
+      "id": "sainsburys-79fa96",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Sainsbury's"
       }
     },
     {
@@ -3243,6 +3966,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "SAKO"
+      }
+    },
+    {
+      "displayName": "Salubritate 2000 S.A.",
+      "id": "salubritate2000sa-4abcbd",
+      "locationSet": {"include": ["ro"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Salubritate 2000 S.A."
       }
     },
     {
@@ -3267,12 +3999,30 @@
       }
     },
     {
+      "displayName": "Schweriner Abfallentsorgungs- und Straßenreinigungsgesellschaft",
+      "id": "schwerinerabfallentsorgungsundstrassenreinigungsgesellschaft-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Schweriner Abfallentsorgungs- und Straßenreinigungsgesellschaft"
+      }
+    },
+    {
       "displayName": "Scope",
       "id": "scope-79fa96",
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Scope"
+      }
+    },
+    {
+      "displayName": "SDOMODE Syndicat de Destruction des Ordures Ménagères de l'Ouest du Département de l'Eure",
+      "id": "sdomodesyndicatdedestructiondesorduresmenageresdelouestdudepartementdeleure-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SDOMODE Syndicat de Destruction des Ordures Ménagères de l'Ouest du Département de l'Eure"
       }
     },
     {
@@ -3285,12 +4035,29 @@
       }
     },
     {
-      "displayName": "Seattle University",
-      "id": "seattleuniversity-624e31",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Seattle Public Utilities",
+      "id": "seattlepublicutilities-0169dc",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
       "tags": {
         "amenity": "recycling",
-        "operator": "Seattle University"
+        "operator": "Seattle Public Utilities",
+        "operator:short": "SPU",
+        "operator:type": "public",
+        "operator:wikidata": "Q7442159"
+      }
+    },
+    {
+      "displayName": "Seattle University",
+      "id": "seattleuniversity-0169dc",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Seattle University",
+        "operator:wikidata": "Q615873"
       }
     },
     {
@@ -3312,6 +4079,15 @@
       }
     },
     {
+      "displayName": "Serfim Recyclage",
+      "id": "serfimrecyclage-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Serfim Recyclage"
+      }
+    },
+    {
       "displayName": "Serviços Intermunicipalizados de Águas e Resíduos",
       "id": "servicosintermunicipalizadosdeaguaseresiduos-416028",
       "locationSet": {"include": ["pt"]},
@@ -3330,12 +4106,30 @@
       }
     },
     {
+      "displayName": "SIAVED Syndicat Inter-Arrondissement de Valorisation et d'Elimination des Déchets 59",
+      "id": "siavedsyndicatinterarrondissementdevalorisationetdeliminationdesdechets59-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SIAVED Syndicat Inter-Arrondissement de Valorisation et d'Elimination des Déchets 59"
+      }
+    },
+    {
       "displayName": "SICTOM",
       "id": "sictom-59e4c1",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "SICTOM"
+      }
+    },
+    {
+      "displayName": "SICTOM de la zone de Lons-le-Saunier",
+      "id": "sictomdelazonedelonslesaunier-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SICTOM de la zone de Lons-le-Saunier"
       }
     },
     {
@@ -3349,8 +4143,8 @@
     },
     {
       "displayName": "Sictom Pézenas Agde",
-      "id": "sictompezenasagde-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "sictompezenasagde-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Sictom Pézenas Agde"
@@ -3376,8 +4170,8 @@
     },
     {
       "displayName": "SIETOM",
-      "id": "sietom-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "sietom-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "SIETOM"
@@ -3411,6 +4205,24 @@
       }
     },
     {
+      "displayName": "SIMER Syndicat Interdépartemental Mixte pour l'Equipement Rural",
+      "id": "simersyndicatinterdepartementalmixtepourlequipementrural-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SIMER Syndicat Interdépartemental Mixte pour l'Equipement Rural"
+      }
+    },
+    {
+      "displayName": "Siom",
+      "id": "siom-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Siom"
+      }
+    },
+    {
       "displayName": "SIRCTOM",
       "id": "sirctom-59e4c1",
       "locationSet": {"include": ["fx"]},
@@ -3420,12 +4232,30 @@
       }
     },
     {
+      "displayName": "Siredom",
+      "id": "siredom-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Siredom"
+      }
+    },
+    {
       "displayName": "SISTO",
       "id": "sisto-59e4c1",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "SISTO"
+      }
+    },
+    {
+      "displayName": "Sita Dectra",
+      "id": "sitadectra-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Sita Dectra"
       }
     },
     {
@@ -3447,9 +4277,18 @@
       }
     },
     {
+      "displayName": "SITREVA Syndicat Intercommunal pour le Traitement et la Valorisation des Déchets (Rambouillet)",
+      "id": "sitrevasyndicatintercommunalpourletraitementetlavalorisationdesdechetsrambouillet-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SITREVA Syndicat Intercommunal pour le Traitement et la Valorisation des Déchets (Rambouillet)"
+      }
+    },
+    {
       "displayName": "Sivalor",
-      "id": "sivalor-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "sivalor-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Sivalor"
@@ -3492,6 +4331,33 @@
       }
     },
     {
+      "displayName": "SMD3 Syndicat Mixte Départemental des Déchets de la Dordogne",
+      "id": "smd3syndicatmixtedepartementaldesdechetsdeladordogne-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SMD3 Syndicat Mixte Départemental des Déchets de la Dordogne"
+      }
+    },
+    {
+      "displayName": "Smdo",
+      "id": "smdo-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Smdo"
+      }
+    },
+    {
+      "displayName": "SMDO Syndicat Mixte du Département de l'Oise",
+      "id": "smdosyndicatmixtedudepartementdeloise-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SMDO Syndicat Mixte du Département de l'Oise"
+      }
+    },
+    {
       "displayName": "SMICOTOM",
       "id": "smicotom-59e4c1",
       "locationSet": {"include": ["fx"]},
@@ -3507,6 +4373,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Smictom"
+      }
+    },
+    {
+      "displayName": "SMICTOM centre alsace",
+      "id": "smictomcentrealsace-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SMICTOM centre alsace"
       }
     },
     {
@@ -3529,8 +4404,8 @@
     },
     {
       "displayName": "Smitom-Lombric",
-      "id": "smitomlombric-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "smitomlombric-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Smitom-Lombric"
@@ -3546,9 +4421,18 @@
       }
     },
     {
+      "displayName": "SMTVD Syndicat Martiniquais de Traitement et de Valorisation des Déchets",
+      "id": "smtvdsyndicatmartiniquaisdetraitementetdevalorisationdesdechets-7046ba",
+      "locationSet": {"include": ["mq"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SMTVD Syndicat Martiniquais de Traitement et de Valorisation des Déchets"
+      }
+    },
+    {
       "displayName": "Société Méditerranéenne de Nettoiement",
-      "id": "societemediterraneennedenettoiement-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "societemediterraneennedenettoiement-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Société Méditerranéenne de Nettoiement"
@@ -3571,6 +4455,15 @@
         "amenity": "recycling",
         "operator": "SOEX",
         "operator:wikidata": "Q1497749"
+      }
+    },
+    {
+      "displayName": "SOEX Recycling Germany GmbH",
+      "id": "soexrecyclinggermanygmbh-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SOEX Recycling Germany GmbH"
       }
     },
     {
@@ -3615,8 +4508,8 @@
     },
     {
       "displayName": "Stad Halle",
-      "id": "stadhalle-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "stadhalle-980be7",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Stad Halle"
@@ -3776,6 +4669,33 @@
       }
     },
     {
+      "displayName": "Stadtwerke Brühl",
+      "id": "stadtwerkebruhl-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Stadtwerke Brühl"
+      }
+    },
+    {
+      "displayName": "Stadtwerke Erfurt",
+      "id": "stadtwerkeerfurt-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Stadtwerke Erfurt"
+      }
+    },
+    {
+      "displayName": "Stockholmshem",
+      "id": "stockholmshem-43c9f4",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Stockholmshem"
+      }
+    },
+    {
       "displayName": "Subsecretaria de ambiente y espacio público",
       "id": "subsecretariadeambienteyespaciopublico-d0f14c",
       "locationSet": {"include": ["ar"]},
@@ -3792,6 +4712,15 @@
         "amenity": "recycling",
         "operator": "Suez",
         "operator:wikidata": "Q177814"
+      }
+    },
+    {
+      "displayName": "Suez Rv Nord Est",
+      "id": "suezrvnordest-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Suez Rv Nord Est"
       }
     },
     {
@@ -3814,8 +4743,8 @@
     },
     {
       "displayName": "Suomen Pakkauskierrätys RINKI Oy",
-      "id": "suomenpakkauskierratysrinkioy-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "suomenpakkauskierratysrinkioy-3e65e0",
+      "locationSet": {"include": ["fi"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Suomen Pakkauskierrätys RINKI Oy"
@@ -3846,6 +4775,24 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Syded du Lot"
+      }
+    },
+    {
+      "displayName": "SYDED Syndicat Départemental pour l'Élimination des Déchets Ménagers et Assimilés de la Haute-Vienne",
+      "id": "sydedsyndicatdepartementalpourleliminationdesdechetsmenagersetassimilesdelahautevienne-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SYDED Syndicat Départemental pour l'Élimination des Déchets Ménagers et Assimilés de la Haute-Vienne"
+      }
+    },
+    {
+      "displayName": "SYDED Syndicat Départemental pour l'Élimination des Déchets Ménagers et Assimilés du Lot",
+      "id": "sydedsyndicatdepartementalpourleliminationdesdechetsmenagersetassimilesdulot-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SYDED Syndicat Départemental pour l'Élimination des Déchets Ménagers et Assimilés du Lot"
       }
     },
     {
@@ -3922,6 +4869,33 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Syndicat mixte intercommunal pour la collecte et le traitement des ordures ménagères Sud-Est 35"
+      }
+    },
+    {
+      "displayName": "SYTEVOM Syndicat Mixte à Vocation Unique pour la Valorisation et l'Elimination des OM de Haute-Saône",
+      "id": "sytevomsyndicatmixteavocationuniquepourlavalorisationetleliminationdesomdehautesaone-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SYTEVOM Syndicat Mixte à Vocation Unique pour la Valorisation et l'Elimination des OM de Haute-Saône"
+      }
+    },
+    {
+      "displayName": "SYVADEC Syndicat de Valorisation des Déchets de la Corse",
+      "id": "syvadecsyndicatdevalorisationdesdechetsdelacorse-2a2426",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SYVADEC Syndicat de Valorisation des Déchets de la Corse"
+      }
+    },
+    {
+      "displayName": "SYVALORM Syndicat Mixte de Valorisation des Ordures Ménagères Loir et Sarthe",
+      "id": "syvalormsyndicatmixtedevalorisationdesorduresmenageresloiretsarthe-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "SYVALORM Syndicat Mixte de Valorisation des Ordures Ménagères Loir et Sarthe"
       }
     },
     {
@@ -4012,6 +4986,15 @@
       }
     },
     {
+      "displayName": "Tell-Tex",
+      "id": "telltex-c59bef",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Tell-Tex"
+      }
+    },
+    {
       "displayName": "Terre",
       "id": "terre-980be7",
       "locationSet": {"include": ["be"]},
@@ -4019,6 +5002,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Terre"
+      }
+    },
+    {
+      "displayName": "Terres du Lauragais",
+      "id": "terresdulauragais-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Terres du Lauragais"
       }
     },
     {
@@ -4121,6 +5113,15 @@
       }
     },
     {
+      "displayName": "Textileco",
+      "id": "textileco-778b5b",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Textileco"
+      }
+    },
+    {
       "displayName": "The Fire Fighters Charity",
       "id": "thefirefighterscharity-79fa96",
       "locationSet": {"include": ["gb"]},
@@ -4159,11 +5160,50 @@
     },
     {
       "displayName": "Tremplin",
-      "id": "tremplin-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "tremplin-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Tremplin"
+      }
+    },
+    {
+      "displayName": "Tribord Sarl",
+      "id": "tribordsarl-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Tribord Sarl"
+      }
+    },
+    {
+      "displayName": "TRIFYL Syndicat mixte départemental de valorisation des déchets ménagers et assimilés du Tarn",
+      "id": "trifylsyndicatmixtedepartementaldevalorisationdesdechetsmenagersetassimilesdutarn-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "TRIFYL Syndicat mixte départemental de valorisation des déchets ménagers et assimilés du Tarn"
+      }
+    },
+    {
+      "displayName": "TRIGONE Syndicat Mixte du Gers",
+      "id": "trigonesyndicatmixtedugers-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "TRIGONE Syndicat Mixte du Gers"
+      }
+    },
+    {
+      "displayName": "Triple M Metal",
+      "id": "triplemmetal-2bbb23",
+      "locationSet": {
+        "include": ["ca", "mx", "us"]
+      },
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Triple M Metal",
+        "operator:wikidata": "Q127512834"
       }
     },
     {
@@ -4202,6 +5242,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "UIC"
+      }
+    },
+    {
+      "displayName": "Ultriplo",
+      "id": "ultriplo-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Ultriplo"
       }
     },
     {
@@ -4262,8 +5311,10 @@
     },
     {
       "displayName": "UW Facilities",
-      "id": "uwfacilities-624e31",
-      "locationSet": {"include": ["us"]},
+      "id": "uwfacilities-0169dc",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
       "tags": {
         "amenity": "recycling",
         "operator": "UW Facilities"
@@ -4279,12 +5330,39 @@
       }
     },
     {
+      "displayName": "Valence Romans Agglo",
+      "id": "valenceromansagglo-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Valence Romans Agglo"
+      }
+    },
+    {
+      "displayName": "Valnor",
+      "id": "valnor-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Valnor"
+      }
+    },
+    {
       "displayName": "Valorlis",
       "id": "valorlis-416028",
       "locationSet": {"include": ["pt"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Valorlis"
+      }
+    },
+    {
+      "displayName": "Valorsul",
+      "id": "valorsul-416028",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Valorsul"
       }
     },
     {
@@ -4312,7 +5390,17 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "recycling",
-        "operator": "Veolia Umweltservice"
+        "operator": "Veolia Umweltservice",
+        "operator:wikidata": "Q2513185"
+      }
+    },
+    {
+      "displayName": "Versero GmbH",
+      "id": "verserogmbh-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Versero GmbH"
       }
     },
     {
@@ -4322,6 +5410,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Vichy Communauté"
+      }
+    },
+    {
+      "displayName": "Vienne Condrieu Agglomération",
+      "id": "viennecondrieuagglomeration-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Vienne Condrieu Agglomération"
       }
     },
     {
@@ -4335,11 +5432,20 @@
     },
     {
       "displayName": "Ville de Paris",
-      "id": "villedeparis-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "villedeparis-59e4c1",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Ville de Paris"
+      }
+    },
+    {
+      "displayName": "Ville de Romainville",
+      "id": "villederomainville-59e4c1",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Ville de Romainville"
       }
     },
     {
@@ -4379,6 +5485,24 @@
       }
     },
     {
+      "displayName": "Waardlanden",
+      "id": "waardlanden-fcd61b",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Waardlanden"
+      }
+    },
+    {
+      "displayName": "WAS Wolfsburger Abfallwirtschaft und Straßenreinigung",
+      "id": "waswolfsburgerabfallwirtschaftundstrassenreinigung-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "WAS Wolfsburger Abfallwirtschaft und Straßenreinigung"
+      }
+    },
+    {
       "displayName": "Waste4Think",
       "id": "waste4think-e380cc",
       "locationSet": {"include": ["gr"]},
@@ -4389,8 +5513,8 @@
     },
     {
       "displayName": "Weisgerber Umweltservice",
-      "id": "weisgerberumweltservice-91c985",
-      "locationSet": {"include": ["001"]},
+      "id": "weisgerberumweltservice-6737d9",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "recycling",
         "operator": "Weisgerber Umweltservice"
@@ -4437,12 +5561,21 @@
       }
     },
     {
-      "displayName": "YouthMappersUMSA",
-      "id": "youthmappersumsa-91c985",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Zagrebački holding",
+      "id": "zagrebackiholding-39eeaa",
+      "locationSet": {"include": ["hr"]},
       "tags": {
         "amenity": "recycling",
-        "operator": "YouthMappersUMSA"
+        "operator": "Zagrebački holding"
+      }
+    },
+    {
+      "displayName": "ZAKU",
+      "id": "zaku-c59bef",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "ZAKU"
       }
     },
     {
@@ -4452,6 +5585,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "ZAW"
+      }
+    },
+    {
+      "displayName": "ZAW Donau-Wald",
+      "id": "zawdonauwald-6737d9",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "ZAW Donau-Wald"
       }
     },
     {
@@ -4514,7 +5656,8 @@
       },
       "tags": {
         "amenity": "recycling",
-        "operator": "Zweckverband Abfallwirtschaft Straubing Stadt und Land"
+        "operator": "Zweckverband Abfallwirtschaft Straubing Stadt und Land",
+        "operator:wikidata": "Q120973210"
       }
     },
     {
@@ -4675,6 +5818,15 @@
       }
     },
     {
+      "displayName": "ЖКХ г. Пинска",
+      "id": "5a34cb-91c985",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "ЖКХ г. Пинска"
+      }
+    },
+    {
       "displayName": "Зелений промінь",
       "id": "77a2a5-c13e89",
       "locationSet": {"include": ["ua"]},
@@ -4696,6 +5848,24 @@
         "operator": "Київкомунсервіс",
         "operator:wikidata": "Q123414368",
         "recycling_type": "container"
+      }
+    },
+    {
+      "displayName": "Кошик Добра",
+      "id": "521c50-c13e89",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "basket of good",
+        "koshyk dobra",
+        "бокси для одягу \"кошик добра\""
+      ],
+      "tags": {
+        "amenity": "recycling",
+        "operator": "Кошик Добра",
+        "operator:wikidata": "Q127525319",
+        "recycling_type": "container",
+        "recycling:clothes": "yes",
+        "recycling:shoes": "yes"
       }
     },
     {
@@ -4820,6 +5990,20 @@
       }
     },
     {
+      "displayName": "УОН",
+      "id": "won-f11175",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "УОН",
+        "operator:bg": "УОН",
+        "operator:en": "WON",
+        "operator:wikidata": "Q129167135",
+        "recycling_type": "container",
+        "recycling:cooking_oil": "yes"
+      }
+    },
+    {
       "displayName": "Чистое дело",
       "id": "110c7f-7bdc35",
       "locationSet": {"include": ["ru"]},
@@ -4844,6 +6028,15 @@
       "tags": {
         "amenity": "recycling",
         "operator": "Экотехпром"
+      }
+    },
+    {
+      "displayName": "松岡紙業株式会社",
+      "id": "8d42e8-91c985",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "recycling",
+        "operator": "松岡紙業株式会社"
       }
     }
   ]
