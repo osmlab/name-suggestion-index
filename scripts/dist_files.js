@@ -17,20 +17,20 @@ import { sortObject } from '../lib/sort_object.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import dissolvedJSON from '../dist/dissolved.json' assert {type: 'json'};
-import packageJSON from '../package.json' assert {type: 'json'};
-import treesJSON from '../config/trees.json' assert {type: 'json'};
-import wikidataJSON from '../dist/wikidata.json' assert {type: 'json'};
+import dissolvedJSON from '../dist/dissolved.json' with {type: 'json'};
+import packageJSON from '../package.json' with {type: 'json'};
+import treesJSON from '../config/trees.json' with {type: 'json'};
+import wikidataJSON from '../dist/wikidata.json' with {type: 'json'};
 
 const dissolved = dissolvedJSON.dissolved;
 const trees = treesJSON.trees;
 const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json' assert {type: 'json'};
+import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json' with {type: 'json'};
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
+import featureCollectionJSON from '../dist/featureCollection.json' with {type: 'json'};
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
@@ -330,7 +330,7 @@ function buildIDPresets() {
         targetTags[k] = tags[k] || preset.tags[k];
       }
 
-      // Prefer a wiki commons logo sometimes.. 
+      // Prefer a wiki commons logo sometimes..
       // Related issues list: openstreetmap/iD#6361, #2798, #3122, #8042, #8373
       const preferCommons = {
         Q177054: true,    // Burger King

@@ -3,10 +3,10 @@ import { strict as assert } from 'node:assert';
 import LocationConflation from '@rapideditor/location-conflation';
 import { Matcher } from '../index.mjs';
 
-import data from './matcher.data.json' assert {type: 'json'};
+import data from './matcher.data.json' with {type: 'json'};
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollection from '../dist/featureCollection.json' assert {type: 'json'};
+import featureCollection from '../dist/featureCollection.json' with {type: 'json'};
 const loco = new LocationConflation(featureCollection);
 
 const USA = [-98.58, 39.828];

@@ -20,11 +20,11 @@ import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
 // JSON
-import treesJSON from '../config/trees.json' assert {type: 'json'};
+import treesJSON from '../config/trees.json' with {type: 'json'};
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
+import featureCollectionJSON from '../dist/featureCollection.json' with {type: 'json'};
 const loco = new LocationConflation(featureCollectionJSON);
 
 console.log(chalk.blue('-'.repeat(70)));

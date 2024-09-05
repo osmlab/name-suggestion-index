@@ -17,8 +17,8 @@ const withLocale = localeCompare('en-US');
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import geojsonSchemaJSON from '../schema/geojson.json' assert {type: 'json'};
-import featureSchemaJSON from '../schema/feature.json' assert {type: 'json'};
+import geojsonSchemaJSON from '../schema/geojson.json' with {type: 'json'};
+import featureSchemaJSON from '../schema/feature.json' with {type: 'json'};
 
 const Validator = jsonschema.Validator;
 let v = new Validator();

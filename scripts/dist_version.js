@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import fs from 'node:fs';
 
 // JSON
-import packageJSON from '../package.json' assert {type: 'json'};
+import packageJSON from '../package.json' with {type: 'json'};
 
 // YYYYMMDD
 const now = new Date();
