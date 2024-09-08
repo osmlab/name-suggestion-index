@@ -285,7 +285,7 @@ function filterCollected() {
 // Load the index files under `data/*`
 //
 function loadIndex() {
-  const START = '🏗   ' + chalk.yellow(`Loading index files...`);
+  const START = '🏗   ' + chalk.yellow(`Loading index files (this might take around 30 seconds) ...`);
   const END = '👍  ' + chalk.green(`done loading`);
   console.log('');
   console.log(START);
