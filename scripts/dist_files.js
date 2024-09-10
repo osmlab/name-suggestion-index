@@ -17,20 +17,21 @@ import { sortObject } from '../lib/sort_object.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import dissolvedJSON from '../dist/dissolved.json' with {type: 'json'};
-import packageJSON from '../package.json' with {type: 'json'};
-import treesJSON from '../config/trees.json' with {type: 'json'};
-import wikidataJSON from '../dist/wikidata.json' with {type: 'json'};
+const dissolvedJSON = JSON5.parse(fs.readFileSync('dist/dissolved.json', 'utf8'));
+const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
+const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
+const wikidataJSON = JSON5.parse(fs.readFileSync('dist/wikidata.json', 'utf8'));
 
 const dissolved = dissolvedJSON.dissolved;
 const trees = treesJSON.trees;
 const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json' with {type: 'json'};
+const presetsFile = 'node_modules/@openstreetmap/id-tagging-schema/dist/presets.json'
+const presetsJSON = JSON5.parse(fs.readFileSync(presetsFile, 'utf8'));
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json' with {type: 'json'};
+const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};

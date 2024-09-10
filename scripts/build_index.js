@@ -20,11 +20,11 @@ import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
 // JSON
-import treesJSON from '../config/trees.json' with {type: 'json'};
+const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json' with {type: 'json'};
+const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollectionJSON);
 
 console.log(chalk.blue('-'.repeat(70)));

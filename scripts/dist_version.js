@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import fs from 'node:fs';
 
 // JSON
-import packageJSON from '../package.json' with {type: 'json'};
+const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
 
 // YYYYMMDD
 const now = new Date();
