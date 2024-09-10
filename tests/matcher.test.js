@@ -1,5 +1,7 @@
 import { after, before, test } from 'node:test';
 import { strict as assert } from 'node:assert';
+import fs from 'node:fs';
+import JSON5 from 'json5';
 import LocationConflation from '@rapideditor/location-conflation';
 import { Matcher } from '../index.mjs';
 
