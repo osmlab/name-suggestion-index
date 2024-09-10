@@ -100,7 +100,7 @@
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
     "test": "run-s build test:node",
-    "test:node": "c8 node --test tests/",
+    "test:node": "c8 node --test tests/*.js",
     "lint": "eslint scripts/*.js lib/*.js",
     "validate": "node scripts/validate.js",
     "wikidata": "node scripts/build_wikidata.js"
