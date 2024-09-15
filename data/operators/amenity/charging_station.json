@@ -1347,7 +1347,7 @@
       "displayName": "Deutsche Telekom",
       "id": "deutschetelekom-1299a8",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["deutsche telekom ag"],
+      "matchNames": ["deutsche telekom ag", "telekom"],
       "tags": {
         "amenity": "charging_station",
         "operator": "Deutsche Telekom",
@@ -2175,7 +2175,7 @@
     {
       "displayName": "Energie und Wasser Potsdam GmbH",
       "id": "energieundwasserpotsdamgmbh-1299a8",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": ["de-bb.geojson"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "Energie und Wasser Potsdam GmbH"
@@ -5865,6 +5865,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Stadtwerke Pforzheim",
+        "operator:short": "SWP",
         "operator:wikidata": "Q1562628"
       }
     },
@@ -6040,7 +6041,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Wernigerode"
+        "operator": "Stadtwerke Wernigerode",
+        "operator:wikidata": "Q130303191"
       }
     },
     {
@@ -6058,7 +6060,7 @@
     {
       "displayName": "STATIONS-E",
       "id": "stationse-1299a8",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "STATIONS-E"
@@ -6131,12 +6133,14 @@
       }
     },
     {
-      "displayName": "SVS Versorgungsbetriebe",
+      "displayName": "LokalWerke",
       "id": "svsversorgungsbetriebe-1299a8",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": ["de-nw.geojson"]},
+      "matchNames": ["SVS Versorgungsbetriebe GmbH", "Stadtwerke Ahaus GmbH", "SVS Versorgungsbetriebe", "Stadtwerke Ahaus"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "SVS Versorgungsbetriebe"
+        "operator": "LokalWerke",
+        "operator:wikidata": "Q130303237"
       }
     },
     {
@@ -6185,18 +6189,9 @@
       }
     },
     {
-      "displayName": "SWP",
-      "id": "swp-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "SWP"
-      }
-    },
-    {
       "displayName": "SWU Stadtwerke Ulm/Neu-Ulm GmbH",
       "id": "swustadtwerkeulmneuulmgmbh-1299a8",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": ["de-bw.geojson", "de-by.geojson"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "SWU Stadtwerke Ulm/Neu-Ulm GmbH",
@@ -6257,12 +6252,14 @@
       }
     },
     {
-      "displayName": "TankE GmbH",
+      "displayName": "TankE",
       "id": "tankegmbh-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["TankE GmbH"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "TankE GmbH"
+        "operator": "TankE",
+        "operator:wikidata": "Q129938413"
       }
     },
     {
@@ -6276,43 +6273,38 @@
       }
     },
     {
-      "displayName": "TEAG Mobil GmbH",
+      "displayName": "TEAG Mobil",
       "id": "teagmobilgmbh-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["TEAG Mobil GmbH", "TEAG Thüringer Energie AG", "Thüringer Energie AG", "TEAG"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "TEAG Mobil GmbH"
+        "operator": "TEAG Mobil",
+        "operator:wikidata": "Q130303294"
       }
     },
     {
-      "displayName": "TEAG Thüringer Energie AG",
-      "id": "teagthuringerenergieag-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "TEAG Thüringer Energie AG",
-        "operator:short": "TEAG",
-        "operator:wikidata": "Q1273405"
-      }
-    },
-    {
-      "displayName": "Technische Werke Osning GmbH",
+      "displayName": "Technische Werke Osning",
       "id": "technischewerkeosninggmbh-1299a8",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": ["de-nw.geojson"]},
+      "matchNames": ["Technische Werke Osning GmbH"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Technische Werke Osning GmbH"
+        "operator": "Technische Werke Osning",
+        "operator:short": "TWO",
+        "operator:wikidata": "Q2399363"
       }
     },
     {
-      "displayName": "Technische Werke Schussental GmbH",
+      "displayName": "Technische Werke Schussental",
       "id": "technischewerkeschussentalgmbh-6bc1fb",
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
+      "matchNames": ["Technische Werke Schussental GmbH"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Technische Werke Schussental GmbH",
+        "operator": "Technische Werke Schussental",
         "operator:wikidata": "Q2399365"
       }
     },
@@ -6323,15 +6315,6 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "teilAuto"
-      }
-    },
-    {
-      "displayName": "Telekom",
-      "id": "telekom-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Telekom"
       }
     },
     {
