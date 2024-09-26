@@ -1,6 +1,6 @@
 # Features targeting Japan
 
-Prefectures of Japan targeted with a feature using [ISO_3166-2:JP](https://en.wikipedia.org/wiki/ISO_3166-2:JP)
+Prefectures of Japan targeted with a feature using [ISO 3166-2:JP](https://en.wikipedia.org/wiki/ISO_3166-2:JP)
 
 - [JP-01.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01.geojson%22%5D%7D&referrer=nsi) - Hokkaido (北海道)
 - [JP-02.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-02.geojson%22%5D%7D&referrer=nsi) - Aomori (青森県)
@@ -50,7 +50,7 @@ Prefectures of Japan targeted with a feature using [ISO_3166-2:JP](https://en.wi
 - [JP-46.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-46.geojson%22%5D%7D&referrer=nsi) - Kagoshima (鹿児島県)
 - [JP-47.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-47.geojson%22%5D%7D&referrer=nsi) - Okinawa (沖縄県)
 
-Areas of Japan targeted with a feature not using [ISO_3166-2:JP](https://en.wikipedia.org/wiki/ISO_3166-2:JP)
+Areas of Japan targeted with a feature not using [ISO 3166-2:JP](https://en.wikipedia.org/wiki/ISO_3166-2:JP)
 
 - [jp-ntt-east.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-ntt-east.geojson%22%5D%7D&referrer=nsi) - NTT East (NTT東日本)
 - [jp-ntt-east.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-ntt-west.geojson%22%5D%7D&referrer=nsi) - NTT West (NTT西日本)

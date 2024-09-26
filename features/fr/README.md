@@ -1,6 +1,6 @@
 # Features targeting France
 
-First-level metropolitan subdivisions of France targeted with a feature using [ISO_3166-2:FR](https://en.wikipedia.org/wiki/ISO_3166-2:FR)
+First-level metropolitan subdivisions of France targeted with a feature using [ISO 3166-2:FR](https://en.wikipedia.org/wiki/ISO_3166-2:FR)
 
 - [fr-ara.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22fr-ara.geojson%22%5D%7D&referrer=nsi) - Auvergne-Rhone-Alps (Auvergne-Rhône-Alpes)
 - [fr-bfc.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22fr-bfc.geojson%22%5D%7D&referrer=nsi) - Burgundy-Free County (Bourgogne-Franche-Comté)
@@ -14,4 +14,4 @@ First-level metropolitan subdivisions of France targeted with a feature using [I
 - [fr-naq.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22fr-naq.geojson%22%5D%7D&referrer=nsi) - New Aquitania (Nouvelle-Aquitaine)
 - [fr-occ.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22fr-occ.geojson%22%5D%7D&referrer=nsi) - Occitania (Occitanie)
 - [fr-pdl.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22fr-pdl.geojson%22%5D%7D&referrer=nsi) - Loire Country (Pays-de-la-Loire)
-- [fr-pac.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22fr-pac.geojson%22%5D%7D&referrer=nsi) - Provence-Alps-French Riviera (Provence-Alpes-Côte-d’Azur)
+- [fr-pac.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22fr-pac.geojson%22%5D%7D&referrer=nsi) - Provence-Alps-French Riviera (Provence-Alpes-Côte-d'Azur)
