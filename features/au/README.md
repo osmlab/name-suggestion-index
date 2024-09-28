@@ -4,7 +4,7 @@ The following area is included as part of [country-coder](https://github.com/rap
 
 - [au-tas](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22au-tas%22%5D%7D&referrer=nsi) - Tasmania
 
-States / territories of Australia targeted with a feature using [ISO_3166-2:AU](https://en.wikipedia.org/wiki/ISO_3166-2:AU)
+States / territories of Australia targeted with a feature using [ISO 3166-2:AU](https://en.wikipedia.org/wiki/ISO_3166-2:AU)
 
 - [au-nsw.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22au-nsw.geojson%22%5D%7D&referrer=nsi) - New South Wales
 - [au-qld.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22au-qld.geojson%22%5D%7D&referrer=nsi) - Queensland

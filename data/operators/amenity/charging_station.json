@@ -6,13 +6,13 @@
       "generic": [
         "^(charging station|oplaadpunt|stromtankstelle)$",
         "^(e-bike )?ladestation$",
-        "^(inter|power)charge$"
+        "^(inter|power)charge$",
+        "^kommune$"
       ],
       "named": [
         "^eb elbil as$",
         "^europark as$",
         "^jernbaneverket$",
-        "kommune",
         "polar",
         "privat",
         "rolec"
@@ -26,7 +26,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "123energie"
+        "operator": "123energie",
+        "operator:wikidata": "Q124032887"
       }
     },
     {
@@ -72,7 +73,8 @@
       "locationSet": {"include": ["fi"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "ABC"
+        "operator": "ABC",
+        "operator:wikidata": "Q10397504"
       }
     },
     {
@@ -221,7 +223,7 @@
       }
     },
     {
-      "displayName": "ALDI Nord (DE)",
+      "displayName": "ALDI Nord (Deutschland)",
       "id": "aldi-de3fd8",
       "locationSet": {
         "include": ["de"],
@@ -238,7 +240,7 @@
       }
     },
     {
-      "displayName": "ALDI Süd (DE)",
+      "displayName": "ALDI Süd (Deutschland)",
       "id": "aldi-fee10d",
       "locationSet": {
         "include": ["aldi-sued.geojson"]
@@ -288,17 +290,20 @@
       }
     },
     {
-      "displayName": "Allgäuer Überlandwerk, Kempten",
-      "id": "allgaueruberlandwerkkempten-b2a48c",
+      "displayName": "Allgäuer Überlandwerk",
+      "id": "allgaueruberlandwerk-b2a48c",
       "locationSet": {
         "include": [
           "at-8.geojson",
           "de-by.geojson"
         ]
       },
+      "matchNames": [
+        "allgäuer überlandwerk, kempten"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Allgäuer Überlandwerk, Kempten",
+        "operator": "Allgäuer Überlandwerk",
         "operator:wikidata": "Q994822"
       }
     },
@@ -338,7 +343,8 @@
       "locationSet": {"include": ["gb", "ie"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Applegreen Electric"
+        "operator": "Applegreen Electric",
+        "operator:wikidata": "Q7178908"
       }
     },
     {
@@ -360,7 +366,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Areal Böhler"
+        "operator": "Areal Böhler",
+        "operator:wikidata": "Q124952587"
       }
     },
     {
@@ -375,11 +382,14 @@
     },
     {
       "displayName": "ASP",
-      "id": "asp-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "asp-fcc3c2",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "ASP"
+        "operator": "ASP",
+        "operator:wikidata": "Q130262396"
       }
     },
     {
@@ -464,6 +474,7 @@
       "displayName": "Avacon",
       "id": "avacon-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["avacon ag"],
       "tags": {
         "amenity": "charging_station",
         "operator": "Avacon",
@@ -471,21 +482,15 @@
       }
     },
     {
-      "displayName": "Avacon AG",
-      "id": "avaconag-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Avacon AG"
-      }
-    },
-    {
       "displayName": "AVU",
-      "id": "avu-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "avu-fcc3c2",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "AVU"
+        "operator": "AVU",
+        "operator:wikidata": "Q422118"
       }
     },
     {
@@ -497,6 +502,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Aziende Industriali di Lugano",
+        "operator:short": "AIL",
         "operator:wikidata": "Q3631473"
       }
     },
@@ -591,7 +597,8 @@
       "locationSet": {"include": ["fr"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Belib'"
+        "operator": "Belib'",
+        "operator:wikidata": "Q127780256"
       }
     },
     {
@@ -617,11 +624,14 @@
     },
     {
       "displayName": "BEW",
-      "id": "bew-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "bew-db4fd8",
+      "locationSet": {
+        "include": ["de-be.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "BEW"
+        "operator": "BEW",
+        "operator:wikidata": "Q42975492"
       }
     },
     {
@@ -719,14 +729,18 @@
       }
     },
     {
-      "displayName": "Bocholter Energie- und Wasserversorgung GmbH",
-      "id": "bocholterenergieundwasserversorgunggmbh-fcc3c2",
+      "displayName": "Bocholter Energie- und Wasserversorgung",
+      "id": "bocholterenergieundwasserversorgung-fcc3c2",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": [
+        "bocholter energie- und wasserversorgung gmbh"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Bocholter Energie- und Wasserversorgung GmbH",
+        "operator": "Bocholter Energie- und Wasserversorgung",
+        "operator:short": "BEW",
         "operator:wikidata": "Q117745514"
       }
     },
@@ -834,11 +848,14 @@
     },
     {
       "displayName": "BS Energy",
-      "id": "bsenergy-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "bsenergy-d9ec6c",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "BS Energy"
+        "operator": "BS Energy",
+        "operator:wikidata": "Q797031"
       }
     },
     {
@@ -891,7 +908,8 @@
       "locationSet": {"include": ["at"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Caruso Carsharing"
+        "operator": "Caruso Carsharing",
+        "operator:wikidata": "Q121143301"
       }
     },
     {
@@ -912,7 +930,8 @@
       "locationSet": {"include": ["es", "pt"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Cepsa"
+        "operator": "Cepsa",
+        "operator:wikidata": "Q608819"
       }
     },
     {
@@ -1124,18 +1143,11 @@
       "displayName": "Citywatt",
       "id": "citywatt-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["citywatt gmbh"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Citywatt"
-      }
-    },
-    {
-      "displayName": "Citywatt GmbH",
-      "id": "citywattgmbh-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Citywatt GmbH"
+        "operator": "Citywatt",
+        "operator:wikidata": "Q128694052"
       }
     },
     {
@@ -1156,25 +1168,18 @@
       "matchNames": ["clever a/s"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Clever"
+        "operator": "Clever",
+        "operator:wikidata": "Q114628418"
       }
     },
     {
       "displayName": "Comfortcharge",
       "id": "comfortcharge-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["comfortcharge gmbh"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Comfortcharge"
-      }
-    },
-    {
-      "displayName": "Comfortcharge GmbH",
-      "id": "comfortchargegmbh-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Comfortcharge GmbH",
+        "operator": "Comfortcharge",
         "operator:wikidata": "Q122750420"
       }
     },
@@ -1202,7 +1207,7 @@
       }
     },
     {
-      "displayName": "Coop (Italy)",
+      "displayName": "Coop (Italia)",
       "id": "coop-2c5517",
       "locationSet": {"include": ["it"]},
       "tags": {
@@ -1212,23 +1217,23 @@
       }
     },
     {
-      "displayName": "Coop (Sweden)",
-      "id": "coop-c9e89f",
-      "locationSet": {"include": ["se"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Coop",
-        "operator:wikidata": "Q106684510"
-      }
-    },
-    {
-      "displayName": "Coop (Switzerland)",
+      "displayName": "Coop (Schweiz)",
       "id": "coop-086737",
       "locationSet": {"include": ["ch"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "Coop",
         "operator:wikidata": "Q432564"
+      }
+    },
+    {
+      "displayName": "Coop (Sverige)",
+      "id": "coop-c9e89f",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Coop",
+        "operator:wikidata": "Q106684510"
       }
     },
     {
@@ -1289,19 +1294,11 @@
           "it"
         ]
       },
+      "matchNames": ["da emobil gmbh & co kg"],
       "tags": {
         "amenity": "charging_station",
         "operator": "da emobil",
         "operator:wikidata": "Q114946167"
-      }
-    },
-    {
-      "displayName": "da emobil GmbH & Co KG",
-      "id": "daemobilgmbhandcokg-a5756d",
-      "locationSet": {"include": ["at", "de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "da emobil GmbH & Co KG"
       }
     },
     {
@@ -1319,7 +1316,8 @@
       "locationSet": {"include": ["be", "fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "DATS 24"
+        "operator": "DATS 24",
+        "operator:wikidata": "Q15725576"
       }
     },
     {
@@ -1353,7 +1351,10 @@
       "displayName": "Deutsche Telekom",
       "id": "deutschetelekom-1299a8",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["deutsche telekom ag"],
+      "matchNames": [
+        "deutsche telekom ag",
+        "telekom"
+      ],
       "tags": {
         "amenity": "charging_station",
         "operator": "Deutsche Telekom",
@@ -1389,15 +1390,6 @@
       }
     },
     {
-      "displayName": "DEWA",
-      "id": "dewa-76711b",
-      "locationSet": {"include": ["ae"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "DEWA"
-      }
-    },
-    {
       "displayName": "DREWAG",
       "id": "drewag-b8794d",
       "locationSet": {
@@ -1420,6 +1412,17 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "DRIVECO"
+      }
+    },
+    {
+      "displayName": "Dubai Electricity and Water Authority",
+      "id": "dubaielectricityandwaterauthority-76711b",
+      "locationSet": {"include": ["ae"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Dubai Electricity and Water Authority",
+        "operator:short": "DEWA",
+        "operator:wikidata": "Q1262868"
       }
     },
     {
@@ -1489,12 +1492,13 @@
       }
     },
     {
-      "displayName": "E-TOTEM",
+      "displayName": "e-Totem",
       "id": "etotem-170e94",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "E-TOTEM"
+        "operator": "e-Totem",
+        "operator:wikidata": "Q127503965"
       }
     },
     {
@@ -1708,7 +1712,8 @@
       "locationSet": {"include": ["ee"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Eesti Energia AS"
+        "operator": "Eesti Energia AS",
+        "operator:wikidata": "Q1295560"
       }
     },
     {
@@ -1759,7 +1764,8 @@
       "locationSet": {"include": ["ch"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "EKZ"
+        "operator": "EKZ",
+        "operator:wikidata": "Q1326642"
       }
     },
     {
@@ -1773,21 +1779,13 @@
       }
     },
     {
-      "displayName": "ELE Emscher Lippe Energie GmbH",
-      "id": "eleemscherlippeenergiegmbh-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "ELE Emscher Lippe Energie GmbH"
-      }
-    },
-    {
       "displayName": "Electra",
       "id": "electra-170e94",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Electra"
+        "operator": "Electra",
+        "operator:wikidata": "Q128592938"
       }
     },
     {
@@ -1862,12 +1860,23 @@
       }
     },
     {
-      "displayName": "Elektrum",
-      "id": "elektrum-f78ea2",
-      "locationSet": {"include": ["lt", "lv"]},
+      "displayName": "Elektrum Latvija",
+      "id": "elektrum-94e3c4",
+      "locationSet": {"include": ["lv"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Elektrum"
+        "operator": "Elektrum",
+        "operator:wikidata": "Q124728932"
+      }
+    },
+    {
+      "displayName": "Elektrum Lietuva",
+      "id": "elektrum-467e3c",
+      "locationSet": {"include": ["lt"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Elektrum",
+        "operator:wikidata": "Q67199788"
       }
     },
     {
@@ -1876,7 +1885,8 @@
       "locationSet": {"include": ["hr"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "ELEN"
+        "operator": "ELEN",
+        "operator:wikidata": "Q127433242"
       }
     },
     {
@@ -1885,7 +1895,8 @@
       "locationSet": {"include": ["ee", "lv"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Eleport"
+        "operator": "Eleport",
+        "operator:wikidata": "Q107394758"
       }
     },
     {
@@ -1911,9 +1922,13 @@
       "displayName": "Elli",
       "id": "elli-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "volkswagen group charging gmbh"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Elli"
+        "operator": "Elli",
+        "operator:wikidata": "Q126811032"
       }
     },
     {
@@ -1932,7 +1947,8 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Elocity"
+        "operator": "Elocity",
+        "operator:wikidata": "Q129964130"
       }
     },
     {
@@ -1950,7 +1966,8 @@
       "locationSet": {"include": ["pt"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "EMEL"
+        "operator": "EMEL",
+        "operator:wikidata": "Q30256831"
       }
     },
     {
@@ -1960,6 +1977,22 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "emotì"
+      }
+    },
+    {
+      "displayName": "Emscher Lippe Energie",
+      "id": "emscherlippeenergie-fcc3c2",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "matchNames": [
+        "ele emscher lippe energie gmbh"
+      ],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Emscher Lippe Energie",
+        "operator:short": "ELE",
+        "operator:wikidata": "Q62578653"
       }
     },
     {
@@ -2014,7 +2047,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Endesa X"
+        "operator": "Endesa X",
+        "operator:wikidata": "Q104874542"
       }
     },
     {
@@ -2025,7 +2059,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Eneco"
+        "operator": "Eneco",
+        "operator:wikidata": "Q1341079"
       }
     },
     {
@@ -2075,7 +2110,8 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Enel X Way"
+        "operator": "Enel X Way",
+        "operator:wikidata": "Q116116836"
       }
     },
     {
@@ -2147,7 +2183,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Energie SaarLorLux"
+        "operator": "Energie SaarLorLux",
+        "operator:wikidata": "Q26794801"
       }
     },
     {
@@ -2174,8 +2211,10 @@
     },
     {
       "displayName": "Energie und Wasser Potsdam GmbH",
-      "id": "energieundwasserpotsdamgmbh-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "energieundwasserpotsdamgmbh-4f5737",
+      "locationSet": {
+        "include": ["de-bb.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Energie und Wasser Potsdam GmbH"
@@ -2229,11 +2268,14 @@
     },
     {
       "displayName": "energis",
-      "id": "energis-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "energis-124d23",
+      "locationSet": {
+        "include": ["de-sl.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "energis"
+        "operator": "energis",
+        "operator:wikidata": "Q109230450"
       }
     },
     {
@@ -2434,7 +2476,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Etecnic"
+        "operator": "Etecnic",
+        "operator:wikidata": "Q126922055"
       }
     },
     {
@@ -2528,7 +2571,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "evd energieversorgung dormagen"
+        "operator": "evd energieversorgung dormagen",
+        "operator:wikidata": "Q130302517"
       }
     },
     {
@@ -2570,7 +2614,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "EVlink"
+        "operator": "EVlink",
+        "operator:wikidata": "Q130270938"
       }
     },
     {
@@ -2636,7 +2681,8 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Evway"
+        "operator": "Evway",
+        "operator:wikidata": "Q127433663"
       }
     },
     {
@@ -2674,7 +2720,8 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Eways"
+        "operator": "Eways",
+        "operator:wikidata": "Q130044603"
       }
     },
     {
@@ -2698,7 +2745,8 @@
       "locationSet": {"include": ["dk"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "EWII"
+        "operator": "EWII",
+        "operator:wikidata": "Q113466076"
       }
     },
     {
@@ -2751,7 +2799,8 @@
       "locationSet": {"include": ["pt-30"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Factor Energia"
+        "operator": "Factor Energia",
+        "operator:wikidata": "Q90119469"
       }
     },
     {
@@ -2794,7 +2843,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Filderstadtwerke"
+        "operator": "Filderstadtwerke",
+        "operator:wikidata": "Q130302538"
       }
     },
     {
@@ -2883,7 +2933,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Gemeente Den Haag"
+        "operator": "Gemeente Den Haag",
+        "operator:wikidata": "Q36600"
       }
     },
     {
@@ -2925,7 +2976,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Gemeindewerke Garmisch-Partenkirchen"
+        "operator": "Gemeindewerke Garmisch-Partenkirchen",
+        "operator:wikidata": "Q130302548"
       }
     },
     {
@@ -2974,7 +3026,8 @@
       "locationSet": {"include": ["my"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Gentari"
+        "operator": "Gentari",
+        "operator:wikidata": "Q123457836"
       }
     },
     {
@@ -3111,8 +3164,10 @@
     },
     {
       "displayName": "Green Technologie",
-      "id": "greentechnologie-7fbe3c",
-      "locationSet": {"include": ["gp", "mq"]},
+      "id": "greentechnologie-508af8",
+      "locationSet": {
+        "include": ["gf", "gp", "mq"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Green Technologie"
@@ -3133,7 +3188,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "GreenFlux"
+        "operator": "GreenFlux",
+        "operator:wikidata": "Q126728390"
       }
     },
     {
@@ -3333,7 +3389,8 @@
       "locationSet": {"include": ["lt"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Ignitis"
+        "operator": "Ignitis",
+        "operator:wikidata": "Q583822"
       }
     },
     {
@@ -3400,12 +3457,14 @@
       }
     },
     {
-      "displayName": "Inselwerke eG",
-      "id": "inselwerkeeg-1299a8",
+      "displayName": "Inselwerke",
+      "id": "inselwerke-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["inselwerke eg"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Inselwerke eG"
+        "operator": "Inselwerke",
+        "operator:wikidata": "Q125511496"
       }
     },
     {
@@ -3434,7 +3493,8 @@
       "locationSet": {"include": ["fx", "pt"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Intermarché"
+        "operator": "Intermarché",
+        "operator:wikidata": "Q3153200"
       }
     },
     {
@@ -3443,7 +3503,8 @@
       "locationSet": {"include": ["is"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Ísorka"
+        "operator": "Ísorka",
+        "operator:wikidata": "Q127783906"
       }
     },
     {
@@ -3505,12 +3566,17 @@
       }
     },
     {
-      "displayName": "Jönköpings Energi AB",
-      "id": "jonkopingsenergiab-c9e89f",
+      "displayName": "Jönköping Energi",
+      "id": "jonkopingenergi-c9e89f",
       "locationSet": {"include": ["se"]},
+      "matchNames": [
+        "jönköping energi ab",
+        "jönköpings energi ab"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Jönköpings Energi AB"
+        "operator": "Jönköping Energi",
+        "operator:wikidata": "Q10542091"
       }
     },
     {
@@ -3539,7 +3605,8 @@
       "locationSet": {"include": ["at", "de"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "KEBA"
+        "operator": "KEBA",
+        "operator:wikidata": "Q446328"
       }
     },
     {
@@ -3661,8 +3728,8 @@
     },
     {
       "displayName": "Last Mile Solutions",
-      "id": "lastmilesolutions-3e593d",
-      "locationSet": {"include": ["eu"]},
+      "id": "lastmilesolutions-7f623e",
+      "locationSet": {"include": ["150"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "Last Mile Solutions",
@@ -3686,7 +3753,8 @@
       "locationSet": {"include": ["de", "nl"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "LEAP24"
+        "operator": "LEAP24",
+        "operator:wikidata": "Q130302573"
       }
     },
     {
@@ -3766,6 +3834,24 @@
       }
     },
     {
+      "displayName": "LokalWerke",
+      "id": "lokalwerke-fcc3c2",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "matchNames": [
+        "stadtwerke ahaus",
+        "stadtwerke ahaus gmbh",
+        "svs versorgungsbetriebe",
+        "svs versorgungsbetriebe gmbh"
+      ],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "LokalWerke",
+        "operator:wikidata": "Q130303237"
+      }
+    },
+    {
       "displayName": "Lotos",
       "id": "lotos-392011",
       "locationSet": {"include": ["pl"]},
@@ -3785,12 +3871,16 @@
       }
     },
     {
-      "displayName": "LSW",
-      "id": "lsw-1299a8",
-      "locationSet": {"include": ["de"]},
+      "displayName": "LSW Energie",
+      "id": "lswenergie-d9ec6c",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "matchNames": ["lsw"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "LSW"
+        "operator": "LSW Energie",
+        "operator:wikidata": "Q124462931"
       }
     },
     {
@@ -3859,7 +3949,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Mairie de Paris"
+        "operator": "Mairie de Paris",
+        "operator:wikidata": "Q3278478"
       }
     },
     {
@@ -3888,7 +3979,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Mark-E"
+        "operator": "Mark-E",
+        "operator:wikidata": "Q1899827"
       }
     },
     {
@@ -3964,12 +4056,13 @@
       }
     },
     {
-      "displayName": "MOBI.E",
+      "displayName": "Mobi.E",
       "id": "mobie-a1285d",
       "locationSet": {"include": ["pt"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "MOBI.E"
+        "operator": "Mobi.E",
+        "operator:wikidata": "Q10331298"
       }
     },
     {
@@ -4038,7 +4131,8 @@
       "locationSet": {"include": ["fr"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Mobive"
+        "operator": "Mobive",
+        "operator:wikidata": "Q128100307"
       }
     },
     {
@@ -4047,7 +4141,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Modulo"
+        "operator": "Modulo",
+        "operator:wikidata": "Q128788809"
       }
     },
     {
@@ -4143,20 +4238,11 @@
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
-      "matchNames": ["mvv"],
+      "matchNames": ["mvv", "mvv energie ag"],
       "tags": {
         "amenity": "charging_station",
         "operator": "MVV Energie",
         "operator:wikidata": "Q1882061"
-      }
-    },
-    {
-      "displayName": "MVV Energie AG",
-      "id": "mvvenergieag-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "MVV Energie AG"
       }
     },
     {
@@ -4178,7 +4264,8 @@
       "locationSet": {"include": ["is"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "N1"
+        "operator": "N1",
+        "operator:wikidata": "Q30668223"
       }
     },
     {
@@ -4206,7 +4293,8 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Neogy"
+        "operator": "Neogy",
+        "operator:wikidata": "Q126912835"
       }
     },
     {
@@ -4266,7 +4354,8 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "NOXO."
+        "operator": "NOXO.",
+        "operator:wikidata": "Q127699093"
       }
     },
     {
@@ -4353,7 +4442,8 @@
       "locationSet": {"include": ["nz"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Orion"
+        "operator": "Orion",
+        "operator:wikidata": "Q7102789"
       }
     },
     {
@@ -4440,7 +4530,8 @@
       "locationSet": {"include": ["id"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Perusahaan Listrik Negara"
+        "operator": "Perusahaan Listrik Negara",
+        "operator:wikidata": "Q4201636"
       }
     },
     {
@@ -4449,7 +4540,8 @@
       "locationSet": {"include": ["hr", "si"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Petrol"
+        "operator": "Petrol",
+        "operator:wikidata": "Q174824"
       }
     },
     {
@@ -4478,7 +4570,8 @@
       "locationSet": {"include": ["be", "nl"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "PitPoint"
+        "operator": "PitPoint",
+        "operator:wikidata": "Q109923423"
       }
     },
     {
@@ -4487,7 +4580,8 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Plenitude"
+        "operator": "Plenitude",
+        "operator:wikidata": "Q96240525"
       }
     },
     {
@@ -4659,12 +4753,13 @@
     },
     {
       "displayName": "Qwello",
-      "id": "qwello-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "qwello-381a82",
+      "locationSet": {"include": ["de", "se"]},
       "matchNames": ["qwello gmbh"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Qwello"
+        "operator": "Qwello",
+        "operator:wikidata": "Q130302686"
       }
     },
     {
@@ -4824,12 +4919,15 @@
       }
     },
     {
-      "displayName": "Rhön Energie Fulda",
-      "id": "rhonenergiefulda-1299a8",
-      "locationSet": {"include": ["de"]},
+      "displayName": "RhönEnergie Fulda",
+      "id": "rhonenergiefulda-43ff7e",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Rhön Energie Fulda"
+        "operator": "RhönEnergie Fulda",
+        "operator:wikidata": "Q2147629"
       }
     },
     {
@@ -5027,8 +5125,8 @@
     },
     {
       "displayName": "SDEV",
-      "id": "sdev-f6553b",
-      "locationSet": {"include": ["fr"]},
+      "id": "sdev-170e94",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "SDEV"
@@ -5091,8 +5189,8 @@
     },
     {
       "displayName": "SEY 78",
-      "id": "sey78-f6553b",
-      "locationSet": {"include": ["fr"]},
+      "id": "sey78-170e94",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "SEY 78"
@@ -5109,8 +5207,8 @@
     },
     {
       "displayName": "SGA Mobility",
-      "id": "sgamobility-f6553b",
-      "locationSet": {"include": ["fr"]},
+      "id": "sgamobility-170e94",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "SGA Mobility"
@@ -5160,7 +5258,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "SIEEEN"
+        "operator": "SIEEEN",
+        "operator:wikidata": "Q92935934"
       }
     },
     {
@@ -5178,7 +5277,8 @@
       "locationSet": {"include": ["fr"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "SIEL42"
+        "operator": "SIEL42",
+        "operator:wikidata": "Q92935952"
       }
     },
     {
@@ -5196,7 +5296,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "SIEML"
+        "operator": "SIEML",
+        "operator:wikidata": "Q92944662"
       }
     },
     {
@@ -5211,11 +5312,12 @@
     },
     {
       "displayName": "SIPLEC",
-      "id": "siplec-f6553b",
-      "locationSet": {"include": ["fr"]},
+      "id": "siplec-170e94",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "SIPLEC"
+        "operator": "SIPLEC",
+        "operator:wikidata": "Q113466243"
       }
     },
     {
@@ -5243,8 +5345,8 @@
     },
     {
       "displayName": "Sodetrel",
-      "id": "sodetrel-f6553b",
-      "locationSet": {"include": ["fr"]},
+      "id": "sodetrel-170e94",
+      "locationSet": {"include": ["fx"]},
       "matchNames": ["sodetrel mobilité"],
       "tags": {
         "amenity": "charging_station",
@@ -5358,7 +5460,8 @@
       "locationSet": {"include": ["dk"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Spirii"
+        "operator": "Spirii",
+        "operator:wikidata": "Q126362766"
       }
     },
     {
@@ -5385,11 +5488,15 @@
     },
     {
       "displayName": "Stadtwerk am See",
-      "id": "stadtwerkamsee-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkamsee-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerk am See"
+        "operator": "Stadtwerk am See",
+        "operator:short": "SWSee",
+        "operator:wikidata": "Q15848840"
       }
     },
     {
@@ -5406,11 +5513,14 @@
     },
     {
       "displayName": "Stadtwerke Bad Aibling",
-      "id": "stadtwerkebadaibling-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkebadaibling-259ab2",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Bad Aibling"
+        "operator": "Stadtwerke Bad Aibling",
+        "operator:wikidata": "Q124472215"
       }
     },
     {
@@ -5421,7 +5531,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Bad Homburg"
+        "operator": "Stadtwerke Bad Homburg",
+        "operator:wikidata": "Q130302857"
       }
     },
     {
@@ -5462,20 +5573,26 @@
     },
     {
       "displayName": "Stadtwerke Bruchsal",
-      "id": "stadtwerkebruchsal-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkebruchsal-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Bruchsal"
+        "operator": "Stadtwerke Bruchsal",
+        "operator:wikidata": "Q130302869"
       }
     },
     {
       "displayName": "Stadtwerke Dachau",
-      "id": "stadtwerkedachau-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkedachau-259ab2",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Dachau"
+        "operator": "Stadtwerke Dachau",
+        "operator:wikidata": "Q2328453"
       }
     },
     {
@@ -5507,7 +5624,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Elmshorn"
+        "operator": "Stadtwerke Elmshorn",
+        "operator:wikidata": "Q124472368"
       }
     },
     {
@@ -5596,11 +5714,14 @@
     },
     {
       "displayName": "Stadtwerke Hamm",
-      "id": "stadtwerkehamm-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkehamm-fcc3c2",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Hamm"
+        "operator": "Stadtwerke Hamm",
+        "operator:wikidata": "Q2328505"
       }
     },
     {
@@ -5611,7 +5732,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Heide"
+        "operator": "Stadtwerke Heide",
+        "operator:wikidata": "Q130302929"
       }
     },
     {
@@ -5639,14 +5761,17 @@
       }
     },
     {
-      "displayName": "Stadtwerke Iserlohn - Heimatversorger",
-      "id": "stadtwerkeiserlohnheimatversorger-fcc3c2",
+      "displayName": "Stadtwerke Iserlohn",
+      "id": "stadtwerkeiserlohn-fcc3c2",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": [
+        "stadtwerke iserlohn - heimatversorger"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Iserlohn - Heimatversorger",
+        "operator": "Stadtwerke Iserlohn",
         "operator:wikidata": "Q101110405"
       }
     },
@@ -5677,11 +5802,14 @@
     },
     {
       "displayName": "Stadtwerke Konstanz",
-      "id": "stadtwerkekonstanz-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkekonstanz-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Konstanz"
+        "operator": "Stadtwerke Konstanz",
+        "operator:wikidata": "Q1266985"
       }
     },
     {
@@ -5692,25 +5820,32 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Landshut"
+        "operator": "Stadtwerke Landshut",
+        "operator:wikidata": "Q130302962"
       }
     },
     {
       "displayName": "Stadtwerke Langen",
-      "id": "stadtwerkelangen-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkelangen-43ff7e",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Langen"
+        "operator": "Stadtwerke Langen",
+        "operator:wikidata": "Q15848846"
       }
     },
     {
       "displayName": "Stadtwerke Leinfelden-Echterdingen",
-      "id": "stadtwerkeleinfeldenechterdingen-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkeleinfeldenechterdingen-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Leinfelden-Echterdingen"
+        "operator": "Stadtwerke Leinfelden-Echterdingen",
+        "operator:wikidata": "Q130302990"
       }
     },
     {
@@ -5781,22 +5916,29 @@
     },
     {
       "displayName": "Stadtwerke Neuss",
-      "id": "stadtwerkeneuss-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Stadtwerke Neuss"
-      }
-    },
-    {
-      "displayName": "Stadtwerke Neustadt an der Weinstraße GmbH",
-      "id": "stadtwerkeneustadtanderweinstrassegmbh-bb1d73",
+      "id": "stadtwerkeneuss-fcc3c2",
       "locationSet": {
-        "include": ["de-rp.geojson"]
+        "include": ["de-nw.geojson"]
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Neustadt an der Weinstraße GmbH"
+        "operator": "Stadtwerke Neuss",
+        "operator:wikidata": "Q2328572"
+      }
+    },
+    {
+      "displayName": "Stadtwerke Neustadt an der Weinstraße",
+      "id": "stadtwerkeneustadtanderweinstrasse-bb1d73",
+      "locationSet": {
+        "include": ["de-rp.geojson"]
+      },
+      "matchNames": [
+        "stadtwerke neustadt an der weinstraße gmbh"
+      ],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Stadtwerke Neustadt an der Weinstraße",
+        "operator:wikidata": "Q130303014"
       }
     },
     {
@@ -5813,11 +5955,14 @@
     },
     {
       "displayName": "Stadtwerke Oberkirch",
-      "id": "stadtwerkeoberkirch-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkeoberkirch-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Oberkirch"
+        "operator": "Stadtwerke Oberkirch",
+        "operator:wikidata": "Q113465063"
       }
     },
     {
@@ -5841,18 +5986,21 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Stadtwerke Pforzheim",
+        "operator:short": "SWP",
         "operator:wikidata": "Q1562628"
       }
     },
     {
-      "displayName": "Stadtwerke Rhede GmbH",
-      "id": "stadtwerkerhedegmbh-fcc3c2",
+      "displayName": "Stadtwerke Rhede",
+      "id": "stadtwerkerhede-fcc3c2",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": ["stadtwerke rhede gmbh"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Rhede GmbH"
+        "operator": "Stadtwerke Rhede",
+        "operator:wikidata": "Q130303068"
       }
     },
     {
@@ -5881,61 +6029,79 @@
     },
     {
       "displayName": "Stadtwerke Schwäbisch Hall",
-      "id": "stadtwerkeschwabischhall-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkeschwabischhall-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Schwäbisch Hall"
+        "operator": "Stadtwerke Schwäbisch Hall",
+        "operator:wikidata": "Q1462457"
       }
     },
     {
       "displayName": "Stadtwerke Schweinfurt",
-      "id": "stadtwerkeschweinfurt-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkeschweinfurt-259ab2",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Schweinfurt"
+        "operator": "Stadtwerke Schweinfurt",
+        "operator:wikidata": "Q130303093"
       }
     },
     {
       "displayName": "Stadtwerke SH",
-      "id": "stadtwerkesh-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Stadtwerke SH"
-      }
-    },
-    {
-      "displayName": "Stadtwerke Sindelfingen GmbH",
-      "id": "stadtwerkesindelfingengmbh-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Stadtwerke Sindelfingen GmbH"
-      }
-    },
-    {
-      "displayName": "Stadtwerke Solingen GmbH",
-      "id": "stadtwerkesolingengmbh-fcc3c2",
+      "id": "stadtwerkesh-cf3cf5",
       "locationSet": {
-        "include": ["de-nw.geojson"]
+        "include": ["de-sh.geojson"]
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Solingen GmbH",
+        "operator": "Stadtwerke SH",
+        "operator:wikidata": "Q130303114"
+      }
+    },
+    {
+      "displayName": "Stadtwerke Sindelfingen",
+      "id": "stadtwerkesindelfingen-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
+      "matchNames": [
+        "stadtwerke sindelfingen gmbh"
+      ],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Stadtwerke Sindelfingen",
+        "operator:wikidata": "Q2328611"
+      }
+    },
+    {
+      "displayName": "Stadtwerke Solingen",
+      "id": "stadtwerkesolingen-fcc3c2",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "matchNames": ["stadtwerke solingen gmbh"],
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Stadtwerke Solingen",
         "operator:wikidata": "Q57669337"
       }
     },
     {
-      "displayName": "Stadtwerke Speyer GmbH",
-      "id": "stadtwerkespeyergmbh-bb1d73",
+      "displayName": "Stadtwerke Speyer",
+      "id": "stadtwerkespeyer-bb1d73",
       "locationSet": {
         "include": ["de-rp.geojson"]
       },
+      "matchNames": ["stadtwerke speyer gmbh"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Speyer GmbH"
+        "operator": "Stadtwerke Speyer",
+        "operator:wikidata": "Q124476472"
       }
     },
     {
@@ -5990,11 +6156,14 @@
     },
     {
       "displayName": "Stadtwerke Weimar",
-      "id": "stadtwerkeweimar-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkeweimar-8c6e73",
+      "locationSet": {
+        "include": ["de-th.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Weimar"
+        "operator": "Stadtwerke Weimar",
+        "operator:wikidata": "Q1679615"
       }
     },
     {
@@ -6005,7 +6174,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Wernigerode"
+        "operator": "Stadtwerke Wernigerode",
+        "operator:wikidata": "Q130303191"
       }
     },
     {
@@ -6022,8 +6192,8 @@
     },
     {
       "displayName": "STATIONS-E",
-      "id": "stationse-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stationse-170e94",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "STATIONS-E"
@@ -6096,15 +6266,6 @@
       }
     },
     {
-      "displayName": "SVS Versorgungsbetriebe",
-      "id": "svsversorgungsbetriebe-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "SVS Versorgungsbetriebe"
-      }
-    },
-    {
       "displayName": "Swarco",
       "id": "swarco-0793ce",
       "locationSet": {"include": ["gb"]},
@@ -6150,18 +6311,14 @@
       }
     },
     {
-      "displayName": "SWP",
-      "id": "swp-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "SWP"
-      }
-    },
-    {
       "displayName": "SWU Stadtwerke Ulm/Neu-Ulm GmbH",
-      "id": "swustadtwerkeulmneuulmgmbh-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "swustadtwerkeulmneuulmgmbh-f8e5ce",
+      "locationSet": {
+        "include": [
+          "de-bw.geojson",
+          "de-by.geojson"
+        ]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "SWU Stadtwerke Ulm/Neu-Ulm GmbH",
@@ -6192,8 +6349,8 @@
     },
     {
       "displayName": "SYME05",
-      "id": "syme05-f6553b",
-      "locationSet": {"include": ["fr"]},
+      "id": "syme05-170e94",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "SYME05"
@@ -6222,12 +6379,14 @@
       }
     },
     {
-      "displayName": "TankE GmbH",
-      "id": "tankegmbh-1299a8",
+      "displayName": "TankE",
+      "id": "tanke-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["tanke gmbh"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "TankE GmbH"
+        "operator": "TankE",
+        "operator:wikidata": "Q129938413"
       }
     },
     {
@@ -6241,43 +6400,49 @@
       }
     },
     {
-      "displayName": "TEAG Mobil GmbH",
-      "id": "teagmobilgmbh-1299a8",
+      "displayName": "TEAG Mobil",
+      "id": "teagmobil-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "teag",
+        "teag mobil gmbh",
+        "teag thüringer energie ag",
+        "thüringer energie ag"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "TEAG Mobil GmbH"
+        "operator": "TEAG Mobil",
+        "operator:wikidata": "Q130303294"
       }
     },
     {
-      "displayName": "TEAG Thüringer Energie AG",
-      "id": "teagthuringerenergieag-1299a8",
-      "locationSet": {"include": ["de"]},
+      "displayName": "Technische Werke Osning",
+      "id": "technischewerkeosning-fcc3c2",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "matchNames": [
+        "technische werke osning gmbh"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "TEAG Thüringer Energie AG",
-        "operator:short": "TEAG",
-        "operator:wikidata": "Q1273405"
+        "operator": "Technische Werke Osning",
+        "operator:short": "TWO",
+        "operator:wikidata": "Q2399363"
       }
     },
     {
-      "displayName": "Technische Werke Osning GmbH",
-      "id": "technischewerkeosninggmbh-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Technische Werke Osning GmbH"
-      }
-    },
-    {
-      "displayName": "Technische Werke Schussental GmbH",
-      "id": "technischewerkeschussentalgmbh-6bc1fb",
+      "displayName": "Technische Werke Schussental",
+      "id": "technischewerkeschussental-6bc1fb",
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
+      "matchNames": [
+        "technische werke schussental gmbh"
+      ],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Technische Werke Schussental GmbH",
+        "operator": "Technische Werke Schussental",
         "operator:wikidata": "Q2399365"
       }
     },
@@ -6287,16 +6452,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "teilAuto"
-      }
-    },
-    {
-      "displayName": "Telekom",
-      "id": "telekom-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Telekom"
+        "operator": "teilAuto",
+        "operator:wikidata": "Q2400658"
       }
     },
     {
@@ -6360,12 +6517,13 @@
       }
     },
     {
-      "displayName": "TOTAL MARKETING FRANCE",
+      "displayName": "Total Marketing France",
       "id": "totalmarketingfrance-170e94",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "TOTAL MARKETING FRANCE"
+        "operator": "Total Marketing France",
+        "operator:wikidata": "Q116051053"
       }
     },
     {
@@ -6434,7 +6592,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "UEM"
+        "operator": "UEM",
+        "operator:wikidata": "Q3552642"
       }
     },
     {
@@ -6473,7 +6632,8 @@
       "locationSet": {"include": ["dk", "no"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Uno-X"
+        "operator": "Uno-X",
+        "operator:wikidata": "Q3362746"
       }
     },
     {
@@ -6491,16 +6651,18 @@
       "locationSet": {"include": ["uy"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "UTE"
+        "operator": "UTE",
+        "operator:wikidata": "Q1665583"
       }
     },
     {
-      "displayName": "V-Markt",
+      "displayName": "V-MARKT",
       "id": "vmarkt-1299a8",
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "V-Markt"
+        "operator": "V-MARKT",
+        "operator:wikidata": "Q1504903"
       }
     },
     {
@@ -6587,7 +6749,8 @@
       "matchNames": ["vlotte"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "vkw vlotte"
+        "operator": "vkw vlotte",
+        "operator:wikidata": "Q126371727"
       }
     },
     {
@@ -6598,15 +6761,6 @@
         "amenity": "charging_station",
         "operator": "Volkswagen",
         "operator:wikidata": "Q246"
-      }
-    },
-    {
-      "displayName": "Volkswagen Group Charging GmbH",
-      "id": "volkswagengroupcharginggmbh-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Volkswagen Group Charging GmbH"
       }
     },
     {
@@ -6654,7 +6808,8 @@
       "matchNames": ["cacharge"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "Waybler"
+        "operator": "Waybler",
+        "operator:wikidata": "Q123423667"
       }
     },
     {
@@ -6696,7 +6851,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "WEMAG"
+        "operator": "WEMAG",
+        "operator:wikidata": "Q2537075"
       }
     },
     {
@@ -6782,19 +6938,11 @@
       "displayName": "Wirelane",
       "id": "wirelane-1299a8",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["wirelane gmbh"],
       "tags": {
         "amenity": "charging_station",
         "operator": "Wirelane",
         "operator:wikidata": "Q127242843"
-      }
-    },
-    {
-      "displayName": "Wirelane GmbH",
-      "id": "wirelanegmbh-1299a8",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Wirelane GmbH"
       }
     },
     {
@@ -6844,7 +6992,8 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "ZES"
+        "operator": "ZES",
+        "operator:wikidata": "Q126391818"
       }
     },
     {
@@ -6916,8 +7065,8 @@
     },
     {
       "displayName": "АО \"Сетевая компания\"",
-      "id": "e19896-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "e19896-18ef61",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "АО \"Сетевая компания\""
@@ -6925,8 +7074,8 @@
     },
     {
       "displayName": "Белтелеком",
-      "id": "672155-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "672155-20a807",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "Белтелеком"
@@ -6938,7 +7087,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Мосэнерго"
+        "operator": "Мосэнерго",
+        "operator:wikidata": "Q1477022"
       }
     },
     {
@@ -6947,7 +7097,8 @@
       "locationSet": {"include": ["ua"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "Одеська міська рада"
+        "operator": "Одеська міська рада",
+        "operator:wikidata": "Q12135214"
       }
     },
     {
@@ -6970,8 +7121,8 @@
     },
     {
       "displayName": "Пункт Е",
-      "id": "59d85b-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "59d85b-18ef61",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "Пункт Е"
@@ -6979,8 +7130,8 @@
     },
     {
       "displayName": "РУП \"Белоруснефть-Гомельоблнефтепродукт\"",
-      "id": "026cd5-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "026cd5-20a807",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "РУП \"Белоруснефть-Гомельоблнефтепродукт\""
@@ -6997,17 +7148,18 @@
     },
     {
       "displayName": "РусГидро",
-      "id": "70aabc-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "70aabc-18ef61",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "charging_station",
-        "operator": "РусГидро"
+        "operator": "РусГидро",
+        "operator:wikidata": "Q2035424"
       }
     },
     {
       "displayName": "Столичен електротранспорт",
-      "id": "28c7ea-c22d3a",
-      "locationSet": {"include": ["001"]},
+      "id": "28c7ea-befeeb",
+      "locationSet": {"include": ["bg"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "Столичен електротранспорт"
