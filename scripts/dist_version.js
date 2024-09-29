@@ -1,6 +1,7 @@
 // External
 import chalk from 'chalk';
 import fs from 'node:fs';
+import JSON5 from 'json5';
 
 // JSON
 const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
