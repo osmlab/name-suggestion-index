@@ -6,7 +6,7 @@
         "^stadtwerke$",
         "^sub_?station$"
       ],
-      "named": ["^enbw( ag)?$"]
+      "named": ["^enbw( ag)?$", "^une – sen$"]
     }
   },
   "items": [
@@ -366,8 +366,10 @@
       "displayName": "Area Nett",
       "id": "areanett-ba6ae8",
       "locationSet": {"include": ["no"]},
+      "matchNames": ["nettinord"],
       "tags": {
         "operator": "Area Nett",
+        "operator:wikidata": "Q129206713",
         "power": "substation"
       }
     },
@@ -875,6 +877,17 @@
       }
     },
     {
+      "displayName": "Bornholms Energi & Forsyning",
+      "id": "bornholmsenergiandforsyning-3aeb55",
+      "locationSet": {"include": ["dk"]},
+      "matchNames": ["østkraft net a/s"],
+      "tags": {
+        "operator": "Bornholms Energi & Forsyning",
+        "operator:wikidata": "Q70786210",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Botswana Power Corporation",
       "id": "botswanapower-29685e",
       "locationSet": {"include": ["bw"]},
@@ -1003,15 +1016,6 @@
       }
     },
     {
-      "displayName": "Caiuá",
-      "id": "caiua-acc4a0",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "operator": "Caiuá",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "Carroll Electric Cooperative",
       "id": "carrollelectriccooperative-a7f382",
       "locationSet": {
@@ -1087,15 +1091,6 @@
       "tags": {
         "operator": "Celesc",
         "operator:wikidata": "Q638533",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "Celpe",
-      "id": "celpe-acc4a0",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "operator": "Celpe",
         "power": "substation"
       }
     },
@@ -2444,6 +2439,7 @@
       "displayName": "EDE",
       "id": "ede-998f8d",
       "locationSet": {"include": ["hu"]},
+      "note": "may be related to EED",
       "tags": {
         "operator": "EDE",
         "power": "substation"
@@ -2467,16 +2463,6 @@
       "tags": {
         "operator": "Edison",
         "operator:wikidata": "Q912872",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "EDP Bandeirante",
-      "id": "edpbandeirante-acc4a0",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "operator": "EDP Bandeirante",
-        "operator:wikidata": "Q10269426",
         "power": "substation"
       }
     },
@@ -2524,8 +2510,10 @@
       "displayName": "EDP São Paulo",
       "id": "edpsaopaulo-acc4a0",
       "locationSet": {"include": ["br"]},
+      "matchNames": ["edp bandeirante"],
       "tags": {
         "operator": "EDP São Paulo",
+        "operator:wikidata": "Q10269426",
         "power": "substation"
       }
     },
@@ -2542,6 +2530,7 @@
       "displayName": "EED",
       "id": "eed-998f8d",
       "locationSet": {"include": ["hu"]},
+      "note": "may be related to EDE",
       "tags": {
         "operator": "EED",
         "power": "substation"
@@ -2789,6 +2778,17 @@
       }
     },
     {
+      "displayName": "Elektro-Slovenija",
+      "id": "elektroslovenija-71ceba",
+      "locationSet": {"include": ["si"]},
+      "tags": {
+        "operator": "Elektro-Slovenija",
+        "operator:short": "ELES",
+        "operator:wikidata": "Q5358777",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Elektroprenos BiH",
       "id": "elektroprenosbih-e68224",
       "locationSet": {"include": ["ba"]},
@@ -2815,15 +2815,6 @@
       "tags": {
         "operator": "Elering",
         "operator:wikidata": "Q5359452",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "ELES",
-      "id": "eles-71ceba",
-      "locationSet": {"include": ["si"]},
-      "tags": {
-        "operator": "ELES",
         "power": "substation"
       }
     },
@@ -2908,6 +2899,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Elinett",
+        "operator:wikidata": "Q129177050",
         "power": "substation"
       }
     },
@@ -2927,6 +2919,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Elmea",
+        "operator:wikidata": "Q129177328",
         "power": "substation"
       }
     },
@@ -2957,6 +2950,7 @@
       "locationSet": {"include": ["hu"]},
       "tags": {
         "operator": "ÉMÁSZ",
+        "operator:wikidata": "Q20439183",
         "power": "substation"
       }
     },
@@ -3099,16 +3093,6 @@
       "tags": {
         "operator": "Enel Distribuição Ceará",
         "operator:wikidata": "Q18477759",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "Enel Distribuição Goiás",
-      "id": "eneldistribuicaogoias-acc4a0",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "operator": "Enel Distribuição Goiás",
-        "operator:wikidata": "Q9670366",
         "power": "substation"
       }
     },
@@ -3423,10 +3407,13 @@
     },
     {
       "displayName": "Energisa Rondônia",
-      "id": "energisarondonia-acc4a0",
-      "locationSet": {"include": ["br"]},
+      "id": "energisarondonia-31617d",
+      "locationSet": {
+        "include": ["br-ro.geojson"]
+      },
       "tags": {
         "operator": "Energisa Rondônia",
+        "operator:wikidata": "Q10271730",
         "power": "substation"
       }
     },
@@ -3434,8 +3421,10 @@
       "displayName": "Energisa Sul-Sudeste",
       "id": "energisasulsudeste-acc4a0",
       "locationSet": {"include": ["br"]},
+      "matchNames": ["caiuá"],
       "tags": {
         "operator": "Energisa Sul-Sudeste",
+        "operator:wikidata": "Q86734153",
         "power": "substation"
       }
     },
@@ -3490,6 +3479,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Enida",
+        "operator:wikidata": "Q129350588",
         "power": "substation"
       }
     },
@@ -3751,6 +3741,22 @@
       }
     },
     {
+      "displayName": "Equatorial Energia Goiás",
+      "id": "equatorialenergiagoias-d63048",
+      "locationSet": {
+        "include": ["br-go.geojson"]
+      },
+      "matchNames": [
+        "enel distribuição goiás",
+        "equatorial energia"
+      ],
+      "tags": {
+        "operator": "Equatorial Energia Goiás",
+        "operator:wikidata": "Q9670366",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Equatorial Energia Maranhão",
       "id": "equatorialenergiamaranhao-bebe98",
       "locationSet": {
@@ -3928,6 +3934,7 @@
       "displayName": "ETI",
       "id": "eti-998f8d",
       "locationSet": {"include": ["hu"]},
+      "note": "no matching companies were found",
       "tags": {
         "operator": "ETI",
         "power": "substation"
@@ -4234,20 +4241,25 @@
       }
     },
     {
-      "displayName": "Fenaka Corporation Limited Vaikaradhoo",
-      "id": "fenakacorporationlimitedvaikaradhoo-50d5ac",
+      "displayName": "Fenaka Vaikaradhoo Branch",
+      "id": "fenakavaikaradhoobranch-50d5ac",
       "locationSet": {"include": ["mv"]},
+      "matchNames": [
+        "fenaka corporation limited vaikaradhoo"
+      ],
       "tags": {
-        "operator": "Fenaka Corporation Limited Vaikaradhoo",
+        "operator": "Fenaka Vaikaradhoo Branch",
+        "operator:wikidata": "Q130384689",
         "power": "substation"
       }
     },
     {
-      "displayName": "FINERGE",
+      "displayName": "Finerge",
       "id": "finerge-108ef7",
       "locationSet": {"include": ["pt"]},
       "tags": {
-        "operator": "FINERGE",
+        "operator": "Finerge",
+        "operator:wikidata": "Q126735347",
         "power": "substation"
       }
     },
@@ -5558,6 +5570,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Kystnett",
+        "operator:wikidata": "Q130384827",
         "power": "substation"
       }
     },
@@ -5786,6 +5799,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Lnett",
+        "operator:wikidata": "Q129177115",
         "power": "substation"
       }
     },
@@ -5886,6 +5900,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Lucerna",
+        "operator:wikidata": "Q129207130",
         "power": "substation"
       }
     },
@@ -6093,6 +6108,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Mellom",
+        "operator:wikidata": "Q117863236",
         "power": "substation"
       }
     },
@@ -6518,11 +6534,15 @@
       }
     },
     {
-      "displayName": "NettiNord",
-      "id": "nettinord-ba6ae8",
-      "locationSet": {"include": ["no"]},
+      "displayName": "Neoenergia Pernambuco",
+      "id": "neoenergiapernambuco-febfc5",
+      "locationSet": {
+        "include": ["br-pe.geojson"]
+      },
+      "matchNames": ["celpe"],
       "tags": {
-        "operator": "NettiNord",
+        "operator": "Neoenergia Pernambuco",
+        "operator:wikidata": "Q18477753",
         "power": "substation"
       }
     },
@@ -6574,6 +6594,7 @@
       "matchNames": ["netz burgenland gmbh"],
       "tags": {
         "operator": "Netz Burgenland",
+        "operator:wikidata": "Q130384439",
         "power": "substation"
       }
     },
@@ -6880,6 +6901,7 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "operator": "Norgesnett",
+        "operator:wikidata": "Q129177211",
         "power": "substation"
       }
     },
@@ -7011,6 +7033,7 @@
       "locationSet": {"include": ["gl"]},
       "tags": {
         "operator": "Nukissiorfiit",
+        "operator:wikidata": "Q7068864",
         "power": "substation"
       }
     },
@@ -7194,15 +7217,6 @@
       "tags": {
         "operator": "OstHessenNetz",
         "operator:wikidata": "Q124463176",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "Østkraft Net A/S",
-      "id": "ostkraftnetas-3aeb55",
-      "locationSet": {"include": ["dk"]},
-      "tags": {
-        "operator": "Østkraft Net A/S",
         "power": "substation"
       }
     },
@@ -10787,15 +10801,6 @@
       "matchNames": ["unareti s.p.a."],
       "tags": {
         "operator": "Unareti",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "UNE – SEN",
-      "id": "unesen-7c6fae",
-      "locationSet": {"include": ["cu"]},
-      "tags": {
-        "operator": "UNE – SEN",
         "power": "substation"
       }
     },
