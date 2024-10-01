@@ -2,12 +2,17 @@
   "properties": {
     "path": "transit/route/bus",
     "exclude": {
-      "generic": ["^autobuz$", "^bus$", "^no$"],
-      "named": [
+      "generic": [
         "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban|urbano|yellow buses|interurbana)$",
+        "^autobuz$",
+        "^bus$",
+        "^no$"      
+      ],
+      "named": [
+        "^(csueb|SBU Transit|UCSD Shuttles)$",
+        "^(AirVenture Shuttles|Roseville Commuter)$",
         "^b$",
         "^bürgerbus$",
-        "^csueb$",
         "^校车$",
         "광주시 공영버스"
       ]
@@ -229,20 +234,6 @@
       "tags": {
         "network": "Airdrie Transit",
         "network:wikidata": "Q4698613",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "AirVenture Shuttles",
-      "id": "airventureshuttles-28c67e",
-      "locationSet": {
-        "include": ["us-wi.geojson"]
-      },
-      "tags": {
-        "network": "AirVenture Shuttles",
-        "operator": "Experimental Aircraft Association",
-        "operator:short": "EAA",
-        "operator:wikidata": "Q1384383",
         "route": "bus"
       }
     },
@@ -3100,7 +3091,8 @@
         "include": ["us-ny.geojson"]
       },
       "tags": {
-        "network": "CDTA",
+        "network": "Capital District Transportation Authority",
+        "network:short": "CDTA",
         "network:wikidata": "Q5035551",
         "route": "bus"
       }
@@ -8859,7 +8851,9 @@
         "include": ["us-tx.geojson"]
       },
       "tags": {
-        "network": "LT",
+        "network": "Longview Transit",
+        "network:short": "LT",
+        "network:wikidata": "Q130390518",
         "operator": "Longview Transit",
         "route": "bus"
       }
@@ -10210,6 +10204,9 @@
       },
       "tags": {
         "network": "Miami Trolley",
+        "network:wikidata": "Q130391092",
+        "operator": "City of Miami",
+        "operator:wikidata": "Q8652",
         "route": "bus"
       }
     },
@@ -14724,19 +14721,6 @@
       }
     },
     {
-      "displayName": "SBU Transit",
-      "id": "sbutransit-361a78",
-      "locationSet": {
-        "include": ["us-ny.geojson"]
-      },
-      "tags": {
-        "network": "SBU Transit",
-        "operator": "Stony Brook University",
-        "operator:wikidata": "Q969850",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "SCAT (Sarasota County)",
       "id": "scat-e591f2",
       "locationSet": {
@@ -16019,8 +16003,12 @@
       "locationSet": {
         "include": ["us-ca.geojson"]
       },
+      "matchNames": ["Clovis Transit Stageline"],
       "tags": {
         "network": "Stageline",
+        "network:wikidata": "Q130391671",
+        "operator": "Clovis Transit",
+        "operator:wikidata": "Q113396103",
         "route": "bus"
       }
     },
@@ -18380,13 +18368,16 @@
       }
     },
     {
-      "displayName": "Treasure Coast Connector",
+      "displayName": "Area Regional Transit",
       "id": "treasurecoastconnector-e591f2",
       "locationSet": {
         "include": ["us-fl.geojson"]
       },
+      "matchNames": ["Treasure Coast Connector"],
       "tags": {
-        "network": "Treasure Coast Connector",
+        "network": "Area Regional Transit",
+        "network:wikidata": "Q130391711",
+        "operator": "Saint Lucie County Transit Division",
         "route": "bus"
       }
     },
@@ -18788,17 +18779,6 @@
       "locationSet": {"include": ["ua"]},
       "tags": {
         "network": "ua:local",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "UCSD Shuttles",
-      "id": "ucsdshuttles-62dc11",
-      "locationSet": {
-        "include": ["us-ca.geojson"]
-      },
-      "tags": {
-        "network": "UCSD Shuttles",
         "route": "bus"
       }
     },
@@ -20502,6 +20482,9 @@
       "tags": {
         "network": "Waco Transit System",
         "network:short": "WTS",
+        "network:wikidata": "Q130391813",
+        "operator": "City of Waco",
+        "operator:wikidata": "Q128244",
         "route": "bus"
       }
     },
@@ -20909,7 +20892,9 @@
         "include": ["us-nc.geojson"]
       },
       "tags": {
-        "network": "WSTA",
+        "network": "Winston-Salem Transit Authority",
+        "network:short": "WSTA",
+        "network:wikidata": "Q130391886",
         "operator": "Winston-Salem Transit Authority",
         "route": "bus"
       }
