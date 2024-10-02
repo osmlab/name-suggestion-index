@@ -6,11 +6,11 @@
         "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban|urbano|yellow buses|interurbana)$",
         "^autobuz$",
         "^bus$",
-        "^no$"      
+        "^no$"
       ],
       "named": [
-        "^(csueb|SBU Transit|UCSD Shuttles)$",
-        "^(AirVenture Shuttles|Roseville Commuter)$",
+        "^(airventure shuttles|audi ag|audi shuttle bus|roseville commuter|volkswagen shuttles)$",
+        "^(csueb|sbu transit|ucsd shuttles)$",
         "^b$",
         "^bürgerbus$",
         "^校车$",
@@ -812,6 +812,21 @@
       }
     },
     {
+      "displayName": "Area Regional Transit",
+      "id": "arearegionaltransit-e591f2",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "matchNames": ["treasure coast connector"],
+      "tags": {
+        "network": "Area Regional Transit",
+        "network:short": "ART",
+        "network:wikidata": "Q130391711",
+        "operator": "Saint Lucie County Transit Division",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Argenteuil - Boucles de Seine",
       "id": "argenteuilbouclesdeseine-add5eb",
       "locationSet": {"include": ["fx"]},
@@ -914,7 +929,7 @@
       }
     },
     {
-      "displayName": "ART",
+      "displayName": "ART (Anaheim)",
       "id": "anaheimresorttransit-62dc11",
       "locationSet": {
         "include": ["us-ca.geojson"]
@@ -1154,19 +1169,9 @@
       "id": "atvo-ba987e",
       "locationSet": {"include": ["it"]},
       "tags": {
+        "network": "ATVO",
         "network:wikidata": "Q3602275",
         "operator": "ATVO",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Audi AG",
-      "id": "audishuttlebus-f6e3a2",
-      "locationSet": {"include": [[11.5, 48.8]]},
-      "tags": {
-        "network": "Audi Shuttle Bus",
-        "operator": "Audi AG",
-        "operator:wikidata": "Q23317",
         "route": "bus"
       }
     },
@@ -2242,12 +2247,6 @@
       }
     },
     {
-      "displayName": "BRT (Tanzania)",
-      "id": "brt-68e977",
-      "locationSet": {"include": ["tz"]},
-      "tags": {"network": "BRT", "route": "bus"}
-    },
-    {
       "displayName": "BRT (Thailand)",
       "id": "brt-43cc75",
       "locationSet": {"include": ["th"]},
@@ -3086,7 +3085,7 @@
     },
     {
       "displayName": "CDTA",
-      "id": "cdta-361a78",
+      "id": "capitaldistricttransportationauthority-361a78",
       "locationSet": {
         "include": ["us-ny.geojson"]
       },
@@ -8846,7 +8845,7 @@
     },
     {
       "displayName": "LT (Longview)",
-      "id": "lt-071d6c",
+      "id": "longviewtransit-071d6c",
       "locationSet": {
         "include": ["us-tx.geojson"]
       },
@@ -16003,7 +16002,7 @@
       "locationSet": {
         "include": ["us-ca.geojson"]
       },
-      "matchNames": ["Clovis Transit Stageline"],
+      "matchNames": ["clovis transit stageline"],
       "tags": {
         "network": "Stageline",
         "network:wikidata": "Q130391671",
@@ -18368,20 +18367,6 @@
       }
     },
     {
-      "displayName": "Area Regional Transit",
-      "id": "treasurecoastconnector-e591f2",
-      "locationSet": {
-        "include": ["us-fl.geojson"]
-      },
-      "matchNames": ["Treasure Coast Connector"],
-      "tags": {
-        "network": "Area Regional Transit",
-        "network:wikidata": "Q130391711",
-        "operator": "Saint Lucie County Transit Division",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "TréMA",
       "id": "trema-add5eb",
       "locationSet": {"include": ["fx"]},
@@ -18796,6 +18781,17 @@
       }
     },
     {
+      "displayName": "UDART",
+      "id": "udart-68e977",
+      "locationSet": {"include": ["tz"]},
+      "matchNames": ["brt"],
+      "tags": {
+        "network": "UDART",
+        "network:wikidata": "Q16954205",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "UL",
       "id": "ul-783b59",
       "locationSet": {"include": ["se"]},
@@ -18870,6 +18866,7 @@
       "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "network": "Unilink",
+        "network:wikidata": "Q7884624",
         "route": "bus"
       }
     },
@@ -20255,17 +20252,6 @@
       }
     },
     {
-      "displayName": "Volkswagen Shuttles",
-      "id": "volkswagenshuttles-ba6b6e",
-      "locationSet": {
-        "include": [[10.77, 52.43, 5]]
-      },
-      "tags": {
-        "network": "Volkswagen Shuttles",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Voorne-Putten en Rozenburg",
       "id": "voorneputtenenrozenburg-2f3200",
       "locationSet": {"include": ["nl"]},
@@ -20887,7 +20873,7 @@
     },
     {
       "displayName": "WSTA",
-      "id": "wsta-5fe206",
+      "id": "winstonsalemtransitauthority-5fe206",
       "locationSet": {
         "include": ["us-nc.geojson"]
       },
