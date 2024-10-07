@@ -6,6 +6,7 @@
         "^(bistro|buffet|büfé|fast food|food court|kantine|piccolo|restaurant|resto|taverna|trattoria|warung|dining hall)$",
         "^(chifa|chinese restaurant)$",
         "^(pancake|steak)( house)?$",
+        "^(rumah|warung) makan$",
         "^(ресторан|столовая)$",
         "^caf[eé](t[eé]r[ií]a)?$",
         "^garba(drome)?$",
@@ -21,23 +22,23 @@
       "named": [
         "^((da|la|las|el|ristorante|zum|zur)\\s)",
         "^((gasthaus|gasthof|schwarzer)?\\s?(adler|krone|löwen|zur (linde|post)))$",
-        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella ?(vista|napoli))$",
-        "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|comedor|comida china)$",
+        "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|amigos|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella ?(vista|vita|napoli))$",
+        "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|castello|comedor|comida china)$",
         "^(china (buffet|city|express|garden|house|king|palace|star|town)|chinatown)$",
-        "^(delphi|der grieche|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|eden|europa|frohsinn|fuji)$",
-        "^(golden dragon|great wall|grüner baum|hellas|hirsch(en)?|hong kong|happy garden)$",
+        "^(delphi|der grieche|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|eden|europa|flamingo|frohsinn|fuji)$",
+        "^(golden (dragon|wok)|great wall|grüner baum|hellas|hirsch(en)?|hong kong|happy garden|hua han)$",
         "^(indian palace|ichiban|il giardino|istanbul|italia|jade garden|jägerhof|yamato)$",
         "^(kirchenwirt|koliba|kreta|kreuz|krone|kyoto|lamm|le (bistrot|patio))$",
         "^(l'ardoise|l'escale|le bistro|lemongrass|linde|lindenhof|little (italy|india)|los (amigos|arcos))$",
         "^(lotus|löwen|maharaja|mama lishe|mamma mia|mandarin|marco polo|marina|marmaris|mediterraneo|mensa|milano|mona lisa|mykonos|mythos)$",
         "^(namaste|napoli|new china|oasis|ochsen|olympia|osaka|panda|panorama|paradise|parrilla|peking|pho|pinocchio)$",
-        "^(pizza house|pizza king|pizza roma|pomodoro|portofino|poseidon|ratskeller|rhodos|veranda)$",
+        "^(pizza house|pizza king|pizza roma|pomodoro|portofino|poseidon|ratskeller|rhodos|veranda|restaurante popular)$",
         "^(pizzeria (italia|milano|napoli|primavera|roma|venezia))$",
         "^(primavera|roadhouse|roma|rose|rossini|rössl[ei]|royal|saffron|saigon|sakura|san marco|santorini|santa maria|schützenhaus|shalimar|shanghai|sonne|sphinx)$",
-        "^(sportheim|sternen|syrtaki|taj mahal|taste of india|the (grill|kitchen)|toscana|tokyo( sushi)?|traube)$",
-        "^(umami|valentino|venezia|waldschänke|wok|zorbas)$",
+        "^(sportheim|sternen|syrtaki|taj mahal|taste of india|thai kitchen|the (grill|kitchen)|tony's pizza|toscana|tokyo( sushi)?|traube)$",
+        "^(umami|valentino|venezia|verona|waldschänke|wok|zorbas)$",
         "^(早点|早餐店)$",
-        "^thai kitchen$",
+        "^전주식당$",
         "^兰州拉面$",
         "^沙县小吃$",
         "^食堂$"
@@ -72,6 +73,25 @@
       }
     },
     {
+      "displayName": "1010湘",
+      "id": "1010restaurant-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "1010湘",
+        "brand:en": "1010 Restaurant",
+        "brand:wikidata": "Q130214356",
+        "brand:zh": "1010湘",
+        "cuisine": "chinese",
+        "name": "1010湘",
+        "name:en": "1010 Restaurant",
+        "name:zh": "1010湘",
+        "operator": "瓦城泰統集團",
+        "operator:en": "TTFB Restaurant Group",
+        "operator:wikidata": "Q15927204"
+      }
+    },
+    {
       "displayName": "110 Grill",
       "id": "110grill-96af40",
       "locationSet": {"include": ["us"]},
@@ -84,9 +104,11 @@
       }
     },
     {
-      "displayName": "3 Brewers (On)",
-      "id": "3brewers-e68b16",
-      "locationSet": {"include": ["ca"]},
+      "displayName": "3 Brewers (Ontario)",
+      "id": "3brewers-f8643e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "3 Brasseurs",
@@ -157,6 +179,7 @@
         "amenity": "restaurant",
         "brand": "ALEX",
         "brand:wikidata": "Q18018122",
+        "cuisine": "breakfast;burger;international;steak_house",
         "name": "ALEX"
       }
     },
@@ -170,6 +193,20 @@
         "brand:wikidata": "Q66133409",
         "cuisine": "pizza",
         "name": "Amici"
+      }
+    },
+    {
+      "displayName": "Anjappar Chettinad Restaurant",
+      "id": "anjapparchettinadrestaurant-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Anjappar Chettinad Restaurant",
+        "brand:wikidata": "Q4765786",
+        "cuisine": "south_indian",
+        "delivery": "yes",
+        "name": "Anjappar Chettinad Restaurant",
+        "takeaway": "yes"
       }
     },
     {
@@ -191,7 +228,8 @@
       "tags": {
         "amenity": "restaurant",
         "brand": "Aposto",
-        "cuisine": "mediterranean",
+        "brand:wikidata": "Q129740663",
+        "cuisine": "italian",
         "name": "Aposto"
       }
     },
@@ -211,6 +249,20 @@
         "cuisine": "american",
         "name": "Applebee's",
         "official_name": "Applebee's Neighborhood Grill & Bar"
+      }
+    },
+    {
+      "displayName": "Arepa & Co",
+      "id": "arepaandco-e997f8",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Arepa & Co",
+        "brand:wikidata": "Q125421682",
+        "cuisine": "venezuelan",
+        "name": "Arepa & Co"
       }
     },
     {
@@ -338,6 +390,59 @@
       }
     },
     {
+      "displayName": "Bar-B-Q Plaza",
+      "id": "barbqplaza-5a3582",
+      "locationSet": {"include": ["th"]},
+      "matchNames": ["bbq plaza"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Bar-B-Q Plaza",
+        "brand:en": "Bar-B-Q Plaza",
+        "brand:th": "บาร์บีคิวพลาซ่า",
+        "brand:wikidata": "Q125861684",
+        "cuisine": "barbecue;mongolian;japanese",
+        "name": "Bar-B-Q Plaza",
+        "name:en": "Bar-B-Q Plaza",
+        "name:th": "บาร์บีคิวพลาซ่า"
+      }
+    },
+    {
+      "displayName": "Barro's Pizza",
+      "id": "barrospizza-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Barro's Pizza",
+        "brand:wikidata": "Q29583246",
+        "cuisine": "pizza",
+        "name": "Barro's Pizza"
+      }
+    },
+    {
+      "displayName": "Bartaco",
+      "id": "bartaco-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Bartaco",
+        "brand:wikidata": "Q112871922",
+        "cuisine": "tacos",
+        "name": "Bartaco"
+      }
+    },
+    {
+      "displayName": "Basilic & Co",
+      "id": "basilicandco-47e37e",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Basilic & Co",
+        "brand:wikidata": "Q130248490",
+        "cuisine": "pizza",
+        "name": "Basilic & Co"
+      }
+    },
+    {
       "displayName": "Basilico",
       "id": "basilico-9b5453",
       "locationSet": {"include": ["gb"]},
@@ -347,6 +452,35 @@
         "brand:wikidata": "Q123397327",
         "cuisine": "pizza",
         "name": "Basilico"
+      }
+    },
+    {
+      "displayName": "Bastard Burgers",
+      "id": "bastardburgers-45c141",
+      "locationSet": {"include": ["se"]},
+      "matchNames": ["bastard burger"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Bastard Burgers",
+        "brand:wikidata": "Q76873807",
+        "cuisine": "burger",
+        "name": "Bastard Burgers",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "bb.q Chicken",
+      "id": "bbqchicken-d60782",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["kr"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "bb.q Chicken",
+        "brand:wikidata": "Q87716489",
+        "cuisine": "korean;chicken",
+        "name": "bb.q Chicken"
       }
     },
     {
@@ -363,6 +497,34 @@
         "cuisine": "burger",
         "name": "BBB",
         "name:en": "BBB"
+      }
+    },
+    {
+      "displayName": "BBQ치킨",
+      "id": "bbqolivechickencafe-5f8110",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "BBQ치킨",
+        "brand:en": "bb.q",
+        "brand:ko": "BBQ치킨",
+        "brand:wikidata": "Q87716489",
+        "cuisine": "chicken",
+        "name": "BBQ치킨",
+        "name:en": "bb.q Olive Chicken Cafe",
+        "name:ko": "BBQ치킨"
+      }
+    },
+    {
+      "displayName": "BCD Tofu House",
+      "id": "bcdtofuhouse-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "BCD Tofu House",
+        "brand:wikidata": "Q125537897",
+        "cuisine": "korean",
+        "name": "BCD Tofu House"
       }
     },
     {
@@ -509,6 +671,20 @@
       }
     },
     {
+      "displayName": "Bhartiya Jalpan",
+      "id": "bhartiyajalpan-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Bhartiya Jalpan",
+        "brand:wikidata": "Q124374711",
+        "cuisine": "indian",
+        "delivery": "yes",
+        "name": "Bhartiya Jalpan",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Biesiadowo",
       "id": "biesiadowo-07fabc",
       "locationSet": {"include": ["pl"]},
@@ -547,11 +723,12 @@
     },
     {
       "displayName": "Bistro Régent",
-      "id": "bistroregent-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "bistroregent-dee615",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Bistro Régent",
+        "brand:wikidata": "Q98967977",
         "cuisine": "steak_house;french",
         "name": "Bistro Régent"
       }
@@ -700,7 +877,8 @@
         "amenity": "restaurant",
         "brand": "Bone Daddies",
         "brand:wikidata": "Q111204601",
-        "cuisine": "japanese;ramen",
+        "cuisine": "ramen",
+        "diet:vegetarian": "yes",
         "name": "Bone Daddies",
         "reservation": "no",
         "takeaway": "yes"
@@ -716,6 +894,18 @@
         "brand:wikidata": "Q4941599",
         "cuisine": "seafood",
         "name": "Bonefish Grill"
+      }
+    },
+    {
+      "displayName": "Bossa",
+      "id": "bossa-69fbf5",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Bossa",
+        "brand:wikidata": "Q130376269",
+        "cuisine": "burger;pizza",
+        "name": "Bossa"
       }
     },
     {
@@ -753,6 +943,20 @@
         "brand:wikidata": "Q123022531",
         "cuisine": "american",
         "name": "BreWingZ"
+      }
+    },
+    {
+      "displayName": "Brik Oven",
+      "id": "brikoven-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Brik Oven",
+        "brand:wikidata": "Q124374702",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "Brik Oven",
+        "takeaway": "yes"
       }
     },
     {
@@ -947,6 +1151,7 @@
         "amenity": "restaurant",
         "brand": "Cactus Club Cafe",
         "brand:wikidata": "Q5016149",
+        "cuisine": "international",
         "name": "Cactus Club Cafe"
       }
     },
@@ -958,6 +1163,7 @@
         "amenity": "restaurant",
         "brand": "Cafe & Bar Celona",
         "brand:wikidata": "Q1025499",
+        "cuisine": "burger;coffee_shop;international",
         "name": "Cafe & Bar Celona"
       }
     },
@@ -969,7 +1175,22 @@
         "amenity": "restaurant",
         "brand": "Cafe Del Sol",
         "brand:wikidata": "Q17310688",
+        "cuisine": "international",
         "name": "Cafe Del Sol"
+      }
+    },
+    {
+      "displayName": "Cafe Noir",
+      "id": "cafenoir-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Cafe Noir",
+        "brand:wikidata": "Q124374751",
+        "cuisine": "french",
+        "delivery": "yes",
+        "name": "Cafe Noir",
+        "takeaway": "yes"
       }
     },
     {
@@ -995,6 +1216,18 @@
         "brand:wikidata": "Q5017261",
         "cuisine": "french",
         "name": "Café Rouge"
+      }
+    },
+    {
+      "displayName": "California Burrito",
+      "id": "californiaburrito-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "California Burrito",
+        "brand:wikidata": "Q124374596",
+        "cuisine": "mexican",
+        "name": "California Burrito"
       }
     },
     {
@@ -1046,6 +1279,7 @@
         "amenity": "restaurant",
         "brand": "Caravan",
         "brand:wikidata": "Q114771226",
+        "cuisine": "coffee_shop;international",
         "name": "Caravan"
       }
     },
@@ -1065,12 +1299,25 @@
       "displayName": "Carrabba's Italian Grill",
       "id": "carrabbasitaliangrill-96af40",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["carrabba's"],
       "tags": {
         "amenity": "restaurant",
         "brand": "Carrabba's Italian Grill",
         "brand:wikidata": "Q5045999",
         "cuisine": "italian",
         "name": "Carrabba's Italian Grill"
+      }
+    },
+    {
+      "displayName": "Casey's",
+      "id": "caseys-96af40",
+      "locationSet": {"include": ["us"]},
+      "note": "many items with this set of tags are probably mistagged - see Q2940968",
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Casey's",
+        "cuisine": "pizza",
+        "name": "Casey's"
       }
     },
     {
@@ -1137,6 +1384,32 @@
         "cuisine": "tex-mex",
         "name": "Chili's",
         "official_name": "Chili's Grill & Bar"
+      }
+    },
+    {
+      "displayName": "Chimcking",
+      "id": "chimcking-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Chimcking",
+        "brand:wikidata": "Q126519625",
+        "cuisine": "korean;chicken",
+        "name": "Chimcking"
+      }
+    },
+    {
+      "displayName": "Chinita",
+      "id": "chinita-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Chinita",
+        "brand:wikidata": "Q124374771",
+        "cuisine": "mexican",
+        "delivery": "yes",
+        "name": "Chinita",
+        "takeaway": "yes"
       }
     },
     {
@@ -1276,7 +1549,7 @@
     },
     {
       "displayName": "CoCo Ichibanya",
-      "id": "cocoichibanya-365649",
+      "id": "cocoichibanya-74f126",
       "locationSet": {
         "include": [
           "cn",
@@ -1288,7 +1561,6 @@
           "ph",
           "sg",
           "th",
-          "tw",
           "us",
           "vn"
         ]
@@ -1299,7 +1571,7 @@
         "brand:en": "CoCo Ichibanya",
         "brand:ja": "CoCo壱番屋",
         "brand:wikidata": "Q5986105",
-        "cuisine": "japanese",
+        "cuisine": "curry;japanese",
         "name": "CoCo Ichibanya",
         "name:en": "CoCo Ichibanya",
         "name:ja": "CoCo壱番屋",
@@ -1320,6 +1592,48 @@
       }
     },
     {
+      "displayName": "CoCo壱番屋",
+      "id": "cocoichibanya-36ca8e",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "CoCo壱番屋",
+        "brand:en": "CoCo ICHIBANYA",
+        "brand:ja": "CoCo壱番屋",
+        "brand:wikidata": "Q5986105",
+        "cuisine": "curry;japanese",
+        "name": "CoCo壱番屋",
+        "name:en": "CoCo ICHIBANYA",
+        "name:ja": "CoCo壱番屋",
+        "short_name": "ココイチ",
+        "short_name:en": "CoCoICHI",
+        "short_name:ja": "ココイチ",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "CoCo壱番屋 (臺灣)",
+      "id": "cocoichibanya-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "CoCo壱番屋",
+        "brand:en": "CoCo Ichibanya",
+        "brand:ja": "CoCo壱番屋",
+        "brand:wikidata": "Q5986105",
+        "brand:zh": "CoCo壱番屋",
+        "cuisine": "curry;japanese",
+        "name": "CoCo壱番屋",
+        "name:en": "CoCo Ichibanya",
+        "name:ja": "CoCo壱番屋",
+        "name:zh": "CoCo壹番屋",
+        "operator": "壹番屋股份有限公司",
+        "operator:en": "KABUSHIKI KAISHA ICHIBANYA",
+        "operator:zh": "壹番屋股份有限公司",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "CoCo壹番屋咖喱",
       "id": "cocoichibanya-2b8b0b",
       "locationSet": {
@@ -1333,12 +1647,26 @@
         "brand:ja": "CoCo壱番屋",
         "brand:wikidata": "Q5986105",
         "brand:zh": "CoCo壹番屋咖喱",
-        "cuisine": "japanese",
+        "cuisine": "curry;japanese",
         "name": "CoCo壹番屋咖喱",
         "name:en": "CoCo Ichibanya",
         "name:ja": "CoCo壱番屋",
         "name:zh": "CoCo壹番屋咖喱",
         "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Col'Cacchio Pizzeria",
+      "id": "colcacchiopizzeria-13b08d",
+      "locationSet": {
+        "include": ["mu", "na", "za"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Col'Cacchio Pizzeria",
+        "brand:wikidata": "Q25613087",
+        "cuisine": "pizza",
+        "name": "Col'Cacchio Pizzeria"
       }
     },
     {
@@ -1545,6 +1873,18 @@
       }
     },
     {
+      "displayName": "D.P. Dough",
+      "id": "dpdough-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "D.P. Dough",
+        "brand:wikidata": "Q22008973",
+        "cuisine": "calzone",
+        "name": "D.P. Dough"
+      }
+    },
+    {
       "displayName": "Da Grasso",
       "id": "dagrasso-07fabc",
       "locationSet": {"include": ["pl"]},
@@ -1555,6 +1895,20 @@
         "cuisine": "pizza",
         "diet:vegetarian": "yes",
         "name": "Da Grasso"
+      }
+    },
+    {
+      "displayName": "Daily Sushi",
+      "id": "dailysushi-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Daily Sushi",
+        "brand:wikidata": "Q124374644",
+        "cuisine": "asian",
+        "delivery": "yes",
+        "name": "Daily Sushi",
+        "takeaway": "yes"
       }
     },
     {
@@ -1606,7 +1960,21 @@
         "amenity": "restaurant",
         "brand": "De Beren",
         "brand:wikidata": "Q57076079",
+        "cuisine": "burger;chicken;grill;vegetarian",
         "name": "De Beren"
+      }
+    },
+    {
+      "displayName": "De Pizzabakkers",
+      "id": "depizzabakkers-2b67bf",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "De Pizzabakkers",
+        "brand:wikidata": "Q124218622",
+        "cuisine": "pizza",
+        "name": "De Pizzabakkers",
+        "takeaway": "yes"
       }
     },
     {
@@ -1693,6 +2061,20 @@
       }
     },
     {
+      "displayName": "Dindigul Thalappakatti Restaurant",
+      "id": "dindigulthalappakattirestaurant-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Dindigul Thalappakatti Restaurant",
+        "brand:wikidata": "Q16312263",
+        "cuisine": "south_indian",
+        "delivery": "yes",
+        "name": "Dindigul Thalappakatti Restaurant",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Dishoom",
       "id": "dishoom-9b5453",
       "locationSet": {"include": ["gb"]},
@@ -1716,6 +2098,32 @@
         "cuisine": "pizza",
         "name": "Donatos Pizza",
         "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Doppio Malto",
+      "id": "doppiomalto-94430a",
+      "locationSet": {
+        "include": ["fx", "gb", "it"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Doppio Malto",
+        "brand:wikidata": "Q125285187",
+        "cuisine": "burger;italian;steak_house",
+        "name": "Doppio Malto"
+      }
+    },
+    {
+      "displayName": "Doppio Zero",
+      "id": "doppiozero-0e7480",
+      "locationSet": {"include": ["bw", "za"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Doppio Zero",
+        "brand:wikidata": "Q130214537",
+        "cuisine": "mediterranean",
+        "name": "Doppio Zero"
       }
     },
     {
@@ -1760,6 +2168,7 @@
         "amenity": "restaurant",
         "brand": "Earls",
         "brand:wikidata": "Q5326525",
+        "cuisine": "american",
         "name": "Earls"
       }
     },
@@ -1773,6 +2182,18 @@
         "brand:wikidata": "Q5329375",
         "cuisine": "italian",
         "name": "East Side Mario's"
+      }
+    },
+    {
+      "displayName": "Eat Happy",
+      "id": "eathappy-051971",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Eat Happy",
+        "brand:wikidata": "Q125578025",
+        "cuisine": "sushi",
+        "name": "Eat Happy"
       }
     },
     {
@@ -1838,12 +2259,27 @@
       }
     },
     {
+      "displayName": "Empire",
+      "id": "empire-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Empire",
+        "brand:wikidata": "Q124374511",
+        "cuisine": "indian",
+        "delivery": "yes",
+        "name": "Empire",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Enchilada",
       "id": "enchilada-051971",
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Enchilada",
+        "brand:wikidata": "Q129741684",
         "cuisine": "mexican",
         "name": "Enchilada"
       }
@@ -1982,6 +2418,7 @@
         "amenity": "restaurant",
         "brand": "Fournos Bakery",
         "brand:wikidata": "Q116740976",
+        "cuisine": "breakfast;fine_dining",
         "name": "Fournos Bakery"
       }
     },
@@ -2088,6 +2525,18 @@
       }
     },
     {
+      "displayName": "Fuji",
+      "id": "fuji-5a3582",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Fuji",
+        "brand:wikidata": "Q13018411",
+        "cuisine": "thai;japanese",
+        "name": "Fuji"
+      }
+    },
+    {
       "displayName": "Gatti's Pizza",
       "id": "gattispizza-96af40",
       "locationSet": {"include": ["us"]},
@@ -2112,6 +2561,18 @@
       }
     },
     {
+      "displayName": "Gen Korean BBQ",
+      "id": "genkoreanbbq-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Gen Korean BBQ",
+        "brand:wikidata": "Q124294849",
+        "cuisine": "korean;barbecue",
+        "name": "Gen Korean BBQ"
+      }
+    },
+    {
       "displayName": "Giggling Squid",
       "id": "gigglingsquid-9b5453",
       "locationSet": {"include": ["gb"]},
@@ -2124,6 +2585,18 @@
       }
     },
     {
+      "displayName": "Gino's East",
+      "id": "ginoseast-96af40",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Gino's East",
+        "brand:wikidata": "Q5563202",
+        "cuisine": "pizza",
+        "name": "Gino's East"
+      }
+    },
+    {
       "displayName": "Ginos",
       "id": "ginos-acf031",
       "locationSet": {"include": ["es"]},
@@ -2133,18 +2606,6 @@
         "brand:wikidata": "Q98503664",
         "cuisine": "italian",
         "name": "Ginos"
-      }
-    },
-    {
-      "displayName": "Ginos East",
-      "id": "ginoseast-96af40",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Gino’s East",
-        "brand:wikidata": "Q5563202",
-        "cuisine": "pizza",
-        "name": "Gino’s East"
       }
     },
     {
@@ -2241,7 +2702,7 @@
       }
     },
     {
-      "displayName": "Gusto (United Kingdom)",
+      "displayName": "Gusto (UK)",
       "id": "gusto-9b5453",
       "locationSet": {"include": ["gb"]},
       "tags": {
@@ -2262,6 +2723,38 @@
         "brand:wikidata": "Q11349387",
         "cuisine": "japanese;barbecue",
         "name": "Gyu-Kaku"
+      }
+    },
+    {
+      "displayName": "Habibi Falafel",
+      "id": "habibifalafel-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Habibi Falafel",
+        "brand:wikidata": "Q124374610",
+        "cuisine": "middle_eastern",
+        "delivery": "yes",
+        "name": "Habibi Falafel",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Hachiban Ramen",
+      "id": "hachibanramen-2f70bd",
+      "locationSet": {"include": ["jp", "th"]},
+      "matchNames": ["no.8 ramen"],
+      "tags": {
+        "alt_name:en": "Ramen Number 8 Shop",
+        "amenity": "restaurant",
+        "brand": "Hachiban Ramen",
+        "brand:en": "Hachiban Ramen",
+        "brand:th": "ฮะจิบัง ราเมน",
+        "brand:wikidata": "Q11326388",
+        "cuisine": "ramen",
+        "name": "Hachiban Ramen",
+        "name:en": "Hachiban Ramen",
+        "name:th": "ฮะจิบัง ราเมน"
       }
     },
     {
@@ -2416,6 +2909,18 @@
       }
     },
     {
+      "displayName": "HD İskender",
+      "id": "hdiskender-9743a1",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "HD İskender",
+        "brand:wikidata": "Q28940587",
+        "cuisine": "kebab",
+        "name": "HD İskender"
+      }
+    },
+    {
       "displayName": "Hippopotamus",
       "id": "hippopotamus-dee615",
       "locationSet": {"include": ["fr"]},
@@ -2437,6 +2942,19 @@
         "brand:wikidata": "Q5876920",
         "cuisine": "steak_house",
         "name": "Hog's Breath Cafe"
+      }
+    },
+    {
+      "displayName": "Holy Greens",
+      "id": "holygreens-45c141",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Holy Greens",
+        "brand:wikidata": "Q124048681",
+        "cuisine": "salad",
+        "name": "Holy Greens",
+        "takeaway": "yes"
       }
     },
     {
@@ -2488,6 +3006,7 @@
         "amenity": "restaurant",
         "brand": "Honest Greens",
         "brand:wikidata": "Q116859710",
+        "cuisine": "organic",
         "name": "Honest Greens"
       }
     },
@@ -2517,6 +3036,32 @@
         "cuisine": "seafood;steak",
         "name": "Hoss's Steak & Sea House",
         "short_name": "Hoss's"
+      }
+    },
+    {
+      "displayName": "HOT POT Buffet",
+      "id": "hotpotbuffet-5a3582",
+      "locationSet": {"include": ["th"]},
+      "matchNames": ["hot pot"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "HOT POT Buffet",
+        "brand:wikidata": "Q125919341",
+        "cuisine": "hotpot;chinese",
+        "name": "HOT POT Buffet"
+      }
+    },
+    {
+      "displayName": "Hotshots Sports Bar and Grill",
+      "id": "hotshotssportsbarandgrill-96af40",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["hotshots"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Hotshots Sports Bar and Grill",
+        "brand:wikidata": "Q130344931",
+        "cuisine": "burger;pizza",
+        "name": "Hotshots Sports Bar and Grill"
       }
     },
     {
@@ -2632,6 +3177,18 @@
       }
     },
     {
+      "displayName": "Indiana Café",
+      "id": "indianacafe-47e37e",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Indiana Café",
+        "brand:wikidata": "Q109315295",
+        "cuisine": "tex-mex",
+        "name": "Indiana Café"
+      }
+    },
+    {
       "displayName": "Interspar Restaurant",
       "id": "intersparrestaurant-c7016b",
       "locationSet": {"include": ["at"]},
@@ -2639,6 +3196,7 @@
         "amenity": "restaurant",
         "brand": "Interspar Restaurant",
         "brand:wikidata": "Q15820339",
+        "cuisine": "regional",
         "name": "Interspar Restaurant"
       }
     },
@@ -2798,7 +3356,20 @@
         "amenity": "restaurant",
         "brand": "Joey",
         "brand:wikidata": "Q24191943",
+        "cuisine": "regional",
         "name": "Joey"
+      }
+    },
+    {
+      "displayName": "John Dory's",
+      "id": "johndorys-f0d76a",
+      "locationSet": {"include": ["za", "zm"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "John Dory's",
+        "brand:wikidata": "Q130140080",
+        "cuisine": "seafood",
+        "name": "John Dory's"
       }
     },
     {
@@ -2854,6 +3425,7 @@
         "brand:hy": "Կարաս",
         "brand:ru": "Карас",
         "brand:wikidata": "Q118347445",
+        "cuisine": "regional",
         "name": "Կարաս",
         "name:en": "Karas",
         "name:hy": "Կարաս",
@@ -2877,6 +3449,7 @@
         "amenity": "restaurant",
         "brand": "Kauai",
         "brand:wikidata": "Q116498799",
+        "cuisine": "breakfast;burger;salad",
         "name": "Kauai"
       }
     },
@@ -2903,6 +3476,18 @@
         "cuisine": "american",
         "name": "Kelsey's",
         "official_name": "Kelsey's Original Roadhouse"
+      }
+    },
+    {
+      "displayName": "Köfteci Yusuf",
+      "id": "kofteciyusuf-9743a1",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Köfteci Yusuf",
+        "brand:wikidata": "Q126125081",
+        "cuisine": "turkish",
+        "name": "Köfteci Yusuf"
       }
     },
     {
@@ -2976,6 +3561,18 @@
       }
     },
     {
+      "displayName": "La Casa de Toño",
+      "id": "lacasadetono-f5830e",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "La Casa de Toño",
+        "brand:wikidata": "Q125259119",
+        "cuisine": "mexican",
+        "name": "La Casa de Toño"
+      }
+    },
+    {
       "displayName": "La Cubanita",
       "id": "lacubanita-2b67bf",
       "locationSet": {"include": ["nl"]},
@@ -3018,6 +3615,7 @@
         "amenity": "restaurant",
         "brand": "La Place",
         "brand:wikidata": "Q2041183",
+        "cuisine": "burger;chicken;pizza",
         "name": "La Place"
       }
     },
@@ -3099,6 +3697,20 @@
       }
     },
     {
+      "displayName": "Las Palmas Food Centre",
+      "id": "laspalmasfoodcentre-e66c3e",
+      "locationSet": {"include": ["gh"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Las Palmas Food Centre",
+        "brand:wikidata": "Q125886007",
+        "cuisine": "ghanaian",
+        "delivery": "yes",
+        "name": "Las Palmas Food Centre",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Lazy Dog",
       "id": "lazydog-f4f1ab",
       "locationSet": {
@@ -3158,10 +3770,10 @@
       }
     },
     {
-      "displayName": "Les 3 Brasseurs (Qc,Br,Fr)",
-      "id": "3brasseurs-4df94e",
+      "displayName": "Les 3 Brasseurs (Brasil/France/Quebec)",
+      "id": "3brasseurs-17e7d6",
       "locationSet": {
-        "include": ["br", "ca", "fr"]
+        "include": ["br", "ca-qc.geojson", "fr"]
       },
       "tags": {
         "amenity": "restaurant",
@@ -3320,6 +3932,18 @@
       }
     },
     {
+      "displayName": "Lucky Sushi",
+      "id": "luckysushi-f5830e",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Lucky Sushi",
+        "brand:wikidata": "Q128742144",
+        "cuisine": "sushi",
+        "name": "Lucky Sushi"
+      }
+    },
+    {
       "displayName": "Lunch Garden",
       "id": "lunchgarden-c1dacf",
       "locationSet": {"include": ["be"]},
@@ -3327,6 +3951,7 @@
         "amenity": "restaurant",
         "brand": "Lunch Garden",
         "brand:wikidata": "Q2491217",
+        "cuisine": "regional",
         "name": "Lunch Garden"
       }
     },
@@ -3350,6 +3975,7 @@
         "amenity": "restaurant",
         "brand": "Madero",
         "brand:wikidata": "Q115206711",
+        "cuisine": "burger",
         "name": "Madero"
       }
     },
@@ -3390,6 +4016,26 @@
         "brand:wikidata": "Q6730149",
         "cuisine": "italian",
         "name": "Maggiano's Little Italy"
+      }
+    },
+    {
+      "displayName": "Magic Touch",
+      "id": "magictouch-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Magic Touch",
+        "brand:en": "Magic Touch",
+        "brand:wikidata": "Q130214164",
+        "brand:zh": "Magic Touch",
+        "cuisine": "sushi",
+        "name": "Magic Touch",
+        "name:en": "Magic Touch",
+        "name:zh": "Magic Touch",
+        "operator": "爭鮮股份有限公司",
+        "operator:en": "Sushi Express Co., Ltd.",
+        "operator:wikidata": "Q130214144",
+        "operator:zh": "爭鮮股份有限公司"
       }
     },
     {
@@ -3445,6 +4091,18 @@
       }
     },
     {
+      "displayName": "Maredo",
+      "id": "maredo-051971",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Maredo",
+        "brand:wikidata": "Q1564637",
+        "cuisine": "steak_house",
+        "name": "Maredo"
+      }
+    },
+    {
       "displayName": "Margaritas",
       "id": "margaritas-46ca2f",
       "locationSet": {
@@ -3492,6 +4150,7 @@
         "amenity": "restaurant",
         "brand": "Mary Grace",
         "brand:wikidata": "Q123196663",
+        "cuisine": "pastry;sandwich",
         "name": "Mary Grace"
       }
     },
@@ -3577,8 +4236,8 @@
     },
     {
       "displayName": "MealTime Malatang",
-      "id": "mealtimemalatang-a65783",
-      "locationSet": {"include": ["cn", "eu"]},
+      "id": "mealtimemalatang-a2b219",
+      "locationSet": {"include": ["150", "cn"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "MealTime Malatang",
@@ -3725,6 +4384,7 @@
         "amenity": "restaurant",
         "brand": "Mildreds",
         "brand:wikidata": "Q110694603",
+        "cuisine": "international",
         "diet:vegan": "only",
         "name": "Mildreds"
       }
@@ -3809,9 +4469,35 @@
       }
     },
     {
+      "displayName": "Mo-Mo Paradise",
+      "id": "momoparadise-aad2df",
+      "locationSet": {
+        "include": [
+          "cn",
+          "id",
+          "jp",
+          "kh",
+          "th",
+          "tw",
+          "us",
+          "vn"
+        ]
+      },
+      "matchNames": ["momo"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Mo-Mo Paradise",
+        "brand:wikidata": "Q126369578",
+        "cuisine": "japanese;hot_pot",
+        "name": "Mo-Mo Paradise"
+      }
+    },
+    {
       "displayName": "Mo's",
-      "id": "mos-96af40",
-      "locationSet": {"include": ["us"]},
+      "id": "mos-effa94",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "alt_name": "Mo's Seafood & Chowder",
         "amenity": "restaurant",
@@ -3851,6 +4537,18 @@
         "cuisine": "barbecue",
         "name": "Montana's",
         "official_name": "Montana's BBQ & Bar"
+      }
+    },
+    {
+      "displayName": "Moo Moo Meet & Whine",
+      "id": "moomoo-69fbf5",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Moo Moo Meet & Whine",
+        "brand:wikidata": "Q130378128",
+        "cuisine": "burger;steak_house",
+        "name": "Moo Moo"
       }
     },
     {
@@ -4174,6 +4872,18 @@
       }
     },
     {
+      "displayName": "Oishi Ramen",
+      "id": "oishiramen-5a3582",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Oishi Ramen",
+        "brand:wikidata": "Q125870474",
+        "cuisine": "ramen",
+        "name": "Oishi Ramen"
+      }
+    },
+    {
       "displayName": "Old Chicago",
       "id": "oldchicago-96af40",
       "locationSet": {"include": ["us"]},
@@ -4329,6 +5039,20 @@
       }
     },
     {
+      "displayName": "Panarottis",
+      "id": "panarottis-0539cf",
+      "locationSet": {
+        "include": ["na", "ng", "sz", "za", "zm"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Panarottis",
+        "brand:wikidata": "Q130220087",
+        "cuisine": "italian;pizza;pasta",
+        "name": "Panarottis"
+      }
+    },
+    {
       "displayName": "Papa Gino's",
       "id": "papaginos-96af40",
       "locationSet": {"include": ["us"]},
@@ -4365,9 +5089,25 @@
       }
     },
     {
+      "displayName": "Paris Panini",
+      "id": "parispanini-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Paris Panini",
+        "brand:wikidata": "Q124374583",
+        "cuisine": "panini",
+        "delivery": "yes",
+        "name": "Paris Panini",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Pastini",
-      "id": "pastini-96af40",
-      "locationSet": {"include": ["us"]},
+      "id": "pastini-effa94",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "Pastini",
@@ -4405,6 +5145,34 @@
       }
     },
     {
+      "displayName": "PB Poulet Braisé",
+      "id": "pbpouletbraise-47e37e",
+      "locationSet": {"include": ["fx"]},
+      "matchNames": [
+        "au poulet braisé",
+        "poulet braisé"
+      ],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "PB Poulet Braisé",
+        "brand:wikidata": "Q130218949",
+        "cuisine": "chicken"
+      }
+    },
+    {
+      "displayName": "Pedros",
+      "id": "pedros-0e7480",
+      "locationSet": {"include": ["bw", "za"]},
+      "matchNames": ["pedros chicken"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Pedros",
+        "brand:wikidata": "Q124382243",
+        "cuisine": "african;chicken;portuguese",
+        "name": "Pedros"
+      }
+    },
+    {
       "displayName": "Pei Wei",
       "id": "peiwei-96af40",
       "locationSet": {"include": ["us"]},
@@ -4415,6 +5183,21 @@
         "brand:wikidata": "Q7160898",
         "cuisine": "asian",
         "name": "Pei Wei"
+      }
+    },
+    {
+      "displayName": "Pelicana",
+      "id": "pelicanachicken-d60782",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["kr"]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Pelicana",
+        "brand:wikidata": "Q17575847",
+        "cuisine": "korean;chicken",
+        "name": "Pelicana Chicken"
       }
     },
     {
@@ -4532,7 +5315,7 @@
       }
     },
     {
-      "displayName": "Piemininster",
+      "displayName": "Pieminister",
       "id": "pieminister-9b5453",
       "locationSet": {"include": ["gb"]},
       "tags": {
@@ -4559,15 +5342,15 @@
       }
     },
     {
-      "displayName": "Pitaya",
-      "id": "pitaya-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Pizza Cosy",
+      "id": "pizzacosy-47e37e",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "restaurant",
-        "brand": "Pitaya",
-        "brand:wikidata": "Q114970230",
-        "cuisine": "thai",
-        "name": "Pitaya"
+        "brand": "Pizza Cosy",
+        "brand:wikidata": "Q102115246",
+        "cuisine": "pizza",
+        "name": "Pizza Cosy"
       }
     },
     {
@@ -4641,6 +5424,20 @@
         "brand:wikidata": "Q7199978",
         "cuisine": "pizza",
         "name": "Pizza Ranch"
+      }
+    },
+    {
+      "displayName": "Pizza Salvatoré",
+      "id": "pizzasalvatore-e68b16",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Pizza Salvatoré",
+        "brand:wikidata": "Q121738133",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "Pizza Salvatoré",
+        "takeaway": "yes"
       }
     },
     {
@@ -4726,6 +5523,18 @@
       }
     },
     {
+      "displayName": "Poutineville",
+      "id": "poutineville-e68b16",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Poutineville",
+        "brand:wikidata": "Q125489462",
+        "cuisine": "poutine",
+        "name": "Poutineville"
+      }
+    },
+    {
       "displayName": "Prezzo",
       "id": "prezzo-9b5453",
       "locationSet": {"include": ["gb"]},
@@ -4748,6 +5557,20 @@
         "brand:wikidata": "Q7243049",
         "cuisine": "american",
         "name": "Primanti Bros."
+      }
+    },
+    {
+      "displayName": "Punjab Grill",
+      "id": "punjabgrill-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Punjab Grill",
+        "brand:wikidata": "Q124374761",
+        "cuisine": "north_indian",
+        "delivery": "yes",
+        "name": "Punjab Grill",
+        "takeaway": "yes"
       }
     },
     {
@@ -4813,6 +5636,17 @@
       }
     },
     {
+      "displayName": "Ready Pizza",
+      "id": "readypizza-201887",
+      "locationSet": {"include": ["cr"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Ready Pizza",
+        "cuisine": "pizza",
+        "name": "Ready Pizza"
+      }
+    },
+    {
       "displayName": "Red Lobster",
       "id": "redlobster-2fabb0",
       "locationSet": {"include": ["001"]},
@@ -4836,16 +5670,6 @@
         "cuisine": "burger",
         "name": "Red Robin",
         "official_name": "Red Robin Gourmet Burgers and Brews"
-      }
-    },
-    {
-      "displayName": "Restaurante Popular",
-      "id": "restaurantepopular-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Restaurante Popular",
-        "name": "Restaurante Popular"
       }
     },
     {
@@ -4897,6 +5721,32 @@
       }
     },
     {
+      "displayName": "RocoMamas",
+      "id": "rocomamas-a7acfa",
+      "locationSet": {
+        "include": [
+          "au",
+          "bw",
+          "cd",
+          "gh",
+          "ke",
+          "na",
+          "sa",
+          "sz",
+          "za",
+          "zm",
+          "zw"
+        ]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "RocoMamas",
+        "brand:wikidata": "Q123034964",
+        "cuisine": "burger",
+        "name": "RocoMamas"
+      }
+    },
+    {
       "displayName": "Rolls",
       "id": "rolls-fe858e",
       "locationSet": {"include": ["fi"]},
@@ -4918,6 +5768,18 @@
         "brand:wikidata": "Q7362714",
         "cuisine": "italian",
         "name": "Romano's Macaroni Grill"
+      }
+    },
+    {
+      "displayName": "Romantik",
+      "id": "romantikrestaurant-2fabb0",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Romantik Hotels & Restaurants",
+        "brand:wikidata": "Q126075497",
+        "cuisine": "fine_dining",
+        "name": "Romantik Restaurant"
       }
     },
     {
@@ -5012,6 +5874,18 @@
       }
     },
     {
+      "displayName": "Sabushi",
+      "id": "sabushi-5a3582",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Sabushi",
+        "brand:wikidata": "Q125918109",
+        "cuisine": "buffet",
+        "name": "Sabushi"
+      }
+    },
+    {
       "displayName": "Saizeriya",
       "id": "saizeriya-10ab86",
       "locationSet": {
@@ -5056,6 +5930,40 @@
         "brand:wikidata": "Q7406113",
         "cuisine": "steak_house",
         "name": "Saltgrass Steak House"
+      }
+    },
+    {
+      "displayName": "Sankalp",
+      "id": "sankalp-512a76",
+      "locationSet": {
+        "include": [
+          "us-ca.geojson",
+          "us-il.geojson",
+          "us-ky.geojson",
+          "us-nj.geojson",
+          "us-oh.geojson",
+          "us-pa.geojson",
+          "us-tx.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Sankalp",
+        "brand:wikidata": "Q128664857",
+        "cuisine": "indian",
+        "name": "Sankalp"
+      }
+    },
+    {
+      "displayName": "Santa Fé",
+      "id": "santafe-4dd75c",
+      "locationSet": {"include": ["kh", "th"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Santa Fé",
+        "brand:wikidata": "Q125915873",
+        "cuisine": "steak_house",
+        "name": "Santa Fé"
       }
     },
     {
@@ -5117,6 +6025,18 @@
         "brand:wikidata": "Q7441933",
         "cuisine": "american",
         "name": "Seasons 52"
+      }
+    },
+    {
+      "displayName": "Shabushi",
+      "id": "shabushi-5a3582",
+      "locationSet": {"include": ["th"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Shabushi",
+        "brand:wikidata": "Q125918109",
+        "cuisine": "sushi",
+        "name": "Shabushi"
       }
     },
     {
@@ -5240,9 +6160,23 @@
       }
     },
     {
+      "displayName": "Simply Asia",
+      "id": "simplyasia-69fbf5",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Simply Asia",
+        "brand:wikidata": "Q130358521",
+        "cuisine": "thai",
+        "name": "Simply Asia"
+      }
+    },
+    {
       "displayName": "Sizzle Pie",
-      "id": "sizzlepie-96af40",
-      "locationSet": {"include": ["us"]},
+      "id": "sizzlepie-effa94",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "Sizzle Pie",
@@ -5341,6 +6275,18 @@
         "brand:wikidata": "Q113494588",
         "cuisine": "pizza",
         "name": "Sodo Pizza"
+      }
+    },
+    {
+      "displayName": "Solaria",
+      "id": "solaria-25c4a5",
+      "locationSet": {"include": ["id"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Solaria",
+        "brand:wikidata": "Q118136107",
+        "cuisine": "indonesian",
+        "name": "Solaria"
       }
     },
     {
@@ -5552,14 +6498,38 @@
       }
     },
     {
+      "displayName": "Sushi Sushi",
+      "id": "sushisushi-3c82e9",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Sushi Sushi",
+        "brand:wikidata": "Q122915060",
+        "cuisine": "sushi",
+        "name": "Sushi Sushi"
+      }
+    },
+    {
       "displayName": "Sushi Yama",
-      "id": "sushiyama-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "sushiyama-45c141",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Sushi Yama",
+        "brand:wikidata": "Q31897009",
         "cuisine": "japanese",
         "name": "Sushi Yama"
+      }
+    },
+    {
+      "displayName": "Sushiko",
+      "id": "sushiko-8aae3d",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Sushiko",
+        "cuisine": "sushi",
+        "name": "Sushiko"
       }
     },
     {
@@ -5707,6 +6677,18 @@
       }
     },
     {
+      "displayName": "Thai Cafe",
+      "id": "thaicafe-c1dacf",
+      "locationSet": {"include": ["be"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Thai Cafe",
+        "brand:wikidata": "Q115865032",
+        "cuisine": "thai",
+        "name": "Thai Cafe"
+      }
+    },
+    {
       "displayName": "The Breakfast Club",
       "id": "thebreakfastclub-37e076",
       "locationSet": {"include": ["gb-eng"]},
@@ -5767,6 +6749,18 @@
         "brand:wikidata": "Q117710890",
         "cuisine": "australian",
         "name": "The Groove Train"
+      }
+    },
+    {
+      "displayName": "The Hussar Grill",
+      "id": "thehussargrill-69fbf5",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "The Hussar Grill",
+        "brand:wikidata": "Q130232305",
+        "cuisine": "steak_house",
+        "name": "The Hussar Grill"
       }
     },
     {
@@ -5837,6 +6831,20 @@
       }
     },
     {
+      "displayName": "The Pizza Bakery",
+      "id": "thepizzabakery-d9e7a3",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "The Pizza Bakery",
+        "brand:wikidata": "Q124374570",
+        "cuisine": "pizza",
+        "delivery": "yes",
+        "name": "The Pizza Bakery",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "The Real Greek",
       "id": "therealgreek-37e076",
       "locationSet": {"include": ["gb-eng"]},
@@ -5866,10 +6874,12 @@
       "displayName": "Thyme",
       "id": "thyme-9b5453",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["thyme bar & grill"],
       "tags": {
         "amenity": "restaurant",
         "brand": "Thyme",
         "brand:wikidata": "Q120645568",
+        "cuisine": "bar&grill",
         "name": "Thyme"
       }
     },
@@ -6161,8 +7171,10 @@
     },
     {
       "displayName": "Wahlburgers",
-      "id": "wahlburgers-96af40",
-      "locationSet": {"include": ["us"]},
+      "id": "wahlburgers-730025",
+      "locationSet": {
+        "include": ["au", "ca", "de", "nz", "us"]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "Wahlburgers",
@@ -6218,6 +7230,18 @@
         "brand:wikidata": "Q85300869",
         "cuisine": "grill;pasta;pizza",
         "name": "Wildwood"
+      }
+    },
+    {
+      "displayName": "Wilma Wunder",
+      "id": "wilmawunder-051971",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Wilma Wunder",
+        "brand:wikidata": "Q129742265",
+        "cuisine": "regional",
+        "name": "Wilma Wunder"
       }
     },
     {
@@ -6278,6 +7302,7 @@
       "displayName": "YO! Sushi",
       "id": "yosushi-9b5453",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["yo! sushi uk"],
       "tags": {
         "amenity": "restaurant",
         "brand": "YO! Sushi",
@@ -6446,8 +7471,22 @@
         "brand": "김밥천국",
         "brand:ko": "김밥천국",
         "brand:wikidata": "Q12587435",
+        "cuisine": "gimbap",
         "name": "김밥천국",
         "name:ko": "김밥천국"
+      }
+    },
+    {
+      "displayName": "남원추어탕",
+      "id": "461f63-5f8110",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "남원추어탕",
+        "brand:ko": "남원추어탕",
+        "cuisine": "korean",
+        "name": "남원추어탕",
+        "name:ko": "남원추어탕"
       }
     },
     {
@@ -6466,6 +7505,19 @@
       }
     },
     {
+      "displayName": "본죽",
+      "id": "f6fad3-5f8110",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "본죽",
+        "brand:ko": "본죽",
+        "cuisine": "congee",
+        "name": "본죽",
+        "name:ko": "본죽"
+      }
+    },
+    {
       "displayName": "빕스",
       "id": "vips-5f8110",
       "locationSet": {"include": ["kr"]},
@@ -6479,6 +7531,38 @@
         "name": "빕스",
         "name:en": "Vips",
         "name:ko": "빕스"
+      }
+    },
+    {
+      "displayName": "치맥킹",
+      "id": "chimcking-5f8110",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "치맥킹",
+        "brand:en": "Chimcking",
+        "brand:ko": "치맥킹",
+        "brand:wikidata": "Q126519625",
+        "cuisine": "chicken",
+        "name": "치맥킹",
+        "name:en": "Chimcking",
+        "name:ko": "치맥킹"
+      }
+    },
+    {
+      "displayName": "페리카나",
+      "id": "pelicanachicken-5f8110",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "페리카나",
+        "brand:en": "Pelicana",
+        "brand:ko": "페리카나",
+        "brand:wikidata": "Q17575847",
+        "cuisine": "chicken",
+        "name": "페리카나 Chicken",
+        "name:en": "Pelicana Chicken",
+        "name:ko": "페리카나 Chicken"
       }
     },
     {
@@ -6927,19 +8011,48 @@
       }
     },
     {
-      "displayName": "やよい軒",
-      "id": "yayoiken-36ca8e",
+      "displayName": "ブロンコビリー",
+      "id": "broncobilly-36ca8e",
       "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "ブロンコビリー",
+        "brand:en": "Bronco Billy",
+        "brand:ja": "ブロンコビリー",
+        "brand:wikidata": "Q11335154",
+        "cuisine": "steak_house",
+        "name": "ブロンコビリー",
+        "name:en": "Bronco Billy",
+        "name:ja": "ブロンコビリー"
+      }
+    },
+    {
+      "displayName": "やよい軒",
+      "id": "yayoiken-73219d",
+      "locationSet": {
+        "include": [
+          "au",
+          "jp",
+          "lb",
+          "ph",
+          "sg",
+          "th",
+          "tw",
+          "us"
+        ]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "やよい軒",
         "brand:en": "Yayoiken",
         "brand:ja": "やよい軒",
+        "brand:th": "ยาโยอิ",
         "brand:wikidata": "Q11280577",
         "cuisine": "japanese",
         "name": "やよい軒",
         "name:en": "Yayoiken",
-        "name:ja": "やよい軒"
+        "name:ja": "やよい軒",
+        "name:th": "ยาโยอิ"
       }
     },
     {
@@ -7061,7 +8174,12 @@
         "cuisine": "taiwanese",
         "name": "三商巧福",
         "name:en": "Mercuries Food",
-        "name:ja": "三商巧福"
+        "name:ja": "三商巧福",
+        "operator": "三商企業集團",
+        "operator:en": "Mercuries Group",
+        "operator:ja": "マーキュリーズ・アンド・アソシエイツ",
+        "operator:wikidata": "Q10865578",
+        "operator:zh": "三商企業集團"
       }
     },
     {
@@ -7081,7 +8199,11 @@
         "name:nan-HJ": "三商巧福",
         "name:nan-POJ": "Sam-siong Kháu-hok",
         "name:nan-TL": "Sam-siong Kháu-hok",
-        "name:zh": "三商巧福"
+        "name:zh": "三商巧福",
+        "operator": "三商企業集團",
+        "operator:en": "Mercuries Group",
+        "operator:wikidata": "Q10865578",
+        "operator:zh": "三商企業集團"
       }
     },
     {
@@ -7137,6 +8259,22 @@
         "name": "东来顺",
         "name:en": "Dong Lai Shun",
         "name:zh": "东来顺"
+      }
+    },
+    {
+      "displayName": "丸源ラーメン",
+      "id": "marugenramen-36ca8e",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "丸源ラーメン",
+        "brand:en": "Marugen Ramen",
+        "brand:ja": "丸源ラーメン",
+        "brand:wikidata": "Q99735903",
+        "cuisine": "ramen",
+        "name": "丸源ラーメン",
+        "name:en": "Marugen Ramen",
+        "name:ja": "丸源ラーメン"
       }
     },
     {
@@ -7223,6 +8361,22 @@
         "name": "全聚德",
         "name:en": "Quanjude",
         "name:zh": "全聚德"
+      }
+    },
+    {
+      "displayName": "勝博殿",
+      "id": "shengbopalace-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "勝博殿",
+        "brand:en": "Shengbo Palace",
+        "brand:wikidata": "Q126369046",
+        "brand:zh": "勝博殿",
+        "cuisine": "japanese",
+        "name": "勝博殿",
+        "name:en": "Shengbo Palace",
+        "name:zh": "勝博殿"
       }
     },
     {
@@ -7399,6 +8553,25 @@
       }
     },
     {
+      "displayName": "和食さと (臺灣)",
+      "id": "washokusato-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["さと"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "和食さと",
+        "brand:en": "Washoku Sato",
+        "brand:ja": "和食さと",
+        "brand:wikidata": "Q11304897",
+        "brand:zh": "和食さと",
+        "cuisine": "japanese",
+        "name": "和食さと",
+        "name:en": "Washoku Sato",
+        "name:ja": "和食さと",
+        "name:zh": "和食さと"
+      }
+    },
+    {
       "displayName": "嘉和一品",
       "id": "porridgejiahe-0a8e9b",
       "locationSet": {"include": ["cn"]},
@@ -7521,6 +8694,25 @@
       }
     },
     {
+      "displayName": "大心",
+      "id": "bheartnoodles-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "大心",
+        "brand:en": "Bheart Noodles",
+        "brand:wikidata": "Q130214352",
+        "brand:zh": "大心",
+        "cuisine": "thai",
+        "name": "大心",
+        "name:en": "Bheart Noodles",
+        "name:zh": "大心",
+        "operator": "瓦城泰統集團",
+        "operator:en": "TTFB Restaurant Group",
+        "operator:wikidata": "Q15927204"
+      }
+    },
+    {
       "displayName": "大戸屋",
       "id": "ootoya-d30421",
       "locationSet": {"include": ["jp", "tw"]},
@@ -7605,6 +8797,26 @@
       }
     },
     {
+      "displayName": "定食8",
+      "id": "teishoku8-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "定食8",
+        "brand:en": "Teishoku 8",
+        "brand:wikidata": "Q130214157",
+        "brand:zh": "定食8",
+        "cuisine": "japanese",
+        "name": "定食8",
+        "name:en": "Teishoku 8",
+        "name:zh": "定食8",
+        "operator": "爭鮮股份有限公司",
+        "operator:en": "Sushi Express Co., Ltd.",
+        "operator:wikidata": "Q130214144",
+        "operator:zh": "爭鮮股份有限公司"
+      }
+    },
+    {
       "displayName": "宜味客",
       "id": "eweke-0a8e9b",
       "locationSet": {"include": ["cn"]},
@@ -7641,6 +8853,25 @@
         "name:en": "Sushiro",
         "name:ja": "スシロー",
         "name:zh": "寿司郎"
+      }
+    },
+    {
+      "displayName": "小福利麻辣鍋",
+      "id": "xiaofree-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "小福利麻辣鍋",
+        "brand:en": "Xiao Free",
+        "brand:wikidata": "Q130214368",
+        "brand:zh": "小福利麻辣鍋",
+        "cuisine": "hotpot",
+        "name": "小福利麻辣鍋",
+        "name:en": "Xiao Free",
+        "name:zh": "小福利麻辣鍋",
+        "operator": "饗賓餐旅集團",
+        "operator:en": "Feastogether Group",
+        "operator:wikidata": "Q130213844"
       }
     },
     {
@@ -7758,6 +8989,23 @@
       }
     },
     {
+      "displayName": "強尼兄弟",
+      "id": "johnnybro-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "強尼兄弟",
+        "brand:en": "Johnnybro",
+        "brand:wikidata": "Q127692591",
+        "brand:zh": "強尼兄弟",
+        "cuisine": "hot_dog",
+        "name": "強尼兄弟",
+        "name:en": "Johnnybro",
+        "name:zh": "強尼兄弟",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "很久以前羊肉串",
       "id": "longtimeago-0a8e9b",
       "locationSet": {"include": ["cn"]},
@@ -7845,6 +9093,44 @@
         "name": "快乐小羊",
         "name:en": "Happy Lamb Hot Pot",
         "name:zh": "快乐小羊"
+      }
+    },
+    {
+      "displayName": "旭集和食集錦",
+      "id": "xujisunrise-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["sunrise", "xuji"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "旭集和食集錦",
+        "brand:en": "Xujisunrise",
+        "brand:wikidata": "Q130214364",
+        "brand:zh": "旭集和食集錦",
+        "cuisine": "buffet",
+        "name": "旭集和食集錦",
+        "name:en": "Xujisunrise",
+        "name:zh": "旭集和食集錦",
+        "operator": "饗賓餐旅集團",
+        "operator:en": "Feastogether Group",
+        "operator:wikidata": "Q130213844"
+      }
+    },
+    {
+      "displayName": "時時香",
+      "id": "shannricebar-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "時時香",
+        "brand:en": "Shann Rice Bar",
+        "brand:wikidata": "Q130214354",
+        "brand:zh": "時時香",
+        "name": "時時香",
+        "name:en": "Shann Rice Bar",
+        "name:zh": "時時香",
+        "operator": "瓦城泰統集團",
+        "operator:en": "TTFB Restaurant Group",
+        "operator:wikidata": "Q15927204"
       }
     },
     {
@@ -7995,6 +9281,26 @@
       }
     },
     {
+      "displayName": "果然匯",
+      "id": "fruitfulfood-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "果然匯",
+        "brand:en": "Fruitfulfood",
+        "brand:wikidata": "Q130214362",
+        "brand:zh": "果然匯",
+        "diet:vegan": "yes",
+        "diet:vegetarian": "only",
+        "name": "果然匯",
+        "name:en": "Fruitfulfood",
+        "name:zh": "果然匯",
+        "operator": "饗賓餐旅集團",
+        "operator:en": "Feastogether Group",
+        "operator:wikidata": "Q130213844"
+      }
+    },
+    {
       "displayName": "梁社漢排骨",
       "id": "liangshehanbuyfood-aafd63",
       "locationSet": {"include": ["tw"]},
@@ -8008,6 +9314,28 @@
         "name": "梁社漢排骨",
         "name:en": "Liang She Han Buy Food",
         "name:zh": "梁社漢排骨"
+      }
+    },
+    {
+      "displayName": "樂雅樂",
+      "id": "royalhost-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "樂雅樂",
+        "brand:en": "Royal Host",
+        "brand:ja": "ロイヤルホスト",
+        "brand:wikidata": "Q11120884",
+        "brand:zh": "樂雅樂",
+        "cuisine": "japanese;italian;french",
+        "name": "樂雅樂",
+        "name:en": "Royal Host",
+        "name:ja": "ロイヤルホスト",
+        "name:zh": "樂雅樂",
+        "operator": "東元電機股份有限公司",
+        "operator:en": "TECO Electric & Machinery Co., Ltd.",
+        "operator:wikidata": "Q5964699",
+        "operator:zh": "東元電機股份有限公司"
       }
     },
     {
@@ -8127,6 +9455,39 @@
       }
     },
     {
+      "displayName": "涮乃葉",
+      "id": "syabuyo-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "涮乃葉",
+        "brand:ja": "しゃぶ葉",
+        "brand:wikidata": "Q67710247",
+        "brand:zh": "涮乃葉",
+        "cuisine": "buffet",
+        "name": "涮乃葉",
+        "name:en": "Syabuyo",
+        "name:zh": "涮乃葉"
+      }
+    },
+    {
+      "displayName": "温野菜",
+      "id": "shabushabuonyasai-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["温野菜日本涮涮鍋專門店", "溫野菜"],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "温野菜",
+        "brand:en": "Shabu Shabu On-Yasai",
+        "brand:ja": "しゃぶしゃぶ温野菜",
+        "brand:wikidata": "Q117475549",
+        "cuisine": "japanese",
+        "name": "温野菜",
+        "name:en": "Shabu Shabu On-Yasai",
+        "name:ja": "しゃぶしゃぶ温野菜"
+      }
+    },
+    {
       "displayName": "点都德",
       "id": "diandoude-0a8e9b",
       "locationSet": {"include": ["cn"]},
@@ -8178,6 +9539,33 @@
       }
     },
     {
+      "displayName": "燒肉スマイル",
+      "id": "yakinikusmile-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "焼肉smile",
+        "焼肉スマイル",
+        "燒肉smile"
+      ],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "燒肉スマイル",
+        "brand:en": "Yakiniku Smile",
+        "brand:ja": "燒肉スマイル",
+        "brand:wikidata": "Q127693178",
+        "brand:zh": "燒肉スマイル",
+        "cuisine": "yakiniku",
+        "name": "燒肉スマイル",
+        "name:en": "Yakiniku Smile",
+        "name:ja": "燒肉スマイル",
+        "name:zh": "燒肉スマイル",
+        "operator": "築間餐飲集團",
+        "operator:en": "Jhujian Catering Group",
+        "operator:ja": "築間餐飲集團",
+        "operator:wikidata": "Q80214452"
+      }
+    },
+    {
       "displayName": "爭鮮",
       "id": "sushiexpress-aafd63",
       "locationSet": {"include": ["tw"]},
@@ -8190,7 +9578,11 @@
         "cuisine": "sushi",
         "name": "爭鮮",
         "name:en": "Sushi Express",
-        "name:zh": "爭鮮"
+        "name:zh": "爭鮮",
+        "operator": "爭鮮股份有限公司",
+        "operator:en": "Sushi Express Co., Ltd.",
+        "operator:wikidata": "Q130214144",
+        "operator:zh": "爭鮮股份有限公司"
       }
     },
     {
@@ -8207,6 +9599,46 @@
         "name": "爭鮮 Sushi Express",
         "name:en": "Sushi Express",
         "name:zh": "爭鮮"
+      }
+    },
+    {
+      "displayName": "爭鮮gogo",
+      "id": "sushitakeout-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "爭鮮gogo",
+        "brand:en": "Sushi Take Out",
+        "brand:wikidata": "Q130214155",
+        "brand:zh": "爭鮮gogo",
+        "cuisine": "sushi",
+        "name": "爭鮮gogo",
+        "name:en": "Sushi Take Out",
+        "name:zh": "爭鮮gogo",
+        "operator": "爭鮮股份有限公司",
+        "operator:en": "Sushi Express Co., Ltd.",
+        "operator:wikidata": "Q130214144",
+        "operator:zh": "爭鮮股份有限公司"
+      }
+    },
+    {
+      "displayName": "爭鮮Plus",
+      "id": "sushiplus-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "爭鮮Plus",
+        "brand:en": "Sushi Plus",
+        "brand:wikidata": "Q130214167",
+        "brand:zh": "爭鮮Plus",
+        "cuisine": "sushi",
+        "name": "爭鮮Plus",
+        "name:en": "Sushi Plus",
+        "name:zh": "爭鮮Plus",
+        "operator": "爭鮮股份有限公司",
+        "operator:en": "Sushi Express Co., Ltd.",
+        "operator:wikidata": "Q130214144",
+        "operator:zh": "爭鮮股份有限公司"
       }
     },
     {
@@ -8262,6 +9694,25 @@
         "name:en": "Gyu-Kaku",
         "name:ja": "牛角",
         "name:zh": "牛角"
+      }
+    },
+    {
+      "displayName": "瓦城泰國料理",
+      "id": "thaitown-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "瓦城泰國料理",
+        "brand:en": "Thai Town",
+        "brand:wikidata": "Q130214321",
+        "brand:zh": "瓦城泰國料理",
+        "cuisine": "thai",
+        "name": "瓦城泰國料理",
+        "name:en": "Thai Town",
+        "name:zh": "瓦城泰國料理",
+        "operator": "瓦城泰統集團",
+        "operator:en": "TTFB Restaurant Group",
+        "operator:wikidata": "Q15927204"
       }
     },
     {
@@ -8328,6 +9779,83 @@
         "name": "眉州东坡",
         "name:en": "Meizhou Dongpo",
         "name:zh": "眉州东坡"
+      }
+    },
+    {
+      "displayName": "真珠",
+      "id": "jinzhu-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "真珠",
+        "brand:en": "Jin Zhu",
+        "brand:wikidata": "Q130214379",
+        "brand:zh": "真珠",
+        "cuisine": "taiwanese",
+        "name": "真珠",
+        "name:en": "Jin Zhu",
+        "name:zh": "真珠",
+        "operator": "饗賓餐旅集團",
+        "operator:en": "Feastogether Group",
+        "operator:wikidata": "Q130213844"
+      }
+    },
+    {
+      "displayName": "福勝亭",
+      "id": "tonkatsu-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "福勝亭",
+        "brand:en": "Tonkatsu",
+        "brand:wikidata": "Q126368392",
+        "brand:zh": "福勝亭",
+        "cuisine": "japanese",
+        "name": "福勝亭",
+        "name:en": "Tonkatsu",
+        "name:zh": "福勝亭",
+        "operator": "三商企業集團",
+        "operator:en": "Mercuries Group",
+        "operator:wikidata": "Q10865578",
+        "operator:zh": "三商企業集團"
+      }
+    },
+    {
+      "displayName": "築間幸福鍋物",
+      "id": "jhujianshabu-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "築間幸福鍋物",
+        "brand:en": "Jhujian shabu",
+        "brand:wikidata": "Q80214451",
+        "brand:zh": "築間幸福鍋物",
+        "cuisine": "hot_pot",
+        "name": "築間幸福鍋物",
+        "name:en": "Jhujian shabu",
+        "name:zh": "築間幸福鍋物",
+        "operator": "築間餐飲集團",
+        "operator:en": "Jhujian Catering Group",
+        "operator:wikidata": "Q80214452"
+      }
+    },
+    {
+      "displayName": "築間酸菜魚",
+      "id": "jhujiansuancaiyu-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "築間酸菜魚",
+        "brand:en": "Jhu Jian Suan Cai Yu",
+        "brand:wikidata": "Q127693383",
+        "brand:zh": "築間酸菜魚",
+        "cuisine": "suancaiyu",
+        "name": "築間酸菜魚",
+        "name:en": "Jhu Jian Suan Cai Yu",
+        "name:zh": "築間酸菜魚",
+        "operator": "築間餐飲集團",
+        "operator:en": "Jhujian Catering Group",
+        "operator:wikidata": "Q80214452"
       }
     },
     {
@@ -8604,6 +10132,25 @@
       }
     },
     {
+      "displayName": "開飯川食堂",
+      "id": "kaifun-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "開飯川食堂",
+        "brand:en": "Kaifun",
+        "brand:wikidata": "Q130214373",
+        "brand:zh": "開飯川食堂",
+        "cuisine": "chinese",
+        "name": "開飯川食堂",
+        "name:en": "Kaifun",
+        "name:zh": "開飯川食堂",
+        "operator": "饗賓餐旅集團",
+        "operator:en": "Feastogether Group",
+        "operator:wikidata": "Q130213844"
+      }
+    },
+    {
       "displayName": "阿香米线",
       "id": "axiangricenoodles-0a8e9b",
       "locationSet": {"include": ["cn"]},
@@ -8640,6 +10187,25 @@
       }
     },
     {
+      "displayName": "非常泰概念餐坊",
+      "id": "verythairestaurant-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "非常泰",
+        "brand:en": "Very Thai",
+        "brand:wikidata": "Q130214351",
+        "brand:zh": "非常泰",
+        "cuisine": "thai",
+        "name": "非常泰概念餐坊",
+        "name:en": "Very Thai Restaurant",
+        "name:zh": "非常泰概念餐坊",
+        "operator": "瓦城泰統集團",
+        "operator:en": "TTFB Restaurant Group",
+        "operator:wikidata": "Q15927204"
+      }
+    },
+    {
       "displayName": "餃子の王将",
       "id": "gyozanoohsho-36ca8e",
       "locationSet": {"include": ["jp"]},
@@ -8653,6 +10219,62 @@
         "name": "餃子の王将",
         "name:en": "Gyoza no Ohsho",
         "name:ja": "餃子の王将"
+      }
+    },
+    {
+      "displayName": "餃子的王將",
+      "id": "gyozanoohsho-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "餃子的王將",
+        "brand:en": "Gyoza no Ohsho",
+        "brand:ja": "餃子の王将",
+        "brand:wikidata": "Q11666805",
+        "brand:zh": "餃子的王將",
+        "cuisine": "chinese;gyoza",
+        "name": "餃子的王將",
+        "name:en": "Gyoza no Ohsho",
+        "name:ja": "餃子の王将",
+        "name:zh": "餃子的王將"
+      }
+    },
+    {
+      "displayName": "饗泰多",
+      "id": "siammore-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "饗泰多",
+        "brand:en": "Siam More",
+        "brand:wikidata": "Q130214376",
+        "brand:zh": "饗泰多",
+        "cuisine": "thai",
+        "name": "饗泰多",
+        "name:en": "Siam More",
+        "name:zh": "饗泰多",
+        "operator": "饗賓餐旅集團",
+        "operator:en": "Feastogether Group",
+        "operator:wikidata": "Q130213844"
+      }
+    },
+    {
+      "displayName": "饗食天堂",
+      "id": "eatogether-aafd63",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "饗食天堂",
+        "brand:en": "Eatogether",
+        "brand:wikidata": "Q130213889",
+        "brand:zh": "饗食天堂",
+        "cuisine": "buffet",
+        "name": "饗食天堂",
+        "name:en": "Eatogether",
+        "name:zh": "饗食天堂",
+        "operator": "饗賓餐旅集團",
+        "operator:en": "Feastogether Group",
+        "operator:wikidata": "Q130213844"
       }
     },
     {
@@ -8684,6 +10306,9 @@
       "tags": {
         "amenity": "restaurant",
         "brand": "麥味登",
+        "brand:en": "My Warn Day",
+        "brand:wikidata": "Q108830023",
+        "brand:zh": "麥味登",
         "cuisine": "american;breakfast",
         "name": "麥味登",
         "name:en": "My Warn Day Care & Brunch",

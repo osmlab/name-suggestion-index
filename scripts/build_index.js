@@ -20,11 +20,11 @@ import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
 // JSON
-import treesJSON from '../config/trees.json' assert {type: 'json'};
+const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
+const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollectionJSON);
 
 console.log(chalk.blue('-'.repeat(70)));
@@ -285,7 +285,7 @@ function filterCollected() {
 // Load the index files under `data/*`
 //
 function loadIndex() {
-  const START = '🏗   ' + chalk.yellow(`Loading index files...`);
+  const START = '🏗   ' + chalk.yellow(`Loading index files (this might take around 30 seconds) ...`);
   const END = '👍  ' + chalk.green(`done loading`);
   console.log('');
   console.log(START);
@@ -531,6 +531,11 @@ function mergeItems() {
           // Remove tags we're not including in this index
           // anything ending in `website` or `wikipedia` - #5275, #6481
           if (/(website|wikipedia)$/.test(osmkey)) {
+            delete tags[osmkey];
+            return;
+          }
+          // anything starting with `contact:` - #9505
+          if (/^contact:/.test(osmkey)) {
             delete tags[osmkey];
             return;
           }

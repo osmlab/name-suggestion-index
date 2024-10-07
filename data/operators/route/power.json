@@ -4,6 +4,7 @@
     "exclude": {
       "generic": ["^power$"],
       "named": [
+        "^une – sen$",
         "badenwerk",
         "badenwerk ag",
         "enbw",
@@ -71,8 +72,10 @@
     },
     {
       "displayName": "Austin Energy",
-      "id": "austinenergy-3c8213",
-      "locationSet": {"include": ["us"]},
+      "id": "austinenergy-2db3e2",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Austin Energy",
         "operator:wikidata": "Q4823071",
@@ -80,32 +83,57 @@
       }
     },
     {
-      "displayName": "Avacon",
-      "id": "avacon-6070b7",
-      "locationSet": {"include": ["de"]},
+      "displayName": "Avacon Netz",
+      "id": "avaconnetz-9d7364",
+      "locationSet": {
+        "include": [
+          "de-he.geojson",
+          "de-ni.geojson",
+          "de-nw.geojson",
+          "de-st.geojson"
+        ]
+      },
       "matchNames": [
+        "avacon",
         "avacon ag",
         "avacon netz gmbh",
-        "e.on avacon"
+        "e.on avacon",
+        "e.on netz",
+        "hsn"
       ],
       "tags": {
-        "operator": "Avacon",
-        "operator:wikidata": "Q1273382",
+        "operator": "Avacon Netz",
+        "operator:wikidata": "Q124369334",
         "route": "power"
       }
     },
     {
-      "displayName": "Bayernwerk",
-      "id": "bayernwerk-6070b7",
-      "locationSet": {"include": ["de"]},
+      "displayName": "Bayernwerk Netz",
+      "id": "bayernwerknetz-416a05",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "matchNames": [
+        "bayernwerk",
         "bayernwerk ag",
         "bayernwerk netz gmbh",
-        "e.on bayern"
+        "e.on bayern",
+        "e.on netz"
       ],
       "tags": {
-        "operator": "Bayernwerk",
-        "operator:wikidata": "Q1273383",
+        "operator": "Bayernwerk Netz",
+        "operator:wikidata": "Q107477739",
+        "route": "power"
+      }
+    },
+    {
+      "displayName": "Bornholms Energi & Forsyning",
+      "id": "bornholmsenergiandforsyning-0da34c",
+      "locationSet": {"include": ["dk"]},
+      "matchNames": ["østkraft net a/s"],
+      "tags": {
+        "operator": "Bornholms Energi & Forsyning",
+        "operator:wikidata": "Q70786210",
         "route": "power"
       }
     },
@@ -122,18 +150,15 @@
       }
     },
     {
-      "displayName": "ČEZ",
-      "id": "cez-e79b22",
+      "displayName": "ČEZ Distribuce",
+      "id": "cezdistribuce-e79b22",
       "locationSet": {
         "include": ["cz", "de", "sk"]
       },
-      "matchNames": [
-        "čez distribuce",
-        "čez distribuce, as"
-      ],
+      "matchNames": ["čez", "čez distribuce, as"],
       "tags": {
-        "operator": "ČEZ",
-        "operator:wikidata": "Q336735",
+        "operator": "ČEZ Distribuce",
+        "operator:wikidata": "Q11089971",
         "route": "power"
       }
     },
@@ -162,27 +187,29 @@
       }
     },
     {
-      "displayName": "DB Energie GmbH",
-      "id": "dbenergiegmbh-6070b7",
+      "displayName": "DB Energie",
+      "id": "dbenergie-6070b7",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["db energie gmbh"],
       "tags": {
-        "operator": "DB Energie GmbH",
+        "operator": "DB Energie",
         "operator:wikidata": "Q1152043",
         "route": "power"
       }
     },
     {
-      "displayName": "E.DIS Netz GmbH",
-      "id": "edisnetzgmbh-6070b7",
+      "displayName": "E.DIS Netz",
+      "id": "edisnetz-6070b7",
       "locationSet": {"include": ["de"]},
       "matchNames": [
         "e.dis",
+        "e.dis netz gmbh",
         "e.on edis",
         "e.on edis ag"
       ],
       "tags": {
-        "operator": "E.DIS Netz GmbH",
-        "operator:wikidata": "Q1273411",
+        "operator": "E.DIS Netz",
+        "operator:wikidata": "Q124377743",
         "route": "power"
       }
     },
@@ -207,12 +234,12 @@
       }
     },
     {
-      "displayName": "EDF",
-      "id": "edf-6a8196",
-      "locationSet": {"include": ["001"]},
+      "displayName": "EG.D",
+      "id": "egd-41fb94",
+      "locationSet": {"include": ["cz"]},
       "tags": {
-        "operator": "EDF",
-        "operator:wikidata": "Q274591",
+        "operator": "EG.D",
+        "operator:wikidata": "Q47089156",
         "route": "power"
       }
     },
@@ -233,6 +260,17 @@
       "tags": {
         "operator": "EirGrid",
         "operator:wikidata": "Q1310503",
+        "route": "power"
+      }
+    },
+    {
+      "displayName": "Électricité de France",
+      "id": "electricitedefrance-6a8196",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Électricité de France",
+        "operator:short": "EDF",
+        "operator:wikidata": "Q274591",
         "route": "power"
       }
     },
@@ -281,23 +319,24 @@
       }
     },
     {
-      "displayName": "enercity",
-      "id": "enercity-0b37b7",
+      "displayName": "enercity Netz",
+      "id": "enercitynetz-0b37b7",
       "locationSet": {
         "include": ["de-ni.geojson"]
       },
       "matchNames": [
+        "enercity",
         "enercity netzgesellschaft mbh",
         "stadtwerke_hannover_ag"
       ],
       "tags": {
-        "operator": "enercity",
-        "operator:wikidata": "Q1669141",
+        "operator": "enercity Netz",
+        "operator:wikidata": "Q123018653",
         "route": "power"
       }
     },
     {
-      "displayName": "Energa Operator",
+      "displayName": "Energa",
       "id": "energa-99d878",
       "locationSet": {"include": ["pl"]},
       "matchNames": [
@@ -322,19 +361,22 @@
       }
     },
     {
-      "displayName": "ENERVIE Vernetzt GmbH",
-      "id": "enervievernetztgmbh-6070b7",
-      "locationSet": {"include": ["de"]},
+      "displayName": "ENERVIE Vernetzt",
+      "id": "enervievernetzt-991c6b",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "matchNames": ["enervie vernetzt gmbh"],
       "tags": {
-        "operator": "ENERVIE Vernetzt GmbH",
-        "operator:wikidata": "Q1341587",
+        "operator": "ENERVIE Vernetzt",
+        "operator:wikidata": "Q124422786",
         "route": "power"
       }
     },
     {
       "displayName": "Engie",
-      "id": "engie-2d06f4",
-      "locationSet": {"include": ["fr"]},
+      "id": "engie-6a8196",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "operator": "Engie",
         "operator:wikidata": "Q13416787",
@@ -348,17 +390,6 @@
       "tags": {
         "operator": "Ente Provincial de Energía del Neuquén",
         "operator:wikidata": "Q5834173",
-        "route": "power"
-      }
-    },
-    {
-      "displayName": "enviaM",
-      "id": "enviam-6070b7",
-      "locationSet": {"include": ["de"]},
-      "matchNames": ["envia"],
-      "tags": {
-        "operator": "enviaM",
-        "operator:wikidata": "Q1345871",
         "route": "power"
       }
     },
@@ -405,8 +436,8 @@
     },
     {
       "displayName": "EVN (Europe)",
-      "id": "evn-4a3826",
-      "locationSet": {"include": ["eu"]},
+      "id": "evn-baa9ad",
+      "locationSet": {"include": ["150"]},
       "tags": {
         "operator": "EVN",
         "operator:wikidata": "Q872140",
@@ -421,15 +452,6 @@
         "operator": "EVN",
         "operator:official": "Vietnam Energy",
         "operator:wikidata": "Q3558046",
-        "route": "power"
-      }
-    },
-    {
-      "displayName": "HSN",
-      "id": "hsn-6070b7",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "HSN",
         "route": "power"
       }
     },
@@ -486,13 +508,16 @@
       },
       "tags": {
         "operator": "LSW Netz",
+        "operator:wikidata": "Q124422864",
         "route": "power"
       }
     },
     {
       "displayName": "Lubbock Power & Light",
-      "id": "lubbockpowerandlight-3c8213",
-      "locationSet": {"include": ["us"]},
+      "id": "lubbockpowerandlight-2db3e2",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Lubbock Power & Light",
         "operator:short": "LP&L",
@@ -522,8 +547,10 @@
     },
     {
       "displayName": "Missouri Power & Light Company",
-      "id": "missouripowerandlightcompany-3c8213",
-      "locationSet": {"include": ["us"]},
+      "id": "missouripowerandlightcompany-509afe",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
       "tags": {
         "operator": "Missouri Power & Light Company",
         "route": "power"
@@ -531,11 +558,34 @@
     },
     {
       "displayName": "Mitnetz Strom",
-      "id": "mitnetzstrom-6070b7",
-      "locationSet": {"include": ["de"]},
+      "id": "mitnetzstrom-a74091",
+      "locationSet": {
+        "include": [
+          "de-bb.geojson",
+          "de-sn.geojson",
+          "de-st.geojson",
+          "de-th.geojson"
+        ]
+      },
+      "matchNames": [
+        "envia",
+        "enviam",
+        "mitnetz",
+        "mitteldeutsche netzgesellschaft strom mbh"
+      ],
       "tags": {
         "operator": "Mitnetz Strom",
         "operator:wikidata": "Q56199578",
+        "route": "power"
+      }
+    },
+    {
+      "displayName": "National Grid",
+      "id": "nationalgrid-738a0d",
+      "locationSet": {"include": ["au", "us"]},
+      "tags": {
+        "operator": "National Grid",
+        "operator:wikidata": "Q1465461",
         "route": "power"
       }
     },
@@ -552,8 +602,10 @@
     },
     {
       "displayName": "Netze BW GmbH",
-      "id": "netzebwgmbh-6070b7",
-      "locationSet": {"include": ["de"]},
+      "id": "netzebwgmbh-d2c714",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "matchNames": ["netze bw"],
       "tags": {
         "operator": "Netze BW GmbH",
@@ -595,20 +647,13 @@
     },
     {
       "displayName": "Oncor",
-      "id": "oncor-3c8213",
-      "locationSet": {"include": ["us"]},
+      "id": "oncor-2db3e2",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Oncor",
         "operator:wikidata": "Q7092125",
-        "route": "power"
-      }
-    },
-    {
-      "displayName": "Østkraft Net A/S",
-      "id": "ostkraftnetas-0da34c",
-      "locationSet": {"include": ["dk"]},
-      "tags": {
-        "operator": "Østkraft Net A/S",
         "route": "power"
       }
     },
@@ -623,38 +668,47 @@
       }
     },
     {
-      "displayName": "PSE Operator",
-      "id": "pseoperator-99d878",
-      "locationSet": {"include": ["pl"]},
+      "displayName": "Polskie Sieci Elektroenergetyczne",
+      "id": "polskiesiecielektroenergetyczne-d26bf2",
+      "locationSet": {
+        "include": ["cz", "pl", "ru", "sk"]
+      },
+      "matchNames": [
+        "polskie sieci elektroenergetyczne s.a.",
+        "pse operator",
+        "pse s.a."
+      ],
       "tags": {
-        "operator": "PSE Operator",
+        "operator": "Polskie Sieci Elektroenergetyczne",
+        "operator:short": "PSE",
         "operator:wikidata": "Q1749435",
         "route": "power"
       }
     },
     {
-      "displayName": "PSE S.A.",
-      "id": "psesa-99d878",
-      "locationSet": {"include": ["pl"]},
+      "displayName": "réséda",
+      "id": "reseda-0421f7",
+      "locationSet": {"include": ["fx"]},
       "tags": {
-        "operator": "PSE S.A.",
-        "operator:wikidata": "Q1749435",
+        "operator": "réséda",
+        "operator:wikidata": "Q112115721",
         "route": "power"
       }
     },
     {
       "displayName": "RTE",
-      "id": "rte-6a8196",
-      "locationSet": {"include": ["001"]},
+      "id": "rte-0421f7",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "operator": "RTE",
+        "operator:wikidata": "Q2178795",
         "route": "power"
       }
     },
     {
       "displayName": "RWE",
-      "id": "rwe-6070b7",
-      "locationSet": {"include": ["de"]},
+      "id": "rwe-baa9ad",
+      "locationSet": {"include": ["150"]},
       "tags": {
         "operator": "RWE",
         "operator:wikidata": "Q138133",
@@ -673,8 +727,11 @@
     },
     {
       "displayName": "Schleswig-Holstein Netz AG",
-      "id": "schleswigholsteinnetzag-6070b7",
-      "locationSet": {"include": ["de"]},
+      "id": "schleswigholsteinnetzag-3e5ac3",
+      "locationSet": {
+        "include": ["de-sh.geojson"]
+      },
+      "matchNames": ["schleswig-holstein netz"],
       "tags": {
         "operator": "Schleswig-Holstein Netz AG",
         "operator:wikidata": "Q2239261",
@@ -701,10 +758,20 @@
       }
     },
     {
+      "displayName": "Stedin",
+      "id": "stedin-010a98",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "operator": "Stedin",
+        "operator:wikidata": "Q1902943",
+        "route": "power"
+      }
+    },
+    {
       "displayName": "Stromnetz Berlin",
-      "id": "stromnetzberlin-9b072a",
+      "id": "stromnetzberlin-28c936",
       "locationSet": {
-        "include": [[13.4, 52.5, 40]]
+        "include": ["de-be.geojson"]
       },
       "matchNames": ["stromnetz berlin gmbh"],
       "tags": {
@@ -714,33 +781,58 @@
       }
     },
     {
-      "displayName": "Stromnetz Hamburg GmbH",
-      "id": "stromnetzhamburggmbh-99a2d0",
+      "displayName": "Stromnetz Hamburg",
+      "id": "stromnetzhamburg-227083",
       "locationSet": {
-        "include": [[10, 53.55, 40]]
+        "include": ["de-hh.geojson"]
       },
+      "matchNames": ["stromnetz hamburg gmbh"],
       "tags": {
-        "operator": "Stromnetz Hamburg GmbH",
+        "operator": "Stromnetz Hamburg",
         "operator:wikidata": "Q18028215",
         "route": "power"
       }
     },
     {
       "displayName": "Sunflower Electric Power Corporation",
-      "id": "sunflowerelectricpowercorporation-6a8196",
-      "locationSet": {"include": ["001"]},
+      "id": "sunflowerelectricpowercorporation-0a1228",
+      "locationSet": {
+        "include": ["us-ks.geojson"]
+      },
+      "matchNames": [
+        "sunflower electric power corp"
+      ],
       "tags": {
         "operator": "Sunflower Electric Power Corporation",
+        "operator:wikidata": "Q130223893",
         "route": "power"
       }
     },
     {
-      "displayName": "Süwag",
-      "id": "suwag-6070b7",
-      "locationSet": {"include": ["de"]},
+      "displayName": "Syna",
+      "id": "syna-e85e78",
+      "locationSet": {
+        "include": [
+          "de-bw.geojson",
+          "de-by.geojson",
+          "de-he.geojson",
+          "de-rp.geojson"
+        ]
+      },
+      "matchNames": ["süwag"],
       "tags": {
-        "operator": "Süwag",
-        "operator:wikidata": "Q2382300",
+        "operator": "Syna",
+        "operator:wikidata": "Q124371315",
+        "route": "power"
+      }
+    },
+    {
+      "displayName": "Tauron",
+      "id": "tauron-99d878",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "operator": "Tauron",
+        "operator:wikidata": "Q2397198",
         "route": "power"
       }
     },
@@ -755,12 +847,20 @@
       }
     },
     {
-      "displayName": "TenneT TSO GmbH",
-      "id": "tennettsogmbh-6070b7",
-      "locationSet": {"include": ["de"]},
-      "matchNames": ["tennet"],
+      "displayName": "TenneT TSO",
+      "id": "tennettso-45db45",
+      "locationSet": {
+        "include": [
+          "de-by.geojson",
+          "de-hb.geojson",
+          "de-he.geojson",
+          "de-ni.geojson",
+          "de-sh.geojson"
+        ]
+      },
+      "matchNames": ["tennet", "tennet tso gmbh"],
       "tags": {
-        "operator": "TenneT TSO GmbH",
+        "operator": "TenneT TSO",
         "operator:wikidata": "Q1662830",
         "route": "power"
       }
@@ -773,6 +873,8 @@
       },
       "tags": {
         "operator": "Thüringer Energienetze",
+        "operator:short": "TEN",
+        "operator:wikidata": "Q124371330",
         "route": "power"
       }
     },
@@ -798,11 +900,24 @@
     },
     {
       "displayName": "TransnetBW GmbH",
-      "id": "transnetbwgmbh-6070b7",
-      "locationSet": {"include": ["de"]},
+      "id": "transnetbwgmbh-d2c714",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "operator": "TransnetBW GmbH",
         "operator:wikidata": "Q1672772",
+        "route": "power"
+      }
+    },
+    {
+      "displayName": "Východoslovenská distribučná",
+      "id": "vychodoslovenskadistribucna-698423",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "operator": "Východoslovenská distribučná",
+        "operator:short": "VSD",
+        "operator:wikidata": "Q96136456",
         "route": "power"
       }
     },
@@ -828,13 +943,18 @@
     },
     {
       "displayName": "Westfalen Weser Netz",
-      "id": "westfalenwesernetz-6070b7",
-      "locationSet": {"include": ["de"]},
+      "id": "westfalenwesernetz-3bc9f4",
+      "locationSet": {
+        "include": [
+          "de-ni.geojson",
+          "de-nw.geojson"
+        ]
+      },
       "matchNames": ["eon_westfalen_weser"],
       "tags": {
         "operator": "Westfalen Weser Netz",
         "operator:short": "WWN",
-        "operator:wikidata": "Q21416424",
+        "operator:wikidata": "Q124371350",
         "route": "power"
       }
     },
@@ -858,6 +978,16 @@
       }
     },
     {
+      "displayName": "中国電力ネットワーク",
+      "id": "8a23d1-15f210",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "operator": "中国電力ネットワーク",
+        "operator:ja": "中国電力ネットワーク",
+        "route": "power"
+      }
+    },
+    {
       "displayName": "東京電力パワーグリッド",
       "id": "tepcopowergrid-15f210",
       "locationSet": {"include": ["jp"]},
@@ -867,6 +997,15 @@
         "operator:en": "TEPCO Power Grid",
         "operator:ja": "東京電力パワーグリッド",
         "operator:wikidata": "Q21032324",
+        "route": "power"
+      }
+    },
+    {
+      "displayName": "関西電力送配電",
+      "id": "23a68b-15f210",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "operator": "関西電力送配電",
         "route": "power"
       }
     }

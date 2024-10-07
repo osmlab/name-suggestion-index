@@ -38,7 +38,7 @@
       }
     },
     {
-      "displayName": "City Express (Serbia)",
+      "displayName": "City Express (Србија)",
       "id": "cityexpress-59a7c7",
       "locationSet": {"include": ["rs"]},
       "tags": {
@@ -103,17 +103,7 @@
       }
     },
     {
-      "displayName": "Express One (Bulgaria)",
-      "id": "expressone-628448",
-      "locationSet": {"include": ["bg"]},
-      "tags": {
-        "amenity": "post_office",
-        "brand": "Express One",
-        "brand:wikidata": "Q115972319"
-      }
-    },
-    {
-      "displayName": "Express One (Hungary)",
+      "displayName": "Express One (Magyarország)",
       "id": "expressone-9e675c",
       "locationSet": {"include": ["hu"]},
       "tags": {
@@ -133,13 +123,23 @@
       }
     },
     {
-      "displayName": "Express One (Slovakia)",
+      "displayName": "Express One (Slovensko)",
       "id": "expressone-b4dbc8",
       "locationSet": {"include": ["sk"]},
       "tags": {
         "amenity": "post_office",
         "brand": "Express One",
         "brand:wikidata": "Q115972822"
+      }
+    },
+    {
+      "displayName": "Express One (България)",
+      "id": "expressone-628448",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Express One",
+        "brand:wikidata": "Q115972319"
       }
     },
     {
@@ -170,8 +170,11 @@
     },
     {
       "displayName": "Mail Boxes Etc.",
-      "id": "mailboxesetc-27cb18",
-      "locationSet": {"include": ["001"]},
+      "id": "mailboxesetc-187121",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ca", "gb", "us"]
+      },
       "matchTags": ["shop/copyshop"],
       "tags": {
         "amenity": "post_office",
@@ -179,6 +182,34 @@
         "brand:wikidata": "Q1139182",
         "name": "Mail Boxes Etc.",
         "shop": "copyshop"
+      }
+    },
+    {
+      "displayName": "Mail Boxes Etc. (Ireland/UK)",
+      "id": "mailboxesetc-a028f7",
+      "locationSet": {"include": ["gb"]},
+      "matchTags": ["shop/copyshop"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Mail Boxes Etc.",
+        "brand:wikidata": "Q92922921",
+        "name": "Mail Boxes Etc.",
+        "shop": "copyshop"
+      }
+    },
+    {
+      "displayName": "Oman Post / بريد عمان",
+      "id": "omanpost-dcf1e6",
+      "locationSet": {"include": ["om"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Oman Post",
+        "brand:ar": "بريد عمان",
+        "brand:en": "Oman Post",
+        "brand:wikidata": "Q105473521",
+        "name": "Oman Post",
+        "name:ar": "بريد عمان",
+        "name:en": "Oman Post"
       }
     },
     {
@@ -194,7 +225,7 @@
       }
     },
     {
-      "displayName": "Overseas Express (Croatia)",
+      "displayName": "Overseas Express (Hrvatska)",
       "id": "cityexpress-de0e55",
       "locationSet": {"include": ["hr"]},
       "tags": {
@@ -233,6 +264,7 @@
         "post office ltd",
         "the post office"
       ],
+      "note": "When updated the id needs to be updated in data/operators/amenity/post_box.json templateExclude",
       "tags": {
         "amenity": "post_office",
         "brand": "Post Office",
@@ -289,10 +321,10 @@
       "locationSet": {"include": ["bg"]},
       "note": "In Bulgaria, Speedy is operated by DPD, and uses the DPD logo - #4674",
       "tags": {
-        "alt_name": "Speedy",
         "amenity": "post_office",
         "brand": "Speedy",
         "brand:wikidata": "Q541030",
+        "name": "Speedy",
         "operator": "DPD",
         "operator:wikidata": "Q541030"
       }
