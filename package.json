@@ -1,6 +1,6 @@
 {
   "name": "name-suggestion-index",
-  "version": "6.0.20240826",
+  "version": "6.0.20240929",
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
@@ -100,7 +100,7 @@
     "build:features": "node scripts/build_features.js",
     "build:index": "node scripts/build_index.js",
     "test": "run-s build test:node",
-    "test:node": "c8 node --test tests/",
+    "test:node": "c8 node --test tests/*.js",
     "lint": "eslint scripts/*.js lib/*.js",
     "validate": "node scripts/validate.js",
     "wikidata": "node scripts/build_wikidata.js"
@@ -119,13 +119,13 @@
     "@ideditor/nsi-collector": "^1.0.20240823",
     "@mapbox/geojson-area": "^0.2.2",
     "@mapbox/geojson-rewind": "^0.5.2",
-    "@openstreetmap/id-tagging-schema": "~6.7.3",
+    "@openstreetmap/id-tagging-schema": "~6.8.1",
     "@rapideditor/location-conflation": "~1.4.0",
     "c8": "^10.1.2",
     "chalk": "5.3.0",
     "clear": "^0.1.0",
-    "esbuild": "^0.23.0",
-    "eslint": "^9.7.0",
+    "esbuild": "^0.23.1",
+    "eslint": "^9.10.0",
     "fs-extra": "^11.2.0",
     "geojson-bounds": "^1.0.4",
     "geojson-precision": "^1.0.0",
@@ -136,14 +136,14 @@
     "npm-run-all": "^4.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.25.1",
+    "react-router-dom": "^6.26.2",
     "safe-regex": "^2.1.1",
     "shelljs": "^0.8.5",
-    "wikibase-edit": "^7.0.4",
-    "wikibase-sdk": "^10.0.2",
+    "wikibase-edit": "^7.1.0",
+    "wikibase-sdk": "^10.1.0",
     "xmlbuilder2": "^3.1.1"
   },
   "engines": {
-    "node": ">=18"
+    "node": "^18.20 || >=20.10"
   }
 }

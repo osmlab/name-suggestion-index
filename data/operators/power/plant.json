@@ -5,7 +5,8 @@
       "generic": [
         "^(power)?\\s?plant$",
         "^private developer$"
-      ]
+      ],
+      "named": ["^une – sen$"]
     }
   },
   "items": [
@@ -37,6 +38,7 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "operator": "A2A",
+        "operator:wikidata": "Q279978",
         "power": "plant"
       }
     },
@@ -94,26 +96,26 @@
       }
     },
     {
-      "displayName": "AES",
-      "id": "aes-87be82",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cl"]
-      },
-      "tags": {
-        "operator": "AES",
-        "operator:wikidata": "Q291508",
-        "power": "plant"
-      }
-    },
-    {
       "displayName": "AES Andes",
-      "id": "aesandes-da5611",
-      "locationSet": {"include": ["cl"]},
+      "id": "aesandes-bc90e6",
+      "locationSet": {"include": ["ar", "cl"]},
       "matchNames": ["aes", "aes gener"],
       "tags": {
         "operator": "AES Andes",
         "operator:wikidata": "Q4651363",
+        "power": "plant"
+      }
+    },
+    {
+      "displayName": "AES Corporation",
+      "id": "aescorporation-12344d",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ar", "cl"]
+      },
+      "tags": {
+        "operator": "AES Corporation",
+        "operator:wikidata": "Q291508",
         "power": "plant"
       }
     },
@@ -262,6 +264,7 @@
       "locationSet": {"include": ["fr"]},
       "tags": {
         "operator": "Apex Energies",
+        "operator:wikidata": "Q130384546",
         "power": "plant"
       }
     },
@@ -273,6 +276,7 @@
       },
       "tags": {
         "operator": "Aquila Capital",
+        "operator:wikidata": "Q4782902",
         "power": "plant"
       }
     },
@@ -361,16 +365,6 @@
       "tags": {
         "operator": "Biffa",
         "operator:wikidata": "Q4904749",
-        "power": "plant"
-      }
-    },
-    {
-      "displayName": "BKK Produksjon",
-      "id": "bkkproduksjon-44cc7f",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "operator": "BKK Produksjon",
-        "operator:wikidata": "Q4891601",
         "power": "plant"
       }
     },
@@ -558,6 +552,7 @@
       "locationSet": {"include": ["mx"]},
       "tags": {
         "operator": "Comisión Federal de Electricidad",
+        "operator:short": "CFE",
         "operator:wikidata": "Q1114680",
         "power": "plant"
       }
@@ -659,8 +654,8 @@
     },
     {
       "displayName": "Dalkia",
-      "id": "dalkia-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "dalkia-fadf07",
+      "locationSet": {"include": ["150"]},
       "tags": {
         "operator": "Dalkia",
         "operator:wikidata": "Q3012420",
@@ -669,8 +664,11 @@
     },
     {
       "displayName": "Dominion Energy",
-      "id": "dominionenergy-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "dominionenergy-ff5e26",
+      "locationSet": {
+        "include": ["us"],
+        "exclude": ["us-sc.geojson"]
+      },
       "tags": {
         "operator": "Dominion Energy",
         "operator:wikidata": "Q677464",
@@ -679,9 +677,12 @@
     },
     {
       "displayName": "Dominion Energy South Carolina",
-      "id": "dominionenergysouthcarolina-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "dominionenergysouthcarolina-f65593",
+      "locationSet": {
+        "include": ["us-sc.geojson"]
+      },
       "matchNames": [
+        "dominion energy",
         "dominion energy south carolina, inc"
       ],
       "tags": {
@@ -741,8 +742,10 @@
     },
     {
       "displayName": "Duke Energy",
-      "id": "dukeenergy-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "dukeenergy-0446df",
+      "locationSet": {
+        "include": ["ca-bc.geojson", "us"]
+      },
       "tags": {
         "operator": "Duke Energy",
         "operator:wikidata": "Q1264404",
@@ -763,8 +766,8 @@
     },
     {
       "displayName": "Duke Energy Progress",
-      "id": "dukeenergyprogress-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "dukeenergyprogress-2ac081",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "Duke Energy Progress",
         "operator:wikidata": "Q1264404",
@@ -838,19 +841,6 @@
       "matchNames": ["ecos energy llc"],
       "tags": {
         "operator": "Ecos Energy",
-        "power": "plant"
-      }
-    },
-    {
-      "displayName": "EDF",
-      "id": "edf-9c3b97",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["gb"]
-      },
-      "tags": {
-        "operator": "EDF",
-        "operator:wikidata": "Q274591",
         "power": "plant"
       }
     },
@@ -961,6 +951,20 @@
       "tags": {
         "operator": "Electric Power Generation Enterprise",
         "operator:short": "EPGE",
+        "power": "plant"
+      }
+    },
+    {
+      "displayName": "Électricité de France",
+      "id": "electricitedefrance-9c3b97",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["gb"]
+      },
+      "tags": {
+        "operator": "Électricité de France",
+        "operator:short": "EDF",
+        "operator:wikidata": "Q274591",
         "power": "plant"
       }
     },
@@ -1164,6 +1168,7 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "operator": "Engie Green",
+        "operator:wikidata": "Q129986005",
         "power": "plant"
       }
     },
@@ -1234,6 +1239,7 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "operator": "Eolus Vind AB",
+        "operator:wikidata": "Q10485218",
         "power": "plant"
       }
     },
@@ -1320,8 +1326,13 @@
     },
     {
       "displayName": "Evergy",
-      "id": "evergy-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "evergy-7ad0e6",
+      "locationSet": {
+        "include": [
+          "us-ks.geojson",
+          "us-mo.geojson"
+        ]
+      },
       "tags": {
         "operator": "Evergy",
         "operator:wikidata": "Q7987107",
@@ -1332,18 +1343,14 @@
       "displayName": "Eviny Fornybar",
       "id": "evinyfornybar-44cc7f",
       "locationSet": {"include": ["no"]},
+      "matchNames": [
+        "bkk",
+        "bkk produksjon",
+        "eviny"
+      ],
       "tags": {
         "operator": "Eviny Fornybar",
-        "power": "plant"
-      }
-    },
-    {
-      "displayName": "EVN (North Macedonia)",
-      "id": "evn-418dda",
-      "locationSet": {"include": ["mk"]},
-      "tags": {
-        "operator": "EVN",
-        "operator:wikidata": "Q48784884",
+        "operator:wikidata": "Q76206398",
         "power": "plant"
       }
     },
@@ -1363,7 +1370,18 @@
       "locationSet": {"include": ["vn"]},
       "tags": {
         "operator": "EVN",
+        "operator:official": "Vietnam Energy",
         "operator:wikidata": "Q3558046",
+        "power": "plant"
+      }
+    },
+    {
+      "displayName": "EVN (Северна Македонија)",
+      "id": "evn-418dda",
+      "locationSet": {"include": ["mk"]},
+      "tags": {
+        "operator": "EVN",
+        "operator:wikidata": "Q48784884",
         "power": "plant"
       }
     },
@@ -1410,11 +1428,22 @@
       }
     },
     {
-      "displayName": "FINERGE",
+      "displayName": "Fenaka",
+      "id": "fenaka-a15a28",
+      "locationSet": {"include": ["mv"]},
+      "tags": {
+        "operator": "Fenaka",
+        "operator:wikidata": "Q130384689",
+        "power": "plant"
+      }
+    },
+    {
+      "displayName": "Finerge",
       "id": "finerge-6bc5f8",
       "locationSet": {"include": ["pt"]},
       "tags": {
-        "operator": "FINERGE",
+        "operator": "Finerge",
+        "operator:wikidata": "Q126735347",
         "power": "plant"
       }
     },
@@ -1529,11 +1558,17 @@
     },
     {
       "displayName": "Green Mountain Power",
-      "id": "greenmountainpower-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "greenmountainpower-d48826",
+      "locationSet": {
+        "include": [
+          "us-nh.geojson",
+          "us-vt.geojson"
+        ]
+      },
       "matchNames": ["green mountain power corp"],
       "tags": {
         "operator": "Green Mountain Power",
+        "operator:short": "GMP",
         "operator:wikidata": "Q71871622",
         "power": "plant"
       }
@@ -1548,11 +1583,16 @@
       }
     },
     {
-      "displayName": "Greenbacker Renewable Energy Corporation",
-      "id": "greenbackerrenewableenergycorporation-2ac081",
+      "displayName": "Greenbacker Renewable Energy Company",
+      "id": "greenbackerrenewableenergycompany-2ac081",
       "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "greenbacker renewable energy",
+        "greenbacker renewable energy corporation"
+      ],
       "tags": {
-        "operator": "Greenbacker Renewable Energy Corporation",
+        "operator": "Greenbacker Renewable Energy Company",
+        "operator:wikidata": "Q130382431",
         "power": "plant"
       }
     },
@@ -1641,6 +1681,7 @@
       ],
       "tags": {
         "operator": "Hoosier Energy",
+        "operator:wikidata": "Q130232350",
         "power": "plant"
       }
     },
@@ -1705,16 +1746,6 @@
       }
     },
     {
-      "displayName": "ICE",
-      "id": "ice-3b052a",
-      "locationSet": {"include": ["cr"]},
-      "tags": {
-        "operator": "ICE",
-        "operator:wikidata": "Q3431114",
-        "power": "plant"
-      }
-    },
-    {
       "displayName": "Icon Water",
       "id": "iconwater-1df8cd",
       "locationSet": {
@@ -1731,11 +1762,12 @@
     },
     {
       "displayName": "Idaho Power",
-      "id": "idahopower-204e74",
+      "id": "idahopower-02d2e7",
       "locationSet": {
         "include": [
           "us-id.geojson",
-          "us-or.geojson"
+          "us-or.geojson",
+          "us-wy.geojson"
         ]
       },
       "matchNames": ["idaho power co"],
@@ -1816,9 +1848,9 @@
     },
     {
       "displayName": "Innergex",
-      "id": "innergex-8a7037",
+      "id": "innergex-dafc6c",
       "locationSet": {
-        "include": ["ca", "cl", "fr", "us"]
+        "include": ["ca", "cl", "fx", "is", "us"]
       },
       "tags": {
         "operator": "Innergex",
@@ -1832,6 +1864,17 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "operator": "Innogy Spain, S.A.U",
+        "power": "plant"
+      }
+    },
+    {
+      "displayName": "Instituto Costarricense de Electricidad",
+      "id": "institutocostarricensedeelectricidad-3b052a",
+      "locationSet": {"include": ["cr"]},
+      "tags": {
+        "operator": "Instituto Costarricense de Electricidad",
+        "operator:short": "ICE",
+        "operator:wikidata": "Q3431114",
         "power": "plant"
       }
     },
@@ -1861,6 +1904,7 @@
       "locationSet": {"include": ["ie"]},
       "tags": {
         "operator": "Invis Energy",
+        "operator:wikidata": "Q130384813",
         "power": "plant"
       }
     },
@@ -2077,8 +2121,10 @@
     },
     {
       "displayName": "Meridian Energy",
-      "id": "meridianenergy-3485ae",
-      "locationSet": {"include": ["au", "nz"]},
+      "id": "meridianenergy-164197",
+      "locationSet": {
+        "include": ["au", "de", "nz"]
+      },
       "tags": {
         "operator": "Meridian Energy",
         "operator:wikidata": "Q6819305",
@@ -2087,8 +2133,14 @@
     },
     {
       "displayName": "MidAmerican Energy",
-      "id": "midamericanenergy-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "midamericanenergy-c2f488",
+      "locationSet": {
+        "include": [
+          "us-ia.geojson",
+          "us-il.geojson",
+          "us-ne.geojson"
+        ]
+      },
       "tags": {
         "operator": "MidAmerican Energy",
         "operator:wikidata": "Q6840876",
@@ -2121,6 +2173,7 @@
       "locationSet": {"include": ["hu"]},
       "tags": {
         "operator": "MVM",
+        "operator:wikidata": "Q1162287",
         "power": "plant"
       }
     },
@@ -2135,8 +2188,8 @@
     },
     {
       "displayName": "Naturgy",
-      "id": "naturgy-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "naturgy-d14bb1",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "operator": "Naturgy",
         "operator:wikidata": "Q474690",
@@ -2160,6 +2213,8 @@
       },
       "tags": {
         "operator": "NB Power",
+        "operator:en": "NB Power",
+        "operator:fr": "Énergie NB",
         "operator:wikidata": "Q749716",
         "power": "plant"
       }
@@ -2176,8 +2231,10 @@
     },
     {
       "displayName": "New York Power Authority",
-      "id": "newyorkpowerauthority-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "newyorkpowerauthority-f48e75",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
       "tags": {
         "operator": "New York Power Authority",
         "operator:short": "NYPA",
@@ -2255,8 +2312,10 @@
     },
     {
       "displayName": "Northern States Power Company",
-      "id": "northernstatespowercompany-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "northernstatespowercompany-12c448",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
       "matchNames": [
         "northern states power co - minnesota"
       ],
@@ -2268,8 +2327,13 @@
     },
     {
       "displayName": "Northland Power",
-      "id": "northlandpower-7ea27c",
-      "locationSet": {"include": ["ca"]},
+      "id": "northlandpower-123db7",
+      "locationSet": {
+        "include": [
+          "ca-on.geojson",
+          "ca-qc.geojson"
+        ]
+      },
       "tags": {
         "operator": "Northland Power",
         "operator:wikidata": "Q7059529",
@@ -2278,8 +2342,10 @@
     },
     {
       "displayName": "Northwest Territories Power Corporation",
-      "id": "northwestterritoriespowercorporation-7ea27c",
-      "locationSet": {"include": ["ca"]},
+      "id": "northwestterritoriespowercorporation-e558ac",
+      "locationSet": {
+        "include": ["ca-nt.geojson"]
+      },
       "tags": {
         "operator": "Northwest Territories Power Corporation",
         "operator:wikidata": "Q7060220",
@@ -2288,8 +2354,13 @@
     },
     {
       "displayName": "NorthWestern Energy",
-      "id": "northwesternenergy-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "northwesternenergy-4700fb",
+      "locationSet": {
+        "include": [
+          "us-mt.geojson",
+          "us-sd.geojson"
+        ]
+      },
       "tags": {
         "operator": "NorthWestern Energy",
         "operator:wikidata": "Q7053620",
@@ -2298,8 +2369,10 @@
     },
     {
       "displayName": "Nova Scotia Power",
-      "id": "novascotiapower-7ea27c",
-      "locationSet": {"include": ["ca"]},
+      "id": "novascotiapower-09803b",
+      "locationSet": {
+        "include": ["ca-ns.geojson"]
+      },
       "tags": {
         "operator": "Nova Scotia Power",
         "operator:wikidata": "Q3345333",
@@ -2462,7 +2535,7 @@
       }
     },
     {
-      "displayName": "Pacific Gas & Electric",
+      "displayName": "Pacific Gas and Electric",
       "id": "pacificgasandelectric-190d94",
       "locationSet": {
         "include": ["us-ca.geojson"]
@@ -2471,7 +2544,7 @@
         "pacific gas & electric co."
       ],
       "tags": {
-        "operator": "Pacific Gas & Electric",
+        "operator": "Pacific Gas and Electric",
         "operator:short": "PG&E",
         "operator:wikidata": "Q1815011",
         "power": "plant"
@@ -2508,12 +2581,16 @@
       }
     },
     {
-      "displayName": "PGE Energia Odnawialna S.A.",
-      "id": "pgeenergiaodnawialnasa-73b00d",
+      "displayName": "PGE Energia Odnawialna",
+      "id": "pgeenergiaodnawialna-73b00d",
       "locationSet": {"include": ["pl"]},
+      "matchNames": [
+        "pge energia odnawialna s.a."
+      ],
       "tags": {
-        "operator": "PGE Energia Odnawialna S.A.",
+        "operator": "PGE Energia Odnawialna",
         "operator:short": "PGE EO",
+        "operator:wikidata": "Q130382422",
         "power": "plant"
       }
     },
@@ -2534,6 +2611,7 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "operator": "Photosol",
+        "operator:wikidata": "Q130385923",
         "power": "plant"
       }
     },
@@ -2543,6 +2621,7 @@
       "locationSet": {"include": ["nz"]},
       "tags": {
         "operator": "Pioneer Energy",
+        "operator:wikidata": "Q130385956",
         "power": "plant"
       }
     },
@@ -2557,14 +2636,19 @@
       }
     },
     {
-      "displayName": "PNM Resources",
-      "id": "pnmresources-3fec7c",
+      "displayName": "PNM",
+      "id": "publicservicecompanyofnewmexico-fc8452",
       "locationSet": {
-        "include": ["us-nm.geojson"]
+        "include": [
+          "us-az.geojson",
+          "us-nm.geojson"
+        ]
       },
+      "matchNames": ["pnm resources"],
       "tags": {
-        "operator": "PNM Resources",
-        "operator:wikidata": "Q7119849",
+        "operator": "Public Service Company of New Mexico",
+        "operator:short": "PNM",
+        "operator:wikidata": "Q112271592",
         "power": "plant"
       }
     },
@@ -2619,21 +2703,27 @@
     },
     {
       "displayName": "Public Service Company of Colorado",
-      "id": "publicservicecompanyofcolorado-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "publicservicecompanyofcolorado-ddf7c8",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
       "matchNames": [
         "public service co of colorado"
       ],
       "tags": {
         "operator": "Public Service Company of Colorado",
+        "operator:wikidata": "Q130224325",
         "power": "plant"
       }
     },
     {
       "displayName": "Public Service Enterprise Group",
-      "id": "publicserviceenterprisegroup-394b21",
+      "id": "publicserviceenterprisegroup-06f695",
       "locationSet": {
-        "include": ["us-nj.geojson"]
+        "include": [
+          "us-nj.geojson",
+          "us-ny.geojson"
+        ]
       },
       "matchNames": [
         "public service elec & gas co"
@@ -2708,9 +2798,9 @@
     },
     {
       "displayName": "Rio Tinto Alcan",
-      "id": "riotintoalcan-ca99a3",
+      "id": "riotintoalcan-425cfe",
       "locationSet": {
-        "include": ["ca-qc.geojson"]
+        "include": ["au", "ca-qc.geojson", "gb"]
       },
       "matchNames": ["alcan"],
       "tags": {
@@ -2721,8 +2811,8 @@
     },
     {
       "displayName": "RWE",
-      "id": "rwe-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "rwe-fadf07",
+      "locationSet": {"include": ["150"]},
       "tags": {
         "operator": "RWE",
         "operator:wikidata": "Q138133",
@@ -2772,8 +2862,10 @@
     },
     {
       "displayName": "Salt River Project",
-      "id": "saltriverproject-2ac081",
-      "locationSet": {"include": ["us"]},
+      "id": "saltriverproject-78c78a",
+      "locationSet": {
+        "include": ["us-az.geojson"]
+      },
       "tags": {
         "operator": "Salt River Project",
         "operator:wikidata": "Q7405933",
@@ -2812,8 +2904,14 @@
     },
     {
       "displayName": "SaskPower",
-      "id": "saskpower-7ea27c",
-      "locationSet": {"include": ["ca"]},
+      "id": "saskpower-02624c",
+      "locationSet": {
+        "include": [
+          "ca-ab.geojson",
+          "ca-mb.geojson",
+          "ca-sk.geojson"
+        ]
+      },
       "tags": {
         "operator": "SaskPower",
         "operator:wikidata": "Q2225615",
@@ -3029,7 +3127,7 @@
       }
     },
     {
-      "displayName": "SSE (Slovakia)",
+      "displayName": "SSE (Slovensko)",
       "id": "sse-074aec",
       "locationSet": {"include": ["sk"]},
       "tags": {
@@ -3077,8 +3175,8 @@
     },
     {
       "displayName": "Statkraft",
-      "id": "statkraft-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "statkraft-fadf07",
+      "locationSet": {"include": ["150"]},
       "tags": {
         "operator": "Statkraft",
         "operator:wikidata": "Q1681145",
@@ -3097,8 +3195,10 @@
     },
     {
       "displayName": "SunEdison",
-      "id": "sunedison-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "sunedison-1b79f6",
+      "locationSet": {
+        "include": ["ca", "us", "za"]
+      },
       "tags": {
         "operator": "SunEdison",
         "operator:wikidata": "Q946713",
@@ -3270,6 +3370,7 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "operator": "UEM",
+        "operator:wikidata": "Q3552642",
         "power": "plant"
       }
     },
@@ -3283,20 +3384,9 @@
       }
     },
     {
-      "displayName": "UNE – SEN",
-      "id": "unesen-722bca",
-      "locationSet": {"include": ["cu"]},
-      "tags": {
-        "operator": "UNE – SEN",
-        "power": "plant"
-      }
-    },
-    {
       "displayName": "Uniper",
-      "id": "uniper-44c5a8",
-      "locationSet": {
-        "include": ["de", "gb", "nl"]
-      },
+      "id": "uniper-fadf07",
+      "locationSet": {"include": ["150"]},
       "tags": {
         "operator": "Uniper",
         "operator:wikidata": "Q19839259",
@@ -3394,16 +3484,10 @@
     },
     {
       "displayName": "Vattenfall",
-      "id": "vattenfall-482654",
+      "id": "vattenfall-0e7ff4",
       "locationSet": {
-        "include": [
-          "dk",
-          "fi",
-          "gb",
-          "nl",
-          "pl",
-          "se"
-        ]
+        "include": ["150"],
+        "exclude": ["de"]
       },
       "matchNames": ["vattenfall ab"],
       "tags": {
@@ -3419,7 +3503,6 @@
       "matchNames": [
         "vattenfall ab",
         "vattenfall deutschland",
-        "vattenfall europe",
         "vattenfall gmbh"
       ],
       "tags": {
@@ -3432,6 +3515,7 @@
       "displayName": "Vattenfall Europe AG",
       "id": "vattenfalleuropeag-b0fa44",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["vattenfall europe"],
       "tags": {
         "operator": "Vattenfall Europe AG",
         "operator:wikidata": "Q27486104",
@@ -3446,6 +3530,7 @@
       },
       "tags": {
         "operator": "Ventient Energy",
+        "operator:wikidata": "Q115955849",
         "power": "plant"
       }
     },
@@ -3465,6 +3550,7 @@
       "locationSet": {"include": ["at"]},
       "tags": {
         "operator": "Verbund Hydro Power GmbH",
+        "operator:wikidata": "Q688816",
         "power": "plant"
       }
     },
@@ -3479,11 +3565,13 @@
     },
     {
       "displayName": "Virginia Electric & Power Company",
-      "id": "virginiaelectricandpowercompany-02385b",
+      "id": "virginiaelectricandpowercompany-87b9b7",
       "locationSet": {
         "include": [
+          "us-md.geojson",
           "us-nc.geojson",
-          "us-va.geojson"
+          "us-va.geojson",
+          "us-wv.geojson"
         ]
       },
       "matchNames": [
@@ -3559,8 +3647,10 @@
     },
     {
       "displayName": "Windkraft Simonsfeld",
-      "id": "windkraftsimonsfeld-f96d27",
-      "locationSet": {"include": ["at", "si"]},
+      "id": "windkraftsimonsfeld-a4aa95",
+      "locationSet": {
+        "include": ["at", "bg", "sk"]
+      },
       "tags": {
         "operator": "Windkraft Simonsfeld",
         "operator:wikidata": "Q1423736",
@@ -3609,6 +3699,7 @@
       ],
       "tags": {
         "operator": "Wisconsin Public Service Corporation",
+        "operator:short": "WPS",
         "operator:wikidata": "Q8027253",
         "power": "plant"
       }
@@ -3655,8 +3746,8 @@
     },
     {
       "displayName": "АО \"Красногорская теплосеть\"",
-      "id": "f4512b-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "f4512b-d6d29e",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "operator": "АО \"Красногорская теплосеть\"",
         "power": "plant"
@@ -3719,8 +3810,8 @@
     },
     {
       "displayName": "МОЭК",
-      "id": "738c38-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "738c38-d6d29e",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "operator": "МОЭК",
         "power": "plant"
@@ -3738,8 +3829,8 @@
     },
     {
       "displayName": "ПАО «Т Плюс»",
-      "id": "6cf4d1-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "6cf4d1-d6d29e",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "operator": "ПАО «Т Плюс»",
         "power": "plant"
@@ -3838,8 +3929,8 @@
     },
     {
       "displayName": "Топлофикация София ЕАД",
-      "id": "b8ef5a-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "b8ef5a-becb55",
+      "locationSet": {"include": ["bg"]},
       "tags": {
         "operator": "Топлофикация София ЕАД",
         "power": "plant"
@@ -3871,8 +3962,8 @@
     },
     {
       "displayName": "한국농어촌공사",
-      "id": "2aeb19-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "2aeb19-02dd35",
+      "locationSet": {"include": ["kr"]},
       "tags": {
         "operator": "한국농어촌공사",
         "operator:ko": "한국농어촌공사",
@@ -3892,8 +3983,8 @@
     },
     {
       "displayName": "한국중부발전",
-      "id": "28c025-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "28c025-02dd35",
+      "locationSet": {"include": ["kr"]},
       "tags": {
         "operator": "한국중부발전",
         "operator:ko": "한국중부발전",
@@ -4000,8 +4091,8 @@
     },
     {
       "displayName": "中国電力株式会社",
-      "id": "dc7674-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "dc7674-083ddd",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "中国電力株式会社",
         "power": "plant"
@@ -4059,8 +4150,8 @@
     },
     {
       "displayName": "北海道電力",
-      "id": "be290e-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "be290e-083ddd",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "operator": "北海道電力",
         "power": "plant"
@@ -4078,8 +4169,8 @@
     },
     {
       "displayName": "协合新能",
-      "id": "316ec6-e6c8aa",
-      "locationSet": {"include": ["001"]},
+      "id": "316ec6-42ff7b",
+      "locationSet": {"include": ["cn"]},
       "tags": {
         "operator": "协合新能",
         "power": "plant"
