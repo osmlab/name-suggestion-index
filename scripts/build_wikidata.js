@@ -19,12 +19,12 @@ import { fileTree } from '../lib/file_tree.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import packageJSON from '../package.json' assert {type: 'json'};
-import treesJSON from '../config/trees.json' assert {type: 'json'};
+const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
+const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
+const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollectionJSON);
 
 const wbk = wikibase({

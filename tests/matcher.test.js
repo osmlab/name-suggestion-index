@@ -1,12 +1,14 @@
 import { after, before, test } from 'node:test';
 import { strict as assert } from 'node:assert';
+import fs from 'node:fs';
+import JSON5 from 'json5';
 import LocationConflation from '@rapideditor/location-conflation';
 import { Matcher } from '../index.mjs';
 
-import data from './matcher.data.json' assert {type: 'json'};
+const data = JSON5.parse(fs.readFileSync('tests/matcher.data.json', 'utf8'));
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollection from '../dist/featureCollection.json' assert {type: 'json'};
+const featureCollection = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollection);
 
 const USA = [-98.58, 39.828];

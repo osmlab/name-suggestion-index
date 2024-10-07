@@ -19,7 +19,7 @@ The following areas are [Regions of England](https://en.wikipedia.org/wiki/Regio
 - [gb-south-west.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-south-west.geojson%22%5D%7D&referrer=nsi) - South West
 - [gb-lon.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lon.geojson%22%5D%7D&referrer=nsi) - London, England
 
-Areas of Great Britain targeted with a feature using [ISO_3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
+Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
 - [gb-bst.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bst.geojson%22%5D%7D&referrer=nsi) - City of Bristol
 - [gb-lnd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lnd.geojson%22%5D%7D&referrer=nsi) - City of London (small central area, use [gb-lon.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lon.geojson%22%5D%7D&referrer=nsi) for London as a whole)
@@ -33,6 +33,6 @@ Areas of Great Britain targeted with a feature using [ISO_3166-2:GB](https://en.
 - [gb-som.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-som.geojson%22%5D%7D&referrer=nsi) - County of Somerset
 - [gb-wil.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-wil.geojson%22%5D%7D&referrer=nsi) - County of Wiltshire
 
-Areas of Great Britain targeted with a feature not using [ISO_3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
+Areas of Great Britain targeted with a feature not using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
 - [london-cycles.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22london-cycles.geojson%22%5D%7D&referrer=nsi) - London cycle rentals

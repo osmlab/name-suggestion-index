@@ -1,9 +1,10 @@
 // External
 import chalk from 'chalk';
 import fs from 'node:fs';
+import JSON5 from 'json5';
 
 // JSON
-import packageJSON from '../package.json' assert {type: 'json'};
+const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
 
 // YYYYMMDD
 const now = new Date();
