@@ -11,13 +11,13 @@ If a [notable](https://github.com/osmlab/name-suggestion-index/wiki/Judge-Case#n
 * If you're comfortable with writing code:
   * Clone (fork) the `name-suggestion-index` repository to your userspace.
   * Browse to the relevant [category file](https://github.com/osmlab/name-suggestion-index/wiki/Category-Files) inside the `data` folder. For example, in order to add a brand tagged as `amenity=bank` in OpenStreetMap, you would go to `data/brands/amenity/bank.json`.
-  * You can use existing entries as a template for the entity you want to add. Feel free to copy an entry, and change the values of the copied entry to suit the new entity. Don't worry about making sure the entry is in the right place in the file, or providing an `id` for the entry - there is a [build script](https://github.com/osmlab/name-suggestion-index/wiki/Glossary#build-script) that maintainers often run that takes care of both automatically.
-  * Save your changes, and submit a pull request to this project to include your changes.
+  * You can use existing entries as a template for the entity you want to add. Feel free to copy an entry, and change the values of the copied entry to suit the new entity. Don't worry about making sure the entry is in the right place in the file, or providing an `id` for the entry - there is a [build script](https://github.com/osmlab/name-suggestion-index/wiki/Glossary#build-script) that maintainers often run on the `name-suggestion-index` repository that takes care of both automatically.
+  * Save your changes, and [submit a pull request](https://github.com/osmlab/name-suggestion-index/pulls) to the `name-suggestion-index` repository to include your changes.
 * If you're not comfortable with writing code:
-  * Submit an issue with as many details as possible about the entity you'd like to add. This includes the name, [Wikidata ID](https://github.com/osmlab/name-suggestion-index/wiki/Glossary#wikidata-id), OSM tag category, official website, etc. The more reference details you provide, the more likely it is that a maintainer will work on your request.
+  * [Submit an issue](https://github.com/osmlab/name-suggestion-index/issues) with as many details as possible about the entity you'd like to add. This includes the name, [Wikidata ID](https://github.com/osmlab/name-suggestion-index/wiki/Glossary#wikidata-id), OSM tag category, official website, etc. The more reference details you provide, the more likely it is that a maintainer will work on your request.
  
 ## Modifying existing entries
-If there is a problem with an existing entry, please let us know! You can edit the code yourself to correct the problem (see above for basic instructions), or you can submit an issue to bring the problem to the attention of the project maintainers. For more details, see the [Contributing overview page](https://github.com/osmlab/name-suggestion-index/wiki/Contributing#editing-existing-entries) on the project wiki.
+If there is a problem with an existing entry, please let us know! You can edit the code yourself to correct the problem (see above for basic instructions), or you can [submit an issue](https://github.com/osmlab/name-suggestion-index/issues) to bring the problem to the attention of the `name-suggestion-index` project maintainers. For more details, see the [Contributing overview page](https://github.com/osmlab/name-suggestion-index/wiki/Contributing#editing-existing-entries) on the project wiki.
 
 ## Project contacts
 If you have any questions or want to reach out to a maintainer, ping any of these folks:
