@@ -1504,9 +1504,9 @@
     },
     {
       "displayName": "Baltimore County Loop",
-      "id": "baltimorecountyloop-5f9bc7",
+      "id": "baltimorecountyloop-28f639",
       "locationSet": {
-        "include": ["baltimore_and_dc.geojson"]
+        "include": ["us-baltimore_and_dc.geojson"]
       },
       "matchNames": [
         "baltco loop",
@@ -2971,9 +2971,9 @@
     },
     {
       "displayName": "CAT (Columbia Area)",
-      "id": "cat-a0c581",
+      "id": "cat-1f28a2",
       "locationSet": {
-        "include": ["cat_hood_river.geojson"]
+        "include": ["us-cat_hood_river.geojson"]
       },
       "tags": {
         "network": "CAT",
@@ -3355,9 +3355,9 @@
     },
     {
       "displayName": "Charm City Circulator",
-      "id": "charmcitycirculator-5f9bc7",
+      "id": "charmcitycirculator-28f639",
       "locationSet": {
-        "include": ["baltimore_and_dc.geojson"]
+        "include": ["us-baltimore_and_dc.geojson"]
       },
       "tags": {
         "network": "Charm City Circulator",
@@ -4488,9 +4488,11 @@
     },
     {
       "displayName": "DASH (Los Angeles)",
-      "id": "dash-a0727c",
+      "id": "dash-93d831",
       "locationSet": {
-        "include": ["los_angeles_county.geojson"]
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
       },
       "tags": {
         "network": "DASH",
@@ -6587,9 +6589,11 @@
     },
     {
       "displayName": "GTrans",
-      "id": "gtrans-a0727c",
+      "id": "gtrans-93d831",
       "locationSet": {
-        "include": ["los_angeles_county.geojson"]
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
       },
       "tags": {
         "network": "GTrans",
@@ -9686,9 +9690,9 @@
     },
     {
       "displayName": "METRO RTA",
-      "id": "metrorta-f87f3a",
+      "id": "metrorta-965fe5",
       "locationSet": {
-        "include": ["metro_rta.geojson"]
+        "include": ["us-oh-metro_rta.geojson"]
       },
       "tags": {
         "network": "METRO RTA",
@@ -10731,9 +10735,9 @@
     },
     {
       "displayName": "MTA Commuter Bus",
-      "id": "mtacommuterbus-5f9bc7",
+      "id": "mtacommuterbus-28f639",
       "locationSet": {
-        "include": ["baltimore_and_dc.geojson"]
+        "include": ["us-baltimore_and_dc.geojson"]
       },
       "matchNames": ["mta maryland"],
       "tags": {
@@ -10747,9 +10751,9 @@
     },
     {
       "displayName": "MTA Express BusLink",
-      "id": "mtaexpressbuslink-5f9bc7",
+      "id": "mtaexpressbuslink-28f639",
       "locationSet": {
-        "include": ["baltimore_and_dc.geojson"]
+        "include": ["us-baltimore_and_dc.geojson"]
       },
       "tags": {
         "network": "MTA Express BusLink",
@@ -11592,9 +11596,9 @@
     },
     {
       "displayName": "NYC Transit",
-      "id": "nyctransit-c586de",
+      "id": "nyctransit-8b0196",
       "locationSet": {
-        "include": ["new_york_city.geojson"]
+        "include": ["us-ny-new_york_city.geojson"]
       },
       "matchNames": [
         "mta",
@@ -14013,21 +14017,37 @@
       }
     },
     {
-      "displayName": "RTA",
-      "id": "rta-c0ab96",
+      "displayName": "RTA (Cleveland)",
+      "id": "rta-f8248b",
       "locationSet": {
-        "include": ["us-la.geojson"]
+        "include": [
+          "us-oh-cuyahoga_county.geojson"
+        ]
       },
-      "matchNames": ["norta"],
       "tags": {
         "network": "RTA",
-        "network:wikidata": "Q2138272",
-        "operator": "New Orleans Regional Transit Authority",
+        "network:wikidata": "Q1544412",
+        "operator": "Greater Cleveland Regional Transit Authority",
         "route": "bus"
       }
     },
     {
-      "displayName": "RTA (02)",
+      "displayName": "RTA (Dayton)",
+      "id": "rta-130128",
+      "locationSet": {
+        "include": [
+          "us-oh-greater_dayton_rta.geojson"
+        ]
+      },
+      "tags": {
+        "network": "RTA",
+        "network:wikidata": "Q5600523",
+        "operator": "Greater Dayton Regional Transit Authority",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "RTA (France)",
       "id": "rta-add5eb",
       "locationSet": {"include": ["fx"]},
       "matchNames": [
@@ -14043,38 +14063,27 @@
       }
     },
     {
-      "displayName": "RTA (Greater Cleveland Regional Transit Authority)",
-      "id": "rta-0f5c26",
+      "displayName": "RTA (New Orleans)",
+      "id": "rta-c0ab96",
       "locationSet": {
-        "include": ["cuyahoga_county.geojson"]
+        "include": ["us-la.geojson"]
       },
+      "matchNames": ["norta"],
       "tags": {
         "network": "RTA",
-        "network:wikidata": "Q1544412",
-        "operator": "Greater Cleveland Regional Transit Authority",
+        "network:wikidata": "Q2138272",
+        "operator": "New Orleans Regional Transit Authority",
         "route": "bus"
       }
     },
     {
-      "displayName": "RTA (Greater Dayton Regional Transit Authority)",
-      "id": "rta-aa7a89",
+      "displayName": "RTA (Riverside)",
+      "id": "rta-218ba5",
       "locationSet": {
-        "include": [
-          "greater_dayton_regional_transit_authority.geojson"
+        "include": ["us-ca.geojson"],
+        "exclude": [
+          "us-ca-san_luis_obispo_county.geojson"
         ]
-      },
-      "tags": {
-        "network": "RTA",
-        "network:wikidata": "Q5600523",
-        "operator": "Greater Dayton Regional Transit Authority",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "RTA (Riverside Transit Agency)",
-      "id": "rta-62dc11",
-      "locationSet": {
-        "include": ["us-ca.geojson"]
       },
       "tags": {
         "network": "RTA",
@@ -14084,11 +14093,11 @@
       }
     },
     {
-      "displayName": "RTA (San Luis Obispo Regional Transit Authority)",
-      "id": "rta-ef9666",
+      "displayName": "RTA (San Luis Obispo)",
+      "id": "rta-767ef9",
       "locationSet": {
         "include": [
-          "san_luis_obispo_county.geojson"
+          "us-ca-san_luis_obispo_county.geojson"
         ]
       },
       "tags": {
@@ -14099,7 +14108,7 @@
       }
     },
     {
-      "displayName": "RTC (Réseau de transport de la Capitale)",
+      "displayName": "RTC (Quebec)",
       "id": "rtc-26ae8b",
       "locationSet": {
         "include": ["ca-qc.geojson"]
@@ -14113,9 +14122,9 @@
     },
     {
       "displayName": "RTC (Southern Nevada)",
-      "id": "rtc-b2b076",
+      "id": "rtc-e4af29",
       "locationSet": {
-        "include": ["southern_nevada.geojson"]
+        "include": ["us-nv-southern.geojson"]
       },
       "tags": {
         "network": "RTC",
@@ -14137,9 +14146,9 @@
     },
     {
       "displayName": "RTC (Washoe County)",
-      "id": "rtc-ac1556",
+      "id": "rtc-1f40cf",
       "locationSet": {
-        "include": ["washoe_county.geojson"]
+        "include": ["us-nv-washoe_county.geojson"]
       },
       "tags": {
         "network": "RTC",
@@ -16445,9 +16454,9 @@
     },
     {
       "displayName": "Sun Tran (Tucson)",
-      "id": "suntran-6f8998",
+      "id": "suntran-d5f00f",
       "locationSet": {
-        "include": ["tucson.geojson"]
+        "include": ["us-az.geojson"]
       },
       "tags": {
         "network": "Sun Tran",
@@ -20796,9 +20805,9 @@
     },
     {
       "displayName": "WMATA Metrobus",
-      "id": "wmatametrobus-5f9bc7",
+      "id": "wmatametrobus-28f639",
       "locationSet": {
-        "include": ["baltimore_and_dc.geojson"]
+        "include": ["us-baltimore_and_dc.geojson"]
       },
       "tags": {
         "network": "WMATA Metrobus",
