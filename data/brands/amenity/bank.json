@@ -3298,7 +3298,7 @@
       "displayName": "BBVA (México)",
       "id": "bbvamexico-574575",
       "locationSet": {"include": ["mx"]},
-      "matchNames": ["bbva bancomer", "bancomer"],
+      "matchNames": ["bancomer", "bbva bancomer"],
       "tags": {
         "amenity": "bank",
         "brand": "BBVA México",
@@ -5048,14 +5048,14 @@
       }
     },
     {
-      "displayName": "City National Bank (California)",
-      "id": "citynationalbank-0b143b",
+      "displayName": "City National Bank (California-based)",
+      "id": "citynationalbank-2ff887",
       "locationSet": {
         "include": [
+          [-80.1902681, 25.765337, 0.5],
           "us-ca.geojson",
           "us-dc.geojson",
           "us-de.geojson",
-          "us-fl.geojson",
           "us-ga.geojson",
           "us-ma.geojson",
           "us-mn.geojson",
@@ -5065,6 +5065,7 @@
           "us-va.geojson"
         ]
       },
+      "note": "has one location in Florida (Miami) not associated with CNB of Florida",
       "tags": {
         "amenity": "bank",
         "brand": "City National Bank",
@@ -5074,10 +5075,12 @@
     },
     {
       "displayName": "City National Bank (Florida)",
-      "id": "citynationalbank-9ffb0f",
+      "id": "citynationalbank-622ed0",
       "locationSet": {
-        "include": ["us-fl.geojson"]
+        "include": ["us-fl.geojson"],
+        "exclude": [[-80.1902681, 25.765337, 0.5]]
       },
+      "note": "excludes the CNB (CA) Miami branch",
       "tags": {
         "amenity": "bank",
         "brand": "City National Bank",
@@ -10062,7 +10065,7 @@
       }
     },
     {
-      "displayName": "Peoples Bank (Ohio)",
+      "displayName": "Peoples Bank (Ohio-based)",
       "id": "peoplesbank-dde0f4",
       "locationSet": {
         "include": ["us-peoples_bank_oh.geojson"],
@@ -11677,7 +11680,7 @@
       }
     },
     {
-      "displayName": "Southern Bank (Arkansas, Illinois, Kansas and Missouri)",
+      "displayName": "Southern Bank (Midwest USA)",
       "id": "southernbank-c8bf03",
       "locationSet": {
         "include": [
@@ -11695,7 +11698,7 @@
       }
     },
     {
-      "displayName": "Southern Bank (North Carolina, Virginia)",
+      "displayName": "Southern Bank (North Carolina/Virginia)",
       "id": "southernbank-fd5937",
       "locationSet": {
         "include": [
@@ -11948,7 +11951,22 @@
       }
     },
     {
-      "displayName": "State Bank of India",
+      "displayName": "State Bank of India (California)",
+      "id": "statebankofindiacalifornia-cf92b8",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "note": "State Bank of India (California) is their legal name",
+      "tags": {
+        "amenity": "bank",
+        "brand": "State Bank of India (California)",
+        "brand:wikidata": "Q27920062",
+        "name": "State Bank of India (California)",
+        "short_name": "SBIC"
+      }
+    },
+    {
+      "displayName": "State Bank of India (Global)",
       "id": "statebankofindia-981cfe",
       "locationSet": {
         "include": ["001"],
@@ -11961,20 +11979,6 @@
         "brand:wikidata": "Q1340361",
         "name": "State Bank of India",
         "short_name": "SBI"
-      }
-    },
-    {
-      "displayName": "State Bank of India (California)",
-      "id": "statebankofindia-cf92b8",
-      "locationSet": {
-        "include": ["us-ca.geojson"]
-      },
-      "tags": {
-        "amenity": "bank",
-        "brand": "State Bank of India",
-        "brand:wikidata": "Q27920062",
-        "name": "State Bank of India",
-        "short_name": "SBIC"
       }
     },
     {
