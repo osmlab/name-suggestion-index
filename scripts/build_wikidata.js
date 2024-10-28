@@ -313,6 +313,12 @@ function processEntities(result) {
       target.urlMatchPatterns = urlMatchPatterns;
     }
 
+    // P12454 - location information URL
+    const locationInfoWebsites = getClaimValues(entity, 'P12454', false);
+    if (locationInfoWebsites) {
+      target.locationInfoWebsites = locationInfoWebsites;
+    }
+    
     // P2002 - Twitter username
     const twitterUser = getClaimValue(entity, 'P2002');
     if (twitterUser) {
@@ -435,7 +441,7 @@ function processEntities(result) {
     // If we are allowed to make edits to wikidata, continue beyond here
     if (!_wbEdit) return;
 
-    // If P31 "instance of" is missing, set it to a resonable value.
+    // If P31 "instance of" is missing, set it to a reasonable value.
     const instanceOf = getClaimValue(entity, 'P31');
     if (!instanceOf && meta.p31) {
       const msg = `Setting P31 "instance of" = ${meta.p31} "${meta.what}" for ${qid}`;
