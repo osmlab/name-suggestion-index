@@ -7,10 +7,10 @@
         "^(clinic|urgent\\s?care)$",
         "^(consultorio )?(local|médico)$",
         "^(consultorio|municipal|private(_profit)?|priv[eé]{0,2}|public)$",
+        "^(gov(ern?ment)?|prefeitura( municipal)?)$",
         "^(polyclinique|poliklinika)$",
         "^centro (de salud|de saúde|médico)$",
         "^combination$",
-        "^gov(ern?ment)?$",
         "^health (sub )?center$",
         "^ministerio de salud$",
         "^moh$",
@@ -1666,23 +1666,19 @@
       }
     },
     {
-      "displayName": "Prefeitura",
-      "id": "prefeitura-5f4b12",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Prefeitura"
-      }
-    },
-    {
       "displayName": "Prefeitura da Cidade do Rio de Janeiro",
-      "id": "prefeituradacidadedoriodejaneiro-5f4b12",
-      "locationSet": {"include": ["br"]},
+      "id": "prefeituradacidadedoriodejaneiro-4e3c1b",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
+      "matchNames": [
+        "prefeitura do rio de janeiro"
+      ],
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Prefeitura da Cidade do Rio de Janeiro"
+        "operator": "Prefeitura da Cidade do Rio de Janeiro",
+        "operator:wikidata": "Q8678"
       }
     },
     {
@@ -1703,26 +1699,6 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Prefeitura do Natal"
-      }
-    },
-    {
-      "displayName": "Prefeitura do Rio de Janeiro",
-      "id": "prefeituradoriodejaneiro-5f4b12",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Prefeitura do Rio de Janeiro"
-      }
-    },
-    {
-      "displayName": "Prefeitura Municipal",
-      "id": "prefeituramunicipal-5f4b12",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Prefeitura Municipal"
       }
     },
     {
