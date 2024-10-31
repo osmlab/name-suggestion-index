@@ -534,8 +534,8 @@ function mergeItems() {
             delete tags[osmkey];
             return;
           }
-          // anything starting with `contact:` - #9505
-          if (/^contact:/.test(osmkey)) {
+          // anything starting with `contact:` or `website:` - #9505
+          if (/^(contact|website):/.test(osmkey)) {
             delete tags[osmkey];
             return;
           }
