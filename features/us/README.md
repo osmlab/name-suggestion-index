@@ -9,7 +9,17 @@ The following areas are included as part of [country-coder](https://github.com/r
 - [gu](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gu%22%5D%7D&referrer=nsi) - Territory of Guam
 - [mp](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22mp%22%5D%7D&referrer=nsi) - Territory of Northern Mariana Islands
 - [vi](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22vi%22%5D%7D&referrer=nsi) - Territory of Virgin Islands of the United States
+- [conus](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22conus%22%5D%7D&referrer=nsi) - Contiguous United States (Lower 48)
 - [um](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um%22%5D%7D&referrer=nsi) - United States Minor Outlying Islands (Baker Island, Howland Island, Jarvis Island, Johnston Atoll, Kingman Reef, Midway Atoll, Navassa Island, Palmyra Atoll, and Wake Island)
+  - [um-81](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-81%22%5D%7D&referrer=nsi) - Baker Island
+  - [um-84](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-84%22%5D%7D&referrer=nsi) - Howland Island
+  - [um-86](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-816%22%5D%7D&referrer=nsi) - Jarvis Island
+  - [jt](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jt%22%5D%7D&referrer=nsi) - Johnston Atoll
+  - [um-89](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-89%22%5D%7D&referrer=nsi) - Kingman Reef
+  - [mi](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22mi%22%5D%7D&referrer=nsi) - Midway Atoll
+  - [um-76](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-76%22%5D%7D&referrer=nsi) - Navassa Island
+  - [um-95](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-95%22%5D%7D&referrer=nsi) - Palmyra Atoll
+  - [wk](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22wk%22%5D%7D&referrer=nsi) - Wake Island
 
 States of the United States targeted with a feature using [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US)
 
