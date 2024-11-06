@@ -13,7 +13,7 @@ The following areas are included as part of [country-coder](https://github.com/r
 - [um](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um%22%5D%7D&referrer=nsi) - United States Minor Outlying Islands (Baker Island, Howland Island, Jarvis Island, Johnston Atoll, Kingman Reef, Midway Atoll, Navassa Island, Palmyra Atoll, and Wake Island)
   - [um-81](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-81%22%5D%7D&referrer=nsi) - Baker Island
   - [um-84](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-84%22%5D%7D&referrer=nsi) - Howland Island
-  - [um-86](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-816%22%5D%7D&referrer=nsi) - Jarvis Island
+  - [um-86](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-86%22%5D%7D&referrer=nsi) - Jarvis Island
   - [jt](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jt%22%5D%7D&referrer=nsi) - Johnston Atoll
   - [um-89](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-89%22%5D%7D&referrer=nsi) - Kingman Reef
   - [mi](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22mi%22%5D%7D&referrer=nsi) - Midway Atoll
