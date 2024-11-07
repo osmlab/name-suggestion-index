@@ -613,6 +613,8 @@ function finish() {
     _wikidata[qid] = sortObject(target);
   });
 
+  _warnings.sort(sortWarnings);
+
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
     writeFileWithMeta('dist/warnings.json', stringify({ warnings: _warnings }) + '\n');
@@ -804,4 +806,16 @@ function utilQsString(obj) {
   return Object.keys(obj).sort(withLocale).map(key => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
   }).join('&');
+}
+
+
+function sortWarnings(a, b) {
+  const qid = /^Q(\d+)$/;
+  const aMatch = a.qid.match(qid);
+  const bMatch = b.qid.match(qid);
+  if (aMatch && bMatch) {
+    return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);   // sort QIDs numerically
+  } else {
+    return withLocale(a.msg, b.msg);
+  }
 }
