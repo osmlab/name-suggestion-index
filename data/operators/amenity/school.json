@@ -23,10 +23,12 @@
         "^non déterminé$",
         "^p[uú]bli(a|c|ca|co|o|que)$",
         "^particular$",
+        "^prefeitura( municipal)?$",
         "^privé(e)?$",
         "^religious( \\/ ngo|)$",
         "^roman catholic$",
         "^school$",
+        "^secretaria( (municipal|estadual|de estado))? d[ae] educa[çc][ãa]o$",
         "^state owned$",
         "^中华人民共和国教育部",
         "^公立$",
@@ -16473,36 +16475,11 @@
       }
     },
     {
-      "displayName": "Estado da Bahia",
-      "id": "estadodabahia-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Estado da Bahia"
-      }
-    },
-    {
-      "displayName": "Estado de Minas Gerais",
-      "id": "estadodeminasgerais-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Estado de Minas Gerais"
-      }
-    },
-    {
-      "displayName": "Estado de São Paulo",
-      "id": "estadodesaopaulo-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Estado de São Paulo"
-      }
-    },
-    {
       "displayName": "Estado do Rio Grande do Sul",
-      "id": "estadodoriograndedosul-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "estadodoriograndedosul-ee71aa",
+      "locationSet": {
+        "include": ["br-rs.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Estado do Rio Grande do Sul",
@@ -18143,36 +18120,28 @@
       }
     },
     {
-      "displayName": "Governo da Bahia",
-      "id": "governodabahia-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Governo da Bahia"
-      }
-    },
-    {
-      "displayName": "Governo de Minas Gerais",
-      "id": "governodeminasgerais-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Governo de Minas Gerais"
-      }
-    },
-    {
       "displayName": "Governo do Estado da Bahia",
-      "id": "governodoestadodabahia-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodabahia-9d6ced",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
+      "matchNames": [
+        "estado da bahia",
+        "governo da bahia"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Governo do Estado da Bahia"
+        "operator": "Governo do Estado da Bahia",
+        "operator:type": "government",
+        "operator:wikidata": "Q61641530"
       }
     },
     {
       "displayName": "Governo do Estado da Paraíba",
-      "id": "governodoestadodaparaiba-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodaparaiba-a5afcb",
+      "locationSet": {
+        "include": ["br-pb.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Governo do Estado da Paraíba",
@@ -18181,18 +18150,41 @@
       }
     },
     {
-      "displayName": "Governo do Estado de Pernambuco",
-      "id": "governodoestadodepernambuco-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "displayName": "Governo do Estado de Minas Gerais",
+      "id": "governodoestadodeminasgerais-479758",
+      "locationSet": {
+        "include": ["br-mg.geojson"]
+      },
+      "matchNames": [
+        "estado de minas gerais",
+        "governo de minas gerais"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Governo do Estado de Pernambuco"
+        "operator": "Governo do Estado de Minas Gerais",
+        "operator:type": "government",
+        "operator:wikidata": "Q61612780"
+      }
+    },
+    {
+      "displayName": "Governo do Estado de Pernambuco",
+      "id": "governodoestadodepernambuco-bf7784",
+      "locationSet": {
+        "include": ["br-pe.geojson"]
+      },
+      "tags": {
+        "amenity": "school",
+        "operator": "Governo do Estado de Pernambuco",
+        "operator:type": "government",
+        "operator:wikidata": "Q28679616"
       }
     },
     {
       "displayName": "Governo do Estado de Santa Catarina",
-      "id": "governodoestadodesantacatarina-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodesantacatarina-6a2dca",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Governo do Estado de Santa Catarina",
@@ -18202,8 +18194,11 @@
     },
     {
       "displayName": "Governo do Estado de São Paulo",
-      "id": "governodoestadodesaopaulo-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodesaopaulo-5e2aa2",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
+      "matchNames": ["estado de são paulo"],
       "tags": {
         "amenity": "school",
         "operator": "Governo do Estado de São Paulo",
@@ -18213,8 +18208,10 @@
     },
     {
       "displayName": "Governo do Estado do Ceará",
-      "id": "governodoestadodoceara-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodoceara-04d5fb",
+      "locationSet": {
+        "include": ["br-ce.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Governo do Estado do Ceará",
@@ -18224,8 +18221,10 @@
     },
     {
       "displayName": "Governo do Estado do Rio de Janeiro",
-      "id": "governodoestadodoriodejaneiro-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodoriodejaneiro-df8785",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Governo do Estado do Rio de Janeiro",
@@ -18235,8 +18234,10 @@
     },
     {
       "displayName": "Governo do Estado do Rio Grande do Norte",
-      "id": "governodoestadodoriograndedonorte-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodoriograndedonorte-1a267e",
+      "locationSet": {
+        "include": ["br-rn.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Governo do Estado do Rio Grande do Norte",
@@ -30113,8 +30114,10 @@
     },
     {
       "displayName": "Município de Marechal Cândido Rondon",
-      "id": "municipiodemarechalcandidorondon-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "municipiodemarechalcandidorondon-91354a",
+      "locationSet": {
+        "include": ["br-pr.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Município de Marechal Cândido Rondon",
@@ -30124,17 +30127,23 @@
     },
     {
       "displayName": "Município de Mucuri",
-      "id": "municipiodemucuri-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "municipiodemucuri-9d6ced",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Município de Mucuri"
+        "operator": "Município de Mucuri",
+        "operator:type": "government",
+        "operator:wikidata": "Q1761474"
       }
     },
     {
       "displayName": "Município de Teixeira de Freitas",
-      "id": "municipiodeteixeiradefreitas-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "municipiodeteixeiradefreitas-9d6ced",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Município de Teixeira de Freitas",
@@ -34925,29 +34934,13 @@
     },
     {
       "displayName": "PMC - SME",
-      "id": "pmcsme-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "pmcsme-91354a",
+      "locationSet": {
+        "include": ["br-pr.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "PMC - SME"
-      }
-    },
-    {
-      "displayName": "PMSP",
-      "id": "pmsp-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "PMSP"
-      }
-    },
-    {
-      "displayName": "PMVV",
-      "id": "pmvv-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "PMVV"
       }
     },
     {
@@ -35539,15 +35532,6 @@
       }
     },
     {
-      "displayName": "Prefeitura",
-      "id": "prefeitura-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Prefeitura"
-      }
-    },
-    {
       "displayName": "Prefeitura de Fortaleza",
       "id": "prefeituradefortaleza-52f4f1",
       "locationSet": {"include": ["br"]},
@@ -35599,15 +35583,6 @@
       "tags": {
         "amenity": "school",
         "operator": "Prefeitura do Natal"
-      }
-    },
-    {
-      "displayName": "Prefeitura Municipal",
-      "id": "prefeituramunicipal-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Prefeitura Municipal"
       }
     },
     {
@@ -35703,6 +35678,19 @@
       }
     },
     {
+      "displayName": "Prefeitura Municipal de São Paulo",
+      "id": "prefeituramunicipaldesaopaulo-5e2aa2",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
+      "tags": {
+        "amenity": "school",
+        "operator": "Prefeitura Municipal de São Paulo",
+        "operator:short": "PMSP",
+        "operator:wikidata": "Q10351100"
+      }
+    },
+    {
       "displayName": "Prefeitura Municipal de Seropédica",
       "id": "prefeituramunicipaldeseropedica-52f4f1",
       "locationSet": {"include": ["br"]},
@@ -35727,6 +35715,19 @@
       "tags": {
         "amenity": "school",
         "operator": "Prefeitura Municipal de Sorriso"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal de Vila Velha",
+      "id": "prefeituramunicipaldevilavelha-9f878e",
+      "locationSet": {
+        "include": ["br-es.geojson"]
+      },
+      "tags": {
+        "amenity": "school",
+        "operator": "Prefeitura Municipal de Vila Velha",
+        "operator:short": "PMVV",
+        "operator:wikidata": "Q56450026"
       }
     },
     {
@@ -41288,15 +41289,6 @@
       }
     },
     {
-      "displayName": "Secretaria da Educação",
-      "id": "secretariadaeducacao-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Secretaria da Educação"
-      }
-    },
-    {
       "displayName": "Secretaria da Educação do Estado de São Paulo",
       "id": "secretariadaeducacaodoestadodesaopaulo-52f4f1",
       "locationSet": {"include": ["br"]},
@@ -41342,21 +41334,15 @@
       }
     },
     {
-      "displayName": "Secretaria de Educação",
-      "id": "secretariadeeducacao-52f4f1",
+      "displayName": "Secretaria de Educação de Uberlandia",
+      "id": "secretariadeeducacaodeuberlandia-52f4f1",
       "locationSet": {"include": ["br"]},
+      "matchNames": [
+        "secretaria de educacao - uberlandia"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Secretaria de Educação"
-      }
-    },
-    {
-      "displayName": "Secretaria de Educacao - Uberlandia",
-      "id": "secretariadeeducacaouberlandia-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Secretaria de Educacao - Uberlandia"
+        "operator": "Secretaria de Educação de Uberlandia"
       }
     },
     {
@@ -41462,15 +41448,6 @@
       }
     },
     {
-      "displayName": "Secretaria de Estado da Educação",
-      "id": "secretariadeestadodaeducacao-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Secretaria de Estado da Educação"
-      }
-    },
-    {
       "displayName": "Secretaria de Estado da Educação de Minas Gerais",
       "id": "secretariadeestadodaeducacaodeminasgerais-52f4f1",
       "locationSet": {"include": ["br"]},
@@ -41498,24 +41475,6 @@
       }
     },
     {
-      "displayName": "Secretaria Estadual de Educação",
-      "id": "secretariaestadualdeeducacao-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Secretaria Estadual de Educação"
-      }
-    },
-    {
-      "displayName": "Secretaria Municipal da Educação",
-      "id": "secretariamunicipaldaeducacao-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Secretaria Municipal da Educação"
-      }
-    },
-    {
       "displayName": "Secretaria Municipal da Educação de Curitiba",
       "id": "secretariamunicipaldaeducacaodecuritiba-52f4f1",
       "locationSet": {"include": ["br"]},
@@ -41531,15 +41490,6 @@
       "tags": {
         "amenity": "school",
         "operator": "Secretaria Municipal da Educação de Fortaleza"
-      }
-    },
-    {
-      "displayName": "Secretaria Municipal de Educação",
-      "id": "secretariamunicipaldeeducacao-52f4f1",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Secretaria Municipal de Educação"
       }
     },
     {
@@ -41652,8 +41602,10 @@
     },
     {
       "displayName": "SEDU",
-      "id": "sedu-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "sedu-9f878e",
+      "locationSet": {
+        "include": ["br-es.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "SEDU"
@@ -41681,8 +41633,10 @@
     },
     {
       "displayName": "SEMEDE",
-      "id": "semede-52f4f1",
-      "locationSet": {"include": ["br"]},
+      "id": "semede-df8785",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "SEMEDE"
