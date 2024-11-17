@@ -237,8 +237,10 @@
     },
     {
       "displayName": "Académie de Versailles",
-      "id": "academiedeversailles-9d3cb1",
-      "locationSet": {"include": ["fr"]},
+      "id": "academiedeversailles-3c0887",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Académie de Versailles",
@@ -380,6 +382,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Agder fylkeskommune",
+        "operator:type": "government",
         "operator:wikidata": "Q100707270"
       }
     },
@@ -970,6 +973,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Akershus fylkeskommune",
+        "operator:type": "government",
         "operator:wikidata": "Q4700650"
       }
     },
@@ -5560,6 +5564,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Bermuda Ministry of Education",
+        "operator:type": "government",
         "operator:wikidata": "Q113003573"
       }
     },
@@ -8358,6 +8363,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Calgary Board of Education",
+        "operator:type": "public",
         "operator:wikidata": "Q5019632"
       }
     },
@@ -9179,6 +9185,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Caritas Österreich",
+        "operator:type": "private",
         "operator:wikidata": "Q1036350"
       }
     },
@@ -9852,15 +9859,6 @@
         "operator": "Cawayan West District",
         "operator:type": "government",
         "operator:wikidata": "Q130490341"
-      }
-    },
-    {
-      "displayName": "CD84",
-      "id": "cd84-65fbcd",
-      "locationSet": {"include": ["fx"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "CD84"
       }
     },
     {
@@ -10949,50 +10947,16 @@
     },
     {
       "displayName": "Communauté de communes Jura Nord",
-      "id": "communautedecommunesjuranord-9d3cb1",
-      "locationSet": {"include": ["fr"]},
+      "id": "communautedecommunesjuranord-cafc08",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Communauté de communes Jura Nord",
         "operator:short": "CC Jura Nord",
         "operator:type": "public",
         "operator:wikidata": "Q2987230"
-      }
-    },
-    {
-      "displayName": "Commune d'Anglet",
-      "id": "communedanglet-9d3cb1",
-      "locationSet": {"include": ["fr"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Commune d'Anglet"
-      }
-    },
-    {
-      "displayName": "Commune de Dole",
-      "id": "communededole-9d3cb1",
-      "locationSet": {"include": ["fr"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Commune de Dole"
-      }
-    },
-    {
-      "displayName": "Commune de Lons-le-Saunier",
-      "id": "communedelonslesaunier-9d3cb1",
-      "locationSet": {"include": ["fr"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Commune de Lons-le-Saunier"
-      }
-    },
-    {
-      "displayName": "Commune de Pau",
-      "id": "communedepau-65fbcd",
-      "locationSet": {"include": ["fx"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Commune de Pau"
       }
     },
     {
@@ -11160,6 +11124,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Comunidad de Madrid",
+        "operator:type": "government",
         "operator:wikidata": "Q578788"
       }
     },
@@ -12553,6 +12518,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Departamento de Educación",
+        "operator:type": "government",
         "operator:wikidata": "Q4294526"
       }
     },
@@ -12567,20 +12533,41 @@
     },
     {
       "displayName": "Département de la Marne",
-      "id": "departementdelamarne-9d3cb1",
-      "locationSet": {"include": ["fr"]},
+      "id": "departementdelamarne-031a7f",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Département de la Marne"
+        "operator": "Département de la Marne",
+        "operator:type": "government",
+        "operator:wikidata": "Q123220985"
       }
     },
     {
       "displayName": "Département de la Seine-Maritime",
-      "id": "departementdelaseinemaritime-9d3cb1",
-      "locationSet": {"include": ["fr"]},
+      "id": "departementdelaseinemaritime-818054",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Département de la Seine-Maritime"
+        "operator": "Département de la Seine-Maritime",
+        "operator:type": "government",
+        "operator:wikidata": "Q123221016"
+      }
+    },
+    {
+      "displayName": "Département du Vaucluse",
+      "id": "departementduvaucluse-31baba",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
+      "matchNames": ["cd84"],
+      "tags": {
+        "amenity": "school",
+        "operator": "Département du Vaucluse",
+        "operator:wikidata": "Q123221026"
       }
     },
     {
@@ -12639,12 +12626,16 @@
     },
     {
       "displayName": "Department of Education (Papua Niugini)",
-      "id": "deptartmentofeducation-6ced19",
+      "id": "departmentofeducation-6ced19",
       "locationSet": {"include": ["pg"]},
-      "matchNames": ["dept. of education"],
+      "matchNames": [
+        "dept. of education",
+        "deptartment of education"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Deptartment of Education",
+        "operator": "Department of Education",
+        "operator:type": "government",
         "operator:wikidata": "Q111466445"
       }
     },
@@ -12741,6 +12732,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Department of General and Higher Education",
+        "operator:type": "government",
         "operator:wikidata": "Q5260320"
       }
     },
@@ -12752,6 +12744,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Department of Primary and Secondary Education",
+        "operator:type": "government",
         "operator:wikidata": "Q111467381"
       }
     },
@@ -12836,6 +12829,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Deutscher Caritasverband",
+        "operator:type": "private",
         "operator:wikidata": "Q29508174"
       }
     },
@@ -16196,6 +16190,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Elk Island Catholic Schools",
+        "operator:type": "religious",
         "operator:wikidata": "Q17508700"
       }
     },
@@ -16306,8 +16301,10 @@
     },
     {
       "displayName": "Ensemble Scolaire Sacré-Coeur",
-      "id": "ensemblescolairesacrecoeur-9d3cb1",
-      "locationSet": {"include": ["fr"]},
+      "id": "ensemblescolairesacrecoeur-e697eb",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Ensemble Scolaire Sacré-Coeur"
@@ -16651,6 +16648,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Evergreen Catholic Schools",
+        "operator:type": "religious",
         "operator:wikidata": "Q17509784"
       }
     },
@@ -18457,6 +18455,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Greater St. Albert Catholic Schools",
+        "operator:type": "religious",
         "operator:wikidata": "Q5600760"
       }
     },
@@ -18521,6 +18520,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Greve Kommune",
+        "operator:type": "government",
         "operator:wikidata": "Q504977"
       }
     },
@@ -19103,6 +19103,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Hammerfest kommune",
+        "operator:type": "government",
         "operator:wikidata": "Q107351"
       }
     },
@@ -27071,31 +27072,69 @@
     },
     {
       "displayName": "Mairie d'Orange",
-      "id": "mairiedorange-65fbcd",
-      "locationSet": {"include": ["fx"]},
+      "id": "mairiedorange-31baba",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Mairie d'Orange"
+        "operator": "Mairie d'Orange",
+        "operator:type": "government",
+        "operator:wikidata": "Q113961953"
       }
     },
     {
       "displayName": "Mairie de Chelles",
-      "id": "mairiedechelles-65fbcd",
-      "locationSet": {"include": ["fx"]},
+      "id": "mairiedechelles-3c0887",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Mairie de Chelles",
-        "operator:type": "government"
+        "operator:type": "government",
+        "operator:wikidata": "Q115918186"
+      }
+    },
+    {
+      "displayName": "Mairie de Dole",
+      "id": "mairiededole-cafc08",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
+      "matchNames": ["commune de dole"],
+      "tags": {
+        "amenity": "school",
+        "operator": "Mairie de Dole",
+        "operator:type": "government",
+        "operator:wikidata": "Q87112408"
       }
     },
     {
       "displayName": "Mairie de Pontault-Combault",
-      "id": "mairiedepontaultcombault-65fbcd",
-      "locationSet": {"include": ["fx"]},
+      "id": "mairiedepontaultcombault-3c0887",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "amenity": "school",
         "operator": "Mairie de Pontault-Combault",
-        "operator:type": "government"
+        "operator:type": "government",
+        "operator:wikidata": "Q118837785"
+      }
+    },
+    {
+      "displayName": "Mairie de Villenave-d'Ornon",
+      "id": "mairiedevillenavedornon-c21818",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "matchNames": ["villenave-d'ornon"],
+      "tags": {
+        "amenity": "school",
+        "operator": "Mairie de Villenave-d'Ornon",
+        "operator:type": "government",
+        "operator:wikidata": "Q118555147"
       }
     },
     {
@@ -30678,6 +30717,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Nassau BOCES",
+        "operator:type": "public",
         "operator:wikidata": "Q50040814"
       }
     },
@@ -32537,6 +32577,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Orkland kommune",
+        "operator:type": "government",
         "operator:wikidata": "Q41030999"
       }
     },
@@ -36741,20 +36782,26 @@
     },
     {
       "displayName": "Région Grand Est",
-      "id": "regiongrandest-65fbcd",
-      "locationSet": {"include": ["fx"]},
+      "id": "regiongrandest-031a7f",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Région Grand Est"
+        "operator": "Région Grand Est",
+        "operator:wikidata": "Q124156208"
       }
     },
     {
       "displayName": "Région Normandie",
-      "id": "regionnormandie-65fbcd",
-      "locationSet": {"include": ["fx"]},
+      "id": "regionnormandie-818054",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Région Normandie"
+        "operator": "Région Normandie",
+        "operator:wikidata": "Q124156222"
       }
     },
     {
@@ -44360,6 +44407,7 @@
       "tags": {
         "amenity": "school",
         "operator": "STAR Catholic Schools",
+        "operator:type": "religious",
         "operator:wikidata": "Q7591919"
       }
     },
@@ -49486,6 +49534,20 @@
       }
     },
     {
+      "displayName": "Ville d'Anglet",
+      "id": "villedanglet-c21818",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "matchNames": ["commune d'anglet"],
+      "tags": {
+        "amenity": "school",
+        "operator": "Ville d'Anglet",
+        "operator:type": "government",
+        "operator:wikidata": "Q115918089"
+      }
+    },
+    {
       "displayName": "Ville de Charleroi",
       "id": "villedecharleroi-4b4187",
       "locationSet": {"include": ["be"]},
@@ -49495,21 +49557,46 @@
       }
     },
     {
-      "displayName": "Ville de Reims",
-      "id": "villedereims-65fbcd",
-      "locationSet": {"include": ["fx"]},
+      "displayName": "Ville de Lons-le-Saunier",
+      "id": "villedelonslesaunier-cafc08",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
+      "matchNames": [
+        "commune de lons-le-saunier"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Ville de Reims"
+        "operator": "Ville de Lons-le-Saunier",
+        "operator:type": "government",
+        "operator:wikidata": "Q87134745"
       }
     },
     {
-      "displayName": "Villenave-d'Ornon",
-      "id": "villenavedornon-65fbcd",
-      "locationSet": {"include": ["fx"]},
+      "displayName": "Ville de Pau",
+      "id": "villedepau-c21818",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "matchNames": ["commune de pau"],
       "tags": {
         "amenity": "school",
-        "operator": "Villenave-d'Ornon"
+        "operator": "Ville de Pau",
+        "operator:type": "government",
+        "operator:wikidata": "Q115909876"
+      }
+    },
+    {
+      "displayName": "Ville de Reims",
+      "id": "villedereims-031a7f",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
+      "tags": {
+        "amenity": "school",
+        "operator": "Ville de Reims",
+        "operator:type": "government",
+        "operator:wikidata": "Q86699184"
       }
     },
     {
