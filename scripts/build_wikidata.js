@@ -19,12 +19,12 @@ import { fileTree } from '../lib/file_tree.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import packageJSON from '../package.json' assert {type: 'json'};
-import treesJSON from '../config/trees.json' assert {type: 'json'};
+const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
+const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
+const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollectionJSON);
 
 const wbk = wikibase({
@@ -48,15 +48,20 @@ const DRYRUN = false;
 // This is optional but needed if you want this script to:
 // - connect to the Wikibase API to update NSI identifiers.
 //
+// An OAuth 1.0a application is needed to obtain required credentials which can be registered via
+// https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose/oauth1a
+//
 // `secrets.json` looks like this:
 // {
 //   "wikibase": {
-//     "username": "my-wikidata-username",
-//     "password": "my-wikidata-password"
+//     "oauth": {
+//       "consumer_key": "consumer-token",
+//       "consumer_secret": "consumer-secret",
+//       "token": "access-token",
+//       "token_secret": "access-secret"
+//     }
 //   }
 // }
-
-// ensure that the secrets file is not in /config anymore:
 shell.config.silent = true;
 shell.mv('-f', './config/secrets.json', './secrets.json');
 shell.config.reset();
@@ -68,8 +73,17 @@ try {
 
 if (_secrets && !_secrets.wikibase) {
   console.error(chalk.red('WHOA!'));
-  console.error(chalk.yellow('The `config/secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
   console.error(chalk.yellow('We were expecting to find a `wikibase` property.'));
+  console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error('');
+  process.exit(1);
+}
+
+if (_secrets.wikibase && !_secrets.wikibase.oauth) {
+  console.error(chalk.red('WHOA!'));
+  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
+  console.error(chalk.yellow('We were expecting to find an `oauth` property.'));
   console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
@@ -77,7 +91,7 @@ if (_secrets && !_secrets.wikibase) {
 
 
 // To update wikidata
-// add your username/password into `config/secrets.json`
+// add your oauth credentials into `./secrets.json`
 let _wbEdit;
 if (_secrets && _secrets.wikibase) {
   _wbEdit = wikibaseEdit({
@@ -299,6 +313,12 @@ function processEntities(result) {
       target.urlMatchPatterns = urlMatchPatterns;
     }
 
+    // P12454 - location information URL
+    const locationInfoWebsites = getClaimValues(entity, 'P12454', false);
+    if (locationInfoWebsites) {
+      target.locationInfoWebsites = locationInfoWebsites;
+    }
+    
     // P2002 - Twitter username
     const twitterUser = getClaimValue(entity, 'P2002');
     if (twitterUser) {
@@ -421,7 +441,7 @@ function processEntities(result) {
     // If we are allowed to make edits to wikidata, continue beyond here
     if (!_wbEdit) return;
 
-    // If P31 "instance of" is missing, set it to a resonable value.
+    // If P31 "instance of" is missing, set it to a reasonable value.
     const instanceOf = getClaimValue(entity, 'P31');
     if (!instanceOf && meta.p31) {
       const msg = `Setting P31 "instance of" = ${meta.p31} "${meta.what}" for ${qid}`;
@@ -592,6 +612,8 @@ function finish() {
 
     _wikidata[qid] = sortObject(target);
   });
+
+  _warnings.sort(sortWarnings);
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
@@ -784,4 +806,16 @@ function utilQsString(obj) {
   return Object.keys(obj).sort(withLocale).map(key => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
   }).join('&');
+}
+
+
+function sortWarnings(a, b) {
+  const qid = /^Q(\d+)$/;
+  const aMatch = a.qid.match(qid);
+  const bMatch = b.qid.match(qid);
+  if (aMatch && bMatch) {
+    return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);   // sort QIDs numerically
+  } else {
+    return withLocale(a.msg, b.msg);
+  }
 }

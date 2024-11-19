@@ -1,4 +1,4 @@
-[![build](https://github.com/osmlab/name-suggestion-index/workflows/test/badge.svg)](https://github.com/osmlab/name-suggestion-index/actions?query=workflow%3A%22test%22)
+[![build](https://github.com/osmlab/name-suggestion-index/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/osmlab/name-suggestion-index/actions/workflows/test.yml)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 [![](https://data.jsdelivr.com/v1/package/npm/name-suggestion-index/badge?style=rounded)](https://www.jsdelivr.com/package/npm/name-suggestion-index)
 
@@ -21,6 +21,7 @@ list of commonly used features for suggesting consistent spelling and tagging in
 You can browse the name-suggestion-index and check Wikidata links for accuracy at <https://nsi.guide>.
 
 <img alt="nsi.guide" src="https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/docs/img/nsi.png"/>
+
 
 ## How it's used
 
@@ -47,13 +48,15 @@ Currently used in:
 - [Osmose](http://osmose.openstreetmap.fr/en/errors?item=3130)
 - [osmfeatures](https://github.com/westnordost/osmfeatures)
 - [Go Map!!](https://github.com/bryceco/GoMap)
-- [StreetComplete](https://github.com/streetcomplete/StreetComplete/blob/master/buildSrc/src/main/java/UpdateNsiPresetsTask.kt)
+- [StreetComplete](https://streetcomplete.app/) (and [SCEE](https://github.com/Helium314/SCEE))
 - [Every Door](https://github.com/Zverik/every_door)
 - [All The Places](https://github.com/alltheplaces/alltheplaces)
+
 
 ## About the index
 
 See [the project wiki](https://github.com/osmlab/name-suggestion-index/wiki) for details.
+
 
 ## Participate!
 
@@ -62,13 +65,20 @@ We're always looking for help!
 - Read [the Code of Conduct](CODE_OF_CONDUCT.md) and remember to be kind to one another.
 - See [the project wiki](https://github.com/osmlab/name-suggestion-index/wiki) for info about how to contribute to this index.
 
-If you have any questions or want to reach out to a maintainer, ping
-[@bhousel][@bhousel], [@1ec5][@1ec5], or [@tas50][@tas50] on:
-- [OpenStreetMap US Slack](https://slack.openstreetmap.us/) (`#poi` or `#general` channels)
+If you have any questions or want to reach out to a maintainer, ping any of these folks:
+ - [archpdx (arch0345)](https://github.com/arch0345)
+ - [Bryan Housel](https://github.com/bhousel)
+ - [Cj Malone](https://github.com/Cj-Malone)
+ - [kjonosm](https://github.com/kjonosm)
+ - [快乐的老鼠宝宝 (LaoshuBaby)](https://github.com/LaoshuBaby)
+ - [Minh Nguyễn (1ec5)](https://github.com/1ec5)
+ - [Tim Smith (tas50)](https://github.com/tas50)
+ - [UKChris-osm](https://github.com/UKChris-osm)
 
-[@bhousel]: https://github.com/bhousel
-[@1ec5]: https://github.com/1ec5
-[@tas50]: https://github.com/tas50
+We can be found in:
+- [OpenStreetMap US Slack](https://slack.openstreetmap.us/) (`#poi` or `#general` channels)
+- [OpenStreetMap World Discord](https://discord.gg/openstreetmap)
+
 
 ## License
 

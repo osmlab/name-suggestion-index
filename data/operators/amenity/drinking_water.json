@@ -3,16 +3,21 @@
     "path": "operators/amenity/drinking_water",
     "exclude": {
       "generic": [
+        "^(croix-rouge|red cross)$",
+        "^(institution|wsb|wsp) \\(staff\\)$",
         "^\\(local\\) private sector- name\\/no$",
         "^ayuntamiento$",
+        "^community \\(technician\\) name\\/no$",
         "^community$",
         "^drinking water$",
         "^gemeinde$",
         "^institution staff$",
+        "^mairie$",
         "^ngo$",
         "^öffentlich$",
         "^private$",
         "^public$",
+        "^tom$",
         "^yes$",
         "^вода$"
       ]
@@ -20,12 +25,13 @@
   },
   "items": [
     {
-      "displayName": "A2A Ciclo Idrico S.p.A.",
-      "id": "a2acicloidricospa-8df115",
+      "displayName": "A2A Ciclo Idrico",
+      "id": "a2acicloidrico-8df115",
       "locationSet": {"include": ["it"]},
+      "matchNames": ["a2a ciclo idrico s.p.a."],
       "tags": {
         "amenity": "drinking_water",
-        "operator": "A2A Ciclo Idrico S.p.A."
+        "operator": "A2A Ciclo Idrico"
       }
     },
     {
@@ -38,12 +44,40 @@
       }
     },
     {
+      "displayName": "Acea",
+      "id": "acea-8df115",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Acea",
+        "operator:wikidata": "Q3604235"
+      }
+    },
+    {
+      "displayName": "Acque Bresciane",
+      "id": "acquebresciane-8df115",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Acque Bresciane"
+      }
+    },
+    {
       "displayName": "Acque Spa",
       "id": "acquespa-8df115",
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "Acque Spa"
+      }
+    },
+    {
+      "displayName": "Acquedotto Pugliese",
+      "id": "acquedottopugliese-8df115",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Acquedotto Pugliese"
       }
     },
     {
@@ -57,8 +91,8 @@
     },
     {
       "displayName": "Ada's Hoeve",
-      "id": "adashoeve-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "adashoeve-0a63fc",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ada's Hoeve"
@@ -66,11 +100,14 @@
     },
     {
       "displayName": "Ajuntament de Barcelona",
-      "id": "ajuntamentdebarcelona-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "ajuntamentdebarcelona-fb4f0f",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ajuntament de Barcelona"
+        "operator": "Ajuntament de Barcelona",
+        "operator:wikidata": "Q3129773"
       }
     },
     {
@@ -79,7 +116,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ajuntament de l'Hospitalet de Llobregat"
+        "operator": "Ajuntament de l'Hospitalet de Llobregat",
+        "operator:wikidata": "Q26253983"
       }
     },
     {
@@ -97,7 +135,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ajuntament de València"
+        "operator": "Ajuntament de València",
+        "operator:wikidata": "Q26251945"
       }
     },
     {
@@ -107,6 +146,15 @@
       "tags": {
         "amenity": "drinking_water",
         "operator": "AQP"
+      }
+    },
+    {
+      "displayName": "Ayuntamiento de Barbastro",
+      "id": "ayuntamientodebarbastro-a7f52c",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Ayuntamiento de Barbastro"
       }
     },
     {
@@ -120,8 +168,10 @@
     },
     {
       "displayName": "Ayuntamiento de Madrid",
-      "id": "ayuntamientodemadrid-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodemadrid-08fe37",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ayuntamiento de Madrid",
@@ -195,16 +245,28 @@
       }
     },
     {
-      "displayName": "Christchurch City Council",
-      "id": "christchurchcitycouncil-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Chemun de Urtijëi - Gemeinde St. Ulrich - Comune di Ortisei",
+      "id": "chemundeurtijeigemeindestulrichcomunediortisei-8df115",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Christchurch City Council"
+        "operator": "Chemun de Urtijëi - Gemeinde St. Ulrich - Comune di Ortisei"
       }
     },
     {
-      "displayName": "City of Austin(Texas)",
+      "displayName": "Christchurch City Council",
+      "id": "christchurchcitycouncil-f7c9d2",
+      "locationSet": {
+        "include": ["nz-can.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Christchurch City Council",
+        "operator:wikidata": "Q5109064"
+      }
+    },
+    {
+      "displayName": "City of Austin (Texas)",
       "id": "cityofaustin-6aaee1",
       "locationSet": {
         "include": ["us-tx.geojson"]
@@ -218,8 +280,10 @@
     },
     {
       "displayName": "City of Burnaby",
-      "id": "cityofburnaby-0f0fac",
-      "locationSet": {"include": ["ca"]},
+      "id": "cityofburnaby-f4df2b",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "City of Burnaby",
@@ -240,66 +304,115 @@
       }
     },
     {
-      "displayName": "Community (Technician) Name/No",
-      "id": "communitytechniciannameno-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Comune di Castiglione d'Orcia",
+      "id": "comunedicastiglionedorcia-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Community (Technician) Name/No"
+        "operator": "Comune di Castiglione d'Orcia",
+        "operator:wikidata": "Q91152"
+      }
+    },
+    {
+      "displayName": "Comune di Montalcino",
+      "id": "comunedimontalcino-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Comune di Montalcino",
+        "operator:wikidata": "Q91208"
+      }
+    },
+    {
+      "displayName": "Comune di Montepulciano",
+      "id": "comunedimontepulciano-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Comune di Montepulciano",
+        "operator:wikidata": "Q91217"
       }
     },
     {
       "displayName": "Comune di Monteroni d'Arbia",
-      "id": "comunedimonteronidarbia-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "comunedimonteronidarbia-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Comune di Monteroni d'Arbia"
+        "operator": "Comune di Monteroni d'Arbia",
+        "operator:wikidata": "Q91243"
       }
     },
     {
       "displayName": "Comune di Ortisei / Gemeinde St. Ulrich",
-      "id": "comunediortiseigemeindestulrich-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "comunediortiseigemeindestulrich-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Comune di Ortisei / Gemeinde St. Ulrich"
+        "operator": "Comune di Ortisei / Gemeinde St. Ulrich",
+        "operator:de": "Gemeinde St. Ulrich",
+        "operator:it": "Comune di Ortisei",
+        "operator:wikidata": "Q255568"
       }
     },
     {
       "displayName": "Comune di San Quirico d'Orcia",
-      "id": "comunedisanquiricodorcia-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "comunedisanquiricodorcia-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Comune di San Quirico d'Orcia"
+        "operator": "Comune di San Quirico d'Orcia",
+        "operator:wikidata": "Q91430"
       }
     },
     {
       "displayName": "Comune di Selva / Gemeinde Wolkenstein",
-      "id": "comunediselvagemeindewolkenstein-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "comunediselvagemeindewolkenstein-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Comune di Selva / Gemeinde Wolkenstein"
+        "operator": "Comune di Selva / Gemeinde Wolkenstein",
+        "operator:de": "Gemeinde Wolkenstein",
+        "operator:it": "Comune di Selva",
+        "operator:wikidata": "Q499129"
       }
     },
     {
       "displayName": "Comune di Siena",
-      "id": "comunedisiena-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "comunedisiena-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Comune di Siena"
+        "operator": "Comune di Siena",
+        "operator:wikidata": "Q2751"
       }
     },
     {
-      "displayName": "Croix-rouge",
-      "id": "croixrouge-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Comune di Torrita di Siena",
+      "id": "comuneditorritadisiena-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Croix-rouge"
+        "operator": "Comune di Torrita di Siena",
+        "operator:wikidata": "Q91476"
       }
     },
     {
@@ -315,12 +428,13 @@
       }
     },
     {
-      "displayName": "Dopper",
-      "id": "dopper-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "De Watergroep",
+      "id": "dewatergroep-d9e26a",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Dopper"
+        "operator": "De Watergroep",
+        "operator:wikidata": "Q2619987"
       }
     },
     {
@@ -344,12 +458,22 @@
       }
     },
     {
-      "displayName": "Emasesa",
-      "id": "emasesa-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Emasa",
+      "id": "emasa-a7f52c",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Emasesa"
+        "operator": "Emasa"
+      }
+    },
+    {
+      "displayName": "Emasesa",
+      "id": "emasesa-a7f52c",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Emasesa",
+        "operator:wikidata": "Q5831718"
       }
     },
     {
@@ -363,21 +487,45 @@
       }
     },
     {
-      "displayName": "Gemeinde Toblach",
-      "id": "gemeindetoblach-8df115",
-      "locationSet": {"include": ["it"]},
+      "displayName": "Farys",
+      "id": "farys-d9e26a",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Gemeinde Toblach"
+        "operator": "Farys"
+      }
+    },
+    {
+      "displayName": "Gemeinde Gampel-Bratsch",
+      "id": "gemeindegampelbratsch-a1fadc",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Gemeinde Gampel-Bratsch"
+      }
+    },
+    {
+      "displayName": "Gemeinde Toblach",
+      "id": "gemeindetoblach-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Gemeinde Toblach",
+        "operator:wikidata": "Q380189"
       }
     },
     {
       "displayName": "Gemeinde Truden",
-      "id": "gemeindetruden-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "gemeindetruden-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Gemeinde Truden"
+        "operator": "Gemeinde Truden",
+        "operator:wikidata": "Q504524"
       }
     },
     {
@@ -388,6 +536,17 @@
         "amenity": "drinking_water",
         "operator": "GlobalTap",
         "operator:wikidata": "Q17076840"
+      }
+    },
+    {
+      "displayName": "Helsingin seudun ympäristöpalvelut",
+      "id": "helsinginseudunymparistopalvelut-077748",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Helsingin seudun ympäristöpalvelut",
+        "operator:short": "HSY",
+        "operator:wikidata": "Q10520595"
       }
     },
     {
@@ -408,24 +567,6 @@
         "amenity": "drinking_water",
         "operator": "Holding Graz",
         "operator:wikidata": "Q1624412"
-      }
-    },
-    {
-      "displayName": "HSY",
-      "id": "hsy-077748",
-      "locationSet": {"include": ["fi"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "HSY"
-      }
-    },
-    {
-      "displayName": "Institution (Staff)",
-      "id": "institutionstaff-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Institution (Staff)"
       }
     },
     {
@@ -458,8 +599,8 @@
     },
     {
       "displayName": "Junta de Freguesia de Faiões",
-      "id": "juntadefreguesiadefaioes-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "juntadefreguesiadefaioes-a2faed",
+      "locationSet": {"include": ["pt"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "Junta de Freguesia de Faiões"
@@ -495,12 +636,12 @@
       }
     },
     {
-      "displayName": "Mairie",
-      "id": "mairie-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Marktgemeinde Schlanders, Abt. Energie und Infrastrukturen",
+      "id": "marktgemeindeschlandersabtenergieundinfrastrukturen-8df115",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Mairie"
+        "operator": "Marktgemeinde Schlanders, Abt. Energie und Infrastrukturen"
       }
     },
     {
@@ -513,23 +654,42 @@
       }
     },
     {
-      "displayName": "Miami-Dade College",
-      "id": "miamidadecollege-fc5ff1",
+      "displayName": "Miami Dade College",
+      "id": "miamidadecollege-4ee648",
       "locationSet": {
-        "include": ["us-mi.geojson"]
+        "include": ["us-fl.geojson"]
       },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Miami-Dade College"
+        "operator": "Miami Dade College",
+        "operator:wikidata": "Q3027788"
       }
     },
     {
       "displayName": "MPWiK",
-      "id": "mpwik-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "mpwik-f887e0",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "MPWiK"
+      }
+    },
+    {
+      "displayName": "MPWiK Wrocław",
+      "id": "mpwikwroclaw-f887e0",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "MPWiK Wrocław"
+      }
+    },
+    {
+      "displayName": "MTS",
+      "id": "mts-15c82d",
+      "locationSet": {"include": ["ne"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "MTS"
       }
     },
     {
@@ -542,21 +702,13 @@
       }
     },
     {
-      "displayName": "N.V. PWN Waterleidingbedrijf Noord-Holland",
-      "id": "nvpwnwaterleidingbedrijfnoordholland-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "N.V. PWN Waterleidingbedrijf Noord-Holland"
-      }
-    },
-    {
-      "displayName": "NS",
-      "id": "ns-0a63fc",
+      "displayName": "Nederlandse Spoorwegen",
+      "id": "nederlandsespoorwegen-0a63fc",
       "locationSet": {"include": ["nl"]},
+      "matchNames": ["ns"],
       "tags": {
         "amenity": "drinking_water",
-        "operator": "NS",
+        "operator": "Nederlandse Spoorwegen",
         "operator:wikidata": "Q23076"
       }
     },
@@ -590,6 +742,24 @@
       }
     },
     {
+      "displayName": "Panyolai Önkormányzat",
+      "id": "panyolaionkormanyzat-321b46",
+      "locationSet": {"include": ["hu"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Panyolai Önkormányzat"
+      }
+    },
+    {
+      "displayName": "Parks Victoria",
+      "id": "parksvictoria-87b3b2",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Parks Victoria"
+      }
+    },
+    {
       "displayName": "PBOT",
       "id": "portlandbureauoftransportation-f48dad",
       "locationSet": {
@@ -603,22 +773,80 @@
       }
     },
     {
+      "displayName": "Peace wind Japan",
+      "id": "peacewindjapan-1f271a",
+      "locationSet": {"include": ["ke"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Peace wind Japan"
+      }
+    },
+    {
       "displayName": "Provincia di Brescia",
-      "id": "provinciadibrescia-8df115",
+      "id": "provinciadibrescia-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Provincia di Brescia",
+        "operator:wikidata": "Q16144"
+      }
+    },
+    {
+      "displayName": "Publiacqua",
+      "id": "publiacqua-8df115",
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Provincia di Brescia"
+        "operator": "Publiacqua"
       }
     },
     {
       "displayName": "PWN",
       "id": "pwn-0a63fc",
       "locationSet": {"include": ["nl"]},
+      "matchNames": [
+        "n.v. pwn waterleidingbedrijf noord-holland",
+        "pwn waterleidingbedrijf noord-holland"
+      ],
       "tags": {
         "amenity": "drinking_water",
         "operator": "PWN",
         "operator:wikidata": "Q1968432"
+      }
+    },
+    {
+      "displayName": "Régie des Eaux de Montpellier",
+      "id": "regiedeseauxdemontpellier-7adbce",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Régie des Eaux de Montpellier",
+        "operator:wikidata": "Q115579414"
+      }
+    },
+    {
+      "displayName": "RheinEnergie",
+      "id": "rheinenergie-a3ecbe",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "RheinEnergie",
+        "operator:wikidata": "Q2147629"
+      }
+    },
+    {
+      "displayName": "Rīgas ūdens",
+      "id": "rigasudens-12a6c1",
+      "locationSet": {"include": ["lv"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Rīgas ūdens"
       }
     },
     {
@@ -643,6 +871,29 @@
       }
     },
     {
+      "displayName": "Seattle Public Utilities",
+      "id": "seattlepublicutilities-223fdb",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Seattle Public Utilities",
+        "operator:short": "SPU",
+        "operator:type": "public",
+        "operator:wikidata": "Q7442159"
+      }
+    },
+    {
+      "displayName": "Sit Lucretili",
+      "id": "sitlucretili-8df115",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Sit Lucretili"
+      }
+    },
+    {
       "displayName": "SMAT",
       "id": "smat-8df115",
       "locationSet": {"include": ["it"]},
@@ -653,30 +904,75 @@
       }
     },
     {
-      "displayName": "Stadt Graz",
-      "id": "stadtgraz-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "SNCF Gares & Connexions",
+      "id": "sncfgaresandconnexions-02ca9b",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Graz"
+        "operator": "SNCF Gares & Connexions"
+      }
+    },
+    {
+      "displayName": "Stadt Bludenz",
+      "id": "stadtbludenz-44bf8e",
+      "locationSet": {
+        "include": ["at-8.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Stadt Bludenz",
+        "operator:wikidata": "Q494504"
+      }
+    },
+    {
+      "displayName": "Stadt Dornbirn",
+      "id": "stadtdornbirn-44bf8e",
+      "locationSet": {
+        "include": ["at-8.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Stadt Dornbirn",
+        "operator:wikidata": "Q171219"
+      }
+    },
+    {
+      "displayName": "Stadt Graz",
+      "id": "stadtgraz-8c9bfd",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Stadt Graz",
+        "operator:wikidata": "Q13298"
       }
     },
     {
       "displayName": "Stadt Linz",
-      "id": "stadtlinz-0f3232",
-      "locationSet": {"include": ["at"]},
+      "id": "stadtlinz-ea6086",
+      "locationSet": {
+        "include": ["at-4.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Linz"
+        "operator": "Stadt Linz",
+        "operator:wikidata": "Q41329"
       }
     },
     {
       "displayName": "Stadt Wien",
-      "id": "stadtwien-0f3232",
-      "locationSet": {"include": ["at"]},
+      "id": "stadtwien-66c353",
+      "locationSet": {
+        "include": [
+          "at-3.geojson",
+          "at-9.geojson"
+        ]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Wien"
+        "operator": "Stadt Wien",
+        "operator:wikidata": "Q1884195"
       }
     },
     {
@@ -709,29 +1005,32 @@
     },
     {
       "displayName": "Taigua",
-      "id": "taigua-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "taigua-a7f52c",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "Taigua"
       }
     },
     {
-      "displayName": "Tom",
-      "id": "tom-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Tiefbauamt Stuttgart",
+      "id": "tiefbauamtstuttgart-fc0883",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Tom"
+        "operator": "Tiefbauamt Stuttgart"
       }
     },
     {
       "displayName": "Township of Langley",
-      "id": "townshipoflangley-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "townshipoflangley-f4df2b",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Township of Langley"
+        "operator": "Township of Langley",
+        "operator:wikidata": "Q1805330"
       }
     },
     {
@@ -744,6 +1043,16 @@
       "tags": {
         "amenity": "drinking_water",
         "operator": "Trevornick Holiday Park"
+      }
+    },
+    {
+      "displayName": "UNICEF",
+      "id": "unicef-3fbe17",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "UNICEF",
+        "operator:wikidata": "Q740308"
       }
     },
     {
@@ -792,6 +1101,29 @@
       }
     },
     {
+      "displayName": "Veřejná zeleň města Brna",
+      "id": "verejnazelenmestabrna-eb7dc3",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Veřejná zeleň města Brna",
+        "operator:short": "VZMB",
+        "operator:wikidata": "Q118583570"
+      }
+    },
+    {
+      "displayName": "Ville d'Anglet",
+      "id": "villedanglet-dab9ce",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Ville d'Anglet",
+        "operator:wikidata": "Q115918089"
+      }
+    },
+    {
       "displayName": "Ville de Boisbriand",
       "id": "villedeboisbriand-5fe9c1",
       "locationSet": {
@@ -804,12 +1136,36 @@
       }
     },
     {
+      "displayName": "Ville de Lévis",
+      "id": "villedelevis-5fe9c1",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Ville de Lévis",
+        "operator:wikidata": "Q139208"
+      }
+    },
+    {
       "displayName": "Ville de Liège",
-      "id": "villedeliege-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "villedeliege-d9e26a",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ville de Liège"
+      }
+    },
+    {
+      "displayName": "Ville de Montpellier",
+      "id": "villedemontpellier-7adbce",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Ville de Montpellier",
+        "operator:wikidata": "Q86688720"
       }
     },
     {
@@ -840,15 +1196,6 @@
         "operator": "Východoslovenská vodárenská spoločnosť",
         "operator:short": "VVS",
         "operator:wikidata": "Q16520438"
-      }
-    },
-    {
-      "displayName": "VZMB",
-      "id": "vzmb-eb7dc3",
-      "locationSet": {"include": ["cz"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "VZMB"
       }
     },
     {
@@ -892,8 +1239,10 @@
     },
     {
       "displayName": "Wellington City Council",
-      "id": "wellingtoncitycouncil-987ff7",
-      "locationSet": {"include": ["nz"]},
+      "id": "wellingtoncitycouncil-93c193",
+      "locationSet": {
+        "include": ["nz-wgn.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Wellington City Council",
@@ -914,39 +1263,22 @@
     },
     {
       "displayName": "WMD Drents drinkwater",
-      "id": "wmddrentsdrinkwater-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "wmddrentsdrinkwater-0a63fc",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "WMD Drents drinkwater"
+        "operator": "WMD Drents drinkwater",
+        "operator:wikidata": "Q63152976"
       }
     },
     {
       "displayName": "WML Limburgs drinkwater",
-      "id": "wmllimburgsdrinkwater-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "wmllimburgsdrinkwater-0a63fc",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "WML Limburgs drinkwater",
         "operator:wikidata": "Q27959418"
-      }
-    },
-    {
-      "displayName": "Wsb (Staff)",
-      "id": "wsbstaff-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Wsb (Staff)"
-      }
-    },
-    {
-      "displayName": "Wsp (Staff)",
-      "id": "wspstaff-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Wsp (Staff)"
       }
     },
     {
@@ -960,9 +1292,18 @@
       }
     },
     {
+      "displayName": "ZWiK Sp. z o.o. w Oławie",
+      "id": "zwikspzoowolawie-f887e0",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "ZWiK Sp. z o.o. w Oławie"
+      }
+    },
+    {
       "displayName": "ГУП «Водоканал Санкт-Петербурга»",
-      "id": "edaa6f-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "edaa6f-feac74",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "ГУП «Водоканал Санкт-Петербурга»"

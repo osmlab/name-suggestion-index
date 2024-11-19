@@ -9,16 +9,31 @@
         "^laverie( automatique| libre service)?$",
         "^прачечная$",
         "^コインランドリー$"
+      ],
+      "named": [
+        "^guest laundry$",
+        "^the laundry room$"
       ]
     }
   },
   "items": [
+    {
+      "displayName": "Bubbles",
+      "id": "bubbles-ca17f3",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Bubbles",
+        "name": "Bubbles",
+        "shop": "laundry"
+      }
+    },
     {
       "displayName": "Eco-Express",
       "id": "ecoexpress-7130b3",
       "locationSet": {"include": ["de"]},
       "tags": {
         "brand": "Eco-Express",
+        "brand:wikidata": "Q129496256",
         "name": "Eco-Express",
         "shop": "laundry"
       }
@@ -64,19 +79,6 @@
       }
     },
     {
-      "displayName": "Revolution Laundry",
-      "id": "revolutionlaundry-ca17f3",
-      "locationSet": {"include": ["001"]},
-      "matchNames": ["revolution laundry fr"],
-      "tags": {
-        "brand": "Revolution Laundry",
-        "brand:wikidata": "Q113516904",
-        "name": "Revolution Laundry",
-        "self_service": "yes",
-        "shop": "laundry"
-      }
-    },
-    {
       "displayName": "Speed Queen",
       "id": "speedqueen-ca17f3",
       "locationSet": {"include": ["001"]},
@@ -88,12 +90,53 @@
       }
     },
     {
+      "displayName": "Wash Me",
+      "id": "washme-ca17f3",
+      "locationSet": {"include": ["001"]},
+      "matchNames": ["revolution laundry"],
+      "tags": {
+        "brand": "Wash Me",
+        "brand:wikidata": "Q113516904",
+        "name": "Wash Me",
+        "self_service": "yes",
+        "shop": "laundry"
+      }
+    },
+    {
+      "displayName": "Washy",
+      "id": "washy-ba3f3f",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "brand": "Washy",
+        "brand:wikidata": "Q129416138",
+        "name": "Washy",
+        "self_service": "yes",
+        "shop": "laundry"
+      }
+    },
+    {
       "displayName": "Постирай",
       "id": "c0a035-ca17f3",
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Постирай",
         "name": "Постирай",
+        "shop": "laundry"
+      }
+    },
+    {
+      "displayName": "衣博士",
+      "id": "drwashing-ba3f3f",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "brand": "衣博士",
+        "brand:en": "Dr. Washing",
+        "brand:wikidata": "Q130525426",
+        "brand:zh": "衣博士",
+        "name": "衣博士",
+        "name:en": "Dr. Washing",
+        "name:zh": "衣博士",
+        "self_service": "yes",
         "shop": "laundry"
       }
     }

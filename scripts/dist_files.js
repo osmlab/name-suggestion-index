@@ -17,20 +17,21 @@ import { sortObject } from '../lib/sort_object.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import dissolvedJSON from '../dist/dissolved.json' assert {type: 'json'};
-import packageJSON from '../package.json' assert {type: 'json'};
-import treesJSON from '../config/trees.json' assert {type: 'json'};
-import wikidataJSON from '../dist/wikidata.json' assert {type: 'json'};
+const dissolvedJSON = JSON5.parse(fs.readFileSync('dist/dissolved.json', 'utf8'));
+const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
+const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
+const wikidataJSON = JSON5.parse(fs.readFileSync('dist/wikidata.json', 'utf8'));
 
 const dissolved = dissolvedJSON.dissolved;
 const trees = treesJSON.trees;
 const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-import presetsJSON from '@openstreetmap/id-tagging-schema/dist/presets.json' assert {type: 'json'};
+const presetsFile = 'node_modules/@openstreetmap/id-tagging-schema/dist/presets.json'
+const presetsJSON = JSON5.parse(fs.readFileSync(presetsFile, 'utf8'));
 
 // We use LocationConflation for validating and processing the locationSets
-import featureCollectionJSON from '../dist/featureCollection.json' assert {type: 'json'};
+const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
@@ -330,7 +331,7 @@ function buildIDPresets() {
         targetTags[k] = tags[k] || preset.tags[k];
       }
 
-      // Prefer a wiki commons logo sometimes.. 
+      // Prefer a wiki commons logo sometimes..
       // Related issues list: openstreetmap/iD#6361, #2798, #3122, #8042, #8373
       const preferCommons = {
         Q177054: true,    // Burger King
@@ -507,7 +508,7 @@ function buildTaginfo() {
 
       // Don't export every value for many tags this project uses..
       // ('tag matches any of these')(?!('not followed by :type'))
-      if (/(brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
+      if (/(bic|brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
         v = '*';
       }
 
