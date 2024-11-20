@@ -6,7 +6,7 @@
       "generic": [
         "^(clinic|urgent\\s?care)$",
         "^(consultorio )?(local|médico)$",
-        "^(consultorio|municipal|private(_profit)?|priv[eé]{0,2}|public)$",
+        "^(consultorio|municipal|private(_profit)?|priv[eé]{0,2}|provincial|public)$",
         "^(gov(ern?ment)?|prefeitura( municipal)?)$",
         "^(polyclinique|poliklinika)$",
         "^centro (de salud|de saúde|médico)$",
@@ -1749,17 +1749,6 @@
       }
     },
     {
-      "displayName": "PMVV",
-      "id": "pmvv-5f4b12",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "PMVV",
-        "operator:type": "private"
-      }
-    },
-    {
       "displayName": "Posyandu",
       "id": "posyandu-1dcb84",
       "locationSet": {"include": ["id"]},
@@ -1933,6 +1922,21 @@
       }
     },
     {
+      "displayName": "Prefeitura Municipal de Vila Velha",
+      "id": "prefeituramunicipaldevilavelha-3eb698",
+      "locationSet": {
+        "include": ["br-es.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura Municipal de Vila Velha",
+        "operator:short": "PMVV",
+        "operator:type": "government",
+        "operator:wikidata": "Q56450026"
+      }
+    },
+    {
       "displayName": "ProCare",
       "id": "procare-ada481",
       "locationSet": {"include": ["sk"]},
@@ -1964,7 +1968,8 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Provincia de Santa Fe",
-        "operator:type": "government"
+        "operator:type": "government",
+        "operator:wikidata": "Q44823"
       }
     },
     {
@@ -1976,17 +1981,6 @@
         "healthcare": "clinic",
         "operator": "Provincia del Chaco",
         "operator:type": "government"
-      }
-    },
-    {
-      "displayName": "Provincial (Argentina)",
-      "id": "provincial-4df2ff",
-      "locationSet": {"include": ["ar"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Provincial",
-        "operator:type": "private"
       }
     },
     {
@@ -2019,7 +2013,8 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Region Blekinge",
-        "operator:type": "private"
+        "operator:type": "government",
+        "operator:wikidata": "Q3231208"
       }
     },
     {
@@ -2030,7 +2025,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa Poznań",
-        "operator:type": "private"
+        "operator:type": "ngo"
       }
     },
     {
@@ -2041,7 +2036,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa w Bydgoszczy",
-        "operator:type": "private"
+        "operator:type": "ngo"
       }
     },
     {
@@ -2079,7 +2074,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "SACYL",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q6116740"
       }
     },
@@ -2095,7 +2090,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Sağlık Bakanlığı",
-        "operator:type": "private",
+        "operator:type": "government",
         "operator:wikidata": "Q4294365"
       }
     },
@@ -2284,7 +2279,7 @@
         "healthcare": "clinic",
         "operator": "Servicio Andaluz de Salud",
         "operator:short": "SAS",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q4753529"
       }
     },
@@ -2297,7 +2292,7 @@
         "healthcare": "clinic",
         "operator": "Servicio de Salud de Castilla-La Mancha",
         "operator:short": "SESCAM",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q5665691"
       }
     },
@@ -2310,7 +2305,7 @@
         "healthcare": "clinic",
         "operator": "Servicio Extremeño de Salud",
         "operator:short": "SES",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q6126026"
       }
     },
@@ -2323,7 +2318,7 @@
         "healthcare": "clinic",
         "operator": "Servicio Madrileño de Salud",
         "operator:short": "SERMAS",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q6126030"
       }
     },
@@ -2336,7 +2331,7 @@
         "healthcare": "clinic",
         "operator": "Serviço Nacional de Saúde",
         "operator:short": "SNS",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q1299901"
       }
     },
@@ -2366,7 +2361,7 @@
         "healthcare": "clinic",
         "operator": "Sistema Único de Saúde",
         "operator:short": "SUS",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q7531056"
       }
     },
@@ -2418,7 +2413,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Subsecretaría de Atención Primaria, Ambulatoria y Comunitaria",
-        "operator:type": "private"
+        "operator:type": "public"
       }
     },
     {
@@ -2591,7 +2586,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Vivantes",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q878059"
       }
     },
