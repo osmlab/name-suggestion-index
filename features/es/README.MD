@@ -3,6 +3,7 @@
 The following areas are included as part of [country-coder](https://github.com/rapideditor/country-coder) and don't need their own feature.
 
 - [es-ib](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ib%22%5D%7D&referrer=nsi) - Balearic Islands
+- [ic](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ic%22%5D%7D&referrer=nsi) - Canary Islands (Canarias)
 - [es-ce](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ce%22%5D%7D&referrer=nsi) - Ceuta
 - [es-ml](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ml%22%5D%7D&referrer=nsi) - Melilla
 
