@@ -335,7 +335,15 @@ relation[${k}=${v}][network:wikidata=${qid}]
     if (item.note)
       result += '<strong>Note</strong>:<br/>' + item.note + '<br/>';
     if (item.preserveTags)
-      result += '<strong>preserveTags</strong>:<br/>' + item.preserveTags;
+      result += '<strong>preserveTags</strong>:<br/>' + item.preserveTags + '<br/>';
+    if (item.issues) {
+      result += '<strong>Issues</strong>:<br/>';
+      item.issues.forEach(issue => {
+        result += '<a href="https://github.com/osmlab/name-suggestion-index/issues/' + issue + '" title="View issue #' + issue + '">#';
+        result += issue;
+        result += '</a><br/>';
+      });
+    }
 
     return result;
   }
