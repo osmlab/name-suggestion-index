@@ -1,6 +1,6 @@
 {
   "name": "name-suggestion-index",
-  "version": "6.0.20241124",
+  "version": "6.0.20241125",
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
@@ -82,9 +82,9 @@
   "main": "./dist/javascript/nsi.cjs",
   "module": "./index.mjs",
   "exports": {
+    "dist/*": "./dist/*",
     "import": "./index.mjs",
-    "require": "./dist/javascript/nsi.cjs",
-    "dist/*": "./dist/*"
+    "require": "./dist/javascript/nsi.cjs"
   },
   "scripts": {
     "all": "run-s build wikidata dist",
