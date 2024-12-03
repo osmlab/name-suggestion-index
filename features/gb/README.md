@@ -21,6 +21,7 @@ The following areas are [Regions of England](https://en.wikipedia.org/wiki/Regio
 
 Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
+- [gb-bir.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bir.geojson%22%5D%7D&referrer=nsi) - City of Birmingham
 - [gb-bst.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bst.geojson%22%5D%7D&referrer=nsi) - City of Bristol
 - [gb-lnd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lnd.geojson%22%5D%7D&referrer=nsi) - City of London (small central area, use [gb-lon.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lon.geojson%22%5D%7D&referrer=nsi) for London as a whole)
 - [gb-ply.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-ply.geojson%22%5D%7D&referrer=nsi) - City of Plymouth
