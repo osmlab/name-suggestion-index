@@ -314,7 +314,7 @@ function processEntities(result) {
     }
 
     // P12454 - location information URL
-    const locationInfoWebsites = getClaimValues(entity, 'P12454', false);
+    const locationInfoWebsites = getClaimValues(entity, 'P12454', true);
     if (locationInfoWebsites) {
       target.locationInfoWebsites = locationInfoWebsites;
     }
