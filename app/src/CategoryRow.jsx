@@ -317,6 +317,8 @@ relation[${k}=${v}][network:wikidata=${qid}]
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=bank'; linktext = '/brands/amenity/bank.json';}
       if ((t=='brands') && (k=='man_made') && (v=='charge_point'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=charging_station'; linktext = '/brands/amenity/charging_station.json';}
+      if ((t=='brands') && (k=='shop') && (v=='car_repair'))
+        {url = '/index.html?t=brands&amp;k=shop&amp;v=car'; linktext = '/brands/shop/car.json';}
 
       /* Operators */
       if ((t=='operators') && (k=='leisure') && (v=='nature_reserve'))
