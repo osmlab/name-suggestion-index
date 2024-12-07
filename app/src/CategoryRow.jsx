@@ -308,38 +308,37 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
     /* Are the items being drawn from a template? 'item.fromTemplate' is set to true in nsi.json if templated. */
     if (item.fromTemplate) {
-      let url, text;
-
-//      url = `/index.html?t=${t}&amp;k=${k}&amp;v=${v}`;
-//      text = `/${t}/${k}/${v}.json`;
+      let url, linktext;
 
       /* Brands */
+      if ((t=='brands') && (k=='advertising') && (v=='totem'))
+        {url = '/index.html?t=brands&amp;k=amenity&amp;v=fuel'; linktext = '/brands/amenity/fuel.json';}
       if ((t=='brands') && (k=='amenity') && (v=='atm'))
-        {url = '/index.html?t=brands&amp;k=amenity&amp;v=bank'; text = '/brands/amenity/bank.json';}
+        {url = '/index.html?t=brands&amp;k=amenity&amp;v=bank'; linktext = '/brands/amenity/bank.json';}
       if ((t=='brands') && (k=='man_made') && (v=='charge_point'))
-        {url = '/index.html?t=brands&amp;k=amenity&amp;v=charging_station'; text = '/brands/amenity/charging_station.json';}
+        {url = '/index.html?t=brands&amp;k=amenity&amp;v=charging_station'; linktext = '/brands/amenity/charging_station.json';}
 
       /* Operators */
       if ((t=='operators') && (k=='leisure') && (v=='nature_reserve'))
-        {url = '/index.html?t=operators&amp;k=leisure&amp;v=park'; text = '/operators/leisure/park.json';}
+        {url = '/index.html?t=operators&amp;k=leisure&amp;v=park'; linktext = '/operators/leisure/park.json';}
 
       if ((t=='operators') && (k=='power') && ((v=='minor_line') || (v=='pole') || (v=='tower')))
-        {url = '/index.html?t=operators&amp;k=power&amp;v=line'; text = '/operators/power/line.json';}
+        {url = '/index.html?t=operators&amp;k=power&amp;v=line'; linktext = '/operators/power/line.json';}
       if ((t=='operators') && (k=='power') && (v=='transformer'))
-        {url = '/index.html?t=operators&amp;k=power&amp;v=substation'; text = '/operators/power/substation.json';}
+        {url = '/index.html?t=operators&amp;k=power&amp;v=substation'; linktext = '/operators/power/substation.json';}
 
       if ((t=='operators') && (k=='pipeline') && (v=='substation'))
-        {url = '/index.html?t=operators&amp;k=man_made&amp;v=pipeline'; text = 'operators/man_made/pipeline.json';}
+        {url = '/index.html?t=operators&amp;k=man_made&amp;v=pipeline'; linktext = 'operators/man_made/pipeline.json';}
 
       if ((t=='operators') && (k=='man_made') && ((v=='water_tower') || (v=='water_works')))
-        {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; text = '/operators/office/water_utility.json';}
+        {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; linktext = '/operators/office/water_utility.json';}
 
       /* Transit */
       if ((t=='transit') && (k=='highway') && (v=='bus_stop'))
-        {url = '/index.html?t=transit&amp;k=route&amp;v=bus'; text = '/transit/route/bus.json';}
+        {url = '/index.html?t=transit&amp;k=route&amp;v=bus'; linktext = '/transit/route/bus.json';}
 
       if ((t=='transit') && (k=='amenity') && (v=='ferry_terminal'))
-        {url = '/index.html?t=transit&amp;k=route&amp;v=ferry'; text = '/transit/route/ferry.json';}
+        {url = '/index.html?t=transit&amp;k=route&amp;v=ferry'; linktext = '/transit/route/ferry.json';}
 
       if (v=='post_box') {
         /* Post Boxes use multiple templates */
@@ -353,7 +352,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
       } else {
         /* All the rest use a single template */
         result += '<strong>Master template:</strong><br/>';
-        result += '<a href="' + url + '">' + text + '</a><br/>';
+        result += '<a href="' + url + '">' + linktext + '</a><br/>';
         result += 'Search template master for <a href="' + url + '&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
       }
     }
