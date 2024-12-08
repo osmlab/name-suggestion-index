@@ -313,10 +313,13 @@ relation[${k}=${v}][network:wikidata=${qid}]
       /* Brands */
       if ((t=='brands') && (k=='advertising') && (v=='totem'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=fuel'; linktext = '/brands/amenity/fuel.json';}
+
       if ((t=='brands') && (k=='amenity') && (v=='atm'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=bank'; linktext = '/brands/amenity/bank.json';}
+
       if ((t=='brands') && (k=='man_made') && (v=='charge_point'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=charging_station'; linktext = '/brands/amenity/charging_station.json';}
+
       if ((t=='brands') && (k=='shop') && (v=='car_repair'))
         {url = '/index.html?t=brands&amp;k=shop&amp;v=car'; linktext = '/brands/shop/car.json';}
 
@@ -324,33 +327,67 @@ relation[${k}=${v}][network:wikidata=${qid}]
       if ((t=='operators') && (k=='leisure') && (v=='nature_reserve'))
         {url = '/index.html?t=operators&amp;k=leisure&amp;v=park'; linktext = '/operators/leisure/park.json';}
 
+      if ((t=='operators') && (k=='man_made') && (v=='charge_point'))
+        {url = '/index.html?t=operators&amp;k=amenity&amp;v=charging_station'; linktext = '/operators/amenity/charging_station.json';}
+      if ((t=='operators') && (k=='man_made') && (v=='pumping_station'))
+        {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; linktext = '/operators/office/water_utility.json';}
+      if ((t=='operators') && (k=='man_made') && (v=='tower'))
+        {url = '/index.html?t=operators&amp;k=man_made&amp;v=mast'; linktext = '/operators/man_made/mast.json';}
+      if ((t=='operators') && (k=='man_made') && ((v=='water_tower') || (v=='water_works')))
+        {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; linktext = '/operators/office/water_utility.json';}
+
+      if ((t=='operators') && (k=='pipeline') && (v=='substation'))
+        {url = '/index.html?t=operators&amp;k=man_made&amp;v=pipeline'; linktext = 'operators/man_made/pipeline.json';}
+
       if ((t=='operators') && (k=='power') && ((v=='minor_line') || (v=='pole') || (v=='tower')))
         {url = '/index.html?t=operators&amp;k=power&amp;v=line'; linktext = '/operators/power/line.json';}
       if ((t=='operators') && (k=='power') && (v=='transformer'))
         {url = '/index.html?t=operators&amp;k=power&amp;v=substation'; linktext = '/operators/power/substation.json';}
 
-      if ((t=='operators') && (k=='pipeline') && (v=='substation'))
-        {url = '/index.html?t=operators&amp;k=man_made&amp;v=pipeline'; linktext = 'operators/man_made/pipeline.json';}
-
-      if ((t=='operators') && (k=='man_made') && ((v=='water_tower') || (v=='water_works')))
-        {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; linktext = '/operators/office/water_utility.json';}
-
       /* Transit */
-      if ((t=='transit') && (k=='highway') && (v=='bus_stop'))
-        {url = '/index.html?t=transit&amp;k=route&amp;v=bus'; linktext = '/transit/route/bus.json';}
-
       if ((t=='transit') && (k=='amenity') && (v=='ferry_terminal'))
         {url = '/index.html?t=transit&amp;k=route&amp;v=ferry'; linktext = '/transit/route/ferry.json';}
 
-      if (v=='post_box') {
-        /* Post Boxes use multiple templates */
+      if ((t=='transit') && (k=='highway') && (v=='bus_stop'))
+        {url = '/index.html?t=transit&amp;k=route&amp;v=bus'; linktext = '/transit/route/bus.json';}
+
+      if ((t=='transit') && (k=='public_transport') && (v=='station_light_rail'))
+        {url = '/index.html?t=transit&amp;k=route&amp;v=light_rail'; linktext = '/transit/route/light_rail.json';}
+      if ((t=='transit') && (k=='public_transport') && (v=='station_subway'))
+        {url = '/index.html?t=transit&amp;k=route&amp;v=light_rail'; linktext = '/transit/route/subway.json';}
+
+      if ((t=='transit') && (k=='railway') && (v=='station'))
+        {url = '/index.html?t=transit&amp;k=route&amp;v=train'; linktext = '/transit/route/train.json';}
+      if ((t=='transit') && (k=='railway') && (v=='tram_stop'))
+        {url = '/index.html?t=transit&amp;k=route&amp;v=tram'; linktext = '/transit/route/tram.json';}
+
+      if ((v=='post_box') || (v=='catenary_mast')) {
+        /* Post Boxes and catenary masts use multiple templates */
+        let url2, linktext2, searchLabel, searchLabel2;
+        if (v=='post_box'){
+          url = '/index.html?t=brands&amp;k=amenity&amp;v=post_office';
+          linktext = '/brands/amenity/post_office.json';
+          searchLabel = 'brands';
+          url2 = '/index.html?t=operators&amp;k=amenity&amp;v=post_office';
+          linktext2 = '/operators/amenity/post_office.json';
+          searchLabel2 = 'operators';
+        }
+        if (v=='catenary_mast') {
+          url = '/index.html?t=operators&amp;k=route&amp;v=railway';
+          linktext = '/operators/route/railway.json';
+          searchLabel = 'railway';
+          url2 = '/index.html?t=operators&amp;k=route&amp;v=tracks';
+          linktext2 = '/operators/route/tracks.json';
+          searchLabel2 = 'tracks';
+        }
+
         result += '<strong>Master templates:</strong><br/>';
-        result += '<a href="/index.html?t=brands&amp;k=amenity&amp;v=post_office">/brands/amenity/post_office.json</a><br/>';
-        result += 'Search brands template master for ';
-        result += '<a href="/index.html?t=brands&amp;k=amenity&amp;v=post_office&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
-        result += '<a href="/index.html?t=operators&amp;k=amenity&amp;v=post_office">/operators/amenity/post_office.json</a><br/>';
-        result += 'Search operators template master for ';
-        result += '<a href="/index.html?t=operators&amp;k=amenity&amp;v=post_office&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
+        result += '<a href="' + url + '">' + linktext + '</a><br/>';        
+        result += 'Search ' + searchLabel + ' template master for ';
+        result += '<a href="' + url + '&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
+        result += '<a href="' + url2 + '">' + linktext2 + '</a><br/>';
+        result += 'Search ' + searchLabel2 + ' template master for ';
+        result += '<a href="' + url2 + '&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
       } else {
         /* All the rest use a single template */
         result += '<strong>Master template:</strong><br/>';
