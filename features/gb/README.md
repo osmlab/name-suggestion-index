@@ -21,6 +21,9 @@ The following areas are [Regions of England](https://en.wikipedia.org/wiki/Regio
 
 Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
+- [gb-abd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-abd.geojson%22%5D%7D&referrer=nsi) - Aberdeen (City)
+- [gb-abe.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-abe.geojson%22%5D%7D&referrer=nsi) - Aberdeenshire
+
 - [gb-bir.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bir.geojson%22%5D%7D&referrer=nsi) - City of Birmingham
 - [gb-bst.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bst.geojson%22%5D%7D&referrer=nsi) - City of Bristol
 - [gb-lnd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lnd.geojson%22%5D%7D&referrer=nsi) - City of London (small central area, use [gb-lon.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lon.geojson%22%5D%7D&referrer=nsi) for London as a whole)
@@ -28,6 +31,7 @@ Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.
 - [gb-crf.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-crf.geojson%22%5D%7D&referrer=nsi) - City of Cardiff
 - [gb-swd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swd.geojson%22%5D%7D&referrer=nsi) - Borough of Swindon
 - [gb-bas.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bas.geojson%22%5D%7D&referrer=nsi) - County of Bath and North East Somerset
+- [gb-bpl.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bpl.geojson%22%5D%7D&referrer=nsi) - Blackpool
 - [gb-con.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-con.geojson%22%5D%7D&referrer=nsi) - County of Cornwall
 - [gb-dev.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-dev.geojson%22%5D%7D&referrer=nsi) - County of Devon
 - [gb-dor.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-dor.geojson%22%5D%7D&referrer=nsi) - County of Dorset
