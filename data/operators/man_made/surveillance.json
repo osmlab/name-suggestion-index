@@ -3,29 +3,27 @@
     "path": "operators/man_made/surveillance",
     "exclude": {
       "generic": [
-        "^city$",
+        "^(city|mairie)$",
         "^domaine public$",
-        "^embassy$",
-        "^govt$",
-        "^mairie$",
+        "^(apartment|embassy)$",
+        "^(govt|Overheid)$",
         "^městská policie$",
         "^municipalité$",
         "^poli(ce|zei|smyndigheten)$",
-        "^polic[íi]a nacional$",
-        "^policía de la ciudad$",
-        "^private owner$",
+        "^polic[íi]a (de la ciudad|nacional)$",
+        "^(civilians|private owner)$",
+        "^(house owner|Pemilik rumah)$",
         "^privé \\(hopital\\)$",
         "^surveillance$"
       ],
       "named": [
         "^(cvag|decathlon|deutsche bundesbank|dm|edeka|fahrrad xxl|media markt|netto|rewe|rossmann|saturn|selgros|sparkasse chemnitz|thrainer|vita-center)\\?$",
         "^[34]$",
-        "^apartment$",
-        "^civilians$",
-        "^concordia$",
-        "^gym10$",
+        "^(concordia|gym10)$",
         "^priv(ate|é|athaus)$",
-        "^thames valley police/vale of white horse district council$"
+        "^thames valley police/vale of white horse district council$",
+        "^ACT Government/Australian Federal Police$",
+        "^OPERA-ULB$"
       ]
     }
   },
@@ -37,17 +35,6 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "ABIX"
-      }
-    },
-    {
-      "displayName": "ACT Government/Australian Federal Police",
-      "id": "actgovernmentaustralianfederalpolice-5b876a",
-      "locationSet": {
-        "include": ["au-act.geojson"]
-      },
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "ACT Government/Australian Federal Police"
       }
     },
     {
@@ -315,10 +302,11 @@
     {
       "displayName": "Autopista Litoral Sul",
       "id": "autopistalitoralsul-70d601",
-      "locationSet": {"include": ["br"]},
+      "locationSet": {"include": ["br-pr.geojson","br-sc.geojson"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Autopista Litoral Sul"
+        "operator": "Autopista Litoral Sul",
+        "operator:wikidata": "Q28679199"
       }
     },
     {
@@ -660,7 +648,8 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "CANARD"
+        "operator": "CANARD",
+        "operator:wikidata": "Q11689299"
       }
     },
     {
@@ -689,7 +678,7 @@
     {
       "displayName": "CCR ViaCosteira",
       "id": "ccrviacosteira-70d601",
-      "locationSet": {"include": ["br"]},
+      "locationSet": {"include": ["br-sc.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "CCR ViaCosteira"
@@ -1229,7 +1218,7 @@
     {
       "displayName": "CSU du Valparisis",
       "id": "csuduvalparisis-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "locationSet": {"include": ["fr-idf.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "CSU du Valparisis"
@@ -1282,7 +1271,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Der Generalbundesanwalt beim Bundesgerichtshof"
+        "operator": "Der Generalbundesanwalt beim Bundesgerichtshof",
+        "operator:wikidata": "Q449319"
       }
     },
     {
@@ -1357,7 +1347,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "DLR"
+        "operator": "DLR",
+        "operator:wikidata": "Q157332"
       }
     },
     {
@@ -1831,7 +1822,9 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "HVV"
+        "operator": "Hamburger Verkehrsverbund",
+        "operator:short": "HVV",
+        "operator:wikidata": "Q896916"
       }
     },
     {
@@ -1844,12 +1837,13 @@
       }
     },
     {
-      "displayName": "ICC",
+      "displayName": "Internationales Congress Centrum Berlin",
       "id": "icc-2b1420",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": ["de-be.geojson"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "ICC"
+        "operator": "Internationales Congress Centrum Berlin",
+        "operator:wikidata": "Q820164"
       }
     },
     {
@@ -2188,12 +2182,13 @@
       }
     },
     {
-      "displayName": "LOOMIS Deutschland",
+      "displayName": "Loomis Deutschland",
       "id": "loomisdeutschland-2b1420",
       "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "LOOMIS Deutschland"
+        "operator": "Loomis Deutschland",
+        "operator:wikidata": "Q113503339"
       }
     },
     {
@@ -2603,7 +2598,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Max Rubner-Institut"
+        "operator": "Max Rubner-Institut",
+        "operator:wikidata": "Q1319982"
       }
     },
     {
@@ -2645,12 +2641,14 @@
       }
     },
     {
-      "displayName": "MDCR",
+      "displayName": "MDČR",
       "id": "mdcr-5f01ff",
       "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "MDCR"
+        "operator": "Ministerstvo dopravy České republiky",
+        "operator:short": "MDČR",
+        "operator:wikidata": "Q11781508"
       }
     },
     {
@@ -3495,12 +3493,14 @@
       }
     },
     {
-      "displayName": "MMCB",
-      "id": "mmcb-5f01ff",
+      "displayName": "Městský úřad České Budějovice",
+      "id": "mestskyuradceskebudejovice-5f01ff",
       "locationSet": {"include": ["cz"]},
+      "matchNames": ["mmcb"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "MMCB"
+        "operator": "Městský úřad České Budějovice",
+        "operator:wikidata": "Q118592806"
       }
     },
     {
@@ -3556,12 +3556,15 @@
       }
     },
     {
-      "displayName": "MP Přerov",
-      "id": "mpprerov-5f01ff",
+    {
+      "displayName": "Městská policie Přerov",
+      "id": "mestskapolicieprostejov-5f01ff",
       "locationSet": {"include": ["cz"]},
+      "matchNames": ["MP Přerov"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "MP Přerov"
+        "operator": "Městská policie Přerov",
+        "operator:wikidata": "Q131411059"
       }
     },
     {
@@ -3655,7 +3658,8 @@
       "locationSet": {"include": ["sg"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Nanyang Polytechnic"
+        "operator": "Nanyang Polytechnic",
+        "operator:wikidata": "Q6964469"
       }
     },
     {
@@ -3718,12 +3722,14 @@
       }
     },
     {
-      "displayName": "Nemzeti Útdíjfizetési Szolgáltató Zrt.",
+      "displayName": "Nemzeti Útdíjfizetési Szolgáltató",
       "id": "nemzetiutdijfizetesiszolgaltatozrt-300a9e",
       "locationSet": {"include": ["hu"]},
+      "matchNames": ["Nemzeti Útdíjfizetési Szolgáltató Zrt."],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Nemzeti Útdíjfizetési Szolgáltató Zrt."
+        "operator": "Nemzeti Útdíjfizetési Szolgáltató",
+        "operator:wikidata": "Q108169094"
       }
     },
     {
@@ -3828,7 +3834,10 @@
       "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "NMBS/SNCB"
+        "operator": "NMBS/SNCB",
+        "operator:fr": "SNCB",
+        "operator:nl": "NMBS",
+        "operator:wikidata": "Q524255"
       }
     },
     {
@@ -3921,7 +3930,8 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Octopus Investments"
+        "operator": "Octopus Investments",
+        "operator:wikidata": "Q86685332"
       }
     },
     {
@@ -3983,21 +3993,13 @@
       }
     },
     {
-      "displayName": "OPERA-ULB",
-      "id": "operaulb-fe27ed",
-      "locationSet": {"include": ["be"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "OPERA-ULB"
-      }
-    },
-    {
       "displayName": "Orange",
       "id": "orange-3bfa97",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Orange"
+        "operator": "Orange",
+        "operator:wikidata": "Q1431486"
       }
     },
     {
@@ -4034,15 +4036,6 @@
       }
     },
     {
-      "displayName": "Overheid",
-      "id": "overheid-dd66cf",
-      "locationSet": {"include": ["be", "nl"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Overheid"
-      }
-    },
-    {
       "displayName": "Palais de justice - Justitiepaleis",
       "id": "palaisdejusticejustitiepaleis-fe27ed",
       "locationSet": {"include": ["be"]},
@@ -4060,16 +4053,8 @@
       },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Passi City LGU"
-      }
-    },
-    {
-      "displayName": "Pemilik rumah",
-      "id": "pemilikrumah-0c9fd4",
-      "locationSet": {"include": ["id"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Pemilik rumah"
+        "operator": "Passi City LGU",
+        "operator:wikidata": "Q1855693"
       }
     },
     {
@@ -4129,10 +4114,11 @@
     {
       "displayName": "Pôle universitaire \"Léonard de Vinci\"",
       "id": "poleuniversitaireleonarddevinci-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "locationSet": {"include": ["fr-idf.geojson"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Pôle universitaire \"Léonard de Vinci\""
+        "operator": "Pôle universitaire \"Léonard de Vinci\"",
+        "operator:wikidata": "Q3412216"
       }
     },
     {
@@ -4159,7 +4145,7 @@
     {
       "displayName": "Policia Local de Granollers",
       "id": "policialocaldegranollers-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "locationSet": {"include": ["es-b.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Policia Local de Granollers"
@@ -4200,12 +4186,14 @@
       }
     },
     {
-      "displayName": "Politie Leuven",
+      "displayName": "Politiezone Leuven",
       "id": "politieleuven-fe27ed",
       "locationSet": {"include": ["be"]},
+      "matchNames": ["Politie Leuven"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Politie Leuven"
+        "operator": "Politiezone Leuven",
+        "operator:wikidata": "Q111549823"
       }
     },
     {
@@ -4303,23 +4291,26 @@
       }
     },
     {
-      "displayName": "Polizia Locale - Comune di Milano",
+      "displayName": "Polizia locale di Milano",
       "id": "polizialocalecomunedimilano-5db564",
       "locationSet": {
         "include": ["it-25.geojson"]
       },
+      "matchNames": ["Polizia Locale - Comune di Milano"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Polizia Locale - Comune di Milano"
+        "operator": "Polizia locale di Milano",
+        "operator:wikidata": "Q30880709"
       }
     },
     {
-      "displayName": "Polo Market",
+      "displayName": "Polomarket",
       "id": "polomarket-e50517",
       "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Polo Market"
+        "operator": "Polomarket",
+        "operator:wikidata": "Q11821937"
       }
     },
     {
@@ -4328,7 +4319,8 @@
       "locationSet": {"include": ["pf"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Port Autonome de Papeete"
+        "operator": "Port Autonome de Papeete",
+        "operator:wikidata": "Q115458044"
       }
     },
     {
@@ -4337,16 +4329,19 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Port Lotniczy Łódź"
+        "operator": "Port Lotniczy Łódź",
+        "operator:wikidata": "Q764554"
       }
     },
     {
-      "displayName": "Préfecture de police",
+      "displayName": "Préfecture de police de Paris",
       "id": "prefecturedepolice-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "locationSet": {"include": ["fr-idf.geojson"]},
+      "matchNames": ["Préfecture de police"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Préfecture de police"
+        "operator": "Préfecture de police de Paris",
+        "operator:wikidata": "Q163265"
       }
     },
     {
@@ -4401,16 +4396,19 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "RATP"
+        "operator": "RATP",
+        "operator:wikidata": "Q643290"
       }
     },
     {
-      "displayName": "Rectorat de Toulouse",
+      "displayName": "Rectorat d'académie de Toulouse",
       "id": "rectoratdetoulouse-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "locationSet": {"include": ["fr-occ.geojson"]},
+      "matchNames": ["Rectorat de Toulouse"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Rectorat de Toulouse"
+        "operator": "Rectorat d'académie de Toulouse",
+        "operator:wikidata": "Q87763197"
       }
     },
     {
@@ -4433,12 +4431,14 @@
       }
     },
     {
-      "displayName": "Rhein-Neckar-Verkehr GmbH",
+      "displayName": "Rhein-Neckar-Verkehr",
       "id": "rheinneckarverkehrgmbh-2b1420",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["Rhein-Neckar-Verkehr GmbH"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Rhein-Neckar-Verkehr GmbH"
+        "operator": "Rhein-Neckar-Verkehr",
+        "operator:wikidata": "Q1650863"
       }
     },
     {
@@ -4473,7 +4473,8 @@
       "locationSet": {"include": ["dk"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Rigspolitiet"
+        "operator": "Rigspolitiet",
+        "operator:wikidata": "Q3756751"
       }
     },
     {
@@ -4511,7 +4512,7 @@
     {
       "displayName": "Royal Wharf FCC Centre",
       "id": "royalwharffcccentre-74812b",
-      "locationSet": {"include": ["gb"]},
+      "locationSet": {"include": ["gb-lon.geojson"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Royal Wharf FCC Centre"
@@ -4538,7 +4539,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "SANEF"
+        "operator": "SANEF",
+        "operator:wikidata": "Q1474126"
       }
     },
     {
@@ -4562,10 +4564,11 @@
     {
       "displayName": "Schwarzwaldmilch",
       "id": "schwarzwaldmilch-2b1420",
-      "locationSet": {"include": ["de"]},
+      "locationSet": {"include": ["de-bw.geojson"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Schwarzwaldmilch"
+        "operator": "Schwarzwaldmilch",
+        "operator:wikidata": "Q1441291"
       }
     },
     {
@@ -4574,7 +4577,9 @@
       "locationSet": {"include": ["cz"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "SČVK"
+        "operator": "Severočeské vodovody a kanalizace",
+        "operator:short": "SČVK",
+        "operator:wikidata": "Q12051566"
       }
     },
     {
