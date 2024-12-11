@@ -4,22 +4,19 @@
     "exclude": {
       "generic": [
         "^\"red cross\"$",
-        "^bar$",
-        "^camping(platz)?$",
-        "^community$",
-        "^council$",
-        "^gemeinde$",
-        "^mairie$",
-        "^mosque toilet$",
-        "^municipal$",
-        "^ngo$",
-        "^pu[bp]lic\\s?(toilet)?(s)?$",
-        "^school$",
-        "^sonstiger betreiber$",
-        "^toilet(s)?$",
-        "^toilettes publiques$",
-        "^wc$",
-        "^туалет$"
+        "^(sulabh )?shauchalaya|toilet(s)?|wc|туалет$",
+        "^accessible|sulabh",
+        "^bar|camping(platz)?|mosque toilet|school$",
+        "^community|council|gemeinde|mairie|municipal|ngo$",
+        "^mck|pu[bp]lic\\s?(toilet)?s?|toilettes publiques|wc umum$",
+        "^private toilets?|wc pribadi$",
+        "^sonstiger betreiber$"
+      ],
+      "named": [
+        "^camp lowden$",
+        "^camping village il sole$",
+        "^care/hcr$",
+        "^lower kearsley recreation site$"
       ]
     }
   },
@@ -121,15 +118,6 @@
       }
     },
     {
-      "displayName": "BBMP",
-      "id": "bbmp-5a8295",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "BBMP"
-      }
-    },
-    {
       "displayName": "BC Parks",
       "id": "bcparks-af8860",
       "locationSet": {
@@ -199,6 +187,17 @@
       }
     },
     {
+      "displayName": "Bruhat Bengaluru Mahanagara Palike",
+      "id": "bruhatbengalurumahanagarapalike-5a8295",
+      "locationSet": {"include": ["in"]},
+      "tags": {
+        "amenity": "toilets",
+        "operator": "Bruhat Bengaluru Mahanagara Palike",
+        "operator:short": "BBMP",
+        "operator:wikidata": "Q4978693"
+      }
+    },
+    {
       "displayName": "Bureau of Land Management",
       "id": "bureauoflandmanagement-a5d9f0",
       "locationSet": {"include": ["us"]},
@@ -234,17 +233,6 @@
       }
     },
     {
-      "displayName": "Camp Lowden",
-      "id": "camplowden-40be46",
-      "locationSet": {
-        "include": ["us-il.geojson"]
-      },
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Camp Lowden"
-      }
-    },
-    {
       "displayName": "Camping municipal Le Pont de l'Étang",
       "id": "campingmunicipallepontdeletang-73fc0c",
       "locationSet": {"include": ["fx"]},
@@ -254,30 +242,13 @@
       }
     },
     {
-      "displayName": "Camping Village il Sole",
-      "id": "campingvillageilsole-1fde80",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Camping Village il Sole"
-      }
-    },
-    {
-      "displayName": "Canal and River Trust",
+      "displayName": "Canal & River Trust",
       "id": "canalandrivertrust-4f5d70",
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Canal and River Trust"
-      }
-    },
-    {
-      "displayName": "CARE/HCR",
-      "id": "carehcr-bee1ef",
-      "locationSet": {"include": ["td"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "CARE/HCR"
+        "operator": "Canal & River Trust",
+        "operator:wikidata": "Q5030960"
       }
     },
     {
@@ -288,6 +259,17 @@
         "amenity": "toilets",
         "operator": "Carrefour",
         "operator:wikidata": "Q217599"
+      }
+    },
+    {
+      "displayName": "Catholic Relief Services",
+      "id": "catholicreliefservices-481bb7",
+      "locationSet": {"include": ["ht"]},
+      "tags": {
+        "amenity": "toilets",
+        "operator": "Catholic Relief Services",
+        "operator:short": "CRS",
+        "operator:wikidata": "Q2942152"
       }
     },
     {
@@ -303,12 +285,16 @@
       }
     },
     {
-      "displayName": "Centro Comercial Vasco da Gama",
-      "id": "centrocomercialvascodagama-c356a7",
+      "displayName": "Centro Vasco da Gama",
+      "id": "centrovascodagama-c356a7",
       "locationSet": {"include": ["pt"]},
+      "matchNames": [
+        "centro comercial vasco da gama"
+      ],
       "tags": {
         "amenity": "toilets",
-        "operator": "Centro Comercial Vasco da Gama"
+        "operator": "Centro Vasco da Gama",
+        "operator:wikidata": "Q2944893"
       }
     },
     {
@@ -408,15 +394,6 @@
       }
     },
     {
-      "displayName": "CRS",
-      "id": "crs-4a7536",
-      "locationSet": {"include": ["ug"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "CRS"
-      }
-    },
-    {
       "displayName": "Curtin University",
       "id": "curtinuniversity-ea8b29",
       "locationSet": {
@@ -426,6 +403,17 @@
         "amenity": "toilets",
         "operator": "Curtin University",
         "operator:wikidata": "Q1145497"
+      }
+    },
+    {
+      "displayName": "Danish Refugee Council",
+      "id": "danishrefugeecouncil-4a7536",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "toilets",
+        "operator": "Danish Refugee Council",
+        "operator:short": "DRC",
+        "operator:wikidata": "Q3272284"
       }
     },
     {
@@ -450,15 +438,6 @@
         "operator": "Department of Conservation and Recreation",
         "operator:short": "DCR",
         "operator:wikidata": "Q2543589"
-      }
-    },
-    {
-      "displayName": "DRC",
-      "id": "drc-4a7536",
-      "locationSet": {"include": ["ug"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "DRC"
       }
     },
     {
@@ -543,12 +522,16 @@
       }
     },
     {
-      "displayName": "FCSM Zrt.",
-      "id": "fcsmzrt-c8692e",
-      "locationSet": {"include": ["hu"]},
+      "displayName": "Faculdade de Ciências Aplicadas da Unicamp",
+      "id": "faculdadedecienciasaplicadasdaunicamp-402325",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
+      "matchNames": ["unicamp"],
       "tags": {
         "amenity": "toilets",
-        "operator": "FCSM Zrt."
+        "operator": "Faculdade de Ciências Aplicadas da Unicamp",
+        "operator:wikidata": "Q5428823"
       }
     },
     {
@@ -580,9 +563,12 @@
       "displayName": "Fővárosi Csatornázási Művek",
       "id": "fovarosicsatornazasimuvek-c8692e",
       "locationSet": {"include": ["hu"]},
+      "matchNames": ["fcsm zrt."],
       "tags": {
         "amenity": "toilets",
-        "operator": "Fővárosi Csatornázási Művek"
+        "operator": "Fővárosi Csatornázási Művek",
+        "operator:short": "FCSM",
+        "operator:wikidata": "Q110625531"
       }
     },
     {
@@ -600,7 +586,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Gitzenweiler Hof"
+        "operator": "Gitzenweiler Hof",
+        "operator:wikidata": "Q1527844"
       }
     },
     {
@@ -731,23 +718,14 @@
       }
     },
     {
-      "displayName": "LCSD",
-      "id": "lcsd-70c95d",
+      "displayName": "Leisure and Cultural Services Department",
+      "id": "leisureandculturalservicesdepartment-70c95d",
       "locationSet": {"include": ["hk"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "LCSD"
-      }
-    },
-    {
-      "displayName": "Lower Kearsley Recreation Site",
-      "id": "lowerkearsleyrecreationsite-af8860",
-      "locationSet": {
-        "include": ["ca-bc.geojson"]
-      },
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Lower Kearsley Recreation Site"
+        "operator": "Leisure and Cultural Services Department",
+        "operator:short": "LCSD",
+        "operator:wikidata": "Q2353346"
       }
     },
     {
@@ -792,7 +770,8 @@
       "locationSet": {"include": ["hu"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "MÁV"
+        "operator": "MÁV",
+        "operator:wikidata": "Q168082"
       }
     },
     {
@@ -834,15 +813,6 @@
       }
     },
     {
-      "displayName": "MCK",
-      "id": "mck-5e6ea6",
-      "locationSet": {"include": ["id"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "MCK"
-      }
-    },
-    {
       "displayName": "Melbourne City Council",
       "id": "melbournecitycouncil-1f48c5",
       "locationSet": {
@@ -860,7 +830,8 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Metro Warszawskie Sp. z o.o."
+        "operator": "Metro Warszawskie Sp. z o.o.",
+        "operator:wikidata": "Q11777882"
       }
     },
     {
@@ -917,7 +888,8 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Morrisons"
+        "operator": "Morrisons",
+        "operator:wikidata": "Q922344"
       }
     },
     {
@@ -1067,7 +1039,8 @@
       "locationSet": {"include": ["hu"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "O.Z.O.R.A."
+        "operator": "O.Z.O.R.A.",
+        "operator:wikidata": "Q56247081"
       }
     },
     {
@@ -1132,7 +1105,8 @@
       "locationSet": {"include": ["my", "ph"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Petron"
+        "operator": "Petron",
+        "operator:wikidata": "Q7179011"
       }
     },
     {
@@ -1153,7 +1127,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Rewe"
+        "operator": "Rewe",
+        "operator:wikidata": "Q16968817"
       }
     },
     {
@@ -1162,7 +1137,8 @@
       "locationSet": {"include": ["ee"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "RMK"
+        "operator": "RMK",
+        "operator:wikidata": "Q12373967"
       }
     },
     {
@@ -1183,7 +1159,8 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Sainsbury's"
+        "operator": "Sainsbury's",
+        "operator:wikidata": "Q152096"
       }
     },
     {
@@ -1268,7 +1245,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "SNCF"
+        "operator": "SNCF",
+        "operator:wikidata": "Q13646"
       }
     },
     {
@@ -1384,27 +1362,12 @@
       }
     },
     {
-      "displayName": "Sulabh",
-      "id": "sulabh-5a8295",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Sulabh"
-      }
-    },
-    {
-      "displayName": "Sulabh International Social Service Organisation",
-      "id": "sulabhinternationalsocialserviceorganisation-5a8295",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Sulabh International Social Service Organisation"
-      }
-    },
-    {
-      "displayName": "Sulabh Shauchalaya",
+      "displayName": "Sulabh International",
       "id": "sulabhinternational-5a8295",
       "locationSet": {"include": ["in"]},
+      "matchNames": [
+        "sulabh international social service organisation"
+      ],
       "tags": {
         "amenity": "toilets",
         "operator": "Sulabh International",
@@ -1429,7 +1392,8 @@
       "locationSet": {"include": ["cz"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Tank ONO s.r.o."
+        "operator": "Tank ONO s.r.o.",
+        "operator:wikidata": "Q2392813"
       }
     },
     {
@@ -1553,7 +1517,8 @@
       "locationSet": {"include": ["ar"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Trenes Argentinos"
+        "operator": "Trenes Argentinos",
+        "operator:wikidata": "Q18170721"
       }
     },
     {
@@ -1564,15 +1529,6 @@
         "amenity": "toilets",
         "operator": "UNHCR",
         "operator:wikidata": "Q132551"
-      }
-    },
-    {
-      "displayName": "Unicamp",
-      "id": "unicamp-235d5c",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Unicamp"
       }
     },
     {
@@ -1591,7 +1547,8 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Union Lido"
+        "operator": "Union Lido",
+        "operator:wikidata": "Q1234597"
       }
     },
     {
@@ -1607,21 +1564,23 @@
       }
     },
     {
+      "displayName": "Universidad Tecnológica de Pereira",
+      "id": "universidadtecnologicadepereira-452bf3",
+      "locationSet": {"include": ["co"]},
+      "tags": {
+        "amenity": "toilets",
+        "operator": "Universidad Tecnológica de Pereira",
+        "operator:short": "UTP",
+        "operator:wikidata": "Q2441962"
+      }
+    },
+    {
       "displayName": "Usługi Komunalne Miasta Poznań",
       "id": "uslugikomunalnemiastapoznan-dbab0a",
       "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "toilets",
         "operator": "Usługi Komunalne Miasta Poznań"
-      }
-    },
-    {
-      "displayName": "UTP",
-      "id": "utp-452bf3",
-      "locationSet": {"include": ["co"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "UTP"
       }
     },
     {
@@ -1758,24 +1717,6 @@
         "operator": "Washington Department of Fish and Wildlife",
         "operator:short": "WDFW",
         "operator:wikidata": "Q28373915"
-      }
-    },
-    {
-      "displayName": "WC Pribadi",
-      "id": "wcpribadi-5e6ea6",
-      "locationSet": {"include": ["id"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "WC Pribadi"
-      }
-    },
-    {
-      "displayName": "WC Umum",
-      "id": "wcumum-5e6ea6",
-      "locationSet": {"include": ["id"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "WC Umum"
       }
     },
     {

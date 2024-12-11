@@ -3,11 +3,13 @@
     "path": "operators/emergency/phone",
     "exclude": {
       "generic": [
-        "^phone|campus police$",
-        "^security blue phone$"
+        "^(campus )?police$",
+        "^(security blue )?phone$",
+        "^autobahnmeisterei$"
       ],
       "named": [
         "^deutsche telekom$",
+        "^dlrg / björn steiger stiftung$",
         "^straßenmeisterei$"
       ]
     }
@@ -83,20 +85,13 @@
     },
     {
       "displayName": "AUSA",
-      "id": "ausa-91d45d",
+      "id": "autopistasurbanassa-91d45d",
       "locationSet": {"include": ["ar"]},
       "tags": {
         "emergency": "phone",
-        "operator": "AUSA"
-      }
-    },
-    {
-      "displayName": "Autobahnmeisterei",
-      "id": "autobahnmeisterei-3876cc",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "emergency": "phone",
-        "operator": "Autobahnmeisterei"
+        "operator": "Autopistas Urbanas SA",
+        "operator:short": "AUSA",
+        "operator:wikidata": "Q76761720"
       }
     },
     {
@@ -197,8 +192,10 @@
     },
     {
       "displayName": "CART",
-      "id": "cart-880fe0",
-      "locationSet": {"include": ["br"]},
+      "id": "cart-7790d1",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
       "tags": {
         "emergency": "phone",
         "operator": "CART"
@@ -210,13 +207,16 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "emergency": "phone",
-        "operator": "CCR NovaDutra"
+        "operator": "CCR NovaDutra",
+        "operator:wikidata": "Q10337752"
       }
     },
     {
       "displayName": "CCR SPVias",
-      "id": "ccrspvias-880fe0",
-      "locationSet": {"include": ["br"]},
+      "id": "ccrspvias-7790d1",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
       "tags": {
         "emergency": "phone",
         "operator": "CCR SPVias"
@@ -236,11 +236,15 @@
     },
     {
       "displayName": "CLN",
-      "id": "cln-880fe0",
-      "locationSet": {"include": ["br"]},
+      "id": "concessionarialitoralnorte-07ed79",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
       "tags": {
         "emergency": "phone",
-        "operator": "CLN"
+        "operator": "Concessionária Litoral Norte",
+        "operator:short": "CLN",
+        "operator:wikidata": "Q116167757"
       }
     },
     {
@@ -340,21 +344,16 @@
       }
     },
     {
-      "displayName": "DLRG / Björn Steiger Stiftung",
-      "id": "dlrgbjornsteigerstiftung-3876cc",
-      "locationSet": {"include": ["de"]},
+      "displayName": "EcoRodovias",
+      "id": "ecorodovias-7790d1",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
+      "matchNames": ["ecovias"],
       "tags": {
         "emergency": "phone",
-        "operator": "DLRG / Björn Steiger Stiftung"
-      }
-    },
-    {
-      "displayName": "Ecovias",
-      "id": "ecovias-880fe0",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "emergency": "phone",
-        "operator": "Ecovias"
+        "operator": "EcoRodovias",
+        "operator:wikidata": "Q5333122"
       }
     },
     {
@@ -485,7 +484,8 @@
       "note": "All phones seem to be tagged as historic and not in use, so should this be removed?",
       "tags": {
         "emergency": "phone",
-        "operator": "Milwaukee Police Department"
+        "operator": "Milwaukee Police Department",
+        "operator:wikidata": "Q6861797"
       }
     },
     {
@@ -659,7 +659,8 @@
       "locationSet": {"include": ["cz"]},
       "tags": {
         "emergency": "phone",
-        "operator": "ŘSD"
+        "operator": "ŘSD",
+        "operator:wikidata": "Q10513470"
       }
     },
     {
@@ -680,7 +681,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "emergency": "phone",
-        "operator": "SANEF"
+        "operator": "SANEF",
+        "operator:wikidata": "Q1474126"
       }
     },
     {
@@ -706,7 +708,8 @@
       },
       "tags": {
         "emergency": "phone",
-        "operator": "SAPN"
+        "operator": "SAPN",
+        "operator:wikidata": "Q3488113"
       }
     },
     {
@@ -886,7 +889,8 @@
       "locationSet": {"include": ["ar"]},
       "tags": {
         "emergency": "phone",
-        "operator": "Trenes Argentinos"
+        "operator": "Trenes Argentinos",
+        "operator:wikidata": "Q18170721"
       }
     },
     {
