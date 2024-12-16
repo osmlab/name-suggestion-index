@@ -3,13 +3,14 @@
     "path": "operators/amenity/police",
     "exclude": {
       "generic": [
-        "^police$",
+        "^((local|municipal) )?police$",
+        "^polizia( (locale|municipale))?$",
         "^п[ао]л(іцыя|иция|иција|іція|иций)$",
         "^中华人民共和国公安部"
       ],
       "named": [
         "^corpo forestale dello stato$",
-        "^polizia (locale|municipale)$"
+        "^ministère d'etat, ministère de l'interieur et de la sécurité$"
       ]
     }
   },
@@ -1229,15 +1230,6 @@
       }
     },
     {
-      "displayName": "Ministère d'Etat, Ministère de l'Interieur et de la Sécurité",
-      "id": "ministeredetatministeredelinterieuretdelasecurite-92205f",
-      "locationSet": {"include": ["ci"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Ministère d'Etat, Ministère de l'Interieur et de la Sécurité"
-      }
-    },
-    {
       "displayName": "Ministerio de Obras Públicas y Transportes",
       "id": "ministeriodeobraspublicasytransportes-05938a",
       "locationSet": {"include": ["cr"]},
@@ -1260,15 +1252,17 @@
       }
     },
     {
-      "displayName": "Ministerio del Interior y Justicia",
-      "id": "ministeriodelinterioryjusticia-3383b4",
+      "displayName": "Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz",
+      "id": "ministeriodelpoderpopularpararelacionesinterioresjusticiaypaz-3383b4",
       "locationSet": {"include": ["ve"]},
       "matchNames": [
-        "ministerio de interior y justicia"
+        "ministerio de interior y justicia",
+        "ministerio del interior y justicia"
       ],
       "tags": {
         "amenity": "police",
-        "operator": "Ministerio del Interior y Justicia"
+        "operator": "Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz",
+        "operator:wikidata": "Q16607766"
       }
     },
     {

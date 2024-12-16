@@ -6,13 +6,10 @@
         "^(croix-rouge|red cross)$",
         "^(institution|wsb|wsp) \\(staff\\)$",
         "^\\(local\\) private sector- name\\/no$",
-        "^ayuntamiento$",
+        "^ayuntamiento|community|gemeinde|mairie$",
+        "^bebedouro|drinking water$",
         "^community \\(technician\\) name\\/no$",
-        "^community$",
-        "^drinking water$",
-        "^gemeinde$",
         "^institution staff$",
-        "^mairie$",
         "^ngo$",
         "^öffentlich$",
         "^private$",
@@ -20,14 +17,19 @@
         "^tom$",
         "^yes$",
         "^вода$"
+      ],
+      "named": [
+        "^acquedotto pugliese - cooperativa comunità melpignano$"
       ]
     }
   },
   "items": [
     {
       "displayName": "A2A Ciclo Idrico",
-      "id": "a2acicloidrico-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "a2acicloidrico-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
       "matchNames": ["a2a ciclo idrico s.p.a."],
       "tags": {
         "amenity": "drinking_water",
@@ -55,8 +57,10 @@
     },
     {
       "displayName": "Acque Bresciane",
-      "id": "acquebresciane-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "acquebresciane-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Acque Bresciane"
@@ -64,8 +68,10 @@
     },
     {
       "displayName": "Acque Spa",
-      "id": "acquespa-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "acquespa-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Acque Spa"
@@ -73,20 +79,18 @@
     },
     {
       "displayName": "Acquedotto Pugliese",
-      "id": "acquedottopugliese-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "acquedottopugliese-c6a601",
+      "locationSet": {
+        "include": [
+          "it-75.geojson",
+          "it-77.geojson"
+        ]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Acquedotto Pugliese"
-      }
-    },
-    {
-      "displayName": "Acquedotto Pugliese - Cooperativa Comunità Melpignano",
-      "id": "acquedottopugliesecooperativacomunitamelpignano-8df115",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Acquedotto Pugliese - Cooperativa Comunità Melpignano"
+        "operator": "Acquedotto Pugliese",
+        "operator:short": "AQP",
+        "operator:wikidata": "Q623214"
       }
     },
     {
@@ -95,7 +99,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ada's Hoeve"
+        "operator": "Ada's Hoeve",
+        "operator:wikidata": "Q2693950"
       }
     },
     {
@@ -138,15 +143,6 @@
         "amenity": "drinking_water",
         "operator": "Ajuntament de València",
         "operator:wikidata": "Q26251945"
-      }
-    },
-    {
-      "displayName": "AQP",
-      "id": "aqp-8df115",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "AQP"
       }
     },
     {
@@ -193,8 +189,10 @@
     },
     {
       "displayName": "Azienda Servizi Ambientali S.p.A.",
-      "id": "aziendaserviziambientalispa-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "aziendaserviziambientalispa-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Azienda Servizi Ambientali S.p.A.",
@@ -202,21 +200,14 @@
       }
     },
     {
-      "displayName": "Azienda Servizi Valtrompia S.p.a.",
-      "id": "aziendaservizivaltrompiaspa-8df115",
-      "locationSet": {"include": ["it"]},
+      "displayName": "Azienda Servizi Valtrompia S.p.A.",
+      "id": "aziendaservizivaltrompiaspa-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Azienda Servizi Valtrompia S.p.a."
-      }
-    },
-    {
-      "displayName": "Bebedouro",
-      "id": "bebedouro-1f0e93",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Bebedouro"
+        "operator": "Azienda Servizi Valtrompia S.p.A."
       }
     },
     {
@@ -494,7 +485,8 @@
       "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Farys"
+        "operator": "Farys",
+        "operator:wikidata": "Q15882594"
       }
     },
     {
@@ -645,20 +637,13 @@
     },
     {
       "displayName": "Marktgemeinde Schlanders, Abt. Energie und Infrastrukturen",
-      "id": "marktgemeindeschlandersabtenergieundinfrastrukturen-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "marktgemeindeschlandersabtenergieundinfrastrukturen-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Marktgemeinde Schlanders, Abt. Energie und Infrastrukturen"
-      }
-    },
-    {
-      "displayName": "Metropolitana Milanese - MM SpA",
-      "id": "metropolitanamilanesemmspa-8df115",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Metropolitana Milanese - MM SpA"
       }
     },
     {
@@ -671,6 +656,22 @@
         "amenity": "drinking_water",
         "operator": "Miami Dade College",
         "operator:wikidata": "Q3027788"
+      }
+    },
+    {
+      "displayName": "MM S.p.A.",
+      "id": "mmspa-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
+      "matchNames": [
+        "metropolitana milanese",
+        "metropolitana milanese - mm spa"
+      ],
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "MM S.p.A.",
+        "operator:wikidata": "Q3855742"
       }
     },
     {
@@ -737,7 +738,8 @@
       "locationSet": {"include": ["bf"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "ONEA"
+        "operator": "ONEA",
+        "operator:wikidata": "Q15867459"
       }
     },
     {
@@ -785,12 +787,14 @@
       }
     },
     {
-      "displayName": "Peace wind Japan",
-      "id": "peacewindjapan-1f271a",
+      "displayName": "Peace Winds Japan",
+      "id": "peacewindsjapan-1f271a",
       "locationSet": {"include": ["ke"]},
+      "matchNames": ["peace wind japan"],
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Peace wind Japan"
+        "operator": "Peace Winds Japan",
+        "operator:wikidata": "Q11331731"
       }
     },
     {
@@ -807,8 +811,10 @@
     },
     {
       "displayName": "Publiacqua",
-      "id": "publiacqua-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "publiacqua-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Publiacqua"
@@ -899,8 +905,10 @@
     },
     {
       "displayName": "Sit Lucretili",
-      "id": "sitlucretili-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "sitlucretili-3092a7",
+      "locationSet": {
+        "include": ["it-62.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Sit Lucretili"
@@ -908,8 +916,10 @@
     },
     {
       "displayName": "SMAT",
-      "id": "smat-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "smat-0ca4ec",
+      "locationSet": {
+        "include": ["it-21.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "SMAT",
@@ -922,7 +932,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "SNCF Gares & Connexions"
+        "operator": "SNCF Gares & Connexions",
+        "operator:wikidata": "Q3098278"
       }
     },
     {
@@ -990,8 +1001,10 @@
     },
     {
       "displayName": "Stadtwerke Brixen AG",
-      "id": "stadtwerkebrixenag-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "stadtwerkebrixenag-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Stadtwerke Brixen AG",
@@ -999,12 +1012,16 @@
       }
     },
     {
-      "displayName": "Stadtwerke Meran/Azienda Servizi Municipalizzati di Merano",
-      "id": "stadtwerkemeranaziendaservizimunicipalizzatidimerano-8df115",
-      "locationSet": {"include": ["it"]},
+      "displayName": "Stadtwerke Meran - Azienda Servizi Municipalizzati di Merano",
+      "id": "stadtwerkemeranaziendaservizimunicipalizzatidimerano-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadtwerke Meran/Azienda Servizi Municipalizzati di Merano"
+        "operator": "Stadtwerke Meran - Azienda Servizi Municipalizzati di Merano",
+        "operator:de": "Stadtwerke Meran",
+        "operator:it": "Azienda Servizi Municipalizzati di Merano"
       }
     },
     {
