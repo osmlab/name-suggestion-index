@@ -318,7 +318,7 @@ function processEntities(result) {
     if (locationInfoWebsites) {
       target.locationInfoWebsites = locationInfoWebsites;
     }
-    
+
     // P2002 - Twitter username
     const twitterUser = getClaimValue(entity, 'P2002');
     if (twitterUser) {

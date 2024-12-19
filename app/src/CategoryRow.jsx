@@ -382,7 +382,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
         }
 
         result += '<strong>Master templates:</strong><br/>';
-        result += '<a href="' + url + '">' + linktext + '</a><br/>';        
+        result += '<a href="' + url + '">' + linktext + '</a><br/>';
         result += 'Search ' + searchLabel + ' template master for ';
         result += '<a href="' + url + '&amp;tt=' + item.displayName + '">' + item.displayName + '</a><br/>';
         result += '<a href="' + url2 + '">' + linktext2 + '</a><br/>';
