@@ -105,6 +105,7 @@ if (_secrets && _secrets.wikibase) {
 
 // what to fetch
 let _cache = {};
+console.log(`Loading index files (this might take around 30 seconds) ...`);
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
@@ -335,7 +336,31 @@ function processEntities(result) {
     const facebookUser = getClaimValue(entity, 'P2013');
     if (facebookUser) {
       target.identities.facebook = facebookUser;
-      facebookQueue.push({ qid: qid, username: facebookUser });    // queue logo fetch
+
+      // get access status of selected value - #10233
+      let restriction;
+
+      for (let i = 0; i < entity.claims['P2013'].length; i++) {
+        const c = entity.claims['P2013'][i];
+        if ( c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser ) {
+          const qualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
+          for (let j = 0; j < qualifiers.length; j++) {
+            const q = qualifiers[j];
+            if ( q.snaktype !== 'value' ) continue;
+
+            let value = q.datavalue.value.id;
+            // Q113165094 - location restrictions, Q58370623 - private account, Q107459441 - only visible when logged in
+            if (value === 'Q58370623' || value === 'Q107459441' || value === 'Q113165094') {
+              restriction = true;
+              break;
+            }
+          }
+
+          break;
+        }
+      }
+
+      facebookQueue.push({ qid: qid, username: facebookUser, restriction: restriction });    // queue logo fetch
     }
 
     // P2397 - YouTube ID
@@ -495,7 +520,7 @@ function processEntities(result) {
 
   });  // foreach qid
 
-  return Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) )
+  return Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username, obj.restriction)) )
     .then(() => processWbEditQueue(wbEditQueue));
 }
 
@@ -633,7 +658,7 @@ function finish() {
 
 
 // https://developers.facebook.com/docs/graph-api/reference/user/picture/
-function fetchFacebookLogo(qid, username) {
+function fetchFacebookLogo(qid, username, restriction) {
   let target = _wikidata[qid];
   let logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
   let userid;
@@ -656,16 +681,26 @@ function fetchFacebookLogo(qid, username) {
       if (json.data && !json.data.is_silhouette) {
         target.logos.facebook = logoURL;
       }
+
+      if ( restriction ) {
+        // show warning if Wikidata notes that access to the profile is restricted in some way, but the profile is public - #10233
+        const warning = { qid: qid, msg: `Facebook username @${username} has a restricted access qualifier, but is publicly accessible` };
+        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+        _warnings.push(warning);
+      }
       return true;
     })
     .catch(e => {
       if (userid) {
         target.identities.facebook = userid;
-        return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
+        return fetchFacebookLogo(qid, userid, restriction);   // retry with just the numeric id
       } else {
-        const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
-        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
-        _warnings.push(warning);
+        // suppress warning if Wikidata notes that access to the profile is restricted in some way - #10233
+        if ( !restriction ) {
+          const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
+          console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+          _warnings.push(warning);
+        }
       }
     });
 }

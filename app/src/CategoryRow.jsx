@@ -20,7 +20,7 @@ export function CategoryRow(props) {
   const v = params.v;
   const filters = getFilterParams(params);   // filters are used here for highlighting
 
-  // Determine dissolutation date (if any)
+  // Determine dissolution date (if any)
   const dissolvedInfo = context.dissolved[item.id];
   let dissolved;
   if (Array.isArray(dissolvedInfo)) {
@@ -302,7 +302,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
 `;
     });
 
-    /* Add an <hr/> line break only if addational information will be displayed. */
+    /* Add an <hr/> line break only if additional information will be displayed. */
     if (item.matchNames || item.matchTags || item.note || item.preserveTags || item.issues || item.fromTemplate)
       result += '<hr/>';
 
