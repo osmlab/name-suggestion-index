@@ -38,6 +38,11 @@ const httpsAgent = new https.Agent({ keepAlive: true });
 const fetchOptions = {
   agent: (url) => ((url.protocol === 'http:') ? httpAgent : httpsAgent)
 };
+const fetchOptionsQuery = {
+  agent: fetchOptions.agent,
+  method: 'GET',
+  headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
+}
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
@@ -105,7 +110,7 @@ if (_secrets && _secrets.wikibase) {
 
 // what to fetch
 let _cache = {};
-console.log(`Loading index files (this might take around 30 seconds) ...`);
+console.log(chalk.yellow.bold(`Loading index files (this might take around 30 seconds) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
@@ -712,6 +717,7 @@ function fetchFacebookLogo(qid, username, restriction) {
 function removeOldNsiClaims() {
   if (!_wbEdit) return Promise.resolve();
 
+  console.log(chalk.yellow.bold(`\nSearching for obsolete NSI identifier claims ...`));
   const query = `
     SELECT ?qid ?nsiId ?guid
     WHERE {
@@ -719,7 +725,7 @@ function removeOldNsiClaims() {
       ?guid  ps:P8253  ?nsiId.
     }`;
 
-  return fetch(wbk.sparqlQuery(query), fetchOptions)
+  return fetch(wbk.sparqlQuery(query), fetchOptionsQuery)
     .then(response => {
       if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
       return response.json();
