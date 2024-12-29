@@ -61,7 +61,7 @@
         let thisMatch, rowClass;
 
         allWarnings.forEach(warning => {
-          // Assign each row an error type (default 'other') for the 'class' attribute, allowing for possible filtering / styling later. 
+          // Assign each row an error type (default 'other') for the 'class' attribute, allowing for possible filtering / styling later.
           rowClass = "other";
 
           // An "unresolved-redirect" won't be a string, it'll be an object, so check for that first, and set the 'warning.msg.name' as the 'warning.msg'.
@@ -74,24 +74,29 @@
             rowClass = "facebookerror";
           }
 
-          // If the warning is about a replacment Wikidata entry, make the suggested replacment a hyperlink.
+          // The Wikidata entry marks a public Facebook page as having restricted access.
+          if (warning.msg.match("restricted access qualifier")) {
+            rowClass = "facebookaccess";
+          }
+
+          // If the warning is about a replacement Wikidata entry, make the suggested replacement a hyperlink.
           if (warning.msg.match("might possibly be replaced by")) {
             thisMatch = warning.msg.match(/Q[0-9]+/); // Grab the new Wiki QID, including the letter Q.
             warning.msg = warning.msg.replace(thisMatch,"<a href=\"https://www.wikidata.org/wiki/" + thisMatch + "\">" + thisMatch + "</a>");
             rowClass = "replacewiki";
           }
 
-          // The wikidata doesn't have an English label.
+          // The Wikidata entry doesn't have an English label.
           if (warning.msg.match("missing English label")) {
             rowClass = "englishlabel";
           }
 
-          // The wikidata was deleted.
+          // The Wikidata entry was deleted.
           if (warning.msg.match("was deleted")) {
             rowClass = "deleted";
           }
 
-          // The wikidata has an unresolved-redirect.
+          // The Wikidata entry has an unresolved-redirect.
           if (warning.msg.match("unresolved-redirect")) {
             rowClass = "unresolved";
           }
@@ -107,7 +112,7 @@
         const wikiTableCaption = wikiTable1.getElementsByTagName("caption");
 
         wikiTableBody[0].innerHTML = tableRows;
-        wikiTableCaption[0].innerHTML = "Table of " + allWarnings.length + " Wikidata Errors (generated " + generated + ")!";
+        wikiTableCaption[0].innerHTML = "Table of " + allWarnings.length + " Wikidata errors (generated " + generated + ")!";
       }
 
       // Run the function nsiWikiWarnings() when the DOM has loaded.
@@ -132,7 +137,7 @@
     looking for, and will return an error message. These error messages are displayed below. Common errors are
     social media accounts listed in a Wikidata entry which are out of date, or simply incorrect. Some branded
     Facebook accounts are set to require the user to be logged in when browsing (i.e. missing permissions), which is something the
-    <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment. 
+    <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment.
     </p>
 
     <p>
@@ -152,7 +157,7 @@
     </p>
 
     <table id="wikidataWarningsTable">
-      <caption>Table of Wikidata Errors!</caption>
+      <caption>Table of Wikidata errors!</caption>
       <thead>
         <tr>
           <th>Wikidata</th>
