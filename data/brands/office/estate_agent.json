@@ -1,6 +1,7 @@
 {
   "properties": {
     "path": "brands/office/estate_agent",
+    "preserveTags": ["^name"],
     "exclude": {"generic": ["^estate agent$"]}
   },
   "items": [
@@ -88,7 +89,6 @@
       "displayName": "Barfoot & Thompson",
       "id": "barfootandthompson-8dbc65",
       "locationSet": {"include": ["nz"]},
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Barfoot & Thompson",
         "brand:wikidata": "Q4860509",
@@ -122,7 +122,6 @@
       "displayName": "Bayleys",
       "id": "bayleys-d3667a",
       "locationSet": {"include": ["fj", "nz"]},
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Bayleys",
         "brand:wikidata": "Q112189592",
@@ -164,17 +163,6 @@
         "name": "Berkshire Hathaway HomeServices",
         "office": "estate_agent",
         "short_name": "Berkshire Hathaway"
-      }
-    },
-    {
-      "displayName": "Bourse de l'Immobilier",
-      "id": "boursedelimmobilier-b7bc37",
-      "locationSet": {"include": ["fx"]},
-      "tags": {
-        "brand": "Bourse de l'Immobilier",
-        "brand:wikidata": "Q102352527",
-        "name": "Bourse de l'Immobilier",
-        "office": "estate_agent"
       }
     },
     {
@@ -391,6 +379,21 @@
       }
     },
     {
+      "displayName": "ERA Real Estate",
+      "id": "erarealestate-bdc562",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["bg", "es", "fr", "pt"]
+      },
+      "matchNames": ["era"],
+      "tags": {
+        "brand": "ERA Real Estate",
+        "brand:wikidata": "Q121496901",
+        "name": "ERA Real Estate",
+        "office": "estate_agent"
+      }
+    },
+    {
       "displayName": "ERA Недвижими имоти",
       "id": "era-c3df5e",
       "locationSet": {"include": ["bg"]},
@@ -586,9 +589,10 @@
       "displayName": "Human Immobilier",
       "id": "humanimmobilier-b7bc37",
       "locationSet": {"include": ["fx"]},
+      "matchNames": ["bourse de l'immobilier"],
       "tags": {
         "brand": "Human Immobilier",
-        "brand:wikidata": "Q126912824",
+        "brand:wikidata": "Q102352527",
         "name": "Human Immobilier",
         "office": "estate_agent"
       }
@@ -904,7 +908,6 @@
       "id": "remax-08bb13",
       "locationSet": {"include": ["001"]},
       "matchNames": ["re/max of america"],
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "RE/MAX",
         "brand:wikidata": "Q965845",
