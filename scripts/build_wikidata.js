@@ -48,6 +48,9 @@ const fetchOptionsQuery = {
 // set to true if you just want to test what the script will do without updating Wikidata
 const DRYRUN = false;
 
+console.log(chalk.blue('-'.repeat(70)));
+console.log(chalk.blue('📓   Build Wikidata'));
+console.log(chalk.blue('-'.repeat(70)));
 
 // First, try to load the user's secrets.
 // This is optional but needed if you want this script to:
@@ -110,12 +113,15 @@ if (_secrets && _secrets.wikibase) {
 
 // what to fetch
 let _cache = {};
+console.log('');
 console.log('🏗   ' + chalk.yellow(`Loading index files (this might take around 30 seconds) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
 
 // Gather all QIDs referenced by any tag..
+console.log('');
+console.log('🏗   ' + chalk.yellow(`Syncing Wikidata with name-suggestion-index ...`));
 let _wikidata = {};
 let _qidItems = {};       // any item referenced by a qid
 let _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
@@ -717,7 +723,8 @@ function fetchFacebookLogo(qid, username, restriction) {
 function removeOldNsiClaims() {
   if (!_wbEdit) return Promise.resolve();
 
-  console.log('🏗   ' + chalk.yellow(`\nSearching for obsolete NSI identifier claims ...`));
+  console.log('');
+  console.log('🏗   ' + chalk.yellow(`Searching Wikidata for obsolete NSI identifier claims ...`));
   const query = `
     SELECT ?qid ?nsiId ?guid
     WHERE {
@@ -804,7 +811,7 @@ function enLabelForQID(qid) {
     const item = _cache.id.get(ids[i]);
 
     if (meta.what === 'flag') {
-      if (looksLatin(item.tags.subject))  return `Flag of ${item.tags.subject}`;
+      if (looksLatin(item.tags.subject))  return `flag of ${item.tags.subject}`;
 
     } else {
       // These we know are English..

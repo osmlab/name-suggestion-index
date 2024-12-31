@@ -35,6 +35,11 @@ const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollectio
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
+console.log(chalk.blue('-'.repeat(70)));
+console.log(chalk.blue('📦   Distribute files'));
+console.log(chalk.blue('-'.repeat(70)));
+
+console.log('');
 console.log('🏗   ' + chalk.yellow(`Loading index files (this might take around 30 seconds) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
