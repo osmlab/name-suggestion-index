@@ -110,7 +110,7 @@ if (_secrets && _secrets.wikibase) {
 
 // what to fetch
 let _cache = {};
-console.log(chalk.yellow.bold(`Loading index files (this might take around 30 seconds) ...`));
+console.log('🏗   ' + chalk.yellow(`Loading index files (this might take around 30 seconds) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
@@ -717,7 +717,7 @@ function fetchFacebookLogo(qid, username, restriction) {
 function removeOldNsiClaims() {
   if (!_wbEdit) return Promise.resolve();
 
-  console.log(chalk.yellow.bold(`\nSearching for obsolete NSI identifier claims ...`));
+  console.log('🏗   ' + chalk.yellow(`\nSearching for obsolete NSI identifier claims ...`));
   const query = `
     SELECT ?qid ?nsiId ?guid
     WHERE {
