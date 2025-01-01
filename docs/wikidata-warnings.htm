@@ -130,30 +130,53 @@
     When the command "<code>npm run wikidata</code>" is run by a maintainer of the project,
     this will connect to Wikidata directly and attempt to download logos and descriptions for each
     entry within the Name Suggestion Index (<abbr title="Name Suggestion Index">NSI</abbr>).
-    </p>
-
-    <p>
     Sometimes, Wikidata won't be able to provide the data the <abbr title="Name Suggestion Index">NSI</abbr> is
     looking for, and will return an error message. These error messages are displayed below. Common errors are
-    social media accounts listed in a Wikidata entry which are out of date, or simply incorrect. Some branded
-    Facebook accounts are set to require the user to be logged in when browsing (i.e. missing permissions), which is something the
-    <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment.
+    social media accounts listed in a Wikidata entry which are out of date, or simply incorrect.
     </p>
 
     <p>
-    An <strong>unresolved-redirect</strong> is when the Wikidata entry
-    the <abbr title="Name Suggestion Index">NSI</abbr> links to is redirecting to a different (possibly newer)
-    Wikidata entry. In this instance, the Wikidata reference will need to be updated within
-    the <abbr title="Name Suggestion Index">NSI</abbr> data itself.
+    Guidance for resolving warnings:
     </p>
+
+    <ul>
+      <li>
+        <strong>Deleted Wikidata entries:</strong> If a Wikidata entry has been deleted, it might be possible
+        to request that it is reinstated by the Wikidata administrator who deleted it. Clicking the Wikidata
+        link of the deleted entry will bring up the deletion log for the entry, including the username of the
+        administrator who performed the deletion. For guidance on how to request the undeletion of an entry,
+        please view the "<a href="https://github.com/osmlab/name-suggestion-index/wiki/Editing-Wikidata#undeletion-of-wikidata-pages">Editing Wikidata</a>"
+        wiki page on the <abbr title="Name Suggestion Index">NSI</abbr> GitHub.
+      </li>
+      <li>
+        <strong>Facebook account access ("Unsupported get request"):</strong> Some branded Facebook accounts
+        are set with access restrictions, such as requiring the user to be logged in when browsing. Calls to
+        the Facebook API will return a generic error when attempting to read these accounts, which is
+        something the <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment.
+        If the exact access restriction is identified, it can be added to the "<a href="https://www.wikidata.org/wiki/Property:P2013">Facebook username</a>"
+        statement on the Wikidata entry using the qualifier "<a href="https://www.wikidata.org/wiki/Property:P6954">online access status</a>".
+        "<code>npm run wikidata</code>" will ignore the Facebook API warning for any accounts with
+        "online access status" set to "<a href="https://www.wikidata.org/wiki/Q58370623">private account</a>",
+        "<a href="https://www.wikidata.org/wiki/Q107459441">registration required</a>" (i.e., only visible
+        when logged in), or "<a href="https://www.wikidata.org/wiki/Q113165094">location restricted to country of publication</a>"
+        (i.e., the profile is only visible to users from certain countries, or is blocked to users from
+        certain countries). "<code>npm run wikidata</code>" will also warn of any Facebook accounts that
+        have a restricted access qualifier on Wikidata, but have since had their privacy settings changed
+        to make the account publicly viewable.
+      </li>
+      <li>
+        <strong>unresolved-redirects:</strong> An "unresolved-redirect" is when the Wikidata entry
+        the <abbr title="Name Suggestion Index">NSI</abbr> links to is redirecting to a different (possibly newer)
+        Wikidata entry. In this instance, the Wikidata reference will need to be updated within
+        the <abbr title="Name Suggestion Index">NSI</abbr> data itself.
+      </li>
+    </ul>
 
     <p>
     If you can, simply click on a Wikidata link below, and check to see if the error can be fixed. Please note that
-    fixing an error will not remove the error message below until "<code>npm run wikidata</code>" has been run again.
-    </p>
-
-    <p>
-    If a Wikidata entry has been deleted, it might be possible to request that it is reinstated by the Wikidata administrator who deleted it.
+    fixing an error will not remove the error message below until "<code>npm run wikidata</code>" has been run again,
+    and "<code>npm run dist</code>" has been run to have <a href="https://nsi.guide">nsi.guide</a> pull the latest
+    data from the <abbr title="Name Suggestion Index">NSI</abbr> project.
     </p>
 
     <table id="wikidataWarningsTable">
