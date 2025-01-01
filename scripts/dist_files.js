@@ -40,7 +40,7 @@ console.log(chalk.blue('📦   Distribute files'));
 console.log(chalk.blue('-'.repeat(70)));
 
 console.log('');
-console.log('🏗   ' + chalk.yellow(`Loading index files (this might take around 30 seconds) ...`));
+console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over 30 seconds) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 _cache.path = sortObject(_cache.path);
