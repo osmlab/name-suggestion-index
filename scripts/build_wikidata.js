@@ -693,7 +693,8 @@ function fetchFacebookLogo(qid, username, restriction) {
         target.logos.facebook = logoURL;
       }
 
-      if ( restriction ) {
+      // queries of valid numeric IDs always return some data regardless of profile access status
+      if ( restriction && !username.match(/^\d+$/) ) {
         // show warning if Wikidata notes that access to the profile is restricted in some way, but the profile is public - #10233
         const warning = { qid: qid, msg: `Facebook username @${username} has a restricted access qualifier, but is publicly accessible` };
         console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
