@@ -359,7 +359,7 @@ function processEntities(result) {
             const q = qualifiers[j];
             if ( q.snaktype !== 'value' ) continue;
 
-            let value = q.datavalue.value.id;
+            const value = q.datavalue.value.id;
             // Q113165094 - location restrictions, Q58370623 - private account, Q107459441 - only visible when logged in
             if (value === 'Q58370623' || value === 'Q107459441' || value === 'Q113165094') {
               restriction = true;
@@ -694,7 +694,7 @@ function fetchFacebookLogo(qid, username, restriction) {
       }
 
       // queries of valid numeric IDs always return some data regardless of profile access status
-      if ( restriction && !username.match(/^\d+$/) ) {
+      if ( restriction && (!username.match(/^\d+$/) || target.logos.facebook) ) {
         // show warning if Wikidata notes that access to the profile is restricted in some way, but the profile is public - #10233
         const warning = { qid: qid, msg: `Facebook username @${username} has a restricted access qualifier, but is publicly accessible` };
         console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
