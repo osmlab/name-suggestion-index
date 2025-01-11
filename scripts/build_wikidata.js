@@ -237,7 +237,7 @@ function processEntities(result) {
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
 
     if (!!entity.redirects) {
-      const warning = { qid: qid, msg: `wikidata redirects to ${entity.redirects.to}` };
+      const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
       console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
     }
@@ -263,7 +263,7 @@ function processEntities(result) {
 
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
-        const warning = { qid: qid, msg: `Entity for "${label}" missing English label.` };
+        const warning = { qid: qid, msg: `Entity for "${label}" is missing an English label.` };
         console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       }
