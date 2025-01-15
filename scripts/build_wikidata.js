@@ -444,8 +444,8 @@ function processEntities(result) {
           if (countries) {
             dissolution.countries = countries.map(code => iso1A2Code(code));
           }
-          // P156 - followed by or P1366 - replaced by (successor)
-          const successorQID = item.qualifiers.P156 || item.qualifiers.P1366;
+          // look for potential successors: P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
+          const successorQID = item.qualifiers.P156 || item.qualifiers.P1366 || item.qualifiers.P7888;
           if (successorQID) {
             dissolution.upgrade = successorQID;
           }
@@ -454,8 +454,8 @@ function processEntities(result) {
         if (!dissolution.upgrade) {
           // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
           // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
-          // P156 - followed by or P1366 - replaced by (successor)
-          let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366');
+          // P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
+          let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366') || getClaimValue(entity, 'P7888');
           if (successor && successor.id) {
             dissolution.upgrade = successor.id;
           }
