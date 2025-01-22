@@ -428,6 +428,12 @@ function processEntities(result) {
       target.identities.weixin = weixinUser;
     }
 
+    // P11892 - Threads username
+    const threadsUser = getClaimValue(entity, 'P11892');
+    if (threadsUser) {
+      target.identities.threads = threadsUser;
+    }
+
     // P576 - Dissolution date
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
