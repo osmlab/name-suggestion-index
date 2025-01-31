@@ -49,7 +49,7 @@ const fetchOptionsQuery = {
 const DRYRUN = false;
 
 console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('📓   Build Wikidata'));
+console.log(chalk.blue('📓  Build Wikidata cache'));
 console.log(chalk.blue('-'.repeat(70)));
 
 // First, try to load the user's secrets.
