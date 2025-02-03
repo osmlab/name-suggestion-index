@@ -122,6 +122,7 @@ fileTree.expandTemplates(_cache, loco);
 // Gather all QIDs referenced by any tag..
 console.log('');
 console.log('🏗   ' + chalk.yellow(`Syncing Wikidata with name-suggestion-index ...`));
+console.log('       ... this is done in batches, and may take around 10 minutes ...');
 let _wikidata = {};
 let _qidItems = {};       // any item referenced by a qid
 let _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
