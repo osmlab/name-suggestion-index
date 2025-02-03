@@ -24,6 +24,7 @@
         "^tienda( de (barrio|abarrotes|variedades))?$",
         "^tiendita$",
         "^мінімаркет$",
+        "^продовольственный магазин$",
         "^продукт(овый|и|ы)?( магазин)?$",
         "^продуктовий( магазин)?$",
         "^универ(маг|сам)$",
@@ -34,20 +35,22 @@
         "^小卖部$"
       ],
       "named": [
-        "^(24 часа|августина|альянс|апельсин|ассорти|бер[её]зка|бриз|валентина|весна|визит|ветеран|водолей|гастроном|гермес|гурман|диана|добрый|дружба|домашний|елена)$",
+        "^(24 часа|августина|альянс|апельсин|анастасия|ассорти|бер[её]зка|бриз|валентина|весна|визит|ветеран|водолей|гастроном|гермес|гурман|диана|добрый|дружба|домашний|елена)$",
         "^(777|independent)$",
+        "^(abarrotes|boutique d'alimentation|sup[eé]rette|tienda de alimentación)$",
         "^(almac[eé]n|despensa|mini\\s?abc|milk bar)$",
-        "^(boutique d'alimentation|sup[eé]rette)$",
+        "^(express( mart)?|e-?z mart|pronto|quick stop|select|shop & go|snack shop|super 7|the corner shop)$",
         "^(калинка|каштан|колобок|колос(ок)?|каравай|кооператор|корзинка|кулинария|лакомка|ласточка|лидер|луч|любава|любимый|людмила|люкс)$",
         "^(меркурий|мечта|мираж|белорусские продукты|продукты 24|натали|надежда|ника)$",
-        "^(оазис|околица|олимп|парус|пеликан|престиж|подсолнух|радуга|росинка|ромашка|родник|рассвет|русь)$",
-        "^(сельпо|семейный|сказка|солнышко|спутник|солнечный|светлана|удача|ивушка)$",
+        "^(оазис|околица|олимп|ольга|парус|пеликан|престиж|подсолнух|радуга|росинка|ромашка|родник|рассвет|русь)$",
+        "^(сельпо|семейный|сказка|солнышко|спутник|солнечный|светлана|север|удача|ивушка)$",
         "^(юбилейный|южный|юлия|эконом|шанс|чайка|центральный|хороший|хуторок|фаворит|фортуна|татьяна|тройка|эдем|уют)$",
         "^(昭和|ロイヤル・ダッチ・)?シェル(石油)?$",
         "^караван$",
         "^лукошко$",
         "^руслан$",
-        "^смак$"
+        "^смак$",
+        "^مواد غذائية$"
       ]
     }
   },
@@ -111,10 +114,10 @@
     {
       "displayName": "7-Eleven (Norge)",
       "id": "7eleven-2da37b",
+      "issues": [5500],
       "locationSet": {"include": ["no"]},
       "matchNames": ["7-11", "seven eleven"],
       "matchTags": ["shop/supermarket"],
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
       "preserveTags": ["^name"],
       "tags": {
         "brand": "7-Eleven",
@@ -176,30 +179,9 @@
       }
     },
     {
-      "displayName": "A101",
-      "id": "a101-62eaab",
-      "locationSet": {"include": ["tr"]},
-      "tags": {
-        "brand": "A101",
-        "brand:wikidata": "Q6034496",
-        "name": "A101",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Abarrotes",
-      "id": "abarrotes-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Abarrotes",
-        "name": "Abarrotes",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Abarrotes Lupita",
-      "id": "abarroteslupita-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "abarroteslupita-9d5235",
+      "locationSet": {"include": ["mx"]},
       "tags": {
         "brand": "Abarrotes Lupita",
         "name": "Abarrotes Lupita",
@@ -244,8 +226,10 @@
     },
     {
       "displayName": "Admiral",
-      "id": "admiral-f1e40b",
-      "locationSet": {"include": ["us"]},
+      "id": "admiral-d554ea",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "tags": {
         "brand": "Admiral",
         "name": "Admiral",
@@ -425,6 +409,9 @@
       "id": "alonit-2f0294",
       "locationSet": {"include": ["il"]},
       "tags": {
+        "brand": "אלונית",
+        "brand:en": "Alonit",
+        "brand:he": "אלונית",
         "name": "אלונית",
         "name:en": "Alonit",
         "name:he": "אלונית",
@@ -505,16 +492,6 @@
       }
     },
     {
-      "displayName": "Ampol Foodary",
-      "id": "ampolfoodary-0b0ae9",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "brand": "Ampol Foodary",
-        "name": "Ampol Foodary",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "APlus (Sunoco)",
       "id": "aplus-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -552,21 +529,21 @@
     },
     {
       "displayName": "Arambagh Foodmart",
-      "id": "null",
+      "id": "arambaghfoodmart-bb430b",
       "locationSet": {"include": ["in"]},
-      "matchNames": ["arambaghs foodmart", "arambagh chicken"],
+      "matchNames": [
+        "arambagh chicken",
+        "arambaghs foodmart"
+      ],
       "tags": {
+        "air_conditioning": "yes",
         "brand": "Arambagh Foodmart",
         "brand:wikidata": "Q130550508",
         "name": "Arambagh Foodmart",
-        "name:en": "Arambagh Foodmart",
         "name:bn": "আরামবাঘ ফুডমার্ট",
-        "shop": "convenience",
-        "air_conditioning": "yes",
+        "name:en": "Arambagh Foodmart",
         "payment:cash": "yes",
-        "contact:website":"https://arambaghfoodmart.com/",
-        "contact:email": "customercare@arambaghfoodmart.com",
-        "website:map": "https://arambaghfoodmart.com/our-footprints/"
+        "shop": "convenience"
       }
     },
     {
@@ -631,7 +608,7 @@
     },
     {
       "displayName": "Avia",
-      "id": "avia-3fdfc9",
+      "id": "avia-da37e8",
       "locationSet": {
         "include": [
           "at",
@@ -641,7 +618,7 @@
           "cz",
           "de",
           "es",
-          "fr",
+          "fx",
           "hu",
           "it",
           "nl",
@@ -655,6 +632,19 @@
         "brand": "Avia",
         "brand:wikidata": "Q300147",
         "name": "Avia",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Avondale Food Stores",
+      "id": "avondalefoodstores-e144dd",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "brand": "Avondale Food Stores",
+        "brand:wikidata": "Q129409858",
+        "name": "Avondale Food Stores",
         "shop": "convenience"
       }
     },
@@ -861,8 +851,10 @@
     },
     {
       "displayName": "BİM",
-      "id": "bim-8e964d",
-      "locationSet": {"include": ["ma", "tr"]},
+      "id": "bim-6cb8de",
+      "locationSet": {
+        "include": ["eg", "ma", "tr"]
+      },
       "tags": {
         "brand": "BİM",
         "brand:wikidata": "Q1022075",
@@ -884,8 +876,8 @@
     },
     {
       "displayName": "Bon App!",
-      "id": "bonapp-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "bonapp-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Bon App!",
         "brand:wikidata": "Q90153100",
@@ -991,6 +983,18 @@
       }
     },
     {
+      "displayName": "Brněnka",
+      "id": "brnenka-a7773e",
+      "locationSet": {"include": ["cz"]},
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "Brněnka",
+        "brand:wikidata": "Q14594510",
+        "name": "Brněnka",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Buc-ee's",
       "id": "bucees-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -1021,6 +1025,7 @@
       },
       "tags": {
         "brand": "Caltex",
+        "brand:wikidata": "Q277470",
         "name": "Caltex",
         "shop": "convenience"
       }
@@ -1050,8 +1055,8 @@
     },
     {
       "displayName": "Carrefour Montagne",
-      "id": "carrefourmontagne-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "carrefourmontagne-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Carrefour Montagne",
         "brand:wikidata": "Q2940193",
@@ -1088,14 +1093,31 @@
     },
     {
       "displayName": "CBA",
-      "id": "cba-a1e3fb",
+      "id": "cba-f7572f",
       "locationSet": {
-        "include": ["bg", "hu", "ro", "sk"]
+        "include": ["hu", "ro", "sk"]
       },
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "CBA",
         "brand:wikidata": "Q779845",
         "name": "CBA",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "CBA (България)",
+      "id": "cba-854be4",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "CBA",
+        "brand:bg": "ЦБА",
+        "brand:en": "CBA",
+        "brand:wikidata": "Q779845",
+        "name": "CBA",
+        "name:bg": "ЦБА",
+        "name:en": "CBA",
+        "operator": "ЦБА България",
         "shop": "convenience"
       }
     },
@@ -1183,6 +1205,7 @@
       "displayName": "Cheers",
       "id": "cheers-a4ab31",
       "locationSet": {"include": ["sg", "vn"]},
+      "preserveTags": ["^opening_hours"],
       "tags": {
         "brand": "Cheers",
         "brand:wikidata": "Q64154066",
@@ -1219,6 +1242,7 @@
       "locationSet": {"include": ["001"]},
       "matchNames": [
         "circle k canada",
+        "mac's",
         "mac's convenience stores",
         "ok",
         "ok-mart"
@@ -1309,10 +1333,10 @@
       "locationSet": {"include": ["gg", "je"]},
       "tags": {
         "brand": "Co-operative En Route",
-        "brand:wikidata": "Q107594899",
+        "brand:wikidata": "Q108129104",
         "name": "Co-operative En Route",
         "operator": "Channel Islands Co-operative Society",
-        "operator:wikidata": "Q108129104",
+        "operator:wikidata": "Q5072404",
         "shop": "convenience"
       }
     },
@@ -1331,8 +1355,8 @@
     },
     {
       "displayName": "CocciMarket",
-      "id": "coccimarket-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "coccimarket-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "CocciMarket",
@@ -1343,8 +1367,8 @@
     },
     {
       "displayName": "CocciMarket City",
-      "id": "coccimarketcity-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "coccimarketcity-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "CocciMarket City",
         "brand:wikidata": "Q90020481",
@@ -1372,7 +1396,7 @@
         "brand:wikidata": "Q5144653",
         "name": "Coles Express",
         "operator": "Coles Group",
-        "operator:wikidata": "Q1339055",
+        "operator:wikidata": "Q131937428",
         "shop": "convenience"
       }
     },
@@ -1434,8 +1458,10 @@
     },
     {
       "displayName": "Coop Atlantique",
-      "id": "coopatlantique-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "coopatlantique-c38318",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
       "tags": {
         "brand": "Coop Atlantique",
         "brand:wikidata": "Q2996560",
@@ -1643,8 +1669,8 @@
     },
     {
       "displayName": "day by day",
-      "id": "daybyday-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "daybyday-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "day by day",
         "brand:wikidata": "Q48748765",
@@ -1683,6 +1709,22 @@
         "brand": "Daybreak",
         "brand:wikidata": "Q112901144",
         "name": "Daybreak",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Delhaize Shop & Go",
+      "id": "shopandgo-7c93c4",
+      "locationSet": {"include": ["be", "lu"]},
+      "matchNames": [
+        "delhaize shop & go",
+        "shop & go",
+        "shop & go delhaize"
+      ],
+      "tags": {
+        "brand": "Delhaize",
+        "brand:wikidata": "Q1184173",
+        "name": "Shop & Go",
         "shop": "convenience"
       }
     },
@@ -1749,6 +1791,17 @@
       }
     },
     {
+      "displayName": "Despar",
+      "id": "despar-271792",
+      "locationSet": {"include": ["hu", "it"]},
+      "tags": {
+        "brand": "Spar",
+        "brand:wikidata": "Q610492",
+        "name": "Despar",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Dia & Go",
       "id": "diaandgo-dd9aae",
       "locationSet": {"include": ["es"]},
@@ -1783,8 +1836,8 @@
     },
     {
       "displayName": "Douka",
-      "id": "douka-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "douka-1c33c5",
+      "locationSet": {"include": ["yt"]},
       "tags": {
         "brand": "Douka",
         "name": "Douka",
@@ -1863,7 +1916,7 @@
     },
     {
       "displayName": "Eni Shop",
-      "id": "enishop-8b7ed5",
+      "id": "enishop-a98884",
       "locationSet": {
         "include": [
           "at",
@@ -1871,7 +1924,7 @@
           "cy",
           "de",
           "es",
-          "fr",
+          "fx",
           "it"
         ]
       },
@@ -1895,8 +1948,8 @@
     },
     {
       "displayName": "Épi Service",
-      "id": "episervice-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "episervice-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Épi Service",
         "name": "Épi Service",
@@ -1905,8 +1958,8 @@
     },
     {
       "displayName": "Epicier بقال",
-      "id": "0ae0d0-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "0ae0d0-b6e881",
+      "locationSet": {"include": ["ma"]},
       "tags": {
         "brand": "Epicier بقال",
         "name": "Epicier بقال",
@@ -1936,26 +1989,6 @@
       }
     },
     {
-      "displayName": "Express",
-      "id": "express-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Express",
-        "name": "Express",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Express Mart",
-      "id": "expressmart-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Express Mart",
-        "name": "Express Mart",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "ExtraMile",
       "id": "extramile-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -1963,16 +1996,6 @@
         "brand": "ExtraMile",
         "brand:wikidata": "Q64224605",
         "name": "ExtraMile",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "EZ Mart",
-      "id": "ezmart-f1e40b",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "brand": "EZ Mart",
-        "name": "EZ Mart",
         "shop": "convenience"
       }
     },
@@ -2023,7 +2046,7 @@
       },
       "tags": {
         "brand": "FamilyMart",
-        "brand:wikidata": "Q1191685",
+        "brand:wikidata": "Q11247682",
         "name": "FamilyMart",
         "shop": "convenience"
       }
@@ -2083,8 +2106,10 @@
       "displayName": "Foodary",
       "id": "foodary-0b0ae9",
       "locationSet": {"include": ["au"]},
+      "matchNames": ["ampol foodary"],
       "tags": {
-        "brand": "Foodary",
+        "brand": "Ampol",
+        "brand:wikidata": "Q4748528",
         "name": "Foodary",
         "shop": "convenience"
       }
@@ -2126,11 +2151,24 @@
     },
     {
       "displayName": "Fresh Corner",
-      "id": "freshcorner-2496a5",
-      "locationSet": {"include": ["sk"]},
+      "id": "freshcorner-f9f0e2",
+      "locationSet": {
+        "include": [
+          "ba",
+          "cz",
+          "hr",
+          "hu",
+          "me",
+          "pl",
+          "ro",
+          "rs",
+          "si",
+          "sk"
+        ]
+      },
       "tags": {
         "brand": "Fresh Corner",
-        "brand:wikidata": "Q1587563",
+        "brand:wikidata": "Q129256375",
         "name": "Fresh Corner",
         "shop": "convenience"
       }
@@ -2227,6 +2265,25 @@
       }
     },
     {
+      "displayName": "GATE",
+      "id": "gate-243e0e",
+      "locationSet": {
+        "include": [
+          "us-fl.geojson",
+          "us-ga.geojson",
+          "us-nc.geojson",
+          "us-sc.geojson"
+        ]
+      },
+      "matchNames": ["gate petroleum"],
+      "tags": {
+        "brand": "GATE",
+        "brand:wikidata": "Q5526991",
+        "name": "GATE",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Gavranović",
       "id": "gavranovic-5b00ff",
       "locationSet": {"include": ["hr"]},
@@ -2284,6 +2341,7 @@
         "brand": "Gomex",
         "brand:wikidata": "Q115570534",
         "name": "Gomex",
+        "name:en": "Gomex",
         "name:sr": "Гомекс",
         "name:sr-Latn": "Gomeks",
         "shop": "convenience"
@@ -2488,6 +2546,7 @@
         "brand:sr": "Идеа",
         "brand:wikidata": "Q23461622",
         "name": "IDEA",
+        "name:en": "IDEA",
         "name:sr": "Идеа",
         "name:sr-Latn": "Idea",
         "shop": "convenience"
@@ -2503,6 +2562,7 @@
         "brand:sr": "Идеа органик",
         "brand:wikidata": "Q114670320",
         "name": "IDEA Organic",
+        "name:en": "IDEA Organic",
         "name:sr": "Идеа органик",
         "name:sr-Latn": "Idea organik",
         "organic": "only",
@@ -2522,6 +2582,18 @@
       }
     },
     {
+      "displayName": "InCoop",
+      "id": "incoop-1aaf3e",
+      "locationSet": {"include": ["it"]},
+      "matchTags": ["shop/supermarket"],
+      "tags": {
+        "brand": "InCoop",
+        "brand:wikidata": "Q131934414",
+        "name": "InCoop",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Indomaret",
       "id": "indomaret-bb8a09",
       "locationSet": {"include": ["id"]},
@@ -2536,8 +2608,8 @@
     },
     {
       "displayName": "Intermarché Contact",
-      "id": "intermarchecontact-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "intermarchecontact-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "Intermarché Contact",
@@ -2548,8 +2620,8 @@
     },
     {
       "displayName": "Intermarché Express",
-      "id": "intermarcheexpress-eb59aa",
-      "locationSet": {"include": ["fr", "pt"]},
+      "id": "intermarcheexpress-f3ab02",
+      "locationSet": {"include": ["fx", "pt"]},
       "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "Intermarché Express",
@@ -2564,6 +2636,7 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "brand": "Ipiranga",
+        "brand:wikidata": "Q2081136",
         "name": "Ipiranga",
         "shop": "convenience"
       }
@@ -2582,9 +2655,10 @@
     },
     {
       "displayName": "J&H Family Stores",
-      "id": "jandhfamilystores-f1e40b",
-      "locationSet": {"include": ["us"]},
-      "note": "ISO_3166-2:US us-mi (Michigan State of the USA)",
+      "id": "jandhfamilystores-d554ea",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "tags": {
         "brand": "J&H Family Stores",
         "name": "J&H Family Stores",
@@ -2934,8 +3008,8 @@
     },
     {
       "displayName": "le marché d'à côté",
-      "id": "lemarchedacote-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "lemarchedacote-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "matchNames": ["marché d'à côté"],
       "tags": {
         "brand": "le marché d'à côté",
@@ -3109,17 +3183,6 @@
       }
     },
     {
-      "displayName": "Mac's",
-      "id": "macs-eea72f",
-      "locationSet": {"include": ["ca"]},
-      "tags": {
-        "brand": "Mac's",
-        "brand:wikidata": "Q4043527",
-        "name": "Mac's",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Mace (Ireland)",
       "id": "mace-cb4625",
       "locationSet": {"include": ["ie"]},
@@ -3151,6 +3214,38 @@
         "brand": "Mace",
         "brand:wikidata": "Q75240338",
         "name": "Mace",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Madagoni / მადაგონი / Мадагони",
+      "id": "madagoni-3cb7c4",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "მადაგონი",
+        "brand:en": "Madagoni",
+        "brand:ka": "მადაგონი",
+        "brand:ru": "Мадагони",
+        "brand:wikidata": "Q131469983",
+        "name": "მადაგონი",
+        "name:en": "Madagoni",
+        "name:ka": "მადაგონი",
+        "name:ru": "Мадагони",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Magnit",
+      "id": "magnit-6b6bf4",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ru"]
+      },
+      "matchNames": ["магнит", "магнит у дома"],
+      "tags": {
+        "brand": "Magnit",
+        "brand:wikidata": "Q940518",
+        "name": "Magnit",
         "shop": "convenience"
       }
     },
@@ -3423,17 +3518,6 @@
       }
     },
     {
-      "displayName": "Migros",
-      "id": "migros-62eaab",
-      "locationSet": {"include": ["tr"]},
-      "tags": {
-        "brand": "Migros",
-        "brand:wikidata": "Q1754510",
-        "name": "Migros",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Migros Jet",
       "id": "migrosjet-62eaab",
       "locationSet": {"include": ["tr"]},
@@ -3469,7 +3553,7 @@
     },
     {
       "displayName": "Mini Mix",
-      "id": "minimix-57794c",
+      "id": "minimix-ba18ab",
       "locationSet": {
         "include": [
           "at",
@@ -3478,7 +3562,7 @@
           "cz",
           "de",
           "es",
-          "fr",
+          "fx",
           "gb",
           "gr",
           "it",
@@ -3592,6 +3676,18 @@
       }
     },
     {
+      "displayName": "Môj obchod",
+      "id": "mojobchod-2496a5",
+      "locationSet": {"include": ["sk"]},
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "Môj obchod",
+        "brand:wikidata": "Q126736496",
+        "name": "Môj obchod",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Mokpol",
       "id": "mokpol-95f41b",
       "locationSet": {"include": ["pl"]},
@@ -3624,8 +3720,8 @@
     },
     {
       "displayName": "Monop'",
-      "id": "monop-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "monop-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Monop'",
         "brand:wikidata": "Q89913683",
@@ -3673,10 +3769,12 @@
     },
     {
       "displayName": "Můj obchod",
-      "id": "mujobchod-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "mujobchod-a7773e",
+      "locationSet": {"include": ["cz"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Můj obchod",
+        "brand:wikidata": "Q130658827",
         "name": "Můj obchod",
         "shop": "convenience"
       }
@@ -3705,8 +3803,8 @@
     },
     {
       "displayName": "My Auchan",
-      "id": "myauchan-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "myauchan-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "My Auchan",
@@ -3847,8 +3945,8 @@
     },
     {
       "displayName": "NOUS anti-gaspi",
-      "id": "nousantigaspi-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "nousantigaspi-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "NOUS anti-gaspi",
@@ -3911,6 +4009,18 @@
         "brand": "OK Market",
         "brand:wikidata": "Q6047736",
         "name": "OK Market",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Okay Compact",
+      "id": "okaycompact-425fa5",
+      "locationSet": {"include": ["be"]},
+      "matchNames": ["okay city"],
+      "tags": {
+        "brand": "Okay",
+        "brand:wikidata": "Q2159701",
+        "name": "Okay Compact",
         "shop": "convenience"
       }
     },
@@ -3987,6 +4097,17 @@
       }
     },
     {
+      "displayName": "One-O-One",
+      "id": "oneoone-8978c5",
+      "locationSet": {"include": ["gb-sct"]},
+      "tags": {
+        "brand": "One-O-One",
+        "brand:wikidata": "Q131863290",
+        "name": "One-O-One",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Orlen",
       "id": "orlen-95f41b",
       "locationSet": {"include": ["pl"]},
@@ -4043,8 +4164,8 @@
     },
     {
       "displayName": "Panamericana",
-      "id": "panamericana-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "panamericana-915f01",
+      "locationSet": {"include": ["cu"]},
       "tags": {
         "brand": "Panamericana",
         "name": "Panamericana",
@@ -4053,8 +4174,8 @@
     },
     {
       "displayName": "Panier Sympa",
-      "id": "paniersympa-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "paniersympa-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Panier Sympa",
         "brand:wikidata": "Q118129533",
@@ -4088,8 +4209,8 @@
     },
     {
       "displayName": "PDV",
-      "id": "pdv-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "pdv-ee1d1f",
+      "locationSet": {"include": ["ve"]},
       "tags": {
         "brand": "PDV",
         "name": "PDV",
@@ -4122,8 +4243,8 @@
     },
     {
       "displayName": "Petrobras",
-      "id": "petrobras-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "petrobras-bf26cc",
+      "locationSet": {"include": ["005"]},
       "tags": {
         "brand": "Petrobras",
         "name": "Petrobras",
@@ -4136,6 +4257,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Phillips 66",
+        "brand:wikidata": "Q1656230",
         "name": "Phillips 66",
         "shop": "convenience"
       }
@@ -4221,16 +4343,6 @@
       }
     },
     {
-      "displayName": "Pronto",
-      "id": "pronto-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Pronto",
-        "name": "Pronto",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Proxi",
       "id": "proxi-6fdfa6",
       "locationSet": {"include": ["ch", "fr"]},
@@ -4262,16 +4374,6 @@
         "brand": "Quality Mart",
         "brand:wikidata": "Q66134834",
         "name": "Quality Mart",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Quick Stop",
-      "id": "quickstop-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Quick Stop",
-        "name": "Quick Stop",
         "shop": "convenience"
       }
     },
@@ -4392,6 +4494,7 @@
         "reál hungária élelmiszer kereskedelmi kft.",
         "reál pont"
       ],
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Reál",
         "brand:wikidata": "Q100741414",
@@ -4605,16 +4708,6 @@
       }
     },
     {
-      "displayName": "Select",
-      "id": "select-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Select",
-        "name": "Select",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Servicompras",
       "id": "servicompras-4c351f",
       "locationSet": {"include": ["ar"]},
@@ -4684,16 +4777,6 @@
         "brand": "Shell Shop",
         "brand:wikidata": "Q110716465",
         "name": "Shell Shop",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Shop & Go",
-      "id": "shopandgo-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Shop & Go",
-        "name": "Shop & Go",
         "shop": "convenience"
       }
     },
@@ -4781,6 +4864,17 @@
       }
     },
     {
+      "displayName": "SimplyFresh",
+      "id": "simplyfresh-232829",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "brand": "SimplyFresh",
+        "brand:wikidata": "Q131438635",
+        "name": "SimplyFresh",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Siwa",
       "id": "siwa-5dea79",
       "locationSet": {"include": ["fi"]},
@@ -4825,33 +4919,12 @@
       }
     },
     {
-      "displayName": "Snack Shop",
-      "id": "snackshop-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Snack Shop",
-        "name": "Snack Shop",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Snarkjøp",
-      "id": "snarkjop-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "snarkjop-2da37b",
+      "locationSet": {"include": ["no"]},
       "tags": {
         "brand": "Snarkjøp",
         "name": "Snarkjøp",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Şok",
-      "id": "sok-62eaab",
-      "locationSet": {"include": ["tr"]},
-      "tags": {
-        "brand": "Şok",
-        "brand:wikidata": "Q19613992",
-        "name": "Şok",
         "shop": "convenience"
       }
     },
@@ -4884,8 +4957,8 @@
     {
       "displayName": "Spar (Norge)",
       "id": "spar-2da37b",
+      "issues": [5500],
       "locationSet": {"include": ["no"]},
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
       "preserveTags": ["^name"],
       "tags": {
         "brand": "Spar",
@@ -4925,9 +4998,9 @@
     {
       "displayName": "Spar Express (Norge)",
       "id": "sparexpress-2da37b",
+      "issues": [5500],
       "locationSet": {"include": ["no"]},
       "matchTags": ["shop/supermarket"],
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
       "preserveTags": ["^name"],
       "tags": {
         "brand": "Spar",
@@ -5061,12 +5134,13 @@
       }
     },
     {
-      "displayName": "Super 7",
-      "id": "super7-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Super DIS",
+      "id": "superdis-3015fb",
+      "locationSet": {"include": ["rs"]},
       "tags": {
-        "brand": "Super 7",
-        "name": "Super 7",
+        "brand": "Super DIS",
+        "brand:wikidata": "Q131762246",
+        "name": "Super DIS",
         "shop": "convenience"
       }
     },
@@ -5154,6 +5228,17 @@
       }
     },
     {
+      "displayName": "Terno",
+      "id": "terno-2496a5",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "brand": "Terno",
+        "brand:wikidata": "Q131153895",
+        "name": "Terno",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Terrible's",
       "id": "terribles-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -5180,11 +5265,31 @@
       }
     },
     {
+      "displayName": "Tesco Expres",
+      "id": "tescoexpres-2496a5",
+      "issues": [10312],
+      "locationSet": {"include": ["sk"]},
+      "matchNames": ["tesco express"],
+      "matchTags": ["shop/supermarket"],
+      "note": "In Slovakia, the chain is labeled 'Tesco Expres' (single trailing 's').",
+      "tags": {
+        "brand": "Tesco Expres",
+        "brand:wikidata": "Q98456772",
+        "name": "Tesco Expres",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Tesco Express",
-      "id": "tescoexpress-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "tescoexpress-65faa4",
+      "issues": [10312],
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["sk"]
+      },
       "matchNames": ["tesco metro"],
       "matchTags": ["shop/supermarket"],
+      "note": "In Slovakia, the chain is labeled 'Tesco Expres' (single trailing 's'), so exclude this entry in favour of a seperate one.",
       "tags": {
         "brand": "Tesco Express",
         "brand:wikidata": "Q98456772",
@@ -5204,16 +5309,6 @@
       }
     },
     {
-      "displayName": "The Corner Shop",
-      "id": "thecornershop-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "The Corner Shop",
-        "name": "The Corner Shop",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Thorntons",
       "id": "thorntons-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -5221,16 +5316,6 @@
         "brand": "Thorntons",
         "brand:wikidata": "Q7796584",
         "name": "Thorntons",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Tienda de Alimentación",
-      "id": "tiendadealimentacion-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Tienda de Alimentación",
-        "name": "Tienda de Alimentación",
         "shop": "convenience"
       }
     },
@@ -5260,8 +5345,10 @@
     },
     {
       "displayName": "Timewise",
-      "id": "timewise-f1e40b",
-      "locationSet": {"include": ["us"]},
+      "id": "timewise-944bfe",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "brand": "Timewise",
         "name": "Timewise",
@@ -5291,8 +5378,8 @@
     },
     {
       "displayName": "Top Market",
-      "id": "topmarket-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "topmarket-95f41b",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Top Market",
         "name": "Top Market",
@@ -5323,10 +5410,11 @@
     },
     {
       "displayName": "Total Access",
-      "id": "totalaccess-f6dc0a",
-      "locationSet": {"include": ["fx"]},
+      "id": "totalaccess-bf3eb4",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "brand": "Total Access",
+        "brand:wikidata": "Q154037",
         "name": "Total Access",
         "shop": "convenience"
       }
@@ -5354,10 +5442,11 @@
     },
     {
       "displayName": "Treats",
-      "id": "treats-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "treats-27379b",
+      "locationSet": {"include": ["my", "ph"]},
       "tags": {
         "brand": "Treats",
+        "brand:wikidata": "Q131626530",
         "name": "Treats",
         "shop": "convenience"
       }
@@ -5535,9 +5624,9 @@
     },
     {
       "displayName": "Valero",
-      "id": "valero-e1ca53",
+      "id": "valero-6ca601",
       "locationSet": {
-        "include": ["ca", "de", "fr", "gb", "us"]
+        "include": ["ca", "de", "fx", "gb", "us"]
       },
       "tags": {
         "brand": "Valero",
@@ -5617,8 +5706,8 @@
     },
     {
       "displayName": "Viveco",
-      "id": "viveco-bf3eb4",
-      "locationSet": {"include": ["fr"]},
+      "id": "viveco-f6dc0a",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Viveco",
         "name": "Viveco",
@@ -5665,6 +5754,17 @@
         "brand": "Wawa",
         "brand:wikidata": "Q5936320",
         "name": "Wawa",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Weigel's",
+      "id": "weigels-f1e40b",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Weigel's",
+        "brand_wikidata": "Q7979844",
+        "name": "Weigel's",
         "shop": "convenience"
       }
     },
@@ -5717,8 +5817,8 @@
     },
     {
       "displayName": "x",
-      "id": "x-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "x-fb2210",
+      "locationSet": {"include": ["ph"]},
       "tags": {
         "brand": "x",
         "name": "x",
@@ -5727,10 +5827,11 @@
     },
     {
       "displayName": "XL",
-      "id": "xl-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "xl-cb4625",
+      "locationSet": {"include": ["ie"]},
       "tags": {
         "brand": "XL",
+        "brand:wikidata": "Q4836838",
         "name": "XL",
         "shop": "convenience"
       }
@@ -5822,6 +5923,7 @@
       "displayName": "Żappka",
       "id": "zappka-95f41b",
       "locationSet": {"include": ["pl"]},
+      "preserveTags": ["^opening_hours"],
       "tags": {
         "brand": "Żappka",
         "brand:wikidata": "Q113307807",
@@ -5912,8 +6014,8 @@
     },
     {
       "displayName": "Азбука daily",
-      "id": "2c5fb3-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "2c5fb3-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Азбука daily",
         "name": "Азбука daily",
@@ -5922,8 +6024,10 @@
     },
     {
       "displayName": "Айсберг",
-      "id": "6580f9-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "6580f9-7f3189",
+      "locationSet": {
+        "include": ["kg", "kz", "ru"]
+      },
       "tags": {
         "brand": "Айсберг",
         "name": "Айсберг",
@@ -5943,16 +6047,6 @@
         "name": "Акконд",
         "name:en": "Akkond",
         "name:ru": "Акконд",
-        "shop": "convenience"
-      }
-    },
-    {
-      "displayName": "Анастасия",
-      "id": "87876a-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Анастасия",
-        "name": "Анастасия",
         "shop": "convenience"
       }
     },
@@ -6042,8 +6136,10 @@
     },
     {
       "displayName": "Волна",
-      "id": "34f9fe-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "34f9fe-1656a9",
+      "locationSet": {
+        "include": ["by", "kg", "kz", "ru"]
+      },
       "tags": {
         "brand": "Волна",
         "name": "Волна",
@@ -6074,8 +6170,8 @@
     },
     {
       "displayName": "Грошык",
-      "id": "72f03f-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "72f03f-e64bef",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "brand": "Грошык",
         "name": "Грошык",
@@ -6112,6 +6208,17 @@
         "brand": "Доброном",
         "brand:wikidata": "Q97312362",
         "name": "Доброном",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Домашній маркет",
+      "id": "06a7d6-023e9c",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "brand": "Домашній маркет",
+        "brand:wikidata": "Q131607469",
+        "name": "Домашній маркет",
         "shop": "convenience"
       }
     },
@@ -6157,8 +6264,10 @@
     },
     {
       "displayName": "Заря",
-      "id": "9020b8-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "9020b8-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Заря",
         "name": "Заря",
@@ -6167,8 +6276,10 @@
     },
     {
       "displayName": "Изюминка",
-      "id": "8d46a2-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "8d46a2-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Изюминка",
         "name": "Изюминка",
@@ -6177,8 +6288,8 @@
     },
     {
       "displayName": "Йола-маркет",
-      "id": "685f12-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "685f12-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Йола-маркет",
         "name": "Йола-маркет",
@@ -6187,8 +6298,10 @@
     },
     {
       "displayName": "Катюша",
-      "id": "60a976-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "60a976-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Катюша",
         "name": "Катюша",
@@ -6219,8 +6332,8 @@
     },
     {
       "displayName": "Квартет вкусов",
-      "id": "8a217e-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "8a217e-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Квартет вкусов",
         "name": "Квартет вкусов",
@@ -6229,8 +6342,8 @@
     },
     {
       "displayName": "Кедр",
-      "id": "5f2eca-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "5f2eca-685d2b",
+      "locationSet": {"include": ["kz", "ru"]},
       "tags": {
         "brand": "Кедр",
         "name": "Кедр",
@@ -6276,9 +6389,11 @@
       "tags": {
         "brand": "Копейка",
         "brand:en": "Kopeyka",
+        "brand:ru": "Копейка",
         "brand:wikidata": "Q1783878",
         "name": "Копейка",
         "name:en": "Kopeyka",
+        "name:ru": "Копейка",
         "shop": "convenience"
       }
     },
@@ -6319,8 +6434,10 @@
     },
     {
       "displayName": "Лилия",
-      "id": "baaf01-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "baaf01-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Лилия",
         "name": "Лилия",
@@ -6346,9 +6463,9 @@
       }
     },
     {
-      "displayName": "Магнит",
-      "id": "magnit-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Магнит (России)",
+      "id": "magnit-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "matchNames": ["магнит у дома"],
       "tags": {
         "brand": "Магнит",
@@ -6363,8 +6480,8 @@
     },
     {
       "displayName": "Малинка",
-      "id": "3776eb-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "3776eb-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Малинка",
         "name": "Малинка",
@@ -6373,8 +6490,8 @@
     },
     {
       "displayName": "Мария",
-      "id": "cb9d04-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "cb9d04-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Мария",
         "name": "Мария",
@@ -6399,6 +6516,23 @@
       "tags": {
         "brand": "Маяк",
         "name": "Маяк",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Мій Ашан",
+      "id": "myauchan-023e9c",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": ["мій auchan"],
+      "matchTags": ["shop/supermarket"],
+      "tags": {
+        "brand": "Мій Ашан",
+        "brand:en": "My Auchan",
+        "brand:uk": "Мій Ашан",
+        "brand:wikidata": "Q4073419",
+        "name": "Мій Ашан",
+        "name:en": "My Auchan",
+        "name:uk": "Мій Ашан",
         "shop": "convenience"
       }
     },
@@ -6442,8 +6576,8 @@
     },
     {
       "displayName": "МясновЪ",
-      "id": "a45bbc-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "a45bbc-065292",
+      "locationSet": {"include": ["by", "ru"]},
       "tags": {
         "brand": "МясновЪ",
         "name": "МясновЪ",
@@ -6452,8 +6586,10 @@
     },
     {
       "displayName": "Народный",
-      "id": "357655-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "357655-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Народный",
         "name": "Народный",
@@ -6462,8 +6598,8 @@
     },
     {
       "displayName": "Находка",
-      "id": "91c68a-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "91c68a-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Находка",
         "name": "Находка",
@@ -6472,8 +6608,10 @@
     },
     {
       "displayName": "Наш",
-      "id": "bd53d6-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "bd53d6-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Наш",
         "name": "Наш",
@@ -6482,8 +6620,8 @@
     },
     {
       "displayName": "Нива",
-      "id": "c10063-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "c10063-065292",
+      "locationSet": {"include": ["by", "ru"]},
       "tags": {
         "brand": "Нива",
         "name": "Нива",
@@ -6492,8 +6630,10 @@
     },
     {
       "displayName": "Огонёк",
-      "id": "9f9c54-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "9f9c54-1656a9",
+      "locationSet": {
+        "include": ["by", "kg", "kz", "ru"]
+      },
       "tags": {
         "brand": "Огонёк",
         "name": "Огонёк",
@@ -6502,8 +6642,8 @@
     },
     {
       "displayName": "Океан",
-      "id": "11b259-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "11b259-065292",
+      "locationSet": {"include": ["by", "ru"]},
       "tags": {
         "brand": "Океан",
         "name": "Океан",
@@ -6511,19 +6651,9 @@
       }
     },
     {
-      "displayName": "Ольга",
-      "id": "ca9192-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Ольга",
-        "name": "Ольга",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Оптовичок",
-      "id": "303083-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "303083-023e9c",
+      "locationSet": {"include": ["ua"]},
       "tags": {
         "brand": "Оптовичок",
         "name": "Оптовичок",
@@ -6532,8 +6662,8 @@
     },
     {
       "displayName": "Победа",
-      "id": "67c2f7-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "67c2f7-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Победа",
         "name": "Победа",
@@ -6542,8 +6672,8 @@
     },
     {
       "displayName": "Покупалко",
-      "id": "e1e2a4-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "e1e2a4-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Покупалко",
         "name": "Покупалко",
@@ -6552,8 +6682,8 @@
     },
     {
       "displayName": "Покупочка",
-      "id": "1019ea-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "1019ea-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Покупочка",
         "name": "Покупочка",
@@ -6576,19 +6706,9 @@
       }
     },
     {
-      "displayName": "Продовольственный магазин",
-      "id": "7fa32f-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Продовольственный магазин",
-        "name": "Продовольственный магазин",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Продсклад Победа",
-      "id": "11a4a0-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "11a4a0-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Продсклад Победа",
         "name": "Продсклад Победа",
@@ -6597,8 +6717,10 @@
     },
     {
       "displayName": "Пятачок",
-      "id": "bfeaa1-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "bfeaa1-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Пятачок",
         "name": "Пятачок",
@@ -6607,8 +6729,8 @@
     },
     {
       "displayName": "Родны кут",
-      "id": "8aa1e0-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "8aa1e0-e64bef",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "brand": "Родны кут",
         "name": "Родны кут",
@@ -6617,8 +6739,10 @@
     },
     {
       "displayName": "Садко",
-      "id": "d3e941-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "d3e941-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Садко",
         "name": "Садко",
@@ -6627,8 +6751,8 @@
     },
     {
       "displayName": "Санта",
-      "id": "516eeb-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "516eeb-e64bef",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "brand": "Санта",
         "name": "Санта",
@@ -6637,8 +6761,8 @@
     },
     {
       "displayName": "Светофор",
-      "id": "b701be-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "b701be-065292",
+      "locationSet": {"include": ["by", "ru"]},
       "tags": {
         "brand": "Светофор",
         "name": "Светофор",
@@ -6646,19 +6770,11 @@
       }
     },
     {
-      "displayName": "Север",
-      "id": "0d6ea7-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Север",
-        "name": "Север",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "Северный",
-      "id": "384e40-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "384e40-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Северный",
         "name": "Северный",
@@ -6679,8 +6795,8 @@
     },
     {
       "displayName": "Скидкино",
-      "id": "57f962-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "57f962-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Скидкино",
         "name": "Скидкино",
@@ -6689,8 +6805,8 @@
     },
     {
       "displayName": "Соседи",
-      "id": "b4c4f8-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "b4c4f8-e64bef",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "brand": "Соседи",
         "name": "Соседи",
@@ -6699,8 +6815,8 @@
     },
     {
       "displayName": "Соседи Экспресс",
-      "id": "e293b4-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "e293b4-e64bef",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "brand": "Соседи Экспресс",
         "name": "Соседи Экспресс",
@@ -6709,8 +6825,10 @@
     },
     {
       "displayName": "У дома",
-      "id": "8e7c7a-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "8e7c7a-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "У дома",
         "name": "У дома",
@@ -6729,8 +6847,10 @@
     },
     {
       "displayName": "Удачный",
-      "id": "516c18-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "516c18-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Удачный",
         "name": "Удачный",
@@ -6739,8 +6859,8 @@
     },
     {
       "displayName": "Успех",
-      "id": "b5ec71-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "b5ec71-685d2b",
+      "locationSet": {"include": ["kz", "ru"]},
       "tags": {
         "brand": "Успех",
         "name": "Успех",
@@ -6749,8 +6869,8 @@
     },
     {
       "displayName": "Фабрика качества",
-      "id": "9b63ed-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "9b63ed-e33fbc",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Фабрика качества",
         "name": "Фабрика качества",
@@ -6770,18 +6890,23 @@
     },
     {
       "displayName": "Фасоль",
-      "id": "d26bcb-e33fbc",
+      "id": "fasol-e33fbc",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Фасоль",
+        "brand:en": "Fasol",
+        "brand:ru": "Фасоль",
+        "brand:wikidata": "Q132005368",
         "name": "Фасоль",
+        "name:en": "Fasol",
+        "name:ru": "Фасоль",
         "shop": "convenience"
       }
     },
     {
       "displayName": "Феникс",
-      "id": "8b17c9-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "8b17c9-065292",
+      "locationSet": {"include": ["by", "ru"]},
       "tags": {
         "brand": "Феникс",
         "name": "Феникс",
@@ -6790,8 +6915,8 @@
     },
     {
       "displayName": "Фермер",
-      "id": "8449ac-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "8449ac-065292",
+      "locationSet": {"include": ["by", "ru"]},
       "tags": {
         "brand": "Фермер",
         "name": "Фермер",
@@ -6800,8 +6925,10 @@
     },
     {
       "displayName": "Флагман",
-      "id": "4cacba-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "4cacba-162f8e",
+      "locationSet": {
+        "include": ["kz", "ru", "uz"]
+      },
       "tags": {
         "brand": "Флагман",
         "name": "Флагман",
@@ -6837,6 +6964,7 @@
         "brand:en": "Belmart",
         "brand:ka": "ბელმარტი",
         "brand:ru": "Белмарт",
+        "brand:wikidata": "Q131469988",
         "name": "ბელმარტი",
         "name:en": "Belmart",
         "name:ka": "ბელმარტი",
@@ -6852,6 +6980,7 @@
         "brand": "ბილიონი",
         "brand:en": "Billion",
         "brand:ka": "ბილიონი",
+        "brand:wikidata": "Q131469969",
         "name": "ბილიონი",
         "name:en": "Billion",
         "name:ka": "ბილიონი",
@@ -6868,6 +6997,7 @@
         "brand:en": "Gvirila",
         "brand:ka": "გვირილა",
         "brand:ru": "Гвирила",
+        "brand:wikidata": "Q131469980",
         "name": "გვირილა",
         "name:en": "Gvirila",
         "name:ka": "გვირილა",
@@ -6900,6 +7030,7 @@
         "brand:en": "Daily",
         "brand:ka": "დეილი",
         "brand:ru": "Дейли",
+        "brand:wikidata": "Q131469976",
         "name": "დეილი",
         "name:en": "Daily",
         "name:ka": "დეილი",
@@ -6916,6 +7047,7 @@
         "brand:en": "Europroduct",
         "brand:ka": "ევროპროდუქტი",
         "brand:ru": "Европродукти",
+        "brand:wikidata": "Q131469977",
         "name": "ევროპროდუქტი",
         "name:en": "Europroduct",
         "name:ka": "ევროპროდუქტი",
@@ -6946,6 +7078,7 @@
       "tags": {
         "brand": "ვეი მარტი",
         "brand:ka": "ვეი მარტი",
+        "brand:wikidata": "Q131469967",
         "name": "ვეი მარტი",
         "name:en": "Way Mart",
         "name:ka": "ვეი მარტი",
@@ -6962,6 +7095,7 @@
         "brand:en": "Zgapari",
         "brand:ka": "ზღაპარი",
         "brand:ru": "Згапари",
+        "brand:wikidata": "Q131469973",
         "name": "ზღაპარი",
         "name:en": "Zgapari",
         "name:ka": "ზღაპარი",
@@ -6978,6 +7112,7 @@
         "brand:en": "Ioli",
         "brand:ka": "იოლი",
         "brand:ru": "Иоли",
+        "brand:wikidata": "Q131469975",
         "name": "იოლი",
         "name:en": "Ioli",
         "name:ka": "იოლი",
@@ -7013,6 +7148,7 @@
         "brand:en": "Libre",
         "brand:ka": "ლიბრე",
         "brand:ru": "Либре",
+        "brand:wikidata": "Q131469972",
         "name": "ლიბრე",
         "name:en": "Libre",
         "name:ka": "ლიბრე",
@@ -7034,7 +7170,6 @@
         "name:en": "Magniti",
         "name:ka": "მაგნიტი",
         "name:ru": "Магнити",
-        "operator:wikidata": "Q118792780",
         "shop": "convenience"
       }
     },
@@ -7047,6 +7182,7 @@
         "brand:en": "Nazilbe",
         "brand:ka": "ნაზილბე",
         "brand:ru": "Назилбе",
+        "brand:wikidata": "Q131469970",
         "name": "ნაზილბე",
         "name:en": "Nazilbe",
         "name:ka": "ნაზილბე",
@@ -7068,7 +7204,6 @@
         "name:en": "Nikora",
         "name:ka": "ნიკორა",
         "name:ru": "Никора",
-        "operator:wikidata": "Q115949612",
         "shop": "convenience"
       }
     },
@@ -7089,7 +7224,6 @@
         "name:en": "Ori Nabiji",
         "name:ka": "ორი ნაბიჯი",
         "name:ru": "Ори Набиджи",
-        "operator:wikidata": "Q115949750",
         "shop": "convenience"
       }
     },
@@ -7102,6 +7236,7 @@
         "brand:en": "Smart",
         "brand:ka": "სმარტი",
         "brand:ru": "Смарт",
+        "brand:wikidata": "Q131469982",
         "name": "სმარტი",
         "name:en": "Smart",
         "name:ka": "სმარტი",
@@ -7133,10 +7268,27 @@
         "brand:en": "Universami",
         "brand:ka": "უნივერსამი",
         "brand:ru": "Универсами",
+        "brand:wikidata": "Q131469979",
         "name": "უნივერსამი",
         "name:en": "Universami",
         "name:ka": "უნივერსამი",
         "name:ru": "Универсами",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "ფემილი",
+      "id": "family-3cb7c4",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "ფემილი",
+        "brand:en": "Family",
+        "brand:ka": "ფემილი",
+        "brand:wikidata": "Q131469990",
+        "name": "ფემილი",
+        "name:en": "Family",
+        "name:ka": "ფემილი",
+        "name:ru": "Фэмили",
         "shop": "convenience"
       }
     },
@@ -7212,16 +7364,6 @@
       }
     },
     {
-      "displayName": "مواد غذائية",
-      "id": "a399f4-4d6b4b",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "مواد غذائية",
-        "name": "مواد غذائية",
-        "shop": "convenience"
-      }
-    },
-    {
       "displayName": "مواد غذائية عامة",
       "id": "06477d-14cddc",
       "locationSet": {"include": ["dz"]},
@@ -7270,6 +7412,7 @@
         "brand": "이마트24",
         "brand:en": "emart24",
         "brand:ko": "이마트24",
+        "brand:wikidata": "Q16219674",
         "name": "이마트24",
         "name:en": "emart24",
         "name:ko": "이마트24",
@@ -7434,7 +7577,7 @@
         "brand": "FamilyMart",
         "brand:en": "FamilyMart",
         "brand:ja": "ファミリーマート",
-        "brand:wikidata": "Q1191685",
+        "brand:wikidata": "Q11247682",
         "name": "ファミリーマート",
         "name:en": "FamilyMart",
         "name:ja": "ファミリーマート",
@@ -7643,7 +7786,7 @@
       "tags": {
         "brand": "全家",
         "brand:en": "FamilyMart",
-        "brand:wikidata": "Q1191685",
+        "brand:wikidata": "Q11247682",
         "brand:zh": "全家",
         "name": "全家",
         "name:en": "FamilyMart",

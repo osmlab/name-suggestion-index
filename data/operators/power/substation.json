@@ -6,7 +6,11 @@
         "^stadtwerke$",
         "^sub_?station$"
       ],
-      "named": ["^enbw( ag)?$", "^une – sen$"]
+      "named": [
+        "^eks/nok$",
+        "^enbw( ag)?$",
+        "^une – sen$"
+      ]
     }
   },
   "items": [
@@ -40,8 +44,10 @@
     },
     {
       "displayName": "A CELER",
-      "id": "aceler-108ef7",
-      "locationSet": {"include": ["pt"]},
+      "id": "aceler-ce8d0a",
+      "locationSet": {
+        "include": ["pt-13.geojson"]
+      },
       "tags": {
         "operator": "A CELER",
         "power": "substation"
@@ -49,8 +55,10 @@
     },
     {
       "displayName": "A LORD",
-      "id": "alord-108ef7",
-      "locationSet": {"include": ["pt"]},
+      "id": "alord-ce8d0a",
+      "locationSet": {
+        "include": ["pt-13.geojson"]
+      },
       "tags": {
         "operator": "A LORD",
         "power": "substation"
@@ -147,8 +155,10 @@
     },
     {
       "displayName": "AEW",
-      "id": "aew-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "aew-f6524b",
+      "locationSet": {
+        "include": ["ch-ag.geojson"]
+      },
       "matchNames": ["aew energie"],
       "tags": {
         "operator": "AEW",
@@ -188,6 +198,7 @@
       },
       "tags": {
         "operator": "Albtal-Verkehrs-Gesellschaft mbH",
+        "operator:short": "AVG",
         "operator:wikidata": "Q896547",
         "power": "substation"
       }
@@ -523,8 +534,10 @@
     },
     {
       "displayName": "AusNet",
-      "id": "ausnet-e597e3",
-      "locationSet": {"include": ["au"]},
+      "id": "ausnet-2fd8c0",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "operator": "AusNet",
         "operator:wikidata": "Q7392701",
@@ -614,8 +627,10 @@
     },
     {
       "displayName": "Axpo/EKZ",
-      "id": "axpoekz-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "axpoekz-42bdec",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "operator": "Axpo/EKZ",
         "operator:wikidata": "Q679525",
@@ -623,14 +638,14 @@
       }
     },
     {
-      "displayName": "Baltimore Gas & Electric",
+      "displayName": "Baltimore Gas and Electric",
       "id": "baltimoregasandelectric-62c87b",
       "locationSet": {
         "include": ["us-md.geojson"]
       },
       "matchNames": ["bg&e", "bge"],
       "tags": {
-        "operator": "Baltimore Gas & Electric",
+        "operator": "Baltimore Gas and Electric",
         "operator:wikidata": "Q4852862",
         "power": "substation"
       }
@@ -767,6 +782,19 @@
       }
     },
     {
+      "displayName": "Bergische Energie Wipperfürth",
+      "id": "bergischeenergiewipperfurth-26c4cf",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "tags": {
+        "operator": "Bergische Energie Wipperfürth",
+        "operator:short": "BEW",
+        "operator:wikidata": "Q124441434",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Berliner Verkehrsbetriebe",
       "id": "berlinerverkehrsbetriebe-e93127",
       "locationSet": {
@@ -784,18 +812,6 @@
       "locationSet": {"include": ["in"]},
       "tags": {
         "operator": "BESCOM",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "BEW",
-      "id": "bew-26c4cf",
-      "locationSet": {
-        "include": ["de-nw.geojson"]
-      },
-      "tags": {
-        "operator": "BEW",
-        "operator:wikidata": "Q124441434",
         "power": "substation"
       }
     },
@@ -882,8 +898,10 @@
     },
     {
       "displayName": "Bornholms Energi & Forsyning",
-      "id": "bornholmsenergiandforsyning-3aeb55",
-      "locationSet": {"include": ["dk"]},
+      "id": "bornholmsenergiandforsyning-647e81",
+      "locationSet": {
+        "include": ["dk-040.geojson"]
+      },
       "matchNames": ["østkraft net a/s"],
       "tags": {
         "operator": "Bornholms Energi & Forsyning",
@@ -1099,6 +1117,23 @@
       }
     },
     {
+      "displayName": "Celle-Uelzen Netz",
+      "id": "celleuelzennetz-1af6be",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "matchNames": [
+        "celle-uelzen netz gmbh",
+        "svo"
+      ],
+      "tags": {
+        "operator": "Celle-Uelzen Netz",
+        "operator:short": "CUN",
+        "operator:wikidata": "Q19277218",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Cemig",
       "id": "cemig-acc4a0",
       "locationSet": {"include": ["br"]},
@@ -1235,10 +1270,13 @@
     },
     {
       "displayName": "Chicago Transit Authority",
-      "id": "chicagotransitauthority-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "chicagotransitauthority-09b582",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
       "tags": {
         "operator": "Chicago Transit Authority",
+        "operator:short": "CTA",
         "operator:wikidata": "Q117309",
         "power": "substation"
       }
@@ -1257,8 +1295,10 @@
     },
     {
       "displayName": "CitiPower",
-      "id": "citipower-e597e3",
-      "locationSet": {"include": ["au"]},
+      "id": "citipower-2fd8c0",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "note": "CitiPower's Wikipedia page redirects to Spark Infrastructure",
       "tags": {
         "operator": "CitiPower",
@@ -1473,11 +1513,13 @@
       }
     },
     {
-      "displayName": "Colonial Pipeline Company",
-      "id": "colonialpipelinecompany-301545",
+      "displayName": "Colonial Pipeline",
+      "id": "colonialpipeline-301545",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["colonial pipeline company"],
       "tags": {
-        "operator": "Colonial Pipeline Company",
+        "operator": "Colonial Pipeline",
+        "operator:wikidata": "Q107145391",
         "power": "substation"
       }
     },
@@ -1549,11 +1591,16 @@
       }
     },
     {
-      "displayName": "Compagnie d'Electricité de St-Martin-de-Londres",
-      "id": "compagniedelectricitedestmartindelondres-55e14a",
-      "locationSet": {"include": ["fr"]},
+      "displayName": "Compagnie d'Electricité de Saint-Martin-de-Londres",
+      "id": "compagniedelectricitedesaintmartindelondres-dd32c5",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "matchNames": [
+        "compagnie d'electricité de st-martin-de-londres"
+      ],
       "tags": {
-        "operator": "Compagnie d'Electricité de St-Martin-de-Londres",
+        "operator": "Compagnie d'Electricité de Saint-Martin-de-Londres",
         "power": "substation"
       }
     },
@@ -1592,6 +1639,17 @@
         "operator": "Companhia Hidro Elétrica do São Francisco",
         "operator:short": "CHESF",
         "operator:wikidata": "Q5011113",
+        "power": "substation"
+      }
+    },
+    {
+      "displayName": "Companhia Paulista de Trens Metropolitanos",
+      "id": "companhiapaulistadetrensmetropolitanos-acc4a0",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "operator": "Companhia Paulista de Trens Metropolitanos",
+        "operator:short": "CPTM",
+        "operator:wikidata": "Q1121227",
         "power": "substation"
       }
     },
@@ -1677,6 +1735,18 @@
       }
     },
     {
+      "displayName": "Corn Belt Energy Corporation",
+      "id": "cornbeltenergycorporation-09b582",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "operator": "Corn Belt Energy Corporation",
+        "operator:wikidata": "Q131359239",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Corn Belt Power Cooperative",
       "id": "cornbeltpowercooperative-49fcf5",
       "locationSet": {
@@ -1746,16 +1816,6 @@
       "tags": {
         "operator": "CPS Energy",
         "operator:wikidata": "Q5013736",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "CPTM",
-      "id": "cptm-acc4a0",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "operator": "CPTM",
-        "operator:wikidata": "Q1121227",
         "power": "substation"
       }
     },
@@ -1988,16 +2048,6 @@
       }
     },
     {
-      "displayName": "DEWA",
-      "id": "dewa-4ca958",
-      "locationSet": {"include": ["ae"]},
-      "tags": {
-        "operator": "DEWA",
-        "operator:wikidata": "Q1262868",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "Dixie Electric Power Association",
       "id": "dixieelectricpowerassociation-142bdd",
       "locationSet": {
@@ -2113,6 +2163,17 @@
       }
     },
     {
+      "displayName": "Dubai Electricity and Water Authority",
+      "id": "dubaielectricityandwaterauthority-4ca958",
+      "locationSet": {"include": ["ae"]},
+      "tags": {
+        "operator": "Dubai Electricity and Water Authority",
+        "operator:short": "DEWA",
+        "operator:wikidata": "Q1262868",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Duck River Electric Membership Corporation",
       "id": "duckriverelectricmembershipcorporation-a96cd6",
       "locationSet": {
@@ -2175,12 +2236,15 @@
       }
     },
     {
-      "displayName": "E-Distribuzione S.p.A.",
+      "displayName": "e-distribuzione S.p.A.",
       "id": "edistribuzionespa-5e9b52",
       "locationSet": {"include": ["it"]},
-      "matchNames": ["e-distribuzione"],
+      "matchNames": [
+        "e-distribuzione",
+        "enel distribuzione"
+      ],
       "tags": {
-        "operator": "E-Distribuzione S.p.A.",
+        "operator": "e-distribuzione S.p.A.",
         "operator:wikidata": "Q3725215",
         "power": "substation"
       }
@@ -2207,16 +2271,6 @@
       }
     },
     {
-      "displayName": "E-Steiermark",
-      "id": "esteiermark-3e6be9",
-      "locationSet": {"include": ["at"]},
-      "tags": {
-        "operator": "E-Steiermark",
-        "operator:wikidata": "Q1341214",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "E-Werk Mittelbaden",
       "id": "ewerkmittelbaden-dda049",
       "locationSet": {
@@ -2230,8 +2284,10 @@
     },
     {
       "displayName": "E-Werk Perg",
-      "id": "ewerkperg-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "ewerkperg-faf755",
+      "locationSet": {
+        "include": ["at-4.geojson"]
+      },
       "tags": {
         "operator": "E-Werk Perg",
         "power": "substation"
@@ -2354,8 +2410,13 @@
     },
     {
       "displayName": "EAG",
-      "id": "eag-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "eag-d5d274",
+      "locationSet": {
+        "include": [
+          "at-4.geojson",
+          "at-5.geojson"
+        ]
+      },
       "tags": {
         "operator": "EAG",
         "power": "substation"
@@ -2429,9 +2490,9 @@
     },
     {
       "displayName": "ED Netze",
-      "id": "ednetze-363096",
+      "id": "ednetze-dda049",
       "locationSet": {
-        "include": ["ch", "de-bw.geojson"]
+        "include": ["de-bw.geojson"]
       },
       "tags": {
         "operator": "ED Netze",
@@ -2451,8 +2512,13 @@
     },
     {
       "displayName": "Edenor",
-      "id": "edenor-e1c05a",
-      "locationSet": {"include": ["ar"]},
+      "id": "edenor-95f729",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
       "tags": {
         "operator": "Edenor",
         "operator:wikidata": "Q2843192",
@@ -2586,26 +2652,28 @@
     },
     {
       "displayName": "EKS",
-      "id": "eks-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "eks-9a284f",
+      "locationSet": {
+        "include": [
+          "ch-sh.geojson",
+          "de-bw.geojson"
+        ]
+      },
       "tags": {
         "operator": "EKS",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "EKS/NOK",
-      "id": "eksnok-38f635",
-      "locationSet": {"include": ["ch", "de"]},
-      "tags": {
-        "operator": "EKS/NOK",
+        "operator:wikidata": "Q1326636",
         "power": "substation"
       }
     },
     {
       "displayName": "EKT",
-      "id": "ekt-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "ekt-0bd48b",
+      "locationSet": {
+        "include": [
+          "ch-sg.geojson",
+          "ch-tg.geojson"
+        ]
+      },
       "tags": {
         "operator": "EKT",
         "operator:wikidata": "Q1275010",
@@ -2746,8 +2814,10 @@
     },
     {
       "displayName": "Elektrizitätswerke Eisenhuber GmbH & Co KG",
-      "id": "elektrizitatswerkeeisenhubergmbhandcokg-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "elektrizitatswerkeeisenhubergmbhandcokg-feb489",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
       "tags": {
         "operator": "Elektrizitätswerke Eisenhuber GmbH & Co KG",
         "power": "substation"
@@ -2755,9 +2825,12 @@
     },
     {
       "displayName": "Elektrizitätswerke Reutte",
-      "id": "elektrizitatswerkereutte-91a493",
+      "id": "elektrizitatswerkereutte-31e6bd",
       "locationSet": {
-        "include": ["at", "de-by.geojson"]
+        "include": [
+          "at-7.geojson",
+          "de-by.geojson"
+        ]
       },
       "tags": {
         "operator": "Elektrizitätswerke Reutte",
@@ -2809,6 +2882,17 @@
       }
     },
     {
+      "displayName": "Elektromreža Srbije",
+      "id": "elektromrezasrbije-0be006",
+      "locationSet": {"include": ["rs"]},
+      "tags": {
+        "operator": "Elektromreža Srbije",
+        "operator:short": "EMS",
+        "operator:wikidata": "Q18250047",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Elektroprenos BiH",
       "id": "elektroprenosbih-e68224",
       "locationSet": {"include": ["ba"]},
@@ -2835,6 +2919,17 @@
       "tags": {
         "operator": "Elering",
         "operator:wikidata": "Q5359452",
+        "power": "substation"
+      }
+    },
+    {
+      "displayName": "Eletricidade dos Açores",
+      "id": "eletricidadedosacores-bfb732",
+      "locationSet": {"include": ["pt-20"]},
+      "tags": {
+        "operator": "Eletricidade dos Açores",
+        "operator:short": "EDA",
+        "operator:wikidata": "Q131463417",
         "power": "substation"
       }
     },
@@ -2988,12 +3083,13 @@
       }
     },
     {
-      "displayName": "EMS",
-      "id": "ems-0be006",
-      "locationSet": {"include": ["rs"]},
+      "displayName": "Empresas Públicas de Medellín",
+      "id": "empresaspublicasdemedellin-8e2bec",
+      "locationSet": {"include": ["co"]},
       "tags": {
-        "operator": "EMS",
-        "operator:wikidata": "Q18250047",
+        "operator": "Empresas Públicas de Medellín",
+        "operator:short": "EPM",
+        "operator:wikidata": "Q3053381",
         "power": "substation"
       }
     },
@@ -3019,8 +3115,10 @@
     },
     {
       "displayName": "Endeavour Energy",
-      "id": "endeavourenergy-e597e3",
-      "locationSet": {"include": ["au"]},
+      "id": "endeavourenergy-1266b7",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "tags": {
         "operator": "Endeavour Energy",
         "operator:wikidata": "Q5375986",
@@ -3133,16 +3231,6 @@
       "tags": {
         "operator": "Enel Distribuição São Paulo",
         "operator:wikidata": "Q1328247",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "Enel Distribuzione",
-      "id": "eneldistribuzione-5e9b52",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "operator": "Enel Distribuzione",
-        "operator:wikidata": "Q3725215",
         "power": "substation"
       }
     },
@@ -3263,9 +3351,21 @@
       }
     },
     {
+      "displayName": "Énergie du Mali",
+      "id": "energiedumali-8f416b",
+      "locationSet": {"include": ["ml"]},
+      "tags": {
+        "operator": "Énergie du Mali",
+        "operator:wikidata": "Q3588962",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "Energie Graz",
-      "id": "energiegraz-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "energiegraz-1506ff",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
       "tags": {
         "operator": "Energie Graz",
         "operator:wikidata": "Q1341216",
@@ -3274,8 +3374,10 @@
     },
     {
       "displayName": "Energie Klagenfurt GmbH",
-      "id": "energieklagenfurtgmbh-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "energieklagenfurtgmbh-a84f0c",
+      "locationSet": {
+        "include": ["at-2.geojson"]
+      },
       "tags": {
         "operator": "Energie Klagenfurt GmbH",
         "operator:wikidata": "Q1341212",
@@ -3284,9 +3386,17 @@
     },
     {
       "displayName": "Energie Steiermark",
-      "id": "energiesteiermark-3e6be9",
-      "locationSet": {"include": ["at"]},
-      "matchNames": ["energie netze steiermark"],
+      "id": "energiesteiermark-086f41",
+      "locationSet": {
+        "include": [
+          "at-1.geojson",
+          "at-6.geojson"
+        ]
+      },
+      "matchNames": [
+        "e-steiermark",
+        "energie netze steiermark"
+      ],
       "tags": {
         "operator": "Energie Steiermark",
         "operator:wikidata": "Q1341214",
@@ -3295,10 +3405,14 @@
     },
     {
       "displayName": "Energie Thun AG",
-      "id": "energiethunag-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "energiethunag-00339e",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
+      "matchNames": ["energie thun"],
       "tags": {
         "operator": "Energie Thun AG",
+        "operator:wikidata": "Q131324095",
         "power": "substation"
       }
     },
@@ -3543,8 +3657,10 @@
     },
     {
       "displayName": "Ente Provincial de Energía del Neuquén",
-      "id": "enteprovincialdeenergiadelneuquen-e1c05a",
-      "locationSet": {"include": ["ar"]},
+      "id": "enteprovincialdeenergiadelneuquen-499fd2",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "operator": "Ente Provincial de Energía del Neuquén",
         "operator:wikidata": "Q5834173",
@@ -3694,20 +3810,16 @@
     },
     {
       "displayName": "EPEC",
-      "id": "epec-e1c05a",
-      "locationSet": {"include": ["ar"]},
+      "id": "epec-00288a",
+      "locationSet": {
+        "include": [
+          "ar-d.geojson",
+          "ar-x.geojson"
+        ]
+      },
       "tags": {
         "operator": "EPEC",
         "operator:wikidata": "Q5831749",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "EPM",
-      "id": "epm-8e2bec",
-      "locationSet": {"include": ["co"]},
-      "tags": {
-        "operator": "EPM",
         "power": "substation"
       }
     },
@@ -3837,8 +3949,10 @@
     },
     {
       "displayName": "Ergon Energy",
-      "id": "ergonenergy-e597e3",
-      "locationSet": {"include": ["au"]},
+      "id": "ergonenergy-46c365",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "matchNames": ["ergon"],
       "tags": {
         "operator": "Ergon Energy",
@@ -3921,8 +4035,10 @@
     },
     {
       "displayName": "ESSeyssel",
-      "id": "esseyssel-55e14a",
-      "locationSet": {"include": ["fr"]},
+      "id": "esseyssel-5ba542",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "operator": "ESSeyssel",
         "power": "substation"
@@ -4104,8 +4220,14 @@
     },
     {
       "displayName": "EWA",
-      "id": "ewa-15877a",
-      "locationSet": {"include": ["at", "ch"]},
+      "id": "ewa-73830d",
+      "locationSet": {
+        "include": [
+          "at-3.geojson",
+          "at-7.geojson",
+          "ch"
+        ]
+      },
       "note": "There seems to be companies of the same name in Austria and Switzerland, more research needed",
       "tags": {
         "operator": "EWA",
@@ -4114,10 +4236,13 @@
     },
     {
       "displayName": "EWA-energieUri",
-      "id": "ewaenergieuri-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "ewaenergieuri-1e8ee1",
+      "locationSet": {
+        "include": ["ch-ur.geojson"]
+      },
       "tags": {
         "operator": "EWA-energieUri",
+        "operator:wikidata": "Q115242162",
         "power": "substation"
       }
     },
@@ -4169,8 +4294,10 @@
     },
     {
       "displayName": "EWW (Österreich)",
-      "id": "eww-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "eww-faf755",
+      "locationSet": {
+        "include": ["at-4.geojson"]
+      },
       "tags": {
         "operator": "eww",
         "operator:wikidata": "Q105762315",
@@ -4179,10 +4306,17 @@
     },
     {
       "displayName": "EWW (Schweiz)",
-      "id": "eww-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "eww-3d4bad",
+      "locationSet": {
+        "include": [
+          "ch-ag.geojson",
+          "ch-be.geojson",
+          "ch-so.geojson"
+        ]
+      },
       "tags": {
         "operator": "EWW",
+        "operator:wikidata": "Q15445360",
         "power": "substation"
       }
     },
@@ -4378,10 +4512,13 @@
     },
     {
       "displayName": "Flughafen Zürich AG",
-      "id": "flughafenzurichag-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "flughafenzurichag-42bdec",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "operator": "Flughafen Zürich AG",
+        "operator:wikidata": "Q1280993",
         "power": "substation"
       }
     },
@@ -4460,6 +4597,7 @@
       "tags": {
         "operator": "Freitaler Stadtwerke",
         "operator:short": "FSW",
+        "operator:wikidata": "Q130392101",
         "power": "substation"
       }
     },
@@ -4971,8 +5109,8 @@
     },
     {
       "displayName": "Hydro Tasmania",
-      "id": "hydrotasmania-e597e3",
-      "locationSet": {"include": ["au"]},
+      "id": "hydrotasmania-787f6a",
+      "locationSet": {"include": ["au-tas"]},
       "tags": {
         "operator": "Hydro Tasmania",
         "operator:wikidata": "Q1640187",
@@ -5143,8 +5281,10 @@
     },
     {
       "displayName": "Infrastruktur Zürichsee AG",
-      "id": "infrastrukturzurichseeag-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "infrastrukturzurichseeag-42bdec",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "operator": "Infrastruktur Zürichsee AG",
         "power": "substation"
@@ -5168,6 +5308,17 @@
         "operator": "Instituto Costarricense de Electricidad",
         "operator:short": "ICE",
         "operator:wikidata": "Q3431114",
+        "power": "substation"
+      }
+    },
+    {
+      "displayName": "Interconexión Eléctrica S.A.",
+      "id": "interconexionelectricasa-8e2bec",
+      "locationSet": {"include": ["co"]},
+      "tags": {
+        "operator": "Interconexión Eléctrica S.A.",
+        "operator:short": "ISA",
+        "operator:wikidata": "Q109425108",
         "power": "substation"
       }
     },
@@ -5210,16 +5361,6 @@
         "operator:en": "Irish Rail",
         "operator:ga": "Iarnród Éireann",
         "operator:wikidata": "Q73043",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "ISA",
-      "id": "isa-8e2bec",
-      "locationSet": {"include": ["co"]},
-      "note": "Missing wikidata page",
-      "tags": {
-        "operator": "ISA",
         "power": "substation"
       }
     },
@@ -5400,8 +5541,10 @@
     },
     {
       "displayName": "Kärnten Netz",
-      "id": "karntennetz-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "karntennetz-a84f0c",
+      "locationSet": {
+        "include": ["at-2.geojson"]
+      },
       "matchNames": ["kng-kärnten netz gmbh"],
       "tags": {
         "operator": "Kärnten Netz",
@@ -5412,8 +5555,8 @@
     },
     {
       "displayName": "Kauai Island Utility Cooperative",
-      "id": "kauaiislandutilitycooperative-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "kauaiislandutilitycooperative-5d1a50",
+      "locationSet": {"include": ["us-hi"]},
       "tags": {
         "operator": "Kauai Island Utility Cooperative",
         "operator:short": "KIUC",
@@ -5451,6 +5594,8 @@
       "locationSet": {"include": ["in"]},
       "tags": {
         "operator": "Kerala State Electricity Board",
+        "operator:short": "KSEB",
+        "operator:wikidata": "Q6393422",
         "power": "substation"
       }
     },
@@ -5482,6 +5627,19 @@
       "tags": {
         "operator": "KiwiRail",
         "operator:wikidata": "Q3788105",
+        "power": "substation"
+      }
+    },
+    {
+      "displayName": "Knoxville Utilities Board",
+      "id": "knoxvilleutilitiesboard-a96cd6",
+      "locationSet": {
+        "include": ["us-tn.geojson"]
+      },
+      "tags": {
+        "operator": "Knoxville Utilities Board",
+        "operator:short": "KUB",
+        "operator:wikidata": "Q109923505",
         "power": "substation"
       }
     },
@@ -5529,32 +5687,11 @@
       }
     },
     {
-      "displayName": "KSEB",
-      "id": "kseb-487ae0",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "operator": "KSEB",
-        "operator:wikidata": "Q6393422",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "KSS",
       "id": "kss-a5d6ed",
       "locationSet": {"include": ["fi"]},
       "tags": {
         "operator": "KSS",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "KUB",
-      "id": "knoxvilleutilitiesboard-301545",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "Knoxville Utilities Board",
-        "operator:short": "KUB",
-        "operator:wikidata": "Q109923505",
         "power": "substation"
       }
     },
@@ -5774,8 +5911,13 @@
     },
     {
       "displayName": "Linz AG",
-      "id": "linzag-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "linzag-91958b",
+      "locationSet": {
+        "include": [
+          "at-3.geojson",
+          "at-4.geojson"
+        ]
+      },
       "matchNames": [
         "linz ag strom",
         "linz netz",
@@ -5841,8 +5983,10 @@
     },
     {
       "displayName": "Lorain-Medina Rural Electric Cooperative",
-      "id": "lorainmedinaruralelectriccooperative-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "lorainmedinaruralelectriccooperative-7dabf9",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
       "tags": {
         "operator": "Lorain-Medina Rural Electric Cooperative",
         "operator:wikidata": "Q115691657",
@@ -6603,7 +6747,7 @@
       }
     },
     {
-      "displayName": "Netz Niederösterreich",
+      "displayName": "Netz NÖ",
       "id": "netzno-3e6be9",
       "locationSet": {"include": ["at"]},
       "matchNames": [
@@ -6621,10 +6765,8 @@
     },
     {
       "displayName": "Netz Oberösterreich",
-      "id": "netzoberosterreich-faf755",
-      "locationSet": {
-        "include": ["at-4.geojson"]
-      },
+      "id": "netzoberosterreich-3e6be9",
+      "locationSet": {"include": ["at"]},
       "matchNames": [
         "netz oberösterreich gmbh",
         "netz oö",
@@ -6744,17 +6886,6 @@
       }
     },
     {
-      "displayName": "New Jersey Transit",
-      "id": "newjerseytransit-e36655",
-      "locationSet": {
-        "include": ["us-nj.geojson"]
-      },
-      "tags": {
-        "operator": "New Jersey Transit",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "New York City Transit Authority",
       "id": "newyorkcitytransitauthority-206eed",
       "locationSet": {
@@ -6831,18 +6962,36 @@
       }
     },
     {
+      "displayName": "NJ Transit",
+      "id": "njtransit-e36655",
+      "locationSet": {
+        "include": ["us-nj.geojson"]
+      },
+      "matchNames": ["new jersey transit"],
+      "tags": {
+        "operator": "NJ Transit",
+        "operator:short": "NJT",
+        "operator:wikidata": "Q498553",
+        "power": "substation"
+      }
+    },
+    {
       "displayName": "NKM",
-      "id": "nkm-998f8d",
+      "id": "nemzetikozmuvek-998f8d",
       "locationSet": {"include": ["hu"]},
       "tags": {
-        "operator": "NKM",
+        "operator": "Nemzeti Közművek",
+        "operator:short": "NKM",
+        "operator:wikidata": "Q73507644",
         "power": "substation"
       }
     },
     {
       "displayName": "NÖ Netz EVN Gruppe",
-      "id": "nonetzevngruppe-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "nonetzevngruppe-feb489",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
       "tags": {
         "operator": "NÖ Netz EVN Gruppe",
         "power": "substation"
@@ -7106,8 +7255,10 @@
     },
     {
       "displayName": "Oiken",
-      "id": "oiken-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "oiken-8fe274",
+      "locationSet": {
+        "include": ["ch-vs.geojson"]
+      },
       "tags": {
         "operator": "Oiken",
         "power": "substation"
@@ -7159,6 +7310,7 @@
       "locationSet": {"include": ["ma"]},
       "tags": {
         "operator": "ONEE",
+        "operator:wikidata": "Q3349644",
         "power": "substation"
       }
     },
@@ -7338,8 +7490,13 @@
     },
     {
       "displayName": "Paulding Putnam REA",
-      "id": "pauldingputnamrea-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "pauldingputnamrea-c57180",
+      "locationSet": {
+        "include": [
+          "us-in.geojson",
+          "us-oh.geojson"
+        ]
+      },
       "tags": {
         "operator": "Paulding Putnam REA",
         "power": "substation"
@@ -7437,18 +7594,6 @@
       "tags": {
         "operator": "Penn Power",
         "operator:wikidata": "Q116786333",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "PEPCO",
-      "id": "pepco-c153a8",
-      "locationSet": {
-        "include": ["us-baltimore_and_dc.geojson"]
-      },
-      "tags": {
-        "operator": "PEPCO",
-        "operator:wikidata": "Q7166207",
         "power": "substation"
       }
     },
@@ -7576,7 +7721,10 @@
         "include": ["cz", "pl", "ru", "sk"]
       },
       "matchNames": [
-        "polskie sieci elektroenergetyczne s.a."
+        "polskie sieci elektroenergetyczne s.a.",
+        "pse operator",
+        "pse operator oddział bydgoszcz",
+        "pse s.a."
       ],
       "tags": {
         "operator": "Polskie Sieci Elektroenergetyczne",
@@ -7595,6 +7743,19 @@
         "operator": "Portland General Electric",
         "operator:short": "PGE",
         "operator:wikidata": "Q7231939",
+        "power": "substation"
+      }
+    },
+    {
+      "displayName": "Potomac Electric Power Company",
+      "id": "potomacelectricpowercompany-c153a8",
+      "locationSet": {
+        "include": ["us-baltimore_and_dc.geojson"]
+      },
+      "tags": {
+        "operator": "Potomac Electric Power Company",
+        "operator:short": "PEPCO",
+        "operator:wikidata": "Q7166207",
         "power": "substation"
       }
     },
@@ -7758,21 +7919,6 @@
       }
     },
     {
-      "displayName": "PSE",
-      "id": "pse-83e94a",
-      "locationSet": {"include": ["pl"]},
-      "matchNames": [
-        "pse operator",
-        "pse operator oddział bydgoszcz",
-        "pse s.a."
-      ],
-      "tags": {
-        "operator": "PSE",
-        "operator:wikidata": "Q1749435",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "PSO",
       "id": "publicservicecompanyofoklahoma-b5d3f3",
       "locationSet": {
@@ -7832,6 +7978,7 @@
       },
       "tags": {
         "operator": "Puget Sound Energy",
+        "operator:short": "PSE",
         "operator:wikidata": "Q7258927",
         "power": "substation"
       }
@@ -7850,8 +7997,13 @@
     },
     {
       "displayName": "Radius Elnet",
-      "id": "radiuselnet-3aeb55",
-      "locationSet": {"include": ["dk"]},
+      "id": "radiuselnet-6970d6",
+      "locationSet": {
+        "include": [
+          "dk-84.geojson",
+          "dk-85.geojson"
+        ]
+      },
       "tags": {
         "operator": "Radius Elnet",
         "operator:wikidata": "Q130385961",
@@ -7941,8 +8093,10 @@
     },
     {
       "displayName": "Redwood Electric Cooperative",
-      "id": "redwoodelectriccooperative-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "redwoodelectriccooperative-2f1b0a",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
       "tags": {
         "operator": "Redwood Electric Cooperative",
         "power": "substation"
@@ -8052,8 +8206,10 @@
     },
     {
       "displayName": "Rio Grande Electric Cooperative",
-      "id": "riograndeelectriccooperative-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "riograndeelectriccooperative-9e5147",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Rio Grande Electric Cooperative",
         "power": "substation"
@@ -8076,9 +8232,13 @@
     },
     {
       "displayName": "Rio Tinto Alcan",
-      "id": "riotintoalcan-ac1e5d",
+      "id": "riotintoalcan-5eb8ce",
       "locationSet": {
-        "include": ["au", "ca-qc.geojson", "gb"]
+        "include": [
+          "au-qld.geojson",
+          "ca-qc.geojson",
+          "gb-sct"
+        ]
       },
       "matchNames": ["alcan"],
       "tags": {
@@ -8130,8 +8290,10 @@
     },
     {
       "displayName": "RTB",
-      "id": "rtb-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "rtb-f6524b",
+      "locationSet": {
+        "include": ["ch-ag.geojson"]
+      },
       "tags": {
         "operator": "RTB",
         "power": "substation"
@@ -8259,14 +8421,20 @@
       },
       "tags": {
         "operator": "Salt River Project",
+        "operator:short": "SRP",
         "operator:wikidata": "Q7405933",
         "power": "substation"
       }
     },
     {
       "displayName": "Salzburg AG",
-      "id": "salzburgag-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "salzburgag-d5d274",
+      "locationSet": {
+        "include": [
+          "at-4.geojson",
+          "at-5.geojson"
+        ]
+      },
       "matchNames": ["salzburg netz"],
       "tags": {
         "operator": "Salzburg AG",
@@ -8276,8 +8444,10 @@
     },
     {
       "displayName": "Sam Houston Electric Cooperative",
-      "id": "samhoustonelectriccooperative-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "samhoustonelectriccooperative-9e5147",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Sam Houston Electric Cooperative",
         "power": "substation"
@@ -8463,8 +8633,13 @@
       "displayName": "SICAE de la Somme et du Cambraisis",
       "id": "sicaedelasommeetducambraisis-90b6b6",
       "locationSet": {"include": ["fx"]},
+      "matchNames": [
+        "sicae somme cambraisis",
+        "sicae somme cambrésis"
+      ],
       "tags": {
         "operator": "SICAE de la Somme et du Cambraisis",
+        "operator:wikidata": "Q130730715",
         "power": "substation"
       }
     },
@@ -8474,7 +8649,6 @@
       "locationSet": {
         "include": ["fr-hdf.geojson"]
       },
-      "matchNames": ["sicae"],
       "tags": {
         "operator": "SICAE Oise",
         "operator:wikidata": "Q112115524",
@@ -8600,8 +8774,10 @@
     },
     {
       "displayName": "South Texas Electric Cooperative",
-      "id": "southtexaselectriccooperative-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "southtexaselectriccooperative-9e5147",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "South Texas Electric Cooperative",
         "operator:wikidata": "Q130232505",
@@ -9556,19 +9732,25 @@
     },
     {
       "displayName": "Stadtwerke Roth",
-      "id": "stadtwerkeroth-7ff171",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkeroth-218486",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "tags": {
         "operator": "Stadtwerke Roth",
+        "operator:wikidata": "Q130557432",
         "power": "substation"
       }
     },
     {
       "displayName": "Stadtwerke Saarbrücken",
-      "id": "stadtwerkesaarbrucken-7ff171",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkesaarbrucken-af21d1",
+      "locationSet": {
+        "include": ["de-sl.geojson"]
+      },
       "tags": {
         "operator": "Stadtwerke Saarbrücken",
+        "operator:wikidata": "Q1718530",
         "power": "substation"
       }
     },
@@ -9636,12 +9818,14 @@
     },
     {
       "displayName": "Stadtwerke Tübingen",
-      "id": "stadtwerketubingen-29685e",
-      "locationSet": {"include": ["de-bw"]},
+      "id": "stadtwerketubingen-dda049",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "matchNames": ["stadtwerke tübingen gmbh"],
       "tags": {
         "operator": "Stadtwerke Tübingen",
-        "operator:short": "swt",
+        "operator:short": "SWT",
         "operator:wikidata": "Q1343869",
         "power": "substation"
       }
@@ -9697,10 +9881,13 @@
     },
     {
       "displayName": "Stadtwerke Wolfenbüttel",
-      "id": "stadtwerkewolfenbuttel-7ff171",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkewolfenbuttel-1af6be",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
       "tags": {
         "operator": "Stadtwerke Wolfenbüttel",
+        "operator:wikidata": "Q15848859",
         "power": "substation"
       }
     },
@@ -9952,15 +10139,6 @@
       }
     },
     {
-      "displayName": "SVO",
-      "id": "svo-7ff171",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "SVO",
-        "power": "substation"
-      }
-    },
-    {
       "displayName": "swb (Bremen)",
       "id": "swb-b4e66c",
       "locationSet": {
@@ -9981,6 +10159,8 @@
       },
       "tags": {
         "operator": "SWB Energie und Wasser",
+        "operator:short": "SWB",
+        "operator:wikidata": "Q152186",
         "power": "substation"
       }
     },
@@ -10086,8 +10266,8 @@
       }
     },
     {
-      "displayName": "SWU",
-      "id": "swu-d11add",
+      "displayName": "SWU Stadtwerke Ulm/Neu-Ulm GmbH",
+      "id": "swustadtwerkeulmneuulmgmbh-d11add",
       "locationSet": {
         "include": [
           "de-bw.geojson",
@@ -10095,7 +10275,8 @@
         ]
       },
       "tags": {
-        "operator": "SWU",
+        "operator": "SWU Stadtwerke Ulm/Neu-Ulm GmbH",
+        "operator:short": "SWU",
         "operator:wikidata": "Q2328644",
         "power": "substation"
       }
@@ -10173,8 +10354,8 @@
     },
     {
       "displayName": "TasNetworks",
-      "id": "tasnetworks-e597e3",
-      "locationSet": {"include": ["au"]},
+      "id": "tasnetworks-787f6a",
+      "locationSet": {"include": ["au-tas"]},
       "tags": {
         "operator": "TasNetworks",
         "operator:wikidata": "Q18166493",
@@ -10194,16 +10375,6 @@
       "tags": {
         "operator": "Tauron",
         "operator:wikidata": "Q2397198",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "TCDD",
-      "id": "tcdd-13aefb",
-      "locationSet": {"include": ["tr"]},
-      "tags": {
-        "operator": "TCDD",
-        "operator:wikidata": "Q499967",
         "power": "substation"
       }
     },
@@ -10273,7 +10444,8 @@
       "locationSet": {"include": ["my"]},
       "matchNames": [
         "tenaga nasional berhad",
-        "tenaga national berhad"
+        "tenaga national berhad",
+        "tnb"
       ],
       "tags": {
         "operator": "Tenaga Nasional",
@@ -10450,8 +10622,10 @@
     },
     {
       "displayName": "Tiroler Netze",
-      "id": "tirolernetze-3e6be9",
-      "locationSet": {"include": ["at"]},
+      "id": "tirolernetze-8d025f",
+      "locationSet": {
+        "include": ["at-7.geojson"]
+      },
       "matchNames": [
         "tinetz-stromnetz tirol ag",
         "tinetz-tiroler netze gmbh"
@@ -10470,16 +10644,6 @@
       "tags": {
         "operator": "TIWAG",
         "operator:wikidata": "Q1271744",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "TNB",
-      "id": "tnb-fb8dd8",
-      "locationSet": {"include": ["my"]},
-      "tags": {
-        "operator": "TNB",
-        "operator:wikidata": "Q1584297",
         "power": "substation"
       }
     },
@@ -10531,13 +10695,16 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "operator": "Tramwaje Warszawskie",
+        "operator:wikidata": "Q9360809",
         "power": "substation"
       }
     },
     {
       "displayName": "TRANSBA S.A.",
-      "id": "transbasa-e1c05a",
-      "locationSet": {"include": ["ar"]},
+      "id": "transbasa-bf919b",
+      "locationSet": {
+        "include": ["ar-b.geojson"]
+      },
       "tags": {
         "operator": "TRANSBA S.A.",
         "power": "substation"
@@ -10733,12 +10900,13 @@
       }
     },
     {
-      "displayName": "TVA",
-      "id": "tva-301545",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Türkiye Cumhuriyeti Devlet Demiryolları",
+      "id": "turkiyecumhuriyetidevletdemiryollari-13aefb",
+      "locationSet": {"include": ["tr"]},
       "tags": {
-        "operator": "TVA",
-        "operator:wikidata": "Q1367577",
+        "operator": "Türkiye Cumhuriyeti Devlet Demiryolları",
+        "operator:short": "TCDD",
+        "operator:wikidata": "Q499967",
         "power": "substation"
       }
     },
@@ -10755,6 +10923,19 @@
       "tags": {
         "operator": "Überlandwerk Erding",
         "operator:wikidata": "Q124480655",
+        "power": "substation"
+      }
+    },
+    {
+      "displayName": "Überlandwerk Leinetal",
+      "id": "uberlandwerkleinetal-1af6be",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "tags": {
+        "operator": "Überlandwerk Leinetal",
+        "operator:short": "ÜWL",
+        "operator:wikidata": "Q130557603",
         "power": "substation"
       }
     },
@@ -10866,8 +11047,10 @@
     },
     {
       "displayName": "United Energy",
-      "id": "unitedenergy-e597e3",
-      "locationSet": {"include": ["au"]},
+      "id": "unitedenergy-2fd8c0",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "operator": "United Energy",
         "operator:wikidata": "Q48790747",
@@ -10888,8 +11071,10 @@
     },
     {
       "displayName": "United Power",
-      "id": "unitedpower-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "unitedpower-80514d",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
       "tags": {
         "operator": "United Power",
         "power": "substation"
@@ -10936,15 +11121,6 @@
       "tags": {
         "operator": "UTE",
         "operator:wikidata": "Q1665583",
-        "power": "substation"
-      }
-    },
-    {
-      "displayName": "ÜWL",
-      "id": "uwl-7ff171",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "ÜWL",
         "power": "substation"
       }
     },
@@ -11342,8 +11518,10 @@
     },
     {
       "displayName": "Wasserwerke Zug",
-      "id": "wasserwerkezug-dc04c1",
-      "locationSet": {"include": ["ch"]},
+      "id": "wasserwerkezug-7ee2f7",
+      "locationSet": {
+        "include": ["ch-zg.geojson"]
+      },
       "tags": {
         "operator": "Wasserwerke Zug",
         "operator:wikidata": "Q2551975",
@@ -11363,8 +11541,10 @@
     },
     {
       "displayName": "WE Energies",
-      "id": "weenergies-301545",
-      "locationSet": {"include": ["us"]},
+      "id": "weenergies-354e8e",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
       "tags": {
         "operator": "WE Energies",
         "power": "substation"
@@ -11938,6 +12118,7 @@
       "tags": {
         "operator": "Електропривреда Србије",
         "operator:en": "Elektroprivreda Srbije",
+        "operator:sr": "Електропривреда Србије",
         "operator:wikidata": "Q1327532",
         "power": "substation"
       }
@@ -13233,6 +13414,7 @@
       "tags": {
         "operator": "Укрзалізниця",
         "operator:en": "Ukrainian Railways",
+        "operator:short": "УЗ",
         "operator:uk": "Укрзалізниця",
         "operator:wikidata": "Q923337",
         "power": "substation"

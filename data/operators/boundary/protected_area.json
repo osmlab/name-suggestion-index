@@ -3,17 +3,18 @@
     "path": "operators/boundary/protected_area",
     "exclude": {
       "generic": [
-        "^natura[ ]{0,1}2000$",
+        "^natura ?2000$",
         "^not assigned$",
         "^other unit$",
         "^particulier$",
-        "^privado$",
+        "^priva(do|te)$",
         "^protected area$",
         "^sem afectação$",
         "^unknown - conflicting data sources$"
       ],
       "named": [
-        "^dnr and somerset soil conservation district$"
+        "^dnr and somerset soil conservation district$",
+        "^prov. alexandria\\/torino\\/vercelli$"
       ]
     }
   },
@@ -49,7 +50,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Alaska Division of Parks & Outdoor Recreation",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q109328393"
       }
     },
@@ -131,6 +132,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Australian Antarctic Division",
+        "operator:type": "government",
         "operator:wikidata": "Q781331"
       }
     },
@@ -199,6 +201,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Baltimore County",
+        "operator:type": "government",
         "operator:wikidata": "Q488668"
       }
     },
@@ -211,7 +214,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Baltimore County Department of Recreation and Parks",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q110062941"
       }
     },
@@ -293,6 +296,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "California Department of Fish and Wildlife",
+        "operator:type": "government",
         "operator:wikidata": "Q5020421"
       }
     },
@@ -305,6 +309,8 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "California Department of Forestry and Fire Protection",
+        "operator:short": "Cal Fire",
+        "operator:type": "government",
         "operator:wikidata": "Q5020422"
       }
     },
@@ -317,7 +323,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "California Department of Parks and Recreation",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q2933976"
       }
     },
@@ -353,6 +359,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "City and County of Denver",
+        "operator:type": "government",
         "operator:wikidata": "Q16554"
       }
     },
@@ -365,6 +372,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "City of Colorado Springs",
+        "operator:type": "government",
         "operator:wikidata": "Q49258"
       }
     },
@@ -379,6 +387,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "City of Los Angeles",
+        "operator:type": "government",
         "operator:wikidata": "Q65"
       }
     },
@@ -416,16 +425,6 @@
         "operator": "Commonwealth Department of Climate Change, Energy, the Environment and Water",
         "operator:short": "DCCEEW",
         "operator:wikidata": "Q113380107"
-      }
-    },
-    {
-      "displayName": "Commune de Saint-Florentin",
-      "id": "communedesaintflorentin-873023",
-      "locationSet": {"include": ["fx"]},
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Commune de Saint-Florentin",
-        "operator:wikidata": "Q115918404"
       }
     },
     {
@@ -514,6 +513,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Delaware Division of Fish and Wildlife",
+        "operator:type": "government",
         "operator:wikidata": "Q107362653"
       }
     },
@@ -537,16 +537,18 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Department of Conservation",
+        "operator:type": "government",
         "operator:wikidata": "Q1191417"
       }
     },
     {
-      "displayName": "Department of Fisheries & Marine Research (Cyprus)",
+      "displayName": "Department of Fisheries and Marine Research (Cyprus)",
       "id": "departmentoffisheriesandmarineresearch-98c4db",
       "locationSet": {"include": ["q644636"]},
       "tags": {
         "boundary": "protected_area",
-        "operator": "Department of Fisheries & Marine Research"
+        "operator": "Department of Fisheries and Marine Research",
+        "operator:wikidata": "Q50040910"
       }
     },
     {
@@ -592,6 +594,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Division of State Parks and Recreation",
+        "operator:type": "government",
         "operator:wikidata": "Q130236044"
       }
     },
@@ -607,6 +610,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Douglas County",
+        "operator:type": "government",
         "operator:wikidata": "Q115556"
       }
     },
@@ -735,6 +739,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Forest Department",
+        "operator:type": "government",
         "operator:wikidata": "Q30603316"
       }
     },
@@ -805,8 +810,10 @@
     },
     {
       "displayName": "Fundação para Conservação e a Produção Florestal do Estado de São Paulo",
-      "id": "fundacaoparaconservacaoeaproducaoflorestaldoestadodesaopaulo-20a11c",
-      "locationSet": {"include": ["br"]},
+      "id": "fundacaoparaconservacaoeaproducaoflorestaldoestadodesaopaulo-8b7529",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
         "operator": "Fundação para Conservação e a Produção Florestal do Estado de São Paulo"
@@ -851,7 +858,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "boundary": "protected_area",
-        "operator": "Generalitat Valenciana"
+        "operator": "Generalitat Valenciana",
+        "operator:wikidata": "Q2477285"
       }
     },
     {
@@ -882,6 +890,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Grong kommune",
+        "operator:type": "government",
         "operator:wikidata": "Q258084"
       }
     },
@@ -926,7 +935,7 @@
         "boundary": "protected_area",
         "operator": "Illinois Department of Natural Resources",
         "operator:short": "Illinois DNR",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q16846582"
       }
     },
@@ -940,7 +949,7 @@
         "boundary": "protected_area",
         "operator": "Indiana Department of Natural Resources",
         "operator:short": "Indiana DNR",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q6023149"
       }
     },
@@ -1023,7 +1032,7 @@
         "boundary": "protected_area",
         "operator": "Iowa Department of Natural Resources",
         "operator:short": "Iowa DNR",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q6064364"
       }
     },
@@ -1067,8 +1076,22 @@
         "boundary": "protected_area",
         "operator": "Kansas Department of Wildlife & Parks",
         "operator:short": "KDWP",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q14689717"
+      }
+    },
+    {
+      "displayName": "LADWP",
+      "id": "losangelesdepartmentofwaterandpower-6f7339",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "boundary": "protected_area",
+        "operator": "Los Angeles Department of Water and Power",
+        "operator:short": "LADWP",
+        "operator:type": "government",
+        "operator:wikidata": "Q3259704"
       }
     },
     {
@@ -1079,7 +1102,8 @@
       },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Land Brandenburg"
+        "operator": "Land Brandenburg",
+        "operator:wikidata": "Q897924"
       }
     },
     {
@@ -1112,7 +1136,8 @@
       },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Landkreis Harburg"
+        "operator": "Landkreis Harburg",
+        "operator:wikidata": "Q5907"
       }
     },
     {
@@ -1123,7 +1148,8 @@
       },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Landkreis Heidekreis"
+        "operator": "Landkreis Heidekreis",
+        "operator:wikidata": "Q5922"
       }
     },
     {
@@ -1134,7 +1160,8 @@
       },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Landkreis Rotenburg"
+        "operator": "Landkreis Rotenburg",
+        "operator:wikidata": "Q5923"
       }
     },
     {
@@ -1374,19 +1401,24 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Los Angeles County",
+        "operator:type": "government",
         "operator:wikidata": "Q104994"
       }
     },
     {
-      "displayName": "Los Angeles Department of Water and Power",
-      "id": "losangelesdepartmentofwaterandpower-6f7339",
+      "displayName": "Mairie de Saint-Florentin",
+      "id": "mairiedesaintflorentin-f325f7",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": ["fr-occ.geojson"]
       },
+      "matchNames": [
+        "commune de saint-florentin"
+      ],
       "tags": {
         "boundary": "protected_area",
-        "operator": "Los Angeles Department of Water and Power",
-        "operator:wikidata": "Q3259704"
+        "operator": "Mairie de Saint-Florentin",
+        "operator:type": "government",
+        "operator:wikidata": "Q115918404"
       }
     },
     {
@@ -1476,6 +1508,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Massachusetts Department of Fish & Game",
+        "operator:type": "government",
         "operator:wikidata": "Q30258915"
       }
     },
@@ -1514,7 +1547,7 @@
       }
     },
     {
-      "displayName": "Michigan DNR",
+      "displayName": "Michigan Department of Natural Resources",
       "id": "michigandepartmentofnaturalresources-0e46de",
       "locationSet": {
         "include": ["us-mi.geojson"]
@@ -1522,6 +1555,8 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Michigan Department of Natural Resources",
+        "operator:short": "Michigan DNR",
+        "operator:type": "government",
         "operator:wikidata": "Q6837532"
       }
     },
@@ -1543,7 +1578,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "boundary": "protected_area",
-        "operator": "Ministerie van Oorlog"
+        "operator": "Ministerie van Oorlog",
+        "operator:wikidata": "Q2441707"
       }
     },
     {
@@ -1555,6 +1591,8 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Minnesota Department of Natural Resources",
+        "operator:short": "Minnesota DNR",
+        "operator:type": "government",
         "operator:wikidata": "Q6868223"
       }
     },
@@ -1567,6 +1605,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Missouri Department of Conservation",
+        "operator:type": "government",
         "operator:wikidata": "Q6879553"
       }
     },
@@ -1582,14 +1621,18 @@
       }
     },
     {
-      "displayName": "Montana Fish, Wildlife & Parks",
-      "id": "montanafishwildlifeandparks-d69c95",
+      "displayName": "Montana Department of Fish, Wildlife and Parks",
+      "id": "montanadepartmentoffishwildlifeandparks-d69c95",
       "locationSet": {
         "include": ["us-mt.geojson"]
       },
+      "matchNames": [
+        "montana fish, wildlife & parks"
+      ],
       "tags": {
         "boundary": "protected_area",
-        "operator": "Montana Fish, Wildlife & Parks",
+        "operator": "Montana Department of Fish, Wildlife and Parks",
+        "operator:short": "Montana FWP",
         "operator:wikidata": "Q17019742"
       }
     },
@@ -1624,6 +1667,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Moss kommune",
+        "operator:type": "government",
         "operator:wikidata": "Q109021"
       }
     },
@@ -1658,6 +1702,24 @@
       }
     },
     {
+      "displayName": "National Oceanic and Atmospheric Administration",
+      "id": "nationaloceanicandatmosphericadministration-167f6a",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "united states national oceanic and atmospheric administration",
+        "us national oceanic and atmospheric administration"
+      ],
+      "tags": {
+        "boundary": "protected_area",
+        "operator": "National Oceanic and Atmospheric Administration",
+        "operator:short": "NOAA",
+        "operator:type": "public",
+        "operator:wikidata": "Q214700",
+        "ownership": "national",
+        "protected": "perpetuity"
+      }
+    },
+    {
       "displayName": "National Park Service",
       "id": "nationalparkservice-167f6a",
       "locationSet": {"include": ["us"]},
@@ -1673,17 +1735,6 @@
         "operator:wikidata": "Q308439",
         "ownership": "national",
         "protected": "perpetuity"
-      }
-    },
-    {
-      "displayName": "National Resource Conservation Service",
-      "id": "nationalresourceconservationservice-167f6a",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "National Resource Conservation Service",
-        "operator:short": "NRCS",
-        "operator:wikidata": "Q6980595"
       }
     },
     {
@@ -1726,6 +1777,7 @@
       "id": "naturalresourcesconservationservice-167f6a",
       "locationSet": {"include": ["us"]},
       "matchNames": [
+        "national resource conservation service",
         "natural resource conservation service"
       ],
       "tags": {
@@ -1793,6 +1845,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "New Jersey Division of Fish and Wildlife",
+        "operator:type": "government",
         "operator:wikidata": "Q22060891"
       }
     },
@@ -1805,6 +1858,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "New Mexico Department of Game and Fish",
+        "operator:type": "government",
         "operator:wikidata": "Q7010174"
       }
     },
@@ -1828,6 +1882,8 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "New York State Department of Environmental Conservation",
+        "operator:short": "NYSDEC",
+        "operator:type": "government",
         "operator:wikidata": "Q3339061"
       }
     },
@@ -1840,26 +1896,8 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "New York State Office of Parks, Recreation and Historic Preservation",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q1706660"
-      }
-    },
-    {
-      "displayName": "NOAA",
-      "id": "nationaloceanicandatmosphericadministration-167f6a",
-      "locationSet": {"include": ["us"]},
-      "matchNames": [
-        "united states national oceanic and atmospheric administration",
-        "us national oceanic and atmospheric administration"
-      ],
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "National Oceanic and Atmospheric Administration",
-        "operator:short": "NOAA",
-        "operator:type": "public",
-        "operator:wikidata": "Q214700",
-        "ownership": "national",
-        "protected": "perpetuity"
       }
     },
     {
@@ -1872,7 +1910,7 @@
         "boundary": "protected_area",
         "operator": "North Carolina Division of Parks and Recreation",
         "operator:short": "NCDPR",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q109328529"
       }
     },
@@ -1897,6 +1935,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "North Dakota Game and Fish Department",
+        "operator:type": "government",
         "operator:wikidata": "Q60774286"
       }
     },
@@ -1967,6 +2006,7 @@
         "boundary": "protected_area",
         "operator": "Ohio Department of Natural Resources",
         "operator:short": "ODNR",
+        "operator:type": "government",
         "operator:wikidata": "Q7080799"
       }
     },
@@ -1980,7 +2020,7 @@
         "boundary": "protected_area",
         "operator": "Oklahoma Department of Wildlife Conservation",
         "operator:short": "ODWC",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q7082205"
       }
     },
@@ -1999,14 +2039,15 @@
     },
     {
       "displayName": "Orange County (California)",
-      "id": "orangecounty-6f7339",
+      "id": "orangecounty-637e4d",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": ["us-ca-orange_county.geojson"]
       },
       "matchNames": ["county of orange"],
       "tags": {
         "boundary": "protected_area",
         "operator": "Orange County",
+        "operator:type": "government",
         "operator:wikidata": "Q5925"
       }
     },
@@ -2020,6 +2061,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Orange County",
+        "operator:type": "government",
         "operator:wikidata": "Q108618"
       }
     },
@@ -2034,7 +2076,7 @@
         "boundary": "protected_area",
         "operator": "Oregon Department of Forestry",
         "operator:short": "ODF",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q7101173",
         "ownership": "state",
         "protected": "perpetuity"
@@ -2051,7 +2093,7 @@
         "boundary": "protected_area",
         "operator": "Oregon Department of Fish and Wildlife",
         "operator:short": "ODFW",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q17060266",
         "ownership": "state",
         "protected": "perpetuity"
@@ -2067,7 +2109,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Oregon Parks and Recreation Department",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q7101287"
       }
     },
@@ -2111,8 +2153,10 @@
     },
     {
       "displayName": "Parks Victoria as COM",
-      "id": "parksvictoriaascom-b5b751",
-      "locationSet": {"include": ["au"]},
+      "id": "parksvictoriaascom-261f43",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
         "operator": "Parks Victoria as COM"
@@ -2148,6 +2192,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Pennsylvania Bureau of State Parks",
+        "operator:type": "government",
         "operator:wikidata": "Q130236073"
       }
     },
@@ -2182,161 +2227,194 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Prince George's County Department of Parks and Recreation",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q62029847"
       }
     },
     {
-      "displayName": "Prov. Alexandria/Torino/Vercelli",
-      "id": "provalexandriatorinovercelli-ec16d9",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Prov. Alexandria/Torino/Vercelli"
-      }
-    },
-    {
       "displayName": "Provincia de Buenos Aires",
-      "id": "provinciadebuenosaires-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadebuenosaires-37bb86",
+      "locationSet": {
+        "include": ["ar-b.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Buenos Aires"
+        "operator": "Provincia de Buenos Aires",
+        "operator:wikidata": "Q44754"
       }
     },
     {
       "displayName": "Provincia de Chubut",
-      "id": "provinciadechubut-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadechubut-1b7dd7",
+      "locationSet": {
+        "include": ["ar-u.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Chubut"
+        "operator": "Provincia de Chubut",
+        "operator:wikidata": "Q45007"
       }
     },
     {
       "displayName": "Provincia de Córdoba",
-      "id": "provinciadecordoba-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadecordoba-c8f652",
+      "locationSet": {
+        "include": ["ar-x.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Córdoba"
+        "operator": "Provincia de Córdoba",
+        "operator:wikidata": "Q44759"
       }
     },
     {
       "displayName": "Provincia de Formosa",
-      "id": "provinciadeformosa-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadeformosa-2c3b94",
+      "locationSet": {
+        "include": ["ar-p.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Formosa"
+        "operator": "Provincia de Formosa",
+        "operator:wikidata": "Q44761"
       }
     },
     {
       "displayName": "Provincia de Mendoza",
-      "id": "provinciademendoza-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciademendoza-8ccc57",
+      "locationSet": {
+        "include": ["ar-m.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Mendoza"
+        "operator": "Provincia de Mendoza",
+        "operator:wikidata": "Q44797"
       }
     },
     {
       "displayName": "Provincia de Misiones",
-      "id": "provinciademisiones-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciademisiones-2fd7fa",
+      "locationSet": {
+        "include": ["ar-n.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Misiones"
+        "operator": "Provincia de Misiones",
+        "operator:wikidata": "Q44798"
       }
     },
     {
       "displayName": "Provincia de Neuquén",
-      "id": "provinciadeneuquen-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadeneuquen-357075",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Neuquén"
+        "operator": "Provincia de Neuquén",
+        "operator:wikidata": "Q44800"
       }
     },
     {
       "displayName": "Provincia de Salta",
-      "id": "provinciadesalta-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadesalta-341dc9",
+      "locationSet": {
+        "include": ["ar-a.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Salta"
+        "operator": "Provincia de Salta",
+        "operator:wikidata": "Q44803"
       }
     },
     {
       "displayName": "Provincia de Santa Cruz",
-      "id": "provinciadesantacruz-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadesantacruz-68cd17",
+      "locationSet": {
+        "include": ["ar-z.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Santa Cruz"
+        "operator": "Provincia de Santa Cruz",
+        "operator:wikidata": "Q44821"
       }
     },
     {
       "displayName": "Provincia de Santa Fe",
-      "id": "provinciadesantafe-8282c4",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadesantafe-0b6ccc",
+      "locationSet": {
+        "include": ["ar-s.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia de Santa Fe"
+        "operator": "Provincia de Santa Fe",
+        "operator:wikidata": "Q44823"
       }
     },
     {
       "displayName": "Provincia di Bologna",
-      "id": "provinciadibologna-ec16d9",
-      "locationSet": {"include": ["it"]},
+      "id": "provinciadibologna-85a6ed",
+      "locationSet": {
+        "include": ["it-45.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia di Bologna"
+        "operator": "Provincia di Bologna",
+        "operator:type": "government",
+        "operator:wikidata": "Q16139"
       }
     },
     {
       "displayName": "Provincia di Modena",
-      "id": "provinciadimodena-ec16d9",
-      "locationSet": {"include": ["it"]},
+      "id": "provinciadimodena-85a6ed",
+      "locationSet": {
+        "include": ["it-45.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia di Modena"
+        "operator": "Provincia di Modena",
+        "operator:type": "government",
+        "operator:wikidata": "Q16209"
       }
     },
     {
       "displayName": "Provincia di Reggio Emilia",
-      "id": "provinciadireggioemilia-ec16d9",
-      "locationSet": {"include": ["it"]},
+      "id": "provinciadireggioemilia-85a6ed",
+      "locationSet": {
+        "include": ["it-45.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Provincia di Reggio Emilia"
-      }
-    },
-    {
-      "displayName": "Queensland Department of Environment and Heritage Protection",
-      "id": "queenslanddepartmentofenvironmentandheritageprotection-b5b751",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "boundary": "protected_area",
-        "operator": "Queensland Department of Environment and Heritage Protection"
+        "operator": "Provincia di Reggio Emilia",
+        "operator:type": "government",
+        "operator:wikidata": "Q16254"
       }
     },
     {
       "displayName": "Queensland Department of Environment and Science",
-      "id": "queenslanddepartmentofenvironmentandscience-b5b751",
-      "locationSet": {"include": ["au"]},
+      "id": "queenslanddepartmentofenvironmentandscience-fa6129",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
+      "matchNames": [
+        "queensland department of environment and heritage protection"
+      ],
       "tags": {
         "boundary": "protected_area",
-        "operator": "Queensland Department of Environment and Science"
+        "operator": "Queensland Department of Environment and Science",
+        "operator:wikidata": "Q5260301"
       }
     },
     {
       "displayName": "Queensland Department of National Parks, Sport and Racing",
-      "id": "queenslanddepartmentofnationalparkssportandracing-b5b751",
-      "locationSet": {"include": ["au"]},
+      "id": "queenslanddepartmentofnationalparkssportandracing-fa6129",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Queensland Department of National Parks, Sport and Racing"
+        "operator": "Queensland Department of National Parks, Sport and Racing",
+        "operator:wikidata": "Q27995890"
       }
     },
     {
@@ -2359,11 +2437,15 @@
     },
     {
       "displayName": "Regione Umbria",
-      "id": "regioneumbria-ec16d9",
-      "locationSet": {"include": ["it"]},
+      "id": "regioneumbria-72c2fa",
+      "locationSet": {
+        "include": ["it-55.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Regione Umbria"
+        "operator": "Regione Umbria",
+        "operator:type": "government",
+        "operator:wikidata": "Q1280"
       }
     },
     {
@@ -2625,6 +2707,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Santa Clara County Parks and Recreation Department",
+        "operator:type": "government",
         "operator:wikidata": "Q18151151"
       }
     },
@@ -2642,17 +2725,22 @@
     },
     {
       "displayName": "Secretaria Estadual do Meio Ambiente do Rio Grande do Sul",
-      "id": "secretariaestadualdomeioambientedoriograndedosul-20a11c",
-      "locationSet": {"include": ["br"]},
+      "id": "secretariaestadualdomeioambientedoriograndedosul-df762c",
+      "locationSet": {
+        "include": ["br-rs.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
-        "operator": "Secretaria Estadual do Meio Ambiente do Rio Grande do Sul"
+        "operator": "Secretaria Estadual do Meio Ambiente do Rio Grande do Sul",
+        "operator:wikidata": "Q10369209"
       }
     },
     {
       "displayName": "Secretaria Municipal de Meio Ambiente do Rio de Janeiro",
-      "id": "secretariamunicipaldemeioambientedoriodejaneiro-20a11c",
-      "locationSet": {"include": ["br"]},
+      "id": "secretariamunicipaldemeioambientedoriodejaneiro-635e4f",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
       "matchNames": [
         "secretaria municipal de meio ambiente do rio de janeiro (smac)"
       ],
@@ -2668,7 +2756,8 @@
       "locationSet": {"include": ["pt-30"]},
       "tags": {
         "boundary": "protected_area",
-        "operator": "Secretaria Regional do Ambiente e Recursos Naturais"
+        "operator": "Secretaria Regional do Ambiente e Recursos Naturais",
+        "operator:wikidata": "Q25442439"
       }
     },
     {
@@ -2769,6 +2858,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "State of Hawaii",
+        "operator:type": "government",
         "operator:wikidata": "Q782"
       }
     },
@@ -3025,6 +3115,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Suldal kommune",
+        "operator:type": "government",
         "operator:wikidata": "Q48577"
       }
     },
@@ -3077,6 +3168,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Tennessee Department of Environment and Conservation",
+        "operator:type": "government",
         "operator:wikidata": "Q7700063"
       }
     },
@@ -3102,7 +3194,7 @@
         "boundary": "protected_area",
         "operator": "Texas Parks and Wildlife Department",
         "operator:short": "TPWD",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q7707904"
       }
     },
@@ -3193,6 +3285,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Town of Rye",
+        "operator:type": "government",
         "operator:wikidata": "Q523619"
       }
     },
@@ -3216,6 +3309,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Town of Sudbury",
+        "operator:type": "government",
         "operator:wikidata": "Q591591"
       }
     },
@@ -3243,8 +3337,10 @@
     },
     {
       "displayName": "Trust for Nature Victoria",
-      "id": "trustfornaturevictoria-b5b751",
-      "locationSet": {"include": ["au"]},
+      "id": "trustfornaturevictoria-261f43",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "boundary": "protected_area",
         "operator": "Trust for Nature Victoria"
@@ -3282,6 +3378,7 @@
         "boundary": "protected_area",
         "operator": "US Department of Defense",
         "operator:short": "US DOD",
+        "operator:type": "government",
         "operator:wikidata": "Q11209"
       }
     },
@@ -3330,6 +3427,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "United States of America",
+        "operator:type": "government",
         "operator:wikidata": "Q30"
       }
     },
@@ -3375,6 +3473,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Vermont Department of Forests, Parks & Recreation",
+        "operator:type": "government",
         "operator:wikidata": "Q115515171"
       }
     },
@@ -3390,6 +3489,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Vermont Fish & Wildlife Department",
+        "operator:type": "government",
         "operator:wikidata": "Q30259011"
       }
     },
@@ -3420,6 +3520,7 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Virginia Department of Game and Inland Fisheries",
+        "operator:type": "government",
         "operator:wikidata": "Q7934240"
       }
     },
@@ -3443,6 +3544,7 @@
         "boundary": "protected_area",
         "operator": "Washington Department of Fish and Wildlife",
         "operator:short": "WDFW",
+        "operator:type": "government",
         "operator:wikidata": "Q28373915"
       }
     },
@@ -3504,6 +3606,8 @@
       "tags": {
         "boundary": "protected_area",
         "operator": "Wisconsin Department of Natural Resources",
+        "operator:short": "Wisconsin DNR",
+        "operator:type": "government",
         "operator:wikidata": "Q1467508"
       }
     },
@@ -3528,7 +3632,8 @@
       ],
       "tags": {
         "boundary": "protected_area",
-        "operator": "Xunta de Galicia"
+        "operator": "Xunta de Galicia",
+        "operator:wikidata": "Q1779601"
       }
     },
     {

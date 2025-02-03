@@ -17,11 +17,15 @@
   "items": [
     {
       "displayName": "Ajuntament de Barcelona",
-      "id": "ajuntamentdebarcelona-1f7aba",
-      "locationSet": {"include": ["es"]},
+      "id": "ajuntamentdebarcelona-b0bc99",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ajuntament de Barcelona"
+        "operator": "Ajuntament de Barcelona",
+        "operator:type": "government",
+        "operator:wikidata": "Q3129773"
       }
     },
     {
@@ -30,7 +34,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Association des Maisons de quartier de Reims"
+        "operator": "Association des Maisons de quartier de Reims",
+        "operator:type": "private"
       }
     },
     {
@@ -52,16 +57,21 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "AWO"
+        "operator": "AWO",
+        "operator:type": "private"
       }
     },
     {
       "displayName": "Ayuntamiento de Madrid",
-      "id": "ayuntamientodemadrid-1f7aba",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodemadrid-bf9ebc",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ayuntamiento de Madrid"
+        "operator": "Ayuntamiento de Madrid",
+        "operator:type": "government",
+        "operator:wikidata": "Q3773976"
       }
     },
     {
@@ -70,7 +80,9 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ayuntamiento de Málaga"
+        "operator": "Ayuntamiento de Málaga",
+        "operator:type": "government",
+        "operator:wikidata": "Q5714892"
       }
     },
     {
@@ -81,7 +93,8 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Baltimore County Department of Aging"
+        "operator": "Baltimore County Department of Aging",
+        "operator:type": "government"
       }
     },
     {
@@ -92,7 +105,8 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Bezirksamt Eimsbüttel"
+        "operator": "Bezirksamt Eimsbüttel",
+        "operator:type": "government"
       }
     },
     {
@@ -103,7 +117,8 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Bezirksamt Hamburg-Mitte"
+        "operator": "Bezirksamt Hamburg-Mitte",
+        "operator:type": "government"
       }
     },
     {
@@ -114,7 +129,8 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Bezirksamt Hamburg-Nord"
+        "operator": "Bezirksamt Hamburg-Nord",
+        "operator:type": "government"
       }
     },
     {
@@ -124,6 +140,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Caritas",
+        "operator:type": "charitable",
         "operator:wikidata": "Q29508174"
       }
     },
@@ -133,7 +150,8 @@
       "locationSet": {"include": ["ec"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Caruiz Gadm Tena"
+        "operator": "Caruiz Gadm Tena",
+        "operator:type": "private"
       }
     },
     {
@@ -145,6 +163,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Chicago Park District",
+        "operator:type": "public",
         "operator:wikidata": "Q2963322"
       }
     },
@@ -155,6 +174,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Chiro",
+        "operator:type": "ngo",
         "operator:wikidata": "Q2749394"
       }
     },
@@ -164,7 +184,9 @@
       "locationSet": {"include": ["za"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "City of Cape Town"
+        "operator": "City of Cape Town",
+        "operator:type": "government",
+        "operator:wikidata": "Q1185115"
       }
     },
     {
@@ -202,19 +224,51 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "City of London",
+        "operator:type": "government",
         "operator:wikidata": "Q92561"
       }
     },
     {
       "displayName": "City of Los Angeles",
-      "id": "cityoflosangeles-2a1c08",
+      "id": "cityoflosangeles-0fcd3d",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
       },
       "tags": {
         "amenity": "community_centre",
         "operator": "City of Los Angeles",
+        "operator:type": "government",
         "operator:wikidata": "Q65"
+      }
+    },
+    {
+      "displayName": "City of Orlando",
+      "id": "cityoforlando-fb3645",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "matchNames": ["orlando"],
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "City of Orlando",
+        "operator:type": "government",
+        "operator:wikidata": "Q49233"
+      }
+    },
+    {
+      "displayName": "City of Ottawa",
+      "id": "cityofottawa-6e645e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "matchNames": ["ottawa"],
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "City of Ottawa",
+        "operator:type": "government",
+        "operator:wikidata": "Q5123850"
       }
     },
     {
@@ -249,7 +303,9 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Concello de Abegondo"
+        "operator": "Concello de Abegondo",
+        "operator:type": "government",
+        "operator:wikidata": "Q318323"
       }
     },
     {
@@ -258,7 +314,9 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Concello de Carral"
+        "operator": "Concello de Carral",
+        "operator:type": "government",
+        "operator:wikidata": "Q601352"
       }
     },
     {
@@ -268,6 +326,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Gemeente Nijmegen",
+        "operator:type": "government",
         "operator:wikidata": "Q47887"
       }
     },
@@ -278,6 +337,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Gmina Chojnów",
+        "operator:type": "government",
         "operator:wikidata": "Q2463113"
       }
     },
@@ -290,6 +350,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Halifax Regional Municipality",
+        "operator:type": "government",
         "operator:wikidata": "Q2141"
       }
     },
@@ -300,16 +361,19 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Helsingin kaupunki",
-        "operator:wikidata": "Q1757"
+        "operator:type": "government",
+        "operator:wikidata": "Q20251620"
       }
     },
     {
-      "displayName": "IESS",
-      "id": "iess-aa1b4b",
+      "displayName": "Instituto Ecuatoriano de Seguridad Social",
+      "id": "institutoecuatorianodeseguridadsocial-aa1b4b",
       "locationSet": {"include": ["ec"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "IESS",
+        "operator": "Instituto Ecuatoriano de Seguridad Social",
+        "operator:short": "IESS",
+        "operator:type": "government",
         "operator:wikidata": "Q5917290"
       }
     },
@@ -320,6 +384,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Institutul Cultural Român",
+        "operator:type": "public",
         "operator:wikidata": "Q2740485"
       }
     },
@@ -346,6 +411,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Junta de Andalucía",
+        "operator:type": "government",
         "operator:wikidata": "Q2743342"
       }
     },
@@ -358,87 +424,85 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Kreisjugendring München-Stadt",
+        "operator:type": "ngo",
         "operator:wikidata": "Q1330682"
       }
     },
     {
       "displayName": "Mairie de Creil",
-      "id": "mairiedecreil-7fe0be",
-      "locationSet": {"include": ["fr"]},
+      "id": "mairiedecreil-953561",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Mairie de Creil"
+        "operator": "Mairie de Creil",
+        "operator:type": "government",
+        "operator:wikidata": "Q118524793"
       }
     },
     {
       "displayName": "Mairie de Torcy",
-      "id": "mairiedetorcy-7fe0be",
-      "locationSet": {"include": ["fr"]},
+      "id": "mairiedetorcy-8ae51c",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Mairie de Torcy"
+        "operator": "Mairie de Torcy",
+        "operator:type": "government",
+        "operator:wikidata": "Q118837878"
       }
     },
     {
-      "displayName": "Montpellier",
-      "id": "montpellier-7fe0be",
-      "locationSet": {"include": ["fr"]},
+      "displayName": "Mairie de Villenave-d'Ornon",
+      "id": "mairiedevillenavedornon-1d732e",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "matchNames": ["villenave-d'ornon"],
       "tags": {
         "amenity": "community_centre",
-        "operator": "Montpellier",
-        "operator:wikidata": "Q6441"
+        "operator": "Mairie de Villenave-d'Ornon",
+        "operator:type": "government",
+        "operator:wikidata": "Q118555147"
       }
     },
     {
       "displayName": "Municipalidad de Cutral Có",
-      "id": "municipalidaddecutralco-8bc081",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddecutralco-ff4eea",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Municipalidad de Cutral Có"
+        "operator": "Municipalidad de Cutral Có",
+        "operator:type": "government",
+        "operator:wikidata": "Q970536"
       }
     },
     {
       "displayName": "Municipalidad de Neuquén",
-      "id": "municipalidaddeneuquen-8bc081",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddeneuquen-ff4eea",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "Municipalidad de Neuquén",
-        "operator:wikidata": "Q44239"
+        "operator:type": "government",
+        "operator:wikidata": "Q118390946"
       }
     },
     {
-      "displayName": "Newry, Mourne & Down District Council",
-      "id": "newrymourneanddowndistrictcouncil-6bc20d",
-      "locationSet": {"include": ["gb"]},
+      "displayName": "Newry, Mourne and Down District Council",
+      "id": "newrymourneanddowndistrictcouncil-2e855e",
+      "locationSet": {"include": ["gb-nir"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Newry, Mourne & Down District Council"
-      }
-    },
-    {
-      "displayName": "Orlando",
-      "id": "orlando-fb3645",
-      "locationSet": {
-        "include": ["us-fl.geojson"]
-      },
-      "tags": {
-        "amenity": "community_centre",
-        "operator": "Orlando",
-        "operator:wikidata": "Q49233"
-      }
-    },
-    {
-      "displayName": "Ottawa",
-      "id": "ottawa-6e645e",
-      "locationSet": {
-        "include": ["ca-on.geojson"]
-      },
-      "tags": {
-        "amenity": "community_centre",
-        "operator": "Ottawa",
-        "operator:wikidata": "Q1930"
+        "operator": "Newry, Mourne and Down District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q16998911"
       }
     },
     {
@@ -447,7 +511,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "RU-VGG-2-23"
+        "operator": "RU-VGG-2-23",
+        "operator:type": "private"
       }
     },
     {
@@ -457,6 +522,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Scouts South Africa",
+        "operator:type": "association",
         "operator:wikidata": "Q7565791"
       }
     },
@@ -468,13 +534,17 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Stadt Paderborn"
+        "operator": "Stadt Paderborn",
+        "operator:type": "government",
+        "operator:wikidata": "Q2971"
       }
     },
     {
       "displayName": "Stadtjugendring Augsburg",
-      "id": "stadtjugendringaugsburg-e0ccfa",
-      "locationSet": {"include": ["de-by"]},
+      "id": "stadtjugendringaugsburg-1aa910",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "matchNames": [
         "stadtjugendring augsburg (sjr) kdör"
       ],
@@ -482,16 +552,20 @@
         "amenity": "community_centre",
         "operator": "Stadtjugendring Augsburg",
         "operator:short": "SJR",
+        "operator:type": "private",
         "operator:wikidata": "Q130152840"
       }
     },
     {
       "displayName": "Stiftung Zürcher Gemeinschaftszentren",
-      "id": "stiftungzurchergemeinschaftszentren-6845b5",
-      "locationSet": {"include": ["ch"]},
+      "id": "stiftungzurchergemeinschaftszentren-4b6460",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "Stiftung Zürcher Gemeinschaftszentren",
+        "operator:type": "public",
         "operator:wikidata": "Q96178809"
       }
     },
@@ -502,6 +576,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Svenska kyrkan",
+        "operator:type": "religious",
         "operator:wikidata": "Q749243"
       }
     },
@@ -513,6 +588,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "The Salvation Army",
+        "operator:type": "charitable",
         "operator:wikidata": "Q188307"
       }
     },
@@ -525,16 +601,21 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "University of Florida",
+        "operator:type": "university",
         "operator:wikidata": "Q501758"
       }
     },
     {
       "displayName": "Ville de Besançon",
-      "id": "villedebesancon-602375",
-      "locationSet": {"include": ["fx"]},
+      "id": "villedebesancon-b39e7e",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ville de Besançon"
+        "operator": "Ville de Besançon",
+        "operator:type": "government",
+        "operator:wikidata": "Q86697997"
       }
     },
     {
@@ -546,26 +627,22 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Ville de Gatineau",
+        "operator:type": "government",
         "operator:wikidata": "Q141844"
       }
     },
     {
       "displayName": "Ville de Montpellier",
-      "id": "villedemontpellier-602375",
-      "locationSet": {"include": ["fx"]},
+      "id": "villedemontpellier-68cc74",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "matchNames": ["montpellier"],
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ville de Montpellier"
-      }
-    },
-    {
-      "displayName": "Villenave-d'Ornon",
-      "id": "villenavedornon-7fe0be",
-      "locationSet": {"include": ["fr"]},
-      "tags": {
-        "amenity": "community_centre",
-        "operator": "Villenave-d'Ornon",
-        "operator:wikidata": "Q235733"
+        "operator": "Ville de Montpellier",
+        "operator:type": "government",
+        "operator:wikidata": "Q86688720"
       }
     },
     {
@@ -579,6 +656,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "YMCA",
+        "operator:type": "ngo",
         "operator:wikidata": "Q54834579"
       }
     },
@@ -588,7 +666,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "ГБУ \"Талисман\""
+        "operator": "ГБУ \"Талисман\"",
+        "operator:type": "private"
       }
     },
     {
@@ -597,7 +676,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "ГБУ ЦДМСИ \"Крылья\""
+        "operator": "ГБУ ЦДМСИ \"Крылья\"",
+        "operator:type": "private"
       }
     },
     {
@@ -606,7 +686,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Дом детского тврочества"
+        "operator": "Дом детского тврочества",
+        "operator:type": "private"
       }
     },
     {
@@ -615,7 +696,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "МКУ \"МСКК\""
+        "operator": "МКУ \"МСКК\"",
+        "operator:type": "private"
       }
     },
     {
@@ -624,7 +706,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Муниципальное учреждение дополнительного образования «Центр детского творчества» Ленинского района г. Саратова"
+        "operator": "Муниципальное учреждение дополнительного образования «Центр детского творчества» Ленинского района г. Саратова",
+        "operator:type": "private"
       }
     },
     {
@@ -634,7 +717,8 @@
       "note": "this appears to translate to Ministry of Culture, and is present in multiple Asian and African countries",
       "tags": {
         "amenity": "community_centre",
-        "operator": "وزارة الثقافة"
+        "operator": "وزارة الثقافة",
+        "operator:type": "government"
       }
     },
     {
@@ -643,7 +727,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "佐賀市"
+        "operator": "佐賀市",
+        "operator:type": "private"
       }
     },
     {
@@ -652,7 +737,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "八戸市"
+        "operator": "八戸市",
+        "operator:type": "private"
       }
     },
     {
@@ -661,7 +747,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "加古川市"
+        "operator": "加古川市",
+        "operator:type": "private"
       }
     },
     {
@@ -670,7 +757,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "半田市"
+        "operator": "半田市",
+        "operator:type": "private"
       }
     },
     {
@@ -679,7 +767,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "大田区"
+        "operator": "大田区",
+        "operator:type": "government"
       }
     },
     {
@@ -689,7 +778,8 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "新ひだか町",
-        "operator:ja": "新ひだか町"
+        "operator:ja": "新ひだか町",
+        "operator:type": "private"
       }
     },
     {
@@ -698,7 +788,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "札幌市"
+        "operator": "札幌市",
+        "operator:type": "government"
       }
     },
     {
@@ -707,7 +798,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "横手市"
+        "operator": "横手市",
+        "operator:type": "government"
       }
     },
     {
@@ -716,7 +808,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "浜松市"
+        "operator": "浜松市",
+        "operator:type": "private"
       }
     },
     {
@@ -725,7 +818,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "那覇市"
+        "operator": "那覇市",
+        "operator:type": "government"
       }
     },
     {
@@ -734,7 +828,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "青木村"
+        "operator": "青木村",
+        "operator:type": "private"
       }
     },
     {
@@ -743,7 +838,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "鳥取市教育委員会"
+        "operator": "鳥取市教育委員会",
+        "operator:type": "private"
       }
     }
   ]

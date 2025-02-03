@@ -9,7 +9,17 @@ The following areas are included as part of [country-coder](https://github.com/r
 - [gu](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gu%22%5D%7D&referrer=nsi) - Territory of Guam
 - [mp](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22mp%22%5D%7D&referrer=nsi) - Territory of Northern Mariana Islands
 - [vi](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22vi%22%5D%7D&referrer=nsi) - Territory of Virgin Islands of the United States
+- [conus](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22conus%22%5D%7D&referrer=nsi) - Contiguous United States (Lower 48)
 - [um](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um%22%5D%7D&referrer=nsi) - United States Minor Outlying Islands (Baker Island, Howland Island, Jarvis Island, Johnston Atoll, Kingman Reef, Midway Atoll, Navassa Island, Palmyra Atoll, and Wake Island)
+  - [um-81](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-81%22%5D%7D&referrer=nsi) - Baker Island
+  - [um-84](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-84%22%5D%7D&referrer=nsi) - Howland Island
+  - [um-86](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-86%22%5D%7D&referrer=nsi) - Jarvis Island
+  - [jt](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jt%22%5D%7D&referrer=nsi) - Johnston Atoll
+  - [um-89](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-89%22%5D%7D&referrer=nsi) - Kingman Reef
+  - [mi](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22mi%22%5D%7D&referrer=nsi) - Midway Atoll
+  - [um-76](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-76%22%5D%7D&referrer=nsi) - Navassa Island
+  - [um-95](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-95%22%5D%7D&referrer=nsi) - Palmyra Atoll
+  - [wk](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22wk%22%5D%7D&referrer=nsi) - Wake Island
 
 States of the United States targeted with a feature using [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US)
 
@@ -70,8 +80,8 @@ Areas of the United States targeted with a feature not using [ISO 3166-2:US](htt
 
 - [US-Baltimore_and_DC.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-baltimore_and_dc.geojson%22%5D%7D&referrer=nsi) - Baltimore, Maryland, and Washington DC metropolitan area
 - [US-Offshore_Gulf_Coast.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-offshore_gulf_coast.geojson%22%5D%7D&referrer=nsi) - portion of the Gulf of Mexico off the Gulf Coast commonly used for energy exploration
-- [US-CA-East_Bay.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-east_bay.geojson%22%5D%7D&referrer=nsi) - East Bay (California)
-- [US-CA-San_Francisco.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-san_francisco.geojson%22%5D%7D&referrer=nsi) - City of San Francisco, California
+- [US-CA-East_Bay.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-east_bay.geojson%22%5D%7D&referrer=nsi) - East Bay (California, from Albany south to Oakland and Oakland Airport)
+- [US-CA-San_Francisco.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-san_francisco.geojson%22%5D%7D&referrer=nsi) - north part of the San Francisco Peninsula in California (from San Francisco south to Pacifica, San Bruno, and San Francisco Airport)
 - [US-CA-San_Jose.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-san_jose.geojson%22%5D%7D&referrer=nsi) - City of San Jose, California
 - [US-CA-Los_Angeles_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-los_angeles_county.geojson%22%5D%7D&referrer=nsi) - Los Angeles County, California
 - [US-CA-Orange_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-orange_county.geojson%22%5D%7D&referrer=nsi) - Orange County, California

@@ -41,13 +41,17 @@
       "tags": {
         "network": "Achterhoek-Rivierenland",
         "network:wikidata": "Q108716027",
+        "operator": "Arriva",
+        "operator:wikidata": "Q2581356",
         "route": "train"
       }
     },
     {
       "displayName": "Adelaide Metro",
-      "id": "adelaidemetro-cffedd",
-      "locationSet": {"include": ["au"]},
+      "id": "adelaidemetro-b5428a",
+      "locationSet": {
+        "include": ["au-sa.geojson"]
+      },
       "tags": {
         "network": "Adelaide Metro",
         "network:wikidata": "Q4681753",
@@ -71,6 +75,7 @@
       "displayName": "Amtrak",
       "id": "amtrak-012d27",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["amtrack"],
       "tags": {
         "network": "Amtrak",
         "network:wikidata": "Q23239",
@@ -84,7 +89,8 @@
       "tags": {
         "network": "Arnhem-Nijmegen",
         "network:wikidata": "Q108716067",
-        "operator": "Breng",
+        "operator": "Hermes",
+        "operator:wikidata": "Q1030145",
         "route": "train"
       }
     },
@@ -134,6 +140,7 @@
       "locationSet": {"include": ["ar"]},
       "tags": {
         "network": "Belgrano",
+        "network:wikidata": "Q2962336",
         "route": "train"
       }
     },
@@ -326,8 +333,10 @@
     },
     {
       "displayName": "Commuter",
-      "id": "commuter-73b98a",
-      "locationSet": {"include": ["ie"]},
+      "id": "commuter-91413c",
+      "locationSet": {
+        "include": ["ie-d.geojson"]
+      },
       "matchNames": ["dublin commuter"],
       "tags": {
         "network": "Commuter",
@@ -352,8 +361,13 @@
     },
     {
       "displayName": "CP Lisboa",
-      "id": "cplisboa-3ee463",
-      "locationSet": {"include": ["pt"]},
+      "id": "cplisboa-1688c6",
+      "locationSet": {
+        "include": [
+          "pt-11.geojson",
+          "pt-15.geojson"
+        ]
+      },
       "matchNames": ["cp urbanos de lisboa"],
       "tags": {
         "network": "CP Lisboa",
@@ -373,8 +387,14 @@
     },
     {
       "displayName": "CP Porto",
-      "id": "cpporto-3ee463",
-      "locationSet": {"include": ["pt"]},
+      "id": "cpporto-163135",
+      "locationSet": {
+        "include": [
+          "pt-01.geojson",
+          "pt-03.geojson",
+          "pt-13.geojson"
+        ]
+      },
       "matchNames": ["cp urbanos do porto"],
       "tags": {
         "network": "CP Porto",
@@ -406,16 +426,9 @@
     },
     {
       "displayName": "DB InterCityExpress",
-      "id": "dbintercityexpress-9473ac",
+      "id": "dbintercityexpress-7ce337",
       "locationSet": {
-        "include": [
-          "at",
-          "be",
-          "ch",
-          "de",
-          "fx",
-          "nl"
-        ]
+        "include": ["at", "be", "ch", "de", "nl"]
       },
       "tags": {
         "network": "DB InterCityExpress",
@@ -465,8 +478,8 @@
     },
     {
       "displayName": "Elizabeth line",
-      "id": "elizabethline-67e2a7",
-      "locationSet": {"include": ["gb"]},
+      "id": "elizabethline-18208c",
+      "locationSet": {"include": ["gb-eng"]},
       "matchNames": ["tfl rail"],
       "tags": {
         "network": "Elizabeth line",
@@ -536,8 +549,10 @@
     },
     {
       "displayName": "Euskotren Trena",
-      "id": "euskotrentrena-9a9458",
-      "locationSet": {"include": ["es", "fx"]},
+      "id": "euskotrentrena-4b3475",
+      "locationSet": {
+        "include": ["es", "fr-naq.geojson"]
+      },
       "tags": {
         "network": "Euskotren Trena",
         "network:wikidata": "Q149274",
@@ -561,21 +576,17 @@
       }
     },
     {
-      "displayName": "Ferrovie Nord",
-      "id": "ferrovienord-66b763",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "network": "Ferrovie Nord",
-        "route": "train"
-      }
-    },
-    {
       "displayName": "Fertagus",
-      "id": "fertagus-3ee463",
-      "locationSet": {"include": ["pt"]},
+      "id": "fertagus-1688c6",
+      "locationSet": {
+        "include": [
+          "pt-11.geojson",
+          "pt-15.geojson"
+        ]
+      },
       "tags": {
-        "operator": "Fertagus",
-        "operator:wikidata": "Q1408210",
+        "network": "Fertagus",
+        "network:wikidata": "Q1408210",
         "route": "train"
       }
     },
@@ -594,8 +605,10 @@
     },
     {
       "displayName": "Formula",
-      "id": "formula-66b763",
-      "locationSet": {"include": ["it"]},
+      "id": "formula-e600b6",
+      "locationSet": {
+        "include": ["it-21.geojson"]
+      },
       "tags": {
         "network": "Formula",
         "route": "train"
@@ -686,6 +699,19 @@
       }
     },
     {
+      "displayName": "Heilbronner Hohenloher Haller Nahverkehr",
+      "id": "heilbronnerhohenloherhallernahverkehr-24c8a1",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
+      "tags": {
+        "network": "Heilbronner Hohenloher Haller Nahverkehr",
+        "network:short": "HNV",
+        "network:wikidata": "Q1594788",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Hoofdrailnet Nederland",
       "id": "hoofdrailnetnederland-6fd908",
       "locationSet": {"include": ["be", "nl"]},
@@ -708,13 +734,35 @@
     },
     {
       "displayName": "IC",
-      "id": "ic-3b9490",
+      "id": "ic-88d47b",
       "locationSet": {
-        "include": ["be", "fx", "lu"]
+        "include": ["be", "fr-hdf.geojson", "lu"]
       },
       "tags": {
         "network": "IC",
         "network:wikidata": "Q1665939",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "ID ŽK (Slovensko)",
+      "id": "integrovanadopravazilinskehokraja-b6707b",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "network": "Integrovaná doprava Žilinského kraja",
+        "network:short": "ID ŽK",
+        "network:wikidata": "Q105957236",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "IDOL",
+      "id": "integrovanadopravalibereckehokraje-cc6cef",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "network": "Integrovaná doprava Libereckého kraje",
+        "network:short": "IDOL",
+        "network:wikidata": "Q12021686",
         "route": "train"
       }
     },
@@ -729,9 +777,32 @@
       }
     },
     {
+      "displayName": "IDS Východ",
+      "id": "idsvychod-b6707b",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "network": "IDS Východ",
+        "network:wikidata": "Q105226836",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "IDZK (Česko)",
+      "id": "integrovanadopravazlinskehokraje-cc6cef",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "network": "Integrovaná doprava Zlínského kraje",
+        "network:short": "IDZK",
+        "network:wikidata": "Q12027635",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Intercités",
-      "id": "intercites-9a9458",
-      "locationSet": {"include": ["es", "fx"]},
+      "id": "intercites-30f4d5",
+      "locationSet": {
+        "include": ["es-gi.geojson", "fx"]
+      },
       "tags": {
         "network": "Intercités",
         "network:wikidata": "Q1968198",
@@ -778,10 +849,16 @@
     },
     {
       "displayName": "Jungfraubahnen",
-      "id": "jungfraubahnen-d5549f",
-      "locationSet": {"include": ["ch"]},
+      "id": "jungfraubahnen-bd637b",
+      "locationSet": {
+        "include": [
+          "ch-be.geojson",
+          "ch-vs.geojson"
+        ]
+      },
       "tags": {
         "network": "Jungfraubahnen",
+        "network:wikidata": "Q616970",
         "route": "train"
       }
     },
@@ -817,8 +894,10 @@
     },
     {
       "displayName": "Karlsruher Verkehrsverbund",
-      "id": "karlsruherverkehrsverbund-fe9078",
-      "locationSet": {"include": ["de", "fx"]},
+      "id": "karlsruherverkehrsverbund-e9a199",
+      "locationSet": {
+        "include": ["de", "fr-ges.geojson"]
+      },
       "tags": {
         "network": "Karlsruher Verkehrsverbund",
         "network:short": "KVV",
@@ -828,8 +907,13 @@
     },
     {
       "displayName": "Kärntner Linien",
-      "id": "karntnerlinien-70a9a9",
-      "locationSet": {"include": ["at"]},
+      "id": "karntnerlinien-a72ee7",
+      "locationSet": {
+        "include": [
+          "at-2.geojson",
+          "at-7.geojson"
+        ]
+      },
       "tags": {
         "network": "Kärntner Linien",
         "network:short": "VVK",
@@ -934,8 +1018,13 @@
     },
     {
       "displayName": "Léman Express",
-      "id": "lemanexpress-514c1e",
-      "locationSet": {"include": ["ch", "fr"]},
+      "id": "lemanexpress-722408",
+      "locationSet": {
+        "include": [
+          "ch-ge.geojson",
+          "fr-ara.geojson"
+        ]
+      },
       "tags": {
         "network": "Léman Express",
         "network:short": "LEX",
@@ -1222,8 +1311,14 @@
     },
     {
       "displayName": "Mobilis (Schweiz)",
-      "id": "mobilis-7c5829",
-      "locationSet": {"include": ["ch", "fx"]},
+      "id": "mobilis-44ba7b",
+      "locationSet": {
+        "include": [
+          "ch",
+          "fr-ara.geojson",
+          "fr-bfc.geojson"
+        ]
+      },
       "matchNames": [
         "communauté tarifaire vaudoise",
         "tarifverbund waadt"
@@ -1328,6 +1423,7 @@
       "matchNames": ["new jersey transit"],
       "tags": {
         "network": "NJ Transit",
+        "network:short": "NJT",
         "network:wikidata": "Q498553",
         "route": "train"
       }
@@ -1398,8 +1494,15 @@
     },
     {
       "displayName": "Oberösterreichischer Verkehrsverbund",
-      "id": "oberosterreichischerverkehrsverbund-70a9a9",
-      "locationSet": {"include": ["at"]},
+      "id": "oberosterreichischerverkehrsverbund-e51205",
+      "locationSet": {
+        "include": [
+          "at-3.geojson",
+          "at-4.geojson",
+          "at-6.geojson",
+          "de-by.geojson"
+        ]
+      },
       "tags": {
         "network": "Oberösterreichischer Verkehrsverbund",
         "network:short": "OÖVV",
@@ -1419,9 +1522,9 @@
     },
     {
       "displayName": "Ostwind",
-      "id": "ostwind-aa6868",
+      "id": "ostwind-28627c",
       "locationSet": {
-        "include": ["at", "ch", "de", "li"]
+        "include": ["ch", "de-bw.geojson"]
       },
       "tags": {
         "network": "Ostwind",
@@ -1458,16 +1561,6 @@
       }
     },
     {
-      "displayName": "PID",
-      "id": "pid-cc6cef",
-      "locationSet": {"include": ["cz"]},
-      "tags": {
-        "network": "PID",
-        "network:wikidata": "Q2108171",
-        "route": "train"
-      }
-    },
-    {
       "displayName": "PNR Metro Commuter",
       "id": "pnrmetrocommuter-42a55e",
       "locationSet": {"include": ["ph"]},
@@ -1488,9 +1581,25 @@
       }
     },
     {
+      "displayName": "Pražská integrovaná doprava",
+      "id": "prazskaintegrovanadoprava-cc6cef",
+      "locationSet": {"include": ["cz"]},
+      "matchNames": [
+        "prague integrated transport"
+      ],
+      "tags": {
+        "network": "Pražská integrovaná doprava",
+        "network:short": "PID",
+        "network:wikidata": "Q2108171",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "PTV - Metropolitan Trains",
-      "id": "ptvmetropolitantrains-cffedd",
-      "locationSet": {"include": ["au"]},
+      "id": "ptvmetropolitantrains-240879",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "network": "PTV - Metropolitan Trains",
         "network:wikidata": "Q7257648",
@@ -1499,8 +1608,13 @@
     },
     {
       "displayName": "PTV - Regional Trains",
-      "id": "ptvregionaltrains-cffedd",
-      "locationSet": {"include": ["au"]},
+      "id": "ptvregionaltrains-859b98",
+      "locationSet": {
+        "include": [
+          "au-nsw.geojson",
+          "au-vic.geojson"
+        ]
+      },
       "tags": {
         "network": "PTV - Regional Trains",
         "network:wikidata": "Q7257648",
@@ -1518,8 +1632,10 @@
     },
     {
       "displayName": "Queensland Rail Travel",
-      "id": "queenslandrailtravel-cffedd",
-      "locationSet": {"include": ["au"]},
+      "id": "queenslandrailtravel-53220b",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "tags": {
         "network": "Queensland Rail Travel",
         "network:wikidata": "Q125878039",
@@ -1546,15 +1662,6 @@
         "network:wikidata": "Q108742239",
         "operator": "Arriva",
         "operator:wikidata": "Q2581356",
-        "route": "train"
-      }
-    },
-    {
-      "displayName": "Regionale",
-      "id": "regionale-66b763",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "network": "Regionale",
         "route": "train"
       }
     },
@@ -1644,8 +1751,14 @@
     },
     {
       "displayName": "RER",
-      "id": "rer-46b9eb",
-      "locationSet": {"include": ["fx"]},
+      "id": "rer-1e9bea",
+      "locationSet": {
+        "include": [
+          "fr-cvl.geojson",
+          "fr-hdf.geojson",
+          "fr-idf.geojson"
+        ]
+      },
       "tags": {
         "network": "RER",
         "network:wikidata": "Q216125",
@@ -1654,8 +1767,13 @@
     },
     {
       "displayName": "Rete celere del Canton Ticino",
-      "id": "reteceleredelcantonticino-66b763",
-      "locationSet": {"include": ["it"]},
+      "id": "reteceleredelcantonticino-c06dfd",
+      "locationSet": {
+        "include": [
+          "ch-ti.geojson",
+          "it-25.geojson"
+        ]
+      },
       "tags": {
         "network": "Rete celere del Canton Ticino",
         "network:wikidata": "Q472259",
@@ -1666,12 +1784,21 @@
       "displayName": "RFI",
       "id": "rfi-66b763",
       "locationSet": {"include": ["it"]},
-      "tags": {"network": "RFI", "route": "train"}
+      "tags": {
+        "network": "RFI",
+        "network:wikidata": "Q1060049",
+        "route": "train"
+      }
     },
     {
       "displayName": "RhB",
-      "id": "rhb-d5549f",
-      "locationSet": {"include": ["ch"]},
+      "id": "rhb-0c66c7",
+      "locationSet": {
+        "include": [
+          "ch-gr.geojson",
+          "it-25.geojson"
+        ]
+      },
       "tags": {
         "network": "RhB",
         "network:wikidata": "Q2204412",
@@ -1719,26 +1846,20 @@
     },
     {
       "displayName": "Rodalies de Catalunya",
-      "id": "rodaliesdecatalunya-9a9458",
-      "locationSet": {"include": ["es", "fx"]},
+      "id": "rodaliesdecatalunya-922827",
+      "locationSet": {
+        "include": ["es", "fr-occ.geojson"]
+      },
       "matchNames": [
         "cercanías de cataluña",
-        "cercanías de catalunya"
+        "cercanías de catalunya",
+        "rodalies de catalunya (atm barcelona)"
       ],
       "tags": {
         "network": "Rodalies de Catalunya",
         "network:wikidata": "Q3322422",
         "operator": "Renfe",
         "operator:wikidata": "Q2476154",
-        "route": "train"
-      }
-    },
-    {
-      "displayName": "Rodalies de Catalunya (ATM Barcelona)",
-      "id": "rodaliesdecatalunyaatmbarcelona-9a9458",
-      "locationSet": {"include": ["es", "fx"]},
-      "tags": {
-        "network": "Rodalies de Catalunya (ATM Barcelona)",
         "route": "train"
       }
     },
@@ -1761,8 +1882,10 @@
     },
     {
       "displayName": "S-Bahn Steiermark",
-      "id": "sbahnsteiermark-70a9a9",
-      "locationSet": {"include": ["at"]},
+      "id": "sbahnsteiermark-43e1b6",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
       "tags": {
         "network": "S-Bahn Steiermark",
         "network:wikidata": "Q163036",
@@ -1771,8 +1894,8 @@
     },
     {
       "displayName": "Saarländischer Verkehrsverbund",
-      "id": "saarlandischerverkehrsverbund-fe9078",
-      "locationSet": {"include": ["de", "fx"]},
+      "id": "saarlandischerverkehrsverbund-da20e0",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "network": "Saarländischer Verkehrsverbund",
         "network:short": "saarVV",
@@ -1782,8 +1905,10 @@
     },
     {
       "displayName": "Salzburger Verkehrsverbund",
-      "id": "salzburgerverkehrsverbund-bba518",
-      "locationSet": {"include": ["at", "de"]},
+      "id": "salzburgerverkehrsverbund-c79a33",
+      "locationSet": {
+        "include": ["at", "de-by.geojson"]
+      },
       "tags": {
         "network": "Salzburger Verkehrsverbund",
         "network:short": "SVV",
@@ -1831,16 +1956,6 @@
       }
     },
     {
-      "displayName": "SITAM",
-      "id": "sitam-a29473",
-      "locationSet": {"include": ["ch", "it"]},
-      "tags": {
-        "network": "SITAM",
-        "network:wikidata": "Q3943669",
-        "route": "train"
-      }
-    },
-    {
       "displayName": "SJ",
       "id": "sj-ce5db4",
       "locationSet": {"include": ["se"]},
@@ -1872,9 +1987,14 @@
     },
     {
       "displayName": "Société Nationale des Chemins de Fer Luxembourgeois",
-      "id": "societenationaledescheminsdeferluxembourgeois-ee1779",
+      "id": "societenationaledescheminsdeferluxembourgeois-7e5466",
       "locationSet": {
-        "include": ["be", "de", "fx", "lu"]
+        "include": [
+          "be",
+          "de",
+          "fr-ges.geojson",
+          "lu"
+        ]
       },
       "matchNames": [
         "chemins de fer luxembourgeois",
@@ -1934,8 +2054,14 @@
     },
     {
       "displayName": "STIBM",
-      "id": "stibm-66b763",
-      "locationSet": {"include": ["it"]},
+      "id": "stibm-01d66d",
+      "locationSet": {
+        "include": [
+          "ch-ti.geojson",
+          "it-21.geojson",
+          "it-25.geojson"
+        ]
+      },
       "tags": {
         "network": "STIBM",
         "network:wikidata": "Q65125405",
@@ -1954,8 +2080,10 @@
     },
     {
       "displayName": "Sydney Trains",
-      "id": "sydneytrains-cffedd",
-      "locationSet": {"include": ["au"]},
+      "id": "sydneytrains-73c4d6",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "tags": {
         "network": "Sydney Trains",
         "network:wikidata": "Q7660181",
@@ -2018,13 +2146,14 @@
       }
     },
     {
-      "displayName": "TER Centre − Val de Loire",
-      "id": "sncf-630989",
+      "displayName": "TER Centre – Val de Loire",
+      "id": "tercentrevaldeloire-630989",
       "locationSet": {
         "include": ["fr-cvl.geojson"]
       },
+      "matchNames": ["ter centre − val de loire"],
       "tags": {
-        "network": "TER Centre − Val de Loire",
+        "network": "TER Centre – Val de Loire",
         "network:wikidata": "Q912775",
         "operator": "SNCF",
         "operator:wikidata": "Q13646",
@@ -2135,16 +2264,18 @@
     },
     {
       "displayName": "TGV",
-      "id": "tgv-7d2d57",
+      "id": "tgv-0fcd6a",
       "locationSet": {
         "include": [
           "be",
-          "ch",
-          "de",
-          "es",
+          "ch-ge.geojson",
+          "de-sl.geojson",
+          "es-b.geojson",
+          "es-gi.geojson",
           "fx",
           "it",
           "lu",
+          "mc",
           "nl"
         ]
       },
@@ -2179,15 +2310,6 @@
       "tags": {
         "network": "TNW",
         "network:wikidata": "Q1479394",
-        "route": "train"
-      }
-    },
-    {
-      "displayName": "TPL-Piemonte",
-      "id": "tplpiemonte-9cff3c",
-      "locationSet": {"include": ["fx", "it"]},
-      "tags": {
-        "network": "TPL-Piemonte",
         "route": "train"
       }
     },
@@ -2278,8 +2400,10 @@
     },
     {
       "displayName": "Transperth",
-      "id": "transperth-cffedd",
-      "locationSet": {"include": ["au"]},
+      "id": "transperth-0c4a0f",
+      "locationSet": {
+        "include": ["au-wa.geojson"]
+      },
       "tags": {
         "network": "Transperth",
         "network:wikidata": "Q1503488",
@@ -2381,8 +2505,14 @@
     },
     {
       "displayName": "Unireso",
-      "id": "unireso-7c5829",
-      "locationSet": {"include": ["ch", "fx"]},
+      "id": "unireso-c0433d",
+      "locationSet": {
+        "include": [
+          "ch-ge.geojson",
+          "ch-vd.geojson",
+          "fr-ara.geojson"
+        ]
+      },
       "matchNames": ["tarifverbund genf"],
       "tags": {
         "network": "Unireso",
@@ -2392,8 +2522,10 @@
     },
     {
       "displayName": "V/Line",
-      "id": "vline-cffedd",
-      "locationSet": {"include": ["au"]},
+      "id": "vline-240879",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "matchNames": ["v/line corporation"],
       "tags": {
         "network": "V/Line",
@@ -2470,8 +2602,10 @@
     },
     {
       "displayName": "Verkehrsverbund Kärnten",
-      "id": "verkehrsverbundkarnten-70a9a9",
-      "locationSet": {"include": ["at"]},
+      "id": "verkehrsverbundkarnten-9d3932",
+      "locationSet": {
+        "include": ["at-2.geojson"]
+      },
       "tags": {
         "network": "Verkehrsverbund Kärnten",
         "network:short": "VVK",
@@ -2561,9 +2695,14 @@
     },
     {
       "displayName": "Verkehrsverbund Tirol",
-      "id": "verkehrsverbundtirol-872add",
+      "id": "verkehrsverbundtirol-8ca58a",
       "locationSet": {
-        "include": ["at", "ch", "de", "it"]
+        "include": [
+          "at-5.geojson",
+          "at-7.geojson",
+          "de-by.geojson",
+          "it-32.geojson"
+        ]
       },
       "tags": {
         "network": "Verkehrsverbund Tirol",
@@ -2574,8 +2713,14 @@
     },
     {
       "displayName": "Verkehrsverbund Vorarlberg",
-      "id": "verkehrsverbundvorarlberg-70a9a9",
-      "locationSet": {"include": ["at"]},
+      "id": "verkehrsverbundvorarlberg-bd8960",
+      "locationSet": {
+        "include": [
+          "at-8.geojson",
+          "ch-sg.geojson",
+          "li"
+        ]
+      },
       "tags": {
         "network": "Verkehrsverbund Vorarlberg",
         "network:short": "VVV",
@@ -2689,7 +2834,7 @@
         "network": "West Coast Express",
         "network:short": "WCE",
         "network:wikidata": "Q1675085",
-        "operator": "TransLink",
+        "operator": "Translink",
         "operator:wikidata": "Q1142140",
         "route": "train"
       }
@@ -2750,8 +2895,10 @@
     },
     {
       "displayName": "ZVV",
-      "id": "zvv-91ea8f",
-      "locationSet": {"include": ["ch", "de"]},
+      "id": "zvv-28627c",
+      "locationSet": {
+        "include": ["ch", "de-bw.geojson"]
+      },
       "matchNames": ["zürcher verkehrsverbund"],
       "tags": {
         "network": "ZVV",
@@ -2777,6 +2924,7 @@
       "locationSet": {"include": ["gr"]},
       "tags": {
         "network": "Προαστιακός Αθήνας",
+        "network:el": "Προαστιακός Αθήνας",
         "network:en": "Athens Suburban Railway",
         "network:wikidata": "Q18176333",
         "route": "train"

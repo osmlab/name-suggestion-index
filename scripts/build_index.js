@@ -285,7 +285,7 @@ function filterCollected() {
 // Load the index files under `data/*`
 //
 function loadIndex() {
-  const START = '🏗   ' + chalk.yellow(`Loading index files (this might take around 30 seconds) ...`);
+  const START = '🏗   ' + chalk.yellow(`Loading index files (this might take over 30 seconds) ...`);
   const END = '👍  ' + chalk.green(`done loading`);
   console.log('');
   console.log(START);
@@ -534,8 +534,8 @@ function mergeItems() {
             delete tags[osmkey];
             return;
           }
-          // anything starting with `contact:` - #9505
-          if (/^contact:/.test(osmkey)) {
+          // anything starting with `contact:` or `website:` - #9505
+          if (/^(contact|website):/.test(osmkey)) {
             delete tags[osmkey];
             return;
           }

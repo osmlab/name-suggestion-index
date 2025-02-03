@@ -20,8 +20,8 @@
         "^郵局$"
       ],
       "named": [
-        "^(co-?op( food)?|(the )?co-?operative( food)?)$",
-        "^(costcutter|londis|mccoll'?s|one stop|premier( stores)?|royal mail|spar|whsmith)$"
+        "^(best-one|costcutter|kirkburton post office|londis|martin's|mccoll'?s|morrisons daily|nisa local|one stop|premier( stores)?|royal mail|spar|tesco express|whsmith|wh smith)$",
+        "^(co-?op( food)?|(the )?co-?operative( food)?)$"
       ]
     }
   },
@@ -132,15 +132,6 @@
       }
     },
     {
-      "displayName": "Best-one",
-      "id": "bestone-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Best-one"
-      }
-    },
-    {
       "displayName": "BH Pošta",
       "id": "bhposta-736d07",
       "locationSet": {"include": ["ba"]},
@@ -231,6 +222,7 @@
     {
       "displayName": "Chronopost",
       "id": "chronopost-8f3efe",
+      "issues": [4675],
       "locationSet": {"include": ["fr"]},
       "note": "Still Chronopost in France, possibly moved to DPD elsewhere - #4675",
       "tags": {
@@ -613,16 +605,6 @@
       }
     },
     {
-      "displayName": "InTime",
-      "id": "intime-03f0fb",
-      "locationSet": {"include": ["bg"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "InTime",
-        "operator:wikidata": "Q130294472"
-      }
-    },
-    {
       "displayName": "Íslandspóstur",
       "id": "islandspostur-b0beaf",
       "locationSet": {"include": ["is"]},
@@ -679,18 +661,11 @@
       }
     },
     {
-      "displayName": "Kirkburton Post Office",
-      "id": "kirkburtonpostoffice-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Kirkburton Post Office"
-      }
-    },
-    {
       "displayName": "KKTC Posta Dairesi",
-      "id": "kktcpostadairesi-28cbc0",
-      "locationSet": {"include": ["cy"]},
+      "id": "kktcpostadairesi-c16b13",
+      "locationSet": {
+        "include": ["northern cyprus"]
+      },
       "tags": {
         "amenity": "post_office",
         "operator": "KKTC Posta Dairesi",
@@ -803,15 +778,6 @@
       }
     },
     {
-      "displayName": "Martin's",
-      "id": "martins-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Martin's"
-      }
-    },
-    {
       "displayName": "Meest",
       "id": "meest-970b0c",
       "locationSet": {"include": ["ua"]},
@@ -838,15 +804,6 @@
       }
     },
     {
-      "displayName": "Morrisons Daily",
-      "id": "morrisonsdaily-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Morrisons Daily"
-      }
-    },
-    {
       "displayName": "MRW",
       "id": "mrw-0a445b",
       "locationSet": {
@@ -867,15 +824,6 @@
         "amenity": "post_office",
         "operator": "New Zealand Post",
         "operator:wikidata": "Q1144511"
-      }
-    },
-    {
-      "displayName": "Nisa Local",
-      "id": "nisalocal-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Nisa Local"
       }
     },
     {
@@ -922,12 +870,13 @@
       }
     },
     {
-      "displayName": "OPT",
-      "id": "opt-d4df4a",
+      "displayName": "OPT (Polynésie française)",
+      "id": "officedespostesettelecommunicationsdepolynesiefrancaise-d4df4a",
       "locationSet": {"include": ["pf"]},
       "tags": {
         "amenity": "post_office",
-        "operator": "OPT",
+        "operator": "Office des postes et télécommunications de Polynésie française",
+        "operator:short": "OPT",
         "operator:wikidata": "Q3349602"
       }
     },
@@ -946,6 +895,10 @@
       "displayName": "Österreichische Post AG",
       "id": "osterreichischepostag-bb5e7f",
       "locationSet": {"include": ["at"]},
+      "matchNames": [
+        "österreichische post",
+        "post"
+      ],
       "tags": {
         "amenity": "post_office",
         "operator": "Österreichische Post AG",
@@ -982,20 +935,6 @@
         "official_name": "Philippine Postal Corporation",
         "operator": "PHLPost",
         "operator:wikidata": "Q1406037"
-      }
-    },
-    {
-      "displayName": "Poczta Polska",
-      "id": "pocztapolska-504b8a",
-      "locationSet": {"include": ["pl"]},
-      "matchNames": [
-        "poczta",
-        "poczta polska sa"
-      ],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Poczta Polska",
-        "operator:wikidata": "Q168833"
       }
     },
     {
@@ -1118,16 +1057,6 @@
         "amenity": "post_office",
         "operator": "Pošta Slovenije",
         "operator:wikidata": "Q6522631"
-      }
-    },
-    {
-      "displayName": "Postal Corporation of Kenya",
-      "id": "postalcorporationofkenya-56917c",
-      "locationSet": {"include": ["ke"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Postal Corporation of Kenya",
-        "operator:wikidata": "Q7233983"
       }
     },
     {
@@ -1361,15 +1290,6 @@
       }
     },
     {
-      "displayName": "Tesco Express",
-      "id": "tescoexpress-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Tesco Express"
-      }
-    },
-    {
       "displayName": "Thailand Post",
       "id": "thailandpost-a61dae",
       "locationSet": {"include": ["th"]},
@@ -1470,15 +1390,6 @@
       }
     },
     {
-      "displayName": "WH Smith",
-      "id": "whsmith-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "WH Smith"
-      }
-    },
-    {
       "displayName": "Yurtiçi Kargo",
       "id": "yurticikargo-56f07f",
       "locationSet": {"include": ["tr"]},
@@ -1537,20 +1448,6 @@
       }
     },
     {
-      "displayName": "Български пощи",
-      "id": "6d0749-03f0fb",
-      "locationSet": {"include": ["bg"]},
-      "matchNames": [
-        "bulgarian posts",
-        "български пощи еад"
-      ],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Български пощи",
-        "operator:wikidata": "Q2880826"
-      }
-    },
-    {
       "displayName": "ГиперМолл",
       "id": "1fa616-4d7a9f",
       "locationSet": {"include": ["by"]},
@@ -1569,17 +1466,6 @@
         "operator:en": "Transnistria Post",
         "operator:ru": "ГУП Почта Приднестровья",
         "operator:wikidata": "Q4375351"
-      }
-    },
-    {
-      "displayName": "Еконт",
-      "id": "27c606-03f0fb",
-      "locationSet": {"include": ["bg"]},
-      "matchNames": ["econt", "ekont", "еконт"],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Еконт Експрес ЕООД",
-        "operator:wikidata": "Q12279603"
       }
     },
     {
