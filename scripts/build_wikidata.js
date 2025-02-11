@@ -836,6 +836,7 @@ function enLabelForQID(qid) {
       if (looksLatin(item.tags.operator)) return item.tags.operator;
       if (looksLatin(item.tags.network))  return item.tags.network;
       if (looksLatin(item.displayName))   return item.displayName;
+      if (looksLatin(item.tags['name:sr-Latn']))     return item.tags['name:sr-Latn'];
     }
   }
 
