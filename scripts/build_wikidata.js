@@ -837,7 +837,7 @@ function enLabelForQID(qid) {
       if (looksLatin(item.tags.network))  return item.tags.network;
       if (looksLatin(item.displayName))   return item.displayName;
 
-      const latintags = ['name:\\w+-Latn', 'brand:\\w+-Latn', 'operator:\\w+-Latn', 'network:\\w+-Latn'];
+      const latintags = ['name:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]+-Latn(-[a-z]+)?'];
       for (let i = 0; i < latintags.length; i++) {
         let keylist = [];
         const ex = new RegExp(`^${latintags[i]}$`);
