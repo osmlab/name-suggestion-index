@@ -836,7 +836,19 @@ function enLabelForQID(qid) {
       if (looksLatin(item.tags.operator)) return item.tags.operator;
       if (looksLatin(item.tags.network))  return item.tags.network;
       if (looksLatin(item.displayName))   return item.displayName;
-      if (looksLatin(item.tags['name:sr-Latn']))     return item.tags['name:sr-Latn'];
+
+      const latintags = ['name:\\w+-Latn', 'brand:\\w+-Latn', 'operator:\\w+-Latn', 'network:\\w+-Latn'];
+      for (let i = 0; i < latintags.length; i++) {
+        let keylist = [];
+        const ex = new RegExp(`^${latintags[i]}$`);
+        Object.keys(item.tags).forEach(key => {
+          if (ex.test(key)) keylist.push(key);
+        });
+
+        for ( let j = 0; j < keylist.length; j++ ) {
+          if (looksLatin(item.tags[keylist[j]])) return item.tags[keylist[j]];
+        }
+      }
     }
   }
 
