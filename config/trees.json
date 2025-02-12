@@ -5,16 +5,16 @@
       "mainTag": "brand:wikidata",
       "sourceTags": ["brand", "name"],
       "nameTags": {
-        "primary": "^(name|name:\\w+(-Latn)?)$",
-        "alternate": "^(brand|brand:\\w+(-Latn)?|operator|operator:\\w+(-Latn)?|\\w+_name|\\w+_name:\\w+(-Latn)?)$"
+        "primary": "^(name|name:\\w+(-Latn(-\\w+)?)?)$",
+        "alternate": "^(brand|brand:\\w+(-Latn(-\\w+)?)?|operator|operator:\\w+(-Latn(-\\w+)?)?|\\w+_name|\\w+_name:\\w+(-Latn(-\\w+)?)?)$"
       }
     },
     "flags": {
       "emoji": "🚩",
       "mainTag": "flag:wikidata",
       "nameTags": {
-        "primary": "^(flag:name|flag:name:\\w+(-Latn)?)$",
-        "alternate": "^(country|country:\\w+(-Latn)?|flag|flag:\\w+(-Latn)?|subject|subject:\\w+(-Latn)?)$"
+        "primary": "^(flag:name|flag:name:\\w+(-Latn(-\\w+)?)?)$",
+        "alternate": "^(country|country:\\w+(-Latn(-\\w+)?)?|flag|flag:\\w+(-Latn(-\\w+)?)?|subject|subject:\\w+(-Latn(-\\w+)?)?)$"
       }
     },
     "operators": {
@@ -22,8 +22,8 @@
       "mainTag": "operator:wikidata",
       "sourceTags": ["operator"],
       "nameTags": {
-        "primary": "^(name|name:\\w+(-Latn)?|operator|operator:\\w+(-Latn)?)$",
-        "alternate": "^(brand|brand:\\w+(-Latn)?|\\w+_name|\\w+_name:\\w+(-Latn)?)$"
+        "primary": "^(name|name:\\w+(-Latn(-\\w+)?)?|operator|operator:\\w+(-Latn(-\\w+)?)?)$",
+        "alternate": "^(brand|brand:\\w+(-Latn(-\\w+)?)?|\\w+_name|\\w+_name:\\w+(-Latn(-\\w+)?)?)$"
       }
     },
     "transit": {
@@ -32,7 +32,7 @@
       "sourceTags": ["network"],
       "nameTags": {
         "primary": "^network$",
-        "alternate": "^(operator|operator:\\w+(-Latn)?|network:\\w+(-Latn)?|\\w+_name|\\w+_name:\\w+(-Latn)?)$"
+        "alternate": "^(operator|operator:\\w+(-Latn(-\\w+)?)?|network:\\w+(-Latn(-\\w+)?)?|\\w+_name|\\w+_name:\\w+(-Latn(-\\w+)?)?)$"
       }
     }
   }
