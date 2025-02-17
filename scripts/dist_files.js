@@ -36,7 +36,7 @@ const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
 console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('📦   Distribute files'));
+console.log(chalk.blue('📦  Build distributable files'));
 console.log(chalk.blue('-'.repeat(70)));
 
 console.log('');
@@ -384,6 +384,7 @@ function buildIDPresets() {
       if (fields)              targetPreset.fields = fields;
       if (preset.reference)    targetPreset.reference = preset.reference;
       if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
+      if (preserveTags.length) targetPreset.preserveTags = preserveTags; // #10083
 
       targetPreset.tags = sortObject(targetTags);
       targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
@@ -392,9 +393,12 @@ function buildIDPresets() {
     });
   });
 
-  missing.forEach(tkv => {
-    console.warn(chalk.yellow(`Warning - no iD source preset found for ${tkv}`));
-  });
+  if ( missing.size > 0 ) {
+    console.log(chalk.yellow(`\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
+    missing.forEach(tkv => {
+      console.log(`* no iD source preset found for ${tkv}`);
+    });
+  }
 
   let output = { presets: targetPresets };
   writeFileWithMeta('dist/presets/nsi-id-presets.json', stringify(output) + '\n');
