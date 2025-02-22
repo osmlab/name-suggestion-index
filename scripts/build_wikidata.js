@@ -42,7 +42,7 @@ const fetchOptionsQuery = {
   agent: fetchOptions.agent,
   method: 'GET',
   headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
-}
+};
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
@@ -237,7 +237,7 @@ function processEntities(result) {
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
 
-    if (!!entity.redirects) {
+    if (entity.redirects) {
       const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
       console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);

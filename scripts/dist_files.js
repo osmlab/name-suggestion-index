@@ -27,7 +27,7 @@ const trees = treesJSON.trees;
 const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-const presetsFile = 'node_modules/@openstreetmap/id-tagging-schema/dist/presets.json'
+const presetsFile = 'node_modules/@openstreetmap/id-tagging-schema/dist/presets.json';
 const presetsJSON = JSON5.parse(fs.readFileSync(presetsFile, 'utf8'));
 
 // We use LocationConflation for validating and processing the locationSets
@@ -270,7 +270,7 @@ function buildIDPresets() {
               const vals = nsiVal.split(';');
               const findResult = vals.indexOf(idVal);
               if (-1 === findResult) {
-                return false
+                return false;
               }
               // For a smaller element index rating will be higher
               currentMatchSemicolonRating -= findResult;
