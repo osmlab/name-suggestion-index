@@ -28,6 +28,8 @@ curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/replacements
 curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/trees.min.json'
 ```
 
+On Windows, replace the single quotes around the URLs with double quotes, then run the commands in a PowerShell terminal with admin rights.
+
 ### Notes
 Be sure that your local copy of the repository has all changes from the remote _before_ running `git tag vA.B.C`, especially any changes that may have come into the repo during the time elapsed between running `git pull origin` and `git add . && git commit -m 'vA.B.C'`. Once `git tag vA.B.C` is run and committed by `git push origin main vA.B.C`, the tag `vA.B.C` is _permanently_ attached to the commit created by `git push origin main vA.B.C`, even if the commit is never submitted to the remote repo due to intervening commits. If the latter situation occurs, the most straightforward resolution is to wait until the following day and repeat the full release checklist to ensure a proper release.
 
