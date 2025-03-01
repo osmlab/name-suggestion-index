@@ -296,6 +296,7 @@
         ]
       },
       "matchNames": [
+        "aldi / hofer",
         "aldi australia",
         "aldi süd",
         "aldi suisse",
@@ -569,6 +570,7 @@
       "displayName": "Auchan Supermarché",
       "id": "auchansupermarche-c16b1c",
       "locationSet": {"include": ["fr"]},
+      "matchNames": ["simply", "simply market"],
       "tags": {
         "brand": "Auchan Supermarché",
         "brand:wikidata": "Q105857776",
@@ -686,8 +688,8 @@
     },
     {
       "displayName": "Biedronka",
-      "id": "biedronka-9e6a6c",
-      "locationSet": {"include": ["pl"]},
+      "id": "biedronka-d1b870",
+      "locationSet": {"include": ["pl", "sk"]},
       "tags": {
         "brand": "Biedronka",
         "brand:wikidata": "Q857182",
@@ -1229,8 +1231,11 @@
     },
     {
       "displayName": "Carrefour Market",
-      "id": "carrefourmarket-986a24",
-      "locationSet": {"include": ["001"]},
+      "id": "carrefourmarket-b1f210",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["tw"]
+      },
       "tags": {
         "brand": "Carrefour Market",
         "brand:wikidata": "Q2689639",
@@ -1590,7 +1595,7 @@
         "brand:wikidata": "Q1108172",
         "name": "Coles",
         "operator": "Coles Group",
-        "operator:wikidata": "Q1339055",
+        "operator:wikidata": "Q131937428",
         "shop": "supermarket"
       }
     },
@@ -1603,7 +1608,7 @@
         "brand:wikidata": "Q5144653",
         "name": "Coles Central",
         "operator": "Coles Group",
-        "operator:wikidata": "Q1339055",
+        "operator:wikidata": "Q131937428",
         "shop": "supermarket"
       }
     },
@@ -1616,7 +1621,7 @@
         "brand:wikidata": "Q104850818",
         "name": "Coles Local",
         "operator": "Coles Group",
-        "operator:wikidata": "Q1339055",
+        "operator:wikidata": "Q131937428",
         "shop": "supermarket"
       }
     },
@@ -2738,8 +2743,8 @@
       "id": "eurospar-4b5e11",
       "locationSet": {"include": ["150"]},
       "tags": {
-        "brand": "Eurospar",
-        "brand:wikidata": "Q12309283",
+        "brand": "Spar",
+        "brand:wikidata": "Q610492",
         "name": "Eurospar",
         "shop": "supermarket"
       }
@@ -3125,6 +3130,17 @@
       }
     },
     {
+      "displayName": "Fresh",
+      "id": "fresh-94a8a9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "brand": "Fresh",
+        "brand:wikidata": "Q130214654",
+        "name": "Fresh",
+        "shop": "supermarket"
+      }
+    },
+    {
       "displayName": "Fresh Plus",
       "id": "freshplus-4ccde8",
       "locationSet": {"include": ["sk"]},
@@ -3147,17 +3163,6 @@
         "brand": "Fresh Thyme",
         "brand:wikidata": "Q64132791",
         "name": "Fresh Thyme",
-        "shop": "supermarket"
-      }
-    },
-    {
-      "displayName": "fresh.",
-      "id": "fresh-94a8a9",
-      "locationSet": {"include": ["fx"]},
-      "tags": {
-        "brand": "fresh.",
-        "brand:wikidata": "Q130214654",
-        "name": "fresh.",
         "shop": "supermarket"
       }
     },
@@ -3912,16 +3917,6 @@
       }
     },
     {
-      "displayName": "Incoop",
-      "id": "incoop-0cb133",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "brand": "Incoop",
-        "name": "Incoop",
-        "shop": "supermarket"
-      }
-    },
-    {
       "displayName": "Ingles",
       "id": "ingles-dde59d",
       "locationSet": {"include": ["us"]},
@@ -3986,8 +3981,8 @@
         "include": ["at", "hr", "hu", "si"]
       },
       "tags": {
-        "brand": "Interspar",
-        "brand:wikidata": "Q15820339",
+        "brand": "Spar",
+        "brand:wikidata": "Q610492",
         "name": "Interspar",
         "shop": "supermarket"
       }
@@ -5752,6 +5747,7 @@
       "displayName": "Morrisons",
       "id": "morrisons-a8278b",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["morrisons / wm morrisons"],
       "tags": {
         "brand": "Morrisons",
         "brand:wikidata": "Q922344",
@@ -6234,6 +6230,19 @@
         "brand": "Olímpica",
         "brand:wikidata": "Q24749847",
         "name": "Olímpica",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Onur Market",
+      "id": "onurmarket-5b5772",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "brand": "Onur Market",
+        "brand:tr": "Onur Market",
+        "brand:wikidata": "Q127273067",
+        "name": "Onur Market",
+        "name:tr": "Onur Market",
         "shop": "supermarket"
       }
     },
@@ -6744,17 +6753,6 @@
       }
     },
     {
-      "displayName": "Punto Simply",
-      "id": "puntosimply-0cb133",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "brand": "Punto Simply",
-        "brand:wikidata": "Q3484790",
-        "name": "Punto Simply",
-        "shop": "supermarket"
-      }
-    },
-    {
       "displayName": "Puregold",
       "id": "puregold-49e134",
       "locationSet": {"include": ["ph"]},
@@ -7101,6 +7099,7 @@
       "displayName": "Sainsbury's",
       "id": "sainsburys-a8278b",
       "locationSet": {"include": ["gb"]},
+      "matchNames": ["sainsbury's / j sainsbury"],
       "tags": {
         "brand": "Sainsbury's",
         "brand:wikidata": "Q152096",
@@ -7470,18 +7469,6 @@
       }
     },
     {
-      "displayName": "Simply Market",
-      "id": "simplymarket-986a24",
-      "locationSet": {"include": ["001"]},
-      "matchNames": ["simply"],
-      "tags": {
-        "brand": "Simply Market",
-        "brand:wikidata": "Q3484790",
-        "name": "Simply Market",
-        "shop": "supermarket"
-      }
-    },
-    {
       "displayName": "Sisa",
       "id": "sisa-0cb133",
       "locationSet": {"include": ["it"]},
@@ -7645,7 +7632,7 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "brand": "Sorli Discau",
-        "brand:wikidata": "Q21034458",
+        "brand:wikidata": "Q20103935",
         "name": "Sorli Discau",
         "shop": "supermarket"
       }
@@ -7682,7 +7669,7 @@
       "id": "spargourmet-1eef1d",
       "locationSet": {"include": ["at"]},
       "tags": {
-        "brand": "SPAR Gourmet",
+        "brand": "Spar",
         "brand:wikidata": "Q610492",
         "name": "SPAR Gourmet",
         "shop": "supermarket"
@@ -8216,7 +8203,7 @@
       "id": "superspar-5f0ef1",
       "locationSet": {"include": ["es", "za"]},
       "tags": {
-        "brand": "Superspar",
+        "brand": "Spar",
         "brand:wikidata": "Q610492",
         "name": "Superspar",
         "shop": "supermarket"
@@ -8263,6 +8250,20 @@
         "brand": "Sutterlüty",
         "brand:wikidata": "Q1421502",
         "name": "Sutterlüty",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "displayName": "Swisslion Takovo",
+      "id": "swissliontakovo-27cd97",
+      "locationSet": {
+        "include": ["bs", "hr", "mk", "mn", "rs"]
+      },
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "Swisslion Takovo",
+        "brand:wikidata": "Q7659039",
+        "name": "Swisslion Takovo",
         "shop": "supermarket"
       }
     },
@@ -9734,7 +9735,7 @@
     },
     {
       "displayName": "ДИС",
-      "id": "981fe7-b83687",
+      "id": "dis-b83687",
       "locationSet": {"include": ["rs"]},
       "tags": {
         "brand": "ДИС",
@@ -10661,8 +10662,9 @@
       "displayName": "יינות ביתן",
       "id": "yeinotbitan-6b65f1",
       "locationSet": {"include": ["il"]},
+      "matchNames": ["yaynot bitan"],
       "tags": {
-        "alt_name:en": "Yenot Bitan; Bitan Wines",
+        "alt_name:en": "Yenot Bitan;Bitan Wines",
         "brand": "יינות ביתן",
         "brand:en": "Yeinot Bitan",
         "brand:he": "יינות ביתן",
@@ -10670,6 +10672,7 @@
         "name": "יינות ביתן",
         "name:en": "Yeinot Bitan",
         "name:he": "יינות ביתן",
+        "name:ru": "Яэнот Битан",
         "shop": "supermarket"
       }
     },
@@ -10693,6 +10696,7 @@
       "displayName": "מגה בעיר",
       "id": "megabair-6b65f1",
       "locationSet": {"include": ["il"]},
+      "matchNames": ["mega"],
       "tags": {
         "brand": "מגה בעיר",
         "brand:en": "Mega Ba'Ir",
@@ -11828,7 +11832,7 @@
         "brand": "マミーマート",
         "brand:en": "Mammy Mart",
         "brand:ja": "マミーマート",
-        "brand:wikidata": "Q11340902",
+        "brand:wikidata": "Q126935642",
         "name": "マミーマート",
         "name:en": "Mammy Mart",
         "name:ja": "マミーマート",
@@ -12513,7 +12517,7 @@
         "brand:en": "Gyomu Super",
         "brand:ja": "業務スーパー",
         "brand:ja-Latn": "Gyōmu sūpā",
-        "brand:wikidata": "Q11590183",
+        "brand:wikidata": "Q105687460",
         "name": "業務スーパー",
         "name:en": "Gyomu Super",
         "name:ja": "業務スーパー",

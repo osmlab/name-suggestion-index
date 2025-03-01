@@ -27,7 +27,7 @@ const trees = treesJSON.trees;
 const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-const presetsFile = 'node_modules/@openstreetmap/id-tagging-schema/dist/presets.json'
+const presetsFile = 'node_modules/@openstreetmap/id-tagging-schema/dist/presets.json';
 const presetsJSON = JSON5.parse(fs.readFileSync(presetsFile, 'utf8'));
 
 // We use LocationConflation for validating and processing the locationSets
@@ -36,7 +36,7 @@ const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
 console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('📦   Distribute files'));
+console.log(chalk.blue('📦  Build distributable files'));
 console.log(chalk.blue('-'.repeat(70)));
 
 console.log('');
@@ -270,7 +270,7 @@ function buildIDPresets() {
               const vals = nsiVal.split(';');
               const findResult = vals.indexOf(idVal);
               if (-1 === findResult) {
-                return false
+                return false;
               }
               // For a smaller element index rating will be higher
               currentMatchSemicolonRating -= findResult;
@@ -393,9 +393,12 @@ function buildIDPresets() {
     });
   });
 
-  missing.forEach(tkv => {
-    console.warn(chalk.yellow(`Warning - no iD source preset found for ${tkv}`));
-  });
+  if ( missing.size > 0 ) {
+    console.log(chalk.yellow(`\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
+    missing.forEach(tkv => {
+      console.log(`* no iD source preset found for ${tkv}`);
+    });
+  }
 
   let output = { presets: targetPresets };
   writeFileWithMeta('dist/presets/nsi-id-presets.json', stringify(output) + '\n');

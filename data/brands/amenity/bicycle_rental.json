@@ -134,8 +134,10 @@
     },
     {
       "displayName": "BA Ecobici",
-      "id": "baecobici-2be980",
-      "locationSet": {"include": ["ar"]},
+      "id": "baecobici-01b149",
+      "locationSet": {
+        "include": ["ar-c.geojson"]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "BA Ecobici",
@@ -2509,8 +2511,10 @@
     },
     {
       "displayName": "Mi Bici Tu Bici",
-      "id": "mibicitubici-2be980",
-      "locationSet": {"include": ["ar"]},
+      "id": "mibicitubici-ffc303",
+      "locationSet": {
+        "include": ["ar-s.geojson"]
+      },
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "Mi Bici Tu Bici",
@@ -2717,7 +2721,7 @@
       }
     },
     {
-      "displayName": "Nextbike Cyprus",
+      "displayName": "nextbike Cyprus",
       "id": "nextbike-063331",
       "locationSet": {"include": ["cy"]},
       "tags": {
@@ -3189,6 +3193,22 @@
       }
     },
     {
+      "displayName": "PubliBike (Velo Bern)",
+      "id": "publibike-a8de7e",
+      "locationSet": {
+        "include": [[7.45, 46.95, 10]]
+      },
+      "tags": {
+        "amenity": "bicycle_rental",
+        "brand": "PubliBike",
+        "brand:wikidata": "Q3555363",
+        "network": "Velo Bern",
+        "operator": "PubliBike",
+        "operator:type": "private",
+        "operator:wikidata": "Q3555363"
+      }
+    },
+    {
       "displayName": "Radomski Rower Miejski",
       "id": "radomskirowermiejski-461f72",
       "locationSet": {
@@ -3434,23 +3454,16 @@
       "displayName": "sigo E-Lastenrad Sharing",
       "id": "sigo-937152",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["sigo e-lastenrad standort"],
       "tags": {
         "amenity": "bicycle_rental",
         "brand": "sigo",
+        "brand:wikidata": "Q109659526",
         "network": "sigo",
+        "network:wikidata": "Q109659526",
         "operator": "sigo",
         "operator:type": "private",
         "operator:wikidata": "Q109659526"
-      }
-    },
-    {
-      "displayName": "sigo E-Lastenrad Standort",
-      "id": "sigoelastenradstandort-937152",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "sigo E-Lastenrad Standort",
-        "name": "sigo E-Lastenrad Standort"
       }
     },
     {
@@ -4282,22 +4295,6 @@
       }
     },
     {
-      "displayName": "Velohauptstadt",
-      "id": "velohauptstadt-a8de7e",
-      "locationSet": {
-        "include": [[7.45, 46.95, 10]]
-      },
-      "matchNames": ["velo bern"],
-      "tags": {
-        "amenity": "bicycle_rental",
-        "brand": "Velohauptstadt",
-        "network": "Velo Bern",
-        "operator": "PubliBike",
-        "operator:type": "private",
-        "operator:wikidata": "Q3555363"
-      }
-    },
-    {
       "displayName": "Vélolib",
       "id": "velolib-d06f5d",
       "locationSet": {"include": ["fx"]},
@@ -4727,20 +4724,28 @@
       }
     },
     {
-      "displayName": "서울자전거 따릉이 (Seoul Bike)",
+      "displayName": "서울자전거 따릉이",
       "id": "seoulbike-3cba94",
       "locationSet": {"include": ["kr"]},
+      "matchNames": ["따릉이", "서울자전거"],
       "tags": {
+        "access": "customers",
         "amenity": "bicycle_rental",
+        "authentication:app": "yes",
+        "bicycle_rental": "docking_station",
         "brand": "서울자전거 따릉이",
         "brand:en": "Seoul Bike",
         "brand:ko": "서울자전거 따릉이",
+        "brand:wikidata": "Q28127084",
+        "fee": "yes",
         "network": "서울자전거 따릉이",
         "network:en": "Seoul Bike",
         "network:ko": "서울자전거 따릉이",
-        "operator": "서울자전거 따릉이",
-        "operator:ko": "서울자전거 따릉이",
-        "operator:type": "private"
+        "operator": "서울시설공단",
+        "operator:en": "Seoul Facilities Corporation",
+        "operator:ko": "서울시설공단",
+        "operator:type": "public",
+        "payment:app": "yes"
       }
     },
     {

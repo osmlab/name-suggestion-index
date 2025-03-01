@@ -42,14 +42,14 @@ const fetchOptionsQuery = {
   agent: fetchOptions.agent,
   method: 'GET',
   headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
-}
+};
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
 const DRYRUN = false;
 
 console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('📓   Build Wikidata'));
+console.log(chalk.blue('📓  Build Wikidata cache'));
 console.log(chalk.blue('-'.repeat(70)));
 
 // First, try to load the user's secrets.
@@ -122,6 +122,7 @@ fileTree.expandTemplates(_cache, loco);
 // Gather all QIDs referenced by any tag..
 console.log('');
 console.log('🏗   ' + chalk.yellow(`Syncing Wikidata with name-suggestion-index ...`));
+console.log('       ... this is done in batches, and may take around 10 minutes ...');
 let _wikidata = {};
 let _qidItems = {};       // any item referenced by a qid
 let _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
@@ -236,7 +237,7 @@ function processEntities(result) {
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
 
-    if (!!entity.redirects) {
+    if (entity.redirects) {
       const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
       console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
@@ -426,6 +427,12 @@ function processEntities(result) {
     const weixinUser = getClaimValue(entity, 'P7650');
     if (weixinUser) {
       target.identities.weixin = weixinUser;
+    }
+
+    // P11892 - Threads username
+    const threadsUser = getClaimValue(entity, 'P11892');
+    if (threadsUser) {
+      target.identities.threads = threadsUser;
     }
 
     // P576 - Dissolution date
@@ -829,6 +836,19 @@ function enLabelForQID(qid) {
       if (looksLatin(item.tags.operator)) return item.tags.operator;
       if (looksLatin(item.tags.network))  return item.tags.network;
       if (looksLatin(item.displayName))   return item.displayName;
+
+      const latintags = ['name:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]+-Latn(-[a-z]+)?'];
+      for (let i = 0; i < latintags.length; i++) {
+        let keylist = [];
+        const ex = new RegExp(`^${latintags[i]}$`);
+        Object.keys(item.tags).forEach(key => {
+          if (ex.test(key)) keylist.push(key);
+        });
+
+        for ( let j = 0; j < keylist.length; j++ ) {
+          if (looksLatin(item.tags[keylist[j]])) return item.tags[keylist[j]];
+        }
+      }
     }
   }
 

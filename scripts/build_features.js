@@ -146,7 +146,7 @@ function collectFeatures() {
   });
 
   // sort features by id, see: 800ca866f
-  features.sort((a, b) => withLocale(a.id, b.id))
+  features.sort((a, b) => withLocale(a.id, b.id));
 
   const featureCount = Object.keys(files).length;
   console.log(`🧩  features:\t${featureCount}`);

@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "version": "6.0.20250119",
-    "generated": "2025-01-19T04:28:55.181Z",
+    "version": "6.0.20250223",
+    "generated": "2025-02-23T13:44:53.217Z",
     "url": "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/trees.json",
-    "hash": "3dff3c0fa65ca23c9a2d4ab1409a9baa"
+    "hash": "999f3729d2d00230c6d287222e4568a6"
   },
   "trees": {
     "brands": {
@@ -11,16 +11,16 @@
       "mainTag": "brand:wikidata",
       "sourceTags": ["brand", "name"],
       "nameTags": {
-        "primary": "^(name|name:\\w+)$",
-        "alternate": "^(brand|brand:\\w+|operator|operator:\\w+|\\w+_name|\\w+_name:\\w+)$"
+        "primary": "^(name|name:[\\w-]+)$",
+        "alternate": "^(brand|brand:[\\w-]+|operator|operator:[\\w-]+|\\w+_name|\\w+_name:[\\w-]+)$"
       }
     },
     "flags": {
       "emoji": "🚩",
       "mainTag": "flag:wikidata",
       "nameTags": {
-        "primary": "^(flag:name|flag:name:\\w+)$",
-        "alternate": "^(country|country:\\w+|flag|flag:\\w+|subject|subject:\\w+)$"
+        "primary": "^(flag:name|flag:name:[\\w-]+)$",
+        "alternate": "^(country|country:[\\w-]+|flag|flag:[\\w-]+|subject|subject:[\\w-]+)$"
       }
     },
     "operators": {
@@ -28,8 +28,8 @@
       "mainTag": "operator:wikidata",
       "sourceTags": ["operator"],
       "nameTags": {
-        "primary": "^(name|name:\\w+|operator|operator:\\w+)$",
-        "alternate": "^(brand|brand:\\w+|\\w+_name|\\w+_name:\\w+)$"
+        "primary": "^(name|name:[\\w-]+|operator|operator:[\\w-]+)$",
+        "alternate": "^(brand|brand:[\\w-]+|\\w+_name|\\w+_name:[\\w-]+)$"
       }
     },
     "transit": {
@@ -38,7 +38,7 @@
       "sourceTags": ["network"],
       "nameTags": {
         "primary": "^network$",
-        "alternate": "^(operator|operator:\\w+|network:\\w+|\\w+_name|\\w+_name:\\w+)$"
+        "alternate": "^(operator|operator:[\\w-]+|network:[\\w-]+|\\w+_name|\\w+_name:[\\w-]+)$"
       }
     }
   }
