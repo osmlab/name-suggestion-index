@@ -42,14 +42,14 @@ const fetchOptionsQuery = {
   agent: fetchOptions.agent,
   method: 'GET',
   headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
-}
+};
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
 const DRYRUN = false;
 
 console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('📓   Build Wikidata'));
+console.log(chalk.blue('📓  Build Wikidata cache'));
 console.log(chalk.blue('-'.repeat(70)));
 
 // First, try to load the user's secrets.
@@ -122,6 +122,7 @@ fileTree.expandTemplates(_cache, loco);
 // Gather all QIDs referenced by any tag..
 console.log('');
 console.log('🏗   ' + chalk.yellow(`Syncing Wikidata with name-suggestion-index ...`));
+console.log('       ... this is done in batches, and may take around 10 minutes ...');
 let _wikidata = {};
 let _qidItems = {};       // any item referenced by a qid
 let _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
@@ -236,8 +237,8 @@ function processEntities(result) {
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
 
-    if (!!entity.redirects) {
-      const warning = { qid: qid, msg: `wikidata redirects to ${entity.redirects.to}` };
+    if (entity.redirects) {
+      const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
       console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
     }
@@ -263,7 +264,7 @@ function processEntities(result) {
 
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
-        const warning = { qid: qid, msg: `Entity for "${label}" missing English label.` };
+        const warning = { qid: qid, msg: `Entity for "${label}" is missing an English label.` };
         console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       }
@@ -362,7 +363,7 @@ function processEntities(result) {
             const value = q.datavalue.value.id;
             // Q113165094 - location restrictions, Q58370623 - private account, Q107459441 - only visible when logged in
             if (value === 'Q58370623' || value === 'Q107459441' || value === 'Q113165094') {
-              restriction = true;
+              restriction = value;
               break;
             }
           }
@@ -428,6 +429,12 @@ function processEntities(result) {
       target.identities.weixin = weixinUser;
     }
 
+    // P11892 - Threads username
+    const threadsUser = getClaimValue(entity, 'P11892');
+    if (threadsUser) {
+      target.identities.threads = threadsUser;
+    }
+
     // P576 - Dissolution date
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
@@ -444,8 +451,8 @@ function processEntities(result) {
           if (countries) {
             dissolution.countries = countries.map(code => iso1A2Code(code));
           }
-          // P156 - followed by or P1366 - replaced by (successor)
-          const successorQID = item.qualifiers.P156 || item.qualifiers.P1366;
+          // look for potential successors: P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
+          const successorQID = item.qualifiers.P156 || item.qualifiers.P1366 || item.qualifiers.P7888;
           if (successorQID) {
             dissolution.upgrade = successorQID;
           }
@@ -454,8 +461,8 @@ function processEntities(result) {
         if (!dissolution.upgrade) {
           // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
           // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
-          // P156 - followed by or P1366 - replaced by (successor)
-          let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366');
+          // P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
+          let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366') || getClaimValue(entity, 'P7888');
           if (successor && successor.id) {
             dissolution.upgrade = successor.id;
           }
@@ -694,8 +701,10 @@ function fetchFacebookLogo(qid, username, restriction) {
       }
 
       // queries of valid numeric IDs always return some data regardless of profile access status
-      if ( restriction && (!username.match(/^\d+$/) || target.logos.facebook) ) {
-        // show warning if Wikidata notes that access to the profile is restricted in some way, but the profile is public - #10233
+      if ( restriction && restriction !== 'Q113165094' && (!username.match(/^\d+$/) || target.logos.facebook) ) {
+        // show warning if Wikidata notes that access to the profile is restricted in certain ways, but the profile is public - #10233
+        // location restrictions (Q113165094) are skipped from this check because the API call will return different results
+        // when run by users from different countries
         const warning = { qid: qid, msg: `Facebook username @${username} has a restricted access qualifier, but is publicly accessible` };
         console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
@@ -827,6 +836,19 @@ function enLabelForQID(qid) {
       if (looksLatin(item.tags.operator)) return item.tags.operator;
       if (looksLatin(item.tags.network))  return item.tags.network;
       if (looksLatin(item.displayName))   return item.displayName;
+
+      const latintags = ['name:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]+-Latn(-[a-z]+)?'];
+      for (let i = 0; i < latintags.length; i++) {
+        let keylist = [];
+        const ex = new RegExp(`^${latintags[i]}$`);
+        Object.keys(item.tags).forEach(key => {
+          if (ex.test(key)) keylist.push(key);
+        });
+
+        for ( let j = 0; j < keylist.length; j++ ) {
+          if (looksLatin(item.tags[keylist[j]])) return item.tags[keylist[j]];
+        }
+      }
     }
   }
 
