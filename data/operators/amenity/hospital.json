@@ -20,6 +20,7 @@
         "^医院$"
       ],
       "named": [
+        "^(croydon university hospital)$",
         "^(центральна районна лікарня|црб)$",
         "^(центральная районная )?больница$"
       ]
@@ -80,20 +81,23 @@
       }
     },
     {
-      "displayName": "Advocate Aurora Health",
-      "id": "advocateaurorahealth-888e5a",
-      "locationSet": {"include": ["us"]},
-      "matchNames": [
-        "advocate health care",
-        "aurora health care"
-      ],
+      "displayName": "Advocate Health Care",
+      "id": "advocatehealthcare-929fa5",
+      "locationSet": {
+        "include": [
+          "us-ca.geojson",
+          "us-ia.geojson",
+          "us-il.geojson",
+          "us-in.geojson",
+          "us-wi.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Advocate Aurora Health",
-        "operator:short": "AAH",
+        "operator": "Advocate Health Care",
         "operator:type": "private",
-        "operator:wikidata": "Q4822546"
+        "operator:wikidata": "Q30254233"
       }
     },
     {
@@ -272,14 +276,36 @@
     },
     {
       "displayName": "Atrium Health",
-      "id": "atriumhealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "atriumhealth-991ea9",
+      "locationSet": {
+        "include": [
+          "us-al.geojson",
+          "us-ga.geojson",
+          "us-nc.geojson",
+          "us-sc.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Atrium Health",
         "operator:type": "private",
         "operator:wikidata": "Q5044932"
+      }
+    },
+    {
+      "displayName": "Aurora Health Care",
+      "id": "aurorahealthcare-a89708",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "matchNames": ["advocate aurora health"],
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Aurora Health Care",
+        "operator:type": "private",
+        "operator:wikidata": "Q4822546"
       }
     },
     {
@@ -659,17 +685,6 @@
       }
     },
     {
-      "displayName": "Croydon University Hospital",
-      "id": "croydonuniversityhospital-b0b612",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Croydon University Hospital",
-        "operator:type": "university"
-      }
-    },
-    {
       "displayName": "Cruz Roja",
       "id": "cruzroja-16e9ec",
       "locationSet": {
@@ -961,7 +976,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Fraser Health Authority",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q5493608"
       }
     },
@@ -1020,8 +1035,13 @@
     },
     {
       "displayName": "Gobierno de la Ciudad de Buenos Aires",
-      "id": "gobiernodelaciudaddebuenosaires-b92ad7",
-      "locationSet": {"include": ["ar"]},
+      "id": "gobiernodelaciudaddebuenosaires-e6d349",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1845,8 +1865,10 @@
     },
     {
       "displayName": "Ministerio de Salud - Gobierno de la Provincia del Neuquén",
-      "id": "ministeriodesaludgobiernodelaprovinciadelneuquen-b92ad7",
-      "locationSet": {"include": ["ar"]},
+      "id": "ministeriodesaludgobiernodelaprovinciadelneuquen-de8d0c",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1856,8 +1878,10 @@
     },
     {
       "displayName": "Ministerio de Salud - Gobierno de Río Negro",
-      "id": "ministeriodesaludgobiernoderionegro-b92ad7",
-      "locationSet": {"include": ["ar"]},
+      "id": "ministeriodesaludgobiernoderionegro-fed2a2",
+      "locationSet": {
+        "include": ["ar-r.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1950,15 +1974,16 @@
     },
     {
       "displayName": "Ministerio de Salud Pública y Asistencia Social (Guatemala)",
-      "id": "ministeriodesalud-0cfb3e",
+      "id": "ministeriodesaludpublicayasistenciasocial-0cfb3e",
       "locationSet": {"include": ["gt"]},
       "matchNames": [
+        "ministerio de salud",
         "ministerio de salud pública"
       ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Ministerio de Salud",
+        "operator": "Ministerio de Salud Pública y Asistencia Social",
         "operator:short": "MSPAS",
         "operator:type": "government",
         "operator:wikidata": "Q6017425"
@@ -2407,7 +2432,8 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Nuffield Health",
-        "operator:type": "private"
+        "operator:type": "private",
+        "operator:wikidata": "Q7068711"
       }
     },
     {
@@ -2516,8 +2542,10 @@
     },
     {
       "displayName": "Provincia de Santa Fe",
-      "id": "provinciadesantafe-b92ad7",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadesantafe-632554",
+      "locationSet": {
+        "include": ["ar-s.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2843,6 +2871,9 @@
       "locationSet": {
         "include": ["gb-som.geojson"]
       },
+      "matchNames": [
+        "yeovil district hospital nhs foundation trust"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2948,18 +2979,6 @@
         "operator": "Sutter Health",
         "operator:type": "private",
         "operator:wikidata": "Q7650154"
-      }
-    },
-    {
-      "displayName": "Svet zdravia",
-      "id": "svetzdravia-ecf182",
-      "locationSet": {"include": ["sk"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Svet zdravia",
-        "operator:type": "private",
-        "operator:wikidata": "Q96137636"
       }
     },
     {
@@ -3172,6 +3191,11 @@
         "veterans affairs hospital",
         "veterans affairs medical center"
       ],
+      "preserveTags": [
+        "^emergency$",
+        "^name",
+        "^short_name"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -3237,20 +3261,6 @@
         "operator": "Western Cape Department of Health",
         "operator:type": "government",
         "operator:wikidata": "Q7987677"
-      }
-    },
-    {
-      "displayName": "Yeovil District Hospital NHS Foundation Trust",
-      "id": "yeovildistricthospitalnhsfoundationtrust-5fb324",
-      "locationSet": {
-        "include": ["gb-som.geojson"]
-      },
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Yeovil District Hospital NHS Foundation Trust",
-        "operator:type": "private",
-        "operator:wikidata": "Q8052494"
       }
     },
     {
