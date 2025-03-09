@@ -8,7 +8,11 @@
   "items": [
     {
       "note": "Auto create ATMs for all banks (remove names per #7236)",
-      "templateExclude": ["monobank"],
+      "templateExclude": [
+        "abnamro",
+        "bankinghub",
+        "monobank"
+      ],
       "templateSource": "brands/amenity/bank",
       "templateTags": {
         "amenity": "atm",
@@ -19,9 +23,16 @@
     },
     {
       "displayName": "Allpoint",
-      "id": "allpoint-a81297",
+      "id": "allpoint-5fc18b",
       "locationSet": {
-        "include": ["au", "ca", "gb", "mx", "us"]
+        "include": [
+          "au",
+          "ca",
+          "gb",
+          "mx",
+          "nz",
+          "us"
+        ]
       },
       "tags": {
         "amenity": "atm",
@@ -30,13 +41,15 @@
       }
     },
     {
-      "displayName": "American Crypto ATM",
-      "id": "americancryptoatm-93d3a2",
+      "displayName": "American Crypto",
+      "id": "americancrypto-93d3a2",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["american crypto atm"],
       "matchTags": ["amenity/bank"],
       "tags": {
         "amenity": "atm",
-        "brand": "American Crypto ATM"
+        "brand": "American Crypto",
+        "brand:wikidata": "Q127753246"
       }
     },
     {
@@ -134,6 +147,7 @@
       "locationSet": {"include": ["gb"]},
       "matchNames": [
         "cardtronics",
+        "cardtronics uk",
         "cardtronics uk ltd",
         "cashzone ltd"
       ],
@@ -233,6 +247,16 @@
       }
     },
     {
+      "displayName": "EasyPay",
+      "id": "easypay-e5108a",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "amenity": "atm",
+        "brand": "EasyPay",
+        "brand:wikidata": "Q110583289"
+      }
+    },
+    {
       "displayName": "Euronet",
       "id": "euronet-d5d850",
       "locationSet": {
@@ -252,6 +276,10 @@
       "displayName": "Geldmaat",
       "id": "geldmaat-5333ab",
       "locationSet": {"include": ["nl"]},
+      "matchNames": [
+        "abn amro",
+        "abn amro bank n.v."
+      ],
       "tags": {
         "amenity": "atm",
         "brand": "Geldmaat",
@@ -380,7 +408,7 @@
         "brand": "Planet Cash",
         "brand:wikidata": "Q117744569",
         "operator": "ITCARD S.A.",
-        "operator:wikidata": "Q117744575"
+        "operator:wikidata": "Q97183761"
       }
     },
     {
@@ -481,9 +509,9 @@
         "brand": "中華郵政",
         "brand:en": "Chunghwa Post",
         "brand:nan": "Tiong-hôa Iû-chèng",
-        "brand:nan-HJ": "中華郵政",
-        "brand:nan-POJ": "Tiong-hôa Iû-chèng",
-        "brand:nan-TL": "Tiong-huâ Iû-tsìng",
+        "brand:nan-Hant": "中華郵政",
+        "brand:nan-Latn-pehoeji": "Tiong-hôa Iû-chèng",
+        "brand:nan-Latn-tailo": "Tiong-huâ Iû-tsìng",
         "brand:wikidata": "Q709259",
         "brand:zh": "中華郵政"
       }

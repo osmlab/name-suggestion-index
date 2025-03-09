@@ -1,6 +1,7 @@
 {
   "properties": {
     "path": "brands/office/estate_agent",
+    "preserveTags": ["^name"],
     "exclude": {"generic": ["^estate agent$"]}
   },
   "items": [
@@ -16,9 +17,9 @@
         "name": "21世紀不動產",
         "name:en": "Century 21",
         "name:nan": "21-sè-kí Put-tōng-sán",
-        "name:nan-HJ": "21世紀不動產",
-        "name:nan-POJ": "21-sè-kí Put-tōng-sán",
-        "name:nan-TL": "21-sè-kí Put-tōng-sán",
+        "name:nan-Hant": "21世紀不動產",
+        "name:nan-Latn-pehoeji": "21-sè-kí Put-tōng-sán",
+        "name:nan-Latn-tailo": "21-sè-kí Put-tōng-sán",
         "name:zh": "21世紀不動產",
         "office": "estate_agent"
       }
@@ -43,8 +44,8 @@
     },
     {
       "displayName": "Activ'expertise",
-      "id": "activexpertise-08bb13",
-      "locationSet": {"include": ["001"]},
+      "id": "activexpertise-b7bc37",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Activ'expertise",
         "name": "Activ'expertise",
@@ -88,7 +89,6 @@
       "displayName": "Barfoot & Thompson",
       "id": "barfootandthompson-8dbc65",
       "locationSet": {"include": ["nz"]},
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Barfoot & Thompson",
         "brand:wikidata": "Q4860509",
@@ -113,6 +113,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Barnes",
+        "brand:wikidata": "Q111207452",
         "name": "Barnes",
         "office": "estate_agent"
       }
@@ -121,7 +122,6 @@
       "displayName": "Bayleys",
       "id": "bayleys-d3667a",
       "locationSet": {"include": ["fj", "nz"]},
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Bayleys",
         "brand:wikidata": "Q112189592",
@@ -135,10 +135,10 @@
       "locationSet": {"include": ["au"]},
       "tags": {
         "brand": "Belle Property",
+        "brand:short": "Belle",
         "brand:wikidata": "Q104721339",
         "name": "Belle Property",
-        "office": "estate_agent",
-        "short_name": "Belle"
+        "office": "estate_agent"
       }
     },
     {
@@ -159,20 +159,9 @@
       "matchNames": ["homeservices of america"],
       "tags": {
         "brand": "Berkshire Hathaway HomeServices",
+        "brand:short": "Berkshire Hathaway",
         "brand:wikidata": "Q5887960",
         "name": "Berkshire Hathaway HomeServices",
-        "office": "estate_agent",
-        "short_name": "Berkshire Hathaway"
-      }
-    },
-    {
-      "displayName": "Bourse de l'Immobilier",
-      "id": "boursedelimmobilier-ea3ef3",
-      "locationSet": {"include": ["fr"]},
-      "tags": {
-        "brand": "Bourse de l'Immobilier",
-        "brand:wikidata": "Q102352527",
-        "name": "Bourse de l'Immobilier",
         "office": "estate_agent"
       }
     },
@@ -224,8 +213,8 @@
     },
     {
       "displayName": "Cabinet Bedin",
-      "id": "cabinetbedin-08bb13",
-      "locationSet": {"include": ["001"]},
+      "id": "cabinetbedin-b7bc37",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Cabinet Bedin",
         "name": "Cabinet Bedin",
@@ -334,8 +323,10 @@
     },
     {
       "displayName": "Di Jones",
-      "id": "dijones-d66f4e",
-      "locationSet": {"include": ["au"]},
+      "id": "dijones-a43aea",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "tags": {
         "brand": "Di Jones",
         "brand:wikidata": "Q105290274",
@@ -388,6 +379,32 @@
       }
     },
     {
+      "displayName": "ERA Immobilier",
+      "id": "eraimmobilier-5155c2",
+      "locationSet": {"include": ["fx", "mq"]},
+      "tags": {
+        "brand": "ERA",
+        "brand:wikidata": "Q121496901",
+        "name": "ERA Immobilier",
+        "office": "estate_agent"
+      }
+    },
+    {
+      "displayName": "ERA Real Estate",
+      "id": "erarealestate-bdc562",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["bg", "es", "fr", "pt"]
+      },
+      "matchNames": ["era"],
+      "tags": {
+        "brand": "ERA Real Estate",
+        "brand:wikidata": "Q121496901",
+        "name": "ERA Real Estate",
+        "office": "estate_agent"
+      }
+    },
+    {
       "displayName": "ERA Недвижими имоти",
       "id": "era-c3df5e",
       "locationSet": {"include": ["bg"]},
@@ -396,6 +413,7 @@
         "brand:wikidata": "Q118778286",
         "name": "Era",
         "name:bg": "Ера",
+        "name:en": "Era",
         "office": "estate_agent"
       }
     },
@@ -449,8 +467,10 @@
     },
     {
       "displayName": "Fletchers",
-      "id": "fletchers-d66f4e",
-      "locationSet": {"include": ["au"]},
+      "id": "fletchers-f2ceb3",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "brand": "Fletchers",
         "brand:wikidata": "Q106236137",
@@ -460,8 +480,8 @@
     },
     {
       "displayName": "Foncia",
-      "id": "foncia-ea3ef3",
-      "locationSet": {"include": ["fr"]},
+      "id": "foncia-b7bc37",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Foncia",
         "brand:wikidata": "Q1435638",
@@ -535,16 +555,28 @@
       ],
       "tags": {
         "brand": "Hamptons International",
+        "brand:short": "Hamptons",
         "brand:wikidata": "Q5646350",
         "name": "Hamptons International",
-        "office": "estate_agent",
-        "short_name": "Hamptons"
+        "office": "estate_agent"
       }
     },
     {
       "displayName": "Harcourts",
-      "id": "harcourts-08bb13",
-      "locationSet": {"include": ["001"]},
+      "id": "harcourts-e2b091",
+      "locationSet": {
+        "include": [
+          "au",
+          "fj",
+          "hk",
+          "id",
+          "mu",
+          "mx",
+          "nz",
+          "us",
+          "za"
+        ]
+      },
       "tags": {
         "brand": "Harcourts",
         "brand:wikidata": "Q5655056",
@@ -566,10 +598,12 @@
     },
     {
       "displayName": "Human Immobilier",
-      "id": "humanimmobilier-08bb13",
-      "locationSet": {"include": ["001"]},
+      "id": "humanimmobilier-b7bc37",
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["bourse de l'immobilier"],
       "tags": {
         "brand": "Human Immobilier",
+        "brand:wikidata": "Q102352527",
         "name": "Human Immobilier",
         "office": "estate_agent"
       }
@@ -588,8 +622,10 @@
     },
     {
       "displayName": "Jellis Craig",
-      "id": "jelliscraig-d66f4e",
-      "locationSet": {"include": ["au"]},
+      "id": "jelliscraig-f2ceb3",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "brand": "Jellis Craig",
         "brand:wikidata": "Q106236086",
@@ -768,8 +804,10 @@
     },
     {
       "displayName": "Nelson Alexander",
-      "id": "nelsonalexander-d66f4e",
-      "locationSet": {"include": ["au"]},
+      "id": "nelsonalexander-f2ceb3",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "brand": "Nelson Alexander",
         "brand:wikidata": "Q106236053",
@@ -790,8 +828,8 @@
     },
     {
       "displayName": "Nexity",
-      "id": "nexity-ea3ef3",
-      "locationSet": {"include": ["fr"]},
+      "id": "nexity-b7bc37",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Nexity",
         "brand:wikidata": "Q3339185",
@@ -855,6 +893,17 @@
       }
     },
     {
+      "displayName": "Rawson Property Group",
+      "id": "rawsonpropertygroup-0c74af",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "brand": "Rawson Property Group",
+        "brand:wikidata": "Q130379454",
+        "name": "Rawson Property Group",
+        "office": "estate_agent"
+      }
+    },
+    {
       "displayName": "Ray White",
       "id": "raywhite-85c03d",
       "locationSet": {"include": ["au", "nz"]},
@@ -870,7 +919,6 @@
       "id": "remax-08bb13",
       "locationSet": {"include": ["001"]},
       "matchNames": ["re/max of america"],
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "RE/MAX",
         "brand:wikidata": "Q965845",
@@ -968,8 +1016,8 @@
     },
     {
       "displayName": "Square Habitat",
-      "id": "squarehabitat-ea3ef3",
-      "locationSet": {"include": ["fr"]},
+      "id": "squarehabitat-b7bc37",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Square Habitat",
         "brand:wikidata": "Q64027038",
@@ -1103,7 +1151,7 @@
       }
     },
     {
-      "displayName": "von Poll Immobilien",
+      "displayName": "Von Poll Immobilien",
       "id": "vonpollimmobilien-0fbcd3",
       "locationSet": {"include": ["at", "de"]},
       "matchNames": [
@@ -1205,13 +1253,14 @@
     },
     {
       "displayName": "Адрес недвижими имоти",
-      "id": "bec946-c3df5e",
+      "id": "address-c3df5e",
       "locationSet": {"include": ["bg"]},
       "tags": {
         "brand": "Адрес",
         "brand:wikidata": "Q118778813",
         "name": "Адрес",
-        "name:ех": "Address",
+        "name:bg": "Адрес",
+        "name:en": "Address",
         "office": "estate_agent"
       }
     },
@@ -1398,9 +1447,9 @@
         "name": "中信房屋",
         "name:en": "CTBC Real Estate",
         "name:nan": "Tiong-sìn Pâng-ok",
-        "name:nan-HJ": "中信房屋",
-        "name:nan-POJ": "Tiong-sìn Pâng-ok",
-        "name:nan-TL": "Tiong-sìn Pâng-ok",
+        "name:nan-Hant": "中信房屋",
+        "name:nan-Latn-pehoeji": "Tiong-sìn Pâng-ok",
+        "name:nan-Latn-tailo": "Tiong-sìn Pâng-ok",
         "name:zh": "中信房屋",
         "office": "estate_agent"
       }
@@ -1427,6 +1476,21 @@
       "tags": {
         "brand": "中原房产",
         "name": "中原房产",
+        "office": "estate_agent"
+      }
+    },
+    {
+      "displayName": "住商不動產",
+      "id": "handbhousing-dccb44",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "住商不動產",
+        "brand:en": "H&B Housing",
+        "brand:wikidata": "Q105079491",
+        "brand:zh": "住商不動產",
+        "name": "住商不動產",
+        "name:en": "H&B Housing",
+        "name:zh": "住商不動產",
         "office": "estate_agent"
       }
     },
@@ -1472,9 +1536,9 @@
         "name": "台灣房屋",
         "name:en": "Taiwan Realty Estate",
         "name:nan": "Tâi-oân Pâng-ok",
-        "name:nan-HJ": "台灣房屋",
-        "name:nan-POJ": "Tâi-oân Pâng-ok",
-        "name:nan-TL": "Tâi-uân Pâng-ok",
+        "name:nan-Hant": "台灣房屋",
+        "name:nan-Latn-pehoeji": "Tâi-oân Pâng-ok",
+        "name:nan-Latn-tailo": "Tâi-uân Pâng-ok",
         "name:zh": "台灣房屋",
         "office": "estate_agent"
       }
@@ -1501,6 +1565,21 @@
       }
     },
     {
+      "displayName": "有巢氏房屋",
+      "id": "utrust-dccb44",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "有巢氏房屋",
+        "brand:en": "u-trust",
+        "brand:wikidata": "Q131300581",
+        "brand:zh": "有巢氏房屋",
+        "name": "有巢氏房屋",
+        "name:en": "u-trust",
+        "name:zh": "有巢氏房屋",
+        "office": "estate_agent"
+      }
+    },
+    {
       "displayName": "東森房屋",
       "id": "easternrealty-dccb44",
       "locationSet": {"include": ["tw"]},
@@ -1512,9 +1591,9 @@
         "name": "東森房屋",
         "name:en": "EASTERN REALTY",
         "name:nan": "Tong-sim Pâng-ok",
-        "name:nan-HJ": "東森房屋",
-        "name:nan-POJ": "Tong-sim Pâng-ok",
-        "name:nan-TL": "Tong-sim Pâng-ok",
+        "name:nan-Hant": "東森房屋",
+        "name:nan-Latn-pehoeji": "Tong-sim Pâng-ok",
+        "name:nan-Latn-tailo": "Tong-sim Pâng-ok",
         "name:zh": "東森房屋",
         "office": "estate_agent"
       }
