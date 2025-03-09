@@ -27,7 +27,7 @@ export function CategoryRow(props) {
     const first = dissolvedInfo[0]?.date;
     const dissolvedDate = first && new Date(Date.parse(first));
     if (dissolvedDate) {
-      dissolved = (<div className='dissolved'>(Dissolved { dissolvedDate.getFullYear() })</div>);
+      dissolved = (<div className='dissolved'>(Dissolved { dissolvedDate.getUTCFullYear() })</div>);
     }
   }
 
