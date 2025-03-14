@@ -31,15 +31,6 @@
   },
   "items": [
     {
-      "displayName": "ABB",
-      "id": "abb-2ed982",
-      "locationSet": {"include": ["tr"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "ABB"
-      }
-    },
-    {
       "displayName": "Abbotsford Parks, Recreation & Culture",
       "id": "abbotsfordparksrecreationandculture-b3cf59",
       "locationSet": {
@@ -97,7 +88,8 @@
       "locationSet": {"include": ["sv"]},
       "tags": {
         "leisure": "park",
-        "operator": "Alcaldia municipal de Soyapango"
+        "operator": "Alcaldia municipal de Soyapango",
+        "operator:type": "government"
       }
     },
     {
@@ -121,7 +113,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Alsip Park District"
+        "operator": "Alsip Park District",
+        "operator:type": "public"
       }
     },
     {
@@ -437,7 +430,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Bloomington Parks & Recreation"
+        "operator": "Bloomington Parks & Recreation",
+        "operator:type": "public"
       }
     },
     {
@@ -510,8 +504,8 @@
     },
     {
       "displayName": "Bristol City Council",
-      "id": "bristolcitycouncil-66770f",
-      "locationSet": {"include": ["gb"]},
+      "id": "bristolcitycouncil-0421ca",
+      "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "leisure": "park",
         "operator": "Bristol City Council",
@@ -541,7 +535,7 @@
         "leisure": "park",
         "operator": "Bureau of Land Management",
         "operator:short": "BLM",
-        "operator:type": "government",
+        "operator:type": "public",
         "operator:wikidata": "Q1010556"
       }
     },
@@ -575,8 +569,10 @@
     },
     {
       "displayName": "Câmara Municipal de Lisboa",
-      "id": "camaramunicipaldelisboa-1913f6",
-      "locationSet": {"include": ["pt"]},
+      "id": "camaramunicipaldelisboa-2f623b",
+      "locationSet": {
+        "include": ["pt-11.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Câmara Municipal de Lisboa",
@@ -631,6 +627,7 @@
         "leisure": "park",
         "operator": "Capital Development Authority",
         "operator:short": "CDA",
+        "operator:type": "public",
         "operator:wikidata": "Q5035545"
       }
     },
@@ -660,7 +657,7 @@
       "tags": {
         "leisure": "park",
         "operator": "Carson City Parks, Recreation, & Open Space Department",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q110063664"
       }
     },
@@ -688,6 +685,7 @@
         "leisure": "park",
         "operator": "Communauté d'agglomération Les Sorgues du Comtat",
         "operator:short": "CASC",
+        "operator:type": "government",
         "operator:wikidata": "Q2987258"
       }
     },
@@ -727,7 +725,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Chesterfield County Parks and Recreation"
+        "operator": "Chesterfield County Parks and Recreation",
+        "operator:type": "government"
       }
     },
     {
@@ -776,7 +775,8 @@
       "locationSet": {"include": ["us-hi"]},
       "tags": {
         "leisure": "park",
-        "operator": "City and County of Honolulu Department of Parks and Recreation"
+        "operator": "City and County of Honolulu Department of Parks and Recreation",
+        "operator:type": "government"
       }
     },
     {
@@ -3001,7 +3001,9 @@
       "locationSet": {"include": ["fi"]},
       "tags": {
         "leisure": "park",
-        "operator": "City of Turku"
+        "operator": "City of Turku",
+        "operator:type": "government",
+        "operator:wikidata": "Q38511"
       }
     },
     {
@@ -3019,11 +3021,15 @@
     },
     {
       "displayName": "City of Unley",
-      "id": "cityofunley-8d759d",
-      "locationSet": {"include": ["au"]},
+      "id": "cityofunley-70e1bf",
+      "locationSet": {
+        "include": ["au-sa.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "City of Unley"
+        "operator": "City of Unley",
+        "operator:type": "government",
+        "operator:wikidata": "Q1766439"
       }
     },
     {
@@ -3228,13 +3234,14 @@
     },
     {
       "displayName": "City of Winter Park",
-      "id": "winterpark-38b713",
+      "id": "cityofwinterpark-38b713",
       "locationSet": {
         "include": ["us-fl.geojson"]
       },
+      "matchNames": ["winter park"],
       "tags": {
         "leisure": "park",
-        "operator": "Winter Park",
+        "operator": "City of Winter Park",
         "operator:type": "government",
         "operator:wikidata": "Q986641"
       }
@@ -3372,6 +3379,19 @@
       }
     },
     {
+      "displayName": "Cork City Council",
+      "id": "corkcitycouncil-62b8c3",
+      "locationSet": {
+        "include": ["ie-m.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Cork City Council",
+        "operator:type": "council",
+        "operator:wikidata": "Q5170762"
+      }
+    },
+    {
       "displayName": "Corvallis Parks & Recreation",
       "id": "corvallisparksandrecreation-9db284",
       "locationSet": {
@@ -3418,7 +3438,8 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "leisure": "park",
-        "operator": "Çukurova Belediyesi"
+        "operator": "Çukurova Belediyesi",
+        "operator:type": "government"
       }
     },
     {
@@ -3429,6 +3450,7 @@
         "leisure": "park",
         "operator": "Cuttack Development Authority",
         "operator:short": "CDA",
+        "operator:type": "public",
         "operator:wikidata": "Q5196919"
       }
     },
@@ -3440,7 +3462,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Deerfield Park District"
+        "operator": "Deerfield Park District",
+        "operator:type": "public"
       }
     },
     {
@@ -3449,7 +3472,8 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "leisure": "park",
-        "operator": "Denizli Büyükşehir Belediyesi"
+        "operator": "Denizli Büyükşehir Belediyesi",
+        "operator:type": "government"
       }
     },
     {
@@ -3494,7 +3518,8 @@
       "locationSet": {"include": ["mx"]},
       "tags": {
         "leisure": "park",
-        "operator": "Dirección general de servicios públicos"
+        "operator": "Dirección general de servicios públicos",
+        "operator:type": "government"
       }
     },
     {
@@ -3530,7 +3555,7 @@
       "tags": {
         "leisure": "park",
         "operator": "Dublin City Council",
-        "operator:type": "government",
+        "operator:type": "council",
         "operator:wikidata": "Q4810766"
       }
     },
@@ -3569,7 +3594,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Elgin Parks & Recreation"
+        "operator": "Elgin Parks & Recreation",
+        "operator:type": "public"
       }
     },
     {
@@ -3751,6 +3777,19 @@
       }
     },
     {
+      "displayName": "Galway City Council",
+      "id": "galwaycitycouncil-8ff4eb",
+      "locationSet": {
+        "include": ["ie-c.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Galway City Council",
+        "operator:type": "council",
+        "operator:wikidata": "Q5519477"
+      }
+    },
+    {
       "displayName": "GAMLP",
       "id": "gamlp-14104f",
       "locationSet": {"include": ["bo"]},
@@ -3780,21 +3819,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Gaslight Village"
-      }
-    },
-    {
-      "displayName": "GCCC",
-      "id": "goldcoastcitycouncil-f88a26",
-      "locationSet": {
-        "include": ["au-qld.geojson"]
-      },
-      "tags": {
-        "leisure": "park",
-        "operator": "Gold Coast City Council",
-        "operator:short": "GCCC",
-        "operator:type": "government",
-        "operator:wikidata": "Q30267253"
+        "operator": "Gaslight Village",
+        "operator:type": "private"
       }
     },
     {
@@ -3842,7 +3868,8 @@
       "locationSet": {"include": ["in"]},
       "tags": {
         "leisure": "park",
-        "operator": "GHMC"
+        "operator": "GHMC",
+        "operator:type": "government"
       }
     },
     {
@@ -3890,7 +3917,22 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "leisure": "park",
-        "operator": "Gmina Oborniki Śląskie - Zarząd Zieleni"
+        "operator": "Gmina Oborniki Śląskie - Zarząd Zieleni",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Gold Coast City Council",
+      "id": "goldcoastcitycouncil-f88a26",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Gold Coast City Council",
+        "operator:short": "GCCC",
+        "operator:type": "government",
+        "operator:wikidata": "Q30267253"
       }
     },
     {
@@ -3901,7 +3943,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Goshen Parks & Recreation Department"
+        "operator": "Goshen Parks & Recreation Department",
+        "operator:type": "government"
       }
     },
     {
@@ -3919,8 +3962,10 @@
     },
     {
       "displayName": "Grün Stadt Zürich",
-      "id": "grunstadtzurich-a987c0",
-      "locationSet": {"include": ["ch"]},
+      "id": "grunstadtzurich-265307",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Grün Stadt Zürich",
@@ -3988,7 +4033,8 @@
       "note": "there are five Hanover Townships in Pennsylvania",
       "tags": {
         "leisure": "park",
-        "operator": "Hanover Township"
+        "operator": "Hanover Township",
+        "operator:type": "government"
       }
     },
     {
@@ -4037,7 +4083,7 @@
         "leisure": "park",
         "operator": "Helsingin kaupunki",
         "operator:type": "government",
-        "operator:wikidata": "Q1757"
+        "operator:wikidata": "Q20251620"
       }
     },
     {
@@ -4078,7 +4124,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Homewood-Flossmoor Park District"
+        "operator": "Homewood-Flossmoor Park District",
+        "operator:type": "public"
       }
     },
     {
@@ -4100,7 +4147,8 @@
       "locationSet": {"include": ["cl"]},
       "tags": {
         "leisure": "park",
-        "operator": "I. Municipalidad de Valdivia"
+        "operator": "I. Municipalidad de Valdivia",
+        "operator:type": "government"
       }
     },
     {
@@ -4109,18 +4157,8 @@
       "locationSet": {"include": ["mo"]},
       "tags": {
         "leisure": "park",
-        "operator": "IAM"
-      }
-    },
-    {
-      "displayName": "İBB",
-      "id": "ibb-2ed982",
-      "locationSet": {"include": ["tr"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "İBB",
-        "operator:type": "public",
-        "operator:wikidata": "Q6085390"
+        "operator": "IAM",
+        "operator:type": "government"
       }
     },
     {
@@ -4136,15 +4174,6 @@
         "operator:short": "IDPR",
         "operator:type": "government",
         "operator:wikidata": "Q30258114"
-      }
-    },
-    {
-      "displayName": "IDRD",
-      "id": "idrd-e0463d",
-      "locationSet": {"include": ["co"]},
-      "tags": {
-        "leisure": "park",
-        "operator": "IDRD"
       }
     },
     {
@@ -4254,6 +4283,18 @@
         "operator": "Islington Council",
         "operator:type": "government",
         "operator:wikidata": "Q6084379"
+      }
+    },
+    {
+      "displayName": "İstanbul Büyükşehir Belediyesi",
+      "id": "istanbulbuyuksehirbelediyesi-2ed982",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "leisure": "park",
+        "operator": "İstanbul Büyükşehir Belediyesi",
+        "operator:short": "İBB",
+        "operator:type": "public",
+        "operator:wikidata": "Q6085390"
       }
     },
     {
@@ -4382,6 +4423,7 @@
         "leisure": "park",
         "operator": "Johnson County Park and Recreation District",
         "operator:short": "JCPRD",
+        "operator:type": "public",
         "operator:wikidata": "Q111943500"
       }
     },
@@ -4497,11 +4539,15 @@
     },
     {
       "displayName": "Knowsley Council",
-      "id": "knowsleycouncil-66770f",
-      "locationSet": {"include": ["gb"]},
+      "id": "knowsleycouncil-331094",
+      "locationSet": {
+        "include": ["gb-north-west.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Knowsley Council"
+        "operator": "Knowsley Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q16995750"
       }
     },
     {
@@ -4536,7 +4582,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Lake Ogemaw Summer Resort Association"
+        "operator": "Lake Ogemaw Summer Resort Association",
+        "operator:type": "association"
       }
     },
     {
@@ -4563,7 +4610,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Lan-Oak Park District"
+        "operator": "Lan-Oak Park District",
+        "operator:type": "public"
       }
     },
     {
@@ -4640,7 +4688,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Little Rock Parks & Recreation"
+        "operator": "Little Rock Parks & Recreation",
+        "operator:type": "government"
       }
     },
     {
@@ -4775,6 +4824,7 @@
       "tags": {
         "leisure": "park",
         "operator": "Mairie du 2e secteur de Marseille",
+        "operator:type": "government",
         "operator:wikidata": "Q3025340"
       }
     },
@@ -4788,6 +4838,7 @@
       "tags": {
         "leisure": "park",
         "operator": "Mairie du 3e secteur de Marseille",
+        "operator:type": "government",
         "operator:wikidata": "Q3540213"
       }
     },
@@ -4797,13 +4848,14 @@
       "locationSet": {"include": ["my"]},
       "tags": {
         "leisure": "park",
-        "operator": "Majlis Bandaraya Pulau Pinang"
+        "operator": "Majlis Bandaraya Pulau Pinang",
+        "operator:type": "government"
       }
     },
     {
       "displayName": "Manchester City Council",
-      "id": "manchestercitycouncil-66770f",
-      "locationSet": {"include": ["gb"]},
+      "id": "manchestercitycouncil-0421ca",
+      "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "leisure": "park",
         "operator": "Manchester City Council",
@@ -4893,7 +4945,7 @@
       "tags": {
         "leisure": "park",
         "operator": "Maryland Park Service",
-        "operator:type": "government",
+        "operator:type": "public",
         "operator:wikidata": "Q110072482"
       }
     },
@@ -4928,7 +4980,8 @@
       "locationSet": {"include": ["in"]},
       "tags": {
         "leisure": "park",
-        "operator": "MCD"
+        "operator": "MCD",
+        "operator:type": "government"
       }
     },
     {
@@ -4964,7 +5017,8 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "leisure": "park",
-        "operator": "Merkezefendi Belediyesi"
+        "operator": "Merkezefendi Belediyesi",
+        "operator:type": "government"
       }
     },
     {
@@ -5009,20 +5063,7 @@
       }
     },
     {
-      "displayName": "Michigan Department of Transportation",
-      "id": "michigandepartmentoftransportation-b9c410",
-      "locationSet": {
-        "include": ["us-mi.geojson"]
-      },
-      "tags": {
-        "leisure": "park",
-        "operator": "Michigan Department of Transportation",
-        "operator:type": "government",
-        "operator:wikidata": "Q2350930"
-      }
-    },
-    {
-      "displayName": "Michigan DNR",
+      "displayName": "Michigan Department of Natural Resources",
       "id": "michigandepartmentofnaturalresources-b9c410",
       "locationSet": {
         "include": ["us-mi.geojson"]
@@ -5033,6 +5074,20 @@
         "operator:short": "Michigan DNR",
         "operator:type": "government",
         "operator:wikidata": "Q6837532"
+      }
+    },
+    {
+      "displayName": "Michigan Department of Transportation",
+      "id": "michigandepartmentoftransportation-b9c410",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "Michigan Department of Transportation",
+        "operator:short": "MDOT",
+        "operator:type": "government",
+        "operator:wikidata": "Q2350930"
       }
     },
     {
@@ -5107,8 +5162,10 @@
     },
     {
       "displayName": "MMCB",
-      "id": "magistratmestaceskebudejovice-63f1de",
-      "locationSet": {"include": ["cz"]},
+      "id": "magistratmestaceskebudejovice-36d008",
+      "locationSet": {
+        "include": ["cz-31.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Magistrát města České Budějovice",
@@ -5123,7 +5180,10 @@
       "locationSet": {
         "include": ["us-mt.geojson"]
       },
-      "matchNames": ["montana state parks"],
+      "matchNames": [
+        "montana fish, wildlife & parks",
+        "montana state parks"
+      ],
       "tags": {
         "leisure": "park",
         "operator": "Montana Department of Fish, Wildlife and Parks",
@@ -5166,13 +5226,16 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Mount Prospect Park District"
+        "operator": "Mount Prospect Park District",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Municipalidad de Cipolletti",
-      "id": "municipalidaddecipolletti-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddecipolletti-5665cf",
+      "locationSet": {
+        "include": ["ar-r.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Municipalidad de Cipolletti",
@@ -5182,26 +5245,36 @@
     },
     {
       "displayName": "Municipalidad de Cutral Có",
-      "id": "municipalidaddecutralco-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddecutralco-c3e953",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Municipalidad de Cutral Có"
+        "operator": "Municipalidad de Cutral Có",
+        "operator:type": "government",
+        "operator:wikidata": "Q970536"
       }
     },
     {
       "displayName": "Municipalidad de Las Lajas",
-      "id": "municipalidaddelaslajas-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddelaslajas-c3e953",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Municipalidad de Las Lajas"
+        "operator": "Municipalidad de Las Lajas",
+        "operator:type": "government",
+        "operator:wikidata": "Q1016895"
       }
     },
     {
       "displayName": "Municipalidad de Morón",
-      "id": "municipalidaddemoron-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddemoron-3c93cb",
+      "locationSet": {
+        "include": ["ar-b.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Municipalidad de Morón",
@@ -5211,28 +5284,36 @@
     },
     {
       "displayName": "Municipalidad de Neuquén",
-      "id": "municipalidaddeneuquen-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddeneuquen-c3e953",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Municipalidad de Neuquén",
         "operator:type": "government",
-        "operator:wikidata": "Q44239"
+        "operator:wikidata": "Q118390946"
       }
     },
     {
       "displayName": "Municipalidad de Plaza Huincul",
-      "id": "municipalidaddeplazahuincul-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddeplazahuincul-c3e953",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "leisure": "park",
-        "operator": "Municipalidad de Plaza Huincul"
+        "operator": "Municipalidad de Plaza Huincul",
+        "operator:type": "government",
+        "operator:wikidata": "Q980712"
       }
     },
     {
       "displayName": "Municipalidad de Salsipuedes",
-      "id": "municipalidaddesalsipuedes-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddesalsipuedes-e3d2d3",
+      "locationSet": {
+        "include": ["ar-x.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Municipalidad de Salsipuedes",
@@ -5242,8 +5323,10 @@
     },
     {
       "displayName": "Municipalidad de Ushuaia",
-      "id": "municipalidaddeushuaia-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddeushuaia-573d11",
+      "locationSet": {
+        "include": ["ar-v.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Municipalidad de Ushuaia",
@@ -5253,8 +5336,10 @@
     },
     {
       "displayName": "Municipalidad de Zapala",
-      "id": "municipalidaddezapala-2881cb",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddezapala-c3e953",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Municipalidad de Zapala",
@@ -5298,6 +5383,20 @@
       }
     },
     {
+      "displayName": "National Capital Commission",
+      "id": "nationalcapitalcommission-62b82e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "leisure": "park",
+        "operator": "National Capital Commission",
+        "operator:short": "NCC",
+        "operator:type": "government",
+        "operator:wikidata": "Q613449"
+      }
+    },
+    {
       "displayName": "National Park Service",
       "id": "nationalparkservice-059b34",
       "locationSet": {"include": ["us"]},
@@ -5309,7 +5408,7 @@
         "leisure": "park",
         "operator": "National Park Service",
         "operator:short": "NPS",
-        "operator:type": "government",
+        "operator:type": "public",
         "operator:wikidata": "Q308439"
       }
     },
@@ -5321,6 +5420,7 @@
         "leisure": "park",
         "operator": "National Parks Board",
         "operator:short": "NParks",
+        "operator:type": "government",
         "operator:wikidata": "Q6974762"
       }
     },
@@ -5358,20 +5458,6 @@
         "operator": "National Trust of Australia",
         "operator:type": "public",
         "operator:wikidata": "Q569207"
-      }
-    },
-    {
-      "displayName": "NCC",
-      "id": "nationalcapitalcommission-62b82e",
-      "locationSet": {
-        "include": ["ca-on.geojson"]
-      },
-      "tags": {
-        "leisure": "park",
-        "operator": "National Capital Commission",
-        "operator:short": "NCC",
-        "operator:type": "government",
-        "operator:wikidata": "Q613449"
       }
     },
     {
@@ -5486,8 +5572,8 @@
     },
     {
       "displayName": "Newport City Council",
-      "id": "newportcitycouncil-66770f",
-      "locationSet": {"include": ["gb"]},
+      "id": "newportcitycouncil-cb6ad2",
+      "locationSet": {"include": ["gb-wls"]},
       "tags": {
         "leisure": "park",
         "operator": "Newport City Council",
@@ -5510,8 +5596,8 @@
     },
     {
       "displayName": "Newry, Mourne and Down District Council",
-      "id": "newrymourneanddowndistrictcouncil-66770f",
-      "locationSet": {"include": ["gb"]},
+      "id": "newrymourneanddowndistrictcouncil-fe9c0f",
+      "locationSet": {"include": ["gb-nir"]},
       "tags": {
         "leisure": "park",
         "operator": "Newry, Mourne and Down District Council",
@@ -5575,7 +5661,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Northbrook Park District"
+        "operator": "Northbrook Park District",
+        "operator:type": "public"
       }
     },
     {
@@ -5588,7 +5675,7 @@
         "leisure": "park",
         "operator": "Northern Beaches Council",
         "operator:type": "government",
-        "operator:wikidata": "Q24050090"
+        "operator:wikidata": "Q56477644"
       }
     },
     {
@@ -5642,7 +5729,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Oak Lawn Park District"
+        "operator": "Oak Lawn Park District",
+        "operator:type": "public"
       }
     },
     {
@@ -5655,6 +5743,7 @@
         "leisure": "park",
         "operator": "Ohio Department of Natural Resources",
         "operator:short": "ODNR",
+        "operator:type": "government",
         "operator:wikidata": "Q7080799"
       }
     },
@@ -5748,7 +5837,7 @@
       "tags": {
         "leisure": "park",
         "operator": "Oregon Parks and Recreation Department",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q7101287"
       }
     },
@@ -5788,6 +5877,7 @@
         "leisure": "park",
         "operator": "Palmerston North City Council",
         "operator:short": "PNCC",
+        "operator:type": "government",
         "operator:wikidata": "Q30264297"
       }
     },
@@ -5797,7 +5887,8 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "leisure": "park",
-        "operator": "Pamukkale Belediyesi"
+        "operator": "Pamukkale Belediyesi",
+        "operator:type": "government"
       }
     },
     {
@@ -5808,7 +5899,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Park District of Highland Park"
+        "operator": "Park District of Highland Park",
+        "operator:type": "public"
       }
     },
     {
@@ -5933,6 +6025,7 @@
       "tags": {
         "leisure": "park",
         "operator": "Plaine Commune",
+        "operator:type": "government",
         "operator:wikidata": "Q2986910"
       }
     },
@@ -5972,7 +6065,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Portsmouth Parks and Recreation"
+        "operator": "Portsmouth Parks and Recreation",
+        "operator:type": "government"
       }
     },
     {
@@ -5981,7 +6075,8 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "leisure": "park",
-        "operator": "Pradella Sistemi"
+        "operator": "Pradella Sistemi",
+        "operator:type": "government"
       }
     },
     {
@@ -6124,7 +6219,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Puerto Pacifico"
+        "operator": "Puerto Pacifico",
+        "operator:type": "government"
       }
     },
     {
@@ -6148,7 +6244,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "River Forest Park District"
+        "operator": "River Forest Park District",
+        "operator:type": "public"
       }
     },
     {
@@ -6183,7 +6280,8 @@
       "locationSet": {"include": ["in"]},
       "tags": {
         "leisure": "park",
-        "operator": "RWA"
+        "operator": "RWA",
+        "operator:type": "government"
       }
     },
     {
@@ -6261,7 +6359,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Secretaria Municipal de Serviços Públicos Municipais de Laranjal Paulista"
+        "operator": "Secretaria Municipal de Serviços Públicos Municipais de Laranjal Paulista",
+        "operator:type": "government"
       }
     },
     {
@@ -6281,7 +6380,8 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "leisure": "park",
-        "operator": "Seyhan Belediyesi"
+        "operator": "Seyhan Belediyesi",
+        "operator:type": "government"
       }
     },
     {
@@ -6305,7 +6405,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Smyrna Parks & Recreation"
+        "operator": "Smyrna Parks & Recreation",
+        "operator:type": "public"
       }
     },
     {
@@ -6428,8 +6529,10 @@
     },
     {
       "displayName": "Stadt Innsbruck",
-      "id": "stadtinnsbruck-6ed0ea",
-      "locationSet": {"include": ["at"]},
+      "id": "stadtinnsbruck-c774fa",
+      "locationSet": {
+        "include": ["at-7.geojson"]
+      },
       "tags": {
         "leisure": "park",
         "operator": "Stadt Innsbruck",
@@ -6498,7 +6601,8 @@
       "matchNames": ["story ccb"],
       "tags": {
         "leisure": "park",
-        "operator": "Story County Conservation Board"
+        "operator": "Story County Conservation Board",
+        "operator:type": "government"
       }
     },
     {
@@ -6988,7 +7092,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "UR都市機構"
+        "operator": "UR都市機構",
+        "operator:type": "government"
       }
     },
     {
@@ -7289,6 +7394,7 @@
         "leisure": "park",
         "operator": "Washington Department of Fish and Wildlife",
         "operator:short": "WDFW",
+        "operator:type": "government",
         "operator:wikidata": "Q28373915"
       }
     },
@@ -7326,7 +7432,8 @@
       "locationSet": {"include": ["za"]},
       "tags": {
         "leisure": "park",
-        "operator": "Welgevonden Estate"
+        "operator": "Welgevonden Estate",
+        "operator:type": "private"
       }
     },
     {
@@ -7459,7 +7566,8 @@
       },
       "tags": {
         "leisure": "park",
-        "operator": "Windsor Essex Mobility Group"
+        "operator": "Windsor Essex Mobility Group",
+        "operator:type": "private"
       }
     },
     {
@@ -7563,7 +7671,8 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "leisure": "park",
-        "operator": "Zarząd Zieleni Miejskiej w Krakowie"
+        "operator": "Zarząd Zieleni Miejskiej w Krakowie",
+        "operator:type": "government"
       }
     },
     {
@@ -7572,7 +7681,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "leisure": "park",
-        "operator": "Администрация ЗАТО Северск"
+        "operator": "Администрация ЗАТО Северск",
+        "operator:type": "government"
       }
     },
     {
@@ -7581,7 +7691,8 @@
       "locationSet": {"include": ["ir"]},
       "tags": {
         "leisure": "park",
-        "operator": "شهرداری"
+        "operator": "شهرداری",
+        "operator:type": "government"
       }
     },
     {
@@ -7591,7 +7702,8 @@
       "tags": {
         "leisure": "park",
         "operator": "강동구청",
-        "operator:ko": "강동구청"
+        "operator:ko": "강동구청",
+        "operator:type": "government"
       }
     },
     {
@@ -7601,7 +7713,8 @@
       "tags": {
         "leisure": "park",
         "operator": "안성시",
-        "operator:ko": "안성시"
+        "operator:ko": "안성시",
+        "operator:type": "government"
       }
     },
     {
@@ -7611,7 +7724,8 @@
       "tags": {
         "leisure": "park",
         "operator": "안양시",
-        "operator:ko": "안양시"
+        "operator:ko": "안양시",
+        "operator:type": "government"
       }
     },
     {
@@ -7621,7 +7735,8 @@
       "tags": {
         "leisure": "park",
         "operator": "춘천시 경관과",
-        "operator:ko": "춘천시 경관과"
+        "operator:ko": "춘천시 경관과",
+        "operator:type": "government"
       }
     },
     {
@@ -7631,7 +7746,8 @@
       "tags": {
         "leisure": "park",
         "operator": "ひたちなか市",
-        "operator:ja": "ひたちなか市"
+        "operator:ja": "ひたちなか市",
+        "operator:type": "government"
       }
     },
     {
@@ -7640,7 +7756,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "世田谷区"
+        "operator": "世田谷区",
+        "operator:type": "government"
       }
     },
     {
@@ -7649,7 +7766,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "中野区"
+        "operator": "中野区",
+        "operator:type": "government"
       }
     },
     {
@@ -7658,7 +7776,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "今治市"
+        "operator": "今治市",
+        "operator:type": "government"
       }
     },
     {
@@ -7667,7 +7786,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "仙台市"
+        "operator": "仙台市",
+        "operator:type": "government"
       }
     },
     {
@@ -7676,7 +7796,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "仙台市宮城野区役所建設部公園課"
+        "operator": "仙台市宮城野区役所建設部公園課",
+        "operator:type": "government"
       }
     },
     {
@@ -7685,7 +7806,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "仙台市若林区役所建設部公園課"
+        "operator": "仙台市若林区役所建設部公園課",
+        "operator:type": "government"
       }
     },
     {
@@ -7695,7 +7817,8 @@
       "tags": {
         "leisure": "park",
         "operator": "会津若松市 花と緑の課",
-        "operator:ja": "会津若松市 花と緑の課"
+        "operator:ja": "会津若松市 花と緑の課",
+        "operator:type": "government"
       }
     },
     {
@@ -7704,7 +7827,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "八千代市"
+        "operator": "八千代市",
+        "operator:type": "government"
       }
     },
     {
@@ -7713,7 +7837,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "出水市"
+        "operator": "出水市",
+        "operator:type": "government"
       }
     },
     {
@@ -7722,7 +7847,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "名古屋市"
+        "operator": "名古屋市",
+        "operator:type": "government"
       }
     },
     {
@@ -7731,7 +7857,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "品川区"
+        "operator": "品川区",
+        "operator:type": "government"
       }
     },
     {
@@ -7740,7 +7867,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "土佐清水市"
+        "operator": "土佐清水市",
+        "operator:type": "government"
       }
     },
     {
@@ -7749,7 +7877,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "堺市"
+        "operator": "堺市",
+        "operator:type": "government"
       }
     },
     {
@@ -7758,7 +7887,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "堺市住宅管理課"
+        "operator": "堺市住宅管理課",
+        "operator:type": "government"
       }
     },
     {
@@ -7767,7 +7897,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "大口町"
+        "operator": "大口町",
+        "operator:type": "government"
       }
     },
     {
@@ -7776,7 +7907,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "大和郡山市"
+        "operator": "大和郡山市",
+        "operator:type": "government"
       }
     },
     {
@@ -7785,7 +7917,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "大田区"
+        "operator": "大田区",
+        "operator:type": "government"
       }
     },
     {
@@ -7794,7 +7927,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "宮崎市"
+        "operator": "宮崎市",
+        "operator:type": "government"
       }
     },
     {
@@ -7804,7 +7938,8 @@
       "tags": {
         "leisure": "park",
         "operator": "寝屋川市公園みどり課",
-        "operator:ja": "寝屋川市公園みどり課"
+        "operator:ja": "寝屋川市公園みどり課",
+        "operator:type": "government"
       }
     },
     {
@@ -7813,7 +7948,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "小田原市"
+        "operator": "小田原市",
+        "operator:type": "government"
       }
     },
     {
@@ -7822,7 +7958,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "岡垣町"
+        "operator": "岡垣町",
+        "operator:type": "government"
       }
     },
     {
@@ -7831,7 +7968,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "平塚市"
+        "operator": "平塚市",
+        "operator:type": "government"
       }
     },
     {
@@ -7840,14 +7978,14 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "広島県呉市"
+        "operator": "広島県呉市",
+        "operator:type": "government"
       }
     },
     {
       "displayName": "康樂及文化事務署 Leisure and Cultural Services Department",
       "id": "leisureandculturalservicesdepartment-30eaed",
       "locationSet": {"include": ["hk"]},
-      "matchNames": ["康文署"],
       "tags": {
         "leisure": "park",
         "operator": "康樂及文化事務署 Leisure and Cultural Services Department",
@@ -7868,7 +8006,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "文京区"
+        "operator": "文京区",
+        "operator:type": "government"
       }
     },
     {
@@ -7877,7 +8016,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "新宿区"
+        "operator": "新宿区",
+        "operator:type": "government"
       }
     },
     {
@@ -7886,7 +8026,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "新居浜市"
+        "operator": "新居浜市",
+        "operator:type": "government"
       }
     },
     {
@@ -7895,7 +8036,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "日本中央競馬会"
+        "operator": "日本中央競馬会",
+        "operator:type": "government"
       }
     },
     {
@@ -7904,7 +8046,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "札幌市"
+        "operator": "札幌市",
+        "operator:type": "government"
       }
     },
     {
@@ -7913,7 +8056,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "東京都"
+        "operator": "東京都",
+        "operator:type": "government"
       }
     },
     {
@@ -7922,7 +8066,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "東京都府中市"
+        "operator": "東京都府中市",
+        "operator:type": "government"
       }
     },
     {
@@ -7931,7 +8076,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "東京都青梅市"
+        "operator": "東京都青梅市",
+        "operator:type": "government"
       }
     },
     {
@@ -7940,7 +8086,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "板橋区"
+        "operator": "板橋区",
+        "operator:type": "government"
       }
     },
     {
@@ -7949,7 +8096,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "横手市"
+        "operator": "横手市",
+        "operator:type": "government"
       }
     },
     {
@@ -7959,6 +8107,7 @@
       "tags": {
         "leisure": "park",
         "operator": "深圳市公园管理中心",
+        "operator:type": "government",
         "operator:wikidata": "Q113625158",
         "operator:zh": "深圳市公园管理中心"
       }
@@ -7969,7 +8118,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "渋谷区"
+        "operator": "渋谷区",
+        "operator:type": "government"
       }
     },
     {
@@ -7978,7 +8128,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "町田市"
+        "operator": "町田市",
+        "operator:type": "government"
       }
     },
     {
@@ -7987,7 +8138,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "盛岡市"
+        "operator": "盛岡市",
+        "operator:type": "government"
       }
     },
     {
@@ -7996,7 +8148,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "目黒区"
+        "operator": "目黒区",
+        "operator:type": "government"
       }
     },
     {
@@ -8005,7 +8158,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "福岡市"
+        "operator": "福岡市",
+        "operator:type": "government"
       }
     },
     {
@@ -8014,7 +8168,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "福岡市西区役所"
+        "operator": "福岡市西区役所",
+        "operator:type": "government"
       }
     },
     {
@@ -8023,7 +8178,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "練馬区"
+        "operator": "練馬区",
+        "operator:type": "government"
       }
     },
     {
@@ -8032,7 +8188,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "豊川市"
+        "operator": "豊川市",
+        "operator:type": "government"
       }
     },
     {
@@ -8041,7 +8198,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "豊橋市"
+        "operator": "豊橋市",
+        "operator:type": "government"
       }
     },
     {
@@ -8050,7 +8208,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "那覇市"
+        "operator": "那覇市",
+        "operator:type": "government"
       }
     },
     {
@@ -8059,7 +8218,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "青梅市"
+        "operator": "青梅市",
+        "operator:type": "government"
       }
     },
     {
@@ -8068,7 +8228,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "青葉区役所建設部公園課"
+        "operator": "青葉区役所建設部公園課",
+        "operator:type": "government"
       }
     },
     {
@@ -8077,7 +8238,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "leisure": "park",
-        "operator": "香芝市"
+        "operator": "香芝市",
+        "operator:type": "government"
       }
     }
   ]

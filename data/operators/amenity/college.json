@@ -6,19 +6,13 @@
         "^(governo |)federal$",
         "^autonomo$",
         "^college$"
+      ],
+      "named": [
+        "university of california, irvine"
       ]
     }
   },
   "items": [
-    {
-      "displayName": "#IFES",
-      "id": "ifes-628adc",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "college",
-        "operator": "#IFES"
-      }
-    },
     {
       "displayName": "Centro Paula Souza",
       "id": "centropaulasouza-628adc",
@@ -26,6 +20,7 @@
       "tags": {
         "amenity": "college",
         "operator": "Centro Paula Souza",
+        "operator:type": "public",
         "operator:wikidata": "Q52637715"
       }
     },
@@ -38,6 +33,7 @@
       "tags": {
         "amenity": "college",
         "operator": "City of Dublin Education and Training Board",
+        "operator:type": "public",
         "operator:wikidata": "Q126962352"
       }
     },
@@ -48,6 +44,7 @@
       "tags": {
         "amenity": "college",
         "operator": "Consejo de Formación en Educación",
+        "operator:type": "public",
         "operator:wikidata": "Q16552124"
       }
     },
@@ -57,7 +54,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "college",
-        "operator": "Dunamare onderwijs"
+        "operator": "Dunamare onderwijs",
+        "operator:type": "private"
       }
     },
     {
@@ -70,6 +68,7 @@
       "tags": {
         "amenity": "college",
         "operator": "École de la Deuxième Chance",
+        "operator:type": "private",
         "operator:wikidata": "Q3577882"
       }
     },
@@ -79,16 +78,34 @@
       "locationSet": {"include": ["gh"]},
       "tags": {
         "amenity": "college",
-        "operator": "Government of Ghana"
+        "operator": "Government of Ghana",
+        "operator:type": "government",
+        "operator:wikidata": "Q16733607"
       }
     },
     {
       "displayName": "Government of Western Australia",
-      "id": "governmentofwesternaustralia-32223d",
-      "locationSet": {"include": ["au"]},
+      "id": "governmentofwesternaustralia-81d5c7",
+      "locationSet": {
+        "include": ["au-wa.geojson"]
+      },
       "tags": {
         "amenity": "college",
-        "operator": "Government of Western Australia"
+        "operator": "Government of Western Australia",
+        "operator:type": "government",
+        "operator:wikidata": "Q5589347"
+      }
+    },
+    {
+      "displayName": "IFET",
+      "id": "institutofederaldeeducacaocienciaetecnologia-628adc",
+      "locationSet": {"include": ["br"]},
+      "matchNames": ["#ifes"],
+      "tags": {
+        "amenity": "college",
+        "operator": "Instituto Federal de Educação, Ciência e Tecnologia",
+        "operator:type": "public",
+        "operator:wikidata": "Q10302972"
       }
     },
     {
@@ -99,16 +116,22 @@
         "amenity": "college",
         "operator": "Instituto Nacional de Aprendizaje",
         "operator:short": "INA",
+        "operator:type": "public",
         "operator:wikidata": "Q21573160"
       }
     },
     {
-      "displayName": "Ministère de l'Éducation nationale, de l'Enseignement supérieur et de la Recherche",
-      "id": "ministeredeleducationnationaledelenseignementsuperieuretdelarecherche-dac3bc",
+      "displayName": "Ministère de l'Enseignement supérieur et de la Recherche",
+      "id": "ministeredelenseignementsuperieuretdelarecherche-dac3bc",
       "locationSet": {"include": ["fx"]},
+      "matchNames": [
+        "ministère de l'éducation nationale, de l'enseignement supérieur et de la recherche"
+      ],
       "tags": {
         "amenity": "college",
-        "operator": "Ministère de l'Éducation nationale, de l'Enseignement supérieur et de la Recherche"
+        "operator": "Ministère de l'Enseignement supérieur et de la Recherche",
+        "operator:type": "government",
+        "operator:wikidata": "Q2726949"
       }
     },
     {
@@ -120,6 +143,7 @@
       "tags": {
         "amenity": "college",
         "operator": "Ocean County College",
+        "operator:type": "public",
         "operator:wikidata": "Q7075970"
       }
     },
@@ -129,7 +153,8 @@
       "locationSet": {"include": ["mx"]},
       "tags": {
         "amenity": "college",
-        "operator": "Organismo Descentralizado Del Gobierno Del Estado"
+        "operator": "Organismo Descentralizado Del Gobierno Del Estado",
+        "operator:type": "public"
       }
     },
     {
@@ -142,6 +167,7 @@
         "amenity": "college",
         "operator": "Portland Community College",
         "operator:short": "PCC",
+        "operator:type": "public",
         "operator:wikidata": "Q7231908"
       }
     },
@@ -151,7 +177,8 @@
       "locationSet": {"include": ["uz"]},
       "tags": {
         "amenity": "college",
-        "operator": "Qaraqalpaqstan Respublikası mektepke shekemgi hám mektep bilimlendiriw ministrligi"
+        "operator": "Qaraqalpaqstan Respublikası mektepke shekemgi hám mektep bilimlendiriw ministrligi",
+        "operator:type": "government"
       }
     },
     {
@@ -162,6 +189,7 @@
         "amenity": "college",
         "operator": "Servicio Nacional de Aprendizaje",
         "operator:short": "SENA",
+        "operator:type": "public",
         "operator:wikidata": "Q6974078"
       }
     },
@@ -171,7 +199,8 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "college",
-        "operator": "Serviço Nacional da Indústria"
+        "operator": "Serviço Nacional da Indústria",
+        "operator:type": "public"
       }
     },
     {
@@ -180,7 +209,8 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "college",
-        "operator": "Skk School Spółka Z Ograniczoną Odpowiedzialnością"
+        "operator": "Skk School Spółka Z Ograniczoną Odpowiedzialnością",
+        "operator:type": "private"
       }
     },
     {
@@ -252,7 +282,9 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "college",
-        "operator": "Universidade de São Paulo"
+        "operator": "Universidade de São Paulo",
+        "operator:type": "public",
+        "operator:wikidata": "Q835960"
       }
     },
     {
@@ -264,6 +296,7 @@
       "tags": {
         "amenity": "college",
         "operator": "Université de Lille",
+        "operator:type": "private",
         "operator:wikidata": "Q3551621"
       }
     },
@@ -273,20 +306,9 @@
       "locationSet": {"include": ["my"]},
       "tags": {
         "amenity": "college",
-        "operator": "Universiti Malaya"
-      }
-    },
-    {
-      "displayName": "University of California, Irvine",
-      "id": "universityofcaliforniairvine-6e795f",
-      "locationSet": {
-        "include": ["us-ca-orange_county.geojson"]
-      },
-      "matchNames": ["uc irvine"],
-      "tags": {
-        "amenity": "college",
-        "operator": "University of California, Irvine",
-        "operator:wikidata": "Q868421"
+        "operator": "Universiti Malaya",
+        "operator:type": "public",
+        "operator:wikidata": "Q1142924"
       }
     },
     {
@@ -295,7 +317,9 @@
       "locationSet": {"include": ["iq"]},
       "tags": {
         "amenity": "college",
-        "operator": "University of Duhok"
+        "operator": "University of Duhok",
+        "operator:type": "private",
+        "operator:wikidata": "Q3666468"
       }
     },
     {
@@ -307,6 +331,7 @@
       "tags": {
         "amenity": "college",
         "operator": "University of North Georgia",
+        "operator:type": "public",
         "operator:wikidata": "Q7895970"
       }
     },
@@ -316,7 +341,9 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "college",
-        "operator": "University of the Highlands and Islands"
+        "operator": "University of the Highlands and Islands",
+        "operator:type": "private",
+        "operator:wikidata": "Q1470817"
       }
     },
     {
@@ -325,7 +352,8 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "college",
-        "operator": "中国科学技术大学"
+        "operator": "中国科学技术大学",
+        "operator:type": "private"
       }
     },
     {
@@ -334,7 +362,8 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "amenity": "college",
-        "operator": "北京理工大学珠海学院"
+        "operator": "北京理工大学珠海学院",
+        "operator:type": "private"
       }
     },
     {
@@ -343,7 +372,8 @@
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "college",
-        "operator": "金沢工業大学"
+        "operator": "金沢工業大学",
+        "operator:type": "private"
       }
     }
   ]

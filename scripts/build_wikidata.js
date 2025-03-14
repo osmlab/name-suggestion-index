@@ -38,11 +38,19 @@ const httpsAgent = new https.Agent({ keepAlive: true });
 const fetchOptions = {
   agent: (url) => ((url.protocol === 'http:') ? httpAgent : httpsAgent)
 };
+const fetchOptionsQuery = {
+  agent: fetchOptions.agent,
+  method: 'GET',
+  headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
+};
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
 const DRYRUN = false;
 
+console.log(chalk.blue('-'.repeat(70)));
+console.log(chalk.blue('📓  Build Wikidata cache'));
+console.log(chalk.blue('-'.repeat(70)));
 
 // First, try to load the user's secrets.
 // This is optional but needed if you want this script to:
@@ -105,11 +113,16 @@ if (_secrets && _secrets.wikibase) {
 
 // what to fetch
 let _cache = {};
+console.log('');
+console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over 30 seconds) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
 
 // Gather all QIDs referenced by any tag..
+console.log('');
+console.log('🏗   ' + chalk.yellow(`Syncing Wikidata with name-suggestion-index ...`));
+console.log('       ... this is done in batches, and may take around 10 minutes ...');
 let _wikidata = {};
 let _qidItems = {};       // any item referenced by a qid
 let _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
@@ -224,8 +237,8 @@ function processEntities(result) {
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
 
-    if (!!entity.redirects) {
-      const warning = { qid: qid, msg: `wikidata redirects to ${entity.redirects.to}` };
+    if (entity.redirects) {
+      const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
       console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
     }
@@ -251,7 +264,7 @@ function processEntities(result) {
 
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
-        const warning = { qid: qid, msg: `Entity for "${label}" missing English label.` };
+        const warning = { qid: qid, msg: `Entity for "${label}" is missing an English label.` };
         console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       }
@@ -314,11 +327,11 @@ function processEntities(result) {
     }
 
     // P12454 - location information URL
-    const locationInfoWebsites = getClaimValues(entity, 'P12454', false);
+    const locationInfoWebsites = getClaimValues(entity, 'P12454', true);
     if (locationInfoWebsites) {
       target.locationInfoWebsites = locationInfoWebsites;
     }
-    
+
     // P2002 - Twitter username
     const twitterUser = getClaimValue(entity, 'P2002');
     if (twitterUser) {
@@ -335,7 +348,31 @@ function processEntities(result) {
     const facebookUser = getClaimValue(entity, 'P2013');
     if (facebookUser) {
       target.identities.facebook = facebookUser;
-      facebookQueue.push({ qid: qid, username: facebookUser });    // queue logo fetch
+
+      // get access status of selected value - #10233
+      let restriction;
+
+      for (let i = 0; i < entity.claims['P2013'].length; i++) {
+        const c = entity.claims['P2013'][i];
+        if ( c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser ) {
+          const qualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
+          for (let j = 0; j < qualifiers.length; j++) {
+            const q = qualifiers[j];
+            if ( q.snaktype !== 'value' ) continue;
+
+            const value = q.datavalue.value.id;
+            // Q113165094 - location restrictions, Q58370623 - private account, Q107459441 - only visible when logged in
+            if (value === 'Q58370623' || value === 'Q107459441' || value === 'Q113165094') {
+              restriction = value;
+              break;
+            }
+          }
+
+          break;
+        }
+      }
+
+      facebookQueue.push({ qid: qid, username: facebookUser, restriction: restriction });    // queue logo fetch
     }
 
     // P2397 - YouTube ID
@@ -392,6 +429,12 @@ function processEntities(result) {
       target.identities.weixin = weixinUser;
     }
 
+    // P11892 - Threads username
+    const threadsUser = getClaimValue(entity, 'P11892');
+    if (threadsUser) {
+      target.identities.threads = threadsUser;
+    }
+
     // P576 - Dissolution date
     if (meta.what !== 'flag' && meta.what !== 'subject') {
       wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }).forEach(item => {
@@ -408,8 +451,8 @@ function processEntities(result) {
           if (countries) {
             dissolution.countries = countries.map(code => iso1A2Code(code));
           }
-          // P156 - followed by or P1366 - replaced by (successor)
-          const successorQID = item.qualifiers.P156 || item.qualifiers.P1366;
+          // look for potential successors: P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
+          const successorQID = item.qualifiers.P156 || item.qualifiers.P1366 || item.qualifiers.P7888;
           if (successorQID) {
             dissolution.upgrade = successorQID;
           }
@@ -418,8 +461,8 @@ function processEntities(result) {
         if (!dissolution.upgrade) {
           // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
           // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
-          // P156 - followed by or P1366 - replaced by (successor)
-          let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366');
+          // P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
+          let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366') || getClaimValue(entity, 'P7888');
           if (successor && successor.id) {
             dissolution.upgrade = successor.id;
           }
@@ -495,7 +538,7 @@ function processEntities(result) {
 
   });  // foreach qid
 
-  return Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username)) )
+  return Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username, obj.restriction)) )
     .then(() => processWbEditQueue(wbEditQueue));
 }
 
@@ -633,7 +676,7 @@ function finish() {
 
 
 // https://developers.facebook.com/docs/graph-api/reference/user/picture/
-function fetchFacebookLogo(qid, username) {
+function fetchFacebookLogo(qid, username, restriction) {
   let target = _wikidata[qid];
   let logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
   let userid;
@@ -656,16 +699,29 @@ function fetchFacebookLogo(qid, username) {
       if (json.data && !json.data.is_silhouette) {
         target.logos.facebook = logoURL;
       }
+
+      // queries of valid numeric IDs always return some data regardless of profile access status
+      if ( restriction && restriction !== 'Q113165094' && (!username.match(/^\d+$/) || target.logos.facebook) ) {
+        // show warning if Wikidata notes that access to the profile is restricted in certain ways, but the profile is public - #10233
+        // location restrictions (Q113165094) are skipped from this check because the API call will return different results
+        // when run by users from different countries
+        const warning = { qid: qid, msg: `Facebook username @${username} has a restricted access qualifier, but is publicly accessible` };
+        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+        _warnings.push(warning);
+      }
       return true;
     })
     .catch(e => {
       if (userid) {
         target.identities.facebook = userid;
-        return fetchFacebookLogo(qid, userid);   // retry with just the numeric id
+        return fetchFacebookLogo(qid, userid, restriction);   // retry with just the numeric id
       } else {
-        const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
-        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
-        _warnings.push(warning);
+        // suppress warning if Wikidata notes that access to the profile is restricted in some way - #10233
+        if ( !restriction ) {
+          const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
+          console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+          _warnings.push(warning);
+        }
       }
     });
 }
@@ -677,6 +733,8 @@ function fetchFacebookLogo(qid, username) {
 function removeOldNsiClaims() {
   if (!_wbEdit) return Promise.resolve();
 
+  console.log('');
+  console.log('🏗   ' + chalk.yellow(`Searching Wikidata for obsolete NSI identifier claims ...`));
   const query = `
     SELECT ?qid ?nsiId ?guid
     WHERE {
@@ -684,7 +742,7 @@ function removeOldNsiClaims() {
       ?guid  ps:P8253  ?nsiId.
     }`;
 
-  return fetch(wbk.sparqlQuery(query), fetchOptions)
+  return fetch(wbk.sparqlQuery(query), fetchOptionsQuery)
     .then(response => {
       if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
       return response.json();
@@ -763,7 +821,7 @@ function enLabelForQID(qid) {
     const item = _cache.id.get(ids[i]);
 
     if (meta.what === 'flag') {
-      if (looksLatin(item.tags.subject))  return `Flag of ${item.tags.subject}`;
+      if (looksLatin(item.tags.subject))  return `flag of ${item.tags.subject}`;
 
     } else {
       // These we know are English..
@@ -778,6 +836,19 @@ function enLabelForQID(qid) {
       if (looksLatin(item.tags.operator)) return item.tags.operator;
       if (looksLatin(item.tags.network))  return item.tags.network;
       if (looksLatin(item.displayName))   return item.displayName;
+
+      const latintags = ['name:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]+-Latn(-[a-z]+)?'];
+      for (let i = 0; i < latintags.length; i++) {
+        let keylist = [];
+        const ex = new RegExp(`^${latintags[i]}$`);
+        Object.keys(item.tags).forEach(key => {
+          if (ex.test(key)) keylist.push(key);
+        });
+
+        for ( let j = 0; j < keylist.length; j++ ) {
+          if (looksLatin(item.tags[keylist[j]])) return item.tags[keylist[j]];
+        }
+      }
     }
   }
 

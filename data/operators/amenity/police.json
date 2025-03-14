@@ -3,13 +3,14 @@
     "path": "operators/amenity/police",
     "exclude": {
       "generic": [
-        "^police$",
+        "^((local|municipal) )?police$",
+        "^polizia( (locale|municipale))?$",
         "^п[ао]л(іцыя|иция|иција|іція|иций)$",
         "^中华人民共和国公安部"
       ],
       "named": [
         "^corpo forestale dello stato$",
-        "^polizia (locale|municipale)$"
+        "^ministère d'etat, ministère de l'interieur et de la sécurité$"
       ]
     }
   },
@@ -123,6 +124,7 @@
         "amenity": "police",
         "operator": "Brigada Militar do Rio Grande do Sul",
         "operator:en": "Military Police Brigade of Rio Grande do Sul",
+        "operator:pt": "Brigada Militar do Rio Grande do Sul",
         "operator:short": "BMRS",
         "operator:wikidata": "Q9666780"
       }
@@ -324,7 +326,8 @@
       "locationSet": {"include": ["in"]},
       "tags": {
         "amenity": "police",
-        "operator": "Delhi Police"
+        "operator": "Delhi Police",
+        "operator:wikidata": "Q3764926"
       }
     },
     {
@@ -362,6 +365,7 @@
         "amenity": "police",
         "operator": "Direction générale de la Sûreté nationale",
         "operator:ar": "المديرية العامة للأمن الوطني",
+        "operator:fr": "Direction générale de la Sûreté nationale",
         "operator:short": "DGSN",
         "operator:wikidata": "Q12218510"
       }
@@ -409,6 +413,7 @@
         "amenity": "police",
         "operator": "Dyfed–Powys Police",
         "operator:cy": "Heddlu Dyfed–Powys",
+        "operator:en": "Dyfed–Powys Police",
         "operator:wikidata": "Q3403354"
       }
     },
@@ -494,6 +499,7 @@
         "amenity": "police",
         "operator": "Gendarmerie nationale",
         "operator:ar": "الدرك الوطني",
+        "operator:fr": "Gendarmerie nationale",
         "operator:wikidata": "Q3100409"
       }
     },
@@ -608,6 +614,7 @@
         "amenity": "police",
         "operator": "Guardia Nacional Bolivariana de Venezuela",
         "operator:en": "Bolivarian National Guard of Venezuela",
+        "operator:es": "Guardia Nacional Bolivariana de Venezuela",
         "operator:short": "GNB",
         "operator:wikidata": "Q3095409"
       }
@@ -620,6 +627,7 @@
         "amenity": "police",
         "operator": "Gwent Police",
         "operator:cy": "Heddlu Gwent",
+        "operator:en": "Gwent Police",
         "operator:wikidata": "Q1774842"
       }
     },
@@ -767,8 +775,10 @@
     },
     {
       "displayName": "Kantonspolizei Bern",
-      "id": "kantonspolizeibern-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "kantonspolizeibern-02306c",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kantonspolizei Bern",
@@ -777,8 +787,10 @@
     },
     {
       "displayName": "Kantonspolizei Schwyz",
-      "id": "kantonspolizeischwyz-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "kantonspolizeischwyz-de328a",
+      "locationSet": {
+        "include": ["ch-sz.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kantonspolizei Schwyz",
@@ -787,8 +799,10 @@
     },
     {
       "displayName": "Kantonspolizei Thurgau",
-      "id": "kantonspolizeithurgau-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "kantonspolizeithurgau-e5b07a",
+      "locationSet": {
+        "include": ["ch-tg.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kantonspolizei Thurgau",
@@ -797,8 +811,10 @@
     },
     {
       "displayName": "Kantonspolizei Zürich",
-      "id": "kantonspolizeizurich-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "kantonspolizeizurich-ad4a21",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kantonspolizei Zürich",
@@ -825,6 +841,7 @@
         "amenity": "police",
         "operator": "Kepolisian Negara Republik Indonesia",
         "operator:en": "Indonesian National Police",
+        "operator:id": "Kepolisian Negara Republik Indonesia",
         "operator:short": "POLRI",
         "operator:wikidata": "Q3103954"
       }
@@ -836,6 +853,7 @@
       "tags": {
         "amenity": "police",
         "operator": "Kerala Police",
+        "operator:en": "Kerala Police",
         "operator:ml": "കേരള പോലീസ്",
         "operator:wikidata": "Q17064579"
       }
@@ -1045,11 +1063,14 @@
     },
     {
       "displayName": "Landespolizeidirektion Niederösterreich",
-      "id": "landespolizeidirektionniederosterreich-6671a8",
-      "locationSet": {"include": ["at"]},
+      "id": "landespolizeidirektionniederosterreich-890ad1",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
       "tags": {
         "amenity": "police",
-        "operator": "Landespolizeidirektion Niederösterreich"
+        "operator": "Landespolizeidirektion Niederösterreich",
+        "operator:wikidata": "Q131363945"
       }
     },
     {
@@ -1092,8 +1113,10 @@
     },
     {
       "displayName": "Luzerner Polizei",
-      "id": "luzernerpolizei-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "luzernerpolizei-830d3c",
+      "locationSet": {
+        "include": ["ch-lu.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Luzerner Polizei",
@@ -1207,15 +1230,6 @@
       }
     },
     {
-      "displayName": "Ministère d'Etat, Ministère de l'Interieur et de la Sécurité",
-      "id": "ministeredetatministeredelinterieuretdelasecurite-92205f",
-      "locationSet": {"include": ["ci"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Ministère d'Etat, Ministère de l'Interieur et de la Sécurité"
-      }
-    },
-    {
       "displayName": "Ministerio de Obras Públicas y Transportes",
       "id": "ministeriodeobraspublicasytransportes-05938a",
       "locationSet": {"include": ["cr"]},
@@ -1238,15 +1252,17 @@
       }
     },
     {
-      "displayName": "Ministerio del Interior y Justicia",
-      "id": "ministeriodelinterioryjusticia-3383b4",
+      "displayName": "Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz",
+      "id": "ministeriodelpoderpopularpararelacionesinterioresjusticiaypaz-3383b4",
       "locationSet": {"include": ["ve"]},
       "matchNames": [
-        "ministerio de interior y justicia"
+        "ministerio de interior y justicia",
+        "ministerio del interior y justicia"
       ],
       "tags": {
         "amenity": "police",
-        "operator": "Ministerio del Interior y Justicia"
+        "operator": "Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz",
+        "operator:wikidata": "Q16607766"
       }
     },
     {
@@ -1495,6 +1511,7 @@
         "amenity": "police",
         "operator": "North Wales Police",
         "operator:cy": "Heddlu Gogledd Cymru",
+        "operator:en": "North Wales Police",
         "operator:wikidata": "Q1774860"
       }
     },
@@ -1625,12 +1642,13 @@
       }
     },
     {
-      "displayName": "Poder Judicial",
+      "displayName": "Poder Judicial (Costa Rica)",
       "id": "poderjudicial-05938a",
       "locationSet": {"include": ["cr"]},
       "tags": {
         "amenity": "police",
-        "operator": "Poder Judicial"
+        "operator": "Poder Judicial",
+        "operator:wikidata": "Q7644938"
       }
     },
     {
@@ -1751,8 +1769,10 @@
     },
     {
       "displayName": "Policía de Catamarca",
-      "id": "policiadecatamarca-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadecatamarca-6fa7f7",
+      "locationSet": {
+        "include": ["ar-k.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de Catamarca",
@@ -1761,8 +1781,13 @@
     },
     {
       "displayName": "Policía de la Ciudad",
-      "id": "policiadelaciudad-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaciudad-c38488",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Ciudad",
@@ -1771,8 +1796,10 @@
     },
     {
       "displayName": "Policía de La Pampa",
-      "id": "policiadelapampa-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelapampa-4021d5",
+      "locationSet": {
+        "include": ["ar-l.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de La Pampa",
@@ -1781,8 +1808,13 @@
     },
     {
       "displayName": "Policía de la Provincia de Buenos Aires",
-      "id": "policiadelaprovinciadebuenosaires-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadebuenosaires-c38488",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Buenos Aires",
@@ -1791,8 +1823,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Córdoba",
-      "id": "policiadelaprovinciadecordoba-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadecordoba-ed1bd8",
+      "locationSet": {
+        "include": ["ar-x.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Córdoba",
@@ -1801,8 +1835,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Entre Ríos",
-      "id": "policiadelaprovinciadeentrerios-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadeentrerios-c437f3",
+      "locationSet": {
+        "include": ["ar-e.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Entre Ríos",
@@ -1811,8 +1847,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Misiones",
-      "id": "policiadelaprovinciademisiones-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciademisiones-b3f80b",
+      "locationSet": {
+        "include": ["ar-n.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Misiones",
@@ -1821,8 +1859,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Neuquén",
-      "id": "policiadelaprovinciadeneuquen-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadeneuquen-2ae00c",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Neuquén",
@@ -1831,8 +1871,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Santa Fe",
-      "id": "policiadelaprovinciadesantafe-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadesantafe-6f8c3b",
+      "locationSet": {
+        "include": ["ar-s.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Santa Fe",
@@ -1841,8 +1883,10 @@
     },
     {
       "displayName": "Policía de Río Negro",
-      "id": "policiaderionegro-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiaderionegro-124cf2",
+      "locationSet": {
+        "include": ["ar-r.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de Río Negro",
@@ -1851,8 +1895,10 @@
     },
     {
       "displayName": "Policía de Santiago del Estero",
-      "id": "policiadesantiagodelestero-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadesantiagodelestero-dbd40a",
+      "locationSet": {
+        "include": ["ar-g.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de Santiago del Estero",
@@ -1883,6 +1929,7 @@
         "amenity": "police",
         "operator": "Polícia do Exército",
         "operator:en": "Army Police",
+        "operator:pt": "Polícia do Exército",
         "operator:short": "PE",
         "operator:wikidata": "Q4794219"
       }
@@ -2272,6 +2319,7 @@
         "amenity": "police",
         "operator": "Policía Nacional Bolivariana",
         "operator:en": "Bolivarian National Police",
+        "operator:es": "Policía Nacional Bolivariana",
         "operator:short": "PNB",
         "operator:wikidata": "Q7209712"
       }
@@ -2653,10 +2701,14 @@
       "displayName": "Public Force of the Ministry of Public Security",
       "id": "publicforceofcostarica-05938a",
       "locationSet": {"include": ["cr"]},
-      "matchNames": ["msp"],
+      "matchNames": [
+        "msp",
+        "public force of the ministry of public security"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Public Force of Costa Rica",
+        "operator:en": "Public Force of Costa Rica",
         "operator:es": "Fuerza Pública de Costa Rica",
         "operator:wikidata": "Q2333698"
       }
@@ -2767,7 +2819,10 @@
       "displayName": "RPF",
       "id": "indianrailways-d0526a",
       "locationSet": {"include": ["in"]},
-      "matchNames": ["railway protection force"],
+      "matchNames": [
+        "railway protection force",
+        "rpf"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Indian Railways",
@@ -2880,6 +2935,7 @@
         "amenity": "police",
         "operator": "South Wales Police",
         "operator:cy": "Heddlu De Cymru",
+        "operator:en": "South Wales Police",
         "operator:wikidata": "Q3403362"
       }
     },
@@ -2907,8 +2963,10 @@
     },
     {
       "displayName": "Stadtpolizei Zürich",
-      "id": "stadtpolizeizurich-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "stadtpolizeizurich-ad4a21",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Stadtpolizei Zürich",
@@ -3256,6 +3314,7 @@
         "amenity": "police",
         "operator": "Министерство Внутренних Дел",
         "operator:en": "Ministry of Internal Affairs",
+        "operator:ru": "Министерство Внутренних Дел",
         "operator:short": "МВД",
         "operator:wikidata": "Q1192838"
       }
@@ -3284,6 +3343,7 @@
         "amenity": "police",
         "operator": "Полиция России",
         "operator:en": "Police of Russia",
+        "operator:ru": "Полиция России",
         "operator:wikidata": "Q1188211"
       }
     },
@@ -3299,6 +3359,7 @@
         "operator:ru": "Департамент патрульной полиции Министерства внутренних дел Грузии",
         "operator:short": "საპატრულო პოლიციი",
         "operator:short:en": "Patrol Police",
+        "operator:short:ka": "საპატრულო პოლიციი",
         "operator:short:ru": "Патрульная полиция",
         "operator:type": "government",
         "operator:wikidata": "Q56345209"
@@ -3392,7 +3453,7 @@
         "amenity": "police",
         "operator": "南投縣政府警察局",
         "operator:en": "Nantou County Police Bureau",
-        "operator:wikidata": "Q122930750",
+        "operator:wikidata": "Q130525080",
         "operator:zh": "南投縣政府警察局"
       }
     },
@@ -4020,6 +4081,7 @@
         "amenity": "police",
         "operator": "鹿児島県警察",
         "operator:en": "Kagoshima Prefectural Police",
+        "operator:ja": "鹿児島県警察",
         "operator:wikidata": "Q11676846"
       }
     }

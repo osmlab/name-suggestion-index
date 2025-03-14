@@ -12,9 +12,10 @@
       "named": [
         "^eb elbil as$",
         "^europark as$",
+        "^genedis - valt$",
         "^jernbaneverket$",
+        "^private?$",
         "polar",
-        "privat",
         "rolec"
       ]
     }
@@ -304,6 +305,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Allgäuer Überlandwerk",
+        "operator:short": "AÜW",
         "operator:wikidata": "Q994822"
       }
     },
@@ -320,11 +322,14 @@
     },
     {
       "displayName": "ALTIS",
-      "id": "altis-086737",
-      "locationSet": {"include": ["ch"]},
+      "id": "altis-d0faa5",
+      "locationSet": {
+        "include": ["ch-vs.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "ALTIS"
+        "operator": "ALTIS",
+        "operator:wikidata": "Q131339881"
       }
     },
     {
@@ -432,8 +437,10 @@
     },
     {
       "displayName": "Austin Energy",
-      "id": "austinenergy-994ed4",
-      "locationSet": {"include": ["us"]},
+      "id": "austinenergy-04a521",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Austin Energy",
@@ -514,10 +521,10 @@
       "locationSet": {
         "include": ["us-md.geojson"]
       },
+      "matchNames": ["bg&e", "bge"],
       "tags": {
         "amenity": "charging_station",
         "operator": "Baltimore Gas and Electric",
-        "operator:short": "BGE",
         "operator:wikidata": "Q4852862"
       }
     },
@@ -632,6 +639,9 @@
       "locationSet": {
         "include": ["de-be.geojson"]
       },
+      "matchNames": [
+        "bew berliner energie und wärme ag"
+      ],
       "tags": {
         "amenity": "charging_station",
         "operator": "BEW",
@@ -750,16 +760,6 @@
         "operator": "Bocholter Energie- und Wasserversorgung",
         "operator:short": "BEW",
         "operator:wikidata": "Q117745514"
-      }
-    },
-    {
-      "displayName": "Bolt",
-      "id": "bolt-943805",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Bolt",
-        "operator:wikidata": "Q105846404"
       }
     },
     {
@@ -913,8 +913,10 @@
     },
     {
       "displayName": "Caruso Carsharing",
-      "id": "carusocarsharing-3f60da",
-      "locationSet": {"include": ["at"]},
+      "id": "carusocarsharing-53499e",
+      "locationSet": {
+        "include": ["at-8.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Caruso Carsharing",
@@ -1121,7 +1123,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "City of Gold Coast",
-        "operator:wikidata": "Q1069385"
+        "operator:wikidata": "Q30267253"
       }
     },
     {
@@ -1689,16 +1691,6 @@
       }
     },
     {
-      "displayName": "EDF",
-      "id": "edf-c22d3a",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "EDF",
-        "operator:wikidata": "Q274591"
-      }
-    },
-    {
       "displayName": "EDP",
       "id": "edp-387085",
       "locationSet": {
@@ -1816,12 +1808,23 @@
     },
     {
       "displayName": "Electric Highway Tasmania",
-      "id": "electrichighwaytasmania-943805",
-      "locationSet": {"include": ["au"]},
+      "id": "electrichighwaytasmania-341d66",
+      "locationSet": {"include": ["au-tas"]},
       "tags": {
         "amenity": "charging_station",
         "operator": "Electric Highway Tasmania",
         "operator:wikidata": "Q105834331"
+      }
+    },
+    {
+      "displayName": "Électricité de France",
+      "id": "electricitedefrance-c22d3a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "Électricité de France",
+        "operator:short": "EDF",
+        "operator:wikidata": "Q274591"
       }
     },
     {
@@ -1979,8 +1982,10 @@
     },
     {
       "displayName": "EMEL",
-      "id": "emel-a1285d",
-      "locationSet": {"include": ["pt"]},
+      "id": "emel-8fbbd7",
+      "locationSet": {
+        "include": ["pt-11.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "EMEL",
@@ -1989,11 +1994,14 @@
     },
     {
       "displayName": "emotì",
-      "id": "emoti-086737",
-      "locationSet": {"include": ["ch"]},
+      "id": "emoti-d3f33a",
+      "locationSet": {
+        "include": ["ch-ti.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "emotì"
+        "operator": "emotì",
+        "operator:wikidata": "Q131339884"
       }
     },
     {
@@ -2199,8 +2207,13 @@
     },
     {
       "displayName": "Energie Steiermark",
-      "id": "energiesteiermark-3f60da",
-      "locationSet": {"include": ["at"]},
+      "id": "energiesteiermark-b4f287",
+      "locationSet": {
+        "include": [
+          "at-1.geojson",
+          "at-6.geojson"
+        ]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Energie Steiermark",
@@ -2250,8 +2263,10 @@
     },
     {
       "displayName": "Energiedienst",
-      "id": "energiedienst-61c5f2",
-      "locationSet": {"include": ["ch", "de"]},
+      "id": "energiedienst-6cf9a8",
+      "locationSet": {
+        "include": ["ch-ag.geojson", "de"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Energiedienst",
@@ -2260,8 +2275,13 @@
     },
     {
       "displayName": "Energieversorgung Kleinwalsertal GesmbH",
-      "id": "energieversorgungkleinwalsertalgesmbh-3f60da",
-      "locationSet": {"include": ["at"]},
+      "id": "energieversorgungkleinwalsertalgesmbh-717bd7",
+      "locationSet": {
+        "include": [
+          "at-7.geojson",
+          "at-8.geojson"
+        ]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Energieversorgung Kleinwalsertal GesmbH"
@@ -2428,8 +2448,10 @@
     },
     {
       "displayName": "ESB (Schweiz)",
-      "id": "energieservicebielbienne-086737",
-      "locationSet": {"include": ["ch"]},
+      "id": "energieservicebielbienne-0c1e54",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Energie Service Biel / Bienne",
@@ -2562,16 +2584,6 @@
       }
     },
     {
-      "displayName": "EVCE",
-      "id": "evce-a1285d",
-      "locationSet": {"include": ["pt"]},
-      "matchNames": ["evce power"],
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "EVCE"
-      }
-    },
-    {
       "displayName": "EVCS",
       "id": "evcs-994ed4",
       "locationSet": {"include": ["us"]},
@@ -2638,8 +2650,14 @@
     },
     {
       "displayName": "EVMAPA",
-      "id": "evmapa-f67a50",
-      "locationSet": {"include": ["cz"]},
+      "id": "evmapa-498911",
+      "locationSet": {
+        "include": [
+          "cz-53.geojson",
+          "cz-71.geojson",
+          "cz-80.geojson"
+        ]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "EVMAPA"
@@ -2985,7 +3003,8 @@
       },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Gemeinde Unterhaching"
+        "operator": "Gemeinde Unterhaching",
+        "operator:wikidata": "Q264899"
       }
     },
     {
@@ -3010,15 +3029,6 @@
         "amenity": "charging_station",
         "operator": "Gemeindewerke Oberhaching",
         "operator:wikidata": "Q113465070"
-      }
-    },
-    {
-      "displayName": "Genedis - VALT",
-      "id": "genedisvalt-086737",
-      "locationSet": {"include": ["ch"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Genedis - VALT"
       }
     },
     {
@@ -3198,8 +3208,10 @@
     },
     {
       "displayName": "GreenCharge",
-      "id": "greencharge-a1285d",
-      "locationSet": {"include": ["pt"]},
+      "id": "greencharge-8fbbd7",
+      "locationSet": {
+        "include": ["pt-11.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "GreenCharge"
@@ -3226,8 +3238,10 @@
     },
     {
       "displayName": "GreenWay",
-      "id": "greenway-db76f0",
-      "locationSet": {"include": ["pl", "sk"]},
+      "id": "greenway-40951a",
+      "locationSet": {
+        "include": ["hr", "pl", "sk"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "GreenWay",
@@ -3391,6 +3405,9 @@
       "displayName": "ICE",
       "id": "ice-296db6",
       "locationSet": {"include": ["cr"]},
+      "matchNames": [
+        "instituto costarricense de electricidad"
+      ],
       "tags": {
         "amenity": "charging_station",
         "operator": "ICE",
@@ -3573,8 +3590,10 @@
     },
     {
       "displayName": "Jolt",
-      "id": "jolt-61042c",
-      "locationSet": {"include": ["au", "nz"]},
+      "id": "jolt-743b2f",
+      "locationSet": {
+        "include": ["au", "ca", "gb", "nz", "us"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Jolt",
@@ -3636,8 +3655,13 @@
     },
     {
       "displayName": "Kelag",
-      "id": "kelag-3f60da",
-      "locationSet": {"include": ["at"]},
+      "id": "kelag-3bcc5b",
+      "locationSet": {
+        "include": [
+          "at-2.geojson",
+          "at-6.geojson"
+        ]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Kelag",
@@ -3794,8 +3818,13 @@
     },
     {
       "displayName": "Lebensland Kärnten",
-      "id": "lebenslandkarnten-3f60da",
-      "locationSet": {"include": ["at"]},
+      "id": "lebenslandkarnten-844689",
+      "locationSet": {
+        "include": [
+          "at-2.geojson",
+          "at-7.geojson"
+        ]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Lebensland Kärnten"
@@ -3840,8 +3869,13 @@
     },
     {
       "displayName": "Linz AG",
-      "id": "linzag-3f60da",
-      "locationSet": {"include": ["at"]},
+      "id": "linzag-6a71ec",
+      "locationSet": {
+        "include": [
+          "at-3.geojson",
+          "at-4.geojson"
+        ]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Linz AG",
@@ -3878,8 +3912,10 @@
     },
     {
       "displayName": "Loulé Concelho Global",
-      "id": "louleconcelhoglobal-a1285d",
-      "locationSet": {"include": ["pt"]},
+      "id": "louleconcelhoglobal-faf071",
+      "locationSet": {
+        "include": ["pt-08.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Loulé Concelho Global"
@@ -4084,16 +4120,6 @@
       }
     },
     {
-      "displayName": "Mobilecharge",
-      "id": "mobilecharge-086737",
-      "locationSet": {"include": ["ch"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Mobilecharge",
-        "operator:wikidata": "Q115241641"
-      }
-    },
-    {
       "displayName": "Mobiletric",
       "id": "mobiletric-a1285d",
       "locationSet": {"include": ["pt"]},
@@ -4154,26 +4180,6 @@
         "amenity": "charging_station",
         "operator": "Modulo",
         "operator:wikidata": "Q128788809"
-      }
-    },
-    {
-      "displayName": "MOL",
-      "id": "mol-c22d3a",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "MOL",
-        "operator:wikidata": "Q549181"
-      }
-    },
-    {
-      "displayName": "MOL Nyrt.",
-      "id": "molnyrt-27e906",
-      "locationSet": {"include": ["hu"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "MOL Nyrt.",
-        "operator:wikidata": "Q549181"
       }
     },
     {
@@ -4284,18 +4290,22 @@
       }
     },
     {
-      "displayName": "nabibajk.sk",
-      "id": "nabibajksk-b23832",
+      "displayName": "NabiBajk",
+      "id": "nabibajk-b23832",
       "locationSet": {"include": ["sk"]},
+      "matchNames": ["nabibajk.sk"],
       "tags": {
         "amenity": "charging_station",
-        "operator": "nabibajk.sk"
+        "operator": "NabiBajk",
+        "operator:wikidata": "Q131407297"
       }
     },
     {
       "displayName": "NaturEnergie",
-      "id": "naturenergie-61c5f2",
-      "locationSet": {"include": ["ch", "de"]},
+      "id": "naturenergie-6cf9a8",
+      "locationSet": {
+        "include": ["ch-ag.geojson", "de"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "NaturEnergie",
@@ -4415,8 +4425,10 @@
     },
     {
       "displayName": "OIKEN",
-      "id": "oiken-086737",
-      "locationSet": {"include": ["ch"]},
+      "id": "oiken-d0faa5",
+      "locationSet": {
+        "include": ["ch-vs.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "OIKEN"
@@ -4430,6 +4442,16 @@
         "amenity": "charging_station",
         "operator": "OK",
         "operator:wikidata": "Q12329785"
+      }
+    },
+    {
+      "displayName": "OMV eMotion",
+      "id": "omv-c22d3a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "OMV",
+        "operator:wikidata": "Q168238"
       }
     },
     {
@@ -4757,8 +4779,10 @@
     },
     {
       "displayName": "Queensland Electric Super Highway",
-      "id": "yurika-943805",
-      "locationSet": {"include": ["au"]},
+      "id": "yurika-830192",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "matchNames": [
         "queensland electric super highway"
       ],
@@ -4789,35 +4813,16 @@
       }
     },
     {
-      "displayName": "RAC WA Electric Highway",
-      "id": "racwa-943805",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "RAC WA",
-        "operator:wikidata": "Q7373777"
-      }
-    },
-    {
       "displayName": "Red E",
       "id": "rede-994ed4",
       "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "charging_station",
         "brand": "Red E",
-        "brand:wikidata": "Q125246195",
+        "brand:wikidata": "Q131416886",
         "name": "Red E",
         "operator": "Red E",
-        "operator:wikidata": "Q125246195"
-      }
-    },
-    {
-      "displayName": "Rede Piloto",
-      "id": "redepiloto-a1285d",
-      "locationSet": {"include": ["pt"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "Rede Piloto"
+        "operator:wikidata": "Q131416886"
       }
     },
     {
@@ -5007,6 +5012,16 @@
       }
     },
     {
+      "displayName": "S.T.P.T.",
+      "id": "stpt-806f62",
+      "locationSet": {"include": ["ro"]},
+      "tags": {
+        "amenity": "charging_station",
+        "operator": "S.T.P.T.",
+        "operator:wikidata": "Q929687"
+      }
+    },
+    {
       "displayName": "SachsenEnergie",
       "id": "sachsenenergie-b8794d",
       "locationSet": {
@@ -5031,8 +5046,13 @@
     },
     {
       "displayName": "Salzburg AG",
-      "id": "salzburgag-3f60da",
-      "locationSet": {"include": ["at"]},
+      "id": "salzburgag-2afdb6",
+      "locationSet": {
+        "include": [
+          "at-4.geojson",
+          "at-5.geojson"
+        ]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Salzburg AG",
@@ -5486,11 +5506,14 @@
     },
     {
       "displayName": "Stadt Lorch",
-      "id": "stadtlorch-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtlorch-6bc1fb",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadt Lorch"
+        "operator": "Stadt Lorch",
+        "operator:wikidata": "Q574249"
       }
     },
     {
@@ -5617,11 +5640,14 @@
     },
     {
       "displayName": "Stadtwerke Dessau",
-      "id": "stadtwerkedessau-1299a8",
-      "locationSet": {"include": ["de"]},
+      "id": "stadtwerkedessau-b7b244",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
-        "operator": "Stadtwerke Dessau"
+        "operator": "Stadtwerke Dessau",
+        "operator:wikidata": "Q1200909"
       }
     },
     {
@@ -5669,6 +5695,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Stadtwerke Erfurt",
+        "operator:short": "SWE",
         "operator:wikidata": "Q28543328"
       }
     },
@@ -5777,6 +5804,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Stadtwerke Herne",
+        "operator:short": "STWH",
         "operator:wikidata": "Q113465084"
       }
     },
@@ -5804,6 +5832,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Stadtwerke Kiel",
+        "operator:short": "SWK",
         "operator:wikidata": "Q17592555"
       }
     },
@@ -5943,6 +5972,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Stadtwerke Neuss",
+        "operator:short": "SWN",
         "operator:wikidata": "Q2328572"
       }
     },
@@ -6121,6 +6151,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Stadtwerke Speyer",
+        "operator:short": "SWS",
         "operator:wikidata": "Q124476472"
       }
     },
@@ -6147,6 +6178,7 @@
       "tags": {
         "amenity": "charging_station",
         "operator": "Stadtwerke Tübingen",
+        "operator:short": "SWT",
         "operator:wikidata": "Q1343869"
       }
     },
@@ -6238,16 +6270,6 @@
         "amenity": "charging_station",
         "operator": "STAWAG",
         "operator:wikidata": "Q2328404"
-      }
-    },
-    {
-      "displayName": "STPT",
-      "id": "stpt-806f62",
-      "locationSet": {"include": ["ro"]},
-      "tags": {
-        "amenity": "charging_station",
-        "operator": "STPT",
-        "operator:wikidata": "Q929687"
       }
     },
     {
@@ -6484,8 +6506,10 @@
     },
     {
       "displayName": "Teplárny Brno",
-      "id": "teplarnybrno-f67a50",
-      "locationSet": {"include": ["cz"]},
+      "id": "teplarnybrno-dd96af",
+      "locationSet": {
+        "include": ["cz-64.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Teplárny Brno",
@@ -6513,7 +6537,7 @@
       }
     },
     {
-      "displayName": "toka",
+      "displayName": "Toka",
       "id": "toka-a6c3f2",
       "locationSet": {"include": ["ua"]},
       "matchNames": [
@@ -6651,6 +6675,7 @@
         "amenity": "charging_station",
         "operator": "Universidade da Coruña",
         "operator:en": "University of A Coruña",
+        "operator:es": "Universidade da Coruña",
         "operator:wikidata": "Q280305"
       }
     },
@@ -6879,8 +6904,10 @@
     },
     {
       "displayName": "Wels Strom E-Mobil",
-      "id": "welsstromemobil-3f60da",
-      "locationSet": {"include": ["at"]},
+      "id": "welsstromemobil-f73649",
+      "locationSet": {
+        "include": ["at-4.geojson"]
+      },
       "tags": {
         "amenity": "charging_station",
         "operator": "Wels Strom E-Mobil"

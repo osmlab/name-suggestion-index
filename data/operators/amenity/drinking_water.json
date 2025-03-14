@@ -6,13 +6,10 @@
         "^(croix-rouge|red cross)$",
         "^(institution|wsb|wsp) \\(staff\\)$",
         "^\\(local\\) private sector- name\\/no$",
-        "^ayuntamiento$",
+        "^ayuntamiento|community|gemeinde|mairie$",
+        "^bebedouro|drinking water$",
         "^community \\(technician\\) name\\/no$",
-        "^community$",
-        "^drinking water$",
-        "^gemeinde$",
         "^institution staff$",
-        "^mairie$",
         "^ngo$",
         "^öffentlich$",
         "^private$",
@@ -20,14 +17,19 @@
         "^tom$",
         "^yes$",
         "^вода$"
+      ],
+      "named": [
+        "^acquedotto pugliese - cooperativa comunità melpignano$"
       ]
     }
   },
   "items": [
     {
       "displayName": "A2A Ciclo Idrico",
-      "id": "a2acicloidrico-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "a2acicloidrico-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
       "matchNames": ["a2a ciclo idrico s.p.a."],
       "tags": {
         "amenity": "drinking_water",
@@ -55,8 +57,10 @@
     },
     {
       "displayName": "Acque Bresciane",
-      "id": "acquebresciane-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "acquebresciane-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Acque Bresciane"
@@ -64,8 +68,10 @@
     },
     {
       "displayName": "Acque Spa",
-      "id": "acquespa-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "acquespa-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Acque Spa"
@@ -73,20 +79,18 @@
     },
     {
       "displayName": "Acquedotto Pugliese",
-      "id": "acquedottopugliese-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "acquedottopugliese-c6a601",
+      "locationSet": {
+        "include": [
+          "it-75.geojson",
+          "it-77.geojson"
+        ]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Acquedotto Pugliese"
-      }
-    },
-    {
-      "displayName": "Acquedotto Pugliese - Cooperativa Comunità Melpignano",
-      "id": "acquedottopugliesecooperativacomunitamelpignano-8df115",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Acquedotto Pugliese - Cooperativa Comunità Melpignano"
+        "operator": "Acquedotto Pugliese",
+        "operator:short": "AQP",
+        "operator:wikidata": "Q623214"
       }
     },
     {
@@ -95,7 +99,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ada's Hoeve"
+        "operator": "Ada's Hoeve",
+        "operator:wikidata": "Q2693950"
       }
     },
     {
@@ -126,7 +131,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ajuntament de Montcada i Reixac"
+        "operator": "Ajuntament de Montcada i Reixac",
+        "operator:wikidata": "Q116415424"
       }
     },
     {
@@ -135,16 +141,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ajuntament de València"
-      }
-    },
-    {
-      "displayName": "AQP",
-      "id": "aqp-8df115",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "AQP"
+        "operator": "Ajuntament de València",
+        "operator:wikidata": "Q26251945"
       }
     },
     {
@@ -153,7 +151,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ayuntamiento de Barbastro"
+        "operator": "Ayuntamiento de Barbastro",
+        "operator:wikidata": "Q48020044"
       }
     },
     {
@@ -162,7 +161,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ayuntamiento de Los Corrales de Buelna"
+        "operator": "Ayuntamiento de Los Corrales de Buelna",
+        "operator:wikidata": "Q60051355"
       }
     },
     {
@@ -183,13 +183,16 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ayuntamiento de San Felices de Buelna"
+        "operator": "Ayuntamiento de San Felices de Buelna",
+        "operator:wikidata": "Q60051501"
       }
     },
     {
       "displayName": "Azienda Servizi Ambientali S.p.A.",
-      "id": "aziendaserviziambientalispa-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "aziendaserviziambientalispa-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Azienda Servizi Ambientali S.p.A.",
@@ -197,30 +200,26 @@
       }
     },
     {
-      "displayName": "Azienda Servizi Valtrompia S.p.a.",
-      "id": "aziendaservizivaltrompiaspa-8df115",
-      "locationSet": {"include": ["it"]},
+      "displayName": "Azienda Servizi Valtrompia S.p.A.",
+      "id": "aziendaservizivaltrompiaspa-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Azienda Servizi Valtrompia S.p.a."
-      }
-    },
-    {
-      "displayName": "Bebedouro",
-      "id": "bebedouro-1f0e93",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Bebedouro"
+        "operator": "Azienda Servizi Valtrompia S.p.A."
       }
     },
     {
       "displayName": "Berliner Wasserbetriebe",
-      "id": "berlinerwasserbetriebe-fc0883",
-      "locationSet": {"include": ["de"]},
+      "id": "berlinerwasserbetriebe-8361bc",
+      "locationSet": {
+        "include": ["de-be.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Berliner Wasserbetriebe",
+        "operator:short": "BWB",
         "operator:wikidata": "Q821856"
       }
     },
@@ -245,11 +244,20 @@
     },
     {
       "displayName": "Chemun de Urtijëi - Gemeinde St. Ulrich - Comune di Ortisei",
-      "id": "chemundeurtijeigemeindestulrichcomunediortisei-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "chemundeurtijeigemeindestulrichcomunediortisei-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
+      "matchNames": [
+        "comune di ortisei / gemeinde st. ulrich"
+      ],
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Chemun de Urtijëi - Gemeinde St. Ulrich - Comune di Ortisei"
+        "operator": "Chemun de Urtijëi - Gemeinde St. Ulrich - Comune di Ortisei",
+        "operator:de": "Gemeinde St. Ulrich",
+        "operator:it": "Comune di Ortisei",
+        "operator:lld": "Chemun de Urtijëi",
+        "operator:wikidata": "Q255568"
       }
     },
     {
@@ -351,20 +359,6 @@
       }
     },
     {
-      "displayName": "Comune di Ortisei / Gemeinde St. Ulrich",
-      "id": "comunediortiseigemeindestulrich-6c07c4",
-      "locationSet": {
-        "include": ["it-32.geojson"]
-      },
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Comune di Ortisei / Gemeinde St. Ulrich",
-        "operator:de": "Gemeinde St. Ulrich",
-        "operator:it": "Comune di Ortisei",
-        "operator:wikidata": "Q255568"
-      }
-    },
-    {
       "displayName": "Comune di San Quirico d'Orcia",
       "id": "comunedisanquiricodorcia-1a4497",
       "locationSet": {
@@ -377,14 +371,14 @@
       }
     },
     {
-      "displayName": "Comune di Selva / Gemeinde Wolkenstein",
+      "displayName": "Comune di Selva - Gemeinde Wolkenstein",
       "id": "comunediselvagemeindewolkenstein-6c07c4",
       "locationSet": {
         "include": ["it-32.geojson"]
       },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Comune di Selva / Gemeinde Wolkenstein",
+        "operator": "Comune di Selva - Gemeinde Wolkenstein",
         "operator:de": "Gemeinde Wolkenstein",
         "operator:it": "Comune di Selva",
         "operator:wikidata": "Q499129"
@@ -491,16 +485,20 @@
       "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Farys"
+        "operator": "Farys",
+        "operator:wikidata": "Q15882594"
       }
     },
     {
       "displayName": "Gemeinde Gampel-Bratsch",
-      "id": "gemeindegampelbratsch-a1fadc",
-      "locationSet": {"include": ["ch"]},
+      "id": "gemeindegampelbratsch-223315",
+      "locationSet": {
+        "include": ["ch-vs.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Gemeinde Gampel-Bratsch"
+        "operator": "Gemeinde Gampel-Bratsch",
+        "operator:wikidata": "Q70639"
       }
     },
     {
@@ -560,8 +558,10 @@
     },
     {
       "displayName": "Holding Graz",
-      "id": "holdinggraz-0f3232",
-      "locationSet": {"include": ["at"]},
+      "id": "holdinggraz-8c9bfd",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Holding Graz",
@@ -598,11 +598,14 @@
     },
     {
       "displayName": "Junta de Freguesia de Faiões",
-      "id": "juntadefreguesiadefaioes-a2faed",
-      "locationSet": {"include": ["pt"]},
+      "id": "juntadefreguesiadefaioes-98c7ab",
+      "locationSet": {
+        "include": ["pt-17.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Junta de Freguesia de Faiões"
+        "operator": "Junta de Freguesia de Faiões",
+        "operator:wikidata": "Q107414910"
       }
     },
     {
@@ -636,20 +639,13 @@
     },
     {
       "displayName": "Marktgemeinde Schlanders, Abt. Energie und Infrastrukturen",
-      "id": "marktgemeindeschlandersabtenergieundinfrastrukturen-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "marktgemeindeschlandersabtenergieundinfrastrukturen-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Marktgemeinde Schlanders, Abt. Energie und Infrastrukturen"
-      }
-    },
-    {
-      "displayName": "Metropolitana Milanese - MM SpA",
-      "id": "metropolitanamilanesemmspa-8df115",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Metropolitana Milanese - MM SpA"
       }
     },
     {
@@ -662,6 +658,22 @@
         "amenity": "drinking_water",
         "operator": "Miami Dade College",
         "operator:wikidata": "Q3027788"
+      }
+    },
+    {
+      "displayName": "MM S.p.A.",
+      "id": "mmspa-001ccd",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
+      "matchNames": [
+        "metropolitana milanese",
+        "metropolitana milanese - mm spa"
+      ],
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "MM S.p.A.",
+        "operator:wikidata": "Q3855742"
       }
     },
     {
@@ -697,7 +709,8 @@
       "locationSet": {"include": ["bg"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Municipality of Shumen"
+        "operator": "Municipality of Shumen",
+        "operator:wikidata": "Q2219814"
       }
     },
     {
@@ -727,7 +740,8 @@
       "locationSet": {"include": ["bf"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "ONEA"
+        "operator": "ONEA",
+        "operator:wikidata": "Q15867459"
       }
     },
     {
@@ -751,11 +765,14 @@
     },
     {
       "displayName": "Parks Victoria",
-      "id": "parksvictoria-87b3b2",
-      "locationSet": {"include": ["au"]},
+      "id": "parksvictoria-bffbbc",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Parks Victoria"
+        "operator": "Parks Victoria",
+        "operator:wikidata": "Q3365478"
       }
     },
     {
@@ -772,12 +789,14 @@
       }
     },
     {
-      "displayName": "Peace wind Japan",
-      "id": "peacewindjapan-1f271a",
+      "displayName": "Peace Winds Japan",
+      "id": "peacewindsjapan-1f271a",
       "locationSet": {"include": ["ke"]},
+      "matchNames": ["peace wind japan"],
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Peace wind Japan"
+        "operator": "Peace Winds Japan",
+        "operator:wikidata": "Q11331731"
       }
     },
     {
@@ -794,8 +813,10 @@
     },
     {
       "displayName": "Publiacqua",
-      "id": "publiacqua-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "publiacqua-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Publiacqua"
@@ -845,7 +866,8 @@
       "locationSet": {"include": ["lv"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Rīgas ūdens"
+        "operator": "Rīgas ūdens",
+        "operator:wikidata": "Q124713902"
       }
     },
     {
@@ -885,8 +907,10 @@
     },
     {
       "displayName": "Sit Lucretili",
-      "id": "sitlucretili-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "sitlucretili-3092a7",
+      "locationSet": {
+        "include": ["it-62.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Sit Lucretili"
@@ -894,8 +918,10 @@
     },
     {
       "displayName": "SMAT",
-      "id": "smat-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "smat-0ca4ec",
+      "locationSet": {
+        "include": ["it-21.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "SMAT",
@@ -908,58 +934,79 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "SNCF Gares & Connexions"
+        "operator": "SNCF Gares & Connexions",
+        "operator:wikidata": "Q3098278"
       }
     },
     {
       "displayName": "Stadt Bludenz",
-      "id": "stadtbludenz-0f3232",
-      "locationSet": {"include": ["at"]},
+      "id": "stadtbludenz-44bf8e",
+      "locationSet": {
+        "include": ["at-8.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Bludenz"
+        "operator": "Stadt Bludenz",
+        "operator:wikidata": "Q494504"
       }
     },
     {
       "displayName": "Stadt Dornbirn",
-      "id": "stadtdornbirn-0f3232",
-      "locationSet": {"include": ["at"]},
+      "id": "stadtdornbirn-44bf8e",
+      "locationSet": {
+        "include": ["at-8.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Dornbirn"
+        "operator": "Stadt Dornbirn",
+        "operator:wikidata": "Q171219"
       }
     },
     {
       "displayName": "Stadt Graz",
-      "id": "stadtgraz-0f3232",
-      "locationSet": {"include": ["at"]},
+      "id": "stadtgraz-8c9bfd",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Graz"
+        "operator": "Stadt Graz",
+        "operator:wikidata": "Q13298"
       }
     },
     {
       "displayName": "Stadt Linz",
-      "id": "stadtlinz-0f3232",
-      "locationSet": {"include": ["at"]},
+      "id": "stadtlinz-ea6086",
+      "locationSet": {
+        "include": ["at-4.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Linz"
+        "operator": "Stadt Linz",
+        "operator:wikidata": "Q41329"
       }
     },
     {
       "displayName": "Stadt Wien",
-      "id": "stadtwien-0f3232",
-      "locationSet": {"include": ["at"]},
+      "id": "stadtwien-66c353",
+      "locationSet": {
+        "include": [
+          "at-3.geojson",
+          "at-9.geojson"
+        ]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Wien"
+        "operator": "Stadt Wien",
+        "operator:wikidata": "Q1884195"
       }
     },
     {
       "displayName": "Stadtwerke Brixen AG",
-      "id": "stadtwerkebrixenag-8df115",
-      "locationSet": {"include": ["it"]},
+      "id": "stadtwerkebrixenag-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Stadtwerke Brixen AG",
@@ -967,12 +1014,16 @@
       }
     },
     {
-      "displayName": "Stadtwerke Meran/Azienda Servizi Municipalizzati di Merano",
-      "id": "stadtwerkemeranaziendaservizimunicipalizzatidimerano-8df115",
-      "locationSet": {"include": ["it"]},
+      "displayName": "Stadtwerke Meran - Azienda Servizi Municipalizzati di Merano",
+      "id": "stadtwerkemeranaziendaservizimunicipalizzatidimerano-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadtwerke Meran/Azienda Servizi Municipalizzati di Merano"
+        "operator": "Stadtwerke Meran - Azienda Servizi Municipalizzati di Merano",
+        "operator:de": "Stadtwerke Meran",
+        "operator:it": "Azienda Servizi Municipalizzati di Merano"
       }
     },
     {
@@ -1083,8 +1134,10 @@
     },
     {
       "displayName": "Veřejná zeleň města Brna",
-      "id": "verejnazelenmestabrna-eb7dc3",
-      "locationSet": {"include": ["cz"]},
+      "id": "verejnazelenmestabrna-a14940",
+      "locationSet": {
+        "include": ["cz-64.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Veřejná zeleň města Brna",
@@ -1134,7 +1187,8 @@
       "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Ville de Liège"
+        "operator": "Ville de Liège",
+        "operator:wikidata": "Q3992"
       }
     },
     {
@@ -1264,8 +1318,10 @@
     },
     {
       "displayName": "WVZ",
-      "id": "wvz-a1fadc",
-      "locationSet": {"include": ["ch"]},
+      "id": "wvz-32a6c1",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "WVZ",

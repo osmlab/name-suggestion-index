@@ -5,13 +5,11 @@
     "preserveTags": ["^emergency$", "^name"],
     "exclude": {
       "generic": [
-        "^(govern?ment( authorities)?|govt( hospital)?|municipal|private|public|private not for profit|village)$",
+        "^(govern?ment( authorities)?|govt( hospital)?|municipal|priva(te|do)|public|private not for profit|village)$",
         "^centro (de salud|de saúde|médico)$",
         "^community$",
         "^hospital$",
         "^others$",
-        "^privado$",
-        "^private not for profit$",
         "^subdistrict$",
         "^амбулатор[иі]я$",
         "^инфекционн(ая|ое) (больница|отделение)",
@@ -22,6 +20,19 @@
     }
   },
   "items": [
+    {
+      "displayName": "Agel",
+      "id": "agel-df0cb5",
+      "issues": [10619],
+      "locationSet": {"include": ["cz", "sk"]},
+      "note": "these hospitals share the same brand but have different operators",
+      "tags": {
+        "amenity": "hospital",
+        "brand": "Agel",
+        "brand:wikidata": "Q41365932",
+        "healthcare": "hospital"
+      }
+    },
     {
       "displayName": "Bangkok Hospital",
       "id": "bangkokhospital-e6bd8c",
@@ -38,6 +49,7 @@
         "name:en": "Bangkok Hospital",
         "name:th": "โรงพยาบาลกรุงเทพ",
         "operator": "Bangkok Dusit Medical Services",
+        "operator:type": "private",
         "operator:wikidata": "Q13012598"
       }
     },
@@ -55,9 +67,32 @@
       }
     },
     {
+      "displayName": "Penta Hospitals",
+      "id": "pentahospitals-0d8c15",
+      "issues": [10315],
+      "locationSet": {"include": ["sk"]},
+      "matchNames": [
+        "penta",
+        "penta hospitals sk",
+        "svet zdravia"
+      ],
+      "note": "these hospitals share the same brand but have different operators",
+      "tags": {
+        "amenity": "hospital",
+        "brand": "Penta Hospitals",
+        "brand:wikidata": "Q96137636",
+        "healthcare": "hospital"
+      }
+    },
+    {
       "displayName": "Sentara Healthcare",
-      "id": "sentara-246740",
-      "locationSet": {"include": ["us"]},
+      "id": "sentara-7551ac",
+      "locationSet": {
+        "include": [
+          "us-nc.geojson",
+          "us-va.geojson"
+        ]
+      },
       "matchNames": [
         "sentara health",
         "sentara healthcare"
@@ -69,6 +104,7 @@
         "healthcare": "hospital",
         "name": "Sentara",
         "operator": "Sentara",
+        "operator:type": "private",
         "operator:wikidata": "Q7451179"
       }
     }

@@ -10,6 +10,7 @@
         "^(自動)?[券販]売機$",
         "^automat na jizdenky$",
         "^casa dell'acqua$",
+        "^flowbird$",
         "^horodateur$",
         "^máquina de tickets$",
         "^milchtankstelle$",
@@ -20,7 +21,8 @@
         "^taromatas$",
         "^zigarettenautomat$",
         "^自販機$"
-      ]
+      ],
+      "named": ["^rmv$"]
     }
   },
   "items": [
@@ -92,6 +94,20 @@
         "fuel:lpg": "yes",
         "name": "AmeriGas",
         "vending": "gas"
+      }
+    },
+    {
+      "displayName": "Aqvagold",
+      "id": "aqvagold-13a866",
+      "locationSet": {"include": ["it"]},
+      "matchNames": [
+        "distributore di acqua aqvagold"
+      ],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Aqvagold",
+        "brand:wikidata": "Q132127407",
+        "vending": "water"
       }
     },
     {
@@ -308,8 +324,10 @@
     },
     {
       "displayName": "CAME Parkare",
-      "id": "cameparkare-a2c9a5",
-      "locationSet": {"include": ["pt"]},
+      "id": "cameparkare-d75d6f",
+      "locationSet": {
+        "include": ["pt-11.geojson"]
+      },
       "tags": {
         "amenity": "vending_machine",
         "brand": "CAME Parkare",
@@ -451,19 +469,6 @@
       }
     },
     {
-      "displayName": "Distributore di acqua Aqvagold",
-      "id": "aqvagold-13a866",
-      "locationSet": {"include": ["it"]},
-      "matchNames": [
-        "distributore di acqua aqvagold"
-      ],
-      "tags": {
-        "amenity": "vending_machine",
-        "brand": "Aqvagold",
-        "vending": "water"
-      }
-    },
-    {
       "displayName": "Dog-Station",
       "id": "dogstation-15a18a",
       "locationSet": {
@@ -506,7 +511,6 @@
         "amenity": "vending_machine",
         "brand": "Durex",
         "brand:wikidata": "Q1267311",
-        "name": "Durex",
         "vending": "condoms"
       }
     },
@@ -541,21 +545,6 @@
         "brand": "Fido House",
         "brand:wikidata": "Q115613857",
         "vending": "excrement_bags"
-      }
-    },
-    {
-      "displayName": "Flowbird",
-      "id": "flowbird-5c6913",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["cn", "jp", "kp", "kr"]
-      },
-      "tags": {
-        "amenity": "vending_machine",
-        "brand": "Flowbird",
-        "brand:wikidata": "Q3365450",
-        "name": "Flowbird",
-        "vending": "parking_tickets"
       }
     },
     {
@@ -596,8 +585,10 @@
     },
     {
       "displayName": "Hectronic",
-      "id": "hectronic-a2c9a5",
-      "locationSet": {"include": ["pt"]},
+      "id": "hectronic-d75d6f",
+      "locationSet": {
+        "include": ["pt-11.geojson"]
+      },
       "tags": {
         "amenity": "vending_machine",
         "brand": "Hectronic",
@@ -606,8 +597,13 @@
     },
     {
       "displayName": "Hectronic Kienzle",
-      "id": "hectronickienzle-a2c9a5",
-      "locationSet": {"include": ["pt"]},
+      "id": "hectronickienzle-9c1e86",
+      "locationSet": {
+        "include": [
+          "pt-11.geojson",
+          "pt-15.geojson"
+        ]
+      },
       "tags": {
         "amenity": "vending_machine",
         "brand": "Hectronic Kienzle",
@@ -648,8 +644,13 @@
     },
     {
       "displayName": "iParqueStreet",
-      "id": "iparquestreet-a2c9a5",
-      "locationSet": {"include": ["pt"]},
+      "id": "iparquestreet-003f84",
+      "locationSet": {
+        "include": [
+          "pt-10.geojson",
+          "pt-15.geojson"
+        ]
+      },
       "tags": {
         "amenity": "vending_machine",
         "brand": "iParqueStreet",
@@ -667,6 +668,7 @@
         "name": "JT",
         "official_name": "日本たばこ産業",
         "official_name:en": "Japan Tobacco",
+        "official_name:ja": "日本たばこ産業",
         "vending": "cigarettes"
       }
     },
@@ -906,7 +908,7 @@
         "brand:wikidata": "Q108274455",
         "name": "Parking Kitty",
         "operator": "City of Vancouver",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q234053",
         "vending": "parking_tickets"
       }
@@ -1003,7 +1005,11 @@
       "displayName": "Redbox",
       "id": "redbox-7e3927",
       "locationSet": {"include": ["us"]},
-      "matchTags": ["shop/music", "shop/video"],
+      "matchTags": [
+        "shop/electronics",
+        "shop/music",
+        "shop/video"
+      ],
       "tags": {
         "amenity": "vending_machine",
         "brand": "Redbox",
@@ -1033,18 +1039,6 @@
         "brand": "Regiomat",
         "name": "Regiomat",
         "vending": "drinks;food"
-      }
-    },
-    {
-      "displayName": "RMV",
-      "id": "rmv-a242c5",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "amenity": "vending_machine",
-        "brand": "RMV",
-        "brand:wikidata": "Q314042",
-        "name": "RMV",
-        "vending": "public_transport_tickets"
       }
     },
     {
@@ -1103,6 +1097,7 @@
           "se"
         ]
       },
+      "preserveTags": ["^vending$"],
       "tags": {
         "amenity": "vending_machine",
         "brand": "Selecta",
@@ -1180,10 +1175,23 @@
       }
     },
     {
+      "displayName": "Timpson",
+      "id": "timpson-37500c",
+      "locationSet": {"include": ["gb", "ie"]},
+      "matchNames": ["timpsons"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Timpson",
+        "brand:wikidata": "Q7807658",
+        "name": "Timpson",
+        "vending": "key"
+      }
+    },
+    {
       "displayName": "Tobaccoland",
       "id": "tobaccoland-a242c5",
       "locationSet": {"include": ["de"]},
-      "preserveTags": ["vending"],
+      "preserveTags": ["^vending$"],
       "tags": {
         "amenity": "vending_machine",
         "brand": "tobaccoland",
@@ -1288,6 +1296,19 @@
         "brand:en": "yamakyu",
         "brand:ja": "山久",
         "vending": "drinks"
+      }
+    },
+    {
+      "displayName": "Zernova",
+      "id": "zernova-9e3915",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": ["зернова"],
+      "tags": {
+        "amenity": "vending_machine",
+        "brand": "Zernova",
+        "brand:wikidata": "Q131598948",
+        "name": "Zernova",
+        "vending": "coffee"
       }
     },
     {

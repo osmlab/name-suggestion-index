@@ -42,15 +42,6 @@
       }
     },
     {
-      "displayName": "CFF",
-      "id": "cff-71d17c",
-      "locationSet": {"include": ["ch", "fx"]},
-      "tags": {
-        "amenity": "ticket_validator",
-        "operator": "CFF"
-      }
-    },
-    {
       "displayName": "CTS (Strasbourg)",
       "id": "compagniedestransportsstrasbourgeois-b6a498",
       "locationSet": {"include": [[7.75, 48.58]]},
@@ -93,21 +84,27 @@
     },
     {
       "displayName": "Metlink",
-      "id": "metlink-8269c0",
-      "locationSet": {"include": ["nz"]},
+      "id": "metlink-3eb661",
+      "locationSet": {
+        "include": [
+          "nz-mwt.geojson",
+          "nz-wgn.geojson"
+        ]
+      },
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "Metlink"
+        "operator": "Metlink",
+        "operator:wikidata": "Q7258026"
       }
     },
     {
       "displayName": "Nederlandse Spoorwegen",
       "id": "nederlandsespoorwegen-23194f",
       "locationSet": {"include": ["nl"]},
+      "matchNames": ["ns"],
       "tags": {
         "amenity": "ticket_validator",
         "operator": "Nederlandse Spoorwegen",
-        "operator:short": "NS",
         "operator:wikidata": "Q23076"
       }
     },
@@ -129,6 +126,7 @@
       "tags": {
         "amenity": "ticket_validator",
         "operator": "Regional Transportation District",
+        "operator:short": "RTD",
         "operator:wikidata": "Q7309183"
       }
     },
@@ -148,32 +146,26 @@
       }
     },
     {
-      "displayName": "SBB",
-      "id": "sbb-88b0ef",
-      "locationSet": {"include": ["ch"]},
+      "displayName": "SBB - CFF - FFS",
+      "id": "sbbcffffs-ac77cd",
+      "locationSet": {
+        "include": [
+          "ch",
+          "fr-ara.geojson",
+          "fr-bfc.geojson"
+        ]
+      },
+      "matchNames": [
+        "schweizerische bundesbahnen ag",
+        "swiss federal railways"
+      ],
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "SBB"
-      }
-    },
-    {
-      "displayName": "SBB CFF FFS",
-      "id": "sbbcffffs-88b0ef",
-      "locationSet": {"include": ["ch"]},
-      "matchNames": ["swiss federal railways"],
-      "tags": {
-        "amenity": "ticket_validator",
-        "operator": "SBB CFF FFS",
+        "operator": "SBB - CFF - FFS",
+        "operator:de": "SBB",
+        "operator:fr": "CFF",
+        "operator:it": "FFS",
         "operator:wikidata": "Q83835"
-      }
-    },
-    {
-      "displayName": "Schweizerische Bundesbahnen AG",
-      "id": "schweizerischebundesbahnenag-88b0ef",
-      "locationSet": {"include": ["ch"]},
-      "tags": {
-        "amenity": "ticket_validator",
-        "operator": "Schweizerische Bundesbahnen AG"
       }
     },
     {
@@ -230,8 +222,8 @@
     },
     {
       "displayName": "Transport for London",
-      "id": "transportforlondon-f9bd85",
-      "locationSet": {"include": ["gb"]},
+      "id": "transportforlondon-73d484",
+      "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "amenity": "ticket_validator",
         "operator": "Transport for London",
@@ -253,11 +245,14 @@
     },
     {
       "displayName": "Transport for West Midlands",
-      "id": "transportforwestmidlands-f9bd85",
-      "locationSet": {"include": ["gb"]},
+      "id": "transportforwestmidlands-1d1aee",
+      "locationSet": {
+        "include": ["gb-west-midlands.geojson"]
+      },
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "Transport for West Midlands"
+        "operator": "Transport for West Midlands",
+        "operator:wikidata": "Q7985947"
       }
     },
     {
@@ -276,6 +271,7 @@
       "tags": {
         "amenity": "ticket_validator",
         "operator": "Trenitalia",
+        "operator:short": "TI",
         "operator:wikidata": "Q286650"
       }
     },
@@ -301,13 +297,13 @@
       }
     },
     {
-      "displayName": "WSW mobil",
-      "id": "wswmobil-f980d0",
+      "displayName": "WSW mobil GmbH",
+      "id": "wswmobilgmbh-f980d0",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["wsw mobil gmbh"],
+      "matchNames": ["wsw mobil"],
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "WSW mobil",
+        "operator": "WSW mobil GmbH",
         "operator:wikidata": "Q44880072"
       }
     },
