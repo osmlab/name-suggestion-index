@@ -463,11 +463,12 @@
     },
     {
       "displayName": "Häagen-Dazs",
-      "id": "haagendazs-61f56c",
+      "id": "haagendazs-d2458e",
       "locationSet": {
-        "include": ["001", "hk", "mo"],
-        "exclude": ["cn"]
+        "include": ["001"],
+        "exclude": ["mainland china"]
       },
+      "note": "locationSet definition is equivalent to worldwide including Hong Kong and Macau, but excluding the remainder of China",
       "tags": {
         "amenity": "ice_cream",
         "brand": "Häagen-Dazs",
@@ -1274,8 +1275,11 @@
     },
     {
       "displayName": "哈根达斯",
-      "id": "haagendazs-460b92",
-      "locationSet": {"include": ["cn"]},
+      "id": "haagendazs-136fc8",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
       "tags": {
         "amenity": "ice_cream",
         "brand": "哈根达斯",
