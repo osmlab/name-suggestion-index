@@ -3,12 +3,11 @@
     "path": "operators/amenity/library",
     "exclude": {
       "generic": [
+        "^(library|图书馆)$",
         "^county$",
         "^gemeinde$",
-        "^library$",
         "^mairie$",
-        "^public$",
-        "^图书馆$"
+        "^public$"
       ]
     }
   },
@@ -779,11 +778,15 @@
     },
     {
       "displayName": "Clermont Auvergne Métropole",
-      "id": "clermontauvergnemetropole-9284e0",
-      "locationSet": {"include": ["001"]},
+      "id": "clermontauvergnemetropole-391b22",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Clermont Auvergne Métropole"
+        "operator": "Clermont Auvergne Métropole",
+        "operator:type": "government",
+        "operator:wikidata": "Q762950"
       }
     },
     {
@@ -868,20 +871,30 @@
     },
     {
       "displayName": "Cuyahoga County Public Library",
-      "id": "cuyahogacountypubliclibrary-9284e0",
-      "locationSet": {"include": ["001"]},
+      "id": "cuyahogacountypubliclibrary-b425fb",
+      "locationSet": {
+        "include": [
+          "us-oh-cuyahoga_county.geojson"
+        ]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Cuyahoga County Public Library"
+        "operator": "Cuyahoga County Public Library",
+        "operator:type": "public",
+        "operator:wikidata": "Q5197076"
       }
     },
     {
       "displayName": "DC Public Library",
-      "id": "dcpubliclibrary-9284e0",
-      "locationSet": {"include": ["001"]},
+      "id": "dcpubliclibrary-d8e974",
+      "locationSet": {
+        "include": ["us-dc.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "DC Public Library"
+        "operator": "DC Public Library",
+        "operator:type": "public",
+        "operator:wikidata": "Q5283432"
       }
     },
     {
@@ -1316,15 +1329,18 @@
     },
     {
       "displayName": "Istituzione Sistema Biblioteche Centri Culturali",
-      "id": "istituzionesistemabibliotechecentriculturali-9284e0",
-      "locationSet": {"include": ["001"]},
+      "id": "istituzionesistemabibliotechecentriculturali-7d219c",
+      "locationSet": {
+        "include": ["it-62.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Istituzione Sistema Biblioteche Centri Culturali"
+        "operator": "Istituzione Sistema Biblioteche Centri Culturali",
+        "operator:type": "public"
       }
     },
     {
-      "displayName": "JCLS",
+      "displayName": "Jackson County Library Services",
       "id": "jacksoncountylibraryservices-199ec0",
       "locationSet": {
         "include": ["us-or.geojson"]
@@ -1554,11 +1570,15 @@
     },
     {
       "displayName": "Landkreis Oder-Spree",
-      "id": "landkreisoderspree-9284e0",
-      "locationSet": {"include": ["001"]},
+      "id": "landkreisoderspree-343622",
+      "locationSet": {
+        "include": ["de-bb.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Landkreis Oder-Spree"
+        "operator": "Landkreis Oder-Spree",
+        "operator:type": "government",
+        "operator:wikidata": "Q6178"
       }
     },
     {
@@ -2422,11 +2442,13 @@
     },
     {
       "displayName": "Theek 5",
-      "id": "theek5-9284e0",
-      "locationSet": {"include": ["001"]},
+      "id": "theek5-08efeb",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "library",
-        "operator": "Theek 5"
+        "operator": "Theek 5",
+        "operator:type": "public",
+        "operator:wikidata": "Q59962203"
       }
     },
     {
@@ -2907,11 +2929,12 @@
     },
     {
       "displayName": "ЦБС Автозаводского района",
-      "id": "1c44ed-9284e0",
-      "locationSet": {"include": ["001"]},
+      "id": "1c44ed-5ddbe5",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "library",
-        "operator": "ЦБС Автозаводского района"
+        "operator": "ЦБС Автозаводского района",
+        "operator:type": "public"
       }
     },
     {

@@ -5,6 +5,7 @@
     "exclude": {
       "generic": [
         "^(govern?ment( authorities)?|govt( hospital)?|municipal|priva(do|te)|public|private not for profit|provincial|village)$",
+        "^catholic church$",
         "^centro (de salud|de saúde|médico)$",
         "^community$",
         "^hospital$",
@@ -20,9 +21,9 @@
         "^医院$"
       ],
       "named": [
-        "^(croydon university hospital)$",
         "^(центральна районна лікарня|црб)$",
-        "^(центральная районная )?больница$"
+        "^(центральная районная )?больница$",
+        "^croydon university hospital$"
       ]
     }
   },
@@ -489,22 +490,15 @@
       "displayName": "Caja Nacional de Salud (Bolivia)",
       "id": "cajanacionaldesalud-bdc341",
       "locationSet": {"include": ["bo"]},
+      "matchNames": [
+        "caja nacional de salud cns"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Caja Nacional de Salud",
         "operator:short": "CNS",
-        "operator:type": "private"
-      }
-    },
-    {
-      "displayName": "Caja Nacional de Salud CNS",
-      "id": "cajanacionaldesaludcns-fbd4f5",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Caja Nacional de Salud CNS"
+        "operator:type": "public"
       }
     },
     {
@@ -519,16 +513,6 @@
         "operator": "Capio",
         "operator:type": "private",
         "operator:wikidata": "Q498606"
-      }
-    },
-    {
-      "displayName": "Catholic Church",
-      "id": "catholicchurch-fbd4f5",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Catholic Church"
       }
     },
     {
@@ -3320,12 +3304,13 @@
     },
     {
       "displayName": "ООО \"Промышленная Медицина\"",
-      "id": "bc1750-fbd4f5",
-      "locationSet": {"include": ["001"]},
+      "id": "bc1750-7b7c97",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "ООО \"Промышленная Медицина\""
+        "operator": "ООО \"Промышленная Медицина\"",
+        "operator:type": "private"
       }
     },
     {
