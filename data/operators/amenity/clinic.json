@@ -6,7 +6,7 @@
       "generic": [
         "^(clinic|urgent\\s?care)$",
         "^(consultorio )?(local|médico)$",
-        "^(consultorio|municipal|private(_profit)?|priv[eé]{0,2}|provincial|public)$",
+        "^(consultorio|municipal|private(_profit|\\/individual)?|priv[eé]{0,2}|provincial|public)$",
         "^(gov|govern?ment|prefeitura( municipal)?)$",
         "^(polyclinique|poliklinika)$",
         "^centro (de salud|de saúde|médico)$",
@@ -643,11 +643,12 @@
     {
       "displayName": "Fundação Municipal de Saúde",
       "id": "fundacaomunicipaldesaude-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Fundação Municipal de Saúde"
+        "operator": "Fundação Municipal de Saúde",
+        "operator:type": "public"
       }
     },
     {
@@ -950,11 +951,13 @@
     {
       "displayName": "Institut Català de la Salut",
       "id": "institutcataladelasalut-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Institut Català de la Salut"
+        "operator": "Institut Català de la Salut",
+        "operator:type": "public",
+        "operator:wikidata": "Q11926710"
       }
     },
     {
@@ -1121,11 +1124,13 @@
     {
       "displayName": "Länsi-Uudenmaan hyvinvointialue",
       "id": "lansiuudenmaanhyvinvointialue-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fi"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Länsi-Uudenmaan hyvinvointialue"
+        "operator": "Länsi-Uudenmaan hyvinvointialue",
+        "operator:type": "public",
+        "operator:wikidata": "Q110245203"
       }
     },
     {
@@ -1257,11 +1262,13 @@
     {
       "displayName": "Mehiläinen",
       "id": "mehilainen-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["fi"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Mehiläinen"
+        "operator": "Mehiläinen",
+        "operator:type": "private",
+        "operator:wikidata": "Q10580005"
       }
     },
     {
@@ -1817,13 +1824,16 @@
       }
     },
     {
-      "displayName": "PMSP",
+      "displayName": "Prefeitura Municipal de São Paulo",
       "id": "pmsp-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["br-sp.geojson"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "PMSP"
+        "operator": "Prefeitura Municipal de São Paulo",
+        "operator:short": "PMSP",
+        "operator:type": "government",
+        "operator:wikidata": "Q10351100"
       }
     },
     {
@@ -1988,11 +1998,12 @@
     {
       "displayName": "Prefeitura Municipal de São José",
       "id": "prefeituramunicipaldesaojose-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["br-sc.geojson"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Prefeitura Municipal de São José"
+        "operator": "Prefeitura Municipal de São José",
+        "operator:type": "government"
       }
     },
     {
@@ -2022,16 +2033,6 @@
         "operator:short": "PMVV",
         "operator:type": "government",
         "operator:wikidata": "Q56450026"
-      }
-    },
-    {
-      "displayName": "private/individual",
-      "id": "privateindividual-55c168",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "private/individual"
       }
     },
     {
@@ -2123,21 +2124,25 @@
     {
       "displayName": "Region Östergötland",
       "id": "regionostergotland-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Region Östergötland"
+        "operator": "Region Östergötland",
+        "operator:type": "government",
+        "operator:wikidata": "Q3231915"
       }
     },
     {
       "displayName": "Region Västernorrland",
       "id": "regionvasternorrland-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Region Västernorrland"
+        "operator": "Region Västernorrland",
+        "operator:type": "government",
+        "operator:wikidata": "Q8100253"
       }
     },
     {
@@ -2260,11 +2265,13 @@
     {
       "displayName": "Sanitas",
       "id": "sanitas-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Sanitas"
+        "operator": "Sanitas",
+        "operator:type": "private",
+        "operator:wikidata": "Q21711175"
       }
     },
     {
@@ -2489,11 +2496,13 @@
     {
       "displayName": "SESARAM",
       "id": "sesaram-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["pt-30"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "SESARAM"
+        "operator": "SESARAM",
+        "operator:type": "government",
+        "operator:wikidata": "Q131428254"
       }
     },
     {
@@ -2729,11 +2738,13 @@
     {
       "displayName": "Vancouver Coastal Health",
       "id": "vancouvercoastalhealth-55c168",
-      "locationSet": {"include": ["001"]},
+      "locationSet": {"include": ["ca-bc.geojson"]},
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Vancouver Coastal Health"
+        "operator": "Vancouver Coastal Health",
+        "operator:type": "public",
+        "operator:wikidata": "Q7914144"
       }
     },
     {
