@@ -3,12 +3,12 @@
     "path": "operators/amenity/community_centre",
     "exclude": {
       "generic": [
-        "^(community centre)$",
-        "^(自治会|町内会)$",
         "^(commun(e|ity)|gemeinde)$",
+        "^(community centre)$",
+        "^(government|municipalité)$",
+        "^(自治会|町内会)$",
         "^evangelische kirche$",
         "^mairie$",
-        "^(government|municipalité)$",
         "^scouts$"
       ]
     }
@@ -16,7 +16,7 @@
   "items": [
     {
       "displayName": "AGESCI",
-      "id": "agesci-e4e4f8",
+      "id": "agesci-30a064",
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "community_centre",
@@ -97,9 +97,13 @@
     },
     {
       "displayName": "Baltimore City Health Department",
-      "id": "baltimorecitydepartmentofhealth-e4e4f8",
-      "locationSet": {"include": ["us-md-baltimore.geojson"]},
-      "matchNames": ["Baltimore City Department of Health"],
+      "id": "baltimorecityhealthdepartment-78231e",
+      "locationSet": {
+        "include": ["us-md-baltimore.geojson"]
+      },
+      "matchNames": [
+        "baltimore city department of health"
+      ],
       "tags": {
         "amenity": "community_centre",
         "operator": "Baltimore City Health Department",
@@ -320,21 +324,11 @@
       }
     },
     {
-      "displayName": "Mairie de Sarzeau",
-      "id": "communedesarzeau-e4e4f8",
-      "locationSet": {"include": ["fr-bre.geojson"]},
-      "matchNames": ["Commune de Sarzeau"],
-      "tags": {
-        "amenity": "community_centre",
-        "operator": "Mairie de Sarzeau",
-        "operator:type": "government",
-        "operator:wikidata": "Q115909985"
-      }
-    },
-    {
       "displayName": "Commune de Sèvremont",
-      "id": "communedesevremont-e4e4f8",
-      "locationSet": {"include": ["fr-pdl.geojson"]},
+      "id": "communedesevremont-c86722",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "Commune de Sèvremont",
@@ -388,7 +382,7 @@
     },
     {
       "displayName": "Göteborgs Stad",
-      "id": "goteborgsstad-e4e4f8",
+      "id": "goteborgsstad-57685d",
       "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "community_centre",
@@ -446,13 +440,13 @@
     },
     {
       "displayName": "International Rescue Committee",
-      "id": "irc-e4e4f8",
+      "id": "internationalrescuecommittee-e4e4f8",
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "community_centre",
+        "operator": "International Rescue Committee",
         "operator:short": "IRC",
         "operator:type": "ngo",
-        "operator": "International Rescue Committee"
         "operator:wikidata": "Q1666849"
       }
     },
@@ -498,7 +492,7 @@
     },
     {
       "displayName": "KSA",
-      "id": "ksa-e4e4f8",
+      "id": "ksa-d3b2a9",
       "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "community_centre",
@@ -518,6 +512,20 @@
         "operator": "Mairie de Creil",
         "operator:type": "government",
         "operator:wikidata": "Q118524793"
+      }
+    },
+    {
+      "displayName": "Mairie de Sarzeau",
+      "id": "mairiedesarzeau-265d36",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
+      "matchNames": ["commune de sarzeau"],
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Mairie de Sarzeau",
+        "operator:type": "government",
+        "operator:wikidata": "Q115909985"
       }
     },
     {
@@ -607,7 +615,7 @@
     },
     {
       "displayName": "SIBAT",
-      "id": "sibat-e4e4f8",
+      "id": "sibat-983654",
       "locationSet": {"include": ["id-ml"]},
       "tags": {
         "amenity": "community_centre",
@@ -812,11 +820,14 @@
     },
     {
       "displayName": "つくば市",
-      "id": "13a16f-e4e4f8",
-      "locationSet": {"include": ["jp-08.geojson"]},
+      "id": "13a16f-f93e45",
+      "locationSet": {
+        "include": ["jp-08.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "つくば市",
+        "operator:ja": "つくば市",
         "operator:type": "government",
         "operator:wikidata": "Q273863"
       }
@@ -883,8 +894,10 @@
     },
     {
       "displayName": "唐津市",
-      "id": "8246f5-e4e4f8",
-      "locationSet": {"include": ["jp-41.geojson"]},
+      "id": "8246f5-a47e1e",
+      "locationSet": {
+        "include": ["jp-41.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "唐津市",
