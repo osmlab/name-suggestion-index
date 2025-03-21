@@ -3,16 +3,16 @@
     "path": "operators/amenity/drinking_water",
     "exclude": {
       "generic": [
-        "^(croix-rouge|red cross)$",
         "^(institution|wsb|wsp) \\(staff\\)$",
         "^\\(local\\) private sector- name\\/no$",
-        "^ayuntamiento|community|gemeinde|mairie$",
-        "^bebedouro|drinking water$",
+        "^ayuntamiento|commun(e|ity)|gemeinde|mairie$",
+        "^bebedouro|drinking water|живая вода$",
         "^community \\(technician\\) name\\/no$",
+        "^croix-rouge|red cross$",
         "^institution staff$",
         "^ngo$",
         "^öffentlich$",
-        "^private$",
+        "^private([\\/_]individual)?$",
         "^public$",
         "^tom$",
         "^yes$",
@@ -147,8 +147,8 @@
     },
     {
       "displayName": "ak111",
-      "id": "ak111-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "ak111-a7f52c",
+      "locationSet": {"include": ["es"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "ak111"
@@ -231,20 +231,26 @@
     },
     {
       "displayName": "Bayside City Council",
-      "id": "baysidecitycouncil-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "baysidecitycouncil-bffbbc",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Bayside City Council"
+        "operator": "Bayside City Council",
+        "operator:wikidata": "Q56477771"
       }
     },
     {
       "displayName": "BC Parks",
-      "id": "bcparks-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "bcparks-f4df2b",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "BC Parks"
+        "operator": "BC Parks",
+        "operator:wikidata": "Q2876928"
       }
     },
     {
@@ -345,15 +351,6 @@
         "operator": "City of Denton",
         "operator:type": "government",
         "operator:wikidata": "Q128306"
-      }
-    },
-    {
-      "displayName": "Commune",
-      "id": "commune-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Commune"
       }
     },
     {
@@ -516,12 +513,19 @@
       }
     },
     {
-      "displayName": "EPAL - Empresa Portuguesa de Águas Livres",
-      "id": "epalempresaportuguesadeaguaslivres-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Empresa Portuguesa de Águas Livres",
+      "id": "empresaportuguesadeaguaslivres-be9dcc",
+      "locationSet": {
+        "include": ["pt-11.geojson"]
+      },
+      "matchNames": [
+        "epal - empresa portuguesa de águas livres"
+      ],
       "tags": {
         "amenity": "drinking_water",
-        "operator": "EPAL - Empresa Portuguesa de Águas Livres"
+        "operator": "Empresa Portuguesa de Águas Livres",
+        "operator:short": "EPAL",
+        "operator:wikidata": "Q10272522"
       }
     },
     {
@@ -674,11 +678,14 @@
     },
     {
       "displayName": "Lake County Forest Preserves",
-      "id": "lakecountyforestpreserves-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "lakecountyforestpreserves-4671bc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Lake County Forest Preserves"
+        "operator": "Lake County Forest Preserves",
+        "operator:wikidata": "Q17068552"
       }
     },
     {
@@ -864,15 +871,6 @@
       }
     },
     {
-      "displayName": "private/individual",
-      "id": "privateindividual-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "private/individual"
-      }
-    },
-    {
       "displayName": "Provincia di Brescia",
       "id": "provinciadibrescia-001ccd",
       "locationSet": {
@@ -1003,30 +1001,23 @@
     },
     {
       "displayName": "SNCF",
-      "id": "sncf-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "sncf-02ca9b",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "SNCF"
+        "operator": "SNCF",
+        "operator:wikidata": "Q13646"
       }
     },
     {
       "displayName": "SNCF Gares & Connexions",
       "id": "sncfgaresandconnexions-02ca9b",
       "locationSet": {"include": ["fx"]},
+      "matchNames": ["sncf gares et connexions"],
       "tags": {
         "amenity": "drinking_water",
         "operator": "SNCF Gares & Connexions",
         "operator:wikidata": "Q3098278"
-      }
-    },
-    {
-      "displayName": "SNCF Gares et Connexions",
-      "id": "sncfgaresetconnexions-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "SNCF Gares et Connexions"
       }
     },
     {
@@ -1055,20 +1046,26 @@
     },
     {
       "displayName": "Stadt Erfurt",
-      "id": "stadterfurt-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "stadterfurt-a9fb1c",
+      "locationSet": {
+        "include": ["de-th.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Erfurt"
+        "operator": "Stadt Erfurt",
+        "operator:wikidata": "Q1729"
       }
     },
     {
       "displayName": "Stadt Frankfurt am Main",
-      "id": "stadtfrankfurtammain-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "stadtfrankfurtammain-4e0a22",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadt Frankfurt am Main"
+        "operator": "Stadt Frankfurt am Main",
+        "operator:wikidata": "Q124797826"
       }
     },
     {
@@ -1155,11 +1152,12 @@
     },
     {
       "displayName": "Thames Water",
-      "id": "thameswater-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "thameswater-df9760",
+      "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Thames Water"
+        "operator": "Thames Water",
+        "operator:wikidata": "Q2408951"
       }
     },
     {
@@ -1448,11 +1446,14 @@
     },
     {
       "displayName": "Yarra Valley Water",
-      "id": "yarravalleywater-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "yarravalleywater-bffbbc",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Yarra Valley Water"
+        "operator": "Yarra Valley Water",
+        "operator:wikidata": "Q8049513"
       }
     },
     {
@@ -1474,18 +1475,9 @@
       }
     },
     {
-      "displayName": "Живая вода",
-      "id": "b368f3-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Живая вода"
-      }
-    },
-    {
       "displayName": "Роганская",
-      "id": "ed5c7c-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "ed5c7c-099377",
+      "locationSet": {"include": ["ua"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "Роганская"
