@@ -3,12 +3,12 @@
     "path": "operators/amenity/college",
     "exclude": {
       "generic": [
-        "^(governo |)federal$",
+        "^(governo )?federal|federal government$",
         "^autonomo$",
         "^college$"
       ],
       "named": [
-        "university of california, irvine"
+        "^city colleges of chicago|florence-darlington technical college$"
       ]
     }
   },
@@ -22,15 +22,6 @@
         "operator": "Centro Paula Souza",
         "operator:type": "public",
         "operator:wikidata": "Q52637715"
-      }
-    },
-    {
-      "displayName": "City Colleges of Chicago",
-      "id": "citycollegesofchicago-d4c5f0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "college",
-        "operator": "City Colleges of Chicago"
       }
     },
     {
@@ -79,24 +70,6 @@
         "operator": "École de la Deuxième Chance",
         "operator:type": "private",
         "operator:wikidata": "Q3577882"
-      }
-    },
-    {
-      "displayName": "Federal Government",
-      "id": "federalgovernment-d4c5f0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "college",
-        "operator": "Federal Government"
-      }
-    },
-    {
-      "displayName": "Florence-Darlington Technical College",
-      "id": "florencedarlingtontechnicalcollege-d4c5f0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "college",
-        "operator": "Florence-Darlington Technical College"
       }
     },
     {
@@ -305,11 +278,15 @@
     },
     {
       "displayName": "Universidad de Guadalajara",
-      "id": "universidaddeguadalajara-d4c5f0",
-      "locationSet": {"include": ["001"]},
+      "id": "universidaddeguadalajara-cb82d4",
+      "locationSet": {
+        "include": ["mx-jal.geojson"]
+      },
       "tags": {
         "amenity": "college",
-        "operator": "Universidad de Guadalajara"
+        "operator": "Universidad de Guadalajara",
+        "operator:type": "public",
+        "operator:wikidata": "Q164028"
       }
     },
     {
@@ -388,7 +365,8 @@
       "locationSet": {"include": ["ua"]},
       "tags": {
         "amenity": "college",
-        "operator": "Департамент освіти і науки Львівської обласної державної адміністрації"
+        "operator": "Департамент освіти і науки Львівської обласної державної адміністрації",
+        "operator:type": "government"
       }
     },
     {
@@ -397,7 +375,9 @@
       "locationSet": {"include": ["ua"]},
       "tags": {
         "amenity": "college",
-        "operator": "Міністерство освіти і науки України"
+        "operator": "Міністерство освіти і науки України",
+        "operator:type": "government",
+        "operator:wikidata": "Q4294532"
       }
     },
     {
@@ -422,11 +402,13 @@
     },
     {
       "displayName": "職業訓練局 Vocational Training Council",
-      "id": "87516b-d4c5f0",
-      "locationSet": {"include": ["001"]},
+      "id": "87516b-c46c71",
+      "locationSet": {"include": ["hk"]},
       "tags": {
         "amenity": "college",
-        "operator": "職業訓練局 Vocational Training Council"
+        "operator": "職業訓練局 Vocational Training Council",
+        "operator:type": "public",
+        "operator:wikidata": "Q15178640"
       }
     },
     {
