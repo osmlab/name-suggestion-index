@@ -3,18 +3,17 @@
     "path": "operators/amenity/school",
     "exclude": {
       "generic": [
-        "^((roman |)catholic|anglican|seventh[\\- ]day adventist) church$",
-        "^((state|county) )?gov(t(ternment)?|er(n)?ment)$",
+        "^((roman |)catholic|anglican|baptist|seventh[\\- ]day adventist) church$",
+        "^((state|county|federal) )?gov(t(ternment)?|er(n)?ment)$",
         "^(pvt.|priva(do|te))(( |_)(aided|un(|-)aided|profit))?$",
         "^(un)?aided$",
-        "^commun(e|ity)$",
+        "^[eé]ducation (department|nationale)$",
+        "^commun(e|ity)|gemeinde$",
         "^de(funkt|partamento)$",
         "^ecole (des parents|publique)$",
-        "^education department$",
-        "^éducation nationale$",
         "^esta(d(o|ual)|tal)$",
         "^etat$",
-        "^gemeinde$",
+        "^gouvernement|state owned$",
         "^governo (do estado|estadual|municipal)$",
         "^independent$",
         "^missionary$",
@@ -24,17 +23,23 @@
         "^p[uú]bli(a|c|ca|co|o|que)$",
         "^particular$",
         "^prefeitura( municipal)?$",
+        "^private(_|\\/ )individual$",
         "^privé(e)?$",
         "^religious( \\/ ngo|)$",
         "^roman catholic$",
         "^school$",
         "^secretaria( (municipal|estadual|de estado))? d[ae] educa[çc][ãa]o$",
-        "^state owned$",
         "^中华人民共和国教育部",
         "^公立$",
         "^学校$"
       ],
-      "named": ["^[1-5]$", "^lhss$", "^mhss$"]
+      "named": [
+        "^[1-5]$",
+        "^eastern wyoming college$",
+        "^lhss$",
+        "^mhss$",
+        "^rapid bus$"
+      ]
     }
   },
   "items": [
@@ -454,11 +459,13 @@
     },
     {
       "displayName": "Agora",
-      "id": "agora-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "agora-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Agora"
+        "operator": "Agora",
+        "operator:type": "private",
+        "operator:wikidata": "Q132673660"
       }
     },
     {
@@ -881,12 +888,18 @@
       }
     },
     {
-      "displayName": "Agrupamento de Escolas Diogo Cão, Vila Real",
-      "id": "agrupamentodeescolasdiogocaovilareal-155571",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Agrupamento de Escolas Diogo Cão",
+      "id": "agrupamentodeescolasdiogocao-0aca32",
+      "locationSet": {
+        "include": ["pt-17.geojson"]
+      },
+      "matchNames": [
+        "agrupamento de escolas diogo cão, vila real"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Agrupamento de Escolas Diogo Cão, Vila Real"
+        "operator": "Agrupamento de Escolas Diogo Cão",
+        "operator:type": "public"
       }
     },
     {
@@ -2505,11 +2518,13 @@
     },
     {
       "displayName": "Ante",
-      "id": "ante-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "ante-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Ante"
+        "operator": "Ante",
+        "operator:type": "private",
+        "operator:wikidata": "Q130680674"
       }
     },
     {
@@ -3302,11 +3317,14 @@
     },
     {
       "displayName": "Autoridad Educativa Federal en la Ciudad de México",
-      "id": "autoridadeducativafederalenlaciudaddemexico-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "autoridadeducativafederalenlaciudaddemexico-82b5af",
+      "locationSet": {
+        "include": ["mx-cmx.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Autoridad Educativa Federal en la Ciudad de México"
+        "operator": "Autoridad Educativa Federal en la Ciudad de México",
+        "operator:type": "government"
       }
     },
     {
@@ -4782,15 +4800,6 @@
       }
     },
     {
-      "displayName": "Baptist Church",
-      "id": "baptistchurch-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Baptist Church"
-      }
-    },
-    {
       "displayName": "Barbaza District",
       "id": "barbazadistrict-b3def0",
       "locationSet": {
@@ -4979,11 +4988,15 @@
     },
     {
       "displayName": "Barstow Unified School District",
-      "id": "barstowunifiedschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "barstowunifiedschooldistrict-ff98ff",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Barstow Unified School District"
+        "operator": "Barstow Unified School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q16838246"
       }
     },
     {
@@ -5140,11 +5153,14 @@
     },
     {
       "displayName": "Batac II District",
-      "id": "bataciidistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "bataciidistrict-a465f5",
+      "locationSet": {
+        "include": ["ph-iln.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Batac II District"
+        "operator": "Batac II District",
+        "operator:type": "government"
       }
     },
     {
@@ -7012,11 +7028,13 @@
     },
     {
       "displayName": "Borås Stad",
-      "id": "borasstad-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "borasstad-0f2dfb",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "school",
-        "operator": "Borås Stad"
+        "operator": "Borås Stad",
+        "operator:type": "government",
+        "operator:wikidata": "Q26040"
       }
     },
     {
@@ -7037,11 +7055,13 @@
     },
     {
       "displayName": "Borgesiusstichting",
-      "id": "borgesiusstichting-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "borgesiusstichting-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Borgesiusstichting"
+        "operator": "Borgesiusstichting",
+        "operator:type": "private",
+        "operator:wikidata": "Q130619147"
       }
     },
     {
@@ -7098,20 +7118,14 @@
       "locationSet": {
         "include": ["us-la.geojson"]
       },
+      "matchNames": [
+        "bossier parish school district"
+      ],
       "tags": {
         "amenity": "school",
         "operator": "Bossier Parish School Board",
         "operator:type": "public",
         "operator:wikidata": "Q4947596"
-      }
-    },
-    {
-      "displayName": "Bossier Parish School District",
-      "id": "bossierparishschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Bossier Parish School District"
       }
     },
     {
@@ -8299,11 +8313,14 @@
     },
     {
       "displayName": "Caddo Parish School District",
-      "id": "caddoparishschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "caddoparishschooldistrict-8f61a8",
+      "locationSet": {
+        "include": ["us-la.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Caddo Parish School District"
+        "operator": "Caddo Parish School District",
+        "operator:type": "public"
       }
     },
     {
@@ -8784,11 +8801,14 @@
     },
     {
       "displayName": "Calcasieu Parish School Board",
-      "id": "calcasieuparishschoolboard-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "calcasieuparishschoolboard-8f61a8",
+      "locationSet": {
+        "include": ["us-la.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Calcasieu Parish School Board"
+        "operator": "Calcasieu Parish School Board",
+        "operator:type": "public"
       }
     },
     {
@@ -11302,11 +11322,13 @@
     },
     {
       "displayName": "Codenz",
-      "id": "codenz-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "codenz-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Codenz"
+        "operator": "Codenz",
+        "operator:type": "private",
+        "operator:wikidata": "Q130641327"
       }
     },
     {
@@ -11878,11 +11900,14 @@
     },
     {
       "displayName": "Consejo Escolar Alto Valle Centro I - Cipolletti",
-      "id": "consejoescolaraltovallecentroicipolletti-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "consejoescolaraltovallecentroicipolletti-e6aec9",
+      "locationSet": {
+        "include": ["ar-r.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Consejo Escolar Alto Valle Centro I - Cipolletti"
+        "operator": "Consejo Escolar Alto Valle Centro I - Cipolletti",
+        "operator:type": "public"
       }
     },
     {
@@ -12933,20 +12958,24 @@
     },
     {
       "displayName": "Dél-Budai Tankerületi Központ",
-      "id": "delbudaitankeruletikozpont-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "delbudaitankeruletikozpont-211b9f",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "amenity": "school",
-        "operator": "Dél-Budai Tankerületi Központ"
+        "operator": "Dél-Budai Tankerületi Központ",
+        "operator:type": "government",
+        "operator:wikidata": "Q108840220"
       }
     },
     {
       "displayName": "Dél-Pesti Tankerületi Központ",
-      "id": "delpestitankeruletikozpont-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "delpestitankeruletikozpont-211b9f",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "amenity": "school",
-        "operator": "Dél-Pesti Tankerületi Központ"
+        "operator": "Dél-Pesti Tankerületi Központ",
+        "operator:type": "government",
+        "operator:wikidata": "Q108840221"
       }
     },
     {
@@ -13614,7 +13643,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Dinas P&K Bengkalis",
-        "operator:type": "private"
+        "operator:type": "government"
       }
     },
     {
@@ -13624,7 +13653,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Dinas Pendidikan Kab. Bangkalan",
-        "operator:type": "private"
+        "operator:type": "government"
       }
     },
     {
@@ -13634,16 +13663,17 @@
       "tags": {
         "amenity": "school",
         "operator": "Dinas Pendidikan Kabupaten Ciamis",
-        "operator:type": "private"
+        "operator:type": "government"
       }
     },
     {
       "displayName": "Dinas Pendidikan Pemerintah Kabupaten Tuban",
-      "id": "dinaspendidikanpemerintahkabupatentuban-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "dinaspendidikanpemerintahkabupatentuban-6b4ec5",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "amenity": "school",
-        "operator": "Dinas Pendidikan Pemerintah Kabupaten Tuban"
+        "operator": "Dinas Pendidikan Pemerintah Kabupaten Tuban",
+        "operator:type": "government"
       }
     },
     {
@@ -16498,15 +16528,6 @@
       }
     },
     {
-      "displayName": "Eastern Wyoming College",
-      "id": "easternwyomingcollege-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Eastern Wyoming College"
-      }
-    },
-    {
       "displayName": "Eau Claire Area School District",
       "id": "eauclaireareaschooldistrict-ac5479",
       "locationSet": {
@@ -16605,11 +16626,13 @@
     },
     {
       "displayName": "Edmund Rice Schools Trust",
-      "id": "edmundriceschoolstrust-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "edmundriceschoolstrust-1a051e",
+      "locationSet": {"include": ["ie"]},
       "tags": {
         "amenity": "school",
-        "operator": "Edmund Rice Schools Trust"
+        "operator": "Edmund Rice Schools Trust",
+        "operator:type": "religious",
+        "operator:wikidata": "Q25340075"
       }
     },
     {
@@ -17147,11 +17170,13 @@
     },
     {
       "displayName": "Eswatini Government",
-      "id": "eswatinigovernment-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "eswatinigovernment-9aec0d",
+      "locationSet": {"include": ["sz"]},
       "tags": {
         "amenity": "school",
-        "operator": "Eswatini Government"
+        "operator": "Eswatini Government",
+        "operator:type": "government",
+        "operator:wikidata": "Q111828504"
       }
     },
     {
@@ -17453,15 +17478,6 @@
       }
     },
     {
-      "displayName": "Federal Government",
-      "id": "federalgovernment-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Federal Government"
-      }
-    },
-    {
       "displayName": "Federal Transferido",
       "id": "federaltransferido-422367",
       "locationSet": {"include": ["mx"]},
@@ -17648,11 +17664,15 @@
     },
     {
       "displayName": "Forsyth County Schools",
-      "id": "forsythcountyschools-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "forsythcountyschools-159679",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Forsyth County Schools"
+        "operator": "Forsyth County Schools",
+        "operator:type": "public",
+        "operator:wikidata": "Q5470652"
       }
     },
     {
@@ -18550,11 +18570,13 @@
     },
     {
       "displayName": "Gmina Biłgoraj",
-      "id": "gminabilgoraj-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "gminabilgoraj-83282a",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Gmina Biłgoraj"
+        "operator": "Gmina Biłgoraj",
+        "operator:type": "government",
+        "operator:wikidata": "Q1951140"
       }
     },
     {
@@ -18641,34 +18663,38 @@
       "tags": {
         "amenity": "school",
         "operator": "GO!",
-        "operator:type": "private"
+        "operator:type": "public"
       }
     },
     {
       "displayName": "GO! Scholengroep Brussel",
-      "id": "goscholengroepbrussel-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "goscholengroepbrussel-4b4187",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "school",
-        "operator": "GO! Scholengroep Brussel"
+        "operator": "GO! Scholengroep Brussel",
+        "operator:type": "public",
+        "operator:wikidata": "Q115171506"
       }
     },
     {
       "displayName": "GO! scholengroep SAM",
-      "id": "goscholengroepsam-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "goscholengroepsam-4b4187",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "school",
-        "operator": "GO! scholengroep SAM"
+        "operator": "GO! scholengroep SAM",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "GO! scholengroep Wijs",
-      "id": "goscholengroepwijs-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "goscholengroepwijs-4b4187",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "school",
-        "operator": "GO! scholengroep Wijs"
+        "operator": "GO! scholengroep Wijs",
+        "operator:type": "public"
       }
     },
     {
@@ -18678,7 +18704,7 @@
       "tags": {
         "amenity": "school",
         "operator": "GO! scholengroep Zuid-Limburg",
-        "operator:type": "private"
+        "operator:type": "public"
       }
     },
     {
@@ -18810,15 +18836,6 @@
         "operator": "Göteborgs stad",
         "operator:type": "government",
         "operator:wikidata": "Q52502"
-      }
-    },
-    {
-      "displayName": "Gouvernement",
-      "id": "gouvernement-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Gouvernement"
       }
     },
     {
@@ -19058,11 +19075,15 @@
     },
     {
       "displayName": "Grand Rapids Public Schools",
-      "id": "grandrapidspublicschools-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "grandrapidspublicschools-aa6f23",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Grand Rapids Public Schools"
+        "operator": "Grand Rapids Public Schools",
+        "operator:type": "public",
+        "operator:wikidata": "Q1771480"
       }
     },
     {
@@ -19631,11 +19652,15 @@
     },
     {
       "displayName": "Gwinnett County Public Schools",
-      "id": "gwinnettcountypublicschools-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "gwinnettcountypublicschools-159679",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Gwinnett County Public Schools"
+        "operator": "Gwinnett County Public Schools",
+        "operator:type": "public",
+        "operator:wikidata": "Q5623670"
       }
     },
     {
@@ -21855,11 +21880,15 @@
     },
     {
       "displayName": "Jenison Public Schools",
-      "id": "jenisonpublicschools-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "jenisonpublicschools-aa6f23",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Jenison Public Schools"
+        "operator": "Jenison Public Schools",
+        "operator:type": "public",
+        "operator:wikidata": "Q28147883"
       }
     },
     {
@@ -22050,11 +22079,15 @@
     },
     {
       "displayName": "Jordan School District",
-      "id": "jordanschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "jordanschooldistrict-614f2b",
+      "locationSet": {
+        "include": ["us-ut.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Jordan School District"
+        "operator": "Jordan School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q6276988"
       }
     },
     {
@@ -23375,11 +23408,13 @@
     },
     {
       "displayName": "KPO Roosendaal",
-      "id": "kporoosendaal-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "kporoosendaal-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "KPO Roosendaal"
+        "operator": "KPO Roosendaal",
+        "operator:type": "private",
+        "operator:wikidata": "Q130619069"
       }
     },
     {
@@ -23397,11 +23432,15 @@
     },
     {
       "displayName": "Kreis Offenbach",
-      "id": "kreisoffenbach-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "kreisoffenbach-127a2c",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Kreis Offenbach"
+        "operator": "Kreis Offenbach",
+        "operator:type": "public",
+        "operator:wikidata": "Q7912"
       }
     },
     {
@@ -23588,11 +23627,14 @@
     },
     {
       "displayName": "La Escuela Es Nuestra",
-      "id": "laescuelaesnuestra-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "laescuelaesnuestra-105441",
+      "locationSet": {
+        "include": ["mx-ver.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "La Escuela Es Nuestra"
+        "operator": "La Escuela Es Nuestra",
+        "operator:type": "public"
       }
     },
     {
@@ -24143,11 +24185,15 @@
     },
     {
       "displayName": "Lamar Consolidated Independent School District",
-      "id": "lamarconsolidatedindependentschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "lamarconsolidatedindependentschooldistrict-d19570",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Lamar Consolidated Independent School District"
+        "operator": "Lamar Consolidated Independent School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q6480848"
       }
     },
     {
@@ -24654,11 +24700,15 @@
     },
     {
       "displayName": "Laredo Independent School District",
-      "id": "laredoindependentschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "laredoindependentschooldistrict-d19570",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Laredo Independent School District"
+        "operator": "Laredo Independent School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q6488888"
       }
     },
     {
@@ -25784,12 +25834,19 @@
       }
     },
     {
-      "displayName": "Lincoln Parish School District",
-      "id": "lincolnparishschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Lincoln Parish School Board",
+      "id": "lincolnparishschoolboard-8f61a8",
+      "locationSet": {
+        "include": ["us-la.geojson"]
+      },
+      "matchNames": [
+        "lincoln parish school district"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Lincoln Parish School District"
+        "operator": "Lincoln Parish School Board",
+        "operator:type": "public",
+        "operator:wikidata": "Q6550897"
       }
     },
     {
@@ -26828,11 +26885,14 @@
     },
     {
       "displayName": "Lubuagan District",
-      "id": "lubuagandistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "lubuagandistrict-bf8fe1",
+      "locationSet": {
+        "include": ["ph-kal.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Lubuagan District"
+        "operator": "Lubuagan District",
+        "operator:type": "government"
       }
     },
     {
@@ -27974,15 +28034,6 @@
       }
     },
     {
-      "displayName": "Mairie de Nantes",
-      "id": "mairiedenantes-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Mairie de Nantes"
-      }
-    },
-    {
       "displayName": "Mairie de Pontault-Combault",
       "id": "mairiedepontaultcombault-3c0887",
       "locationSet": {
@@ -28200,11 +28251,14 @@
     },
     {
       "displayName": "Malibcong District",
-      "id": "malibcongdistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "malibcongdistrict-ee1133",
+      "locationSet": {
+        "include": ["ph-15.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Malibcong District"
+        "operator": "Malibcong District",
+        "operator:type": "government"
       }
     },
     {
@@ -28417,11 +28471,14 @@
     },
     {
       "displayName": "Manabo District",
-      "id": "manabodistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "manabodistrict-ee1133",
+      "locationSet": {
+        "include": ["ph-15.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Manabo District"
+        "operator": "Manabo District",
+        "operator:type": "government"
       }
     },
     {
@@ -29550,15 +29607,6 @@
       }
     },
     {
-      "displayName": "MED",
-      "id": "med-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "MED"
-      }
-    },
-    {
       "displayName": "Medellin District",
       "id": "medellindistrict-7153a9",
       "locationSet": {
@@ -30298,6 +30346,7 @@
       "tags": {
         "amenity": "school",
         "operator": "Ministério da Educação",
+        "operator:short": "MED",
         "operator:type": "government",
         "operator:wikidata": "Q116041585"
       }
@@ -30904,12 +30953,19 @@
       }
     },
     {
-      "displayName": "Monroe City School District",
-      "id": "monroecityschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Monroe City Schools",
+      "id": "monroecityschools-8f61a8",
+      "locationSet": {
+        "include": ["us-la.geojson"]
+      },
+      "matchNames": [
+        "monroe city school district"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Monroe City School District"
+        "operator": "Monroe City Schools",
+        "operator:type": "public",
+        "operator:wikidata": "Q6902139"
       }
     },
     {
@@ -31002,11 +31058,15 @@
     },
     {
       "displayName": "Moravskoslezský kraj",
-      "id": "moravskoslezskykraj-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "moravskoslezskykraj-1c1d18",
+      "locationSet": {
+        "include": ["cz-80.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Moravskoslezský kraj"
+        "operator": "Moravskoslezský kraj",
+        "operator:type": "government",
+        "operator:wikidata": "Q190550"
       }
     },
     {
@@ -31681,11 +31741,13 @@
     },
     {
       "displayName": "National Heritage Academies",
-      "id": "nationalheritageacademies-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "nationalheritageacademies-d611a0",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "amenity": "school",
-        "operator": "National Heritage Academies"
+        "operator": "National Heritage Academies",
+        "operator:type": "private",
+        "operator:wikidata": "Q6973040"
       }
     },
     {
@@ -31857,11 +31919,15 @@
     },
     {
       "displayName": "New Braunfels Independent School District",
-      "id": "newbraunfelsindependentschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "newbraunfelsindependentschooldistrict-d19570",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "New Braunfels Independent School District"
+        "operator": "New Braunfels Independent School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q17108339"
       }
     },
     {
@@ -33476,11 +33542,13 @@
     },
     {
       "displayName": "Örebro kommun",
-      "id": "orebrokommun-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "orebrokommun-0f2dfb",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "school",
-        "operator": "Örebro kommun"
+        "operator": "Örebro kommun",
+        "operator:type": "government",
+        "operator:wikidata": "Q297718"
       }
     },
     {
@@ -33839,12 +33907,19 @@
       }
     },
     {
-      "displayName": "Ouachita Parish School District",
-      "id": "ouachitaparishschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Ouachita Parish School Board",
+      "id": "ouachitaparishschoolboard-8f61a8",
+      "locationSet": {
+        "include": ["us-la.geojson"]
+      },
+      "matchNames": [
+        "ouachita parish school district"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Ouachita Parish School District"
+        "operator": "Ouachita Parish School Board",
+        "operator:type": "public",
+        "operator:wikidata": "Q7110145"
       }
     },
     {
@@ -34821,11 +34896,15 @@
     },
     {
       "displayName": "Parkland School District",
-      "id": "parklandschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "parklandschooldistrict-664aaf",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Parkland School District"
+        "operator": "Parkland School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q7138576"
       }
     },
     {
@@ -35166,11 +35245,15 @@
     },
     {
       "displayName": "Pembina Trails School Division",
-      "id": "pembinatrailsschooldivision-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "pembinatrailsschooldivision-650beb",
+      "locationSet": {
+        "include": ["ca-mb.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Pembina Trails School Division"
+        "operator": "Pembina Trails School Division",
+        "operator:type": "public",
+        "operator:wikidata": "Q7161920"
       }
     },
     {
@@ -35318,11 +35401,12 @@
     },
     {
       "displayName": "Phòng Giáo dục và Đào tạo Thành phố Từ Sơn",
-      "id": "phonggiaoducvadaotaothanhphotuson-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "phonggiaoducvadaotaothanhphotuson-e0e6fb",
+      "locationSet": {"include": ["vn"]},
       "tags": {
         "amenity": "school",
-        "operator": "Phòng Giáo dục và Đào tạo Thành phố Từ Sơn"
+        "operator": "Phòng Giáo dục và Đào tạo Thành phố Từ Sơn",
+        "operator:type": "government"
       }
     },
     {
@@ -36711,11 +36795,14 @@
     },
     {
       "displayName": "Prefeitura de Itapetininga",
-      "id": "prefeituradeitapetininga-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "prefeituradeitapetininga-5e2aa2",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Prefeitura de Itapetininga"
+        "operator": "Prefeitura de Itapetininga",
+        "operator:type": "government"
       }
     },
     {
@@ -36745,15 +36832,6 @@
       }
     },
     {
-      "displayName": "Prefeitura de Pato Branco",
-      "id": "prefeituradepatobranco-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Prefeitura de Pato Branco"
-      }
-    },
-    {
       "displayName": "Prefeitura de Pinhais",
       "id": "prefeituradepinhais-6a2dca",
       "locationSet": {
@@ -36777,15 +36855,6 @@
         "operator": "Prefeitura do Natal",
         "operator:type": "government",
         "operator:wikidata": "Q56449990"
-      }
-    },
-    {
-      "displayName": "Prefeitura do Rio",
-      "id": "prefeituradorio-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Prefeitura do Rio"
       }
     },
     {
@@ -36829,29 +36898,40 @@
     },
     {
       "displayName": "Prefeitura Municipal de Boqueirão do Leão",
-      "id": "prefeituramunicipaldeboqueiraodoleao-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "prefeituramunicipaldeboqueiraodoleao-ee71aa",
+      "locationSet": {
+        "include": ["br-rs.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Prefeitura Municipal de Boqueirão do Leão"
+        "operator": "Prefeitura Municipal de Boqueirão do Leão",
+        "operator:type": "government",
+        "operator:wikidata": "Q129258366"
       }
     },
     {
       "displayName": "Prefeitura Municipal de Cafarnaum",
-      "id": "prefeituramunicipaldecafarnaum-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "prefeituramunicipaldecafarnaum-9d6ced",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Prefeitura Municipal de Cafarnaum"
+        "operator": "Prefeitura Municipal de Cafarnaum",
+        "operator:type": "government"
       }
     },
     {
       "displayName": "Prefeitura Municipal de Cariacica",
-      "id": "prefeituramunicipaldecariacica-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "prefeituramunicipaldecariacica-9f878e",
+      "locationSet": {
+        "include": ["br-es.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Prefeitura Municipal de Cariacica"
+        "operator": "Prefeitura Municipal de Cariacica",
+        "operator:type": "government",
+        "operator:wikidata": "Q56450050"
       }
     },
     {
@@ -36947,6 +37027,20 @@
       }
     },
     {
+      "displayName": "Prefeitura Municipal de Pato Branco",
+      "id": "prefeituramunicipaldepatobranco-91354a",
+      "locationSet": {
+        "include": ["br-pr.geojson"]
+      },
+      "matchNames": ["prefeitura de pato branco"],
+      "tags": {
+        "amenity": "school",
+        "operator": "Prefeitura Municipal de Pato Branco",
+        "operator:type": "government",
+        "operator:wikidata": "Q99199665"
+      }
+    },
+    {
       "displayName": "Prefeitura Municipal de Santo André",
       "id": "prefeituramunicipaldesantoandre-5e2aa2",
       "locationSet": {
@@ -36988,11 +37082,14 @@
     },
     {
       "displayName": "Prefeitura Municipal de Serra Preta",
-      "id": "prefeituramunicipaldeserrapreta-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "prefeituramunicipaldeserrapreta-9d6ced",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Prefeitura Municipal de Serra Preta"
+        "operator": "Prefeitura Municipal de Serra Preta",
+        "operator:type": "government"
       }
     },
     {
@@ -37033,6 +37130,20 @@
         "operator:short": "PMVV",
         "operator:type": "government",
         "operator:wikidata": "Q56450026"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal do Rio de Janeiro",
+      "id": "prefeituramunicipaldoriodejaneiro-df8785",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
+      "matchNames": ["prefeitura do rio"],
+      "tags": {
+        "amenity": "school",
+        "operator": "Prefeitura Municipal do Rio de Janeiro",
+        "operator:type": "government",
+        "operator:wikidata": "Q53930899"
       }
     },
     {
@@ -37129,15 +37240,6 @@
         "operator": "Prieto Diaz District",
         "operator:type": "government",
         "operator:wikidata": "Q130491007"
-      }
-    },
-    {
-      "displayName": "private_individual",
-      "id": "privateindividual-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "private_individual"
       }
     },
     {
@@ -37723,15 +37825,6 @@
         "operator": "Ramon Magsaysay District",
         "operator:type": "government",
         "operator:wikidata": "Q130491428"
-      }
-    },
-    {
-      "displayName": "Rapid Bus",
-      "id": "rapidbus-155571",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "school",
-        "operator": "Rapid Bus"
       }
     },
     {
@@ -38358,11 +38451,15 @@
     },
     {
       "displayName": "Rockwall Independent School District",
-      "id": "rockwallindependentschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "rockwallindependentschooldistrict-d19570",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Rockwall Independent School District"
+        "operator": "Rockwall Independent School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q7355650"
       }
     },
     {
@@ -39456,11 +39553,15 @@
     },
     {
       "displayName": "San Bernardino City Unified School District",
-      "id": "sanbernardinocityunifiedschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "sanbernardinocityunifiedschooldistrict-ff98ff",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "San Bernardino City Unified School District"
+        "operator": "San Bernardino City Unified School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q7413427"
       }
     },
     {
@@ -42538,11 +42639,15 @@
     },
     {
       "displayName": "School City of East Chicago",
-      "id": "schoolcityofeastchicago-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "schoolcityofeastchicago-87f3ac",
+      "locationSet": {
+        "include": ["us-in.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "School City of East Chicago"
+        "operator": "School City of East Chicago",
+        "operator:type": "public",
+        "operator:wikidata": "Q7432158"
       }
     },
     {
@@ -42766,11 +42871,15 @@
     },
     {
       "displayName": "Secretaria de Educação do Estado da Bahia",
-      "id": "secretariadeeducacaodoestadodabahia-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "secretariadeeducacaodoestadodabahia-9d6ced",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Secretaria de Educação do Estado da Bahia"
+        "operator": "Secretaria de Educação do Estado da Bahia",
+        "operator:type": "government",
+        "operator:wikidata": "Q98140020"
       }
     },
     {
@@ -42838,11 +42947,14 @@
     },
     {
       "displayName": "Secretaría de Educación de Veracruz",
-      "id": "secretariadeeducaciondeveracruz-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "secretariadeeducaciondeveracruz-105441",
+      "locationSet": {
+        "include": ["mx-ver.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Secretaría de Educación de Veracruz"
+        "operator": "Secretaría de Educación de Veracruz",
+        "operator:type": "government"
       }
     },
     {
@@ -43117,12 +43229,14 @@
       }
     },
     {
-      "displayName": "seduca",
-      "id": "seduca-155571",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Seduca",
+      "id": "seduca-9772be",
+      "locationSet": {"include": ["co"]},
       "tags": {
         "amenity": "school",
-        "operator": "seduca"
+        "operator": "Seduca",
+        "operator:type": "government",
+        "operator:wikidata": "Q124800471"
       }
     },
     {
@@ -43191,11 +43305,12 @@
     },
     {
       "displayName": "Servicio Local de Educación Pública Santa Rosa",
-      "id": "serviciolocaldeeducacionpublicasantarosa-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "serviciolocaldeeducacionpublicasantarosa-5e33f0",
+      "locationSet": {"include": ["cl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Servicio Local de Educación Pública Santa Rosa"
+        "operator": "Servicio Local de Educación Pública Santa Rosa",
+        "operator:type": "public"
       }
     },
     {
@@ -43211,11 +43326,15 @@
     },
     {
       "displayName": "Seven Oaks School Division",
-      "id": "sevenoaksschooldivision-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "sevenoaksschooldivision-650beb",
+      "locationSet": {
+        "include": ["ca-mb.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Seven Oaks School Division"
+        "operator": "Seven Oaks School Division",
+        "operator:type": "public",
+        "operator:wikidata": "Q7457371"
       }
     },
     {
@@ -43926,11 +44045,13 @@
     },
     {
       "displayName": "SKO",
-      "id": "sko-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "sko-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "SKO"
+        "operator": "SKO",
+        "operator:type": "religious",
+        "operator:wikidata": "Q122033802"
       }
     },
     {
@@ -45116,11 +45237,15 @@
     },
     {
       "displayName": "St. Albert Public Schools",
-      "id": "stalbertpublicschools-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "stalbertpublicschools-59fa08",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "St. Albert Public Schools"
+        "operator": "St. Albert Public Schools",
+        "operator:type": "public",
+        "operator:wikidata": "Q17511034"
       }
     },
     {
@@ -45961,11 +46086,13 @@
     },
     {
       "displayName": "Stichting SchOOL",
-      "id": "stichtingschool-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "stichtingschool-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Stichting SchOOL"
+        "operator": "Stichting SchOOL",
+        "operator:type": "public",
+        "operator:wikidata": "Q130681180"
       }
     },
     {
@@ -46108,11 +46235,14 @@
     },
     {
       "displayName": "Sturgeon Public Schools",
-      "id": "sturgeonpublicschools-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "sturgeonpublicschools-59fa08",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Sturgeon Public Schools"
+        "operator": "Sturgeon Public Schools",
+        "operator:type": "public"
       }
     },
     {
@@ -49299,11 +49429,13 @@
     },
     {
       "displayName": "TriVia",
-      "id": "trivia-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "trivia-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "TriVia"
+        "operator": "TriVia",
+        "operator:type": "private",
+        "operator:wikidata": "Q130607890"
       }
     },
     {
@@ -49745,12 +49877,18 @@
       }
     },
     {
-      "displayName": "Tulunan North District of North Cotabato Schools Division, DepEd",
-      "id": "tulunannorthdistrictofnorthcotabatoschoolsdivisiondeped-155571",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Tulunan North District",
+      "id": "tulunannorthdistrict-ea96af",
+      "locationSet": {
+        "include": ["ph-12.geojson"]
+      },
+      "matchNames": [
+        "tulunan north district of north cotabato schools division, deped"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Tulunan North District of North Cotabato Schools Division, DepEd"
+        "operator": "Tulunan North District",
+        "operator:type": "government"
       }
     },
     {
@@ -50276,11 +50414,13 @@
     },
     {
       "displayName": "Upplands-Bro kommun",
-      "id": "upplandsbrokommun-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "upplandsbrokommun-0f2dfb",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "school",
-        "operator": "Upplands-Bro kommun"
+        "operator": "Upplands-Bro kommun",
+        "operator:type": "government",
+        "operator:wikidata": "Q113673"
       }
     },
     {
@@ -51045,11 +51185,16 @@
     },
     {
       "displayName": "Ville de Nantes",
-      "id": "villedenantes-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "villedenantes-194576",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
+      "matchNames": ["mairie de nantes"],
       "tags": {
         "amenity": "school",
-        "operator": "Ville de Nantes"
+        "operator": "Ville de Nantes",
+        "operator:type": "government",
+        "operator:wikidata": "Q86693245"
       }
     },
     {
@@ -51248,11 +51393,13 @@
     },
     {
       "displayName": "Vrijescholen Athena",
-      "id": "vrijescholenathena-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "vrijescholenathena-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Vrijescholen Athena"
+        "operator": "Vrijescholen Athena",
+        "operator:type": "private",
+        "operator:wikidata": "Q130614705"
       }
     },
     {
@@ -51372,11 +51519,15 @@
     },
     {
       "displayName": "Washoe County School District",
-      "id": "washoecountyschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "washoecountyschooldistrict-68babc",
+      "locationSet": {
+        "include": ["us-nv-washoe_county.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "Washoe County School District"
+        "operator": "Washoe County School District",
+        "operator:type": "public",
+        "operator:wikidata": "Q7972616"
       }
     },
     {
@@ -51473,12 +51624,19 @@
       }
     },
     {
-      "displayName": "Webster Parish School District",
-      "id": "websterparishschooldistrict-155571",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Webster Parish School Board",
+      "id": "websterparishschoolboard-8f61a8",
+      "locationSet": {
+        "include": ["us-la.geojson"]
+      },
+      "matchNames": [
+        "webster parish school district"
+      ],
       "tags": {
         "amenity": "school",
-        "operator": "Webster Parish School District"
+        "operator": "Webster Parish School Board",
+        "operator:type": "public",
+        "operator:wikidata": "Q7978945"
       }
     },
     {
@@ -52601,11 +52759,13 @@
     },
     {
       "displayName": "Zaan Primair",
-      "id": "zaanprimair-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "zaanprimair-e21ec9",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "school",
-        "operator": "Zaan Primair"
+        "operator": "Zaan Primair",
+        "operator:type": "public",
+        "operator:wikidata": "Q132673682"
       }
     },
     {
@@ -52683,11 +52843,13 @@
     },
     {
       "displayName": "Δήμος Κοζάνης",
-      "id": "d63e83-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "d63e83-e21be0",
+      "locationSet": {"include": ["gr"]},
       "tags": {
         "amenity": "school",
-        "operator": "Δήμος Κοζάνης"
+        "operator": "Δήμος Κοζάνης",
+        "operator:type": "government",
+        "operator:wikidata": "Q3560056"
       }
     },
     {
@@ -52751,12 +52913,16 @@
       }
     },
     {
-      "displayName": "ҚР БҒМ",
-      "id": "727192-155571",
-      "locationSet": {"include": ["001"]},
+      "displayName": "ҚР ҒЖБМ",
+      "id": "85e649-bff553",
+      "locationSet": {"include": ["kz"]},
+      "matchNames": ["қр бғм"],
       "tags": {
         "amenity": "school",
-        "operator": "ҚР БҒМ"
+        "operator": "Қазақстан Республикасы Ғылым және жоғары білім министрлігі",
+        "operator:short": "ҚР ҒЖБМ",
+        "operator:type": "government",
+        "operator:wikidata": "Q124731304"
       }
     },
     {
@@ -52893,11 +53059,14 @@
     },
     {
       "displayName": "وزارة التربية الكويتية",
-      "id": "44594d-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "44594d-0219f0",
+      "locationSet": {"include": ["kw"]},
+      "matchNames": ["وزارة التربية"],
       "tags": {
         "amenity": "school",
-        "operator": "وزارة التربية الكويتية"
+        "operator": "وزارة التربية الكويتية",
+        "operator:type": "government",
+        "operator:wikidata": "Q104176127"
       }
     },
     {
@@ -52992,11 +53161,16 @@
     },
     {
       "displayName": "东莞市教育局",
-      "id": "4f003f-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "4f003f-dc2068",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "东莞市教育局"
+        "operator": "东莞市教育局",
+        "operator:type": "government",
+        "operator:wikidata": "Q10870904"
       }
     },
     {
@@ -53273,11 +53447,14 @@
     },
     {
       "displayName": "大館市教育委員会",
-      "id": "e1479a-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "e1479a-053cb5",
+      "locationSet": {
+        "include": ["jp-05.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "大館市教育委員会"
+        "operator": "大館市教育委員会",
+        "operator:type": "public"
       }
     },
     {
@@ -53390,11 +53567,15 @@
     },
     {
       "displayName": "延吉市教育局",
-      "id": "b925ff-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "b925ff-dc2068",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "延吉市教育局"
+        "operator": "延吉市教育局",
+        "operator:type": "government"
       }
     },
     {
@@ -53556,11 +53737,14 @@
     },
     {
       "displayName": "横手市教育委員会",
-      "id": "87af8c-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "87af8c-053cb5",
+      "locationSet": {
+        "include": ["jp-05.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "横手市教育委員会"
+        "operator": "横手市教育委員会",
+        "operator:type": "public"
       }
     },
     {
@@ -53657,20 +53841,27 @@
     },
     {
       "displayName": "秋田市教育委員会",
-      "id": "837592-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "837592-053cb5",
+      "locationSet": {
+        "include": ["jp-05.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "秋田市教育委員会"
+        "operator": "秋田市教育委員会",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "秋田県",
-      "id": "bb2458-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "bb2458-053cb5",
+      "locationSet": {
+        "include": ["jp-05.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "秋田県"
+        "operator": "秋田県",
+        "operator:type": "government",
+        "operator:wikidata": "Q81863"
       }
     },
     {
@@ -53789,11 +53980,15 @@
     },
     {
       "displayName": "藤沢市",
-      "id": "458d01-155571",
-      "locationSet": {"include": ["001"]},
+      "id": "458d01-417cb9",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
       "tags": {
         "amenity": "school",
-        "operator": "藤沢市"
+        "operator": "藤沢市",
+        "operator:type": "government",
+        "operator:wikidata": "Q386661"
       }
     },
     {
