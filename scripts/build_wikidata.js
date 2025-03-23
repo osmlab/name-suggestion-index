@@ -442,6 +442,7 @@ function processEntities(result) {
 
         const excluding = item.qualifiers?.P1011 ?? [];
         if (excluding.includes('Q168678')) return;  // but skip if 'excluding' = 'brand name', see #9134
+        if (excluding.includes('Q431289')) return;  // but skip if 'excluding' = 'brand', see #8239
 
         let dissolution = { date: item.value };
 
