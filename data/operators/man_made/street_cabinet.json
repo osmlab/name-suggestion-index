@@ -7,6 +7,7 @@
         "^street cabinet$"
       ],
       "named": [
+        "^eks\\/nok$",
         "^skynet, ооо \"домашние компьютерные сети\"$",
         "^stawag\\/infrawest$"
       ]
@@ -14,27 +15,10 @@
   },
   "items": [
     {
-      "displayName": "A1",
-      "id": "a1-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "A1"
-      }
-    },
-    {
-      "displayName": "A1 Telekom",
-      "id": "a1telekom-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "A1 Telekom"
-      }
-    },
-    {
       "displayName": "A1 Telekom Austria",
       "id": "a1telekomaustria-4935d6",
       "locationSet": {"include": ["at"]},
+      "matchNames": ["a1", "a1 telekom"],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "A1 Telekom Austria",
@@ -43,8 +27,10 @@
     },
     {
       "displayName": "ACT City Services",
-      "id": "actcityservices-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "actcityservices-2b8cbf",
+      "locationSet": {
+        "include": ["au-act.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "ACT City Services"
@@ -52,11 +38,12 @@
     },
     {
       "displayName": "Agentschap Wegen en Verkeer",
-      "id": "agentschapwegenenverkeer-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "agentschapwegenenverkeer-d4d0f4",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Agentschap Wegen en Verkeer"
+        "operator": "Agentschap Wegen en Verkeer",
+        "operator:wikidata": "Q2743535"
       }
     },
     {
@@ -85,35 +72,43 @@
     },
     {
       "displayName": "Altitude",
-      "id": "altitude-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "altitude-ed5e6e",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Altitude"
       }
     },
     {
-      "displayName": "Altitude Infra",
-      "id": "altitudeinfra-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Altitude Infra"
-      }
-    },
-    {
       "displayName": "Altitude Infra Haute-Savoie",
-      "id": "altitudeinfrahautesavoie-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "altitudeinfrahautesavoie-c9201b",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Altitude Infra Haute-Savoie"
       }
     },
     {
+      "displayName": "Altitude Infrastructure",
+      "id": "altitudeinfrastructure-e6f0ae",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "matchNames": ["altitude infra"],
+      "tags": {
+        "man_made": "street_cabinet",
+        "operator": "Altitude Infrastructure",
+        "operator:wikidata": "Q116980936"
+      }
+    },
+    {
       "displayName": "Amt für Straßenbau und Verkehrsinfrastruktur",
-      "id": "amtfurstrassenbauundverkehrsinfrastruktur-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "amtfurstrassenbauundverkehrsinfrastruktur-367b86",
+      "locationSet": {
+        "include": ["de-sl.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Amt für Straßenbau und Verkehrsinfrastruktur"
@@ -183,17 +178,21 @@
     },
     {
       "displayName": "Auvergne Numérique",
-      "id": "auvergnenumerique-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "auvergnenumerique-c9201b",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Auvergne Numérique"
+        "operator": "Auvergne Numérique",
+        "operator:wikidata": "Q115579419"
       }
     },
     {
       "displayName": "Avacon",
       "id": "avacon-195e1e",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["e.on avacon"],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Avacon",
@@ -242,8 +241,10 @@
     },
     {
       "displayName": "Baden.Net",
-      "id": "badennet-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "badennet-c31658",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Baden.Net"
@@ -265,7 +266,11 @@
       "locationSet": {
         "include": ["de-by.geojson"]
       },
-      "matchNames": ["bayernwerk ag"],
+      "matchNames": [
+        "bayernwerk ag",
+        "isar-amperwerke",
+        "isar-amperwerke a.g."
+      ],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Bayernwerk",
@@ -312,6 +317,7 @@
       "locationSet": {
         "include": ["de-be.geojson"]
       },
+      "matchNames": ["bvg"],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Berliner Verkehrsbetriebe",
@@ -320,8 +326,10 @@
     },
     {
       "displayName": "Berry Fibre Optique",
-      "id": "berryfibreoptique-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "berryfibreoptique-976432",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Berry Fibre Optique"
@@ -382,8 +390,10 @@
     },
     {
       "displayName": "bn:t Blatzheim Networks Telecom GmbH",
-      "id": "bntblatzheimnetworkstelecomgmbh-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "bntblatzheimnetworkstelecomgmbh-75f58d",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "bn:t Blatzheim Networks Telecom GmbH"
@@ -391,47 +401,33 @@
     },
     {
       "displayName": "Boston Transportation Department",
-      "id": "bostontransportationdepartment-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "bostontransportationdepartment-e93605",
+      "locationSet": {
+        "include": ["us-ma.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Boston Transportation Department"
       }
     },
     {
-      "displayName": "BT plc",
-      "id": "btplc-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "displayName": "BT",
+      "id": "bt-5e7225",
+      "locationSet": {"include": ["gb-eng"]},
+      "matchNames": ["bt plc"],
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "BT plc"
+        "operator": "BT",
+        "operator:wikidata": "Q593786"
       }
     },
     {
       "displayName": "Bundespost",
-      "id": "bundespost-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "bundespost-195e1e",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Bundespost"
-      }
-    },
-    {
-      "displayName": "BVG",
-      "id": "bvg-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "BVG"
-      }
-    },
-    {
-      "displayName": "Cablecom",
-      "id": "cablecom-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Cablecom"
       }
     },
     {
@@ -500,15 +496,6 @@
       }
     },
     {
-      "displayName": "CFE",
-      "id": "cfe-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "CFE"
-      }
-    },
-    {
       "displayName": "Chorus",
       "id": "chorus-1317ce",
       "locationSet": {"include": ["nz"]},
@@ -520,8 +507,10 @@
     },
     {
       "displayName": "Citelum Denmark",
-      "id": "citelumdenmark-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "citelumdenmark-5ee844",
+      "locationSet": {
+        "include": ["dk-84.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Citelum Denmark"
@@ -542,11 +531,12 @@
     },
     {
       "displayName": "CityFibre",
-      "id": "cityfibre-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "cityfibre-9ac957",
+      "locationSet": {"include": ["gb"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "CityFibre"
+        "operator": "CityFibre",
+        "operator:wikidata": "Q113509733"
       }
     },
     {
@@ -563,38 +553,63 @@
     },
     {
       "displayName": "CMTHD",
-      "id": "cmthd-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "cmthd-e6f0ae",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "CMTHD"
       }
     },
     {
+      "displayName": "Comisión Federal de Electricidad",
+      "id": "comisionfederaldeelectricidad-949464",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "man_made": "street_cabinet",
+        "operator": "Comisión Federal de Electricidad",
+        "operator:short": "CFE",
+        "operator:wikidata": "Q1114680"
+      }
+    },
+    {
       "displayName": "Conseil National de l'Eau et de l'Electricité",
-      "id": "conseilnationaldeleauetdelelectricite-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "conseilnationaldeleauetdelelectricite-b14903",
+      "locationSet": {"include": ["ga"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Conseil National de l'Eau et de l'Electricité"
       }
     },
     {
-      "displayName": "Converge ICT Solutions Inc.",
-      "id": "convergeictsolutionsinc-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Converge ICT Solutions",
+      "id": "convergeictsolutions-2005fe",
+      "locationSet": {
+        "include": [
+          "ph-bul.geojson",
+          "ph-pam.geojson"
+        ]
+      },
+      "matchNames": [
+        "converge ict solutions inc."
+      ],
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Converge ICT Solutions Inc."
+        "operator": "Converge ICT Solutions",
+        "operator:wikidata": "Q39058397"
       }
     },
     {
       "displayName": "Cottbusverkehr GmbH",
-      "id": "cottbusverkehrgmbh-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "cottbusverkehrgmbh-72145d",
+      "locationSet": {
+        "include": ["de-bb.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Cottbusverkehr GmbH"
+        "operator": "Cottbusverkehr GmbH",
+        "operator:wikidata": "Q1136706"
       }
     },
     {
@@ -609,11 +624,12 @@
     },
     {
       "displayName": "Cox Communications",
-      "id": "coxcommunications-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "coxcommunications-61c31b",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Cox Communications"
+        "operator": "Cox Communications",
+        "operator:wikidata": "Q5179879"
       }
     },
     {
@@ -629,8 +645,10 @@
     },
     {
       "displayName": "DAV",
-      "id": "dav-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "dav-2e7079",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "DAV"
@@ -651,7 +669,10 @@
       "displayName": "DB InfraGO",
       "id": "dbinfrago-195e1e",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["db infrago ag"],
+      "matchNames": [
+        "db infrago ag",
+        "db station&service ag"
+      ],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "DB InfraGO",
@@ -669,21 +690,13 @@
       }
     },
     {
-      "displayName": "DB Station&Service AG",
-      "id": "dbstationandserviceag-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "DB Station&Service AG"
-      }
-    },
-    {
       "displayName": "Delft",
-      "id": "delft-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "delft-af0f60",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Delft"
+        "operator": "Delft",
+        "operator:wikidata": "Q690"
       }
     },
     {
@@ -698,11 +711,14 @@
     },
     {
       "displayName": "Dessauer Versorgungs- und Verkehrsgesellschaft mbH",
-      "id": "dessauerversorgungsundverkehrsgesellschaftmbh-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "dessauerversorgungsundverkehrsgesellschaftmbh-d7b75a",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Dessauer Versorgungs- und Verkehrsgesellschaft mbH"
+        "operator": "Dessauer Versorgungs- und Verkehrsgesellschaft mbH",
+        "operator:wikidata": "Q1200909"
       }
     },
     {
@@ -733,7 +749,7 @@
       "displayName": "Deutsche Telekom AG",
       "id": "deutschetelekomag-195e1e",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["deutsche telekom"],
+      "matchNames": ["deutsche telekom", "dtag"],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Deutsche Telekom AG",
@@ -764,35 +780,22 @@
     },
     {
       "displayName": "Drewag Netz",
-      "id": "drewagnetz-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "drewagnetz-a90494",
+      "locationSet": {
+        "include": ["de-sn.geojson"]
+      },
+      "matchNames": ["drewag netz gmbh"],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Drewag Netz"
       }
     },
     {
-      "displayName": "Drewag Netz GmbH",
-      "id": "drewagnetzgmbh-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Drewag Netz GmbH"
-      }
-    },
-    {
-      "displayName": "DTAG",
-      "id": "dtag-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "DTAG"
-      }
-    },
-    {
       "displayName": "Dublin Canvas",
-      "id": "dublincanvas-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "dublincanvas-b27563",
+      "locationSet": {
+        "include": ["ie-l.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Dublin Canvas"
@@ -800,11 +803,14 @@
     },
     {
       "displayName": "Dublin City Council",
-      "id": "dublincitycouncil-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "dublincitycouncil-b47636",
+      "locationSet": {
+        "include": ["ie-d.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Dublin City Council"
+        "operator": "Dublin City Council",
+        "operator:wikidata": "Q4810766"
       }
     },
     {
@@ -819,20 +825,26 @@
     },
     {
       "displayName": "e-regio GmbH & Co. KG",
-      "id": "eregiogmbhandcokg-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "eregiogmbhandcokg-75f58d",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "e-regio GmbH & Co. KG"
+        "operator": "e-regio GmbH & Co. KG",
+        "operator:wikidata": "Q124422502"
       }
     },
     {
       "displayName": "e-rp",
-      "id": "erp-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "erp-beca4f",
+      "locationSet": {
+        "include": ["de-rp.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "e-rp"
+        "operator": "e-rp",
+        "operator:wikidata": "Q113465079"
       }
     },
     {
@@ -872,15 +884,6 @@
       }
     },
     {
-      "displayName": "e.on Avacon",
-      "id": "eonavacon-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "e.on Avacon"
-      }
-    },
-    {
       "displayName": "EAM",
       "id": "eam-19ef4c",
       "locationSet": {
@@ -911,21 +914,13 @@
       }
     },
     {
-      "displayName": "Eandis",
-      "id": "eandis-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Eandis"
-      }
-    },
-    {
       "displayName": "EDF",
-      "id": "edf-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "edf-ed5e6e",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "EDF"
+        "operator": "EDF",
+        "operator:wikidata": "Q274591"
       }
     },
     {
@@ -970,15 +965,6 @@
       }
     },
     {
-      "displayName": "EKS/NOK",
-      "id": "eksnok-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "EKS/NOK"
-      }
-    },
-    {
       "displayName": "EKZ",
       "id": "ekz-10ee58",
       "locationSet": {"include": ["ch"]},
@@ -1010,8 +996,10 @@
     },
     {
       "displayName": "Elekrizitätswerk Grüningen",
-      "id": "elekrizitatswerkgruningen-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "elekrizitatswerkgruningen-2e7079",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Elekrizitätswerk Grüningen"
@@ -1039,11 +1027,12 @@
     },
     {
       "displayName": "Elisa Oyj",
-      "id": "elisaoyj-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "elisaoyj-ecabf8",
+      "locationSet": {"include": ["fi"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Elisa Oyj"
+        "operator": "Elisa Oyj",
+        "operator:wikidata": "Q965268"
       }
     },
     {
@@ -1090,17 +1079,22 @@
     },
     {
       "displayName": "EnBW",
-      "id": "enbw-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "enbw-c31658",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "EnBW"
+        "operator": "EnBW",
+        "operator:wikidata": "Q644304"
       }
     },
     {
       "displayName": "EnBW Regional AG",
-      "id": "enbwregionalag-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "enbwregionalag-c31658",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "EnBW Regional AG"
@@ -1160,11 +1154,12 @@
     },
     {
       "displayName": "Enel Distribuzione",
-      "id": "eneldistribuzione-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "eneldistribuzione-7878e2",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Enel Distribuzione"
+        "operator": "Enel Distribuzione",
+        "operator:wikidata": "Q3725215"
       }
     },
     {
@@ -1218,8 +1213,10 @@
     },
     {
       "displayName": "Energía de Misiones",
-      "id": "energiademisiones-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "energiademisiones-bd043f",
+      "locationSet": {
+        "include": ["ar-n.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Energía de Misiones"
@@ -1290,20 +1287,26 @@
     },
     {
       "displayName": "Energieversorgung Filstal GmbH & Co. KG",
-      "id": "energieversorgungfilstalgmbhandcokg-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "energieversorgungfilstalgmbhandcokg-c31658",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Energieversorgung Filstal GmbH & Co. KG"
+        "operator": "Energieversorgung Filstal GmbH & Co. KG",
+        "operator:wikidata": "Q130556538"
       }
     },
     {
-      "displayName": "Energy Australia",
-      "id": "energyaustralia-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "displayName": "EnergyAustralia",
+      "id": "energyaustralia-8d0f7b",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Energy Australia"
+        "operator": "EnergyAustralia",
+        "operator:wikidata": "Q5376876"
       }
     },
     {
@@ -1339,6 +1342,19 @@
       }
     },
     {
+      "displayName": "Entega",
+      "id": "entega-73535a",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
+      "matchNames": ["hse"],
+      "tags": {
+        "man_made": "street_cabinet",
+        "operator": "Entega",
+        "operator:wikidata": "Q1563486"
+      }
+    },
+    {
       "displayName": "enviaM",
       "id": "enviam-195e1e",
       "locationSet": {"include": ["de"]},
@@ -1350,11 +1366,12 @@
     },
     {
       "displayName": "ESB",
-      "id": "esb-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "esb-c65848",
+      "locationSet": {"include": ["ie"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "ESB"
+        "operator": "ESB",
+        "operator:wikidata": "Q3050566"
       }
     },
     {
@@ -1434,8 +1451,10 @@
     },
     {
       "displayName": "EWF",
-      "id": "ewf-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "ewf-2e7079",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "EWF"
@@ -1458,8 +1477,10 @@
     },
     {
       "displayName": "EWR Netz GmbH",
-      "id": "ewrnetzgmbh-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "ewrnetzgmbh-beca4f",
+      "locationSet": {
+        "include": ["de-rp.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "EWR Netz GmbH"
@@ -1477,8 +1498,8 @@
     },
     {
       "displayName": "Fenaka Corporation Limited Vaikaradhoo",
-      "id": "fenakacorporationlimitedvaikaradhoo-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "fenakacorporationlimitedvaikaradhoo-5ed5e5",
+      "locationSet": {"include": ["mv"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Fenaka Corporation Limited Vaikaradhoo"
@@ -1486,20 +1507,24 @@
     },
     {
       "displayName": "FiberCop",
-      "id": "fibercop-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "fibercop-7878e2",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "FiberCop"
+        "operator": "FiberCop",
+        "operator:wikidata": "Q107214638"
       }
     },
     {
       "displayName": "Fingal County Council",
-      "id": "fingalcountycouncil-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "fingalcountycouncil-b27563",
+      "locationSet": {
+        "include": ["ie-l.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Fingal County Council"
+        "operator": "Fingal County Council",
+        "operator:wikidata": "Q5450180"
       }
     },
     {
@@ -1527,6 +1552,7 @@
       "displayName": "Fluvius",
       "id": "fluvius-d4d0f4",
       "locationSet": {"include": ["be"]},
+      "matchNames": ["eandis", "infrax"],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Fluvius",
@@ -1566,21 +1592,27 @@
       }
     },
     {
-      "displayName": "FSG",
-      "id": "fsg-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Freitaler Stadtwerke",
+      "id": "freitalerstadtwerke-a90494",
+      "locationSet": {
+        "include": ["de-sn.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "FSG"
+        "operator": "Freitaler Stadtwerke",
+        "operator:short": "FSG",
+        "operator:wikidata": "Q130392101"
       }
     },
     {
       "displayName": "Gaz de France",
-      "id": "gazdefrance-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "gazdefrance-ed5e6e",
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["gdf"],
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Gaz de France"
+        "operator": "Gaz de France",
+        "operator:wikidata": "Q168311"
       }
     },
     {
@@ -1595,18 +1627,11 @@
       }
     },
     {
-      "displayName": "gdf",
-      "id": "gdf-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "gdf"
-      }
-    },
-    {
       "displayName": "GE I",
-      "id": "gei-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "gei-500353",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "GE I"
@@ -1626,8 +1651,10 @@
     },
     {
       "displayName": "Gemeindewerke Herxheim",
-      "id": "gemeindewerkeherxheim-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "gemeindewerkeherxheim-beca4f",
+      "locationSet": {
+        "include": ["de-rp.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Gemeindewerke Herxheim"
@@ -1635,8 +1662,10 @@
     },
     {
       "displayName": "Gentofte Gladsaxe Fjernvarme",
-      "id": "gentoftegladsaxefjernvarme-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "gentoftegladsaxefjernvarme-5ee844",
+      "locationSet": {
+        "include": ["dk-84.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Gentofte Gladsaxe Fjernvarme"
@@ -1656,26 +1685,34 @@
     },
     {
       "displayName": "GEW Wilhelmshaven GmbH",
-      "id": "gewwilhelmshavengmbh-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "gewwilhelmshavengmbh-8d06eb",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "GEW Wilhelmshaven GmbH"
+        "operator": "GEW Wilhelmshaven GmbH",
+        "operator:wikidata": "Q124462847"
       }
     },
     {
       "displayName": "Gironde Numérique",
-      "id": "girondenumerique-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "girondenumerique-e6f0ae",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Gironde Numérique"
+        "operator": "Gironde Numérique",
+        "operator:wikidata": "Q56648212"
       }
     },
     {
       "displayName": "Gironde Très Haut Débit",
-      "id": "girondetreshautdebit-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "girondetreshautdebit-e6f0ae",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Gironde Très Haut Débit"
@@ -1693,11 +1730,14 @@
     },
     {
       "displayName": "GlobalConnect",
-      "id": "globalconnect-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "globalconnect-5ee844",
+      "locationSet": {
+        "include": ["dk-84.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "GlobalConnect"
+        "operator": "GlobalConnect",
+        "operator:wikidata": "Q99543806"
       }
     },
     {
@@ -1712,20 +1752,11 @@
     },
     {
       "displayName": "GLS",
-      "id": "gls-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "gls-c39496",
+      "locationSet": {"include": ["si"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "GLS"
-      }
-    },
-    {
-      "displayName": "Grand Toulouse",
-      "id": "grandtoulouse-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Grand Toulouse"
       }
     },
     {
@@ -1778,11 +1809,14 @@
     },
     {
       "displayName": "HMN Naturgas",
-      "id": "hmnnaturgas-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "hmnnaturgas-5ee844",
+      "locationSet": {
+        "include": ["dk-84.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "HMN Naturgas"
+        "operator": "HMN Naturgas",
+        "operator:wikidata": "Q12314910"
       }
     },
     {
@@ -1793,15 +1827,6 @@
       "tags": {
         "man_made": "street_cabinet",
         "operator": "HOFOR"
-      }
-    },
-    {
-      "displayName": "HSE",
-      "id": "hse-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "HSE"
       }
     },
     {
@@ -1816,8 +1841,8 @@
     },
     {
       "displayName": "Inexio",
-      "id": "inexio-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "inexio-195e1e",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Inexio"
@@ -1836,35 +1861,29 @@
     },
     {
       "displayName": "Infrawest",
-      "id": "infrawest-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "infrawest-75f58d",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Infrawest"
       }
     },
     {
-      "displayName": "Infrax",
-      "id": "infrax-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Infrax"
-      }
-    },
-    {
       "displayName": "Integan",
-      "id": "integan-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "integan-d4d0f4",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Integan"
+        "operator": "Integan",
+        "operator:wikidata": "Q14632138"
       }
     },
     {
       "displayName": "Interelectra",
-      "id": "interelectra-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "interelectra-d4d0f4",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Interelectra"
@@ -1891,27 +1910,9 @@
       }
     },
     {
-      "displayName": "Isar-Amperwerke",
-      "id": "isaramperwerke-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Isar-Amperwerke"
-      }
-    },
-    {
-      "displayName": "Isar-Amperwerke A.G.",
-      "id": "isaramperwerkeag-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Isar-Amperwerke A.G."
-      }
-    },
-    {
       "displayName": "Iverlek",
-      "id": "iverlek-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "iverlek-d4d0f4",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Iverlek"
@@ -1928,27 +1929,21 @@
       }
     },
     {
-      "displayName": "Kabel Deutschland",
-      "id": "kabeldeutschland-f91ac8",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Kabel Deutschland"
-      }
-    },
-    {
       "displayName": "Kabelplus",
-      "id": "kabelplus-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "kabelplus-5d0dd0",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Kabelplus"
+        "operator": "Kabelplus",
+        "operator:wikidata": "Q51711011"
       }
     },
     {
       "displayName": "Kamp Lili",
-      "id": "kamplili-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "kamplili-735b3a",
+      "locationSet": {"include": ["hr"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Kamp Lili"
@@ -2006,8 +2001,10 @@
     },
     {
       "displayName": "Liain01",
-      "id": "liain01-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "liain01-c9201b",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Liain01"
@@ -2045,20 +2042,25 @@
     },
     {
       "displayName": "LSW",
-      "id": "lsw-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "lsw-8d06eb",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "LSW"
       }
     },
     {
-      "displayName": "LSW-Netz",
-      "id": "lswnetz-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "displayName": "LSW Netz",
+      "id": "lswnetz-8d06eb",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "LSW-Netz"
+        "operator": "LSW Netz",
+        "operator:wikidata": "Q124422864"
       }
     },
     {
@@ -2073,11 +2075,14 @@
     },
     {
       "displayName": "Magenta Telekom",
-      "id": "magentatelekom-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "magentatelekom-a490f7",
+      "locationSet": {
+        "include": ["at-4.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Magenta Telekom"
+        "operator": "Magenta Telekom",
+        "operator:wikidata": "Q1666806"
       }
     },
     {
@@ -2102,8 +2107,10 @@
     },
     {
       "displayName": "Mainnetz",
-      "id": "mainnetz-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "mainnetz-73535a",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Mainnetz"
@@ -2123,17 +2130,22 @@
     },
     {
       "displayName": "Mairie de L'Aigle",
-      "id": "mairiedelaigle-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "mairiedelaigle-906bd5",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "Mairie de L'Aigle"
+        "operator": "Mairie de L'Aigle",
+        "operator:wikidata": "Q118827555"
       }
     },
     {
       "displayName": "Manche Fibre",
-      "id": "manchefibre-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "manchefibre-906bd5",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Manche Fibre"
@@ -2182,8 +2194,8 @@
     },
     {
       "displayName": "MVM Főgáz Földgázelosztási Kft.",
-      "id": "mvmfogazfoldgazelosztasikft-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "mvmfogazfoldgazelosztasikft-5790ee",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "MVM Főgáz Földgázelosztási Kft."
@@ -2191,8 +2203,8 @@
     },
     {
       "displayName": "MVM Főgáz Földgázhálózati Kft.",
-      "id": "mvmfogazfoldgazhalozatikft-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "mvmfogazfoldgazhalozatikft-5790ee",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "MVM Főgáz Földgázhálózati Kft."
@@ -2238,11 +2250,14 @@
     },
     {
       "displayName": "National Broadband Network",
-      "id": "nationalbroadbandnetwork-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "nationalbroadbandnetwork-8d0f7b",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "National Broadband Network"
+        "operator": "National Broadband Network",
+        "operator:wikidata": "Q2822918"
       }
     },
     {
@@ -3786,7 +3801,7 @@
       "displayName": "Sunrise",
       "id": "sunrise-10ee58",
       "locationSet": {"include": ["ch"]},
-      "matchNames": ["upc"],
+      "matchNames": ["cablecom", "upc"],
       "tags": {
         "man_made": "street_cabinet",
         "operator": "Sunrise",
@@ -4192,6 +4207,19 @@
       }
     },
     {
+      "displayName": "Toulouse Métropole",
+      "id": "toulousemetropole-f5c013",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "matchNames": ["grand toulouse"],
+      "tags": {
+        "man_made": "street_cabinet",
+        "operator": "Toulouse Métropole",
+        "operator:wikidata": "Q1120291"
+      }
+    },
+    {
       "displayName": "Transport for NSW",
       "id": "transportfornsw-8d0f7b",
       "locationSet": {
@@ -4511,6 +4539,20 @@
       }
     },
     {
+      "displayName": "Vodafone Deutschland",
+      "id": "vodafonedeutschland-195e1e",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "kabel deutschland",
+        "vodafone kabel deutschland gmbh"
+      ],
+      "tags": {
+        "man_made": "street_cabinet",
+        "operator": "Vodafone Deutschland",
+        "operator:wikidata": "Q1560372"
+      }
+    },
+    {
       "displayName": "Vodafone GmbH",
       "id": "vodafonegmbh-195e1e",
       "locationSet": {"include": ["de"]},
@@ -4519,16 +4561,6 @@
         "man_made": "street_cabinet",
         "operator": "Vodafone GmbH",
         "operator:wikidata": "Q2529830"
-      }
-    },
-    {
-      "displayName": "Vodafone Kabel Deutschland GmbH",
-      "id": "vodafonekabeldeutschlandgmbh-195e1e",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "man_made": "street_cabinet",
-        "operator": "Vodafone Kabel Deutschland GmbH",
-        "operator:wikidata": "Q1560372"
       }
     },
     {
@@ -4769,8 +4801,8 @@
     },
     {
       "displayName": "АО \"ÓZBEKTELEKOM\"",
-      "id": "9e7cd7-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "9e7cd7-0a0592",
+      "locationSet": {"include": ["uz"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "АО \"ÓZBEKTELEKOM\""
@@ -4802,8 +4834,8 @@
     },
     {
       "displayName": "КУП \"СМЭП\"",
-      "id": "70a231-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "70a231-00ea5e",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "КУП \"СМЭП\""
@@ -4821,11 +4853,12 @@
     },
     {
       "displayName": "ОАО «РЖД»",
-      "id": "5ea107-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "5ea107-5ffe69",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "ОАО «РЖД»"
+        "operator": "ОАО «РЖД»",
+        "operator:wikidata": "Q660770"
       }
     },
     {
@@ -4848,8 +4881,8 @@
     },
     {
       "displayName": "ПУ \"Пинскгаз\"",
-      "id": "ab2f8e-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "ab2f8e-00ea5e",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "ПУ \"Пинскгаз\""
@@ -4857,11 +4890,12 @@
     },
     {
       "displayName": "РУП \"Белтелеком\"",
-      "id": "f04d42-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "f04d42-00ea5e",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "man_made": "street_cabinet",
-        "operator": "РУП \"Белтелеком\""
+        "operator": "РУП \"Белтелеком\"",
+        "operator:wikidata": "Q4082979"
       }
     },
     {
@@ -4876,8 +4910,8 @@
     },
     {
       "displayName": "УП \"МинГорСвет\"",
-      "id": "b9a90f-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "b9a90f-00ea5e",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "man_made": "street_cabinet",
         "operator": "УП \"МинГорСвет\""
@@ -4895,8 +4929,10 @@
     },
     {
       "displayName": "大阪市建設局",
-      "id": "af02ed-f91ac8",
-      "locationSet": {"include": ["001"]},
+      "id": "af02ed-f257b7",
+      "locationSet": {
+        "include": ["jp-27.geojson"]
+      },
       "tags": {
         "man_made": "street_cabinet",
         "operator": "大阪市建設局"
