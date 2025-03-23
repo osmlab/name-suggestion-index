@@ -2,7 +2,11 @@
   "properties": {
     "path": "operators/man_made/mast",
     "exclude": {
-      "generic": ["^mast", "^straż pożarna$"]
+      "generic": [
+        "^mast",
+        "^straż pożarna$",
+        "^wasserskiseilbahn$"
+      ]
     }
   },
   "items": [
@@ -17,12 +21,25 @@
       }
     },
     {
-      "displayName": "A1",
-      "id": "a1-6ada36",
-      "locationSet": {"include": ["001"]},
+      "displayName": "A1 Belarus",
+      "id": "a1belarus-ff4b94",
+      "locationSet": {"include": ["by"]},
+      "matchNames": ["a1", "velcom"],
       "tags": {
         "man_made": "mast",
-        "operator": "A1"
+        "operator": "A1 Belarus",
+        "operator:wikidata": "Q1888809"
+      }
+    },
+    {
+      "displayName": "A1 Telekom Austria",
+      "id": "a1telekomaustria-16021f",
+      "locationSet": {"include": ["at"]},
+      "matchNames": ["a1"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "A1 Telekom Austria",
+        "operator:wikidata": "Q279847"
       }
     },
     {
@@ -38,71 +55,69 @@
     },
     {
       "displayName": "ALLTEL Corporation",
-      "id": "alltelcorporation-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "alltelcorporation-a42e80",
+      "locationSet": {
+        "include": [
+          "us-al.geojson",
+          "us-va.geojson"
+        ]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "ALLTEL Corporation"
-      }
-    },
-    {
-      "displayName": "American Tower",
-      "id": "americantower-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "American Tower"
+        "operator": "ALLTEL Corporation",
+        "operator:wikidata": "Q684083"
       }
     },
     {
       "displayName": "American Tower Corporation",
-      "id": "americantowercorporation-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "americantowercorporation-005557",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["american tower"],
       "tags": {
         "man_made": "mast",
-        "operator": "American Tower Corporation"
+        "operator": "American Tower Corporation",
+        "operator:wikidata": "Q4745263"
       }
     },
     {
       "displayName": "American Tower Germany",
-      "id": "americantowergermany-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "americantowergermany-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "american tower",
+        "american tower corporation"
+      ],
       "tags": {
         "man_made": "mast",
         "operator": "American Tower Germany"
       }
     },
     {
-      "displayName": "American Towers",
-      "id": "americantowers-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "American Towers"
-      }
-    },
-    {
       "displayName": "American Towers LLC",
-      "id": "americantowersllc-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "americantowersllc-ef38b2",
+      "locationSet": {"include": ["de", "us"]},
+      "matchNames": ["american towers"],
+      "note": "subsidiary of American Tower Corporation",
       "tags": {
         "man_made": "mast",
-        "operator": "American Towers LLC"
+        "operator": "American Towers LLC",
+        "operator:wikidata": "Q4745263"
       }
     },
     {
       "displayName": "ANFR",
-      "id": "anfr-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "anfr-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
-        "operator": "ANFR"
+        "operator": "ANFR",
+        "operator:wikidata": "Q2826678"
       }
     },
     {
       "displayName": "ARBA",
-      "id": "arba-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "arba-1e326f",
+      "locationSet": {"include": ["pt"]},
       "tags": {
         "man_made": "mast",
         "operator": "ARBA"
@@ -122,17 +137,18 @@
     },
     {
       "displayName": "AT&T",
-      "id": "atandt-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "atandt-005557",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "man_made": "mast",
-        "operator": "AT&T"
+        "operator": "AT&T",
+        "operator:wikidata": "Q35476"
       }
     },
     {
       "displayName": "ATC France",
-      "id": "atcfrance-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "atcfrance-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "ATC France"
@@ -140,8 +156,8 @@
     },
     {
       "displayName": "ATC Germany",
-      "id": "atcgermany-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "atcgermany-0b2be4",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "mast",
         "operator": "ATC Germany"
@@ -149,11 +165,17 @@
     },
     {
       "displayName": "BDBOS",
-      "id": "bdbos-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "bdbos-cb1e7e",
+      "locationSet": {
+        "include": [
+          "de-bw.geojson",
+          "de-rp.geojson"
+        ]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "BDBOS"
+        "operator": "BDBOS",
+        "operator:wikidata": "Q1005549"
       }
     },
     {
@@ -168,17 +190,20 @@
     },
     {
       "displayName": "Bell Mobility",
-      "id": "bellmobility-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "bellmobility-8bf244",
+      "locationSet": {"include": ["ca"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Bell Mobility"
+        "operator": "Bell Mobility",
+        "operator:wikidata": "Q2894594"
       }
     },
     {
       "displayName": "Bergsport Arena GmbH",
-      "id": "bergsportarenagmbh-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "bergsportarenagmbh-87f469",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
       "tags": {
         "man_made": "mast",
         "operator": "Bergsport Arena GmbH"
@@ -195,17 +220,18 @@
     },
     {
       "displayName": "Bouygues",
-      "id": "bouygues-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "bouygues-62d71b",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Bouygues"
+        "operator": "Bouygues",
+        "operator:wikidata": "Q895325"
       }
     },
     {
       "displayName": "Bouygues & SFR",
-      "id": "bouyguesandsfr-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "bouyguesandsfr-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Bouygues & SFR"
@@ -223,8 +249,8 @@
     },
     {
       "displayName": "Bouygues Telecom & SFR",
-      "id": "bouyguestelecomandsfr-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "bouyguestelecomandsfr-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Bouygues Telecom & SFR"
@@ -246,27 +272,34 @@
       }
     },
     {
-      "displayName": "Bullie Broadcasting Corp",
-      "id": "bulliebroadcastingcorp-6ada36",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Bullie Broadcasting Corporation",
+      "id": "bulliebroadcastingcorporation-1f9df2",
+      "locationSet": {
+        "include": [
+          "us-ga.geojson",
+          "us-ky.geojson"
+        ]
+      },
+      "matchNames": ["bullie broadcasting corp"],
       "tags": {
         "man_made": "mast",
-        "operator": "Bullie Broadcasting Corp"
+        "operator": "Bullie Broadcasting Corporation"
       }
     },
     {
       "displayName": "Bundeswehr",
-      "id": "bundeswehr-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "bundeswehr-0b2be4",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Bundeswehr"
+        "operator": "Bundeswehr",
+        "operator:wikidata": "Q56010"
       }
     },
     {
       "displayName": "Cellco Partnership",
-      "id": "cellcopartnership-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "cellcopartnership-005557",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "man_made": "mast",
         "operator": "Cellco Partnership"
@@ -274,8 +307,10 @@
     },
     {
       "displayName": "Cellnex",
-      "id": "cellnex-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "cellnex-59625b",
+      "locationSet": {
+        "include": ["fx", "gb", "pl"]
+      },
       "tags": {
         "man_made": "mast",
         "operator": "Cellnex"
@@ -283,8 +318,8 @@
     },
     {
       "displayName": "Centertel Sp.z o.o",
-      "id": "centertelspzoo-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "centertelspzoo-41b0bd",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "mast",
         "operator": "Centertel Sp.z o.o"
@@ -304,20 +339,22 @@
     },
     {
       "displayName": "Claro",
-      "id": "claro-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "claro-bfbe0e",
+      "locationSet": {"include": ["ar", "br"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Claro"
+        "operator": "Claro",
+        "operator:wikidata": "Q1770208"
       }
     },
     {
       "displayName": "Crown Castle",
-      "id": "crowncastle-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "crowncastle-005557",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Crown Castle"
+        "operator": "Crown Castle",
+        "operator:wikidata": "Q5189320"
       }
     },
     {
@@ -357,29 +394,31 @@
     },
     {
       "displayName": "Deutsche Flugsicherung",
-      "id": "deutscheflugsicherung-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "deutscheflugsicherung-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "dfs",
+        "dfs deutsche flugsicherung gmbh"
+      ],
       "tags": {
         "man_made": "mast",
-        "operator": "Deutsche Flugsicherung"
+        "operator": "Deutsche Flugsicherung",
+        "operator:wikidata": "Q636838"
       }
     },
     {
       "displayName": "Deutsche Funkturm",
-      "id": "deutschefunkturm-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "deutschefunkturm-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "deutsche funkturm gmbh",
+        "dfmg",
+        "dfmg deutsche funkturm gmbh"
+      ],
       "tags": {
         "man_made": "mast",
-        "operator": "Deutsche Funkturm"
-      }
-    },
-    {
-      "displayName": "Deutsche Funkturm GmbH",
-      "id": "deutschefunkturmgmbh-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "Deutsche Funkturm GmbH"
+        "operator": "Deutsche Funkturm",
+        "operator:wikidata": "Q1202561"
       }
     },
     {
@@ -391,42 +430,6 @@
         "man_made": "mast",
         "operator": "Deutsche Telekom AG",
         "operator:wikidata": "Q9396"
-      }
-    },
-    {
-      "displayName": "DFMG",
-      "id": "dfmg-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "DFMG"
-      }
-    },
-    {
-      "displayName": "DFMG Deutsche Funkturm GmbH",
-      "id": "dfmgdeutschefunkturmgmbh-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "DFMG Deutsche Funkturm GmbH"
-      }
-    },
-    {
-      "displayName": "DFS",
-      "id": "dfs-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "DFS"
-      }
-    },
-    {
-      "displayName": "DFS Deutsche Flugsicherung GmbH",
-      "id": "dfsdeutscheflugsicherunggmbh-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "DFS Deutsche Flugsicherung GmbH"
       }
     },
     {
@@ -473,11 +476,12 @@
     },
     {
       "displayName": "E-Plus",
-      "id": "eplus-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "eplus-0b2be4",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "mast",
-        "operator": "E-Plus"
+        "operator": "E-Plus",
+        "operator:wikidata": "Q675046"
       }
     },
     {
@@ -509,11 +513,12 @@
     },
     {
       "displayName": "EI Towers S.p.A.",
-      "id": "eitowersspa-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "eitowersspa-c21648",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "man_made": "mast",
-        "operator": "EI Towers S.p.A."
+        "operator": "EI Towers S.p.A.",
+        "operator:wikidata": "Q18288262"
       }
     },
     {
@@ -528,11 +533,12 @@
     },
     {
       "displayName": "Emitel",
-      "id": "emitel-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "emitel-41b0bd",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Emitel"
+        "operator": "Emitel",
+        "operator:wikidata": "Q9253428"
       }
     },
     {
@@ -570,17 +576,20 @@
     },
     {
       "displayName": "Ferromex",
-      "id": "ferromex-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "ferromex-4b976b",
+      "locationSet": {"include": ["mx"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Ferromex"
+        "operator": "Ferromex",
+        "operator:wikidata": "Q977145"
       }
     },
     {
       "displayName": "Flugsicherung Wien-Schwechat",
-      "id": "flugsicherungwienschwechat-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "flugsicherungwienschwechat-1e4623",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
       "tags": {
         "man_made": "mast",
         "operator": "Flugsicherung Wien-Schwechat"
@@ -607,8 +616,8 @@
     },
     {
       "displayName": "Free Mobile & Bouygues Telecom",
-      "id": "freemobileandbouyguestelecom-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "freemobileandbouyguestelecom-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Free Mobile & Bouygues Telecom"
@@ -616,8 +625,8 @@
     },
     {
       "displayName": "Free Mobile & Orange",
-      "id": "freemobileandorange-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "freemobileandorange-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Free Mobile & Orange"
@@ -625,8 +634,8 @@
     },
     {
       "displayName": "Free Mobile, Bouygues Telecom & SFR",
-      "id": "freemobilebouyguestelecomandsfr-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "freemobilebouyguestelecomandsfr-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Free Mobile, Bouygues Telecom & SFR"
@@ -634,8 +643,8 @@
     },
     {
       "displayName": "Free Mobile, Bouygues Telecom, SFR & Orange",
-      "id": "freemobilebouyguestelecomsfrandorange-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "freemobilebouyguestelecomsfrandorange-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Free Mobile, Bouygues Telecom, SFR & Orange"
@@ -643,8 +652,8 @@
     },
     {
       "displayName": "Free Mobile, SFR & Bouygues Telecom",
-      "id": "freemobilesfrandbouyguestelecom-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "freemobilesfrandbouyguestelecom-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Free Mobile, SFR & Bouygues Telecom"
@@ -652,8 +661,8 @@
     },
     {
       "displayName": "Free Mobile, SFR, Bouygues Telecom & Orange",
-      "id": "freemobilesfrbouyguestelecomandorange-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "freemobilesfrbouyguestelecomandorange-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Free Mobile, SFR, Bouygues Telecom & Orange"
@@ -681,8 +690,8 @@
     },
     {
       "displayName": "IFW-Free",
-      "id": "ifwfree-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "ifwfree-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "IFW-Free"
@@ -715,17 +724,20 @@
     },
     {
       "displayName": "Infraspeed",
-      "id": "infraspeed-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "infraspeed-90a535",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Infraspeed"
+        "operator": "Infraspeed",
+        "operator:wikidata": "Q2396179"
       }
     },
     {
       "displayName": "Integrierte Regionalleitstelle Unterweser-Elbe",
-      "id": "integrierteregionalleitstelleunterweserelbe-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "integrierteregionalleitstelleunterweserelbe-87f469",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
       "tags": {
         "man_made": "mast",
         "operator": "Integrierte Regionalleitstelle Unterweser-Elbe"
@@ -733,8 +745,10 @@
     },
     {
       "displayName": "International Broadcasting Bureau",
-      "id": "internationalbroadcastingbureau-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "internationalbroadcastingbureau-55e1cc",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
       "tags": {
         "man_made": "mast",
         "operator": "International Broadcasting Bureau"
@@ -752,8 +766,8 @@
     },
     {
       "displayName": "Itas Tim",
-      "id": "itastim-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "itastim-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Itas Tim"
@@ -761,29 +775,34 @@
     },
     {
       "displayName": "KDDI",
-      "id": "kddi-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "kddi-3d75e9",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "man_made": "mast",
-        "operator": "KDDI"
+        "operator": "KDDI",
+        "operator:wikidata": "Q971946"
       }
     },
     {
       "displayName": "Kreis Euskirchen",
-      "id": "kreiseuskirchen-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "kreiseuskirchen-7bef17",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "Kreis Euskirchen"
+        "operator": "Kreis Euskirchen",
+        "operator:wikidata": "Q6280"
       }
     },
     {
       "displayName": "Kyivstar",
-      "id": "kyivstar-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "kyivstar-dd07fc",
+      "locationSet": {"include": ["ua"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Kyivstar"
+        "operator": "Kyivstar",
+        "operator:wikidata": "Q2288463"
       }
     },
     {
@@ -812,20 +831,22 @@
     },
     {
       "displayName": "Liberty",
-      "id": "liberty-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "liberty-ce34e8",
+      "locationSet": {"include": ["cr"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Liberty"
+        "operator": "Liberty",
+        "operator:wikidata": "Q6140527"
       }
     },
     {
       "displayName": "LIFE",
-      "id": "life-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "life-ff4b94",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "man_made": "mast",
-        "operator": "LIFE"
+        "operator": "LIFE",
+        "operator:wikidata": "Q1975972"
       }
     },
     {
@@ -867,11 +888,12 @@
     },
     {
       "displayName": "Mobitel",
-      "id": "mobitel-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "mobitel-fa1033",
+      "locationSet": {"include": ["si"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Mobitel"
+        "operator": "Mobitel",
+        "operator:wikidata": "Q3859745"
       }
     },
     {
@@ -882,15 +904,6 @@
         "man_made": "mast",
         "operator": "Movistar",
         "operator:wikidata": "Q967735"
-      }
-    },
-    {
-      "displayName": "MTC",
-      "id": "mtc-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "MTC"
       }
     },
     {
@@ -975,17 +988,23 @@
     },
     {
       "displayName": "Neuf Cegetel",
-      "id": "neufcegetel-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "neufcegetel-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Neuf Cegetel"
+        "operator": "Neuf Cegetel",
+        "operator:wikidata": "Q504288"
       }
     },
     {
       "displayName": "New Cingular Wireless PCS",
-      "id": "newcingularwirelesspcs-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "newcingularwirelesspcs-ad330f",
+      "locationSet": {
+        "include": [
+          "us-al.geojson",
+          "us-ky.geojson"
+        ]
+      },
       "matchNames": [
         "new cingular wireless pcs, llc"
       ],
@@ -996,11 +1015,14 @@
     },
     {
       "displayName": "Niagara Parks Commission",
-      "id": "niagaraparkscommission-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "niagaraparkscommission-35efd8",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "Niagara Parks Commission"
+        "operator": "Niagara Parks Commission",
+        "operator:wikidata": "Q7023741"
       }
     },
     {
@@ -1076,11 +1098,12 @@
     },
     {
       "displayName": "Odašiljači i veze d.o.o.",
-      "id": "odasiljaciivezedoo-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "odasiljaciivezedoo-0982da",
+      "locationSet": {"include": ["hr"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Odašiljači i veze d.o.o."
+        "operator": "Odašiljači i veze d.o.o.",
+        "operator:wikidata": "Q7077292"
       }
     },
     {
@@ -1097,8 +1120,8 @@
     },
     {
       "displayName": "Orange & Free Mobile",
-      "id": "orangeandfreemobile-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "orangeandfreemobile-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "Orange & Free Mobile"
@@ -1106,17 +1129,18 @@
     },
     {
       "displayName": "Orange România",
-      "id": "orangeromania-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "orangeromania-114542",
+      "locationSet": {"include": ["ro"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Orange România"
+        "operator": "Orange România",
+        "operator:wikidata": "Q3355067"
       }
     },
     {
       "displayName": "Orange Services Fixes",
-      "id": "orangeservicesfixes-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "orangeservicesfixes-62d71b",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "mast",
         "operator": "Orange Services Fixes"
@@ -1124,44 +1148,32 @@
     },
     {
       "displayName": "ORS",
-      "id": "ors-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "ors-16021f",
+      "locationSet": {"include": ["at"]},
       "tags": {
         "man_made": "mast",
-        "operator": "ORS"
+        "operator": "ORS",
+        "operator:wikidata": "Q304116"
       }
     },
     {
       "displayName": "Outremer Telecom",
-      "id": "outremertelecom-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "outremertelecom-600599",
+      "locationSet": {
+        "include": ["gf", "gp", "mq"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "Outremer Telecom"
-      }
-    },
-    {
-      "displayName": "P4",
-      "id": "p4-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "P4"
-      }
-    },
-    {
-      "displayName": "P4 Sp. z o.o.",
-      "id": "p4spzoo-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "P4 Sp. z o.o."
+        "operator": "Outremer Telecom",
+        "operator:wikidata": "Q3358661"
       }
     },
     {
       "displayName": "Pine Belt Cellular",
-      "id": "pinebeltcellular-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "pinebeltcellular-7a90a8",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
       "matchNames": ["pine belt cellular, inc."],
       "tags": {
         "man_made": "mast",
@@ -1172,6 +1184,7 @@
       "displayName": "Play",
       "id": "play-41b0bd",
       "locationSet": {"include": ["pl"]},
+      "matchNames": ["p4", "p4 sp. z o.o."],
       "tags": {
         "man_made": "mast",
         "operator": "Play",
@@ -1190,35 +1203,40 @@
     },
     {
       "displayName": "Policía de Misiones",
-      "id": "policiademisiones-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "policiademisiones-0df118",
+      "locationSet": {
+        "include": ["ar-n.geojson"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "Policía de Misiones"
+        "operator": "Policía de Misiones",
+        "operator:wikidata": "Q124269876"
       }
     },
     {
       "displayName": "Polkomtel Sp.z o.o",
-      "id": "polkomtelspzoo-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "polkomtelspzoo-41b0bd",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Polkomtel Sp.z o.o"
+        "operator": "Polkomtel Sp.z o.o",
+        "operator:wikidata": "Q11821892"
       }
     },
     {
       "displayName": "PTC S.A.",
-      "id": "ptcsa-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "ptcsa-41b0bd",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "mast",
-        "operator": "PTC S.A."
+        "operator": "PTC S.A.",
+        "operator:wikidata": "Q425956"
       }
     },
     {
       "displayName": "RadioCuba",
-      "id": "radiocuba-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "radiocuba-bf5d50",
+      "locationSet": {"include": ["cu"]},
       "tags": {
         "man_made": "mast",
         "operator": "RadioCuba"
@@ -1226,20 +1244,23 @@
     },
     {
       "displayName": "Rai Way",
-      "id": "raiway-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "raiway-c21648",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Rai Way"
+        "operator": "Rai Way",
+        "operator:wikidata": "Q3929528"
       }
     },
     {
-      "displayName": "REP",
-      "id": "rep-6ada36",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Rede dos Emissores Portugueses",
+      "id": "rededosemissoresportugueses-1e326f",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": ["rep"],
       "tags": {
         "man_made": "mast",
-        "operator": "REP"
+        "operator": "Rede dos Emissores Portugueses",
+        "operator:wikidata": "Q7305685"
       }
     },
     {
@@ -1265,11 +1286,14 @@
     },
     {
       "displayName": "Rogers Wireless",
-      "id": "rogerswireless-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "rogerswireless-35efd8",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "Rogers Wireless"
+        "operator": "Rogers Wireless",
+        "operator:wikidata": "Q3439663"
       }
     },
     {
@@ -1284,8 +1308,8 @@
     },
     {
       "displayName": "RTÉ Transmission Network Designated Activity Company",
-      "id": "rtetransmissionnetworkdesignatedactivitycompany-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "rtetransmissionnetworkdesignatedactivitycompany-374a61",
+      "locationSet": {"include": ["ie"]},
       "tags": {
         "man_made": "mast",
         "operator": "RTÉ Transmission Network Designated Activity Company"
@@ -1293,8 +1317,10 @@
     },
     {
       "displayName": "Rural Cellular Corporation",
-      "id": "ruralcellularcorporation-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "ruralcellularcorporation-7a90a8",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
       "tags": {
         "man_made": "mast",
         "operator": "Rural Cellular Corporation"
@@ -1302,11 +1328,12 @@
     },
     {
       "displayName": "Rural Connectivity Group",
-      "id": "ruralconnectivitygroup-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "ruralconnectivitygroup-f18601",
+      "locationSet": {"include": ["nz"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Rural Connectivity Group"
+        "operator": "Rural Connectivity Group",
+        "operator:wikidata": "Q55632109"
       }
     },
     {
@@ -1364,8 +1391,8 @@
     },
     {
       "displayName": "SFR & Bouygues",
-      "id": "sfrandbouygues-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "sfrandbouygues-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "SFR & Bouygues"
@@ -1373,8 +1400,8 @@
     },
     {
       "displayName": "SFR & Bouygues Telecom",
-      "id": "sfrandbouyguestelecom-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "sfrandbouyguestelecom-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
         "operator": "SFR & Bouygues Telecom"
@@ -1382,11 +1409,12 @@
     },
     {
       "displayName": "SIRESP",
-      "id": "siresp-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "siresp-1e326f",
+      "locationSet": {"include": ["pt"]},
       "tags": {
         "man_made": "mast",
-        "operator": "SIRESP"
+        "operator": "SIRESP",
+        "operator:wikidata": "Q48871999"
       }
     },
     {
@@ -1434,11 +1462,18 @@
     },
     {
       "displayName": "Südwestrundfunk",
-      "id": "sudwestrundfunk-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "sudwestrundfunk-cb1e7e",
+      "locationSet": {
+        "include": [
+          "de-bw.geojson",
+          "de-rp.geojson"
+        ]
+      },
+      "matchNames": ["swr"],
       "tags": {
         "man_made": "mast",
-        "operator": "Südwestrundfunk"
+        "operator": "Südwestrundfunk",
+        "operator:wikidata": "Q700133"
       }
     },
     {
@@ -1449,15 +1484,6 @@
         "man_made": "mast",
         "operator": "Swisscom",
         "operator:wikidata": "Q644324"
-      }
-    },
-    {
-      "displayName": "SWR",
-      "id": "swr-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "SWR"
       }
     },
     {
@@ -1481,8 +1507,8 @@
     },
     {
       "displayName": "Telecentras",
-      "id": "telecentras-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "telecentras-70762c",
+      "locationSet": {"include": ["lt"]},
       "tags": {
         "man_made": "mast",
         "operator": "Telecentras"
@@ -1490,8 +1516,8 @@
     },
     {
       "displayName": "Telecom",
-      "id": "telecom-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "telecom-faed7e",
+      "locationSet": {"include": ["ar", "it"]},
       "tags": {
         "man_made": "mast",
         "operator": "Telecom"
@@ -1499,26 +1525,31 @@
     },
     {
       "displayName": "Telecom Italia Mobile",
-      "id": "telecomitaliamobile-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "telecomitaliamobile-84883b",
+      "locationSet": {
+        "include": ["it-36.geojson"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "Telecom Italia Mobile"
+        "operator": "Telecom Italia Mobile",
+        "operator:wikidata": "Q1120617"
       }
     },
     {
-      "displayName": "Telefónica Germany",
-      "id": "telefonicagermany-6ada36",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Telefónica Deutschland",
+      "id": "telefonicadeutschland-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["telefónica germany"],
       "tags": {
         "man_made": "mast",
-        "operator": "Telefónica Germany"
+        "operator": "Telefónica Deutschland",
+        "operator:wikidata": "Q2401561"
       }
     },
     {
       "displayName": "Telefonica Moviles España",
-      "id": "telefonicamovilesespana-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "telefonicamovilesespana-8e6998",
+      "locationSet": {"include": ["es"]},
       "matchNames": [
         "telefonica moviles españa, s.a.u."
       ],
@@ -1543,8 +1574,8 @@
     },
     {
       "displayName": "Telekom Austria",
-      "id": "telekomaustria-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "telekomaustria-16021f",
+      "locationSet": {"include": ["at"]},
       "tags": {
         "man_made": "mast",
         "operator": "Telekom Austria"
@@ -1552,11 +1583,14 @@
     },
     {
       "displayName": "Telenor",
-      "id": "telenor-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "telenor-5eccfb",
+      "locationSet": {
+        "include": ["dk", "no", "se"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "Telenor"
+        "operator": "Telenor",
+        "operator:wikidata": "Q845632"
       }
     },
     {
@@ -1592,11 +1626,12 @@
     },
     {
       "displayName": "Teracom",
-      "id": "teracom-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "teracom-108d32",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Teracom"
+        "operator": "Teracom",
+        "operator:wikidata": "Q7476318"
       }
     },
     {
@@ -1652,12 +1687,13 @@
       }
     },
     {
-      "displayName": "Towercast",
-      "id": "towercast-6ada36",
-      "locationSet": {"include": ["001"]},
+      "displayName": "TowerCast",
+      "id": "towercast-0ddfe9",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Towercast"
+        "operator": "TowerCast",
+        "operator:wikidata": "Q3535939"
       }
     },
     {
@@ -1682,11 +1718,12 @@
     },
     {
       "displayName": "TRT",
-      "id": "trt-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "trt-cfd1c9",
+      "locationSet": {"include": ["tr"]},
       "tags": {
         "man_made": "mast",
-        "operator": "TRT"
+        "operator": "TRT",
+        "operator:wikidata": "Q83389"
       }
     },
     {
@@ -1711,8 +1748,8 @@
     },
     {
       "displayName": "Uganda Immigration",
-      "id": "ugandaimmigration-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "ugandaimmigration-be8a74",
+      "locationSet": {"include": ["ug"]},
       "tags": {
         "man_made": "mast",
         "operator": "Uganda Immigration"
@@ -1720,8 +1757,8 @@
     },
     {
       "displayName": "ULAK",
-      "id": "ulak-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "ulak-cfd1c9",
+      "locationSet": {"include": ["tr"]},
       "tags": {
         "man_made": "mast",
         "operator": "ULAK"
@@ -1740,29 +1777,23 @@
     },
     {
       "displayName": "United States Cellular Corporation",
-      "id": "unitedstatescellularcorporation-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "unitedstatescellularcorporation-005557",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "man_made": "mast",
-        "operator": "United States Cellular Corporation"
+        "operator": "United States Cellular Corporation",
+        "operator:wikidata": "Q2466256"
       }
     },
     {
       "displayName": "USCC",
-      "id": "uscc-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "uscc-a365dd",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
       "tags": {
         "man_made": "mast",
         "operator": "USCC"
-      }
-    },
-    {
-      "displayName": "VELCOM",
-      "id": "velcom-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "VELCOM"
       }
     },
     {
@@ -1787,11 +1818,15 @@
     },
     {
       "displayName": "Verizon Wireless of the East LP",
-      "id": "verizonwirelessoftheeastlp-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "verizonwirelessoftheeastlp-7a90a8",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
+      "note": "dba Verizon Wireless",
       "tags": {
         "man_made": "mast",
-        "operator": "Verizon Wireless of the East LP"
+        "operator": "Verizon Wireless of the East LP",
+        "operator:wikidata": "Q919641"
       }
     },
     {
@@ -1891,38 +1926,60 @@
     },
     {
       "displayName": "Vodafone GmbH",
-      "id": "vodafonegmbh-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "vodafonegmbh-0b2be4",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Vodafone GmbH"
+        "operator": "Vodafone GmbH",
+        "operator:wikidata": "Q2529830"
       }
     },
     {
-      "displayName": "Vodafone Omnitel",
-      "id": "vodafoneomnitel-6ada36",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Vodafone Italia",
+      "id": "vodafoneitalia-c14fdd",
+      "locationSet": {
+        "include": [
+          "it-32.geojson",
+          "it-36.geojson"
+        ]
+      },
+      "matchNames": ["vodafone omnitel"],
       "tags": {
         "man_made": "mast",
-        "operator": "Vodafone Omnitel"
+        "operator": "Vodafone Italia",
+        "operator:wikidata": "Q4015982"
       }
     },
     {
-      "displayName": "vodafone P",
-      "id": "vodafonep-6ada36",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Vodafone Portugal",
+      "id": "vodafoneportugal-1e326f",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": ["vodafone p"],
       "tags": {
         "man_made": "mast",
-        "operator": "vodafone P"
+        "operator": "Vodafone Portugal",
+        "operator:wikidata": "Q3562042"
       }
     },
     {
       "displayName": "Vodafone Türkiye",
-      "id": "vodafoneturkiye-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "vodafoneturkiye-cfd1c9",
+      "locationSet": {"include": ["tr"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Vodafone Türkiye"
+        "operator": "Vodafone Türkiye",
+        "operator:wikidata": "Q1784943"
+      }
+    },
+    {
+      "displayName": "Vodafone Україна",
+      "id": "8d00ca-dd07fc",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": ["mtc"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodafone Україна",
+        "operator:wikidata": "Q846031"
       }
     },
     {
@@ -1937,56 +1994,59 @@
     },
     {
       "displayName": "Washington Place Homeowners' Association, Inc.",
-      "id": "washingtonplacehomeownersassociationinc-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "washingtonplacehomeownersassociationinc-bab9d0",
+      "locationSet": {
+        "include": ["ph-40.geojson"]
+      },
       "tags": {
         "man_made": "mast",
         "operator": "Washington Place Homeowners' Association, Inc."
       }
     },
     {
-      "displayName": "Wasserskiseilbahn",
-      "id": "wasserskiseilbahn-6ada36",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "mast",
-        "operator": "Wasserskiseilbahn"
-      }
-    },
-    {
       "displayName": "WILLCOM",
-      "id": "willcom-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "willcom-e34f5c",
+      "locationSet": {
+        "include": [
+          "jp-11.geojson",
+          "jp-13.geojson"
+        ]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "WILLCOM"
+        "operator": "WILLCOM",
+        "operator:wikidata": "Q4019894"
       }
     },
     {
       "displayName": "Wind",
-      "id": "wind-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "wind-c21648",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "man_made": "mast",
         "operator": "Wind"
       }
     },
     {
-      "displayName": "Wind-Tre",
-      "id": "windtre-6ada36",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Wind Tre",
+      "id": "windtre-84883b",
+      "locationSet": {
+        "include": ["it-36.geojson"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "Wind-Tre"
+        "operator": "Wind Tre",
+        "operator:wikidata": "Q28119223"
       }
     },
     {
       "displayName": "Yettel",
-      "id": "yettel-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "yettel-c83968",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "man_made": "mast",
-        "operator": "Yettel"
+        "operator": "Yettel",
+        "operator:wikidata": "Q268578"
       }
     },
     {
@@ -2032,8 +2092,8 @@
     },
     {
       "displayName": "МТС",
-      "id": "77e54a-1bddbb",
-      "locationSet": {"include": ["by", "ru"]},
+      "id": "77e54a-ff4b94",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "man_made": "mast",
         "operator": "МТС",
@@ -2042,8 +2102,8 @@
     },
     {
       "displayName": "ООО \"Т2 Мобайл\"",
-      "id": "65134c-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "65134c-5611d1",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "mast",
         "operator": "ООО \"Т2 Мобайл\""
@@ -2051,38 +2111,45 @@
     },
     {
       "displayName": "ПАО \"ВымпелКом\"",
-      "id": "eb6008-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "eb6008-5611d1",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "mast",
-        "operator": "ПАО \"ВымпелКом\""
+        "operator": "ПАО \"ВымпелКом\"",
+        "operator:wikidata": "Q1562826"
       }
     },
     {
       "displayName": "ПАО \"МегаФон\"",
-      "id": "990d80-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "990d80-5611d1",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "mast",
-        "operator": "ПАО \"МегаФон\""
+        "operator": "ПАО \"МегаФон\"",
+        "operator:wikidata": "Q1720713"
       }
     },
     {
       "displayName": "ПАО \"МТС\"",
-      "id": "deb53e-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "deb53e-5611d1",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["мтс"],
       "tags": {
         "man_made": "mast",
-        "operator": "ПАО \"МТС\""
+        "operator": "ПАО \"МТС\"",
+        "operator:wikidata": "Q1368919"
       }
     },
     {
       "displayName": "青梅市",
-      "id": "98f747-6ada36",
-      "locationSet": {"include": ["001"]},
+      "id": "98f747-13249b",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "man_made": "mast",
-        "operator": "青梅市"
+        "operator": "青梅市",
+        "operator:wikidata": "Q237683"
       }
     }
   ]
