@@ -3,32 +3,32 @@
     "path": "brands/amenity/fast_food",
     "exclude": {
       "generic": [
-        "^(bistro|buffet|büfé|comida r[aá]pida|fast food|food court|kantine|frituur|imbiss|kiosk|lanchonete)$",
-        "^(pizz(eri)?a|fish (and|&) chips|tacos)$",
-        "^(бистро|пиццерия|столовая|ша(ве|у)рма)$",
-        "^bufet$",
+        "^bistro|comida r[aá]pida|fast food|food court|kantine|frituur|imbiss|kiosk|lanchonete$",
+        "^buffet|büfé|bufet$",
         "^caf[eé](t[eé]r[ií]a)?$",
         "^d[oö]ner( kebab)?$",
         "^fri[tz]erie$",
         "^kebab( house)?$",
-        "^snack(s)?( bar)?$",
+        "^pizz(eri)?a|fish (and|&) chips|tacos$",
+        "^snack(s)?( bar)?|concession stand$",
         "^sushi\\s?(bar|house)?$",
+        "^бистро|пиццерия|столовая|ша(ве|у)рма$",
         "^кебаб$",
         "^чебуреки$",
         "^чебуречная$",
         "^ラーメン(屋|店)?$"
       ],
       "named": [
-        "^(ali baba|antalya|asia[ -](bistro|imbiss|wok)|(berlin|city) döner|china garden|city (grill|pizza)|kebabai|kfc/taco bell)$",
-        "^(marmaris|mei & mei|pizza (house|time))$",
         "^(pizza|döner) king$",
         "^(pronto|bella) pizza$",
-        "^(早点|早餐店)$",
+        "^ali baba|antalya|asia[ -](bistro|imbiss|wok)|(berlin|city) döner|china garden|city (grill|pizza)|kebabai|kfc/taco bell$",
         "^burger house$",
         "^charcoal grill$",
         "^istanbul( (kebab|grill))?$",
+        "^marmaris|mei & mei|pizza (house|time)$",
         "^texas burger$",
         "^兰州拉面$",
+        "^早点|早餐店$",
         "^沙县小吃$",
         "^美而美$",
         "^食堂$"
@@ -2183,17 +2183,6 @@
       }
     },
     {
-      "displayName": "Concession Stand",
-      "id": "concessionstand-658eea",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "fast_food",
-        "brand": "Concession Stand",
-        "name": "Concession Stand",
-        "takeaway": "yes"
-      }
-    },
-    {
       "displayName": "Cook Door",
       "id": "cookdoor-5f7df6",
       "locationSet": {"include": ["ae", "eg"]},
@@ -3197,11 +3186,12 @@
     },
     {
       "displayName": "EVOS",
-      "id": "evos-658eea",
-      "locationSet": {"include": ["001"]},
+      "id": "evos-d0294b",
+      "locationSet": {"include": ["uz"]},
       "tags": {
         "amenity": "fast_food",
         "brand": "EVOS",
+        "cuisine": "burger;hot_dog",
         "name": "EVOS",
         "takeaway": "yes"
       }
@@ -4234,9 +4224,11 @@
       "displayName": "Hampi Pizza Corner",
       "id": "hampipizzacorner-658eea",
       "locationSet": {"include": ["001"]},
+      "note": "had enough instances in OSM as of 2025-03-10 to be automatically included in the NSI, but overpass-turbo returned no results on 2025-03-28",
       "tags": {
         "amenity": "fast_food",
         "brand": "Hampi Pizza Corner",
+        "cuisine": "pizza",
         "name": "Hampi Pizza Corner",
         "takeaway": "yes"
       }
@@ -11715,11 +11707,12 @@
     },
     {
       "displayName": "Милти",
-      "id": "619bdd-658eea",
-      "locationSet": {"include": ["001"]},
+      "id": "619bdd-7582d1",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "fast_food",
         "brand": "Милти",
+        "cuisine": "deli",
         "name": "Милти",
         "takeaway": "yes"
       }
@@ -11882,11 +11875,13 @@
     },
     {
       "displayName": "Суши-Маркет",
-      "id": "cdcc25-658eea",
-      "locationSet": {"include": ["001"]},
+      "id": "cdcc25-7582d1",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "fast_food",
         "brand": "Суши-Маркет",
+        "brand:wikidata": "Q120268393",
+        "cuisine": "sushi",
         "name": "Суши-Маркет",
         "takeaway": "yes"
       }
