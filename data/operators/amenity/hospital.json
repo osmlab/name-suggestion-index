@@ -5,6 +5,7 @@
     "exclude": {
       "generic": [
         "^(govern?ment( authorities)?|govt( hospital)?|municipal|priva(do|te)|public|private not for profit|provincial|village)$",
+        "^catholic church$",
         "^centro (de salud|de saúde|médico)$",
         "^community$",
         "^hospital$",
@@ -20,9 +21,9 @@
         "^医院$"
       ],
       "named": [
-        "^(croydon university hospital)$",
         "^(центральна районна лікарня|црб)$",
-        "^(центральная районная )?больница$"
+        "^(центральная районная )?больница$",
+        "^croydon university hospital$"
       ]
     }
   },
@@ -489,12 +490,15 @@
       "displayName": "Caja Nacional de Salud (Bolivia)",
       "id": "cajanacionaldesalud-bdc341",
       "locationSet": {"include": ["bo"]},
+      "matchNames": [
+        "caja nacional de salud cns"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Caja Nacional de Salud",
         "operator:short": "CNS",
-        "operator:type": "private"
+        "operator:type": "public"
       }
     },
     {
@@ -3295,6 +3299,17 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Городская клиническая больница №20 им. И.С. Берзона",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "ООО \"Промышленная Медицина\"",
+      "id": "bc1750-7b7c97",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "ООО \"Промышленная Медицина\"",
         "operator:type": "private"
       }
     },
