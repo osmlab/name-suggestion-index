@@ -4,19 +4,19 @@
     "preserveTags": ["^name"],
     "exclude": {
       "generic": [
-        "^(auto (serwis|service)|(car|t[iy]re]) repair)$",
-        "^(mécanique|tyres|wulkanizacja|vulcaniza(dora|re))$",
-        "^(вулканизация|шиномонтаж)$",
         "^a[uv]toservis$",
+        "^auto (serwis|service)|(car|t[iy]re]) repair|pneuservis$",
         "^borrachar[ií]a$",
-        "^garage\\s?(moto|auto)?$",
+        "^garage\\s?(moto|auto|automobile)?$",
         "^gomer[ií]a$",
         "^lubri(centro|ficantes)$",
+        "^mécanique|tyres|wulkanizacja|vulcaniza(dora|re)|ponchera$",
         "^taller( mec[aá]nico)?$",
         "^авто(рынок|ремонт|сервис|запчасти|электрик|запчастини)?$",
         "^автома(г|газин|стерская)?$",
         "^автосервис\\+шиномонтаж$",
         "^автосервіс$",
+        "^вулканизация|шиномонтаж$",
         "^замена масла$",
         "^сто$"
       ],
@@ -88,13 +88,13 @@
       }
     },
     {
-      "displayName": "A+ Glass",
+      "displayName": "A+Glass",
       "id": "aglass-98e3a2",
       "locationSet": {"include": ["fr"]},
       "tags": {
-        "brand": "A+ Glass",
-        "brand:wikidata": "Q123409768",
-        "name": "A+ Glass",
+        "brand": "A+Glass",
+        "brand:wikidata": "Q116688243",
+        "name": "A+Glass",
         "service:vehicle:glass": "yes",
         "shop": "car_repair"
       }
@@ -589,16 +589,6 @@
         "brand:short": "FPB",
         "brand:wikidata": "Q63335107",
         "name": "France Pare-Brise",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Garage automobile",
-      "id": "garageautomobile-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Garage automobile",
-        "name": "Garage automobile",
         "shop": "car_repair"
       }
     },
@@ -1128,8 +1118,12 @@
       "locationSet": {"include": ["sa"]},
       "tags": {
         "brand": "Petromin",
+        "brand:ar": "بترومين",
+        "brand:en": "Petromin",
         "brand:wikidata": "Q7179006",
         "name": "Petromin",
+        "name:ar": "بترومين",
+        "name:en": "Petromin",
         "shop": "car_repair"
       }
     },
@@ -1157,16 +1151,6 @@
       }
     },
     {
-      "displayName": "Pneuservis",
-      "id": "pneuservis-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Pneuservis",
-        "name": "Pneuservis",
-        "shop": "car_repair"
-      }
-    },
-    {
       "displayName": "Point S",
       "id": "points-dc8719",
       "locationSet": {"include": ["001"]},
@@ -1174,16 +1158,6 @@
         "brand": "Point S",
         "brand:wikidata": "Q3393358",
         "name": "Point S",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "Ponchera",
-      "id": "ponchera-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Ponchera",
-        "name": "Ponchera",
         "shop": "car_repair"
       }
     },
@@ -1320,8 +1294,8 @@
     },
     {
       "displayName": "Service Auto",
-      "id": "serviceauto-dc8719",
-      "locationSet": {"include": ["001"]},
+      "id": "serviceauto-4fc828",
+      "locationSet": {"include": ["md"]},
       "tags": {
         "brand": "Service Auto",
         "name": "Service Auto",
@@ -1699,16 +1673,6 @@
       "tags": {
         "brand": "Маслофф",
         "name": "Маслофф",
-        "shop": "car_repair"
-      }
-    },
-    {
-      "displayName": "بترومين",
-      "id": "21755e-dc8719",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "بترومين",
-        "name": "بترومين",
         "shop": "car_repair"
       }
     },
