@@ -3,11 +3,12 @@
     "path": "brands/amenity/restaurant",
     "exclude": {
       "generic": [
+        "^(bistro|buffet|büfé|fast food|food court|kantine|piccolo|restaurant|resto|taverna|trattoria|warung|dining hall)$",
+        "^(chifa|chinese restaurant)$",
         "^(pancake|steak)( house)?$",
         "^(rumah|warung) makan$",
-        "^bistro|buffet|büfé|fast food|food court|kantine|piccolo|restaurant|resto|taverna|trattoria|warung|dining hall$",
+        "^(ресторан|столовая)$",
         "^caf[eé](t[eé]r[ií]a)?$",
-        "^chifa|chinese restaurant$",
         "^garba(drome)?$",
         "^maquis( restaurant)?$",
         "^osteria$",
@@ -15,7 +16,6 @@
         "^restaurant(e)?(\\suniversit(ário|aire))?$",
         "^restoran$",
         "^sushi\\s?(bar|house)?$",
-        "^ресторан|столовая$",
         "^رستوران$",
         "^مطعم$"
       ],
@@ -5925,8 +5925,11 @@
     },
     {
       "displayName": "Pizza Hut",
-      "id": "pizzahut-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "pizzahut-ce6bab",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn", "tw"]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "Pizza Hut",

@@ -3,32 +3,32 @@
     "path": "brands/amenity/fast_food",
     "exclude": {
       "generic": [
-        "^bistro|comida r[aá]pida|fast food|food court|kantine|frituur|imbiss|kiosk|lanchonete$",
-        "^buffet|büfé|bufet$",
+        "^(bistro|comida r[aá]pida|fast food|food court|kantine|frituur|imbiss|kiosk|lanchonete)$",
+        "^(buffet|büfé|bufet)$",
+        "^(pizz(eri)?a|fish (and|&) chips|tacos)$",
+        "^(snack(s)?( bar)?|concession stand)$",
+        "^(бистро|пиццерия|столовая|ша(ве|у)рма)$",
         "^caf[eé](t[eé]r[ií]a)?$",
         "^d[oö]ner( kebab)?$",
         "^fri[tz]erie$",
         "^kebab( house)?$",
-        "^pizz(eri)?a|fish (and|&) chips|tacos$",
-        "^snack(s)?( bar)?|concession stand$",
         "^sushi\\s?(bar|house)?$",
-        "^бистро|пиццерия|столовая|ша(ве|у)рма$",
         "^кебаб$",
         "^чебуреки$",
         "^чебуречная$",
         "^ラーメン(屋|店)?$"
       ],
       "named": [
+        "^(ali baba|antalya|asia[ -](bistro|imbiss|wok)|(berlin|city) döner|china garden|city (grill|pizza)|kebabai|kfc/taco bell)$",
+        "^(marmaris|mei & mei|pizza (house|time))$",
         "^(pizza|döner) king$",
         "^(pronto|bella) pizza$",
-        "^ali baba|antalya|asia[ -](bistro|imbiss|wok)|(berlin|city) döner|china garden|city (grill|pizza)|kebabai|kfc/taco bell$",
+        "^(早点|早餐店)$",
         "^burger house$",
         "^charcoal grill$",
         "^istanbul( (kebab|grill))?$",
-        "^marmaris|mei & mei|pizza (house|time)$",
         "^texas burger$",
         "^兰州拉面$",
-        "^早点|早餐店$",
         "^沙县小吃$",
         "^美而美$",
         "^食堂$"
@@ -5977,10 +5977,10 @@
     },
     {
       "displayName": "Lotteria",
-      "id": "lotteria-9b2018",
+      "id": "lotteria-3a5dd9",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["pl"]
+        "exclude": ["jp", "kr", "pl"]
       },
       "tags": {
         "amenity": "fast_food",
@@ -7514,8 +7514,11 @@
     },
     {
       "displayName": "Papa John's",
-      "id": "papajohns-658eea",
-      "locationSet": {"include": ["001"]},
+      "id": "papajohns-715e2d",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["by", "ru"]
+      },
       "matchNames": [
         "papa john",
         "papa john pizza",
@@ -9561,8 +9564,11 @@
     },
     {
       "displayName": "Subway",
-      "id": "subway-658eea",
-      "locationSet": {"include": ["001"]},
+      "id": "subway-66c213",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ge", "jp", "mainland china"]
+      },
       "matchNames": [
         "subway australia",
         "subway brasil",
