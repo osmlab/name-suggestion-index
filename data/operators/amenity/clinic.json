@@ -6,8 +6,8 @@
       "generic": [
         "^(clinic|urgent\\s?care)$",
         "^(consultorio )?(local|médico)$",
-        "^(consultorio|municipal|private(_profit)?|priv[eé]{0,2}|provincial|public)$",
-        "^(gov(ern?ment)?|prefeitura( municipal)?)$",
+        "^(consultorio|municipal|private(_profit|\\/individual)?|priv[eé]{0,2}|provincial|public)$",
+        "^(gov|govern?ment|prefeitura( municipal)?)$",
         "^(polyclinique|poliklinika)$",
         "^centro (de salud|de saúde|médico)$",
         "^combination$",
@@ -485,6 +485,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Department of Health Services",
+        "operator:short": "DHS",
         "operator:type": "government"
       }
     },
@@ -638,6 +639,17 @@
         "operator": "Fresenius Medical Care",
         "operator:type": "private",
         "operator:wikidata": "Q650259"
+      }
+    },
+    {
+      "displayName": "Fundação Municipal de Saúde",
+      "id": "fundacaomunicipaldesaude-5f4b12",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Fundação Municipal de Saúde",
+        "operator:type": "public"
       }
     },
     {
@@ -938,6 +950,18 @@
       }
     },
     {
+      "displayName": "Institut Català de la Salut",
+      "id": "institutcataladelasalut-edc4ef",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Institut Català de la Salut",
+        "operator:type": "public",
+        "operator:wikidata": "Q11926710"
+      }
+    },
+    {
       "displayName": "Instituto Mexicano del Seguro Social",
       "id": "institutomexicanodelsegurosocial-093f43",
       "locationSet": {"include": ["mx"]},
@@ -1099,6 +1123,18 @@
       }
     },
     {
+      "displayName": "Länsi-Uudenmaan hyvinvointialue",
+      "id": "lansiuudenmaanhyvinvointialue-6db834",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Länsi-Uudenmaan hyvinvointialue",
+        "operator:type": "public",
+        "operator:wikidata": "Q110245203"
+      }
+    },
+    {
       "displayName": "Legacy Health",
       "id": "legacyhealth-a30f15",
       "locationSet": {
@@ -1222,6 +1258,18 @@
         "operator:short": "MZPHCS;MZ",
         "operator:type": "public",
         "operator:wikidata": "Q25230853"
+      }
+    },
+    {
+      "displayName": "Mehiläinen",
+      "id": "mehilainen-6db834",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Mehiläinen",
+        "operator:type": "private",
+        "operator:wikidata": "Q10580005"
       }
     },
     {
@@ -1790,23 +1838,6 @@
       }
     },
     {
-      "displayName": "Prefeitura da Cidade do Rio de Janeiro",
-      "id": "prefeituradacidadedoriodejaneiro-4e3c1b",
-      "locationSet": {
-        "include": ["br-rj.geojson"]
-      },
-      "matchNames": [
-        "prefeitura do rio de janeiro"
-      ],
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Prefeitura da Cidade do Rio de Janeiro",
-        "operator:type": "government",
-        "operator:wikidata": "Q8678"
-      }
-    },
-    {
       "displayName": "Prefeitura de Camocim",
       "id": "prefeituradecamocim-d148ab",
       "locationSet": {
@@ -1832,6 +1863,24 @@
         "operator": "Prefeitura do Natal",
         "operator:type": "government",
         "operator:wikidata": "Q56449990"
+      }
+    },
+    {
+      "displayName": "Prefeitura do Rio de Janeiro",
+      "id": "prefeituradoriodejaneiro-4e3c1b",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
+      "matchNames": [
+        "prefeitura da cidade do rio de janeiro",
+        "prefeitura do rio"
+      ],
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura do Rio de Janeiro",
+        "operator:type": "government",
+        "operator:wikidata": "Q53930899"
       }
     },
     {
@@ -1933,6 +1982,34 @@
         "operator": "Prefeitura Municipal de Santo André",
         "operator:type": "government",
         "operator:wikidata": "Q56166775"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal de São José",
+      "id": "prefeituramunicipaldesaojose-b1ce44",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura Municipal de São José",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal de São Paulo",
+      "id": "prefeituramunicipaldesaopaulo-f10a78",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura Municipal de São Paulo",
+        "operator:short": "PMSP",
+        "operator:type": "government",
+        "operator:wikidata": "Q10351100"
       }
     },
     {
@@ -2051,6 +2128,30 @@
       }
     },
     {
+      "displayName": "Region Östergötland",
+      "id": "regionostergotland-020929",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Region Östergötland",
+        "operator:type": "government",
+        "operator:wikidata": "Q3231915"
+      }
+    },
+    {
+      "displayName": "Region Västernorrland",
+      "id": "regionvasternorrland-020929",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Region Västernorrland",
+        "operator:type": "government",
+        "operator:wikidata": "Q8100253"
+      }
+    },
+    {
       "displayName": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa Poznań",
       "id": "regionalnecentrumkrwiodawstwaikrwiolecznictwapoznan-73e20b",
       "locationSet": {"include": ["pl"]},
@@ -2165,6 +2266,18 @@
         "operator": "Sana Kliniken",
         "operator:type": "private",
         "operator:wikidata": "Q2220152"
+      }
+    },
+    {
+      "displayName": "Sanitas",
+      "id": "sanitas-edc4ef",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Sanitas",
+        "operator:type": "private",
+        "operator:wikidata": "Q21711175"
       }
     },
     {
@@ -2387,6 +2500,18 @@
       }
     },
     {
+      "displayName": "SESARAM",
+      "id": "sesaram-9cc891",
+      "locationSet": {"include": ["pt-30"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "SESARAM",
+        "operator:type": "government",
+        "operator:wikidata": "Q131428254"
+      }
+    },
+    {
       "displayName": "Sistema Único de Saúde (Brasil)",
       "id": "sistemaunicodesaude-5f4b12",
       "locationSet": {"include": ["br"]},
@@ -2500,6 +2625,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "UCI Health",
+        "operator:type": "university",
         "operator:wikidata": "Q50036865"
       }
     },
@@ -2614,6 +2740,20 @@
         "operator:type": "government",
         "operator:wikidata": "Q6580225",
         "short_name": "VA"
+      }
+    },
+    {
+      "displayName": "Vancouver Coastal Health",
+      "id": "vancouvercoastalhealth-c828ee",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Vancouver Coastal Health",
+        "operator:type": "public",
+        "operator:wikidata": "Q7914144"
       }
     },
     {
