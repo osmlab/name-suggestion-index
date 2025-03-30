@@ -1625,17 +1625,6 @@
       }
     },
     {
-      "displayName": "Banco de Desarrollo Banrural",
-      "id": "bancodedesarrollobanrural-2713d7",
-      "locationSet": {"include": ["gt"]},
-      "tags": {
-        "amenity": "bank",
-        "brand": "Banco de Desarrollo Banrural",
-        "brand:wikidata": "Q5719130",
-        "name": "Banco de Desarrollo Banrural"
-      }
-    },
-    {
       "displayName": "Banco de Fomento Angola",
       "id": "bancodefomentoangola-706633",
       "locationSet": {"include": ["ao"]},
@@ -3284,6 +3273,9 @@
       "displayName": "Banrural",
       "id": "banrural-e6a553",
       "locationSet": {"include": ["gt", "hn"]},
+      "matchNames": [
+        "banco de desarrollo banrural"
+      ],
       "tags": {
         "amenity": "bank",
         "brand": "Banrural",
@@ -3782,18 +3774,6 @@
         "brand": "BGL BNP Paribas",
         "brand:wikidata": "Q795898",
         "name": "BGL BNP Paribas"
-      }
-    },
-    {
-      "displayName": "BIAT",
-      "id": "biat-367f6f",
-      "locationSet": {"include": ["tn"]},
-      "tags": {
-        "amenity": "bank",
-        "brand": "BIAT",
-        "brand:wikidata": "Q690739",
-        "name": "BIAT",
-        "official_name": "Banque internationale arabe de Tunisie"
       }
     },
     {
@@ -5386,21 +5366,18 @@
     },
     {
       "displayName": "Commercial International Bank",
-      "locationSet": {
-          "include": [
-              "eg"
-          ]
-      },
+      "id": "commercialinternationalbank-bbd826",
+      "locationSet": {"include": ["eg"]},
       "tags": {
+        "amenity": "bank",
         "brand": "Commercial International Bank",
-        "brand:en": "Commercial International Bank",
         "brand:ar": "البنك التجاري الدولي",
+        "brand:en": "Commercial International Bank",
         "brand:wikidata": "Q5152506",
         "name": "Commercial International Bank",
-        "short_name:en": "CIB",
-        "name:en": "Commercial International Bank",
         "name:ar": "البنك التجاري الدولي",
-        "amenity": "bank"
+        "name:en": "Commercial International Bank",
+        "short_name:en": "CIB"
       }
     },
     {
@@ -11606,8 +11583,11 @@
     },
     {
       "displayName": "Scotiabank (non-Québec)",
-      "id": "scotiabank-b7a026",
-      "locationSet": {"include": ["001"]},
+      "id": "scotiabank-6d3a9f",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["ca-qc.geojson"]
+      },
       "matchNames": ["scotia"],
       "tags": {
         "amenity": "bank",
@@ -11618,8 +11598,10 @@
     },
     {
       "displayName": "Scotiabank (Québec)",
-      "id": "banquescotia-e1345b",
-      "locationSet": {"include": ["ca"]},
+      "id": "banquescotia-ff5d57",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
       "matchNames": ["scotia"],
       "tags": {
         "amenity": "bank",
@@ -15787,28 +15769,6 @@
       }
     },
     {
-      "displayName": "იშბანკი (საქართველო)",
-      "id": "isbank-293074",
-      "locationSet": {"include": ["ge"]},
-      "tags": {
-        "amenity": "bank",
-        "bic": "ISBKGE22",
-        "brand": "იშბანკი",
-        "brand:en": "IsBank",
-        "brand:ka": "იშბანკი",
-        "brand:ru": "ИшБанк",
-        "brand:tr": "İşBank",
-        "brand:wikidata": "Q909613",
-        "name": "იშბანკი",
-        "name:en": "IsBank",
-        "name:ka": "იშბანკი",
-        "name:ru": "ИшБанк",
-        "name:tr": "İşBank",
-        "operator": "სს იშბანკი საქართველო",
-        "operator:ka": "სს იშბანკი საქართველო"
-      }
-    },
-    {
       "displayName": "კრედო ბანკი",
       "id": "credobank-293074",
       "locationSet": {"include": ["ge"]},
@@ -16680,10 +16640,13 @@
         "brand": "بنك تونس العربي الدولي",
         "brand:ar": "بنك تونس العربي الدولي",
         "brand:en": "Arab International Bank of Tunisia",
+        "brand:fr": "Banque internationale arabe de Tunisie",
         "brand:wikidata": "Q690739",
         "name": "بنك تونس العربي الدولي",
         "name:ar": "بنك تونس العربي الدولي",
-        "name:en": "Arab International Bank of Tunisia"
+        "name:en": "Arab International Bank of Tunisia",
+        "name:fr": "Banque internationale arabe de Tunisie",
+        "short_name:fr": "BIAT"
       }
     },
     {
