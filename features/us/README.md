@@ -92,6 +92,7 @@ Areas of the United States targeted with a feature not using [ISO 3166-2:US](htt
 - [US-NV-Washoe_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-nv-washoe_county.geojson%22%5D%7D&referrer=nsi) - Washoe County, Nevada
 - [US-NY-New_York_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ny-new_york_city.geojson%22%5D%7D&referrer=nsi) - New York City
 - [US-OH-Cuyahoga_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-oh-cuyahoga_county.geojson%22%5D%7D&referrer=nsi) - Cuyahoga County, Ohio
+- [US-TX-Austin.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-tx-austin.geojson%22%5D%7D&referrer=nsi) - Austin, Texas
 
 Operating areas of entities in the United States targeted with a feature not using [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US)
 
