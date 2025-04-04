@@ -23,11 +23,11 @@
         "^((da|la|las|el|ristorante|zum|zur)\\s)",
         "^((gasthaus|gasthof|schwarzer)?\\s?(adler|krone|löwen|zur (linde|post)))$",
         "^(al dente|ali baba|adria|alte post|akropolis|amadeus|amici|amigos|aroma|artemis|asia|athen|athos|bahnhof|bamboo|bären|bella ?(vista|vita|napoli))$",
-        "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia)|casino|castello|comedor|comida china)$",
+        "^(belvedere|boathouse|the boathouse|brasserie|canteen|cantina|capri|carpe diem|casa\\s?(blanca|mia|nostra)|casino|castello|comedor|comida china)$",
         "^(china (buffet|city|express|garden|house|king|palace|star|town)|chinatown)$",
         "^(delphi|der grieche|deutsches haus|dhaba|dionysos|dolce vita|don camillo|dorfkrug|eden|europa|flamingo|frohsinn|fuji)$",
-        "^(golden (dragon|wok)|great wall|grüner baum|hellas|hirsch(en)?|hong kong|happy garden|hua han)$",
-        "^(indian palace|ichiban|il giardino|istanbul|italia|jade garden|jägerhof|yamato)$",
+        "^(ganesha|golden (dragon|wok)|great wall|grüner baum|hellas|hirsch(en)?|hong kong|happy garden|hua han)$",
+        "^(indian palace|ichiban|il (giardino|gusto)|istanbul|italia|jade garden|jägerhof|yamato)$",
         "^(kirchenwirt|koliba|kreta|kreuz|krone|kyoto|lamm|le (bistrot|patio))$",
         "^(l'ardoise|l'escale|le bistro|lemongrass|linde|lindenhof|little (italy|india)|los (amigos|arcos))$",
         "^(lotus|löwen|maharaja|mama lishe|mamma mia|mandarin|marco polo|marina|marmaris|mediterraneo|mensa|milano|mona lisa|mykonos|mythos)$",
@@ -271,6 +271,22 @@
         "cuisine": "american",
         "name": "Applebee's",
         "official_name": "Applebee's Neighborhood Grill & Bar"
+      }
+    },
+    {
+      "displayName": "Arabiata",
+      "id": "arabiata-5ada12",
+      "locationSet": {"include": ["eg"]},
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Arabiata",
+        "brand:ar": "أرابياتا",
+        "brand:en": "Arabiata",
+        "brand:wikidata": "Q133502046",
+        "cuisine": "sandwich",
+        "name": "Arabiata",
+        "name:ar": "أرابياتا",
+        "name:en": "Arabiata"
       }
     },
     {
@@ -1375,16 +1391,6 @@
         "brand:wikidata": "Q5045999",
         "cuisine": "italian",
         "name": "Carrabba's Italian Grill"
-      }
-    },
-    {
-      "displayName": "Casa Nostra",
-      "id": "casanostra-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Casa Nostra",
-        "name": "Casa Nostra"
       }
     },
     {
@@ -2743,16 +2749,6 @@
       }
     },
     {
-      "displayName": "Ganesha",
-      "id": "ganesha-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Ganesha",
-        "name": "Ganesha"
-      }
-    },
-    {
       "displayName": "Gator's Dockside",
       "id": "gatorsdockside-677281",
       "locationSet": {
@@ -3477,16 +3473,6 @@
       }
     },
     {
-      "displayName": "Il Gusto",
-      "id": "ilgusto-2fabb0",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "restaurant",
-        "brand": "Il Gusto",
-        "name": "Il Gusto"
-      }
-    },
-    {
       "displayName": "IL Патио",
       "id": "0aeb30-642268",
       "locationSet": {"include": ["ru"]},
@@ -3863,11 +3849,15 @@
     },
     {
       "displayName": "Kenny Rogers Roasters",
-      "id": "kennyrogersroasters-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "kennyrogersroasters-66fc2f",
+      "locationSet": {
+        "include": ["ae", "bn", "my", "ph"]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "Kenny Rogers Roasters",
+        "brand:wikidata": "Q6391200",
+        "cuisine": "chicken",
         "name": "Kenny Rogers Roasters"
       }
     },
@@ -4698,7 +4688,7 @@
       "tags": {
         "amenity": "restaurant",
         "brand": "MealTime Malatang",
-        "brand:wikidata": "Q108210279",
+        "brand:wikidata": "Q119856954",
         "cuisine": "chinese;malatang",
         "name": "MealTime Malatang"
       }
@@ -5887,11 +5877,13 @@
     },
     {
       "displayName": "Pinchos",
-      "id": "pinchos-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "pinchos-45c141",
+      "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "Pinchos",
+        "brand:wikidata": "Q42298558",
+        "cuisine": "tapas",
         "name": "Pinchos"
       }
     },
@@ -5933,8 +5925,11 @@
     },
     {
       "displayName": "Pizza Hut",
-      "id": "pizzahut-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "pizzahut-ce6bab",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn", "tw"]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "Pizza Hut",
@@ -8060,6 +8055,30 @@
       }
     },
     {
+      "displayName": "Yuen Kee Dumpling",
+      "id": "yuenkeedumpling-d5d7d8",
+      "locationSet": {"include": ["sg"]},
+      "matchNames": [
+        "yuanji dumpling",
+        "yuanjiyunjiao"
+      ],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "Yuen Kee Dumpling",
+        "brand:en": "Yuen Kee Dumpling",
+        "brand:wikidata": "Q123027117",
+        "brand:zh": "袁记云饺",
+        "brand:zh-Hans": "袁记云饺",
+        "brand:zh-Hant": "袁記雲餃",
+        "cuisine": "jiaozi",
+        "name": "Yuen Kee Dumpling",
+        "name:en": "Yuen Kee Dumpling",
+        "name:zh": "袁记云饺",
+        "name:zh-Hans": "袁记云饺",
+        "name:zh-Hant": "袁記雲餃"
+      }
+    },
+    {
       "displayName": "Yunshang Rice Noodle",
       "id": "yunshangricenoodle-85c92c",
       "locationSet": {"include": ["ca", "us"]},
@@ -9048,10 +9067,10 @@
     },
     {
       "displayName": "争鲜",
-      "id": "sushiexpress-22b83d",
+      "id": "sushiexpress-2b8b0b",
       "locationSet": {
         "include": ["cn"],
-        "exclude": ["hk"]
+        "exclude": ["hk", "mo"]
       },
       "tags": {
         "amenity": "restaurant",
@@ -9412,11 +9431,12 @@
     },
     {
       "displayName": "増田屋",
-      "id": "6250cb-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "6250cb-36ca8e",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "増田屋",
+        "cuisine": "soba",
         "name": "増田屋"
       }
     },
@@ -9511,11 +9531,13 @@
     },
     {
       "displayName": "大埔鐵板燒",
-      "id": "593b05-2fabb0",
-      "locationSet": {"include": ["001"]},
+      "id": "593b05-aafd63",
+      "locationSet": {"include": ["tw"]},
       "tags": {
         "amenity": "restaurant",
         "brand": "大埔鐵板燒",
+        "brand:wikidata": "Q108541437",
+        "cuisine": "teppanyaki",
         "name": "大埔鐵板燒"
       }
     },
@@ -10815,9 +10837,32 @@
       }
     },
     {
+      "displayName": "袁記雲餃 Yuen Kee Dumpling",
+      "id": "yuenkeedumpling-edf541",
+      "locationSet": {"include": ["hk", "mo"]},
+      "matchNames": [
+        "yuanji dumpling",
+        "yuanjiyunjiao"
+      ],
+      "tags": {
+        "amenity": "restaurant",
+        "brand": "袁記雲餃 Yuen Kee Dumpling",
+        "brand:en": "Yuen Kee Dumpling",
+        "brand:wikidata": "Q123027117",
+        "brand:zh": "袁記雲餃",
+        "cuisine": "jiaozi",
+        "name": "袁記雲餃 Yuen Kee Dumpling",
+        "name:en": "Yuen Kee Dumpling",
+        "name:zh": "袁記雲餃"
+      }
+    },
+    {
       "displayName": "袁记云饺",
-      "id": "yuanjiyunjiao-0a8e9b",
-      "locationSet": {"include": ["cn"]},
+      "id": "yuanjiyunjiao-2b8b0b",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
       "tags": {
         "amenity": "restaurant",
         "brand": "袁记云饺",

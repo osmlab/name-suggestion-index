@@ -241,6 +241,7 @@
       "locationSet": {
         "include": ["us-al.geojson"]
       },
+      "matchNames": ["alabama power company"],
       "tags": {
         "operator": "Alabama Power",
         "operator:wikidata": "Q4705296",
@@ -248,8 +249,9 @@
       }
     },
     {
-      "displayName": "ALDI (ALDI Nord group)",
+      "displayName": "Aldi (Aldi Nord group)",
       "id": "aldi-fd3a93",
+      "issues": [10738],
       "locationSet": {
         "include": [
           "be",
@@ -263,16 +265,17 @@
         ]
       },
       "matchNames": ["aldi france", "aldi nord"],
-      "note": "countries in which ALDI Nord group is active",
+      "note": "countries in which Aldi Nord group is active",
       "tags": {
-        "operator": "ALDI",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171373",
         "power": "generator"
       }
     },
     {
-      "displayName": "ALDI (ALDI Süd group)",
+      "displayName": "Aldi (Aldi Süd group)",
       "id": "aldi-2fe7a2",
+      "issues": [10738],
       "locationSet": {
         "include": [
           "au",
@@ -292,38 +295,40 @@
         "aldi uk",
         "aldi usa"
       ],
-      "note": "countries in which ALDI Süd group is active",
+      "note": "countries in which Aldi Süd group is active",
       "tags": {
-        "operator": "ALDI",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171672",
         "power": "generator"
       }
     },
     {
-      "displayName": "ALDI Nord (Deutschland)",
+      "displayName": "Aldi Nord (Deutschland)",
       "id": "aldinord-8532fd",
+      "issues": [10738],
       "locationSet": {
         "include": ["de"],
         "exclude": ["aldi-sued.geojson"]
       },
       "matchNames": ["aldi gmbh & co. kg"],
-      "note": "German ALDI Nord branding",
+      "note": "German Aldi Nord branding",
       "tags": {
-        "operator": "ALDI Nord",
+        "operator": "Aldi Nord",
         "operator:wikidata": "Q41171373",
         "power": "generator"
       }
     },
     {
-      "displayName": "ALDI Süd (Deutschland)",
+      "displayName": "Aldi Süd (Deutschland)",
       "id": "aldisud-63ded7",
+      "issues": [10738],
       "locationSet": {
         "include": ["aldi-sued.geojson"]
       },
       "matchNames": ["aldi gmbh & co. kg"],
-      "note": "German ALDI Süd branding",
+      "note": "German Aldi Süd branding",
       "tags": {
-        "operator": "ALDI Süd",
+        "operator": "Aldi Süd",
         "operator:wikidata": "Q41171672",
         "power": "generator"
       }
@@ -706,9 +711,9 @@
     },
     {
       "displayName": "Austin Energy",
-      "id": "austinenergy-546c7b",
+      "id": "austinenergy-ccd1df",
       "locationSet": {
-        "include": ["us-tx.geojson"]
+        "include": ["us-tx-austin.geojson"]
       },
       "tags": {
         "operator": "Austin Energy",
@@ -1232,20 +1237,12 @@
       }
     },
     {
-      "displayName": "CABEOLICA",
+      "displayName": "Cabeolica",
       "id": "cabeolica-6e1785",
       "locationSet": {"include": ["cv"]},
+      "matchNames": ["caboelica"],
       "tags": {
-        "operator": "CABEOLICA",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Caboelica",
-      "id": "caboelica-6e1785",
-      "locationSet": {"include": ["cv"]},
-      "tags": {
-        "operator": "Caboelica",
+        "operator": "Cabeolica",
         "power": "generator"
       }
     },
@@ -2386,16 +2383,6 @@
       }
     },
     {
-      "displayName": "EGAT",
-      "id": "egat-4362ae",
-      "locationSet": {"include": ["th"]},
-      "tags": {
-        "operator": "EGAT",
-        "operator:wikidata": "Q3050569",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "Einbecker Brauhaus AG",
       "id": "einbeckerbrauhausag-b8ae25",
       "locationSet": {"include": ["de"]},
@@ -3031,13 +3018,13 @@
       }
     },
     {
-      "displayName": "entega",
+      "displayName": "Entega",
       "id": "entega-57cee2",
       "locationSet": {
         "include": ["de-he.geojson"]
       },
       "tags": {
-        "operator": "entega",
+        "operator": "Entega",
         "operator:wikidata": "Q1563486",
         "power": "generator"
       }
@@ -5520,9 +5507,10 @@
     },
     {
       "displayName": "MDU",
-      "id": "mdu-c40494",
+      "id": "mdu-1ae519",
       "locationSet": {
         "include": [
+          "us-mt.geojson",
           "us-nd.geojson",
           "us-sd.geojson"
         ]
@@ -5744,11 +5732,12 @@
       }
     },
     {
-      "displayName": "MVV Energie AG",
-      "id": "mvvenergieag-b8ae25",
+      "displayName": "MVV Energie",
+      "id": "mvvenergie-b8ae25",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["mvv energie ag"],
       "tags": {
-        "operator": "MVV Energie AG",
+        "operator": "MVV Energie",
         "operator:wikidata": "Q1882061",
         "power": "generator"
       }
@@ -6474,6 +6463,17 @@
       }
     },
     {
+      "displayName": "Perusahaan Listrik Negara",
+      "id": "perusahaanlistriknegara-e605d3",
+      "locationSet": {"include": ["id"]},
+      "tags": {
+        "operator": "Perusahaan Listrik Negara",
+        "operator:short": "PLN",
+        "operator:wikidata": "Q4201636",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "PES Madero",
       "id": "pesmadero-ae5946",
       "locationSet": {"include": ["es"]},
@@ -6553,16 +6553,6 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "operator": "Planet energy GmbH",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "PLN",
-      "id": "pln-e605d3",
-      "locationSet": {"include": ["id"]},
-      "tags": {
-        "operator": "PLN",
-        "operator:wikidata": "Q4201636",
         "power": "generator"
       }
     },
@@ -7263,11 +7253,12 @@
       }
     },
     {
-      "displayName": "Saudi Electricity",
-      "id": "saudielectricity-ab52f6",
+      "displayName": "Saudi Electricity Company",
+      "id": "saudielectricitycompany-ab52f6",
       "locationSet": {"include": ["sa"]},
+      "matchNames": ["saudi electricity"],
       "tags": {
-        "operator": "Saudi Electricity",
+        "operator": "Saudi Electricity Company",
         "operator:wikidata": "Q12188903",
         "power": "generator"
       }
@@ -9715,6 +9706,20 @@
       "locationSet": {"include": ["tn"]},
       "tags": {
         "operator": "الشركة التونسية للكهرباء والغاز",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",
+      "id": "electricitygeneratingauthorityofthailand-4362ae",
+      "locationSet": {"include": ["th"]},
+      "matchNames": ["egat"],
+      "tags": {
+        "operator": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",
+        "operator:en": "Electricity Generating Authority of Thailand",
+        "operator:short": "กฟผ.",
+        "operator:th": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",
+        "operator:wikidata": "Q3050569",
         "power": "generator"
       }
     },

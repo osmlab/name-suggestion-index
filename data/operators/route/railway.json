@@ -80,8 +80,11 @@
     },
     {
       "displayName": "Canadian National Railway",
-      "id": "canadiannationalrailway-bfb76c",
-      "locationSet": {"include": ["ca", "conus"]},
+      "id": "canadiannationalrailway-207bfd",
+      "locationSet": {
+        "include": ["ca", "conus"],
+        "exclude": ["ca-qc.geojson"]
+      },
       "matchNames": [
         "canadian national",
         "cn",
@@ -96,9 +99,10 @@
     },
     {
       "displayName": "Canadian Pacific Kansas City",
-      "id": "canadianpacifickansascity-e8b07c",
+      "id": "canadianpacifickansascity-d21fbf",
       "locationSet": {
-        "include": ["ca", "conus", "mx"]
+        "include": ["ca", "conus", "mx"],
+        "exclude": ["ca-qc.geojson"]
       },
       "matchNames": [
         "canadian pacific",
@@ -115,6 +119,42 @@
       ],
       "tags": {
         "operator": "Canadian Pacific Kansas City",
+        "operator:wikidata": "Q117706368",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "Canadien National",
+      "id": "canadiennational-1c1189",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "matchNames": [
+        "canadian national",
+        "cn",
+        "cn rail",
+        "cn railway"
+      ],
+      "tags": {
+        "operator": "Canadien National",
+        "operator:wikidata": "Q624798",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "Canadien Pacifique Kansas City",
+      "id": "canadienpacifiquekansascity-1c1189",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "matchNames": [
+        "canadian pacific",
+        "canadian pacific railway",
+        "cp",
+        "cpkc"
+      ],
+      "tags": {
+        "operator": "Canadien Pacifique Kansas City",
         "operator:wikidata": "Q117706368",
         "route": "railway"
       }
@@ -298,6 +338,8 @@
       "locationSet": {"include": ["ie"]},
       "tags": {
         "operator": "Irish Rail",
+        "operator:en": "Irish Rail",
+        "operator:ga": "Iarnród Éireann",
         "operator:wikidata": "Q73043",
         "route": "railway"
       }

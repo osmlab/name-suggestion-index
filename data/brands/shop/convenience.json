@@ -180,8 +180,8 @@
     },
     {
       "displayName": "A101",
-      "id": "a101-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "a101-62eaab",
+      "locationSet": {"include": ["tr"]},
       "tags": {
         "brand": "A101",
         "name": "A101",
@@ -1262,8 +1262,11 @@
     },
     {
       "displayName": "Circle K",
-      "id": "circlek-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "circlek-04f01c",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn"]
+      },
       "matchNames": [
         "circle k canada",
         "mac's",
@@ -2034,9 +2037,19 @@
       }
     },
     {
-      "displayName": "Express Market",
-      "id": "expressmarket-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Express Market (Lietuva)",
+      "id": "expressmarket-64a6c9",
+      "locationSet": {"include": ["lt"]},
+      "tags": {
+        "brand": "Express Market",
+        "name": "Express Market",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Express Market (Ελλάδα)",
+      "id": "expressmarket-edef5f",
+      "locationSet": {"include": ["gr"]},
       "tags": {
         "brand": "Express Market",
         "name": "Express Market",
@@ -2120,8 +2133,8 @@
     },
     {
       "displayName": "Fas Mart",
-      "id": "fasmart-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "fasmart-f1e40b",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Fas Mart",
         "name": "Fas Mart",
@@ -2158,8 +2171,8 @@
     },
     {
       "displayName": "Flying J",
-      "id": "flyingj-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "flyingj-16ec4d",
+      "locationSet": {"include": ["ca", "us"]},
       "tags": {
         "brand": "Flying J",
         "name": "Flying J",
@@ -2322,6 +2335,7 @@
       "displayName": "Full",
       "id": "full-4c351f",
       "locationSet": {"include": ["ar"]},
+      "matchTags": ["amenity/cafe"],
       "tags": {
         "brand": "Full",
         "brand:wikidata": "Q126681765",
@@ -3325,6 +3339,33 @@
       }
     },
     {
+      "displayName": "Lukoil",
+      "id": "lukoil-1ce012",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": [
+          "bg",
+          "by",
+          "ge",
+          "kz",
+          "mk",
+          "ru",
+          "uz"
+        ]
+      },
+      "matchNames": [
+        "lukoil minimarket",
+        "lukoil shop",
+        "lukoil trgovina"
+      ],
+      "tags": {
+        "brand": "Lukoil",
+        "brand:wikidata": "Q329347",
+        "name": "Lukoil",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Lukoil Mini-Mart",
       "id": "minimart-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -3419,10 +3460,17 @@
     },
     {
       "displayName": "Magnit",
-      "id": "magnit-6b6bf4",
+      "id": "magnit-f25a47",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["ru"]
+        "exclude": [
+          "bg",
+          "by",
+          "kg",
+          "kz",
+          "ru",
+          "uz"
+        ]
       },
       "matchNames": ["магнит", "магнит у дома"],
       "tags": {
@@ -4440,8 +4488,8 @@
     },
     {
       "displayName": "Phillips 66",
-      "id": "phillips66-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "phillips66-f1e40b",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Phillips 66",
         "brand:wikidata": "Q1656230",
@@ -4544,8 +4592,8 @@
     },
     {
       "displayName": "Puremart",
-      "id": "puremart-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "puremart-fb2210",
+      "locationSet": {"include": ["ph"]},
       "tags": {
         "brand": "Puremart",
         "name": "Puremart",
@@ -4702,10 +4750,11 @@
     },
     {
       "displayName": "Rebel",
-      "id": "rebel-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "rebel-f1e40b",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Rebel",
+        "brand:wikidata": "Q131870508",
         "name": "Rebel",
         "shop": "convenience"
       }
@@ -5122,10 +5171,11 @@
     },
     {
       "displayName": "Sinclair",
-      "id": "sinclair-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "sinclair-f1e40b",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Sinclair",
+        "brand:wikidata": "Q1290900",
         "name": "Sinclair",
         "shop": "convenience"
       }
@@ -5289,10 +5339,16 @@
     },
     {
       "displayName": "Spinx",
-      "id": "spinx-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "spinx-4d8292",
+      "locationSet": {
+        "include": [
+          "us-nc.geojson",
+          "us-sc.geojson"
+        ]
+      },
       "tags": {
         "brand": "Spinx",
+        "brand:wikidata": "Q121851498",
         "name": "Spinx",
         "shop": "convenience"
       }
@@ -5357,7 +5413,9 @@
     {
       "displayName": "Stop Cafe",
       "id": "stopcafe-4d6b4b",
+      "issues": [10666],
       "locationSet": {"include": ["001"]},
+      "note": "related to Q130868061; see linked issue",
       "tags": {
         "brand": "Stop Cafe",
         "name": "Stop Cafe",
@@ -6045,6 +6103,17 @@
       }
     },
     {
+      "displayName": "Waypoint Convenience",
+      "id": "waypointconvenience-eea72f",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "brand": "Waypoint Convenience",
+        "brand:wikidata": "Q121289008",
+        "name": "Waypoint Convenience",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Weigel's",
       "id": "weigels-f1e40b",
       "locationSet": {"include": ["us"]},
@@ -6451,8 +6520,10 @@
     },
     {
       "displayName": "Восток",
-      "id": "e404bb-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "e404bb-7f3189",
+      "locationSet": {
+        "include": ["kg", "kz", "ru"]
+      },
       "tags": {
         "brand": "Восток",
         "name": "Восток",
@@ -6611,8 +6682,10 @@
     },
     {
       "displayName": "Калина",
-      "id": "a5ede8-4d6b4b",
-      "locationSet": {"include": ["001"]},
+      "id": "a5ede8-c281b4",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Калина",
         "name": "Калина",
@@ -6769,11 +6842,11 @@
     },
     {
       "displayName": "Лукойл",
-      "id": "lukoil-bd0db4",
+      "id": "lukoil-5a849f",
       "locationSet": {
-        "include": ["001"],
-        "exclude": ["us"]
+        "include": ["by", "kz", "mk", "ru", "uz"]
       },
+      "matchNames": ["лукоил"],
       "tags": {
         "brand": "Лукойл",
         "brand:en": "Lukoil",
@@ -6786,9 +6859,34 @@
       }
     },
     {
-      "displayName": "Магнит (России)",
-      "id": "magnit-e33fbc",
-      "locationSet": {"include": ["ru"]},
+      "displayName": "Лукойл (България)",
+      "id": "lukoil-854be4",
+      "locationSet": {"include": ["bg"]},
+      "matchNames": ["лукоил"],
+      "tags": {
+        "brand": "Лукойл",
+        "brand:bg": "Лукойл",
+        "brand:en": "Lukoil",
+        "brand:wikidata": "Q329347",
+        "name": "Лукойл",
+        "name:bg": "Лукойл",
+        "name:en": "Lukoil",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Магнит",
+      "id": "magnit-4e470f",
+      "locationSet": {
+        "include": [
+          "bg",
+          "by",
+          "kg",
+          "kz",
+          "ru",
+          "uz"
+        ]
+      },
       "matchNames": ["магнит у дома"],
       "tags": {
         "brand": "Магнит",
@@ -7480,6 +7578,23 @@
       }
     },
     {
+      "displayName": "ლუკოილი",
+      "id": "lukoil-3cb7c4",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "brand": "ლუკოილი",
+        "brand:en": "Lukoil",
+        "brand:ka": "ლუკოილი",
+        "brand:ru": "Лукойл",
+        "brand:wikidata": "Q329347",
+        "name": "ლუკოილი",
+        "name:en": "Lukoil",
+        "name:ka": "ლუკოილი",
+        "name:ru": "Лукойл",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "მაგნიტი",
       "id": "magniti-3cb7c4",
       "locationSet": {"include": ["ge"]},
@@ -7573,6 +7688,7 @@
       "locationSet": {"include": ["ge"]},
       "tags": {
         "brand": "სპარი",
+        "brand:en": "Spar",
         "brand:ka": "სპარი",
         "brand:wikidata": "Q610492",
         "name": "სპარი",

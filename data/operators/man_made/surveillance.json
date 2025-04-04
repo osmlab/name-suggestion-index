@@ -3,14 +3,14 @@
     "path": "operators/man_made/surveillance",
     "exclude": {
       "generic": [
+        "^(apartment|embassy)$",
+        "^(city|mairie)$",
+        "^(civilians|private owner)$",
+        "^(federale? politie|police fédérale)$",
+        "^(govt|overheid)$",
+        "^(house owner|pemilik rumah)$",
         "^\\(police dept\\/owner\\)$",
-        "^apartment|embassy$",
-        "^city|mairie$",
-        "^civilians|private owner$",
         "^domaine public$",
-        "^federale? politie|police fédérale$",
-        "^govt|overheid$",
-        "^house owner|pemilik rumah$",
         "^městská policie$",
         "^municipalité$",
         "^poli(ce|zei|smyndigheten)$",
@@ -20,11 +20,11 @@
         "^большой брат$"
       ],
       "named": [
+        "^(concordia|gym10|torre asia)$",
         "^(cvag|decathlon|deutsche bundesbank|dm|edeka|fahrrad xxl|media markt|netto|rewe|rossmann|saturn|selgros|sparkasse chemnitz|thrainer|vita-center)\\?$",
         "^[34]$",
         "^act government/australian federal police$",
         "^cfl / belval$",
-        "^concordia|gym10|torre asia$",
         "^flock safety$",
         "^opera-ulb$",
         "^priv(ate|é|athaus)$",
@@ -120,8 +120,9 @@
       }
     },
     {
-      "displayName": "ALDI (ALDI Nord group)",
+      "displayName": "Aldi (Aldi Nord group)",
       "id": "aldi-c81adf",
+      "issues": [10738],
       "locationSet": {
         "include": [
           "be",
@@ -137,13 +138,14 @@
       "matchNames": ["aldi france", "aldi nord"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "ALDI",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171373"
       }
     },
     {
-      "displayName": "ALDI (ALDI Süd group)",
+      "displayName": "Aldi (Aldi Süd group)",
       "id": "aldi-39cd69",
+      "issues": [10738],
       "locationSet": {
         "include": [
           "au",
@@ -165,13 +167,14 @@
       ],
       "tags": {
         "man_made": "surveillance",
-        "operator": "ALDI",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171672"
       }
     },
     {
-      "displayName": "ALDI Nord (Deutschland)",
+      "displayName": "Aldi Nord (Deutschland)",
       "id": "aldinord-8d575f",
+      "issues": [10738],
       "locationSet": {
         "include": ["de"],
         "exclude": ["aldi-sued.geojson"]
@@ -179,20 +182,21 @@
       "matchNames": ["aldi gmbh & co. kg"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "ALDI Nord",
+        "operator": "Aldi Nord",
         "operator:wikidata": "Q41171373"
       }
     },
     {
-      "displayName": "ALDI Süd (Deutschland)",
+      "displayName": "Aldi Süd (Deutschland)",
       "id": "aldisud-c27ec5",
+      "issues": [10738],
       "locationSet": {
         "include": ["aldi-sued.geojson"]
       },
       "matchNames": ["aldi gmbh & co. kg"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "ALDI Süd",
+        "operator": "Aldi Süd",
         "operator:wikidata": "Q41171672"
       }
     },
@@ -1562,10 +1566,22 @@
       "displayName": "Deutsche Telekom AG",
       "id": "deutschetelekomag-2b1420",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["deutsche telekom"],
       "tags": {
         "man_made": "surveillance",
         "operator": "Deutsche Telekom AG",
         "operator:wikidata": "Q9396"
+      }
+    },
+    {
+      "displayName": "Deutsches Zentrum für Luft und Raumfahrt",
+      "id": "deutscheszentrumfurluftundraumfahrt-2b1420",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Deutsches Zentrum für Luft und Raumfahrt",
+        "operator:short": "DLR",
+        "operator:wikidata": "Q157332"
       }
     },
     {
@@ -1611,16 +1627,6 @@
         "man_made": "surveillance",
         "operator": "Divia",
         "operator:wikidata": "Q3537946"
-      }
-    },
-    {
-      "displayName": "DLR",
-      "id": "dlr-2b1420",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "DLR",
-        "operator:wikidata": "Q157332"
       }
     },
     {
@@ -2068,6 +2074,17 @@
       }
     },
     {
+      "displayName": "Hamburger Verkehrsverbund",
+      "id": "hamburgerverkehrsverbund-2b1420",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Hamburger Verkehrsverbund",
+        "operator:short": "HVV",
+        "operator:wikidata": "Q896916"
+      }
+    },
+    {
       "displayName": "Hampton Police Division",
       "id": "hamptonpolicedivision-25e72c",
       "locationSet": {
@@ -2208,17 +2225,6 @@
         "man_made": "surveillance",
         "operator": "Huntington Beach Police Department",
         "operator:wikidata": "Q120751700"
-      }
-    },
-    {
-      "displayName": "HVV",
-      "id": "hamburgerverkehrsverbund-2b1420",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Hamburger Verkehrsverbund",
-        "operator:short": "HVV",
-        "operator:wikidata": "Q896916"
       }
     },
     {
@@ -5066,6 +5072,9 @@
       "locationSet": {
         "include": ["br-sc.geojson"]
       },
+      "matchNames": [
+        "polícia militar de santa catarina"
+      ],
       "tags": {
         "man_made": "surveillance",
         "operator": "Polícia Militar do Estado de Santa Catarina",
@@ -5084,13 +5093,13 @@
       }
     },
     {
-      "displayName": "Policie České Republiky",
+      "displayName": "Policie České republiky",
       "id": "policieceskerepubliky-5f01ff",
       "locationSet": {"include": ["cz"]},
       "matchNames": ["policie čr"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Policie České Republiky",
+        "operator": "Policie České republiky",
         "operator:wikidata": "Q1135262"
       }
     },
@@ -5127,8 +5136,10 @@
     },
     {
       "displayName": "Polizei Aachen",
-      "id": "polizeiaachen-2b1420",
-      "locationSet": {"include": ["de"]},
+      "id": "polizeiaachen-bddc17",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Polizei Aachen"
@@ -5386,6 +5397,7 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Rhein-Neckar-Verkehr",
+        "operator:short": "RNV",
         "operator:wikidata": "Q1650863"
       }
     },
@@ -5519,6 +5531,7 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "San Bernardino County Sheriff's Department",
+        "operator:short": "SBSD",
         "operator:wikidata": "Q7413430"
       }
     },
@@ -5836,6 +5849,17 @@
       }
     },
     {
+      "displayName": "Správa železnic",
+      "id": "spravazeleznic-5f01ff",
+      "locationSet": {"include": ["cz"]},
+      "matchNames": ["sždc"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Správa železnic",
+        "operator:wikidata": "Q1848025"
+      }
+    },
+    {
       "displayName": "Springfield Police Department",
       "id": "springfieldpolicedepartment-8cb4a4",
       "locationSet": {
@@ -6008,6 +6032,19 @@
       }
     },
     {
+      "displayName": "Stadtwerke Gießen",
+      "id": "stadtwerkegiessen-011884",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Stadtwerke Gießen",
+        "operator:short": "SWG",
+        "operator:wikidata": "Q15848844"
+      }
+    },
+    {
       "displayName": "Stadtwerke Heilbronn GmbH",
       "id": "stadtwerkeheilbronngmbh-c3b0f7",
       "locationSet": {
@@ -6166,18 +6203,6 @@
       }
     },
     {
-      "displayName": "SWG",
-      "id": "swg-011884",
-      "locationSet": {
-        "include": ["de-he.geojson"]
-      },
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "SWG",
-        "operator:wikidata": "Q15848844"
-      }
-    },
-    {
       "displayName": "Syracuse Police Department",
       "id": "syracusepolicedepartment-e862e8",
       "locationSet": {
@@ -6186,16 +6211,6 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Syracuse Police Department"
-      }
-    },
-    {
-      "displayName": "SŽDC",
-      "id": "szdc-5f01ff",
-      "locationSet": {"include": ["cz"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "SŽDC",
-        "operator:wikidata": "Q1848025"
       }
     },
     {

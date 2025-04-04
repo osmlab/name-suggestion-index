@@ -17,6 +17,7 @@
         "^پمپ (بنزین|گاز)$",
         "^گازوئیل$",
         "^محط[هة] وقود$",
+        "^وقود$",
         "^加(气|汽|氣)站$",
         "^加油站$"
       ],
@@ -1598,13 +1599,12 @@
         ]
       },
       "matchNames": [
-        "costco",
         "costco gas",
         "costco wholesale"
       ],
       "tags": {
         "amenity": "fuel",
-        "brand": "Costco Gasoline",
+        "brand": "Costco",
         "brand:wikidata": "Q715583",
         "name": "Costco Gasoline"
       }
@@ -2720,8 +2720,8 @@
     },
     {
       "displayName": "Gega Oil",
-      "id": "gegaoil-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "gegaoil-0abec4",
+      "locationSet": {"include": ["al"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Gega Oil",
@@ -2755,12 +2755,32 @@
     },
     {
       "displayName": "Giant (Carlisle)",
-      "id": "giant-c5cf43",
-      "locationSet": {"include": ["us"]},
+      "id": "giant-364230",
+      "locationSet": {
+        "include": ["us-pa.geojson"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "Giant",
         "brand:wikidata": "Q5558332",
+        "name": "Giant"
+      }
+    },
+    {
+      "displayName": "Giant (Landover)",
+      "id": "giant-e24d9e",
+      "locationSet": {
+        "include": [
+          "us-dc.geojson",
+          "us-de.geojson",
+          "us-md.geojson",
+          "us-va.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Giant",
+        "brand:wikidata": "Q5558336",
         "name": "Giant"
       }
     },
@@ -3007,6 +3027,7 @@
       "displayName": "Harnois",
       "id": "harnois-04874d",
       "locationSet": {"include": ["ca"]},
+      "matchNames": ["harnois énergies"],
       "tags": {
         "amenity": "fuel",
         "brand": "Harnois",
@@ -3825,10 +3846,10 @@
     },
     {
       "displayName": "Lukoil",
-      "id": "lukoil-ca892b",
+      "id": "lukoil-4cd09c",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["bg", "by", "kz", "ru"]
+        "exclude": ["bg", "by", "ge", "kz", "ru"]
       },
       "tags": {
         "amenity": "fuel",
@@ -4027,6 +4048,21 @@
         "brand": "Migrol",
         "brand:wikidata": "Q1747771",
         "name": "Migrol"
+      }
+    },
+    {
+      "displayName": "Misr Petroleum",
+      "id": "misrpetroleum-c6c951",
+      "locationSet": {"include": ["eg"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Misr Petroleum",
+        "brand:ar": "مصر للبترول",
+        "brand:en": "Misr Petroleum",
+        "brand:wikidata": "Q10982617",
+        "name": "Misr Petroleum",
+        "name:ar": "مصر للبترول",
+        "name:en": "Misr Petroleum"
       }
     },
     {
@@ -5078,21 +5114,12 @@
         "include": ["001"],
         "exclude": ["pl"]
       },
+      "matchNames": ["ptt station"],
       "tags": {
         "amenity": "fuel",
         "brand": "PTT",
         "brand:wikidata": "Q1810389",
         "name": "PTT"
-      }
-    },
-    {
-      "displayName": "PTT Station",
-      "id": "pttstation-b3d110",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "PTT Station",
-        "name": "PTT Station"
       }
     },
     {
@@ -5415,6 +5442,17 @@
       }
     },
     {
+      "displayName": "Road Ranger",
+      "id": "roadranger-c5cf43",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Road Ranger",
+        "brand:wikidata": "Q7339377",
+        "name": "Road Ranger"
+      }
+    },
+    {
       "displayName": "RodOil",
       "id": "rodoil-c14748",
       "locationSet": {"include": ["br"]},
@@ -5628,10 +5666,18 @@
     },
     {
       "displayName": "Shell",
-      "id": "shell-00679c",
+      "id": "shell-e657ec",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["jp"]
+        "exclude": [
+          "eg",
+          "jp",
+          "ma",
+          "om",
+          "pk",
+          "th",
+          "tn"
+        ]
       },
       "matchNames": [
         "coles",
@@ -6174,6 +6220,17 @@
         "brand": "Tango",
         "brand:wikidata": "Q125867683",
         "name": "Tango"
+      }
+    },
+    {
+      "displayName": "Tank Ono",
+      "id": "tankono-45c895",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Tank Ono",
+        "brand:wikidata": "Q2392813",
+        "name": "Tank Ono"
       }
     },
     {
@@ -6754,8 +6811,8 @@
     },
     {
       "displayName": "Uno Fuel",
-      "id": "unofuel-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "unofuel-289efc",
+      "locationSet": {"include": ["ph"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Uno Fuel",
@@ -7945,8 +8002,8 @@
     },
     {
       "displayName": "Ֆլեշ",
-      "id": "7a81d4-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "7a81d4-f3a579",
+      "locationSet": {"include": ["am"]},
       "tags": {
         "amenity": "fuel",
         "brand": "Ֆլեշ",
@@ -8303,16 +8360,6 @@
         "amenity": "fuel",
         "brand": "نفطال",
         "name": "نفطال"
-      }
-    },
-    {
-      "displayName": "وقود",
-      "id": "a546fc-b3d110",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "وقود",
-        "name": "وقود"
       }
     },
     {

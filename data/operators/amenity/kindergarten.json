@@ -3,12 +3,11 @@
     "path": "operators/amenity/kindergarten",
     "exclude": {
       "generic": [
+        "^(evangelische|katholische) kirche(ngemeinde)?$",
         "^(幼儿园|托儿所)$",
         "^association$",
         "^county government$",
-        "^evangelische kirche(|ngemeinde)$",
         "^gmina$",
-        "^katholische kirche(|ngemeinde)$",
         "^kindergar(d|t)en$",
         "^montessori$",
         "^民間$"
@@ -90,7 +89,7 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "Arbeiterwohlfahrt Kreisverband Düren e. V.",
-        "operator:type": "association"
+        "operator:type": "charitable"
       }
     },
     {
@@ -120,15 +119,18 @@
       }
     },
     {
-      "displayName": "AWO Regionalverband Rhein-Erft & Euskirchen e.V.",
-      "id": "aworegionalverbandrheinerftandeuskirchenev-76bfc3",
+      "displayName": "AWO Regionalverband Rhein-Erft & Euskirchen",
+      "id": "aworegionalverbandrheinerftandeuskirchen-76bfc3",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": [
+        "awo regionalverband rhein-erft & euskirchen e.v."
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "AWO Regionalverband Rhein-Erft & Euskirchen e.V.",
-        "operator:type": "ngo",
+        "operator": "AWO Regionalverband Rhein-Erft & Euskirchen",
+        "operator:type": "charitable",
         "operator:wikidata": "Q130139109"
       }
     },
@@ -191,15 +193,19 @@
       }
     },
     {
-      "displayName": "BKJ Betreungseinrichtungen für Kinder und Jugendliche der Stadt Eschweiler / AÖR",
-      "id": "bkjbetreungseinrichtungenfurkinderundjugendlichederstadteschweileraor-76bfc3",
+      "displayName": "BKJ Eschweiler",
+      "id": "bkjeschweiler-76bfc3",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": [
+        "bkj betreungseinrichtungen für kinder und jugendliche der stadt eschweiler / aör"
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "BKJ Betreungseinrichtungen für Kinder und Jugendliche der Stadt Eschweiler / AÖR",
-        "operator:type": "private"
+        "operator": "BKJ Eschweiler",
+        "operator:type": "public",
+        "operator:wikidata": "Q133799884"
       }
     },
     {
@@ -217,14 +223,17 @@
       }
     },
     {
-      "displayName": "Caritasverband Dortmund e.V.",
-      "id": "caritasverbanddortmundev-76bfc3",
+      "displayName": "Caritasverband Dortmund",
+      "id": "caritasverbanddortmund-76bfc3",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": [
+        "caritasverband dortmund e.v."
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Caritasverband Dortmund e.V.",
+        "operator": "Caritasverband Dortmund",
         "operator:type": "charitable",
         "operator:wikidata": "Q130140255"
       }
@@ -300,28 +309,35 @@
       }
     },
     {
-      "displayName": "Denk mit! Kinderbetreuungseinrichtungen GmbH & Co. KG",
-      "id": "denkmitkinderbetreuungseinrichtungengmbhandcokg-fd062c",
+      "displayName": "Denk mit! Kinderbetreuungseinrichtungen",
+      "id": "denkmitkinderbetreuungseinrichtungen-fd062c",
       "locationSet": {
         "include": ["de-by.geojson"]
       },
+      "matchNames": [
+        "denk mit! kinderbetreuungseinrichtungen gmbh & co. kg"
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Denk mit! Kinderbetreuungseinrichtungen GmbH & Co. KG",
+        "operator": "Denk mit! Kinderbetreuungseinrichtungen",
         "operator:type": "private",
         "operator:wikidata": "Q130141041"
       }
     },
     {
-      "displayName": "Deutscher Kinderschutzbund Ortsverband Essen e.V.",
-      "id": "deutscherkinderschutzbundortsverbandessenev-76bfc3",
+      "displayName": "Deutscher Kinderschutzbund Ortsverband Essen",
+      "id": "deutscherkinderschutzbundortsverbandessen-76bfc3",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": [
+        "deutscher kinderschutzbund ortsverband essen e.v."
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Deutscher Kinderschutzbund Ortsverband Essen e.V.",
-        "operator:type": "private"
+        "operator": "Deutscher Kinderschutzbund Ortsverband Essen",
+        "operator:type": "private",
+        "operator:wikidata": "Q133799977"
       }
     },
     {
@@ -333,18 +349,24 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "Diakoniewerk Essen",
-        "operator:type": "private",
+        "operator:type": "charitable",
         "operator:wikidata": "Q1208293"
       }
     },
     {
-      "displayName": "Diakonisches Werk – Stadtmission Bayreuth e. V.",
-      "id": "diakonischeswerkstadtmissionbayreuthev-747d0f",
-      "locationSet": {"include": ["de"]},
+      "displayName": "Diakonisches Werk – Stadtmission Bayreuth",
+      "id": "diakonischeswerkstadtmissionbayreuth-fd062c",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "matchNames": [
+        "diakonisches werk – stadtmission bayreuth e. v."
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Diakonisches Werk – Stadtmission Bayreuth e. V.",
-        "operator:type": "private"
+        "operator": "Diakonisches Werk – Stadtmission Bayreuth",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q133800075"
       }
     },
     {
@@ -470,7 +492,7 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "Evangelischer Kirchenkreisverband für Kindertageseinrichtungen Berlin Mitte-Nord",
-        "operator:type": "private",
+        "operator:type": "religious",
         "operator:wikidata": "Q130405005"
       }
     },
@@ -614,14 +636,15 @@
       }
     },
     {
-      "displayName": "INA.KINDER.GARTEN gGmbH",
-      "id": "inakindergartenggmbh-4ea051",
+      "displayName": "INA.KINDER.GARTEN",
+      "id": "inakindergarten-4ea051",
       "locationSet": {
         "include": ["de-be.geojson"]
       },
+      "matchNames": ["ina.kinder.garten ggmbh"],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "INA.KINDER.GARTEN gGmbH",
+        "operator": "INA.KINDER.GARTEN",
         "operator:type": "private",
         "operator:wikidata": "Q130141833"
       }
@@ -706,7 +729,7 @@
         "amenity": "kindergarten",
         "operator": "Jugend- und Sozialwerk",
         "operator:short": "JuS",
-        "operator:type": "ngo",
+        "operator:type": "private",
         "operator:wikidata": "Q31837620"
       }
     },
@@ -717,7 +740,7 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "Jugendamt Landeshauptstadt Düsseldorf, Willi-Becker-Allee 7, 40227 Düsseldorf",
-        "operator:type": "private"
+        "operator:type": "government"
       }
     },
     {
@@ -727,7 +750,7 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "Jugendamt Stadt Essen",
-        "operator:type": "private"
+        "operator:type": "government"
       }
     },
     {
@@ -741,7 +764,7 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "JUL",
-        "operator:type": "ngo",
+        "operator:type": "private",
         "operator:wikidata": "Q129851119"
       }
     },
@@ -784,7 +807,7 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "Katholische Gesamtkirchengemeinde Ravensburg",
-        "operator:type": "private"
+        "operator:type": "religious"
       }
     },
     {
@@ -830,14 +853,15 @@
       }
     },
     {
-      "displayName": "Kinder im Kiez GmbH",
-      "id": "kinderimkiezgmbh-4ea051",
+      "displayName": "Kinder im Kiez",
+      "id": "kinderimkiez-4ea051",
       "locationSet": {
         "include": ["de-be.geojson"]
       },
+      "matchNames": ["kinder im kiez gmbh"],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Kinder im Kiez GmbH",
+        "operator": "Kinder im Kiez",
         "operator:type": "private",
         "operator:wikidata": "Q130142390"
       }
@@ -916,15 +940,19 @@
       }
     },
     {
-      "displayName": "Kindertagesbetreuung Kreismäuse AöR",
-      "id": "kindertagesbetreuungkreismauseaor-76bfc3",
+      "displayName": "Kindertagesbetreuung Kreismäuse",
+      "id": "kindertagesbetreuungkreismause-76bfc3",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": [
+        "kindertagesbetreuung kreismäuse aör"
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Kindertagesbetreuung Kreismäuse AöR",
-        "operator:type": "private"
+        "operator": "Kindertagesbetreuung Kreismäuse",
+        "operator:type": "public",
+        "operator:wikidata": "Q133778634"
       }
     },
     {
@@ -977,12 +1005,15 @@
       }
     },
     {
-      "displayName": "Kinderzentren Kunterbunt gGmbH",
-      "id": "kinderzentrenkunterbuntggmbh-747d0f",
+      "displayName": "Kinderzentren Kunterbunt",
+      "id": "kinderzentrenkunterbunt-747d0f",
       "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "kinderzentren kunterbunt ggmbh"
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Kinderzentren Kunterbunt gGmbH",
+        "operator": "Kinderzentren Kunterbunt",
         "operator:type": "private",
         "operator:wikidata": "Q130144000"
       }
@@ -1029,19 +1060,20 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "Kitaverband Diepholz",
-        "operator:type": "private",
+        "operator:type": "religious",
         "operator:wikidata": "Q129849272"
       }
     },
     {
-      "displayName": "Klax Berlin gGmbH",
-      "id": "klaxberlinggmbh-4ea051",
+      "displayName": "Klax Berlin",
+      "id": "klaxberlin-4ea051",
       "locationSet": {
         "include": ["de-be.geojson"]
       },
+      "matchNames": ["klax berlin ggmbh"],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Klax Berlin gGmbH",
+        "operator": "Klax Berlin",
         "operator:type": "private",
         "operator:wikidata": "Q130144334"
       }
@@ -1197,26 +1229,33 @@
       }
     },
     {
-      "displayName": "Mumm-Familienservice gGmbH",
-      "id": "mummfamilienserviceggmbh-76bfc3",
+      "displayName": "Mumm-Familienservice",
+      "id": "mummfamilienservice-76bfc3",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": [
+        "mumm-familienservice ggmbh"
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Mumm-Familienservice gGmbH",
-        "operator:type": "private"
+        "operator": "Mumm-Familienservice",
+        "operator:type": "private",
+        "operator:wikidata": "Q133800083"
       }
     },
     {
-      "displayName": "Nachbarschaftsheim Schöneberg e.V.",
-      "id": "nachbarschaftsheimschonebergev-4ea051",
+      "displayName": "Nachbarschaftsheim Schöneberg",
+      "id": "nachbarschaftsheimschoneberg-4ea051",
       "locationSet": {
         "include": ["de-be.geojson"]
       },
+      "matchNames": [
+        "nachbarschaftsheim schöneberg e.v."
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Nachbarschaftsheim Schöneberg e.V.",
+        "operator": "Nachbarschaftsheim Schöneberg",
         "operator:type": "charitable",
         "operator:wikidata": "Q130145053"
       }
@@ -1297,14 +1336,15 @@
       }
     },
     {
-      "displayName": "Orte für Kinder GmbH",
-      "id": "ortefurkindergmbh-4ea051",
+      "displayName": "Orte für Kinder",
+      "id": "ortefurkinder-4ea051",
       "locationSet": {
         "include": ["de-be.geojson"]
       },
+      "matchNames": ["orte für kinder gmbh"],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Orte für Kinder GmbH",
+        "operator": "Orte für Kinder",
         "operator:type": "private",
         "operator:wikidata": "Q130145367"
       }
@@ -1343,14 +1383,17 @@
       }
     },
     {
-      "displayName": "Pfefferwerk Stadtkultur gGmbH",
-      "id": "pfefferwerkstadtkulturggmbh-4ea051",
+      "displayName": "Pfefferwerk Stadtkultur",
+      "id": "pfefferwerkstadtkultur-4ea051",
       "locationSet": {
         "include": ["de-be.geojson"]
       },
+      "matchNames": [
+        "pfefferwerk stadtkultur ggmbh"
+      ],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Pfefferwerk Stadtkultur gGmbH",
+        "operator": "Pfefferwerk Stadtkultur",
         "operator:type": "private",
         "operator:wikidata": "Q130145579"
       }
@@ -1378,14 +1421,15 @@
       }
     },
     {
-      "displayName": "Postillion e.V.",
-      "id": "postillionev-df1e7e",
+      "displayName": "Postillion",
+      "id": "postillion-df1e7e",
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
+      "matchNames": ["postillion e.v."],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Postillion e.V.",
+        "operator": "Postillion",
         "operator:type": "private",
         "operator:wikidata": "Q130146073"
       }
@@ -1494,15 +1538,17 @@
       }
     },
     {
-      "displayName": "profinos gGmbH",
-      "id": "profinosggmbh-76bfc3",
+      "displayName": "Profinos",
+      "id": "profinos-76bfc3",
       "locationSet": {
         "include": ["de-nw.geojson"]
       },
+      "matchNames": ["profinos ggmbh"],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "profinos gGmbH",
-        "operator:type": "private"
+        "operator": "Profinos",
+        "operator:type": "religious",
+        "operator:wikidata": "Q133800099"
       }
     },
     {
@@ -2030,18 +2076,15 @@
       }
     },
     {
-      "displayName": "Terminal for Kids gGmbH",
-      "id": "terminalforkidsggmbh-5ad4b7",
-      "locationSet": {
-        "include": [
-          "de-he.geojson",
-          "de-nw.geojson"
-        ]
-      },
+      "displayName": "Terminal for Kids",
+      "id": "terminalforkids-747d0f",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["terminal for kids ggmbh"],
       "tags": {
         "amenity": "kindergarten",
-        "operator": "Terminal for Kids gGmbH",
-        "operator:type": "private"
+        "operator": "Terminal for Kids",
+        "operator:type": "private",
+        "operator:wikidata": "Q133800155"
       }
     },
     {
@@ -2061,7 +2104,7 @@
       "tags": {
         "amenity": "kindergarten",
         "operator": "Trägergemeinschaft TfK im Ev. KK Gütersloh",
-        "operator:type": "private"
+        "operator:type": "religious"
       }
     },
     {

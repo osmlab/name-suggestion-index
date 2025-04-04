@@ -10,10 +10,11 @@
         "^public local bus$"
       ],
       "named": [
-        "^audi ag|audi shuttle bus|roseville commuter|(airventure|volkswagen) shuttles$",
+        "^(audi ag|audi shuttle bus|roseville commuter|(airventure|volkswagen) shuttles)$",
+        "^(csueb|sbu transit|(campus|university|ucsd) shuttles)$",
         "^b$",
         "^bürgerbus$",
-        "^csueb|sbu transit|(campus|university|ucsd) shuttles$",
+        "^ru:(local|municipal|regional)$",
         "^광주시 공영버스$",
         "^校车$"
       ]
@@ -15420,33 +15421,6 @@
       }
     },
     {
-      "displayName": "ru:local",
-      "id": "rulocal-15dd1a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "ru:local",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "ru:municipal",
-      "id": "rumunicipal-15dd1a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "ru:municipal",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "ru:regional",
-      "id": "ruregional-15dd1a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "ru:regional",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "RU:SAR:Саратов:автобусы",
       "id": "c52293-15dd1a",
       "locationSet": {"include": ["ru"]},
@@ -15741,6 +15715,7 @@
         "network:short": "SAM",
         "network:wikidata": "Q107901414",
         "operator": "City of Sandy",
+        "operator:wikidata": "Q2416599",
         "route": "bus"
       }
     },
@@ -19634,6 +19609,19 @@
       }
     },
     {
+      "displayName": "Transportes Coletivos do Barreiro",
+      "id": "transportescoletivosdobarreiro-d08d86",
+      "locationSet": {
+        "include": ["pt-15.geojson"]
+      },
+      "tags": {
+        "network": "Transportes Coletivos do Barreiro",
+        "network:short": "TCB",
+        "network:wikidata": "Q81159859",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Transportes de Gran Canaria",
       "id": "transportesdegrancanaria-cbced8",
       "locationSet": {"include": ["es"]},
@@ -21113,6 +21101,7 @@
       },
       "tags": {
         "network": "Verkehrsgemeinschaft Nordost-Niedersachsen",
+        "network:short": "VNN",
         "network:wikidata": "Q2516245",
         "route": "bus"
       }
@@ -21376,6 +21365,21 @@
         "network": "Verkehrsverbund Mittelschwaben",
         "network:short": "VVM",
         "network:wikidata": "Q1758268",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Verkehrsverbund Mittelthüringen",
+      "id": "verkehrsverbundmittelthuringen-d9bf75",
+      "locationSet": {
+        "include": ["de-th.geojson"]
+      },
+      "matchNames": ["jes"],
+      "tags": {
+        "network": "Verkehrsverbund Mittelthüringen",
+        "network:guid": "DE-TH-VMT",
+        "network:short": "VMT",
+        "network:wikidata": "Q2516468",
         "route": "bus"
       }
     },
@@ -21880,33 +21884,6 @@
       "tags": {
         "network": "VLS",
         "network:wikidata": "Q2516231",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "VMT",
-      "id": "verkehrsverbundmittelthuringen-d9bf75",
-      "locationSet": {
-        "include": ["de-th.geojson"]
-      },
-      "matchNames": ["jes"],
-      "tags": {
-        "network": "Verkehrsverbund Mittelthüringen",
-        "network:guid": "DE-TH-VMT",
-        "network:short": "VMT",
-        "network:wikidata": "Q2516468",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "VNN",
-      "id": "vnn-5e4eef",
-      "locationSet": {
-        "include": ["de-ni.geojson"]
-      },
-      "tags": {
-        "network": "VNN",
-        "network:wikidata": "Q2516245",
         "route": "bus"
       }
     },
