@@ -13,5 +13,7 @@ Provinces of Spain targeted with a feature using [ISO 3166-2:ES](https://en.wiki
 - [ES-GI.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-gi.geojson%22%5D%7D&referrer=nsi) - Girona / Gerona
 - [ES-L.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-l.geojson%22%5D%7D&referrer=nsi) - Lleida
 - [ES-M.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-m.geojson%22%5D%7D&referrer=nsi) - Madrid
+- [ES-MA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ma.geojson%22%5D%7D&referrer=nsi) - Málaga
 - [ES-T.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-t.geojson%22%5D%7D&referrer=nsi) - Tarragona
+- [ES-V.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-v.geojson%22%5D%7D&referrer=nsi) - Valencia / València
 - [ES-Z.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-z.geojson%22%5D%7D&referrer=nsi) - Zaragoza
