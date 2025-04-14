@@ -329,7 +329,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
 
       if ((t=='operators') && (k=='man_made') && (v=='charge_point'))
         {url = '/index.html?t=operators&amp;k=amenity&amp;v=charging_station'; linktext = '/operators/amenity/charging_station.json';}
-      if ((t=='operators') && (k=='man_made') && (v=='pumping_station'))
+      if ((t=='operators') && (k=='man_made') && ((v=='pumping_station') || (v=='reservoir_covered')))
         {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; linktext = '/operators/office/water_utility.json';}
       if ((t=='operators') && (k=='man_made') && (v=='tower'))
         {url = '/index.html?t=operators&amp;k=man_made&amp;v=mast'; linktext = '/operators/man_made/mast.json';}
