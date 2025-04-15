@@ -4,6 +4,7 @@
     "exclude": {
       "generic": [
         "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban|urbano|yellow buses|interurbana)$",
+        "^(suburban|elővárosi)$",
         "^autobuz$",
         "^bus$",
         "^no$",
@@ -569,8 +570,10 @@
     },
     {
       "displayName": "AMB",
-      "id": "amb-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "amb-b0a08c",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
       "tags": {"network": "AMB", "route": "bus"}
     },
     {
@@ -890,8 +893,10 @@
     },
     {
       "displayName": "ar:municipal",
-      "id": "armunicipal-bd74d8",
-      "locationSet": {"include": ["ar"]},
+      "id": "armunicipal-38f996",
+      "locationSet": {
+        "include": ["ar-t.geojson"]
+      },
       "tags": {
         "network": "ar:municipal",
         "route": "bus"
@@ -1253,7 +1258,7 @@
       ],
       "note": "Barcelona, Spain",
       "tags": {
-        "network": "Autoritat del Transport Metropolità de l'àrea de Barcelona",
+        "network": "Autoritat del Transport Metropolità de l'Àrea de Barcelona",
         "network:short": "ATM",
         "network:wikidata": "Q1845633",
         "route": "bus"
@@ -1371,8 +1376,10 @@
     },
     {
       "displayName": "Autobuses Interurbanos de Madrid",
-      "id": "autobusesinterurbanosdemadrid-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "autobusesinterurbanosdemadrid-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "Autobuses Interurbanos de Madrid",
         "route": "bus"
@@ -2571,8 +2578,8 @@
     },
     {
       "displayName": "BSD Link",
-      "id": "bsdlink-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "bsdlink-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "BSD Link",
         "network:wikidata": "Q121247879",
@@ -4036,8 +4043,10 @@
     },
     {
       "displayName": "CMT - Alcobendas",
-      "id": "cmtalcobendas-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "cmtalcobendas-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "CMT - Alcobendas",
         "route": "bus"
@@ -4049,15 +4058,6 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "CMT Interurbanos",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "CO:MEGABUS",
-      "id": "comegabus-53ae69",
-      "locationSet": {"include": ["co"]},
-      "tags": {
-        "network": "CO:MEGABUS",
         "route": "bus"
       }
     },
@@ -4773,12 +4773,6 @@
       }
     },
     {
-      "displayName": "CWL",
-      "id": "cwl-9c952e",
-      "locationSet": {"include": ["my"]},
-      "tags": {"network": "CWL", "route": "bus"}
-    },
-    {
       "displayName": "Cypré",
       "id": "cypre-702558",
       "locationSet": {
@@ -5000,7 +4994,7 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "network": "DinTur",
-        "network:wikidata": "Q5277826",
+        "network:wikidata": "Q18291304",
         "route": "bus"
       }
     },
@@ -5412,12 +5406,6 @@
       }
     },
     {
-      "displayName": "Eger",
-      "id": "eger-6ba633",
-      "locationSet": {"include": ["hu"]},
-      "tags": {"network": "Eger", "route": "bus"}
-    },
-    {
       "displayName": "EGO",
       "id": "ego-8150d4",
       "locationSet": {"include": ["tr"]},
@@ -5451,15 +5439,6 @@
       }
     },
     {
-      "displayName": "elővárosi",
-      "id": "elovarosi-6ba633",
-      "locationSet": {"include": ["hu"]},
-      "tags": {
-        "network": "elővárosi",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "EMEL",
       "id": "emel-625e99",
       "locationSet": {"include": ["cy"]},
@@ -5467,8 +5446,11 @@
     },
     {
       "displayName": "Empresa Municipal de Transportes de Madrid",
-      "id": "empresamunicipaldetransportesdemadrid-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "empresamunicipaldetransportesdemadrid-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
+      "matchNames": ["emt"],
       "tags": {
         "network": "Empresa Municipal de Transportes de Madrid",
         "network:short": "EMT Madrid",
@@ -5480,15 +5462,23 @@
       }
     },
     {
-      "displayName": "EMT",
-      "id": "emt-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {"network": "EMT", "route": "bus"}
+      "displayName": "EMT (València)",
+      "id": "emt-a154e2",
+      "locationSet": {
+        "include": ["es-v.geojson"]
+      },
+      "tags": {
+        "network": "EMT",
+        "network:wikidata": "Q11007711",
+        "route": "bus"
+      }
     },
     {
       "displayName": "EMT Fuenlabrada",
-      "id": "emtfuenlabrada-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "emtfuenlabrada-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "EMT Fuenlabrada",
         "network:wikidata": "Q5831722",
@@ -5497,8 +5487,10 @@
     },
     {
       "displayName": "EMT Tarragona",
-      "id": "emttarragona-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "emttarragona-305dee",
+      "locationSet": {
+        "include": ["es-t.geojson"]
+      },
       "tags": {
         "network": "EMT Tarragona",
         "network:wikidata": "Q28662868",
@@ -5573,12 +5565,6 @@
       }
     },
     {
-      "displayName": "ES:M",
-      "id": "esm-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {"network": "ES:M", "route": "bus"}
-    },
-    {
       "displayName": "ES:M:Alcalá de Henares",
       "id": "esmalcaladehenares-cbced8",
       "locationSet": {"include": ["es"]},
@@ -5591,6 +5577,7 @@
       "displayName": "ES:M:Madrid",
       "id": "esmmadrid-cbced8",
       "locationSet": {"include": ["es"]},
+      "matchNames": ["es:m"],
       "tags": {
         "network": "ES:M:Madrid",
         "route": "bus"
@@ -5607,8 +5594,10 @@
     },
     {
       "displayName": "ES:M:Valdemoro",
-      "id": "esmvaldemoro-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "esmvaldemoro-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "ES:M:Valdemoro",
         "route": "bus"
@@ -5641,12 +5630,6 @@
       }
     },
     {
-      "displayName": "Este",
-      "id": "este-55f234",
-      "locationSet": {"include": ["ve"]},
-      "tags": {"network": "Este", "route": "bus"}
-    },
-    {
       "displayName": "Estrada Nova",
       "id": "estradanova-2ef076",
       "locationSet": {"include": ["br"]},
@@ -5666,8 +5649,10 @@
     },
     {
       "displayName": "ETASA",
-      "id": "etasa-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "etasa-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {"network": "ETASA", "route": "bus"}
     },
     {
@@ -10211,6 +10196,17 @@
         "network": "Meaux et Ourcq",
         "network:wikidata": "Q97323827",
         "operator": "Transdev Marne-et-Ourcq",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Megabús (Colombia)",
+      "id": "megabus-53ae69",
+      "locationSet": {"include": ["co"]},
+      "matchNames": ["co:megabus"],
+      "tags": {
+        "network": "Megabús",
+        "network:wikidata": "Q6808158",
         "route": "bus"
       }
     },
