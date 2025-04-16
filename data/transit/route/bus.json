@@ -3,18 +3,21 @@
     "path": "transit/route/bus",
     "exclude": {
       "generic": [
-        "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban|urbano|yellow buses|interurbana)$",
+        "^((public local|ordinary) )?bus$",
+        "^(campus|city|international|mtb|municipal|national|rail|regional|urban|urbano|yellow buses|interurbana)$",
+        "^(local|helyi)",
+        "^(ordinary|ordinaire)$",
         "^(suburban|elővárosi)$",
         "^autobuz$",
-        "^bus$",
-        "^no$",
-        "^public local bus$"
+        "^no$"
       ],
       "named": [
         "^(audi ag|audi shuttle bus|roseville commuter|(airventure|volkswagen) shuttles)$",
         "^(csueb|sbu transit|(campus|university|ucsd) shuttles)$",
         "^b$",
         "^bürgerbus$",
+        "^hu:regional$",
+        "^pap_taptap$",
         "^ru:(local|municipal|regional)$",
         "^광주시 공영버스$",
         "^校车$"
@@ -5450,7 +5453,7 @@
       "locationSet": {
         "include": ["es-m.geojson"]
       },
-      "matchNames": ["emt"],
+      "matchNames": ["emt", "es:m:madrid"],
       "tags": {
         "network": "Empresa Municipal de Transportes de Madrid",
         "network:short": "EMT Madrid",
@@ -5565,28 +5568,33 @@
       }
     },
     {
+      "displayName": "ES:M",
+      "id": "esm-6d5cea",
+      "locationSet": {
+        "include": [
+          "es-gu.geojson",
+          "es-m.geojson"
+        ]
+      },
+      "tags": {"network": "ES:M", "route": "bus"}
+    },
+    {
       "displayName": "ES:M:Alcalá de Henares",
-      "id": "esmalcaladehenares-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "esmalcaladehenares-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "ES:M:Alcalá de Henares",
         "route": "bus"
       }
     },
     {
-      "displayName": "ES:M:Madrid",
-      "id": "esmmadrid-cbced8",
-      "locationSet": {"include": ["es"]},
-      "matchNames": ["es:m"],
-      "tags": {
-        "network": "ES:M:Madrid",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "ES:M:Torrejón de Ardoz",
-      "id": "esmtorrejondeardoz-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "esmtorrejondeardoz-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "ES:M:Torrejón de Ardoz",
         "route": "bus"
@@ -6620,15 +6628,6 @@
       }
     },
     {
-      "displayName": "Gminne Linie Autobusowe – Brwinów",
-      "id": "gminnelinieautobusowebrwinow-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Gminne Linie Autobusowe – Brwinów",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "GMPTE",
       "id": "gmpte-8e0970",
       "locationSet": {"include": ["gb"]},
@@ -6855,6 +6854,7 @@
       "locationSet": {
         "include": ["fr-idf.geojson"]
       },
+      "matchNames": ["melibus"],
       "tags": {
         "network": "Grand Melun",
         "network:wikidata": "Q3456690",
@@ -7037,15 +7037,6 @@
       }
     },
     {
-      "displayName": "Grupo Ruiz",
-      "id": "gruporuiz-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "network": "Grupo Ruiz",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "GSP Beograd",
       "id": "58b493-92b7a7",
       "locationSet": {"include": ["rs"]},
@@ -7152,15 +7143,6 @@
         "network:wikidata": "Q66991285",
         "operator": "Connexxion",
         "operator:wikidata": "Q591484",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Halifax",
-      "id": "halifax-8e0970",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "network": "Halifax",
         "route": "bus"
       }
     },
@@ -7344,12 +7326,6 @@
       }
     },
     {
-      "displayName": "helyi",
-      "id": "helyi-6ba633",
-      "locationSet": {"include": ["hu"]},
-      "tags": {"network": "helyi", "route": "bus"}
-    },
-    {
       "displayName": "Hérault Transport",
       "id": "heraulttransport-3755d1",
       "locationSet": {
@@ -7478,15 +7454,6 @@
       "tags": {
         "network": "HSL",
         "network:wikidata": "Q473211",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "HU:regional",
-      "id": "huregional-6ba633",
-      "locationSet": {"include": ["hu"]},
-      "tags": {
-        "network": "HU:regional",
         "route": "bus"
       }
     },
@@ -7670,6 +7637,7 @@
       "displayName": "IJssel-Vecht",
       "id": "ijsselvecht-2f3200",
       "locationSet": {"include": ["nl"]},
+      "matchNames": ["midden-overijssel"],
       "tags": {
         "network": "IJssel-Vecht",
         "network:wikidata": "Q115122853",
@@ -7898,14 +7866,6 @@
       }
     },
     {
-      "displayName": "IOW",
-      "id": "iow-cab8bc",
-      "locationSet": {
-        "include": ["gb-iow.geojson"]
-      },
-      "tags": {"network": "IOW", "route": "bus"}
-    },
-    {
       "displayName": "IREDO",
       "id": "iredo-a1a5c7",
       "locationSet": {"include": ["cz", "pl"]},
@@ -7982,6 +7942,7 @@
       "locationSet": {
         "include": ["gb-iow.geojson"]
       },
+      "matchNames": ["iow"],
       "tags": {
         "network": "Isle of Wight",
         "route": "bus"
@@ -9941,20 +9902,24 @@
       }
     },
     {
-      "displayName": "Maringá_Metropolitano",
-      "id": "maringametropolitano-2ef076",
-      "locationSet": {"include": ["br"]},
+      "displayName": "Maringá Metropolitano",
+      "id": "maringametropolitano-b6f182",
+      "locationSet": {
+        "include": ["br-pr.geojson"]
+      },
       "tags": {
-        "network": "Maringá_Metropolitano",
+        "network": "Maringá Metropolitano",
         "route": "bus"
       }
     },
     {
-      "displayName": "Maringá_Urbano",
-      "id": "maringaurbano-2ef076",
-      "locationSet": {"include": ["br"]},
+      "displayName": "Maringá Urbano",
+      "id": "maringaurbano-b6f182",
+      "locationSet": {
+        "include": ["br-pr.geojson"]
+      },
       "tags": {
-        "network": "Maringá_Urbano",
+        "network": "Maringá Urbano",
         "route": "bus"
       }
     },
@@ -10070,12 +10035,12 @@
     },
     {
       "displayName": "MATS",
-      "id": "mountadamstransportationservices-39dd03",
+      "id": "mountadamstransportationservice-39dd03",
       "locationSet": {
         "include": ["us-wa.geojson"]
       },
       "tags": {
-        "network": "Mount Adams Transportation Services",
+        "network": "Mount Adams Transportation Service",
         "network:short": "MATS",
         "network:wikidata": "Q108172416",
         "operator": "Klickitat County",
@@ -10231,18 +10196,6 @@
         "network:wikidata": "Q3853911",
         "operator": "Stagecoach Group",
         "operator:wikidata": "Q660261",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "MELIBUS",
-      "id": "melibus-bf4ce0",
-      "locationSet": {
-        "include": ["fr-idf.geojson"]
-      },
-      "tags": {
-        "network": "MELIBUS",
-        "network:wikidata": "Q3456690",
         "route": "bus"
       }
     },
@@ -11095,16 +11048,6 @@
       }
     },
     {
-      "displayName": "Midden-Overijssel",
-      "id": "middenoverijssel-2f3200",
-      "locationSet": {"include": ["nl"]},
-      "tags": {
-        "network": "Midden-Overijssel",
-        "network:wikidata": "Q115122837",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Midttrafik",
       "id": "midttrafik-8dce25",
       "locationSet": {"include": ["dk"]},
@@ -11826,15 +11769,6 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "MUR-092",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "MUR-093",
-      "id": "mur093-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "network": "MUR-093",
         "route": "bus"
       }
     },
@@ -12765,24 +12699,6 @@
       }
     },
     {
-      "displayName": "ordinaire",
-      "id": "ordinaire-e384d8",
-      "locationSet": {"include": ["tg"]},
-      "tags": {
-        "network": "ordinaire",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Ordinary bus",
-      "id": "ordinarybus-f6a713",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "network": "Ordinary bus",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Örebro stadsbuss",
       "id": "orebrostadsbuss-783b59",
       "locationSet": {"include": ["se"]},
@@ -13186,15 +13102,6 @@
       }
     },
     {
-      "displayName": "pap_taptap",
-      "id": "paptaptap-8d54a4",
-      "locationSet": {"include": ["ht"]},
-      "tags": {
-        "network": "pap_taptap",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Paracambi",
       "id": "paracambi-2ef076",
       "locationSet": {"include": ["br"]},
@@ -13436,8 +13343,10 @@
     },
     {
       "displayName": "PH:CAR:Baguio",
-      "id": "phcarbaguio-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phcarbaguio-1b2b0d",
+      "locationSet": {
+        "include": ["ph-15.geojson"]
+      },
       "tags": {
         "network": "PH:CAR:Baguio",
         "route": "bus"
@@ -13445,8 +13354,10 @@
     },
     {
       "displayName": "PH:CAR:Benguet",
-      "id": "phcarbenguet-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phcarbenguet-1b2b0d",
+      "locationSet": {
+        "include": ["ph-15.geojson"]
+      },
       "tags": {
         "network": "PH:CAR:Benguet",
         "route": "bus"
@@ -13463,8 +13374,10 @@
     },
     {
       "displayName": "PH:PUB:Cagayan Valley",
-      "id": "phpubcagayanvalley-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phpubcagayanvalley-0fe24b",
+      "locationSet": {
+        "include": ["ph-02.geojson"]
+      },
       "tags": {
         "network": "PH:PUB:Cagayan Valley",
         "route": "bus"
@@ -13472,26 +13385,21 @@
     },
     {
       "displayName": "PH:PUJ:Batangas City",
-      "id": "phpujbatangascity-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phpujbatangascity-3dc147",
+      "locationSet": {
+        "include": ["ph-40.geojson"]
+      },
       "tags": {
         "network": "PH:PUJ:Batangas City",
         "route": "bus"
       }
     },
     {
-      "displayName": "PH:PUJ:Cavite",
-      "id": "phpujcavite-3785bf",
-      "locationSet": {"include": ["ph"]},
-      "tags": {
-        "network": "PH:PUJ:Cavite",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "PH:PUJ:Cebu",
-      "id": "phpujcebu-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phpujcebu-d8a464",
+      "locationSet": {
+        "include": ["ph-07-cebu_city.geojson"]
+      },
       "tags": {
         "network": "PH:PUJ:Cebu",
         "route": "bus"
