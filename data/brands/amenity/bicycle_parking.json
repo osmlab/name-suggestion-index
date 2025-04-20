@@ -1,9 +1,37 @@
 {
   "properties": {
     "path": "brands/amenity/bicycle_parking",
-    "exclude": {"generic": ["^bicycle parking$"]}
+    "exclude": {
+      "generic": [
+        "^bicycle (parking|rack)$",
+        "^駐輪場$"
+      ]
+    }
   },
   "items": [
+    {
+      "displayName": "Altinova",
+      "id": "altinova-057a8b",
+      "locationSet": {
+        "include": [
+          "fr-ara.geojson",
+          "fr-naq.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "bicycle_parking",
+        "brand": "Altinova"
+      }
+    },
+    {
+      "displayName": "Bikebox",
+      "id": "bikebox-a93dd1",
+      "locationSet": {"include": ["lu"]},
+      "tags": {
+        "amenity": "bicycle_parking",
+        "brand": "Bikebox"
+      }
+    },
     {
       "displayName": "BikeTower",
       "id": "biketower-f70454",
@@ -16,6 +44,30 @@
         "covered": "yes",
         "name": "BikeTower",
         "supervised": "yes"
+      }
+    },
+    {
+      "displayName": "Hop & go",
+      "id": "hopandgo-4e7596",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "bicycle_parking",
+        "brand": "Hop & go",
+        "name": "Hop & go"
+      }
+    },
+    {
+      "displayName": "哈啰单车电子围栏",
+      "id": "fdb62d-027b9a",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "note": "ISO 3166-2 CN-BJ",
+      "tags": {
+        "amenity": "bicycle_parking",
+        "brand": "哈啰单车电子围栏",
+        "name": "哈啰单车电子围栏"
       }
     }
   ]
