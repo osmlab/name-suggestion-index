@@ -4,15 +4,20 @@
     "exclude": {
       "generic": [
         "^(apartment|embassy|synagogue)$",
+        "^(building (manager|owner)|bailleur social|propriétaire du bâtiment|syndic d'immeuble)$",
         "^(city|mairie)$",
         "^(civilians|private owner)$",
         "^(federale? politie|police fédérale)$",
         "^(govt|overheid)$",
-        "^(house owner|pemilik rumah)$",
+        "^(house owner|pemilik rumah|propriétaire de la maison)$",
+        "^(municipal police|police municipale)$",
+        "^(municipalité|pr[eé]f[eé]cture)$",
+        "^(security|securitas)$",
         "^\\(police dept\\/owner\\)$",
+        "^archives départementales$",
+        "^centre des finances publiques$",
         "^domaine public$",
         "^městská policie$",
-        "^municipalité$",
         "^poli(ce|zei|smyndigheten)$",
         "^polic[íi]a (de la ciudad|nacional)$",
         "^privé \\(hopital\\)$",
@@ -24,12 +29,13 @@
       "named": [
         "^(concordia|gym10|torre asia)$",
         "^(cvag|decathlon|deutsche bundesbank|dm|edeka|fahrrad xxl|media markt|netto|rewe|rossmann|saturn|selgros|sparkasse chemnitz|thrainer|vita-center)\\?$",
+        "^(priv(ate|é|athaus)|particulier)$",
         "^[34]$",
         "^act government/australian federal police$",
         "^cfl / belval$",
         "^flock safety$",
         "^opera-ulb$",
-        "^priv(ate|é|athaus)$",
+        "^résidence$",
         "^thames valley police/vale of white horse district council$",
         "^vpi \\+ ambiance$"
       ]
@@ -338,15 +344,6 @@
       }
     },
     {
-      "displayName": "Archives départementales",
-      "id": "archivesdepartementales-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Archives départementales"
-      }
-    },
-    {
       "displayName": "Area Metropolitana de Barcelona",
       "id": "areametropolitanadebarcelona-eb94ba",
       "locationSet": {
@@ -530,15 +527,6 @@
       }
     },
     {
-      "displayName": "Bailleur social",
-      "id": "bailleursocial-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Bailleur social"
-      }
-    },
-    {
       "displayName": "Bancolombia",
       "id": "bancolombia-3fecaf",
       "locationSet": {"include": ["co"]},
@@ -560,11 +548,12 @@
     },
     {
       "displayName": "Banque Populaire",
-      "id": "banquepopulaire-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "banquepopulaire-3bfa97",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Banque Populaire"
+        "operator": "Banque Populaire",
+        "operator:wikidata": "Q846647"
       }
     },
     {
@@ -1038,47 +1027,50 @@
     },
     {
       "displayName": "Centre Commercial Carré de Soie",
-      "id": "centrecommercialcarredesoie-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "centrecommercialcarredesoie-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Centre Commercial Carré de Soie"
+        "operator": "Centre Commercial Carré de Soie",
+        "operator:wikidata": "Q42887321"
       }
     },
     {
       "displayName": "Centre Commercial des Atlantes",
-      "id": "centrecommercialdesatlantes-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "centrecommercialdesatlantes-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Centre Commercial des Atlantes"
+        "operator": "Centre Commercial des Atlantes",
+        "operator:wikidata": "Q97365410"
       }
     },
     {
-      "displayName": "Centre des Finances Publiques",
-      "id": "centredesfinancespubliques-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Centre hospitalier Le Vinatier",
+      "id": "centrehospitalierlevinatier-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Centre des Finances Publiques"
-      }
-    },
-    {
-      "displayName": "Centre Hospitalier Le Vinatier",
-      "id": "centrehospitalierlevinatier-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Centre Hospitalier Le Vinatier"
+        "operator": "Centre hospitalier Le Vinatier",
+        "operator:wikidata": "Q2945674"
       }
     },
     {
       "displayName": "Centre Léon Bérard",
-      "id": "centreleonberard-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "centreleonberard-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Centre Léon Bérard"
+        "operator": "Centre Léon Bérard",
+        "operator:wikidata": "Q2944832"
       }
     },
     {
@@ -1155,21 +1147,16 @@
       }
     },
     {
-      "displayName": "CHR",
-      "id": "chr-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "CHR"
-      }
-    },
-    {
       "displayName": "CHR de Lille",
-      "id": "chrdelille-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "chrdelille-68c249",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
+      "matchNames": ["chr"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "CHR de Lille"
+        "operator": "CHR de Lille",
+        "operator:wikidata": "Q2945741"
       }
     },
     {
@@ -1206,11 +1193,14 @@
     },
     {
       "displayName": "Cité de la musique",
-      "id": "citedelamusique-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "citedelamusique-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Cité de la musique"
+        "operator": "Cité de la musique",
+        "operator:wikidata": "Q111713330"
       }
     },
     {
@@ -1227,11 +1217,14 @@
     },
     {
       "displayName": "Citura",
-      "id": "citura-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "citura-7e2509",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Citura"
+        "operator": "Citura",
+        "operator:wikidata": "Q2974528"
       }
     },
     {
@@ -1427,15 +1420,6 @@
         "man_made": "surveillance",
         "operator": "CNFPT",
         "operator:wikidata": "Q2945925"
-      }
-    },
-    {
-      "displayName": "codah",
-      "id": "codah-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "codah"
       }
     },
     {
@@ -1753,12 +1737,27 @@
       }
     },
     {
-      "displayName": "Consulat d'Espagne",
-      "id": "consulatdespagne-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Consulat d'Espagne (Lyon)",
+      "id": "consulatdespagne-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Consulat d'Espagne"
+        "operator": "Consulat d'Espagne",
+        "operator:wikidata": "Q16507569"
+      }
+    },
+    {
+      "displayName": "Consulat d'Espagne (Toulouse)",
+      "id": "consulatdespagne-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Consulat d'Espagne",
+        "operator:wikidata": "Q16507564"
       }
     },
     {
@@ -2166,11 +2165,12 @@
     },
     {
       "displayName": "EFFIA",
-      "id": "effia-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "effia-3bfa97",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "EFFIA"
+        "operator": "EFFIA",
+        "operator:wikidata": "Q3045894"
       }
     },
     {
@@ -2284,11 +2284,14 @@
     },
     {
       "displayName": "Eurexpo",
-      "id": "eurexpo-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "eurexpo-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Eurexpo"
+        "operator": "Eurexpo",
+        "operator:wikidata": "Q3060504"
       }
     },
     {
@@ -2415,11 +2418,12 @@
     },
     {
       "displayName": "Franprix",
-      "id": "franprix-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "franprix-3bfa97",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Franprix"
+        "operator": "Franprix",
+        "operator:wikidata": "Q2420096"
       }
     },
     {
@@ -2476,11 +2480,12 @@
     },
     {
       "displayName": "Gendarmerie Nationale",
-      "id": "gendarmerienationale-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "gendarmerienationale-3bfa97",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Gendarmerie Nationale"
+        "operator": "Gendarmerie Nationale",
+        "operator:wikidata": "Q1422336"
       }
     },
     {
@@ -2510,20 +2515,26 @@
     },
     {
       "displayName": "Giberttrans",
-      "id": "giberttrans-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "giberttrans-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Giberttrans"
       }
     },
     {
-      "displayName": "Ginko (Tramway et bus)",
-      "id": "ginkotramwayetbus-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Ginko",
+      "id": "ginko-6e3818",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
+      "matchNames": ["ginko (tramway et bus)"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ginko (Tramway et bus)"
+        "operator": "Ginko",
+        "operator:wikidata": "Q3106780"
       }
     },
     {
@@ -2564,8 +2575,10 @@
     },
     {
       "displayName": "Groupement Hospitalier Est",
-      "id": "groupementhospitalierest-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "groupementhospitalierest-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Groupement Hospitalier Est"
@@ -2929,12 +2942,18 @@
       }
     },
     {
-      "displayName": "Interlocken Owners' Association, Inc.",
-      "id": "interlockenownersassociationinc-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Interlocken Owners' Association",
+      "id": "interlockenownersassociation-79888a",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
+      "matchNames": [
+        "interlocken owners' association, inc."
+      ],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Interlocken Owners' Association, Inc."
+        "operator": "Interlocken Owners' Association",
+        "operator:wikidata": "Q133832005"
       }
     },
     {
@@ -2975,12 +2994,16 @@
       }
     },
     {
-      "displayName": "irigo",
-      "id": "irigo-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Irigo",
+      "id": "irigo-9ba658",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
+      "matchNames": ["keolis"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "irigo"
+        "operator": "Irigo",
+        "operator:wikidata": "Q3537930"
       }
     },
     {
@@ -3040,15 +3063,6 @@
       }
     },
     {
-      "displayName": "Keolis",
-      "id": "keolis-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Keolis"
-      }
-    },
-    {
       "displayName": "Keolis Dijon",
       "id": "keolisdijon-3bfa97",
       "locationSet": {"include": ["fx"]},
@@ -3059,6 +3073,18 @@
       }
     },
     {
+      "displayName": "Keolis Lyon",
+      "id": "keolislyon-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Keolis Lyon",
+        "operator:wikidata": "Q61456136"
+      }
+    },
+    {
       "displayName": "Keolis Rennes",
       "id": "keolisrennes-3bfa97",
       "locationSet": {"include": ["fx"]},
@@ -3066,6 +3092,18 @@
         "man_made": "surveillance",
         "operator": "Keolis Rennes",
         "operator:wikidata": "Q3195353"
+      }
+    },
+    {
+      "displayName": "Keolis Tours",
+      "id": "keolistours-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Keolis Tours",
+        "operator:wikidata": "Q664399"
       }
     },
     {
@@ -3225,11 +3263,27 @@
     },
     {
       "displayName": "Le Bon Marché",
-      "id": "lebonmarche-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "lebonmarche-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Le Bon Marché"
+        "operator": "Le Bon Marché",
+        "operator:wikidata": "Q1200698"
+      }
+    },
+    {
+      "displayName": "Le Havre Seine Métropole",
+      "id": "lehavreseinemetropole-760155",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
+      "matchNames": ["codah"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Le Havre Seine Métropole",
+        "operator:wikidata": "Q60642622"
       }
     },
     {
@@ -3391,15 +3445,6 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Lyttelton Port Company"
-      }
-    },
-    {
-      "displayName": "Mac Donald",
-      "id": "macdonald-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Mac Donald"
       }
     },
     {
@@ -3581,15 +3626,6 @@
       }
     },
     {
-      "displayName": "Mairie de Lille",
-      "id": "mairiedelille-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Mairie de Lille"
-      }
-    },
-    {
       "displayName": "Mairie de Montigny-le-Bretonneux",
       "id": "mairiedemontignylebretonneux-ddc08a",
       "locationSet": {
@@ -3669,11 +3705,14 @@
     },
     {
       "displayName": "Mairie de Tarbes",
-      "id": "mairiedetarbes-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "mairiedetarbes-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Mairie de Tarbes"
+        "operator": "Mairie de Tarbes",
+        "operator:wikidata": "Q115908791"
       }
     },
     {
@@ -3682,6 +3721,7 @@
       "locationSet": {
         "include": ["fr-occ.geojson"]
       },
+      "matchNames": ["ville de toulouse"],
       "tags": {
         "man_made": "surveillance",
         "operator": "Mairie de Toulouse",
@@ -3875,12 +3915,26 @@
       }
     },
     {
-      "displayName": "McGill University",
-      "id": "mcgilluniversity-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "McDonald's (France)",
+      "id": "mcdonalds-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "matchNames": ["mac donald"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "McGill University"
+        "operator": "McDonald's",
+        "operator:wikidata": "Q60766811"
+      }
+    },
+    {
+      "displayName": "McGill University",
+      "id": "mcgilluniversity-89d7b3",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "McGill University",
+        "operator:wikidata": "Q201492"
       }
     },
     {
@@ -4933,11 +4987,14 @@
     },
     {
       "displayName": "Métropole Rouen Normandie",
-      "id": "metropolerouennormandie-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "metropolerouennormandie-760155",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Métropole Rouen Normandie"
+        "operator": "Métropole Rouen Normandie",
+        "operator:wikidata": "Q1119885"
       }
     },
     {
@@ -5198,8 +5255,9 @@
     },
     {
       "displayName": "nadmorski24.pl",
-      "id": "nadmorski24pl-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "nadmorski24pl-e50517",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-22",
       "tags": {
         "man_made": "surveillance",
         "operator": "nadmorski24.pl"
@@ -5505,8 +5563,10 @@
     },
     {
       "displayName": "Northville Township Police Department",
-      "id": "northvilletownshippolicedepartment-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "northvilletownshippolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Northville Township Police Department"
@@ -5742,20 +5802,13 @@
     },
     {
       "displayName": "Parc d'Activités Wilson",
-      "id": "parcdactiviteswilson-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "parcdactiviteswilson-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Parc d'Activités Wilson"
-      }
-    },
-    {
-      "displayName": "Particulier",
-      "id": "particulier-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Particulier"
       }
     },
     {
@@ -5851,18 +5904,11 @@
       }
     },
     {
-      "displayName": "Police Municipale",
-      "id": "policemunicipale-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Police Municipale"
-      }
-    },
-    {
       "displayName": "Police municipale de Lille",
-      "id": "policemunicipaledelille-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "policemunicipaledelille-68c249",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Police municipale de Lille"
@@ -5870,8 +5916,10 @@
     },
     {
       "displayName": "Police municipale de Roanne",
-      "id": "policemunicipalederoanne-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "policemunicipalederoanne-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Police municipale de Roanne"
@@ -5879,8 +5927,10 @@
     },
     {
       "displayName": "Police municipale de Rueil Malmaison",
-      "id": "policemunicipalederueilmalmaison-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "policemunicipalederueilmalmaison-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Police municipale de Rueil Malmaison"
@@ -6114,15 +6164,6 @@
       }
     },
     {
-      "displayName": "Préfecture",
-      "id": "prefecture-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Préfecture"
-      }
-    },
-    {
       "displayName": "Préfecture de police de Paris",
       "id": "prefecturedepolicedeparis-ddc08a",
       "locationSet": {
@@ -6157,24 +6198,6 @@
         "man_made": "surveillance",
         "operator": "Préfecture du Rhône",
         "operator:wikidata": "Q59210722"
-      }
-    },
-    {
-      "displayName": "Propriétaire de la maison",
-      "id": "proprietairedelamaison-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Propriétaire de la maison"
-      }
-    },
-    {
-      "displayName": "Propriétaire du bâtiment",
-      "id": "proprietairedubatiment-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Propriétaire du bâtiment"
       }
     },
     {
@@ -6366,17 +6389,21 @@
     },
     {
       "displayName": "Romulus Police Department",
-      "id": "romuluspolicedepartment-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "romuluspolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Romulus Police Department"
       }
     },
     {
-      "displayName": "Roseville Police Department",
-      "id": "rosevillepolicedepartment-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Roseville Police Department (Michigan)",
+      "id": "rosevillepolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Roseville Police Department"
@@ -6534,15 +6561,6 @@
       }
     },
     {
-      "displayName": "SCSO",
-      "id": "scso-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "SCSO"
-      }
-    },
-    {
       "displayName": "SČVK",
       "id": "severoceskevodovodyakanalizace-0bf588",
       "locationSet": {
@@ -6623,12 +6641,27 @@
       }
     },
     {
-      "displayName": "Semitan",
-      "id": "semitan-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Seminole County Sheriff's Office (Georgia)",
+      "id": "seminolecountysheriffsoffice-17a2f1",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Semitan"
+        "operator": "Seminole County Sheriff's Office",
+        "operator:short": "SCSO"
+      }
+    },
+    {
+      "displayName": "Semitan",
+      "id": "semitan-9ba658",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Semitan",
+        "operator:wikidata": "Q3487840"
       }
     },
     {
@@ -6645,11 +6678,12 @@
     },
     {
       "displayName": "SFR",
-      "id": "sfr-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "sfr-e10d05",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "SFR"
+        "operator": "SFR",
+        "operator:wikidata": "Q218765"
       }
     },
     {
@@ -7222,15 +7256,6 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Sutherlin Police Department"
-      }
-    },
-    {
-      "displayName": "Syndic d'immeuble",
-      "id": "syndicdimmeuble-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Syndic d'immeuble"
       }
     },
     {
@@ -7860,11 +7885,14 @@
     },
     {
       "displayName": "Ville d'Ales",
-      "id": "villedales-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedales-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville d'Ales"
+        "operator": "Ville d'Ales",
+        "operator:wikidata": "Q115918083"
       }
     },
     {
@@ -7881,11 +7909,14 @@
     },
     {
       "displayName": "Ville d'Antibes",
-      "id": "villedantibes-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedantibes-ea567b",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville d'Antibes"
+        "operator": "Ville d'Antibes",
+        "operator:wikidata": "Q115909558"
       }
     },
     {
@@ -7952,29 +7983,38 @@
     },
     {
       "displayName": "Ville de Besançon",
-      "id": "villedebesancon-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedebesancon-6e3818",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Besançon"
+        "operator": "Ville de Besançon",
+        "operator:wikidata": "Q86697997"
       }
     },
     {
       "displayName": "Ville de Blois",
-      "id": "villedeblois-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedeblois-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Blois"
+        "operator": "Ville de Blois",
+        "operator:wikidata": "Q87071500"
       }
     },
     {
       "displayName": "Ville de Bourges",
-      "id": "villedebourges-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedebourges-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Bourges"
+        "operator": "Ville de Bourges",
+        "operator:wikidata": "Q86698952"
       }
     },
     {
@@ -8040,11 +8080,14 @@
     },
     {
       "displayName": "Ville de Feurs",
-      "id": "villedefeurs-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedefeurs-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Feurs"
+        "operator": "Ville de Feurs",
+        "operator:wikidata": "Q118812104"
       }
     },
     {
@@ -8057,6 +8100,19 @@
         "man_made": "surveillance",
         "operator": "Ville de Fontaine",
         "operator:wikidata": "Q118554947"
+      }
+    },
+    {
+      "displayName": "Ville de Genève",
+      "id": "villedegeneve-9dfc74",
+      "locationSet": {
+        "include": ["ch-ge.geojson"]
+      },
+      "matchNames": ["ville/etat de genève"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Genève",
+        "operator:wikidata": "Q71"
       }
     },
     {
@@ -8074,11 +8130,15 @@
     },
     {
       "displayName": "Ville de Lille",
-      "id": "villedelille-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedelille-68c249",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
+      "matchNames": ["mairie de lille"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Lille"
+        "operator": "Ville de Lille",
+        "operator:wikidata": "Q86605089"
       }
     },
     {
@@ -8110,11 +8170,14 @@
     },
     {
       "displayName": "Ville de Loos",
-      "id": "villedeloos-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedeloos-68c249",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Loos"
+        "operator": "Ville de Loos",
+        "operator:wikidata": "Q115902864"
       }
     },
     {
@@ -8153,11 +8216,14 @@
     },
     {
       "displayName": "Ville de Mer",
-      "id": "villedemer-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedemer-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Mer"
+        "operator": "Ville de Mer",
+        "operator:wikidata": "Q118525072"
       }
     },
     {
@@ -8186,35 +8252,46 @@
     },
     {
       "displayName": "Ville de Nantes",
-      "id": "villedenantes-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedenantes-9ba658",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Nantes"
+        "operator": "Ville de Nantes",
+        "operator:wikidata": "Q86693245"
       }
     },
     {
       "displayName": "Ville de Neuville-sur-Saône",
-      "id": "villedeneuvillesursaone-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedeneuvillesursaone-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Neuville-sur-Saône"
+        "operator": "Ville de Neuville-sur-Saône",
+        "operator:wikidata": "Q118834385"
       }
     },
     {
       "displayName": "Ville de Nice",
-      "id": "villedenice-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedenice-ea567b",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Nice"
+        "operator": "Ville de Nice",
+        "operator:wikidata": "Q86698706"
       }
     },
     {
       "displayName": "Ville de Nîmes (CSU)",
-      "id": "villedenimescsu-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedenimescsu-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Ville de Nîmes (CSU)"
@@ -8244,11 +8321,14 @@
     },
     {
       "displayName": "Ville de Pau",
-      "id": "villedepau-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedepau-259304",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Pau"
+        "operator": "Ville de Pau",
+        "operator:wikidata": "Q115909876"
       }
     },
     {
@@ -8273,20 +8353,26 @@
     },
     {
       "displayName": "Ville de Reims",
-      "id": "villedereims-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedereims-7e2509",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Reims"
+        "operator": "Ville de Reims",
+        "operator:wikidata": "Q86699184"
       }
     },
     {
       "displayName": "Ville de Rennes",
-      "id": "villederennes-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villederennes-244fb4",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Rennes"
+        "operator": "Ville de Rennes",
+        "operator:wikidata": "Q86604751"
       }
     },
     {
@@ -8316,11 +8402,14 @@
     },
     {
       "displayName": "Ville de Saint-Denis",
-      "id": "villedesaintdenis-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedesaintdenis-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Saint-Denis"
+        "operator": "Ville de Saint-Denis",
+        "operator:wikidata": "Q131575588"
       }
     },
     {
@@ -8345,15 +8434,6 @@
         "man_made": "surveillance",
         "operator": "Ville de Saint-Priest",
         "operator:wikidata": "Q118525310"
-      }
-    },
-    {
-      "displayName": "Ville de Toulouse",
-      "id": "villedetoulouse-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Ville de Toulouse"
       }
     },
     {
@@ -8384,11 +8464,14 @@
     },
     {
       "displayName": "Ville de Vaulx-en-Velin",
-      "id": "villedevaulxenvelin-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedevaulxenvelin-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Vaulx-en-Velin"
+        "operator": "Ville de Vaulx-en-Velin",
+        "operator:wikidata": "Q118525422"
       }
     },
     {
@@ -8442,11 +8525,14 @@
     },
     {
       "displayName": "Ville de Voiron",
-      "id": "villedevoiron-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villedevoiron-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville de Voiron"
+        "operator": "Ville de Voiron",
+        "operator:wikidata": "Q118525458"
       }
     },
     {
@@ -8464,11 +8550,14 @@
     },
     {
       "displayName": "Ville du Havre",
-      "id": "villeduhavre-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "villeduhavre-760155",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Ville du Havre"
+        "operator": "Ville du Havre",
+        "operator:wikidata": "Q115627960"
       }
     },
     {
@@ -8481,15 +8570,6 @@
         "man_made": "surveillance",
         "operator": "Ville du Mans",
         "operator:wikidata": "Q86605648"
-      }
-    },
-    {
-      "displayName": "Ville/Etat de Genève",
-      "id": "villeetatdegeneve-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Ville/Etat de Genève"
       }
     },
     {
