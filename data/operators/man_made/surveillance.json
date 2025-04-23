@@ -12,11 +12,15 @@
         "^(house owner|pemilik rumah|propriétaire de la maison)$",
         "^(municipal police|police municipale)$",
         "^(municipalité|pr[eé]f[eé]cture)$",
+        "^(prison administration|administration pénitentiaire)$",
         "^(security|securitas)$",
         "^\\(police dept\\/owner\\)$",
         "^archives départementales$",
         "^centre des finances publiques$",
         "^domaine public$",
+        "^education nationale$",
+        "^hôpitaux de lyon$",
+        "^inconnu$",
         "^městská policie$",
         "^poli(ce|zei|smyndigheten)$",
         "^polic[íi]a (de la ciudad|nacional)$",
@@ -53,20 +57,14 @@
     },
     {
       "displayName": "Académie de Lyon",
-      "id": "academiedelyon-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "academiedelyon-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Académie de Lyon"
-      }
-    },
-    {
-      "displayName": "Administration Pénitentiaire",
-      "id": "administrationpenitentiaire-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Administration Pénitentiaire"
+        "operator": "Académie de Lyon",
+        "operator:wikidata": "Q2822308"
       }
     },
     {
@@ -322,19 +320,11 @@
       "displayName": "APRR",
       "id": "aprr-3bfa97",
       "locationSet": {"include": ["fx"]},
+      "matchNames": ["aprr (autoroutes)"],
       "tags": {
         "man_made": "surveillance",
         "operator": "APRR",
         "operator:wikidata": "Q2393003"
-      }
-    },
-    {
-      "displayName": "APRR (Autoroutes)",
-      "id": "aprrautoroutes-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "APRR (Autoroutes)"
       }
     },
     {
@@ -379,15 +369,6 @@
       }
     },
     {
-      "displayName": "ASF",
-      "id": "asf-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "ASF"
-      }
-    },
-    {
       "displayName": "ASFINAG",
       "id": "asfinag-b9389d",
       "locationSet": {"include": ["at"]},
@@ -408,12 +389,16 @@
       }
     },
     {
-      "displayName": "Assemblée National",
-      "id": "assembleenational-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Assemblée nationale",
+      "id": "assembleenationale-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "matchNames": ["assemblée national"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Assemblée National"
+        "operator": "Assemblée nationale",
+        "operator:wikidata": "Q193582"
       }
     },
     {
@@ -476,16 +461,19 @@
     },
     {
       "displayName": "Autoroutes du Sud de la France",
-      "id": "autoroutesdusuddelafrance-d6d8df",
+      "id": "autoroutesdusuddelafrance-c2eabf",
       "locationSet": {
         "include": [
+          "fr-ara.geojson",
           "fr-naq.geojson",
-          "fr-occ.geojson"
+          "fr-occ.geojson",
+          "fr-pac.geojson"
         ]
       },
       "tags": {
         "man_made": "surveillance",
         "operator": "Autoroutes du Sud de la France",
+        "operator:short": "ASF",
         "operator:wikidata": "Q2873028"
       }
     },
@@ -552,9 +540,9 @@
       }
     },
     {
-      "displayName": "Banque Populaire",
-      "id": "banquepopulaire-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "displayName": "Banque Populaire (France)",
+      "id": "banquepopulaire-e10d05",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Banque Populaire",
@@ -598,8 +586,8 @@
     },
     {
       "displayName": "Biedronka",
-      "id": "biedronka-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "biedronka-ac0c5d",
+      "locationSet": {"include": ["pl", "sk"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Biedronka",
@@ -632,7 +620,8 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "BMW"
+        "operator": "BMW",
+        "operator:wikidata": "Q26678"
       }
     },
     {
@@ -744,8 +733,10 @@
     },
     {
       "displayName": "Bristol City Council",
-      "id": "bristolcitycouncil-36d2be",
-      "locationSet": {"include": ["gb-eng"]},
+      "id": "bristolcitycouncil-4175ff",
+      "locationSet": {
+        "include": ["gb-bst.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Bristol City Council",
@@ -997,6 +988,17 @@
         "man_made": "surveillance",
         "operator": "Castorama",
         "operator:wikidata": "Q966971"
+      }
+    },
+    {
+      "displayName": "CCF",
+      "id": "ccf-3bfa97",
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["hsbc"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "CCF",
+        "operator:wikidata": "Q3006195"
       }
     },
     {
@@ -2180,15 +2182,6 @@
       }
     },
     {
-      "displayName": "Education Nationale",
-      "id": "educationnationale-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Education Nationale"
-      }
-    },
-    {
       "displayName": "EFFIA",
       "id": "effia-3bfa97",
       "locationSet": {"include": ["fx"]},
@@ -2333,7 +2326,7 @@
       }
     },
     {
-      "displayName": "EVN",
+      "displayName": "EVN (Österreich)",
       "id": "evn-b9389d",
       "locationSet": {"include": ["at"]},
       "tags": {
@@ -2506,12 +2499,12 @@
       }
     },
     {
-      "displayName": "Gendarmerie Nationale",
-      "id": "gendarmerienationale-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "displayName": "Gendarmerie nationale (France)",
+      "id": "gendarmerienationale-e10d05",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Gendarmerie Nationale",
+        "operator": "Gendarmerie nationale",
         "operator:wikidata": "Q1422336"
       }
     },
@@ -2701,8 +2694,8 @@
     },
     {
       "displayName": "Hebe",
-      "id": "hebe-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "hebe-ac0c5d",
+      "locationSet": {"include": ["pl", "sk"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Hebe",
@@ -2798,21 +2791,18 @@
       }
     },
     {
-      "displayName": "Hôpital c.h.u Pontchaillou (35000)",
-      "id": "hopitalchupontchaillou35000-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Hôpital Pontchaillou",
+      "id": "hopitalpontchaillou-244fb4",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
+      "matchNames": [
+        "hôpital c.h.u pontchaillou (35000)"
+      ],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Hôpital c.h.u Pontchaillou (35000)"
-      }
-    },
-    {
-      "displayName": "Hôpitaux de Lyon",
-      "id": "hopitauxdelyon-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Hôpitaux de Lyon"
+        "operator": "Hôpital Pontchaillou",
+        "operator:wikidata": "Q30279962"
       }
     },
     {
@@ -2826,15 +2816,6 @@
       }
     },
     {
-      "displayName": "HSBC",
-      "id": "hsbc-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "HSBC"
-      }
-    },
-    {
       "displayName": "Hudson Police Department",
       "id": "hudsonpolicedepartment-13167a",
       "locationSet": {
@@ -2843,15 +2824,6 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Hudson Police Department"
-      }
-    },
-    {
-      "displayName": "Humanis",
-      "id": "humanis-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Humanis"
       }
     },
     {
@@ -2914,15 +2886,6 @@
         "operator": "Illinois State Police",
         "operator:short": "ISP",
         "operator:wikidata": "Q3148730"
-      }
-    },
-    {
-      "displayName": "Inconnu",
-      "id": "inconnu-9c1a6c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Inconnu"
       }
     },
     {
@@ -3091,8 +3054,10 @@
     },
     {
       "displayName": "Keolis Dijon",
-      "id": "keolisdijon-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "id": "keolisdijon-6e3818",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Keolis Dijon",
@@ -3113,8 +3078,10 @@
     },
     {
       "displayName": "Keolis Rennes",
-      "id": "keolisrennes-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "id": "keolisrennes-244fb4",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Keolis Rennes",
@@ -3135,8 +3102,25 @@
     },
     {
       "displayName": "KiK",
-      "id": "kik-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "kik-ca2b0f",
+      "locationSet": {
+        "include": [
+          "at",
+          "bg",
+          "cz",
+          "de",
+          "es",
+          "hr",
+          "hu",
+          "it",
+          "nl",
+          "pl",
+          "pt",
+          "ro",
+          "si",
+          "sk"
+        ]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "KiK",
@@ -3795,6 +3779,17 @@
         "man_made": "surveillance",
         "operator": "Mairie de Villemeux-sur-Eure",
         "operator:wikidata": "Q115910028"
+      }
+    },
+    {
+      "displayName": "Malakoff Humanis",
+      "id": "malakoffhumanis-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "matchNames": ["humanis"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Malakoff Humanis",
+        "operator:wikidata": "Q63412973"
       }
     },
     {
@@ -7389,8 +7384,10 @@
     },
     {
       "displayName": "The Home Depot",
-      "id": "thehomedepot-cf76d3",
-      "locationSet": {"include": ["us"]},
+      "id": "thehomedepot-fcb0e6",
+      "locationSet": {
+        "include": ["ca", "mx", "us"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "The Home Depot",
@@ -9197,11 +9194,14 @@
     },
     {
       "displayName": "Белинвестбанк",
-      "id": "b6b639-57a1b2",
+      "id": "belinvestbank-57a1b2",
       "locationSet": {"include": ["by"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Белинвестбанк",
+        "operator:be": "Белінвестбанк",
+        "operator:en": "Belinvestbank",
+        "operator:ru": "Белинвестбанк",
         "operator:wikidata": "Q4081940"
       }
     },
@@ -9334,11 +9334,15 @@
     },
     {
       "displayName": "Приорбанк",
-      "id": "ecf3c3-57a1b2",
+      "id": "priorbank-57a1b2",
       "locationSet": {"include": ["by"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Приорбанк",
+        "operator:be": "Пріорбанк",
+        "operator:be-tarask": "Прыёрбанк",
+        "operator:en": "PriorBank",
+        "operator:ru": "Приорбанк",
         "operator:wikidata": "Q3919658"
       }
     },
