@@ -9,6 +9,7 @@ States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikiped
 
 - [IN-GA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ga.geojson%22%5D%7D&referrer=nsi) - Goa
 - [IN-HR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-hr.geojson%22%5D%7D&referrer=nsi) - Haryana
+- [IN-KA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ka.geojson%22%5D%7D&referrer=nsi) - Karnataka
 - [IN-KL.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-kl.geojson%22%5D%7D&referrer=nsi) - Kerala
 - [IN-SK.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-sk.geojson%22%5D%7D&referrer=nsi) - Sikkim
 - [IN-TN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-tn.geojson%22%5D%7D&referrer=nsi) - Tamil Nadu
