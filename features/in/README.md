@@ -17,6 +17,7 @@ States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikiped
 - [IN-TN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-tn.geojson%22%5D%7D&referrer=nsi) - Tamil Nadu
 - [IN-TS.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ts.geojson%22%5D%7D&referrer=nsi) - Telangana
 - [IN-UK.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-uk.geojson%22%5D%7D&referrer=nsi) - Uttarakhand
+- [IN-WB.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-wb.geojson%22%5D%7D&referrer=nsi) - West Bengal
 
 Union territories of India targeted with a feature using [ISO 3166-2:IN](https://en.wikipedia.org/wiki/ISO_3166-2:IN)
 
