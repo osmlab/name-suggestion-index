@@ -7,6 +7,7 @@ The following areas are included as part of [country-coder](https://github.com/r
 
 States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikipedia.org/wiki/ISO_3166-2:IN)
 
+- [IN-AP.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ap.geojson%22%5D%7D&referrer=nsi) - Andhra Pradesh
 - [IN-BR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-br.geojson%22%5D%7D&referrer=nsi) - Bihar
 - [IN-GA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ga.geojson%22%5D%7D&referrer=nsi) - Goa
 - [IN-HR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-hr.geojson%22%5D%7D&referrer=nsi) - Haryana
