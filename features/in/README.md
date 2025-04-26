@@ -14,6 +14,7 @@ States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikiped
 - [IN-KA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ka.geojson%22%5D%7D&referrer=nsi) - Karnataka
 - [IN-KL.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-kl.geojson%22%5D%7D&referrer=nsi) - Kerala
 - [IN-MH.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-mh.geojson%22%5D%7D&referrer=nsi) - Maharashtra
+- [IN-PB.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-pb.geojson%22%5D%7D&referrer=nsi) - Punjab
 - [IN-SK.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-sk.geojson%22%5D%7D&referrer=nsi) - Sikkim
 - [IN-TN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-tn.geojson%22%5D%7D&referrer=nsi) - Tamil Nadu
 - [IN-TS.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ts.geojson%22%5D%7D&referrer=nsi) - Telangana
