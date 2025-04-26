@@ -12,6 +12,7 @@ States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikiped
 - [IN-GA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ga.geojson%22%5D%7D&referrer=nsi) - Goa
 - [IN-HR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-hr.geojson%22%5D%7D&referrer=nsi) - Haryana
 - [IN-HP.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-hp.geojson%22%5D%7D&referrer=nsi) - Himachal Pradesh
+- [IN-JH.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-jh.geojson%22%5D%7D&referrer=nsi) - Jharkhand
 - [IN-KA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ka.geojson%22%5D%7D&referrer=nsi) - Karnataka
 - [IN-KL.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-kl.geojson%22%5D%7D&referrer=nsi) - Kerala
 - [IN-MH.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-mh.geojson%22%5D%7D&referrer=nsi) - Maharashtra
@@ -19,6 +20,7 @@ States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikiped
 - [IN-SK.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-sk.geojson%22%5D%7D&referrer=nsi) - Sikkim
 - [IN-TN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-tn.geojson%22%5D%7D&referrer=nsi) - Tamil Nadu
 - [IN-TS.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ts.geojson%22%5D%7D&referrer=nsi) - Telangana
+- [IN-TR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-tr.geojson%22%5D%7D&referrer=nsi) - Tripura
 - [IN-UK.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-uk.geojson%22%5D%7D&referrer=nsi) - Uttarakhand
 - [IN-WB.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-wb.geojson%22%5D%7D&referrer=nsi) - West Bengal
 
@@ -27,4 +29,6 @@ Union territories of India targeted with a feature using [ISO 3166-2:IN](https:/
 - [IN-CH.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ch.geojson%22%5D%7D&referrer=nsi) - Chandigarh
 - [IN-DH.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-dh.geojson%22%5D%7D&referrer=nsi) - Dadra and Nagar Haveli and Daman and Diu
 - [IN-DL.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-dl.geojson%22%5D%7D&referrer=nsi) - Delhi
+- [IN-JK.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-jk.geojson%22%5D%7D&referrer=nsi) - Jammu and Kashmir
+- [IN-LA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-la.geojson%22%5D%7D&referrer=nsi) - Ladakh
 - [IN-PY.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-py.geojson%22%5D%7D&referrer=nsi) - Puducherry (Pondicherry)
