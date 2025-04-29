@@ -3,6 +3,7 @@
     "path": "operators/power/plant",
     "exclude": {
       "generic": [
+        "^(individual|個人)$",
         "^(power)?\\s?plant$",
         "^private developer$"
       ],
@@ -4254,11 +4255,15 @@
       }
     },
     {
-      "displayName": "中国電力株式会社",
-      "id": "dc7674-083ddd",
+      "displayName": "中国電力",
+      "id": "chugokuelectricpowercompany-083ddd",
       "locationSet": {"include": ["jp"]},
+      "matchNames": ["中国電力株式会社"],
       "tags": {
-        "operator": "中国電力株式会社",
+        "operator": "中国電力",
+        "operator:en": "Chugoku Electric Power Company",
+        "operator:ja": "中国電力",
+        "operator:wikidata": "Q73171",
         "power": "plant"
       }
     },
@@ -4291,12 +4296,6 @@
       }
     },
     {
-      "displayName": "個人",
-      "id": "a1d1ec-083ddd",
-      "locationSet": {"include": ["jp"]},
-      "tags": {"operator": "個人", "power": "plant"}
-    },
-    {
       "displayName": "光大环保",
       "id": "f1a269-42ff7b",
       "locationSet": {"include": ["cn"]},
@@ -4316,8 +4315,13 @@
     },
     {
       "displayName": "北海道電力",
-      "id": "hokkaidoelectricpowercompany-083ddd",
-      "locationSet": {"include": ["jp"]},
+      "id": "hokkaidoelectricpowercompany-c93ef5",
+      "locationSet": {
+        "include": [
+          "jp-01.geojson",
+          "jp-02.geojson"
+        ]
+      },
       "tags": {
         "operator": "北海道電力",
         "operator:en": "Hokkaido Electric Power Company",
@@ -4469,12 +4473,13 @@
     },
     {
       "displayName": "株式会社Eネクスト",
-      "id": "30b7af-0d27d4",
+      "id": "enextcompany-0d27d4",
       "locationSet": {
         "include": ["jp-22.geojson"]
       },
       "tags": {
         "operator": "株式会社Eネクスト",
+        "operator:en": "E Next Company",
         "operator:ja": "株式会社Eネクスト",
         "power": "plant"
       }
@@ -4519,8 +4524,10 @@
     },
     {
       "displayName": "群馬県企業局",
-      "id": "f8514d-083ddd",
-      "locationSet": {"include": ["jp"]},
+      "id": "f8514d-d2d0a3",
+      "locationSet": {
+        "include": ["jp-10.geojson"]
+      },
       "tags": {
         "operator": "群馬県企業局",
         "operator:wikidata": "Q11609576",
