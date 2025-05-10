@@ -87,12 +87,13 @@ Areas of the United States targeted with a feature not using [ISO 3166-2:US](htt
 - [US-CA-Orange_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-orange_county.geojson%22%5D%7D&referrer=nsi) - Orange County, California
 - [US-CA-San_Luis_Obispo_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-san_luis_obispo_county.geojson%22%5D%7D&referrer=nsi) - San Luis Obispo County, California
 - [US-FL-Florida_Keys.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-fl-florida_keys.geojson%22%5D%7D&referrer=nsi) - Florida Keys
+- [US-IL-Cook_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-il-cook_county.geojson%22%5D%7D&referrer=nsi) - Cook County, Illinois
 - [US-MD-Baltimore.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-md-baltimore.geojson%22%5D%7D&referrer=nsi) - City of Baltimore, Maryland
 - [US-NV-Southern.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-nv-southern.geojson%22%5D%7D&referrer=nsi) - Southern Nevada
 - [US-NV-Washoe_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-nv-washoe_county.geojson%22%5D%7D&referrer=nsi) - Washoe County, Nevada
 - [US-NY-New_York_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ny-new_york_city.geojson%22%5D%7D&referrer=nsi) - New York City
 - [US-OH-Cuyahoga_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-oh-cuyahoga_county.geojson%22%5D%7D&referrer=nsi) - Cuyahoga County, Ohio
-- [US-TX-Austin.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-tx-austin.geojson%22%5D%7D&referrer=nsi) - Austin, Texas
+- [US-TX-Austin.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-tx-austin.geojson%22%5D%7D&referrer=nsi) - City of Austin, Texas
 
 Operating areas of entities in the United States targeted with a feature not using [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US)
 
