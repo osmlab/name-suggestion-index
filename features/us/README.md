@@ -98,7 +98,6 @@ Areas of the United States targeted with a feature not using [ISO 3166-2:US](htt
 Operating areas of entities in the United States targeted with a feature not using [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US)
 
 - [US-NE-First_State_Bank_East.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ne-first_state_bank_east.geojson%22%5D%7D&referrer=nsi) - First State Bank (eastern Nebraska)
-- [US-NE-First_State_Bank_West.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ne-first_state_bank_west.geojson%22%5D%7D&referrer=nsi) - First State Bank (western Nebraska)
 - [US-OH-Greater_Dayton_RTA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-oh-greater_dayton_rta.geojson%22%5D%7D&referrer=nsi) - Greater Dayton Regional Transit Authority (Ohio)
 - [US-CAT_Hood_River.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-cat_hood_river.geojson%22%5D%7D&referrer=nsi) - CAT (Hood River, Oregon/Washington)
 - [US-FoodLand_Eastern.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-foodland_eastern.geojson%22%5D%7D&referrer=nsi) - FoodLand (Eastern USA)
