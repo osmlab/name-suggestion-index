@@ -8,7 +8,10 @@ The following areas are included as part of [country-coder](https://github.com/r
 States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikipedia.org/wiki/ISO_3166-2:IN)
 
 - [IN-AP.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ap.geojson%22%5D%7D&referrer=nsi) - Andhra Pradesh
+- [IN-AR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ar.geojson%22%5D%7D&referrer=nsi) - Arunachal Pradesh
+- [IN-AS.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-as.geojson%22%5D%7D&referrer=nsi) - Assam
 - [IN-BR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-br.geojson%22%5D%7D&referrer=nsi) - Bihar
+- [IN-CG.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-cg.geojson%22%5D%7D&referrer=nsi) - Chhattisgarh
 - [IN-GA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ga.geojson%22%5D%7D&referrer=nsi) - Goa
 - [IN-HR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-hr.geojson%22%5D%7D&referrer=nsi) - Haryana
 - [IN-HP.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-hp.geojson%22%5D%7D&referrer=nsi) - Himachal Pradesh
@@ -23,6 +26,7 @@ States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikiped
 - [IN-TN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-tn.geojson%22%5D%7D&referrer=nsi) - Tamil Nadu
 - [IN-TS.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ts.geojson%22%5D%7D&referrer=nsi) - Telangana
 - [IN-TR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-tr.geojson%22%5D%7D&referrer=nsi) - Tripura
+- [IN-UP.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-up.geojson%22%5D%7D&referrer=nsi) - Uttar Pradesh
 - [IN-UK.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-uk.geojson%22%5D%7D&referrer=nsi) - Uttarakhand
 - [IN-WB.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-wb.geojson%22%5D%7D&referrer=nsi) - West Bengal
 
