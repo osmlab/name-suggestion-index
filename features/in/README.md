@@ -19,10 +19,15 @@ States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikiped
 - [IN-JH.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-jh.geojson%22%5D%7D&referrer=nsi) - Jharkhand
 - [IN-KA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ka.geojson%22%5D%7D&referrer=nsi) - Karnataka
 - [IN-KL.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-kl.geojson%22%5D%7D&referrer=nsi) - Kerala
+- [IN-MP.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-mp.geojson%22%5D%7D&referrer=nsi) - Madhya Pradesh
 - [IN-MH.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-mh.geojson%22%5D%7D&referrer=nsi) - Maharashtra
+- [IN-MN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-mn.geojson%22%5D%7D&referrer=nsi) - Manipur
+- [IN-ML.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ml.geojson%22%5D%7D&referrer=nsi) - Meghalaya
 - [IN-MZ.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-mz.geojson%22%5D%7D&referrer=nsi) - Mizoram
+- [IN-NL.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-nl.geojson%22%5D%7D&referrer=nsi) - Nagaland
 - [IN-OD.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-od.geojson%22%5D%7D&referrer=nsi) - Odisha
 - [IN-PB.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-pb.geojson%22%5D%7D&referrer=nsi) - Punjab
+- [IN-RJ.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-rj.geojson%22%5D%7D&referrer=nsi) - Rajasthan
 - [IN-SK.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-sk.geojson%22%5D%7D&referrer=nsi) - Sikkim
 - [IN-TN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-tn.geojson%22%5D%7D&referrer=nsi) - Tamil Nadu
 - [IN-TS.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ts.geojson%22%5D%7D&referrer=nsi) - Telangana
