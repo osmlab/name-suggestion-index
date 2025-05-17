@@ -13,6 +13,7 @@ States of India targeted with a feature using [ISO 3166-2:IN](https://en.wikiped
 - [IN-BR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-br.geojson%22%5D%7D&referrer=nsi) - Bihar
 - [IN-CG.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-cg.geojson%22%5D%7D&referrer=nsi) - Chhattisgarh
 - [IN-GA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-ga.geojson%22%5D%7D&referrer=nsi) - Goa
+- [IN-GJ.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-gj.geojson%22%5D%7D&referrer=nsi) - Gujarat
 - [IN-HR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-hr.geojson%22%5D%7D&referrer=nsi) - Haryana
 - [IN-HP.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-hp.geojson%22%5D%7D&referrer=nsi) - Himachal Pradesh
 - [IN-JH.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22in-jh.geojson%22%5D%7D&referrer=nsi) - Jharkhand
