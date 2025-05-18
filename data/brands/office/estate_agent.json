@@ -2,7 +2,12 @@
   "properties": {
     "path": "brands/office/estate_agent",
     "preserveTags": ["^name"],
-    "exclude": {"generic": ["^estate agent$"]}
+    "exclude": {
+      "generic": [
+        "^(real estate agency|fastighetsbyrån)$",
+        "^estate agent$"
+      ]
+    }
   },
   "items": [
     {
@@ -238,10 +243,10 @@
     },
     {
       "displayName": "Century 21",
-      "id": "century21-145e3e",
+      "id": "century21-8870f0",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["cn", "hk", "jp", "mo", "tw"]
+        "exclude": ["cn", "jp", "tw"]
       },
       "matchNames": ["century 21 real estate"],
       "tags": {
@@ -414,6 +419,17 @@
         "name": "Era",
         "name:bg": "Ера",
         "name:en": "Era",
+        "office": "estate_agent"
+      }
+    },
+    {
+      "displayName": "eXp Realty",
+      "id": "exprealty-0f7192",
+      "locationSet": {"include": ["ca", "us"]},
+      "tags": {
+        "brand": "eXp Realty",
+        "brand:wikidata": "Q117344280",
+        "name": "eXp Realty",
         "office": "estate_agent"
       }
     },
@@ -1125,6 +1141,16 @@
         "brand": "Tecnocasa",
         "brand:wikidata": "Q2399658",
         "name": "Tecnocasa",
+        "office": "estate_agent"
+      }
+    },
+    {
+      "displayName": "Tecnorete",
+      "id": "tecnorete-0731e9",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "brand": "Tecnorete",
+        "name": "Tecnorete",
         "office": "estate_agent"
       }
     },

@@ -15,7 +15,7 @@
         "^wasch(anlage|straße|strasse)$",
         "^کارواش$"
       ],
-      "named": ["^h2o$"]
+      "named": ["^h2o$", "^jet wash$"]
     }
   },
   "items": [
@@ -555,6 +555,17 @@
       }
     },
     {
+      "displayName": "Speedway Speedy Wash",
+      "id": "speedywash-244496",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "car_wash",
+        "brand": "Speedway",
+        "brand:wikidata": "Q7575683",
+        "name": "Speedy Wash"
+      }
+    },
+    {
       "displayName": "Super Wash",
       "id": "superwash-244496",
       "locationSet": {"include": ["us"]},
@@ -602,8 +613,11 @@
     },
     {
       "displayName": "Wash (TotalEnergies)",
-      "id": "wash-43b899",
-      "locationSet": {"include": ["001"]},
+      "id": "wash-8e017a",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["us"]
+      },
       "matchNames": ["total", "total wash"],
       "tags": {
         "amenity": "car_wash",

@@ -3,7 +3,10 @@
     "path": "brands/amenity/charging_station",
     "skipCollection": true,
     "preserveTags": ["^name"],
-    "exclude": {"generic": ["^charging station$"]}
+    "exclude": {
+      "generic": ["^charging station$"],
+      "named": ["^tesla, inc.$"]
+    }
   },
   "items": [
     {
@@ -66,6 +69,16 @@
         "name": "Chargy",
         "operator": "Chargy",
         "operator:wikidata": "Q62702950"
+      }
+    },
+    {
+      "displayName": "Electrocharge",
+      "id": "electrocharge-59a92d",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "Electrocharge",
+        "brand:wikidata": "Q133307258"
       }
     },
     {
@@ -289,7 +302,9 @@
       "tags": {
         "amenity": "charging_station",
         "brand": "Rivian Adventure Network",
-        "brand:wikidata": "Q7338847"
+        "brand:wikidata": "Q7338847",
+        "operator": "Rivian",
+        "operator:wikidata": "Q7338847"
       }
     },
     {
@@ -300,7 +315,9 @@
       "tags": {
         "amenity": "charging_station",
         "brand": "Rivian Waypoints",
-        "brand:wikidata": "Q7338847"
+        "brand:wikidata": "Q7338847",
+        "operator": "Rivian",
+        "operator:wikidata": "Q7338847"
       }
     },
     {
@@ -317,25 +334,20 @@
     },
     {
       "displayName": "Tesla Destination Charger",
-      "id": "tesladestinationcharger-67e574",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["no"]
-      },
+      "id": "tesladestinationcharger-4bd82e",
+      "locationSet": {"include": ["001"]},
+      "matchNames": ["tesla wall connector"],
       "tags": {
         "amenity": "charging_station",
-        "brand": "Tesla, Inc.",
+        "brand": "Tesla",
         "brand:wikidata": "Q478214",
         "name": "Tesla Destination Charger"
       }
     },
     {
       "displayName": "Tesla Supercharger",
-      "id": "teslasupercharger-67e574",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["no"]
-      },
+      "id": "teslasupercharger-4bd82e",
+      "locationSet": {"include": ["001"]},
       "matchNames": [
         "tesla motors",
         "tesla motors inc",
@@ -346,20 +358,9 @@
         "amenity": "charging_station",
         "brand": "Tesla Supercharger",
         "brand:wikidata": "Q17089620",
-        "operator": "Tesla, Inc.",
+        "name": "Tesla Supercharger",
+        "operator": "Tesla",
         "operator:wikidata": "Q478214"
-      }
-    },
-    {
-      "displayName": "Tesla Supercharger (Norge)",
-      "id": "teslasupercharger-054d0f",
-      "locationSet": {"include": ["no"]},
-      "matchNames": ["tesla motors"],
-      "tags": {
-        "amenity": "charging_station",
-        "brand": "Tesla",
-        "brand:wikidata": "Q478214",
-        "name": "Tesla Supercharger"
       }
     },
     {
@@ -368,6 +369,7 @@
       "locationSet": {
         "include": ["ch", "de", "fr", "gb", "ie"]
       },
+      "matchNames": ["ubitricity gmbh"],
       "tags": {
         "amenity": "charging_station",
         "brand": "ubitricity",

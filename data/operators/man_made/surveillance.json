@@ -3,27 +3,46 @@
     "path": "operators/man_made/surveillance",
     "exclude": {
       "generic": [
-        "^(apartment|embassy)$",
+        "^(apartment|embassy|synagogue)$",
+        "^(building (manager|owner)|bailleur social|propriétaire du bâtiment|syndic d'immeuble)$",
         "^(city|mairie)$",
         "^(civilians|private owner)$",
+        "^(federale? politie|police fédérale)$",
         "^(govt|overheid)$",
-        "^(house owner|pemilik rumah)$",
+        "^(house owner|pemilik rumah|propriétaire de la maison)$",
+        "^(municipal police|police municipale)$",
+        "^(municipalité|pr[eé]f[eé]cture)$",
+        "^(prison administration|administration pénitentiaire)$",
+        "^(security|securitas)$",
+        "^\\(police dept\\/owner\\)$",
+        "^archives départementales$",
+        "^centre des finances publiques$",
         "^domaine public$",
+        "^education nationale$",
+        "^hôpitaux de lyon$",
+        "^inconnu$",
         "^městská policie$",
-        "^municipalité$",
         "^poli(ce|zei|smyndigheten)$",
         "^polic[íi]a (de la ciudad|nacional)$",
         "^privé \\(hopital\\)$",
-        "^surveillance$"
+        "^surveillance$",
+        "^большой брат$",
+        "^вокзал$",
+        "^жилой дом$"
       ],
       "named": [
         "^(concordia|gym10|torre asia)$",
         "^(cvag|decathlon|deutsche bundesbank|dm|edeka|fahrrad xxl|media markt|netto|rewe|rossmann|saturn|selgros|sparkasse chemnitz|thrainer|vita-center)\\?$",
+        "^(priv(ate|é|athaus)|particulier)$",
         "^[34]$",
         "^act government/australian federal police$",
+        "^cfl / belval$",
+        "^flock safety$",
+        "^mac donald$",
         "^opera-ulb$",
-        "^priv(ate|é|athaus)$",
-        "^thames valley police/vale of white horse district council$"
+        "^résidence$",
+        "^thames valley police/vale of white horse district council$",
+        "^vpi \\+ ambiance$"
       ]
     }
   },
@@ -35,6 +54,18 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "ABIX"
+      }
+    },
+    {
+      "displayName": "Académie de Lyon",
+      "id": "academiedelyon-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Académie de Lyon",
+        "operator:wikidata": "Q2822308"
       }
     },
     {
@@ -51,6 +82,29 @@
         "man_made": "surveillance",
         "operator": "Agglo du Pays de Dreux",
         "operator:wikidata": "Q2986890"
+      }
+    },
+    {
+      "displayName": "Air France",
+      "id": "airfrance-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Air France",
+        "operator:wikidata": "Q131005"
+      }
+    },
+    {
+      "displayName": "Airbus",
+      "id": "airbus-d460f8",
+      "locationSet": {
+        "include": ["de", "fx", "nl"]
+      },
+      "matchNames": ["eads"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Airbus",
+        "operator:wikidata": "Q2311"
       }
     },
     {
@@ -114,8 +168,24 @@
       }
     },
     {
-      "displayName": "ALDI (ALDI Nord group)",
+      "displayName": "Albuquerque Police Department",
+      "id": "albuquerquepolicedepartment-52b3ac",
+      "locationSet": {
+        "include": ["us-nm.geojson"]
+      },
+      "matchNames": [
+        "albuqueque police department"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Albuquerque Police Department",
+        "operator:wikidata": "Q4712825"
+      }
+    },
+    {
+      "displayName": "Aldi (Aldi Nord group)",
       "id": "aldi-c81adf",
+      "issues": [10738],
       "locationSet": {
         "include": [
           "be",
@@ -131,13 +201,14 @@
       "matchNames": ["aldi france", "aldi nord"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "ALDI",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171373"
       }
     },
     {
-      "displayName": "ALDI (ALDI Süd group)",
+      "displayName": "Aldi (Aldi Süd group)",
       "id": "aldi-39cd69",
+      "issues": [10738],
       "locationSet": {
         "include": [
           "au",
@@ -159,13 +230,14 @@
       ],
       "tags": {
         "man_made": "surveillance",
-        "operator": "ALDI",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171672"
       }
     },
     {
-      "displayName": "ALDI Nord (Deutschland)",
+      "displayName": "Aldi Nord (Deutschland)",
       "id": "aldinord-8d575f",
+      "issues": [10738],
       "locationSet": {
         "include": ["de"],
         "exclude": ["aldi-sued.geojson"]
@@ -173,21 +245,56 @@
       "matchNames": ["aldi gmbh & co. kg"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "ALDI Nord",
+        "operator": "Aldi Nord",
         "operator:wikidata": "Q41171373"
       }
     },
     {
-      "displayName": "ALDI Süd (Deutschland)",
+      "displayName": "Aldi Süd (Deutschland)",
       "id": "aldisud-c27ec5",
+      "issues": [10738],
       "locationSet": {
         "include": ["aldi-sued.geojson"]
       },
       "matchNames": ["aldi gmbh & co. kg"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "ALDI Süd",
+        "operator": "Aldi Süd",
         "operator:wikidata": "Q41171672"
+      }
+    },
+    {
+      "displayName": "Allen Park Police Department",
+      "id": "allenparkpolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Allen Park Police Department"
+      }
+    },
+    {
+      "displayName": "Altoona Police Department (Iowa)",
+      "id": "altoonapolicedepartment-fff1d2",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Altoona Police Department",
+        "operator:wikidata": "Q133865932"
+      }
+    },
+    {
+      "displayName": "Amarillo Police Department",
+      "id": "amarillopolicedepartment-46f947",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Amarillo Police Department"
       }
     },
     {
@@ -214,6 +321,7 @@
       "displayName": "APRR",
       "id": "aprr-3bfa97",
       "locationSet": {"include": ["fx"]},
+      "matchNames": ["aprr (autoroutes)"],
       "tags": {
         "man_made": "surveillance",
         "operator": "APRR",
@@ -229,6 +337,22 @@
         "man_made": "surveillance",
         "operator": "Aral",
         "operator:wikidata": "Q565734"
+      }
+    },
+    {
+      "displayName": "Area Metropolitana de Barcelona",
+      "id": "areametropolitanadebarcelona-eb94ba",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
+      "matchNames": [
+        "amb (area metropolitana de barcelona)"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Area Metropolitana de Barcelona",
+        "operator:short": "AMB",
+        "operator:wikidata": "Q249489"
       }
     },
     {
@@ -263,6 +387,19 @@
         "man_made": "surveillance",
         "operator": "Asko a.s.",
         "operator:wikidata": "Q67813942"
+      }
+    },
+    {
+      "displayName": "Assemblée nationale",
+      "id": "assembleenationale-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "matchNames": ["assemblée national"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Assemblée nationale",
+        "operator:wikidata": "Q193582"
       }
     },
     {
@@ -325,17 +462,30 @@
     },
     {
       "displayName": "Autoroutes du Sud de la France",
-      "id": "autoroutesdusuddelafrance-d6d8df",
+      "id": "autoroutesdusuddelafrance-c2eabf",
       "locationSet": {
         "include": [
+          "fr-ara.geojson",
           "fr-naq.geojson",
-          "fr-occ.geojson"
+          "fr-occ.geojson",
+          "fr-pac.geojson"
         ]
       },
       "tags": {
         "man_made": "surveillance",
         "operator": "Autoroutes du Sud de la France",
+        "operator:short": "ASF",
         "operator:wikidata": "Q2873028"
+      }
+    },
+    {
+      "displayName": "Axis",
+      "id": "axis-926ff3",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Axis",
+        "operator:wikidata": "Q2347731"
       }
     },
     {
@@ -391,6 +541,16 @@
       }
     },
     {
+      "displayName": "Banque Populaire (France)",
+      "id": "banquepopulaire-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Banque Populaire",
+        "operator:wikidata": "Q846647"
+      }
+    },
+    {
       "displayName": "Bayer Schering Pharma",
       "id": "bayerscheringpharma-2b1420",
       "locationSet": {"include": ["de"]},
@@ -401,9 +561,34 @@
       }
     },
     {
+      "displayName": "Berkeley Police Department",
+      "id": "berkeleypolicedepartment-36a4e9",
+      "locationSet": {
+        "include": ["us-ca-east_bay.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Berkeley Police Department",
+        "operator:wikidata": "Q4892083"
+      }
+    },
+    {
+      "displayName": "Berliner Verkehrsbetriebe",
+      "id": "berlinerverkehrsbetriebe-afce8c",
+      "locationSet": {
+        "include": ["de-be.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Berliner Verkehrsbetriebe",
+        "operator:short": "BVG",
+        "operator:wikidata": "Q99633"
+      }
+    },
+    {
       "displayName": "Biedronka",
-      "id": "biedronka-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "biedronka-ac0c5d",
+      "locationSet": {"include": ["pl", "sk"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Biedronka",
@@ -428,6 +613,16 @@
         "man_made": "surveillance",
         "operator": "Bluefield Solar Income Fund",
         "operator:wikidata": "Q114352274"
+      }
+    },
+    {
+      "displayName": "BMW",
+      "id": "bmw-9c1a6c",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "BMW",
+        "operator:wikidata": "Q26678"
       }
     },
     {
@@ -457,6 +652,30 @@
         "man_made": "surveillance",
         "operator": "BOGESTRA",
         "operator:wikidata": "Q889060"
+      }
+    },
+    {
+      "displayName": "Boulder County Sheriff's Office",
+      "id": "bouldercountysheriffsoffice-79888a",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Boulder County Sheriff's Office",
+        "operator:wikidata": "Q132203037"
+      }
+    },
+    {
+      "displayName": "Boulder Police Department",
+      "id": "boulderpolicedepartment-79888a",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Boulder Police Department",
+        "operator:wikidata": "Q131187772"
       }
     },
     {
@@ -515,12 +734,28 @@
     },
     {
       "displayName": "Bristol City Council",
-      "id": "bristolcitycouncil-36d2be",
-      "locationSet": {"include": ["gb-eng"]},
+      "id": "bristolcitycouncil-4175ff",
+      "locationSet": {
+        "include": ["gb-bst.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Bristol City Council",
         "operator:wikidata": "Q16953796"
+      }
+    },
+    {
+      "displayName": "Bristol Tennessee Police Department",
+      "id": "bristoltennesseepolicedepartment-ca2bbd",
+      "locationSet": {
+        "include": ["us-tn.geojson"]
+      },
+      "matchNames": [
+        "bristol tn police department"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Bristol Tennessee Police Department"
       }
     },
     {
@@ -530,6 +765,19 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Britannia Village General"
+      }
+    },
+    {
+      "displayName": "Broward County",
+      "id": "browardcounty-9eb20b",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "matchNames": ["broward county, fla"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Broward County",
+        "operator:wikidata": "Q494624"
       }
     },
     {
@@ -546,11 +794,25 @@
     },
     {
       "displayName": "BTP",
-      "id": "btp-a0748e",
-      "locationSet": {"include": ["in"]},
+      "id": "btp-2e72cc",
+      "locationSet": {
+        "include": ["in-ka.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "BTP"
+      }
+    },
+    {
+      "displayName": "Buffalo Police Department",
+      "id": "buffalopolicedepartment-e862e8",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Buffalo Police Department",
+        "operator:wikidata": "Q30678371"
       }
     },
     {
@@ -627,6 +889,22 @@
       }
     },
     {
+      "displayName": "California Highway Patrol",
+      "id": "californiahighwaypatrol-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "matchNames": [
+        "california highway patrol (chp)"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "California Highway Patrol",
+        "operator:short": "CHP",
+        "operator:wikidata": "Q2249117"
+      }
+    },
+    {
       "displayName": "Cambridge City Council",
       "id": "cambridgecitycouncil-0f75ee",
       "locationSet": {
@@ -681,6 +959,52 @@
       }
     },
     {
+      "displayName": "Carrefour Market",
+      "id": "carrefourmarket-27a178",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["us"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Carrefour Market",
+        "operator:wikidata": "Q2689639"
+      }
+    },
+    {
+      "displayName": "Casino",
+      "id": "casino-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Casino",
+        "operator:wikidata": "Q2670967"
+      }
+    },
+    {
+      "displayName": "Castorama",
+      "id": "castorama-0b55c7",
+      "locationSet": {
+        "include": ["fx", "pl", "ru"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Castorama",
+        "operator:wikidata": "Q966971"
+      }
+    },
+    {
+      "displayName": "CCF",
+      "id": "ccf-3bfa97",
+      "locationSet": {"include": ["fx"]},
+      "matchNames": ["hsbc"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "CCF",
+        "operator:wikidata": "Q3006195"
+      }
+    },
+    {
       "displayName": "CCR ViaCosteira",
       "id": "ccrviacosteira-db2979",
       "locationSet": {
@@ -704,6 +1028,67 @@
         "man_made": "surveillance",
         "operator": "CEAMSE",
         "operator:wikidata": "Q5786331"
+      }
+    },
+    {
+      "displayName": "Cedar Rapids Police Department",
+      "id": "cedarrapidspolicedepartment-fff1d2",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "matchNames": ["cedar rapids pd"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Cedar Rapids Police Department",
+        "operator:wikidata": "Q28453050"
+      }
+    },
+    {
+      "displayName": "Centre Commercial Carré de Soie",
+      "id": "centrecommercialcarredesoie-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Centre Commercial Carré de Soie",
+        "operator:wikidata": "Q42887321"
+      }
+    },
+    {
+      "displayName": "Centre Commercial des Atlantes",
+      "id": "centrecommercialdesatlantes-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Centre Commercial des Atlantes",
+        "operator:wikidata": "Q97365410"
+      }
+    },
+    {
+      "displayName": "Centre hospitalier Le Vinatier",
+      "id": "centrehospitalierlevinatier-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Centre hospitalier Le Vinatier",
+        "operator:wikidata": "Q2945674"
+      }
+    },
+    {
+      "displayName": "Centre Léon Bérard",
+      "id": "centreleonberard-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Centre Léon Bérard",
+        "operator:wikidata": "Q2944832"
       }
     },
     {
@@ -769,14 +1154,27 @@
     },
     {
       "displayName": "Chicago Police Department",
-      "id": "chicagopolicedepartment-8cb4a4",
+      "id": "chicagopolicedepartment-8853b4",
       "locationSet": {
-        "include": ["us-il.geojson"]
+        "include": ["us-il-cook_county.geojson"]
       },
       "tags": {
         "man_made": "surveillance",
         "operator": "Chicago Police Department",
         "operator:wikidata": "Q1340186"
+      }
+    },
+    {
+      "displayName": "CHR de Lille",
+      "id": "chrdelille-68c249",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
+      "matchNames": ["chr"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "CHR de Lille",
+        "operator:wikidata": "Q2945741"
       }
     },
     {
@@ -787,6 +1185,16 @@
         "man_made": "surveillance",
         "operator": "CIC",
         "operator:wikidata": "Q746525"
+      }
+    },
+    {
+      "displayName": "Circle K",
+      "id": "circlek-0b7dca",
+      "locationSet": {"include": ["no", "se"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Circle K",
+        "operator:wikidata": "Q3268010"
       }
     },
     {
@@ -802,6 +1210,18 @@
       }
     },
     {
+      "displayName": "Cité de la musique",
+      "id": "citedelamusique-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Cité de la musique",
+        "operator:wikidata": "Q111713330"
+      }
+    },
+    {
       "displayName": "Cité Judiciaire",
       "id": "citejudiciaire-9ba658",
       "locationSet": {
@@ -814,14 +1234,55 @@
       }
     },
     {
+      "displayName": "Citura",
+      "id": "citura-7e2509",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Citura",
+        "operator:wikidata": "Q2974528"
+      }
+    },
+    {
       "displayName": "City Business Center",
-      "id": "citybusinesscenter-77e4ef",
-      "locationSet": {"include": ["sk"]},
+      "id": "citybusinesscenter-2ca003",
+      "locationSet": {
+        "include": ["sk-bl.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "City Business Center",
         "operator:short": "CBC",
         "operator:wikidata": "Q4180036"
+      }
+    },
+    {
+      "displayName": "City of Beaver Dam",
+      "id": "cityofbeaverdam-13167a",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "matchNames": ["beaver dam"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "City of Beaver Dam",
+        "operator:wikidata": "Q1570610"
+      }
+    },
+    {
+      "displayName": "City of Beverly Hills",
+      "id": "cityofbeverlyhills-a89d85",
+      "locationSet": {
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "City of Beverly Hills",
+        "operator:wikidata": "Q127856"
       }
     },
     {
@@ -850,6 +1311,19 @@
       }
     },
     {
+      "displayName": "City of Greenfield",
+      "id": "cityofgreenfield-13167a",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "matchNames": ["greenfield"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "City of Greenfield",
+        "operator:wikidata": "Q182877"
+      }
+    },
+    {
       "displayName": "City of Issaquah",
       "id": "cityofissaquah-a51efb",
       "locationSet": {
@@ -859,6 +1333,18 @@
         "man_made": "surveillance",
         "operator": "City of Issaquah",
         "operator:wikidata": "Q40251"
+      }
+    },
+    {
+      "displayName": "City of Newburgh",
+      "id": "cityofnewburgh-e862e8",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "City of Newburgh",
+        "operator:wikidata": "Q1044808"
       }
     },
     {
@@ -886,6 +1372,32 @@
       }
     },
     {
+      "displayName": "City of Universal City",
+      "id": "cityofuniversalcity-46f947",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "matchNames": ["universal city"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "City of Universal City",
+        "operator:wikidata": "Q979770"
+      }
+    },
+    {
+      "displayName": "City of West Allis",
+      "id": "cityofwestallis-13167a",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "matchNames": ["west allis"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "City of West Allis",
+        "operator:wikidata": "Q389483"
+      }
+    },
+    {
       "displayName": "City of Windsor",
       "id": "cityofwindsor-35e98c",
       "locationSet": {
@@ -895,6 +1407,17 @@
         "man_made": "surveillance",
         "operator": "City of Windsor",
         "operator:wikidata": "Q182625"
+      }
+    },
+    {
+      "displayName": "Clay County Sheriff's Office",
+      "id": "claycountysheriffsoffice-9eb20b",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Clay County Sheriff's Office"
       }
     },
     {
@@ -917,6 +1440,22 @@
         "man_made": "surveillance",
         "operator": "CNFPT",
         "operator:wikidata": "Q2945925"
+      }
+    },
+    {
+      "displayName": "Cofiroute",
+      "id": "cofiroute-97b8cb",
+      "locationSet": {
+        "include": [
+          "fr-cvl.geojson",
+          "fr-idf.geojson",
+          "fr-pdl.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Cofiroute",
+        "operator:wikidata": "Q2405919"
       }
     },
     {
@@ -947,54 +1486,86 @@
     },
     {
       "displayName": "Commune d'Etterbeek - Gemeente Etterbeek",
-      "id": "communedetterbeekgemeenteetterbeek-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "communedetterbeekgemeenteetterbeek-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Commune d'Etterbeek - Gemeente Etterbeek",
+        "operator:fr": "Commune d'Etterbeek",
+        "operator:nl": "Gemeente Etterbeek",
         "operator:wikidata": "Q192859"
       }
     },
     {
       "displayName": "Commune d'Uccle - Gemeente Ukkel",
-      "id": "communeducclegemeenteukkel-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "communeducclegemeenteukkel-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "matchNames": [
         "commune de uccle - gemeente ukkel"
       ],
       "tags": {
         "man_made": "surveillance",
         "operator": "Commune d'Uccle - Gemeente Ukkel",
+        "operator:fr": "Commune d'Uccle",
+        "operator:nl": "Gemeente Ukkel",
         "operator:wikidata": "Q203312"
       }
     },
     {
-      "displayName": "Commune de Berchem Sainte Agathe - Gemeente Sint-Agatha-Berchem",
-      "id": "communedeberchemsainteagathegemeentesintagathaberchem-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "displayName": "Commune de Berchem-Sainte-Agathe - Gemeente Sint-Agatha-Berchem",
+      "id": "communedeberchemsainteagathegemeentesintagathaberchem-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Commune de Berchem Sainte Agathe - Gemeente Sint-Agatha-Berchem",
+        "operator": "Commune de Berchem-Sainte-Agathe - Gemeente Sint-Agatha-Berchem",
+        "operator:fr": "Commune de Berchem-Sainte-Agathe",
+        "operator:nl": "Gemeente Sint-Agatha-Berchem",
         "operator:wikidata": "Q272272"
       }
     },
     {
-      "displayName": "Commune de Koekelberg – Gemeente Koekelberg",
-      "id": "communedekoekelberggemeentekoekelberg-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "displayName": "Commune de Gaillon",
+      "id": "communedegaillon-760155",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Commune de Koekelberg – Gemeente Koekelberg",
+        "operator": "Commune de Gaillon",
+        "operator:wikidata": "Q118802754"
+      }
+    },
+    {
+      "displayName": "Commune de Koekelberg - Gemeente Koekelberg",
+      "id": "communedekoekelberggemeentekoekelberg-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Commune de Koekelberg - Gemeente Koekelberg",
+        "operator:fr": "Commune de Koekelberg",
+        "operator:nl": "Gemeente Koekelberg",
         "operator:wikidata": "Q219244"
       }
     },
     {
-      "displayName": "Commune de Woluwe-Saint-Lambert – Gemeente Sint-Lambrechts-Woluwe",
-      "id": "communedewoluwesaintlambertgemeentesintlambrechtswoluwe-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "displayName": "Commune de Woluwe-Saint-Lambert - Gemeente Sint-Lambrechts-Woluwe",
+      "id": "communedewoluwesaintlambertgemeentesintlambrechtswoluwe-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Commune de Woluwe-Saint-Lambert – Gemeente Sint-Lambrechts-Woluwe",
+        "operator": "Commune de Woluwe-Saint-Lambert - Gemeente Sint-Lambrechts-Woluwe",
+        "operator:fr": "Commune de Woluwe-Saint-Lambert",
+        "operator:nl": "Gemeente Sint-Lambrechts-Woluwe",
         "operator:wikidata": "Q211764"
       }
     },
@@ -1007,6 +1578,8 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Comune di Bolzano - Stadtgemeinde Bozen",
+        "operator:de": "Stadtgemeinde Bozen",
+        "operator:it": "Comune di Bolzano",
         "operator:wikidata": "Q6526"
       }
     },
@@ -1167,6 +1740,16 @@
       }
     },
     {
+      "displayName": "Concello de Ourense",
+      "id": "concellodeourense-c70fa3",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Concello de Ourense",
+        "operator:wikidata": "Q5714906"
+      }
+    },
+    {
       "displayName": "Connecticut Department of Transportation",
       "id": "connecticutdepartmentoftransportation-5f4799",
       "locationSet": {
@@ -1178,6 +1761,30 @@
         "operator:short": "ConnDOT",
         "operator:type": "government",
         "operator:wikidata": "Q4923420"
+      }
+    },
+    {
+      "displayName": "Consulat d'Espagne (Lyon)",
+      "id": "consulatdespagne-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Consulat d'Espagne",
+        "operator:wikidata": "Q16507569"
+      }
+    },
+    {
+      "displayName": "Consulat d'Espagne (Toulouse)",
+      "id": "consulatdespagne-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Consulat d'Espagne",
+        "operator:wikidata": "Q16507564"
       }
     },
     {
@@ -1193,6 +1800,17 @@
       }
     },
     {
+      "displayName": "Cranston Police Department",
+      "id": "cranstonpolicedepartment-373ed2",
+      "locationSet": {
+        "include": ["us-ri.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Cranston Police Department"
+      }
+    },
+    {
       "displayName": "Crédit Agricole",
       "id": "creditagricole-9c1a6c",
       "locationSet": {"include": ["001"]},
@@ -1200,6 +1818,16 @@
         "man_made": "surveillance",
         "operator": "Crédit Agricole",
         "operator:wikidata": "Q590952"
+      }
+    },
+    {
+      "displayName": "Crédit du Nord",
+      "id": "creditdunord-3bfa97",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Crédit du Nord",
+        "operator:wikidata": "Q3006209"
       }
     },
     {
@@ -1243,6 +1871,16 @@
       }
     },
     {
+      "displayName": "Darty",
+      "id": "darty-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Darty",
+        "operator:wikidata": "Q2439098"
+      }
+    },
+    {
       "displayName": "DB InfraGO",
       "id": "dbinfrago-2b1420",
       "locationSet": {"include": ["de"]},
@@ -1257,6 +1895,37 @@
         "man_made": "surveillance",
         "operator": "DB InfraGO",
         "operator:wikidata": "Q122870674"
+      }
+    },
+    {
+      "displayName": "Dearborn Police Department",
+      "id": "dearbornpolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Dearborn Police Department"
+      }
+    },
+    {
+      "displayName": "Decathlon",
+      "id": "decathlon-c9a8a8",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": [
+          "bg",
+          "hk",
+          "ru",
+          "tw",
+          "ua",
+          "us"
+        ]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Decathlon",
+        "operator:wikidata": "Q509349"
       }
     },
     {
@@ -1305,13 +1974,35 @@
       }
     },
     {
-      "displayName": "Deutsche Telekom AG",
-      "id": "deutschetelekomag-2b1420",
+      "displayName": "Deutsche Telekom",
+      "id": "deutschetelekom-2b1420",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["deutsche telekom ag"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Deutsche Telekom",
+        "operator:wikidata": "Q9396"
+      }
+    },
+    {
+      "displayName": "Deutsches Zentrum für Luft- und Raumfahrt",
+      "id": "deutscheszentrumfurluftundraumfahrt-2b1420",
       "locationSet": {"include": ["de"]},
       "tags": {
         "man_made": "surveillance",
-        "operator": "Deutsche Telekom AG",
-        "operator:wikidata": "Q9396"
+        "operator": "Deutsches Zentrum für Luft- und Raumfahrt",
+        "operator:short": "DLR",
+        "operator:wikidata": "Q157332"
+      }
+    },
+    {
+      "displayName": "DGSE",
+      "id": "dgse-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "DGSE",
+        "operator:wikidata": "Q335827"
       }
     },
     {
@@ -1360,16 +2051,6 @@
       }
     },
     {
-      "displayName": "DLR",
-      "id": "dlr-2b1420",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "DLR",
-        "operator:wikidata": "Q157332"
-      }
-    },
-    {
       "displayName": "dm (Česko)",
       "id": "dm-5f01ff",
       "locationSet": {"include": ["cz"]},
@@ -1397,6 +2078,18 @@
         "man_made": "surveillance",
         "operator": "dm",
         "operator:wikidata": "Q72725613"
+      }
+    },
+    {
+      "displayName": "Dodge County",
+      "id": "dodgecounty-13167a",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Dodge County",
+        "operator:wikidata": "Q372796"
       }
     },
     {
@@ -1472,6 +2165,50 @@
       }
     },
     {
+      "displayName": "Eastpointe Police Department",
+      "id": "eastpointepolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Eastpointe Police Department"
+      }
+    },
+    {
+      "displayName": "Edmond Police Department",
+      "id": "edmondpolicedepartment-440757",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Edmond Police Department"
+      }
+    },
+    {
+      "displayName": "EFFIA",
+      "id": "effia-3bfa97",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "EFFIA",
+        "operator:wikidata": "Q3045894"
+      }
+    },
+    {
+      "displayName": "El Cerrito Police Department",
+      "id": "elcerritopolicedepartment-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "El Cerrito Police Department",
+        "operator:wikidata": "Q113181194"
+      }
+    },
+    {
       "displayName": "Électricité de France",
       "id": "electricitedefrance-9c1a6c",
       "locationSet": {"include": ["001"]},
@@ -1542,6 +2279,7 @@
       "displayName": "Eni",
       "id": "eni-9c1a6c",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["agip"],
       "tags": {
         "man_made": "surveillance",
         "operator": "Eni",
@@ -1569,7 +2307,31 @@
       }
     },
     {
-      "displayName": "EVN",
+      "displayName": "Eurexpo",
+      "id": "eurexpo-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Eurexpo",
+        "operator:wikidata": "Q3060504"
+      }
+    },
+    {
+      "displayName": "Everett Police Department",
+      "id": "everettpolicedepartment-a51efb",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "matchNames": ["everett police"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Everett Police Department"
+      }
+    },
+    {
+      "displayName": "EVN (Österreich)",
       "id": "evn-b9389d",
       "locationSet": {"include": ["at"]},
       "tags": {
@@ -1599,16 +2361,6 @@
       }
     },
     {
-      "displayName": "Flock Safety",
-      "id": "flocksafety-cf76d3",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "Flock Safety",
-        "operator:wikidata": "Q108485435"
-      }
-    },
-    {
       "displayName": "Florida Department of Transportation",
       "id": "floridadepartmentoftransportation-9eb20b",
       "locationSet": {
@@ -1632,6 +2384,31 @@
         "man_made": "surveillance",
         "operator": "Flughafen Wien AG",
         "operator:wikidata": "Q1433222"
+      }
+    },
+    {
+      "displayName": "FOD Financiën - SPF Finances - FOD Finanzen",
+      "id": "fodfinancienspffinancesfodfinanzen-fe27ed",
+      "locationSet": {"include": ["be"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "FOD Financiën - SPF Finances - FOD Finanzen",
+        "operator:de": "FOD Finanzen",
+        "operator:fr": "SPF Finances",
+        "operator:nl": "FOD Financiën",
+        "operator:wikidata": "Q2479908"
+      }
+    },
+    {
+      "displayName": "Fond du Lac County",
+      "id": "fonddulaccounty-13167a",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Fond du Lac County",
+        "operator:wikidata": "Q494912"
       }
     },
     {
@@ -1661,6 +2438,37 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "foto-webcam.eu"
+      }
+    },
+    {
+      "displayName": "Franprix",
+      "id": "franprix-3bfa97",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Franprix",
+        "operator:wikidata": "Q2420096"
+      }
+    },
+    {
+      "displayName": "Garden City Police Department",
+      "id": "gardencitypolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Garden City Police Department"
+      }
+    },
+    {
+      "displayName": "Géant Casino",
+      "id": "geantcasino-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Géant Casino",
+        "operator:wikidata": "Q1380537"
       }
     },
     {
@@ -1696,6 +2504,16 @@
       }
     },
     {
+      "displayName": "Gendarmerie nationale (France)",
+      "id": "gendarmerienationale-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Gendarmerie nationale",
+        "operator:wikidata": "Q1422336"
+      }
+    },
+    {
       "displayName": "Generalna Dyrekcja Dróg Krajowych i Autostrad",
       "id": "generalnadyrekcjadrogkrajowychiautostrad-e50517",
       "locationSet": {"include": ["pl"]},
@@ -1721,6 +2539,54 @@
       }
     },
     {
+      "displayName": "Giberttrans",
+      "id": "giberttrans-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Giberttrans"
+      }
+    },
+    {
+      "displayName": "Ginko",
+      "id": "ginko-6e3818",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
+      "matchNames": ["ginko (tramway et bus)"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ginko",
+        "operator:wikidata": "Q3106780"
+      }
+    },
+    {
+      "displayName": "Grand Blanc Township Police Department",
+      "id": "grandblanctownshippolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "matchNames": ["grand blanc twp pd"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Grand Blanc Township Police Department"
+      }
+    },
+    {
+      "displayName": "Grass Valley Police Department",
+      "id": "grassvalleypolicedepartment-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Grass Valley Police Department",
+        "operator:wikidata": "Q120751684"
+      }
+    },
+    {
       "displayName": "Greater Geelong City Council",
       "id": "greatergeelongcitycouncil-f55e99",
       "locationSet": {
@@ -1730,6 +2596,17 @@
         "man_made": "surveillance",
         "operator": "Greater Geelong City Council",
         "operator:wikidata": "Q112919122"
+      }
+    },
+    {
+      "displayName": "Groupement Hospitalier Est",
+      "id": "groupementhospitalierest-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Groupement Hospitalier Est"
       }
     },
     {
@@ -1765,6 +2642,50 @@
       }
     },
     {
+      "displayName": "Hamburger Verkehrsverbund",
+      "id": "hamburgerverkehrsverbund-2b1420",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Hamburger Verkehrsverbund",
+        "operator:short": "HVV",
+        "operator:wikidata": "Q896916"
+      }
+    },
+    {
+      "displayName": "Hampton Police Division",
+      "id": "hamptonpolicedivision-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Hampton Police Division"
+      }
+    },
+    {
+      "displayName": "Hamtramck Police Department",
+      "id": "hamtramckpolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Hamtramck Police Department"
+      }
+    },
+    {
+      "displayName": "Harrisonburg Police Department",
+      "id": "harrisonburgpolicedepartment-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Harrisonburg Police Department"
+      }
+    },
+    {
       "displayName": "Hawaii Department of Transportation",
       "id": "hawaiidepartmentoftransportation-4ea7da",
       "locationSet": {"include": ["us-hi"]},
@@ -1778,8 +2699,8 @@
     },
     {
       "displayName": "Hebe",
-      "id": "hebe-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "hebe-ac0c5d",
+      "locationSet": {"include": ["pl", "sk"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Hebe",
@@ -1807,6 +2728,55 @@
       }
     },
     {
+      "displayName": "Henrico County Police Department",
+      "id": "henricocountypolicedepartment-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Henrico County Police Department",
+        "operator:wikidata": "Q5715834"
+      }
+    },
+    {
+      "displayName": "Hernando County Sheriff's Office",
+      "id": "hernandocountysheriffsoffice-9eb20b",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Hernando County Sheriff's Office",
+        "operator:wikidata": "Q5742210"
+      }
+    },
+    {
+      "displayName": "Highland Park Police Department (Illinois)",
+      "id": "highlandparkpolicedepartment-8cb4a4",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "matchNames": [
+        "police department in highland park illinois"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Highland Park Police Department"
+      }
+    },
+    {
+      "displayName": "Highland Park Police Department (Michigan)",
+      "id": "highlandparkpolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Highland Park Police Department"
+      }
+    },
+    {
       "displayName": "Hive Energy",
       "id": "hiveenergy-b199cc",
       "locationSet": {"include": ["es", "gb"]},
@@ -1826,6 +2796,32 @@
       }
     },
     {
+      "displayName": "Hopewell Police Department",
+      "id": "hopewellpolicedepartment-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Hopewell Police Department"
+      }
+    },
+    {
+      "displayName": "Hôpital Pontchaillou",
+      "id": "hopitalpontchaillou-244fb4",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
+      "matchNames": [
+        "hôpital c.h.u pontchaillou (35000)"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Hôpital Pontchaillou",
+        "operator:wikidata": "Q30279962"
+      }
+    },
+    {
       "displayName": "Hornbach",
       "id": "hornbach-9c1a6c",
       "locationSet": {"include": ["001"]},
@@ -1836,14 +2832,26 @@
       }
     },
     {
-      "displayName": "HVV",
-      "id": "hamburgerverkehrsverbund-2b1420",
-      "locationSet": {"include": ["de"]},
+      "displayName": "Hudson Police Department",
+      "id": "hudsonpolicedepartment-13167a",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "Hamburger Verkehrsverbund",
-        "operator:short": "HVV",
-        "operator:wikidata": "Q896916"
+        "operator": "Hudson Police Department"
+      }
+    },
+    {
+      "displayName": "Huntington Beach Police Department",
+      "id": "huntingtonbeachpolicedepartment-7a14de",
+      "locationSet": {
+        "include": ["us-ca-orange_county.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Huntington Beach Police Department",
+        "operator:wikidata": "Q120751700"
       }
     },
     {
@@ -1920,12 +2928,38 @@
       }
     },
     {
+      "displayName": "Inforoute Alsace",
+      "id": "inforoutealsace-7e2509",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Inforoute Alsace"
+      }
+    },
+    {
       "displayName": "InfoRoute05.fr",
       "id": "inforoute05fr-4bcffb",
       "locationSet": {"include": ["fx", "it"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "InfoRoute05.fr"
+      }
+    },
+    {
+      "displayName": "Interlocken Owners' Association",
+      "id": "interlockenownersassociation-79888a",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
+      "matchNames": [
+        "interlocken owners' association, inc."
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Interlocken Owners' Association",
+        "operator:wikidata": "Q133832005"
       }
     },
     {
@@ -1963,6 +2997,19 @@
         "operator:short": "Iowa DOT",
         "operator:type": "government",
         "operator:wikidata": "Q4925621"
+      }
+    },
+    {
+      "displayName": "Irigo",
+      "id": "irigo-9ba658",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
+      "matchNames": ["keolis"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Irigo",
+        "operator:wikidata": "Q3537930"
       }
     },
     {
@@ -2023,8 +3070,10 @@
     },
     {
       "displayName": "Keolis Dijon",
-      "id": "keolisdijon-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "id": "keolisdijon-6e3818",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Keolis Dijon",
@@ -2032,9 +3081,23 @@
       }
     },
     {
+      "displayName": "Keolis Lyon",
+      "id": "keolislyon-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Keolis Lyon",
+        "operator:wikidata": "Q61456136"
+      }
+    },
+    {
       "displayName": "Keolis Rennes",
-      "id": "keolisrennes-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "id": "keolisrennes-244fb4",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Keolis Rennes",
@@ -2042,9 +3105,38 @@
       }
     },
     {
+      "displayName": "Keolis Tours",
+      "id": "keolistours-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Keolis Tours",
+        "operator:wikidata": "Q664399"
+      }
+    },
+    {
       "displayName": "KiK",
-      "id": "kik-9c1a6c",
-      "locationSet": {"include": ["001"]},
+      "id": "kik-ca2b0f",
+      "locationSet": {
+        "include": [
+          "at",
+          "bg",
+          "cz",
+          "de",
+          "es",
+          "hr",
+          "hu",
+          "it",
+          "nl",
+          "pl",
+          "pt",
+          "ro",
+          "si",
+          "sk"
+        ]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "KiK",
@@ -2104,6 +3196,29 @@
       }
     },
     {
+      "displayName": "Lafayette Police Department",
+      "id": "lafayettepolicedepartment-5fc25c",
+      "locationSet": {
+        "include": ["us-la.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Lafayette Police Department",
+        "operator:wikidata": "Q6471499"
+      }
+    },
+    {
+      "displayName": "Lakewood Police Department",
+      "id": "lakewoodpolicedepartment-a51efb",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Lakewood Police Department"
+      }
+    },
+    {
       "displayName": "Land Oberösterreich",
       "id": "landoberosterreich-b6b08f",
       "locationSet": {
@@ -2141,6 +3256,18 @@
       }
     },
     {
+      "displayName": "Lantana Police Department",
+      "id": "lantanapolicedepartment-9eb20b",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Lantana Police Department",
+        "operator:wikidata": "Q131170743"
+      }
+    },
+    {
       "displayName": "Lawrence Police Department",
       "id": "lawrencepolicedepartment-ab554c",
       "locationSet": {
@@ -2150,6 +3277,41 @@
         "man_made": "surveillance",
         "operator": "Lawrence Police Department",
         "operator:wikidata": "Q116178983"
+      }
+    },
+    {
+      "displayName": "LCL",
+      "id": "lcl-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "LCL",
+        "operator:wikidata": "Q779722"
+      }
+    },
+    {
+      "displayName": "Le Bon Marché",
+      "id": "lebonmarche-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Le Bon Marché",
+        "operator:wikidata": "Q1200698"
+      }
+    },
+    {
+      "displayName": "Le Havre Seine Métropole",
+      "id": "lehavreseinemetropole-760155",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
+      "matchNames": ["codah"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Le Havre Seine Métropole",
+        "operator:wikidata": "Q60642622"
       }
     },
     {
@@ -2163,6 +3325,17 @@
       }
     },
     {
+      "displayName": "Lexington Police Department",
+      "id": "lexingtonpolicedepartment-3943d2",
+      "locationSet": {
+        "include": ["us-ky.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Lexington Police Department"
+      }
+    },
+    {
       "displayName": "Lidl",
       "id": "lidl-9c1a6c",
       "locationSet": {"include": ["001"]},
@@ -2173,6 +3346,18 @@
       }
     },
     {
+      "displayName": "Liege",
+      "id": "liege-abba06",
+      "locationSet": {
+        "include": ["be-wlg.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Liege",
+        "operator:wikidata": "Q1127"
+      }
+    },
+    {
       "displayName": "Lightsource BP",
       "id": "lightsourcebp-9c1a6c",
       "locationSet": {"include": ["001"]},
@@ -2180,6 +3365,29 @@
         "man_made": "surveillance",
         "operator": "Lightsource BP",
         "operator:wikidata": "Q18589166"
+      }
+    },
+    {
+      "displayName": "Lincoln Park Police Department",
+      "id": "lincolnparkpolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Lincoln Park Police Department"
+      }
+    },
+    {
+      "displayName": "Little Rock Police Department",
+      "id": "littlerockpolicedepartment-7165d9",
+      "locationSet": {
+        "include": ["us-ar.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Little Rock Police Department",
+        "operator:wikidata": "Q6651763"
       }
     },
     {
@@ -2230,6 +3438,17 @@
       }
     },
     {
+      "displayName": "Lowe's",
+      "id": "lowes-d8beeb",
+      "locationSet": {"include": ["mx", "us"]},
+      "matchNames": ["lowe's home improvement"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Lowe's",
+        "operator:wikidata": "Q1373493"
+      }
+    },
+    {
       "displayName": "Lyceum of the Philippines University",
       "id": "lyceumofthephilippinesuniversity-0dafa0",
       "locationSet": {
@@ -2257,6 +3476,17 @@
       }
     },
     {
+      "displayName": "Macomb County Sheriff's Office",
+      "id": "macombcountysheriffsoffice-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Macomb County Sheriff's Office"
+      }
+    },
+    {
       "displayName": "Maine Department of Transportation",
       "id": "mainedepartmentoftransportation-a83068",
       "locationSet": {
@@ -2281,6 +3511,19 @@
         "man_made": "surveillance",
         "operator": "Mairie d'Albi",
         "operator:wikidata": "Q115918082"
+      }
+    },
+    {
+      "displayName": "Mairie d'Annemasse",
+      "id": "mairiedannemasse-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "matchNames": ["ville d'annemasse"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Mairie d'Annemasse",
+        "operator:wikidata": "Q115909557"
       }
     },
     {
@@ -2343,6 +3586,18 @@
         "man_made": "surveillance",
         "operator": "Mairie de Carquefou",
         "operator:wikidata": "Q115909624"
+      }
+    },
+    {
+      "displayName": "Mairie de Caux",
+      "id": "mairiedecaux-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Mairie de Caux",
+        "operator:wikidata": "Q118807971"
       }
     },
     {
@@ -2477,11 +3732,24 @@
       }
     },
     {
+      "displayName": "Mairie de Tarbes",
+      "id": "mairiedetarbes-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Mairie de Tarbes",
+        "operator:wikidata": "Q115908791"
+      }
+    },
+    {
       "displayName": "Mairie de Toulouse",
       "id": "mairiedetoulouse-54417e",
       "locationSet": {
         "include": ["fr-occ.geojson"]
       },
+      "matchNames": ["ville de toulouse"],
       "tags": {
         "man_made": "surveillance",
         "operator": "Mairie de Toulouse",
@@ -2530,6 +3798,17 @@
       }
     },
     {
+      "displayName": "Malakoff Humanis",
+      "id": "malakoffhumanis-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "matchNames": ["humanis"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Malakoff Humanis",
+        "operator:wikidata": "Q63412973"
+      }
+    },
+    {
       "displayName": "Manila Toll Expressway Systems",
       "id": "manilatollexpresswaysystems-91d4b9",
       "locationSet": {
@@ -2544,9 +3823,23 @@
       }
     },
     {
+      "displayName": "Marina Department of Public Safety",
+      "id": "marinadepartmentofpublicsafety-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Marina Department of Public Safety",
+        "operator:wikidata": "Q120751735"
+      }
+    },
+    {
       "displayName": "Marine Hotel",
-      "id": "marinehotel-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "marinehotel-146a13",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Marine Hotel",
@@ -2628,7 +3921,7 @@
     },
     {
       "displayName": "McDonald's",
-      "id": "mcdonalds-50eddc",
+      "id": "mcdonalds-ef9f33",
       "locationSet": {
         "include": ["001"],
         "exclude": [
@@ -2637,8 +3930,6 @@
           "by",
           "cn",
           "eg",
-          "fr",
-          "hk",
           "iq",
           "jo",
           "jp",
@@ -2647,7 +3938,6 @@
           "kz",
           "lb",
           "ma",
-          "mo",
           "no",
           "om",
           "qa",
@@ -2665,6 +3955,18 @@
       }
     },
     {
+      "displayName": "McGill University",
+      "id": "mcgilluniversity-89d7b3",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "McGill University",
+        "operator:wikidata": "Q201492"
+      }
+    },
+    {
       "displayName": "MDČR",
       "id": "ministerstvodopravyceskerepubliky-5f01ff",
       "locationSet": {"include": ["cz"]},
@@ -2673,6 +3975,16 @@
         "operator": "Ministerstvo dopravy České republiky",
         "operator:short": "MDČR",
         "operator:wikidata": "Q11781508"
+      }
+    },
+    {
+      "displayName": "Meijer",
+      "id": "meijer-cf76d3",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Meijer",
+        "operator:wikidata": "Q1917753"
       }
     },
     {
@@ -2703,6 +4015,7 @@
       "displayName": "Mesto Ružomberok",
       "id": "mestoruzomberok-77e4ef",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-ZI",
       "tags": {
         "man_made": "surveillance",
         "operator": "Mesto Ružomberok",
@@ -2717,10 +4030,22 @@
         "mestká policia ružomberok",
         "mestká poliícia rk"
       ],
+      "note": "ISO 3166-2 SK-ZI",
       "tags": {
         "man_made": "surveillance",
         "operator": "Mestská polícia Ružomberok",
         "operator:wikidata": "Q131378404"
+      }
+    },
+    {
+      "displayName": "Městská policie 464 01 Frýdlant",
+      "id": "mestskapolicie46401frydlant-66603e",
+      "locationSet": {
+        "include": ["cz-51.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie 464 01 Frýdlant"
       }
     },
     {
@@ -2820,6 +4145,17 @@
       }
     },
     {
+      "displayName": "Městská policie Český Brod",
+      "id": "mestskapolicieceskybrod-2d00c0",
+      "locationSet": {
+        "include": ["cz-20.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Český Brod"
+      }
+    },
+    {
       "displayName": "Městská policie Český Těšín",
       "id": "mestskapolicieceskytesin-dc286a",
       "locationSet": {
@@ -2844,6 +4180,17 @@
       }
     },
     {
+      "displayName": "Městská policie Chodov",
+      "id": "mestskapoliciechodov-78f73d",
+      "locationSet": {
+        "include": ["cz-41.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Chodov"
+      }
+    },
+    {
       "displayName": "Městská policie Děčín",
       "id": "mestskapoliciedecin-0bf588",
       "locationSet": {
@@ -2853,6 +4200,17 @@
         "man_made": "surveillance",
         "operator": "Městská policie Děčín",
         "operator:wikidata": "Q131378324"
+      }
+    },
+    {
+      "displayName": "Městská policie Domažlice",
+      "id": "mestskapoliciedomazlice-ecf7d6",
+      "locationSet": {
+        "include": ["cz-32.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Domažlice"
       }
     },
     {
@@ -2940,6 +4298,20 @@
       }
     },
     {
+      "displayName": "Městská policie Horažďovice",
+      "id": "mestskapoliciehorazdovice-ecf7d6",
+      "locationSet": {
+        "include": ["cz-32.geojson"]
+      },
+      "matchNames": [
+        "městká policie horažďovice"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Horažďovice"
+      }
+    },
+    {
       "displayName": "Městská policie Hradec Králové",
       "id": "mestskapoliciehradeckralove-1014dc",
       "locationSet": {
@@ -2949,6 +4321,17 @@
         "man_made": "surveillance",
         "operator": "Městská policie Hradec Králové",
         "operator:wikidata": "Q131378332"
+      }
+    },
+    {
+      "displayName": "Městská policie Jablonec nad Nisou",
+      "id": "mestskapoliciejablonecnadnisou-66603e",
+      "locationSet": {
+        "include": ["cz-51.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Jablonec nad Nisou"
       }
     },
     {
@@ -3009,6 +4392,28 @@
         "man_made": "surveillance",
         "operator": "Městská policie Kladno",
         "operator:wikidata": "Q131378337"
+      }
+    },
+    {
+      "displayName": "Městská policie Klášterec nad Ohří",
+      "id": "mestskapolicieklasterecnadohri-0bf588",
+      "locationSet": {
+        "include": ["cz-42.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Klášterec nad Ohří"
+      }
+    },
+    {
+      "displayName": "Městská policie Klatovy",
+      "id": "mestskapolicieklatovy-ecf7d6",
+      "locationSet": {
+        "include": ["cz-32.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Klatovy"
       }
     },
     {
@@ -3156,6 +4561,17 @@
       }
     },
     {
+      "displayName": "Městská policie Most",
+      "id": "mestskapoliciemost-0bf588",
+      "locationSet": {
+        "include": ["cz-42.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Most"
+      }
+    },
+    {
       "displayName": "Městská policie Nejdek",
       "id": "mestskapolicienejdek-78f73d",
       "locationSet": {
@@ -3253,6 +4669,17 @@
       }
     },
     {
+      "displayName": "Městská policie Přeštice",
+      "id": "mestskapolicieprestice-ecf7d6",
+      "locationSet": {
+        "include": ["cz-32.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Přeštice"
+      }
+    },
+    {
       "displayName": "Městská policie Příbram",
       "id": "mestskapoliciepribram-2d00c0",
       "locationSet": {
@@ -3310,6 +4737,17 @@
         "man_made": "surveillance",
         "operator": "Městská policie Roudnice nad Labem",
         "operator:wikidata": "Q131378361"
+      }
+    },
+    {
+      "displayName": "Městská policie Rumburk",
+      "id": "mestskapolicierumburk-0bf588",
+      "locationSet": {
+        "include": ["cz-42.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Městská policie Rumburk"
       }
     },
     {
@@ -3580,6 +5018,18 @@
       }
     },
     {
+      "displayName": "Métropole Rouen Normandie",
+      "id": "metropolerouennormandie-760155",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Métropole Rouen Normandie",
+        "operator:wikidata": "Q1119885"
+      }
+    },
+    {
       "displayName": "Metropolitan Manila Development Authority",
       "id": "metropolitanmaniladevelopmentauthority-298953",
       "locationSet": {
@@ -3613,6 +5063,16 @@
         "man_made": "surveillance",
         "operator": "Micro Center",
         "operator:wikidata": "Q6839153"
+      }
+    },
+    {
+      "displayName": "Ministère de l'Intérieur",
+      "id": "ministeredelinterieur-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ministère de l'Intérieur",
+        "operator:wikidata": "Q1518496"
       }
     },
     {
@@ -3682,8 +5142,10 @@
     },
     {
       "displayName": "Mobiris",
-      "id": "mobiris-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "mobiris-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Mobiris"
@@ -3714,8 +5176,10 @@
     },
     {
       "displayName": "MOSIR",
-      "id": "mosir-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "mosir-146a13",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "MOSIR"
@@ -3741,6 +5205,15 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "MPCALA Holdings, Inc."
+      }
+    },
+    {
+      "displayName": "MSA",
+      "id": "msa-efa5d3",
+      "locationSet": {"include": ["cr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "MSA"
       }
     },
     {
@@ -3813,6 +5286,17 @@
         "man_made": "surveillance",
         "operator": "Municipalité du Val d'Hazey",
         "operator:wikidata": "Q118802292"
+      }
+    },
+    {
+      "displayName": "nadmorski24.pl",
+      "id": "nadmorski24pl-adcc4f",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "nadmorski24.pl"
       }
     },
     {
@@ -3912,6 +5396,27 @@
       }
     },
     {
+      "displayName": "Netto Marken-Discount",
+      "id": "nettomarkendiscount-2b1420",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Netto Marken-Discount",
+        "operator:wikidata": "Q879858"
+      }
+    },
+    {
+      "displayName": "Nevada County Sheriff's Office",
+      "id": "nevadacountysheriffsoffice-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Nevada County Sheriff's Office"
+      }
+    },
+    {
       "displayName": "Nevada Department of Transportation",
       "id": "nevadadepartmentoftransportation-4a48c1",
       "locationSet": {
@@ -4008,6 +5513,17 @@
       }
     },
     {
+      "displayName": "Newport News Police Department",
+      "id": "newportnewspolicedepartment-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Newport News Police Department"
+      }
+    },
+    {
       "displayName": "NMBS/SNCB",
       "id": "nmbssncb-fe27ed",
       "locationSet": {"include": ["be"]},
@@ -4017,6 +5533,18 @@
         "operator:fr": "SNCB",
         "operator:nl": "NMBS",
         "operator:wikidata": "Q524255"
+      }
+    },
+    {
+      "displayName": "Norfolk Police Department",
+      "id": "norfolkpolicedepartment-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Norfolk Police Department",
+        "operator:wikidata": "Q7051078"
       }
     },
     {
@@ -4048,6 +5576,17 @@
       }
     },
     {
+      "displayName": "North Liberty Police Department",
+      "id": "northlibertypolicedepartment-fff1d2",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "North Liberty Police Department"
+      }
+    },
+    {
       "displayName": "Northern Transcon Railcams - Otter Tail Channel",
       "id": "northerntransconrailcamsottertailchannel-b6cd3f",
       "locationSet": {
@@ -4056,6 +5595,17 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Northern Transcon Railcams - Otter Tail Channel"
+      }
+    },
+    {
+      "displayName": "Northville Township Police Department",
+      "id": "northvilletownshippolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Northville Township Police Department"
       }
     },
     {
@@ -4108,6 +5658,18 @@
       }
     },
     {
+      "displayName": "OCDE",
+      "id": "ocde-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "OCDE",
+        "operator:wikidata": "Q41550"
+      }
+    },
+    {
       "displayName": "Octopus Investments",
       "id": "octopusinvestments-74812b",
       "locationSet": {"include": ["gb"]},
@@ -4157,6 +5719,17 @@
       }
     },
     {
+      "displayName": "Okmulgee Police",
+      "id": "okmulgeepolice-440757",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Okmulgee Police"
+      }
+    },
+    {
       "displayName": "Olympia",
       "id": "olympia-0bf588",
       "locationSet": {
@@ -4178,9 +5751,21 @@
       }
     },
     {
+      "displayName": "Opéra Bastille",
+      "id": "operabastille-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Opéra Bastille",
+        "operator:wikidata": "Q638423"
+      }
+    },
+    {
       "displayName": "Orange",
-      "id": "orange-3bfa97",
-      "locationSet": {"include": ["fx"]},
+      "id": "orange-e10d05",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Orange",
@@ -4213,21 +5798,61 @@
     },
     {
       "displayName": "Osiedle Bałtyk",
-      "id": "osiedlebaltyk-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "osiedlebaltyk-146a13",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Osiedle Bałtyk"
       }
     },
     {
+      "displayName": "Owasso Police",
+      "id": "owassopolice-440757",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Owasso Police"
+      }
+    },
+    {
+      "displayName": "Pacific Grove Police Department",
+      "id": "pacificgrovepolicedepartment-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Pacific Grove Police Department",
+        "operator:wikidata": "Q120751780"
+      }
+    },
+    {
       "displayName": "Palais de justice - Justitiepaleis",
-      "id": "palaisdejusticejustitiepaleis-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "palaisdejusticejustitiepaleis-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Palais de justice - Justitiepaleis",
+        "operator:fr": "Palais de justice",
+        "operator:nl": "Justitiepaleis",
         "operator:wikidata": "Q850537"
+      }
+    },
+    {
+      "displayName": "Parc d'Activités Wilson",
+      "id": "parcdactiviteswilson-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Parc d'Activités Wilson"
       }
     },
     {
@@ -4279,9 +5904,25 @@
       }
     },
     {
+      "displayName": "Peter's Frietkot",
+      "id": "petersfrietkot-1298ed",
+      "locationSet": {
+        "include": [
+          "be-van.geojson",
+          "be-vbr.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Peter's Frietkot"
+      }
+    },
+    {
       "displayName": "Polanki",
-      "id": "polanki-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "polanki-146a13",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Polanki"
@@ -4289,8 +5930,10 @@
     },
     {
       "displayName": "Polanki Aqua",
-      "id": "polankiaqua-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "polankiaqua-146a13",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Polanki Aqua"
@@ -4306,6 +5949,39 @@
         "man_made": "surveillance",
         "operator": "Pôle universitaire \"Léonard de Vinci\"",
         "operator:wikidata": "Q3412216"
+      }
+    },
+    {
+      "displayName": "Police municipale de Lille",
+      "id": "policemunicipaledelille-68c249",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Police municipale de Lille"
+      }
+    },
+    {
+      "displayName": "Police municipale de Roanne",
+      "id": "policemunicipalederoanne-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Police municipale de Roanne"
+      }
+    },
+    {
+      "displayName": "Police municipale de Rueil Malmaison",
+      "id": "policemunicipalederueilmalmaison-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Police municipale de Rueil Malmaison"
       }
     },
     {
@@ -4346,6 +6022,9 @@
       "locationSet": {
         "include": ["br-sc.geojson"]
       },
+      "matchNames": [
+        "polícia militar de santa catarina"
+      ],
       "tags": {
         "man_made": "surveillance",
         "operator": "Polícia Militar do Estado de Santa Catarina",
@@ -4364,20 +6043,22 @@
       }
     },
     {
-      "displayName": "Policie České Republiky",
+      "displayName": "Policie České republiky",
       "id": "policieceskerepubliky-5f01ff",
       "locationSet": {"include": ["cz"]},
       "matchNames": ["policie čr"],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Policie České Republiky",
+        "operator": "Policie České republiky",
         "operator:wikidata": "Q1135262"
       }
     },
     {
       "displayName": "Politiezone Blankenberge",
-      "id": "politiezoneblankenberge-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "politiezoneblankenberge-d1a151",
+      "locationSet": {
+        "include": ["be-vwv.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Politiezone Blankenberge",
@@ -4386,8 +6067,10 @@
     },
     {
       "displayName": "Politiezone Leuven",
-      "id": "politiezoneleuven-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "politiezoneleuven-b5a4fd",
+      "locationSet": {
+        "include": ["be-vbr.geojson"]
+      },
       "matchNames": ["politie leuven"],
       "tags": {
         "man_made": "surveillance",
@@ -4397,8 +6080,10 @@
     },
     {
       "displayName": "Politiezone Zennevallei",
-      "id": "politiezonezennevallei-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "politiezonezennevallei-b5a4fd",
+      "locationSet": {
+        "include": ["be-vbr.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Politiezone Zennevallei",
@@ -4407,8 +6092,10 @@
     },
     {
       "displayName": "Polizei Aachen",
-      "id": "polizeiaachen-2b1420",
-      "locationSet": {"include": ["de"]},
+      "id": "polizeiaachen-bddc17",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Polizei Aachen"
@@ -4518,6 +6205,7 @@
       "displayName": "Port Lotniczy Łódź",
       "id": "portlotniczylodz-e50517",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "man_made": "surveillance",
         "operator": "Port Lotniczy Łódź",
@@ -4562,6 +6250,16 @@
       }
     },
     {
+      "displayName": "Provincie Gelderland",
+      "id": "provinciegelderland-4a64b4",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Provincie Gelderland",
+        "operator:wikidata": "Q775"
+      }
+    },
+    {
       "displayName": "Provincie Groningen",
       "id": "provinciegroningen-4a64b4",
       "locationSet": {"include": ["nl"]},
@@ -4581,6 +6279,17 @@
         "man_made": "surveillance",
         "operator": "Queen Elizabeth Olympic Park",
         "operator:wikidata": "Q525481"
+      }
+    },
+    {
+      "displayName": "RAS",
+      "id": "ras-db3b0a",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "RAS"
       }
     },
     {
@@ -4604,6 +6313,28 @@
         "man_made": "surveillance",
         "operator": "Rectorat d'académie de Toulouse",
         "operator:wikidata": "Q87763197"
+      }
+    },
+    {
+      "displayName": "Redlands Police Department",
+      "id": "redlandspolicedepartment-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Redlands Police Department",
+        "operator:wikidata": "Q120751804"
+      }
+    },
+    {
+      "displayName": "Renault",
+      "id": "renault-9c1a6c",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Renault",
+        "operator:wikidata": "Q6686"
       }
     },
     {
@@ -4633,6 +6364,7 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Rhein-Neckar-Verkehr",
+        "operator:short": "RNV",
         "operator:wikidata": "Q1650863"
       }
     },
@@ -4663,6 +6395,18 @@
       }
     },
     {
+      "displayName": "Richmond Police Department",
+      "id": "richmondpolicedepartment-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Richmond Police Department",
+        "operator:wikidata": "Q7330945"
+      }
+    },
+    {
       "displayName": "Rigspolitiet",
       "id": "rigspolitiet-e9585f",
       "locationSet": {"include": ["dk"]},
@@ -4682,6 +6426,28 @@
         "operator": "Rijkswaterstaat",
         "operator:type": "government",
         "operator:wikidata": "Q1408870"
+      }
+    },
+    {
+      "displayName": "Romulus Police Department",
+      "id": "romuluspolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Romulus Police Department"
+      }
+    },
+    {
+      "displayName": "Roseville Police Department (Michigan)",
+      "id": "rosevillepolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Roseville Police Department"
       }
     },
     {
@@ -4717,8 +6483,10 @@
     },
     {
       "displayName": "safe.brussels",
-      "id": "safebrussels-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "safebrussels-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "matchNames": [
         "bruxelles prévention & sécurité (bps) – brussel preventie & veiligheid (bpv)",
         "bruxelles prévention et sécurité",
@@ -4731,6 +6499,58 @@
       }
     },
     {
+      "displayName": "Salinas Police Department",
+      "id": "salinaspolicedepartment-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Salinas Police Department",
+        "operator:wikidata": "Q120751585"
+      }
+    },
+    {
+      "displayName": "San Bernardino County Sheriff's Department",
+      "id": "sanbernardinocountysheriffsdepartment-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "matchNames": [
+        "san bernardino county sheriff"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "San Bernardino County Sheriff's Department",
+        "operator:short": "SBSD",
+        "operator:wikidata": "Q7413430"
+      }
+    },
+    {
+      "displayName": "San Francisco Police Department",
+      "id": "sanfranciscopolicedepartment-3ba7d2",
+      "locationSet": {
+        "include": ["us-ca-san_francisco.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "San Francisco Police Department",
+        "operator:wikidata": "Q1320247"
+      }
+    },
+    {
+      "displayName": "San Leandro Police Department",
+      "id": "sanleandropolicedepartment-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "San Leandro Police Department",
+        "operator:wikidata": "Q120751823"
+      }
+    },
+    {
       "displayName": "SANEF",
       "id": "sanef-3bfa97",
       "locationSet": {"include": ["fx"]},
@@ -4738,6 +6558,17 @@
         "man_made": "surveillance",
         "operator": "SANEF",
         "operator:wikidata": "Q1474126"
+      }
+    },
+    {
+      "displayName": "SARA",
+      "id": "sara-9ba658",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "SARA"
       }
     },
     {
@@ -4786,6 +6617,18 @@
       }
     },
     {
+      "displayName": "Seaside Police Department",
+      "id": "seasidepolicedepartment-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Seaside Police Department",
+        "operator:wikidata": "Q120751842"
+      }
+    },
+    {
       "displayName": "Secretaria de Estado da Segurança Publica",
       "id": "secretariadeestadodasegurancapublica-db2979",
       "locationSet": {
@@ -4809,6 +6652,17 @@
       }
     },
     {
+      "displayName": "Secrétariat de la Mairie de Carrières-sur-Seine",
+      "id": "secretariatdelamairiedecarrieressurseine-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Secrétariat de la Mairie de Carrières-sur-Seine"
+      }
+    },
+    {
       "displayName": "Sedgemoor District Council",
       "id": "sedgemoordistrictcouncil-2d7413",
       "locationSet": {
@@ -4823,6 +6677,30 @@
       }
     },
     {
+      "displayName": "Seminole County Sheriff's Office (Georgia)",
+      "id": "seminolecountysheriffsoffice-17a2f1",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Seminole County Sheriff's Office",
+        "operator:short": "SCSO"
+      }
+    },
+    {
+      "displayName": "Semitan",
+      "id": "semitan-9ba658",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Semitan",
+        "operator:wikidata": "Q3487840"
+      }
+    },
+    {
       "displayName": "SETRAM",
       "id": "setram-9ba658",
       "locationSet": {
@@ -4832,6 +6710,27 @@
         "man_made": "surveillance",
         "operator": "SETRAM",
         "operator:wikidata": "Q3487835"
+      }
+    },
+    {
+      "displayName": "SFR",
+      "id": "sfr-e10d05",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "SFR",
+        "operator:wikidata": "Q218765"
+      }
+    },
+    {
+      "displayName": "Shelby Township Police Department",
+      "id": "shelbytownshippolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Shelby Township Police Department"
       }
     },
     {
@@ -4852,6 +6751,17 @@
         "man_made": "surveillance",
         "operator": "Siemens AG",
         "operator:wikidata": "Q81230"
+      }
+    },
+    {
+      "displayName": "Simpom",
+      "id": "simpom-db2979",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Simpom"
       }
     },
     {
@@ -4948,6 +6858,16 @@
       }
     },
     {
+      "displayName": "Spar",
+      "id": "spar-9c1a6c",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Spar",
+        "operator:wikidata": "Q610492"
+      }
+    },
+    {
       "displayName": "Sparkasse (Deutschland)",
       "id": "sparkasse-2b1420",
       "locationSet": {"include": ["de"]},
@@ -4970,15 +6890,6 @@
       }
     },
     {
-      "displayName": "SPF Finances",
-      "id": "spffinances-fe27ed",
-      "locationSet": {"include": ["be"]},
-      "tags": {
-        "man_made": "surveillance",
-        "operator": "SPF Finances"
-      }
-    },
-    {
       "displayName": "Spielbank Saarbrücken",
       "id": "spielbanksaarbrucken-2b1420",
       "locationSet": {"include": ["de"]},
@@ -4991,9 +6902,21 @@
       "displayName": "Spółdzielnia Mieszkaniowa PROJEKTANT w Rzeszowie",
       "id": "spoldzielniamieszkaniowaprojektantwrzeszowie-e50517",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {
         "man_made": "surveillance",
         "operator": "Spółdzielnia Mieszkaniowa PROJEKTANT w Rzeszowie"
+      }
+    },
+    {
+      "displayName": "Správa železnic",
+      "id": "spravazeleznic-5f01ff",
+      "locationSet": {"include": ["cz"]},
+      "matchNames": ["sždc"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Správa železnic",
+        "operator:wikidata": "Q1848025"
       }
     },
     {
@@ -5010,8 +6933,10 @@
     },
     {
       "displayName": "Stad Antwerpen",
-      "id": "stadantwerpen-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "stadantwerpen-e42797",
+      "locationSet": {
+        "include": ["be-van.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Stad Antwerpen",
@@ -5020,8 +6945,10 @@
     },
     {
       "displayName": "Stad Brugge",
-      "id": "stadbrugge-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "stadbrugge-d1a151",
+      "locationSet": {
+        "include": ["be-vwv.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Stad Brugge",
@@ -5030,12 +6957,26 @@
     },
     {
       "displayName": "Stad Leuven",
-      "id": "stadleuven-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "stadleuven-b5a4fd",
+      "locationSet": {
+        "include": ["be-vbr.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Stad Leuven",
         "operator:wikidata": "Q118958"
+      }
+    },
+    {
+      "displayName": "Stad Mechelen",
+      "id": "stadmechelen-e42797",
+      "locationSet": {
+        "include": ["be-van.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Stad Mechelen",
+        "operator:wikidata": "Q162022"
       }
     },
     {
@@ -5160,6 +7101,19 @@
       }
     },
     {
+      "displayName": "Stadtwerke Gießen",
+      "id": "stadtwerkegiessen-011884",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Stadtwerke Gießen",
+        "operator:short": "SWG",
+        "operator:wikidata": "Q15848844"
+      }
+    },
+    {
       "displayName": "Stadtwerke Heilbronn GmbH",
       "id": "stadtwerkeheilbronngmbh-c3b0f7",
       "locationSet": {
@@ -5226,12 +7180,37 @@
       }
     },
     {
+      "displayName": "Sterling Heights Police Department",
+      "id": "sterlingheightspolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Sterling Heights Police Department"
+      }
+    },
+    {
       "displayName": "Stock Americain Vermeersch",
-      "id": "stockamericainvermeersch-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "stockamericainvermeersch-d1a151",
+      "locationSet": {
+        "include": ["be-vwv.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Stock Americain Vermeersch"
+      }
+    },
+    {
+      "displayName": "Storm Lake Police Department",
+      "id": "stormlakepolicedepartment-fff1d2",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Storm Lake Police Department",
+        "operator:wikidata": "Q7620145"
       }
     },
     {
@@ -5250,9 +7229,20 @@
       "displayName": "Straż Miejska Zdw",
       "id": "strazmiejskazdw-e50517",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "man_made": "surveillance",
         "operator": "Straż Miejska Zdw"
+      }
+    },
+    {
+      "displayName": "Subway",
+      "id": "subway-9c1a6c",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Subway",
+        "operator:wikidata": "Q244457"
       }
     },
     {
@@ -5297,15 +7287,14 @@
       }
     },
     {
-      "displayName": "SWG",
-      "id": "swg-011884",
+      "displayName": "Sutherlin Police Department",
+      "id": "sutherlinpolicedepartment-3f92c7",
       "locationSet": {
-        "include": ["de-he.geojson"]
+        "include": ["us-or.geojson"]
       },
       "tags": {
         "man_made": "surveillance",
-        "operator": "SWG",
-        "operator:wikidata": "Q15848844"
+        "operator": "Sutherlin Police Department"
       }
     },
     {
@@ -5320,13 +7309,15 @@
       }
     },
     {
-      "displayName": "SŽDC",
-      "id": "szdc-5f01ff",
-      "locationSet": {"include": ["cz"]},
+      "displayName": "SYTRAL",
+      "id": "sytral-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "SŽDC",
-        "operator:wikidata": "Q1848025"
+        "operator": "SYTRAL",
+        "operator:wikidata": "Q92942133"
       }
     },
     {
@@ -5342,6 +7333,18 @@
       }
     },
     {
+      "displayName": "T2C",
+      "id": "t2c-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "T2C",
+        "operator:wikidata": "Q17176349"
+      }
+    },
+    {
       "displayName": "Target Corporation",
       "id": "targetcorporation-cf76d3",
       "locationSet": {"include": ["us"]},
@@ -5350,6 +7353,17 @@
         "man_made": "surveillance",
         "operator": "Target Corporation",
         "operator:wikidata": "Q1046951"
+      }
+    },
+    {
+      "displayName": "Taylor Police Department",
+      "id": "taylorpolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Taylor Police Department"
       }
     },
     {
@@ -5374,6 +7388,30 @@
         "operator:short": "TxDOT",
         "operator:type": "government",
         "operator:wikidata": "Q568743"
+      }
+    },
+    {
+      "displayName": "The Colony Police Department",
+      "id": "thecolonypolicedepartment-46f947",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "matchNames": ["the colony pd"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "The Colony Police Department"
+      }
+    },
+    {
+      "displayName": "The Home Depot",
+      "id": "thehomedepot-fcb0e6",
+      "locationSet": {
+        "include": ["ca", "mx", "us"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "The Home Depot",
+        "operator:wikidata": "Q864407"
       }
     },
     {
@@ -5428,6 +7466,30 @@
         "man_made": "surveillance",
         "operator": "TotalEnergies",
         "operator:wikidata": "Q154037"
+      }
+    },
+    {
+      "displayName": "Toulouse School of Economics",
+      "id": "toulouseschoolofeconomics-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Toulouse School of Economics",
+        "operator:wikidata": "Q3532921"
+      }
+    },
+    {
+      "displayName": "Town of New Windsor",
+      "id": "townofnewwindsor-e862e8",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Town of New Windsor",
+        "operator:wikidata": "Q3708373"
       }
     },
     {
@@ -5494,13 +7556,38 @@
       }
     },
     {
+      "displayName": "TriMet",
+      "id": "trimet-3f92c7",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "TriMet",
+        "operator:wikidata": "Q1766623"
+      }
+    },
+    {
       "displayName": "Tristar",
-      "id": "tristar-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "tristar-adcc4f",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Tristar",
         "operator:wikidata": "Q9361634"
+      }
+    },
+    {
+      "displayName": "Triton Global Services",
+      "id": "tritonglobalservices-4bdb29",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Triton Global Services"
       }
     },
     {
@@ -5538,6 +7625,19 @@
       }
     },
     {
+      "displayName": "Tulsa Police Department",
+      "id": "tulsapolicedepartment-440757",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "matchNames": ["tulsa police"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Tulsa Police Department",
+        "operator:wikidata": "Q7852348"
+      }
+    },
+    {
       "displayName": "Turmöl",
       "id": "turmol-b9389d",
       "locationSet": {"include": ["at"]},
@@ -5545,6 +7645,18 @@
         "man_made": "surveillance",
         "operator": "Turmöl",
         "operator:wikidata": "Q1473279"
+      }
+    },
+    {
+      "displayName": "Tustin Police Department",
+      "id": "tustinpolicedepartment-7a14de",
+      "locationSet": {
+        "include": ["us-ca-orange_county.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Tustin Police Department",
+        "operator:wikidata": "Q106610345"
       }
     },
     {
@@ -5560,6 +7672,26 @@
       }
     },
     {
+      "displayName": "UNC Chapel Hill Police Department",
+      "id": "uncchapelhillpolicedepartment-1db201",
+      "locationSet": {
+        "include": ["us-nc.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "UNC Chapel Hill Police Department"
+      }
+    },
+    {
+      "displayName": "UNET",
+      "id": "unet-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "UNET"
+      }
+    },
+    {
       "displayName": "Universitätsklinikum Schleswig-Holstein",
       "id": "universitatsklinikumschleswigholstein-2b1420",
       "locationSet": {"include": ["de"]},
@@ -5571,12 +7703,25 @@
     },
     {
       "displayName": "Université catholique de Louvain",
-      "id": "universitecatholiquedelouvain-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "universitecatholiquedelouvain-6c31c1",
+      "locationSet": {
+        "include": ["be-wbr.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Université catholique de Louvain",
         "operator:wikidata": "Q378134"
+      }
+    },
+    {
+      "displayName": "Université Claude Bernard - Lyon 1",
+      "id": "universiteclaudebernardlyon1-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Université Claude Bernard - Lyon 1"
       }
     },
     {
@@ -5604,6 +7749,52 @@
       }
     },
     {
+      "displayName": "Université Toulouse Capitol",
+      "id": "universitetoulousecapitol-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Université Toulouse Capitol",
+        "operator:wikidata": "Q590201"
+      }
+    },
+    {
+      "displayName": "University of Central Florida",
+      "id": "universityofcentralflorida-9eb20b",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "University of Central Florida",
+        "operator:wikidata": "Q143451"
+      }
+    },
+    {
+      "displayName": "University of Chicago Police Department",
+      "id": "universityofchicagopolicedepartment-8853b4",
+      "locationSet": {
+        "include": ["us-il-cook_county.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "University of Chicago Police Department"
+      }
+    },
+    {
+      "displayName": "University of Iowa Police Department",
+      "id": "universityofiowapolicedepartment-fff1d2",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "University of Iowa Police Department"
+      }
+    },
+    {
       "displayName": "UOCT",
       "id": "uoct-73c7ab",
       "locationSet": {"include": ["cl"]},
@@ -5624,8 +7815,10 @@
     },
     {
       "displayName": "Urząd Miasta Helu",
-      "id": "urzadmiastahelu-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "urzadmiastahelu-adcc4f",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "matchNames": ["um helu"],
       "tags": {
         "man_made": "surveillance",
@@ -5635,8 +7828,10 @@
     },
     {
       "displayName": "Urząd Miasta Olsztyna",
-      "id": "urzadmiastaolsztyna-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "urzadmiastaolsztyna-6ce1db",
+      "locationSet": {
+        "include": ["pl-28.geojson"]
+      },
       "matchNames": ["um olsztyn"],
       "tags": {
         "man_made": "surveillance",
@@ -5656,6 +7851,17 @@
         "operator:short": "UDOT",
         "operator:type": "government",
         "operator:wikidata": "Q2506783"
+      }
+    },
+    {
+      "displayName": "Van Buren Township Police Department",
+      "id": "vanburentownshippolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Van Buren Township Police Department"
       }
     },
     {
@@ -5682,12 +7888,15 @@
       }
     },
     {
-      "displayName": "Verkehrsbetriebe Karlsruhe GmbH",
-      "id": "verkehrsbetriebekarlsruhegmbh-2b1420",
+      "displayName": "Verkehrsbetriebe Karlsruhe",
+      "id": "verkehrsbetriebekarlsruhe-2b1420",
       "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "verkehrsbetriebe karlsruhe gmbh"
+      ],
       "tags": {
         "man_made": "surveillance",
-        "operator": "Verkehrsbetriebe Karlsruhe GmbH",
+        "operator": "Verkehrsbetriebe Karlsruhe",
         "operator:wikidata": "Q644958"
       }
     },
@@ -5721,6 +7930,31 @@
       }
     },
     {
+      "displayName": "Village of Menomonee Falls",
+      "id": "villageofmenomoneefalls-13167a",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "matchNames": ["menomonee falls"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Village of Menomonee Falls",
+        "operator:wikidata": "Q1787576"
+      }
+    },
+    {
+      "displayName": "Ville d'Ales",
+      "id": "villedales-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville d'Ales",
+        "operator:wikidata": "Q115918083"
+      }
+    },
+    {
       "displayName": "Ville d'Amiens",
       "id": "villedamiens-68c249",
       "locationSet": {
@@ -5730,6 +7964,33 @@
         "man_made": "surveillance",
         "operator": "Ville d'Amiens",
         "operator:wikidata": "Q87071093"
+      }
+    },
+    {
+      "displayName": "Ville d'Antibes",
+      "id": "villedantibes-ea567b",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville d'Antibes",
+        "operator:wikidata": "Q115909558"
+      }
+    },
+    {
+      "displayName": "Ville d'Asnières-sur-Seine",
+      "id": "villedasnieressurseine-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "matchNames": [
+        "ville de asnières-sur-seine"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville d'Asnières-sur-Seine",
+        "operator:wikidata": "Q115918100"
       }
     },
     {
@@ -5777,6 +8038,42 @@
         "man_made": "surveillance",
         "operator": "Ville de Bellerive-sur-Allier",
         "operator:wikidata": "Q118549272"
+      }
+    },
+    {
+      "displayName": "Ville de Besançon",
+      "id": "villedebesancon-6e3818",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Besançon",
+        "operator:wikidata": "Q86697997"
+      }
+    },
+    {
+      "displayName": "Ville de Blois",
+      "id": "villedeblois-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Blois",
+        "operator:wikidata": "Q87071500"
+      }
+    },
+    {
+      "displayName": "Ville de Bourges",
+      "id": "villedebourges-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Bourges",
+        "operator:wikidata": "Q86698952"
       }
     },
     {
@@ -5841,6 +8138,18 @@
       }
     },
     {
+      "displayName": "Ville de Feurs",
+      "id": "villedefeurs-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Feurs",
+        "operator:wikidata": "Q118812104"
+      }
+    },
+    {
       "displayName": "Ville de Fontaine",
       "id": "villedefontaine-276786",
       "locationSet": {
@@ -5850,6 +8159,19 @@
         "man_made": "surveillance",
         "operator": "Ville de Fontaine",
         "operator:wikidata": "Q118554947"
+      }
+    },
+    {
+      "displayName": "Ville de Genève",
+      "id": "villedegeneve-9dfc74",
+      "locationSet": {
+        "include": ["ch-ge.geojson"]
+      },
+      "matchNames": ["ville/etat de genève"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Genève",
+        "operator:wikidata": "Q71"
       }
     },
     {
@@ -5866,6 +8188,19 @@
       }
     },
     {
+      "displayName": "Ville de Lille",
+      "id": "villedelille-68c249",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
+      "matchNames": ["mairie de lille"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Lille",
+        "operator:wikidata": "Q86605089"
+      }
+    },
+    {
       "displayName": "Ville de Limoges",
       "id": "villedelimoges-259304",
       "locationSet": {
@@ -5875,6 +8210,45 @@
         "man_made": "surveillance",
         "operator": "Ville de Limoges",
         "operator:wikidata": "Q86698506"
+      }
+    },
+    {
+      "displayName": "Ville de Lons-le-Saunier",
+      "id": "villedelonslesaunier-6e3818",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
+      "matchNames": [
+        "commune de lons-le-saunier"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Lons-le-Saunier",
+        "operator:wikidata": "Q87134745"
+      }
+    },
+    {
+      "displayName": "Ville de Loos",
+      "id": "villedeloos-68c249",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Loos",
+        "operator:wikidata": "Q115902864"
+      }
+    },
+    {
+      "displayName": "Ville de Lyon",
+      "id": "villedelyon-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Lyon",
+        "operator:wikidata": "Q3278474"
       }
     },
     {
@@ -5897,6 +8271,18 @@
         "man_made": "surveillance",
         "operator": "Ville de Marseille",
         "operator:wikidata": "Q3278475"
+      }
+    },
+    {
+      "displayName": "Ville de Mer",
+      "id": "villedemer-7517ed",
+      "locationSet": {
+        "include": ["fr-cvl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Mer",
+        "operator:wikidata": "Q118525072"
       }
     },
     {
@@ -5924,6 +8310,53 @@
       }
     },
     {
+      "displayName": "Ville de Nantes",
+      "id": "villedenantes-9ba658",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Nantes",
+        "operator:wikidata": "Q86693245"
+      }
+    },
+    {
+      "displayName": "Ville de Neuville-sur-Saône",
+      "id": "villedeneuvillesursaone-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Neuville-sur-Saône",
+        "operator:wikidata": "Q118834385"
+      }
+    },
+    {
+      "displayName": "Ville de Nice",
+      "id": "villedenice-ea567b",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Nice",
+        "operator:wikidata": "Q86698706"
+      }
+    },
+    {
+      "displayName": "Ville de Nîmes (CSU)",
+      "id": "villedenimescsu-54417e",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Nîmes (CSU)"
+      }
+    },
+    {
       "displayName": "Ville de Nogent-sur-Marne",
       "id": "villedenogentsurmarne-ddc08a",
       "locationSet": {
@@ -5943,6 +8376,18 @@
         "man_made": "surveillance",
         "operator": "Ville de Papeete",
         "operator:wikidata": "Q130800"
+      }
+    },
+    {
+      "displayName": "Ville de Pau",
+      "id": "villedepau-259304",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Pau",
+        "operator:wikidata": "Q115909876"
       }
     },
     {
@@ -5966,6 +8411,43 @@
       }
     },
     {
+      "displayName": "Ville de Reims",
+      "id": "villedereims-7e2509",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Reims",
+        "operator:wikidata": "Q86699184"
+      }
+    },
+    {
+      "displayName": "Ville de Rennes",
+      "id": "villederennes-244fb4",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Rennes",
+        "operator:wikidata": "Q86604751"
+      }
+    },
+    {
+      "displayName": "Ville de Rouen",
+      "id": "villederouen-760155",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
+      "matchNames": ["mairie de rouen"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Rouen",
+        "operator:wikidata": "Q3278481"
+      }
+    },
+    {
       "displayName": "Ville de Royan",
       "id": "villederoyan-259304",
       "locationSet": {
@@ -5975,6 +8457,18 @@
         "man_made": "surveillance",
         "operator": "Ville de Royan",
         "operator:wikidata": "Q115909925"
+      }
+    },
+    {
+      "displayName": "Ville de Saint-Denis",
+      "id": "villedesaintdenis-ddc08a",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Saint-Denis",
+        "operator:wikidata": "Q131575588"
       }
     },
     {
@@ -6012,6 +8506,31 @@
         "man_made": "surveillance",
         "operator": "Ville de Tournus",
         "operator:wikidata": "Q115902960"
+      }
+    },
+    {
+      "displayName": "Ville de Vandœuvre-lès-Nancy",
+      "id": "villedevandoeuvrelesnancy-7e2509",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
+      "matchNames": ["vandœuvre-lès-nancy"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Vandœuvre-lès-Nancy",
+        "operator:wikidata": "Q118821982"
+      }
+    },
+    {
+      "displayName": "Ville de Vaulx-en-Velin",
+      "id": "villedevaulxenvelin-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Vaulx-en-Velin",
+        "operator:wikidata": "Q118525422"
       }
     },
     {
@@ -6064,6 +8583,18 @@
       }
     },
     {
+      "displayName": "Ville de Voiron",
+      "id": "villedevoiron-276786",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville de Voiron",
+        "operator:wikidata": "Q118525458"
+      }
+    },
+    {
       "displayName": "Ville de Yutz",
       "id": "villedeyutz-7e2509",
       "locationSet": {
@@ -6074,6 +8605,18 @@
         "man_made": "surveillance",
         "operator": "Ville de Yutz",
         "operator:wikidata": "Q118823608"
+      }
+    },
+    {
+      "displayName": "Ville du Havre",
+      "id": "villeduhavre-760155",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Ville du Havre",
+        "operator:wikidata": "Q115627960"
       }
     },
     {
@@ -6095,6 +8638,18 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "Vinci"
+      }
+    },
+    {
+      "displayName": "Virginia Beach Police Department",
+      "id": "virginiabeachpolicedepartment-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Virginia Beach Police Department",
+        "operator:wikidata": "Q7934138"
       }
     },
     {
@@ -6163,11 +8718,36 @@
     },
     {
       "displayName": "Walkrys Security",
-      "id": "walkryssecurity-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "walkryssecurity-034012",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Walkrys Security"
+      }
+    },
+    {
+      "displayName": "Walmart",
+      "id": "walmart-654aa5",
+      "locationSet": {
+        "include": ["ca", "in", "mx", "us"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Walmart",
+        "operator:wikidata": "Q483551"
+      }
+    },
+    {
+      "displayName": "Warren Police Department",
+      "id": "warrenpolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Warren Police Department"
       }
     },
     {
@@ -6205,6 +8785,17 @@
         "operator:short": "WSDOT",
         "operator:type": "government",
         "operator:wikidata": "Q834834"
+      }
+    },
+    {
+      "displayName": "Wausau Police Department",
+      "id": "wausaupolicedepartment-13167a",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Wausau Police Department"
       }
     },
     {
@@ -6251,6 +8842,20 @@
       }
     },
     {
+      "displayName": "West University Place Police Department",
+      "id": "westuniversityplacepolicedepartment-46f947",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "matchNames": [
+        "west university place police dept"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "West University Place Police Department"
+      }
+    },
+    {
       "displayName": "West Virginia Department of Transportation",
       "id": "westvirginiadepartmentoftransportation-87d022",
       "locationSet": {
@@ -6274,6 +8879,16 @@
         "man_made": "surveillance",
         "operator": "Western Sydney University",
         "operator:wikidata": "Q1141452"
+      }
+    },
+    {
+      "displayName": "Western Union",
+      "id": "westernunion-9c1a6c",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Western Union",
+        "operator:wikidata": "Q861042"
       }
     },
     {
@@ -6314,6 +8929,17 @@
       }
     },
     {
+      "displayName": "Williamsburg Police Department",
+      "id": "williamsburgpolicedepartment-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Williamsburg Police Department"
+      }
+    },
+    {
       "displayName": "Wisconsin Department of Transportation",
       "id": "wisconsindepartmentoftransportation-13167a",
       "locationSet": {
@@ -6328,9 +8954,31 @@
       }
     },
     {
+      "displayName": "Wood Dale Police Department",
+      "id": "wooddalepolicedepartment-8cb4a4",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Wood Dale Police Department"
+      }
+    },
+    {
+      "displayName": "WorkFusion",
+      "id": "workfusion-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "WorkFusion"
+      }
+    },
+    {
       "displayName": "Wspólnota Mieszkaniowa Koszalińska 31",
-      "id": "wspolnotamieszkaniowakoszalinska31-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "wspolnotamieszkaniowakoszalinska31-146a13",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Wspólnota Mieszkaniowa Koszalińska 31"
@@ -6338,11 +8986,25 @@
     },
     {
       "displayName": "Wspólnota Mieszkaniowa Koszalińska 32",
-      "id": "wspolnotamieszkaniowakoszalinska32-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "wspolnotamieszkaniowakoszalinska32-146a13",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Wspólnota Mieszkaniowa Koszalińska 32"
+      }
+    },
+    {
+      "displayName": "WSW mobil GmbH",
+      "id": "wswmobilgmbh-bddc17",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "WSW mobil GmbH",
+        "operator:wikidata": "Q44880072"
       }
     },
     {
@@ -6364,6 +9026,18 @@
       "tags": {
         "man_made": "surveillance",
         "operator": "WVV"
+      }
+    },
+    {
+      "displayName": "Wyandotte Police Department",
+      "id": "wyandottepolicedepartment-585cc8",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Wyandotte Police Department",
+        "operator:wikidata": "Q18746549"
       }
     },
     {
@@ -6393,6 +9067,17 @@
       }
     },
     {
+      "displayName": "York-Poquoson Sheriff's Office",
+      "id": "yorkpoquosonsheriffsoffice-25e72c",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "York-Poquoson Sheriff's Office"
+      }
+    },
+    {
       "displayName": "Zagrebački holding",
       "id": "zagrebackiholding-234fa0",
       "locationSet": {"include": ["hr"]},
@@ -6404,8 +9089,10 @@
     },
     {
       "displayName": "Zarząd Portu Kołobrzeg",
-      "id": "zarzadportukolobrzeg-e50517",
-      "locationSet": {"include": ["pl"]},
+      "id": "zarzadportukolobrzeg-146a13",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "Zarząd Portu Kołobrzeg"
@@ -6415,6 +9102,7 @@
       "displayName": "Zarząd Zieleni Miejskiej w Łodzi",
       "id": "zarzadzielenimiejskiejwlodzi-e50517",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "man_made": "surveillance",
         "operator": "Zarząd Zieleni Miejskiej w Łodzi"
@@ -6434,8 +9122,10 @@
     },
     {
       "displayName": "Zone de Police Bruxelles CAPITALE Ixelles – Politiezone Brussel HOOFDSTAD Elsene",
-      "id": "zonedepolicebruxellescapitaleixellespolitiezonebrusselhoofdstadelsene-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "zonedepolicebruxellescapitaleixellespolitiezonebrusselhoofdstadelsene-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "matchNames": ["pz 5339", "zp 5339"],
       "tags": {
         "man_made": "surveillance",
@@ -6447,9 +9137,15 @@
     },
     {
       "displayName": "Zone de Police Bruxelles-Ouest – Politiezone Brussel-West",
-      "id": "zonedepolicebruxellesouestpolitiezonebrusselwest-fe27ed",
-      "locationSet": {"include": ["be"]},
-      "matchNames": ["pz 5340", "zp 5340"],
+      "id": "zonedepolicebruxellesouestpolitiezonebrusselwest-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
+      "matchNames": [
+        "pz 5340",
+        "zone de police 5340 - bruxelles ouest",
+        "zp 5340"
+      ],
       "tags": {
         "man_made": "surveillance",
         "operator": "Zone de Police Bruxelles-Ouest – Politiezone Brussel-West",
@@ -6460,8 +9156,10 @@
     },
     {
       "displayName": "Zone de Police Midi – Politiezone Zuid",
-      "id": "zonedepolicemidipolitiezonezuid-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "zonedepolicemidipolitiezonezuid-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "matchNames": ["pz 5341", "zp 5341"],
       "tags": {
         "man_made": "surveillance",
@@ -6473,8 +9171,10 @@
     },
     {
       "displayName": "Zone de Police Montgomery – Politiezone Montgomery",
-      "id": "zonedepolicemontgomerypolitiezonemontgomery-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "zonedepolicemontgomerypolitiezonemontgomery-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "matchNames": ["pz 5343", "zp 5343"],
       "tags": {
         "man_made": "surveillance",
@@ -6486,8 +9186,10 @@
     },
     {
       "displayName": "Zone de Police PolBruno – Politiezone PolBruno",
-      "id": "zonedepolicepolbrunopolitiezonepolbruno-fe27ed",
-      "locationSet": {"include": ["be"]},
+      "id": "zonedepolicepolbrunopolitiezonepolbruno-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "matchNames": ["pz 5344", "zp 5344"],
       "tags": {
         "man_made": "surveillance",
@@ -6495,6 +9197,25 @@
         "operator:fr": "Zone de Police PolBruno",
         "operator:nl": "Politiezone PolBruno",
         "operator:wikidata": "Q592772"
+      }
+    },
+    {
+      "displayName": "Zone de Police Uccle/Watermael-Boitsfort/Auderghem – Politiezone Marlow",
+      "id": "zonedepoliceucclewatermaelboitsfortauderghempolitiezonemarlow-dbe4c1",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
+      "matchNames": [
+        "pz 5342",
+        "zone de police 5342 - uccle/w-b/auderghem",
+        "zp 5342"
+      ],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Zone de Police Uccle/Watermael-Boitsfort/Auderghem – Politiezone Marlow",
+        "operator:fr": "Zone de Police Uccle/Watermael-Boitsfort/Auderghem",
+        "operator:nl": "Politiezone Marlow",
+        "operator:wikidata": "Q111544006"
       }
     },
     {
@@ -6507,6 +9228,52 @@
       }
     },
     {
+      "displayName": "Белинвестбанк",
+      "id": "belinvestbank-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Белинвестбанк",
+        "operator:be": "Белінвестбанк",
+        "operator:en": "Belinvestbank",
+        "operator:ru": "Белинвестбанк",
+        "operator:wikidata": "Q4081940"
+      }
+    },
+    {
+      "displayName": "Белтелеком",
+      "id": "beltelecom-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Белтелеком",
+        "operator:be": "Белтелеком",
+        "operator:en": "Beltelecom",
+        "operator:wikidata": "Q4082979"
+      }
+    },
+    {
+      "displayName": "ГАИ",
+      "id": "63e4e1-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "ГАИ"
+      }
+    },
+    {
+      "displayName": "Евроопт",
+      "id": "euroopt-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Евроопт",
+        "operator:en": "Euroopt",
+        "operator:ru": "Евроопт",
+        "operator:wikidata": "Q108489016"
+      }
+    },
+    {
       "displayName": "Екатеринбургское суворовское военное училище",
       "id": "b01dc4-11be7a",
       "locationSet": {"include": ["ru"]},
@@ -6516,12 +9283,52 @@
       }
     },
     {
+      "displayName": "ЖСПК",
+      "id": "037076-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "ЖСПК"
+      }
+    },
+    {
       "displayName": "Интерсвязь",
       "id": "bfc684-11be7a",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "Интерсвязь"
+      }
+    },
+    {
+      "displayName": "КГБ",
+      "id": "e25719-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "КГБ",
+        "operator:wikidata": "Q1329608"
+      }
+    },
+    {
+      "displayName": "Лукойл",
+      "id": "1dd7ca-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "matchNames": ["азс лукойл"],
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Лукойл",
+        "operator:wikidata": "Q329347"
+      }
+    },
+    {
+      "displayName": "МВД",
+      "id": "e2e546-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "МВД",
+        "operator:wikidata": "Q2427674"
       }
     },
     {
@@ -6561,12 +9368,53 @@
       }
     },
     {
+      "displayName": "Приорбанк",
+      "id": "priorbank-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Приорбанк",
+        "operator:be": "Пріорбанк",
+        "operator:be-tarask": "Прыёрбанк",
+        "operator:en": "PriorBank",
+        "operator:ru": "Приорбанк",
+        "operator:wikidata": "Q3919658"
+      }
+    },
+    {
+      "displayName": "Расчетный центр НБРБ",
+      "id": "f29381-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Расчетный центр НБРБ"
+      }
+    },
+    {
+      "displayName": "Санта",
+      "id": "516eeb-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "Санта"
+      }
+    },
+    {
       "displayName": "СетиТагила",
       "id": "770f8a-11be7a",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "surveillance",
         "operator": "СетиТагила"
+      }
+    },
+    {
+      "displayName": "ТЦ Гиппо",
+      "id": "0514cc-57a1b2",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "ТЦ Гиппо"
       }
     },
     {
@@ -6599,22 +9447,38 @@
     },
     {
       "displayName": "上田ケーブルビジョン",
-      "id": "3ffc1d-47fee2",
-      "locationSet": {"include": ["jp"]},
+      "id": "uedacablevision-413ab5",
+      "locationSet": {
+        "include": ["jp-20.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
         "operator": "上田ケーブルビジョン",
+        "operator:en": "Ueda Cable Vision",
         "operator:ja": "上田ケーブルビジョン",
         "operator:wikidata": "Q11359656"
       }
     },
     {
       "displayName": "善通寺市",
-      "id": "6dc7a1-47fee2",
-      "locationSet": {"include": ["jp"]},
+      "id": "6dc7a1-e00208",
+      "locationSet": {
+        "include": ["jp-37.geojson"]
+      },
       "tags": {
         "man_made": "surveillance",
-        "operator": "善通寺市"
+        "operator": "善通寺市",
+        "operator:wikidata": "Q191300"
+      }
+    },
+    {
+      "displayName": "桃園市立桃園高級中等學校",
+      "id": "296ea1-32dfdd",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "man_made": "surveillance",
+        "operator": "桃園市立桃園高級中等學校",
+        "operator:wikidata": "Q15899413"
       }
     },
     {

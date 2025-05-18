@@ -21,6 +21,7 @@
         "^(bar )?(central|centrale|kafe|roma|sport)?$",
         "^(встреча|рандеву|жемчужина|виктория|бер[её]зка|лакомка|мечта|оазис|парус|сказка|зерно)$",
         "^caf[eé] de(s)? (la )?(place|sports|gare|mairie|poste|paris)$",
+        "^caffè centrale$",
         "^coffee (bean|break|corner|point)$",
         "^dolce vita$",
         "^lot 1$",
@@ -246,24 +247,16 @@
       }
     },
     {
-      "displayName": "Aroma",
-      "id": "aroma-6ea26d",
-      "locationSet": {"include": ["ca", "us"]},
-      "tags": {
-        "amenity": "cafe",
-        "brand": "Aroma",
-        "brand:wikidata": "Q2909872",
-        "cuisine": "coffee_shop",
-        "name": "Aroma",
-        "takeaway": "yes"
-      }
-    },
-    {
       "displayName": "Aroma Espresso Bar",
-      "id": "aromaespressobar-1ae0cd",
+      "id": "aromaespressobar-872610",
       "locationSet": {
-        "include": ["ca", "kz", "ro", "ua", "us"]
+        "include": [
+          "ca-on.geojson",
+          "ua",
+          "us-fl.geojson"
+        ]
       },
+      "matchNames": ["aroma"],
       "tags": {
         "amenity": "cafe",
         "brand": "Aroma Espresso Bar",
@@ -545,9 +538,9 @@
     },
     {
       "displayName": "Blank Street Coffee",
-      "id": "blankstreetcoffee-db9177",
+      "id": "blankstreetcoffee-345870",
       "locationSet": {
-        "include": ["gb-eng", "us"]
+        "include": ["gb-eng", "gb-sct", "us"]
       },
       "matchNames": ["blank street"],
       "tags": {
@@ -1308,10 +1301,10 @@
     },
     {
       "displayName": "CoCo",
-      "id": "cocofreshteaandjuice-615ca1",
+      "id": "cocofreshteaandjuice-859a55",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["cn", "hk", "tw"]
+        "exclude": ["cn", "tw"]
       },
       "matchTags": ["shop/beverages"],
       "tags": {
@@ -1326,10 +1319,8 @@
     },
     {
       "displayName": "CoCo都可",
-      "id": "cocofreshteaandjuice-60211c",
-      "locationSet": {
-        "include": ["cn", "hk", "tw"]
-      },
+      "id": "cocofreshteaandjuice-aa349e",
+      "locationSet": {"include": ["cn", "tw"]},
       "matchNames": ["coco奶茶", "都可茶飲", "都可茶饮"],
       "matchTags": ["shop/beverages"],
       "tags": {
@@ -1364,6 +1355,7 @@
       "tags": {
         "amenity": "cafe",
         "brand": "Coffee Berry",
+        "brand:wikidata": "Q115323784",
         "cuisine": "coffee_shop",
         "name": "Coffee Berry",
         "takeaway": "yes"
@@ -2025,6 +2017,33 @@
         "brand:wikidata": "Q62075645",
         "cuisine": "coffee_shop",
         "name": "Fran's Café",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Fresh Corner",
+      "id": "freshcorner-032abb",
+      "locationSet": {
+        "include": [
+          "ba",
+          "cz",
+          "hr",
+          "hu",
+          "me",
+          "pl",
+          "ro",
+          "rs",
+          "si",
+          "sk"
+        ]
+      },
+      "preserveTags": ["^cuisine$"],
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Fresh Corner",
+        "brand:wikidata": "Q129256375",
+        "cuisine": "coffee_shop",
+        "name": "Fresh Corner",
         "takeaway": "yes"
       }
     },
@@ -2789,6 +2808,23 @@
       }
     },
     {
+      "displayName": "Macu Tea",
+      "id": "macutea-6ea26d",
+      "locationSet": {"include": ["ca", "us"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Macu",
+        "brand:en": "Macu",
+        "brand:wikidata": "Q97300375",
+        "brand:zh": "麻古茶坊",
+        "cuisine": "bubble_tea",
+        "name": "Macu Tea",
+        "name:en": "Macu Tea",
+        "name:zh": "麻古茶坊",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Mado",
       "id": "mado-e2a804",
       "locationSet": {"include": ["tr"]},
@@ -3004,19 +3040,49 @@
       }
     },
     {
-      "displayName": "Mixue",
-      "id": "mixue-f440b6",
-      "locationSet": {"include": ["au", "id", "jp", "kh", "kr", "la", "my", "ph", "sg", "th", "vn"]},
+      "displayName": "Mixue Ice Cream & Tea",
+      "id": "mixue-cecaa3",
+      "issues": [10675],
+      "locationSet": {
+        "include": [
+          "au",
+          "id",
+          "kh",
+          "kr",
+          "la",
+          "my",
+          "ph",
+          "sg",
+          "th",
+          "vn"
+        ]
+      },
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Mixue Ice Cream & Tea",
+        "brand:wikidata": "Q107406476",
+        "cuisine": "ice_cream;bubble_tea",
+        "name": "Mixue",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Mixue Ice Cream & Tea (日本)",
+      "id": "mixue-0cf217",
+      "issues": [10675],
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "cafe",
         "brand": "Mixue Ice Cream & Tea",
         "brand:en": "Mixue Ice Cream & Tea",
         "brand:wikidata": "Q107406476",
         "brand:zh": "蜜雪冰城",
+        "brand:zh-Latn-pinyin": "Mixue Bingcheng",
         "cuisine": "ice_cream;bubble_tea",
         "name": "Mixue",
         "name:en": "Mixue",
         "name:zh": "蜜雪冰城",
+        "name:zh-Latn-pinyin": "Mixue Bingcheng",
         "takeaway": "yes"
       }
     },
@@ -3489,6 +3555,21 @@
       }
     },
     {
+      "displayName": "Puccino's",
+      "id": "puccinos-2613a9",
+      "locationSet": {
+        "include": ["gb-eng", "ie"]
+      },
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Puccino's",
+        "brand:wikidata": "Q134366319",
+        "cuisine": "coffee_shop",
+        "name": "Puccino's",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Pumpkin",
       "id": "pumpkin-a89223",
       "locationSet": {"include": ["gb"]},
@@ -3507,8 +3588,11 @@
     },
     {
       "displayName": "Quickly",
-      "id": "quickly-e1ef51",
-      "locationSet": {"include": ["001"]},
+      "id": "quickly-fb11e8",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["tw"]
+      },
       "tags": {
         "amenity": "cafe",
         "brand": "Quickly",
@@ -3841,9 +3925,9 @@
     },
     {
       "displayName": "Stan's Donuts & Coffee",
-      "id": "stansdonutsandcoffee-da6469",
+      "id": "stansdonutsandcoffee-f14bdc",
       "locationSet": {
-        "include": ["us-il.geojson"]
+        "include": ["us-il-cook_county.geojson"]
       },
       "tags": {
         "amenity": "cafe",
@@ -4219,15 +4303,27 @@
     },
     {
       "displayName": "The Coffee",
-      "id": "thecoffee-f04833",
+      "id": "thecoffee-0a0956",
       "locationSet": {
         "include": [
+          "ae",
+          "am",
+          "at",
+          "au",
           "br",
+          "ca",
+          "cl",
           "co",
           "es",
           "fr",
+          "gt",
+          "it",
+          "kr",
+          "mx",
+          "my",
           "pe",
-          "pt"
+          "pt",
+          "th"
         ]
       },
       "tags": {
@@ -4382,6 +4478,21 @@
         "cuisine": "coffee_shop",
         "delivery": "yes",
         "name": "Third Wave Coffee Roasters",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Tierra Mia Coffee",
+      "id": "tierramiacoffee-19c2e6",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Tierra Mia Coffee",
+        "brand:wikidata": "Q16966488",
+        "cuisine": "coffee_shop",
+        "name": "Tierra Mia Coffee",
         "takeaway": "yes"
       }
     },
@@ -4590,6 +4701,18 @@
       }
     },
     {
+      "displayName": "Varka",
+      "id": "varka-7035bb",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Varka",
+        "cuisine": "coffee_shop",
+        "name": "Varka",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Vida e Caffè",
       "id": "vidaecaffe-79a73c",
       "locationSet": {
@@ -4614,6 +4737,18 @@
         "brand": "Viva cafe",
         "cuisine": "coffee_shop",
         "name": "Viva cafe",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Vivari",
+      "id": "vivari-4351d9",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Vivari",
+        "cuisine": "coffee_shop",
+        "name": "Vivari",
         "takeaway": "yes"
       }
     },
@@ -4907,6 +5042,18 @@
       }
     },
     {
+      "displayName": "Дед Хо",
+      "id": "c531f4-1c12ef",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Дед Хо",
+        "cuisine": "vietnamese",
+        "name": "Дед Хо",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Кафетерија",
       "id": "kafeteria-e777fa",
       "locationSet": {"include": ["me", "rs"]},
@@ -4993,6 +5140,18 @@
       }
     },
     {
+      "displayName": "Лепим и варим",
+      "id": "ffda44-9c7c7f",
+      "locationSet": {"include": ["kz", "ru"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Лепим и варим",
+        "cuisine": "russian",
+        "name": "Лепим и варим",
+        "takeaway": "yes"
+      }
+    },
+    {
       "displayName": "Львівська Майстерня Шоколаду",
       "id": "lvivhandmadechocolate-d74022",
       "locationSet": {"include": ["ua"]},
@@ -5022,6 +5181,18 @@
         "cuisine": "bread;coffee_shop;cake;pie",
         "name": "Люди любят",
         "shop": "bakery",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "displayName": "Мидийное место",
+      "id": "0648cc-1c12ef",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Мидийное место",
+        "cuisine": "seafood",
+        "name": "Мидийное место",
         "takeaway": "yes"
       }
     },
@@ -6378,10 +6549,10 @@
     },
     {
       "displayName": "吃茶三千",
-      "id": "chichasanchen-2851bb",
+      "id": "chichasanchen-f1b18f",
       "locationSet": {
         "include": ["cn", "tw"],
-        "exclude": ["hk"]
+        "exclude": ["hk", "mo"]
       },
       "tags": {
         "amenity": "cafe",
@@ -7263,7 +7434,8 @@
     },
     {
       "displayName": "蜜雪冰城",
-      "id": "mixuebingcheng-bd86e2",
+      "id": "mixueicecreamandtea-bd86e2",
+      "issues": [10675],
       "locationSet": {
         "include": ["cn"],
         "exclude": ["hk"]
@@ -7271,19 +7443,22 @@
       "tags": {
         "amenity": "cafe",
         "brand": "蜜雪冰城",
-        "brand:en": "MIXUEBINGCHENG",
+        "brand:en": "Mixue Ice Cream & Tea",
         "brand:wikidata": "Q107406476",
         "brand:zh": "蜜雪冰城",
+        "brand:zh-Latn-pinyin": "Mixue Bingcheng",
         "cuisine": "ice_cream;bubble_tea",
         "name": "蜜雪冰城",
-        "name:en": "MIXUEBINGCHENG",
+        "name:en": "Mixue Ice Cream & Tea",
         "name:zh": "蜜雪冰城",
+        "name:zh-Latn-pinyin": "Mixue Bingcheng",
         "takeaway": "yes"
       }
     },
     {
       "displayName": "蜜雪冰城 Mixue Ice Cream & Tea",
       "id": "mixueicecreamandtea-59dcf2",
+      "issues": [10675],
       "locationSet": {"include": ["hk"]},
       "tags": {
         "amenity": "cafe",
@@ -7291,10 +7466,12 @@
         "brand:en": "Mixue Ice Cream & Tea",
         "brand:wikidata": "Q107406476",
         "brand:zh": "蜜雪冰城",
+        "brand:zh-Latn-pinyin": "Mixue Bingcheng",
         "cuisine": "ice_cream;bubble_tea",
         "name": "蜜雪冰城 Mixue Ice Cream & Tea",
         "name:en": "Mixue Ice Cream & Tea",
         "name:zh": "蜜雪冰城",
+        "name:zh-Latn-pinyin": "Mixue Bingcheng",
         "takeaway": "yes"
       }
     },

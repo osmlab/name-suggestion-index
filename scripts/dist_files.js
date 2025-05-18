@@ -85,7 +85,14 @@ function buildAll() {
   });
 
   // Write `nsi.json` as a single file containing everything by path
-  const output = { nsi: _cache.path };
+  // Reverse sort the paths, we want 'brands' to override 'operators'
+  // see: https://github.com/osmlab/name-suggestion-index/issues/5693#issuecomment-2819259226
+  const rsorted = {};
+  Object.keys(_cache.path).sort((a, b) => withLocale(b, a)).forEach(tkv => {
+    rsorted[tkv] = _cache.path[tkv];
+  });
+
+  const output = { nsi: rsorted };
   writeFileWithMeta('dist/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
 
   buildIDPresets();     // nsi-id-presets.json

@@ -4,7 +4,8 @@
     "exclude": {
       "generic": ["^trolleybus$"],
       "named": [
-        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$"
+        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$",
+        "^ru:municipal$"
       ]
     }
   },
@@ -95,6 +96,23 @@
       }
     },
     {
+      "displayName": "IDPK",
+      "id": "integrovanadopravaplzenskehokraje-ab87e1",
+      "locationSet": {
+        "include": ["cz-32.geojson"]
+      },
+      "matchNames": ["mhd plzeň"],
+      "tags": {
+        "network": "Integrovaná doprava Plzeňského kraje",
+        "network:short": "IDPK",
+        "network:wikidata": "Q12021682",
+        "operator": "Plzeňské městské dopravní podniky",
+        "operator:short": "PMDP",
+        "operator:wikidata": "Q2099900",
+        "route": "trolleybus"
+      }
+    },
+    {
       "displayName": "IDS JMK",
       "id": "idsjmk-706c20",
       "locationSet": {"include": ["cz"]},
@@ -160,6 +178,7 @@
       "displayName": "Lublin",
       "id": "lublin-ac5bc5",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-06",
       "tags": {
         "network": "Lublin",
         "network:wikidata": "Q27686568",
@@ -185,8 +204,10 @@
     },
     {
       "displayName": "MHD Bratislava",
-      "id": "mhdbratislava-acc88b",
-      "locationSet": {"include": ["sk"]},
+      "id": "mhdbratislava-60f55e",
+      "locationSet": {
+        "include": ["sk-bl.geojson"]
+      },
       "tags": {
         "network": "MHD Bratislava",
         "network:wikidata": "Q7258005",
@@ -235,23 +256,10 @@
       }
     },
     {
-      "displayName": "MHD Plzeň",
-      "id": "mhdplzen-ab87e1",
-      "locationSet": {
-        "include": ["cz-32.geojson"]
-      },
-      "tags": {
-        "network": "MHD Plzeň",
-        "network:wikidata": "Q12021682",
-        "operator": "PMDP",
-        "operator:wikidata": "Q2099900",
-        "route": "trolleybus"
-      }
-    },
-    {
       "displayName": "MHD Prešov",
       "id": "mhdpresov-acc88b",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-PV",
       "tags": {
         "network": "MHD Prešov",
         "network:wikidata": "Q131400368",
@@ -305,6 +313,7 @@
       "displayName": "MHD Žilina",
       "id": "mhdzilina-acc88b",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-ZI",
       "tags": {
         "network": "MHD Žilina",
         "network:wikidata": "Q110521812",
@@ -354,7 +363,8 @@
       "tags": {
         "network": "ODIS",
         "network:wikidata": "Q12043044",
-        "operator": "DPO",
+        "operator": "Dopravní podnik Ostrava",
+        "operator:short": "DPO",
         "operator:wikidata": "Q11323689",
         "route": "trolleybus"
       }
@@ -417,15 +427,6 @@
       "locationSet": {"include": ["md"]},
       "tags": {
         "network": "Regia Transport Electric Chișinău",
-        "route": "trolleybus"
-      }
-    },
-    {
-      "displayName": "RU:municipal",
-      "id": "rumunicipal-ea4a14",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "RU:municipal",
         "route": "trolleybus"
       }
     },
@@ -538,6 +539,7 @@
         "network": "Szeged",
         "network:wikidata": "Q720449",
         "operator": "Szegedi Közlekedési Társaság",
+        "operator:short": "SZKT",
         "operator:wikidata": "Q1295391",
         "route": "trolleybus"
       }
@@ -671,17 +673,24 @@
       "displayName": "Zarząd Transportu Metropolitalnego",
       "id": "zarzadtransportumetropolitalnego-ac5bc5",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12, PL-24",
       "tags": {
         "network": "Zarząd Transportu Metropolitalnego",
         "network:wikidata": "Q48862619",
         "operator": "Tyskie Linie Trolejbusowe",
+        "operator:wikidata": "Q130340846",
         "route": "trolleybus"
       }
     },
     {
       "displayName": "ZKM Gdynia",
-      "id": "zkmgdynia-ac5bc5",
-      "locationSet": {"include": ["pl"]},
+      "id": "zkmgdynia-afe888",
+      "locationSet": {
+        "include": [
+          "pl-22.geojson",
+          "pl-28.geojson"
+        ]
+      },
       "tags": {
         "network": "ZKM Gdynia",
         "network:wikidata": "Q9387114",
@@ -698,6 +707,20 @@
       "tags": {
         "network": "ZVV",
         "network:wikidata": "Q201977",
+        "route": "trolleybus"
+      }
+    },
+    {
+      "displayName": "ΟΑΣΑ",
+      "id": "oasa-1b380e",
+      "locationSet": {
+        "include": ["gr-i.geojson"]
+      },
+      "tags": {
+        "network": "ΟΑΣΑ",
+        "network:el": "ΟΑΣΑ",
+        "network:en": "OASA",
+        "network:wikidata": "Q1814382",
         "route": "trolleybus"
       }
     },
@@ -831,11 +854,32 @@
       }
     },
     {
+      "displayName": "Миколаївський тролейбус",
+      "id": "1843a5-2bb881",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "network": "Миколаївський тролейбус",
+        "network:wikidata": "Q3540261",
+        "operator": "Миколаївелектротранс",
+        "route": "trolleybus"
+      }
+    },
+    {
       "displayName": "Міський громадський транспорт Маріуполя",
       "id": "28b69f-2bb881",
       "locationSet": {"include": ["ua"]},
       "tags": {
         "network": "Міський громадський транспорт Маріуполя",
+        "route": "trolleybus"
+      }
+    },
+    {
+      "displayName": "Омский троллейбус",
+      "id": "21a30c-ea4a14",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "network": "Омский троллейбус",
+        "network:wikidata": "Q4334741",
         "route": "trolleybus"
       }
     },

@@ -51,6 +51,7 @@ Provinces of the Philippines targeted with a feature using [ISO 3166-2:PH](https
 - [PH-PAM.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-pam.geojson%22%5D%7D&referrer=nsi) - Pampanga
 - [PH-PAN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-pan.geojson%22%5D%7D&referrer=nsi) - Pangasinan
 - [PH-QUE.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-que.geojson%22%5D%7D&referrer=nsi) - Quezon (Keson)
+- [PH-SLU.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-slu.geojson%22%5D%7D&referrer=nsi) - Sulu
 - [PH-SUN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-sun.geojson%22%5D%7D&referrer=nsi) - Surigao del Norte (Hilagang Surigaw)
 - [PH-SUR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-sur.geojson%22%5D%7D&referrer=nsi) - Surigao del Sur (Timog Surigaw)
 - [PH-ZMB.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-zmb.geojson%22%5D%7D&referrer=nsi) - Zambales (Sambales)

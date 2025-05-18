@@ -3,19 +3,25 @@
     "path": "transit/route/bus",
     "exclude": {
       "generic": [
-        "^(campus|city|international|local|mtb|municipal|national|rail|regional|urban|urbano|yellow buses|interurbana)$",
+        "^((public local|ordinary) )?bus$",
+        "^(campus|city|international|mtb|municipal|national|rail|regional|urban|urbano|yellow buses|interurbana)$",
+        "^(local|helyi)",
+        "^(mzk|pks)$",
+        "^(ordinary|ordinaire)$",
+        "^(suburban|elővárosi)$",
         "^autobuz$",
-        "^bus$",
-        "^no$",
-        "^public local bus$"
+        "^no$"
       ],
       "named": [
-        "^(airventure shuttles|audi ag|audi shuttle bus|roseville commuter|volkswagen shuttles)$",
-        "^(csueb|sbu transit|ucsd shuttles)$",
+        "^(audi ag|audi shuttle bus|roseville commuter|(airventure|volkswagen) shuttles)$",
+        "^(csueb|sbu transit|(campus|university|ucsd) shuttles)$",
+        "^(hu|za):regional$",
         "^b$",
         "^bürgerbus$",
-        "^校车$",
-        "광주시 공영버스"
+        "^pap_taptap$",
+        "^ru:(local|municipal|regional)$",
+        "^광주시 공영버스$",
+        "^校车$"
       ]
     }
   },
@@ -89,6 +95,16 @@
         "network:wikidata": "Q108716027",
         "operator": "Arriva",
         "operator:wikidata": "Q2581356",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Adana Belediye Otobüsleri",
+      "id": "adanabelediyeotobusleri-8150d4",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "network": "Adana Belediye Otobüsleri",
+        "network:wikidata": "Q124256455",
         "route": "bus"
       }
     },
@@ -266,12 +282,35 @@
       }
     },
     {
+      "displayName": "Alappuzha Buses",
+      "id": "alappuzhabuses-3e7b99",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
+      "tags": {
+        "network": "Alappuzha Buses",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Álava Bus",
       "id": "alavabus-cbced8",
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Álava Bus",
         "network:wikidata": "Q27969418",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Alégo",
+      "id": "alego-f112f1",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "tags": {
+        "network": "Alégo",
+        "network:wikidata": "Q131597656",
         "route": "bus"
       }
     },
@@ -524,6 +563,19 @@
       }
     },
     {
+      "displayName": "Ama Bus",
+      "id": "amabus-8b999e",
+      "locationSet": {
+        "include": ["in-od.geojson"]
+      },
+      "matchNames": ["mo bus"],
+      "tags": {
+        "network": "Ama Bus",
+        "network:wikidata": "Q60768095",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "AMAT (Palermo)",
       "id": "amat-a7eaa9",
       "locationSet": {
@@ -537,8 +589,10 @@
     },
     {
       "displayName": "AMB",
-      "id": "amb-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "amb-b0a08c",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
       "tags": {"network": "AMB", "route": "bus"}
     },
     {
@@ -672,6 +726,17 @@
       }
     },
     {
+      "displayName": "AMTS servizio urbano Catania",
+      "id": "amtsserviziourbanocatania-a7eaa9",
+      "locationSet": {
+        "include": ["it-82.geojson"]
+      },
+      "tags": {
+        "network": "AMTS servizio urbano Catania",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Andante",
       "id": "andante-586c9e",
       "locationSet": {
@@ -687,9 +752,18 @@
       }
     },
     {
+      "displayName": "Angkot Kabupaten Bandung",
+      "id": "angkotkabupatenbandung-462599",
+      "locationSet": {"include": ["id-jw"]},
+      "tags": {
+        "network": "Angkot Kabupaten Bandung",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Angkot Kota Bandung",
-      "id": "angkotkotabandung-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "angkotkotabandung-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "Angkot Kota Bandung",
         "route": "bus"
@@ -697,8 +771,8 @@
     },
     {
       "displayName": "Angkot Kota Cimahi",
-      "id": "angkotkotacimahi-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "angkotkotacimahi-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "Angkot Kota Cimahi",
         "route": "bus"
@@ -706,17 +780,26 @@
     },
     {
       "displayName": "Angkot Kota Medan",
-      "id": "angkotkotamedan-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "angkotkotamedan-730933",
+      "locationSet": {"include": ["id-sm"]},
       "tags": {
         "network": "Angkot Kota Medan",
         "route": "bus"
       }
     },
     {
+      "displayName": "Angkot Lintas Bandung Raya",
+      "id": "angkotlintasbandungraya-462599",
+      "locationSet": {"include": ["id-jw"]},
+      "tags": {
+        "network": "Angkot Lintas Bandung Raya",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Angkot Lintas Kota Bandung",
-      "id": "angkotlintaskotabandung-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "angkotlintaskotabandung-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "Angkot Lintas Kota Bandung",
         "route": "bus"
@@ -724,8 +807,8 @@
     },
     {
       "displayName": "AngkotMajalengka",
-      "id": "angkotmajalengka-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "angkotmajalengka-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "AngkotMajalengka",
         "route": "bus"
@@ -733,8 +816,8 @@
     },
     {
       "displayName": "AngkotSumedang",
-      "id": "angkotsumedang-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "angkotsumedang-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "AngkotSumedang",
         "route": "bus"
@@ -742,8 +825,8 @@
     },
     {
       "displayName": "Angkutan Tangerang",
-      "id": "angkutantangerang-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "angkutantangerang-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "Angkutan Tangerang",
         "route": "bus"
@@ -829,8 +912,10 @@
     },
     {
       "displayName": "ar:municipal",
-      "id": "armunicipal-bd74d8",
-      "locationSet": {"include": ["ar"]},
+      "id": "armunicipal-38f996",
+      "locationSet": {
+        "include": ["ar-t.geojson"]
+      },
       "tags": {
         "network": "ar:municipal",
         "route": "bus"
@@ -1085,6 +1170,7 @@
           "nz-wko.geojson"
         ]
       },
+      "matchNames": ["auckland transport"],
       "tags": {
         "network": "AT",
         "network:wikidata": "Q4819567",
@@ -1191,7 +1277,7 @@
       ],
       "note": "Barcelona, Spain",
       "tags": {
-        "network": "Autoritat del Transport Metropolità de l'àrea de Barcelona",
+        "network": "Autoritat del Transport Metropolità de l'Àrea de Barcelona",
         "network:short": "ATM",
         "network:wikidata": "Q1845633",
         "route": "bus"
@@ -1309,8 +1395,10 @@
     },
     {
       "displayName": "Autobuses Interurbanos de Madrid",
-      "id": "autobusesinterurbanosdemadrid-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "autobusesinterurbanosdemadrid-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "Autobuses Interurbanos de Madrid",
         "route": "bus"
@@ -1335,11 +1423,34 @@
       }
     },
     {
+      "displayName": "Autobuses Urbanos de Aranjuez",
+      "id": "autobusesurbanosdearanjuez-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
+      "tags": {
+        "network": "Autobuses Urbanos de Aranjuez",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Autobuses Urbanos de Córdoba",
       "id": "autobusesurbanosdecordoba-cbced8",
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Autobuses Urbanos de Córdoba",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Autobuses Urbanos de Getafe",
+      "id": "autobusesurbanosdegetafe-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
+      "tags": {
+        "network": "Autobuses Urbanos de Getafe",
+        "network:wikidata": "Q112628170",
         "route": "bus"
       }
     },
@@ -1374,11 +1485,43 @@
       }
     },
     {
+      "displayName": "Autobuses Urbanos de Móstoles",
+      "id": "autobusesurbanosdemostoles-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
+      "tags": {
+        "network": "Autobuses Urbanos de Móstoles",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Autobuses Urbanos de Salamanca",
       "id": "autobusesurbanosdesalamanca-cbced8",
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Autobuses Urbanos de Salamanca",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Autobuses Urbanos de San Martín de la Vega",
+      "id": "autobusesurbanosdesanmartindelavega-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
+      "tags": {
+        "network": "Autobuses Urbanos de San Martín de la Vega",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Autobuses Urbanos de Segovia",
+      "id": "autobusesurbanosdesegovia-cbced8",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Autobuses Urbanos de Segovia",
+        "network:wikidata": "Q47766692",
         "route": "bus"
       }
     },
@@ -1392,11 +1535,33 @@
       }
     },
     {
+      "displayName": "Autobuses Urbanos de Valdemoro",
+      "id": "autobusesurbanosdevaldemoro-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
+      "tags": {
+        "network": "Autobuses Urbanos de Valdemoro",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Autobuses Urbanos de Zamora",
       "id": "autobusesurbanosdezamora-cbced8",
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Autobuses Urbanos de Zamora",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Autobuses Urbanos de Zaragoza",
+      "id": "autobusesurbanosdezaragoza-dc8c3b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
+      "tags": {
+        "network": "Autobuses Urbanos de Zaragoza",
         "route": "bus"
       }
     },
@@ -1414,6 +1579,7 @@
       "displayName": "Autobusowych Linii Dowozowych",
       "id": "autobusowychliniidowozowych-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "network": "Autobusowych Linii Dowozowych",
         "network:short": "ALD",
@@ -1424,8 +1590,10 @@
     },
     {
       "displayName": "Autobusy we Wrocławiu",
-      "id": "autobusywewroclawiu-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "autobusywewroclawiu-486d69",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "network": "Autobusy we Wrocławiu",
         "network:wikidata": "Q9162527",
@@ -1566,6 +1734,15 @@
       }
     },
     {
+      "displayName": "Bacninhbus",
+      "id": "bacninhbus-2c1b52",
+      "locationSet": {"include": ["vn"]},
+      "tags": {
+        "network": "Bacninhbus",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Baïa",
       "id": "baia-f112f1",
       "locationSet": {
@@ -1575,15 +1752,6 @@
         "network": "Baïa",
         "network:wikidata": "Q3457093",
         "operator": "Transdev Urbain Bassin d'Arcachon",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Balassagyarmat",
-      "id": "balassagyarmat-6ba633",
-      "locationSet": {"include": ["hu"]},
-      "tags": {
-        "network": "Balassagyarmat",
         "route": "bus"
       }
     },
@@ -1695,6 +1863,21 @@
       }
     },
     {
+      "displayName": "Bassetlaw",
+      "id": "bassetlaw-fe2e10",
+      "locationSet": {
+        "include": [
+          "gb-east-midlands.geojson",
+          "gb-yorkshire.geojson"
+        ]
+      },
+      "note": "name of municipality",
+      "tags": {
+        "network": "Bassetlaw",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "BAT (Bornholm)",
       "id": "bat-2d5c89",
       "locationSet": {
@@ -1731,15 +1914,6 @@
       }
     },
     {
-      "displayName": "batauto.ge",
-      "id": "batautoge-6eac88",
-      "locationSet": {"include": ["ge"]},
-      "tags": {
-        "network": "batauto.ge",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Bay Area Transportation Authority",
       "id": "bayareatransportationauthority-770517",
       "locationSet": {
@@ -1758,6 +1932,9 @@
       "locationSet": {
         "include": ["nz-bop.geojson"]
       },
+      "matchNames": [
+        "bay of plenty regional council"
+      ],
       "tags": {
         "network": "BayBus",
         "network:wikidata": "Q112189811",
@@ -1832,6 +2009,18 @@
       }
     },
     {
+      "displayName": "Bee Network",
+      "id": "beenetwork-95a5ae",
+      "locationSet": {
+        "include": ["gb-north-west.geojson"]
+      },
+      "tags": {
+        "network": "Bee Network",
+        "network:wikidata": "Q111700725",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Bee-Line",
       "id": "beeline-901cb2",
       "locationSet": {"include": [[-74, 41]]},
@@ -1859,6 +2048,7 @@
       "displayName": "Bełchatów",
       "id": "belchatow-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "Bełchatów",
         "route": "bus"
@@ -2002,6 +2192,47 @@
       }
     },
     {
+      "displayName": "Big Bus Tours",
+      "id": "bigbustours-5f2e08",
+      "locationSet": {
+        "include": [
+          "ae",
+          "at",
+          "au",
+          "ca",
+          "cn",
+          "cz",
+          "de",
+          "eg",
+          "es",
+          "fr",
+          "gb",
+          "gr",
+          "hk",
+          "hu",
+          "ie",
+          "in",
+          "it",
+          "mx",
+          "my",
+          "no",
+          "nz",
+          "om",
+          "pl",
+          "ru",
+          "sg",
+          "tr",
+          "us",
+          "vn"
+        ]
+      },
+      "tags": {
+        "network": "Big Bus Tours",
+        "network:wikidata": "Q6980608",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Bilbobus",
       "id": "bilbobus-cbced8",
       "locationSet": {"include": ["es"]},
@@ -2023,8 +2254,10 @@
     },
     {
       "displayName": "BKM",
-      "id": "bkm-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "bkm-228b56",
+      "locationSet": {
+        "include": ["pl-20.geojson"]
+      },
       "tags": {
         "network": "BKM",
         "network:wikidata": "Q9162501",
@@ -2074,8 +2307,10 @@
     },
     {
       "displayName": "BMTC",
-      "id": "bmtc-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "bmtc-c4924c",
+      "locationSet": {
+        "include": ["in-ka.geojson"]
+      },
       "tags": {
         "network": "BMTC",
         "network:wikidata": "Q3345039",
@@ -2088,6 +2323,15 @@
       "locationSet": {"include": ["bo"]},
       "tags": {
         "network": "BO:CB:Cochabamba",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "BO:CH:Sucre",
+      "id": "bochsucre-d66980",
+      "locationSet": {"include": ["bo"]},
+      "tags": {
+        "network": "BO:CH:Sucre",
         "route": "bus"
       }
     },
@@ -2125,18 +2369,6 @@
         "network": "Bodensee-Oberschwaben Verkehrsverbund",
         "network:short": "bodo",
         "network:wikidata": "Q889680",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "BoltBus",
-      "id": "boltbus-2bba94",
-      "locationSet": {"include": ["ca", "us"]},
-      "tags": {
-        "network": "BoltBus",
-        "network:wikidata": "Q4940096",
-        "operator": "Greyhound Lines",
-        "operator:wikidata": "Q755309",
         "route": "bus"
       }
     },
@@ -2217,6 +2449,17 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "network": "BR:PB:João Pessoa",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "BR:SC:Garopaba",
+      "id": "brscgaropaba-43731e",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
+      "tags": {
+        "network": "BR:SC:Garopaba",
         "route": "bus"
       }
     },
@@ -2318,6 +2561,7 @@
       "displayName": "Brodnica",
       "id": "brodnica-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04",
       "tags": {
         "network": "Brodnica",
         "route": "bus"
@@ -2388,8 +2632,14 @@
     },
     {
       "displayName": "BRT (日本)",
-      "id": "brt-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "brt-050bc6",
+      "locationSet": {
+        "include": [
+          "jp-03.geojson",
+          "jp-04.geojson",
+          "jp-15.geojson"
+        ]
+      },
       "tags": {"network": "BRT", "route": "bus"}
     },
     {
@@ -2414,18 +2664,17 @@
       }
     },
     {
-      "displayName": "Brwinów",
-      "id": "brwinow-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Brwinów",
-        "route": "bus"
-      }
+      "displayName": "BS",
+      "id": "bs-ca9cee",
+      "locationSet": {
+        "include": ["ch-vs.geojson"]
+      },
+      "tags": {"network": "BS", "route": "bus"}
     },
     {
       "displayName": "BSD Link",
-      "id": "bsdlink-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "bsdlink-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "BSD Link",
         "network:wikidata": "Q121247879",
@@ -2595,6 +2844,19 @@
       }
     },
     {
+      "displayName": "BusSmart",
+      "id": "bussmart-3d1ac0",
+      "locationSet": {
+        "include": ["nz-stl.geojson"]
+      },
+      "matchNames": ["invercargill", "southland"],
+      "tags": {
+        "network": "BusSmart",
+        "network:wikidata": "Q7258013",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Busval d'Oise",
       "id": "busvaldoise-bf4ce0",
       "locationSet": {
@@ -2668,16 +2930,6 @@
       }
     },
     {
-      "displayName": "Bydgoszcz",
-      "id": "bydgoszcz-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Bydgoszcz",
-        "network:wikidata": "Q16618278",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "C-TRAN",
       "id": "ctran-64dc63",
       "locationSet": {
@@ -2704,6 +2956,18 @@
         "network:wikidata": "Q124816091",
         "route": "bus"
       }
+    },
+    {
+      "displayName": "CABA",
+      "id": "caba-5aa4f7",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
+      "note": "name of municipality",
+      "tags": {"network": "CABA", "route": "bus"}
     },
     {
       "displayName": "CABS",
@@ -3513,8 +3777,14 @@
     },
     {
       "displayName": "Chandigarh Transport Undertaking",
-      "id": "chandigarhtransportundertaking-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "chandigarhtransportundertaking-9250d0",
+      "locationSet": {
+        "include": [
+          "in-ch.geojson",
+          "in-hr.geojson",
+          "in-pb.geojson"
+        ]
+      },
       "matchNames": ["ctu bus services"],
       "tags": {
         "network": "Chandigarh Transport Undertaking",
@@ -3560,6 +3830,7 @@
       "displayName": "Chełm",
       "id": "chelm-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-06",
       "tags": {"network": "Chełm", "route": "bus"}
     },
     {
@@ -3591,6 +3862,7 @@
       "displayName": "Chodzież",
       "id": "chodziez-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "Chodzież",
         "route": "bus"
@@ -3887,8 +4159,10 @@
     },
     {
       "displayName": "CMT - Alcobendas",
-      "id": "cmtalcobendas-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "cmtalcobendas-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "CMT - Alcobendas",
         "route": "bus"
@@ -3900,15 +4174,6 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "CMT Interurbanos",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "CO:MEGABUS",
-      "id": "comegabus-53ae69",
-      "locationSet": {"include": ["co"]},
-      "tags": {
-        "network": "CO:MEGABUS",
         "route": "bus"
       }
     },
@@ -4394,6 +4659,18 @@
       }
     },
     {
+      "displayName": "Côte&Bus",
+      "id": "coteandbus-8ac7c2",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
+      "tags": {
+        "network": "Côte&Bus",
+        "network:wikidata": "Q3537977",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "COTPA",
       "id": "cotpa-731ce8",
       "locationSet": {
@@ -4450,15 +4727,6 @@
         "include": ["it-52.geojson"]
       },
       "tags": {"network": "CPT", "route": "bus"}
-    },
-    {
-      "displayName": "Cross-harbour Bus",
-      "id": "crossharbourbus-5398e8",
-      "locationSet": {"include": ["hk"]},
-      "tags": {
-        "network": "Cross-harbour Bus",
-        "route": "bus"
-      }
     },
     {
       "displayName": "CSO",
@@ -4610,12 +4878,6 @@
         "network:wikidata": "Q5193719",
         "route": "bus"
       }
-    },
-    {
-      "displayName": "CWL",
-      "id": "cwl-9c952e",
-      "locationSet": {"include": ["my"]},
-      "tags": {"network": "CWL", "route": "bus"}
     },
     {
       "displayName": "Cypré",
@@ -4798,8 +5060,13 @@
     },
     {
       "displayName": "Delhi Public Transport",
-      "id": "delhipublictransport-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "delhipublictransport-7c4c3a",
+      "locationSet": {
+        "include": [
+          "in-dl.geojson",
+          "in-up.geojson"
+        ]
+      },
       "tags": {
         "network": "Delhi Public Transport",
         "route": "bus"
@@ -4839,12 +5106,24 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "network": "DinTur",
-        "network:wikidata": "Q5277826",
+        "network:wikidata": "Q18291304",
         "route": "bus"
       }
     },
     {
-      "displayName": "Distribus",
+      "displayName": "Distribus (Bretagne)",
+      "id": "distribus-4dc520",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
+      "matchNames": ["fr:distribus"],
+      "tags": {
+        "network": "Distribus",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Distribus (Grand Est)",
       "id": "distribus-8203f9",
       "locationSet": {
         "include": ["fr-ges.geojson"]
@@ -4872,9 +5151,12 @@
     },
     {
       "displayName": "DK'BUS",
-      "id": "dkbus-131731",
+      "id": "dkbus-47081c",
       "locationSet": {
-        "include": ["be", "fr-hdf.geojson"]
+        "include": [
+          "be-vwv.geojson",
+          "fr-hdf.geojson"
+        ]
       },
       "tags": {
         "network": "DK'BUS",
@@ -4940,8 +5222,15 @@
     },
     {
       "displayName": "DLWV",
-      "id": "dlwv-6974a4",
-      "locationSet": {"include": ["be"]},
+      "id": "dlwv-34d567",
+      "locationSet": {
+        "include": [
+          "be-vov.geojson",
+          "be-vwv.geojson",
+          "be-wht.geojson",
+          "fr-hdf.geojson"
+        ]
+      },
       "tags": {
         "network": "DLWV",
         "network:wikidata": "Q614819",
@@ -5194,6 +5483,25 @@
       }
     },
     {
+      "displayName": "eBus",
+      "id": "ebus-2370ef",
+      "locationSet": {
+        "include": [
+          "nz-nsn.geojson",
+          "nz-tas.geojson"
+        ]
+      },
+      "matchNames": [
+        "nelson city council",
+        "tasman district council"
+      ],
+      "tags": {
+        "network": "eBus",
+        "network:wikidata": "Q133818760",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "ECAT",
       "id": "ecat-dd2750",
       "locationSet": {
@@ -5229,12 +5537,6 @@
       }
     },
     {
-      "displayName": "Eger",
-      "id": "eger-6ba633",
-      "locationSet": {"include": ["hu"]},
-      "tags": {"network": "Eger", "route": "bus"}
-    },
-    {
       "displayName": "EGO",
       "id": "ego-8150d4",
       "locationSet": {"include": ["tr"]},
@@ -5258,11 +5560,12 @@
       }
     },
     {
-      "displayName": "elővárosi",
-      "id": "elovarosi-6ba633",
-      "locationSet": {"include": ["hu"]},
+      "displayName": "Elektrėnų savivaldybė",
+      "id": "elektrenusavivaldybe-393f24",
+      "locationSet": {"include": ["lt"]},
+      "note": "name of municipality",
       "tags": {
-        "network": "elővárosi",
+        "network": "Elektrėnų savivaldybė",
         "route": "bus"
       }
     },
@@ -5274,8 +5577,11 @@
     },
     {
       "displayName": "Empresa Municipal de Transportes de Madrid",
-      "id": "empresamunicipaldetransportesdemadrid-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "empresamunicipaldetransportesdemadrid-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
+      "matchNames": ["emt", "es:m:madrid"],
       "tags": {
         "network": "Empresa Municipal de Transportes de Madrid",
         "network:short": "EMT Madrid",
@@ -5287,15 +5593,23 @@
       }
     },
     {
-      "displayName": "EMT",
-      "id": "emt-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {"network": "EMT", "route": "bus"}
+      "displayName": "EMT (València)",
+      "id": "emt-a154e2",
+      "locationSet": {
+        "include": ["es-v.geojson"]
+      },
+      "tags": {
+        "network": "EMT",
+        "network:wikidata": "Q11007711",
+        "route": "bus"
+      }
     },
     {
       "displayName": "EMT Fuenlabrada",
-      "id": "emtfuenlabrada-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "emtfuenlabrada-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "EMT Fuenlabrada",
         "network:wikidata": "Q5831722",
@@ -5304,8 +5618,10 @@
     },
     {
       "displayName": "EMT Tarragona",
-      "id": "emttarragona-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "emttarragona-305dee",
+      "locationSet": {
+        "include": ["es-t.geojson"]
+      },
       "tags": {
         "network": "EMT Tarragona",
         "network:wikidata": "Q28662868",
@@ -5381,32 +5697,32 @@
     },
     {
       "displayName": "ES:M",
-      "id": "esm-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "esm-6d5cea",
+      "locationSet": {
+        "include": [
+          "es-gu.geojson",
+          "es-m.geojson"
+        ]
+      },
       "tags": {"network": "ES:M", "route": "bus"}
     },
     {
       "displayName": "ES:M:Alcalá de Henares",
-      "id": "esmalcaladehenares-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "esmalcaladehenares-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "ES:M:Alcalá de Henares",
         "route": "bus"
       }
     },
     {
-      "displayName": "ES:M:Madrid",
-      "id": "esmmadrid-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "network": "ES:M:Madrid",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "ES:M:Torrejón de Ardoz",
-      "id": "esmtorrejondeardoz-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "esmtorrejondeardoz-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "ES:M:Torrejón de Ardoz",
         "route": "bus"
@@ -5414,8 +5730,10 @@
     },
     {
       "displayName": "ES:M:Valdemoro",
-      "id": "esmvaldemoro-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "esmvaldemoro-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "network": "ES:M:Valdemoro",
         "route": "bus"
@@ -5448,12 +5766,6 @@
       }
     },
     {
-      "displayName": "Este",
-      "id": "este-55f234",
-      "locationSet": {"include": ["ve"]},
-      "tags": {"network": "Este", "route": "bus"}
-    },
-    {
       "displayName": "Estrada Nova",
       "id": "estradanova-2ef076",
       "locationSet": {"include": ["br"]},
@@ -5473,8 +5785,10 @@
     },
     {
       "displayName": "ETASA",
-      "id": "etasa-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "etasa-178a9c",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {"network": "ETASA", "route": "bus"}
     },
     {
@@ -5483,6 +5797,17 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "network": "ETCSBC",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Etna Trasporti servizio urbano Ragusa",
+      "id": "etnatrasportiserviziourbanoragusa-a7eaa9",
+      "locationSet": {
+        "include": ["it-82.geojson"]
+      },
+      "tags": {
+        "network": "Etna Trasporti servizio urbano Ragusa",
         "route": "bus"
       }
     },
@@ -5508,6 +5833,7 @@
       "displayName": "eurobus",
       "id": "eurobus-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {
         "network": "eurobus",
         "route": "bus"
@@ -5777,15 +6103,6 @@
       }
     },
     {
-      "displayName": "Express (Belgique)",
-      "id": "express-6974a4",
-      "locationSet": {"include": ["be"]},
-      "tags": {
-        "network": "Express",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Express (Côte d'Ivoire)",
       "id": "express-20b116",
       "locationSet": {"include": ["ci"]},
@@ -5838,6 +6155,17 @@
       },
       "tags": {
         "network": "extraurbano",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Extraurbano MOM",
+      "id": "extraurbanomom-578023",
+      "locationSet": {
+        "include": ["it-34.geojson"]
+      },
+      "tags": {
+        "network": "Extraurbano MOM",
         "route": "bus"
       }
     },
@@ -5995,6 +6323,18 @@
       }
     },
     {
+      "displayName": "First Essex",
+      "id": "firstessex-6fcf1b",
+      "locationSet": {
+        "include": ["gb-east-england.geojson"]
+      },
+      "tags": {
+        "network": "First Essex",
+        "network:wikidata": "Q5452973",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "First in Essex",
       "id": "firstinessex-8e0970",
       "locationSet": {"include": ["gb"]},
@@ -6014,6 +6354,18 @@
         "network:wikidata": "Q5453803",
         "operator": "First West of England",
         "operator:wikidata": "Q5453803",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "First York",
+      "id": "firstyork-1383ad",
+      "locationSet": {
+        "include": ["gb-yorkshire.geojson"]
+      },
+      "tags": {
+        "network": "First York",
+        "network:wikidata": "Q5454106",
         "route": "bus"
       }
     },
@@ -6378,13 +6730,15 @@
       }
     },
     {
-      "displayName": "Gizzybus",
+      "displayName": "GizzyBus",
       "id": "gizzybus-8af003",
       "locationSet": {
         "include": ["nz-gis.geojson"]
       },
+      "matchNames": ["gisborne district council"],
       "tags": {
-        "network": "Gizzybus",
+        "network": "GizzyBus",
+        "network:wikidata": "Q134285658",
         "route": "bus"
       }
     },
@@ -6413,15 +6767,6 @@
         "network:wikidata": "Q130312364",
         "operator": "City of Gloversville",
         "operator:wikidata": "Q1380511",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Gminne Linie Autobusowe – Brwinów",
-      "id": "gminnelinieautobusowebrwinow-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Gminne Linie Autobusowe – Brwinów",
         "route": "bus"
       }
     },
@@ -6504,6 +6849,21 @@
       }
     },
     {
+      "displayName": "Goldline",
+      "id": "goldline-1d740f",
+      "locationSet": {
+        "include": [
+          "ie-l.geojson",
+          "ie-u.geojson"
+        ]
+      },
+      "note": "boundaries of the Ulster (IE-U) feature include Northern Ireland (GB-NIR)",
+      "tags": {
+        "network": "Goldline",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "GoLine",
       "id": "goline-e591f2",
       "locationSet": {
@@ -6554,6 +6914,7 @@
       "displayName": "Gorzów Wielkopolski",
       "id": "gorzowwielkopolski-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-08",
       "tags": {
         "network": "Gorzów Wielkopolski",
         "route": "bus"
@@ -6623,11 +6984,21 @@
       }
     },
     {
+      "displayName": "Gran Canaria Buses",
+      "id": "grancanariabuses-2b591b",
+      "locationSet": {"include": ["ic"]},
+      "tags": {
+        "network": "Gran Canaria Buses",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Grand Melun",
       "id": "grandmelun-bf4ce0",
       "locationSet": {
         "include": ["fr-idf.geojson"]
       },
+      "matchNames": ["melibus"],
       "tags": {
         "network": "Grand Melun",
         "network:wikidata": "Q3456690",
@@ -6756,8 +7127,11 @@
     },
     {
       "displayName": "Grodzisk Mazowiecki",
-      "id": "grodziskmazowiecki-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "grodziskmazowiecki-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
+      "note": "name of city",
       "tags": {
         "network": "Grodzisk Mazowiecki",
         "route": "bus"
@@ -6765,8 +7139,10 @@
     },
     {
       "displayName": "Grodziskie Przewozy Autobusowe",
-      "id": "grodziskieprzewozyautobusowe-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "grodziskieprzewozyautobusowe-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "network": "Grodziskie Przewozy Autobusowe",
         "route": "bus"
@@ -6810,15 +7186,6 @@
       }
     },
     {
-      "displayName": "Grupo Ruiz",
-      "id": "gruporuiz-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "network": "Grupo Ruiz",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "GSP Beograd",
       "id": "58b493-92b7a7",
       "locationSet": {"include": ["rs"]},
@@ -6843,6 +7210,16 @@
         "network:wikidata": "Q5522428",
         "operator": "City of Gardena",
         "operator:wikidata": "Q846409",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Guaguas Municipales",
+      "id": "guaguasmunicipales-2b591b",
+      "locationSet": {"include": ["ic"]},
+      "tags": {
+        "network": "Guaguas Municipales",
+        "network:wikidata": "Q1522237",
         "route": "bus"
       }
     },
@@ -6915,15 +7292,6 @@
         "network:wikidata": "Q66991285",
         "operator": "Connexxion",
         "operator:wikidata": "Q591484",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Halifax",
-      "id": "halifax-8e0970",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "network": "Halifax",
         "route": "bus"
       }
     },
@@ -7107,12 +7475,6 @@
       }
     },
     {
-      "displayName": "helyi",
-      "id": "helyi-6ba633",
-      "locationSet": {"include": ["hu"]},
-      "tags": {"network": "helyi", "route": "bus"}
-    },
-    {
       "displayName": "Hérault Transport",
       "id": "heraulttransport-3755d1",
       "locationSet": {
@@ -7212,6 +7574,22 @@
       }
     },
     {
+      "displayName": "Horizons",
+      "id": "horizons-844817",
+      "locationSet": {
+        "include": [
+          "nz-mwt.geojson",
+          "nz-wgn.geojson"
+        ]
+      },
+      "matchNames": ["manawatū", "whanganui"],
+      "tags": {
+        "network": "Horizons",
+        "network:wikidata": "Q124314259",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Hourtoule",
       "id": "hourtoule-bf4ce0",
       "locationSet": {
@@ -7245,20 +7623,22 @@
       }
     },
     {
-      "displayName": "HU:regional",
-      "id": "huregional-6ba633",
-      "locationSet": {"include": ["hu"]},
-      "tags": {
-        "network": "HU:regional",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Huddersfield",
       "id": "huddersfield-8e0970",
       "locationSet": {"include": ["gb"]},
       "tags": {
         "network": "Huddersfield",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Hunter Buses",
+      "id": "hunterbuses-4ab973",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "network": "Hunter Buses",
         "route": "bus"
       }
     },
@@ -7273,8 +7653,13 @@
     },
     {
       "displayName": "IBXL",
-      "id": "ibxl-6974a4",
-      "locationSet": {"include": ["be"]},
+      "id": "ibxl-c22ad0",
+      "locationSet": {
+        "include": [
+          "be-bru.geojson",
+          "be-vbr.geojson"
+        ]
+      },
       "tags": {"network": "IBXL", "route": "bus"}
     },
     {
@@ -7282,6 +7667,7 @@
       "id": "integrovanadopravazilinskehokraja-51c51c",
       "locationSet": {"include": ["sk"]},
       "matchNames": ["ids žsk"],
+      "note": "ISO 3166-2 SK-ZI",
       "tags": {
         "network": "Integrovaná doprava Žilinského kraja",
         "network:short": "ID ŽK",
@@ -7325,11 +7711,30 @@
       }
     },
     {
-      "displayName": "IDS BK",
-      "id": "idsbk-3c8eb1",
+      "displayName": "IDPK",
+      "id": "integrovanadopravaplzenskehokraje-ce3414",
       "locationSet": {
-        "include": ["at-3.geojson", "cz", "sk"]
+        "include": ["cz-32.geojson"]
       },
+      "matchNames": ["mhd plzeň"],
+      "tags": {
+        "network": "Integrovaná doprava Plzeňského kraje",
+        "network:short": "IDPK",
+        "network:wikidata": "Q12021682",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "IDS BK",
+      "id": "idsbk-c89aa8",
+      "locationSet": {
+        "include": [
+          "at-3.geojson",
+          "cz-64.geojson",
+          "sk"
+        ]
+      },
+      "note": "ISO 3166-2 SK-BL, SK-TA",
       "tags": {
         "network": "IDS BK",
         "network:wikidata": "Q4241634",
@@ -7342,6 +7747,7 @@
       "locationSet": {
         "include": ["at-3.geojson", "cz", "sk"]
       },
+      "note": "ISO 3166-2 SK-TA, SK-TC",
       "tags": {
         "network": "IDS JMK",
         "network:wikidata": "Q12020731",
@@ -7364,6 +7770,7 @@
       "displayName": "IDS Východ",
       "id": "idsvychod-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-KI, SK-PV",
       "tags": {
         "network": "IDS Východ",
         "network:wikidata": "Q105226836",
@@ -7428,6 +7835,7 @@
       "displayName": "IJssel-Vecht",
       "id": "ijsselvecht-2f3200",
       "locationSet": {"include": ["nl"]},
+      "matchNames": ["midden-overijssel"],
       "tags": {
         "network": "IJssel-Vecht",
         "network:wikidata": "Q115122853",
@@ -7449,15 +7857,29 @@
     },
     {
       "displayName": "Ilévia",
-      "id": "ilevia-131731",
+      "id": "ilevia-61aa67",
       "locationSet": {
-        "include": ["be", "fr-hdf.geojson"]
+        "include": [
+          "be-wht.geojson",
+          "fr-hdf.geojson"
+        ]
       },
       "matchNames": ["transpole"],
       "tags": {
         "network": "Ilévia",
         "network:wikidata": "Q117215",
         "operator": "Keolis Lille Métropole",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Illawarra Buses",
+      "id": "illawarrabuses-4ab973",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "network": "Illawarra Buses",
         "route": "bus"
       }
     },
@@ -7555,6 +7977,7 @@
       "displayName": "Inowrocław",
       "id": "inowroclaw-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04",
       "tags": {
         "network": "Inowrocław",
         "route": "bus"
@@ -7642,17 +8065,15 @@
       }
     },
     {
-      "displayName": "IOW",
-      "id": "iow-cab8bc",
-      "locationSet": {
-        "include": ["gb-iow.geojson"]
-      },
-      "tags": {"network": "IOW", "route": "bus"}
-    },
-    {
       "displayName": "IREDO",
-      "id": "iredo-a1a5c7",
-      "locationSet": {"include": ["cz", "pl"]},
+      "id": "iredo-e37eca",
+      "locationSet": {
+        "include": [
+          "cz-52.geojson",
+          "cz-53.geojson",
+          "pl-02.geojson"
+        ]
+      },
       "tags": {
         "network": "IREDO",
         "network:wikidata": "Q12021384",
@@ -7726,6 +8147,7 @@
       "locationSet": {
         "include": ["gb-iow.geojson"]
       },
+      "matchNames": ["iow"],
       "tags": {
         "network": "Isle of Wight",
         "route": "bus"
@@ -7769,10 +8191,22 @@
     },
     {
       "displayName": "Jaipur City Bus",
-      "id": "jaipurcitybus-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "jaipurcitybus-cbf63a",
+      "locationSet": {
+        "include": ["in-rj.geojson"]
+      },
       "tags": {
         "network": "Jaipur City Bus",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Jarocin",
+      "id": "jarocin-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30; name of city",
+      "tags": {
+        "network": "Jarocin",
         "route": "bus"
       }
     },
@@ -7801,8 +8235,11 @@
     },
     {
       "displayName": "Jelenia Góra",
-      "id": "jeleniagora-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "jeleniagora-486d69",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
+      "note": "name of city",
       "tags": {
         "network": "Jelenia Góra",
         "route": "bus"
@@ -7842,6 +8279,19 @@
       }
     },
     {
+      "displayName": "Joensuun seudun joukkoliikenne",
+      "id": "joensuunseudunjoukkoliikenne-3d6501",
+      "locationSet": {"include": ["fi"]},
+      "matchNames": [
+        "joensuun seudun joukkoliikenne (jojo)"
+      ],
+      "tags": {
+        "network": "Joensuun seudun joukkoliikenne",
+        "network:short": "JOJO",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Jönköpings Länstrafik",
       "id": "jonkopingslanstrafik-783b59",
       "locationSet": {"include": ["se"]},
@@ -7877,11 +8327,15 @@
     },
     {
       "displayName": "JRバス関東",
-      "id": "05b3cd-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "jrbuskanto-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "JRバス関東",
+        "network:en": "JR Bus Kanto",
         "network:ja": "JRバス関東",
+        "network:wikidata": "Q10851155",
         "route": "bus"
       }
     },
@@ -7935,6 +8389,17 @@
       }
     },
     {
+      "displayName": "Kalb-Linien",
+      "id": "kalblinien-bfc089",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "tags": {
+        "network": "Kalb-Linien",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Kaliningrad buses",
       "id": "kaliningradbuses-15dd1a",
       "locationSet": {"include": ["ru"]},
@@ -7956,6 +8421,7 @@
       "displayName": "Kalisz",
       "id": "kalisz-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "Kalisz",
         "route": "bus"
@@ -8065,6 +8531,15 @@
       }
     },
     {
+      "displayName": "Kaze Shuttle",
+      "id": "kazeshuttle-2c1b52",
+      "locationSet": {"include": ["vn"]},
+      "tags": {
+        "network": "Kaze Shuttle",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "KCATA",
       "id": "kcata-d86bef",
       "locationSet": {
@@ -8109,6 +8584,16 @@
       "id": "kent-8e0970",
       "locationSet": {"include": ["gb"]},
       "tags": {"network": "Kent", "route": "bus"}
+    },
+    {
+      "displayName": "Kerepes",
+      "id": "kerepes-6ba633",
+      "locationSet": {"include": ["hu"]},
+      "note": "name of city",
+      "tags": {
+        "network": "Kerepes",
+        "route": "bus"
+      }
     },
     {
       "displayName": "Kern Transit",
@@ -8160,15 +8645,6 @@
       }
     },
     {
-      "displayName": "Kielce",
-      "id": "kielce-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Kielce",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Kigali",
       "id": "kigali-5b9223",
       "locationSet": {"include": ["rw"]},
@@ -8215,19 +8691,6 @@
       }
     },
     {
-      "displayName": "Kissingen mobil",
-      "id": "kissingenmobil-bfc089",
-      "locationSet": {
-        "include": ["de-by.geojson"]
-      },
-      "tags": {
-        "network": "Kissingen mobil",
-        "network:short": "Kim",
-        "network:wikidata": "Q1434241",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Kitsap Transit",
       "id": "kitsaptransit-39dd03",
       "locationSet": {
@@ -8263,6 +8726,7 @@
       "displayName": "KMK",
       "id": "kmk-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "network": "KMK",
         "network:wikidata": "Q11687034",
@@ -8271,8 +8735,10 @@
     },
     {
       "displayName": "Kochi city bus",
-      "id": "kochicitybus-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "kochicitybus-3e7b99",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "network": "Kochi city bus",
         "route": "bus"
@@ -8280,8 +8746,10 @@
     },
     {
       "displayName": "Kolkata Private Bus",
-      "id": "kolkataprivatebus-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "kolkataprivatebus-794401",
+      "locationSet": {
+        "include": ["in-wb.geojson"]
+      },
       "tags": {
         "network": "Kolkata Private Bus",
         "route": "bus"
@@ -8301,6 +8769,7 @@
       "displayName": "Komunikacja Gminna Głuchołazy",
       "id": "komunikacjagminnaglucholazy-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-16",
       "tags": {
         "network": "Komunikacja Gminna Głuchołazy",
         "route": "bus"
@@ -8310,6 +8779,7 @@
       "displayName": "Komunikacja Gminy Dopiewo",
       "id": "komunikacjagminydopiewo-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "Komunikacja Gminy Dopiewo",
         "network:wikidata": "Q117193707",
@@ -8318,8 +8788,10 @@
     },
     {
       "displayName": "Komunikacja Miejska Płock",
-      "id": "komunikacjamiejskaplock-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "komunikacjamiejskaplock-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "network": "Komunikacja Miejska Płock",
         "route": "bus"
@@ -8327,8 +8799,10 @@
     },
     {
       "displayName": "Komunikacja Miejska Pruszków",
-      "id": "komunikacjamiejskapruszkow-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "komunikacjamiejskapruszkow-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "network": "Komunikacja Miejska Pruszków",
         "route": "bus"
@@ -8336,8 +8810,10 @@
     },
     {
       "displayName": "Komunikacja Miejska Tczew",
-      "id": "komunikacjamiejskatczew-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "komunikacjamiejskatczew-9a719e",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "network": "Komunikacja Miejska Tczew",
         "route": "bus"
@@ -8347,6 +8823,7 @@
       "displayName": "Komunikacja Miejska w Andrychowie",
       "id": "komunikacjamiejskawandrychowie-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12, PL-24",
       "tags": {
         "network": "Komunikacja Miejska w Andrychowie",
         "route": "bus"
@@ -8356,6 +8833,7 @@
       "displayName": "Komunikacja Miejska w Chełmie",
       "id": "komunikacjamiejskawchelmie-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-06",
       "tags": {
         "network": "Komunikacja Miejska w Chełmie",
         "route": "bus"
@@ -8365,6 +8843,7 @@
       "displayName": "Komunikacja Miejska w Krakowie",
       "id": "komunikacjamiejskawkrakowie-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "network": "Komunikacja Miejska w Krakowie",
         "route": "bus"
@@ -8375,6 +8854,7 @@
       "id": "komunikacjamiejskawkrasniku-9340cc",
       "locationSet": {"include": ["pl"]},
       "matchNames": ["kraśnik"],
+      "note": "ISO 3166-2 PL-06",
       "tags": {
         "network": "Komunikacja miejska w Kraśniku",
         "network:wikidata": "Q11742131",
@@ -8383,18 +8863,11 @@
       }
     },
     {
-      "displayName": "Komunikacja Miejska w Płocku",
-      "id": "komunikacjamiejskawplocku-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Komunikacja Miejska w Płocku",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Komunikacja Miejska w Szczecinku",
-      "id": "komunikacjamiejskawszczecinku-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "komunikacjamiejskawszczecinku-a85fe0",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "network": "Komunikacja Miejska w Szczecinku",
         "network:wikidata": "Q11742146",
@@ -8403,8 +8876,10 @@
     },
     {
       "displayName": "Komunikacja Miejska Żyrardów",
-      "id": "komunikacjamiejskazyrardow-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "komunikacjamiejskazyrardow-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "network": "Komunikacja Miejska Żyrardów",
         "route": "bus"
@@ -8414,6 +8889,7 @@
       "displayName": "Końskie",
       "id": "konskie-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-26",
       "tags": {
         "network": "Końskie",
         "route": "bus"
@@ -8441,17 +8917,9 @@
       "displayName": "Kórnik",
       "id": "kornik-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "Kórnik",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Kraków",
-      "id": "krakow-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Kraków",
         "route": "bus"
       }
     },
@@ -8504,6 +8972,7 @@
       "displayName": "Kutno",
       "id": "kutno-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {"network": "Kutno", "route": "bus"}
     },
     {
@@ -8719,6 +9188,7 @@
       "displayName": "Łask",
       "id": "lask-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {"network": "Łask", "route": "bus"}
     },
     {
@@ -8820,8 +9290,11 @@
     },
     {
       "displayName": "Lębork",
-      "id": "lebork-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "lebork-9a719e",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
+      "note": "name of city",
       "tags": {
         "network": "Lębork",
         "route": "bus"
@@ -8880,6 +9353,7 @@
       "displayName": "Leszno",
       "id": "leszno-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "Leszno",
         "route": "bus"
@@ -9085,9 +9559,13 @@
     },
     {
       "displayName": "Limburg",
-      "id": "limburg-80be78",
+      "id": "limburg-5521ab",
       "locationSet": {
-        "include": ["be", "de", "nl"]
+        "include": [
+          "be-vli.geojson",
+          "de-nw.geojson",
+          "nl"
+        ]
       },
       "tags": {
         "network": "Limburg",
@@ -9160,6 +9638,26 @@
       }
     },
     {
+      "displayName": "Link Transit",
+      "id": "linktransit-39dd03",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "network": "Link Transit",
+        "network:wikidata": "Q25000891",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "LINX",
+      "id": "linx-6d07fa",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {"network": "LINX", "route": "bus"}
+    },
+    {
       "displayName": "liO",
       "id": "lio-d9bfc3",
       "locationSet": {
@@ -9180,6 +9678,40 @@
       "tags": {
         "network": "liO",
         "network:wikidata": "Q55597931",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "LLB",
+      "id": "llb-ca9cee",
+      "locationSet": {
+        "include": ["ch-vs.geojson"]
+      },
+      "tags": {
+        "network": "LLB",
+        "network:wikidata": "Q131783895",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Lokalna Komunikacja Autobusowa w Pabianicach",
+      "id": "lokalnakomunikacjaautobusowawpabianicach-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
+      "tags": {
+        "network": "Lokalna Komunikacja Autobusowa w Pabianicach",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Lokalny Transport Zbiorowy w Łodzi",
+      "id": "lokalnytransportzbiorowywlodzi-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "matchNames": ["ltz łódź"],
+      "note": "ISO 3166-2 PL-10",
+      "tags": {
+        "network": "Lokalny Transport Zbiorowy w Łodzi",
+        "network:wikidata": "Q133202246",
         "route": "bus"
       }
     },
@@ -9282,8 +9814,13 @@
     },
     {
       "displayName": "LTD (Brihanmumbai Electric Supply and Transport)",
-      "id": "ltd-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "ltd-479ea8",
+      "locationSet": {
+        "include": ["in-mh.geojson"]
+      },
+      "matchNames": [
+        "brihanmumbai electric supply and transport"
+      ],
       "tags": {
         "network": "LTD",
         "operator": "BEST",
@@ -9323,18 +9860,10 @@
       }
     },
     {
-      "displayName": "LTZ Łódź",
-      "id": "ltzlodz-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "LTZ Łódź",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Lublin",
       "id": "lublin-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-06",
       "tags": {
         "network": "Lublin",
         "route": "bus"
@@ -9498,6 +10027,7 @@
       "displayName": "Małopolskie Linie Dowozowe",
       "id": "malopolskieliniedowozowe-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "network": "Małopolskie Linie Dowozowe",
         "route": "bus"
@@ -9630,20 +10160,36 @@
       }
     },
     {
-      "displayName": "Maringá_Metropolitano",
-      "id": "maringametropolitano-2ef076",
-      "locationSet": {"include": ["br"]},
+      "displayName": "Maringá Metropolitano",
+      "id": "maringametropolitano-b6f182",
+      "locationSet": {
+        "include": ["br-pr.geojson"]
+      },
       "tags": {
-        "network": "Maringá_Metropolitano",
+        "network": "Maringá Metropolitano",
         "route": "bus"
       }
     },
     {
-      "displayName": "Maringá_Urbano",
-      "id": "maringaurbano-2ef076",
-      "locationSet": {"include": ["br"]},
+      "displayName": "Maringá Urbano",
+      "id": "maringaurbano-b6f182",
+      "locationSet": {
+        "include": ["br-pr.geojson"]
+      },
       "tags": {
-        "network": "Maringá_Urbano",
+        "network": "Maringá Urbano",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Marlborough District Council",
+      "id": "marlboroughdistrictcouncil-db7a63",
+      "locationSet": {
+        "include": ["nz-mbh.geojson"]
+      },
+      "tags": {
+        "network": "Marlborough District Council",
+        "network:wikidata": "Q134285699",
         "route": "bus"
       }
     },
@@ -9759,12 +10305,12 @@
     },
     {
       "displayName": "MATS",
-      "id": "mountadamstransportationservices-39dd03",
+      "id": "mountadamstransportationservice-39dd03",
       "locationSet": {
         "include": ["us-wa.geojson"]
       },
       "tags": {
-        "network": "Mount Adams Transportation Services",
+        "network": "Mount Adams Transportation Service",
         "network:short": "MATS",
         "network:wikidata": "Q108172416",
         "operator": "Klickitat County",
@@ -9889,6 +10435,17 @@
       }
     },
     {
+      "displayName": "Megabús (Colombia)",
+      "id": "megabus-53ae69",
+      "locationSet": {"include": ["co"]},
+      "matchNames": ["co:megabus"],
+      "tags": {
+        "network": "Megabús",
+        "network:wikidata": "Q6808158",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Megabus (North America)",
       "id": "megabus-2bba94",
       "locationSet": {"include": ["ca", "us"]},
@@ -9913,18 +10470,6 @@
       }
     },
     {
-      "displayName": "MELIBUS",
-      "id": "melibus-bf4ce0",
-      "locationSet": {
-        "include": ["fr-idf.geojson"]
-      },
-      "tags": {
-        "network": "MELIBUS",
-        "network:wikidata": "Q3456690",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Merrimack Valley Transit",
       "id": "merrimackvalleytransit-e9c159",
       "locationSet": {
@@ -9945,6 +10490,7 @@
       "displayName": "Mestský bus",
       "id": "mestskybus-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-TA",
       "tags": {
         "network": "Mestský bus",
         "network:wikidata": "Q12771417",
@@ -10003,6 +10549,10 @@
       "locationSet": {
         "include": ["nz-can.geojson"]
       },
+      "matchNames": [
+        "ecan",
+        "environment canterbury"
+      ],
       "tags": {
         "network": "Metro Christchurch",
         "network:wikidata": "Q7258007",
@@ -10060,6 +10610,16 @@
         "network:wikidata": "Q77610",
         "operator": "Los Angeles County Metropolitan Transportation Authority",
         "operator:wikidata": "Q3259702",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Metro Jabar Trans",
+      "id": "metrojabartrans-462599",
+      "locationSet": {"include": ["id-jw"]},
+      "tags": {
+        "network": "Metro Jabar Trans",
+        "network:wikidata": "Q112132170",
         "route": "bus"
       }
     },
@@ -10213,8 +10773,10 @@
     },
     {
       "displayName": "MetroBus (Valencia)",
-      "id": "metrobus-cbced8",
-      "locationSet": {"include": ["es"]},
+      "id": "metrobus-a154e2",
+      "locationSet": {
+        "include": ["es-v.geojson"]
+      },
       "tags": {
         "network": "MetroBus",
         "network:wikidata": "Q5712403",
@@ -10271,6 +10833,19 @@
       }
     },
     {
+      "displayName": "Metropolitan Transport Corporation",
+      "id": "metropolitantransportcorporation-20e076",
+      "locationSet": {
+        "include": ["in-tn.geojson"]
+      },
+      "tags": {
+        "network": "Metropolitan Transport Corporation",
+        "network:short": "MTC",
+        "network:wikidata": "Q6825287",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Metropolitano",
       "id": "metropolitano-4d54da",
       "locationSet": {"include": ["cl"]},
@@ -10317,9 +10892,13 @@
     },
     {
       "displayName": "MHD Bratislava",
-      "id": "mhdbratislava-b44ee1",
+      "id": "mhdbratislava-ce8ad1",
       "locationSet": {
-        "include": ["at-3.geojson", "hu", "sk"]
+        "include": [
+          "at-3.geojson",
+          "hu",
+          "sk-bl.geojson"
+        ]
       },
       "tags": {
         "network": "MHD Bratislava",
@@ -10354,6 +10933,7 @@
       "displayName": "MHD Galanta",
       "id": "mhdgalanta-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-TA",
       "tags": {
         "network": "MHD Galanta",
         "route": "bus"
@@ -10420,6 +11000,7 @@
       "displayName": "MHD Komárno",
       "id": "mhdkomarno-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-NI",
       "tags": {
         "network": "MHD Komárno",
         "route": "bus"
@@ -10427,8 +11008,10 @@
     },
     {
       "displayName": "MHD Košice",
-      "id": "mhdkosice-51c51c",
-      "locationSet": {"include": ["sk"]},
+      "id": "mhdkosice-be6382",
+      "locationSet": {
+        "include": ["sk-ki.geojson"]
+      },
       "tags": {
         "network": "MHD Košice",
         "network:wikidata": "Q104904552",
@@ -10441,6 +11024,7 @@
       "displayName": "MHD Levice",
       "id": "mhdlevice-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-NI",
       "tags": {
         "network": "MHD Levice",
         "network:wikidata": "Q110521792",
@@ -10464,6 +11048,7 @@
       "displayName": "MHD Martin",
       "id": "mhdmartin-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-ZI, SK-TC",
       "tags": {
         "network": "MHD Martin",
         "route": "bus"
@@ -10471,8 +11056,10 @@
     },
     {
       "displayName": "MHD Michalovce",
-      "id": "mhdmichalovce-51c51c",
-      "locationSet": {"include": ["sk"]},
+      "id": "mhdmichalovce-be6382",
+      "locationSet": {
+        "include": ["sk-ki.geojson"]
+      },
       "tags": {
         "network": "MHD Michalovce",
         "network:wikidata": "Q131400264",
@@ -10484,6 +11071,7 @@
       "displayName": "MHD Nitra",
       "id": "mhdnitra-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-NI",
       "tags": {
         "network": "MHD Nitra",
         "network:wikidata": "Q12771415",
@@ -10506,8 +11094,10 @@
       "displayName": "MHD Piešťany",
       "id": "mhdpiestany-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-TA",
       "tags": {
         "network": "MHD Piešťany",
+        "network:wikidata": "Q110521796",
         "route": "bus"
       }
     },
@@ -10523,21 +11113,10 @@
       }
     },
     {
-      "displayName": "MHD Plzeň",
-      "id": "mhdplzen-ce3414",
-      "locationSet": {
-        "include": ["cz-32.geojson"]
-      },
-      "tags": {
-        "network": "MHD Plzeň",
-        "network:wikidata": "Q12021682",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "MHD Poprad",
       "id": "mhdpoprad-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-PV",
       "tags": {
         "network": "MHD Poprad",
         "network:wikidata": "Q107782589",
@@ -10549,6 +11128,7 @@
       "displayName": "MHD Považská Bystrica",
       "id": "mhdpovazskabystrica-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-TC",
       "tags": {
         "network": "MHD Považská Bystrica",
         "network:short": "MHD PB",
@@ -10560,6 +11140,7 @@
       "displayName": "MHD Prešov",
       "id": "mhdpresov-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-PV",
       "tags": {
         "network": "MHD Prešov",
         "network:wikidata": "Q131400368",
@@ -10572,6 +11153,7 @@
       "displayName": "MHD Prievidza",
       "id": "mhdprievidza-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-TC",
       "tags": {
         "network": "MHD Prievidza",
         "route": "bus"
@@ -10606,6 +11188,7 @@
       "displayName": "MHD Šaľa",
       "id": "mhdsala-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-NI",
       "tags": {
         "network": "MHD Šaľa",
         "route": "bus"
@@ -10615,6 +11198,7 @@
       "displayName": "MHD Sereď",
       "id": "mhdsered-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-TA",
       "tags": {
         "network": "MHD Sereď",
         "route": "bus"
@@ -10622,8 +11206,10 @@
     },
     {
       "displayName": "MHD Spišská Nová Ves",
-      "id": "mhdspisskanovaves-51c51c",
-      "locationSet": {"include": ["sk"]},
+      "id": "mhdspisskanovaves-be6382",
+      "locationSet": {
+        "include": ["sk-ki.geojson"]
+      },
       "tags": {
         "network": "MHD Spišská Nová Ves",
         "network:wikidata": "Q110521800",
@@ -10682,6 +11268,7 @@
       "displayName": "MHD Žilina",
       "id": "mhdzilina-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-ZI",
       "tags": {
         "network": "MHD Žilina",
         "network:wikidata": "Q110521812",
@@ -10695,6 +11282,7 @@
       "displayName": "MHD Zvolen",
       "id": "mhdzvolen-51c51c",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-BC",
       "tags": {
         "network": "MHD Zvolen",
         "route": "bus"
@@ -10721,9 +11309,9 @@
     },
     {
       "displayName": "Miami Trolley",
-      "id": "miamitrolley-770517",
+      "id": "miamitrolley-e591f2",
       "locationSet": {
-        "include": ["us-mi.geojson"]
+        "include": ["us-fl.geojson"]
       },
       "tags": {
         "network": "Miami Trolley",
@@ -10761,16 +11349,6 @@
       }
     },
     {
-      "displayName": "Midden-Overijssel",
-      "id": "middenoverijssel-2f3200",
-      "locationSet": {"include": ["nl"]},
-      "tags": {
-        "network": "Midden-Overijssel",
-        "network:wikidata": "Q115122837",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Midttrafik",
       "id": "midttrafik-8dce25",
       "locationSet": {"include": ["dk"]},
@@ -10784,8 +11362,20 @@
       "displayName": "Międzygminny Związek Komunikacyjny w Jastrzębiu-Zdroju",
       "id": "miedzygminnyzwiazekkomunikacyjnywjastrzebiuzdroju-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-24",
       "tags": {
         "network": "Międzygminny Związek Komunikacyjny w Jastrzębiu-Zdroju",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Miejski Zakład Komunikacji w Pile",
+      "id": "miejskizakladkomunikacjiwpile-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
+      "tags": {
+        "network": "Miejski Zakład Komunikacji w Pile",
+        "network:wikidata": "Q11780267",
         "route": "bus"
       }
     },
@@ -10859,6 +11449,7 @@
       "displayName": "MKS Jasło",
       "id": "mksjaslo-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {
         "network": "MKS Jasło",
         "route": "bus"
@@ -10868,6 +11459,7 @@
       "displayName": "MKS Krosno",
       "id": "mkskrosno-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {
         "network": "MKS Krosno",
         "network:wikidata": "Q11780201",
@@ -10878,17 +11470,9 @@
       "displayName": "MKS Mielec",
       "id": "mksmielec-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {
         "network": "MKS Mielec",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "MO Bus",
-      "id": "mobus-f6a713",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "network": "MO Bus",
         "route": "bus"
       }
     },
@@ -10996,8 +11580,10 @@
     },
     {
       "displayName": "Mofussil Kochi bus",
-      "id": "mofussilkochibus-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "mofussilkochibus-3e7b99",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "network": "Mofussil Kochi bus",
         "route": "bus"
@@ -11113,6 +11699,20 @@
       }
     },
     {
+      "displayName": "Mountain Metropolitan Transit",
+      "id": "mountainmetropolitantransit-b35a5d",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
+      "matchNames": ["mountain metro"],
+      "tags": {
+        "network": "Mountain Metropolitan Transit",
+        "network:short": "MMT",
+        "network:wikidata": "Q6925119",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Mouv'enbus",
       "id": "mouvenbus-cbddab",
       "locationSet": {
@@ -11179,6 +11779,7 @@
       "displayName": "MPK Gniezno",
       "id": "mpkgniezno-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "MPK Gniezno",
         "network:wikidata": "Q11780300",
@@ -11189,6 +11790,7 @@
       "displayName": "MPK Nowy Sącz",
       "id": "mpknowysacz-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "network": "MPK Nowy Sącz",
         "route": "bus"
@@ -11227,6 +11829,15 @@
       "locationSet": {"include": ["si"]},
       "tags": {
         "network": "MPP Maribor",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "MRT Feeder Bus",
+      "id": "mrtfeederbus-9c952e",
+      "locationSet": {"include": ["my"]},
+      "tags": {
+        "network": "MRT Feeder Bus",
         "route": "bus"
       }
     },
@@ -11287,12 +11898,6 @@
       }
     },
     {
-      "displayName": "MTC",
-      "id": "mtc-f6a713",
-      "locationSet": {"include": ["in"]},
-      "tags": {"network": "MTC", "route": "bus"}
-    },
-    {
       "displayName": "MTD",
       "id": "mtd-f1e980",
       "locationSet": {
@@ -11324,6 +11929,7 @@
       "displayName": "MUK Zgierz",
       "id": "mukzgierz-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "MUK Zgierz",
         "network:wikidata": "Q11780314",
@@ -11381,6 +11987,17 @@
       },
       "tags": {
         "network": "Municipal - La Matanza",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Municipal - Luján",
+      "id": "municipallujan-c974dd",
+      "locationSet": {
+        "include": ["ar-b.geojson"]
+      },
+      "tags": {
+        "network": "Municipal - Luján",
         "route": "bus"
       }
     },
@@ -11448,15 +12065,6 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "MUR-092",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "MUR-093",
-      "id": "mur093-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "network": "MUR-093",
         "route": "bus"
       }
     },
@@ -11537,8 +12145,10 @@
     },
     {
       "displayName": "MZDiK Radom",
-      "id": "mzdikradom-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "mzdikradom-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "network": "MZDiK Radom",
         "network:wikidata": "Q11780285",
@@ -11549,6 +12159,7 @@
       "displayName": "MZDiM Jaworzno",
       "id": "mzdimjaworzno-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12, PL-24",
       "tags": {
         "network": "MZDiM Jaworzno",
         "route": "bus"
@@ -11558,21 +12169,17 @@
       "displayName": "MZDiT Częstochowa",
       "id": "mzditczestochowa-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-24",
       "tags": {
         "network": "MZDiT Częstochowa",
         "route": "bus"
       }
     },
     {
-      "displayName": "MZK",
-      "id": "mzk-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {"network": "MZK", "route": "bus"}
-    },
-    {
       "displayName": "MZK Bielsko-Biała",
       "id": "mzkbielskobiala-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-24",
       "tags": {
         "network": "MZK Bielsko-Biała",
         "network:wikidata": "Q11780275",
@@ -11581,10 +12188,13 @@
     },
     {
       "displayName": "MZK Chojnice",
-      "id": "mzkchojnice-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "mzkchojnice-9a719e",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "network": "MZK Chojnice",
+        "network:wikidata": "Q11780255",
         "route": "bus"
       }
     },
@@ -11592,6 +12202,7 @@
       "displayName": "MZK Gorlice",
       "id": "mzkgorlice-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "network": "MZK Gorlice",
         "route": "bus"
@@ -11601,6 +12212,7 @@
       "displayName": "MZK Grudziądz",
       "id": "mzkgrudziadz-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04",
       "tags": {
         "network": "MZK Grudziądz",
         "network:wikidata": "Q11780251",
@@ -11611,6 +12223,7 @@
       "displayName": "MZK Kędzierzyn-Koźle",
       "id": "mzkkedzierzynkozle-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-16",
       "tags": {
         "network": "MZK Kędzierzyn-Koźle",
         "route": "bus"
@@ -11618,8 +12231,10 @@
     },
     {
       "displayName": "MZK Koszalin",
-      "id": "mzkkoszalin-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "mzkkoszalin-a85fe0",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "network": "MZK Koszalin",
         "network:wikidata": "Q11780261",
@@ -11633,6 +12248,7 @@
       "matchNames": [
         "miejski zakład komunikacji w nysie sp. z o.o."
       ],
+      "note": "ISO 3166-2 PL-16",
       "tags": {
         "network": "MZK Nysa",
         "network:wikidata": "Q11780266",
@@ -11643,6 +12259,7 @@
       "displayName": "MZK Ostrowiec",
       "id": "mzkostrowiec-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-26",
       "tags": {
         "network": "MZK Ostrowiec",
         "network:wikidata": "Q11780292",
@@ -11653,6 +12270,7 @@
       "displayName": "MZK Stalowa Wola",
       "id": "mzkstalowawola-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {
         "network": "MZK Stalowa Wola",
         "network:wikidata": "Q9386230",
@@ -11661,8 +12279,10 @@
     },
     {
       "displayName": "MZK Wejherowo",
-      "id": "mzkwejherowo-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "mzkwejherowo-9a719e",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "network": "MZK Wejherowo",
         "network:wikidata": "Q11780253",
@@ -11698,6 +12318,32 @@
         "network": "Nahverkehr Hameln-Pyrmont",
         "network:wikidata": "Q46285860",
         "operator": "Verkehrsgesellschaft Hameln-Pyrmont",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Nahverkehr Mainfranken",
+      "id": "nahverkehrmainfranken-341dbc",
+      "locationSet": {
+        "include": [
+          "de-bw.geojson",
+          "de-by.geojson"
+        ]
+      },
+      "matchNames": [
+        "kim",
+        "kissingen mobil",
+        "verkehrsgemeinschaft rhön-grabfeld",
+        "verkehrsunternehmens-verbund mainfranken",
+        "verkehrsverbund mainfranken",
+        "vrg",
+        "vvm"
+      ],
+      "tags": {
+        "network": "Nahverkehr Mainfranken",
+        "network:guid": "DE-BY-NVM",
+        "network:short": "NVM",
+        "network:wikidata": "Q131385745",
         "route": "bus"
       }
     },
@@ -11763,17 +12409,6 @@
       },
       "tags": {
         "network": "Navettes Queyras",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Navettes Serre-Ponçon",
-      "id": "navettesserreponcon-cbddab",
-      "locationSet": {
-        "include": ["fr-pac.geojson"]
-      },
-      "tags": {
-        "network": "Navettes Serre-Ponçon",
         "route": "bus"
       }
     },
@@ -12007,8 +12642,13 @@
     },
     {
       "displayName": "Nord Express",
-      "id": "nordexpress-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "nordexpress-3db907",
+      "locationSet": {
+        "include": [
+          "pl-22.geojson",
+          "pl-32.geojson"
+        ]
+      },
       "tags": {
         "network": "Nord Express",
         "route": "bus"
@@ -12085,6 +12725,12 @@
         "network": "Nova Brasília",
         "route": "bus"
       }
+    },
+    {
+      "displayName": "NPT",
+      "id": "npt-625e99",
+      "locationSet": {"include": ["cy"]},
+      "tags": {"network": "NPT", "route": "bus"}
     },
     {
       "displayName": "NTS",
@@ -12230,8 +12876,10 @@
     },
     {
       "displayName": "Oleśnicka Komunikacja Miejska",
-      "id": "olesnickakomunikacjamiejska-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "olesnickakomunikacjamiejska-486d69",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "network": "Oleśnicka Komunikacja Miejska",
         "network:wikidata": "Q118601622",
@@ -12305,6 +12953,7 @@
       "displayName": "Opoczno",
       "id": "opoczno-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10, PL-14",
       "tags": {
         "network": "Opoczno",
         "route": "bus"
@@ -12351,24 +13000,6 @@
         "network:wikidata": "Q54873971",
         "operator": "Metro Transit",
         "operator:wikidata": "Q6824485",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "ordinaire",
-      "id": "ordinaire-e384d8",
-      "locationSet": {"include": ["tg"]},
-      "tags": {
-        "network": "ordinaire",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Ordinary bus",
-      "id": "ordinarybus-f6a713",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "network": "Ordinary bus",
         "route": "bus"
       }
     },
@@ -12528,8 +13159,11 @@
     },
     {
       "displayName": "Ostróda",
-      "id": "ostroda-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "ostroda-3370c9",
+      "locationSet": {
+        "include": ["pl-28.geojson"]
+      },
+      "note": "name of city",
       "tags": {
         "network": "Ostróda",
         "route": "bus"
@@ -12539,6 +13173,7 @@
       "displayName": "Ostrów Wielkopolski",
       "id": "ostrowwielkopolski-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "Ostrów Wielkopolski",
         "route": "bus"
@@ -12567,6 +13202,7 @@
       "locationSet": {
         "include": ["nz-ota.geojson"]
       },
+      "matchNames": ["orc"],
       "tags": {
         "network": "Otago Regional Council",
         "network:wikidata": "Q7108351",
@@ -12670,15 +13306,6 @@
       }
     },
     {
-      "displayName": "Pabianice",
-      "id": "pabianice-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Pabianice",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Pace",
       "id": "pace-f1e980",
       "locationSet": {
@@ -12772,15 +13399,6 @@
       "locationSet": {"include": ["rs"]},
       "tags": {
         "network": "Pantransport",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "pap_taptap",
-      "id": "paptaptap-8d54a4",
-      "locationSet": {"include": ["ht"]},
-      "tags": {
-        "network": "pap_taptap",
         "route": "bus"
       }
     },
@@ -12942,6 +13560,18 @@
       }
     },
     {
+      "displayName": "Pays des Écrins",
+      "id": "paysdesecrins-cbddab",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
+      "note": "name of intermunicipal organization not strictly dedicated to public transport",
+      "tags": {
+        "network": "Pays des Écrins",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Pays Voironnais Mobilité",
       "id": "paysvoironnaismobilite-1b8593",
       "locationSet": {
@@ -13005,17 +13635,22 @@
     },
     {
       "displayName": "PGK Suwałki",
-      "id": "pgksuwalki-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "pgksuwalki-228b56",
+      "locationSet": {
+        "include": ["pl-20.geojson"]
+      },
       "tags": {
         "network": "PGK Suwałki",
+        "network:wikidata": "Q11742145",
         "route": "bus"
       }
     },
     {
       "displayName": "PH:CAR:Baguio",
-      "id": "phcarbaguio-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phcarbaguio-1b2b0d",
+      "locationSet": {
+        "include": ["ph-15.geojson"]
+      },
       "tags": {
         "network": "PH:CAR:Baguio",
         "route": "bus"
@@ -13023,8 +13658,10 @@
     },
     {
       "displayName": "PH:CAR:Benguet",
-      "id": "phcarbenguet-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phcarbenguet-1b2b0d",
+      "locationSet": {
+        "include": ["ph-15.geojson"]
+      },
       "tags": {
         "network": "PH:CAR:Benguet",
         "route": "bus"
@@ -13041,8 +13678,10 @@
     },
     {
       "displayName": "PH:PUB:Cagayan Valley",
-      "id": "phpubcagayanvalley-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phpubcagayanvalley-0fe24b",
+      "locationSet": {
+        "include": ["ph-02.geojson"]
+      },
       "tags": {
         "network": "PH:PUB:Cagayan Valley",
         "route": "bus"
@@ -13050,26 +13689,21 @@
     },
     {
       "displayName": "PH:PUJ:Batangas City",
-      "id": "phpujbatangascity-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phpujbatangascity-3dc147",
+      "locationSet": {
+        "include": ["ph-40.geojson"]
+      },
       "tags": {
         "network": "PH:PUJ:Batangas City",
         "route": "bus"
       }
     },
     {
-      "displayName": "PH:PUJ:Cavite",
-      "id": "phpujcavite-3785bf",
-      "locationSet": {"include": ["ph"]},
-      "tags": {
-        "network": "PH:PUJ:Cavite",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "PH:PUJ:Cebu",
-      "id": "phpujcebu-3785bf",
-      "locationSet": {"include": ["ph"]},
+      "id": "phpujcebu-d8a464",
+      "locationSet": {
+        "include": ["ph-07-cebu_city.geojson"]
+      },
       "tags": {
         "network": "PH:PUJ:Cebu",
         "route": "bus"
@@ -13091,6 +13725,7 @@
       "displayName": "Piotrków Trybunalski",
       "id": "piotrkowtrybunalski-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "Piotrków Trybunalski",
         "route": "bus"
@@ -13115,15 +13750,32 @@
       }
     },
     {
-      "displayName": "PKS",
-      "id": "pks-9340cc",
+      "displayName": "PKM Czechowice-Dziedzice",
+      "id": "pkmczechowicedziedzice-9340cc",
       "locationSet": {"include": ["pl"]},
-      "tags": {"network": "PKS", "route": "bus"}
+      "note": "ISO 3166-2 PL-24",
+      "tags": {
+        "network": "PKM Czechowice-Dziedzice",
+        "network:wikidata": "Q11828368",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "PKS Bydgoszcz",
+      "id": "pksbydgoszcz-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04, PL-30",
+      "tags": {
+        "network": "PKS Bydgoszcz",
+        "route": "bus"
+      }
     },
     {
       "displayName": "PKS Gdynia",
-      "id": "pksgdynia-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "pksgdynia-9a719e",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "network": "PKS Gdynia",
         "network:wikidata": "Q11801865",
@@ -13131,9 +13783,36 @@
       }
     },
     {
+      "displayName": "PKS Grójec",
+      "id": "pksgrojec-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
+      "tags": {
+        "network": "PKS Grójec",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "PKS Słupsk",
+      "id": "pksslupsk-3db907",
+      "locationSet": {
+        "include": [
+          "pl-22.geojson",
+          "pl-32.geojson"
+        ]
+      },
+      "tags": {
+        "network": "PKS Słupsk",
+        "network:wikidata": "Q28673250",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "PKS w Brzegu Sp. z o.o.",
       "id": "pkswbrzeguspzoo-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-02, PL-16",
       "tags": {
         "network": "PKS w Brzegu Sp. z o.o.",
         "route": "bus"
@@ -13143,6 +13822,7 @@
       "displayName": "PKS Wieluń - Korona",
       "id": "pkswielunkorona-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10, PL-16",
       "tags": {
         "network": "PKS Wieluń - Korona",
         "route": "bus"
@@ -13245,6 +13925,13 @@
       "id": "ppcb-a67100",
       "locationSet": {"include": ["kh"]},
       "tags": {"network": "PPCB", "route": "bus"}
+    },
+    {
+      "displayName": "PPL",
+      "id": "ppl-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
+      "tags": {"network": "PPL", "route": "bus"}
     },
     {
       "displayName": "PPP",
@@ -13397,15 +14084,6 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "network": "Prudente Urbano",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Pruszków",
-      "id": "pruszkow-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Pruszków",
         "route": "bus"
       }
     },
@@ -13567,17 +14245,23 @@
       "displayName": "Puławy",
       "id": "pulawy-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-06, PL-14",
       "tags": {
         "network": "Puławy",
         "route": "bus"
       }
     },
     {
-      "displayName": "Pune Mahanagar Parivahan Mahamandal Ltd",
-      "id": "punemahanagarparivahanmahamandalltd-f6a713",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Pune Mahanagar Parivahan Mahamandal Limited",
+      "id": "punemahanagarparivahanmahamandallimited-479ea8",
+      "locationSet": {
+        "include": ["in-mh.geojson"]
+      },
+      "matchNames": [
+        "pune mahanagar parivahan mahamandal ltd"
+      ],
       "tags": {
-        "network": "Pune Mahanagar Parivahan Mahamandal Ltd",
+        "network": "Pune Mahanagar Parivahan Mahamandal Limited",
         "network:wikidata": "Q7260109",
         "route": "bus"
       }
@@ -13601,6 +14285,7 @@
       "displayName": "PZTP Lipno",
       "id": "pztplipno-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04, PL-14",
       "tags": {
         "network": "PZTP Lipno",
         "network:wikidata": "Q91011389",
@@ -13677,6 +14362,7 @@
       "displayName": "Radomsko",
       "id": "radomsko-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "Radomsko",
         "route": "bus"
@@ -13794,6 +14480,18 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "network": "Reading Buses",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Red Deer Transit",
+      "id": "reddeertransit-286824",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
+      "tags": {
+        "network": "Red Deer Transit",
+        "network:wikidata": "Q7304013",
         "route": "bus"
       }
     },
@@ -13923,6 +14621,16 @@
         "network": "RegioJet",
         "network:short": "RJ",
         "network:wikidata": "Q221186",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Región Šaľa",
+      "id": "regionsala-51c51c",
+      "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-NI, SK-TA",
+      "tags": {
+        "network": "Región Šaľa",
         "route": "bus"
       }
     },
@@ -14235,11 +14943,13 @@
     },
     {
       "displayName": "RGTR",
-      "id": "rgtr-47280a",
+      "id": "rgtr-0ca4bf",
       "locationSet": {
         "include": [
-          "be",
-          "de",
+          "be-wlg.geojson",
+          "be-wlx.geojson",
+          "de-rp.geojson",
+          "de-sl.geojson",
           "fr-ges.geojson",
           "lu"
         ]
@@ -14492,6 +15202,18 @@
       }
     },
     {
+      "displayName": "ROSA",
+      "id": "rosa-5e4eef",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "tags": {
+        "network": "ROSA",
+        "network:wikidata": "Q77041777",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Rosenheimer Verkehrsgesellschaft",
       "id": "rosenheimerverkehrsgesellschaft-bfc089",
       "locationSet": {
@@ -14714,7 +15436,7 @@
       "tags": {"network": "RTCM", "route": "bus"}
     },
     {
-      "displayName": "RTD",
+      "displayName": "RTD (Denver)",
       "id": "rtd-b35a5d",
       "locationSet": {
         "include": ["us-co.geojson"]
@@ -14748,14 +15470,18 @@
     },
     {
       "displayName": "RTO06",
-      "id": "rto06-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "rto06-3e7b99",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {"network": "RTO06", "route": "bus"}
     },
     {
       "displayName": "RTO17",
-      "id": "rto17-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "rto17-3e7b99",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {"network": "RTO17", "route": "bus"}
     },
     {
@@ -14892,33 +15618,6 @@
       }
     },
     {
-      "displayName": "ru:local",
-      "id": "rulocal-15dd1a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "ru:local",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "ru:municipal",
-      "id": "rumunicipal-15dd1a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "ru:municipal",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "ru:regional",
-      "id": "ruregional-15dd1a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "ru:regional",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "RU:SAR:Саратов:автобусы",
       "id": "c52293-15dd1a",
       "locationSet": {"include": ["ru"]},
@@ -15043,8 +15742,11 @@
     },
     {
       "displayName": "SAD Žilina",
-      "id": "sadzilina-8ddd1e",
-      "locationSet": {"include": ["cz", "sk"]},
+      "id": "sadzilina-0c8a8c",
+      "locationSet": {
+        "include": ["cz-80.geojson", "sk"]
+      },
+      "note": "ISO 3166-2 SK-ZI",
       "tags": {
         "network": "SAD Žilina",
         "network:wikidata": "Q12776241",
@@ -15088,11 +15790,45 @@
       }
     },
     {
+      "displayName": "Sais Autolinee servizio urbano Modica",
+      "id": "saisautolineeserviziourbanomodica-a7eaa9",
+      "locationSet": {
+        "include": ["it-82.geojson"]
+      },
+      "tags": {
+        "network": "Sais Autolinee servizio urbano Modica",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Sais Autolinee servizio urbano Siracusa",
+      "id": "saisautolineeserviziourbanosiracusa-a7eaa9",
+      "locationSet": {
+        "include": ["it-82.geojson"]
+      },
+      "tags": {
+        "network": "Sais Autolinee servizio urbano Siracusa",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Salgótarján",
       "id": "salgotarjan-6ba633",
       "locationSet": {"include": ["hu"]},
       "tags": {
         "network": "Salgótarján",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Salina Cruz",
+      "id": "salinacruz-4f7701",
+      "locationSet": {
+        "include": ["mx-oax.geojson"]
+      },
+      "note": "name of city",
+      "tags": {
+        "network": "Salina Cruz",
         "route": "bus"
       }
     },
@@ -15179,6 +15915,7 @@
         "network:short": "SAM",
         "network:wikidata": "Q107901414",
         "operator": "City of Sandy",
+        "operator:wikidata": "Q2416599",
         "route": "bus"
       }
     },
@@ -15199,6 +15936,7 @@
       "displayName": "Sanok",
       "id": "sanok-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {"network": "Sanok", "route": "bus"}
     },
     {
@@ -15443,15 +16181,6 @@
       }
     },
     {
-      "displayName": "Seinäjoki",
-      "id": "seinajoki-3d6501",
-      "locationSet": {"include": ["fi"]},
-      "tags": {
-        "network": "Seinäjoki",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Seine Grand Orly",
       "id": "seinegrandorly-bf4ce0",
       "locationSet": {
@@ -15484,15 +16213,6 @@
       },
       "tags": {
         "network": "Seine-Saint-Denis",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Seletivo",
-      "id": "seletivo-2ef076",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "network": "Seletivo",
         "route": "bus"
       }
     },
@@ -15549,6 +16269,15 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Servei Urbà de Sant Cugat del Vallès",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Servei Urbà de Viatgers",
+      "id": "serveiurbadeviatgers-cbced8",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Servei Urbà de Viatgers",
         "route": "bus"
       }
     },
@@ -15759,8 +16488,10 @@
     },
     {
       "displayName": "Siechnicka Komunikacja Publiczna",
-      "id": "siechnickakomunikacjapubliczna-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "siechnickakomunikacjapubliczna-486d69",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "network": "Siechnicka Komunikacja Publiczna",
         "network:wikidata": "Q86669414",
@@ -15793,8 +16524,19 @@
       "displayName": "Sieradz",
       "id": "sieradz-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "Sieradz",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "SIGA",
+      "id": "siga-1857fd",
+      "locationSet": {"include": ["pt-30"]},
+      "tags": {
+        "network": "SIGA",
+        "network:wikidata": "Q131480575",
         "route": "bus"
       }
     },
@@ -16000,6 +16742,7 @@
       "displayName": "Skarżysko-Kamienna",
       "id": "skarzyskokamienna-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-26",
       "tags": {
         "network": "Skarżysko-Kamienna",
         "route": "bus"
@@ -16020,6 +16763,7 @@
       "displayName": "Skierniewice",
       "id": "skierniewice-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "Skierniewice",
         "route": "bus"
@@ -16198,8 +16942,11 @@
     },
     {
       "displayName": "Sochaczew",
-      "id": "sochaczew-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "sochaczew-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
+      "note": "name of city",
       "tags": {
         "network": "Sochaczew",
         "route": "bus"
@@ -16390,15 +17137,6 @@
       }
     },
     {
-      "displayName": "Spangler",
-      "id": "spangler-3b9544",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "network": "Spangler",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "SPT",
       "id": "spt-8e0970",
       "locationSet": {"include": ["gb"]},
@@ -16438,8 +17176,10 @@
     },
     {
       "displayName": "Średzka Komunikacja Publiczna",
-      "id": "sredzkakomunikacjapubliczna-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "sredzkakomunikacjapubliczna-486d69",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "network": "Średzka Komunikacja Publiczna",
         "route": "bus"
@@ -16574,6 +17314,17 @@
       }
     },
     {
+      "displayName": "Stagecoach Blackwater Valley",
+      "id": "stagecoachblackwatervalley-81ed6d",
+      "locationSet": {
+        "include": ["gb-south-central.geojson"]
+      },
+      "tags": {
+        "network": "Stagecoach Blackwater Valley",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Stagecoach Cumbria & North Lancashire",
       "id": "stagecoachcumbriaandnorthlancashire-e094f5",
       "locationSet": {"include": ["gb-eng"]},
@@ -16584,15 +17335,6 @@
       "tags": {
         "network": "Stagecoach Cumbria & North Lancashire",
         "network:wikidata": "Q7596840",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Stagecoach in Lancashire",
-      "id": "stagecoachinlancashire-8e0970",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "network": "Stagecoach in Lancashire",
         "route": "bus"
       }
     },
@@ -16712,6 +17454,7 @@
       "displayName": "Starachowice",
       "id": "starachowice-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-26",
       "tags": {
         "network": "Starachowice",
         "route": "bus"
@@ -16811,6 +17554,16 @@
       }
     },
     {
+      "displayName": "STbus Sobieszczański",
+      "id": "stbussobieszczanski-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04",
+      "tags": {
+        "network": "STbus Sobieszczański",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "STCLM",
       "id": "stclm-f112f1",
       "locationSet": {
@@ -16819,6 +17572,18 @@
       "tags": {
         "network": "STCLM",
         "network:wikidata": "Q665810",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "stendalbus",
+      "id": "stendalbus-07af08",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
+      "tags": {
+        "network": "stendalbus",
+        "network:wikidata": "Q61875530",
         "route": "bus"
       }
     },
@@ -16847,9 +17612,12 @@
     },
     {
       "displayName": "Stibus",
-      "id": "stibus-131731",
+      "id": "stibus-61aa67",
       "locationSet": {
-        "include": ["be", "fr-hdf.geojson"]
+        "include": [
+          "be-wht.geojson",
+          "fr-hdf.geojson"
+        ]
       },
       "tags": {
         "network": "Stibus",
@@ -17187,6 +17955,7 @@
       "displayName": "Swarzędz",
       "id": "swarzedz-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "Swarzędz",
         "route": "bus"
@@ -17194,8 +17963,11 @@
     },
     {
       "displayName": "Świdnica",
-      "id": "swidnica-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "swidnica-486d69",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
+      "note": "name of city",
       "tags": {
         "network": "Świdnica",
         "route": "bus"
@@ -17213,12 +17985,6 @@
         "network:wikidata": "Q20850937",
         "route": "bus"
       }
-    },
-    {
-      "displayName": "SWN",
-      "id": "swn-3b9544",
-      "locationSet": {"include": ["de"]},
-      "tags": {"network": "SWN", "route": "bus"}
     },
     {
       "displayName": "Sydney Buses",
@@ -17548,6 +18314,19 @@
       }
     },
     {
+      "displayName": "Taranaki Regional Council",
+      "id": "taranakiregionalcouncil-325226",
+      "locationSet": {
+        "include": ["nz-tki.geojson"]
+      },
+      "matchNames": ["trc"],
+      "tags": {
+        "network": "Taranaki Regional Council",
+        "network:wikidata": "Q16926647",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "TARC",
       "id": "tarc-6e3622",
       "locationSet": {
@@ -17743,8 +18522,13 @@
     },
     {
       "displayName": "TEC",
-      "id": "tec-6974a4",
-      "locationSet": {"include": ["be"]},
+      "id": "tec-d35a94",
+      "locationSet": {
+        "include": [
+          "be-wht.geojson",
+          "be-wna.geojson"
+        ]
+      },
       "tags": {
         "network": "TEC",
         "network:wikidata": "Q366922",
@@ -17777,10 +18561,12 @@
     },
     {
       "displayName": "TECH (Hainaut)",
-      "id": "tech-cb74f1",
+      "id": "tech-e066e7",
       "locationSet": {
         "include": [
-          "be",
+          "be-vov.geojson",
+          "be-vwv.geojson",
+          "be-wht.geojson",
           "fr-ges.geojson",
           "fr-hdf.geojson"
         ]
@@ -17823,9 +18609,15 @@
     },
     {
       "displayName": "TECX (Luxembourg)",
-      "id": "tecx-bbd8c9",
+      "id": "tecx-57636e",
       "locationSet": {
-        "include": ["be", "fr-ges.geojson", "lu"]
+        "include": [
+          "be-wlg.geojson",
+          "be-wlx.geojson",
+          "be-wna.geojson",
+          "fr-ges.geojson",
+          "lu"
+        ]
       },
       "tags": {
         "network": "TECX",
@@ -17960,8 +18752,10 @@
     },
     {
       "displayName": "Thane Municipal Transport",
-      "id": "thanemunicipaltransport-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "thanemunicipaltransport-479ea8",
+      "locationSet": {
+        "include": ["in-mh.geojson"]
+      },
       "matchNames": ["thane muncipal transport"],
       "tags": {
         "network": "Thane Municipal Transport",
@@ -18025,8 +18819,10 @@
     },
     {
       "displayName": "The Malverns",
-      "id": "themalverns-8e0970",
-      "locationSet": {"include": ["gb"]},
+      "id": "themalverns-dfd4c5",
+      "locationSet": {
+        "include": ["gb-west-midlands.geojson"]
+      },
       "tags": {
         "network": "The Malverns",
         "route": "bus"
@@ -18074,8 +18870,10 @@
     },
     {
       "displayName": "Thiruvananthapuram City Circular",
-      "id": "thiruvananthapuramcitycircular-f6a713",
-      "locationSet": {"include": ["in"]},
+      "id": "thiruvananthapuramcitycircular-3e7b99",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "matchNames": ["city circular"],
       "tags": {
         "network": "Thiruvananthapuram City Circular",
@@ -18151,6 +18949,17 @@
       "tags": {
         "network": "Ticéa",
         "network:wikidata": "Q86675531",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Tiemmebus servizio urbano Caltanissetta",
+      "id": "tiemmebusserviziourbanocaltanissetta-a7eaa9",
+      "locationSet": {
+        "include": ["it-82.geojson"]
+      },
+      "tags": {
+        "network": "Tiemmebus servizio urbano Caltanissetta",
         "route": "bus"
       }
     },
@@ -18262,17 +19071,6 @@
       }
     },
     {
-      "displayName": "TNSW - Country Buses",
-      "id": "tnswcountrybuses-4ab973",
-      "locationSet": {
-        "include": ["au-nsw.geojson"]
-      },
-      "tags": {
-        "network": "TNSW - Country Buses",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "TNSW - Sydney Buses",
       "id": "tnswsydneybuses-4ab973",
       "locationSet": {
@@ -18320,6 +19118,7 @@
       "displayName": "Tomaszów Mazowiecki",
       "id": "tomaszowmazowiecki-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "Tomaszów Mazowiecki",
         "route": "bus"
@@ -18350,12 +19149,6 @@
       }
     },
     {
-      "displayName": "Toruń",
-      "id": "torun-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {"network": "Toruń", "route": "bus"}
-    },
-    {
       "displayName": "Tout'enbus",
       "id": "toutenbus-1b8593",
       "locationSet": {
@@ -18363,6 +19156,16 @@
       },
       "tags": {
         "network": "Tout'enbus",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "TPBI",
+      "id": "tpbi-9c403a",
+      "locationSet": {"include": ["ro"]},
+      "tags": {
+        "network": "TPBI",
+        "network:wikidata": "Q131465522",
         "route": "bus"
       }
     },
@@ -18419,11 +19222,65 @@
       }
     },
     {
+      "displayName": "Trafiku Urban",
+      "id": "trafikuurban-c193ac",
+      "locationSet": {"include": ["xk"]},
+      "tags": {
+        "network": "Trafiku Urban",
+        "operator": "Trafiku Urban",
+        "operator:wikidata": "Q60743920",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Trakų rajono savivaldybė",
+      "id": "trakurajonosavivaldybe-393f24",
+      "locationSet": {"include": ["lt"]},
+      "note": "name of municipality",
+      "tags": {
+        "network": "Trakų rajono savivaldybė",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "TranGO",
+      "id": "trango-39dd03",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
+      "tags": {
+        "network": "TranGO",
+        "network:wikidata": "Q22073407",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Trans Jogja",
+      "id": "transjogja-462599",
+      "locationSet": {"include": ["id-jw"]},
+      "tags": {
+        "network": "Trans Jogja",
+        "network:wikidata": "Q4263106",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Trans Metro Bandung",
-      "id": "transmetrobandung-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "transmetrobandung-462599",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "network": "Trans Metro Bandung",
+        "network:wikidata": "Q12522252",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Trans Semarang",
+      "id": "transsemarang-462599",
+      "locationSet": {"include": ["id-jw"]},
+      "tags": {
+        "network": "Trans Semarang",
+        "network:wikidata": "Q12522247",
         "route": "bus"
       }
     },
@@ -18552,15 +19409,6 @@
       }
     },
     {
-      "displayName": "TRANSERCO",
-      "id": "transerco-2c1b52",
-      "locationSet": {"include": ["vn"]},
-      "tags": {
-        "network": "TRANSERCO",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Transfort",
       "id": "transfort-b35a5d",
       "locationSet": {
@@ -18610,8 +19458,8 @@
     },
     {
       "displayName": "Transjakarta",
-      "id": "transjakarta-87ebe4",
-      "locationSet": {"include": ["id"]},
+      "id": "transjakarta-462599",
+      "locationSet": {"include": ["id-jw"]},
       "matchNames": [
         "pt transjakarta",
         "tije",
@@ -18747,12 +19595,16 @@
     },
     {
       "displayName": "Transport Buses",
-      "id": "transportbuses-4ab973",
+      "id": "transportbuses-adeb69",
       "locationSet": {
-        "include": ["au-nsw.geojson"]
+        "include": [
+          "au-act.geojson",
+          "au-nsw.geojson"
+        ]
       },
       "matchNames": [
         "nsw",
+        "sydney buses",
         "sydney busses",
         "tfnsw",
         "transport for nsw"
@@ -18780,6 +19632,7 @@
       },
       "tags": {
         "network": "Transport Canberra",
+        "network:wikidata": "Q4650892",
         "route": "bus"
       }
     },
@@ -18866,6 +19719,26 @@
       }
     },
     {
+      "displayName": "Transporte de Murcia y Pedanias",
+      "id": "transportedemurciaypedanias-cbced8",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Transporte de Murcia y Pedanias",
+        "network:wikidata": "Q109925389",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Transporte Metropolitano de Segovia",
+      "id": "transportemetropolitanodesegovia-cbced8",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Transporte Metropolitano de Segovia",
+        "network:wikidata": "Q48781963",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Transporte Metropolitano Valparaíso",
       "id": "transportemetropolitanovalparaiso-4d54da",
       "locationSet": {"include": ["cl"]},
@@ -18918,6 +19791,15 @@
       }
     },
     {
+      "displayName": "Transporte Urbano de Lorca",
+      "id": "transporteurbanodelorca-cbced8",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Transporte Urbano de Lorca",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Transporte Urbano de Murcia",
       "id": "transporteurbanodemurcia-cbced8",
       "locationSet": {"include": ["es"]},
@@ -18938,11 +19820,39 @@
       }
     },
     {
+      "displayName": "Transportes Coletivos do Barreiro",
+      "id": "transportescoletivosdobarreiro-d08d86",
+      "locationSet": {
+        "include": ["pt-15.geojson"]
+      },
+      "tags": {
+        "network": "Transportes Coletivos do Barreiro",
+        "network:short": "TCB",
+        "network:wikidata": "Q81159859",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Transportes de Gran Canaria",
       "id": "transportesdegrancanaria-cbced8",
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Transportes de Gran Canaria",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Transportes Públicos de Lamego",
+      "id": "transportespublicosdelamego-4f8cb1",
+      "locationSet": {
+        "include": [
+          "pt-17.geojson",
+          "pt-18.geojson"
+        ]
+      },
+      "tags": {
+        "network": "Transportes Públicos de Lamego",
+        "network:wikidata": "Q133523138",
         "route": "bus"
       }
     },
@@ -19109,9 +20019,12 @@
     },
     {
       "displayName": "Transvilles",
-      "id": "transvilles-131731",
+      "id": "transvilles-61aa67",
       "locationSet": {
-        "include": ["be", "fr-hdf.geojson"]
+        "include": [
+          "be-wht.geojson",
+          "fr-hdf.geojson"
+        ]
       },
       "matchNames": [
         "ctvh",
@@ -19202,6 +20115,18 @@
         "network": "TréMA",
         "network:wikidata": "Q3537812",
         "operator": "Mâconnais-Beaujolais Mobilités",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Tri Delta Transit",
+      "id": "trideltatransit-62dc11",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "network": "Tri Delta Transit",
+        "network:wikidata": "Q7839840",
         "route": "bus"
       }
     },
@@ -19403,6 +20328,15 @@
       }
     },
     {
+      "displayName": "TUC-EHG",
+      "id": "tucehg-cbced8",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "TUC-EHG",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "TUCS",
       "id": "tucs-cbced8",
       "locationSet": {"include": ["es"]},
@@ -19514,8 +20448,10 @@
     },
     {
       "displayName": "Tupy",
-      "id": "tupy-2ef076",
-      "locationSet": {"include": ["br"]},
+      "id": "tupy-43731e",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
       "tags": {"network": "Tupy", "route": "bus"}
     },
     {
@@ -19580,15 +20516,6 @@
       "tags": {
         "network": "TUVR: Urbanos",
         "network:wikidata": "Q113381100",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Tuyến xe buýt Đồng Nai",
-      "id": "tuyenxebuytdongnai-2c1b52",
-      "locationSet": {"include": ["vn"]},
-      "tags": {
-        "network": "Tuyến xe buýt Đồng Nai",
         "route": "bus"
       }
     },
@@ -19698,6 +20625,15 @@
       }
     },
     {
+      "displayName": "Ulsterbus Town Services",
+      "id": "ulsterbustownservices-36d7b1",
+      "locationSet": {"include": ["gb-nir"]},
+      "tags": {
+        "network": "Ulsterbus Town Services",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Ultra",
       "id": "ultra-783b59",
       "locationSet": {"include": ["se"]},
@@ -19721,10 +20657,22 @@
     },
     {
       "displayName": "UM Kędzierzyn-Koźle",
-      "id": "umkedzierzynkozle-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "umkedzierzynkozle-486d69",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "network": "UM Kędzierzyn-Koźle",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "UM Skarżysko-Kamienna",
+      "id": "umskarzyskokamienna-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-26",
+      "tags": {
+        "network": "UM Skarżysko-Kamienna",
         "route": "bus"
       }
     },
@@ -19737,15 +20685,6 @@
       "tags": {
         "network": "UMass Lowell",
         "network:wikidata": "Q15143",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "UNAUTO",
-      "id": "unauto-cbced8",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "network": "UNAUTO",
         "route": "bus"
       }
     },
@@ -19765,18 +20704,6 @@
       "tags": {
         "network": "Unilink",
         "network:wikidata": "Q7884624",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Union Ivkoni",
-      "id": "unionivkoni-0bbba7",
-      "locationSet": {
-        "include": ["at", "be", "bg", "de", "fx"]
-      },
-      "tags": {
-        "network": "Union Ivkoni",
-        "network:wikidata": "Q108868578",
         "route": "bus"
       }
     },
@@ -19878,6 +20805,17 @@
       }
     },
     {
+      "displayName": "Urbano Morelia",
+      "id": "urbanomorelia-f7c025",
+      "locationSet": {
+        "include": ["mx-mic.geojson"]
+      },
+      "tags": {
+        "network": "Urbano Morelia",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Urbano Sogamoso",
       "id": "urbanosogamoso-53ae69",
       "locationSet": {"include": ["co"]},
@@ -19912,6 +20850,16 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "network": "Urbanos de Lugo",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Urbanos de Ourense",
+      "id": "urbanosdeourense-cbced8",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "network": "Urbanos de Ourense",
+        "network:wikidata": "Q12401602",
         "route": "bus"
       }
     },
@@ -19954,8 +20902,10 @@
     },
     {
       "displayName": "UTJ Wołoszka",
-      "id": "utjwoloszka-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "utjwoloszka-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "network": "UTJ Wołoszka",
         "route": "bus"
@@ -19969,9 +20919,9 @@
       },
       "tags": {
         "network": "UTrans",
-        "network:short": "UPTD",
         "network:wikidata": "Q107900150",
         "operator": "Umpqua Public Transportation District",
+        "operator:short": "UPTD",
         "route": "bus"
       }
     },
@@ -19991,6 +20941,14 @@
         "network:wikidata": "Q2394202",
         "route": "bus"
       }
+    },
+    {
+      "displayName": "VAÏ",
+      "id": "vai-cbddab",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
+      "tags": {"network": "VAÏ", "route": "bus"}
     },
     {
       "displayName": "Val d'Yerres Val de Seine",
@@ -20057,13 +21015,13 @@
       }
     },
     {
-      "displayName": "Vallée Sud",
-      "id": "valleesud-bf4ce0",
+      "displayName": "Vallée Sud Bus",
+      "id": "valleesudbus-bf4ce0",
       "locationSet": {
         "include": ["fr-idf.geojson"]
       },
       "tags": {
-        "network": "Vallée Sud",
+        "network": "Vallée Sud Bus",
         "route": "bus"
       }
     },
@@ -20274,17 +21232,6 @@
       }
     },
     {
-      "displayName": "Verkehrsgemeinschaft Cloppenburg",
-      "id": "verkehrsgemeinschaftcloppenburg-5e4eef",
-      "locationSet": {
-        "include": ["de-ni.geojson"]
-      },
-      "tags": {
-        "network": "Verkehrsgemeinschaft Cloppenburg",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Verkehrsgemeinschaft des Landkreises Greiz",
       "id": "verkehrsgemeinschaftdeslandkreisesgreiz-d9bf75",
       "locationSet": {
@@ -20330,11 +21277,42 @@
       "locationSet": {
         "include": ["de-ni.geojson"]
       },
+      "matchNames": [
+        "verkehrsgemeinschaft cloppenburg"
+      ],
       "tags": {
         "network": "Verkehrsgemeinschaft Landkreis Cloppenburg",
         "network:guid": "DE-NI-VGC",
         "network:short": "VGC",
         "network:wikidata": "Q2516220",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Verkehrsgemeinschaft Landkreis Mühldorf",
+      "id": "verkehrsgemeinschaftlandkreismuhldorf-bfc089",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "tags": {
+        "network": "Verkehrsgemeinschaft Landkreis Mühldorf",
+        "network:wikidata": "Q2516227",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Verkehrsgemeinschaft Nordost-Niedersachsen",
+      "id": "verkehrsgemeinschaftnordostniedersachsen-2fdd5a",
+      "locationSet": {
+        "include": [
+          "de-ni.geojson",
+          "de-st.geojson"
+        ]
+      },
+      "tags": {
+        "network": "Verkehrsgemeinschaft Nordost-Niedersachsen",
+        "network:short": "VNN",
+        "network:wikidata": "Q2516245",
         "route": "bus"
       }
     },
@@ -20361,19 +21339,6 @@
         "network": "Verkehrsgemeinschaft Osnabrück",
         "network:short": "VOS",
         "network:wikidata": "Q2516249",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Verkehrsgemeinschaft Rhön-Grabfeld",
-      "id": "verkehrsgemeinschaftrhongrabfeld-bfc089",
-      "locationSet": {
-        "include": ["de-by.geojson"]
-      },
-      "tags": {
-        "network": "Verkehrsgemeinschaft Rhön-Grabfeld",
-        "network:short": "VRG",
-        "network:wikidata": "Q1424574",
         "route": "bus"
       }
     },
@@ -20534,6 +21499,7 @@
       "matchNames": [
         "verkehrsgemeinschaft coburg",
         "verkehrsgemeinschaft hof",
+        "ver­kehrs­ver­bund groß­raum nürn­berg",
         "verkehrsverbund großraum nürnberg gmbh"
       ],
       "tags": {
@@ -20554,22 +21520,6 @@
         "network:guid": "DE-BW-VHB",
         "network:short": "VHB",
         "network:wikidata": "Q1484666",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Verkehrsverbund Mainfranken",
-      "id": "verkehrsverbundmainfranken-bfc089",
-      "locationSet": {
-        "include": ["de-by.geojson"]
-      },
-      "matchNames": [
-        "verkehrsunternehmens-verbund mainfranken"
-      ],
-      "tags": {
-        "network": "Verkehrsverbund Mainfranken",
-        "network:short": "VVM",
-        "network:wikidata": "Q2516466",
         "route": "bus"
       }
     },
@@ -20596,6 +21546,21 @@
         "network": "Verkehrsverbund Mittelschwaben",
         "network:short": "VVM",
         "network:wikidata": "Q1758268",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Verkehrsverbund Mittelthüringen",
+      "id": "verkehrsverbundmittelthuringen-d9bf75",
+      "locationSet": {
+        "include": ["de-th.geojson"]
+      },
+      "matchNames": ["jes"],
+      "tags": {
+        "network": "Verkehrsverbund Mittelthüringen",
+        "network:guid": "DE-TH-VMT",
+        "network:short": "VMT",
+        "network:wikidata": "Q2516468",
         "route": "bus"
       }
     },
@@ -21104,33 +22069,6 @@
       }
     },
     {
-      "displayName": "VMT",
-      "id": "verkehrsverbundmittelthuringen-d9bf75",
-      "locationSet": {
-        "include": ["de-th.geojson"]
-      },
-      "matchNames": ["jes"],
-      "tags": {
-        "network": "Verkehrsverbund Mittelthüringen",
-        "network:guid": "DE-TH-VMT",
-        "network:short": "VMT",
-        "network:wikidata": "Q2516468",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "VNN",
-      "id": "vnn-5e4eef",
-      "locationSet": {
-        "include": ["de-ni.geojson"]
-      },
-      "tags": {
-        "network": "VNN",
-        "network:wikidata": "Q2516245",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Volánbusz",
       "id": "volanbusz-6ba633",
       "locationSet": {"include": ["hu"]},
@@ -21154,9 +22092,15 @@
     },
     {
       "displayName": "VOR",
-      "id": "vor-df49c7",
+      "id": "vor-44ca69",
       "locationSet": {
-        "include": ["at", "cz", "hu", "sk"]
+        "include": [
+          "at",
+          "cz-31.geojson",
+          "cz-64.geojson",
+          "hu",
+          "sk-bl.geojson"
+        ]
       },
       "matchNames": [
         "verkehrsverbund ost-region"
@@ -21182,8 +22126,10 @@
     },
     {
       "displayName": "VRK",
-      "id": "vrk-3b9544",
-      "locationSet": {"include": ["de"]},
+      "id": "vrk-d71809",
+      "locationSet": {
+        "include": ["de-sh.geojson"]
+      },
       "tags": {
         "network": "VRK",
         "network:wikidata": "Q2516477",
@@ -21353,16 +22299,6 @@
       }
     },
     {
-      "displayName": "Waterland",
-      "id": "waterland-2f3200",
-      "locationSet": {"include": ["nl"]},
-      "tags": {
-        "network": "Waterland",
-        "network:wikidata": "Q108742714",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Waukesha Metro",
       "id": "waukeshametro-28c67e",
       "locationSet": {
@@ -21375,9 +22311,22 @@
       }
     },
     {
+      "displayName": "Wayanad Buses",
+      "id": "wayanadbuses-3e7b99",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
+      "tags": {
+        "network": "Wayanad Buses",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "WDR",
-      "id": "wdr-3b9544",
-      "locationSet": {"include": ["de"]},
+      "id": "wdr-d71809",
+      "locationSet": {
+        "include": ["de-sh.geojson"]
+      },
       "tags": {
         "network": "WDR",
         "network:wikidata": "Q1563581",
@@ -21449,8 +22398,10 @@
     },
     {
       "displayName": "West-Brabant",
-      "id": "westbrabant-a315fc",
-      "locationSet": {"include": ["be", "nl"]},
+      "id": "westbrabant-de22fe",
+      "locationSet": {
+        "include": ["be-van.geojson", "nl"]
+      },
       "tags": {
         "network": "West-Brabant",
         "network:wikidata": "Q108742718",
@@ -21482,6 +22433,21 @@
         "network": "WestfalenTarif",
         "network:short": "WT",
         "network:wikidata": "Q27926285",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Wexford Bus",
+      "id": "wexfordbus-3f5c22",
+      "locationSet": {
+        "include": [
+          "ie-l.geojson",
+          "ie-m.geojson"
+        ]
+      },
+      "tags": {
+        "network": "Wexford Bus",
+        "network:wikidata": "Q117196712",
         "route": "bus"
       }
     },
@@ -21552,18 +22518,10 @@
       }
     },
     {
-      "displayName": "Wieluń",
-      "id": "wielun-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Wieluń",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Wieluńska Komunikacja Gminna",
       "id": "wielunskakomunikacjagminna-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "Wieluńska Komunikacja Gminna",
         "route": "bus"
@@ -21585,6 +22543,7 @@
       "displayName": "Włocławek",
       "id": "wloclawek-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04",
       "tags": {
         "network": "Włocławek",
         "route": "bus"
@@ -21602,6 +22561,16 @@
         "operator": "Washington Metropolitan Area Transit Authority",
         "operator:short": "WMATA",
         "operator:wikidata": "Q7972051",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Wodzisławska Komunikacja Powiatowa",
+      "id": "wodzislawskakomunikacjapowiatowa-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-24",
+      "tags": {
+        "network": "Wodzisławska Komunikacja Powiatowa",
         "route": "bus"
       }
     },
@@ -21688,8 +22657,11 @@
     },
     {
       "displayName": "Wrocław",
-      "id": "wroclaw-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "wroclaw-486d69",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
+      "note": "name of city",
       "tags": {
         "network": "Wrocław",
         "route": "bus"
@@ -21766,6 +22738,24 @@
       }
     },
     {
+      "displayName": "Xe buýt Bến Tre",
+      "id": "xebuytbentre-2c1b52",
+      "locationSet": {"include": ["vn"]},
+      "tags": {
+        "network": "Xe buýt Bến Tre",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Xe buýt Bình Dương",
+      "id": "xebuytbinhduong-2c1b52",
+      "locationSet": {"include": ["vn"]},
+      "tags": {
+        "network": "Xe buýt Bình Dương",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Xe buýt Cần Thơ",
       "id": "xebuytcantho-2c1b52",
       "locationSet": {"include": ["vn"]},
@@ -21794,9 +22784,20 @@
       }
     },
     {
+      "displayName": "Xe buýt Vĩnh Phúc",
+      "id": "xebuytvinhphuc-2c1b52",
+      "locationSet": {"include": ["vn"]},
+      "tags": {
+        "network": "Xe buýt Vĩnh Phúc",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Xelabus",
-      "id": "xelabus-8e0970",
-      "locationSet": {"include": ["gb"]},
+      "id": "xelabus-81ed6d",
+      "locationSet": {
+        "include": ["gb-south-central.geojson"]
+      },
       "tags": {
         "network": "Xelabus",
         "network:wikidata": "Q8043426",
@@ -21922,28 +22923,10 @@
       }
     },
     {
-      "displayName": "za:regional",
-      "id": "zaregional-4d0252",
-      "locationSet": {"include": ["za"]},
-      "tags": {
-        "network": "za:regional",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Zaanstreek",
-      "id": "zaanstreek-2f3200",
-      "locationSet": {"include": ["nl"]},
-      "tags": {
-        "network": "Zaanstreek",
-        "network:wikidata": "Q3519297",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "Zaanstreek-Waterland",
       "id": "zaanstreekwaterland-2f3200",
       "locationSet": {"include": ["nl"]},
+      "matchNames": ["waterland", "zaanstreek"],
       "tags": {
         "network": "Zaanstreek-Waterland",
         "network:wikidata": "Q115123672",
@@ -21956,6 +22939,7 @@
       "displayName": "Zamość",
       "id": "zamosc-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-06",
       "tags": {
         "network": "Zamość",
         "route": "bus"
@@ -21965,6 +22949,7 @@
       "displayName": "Zarząd Transportu Metropolitalnego",
       "id": "zarzadtransportumetropolitalnego-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12, PL-24",
       "tags": {
         "network": "Zarząd Transportu Metropolitalnego",
         "network:wikidata": "Q48862619",
@@ -21975,6 +22960,7 @@
       "displayName": "Zarząd Transportu Zbiorowego w Rybniku",
       "id": "zarzadtransportuzbiorowegowrybniku-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-24",
       "tags": {
         "network": "Zarząd Transportu Zbiorowego w Rybniku",
         "network:wikidata": "Q11742143",
@@ -21983,8 +22969,10 @@
     },
     {
       "displayName": "ZDiT Koszalin",
-      "id": "zditkoszalin-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zditkoszalin-a85fe0",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "network": "ZDiT Koszalin",
         "route": "bus"
@@ -21992,8 +22980,10 @@
     },
     {
       "displayName": "ZDiTM Szczecin",
-      "id": "zditmszczecin-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zditmszczecin-a85fe0",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "network": "ZDiTM Szczecin",
         "network:wikidata": "Q62534866",
@@ -22004,17 +22994,20 @@
       "displayName": "ZDiUM Piotrków",
       "id": "zdiumpiotrkow-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "ZDiUM Piotrków",
         "route": "bus"
       }
     },
     {
-      "displayName": "ZDMIKP Bydgoszcz",
+      "displayName": "ZDMiKP Bydgoszcz",
       "id": "zdmikpbydgoszcz-9340cc",
       "locationSet": {"include": ["pl"]},
+      "matchNames": ["bydgoszcz"],
+      "note": "ISO 3166-2 PL-04",
       "tags": {
-        "network": "ZDMIKP Bydgoszcz",
+        "network": "ZDMiKP Bydgoszcz",
         "network:wikidata": "Q16618278",
         "route": "bus"
       }
@@ -22023,6 +23016,7 @@
       "displayName": "Zduńska Wola",
       "id": "zdunskawola-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10",
       "tags": {
         "network": "Zduńska Wola",
         "route": "bus"
@@ -22030,8 +23024,10 @@
     },
     {
       "displayName": "ZDZiT Olsztyn",
-      "id": "zdzitolsztyn-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zdzitolsztyn-3370c9",
+      "locationSet": {
+        "include": ["pl-28.geojson"]
+      },
       "tags": {
         "network": "ZDZiT Olsztyn",
         "route": "bus"
@@ -22039,8 +23035,14 @@
     },
     {
       "displayName": "Zeeland",
-      "id": "zeeland-a315fc",
-      "locationSet": {"include": ["be", "nl"]},
+      "id": "zeeland-e21178",
+      "locationSet": {
+        "include": [
+          "be-van.geojson",
+          "be-vov.geojson",
+          "nl"
+        ]
+      },
       "tags": {
         "network": "Zeeland",
         "network:wikidata": "Q108718030",
@@ -22077,8 +23079,10 @@
     },
     {
       "displayName": "ZIM Słupsk",
-      "id": "zimslupsk-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zimslupsk-9a719e",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "network": "ZIM Słupsk",
         "route": "bus"
@@ -22088,6 +23092,7 @@
       "displayName": "ZKKM Chrzanów",
       "id": "zkkmchrzanow-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "network": "ZKKM Chrzanów",
         "network:wikidata": "Q9383695",
@@ -22096,8 +23101,10 @@
     },
     {
       "displayName": "ZKM Augustów",
-      "id": "zkmaugustow-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zkmaugustow-228b56",
+      "locationSet": {
+        "include": ["pl-20.geojson"]
+      },
       "tags": {
         "network": "ZKM Augustów",
         "network:wikidata": "Q9386216",
@@ -22106,8 +23113,10 @@
     },
     {
       "displayName": "ZKM Ciechanów",
-      "id": "zkmciechanow-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zkmciechanow-c14885",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "network": "ZKM Ciechanów",
         "network:wikidata": "Q9386217",
@@ -22116,8 +23125,10 @@
     },
     {
       "displayName": "ZKM Elbląg",
-      "id": "zkmelblag-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zkmelblag-3370c9",
+      "locationSet": {
+        "include": ["pl-28.geojson"]
+      },
       "tags": {
         "network": "ZKM Elbląg",
         "network:wikidata": "Q11838296",
@@ -22126,8 +23137,13 @@
     },
     {
       "displayName": "ZKM Gdynia",
-      "id": "zkmgdynia-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zkmgdynia-4387b3",
+      "locationSet": {
+        "include": [
+          "pl-22.geojson",
+          "pl-28.geojson"
+        ]
+      },
       "tags": {
         "network": "ZKM Gdynia",
         "network:wikidata": "Q9387114",
@@ -22136,11 +23152,34 @@
     },
     {
       "displayName": "ZKM Iława",
-      "id": "zkmilawa-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "zkmilawa-3370c9",
+      "locationSet": {
+        "include": ["pl-28.geojson"]
+      },
       "tags": {
         "network": "ZKM Iława",
         "network:wikidata": "Q11742130",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "ZKM Wągrowiec",
+      "id": "zkmwagrowiec-9340cc",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
+      "tags": {
+        "network": "ZKM Wągrowiec",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "ZM Oaxaca",
+      "id": "zmoaxaca-4f7701",
+      "locationSet": {
+        "include": ["mx-oax.geojson"]
+      },
+      "tags": {
+        "network": "ZM Oaxaca",
         "route": "bus"
       }
     },
@@ -22190,8 +23229,10 @@
     },
     {
       "displayName": "ZTM Gdańsk",
-      "id": "ztmgdansk-9340cc",
-      "locationSet": {"include": ["pl"]},
+      "id": "ztmgdansk-9a719e",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "network": "ZTM Gdańsk",
         "network:wikidata": "Q9387123",
@@ -22202,6 +23243,7 @@
       "displayName": "ZTM Kielce",
       "id": "ztmkielce-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-26",
       "tags": {
         "network": "ZTM Kielce",
         "network:wikidata": "Q9387122",
@@ -22212,6 +23254,7 @@
       "displayName": "ZTM Poznań",
       "id": "ztmpoznan-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "network": "ZTM Poznań",
         "network:wikidata": "Q9387124",
@@ -22222,6 +23265,7 @@
       "displayName": "ZTM Rzeszów",
       "id": "ztmrzeszow-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {
         "network": "ZTM Rzeszów",
         "route": "bus"
@@ -22231,6 +23275,7 @@
       "displayName": "ZTM Warszawa",
       "id": "ztmwarszawa-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-10, PL-14",
       "tags": {
         "network": "ZTM Warszawa",
         "network:wikidata": "Q8066998",
@@ -22241,6 +23286,7 @@
       "displayName": "ZTP w Krakowie",
       "id": "ztpwkrakowie-9340cc",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "network": "ZTP w Krakowie",
         "network:wikidata": "Q110401950",
@@ -22261,8 +23307,10 @@
     },
     {
       "displayName": "Zuidoost-Brabant",
-      "id": "zuidoostbrabant-a315fc",
-      "locationSet": {"include": ["be", "nl"]},
+      "id": "zuidoostbrabant-73055f",
+      "locationSet": {
+        "include": ["be-vli.geojson", "nl"]
+      },
       "tags": {
         "network": "Zuidoost-Brabant",
         "network:wikidata": "Q108710205",
@@ -22290,15 +23338,6 @@
       "tags": {
         "network": "ZVV",
         "network:wikidata": "Q201977",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "Żyrardów",
-      "id": "zyrardow-9340cc",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "network": "Żyrardów",
         "route": "bus"
       }
     },
@@ -22372,8 +23411,10 @@
     },
     {
       "displayName": "ΟΑΣΑ",
-      "id": "oasa-7e8526",
-      "locationSet": {"include": ["gr"]},
+      "id": "oasa-e2ce2d",
+      "locationSet": {
+        "include": ["gr-i.geojson"]
+      },
       "tags": {
         "network": "ΟΑΣΑ",
         "network:el": "ΟΑΣΑ",
@@ -22394,8 +23435,10 @@
     },
     {
       "displayName": "ΟΣΥ",
-      "id": "osy-7e8526",
-      "locationSet": {"include": ["gr"]},
+      "id": "osy-e2ce2d",
+      "locationSet": {
+        "include": ["gr-i.geojson"]
+      },
       "tags": {
         "network": "ΟΣΥ",
         "network:el": "ΟΣΥ",
@@ -22580,6 +23623,15 @@
       }
     },
     {
+      "displayName": "Градски транспорт - Варна",
+      "id": "50cf0c-61eaf0",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "network": "Градски транспорт - Варна",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Градски транспорт София",
       "id": "8d3b09-61eaf0",
       "locationSet": {"include": ["bg"]},
@@ -22684,6 +23736,7 @@
       "displayName": "Лыткарино",
       "id": "26d1a7-15dd1a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOS",
       "tags": {
         "network": "Лыткарино",
         "route": "bus"
@@ -22693,6 +23746,7 @@
       "displayName": "Междугородние маршруты",
       "id": "afb334-6d7c16",
       "locationSet": {"include": ["by", "ru"]},
+      "note": "ISO 3166-2 RU-PSK",
       "tags": {
         "network": "Междугородние маршруты",
         "route": "bus"
@@ -22722,6 +23776,7 @@
       "displayName": "Москва",
       "id": "fb849d-15dd1a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOS",
       "tags": {
         "network": "Москва",
         "route": "bus"
@@ -22764,6 +23819,25 @@
       }
     },
     {
+      "displayName": "Обществен транспорт гр. Троян",
+      "id": "9be39f-61eaf0",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "network": "Обществен транспорт гр. Троян",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Омский автобус",
+      "id": "db3d1c-15dd1a",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "network": "Омский автобус",
+        "network:wikidata": "Q4334713",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Петрозаводск",
       "id": "647543-15dd1a",
       "locationSet": {"include": ["ru"]},
@@ -22794,6 +23868,7 @@
       "displayName": "Регулярные пассажирские перевозки МО \"Город Екатеринбург\"",
       "id": "5747fb-15dd1a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SVE",
       "tags": {
         "network": "Регулярные пассажирские перевозки МО \"Город Екатеринбург\"",
         "route": "bus"
@@ -22821,6 +23896,7 @@
       "displayName": "смежные межрегиональные маршруты (Московская область)",
       "id": "a0cf63-15dd1a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOS, RU-MOW",
       "tags": {
         "network": "смежные межрегиональные маршруты (Московская область)",
         "route": "bus"
@@ -22839,6 +23915,7 @@
       "displayName": "Томский автобус",
       "id": "cccb5e-15dd1a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-TOM",
       "tags": {
         "network": "Томский автобус",
         "network:wikidata": "Q4460378",
@@ -22886,6 +23963,7 @@
       "displayName": "Улан-Удэ",
       "id": "77104a-15dd1a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-BU",
       "tags": {
         "network": "Улан-Удэ",
         "route": "bus"
@@ -22903,6 +23981,15 @@
       "locationSet": {"include": ["ge"]},
       "tags": {
         "network": "ბათუმის ავტოტრანსპორტი",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Երևանի տրանսպորտ",
+      "id": "1c38ad-cdceba",
+      "locationSet": {"include": ["am"]},
+      "tags": {
+        "network": "Երևանի տրանսպորտ",
         "route": "bus"
       }
     },
@@ -23023,6 +24110,18 @@
       }
     },
     {
+      "displayName": "ישראל",
+      "id": "israel-a0f105",
+      "locationSet": {"include": ["il"]},
+      "note": "name of country",
+      "tags": {
+        "network": "ישראל",
+        "network:en": "Israel",
+        "network:he": "ישראל",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "נהריה",
       "id": "nahariya-a0f105",
       "locationSet": {"include": ["il"]},
@@ -23136,6 +24235,15 @@
       }
     },
     {
+      "displayName": "حافلات مكة",
+      "id": "733e4a-cf03dc",
+      "locationSet": {"include": ["sa"]},
+      "tags": {
+        "network": "حافلات مكة",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "سازمان اتوبوسرانی شیراز و حومه",
       "id": "80e62d-5a64e7",
       "locationSet": {"include": ["ir"]},
@@ -23153,6 +24261,16 @@
         "network:en": "G-BUS",
         "network:ko": "경기도 시내버스",
         "network:wikidata": "Q4859793",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "대전광역시 시내버스",
+      "id": "1f1a4e-776068",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "network": "대전광역시 시내버스",
+        "network:ko": "대전광역시 시내버스",
         "route": "bus"
       }
     },
@@ -23178,12 +24296,33 @@
       }
     },
     {
+      "displayName": "서울특별시 시내버스",
+      "id": "38d5af-776068",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "network": "서울특별시 시내버스",
+        "network:ko": "서울특별시 시내버스",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "익산시 시내버스",
       "id": "677b0b-776068",
       "locationSet": {"include": ["kr"]},
       "tags": {
         "network": "익산시 시내버스",
         "network:ko": "익산시 시내버스",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "인천광역시 시내버스",
+      "id": "bc18f2-776068",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "network": "인천광역시 시내버스",
+        "network:ko": "인천광역시 시내버스",
+        "network:wikidata": "Q12613485",
         "route": "bus"
       }
     },
@@ -23200,8 +24339,10 @@
     },
     {
       "displayName": "おおのハートバス",
-      "id": "onoheartbus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "onoheartbus-687fde",
+      "locationSet": {
+        "include": ["jp-34.geojson"]
+      },
       "tags": {
         "network": "おおのハートバス",
         "network:en": "Ōno Heart Bus",
@@ -23212,8 +24353,10 @@
     },
     {
       "displayName": "ことでん",
-      "id": "kotoden-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kotoden-ea4cbc",
+      "locationSet": {
+        "include": ["jp-37.geojson"]
+      },
       "tags": {
         "network": "ことでん",
         "network:en": "Kotoden",
@@ -23224,8 +24367,10 @@
     },
     {
       "displayName": "サンデン交通",
-      "id": "sandenkotsu-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "sandenkotsu-b1baf4",
+      "locationSet": {
+        "include": ["jp-35.geojson"]
+      },
       "tags": {
         "network": "サンデン交通",
         "network:en": "Sanden Kotsu",
@@ -23236,8 +24381,10 @@
     },
     {
       "displayName": "ジェイ・アール北海道バス",
-      "id": "jrhokkaidobus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "jrhokkaidobus-471d95",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "network": "ジェイ・アール北海道バス",
         "network:en": "JR Hokkaido Bus",
@@ -23252,8 +24399,10 @@
     },
     {
       "displayName": "じょうてつ",
-      "id": "jotetsu-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "jotetsu-471d95",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "network": "じょうてつ",
         "network:en": "Jotetsu",
@@ -23268,8 +24417,10 @@
     },
     {
       "displayName": "じょうてつバス",
-      "id": "jotetsubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "jotetsubus-471d95",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "network": "じょうてつバス",
         "network:en": "Jotetsu Bus",
@@ -23280,8 +24431,10 @@
     },
     {
       "displayName": "ちばフラワーバス",
-      "id": "chibaflowerbus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "chibaflowerbus-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "ちばフラワーバス",
         "network:en": "Chiba Flower Bus",
@@ -23291,14 +24444,44 @@
       }
     },
     {
+      "displayName": "つくバス",
+      "id": "tsukubus-15c14e",
+      "locationSet": {
+        "include": ["jp-08.geojson"]
+      },
+      "tags": {
+        "network": "つくバス",
+        "network:en": "Tsuku Bus",
+        "network:ja": "つくバス",
+        "network:wikidata": "Q11272298",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "ボン・バス",
-      "id": "bonbus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "bonbus-687fde",
+      "locationSet": {
+        "include": ["jp-34.geojson"]
+      },
       "tags": {
         "network": "ボン・バス",
         "network:en": "Bon-Bus",
         "network:ja": "ボン・バス",
         "network:wikidata": "Q11289593",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "まめバス",
+      "id": "mamebus-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
+      "tags": {
+        "network": "まめバス",
+        "network:en": "Mamebus",
+        "network:ja": "まめバス",
+        "network:wikidata": "Q11278520",
         "route": "bus"
       }
     },
@@ -23318,6 +24501,15 @@
       }
     },
     {
+      "displayName": "上饶公交",
+      "id": "96bb36-af9653",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {"network": "上饶公交", "route": "bus"}
+    },
+    {
       "displayName": "东山公交",
       "id": "e316fa-af9653",
       "locationSet": {
@@ -23328,8 +24520,10 @@
     },
     {
       "displayName": "九十九里鉄道",
-      "id": "kujukurirailway-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kujukurirailway-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "九十九里鉄道",
         "network:en": "Kujūkuri Railway",
@@ -23367,8 +24561,10 @@
     },
     {
       "displayName": "京成トランジットバス",
-      "id": "keiseitransitbus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "keiseitransitbus-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "京成トランジットバス",
         "network:en": "Keisei Transit Bus",
@@ -23379,8 +24575,14 @@
     },
     {
       "displayName": "京成バス",
-      "id": "keiseibus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "keiseibus-a201ad",
+      "locationSet": {
+        "include": [
+          "jp-11.geojson",
+          "jp-12.geojson",
+          "jp-13.geojson"
+        ]
+      },
       "tags": {
         "network": "京成バス",
         "network:en": "Keisei Bus",
@@ -23390,9 +24592,31 @@
       }
     },
     {
+      "displayName": "京成バス千葉イースト",
+      "id": "keiseibuschibaeast-ace507",
+      "locationSet": {
+        "include": [
+          "jp-12.geojson",
+          "jp-13.geojson"
+        ]
+      },
+      "tags": {
+        "network": "京成バス千葉イースト",
+        "network:en": "Keisei Bus Chiba East",
+        "network:ja": "京成バス千葉イースト",
+        "network:wikidata": "Q133884605",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "京浜急行バス",
-      "id": "keihinkyukobus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "keihinkyukobus-e74125",
+      "locationSet": {
+        "include": [
+          "jp-13.geojson",
+          "jp-14.geojson"
+        ]
+      },
       "tags": {
         "network": "京浜急行バス",
         "network:en": "Keihin Kyuko Bus",
@@ -23403,8 +24627,13 @@
     },
     {
       "displayName": "京王電鉄バス",
-      "id": "keiodentetsubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "keiodentetsubus-e74125",
+      "locationSet": {
+        "include": [
+          "jp-13.geojson",
+          "jp-14.geojson"
+        ]
+      },
       "matchNames": ["京王バス"],
       "tags": {
         "network": "京王電鉄バス",
@@ -23416,8 +24645,10 @@
     },
     {
       "displayName": "京都市営バス",
-      "id": "kyotocitybus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kyotocitybus-c21c87",
+      "locationSet": {
+        "include": ["jp-26.geojson"]
+      },
       "tags": {
         "network": "京都市営バス",
         "network:en": "Kyoto City Bus",
@@ -23441,8 +24672,13 @@
     },
     {
       "displayName": "伊豆箱根バス",
-      "id": "izuhakonebus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "izuhakonebus-18a7f6",
+      "locationSet": {
+        "include": [
+          "jp-14.geojson",
+          "jp-22.geojson"
+        ]
+      },
       "tags": {
         "network": "伊豆箱根バス",
         "network:en": "Izuhakone Bus",
@@ -23467,8 +24703,10 @@
     },
     {
       "displayName": "光線",
-      "id": "507c70-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "507c70-b1baf4",
+      "locationSet": {
+        "include": ["jp-35.geojson"]
+      },
       "tags": {"network": "光線", "route": "bus"}
     },
     {
@@ -23476,6 +24714,20 @@
       "id": "a49b64-a4fa75",
       "locationSet": {"include": ["tw"]},
       "tags": {"network": "公路客運", "route": "bus"}
+    },
+    {
+      "displayName": "加計呂麻バス",
+      "id": "kakeromabus-9587bf",
+      "locationSet": {
+        "include": ["jp-46.geojson"]
+      },
+      "tags": {
+        "network": "加計呂麻バス",
+        "network:en": "Kakeroma Bus",
+        "network:ja": "加計呂麻バス",
+        "network:wikidata": "Q11399623",
+        "route": "bus"
+      }
     },
     {
       "displayName": "北京公交",
@@ -23494,18 +24746,11 @@
       }
     },
     {
-      "displayName": "北大嶼山對外巴士 North Lantau External Bus",
-      "id": "006a39-5398e8",
-      "locationSet": {"include": ["hk"]},
-      "tags": {
-        "network": "北大嶼山對外巴士 North Lantau External Bus",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "北海道中央バス",
-      "id": "hokkaidochuobus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "hokkaidochuobus-471d95",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "network": "北海道中央バス",
         "network:en": "Hokkaido Chuo Bus",
@@ -23520,8 +24765,10 @@
     },
     {
       "displayName": "北都交通 (北海道)",
-      "id": "hokutokotsu-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "hokutokotsu-471d95",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "network": "北都交通",
         "network:en": "Hokuto Kotsu",
@@ -23536,21 +24783,51 @@
     },
     {
       "displayName": "匝瑳市 循環",
-      "id": "97a2fb-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "97a2fb-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "匝瑳市 循環",
         "route": "bus"
       }
     },
     {
-      "displayName": "千里ニュータウン線",
-      "id": "55b71e-9701b7",
+      "displayName": "千葉中央バス",
+      "id": "chibachuobus-9701b7",
       "locationSet": {"include": ["jp"]},
+      "tags": {
+        "network": "千葉中央バス",
+        "network:en": "Chiba Chuo Bus",
+        "network:ja": "千葉中央バス",
+        "network:wikidata": "Q11405908",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "千里ニュータウン線",
+      "id": "senrinewtownline-b748f9",
+      "locationSet": {
+        "include": ["jp-27.geojson"]
+      },
       "note": "looks like it is part of 阪急バス? At least its operator is 阪急バス.",
       "tags": {
         "network": "千里ニュータウン線",
+        "network:en": "Senri New Town Line",
         "network:ja": "千里ニュータウン線",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "南京公交",
+      "id": "fc90c0-af9653",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {
+        "network": "南京公交",
+        "network:wikidata": "Q85876755",
         "route": "bus"
       }
     },
@@ -23588,6 +24865,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-JS",
       "tags": {
         "network": "南通市区公交",
         "network:wikidata": "Q115117777",
@@ -23614,6 +24892,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-CQ, CN-SC",
       "tags": {
         "network": "合江公交",
         "network:wikidata": "Q115117788",
@@ -23623,20 +24902,27 @@
     },
     {
       "displayName": "名古屋市営バス",
-      "id": "2043f8-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "nagoyamunicipalbus-6483d2",
+      "locationSet": {
+        "include": ["jp-23.geojson"]
+      },
       "tags": {
         "network": "名古屋市営バス",
+        "network:en": "Nagoya Municipal Bus",
         "network:ja": "名古屋市営バス",
+        "network:wikidata": "Q11414982",
         "route": "bus"
       }
     },
     {
       "displayName": "君津市コミュニティバス",
-      "id": "d22ceb-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kimitsucitycommunitybus-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "君津市コミュニティバス",
+        "network:en": "Kimitsu City Community Bus",
         "network:ja": "君津市コミュニティバス",
         "network:wikidata": "Q11416391",
         "route": "bus"
@@ -23658,15 +24944,19 @@
     },
     {
       "displayName": "吹田市内線",
-      "id": "d2ac54-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "d2ac54-b748f9",
+      "locationSet": {
+        "include": ["jp-27.geojson"]
+      },
       "note": "looks like it is part of 阪急バス? At least its operator is 阪急バス.",
       "tags": {"network": "吹田市内線", "route": "bus"}
     },
     {
       "displayName": "吹田摂津線",
-      "id": "b32e4a-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "b32e4a-b748f9",
+      "locationSet": {
+        "include": ["jp-27.geojson"]
+      },
       "note": "looks like it is part of 阪急バス? At least its operator is 阪急バス.",
       "tags": {"network": "吹田摂津線", "route": "bus"}
     },
@@ -23685,9 +24975,23 @@
       }
     },
     {
+      "displayName": "四会公交",
+      "id": "9b77f6-af9653",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {"network": "四会公交", "route": "bus"}
+    },
+    {
       "displayName": "国際興業バス",
-      "id": "kokusaikogyobus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kokusaikogyobus-4d7a9d",
+      "locationSet": {
+        "include": [
+          "jp-11.geojson",
+          "jp-13.geojson"
+        ]
+      },
       "tags": {
         "network": "国際興業バス",
         "network:en": "Kokusai Kogyo Bus",
@@ -23722,10 +25026,13 @@
     },
     {
       "displayName": "城巴機場快線 Cityflyer",
-      "id": "f16bb3-5398e8",
+      "id": "cityflyer-5398e8",
       "locationSet": {"include": ["hk"]},
       "tags": {
         "network": "城巴機場快線 Cityflyer",
+        "network:en": "Cityflyer",
+        "network:wikidata": "Q5124066",
+        "network:zh": "城巴機場快線",
         "route": "bus"
       }
     },
@@ -23778,8 +25085,10 @@
     },
     {
       "displayName": "大和市コミュニティバス",
-      "id": "3935b6-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "3935b6-e4aea3",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
       "tags": {
         "network": "大和市コミュニティバス",
         "network:ja": "大和市コミュニティバス",
@@ -23789,8 +25098,10 @@
     },
     {
       "displayName": "大阪シティバス",
-      "id": "osakacitybus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "osakacitybus-b748f9",
+      "locationSet": {
+        "include": ["jp-27.geojson"]
+      },
       "tags": {
         "network": "大阪シティバス",
         "network:en": "Osaka City Bus",
@@ -23828,6 +25139,15 @@
       }
     },
     {
+      "displayName": "宜宾智轨",
+      "id": "2d5423-af9653",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {"network": "宜宾智轨", "route": "bus"}
+    },
+    {
       "displayName": "宜蘭縣市區公車",
       "id": "ilancountybus-a4fa75",
       "locationSet": {"include": ["tw"]},
@@ -23845,19 +25165,36 @@
       }
     },
     {
+      "displayName": "寶山鄉幸福巴士",
+      "id": "1af83f-a4fa75",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "network": "寶山鄉幸福巴士",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "小湊バス",
-      "id": "a3375a-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kominatobus-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "小湊バス",
+        "network:en": "Kominato Bus",
         "network:ja": "小湊バス",
         "route": "bus"
       }
     },
     {
       "displayName": "小田急バス",
-      "id": "odakyubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "odakyubus-e74125",
+      "locationSet": {
+        "include": [
+          "jp-13.geojson",
+          "jp-14.geojson"
+        ]
+      },
       "tags": {
         "network": "小田急バス",
         "network:en": "Odakyu Bus",
@@ -23867,9 +25204,20 @@
       }
     },
     {
+      "displayName": "尖石鄉幸福巴士",
+      "id": "0e1ccf-a4fa75",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "network": "尖石鄉幸福巴士",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "尼崎市内線",
-      "id": "cf59d9-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "cf59d9-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {"network": "尼崎市内線", "route": "bus"}
     },
     {
@@ -23899,8 +25247,10 @@
     },
     {
       "displayName": "山陽バス",
-      "id": "sanyobus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "sanyobus-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {
         "network": "山陽バス",
         "network:en": "Sanyo Bus",
@@ -23920,29 +25270,46 @@
     },
     {
       "displayName": "川崎市バス",
-      "id": "e4e8fb-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kawasakicitybus-e4aea3",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
       "tags": {
         "network": "川崎市バス",
+        "network:en": "Kawasaki City Bus",
         "network:ja": "川崎市バス",
         "route": "bus"
       }
     },
     {
       "displayName": "川崎鶴見臨港バス",
-      "id": "5d3561-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kawasakitsurumirinkobus-e4aea3",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
       "tags": {
         "network": "川崎鶴見臨港バス",
+        "network:en": "Kawasaki Tsurumi Rinko Bus",
         "network:ja": "川崎鶴見臨港バス",
+        "network:wikidata": "Q11478611",
         "route": "bus"
       }
     },
     {
       "displayName": "市内線",
-      "id": "8a0aeb-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "8a0aeb-8d4e71",
+      "locationSet": {
+        "include": ["jp-47.geojson"]
+      },
       "tags": {"network": "市内線", "route": "bus"}
+    },
+    {
+      "displayName": "市外線",
+      "id": "c93441-8d4e71",
+      "locationSet": {
+        "include": ["jp-47.geojson"]
+      },
+      "tags": {"network": "市外線", "route": "bus"}
     },
     {
       "displayName": "常州公交",
@@ -24025,6 +25392,15 @@
       }
     },
     {
+      "displayName": "扬州公交",
+      "id": "b5239e-af9653",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {"network": "扬州公交", "route": "bus"}
+    },
+    {
       "displayName": "新北市公車",
       "id": "newtaipeicitybus-a4fa75",
       "locationSet": {"include": ["tw"]},
@@ -24046,6 +25422,15 @@
       "locationSet": {"include": ["tw"]},
       "tags": {
         "network": "新北市新巴士",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "新埔鎮幸福巴士",
+      "id": "bd001f-a4fa75",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "network": "新埔鎮幸福巴士",
         "route": "bus"
       }
     },
@@ -24119,29 +25504,41 @@
     },
     {
       "displayName": "日東交通",
-      "id": "b0042e-9701b7",
-      "locationSet": {"include": ["jp"]},
-      "note": "There are several 日東交通 in different city, not same entities, but same name. see disambiguish page Q11509500",
+      "id": "nittokotsu-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
+      "note": "there are unrelated operators with the same name (日東交通) in different cities outside Chiba Prefecture (see disambiguation page attached to Q11509500)",
       "tags": {
         "network": "日東交通",
+        "network:en": "Nitto Kotsu",
         "network:ja": "日東交通",
+        "network:wikidata": "Q11509502",
         "route": "bus"
       }
     },
     {
       "displayName": "東庄町 おでかけ号",
-      "id": "7c008d-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "tonoshotownoutingbus-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "東庄町 おでかけ号",
+        "network:en": "Tonosho Town Outing Bus",
         "network:ja": "東庄町 おでかけ号",
         "route": "bus"
       }
     },
     {
       "displayName": "東急バス",
-      "id": "tokyubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "tokyubus-e74125",
+      "locationSet": {
+        "include": [
+          "jp-13.geojson",
+          "jp-14.geojson"
+        ]
+      },
       "tags": {
         "network": "東急バス",
         "network:en": "Tokyu Bus",
@@ -24152,8 +25549,14 @@
     },
     {
       "displayName": "東武バス",
-      "id": "tobubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "tobubus-a201ad",
+      "locationSet": {
+        "include": [
+          "jp-11.geojson",
+          "jp-12.geojson",
+          "jp-13.geojson"
+        ]
+      },
       "tags": {
         "network": "東武バス",
         "network:en": "Tobu Bus",
@@ -24193,8 +25596,10 @@
     },
     {
       "displayName": "横浜市営バス",
-      "id": "yokohamamunicipalbus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "yokohamamunicipalbus-e4aea3",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
       "tags": {
         "network": "横浜市営バス",
         "network:en": "Yokohama Municipal Bus",
@@ -24205,14 +25610,22 @@
     },
     {
       "displayName": "水都西線",
-      "id": "67e08f-9701b7",
-      "locationSet": {"include": ["jp"]},
-      "tags": {"network": "水都西線", "route": "bus"}
+      "id": "67e08f-5bcefa",
+      "locationSet": {
+        "include": ["jp-09.geojson"]
+      },
+      "tags": {
+        "network": "水都西線",
+        "network:wikidata": "Q11309003",
+        "route": "bus"
+      }
     },
     {
       "displayName": "江ノ電バス",
-      "id": "enodenbus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "enodenbus-e4aea3",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
       "tags": {
         "network": "江ノ電バス",
         "network:en": "Enoden Bus",
@@ -24223,10 +25636,16 @@
     },
     {
       "displayName": "池田市内線",
-      "id": "b0caf7-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "ikedacityline-39d5d2",
+      "locationSet": {
+        "include": [
+          "jp-27.geojson",
+          "jp-28.geojson"
+        ]
+      },
       "tags": {
         "network": "池田市内線",
+        "network:en": "Ikeda City Line",
         "network:ja": "池田市内線",
         "route": "bus"
       }
@@ -24258,6 +25677,15 @@
         "operator": "湖南众捷汽车运输有限责任公司城乡巴士分公司",
         "route": "bus"
       }
+    },
+    {
+      "displayName": "汪清公交",
+      "id": "c12bce-af9653",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {"network": "汪清公交", "route": "bus"}
     },
     {
       "displayName": "泰安公交",
@@ -24302,12 +25730,22 @@
       }
     },
     {
+      "displayName": "淮安公交",
+      "id": "d334c5-af9653",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {"network": "淮安公交", "route": "bus"}
+    },
+    {
       "displayName": "深圳干线巴士",
       "id": "b6ce99-af9653",
       "locationSet": {
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-GD",
       "tags": {
         "network": "深圳干线巴士",
         "network:wikidata": "Q55708409",
@@ -24321,15 +25759,6 @@
       "locationSet": {"include": ["hk"]},
       "tags": {
         "network": "港島專綫小巴 Hong Kong Island Green Minibus",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "港島巴士 Hong Kong Island Bus",
-      "id": "57113d-5398e8",
-      "locationSet": {"include": ["hk"]},
-      "tags": {
-        "network": "港島巴士 Hong Kong Island Bus",
         "route": "bus"
       }
     },
@@ -24367,10 +25796,13 @@
     },
     {
       "displayName": "猪名川パークタウン線",
-      "id": "874086-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "inagawaparktownline-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {
         "network": "猪名川パークタウン線",
+        "network:en": "Inagawa Park Town Line",
         "network:ja": "猪名川パークタウン線",
         "route": "bus"
       }
@@ -24390,8 +25822,13 @@
     },
     {
       "displayName": "琴参バス",
-      "id": "kotosanbus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kotosanbus-af7596",
+      "locationSet": {
+        "include": [
+          "jp-33.geojson",
+          "jp-37.geojson"
+        ]
+      },
       "tags": {
         "network": "琴参バス",
         "network:en": "Kotosan Bus",
@@ -24402,8 +25839,10 @@
     },
     {
       "displayName": "甲賀市コミュニティバス",
-      "id": "kokacitycommunitybus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kokacitycommunitybus-a52ed2",
+      "locationSet": {
+        "include": ["jp-25.geojson"]
+      },
       "tags": {
         "network": "甲賀市コミュニティバス",
         "network:en": "Koka City Community Bus",
@@ -24414,8 +25853,10 @@
     },
     {
       "displayName": "相鉄バス",
-      "id": "sotetsubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "sotetsubus-e4aea3",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
       "tags": {
         "network": "相鉄バス",
         "network:en": "Sotetsu Bus",
@@ -24426,18 +25867,26 @@
     },
     {
       "displayName": "神奈中バス",
-      "id": "0a0fee-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kanachubus-e4aea3",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
       "tags": {
         "network": "神奈中バス",
+        "network:en": "Kanachu Bus",
         "network:ja": "神奈中バス",
         "route": "bus"
       }
     },
     {
       "displayName": "神奈川中央交通",
-      "id": "f87cac-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "f87cac-e74125",
+      "locationSet": {
+        "include": [
+          "jp-13.geojson",
+          "jp-14.geojson"
+        ]
+      },
       "tags": {
         "network": "神奈川中央交通",
         "network:wikidata": "Q10854960",
@@ -24445,39 +25894,64 @@
       }
     },
     {
+      "displayName": "神姫バス",
+      "id": "shinkibus-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
+      "tags": {
+        "network": "神姫バス",
+        "network:en": "Shinki Bus",
+        "network:ja": "神姫バス",
+        "network:wikidata": "Q11589421",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "神姫バス大久保",
-      "id": "57a361-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "shinkibusokubo-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {
         "network": "神姫バス大久保",
+        "network:en": "Shinki Bus Okubo",
         "network:ja": "神姫バス大久保",
         "route": "bus"
       }
     },
     {
       "displayName": "神姫バス明石",
-      "id": "1d635d-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "shinkibusakashi-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {
         "network": "神姫バス明石",
+        "network:en": "Shinki Bus Akashi",
         "network:ja": "神姫バス明石",
         "route": "bus"
       }
     },
     {
       "displayName": "神姫バス西神",
-      "id": "38db0e-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "shinkibusnishijin-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {
         "network": "神姫バス西神",
+        "network:en": "Shinki Bus Nishijin",
         "network:ja": "神姫バス西神",
         "route": "bus"
       }
     },
     {
       "displayName": "神戸市バス",
-      "id": "kobecitybus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kobecitybus-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {
         "network": "神戸市バス",
         "network:en": "Kobe City Bus",
@@ -24488,8 +25962,10 @@
     },
     {
       "displayName": "立川バス",
-      "id": "tachikawabus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "tachikawabus-4576e8",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "network": "立川バス",
         "network:en": "Tachikawa Bus",
@@ -24516,8 +25992,10 @@
     },
     {
       "displayName": "粟生団地線",
-      "id": "d509c5-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "d509c5-b748f9",
+      "locationSet": {
+        "include": ["jp-27.geojson"]
+      },
       "tags": {"network": "粟生団地線", "route": "bus"}
     },
     {
@@ -24570,10 +26048,13 @@
     },
     {
       "displayName": "芦屋市内線",
-      "id": "ba4cdc-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "ashiyacityline-2295ac",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {
         "network": "芦屋市内線",
+        "network:en": "Ashiya City Line",
         "network:ja": "芦屋市内線",
         "route": "bus"
       }
@@ -24585,6 +26066,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-ZJ",
       "tags": {
         "network": "苍南公交",
         "network:wikidata": "Q115117977",
@@ -24608,18 +26090,26 @@
     },
     {
       "displayName": "西条線",
-      "id": "d6c502-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "saijoline-687fde",
+      "locationSet": {
+        "include": ["jp-34.geojson"]
+      },
       "tags": {
         "network": "西条線",
+        "network:en": "Saijo Line",
         "network:ja": "西条線",
         "route": "bus"
       }
     },
     {
       "displayName": "西東京バス",
-      "id": "nishitokyobus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "nishitokyobus-d496a1",
+      "locationSet": {
+        "include": [
+          "jp-13.geojson",
+          "jp-19.geojson"
+        ]
+      },
       "tags": {
         "network": "西東京バス",
         "network:en": "Nishi Tokyo Bus",
@@ -24630,8 +26120,13 @@
     },
     {
       "displayName": "西武バス",
-      "id": "seibubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "seibubus-4d7a9d",
+      "locationSet": {
+        "include": [
+          "jp-11.geojson",
+          "jp-13.geojson"
+        ]
+      },
       "tags": {
         "network": "西武バス",
         "network:en": "Seibu Bus",
@@ -24642,8 +26137,10 @@
     },
     {
       "displayName": "西鉄バス",
-      "id": "nishitetsubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "nishitetsubus-a9f4fc",
+      "locationSet": {
+        "include": ["jp-40.geojson"]
+      },
       "tags": {
         "network": "西鉄バス",
         "network:en": "Nishitetsu Bus",
@@ -24654,8 +26151,13 @@
     },
     {
       "displayName": "近鉄バス",
-      "id": "kintetsubus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kintetsubus-b34993",
+      "locationSet": {
+        "include": [
+          "jp-26.geojson",
+          "jp-27.geojson"
+        ]
+      },
       "tags": {
         "network": "近鉄バス",
         "network:en": "Kintetsu Bus",
@@ -24666,17 +26168,21 @@
     },
     {
       "displayName": "過海隧道巴士 Cross-harbour Bus",
-      "id": "e7c9aa-5398e8",
+      "id": "crossharbourbus-5398e8",
       "locationSet": {"include": ["hk"]},
       "tags": {
         "network": "過海隧道巴士 Cross-harbour Bus",
+        "network:en": "Cross-harbour Bus",
+        "network:zh": "過海隧道巴士",
         "route": "bus"
       }
     },
     {
       "displayName": "道南バス",
-      "id": "donanbus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "donanbus-471d95",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "network": "道南バス",
         "network:en": "Donan Bus",
@@ -24687,8 +26193,13 @@
     },
     {
       "displayName": "都営バス",
-      "id": "toeibus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "toeibus-4d7a9d",
+      "locationSet": {
+        "include": [
+          "jp-11.geojson",
+          "jp-13.geojson"
+        ]
+      },
       "matchNames": ["都バス"],
       "tags": {
         "network": "都営バス",
@@ -24719,9 +26230,25 @@
       }
     },
     {
+      "displayName": "長崎県営バス",
+      "id": "nagasakiprefecturetransportationbureau-07cb51",
+      "locationSet": {
+        "include": ["jp-42.geojson"]
+      },
+      "tags": {
+        "network": "長崎県営バス",
+        "network:en": "Nagasaki Prefecture Transportation Bureau",
+        "network:ja": "長崎県営バス",
+        "network:wikidata": "Q11652641",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "関東バス",
-      "id": "kantobus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kantobus-4576e8",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "network": "関東バス",
         "network:en": "Kanto Bus",
@@ -24732,8 +26259,13 @@
     },
     {
       "displayName": "阪神線",
-      "id": "49f6d5-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "49f6d5-39d5d2",
+      "locationSet": {
+        "include": [
+          "jp-27.geojson",
+          "jp-28.geojson"
+        ]
+      },
       "tags": {"network": "阪神線", "route": "bus"}
     },
     {
@@ -24752,10 +26284,13 @@
     },
     {
       "displayName": "防長線",
-      "id": "b46058-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "bocholine-b1baf4",
+      "locationSet": {
+        "include": ["jp-35.geojson"]
+      },
       "tags": {
         "network": "防長線",
+        "network:en": "Bocho Line",
         "network:ja": "防長線",
         "network:wikidata": "Q11657125",
         "route": "bus"
@@ -24763,11 +26298,15 @@
     },
     {
       "displayName": "雲芸南線",
-      "id": "e61f2f-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "ungeinanline-687fde",
+      "locationSet": {
+        "include": ["jp-34.geojson"]
+      },
       "tags": {
         "network": "雲芸南線",
+        "network:en": "Ungeinan Line",
         "network:ja": "雲芸南線",
+        "network:wikidata": "Q11660079",
         "route": "bus"
       }
     },
@@ -24792,6 +26331,7 @@
         "exclude": ["hk", "mo"]
       },
       "matchNames": ["青州凯程公交"],
+      "note": "ISO 3166-2 CN-SD",
       "tags": {
         "network": "青州公交",
         "network:en": "Qingzhou Public Transport",
@@ -24845,8 +26385,10 @@
     },
     {
       "displayName": "鴨川市コミュニティバス",
-      "id": "kamogawacitycommunitybus-9701b7",
-      "locationSet": {"include": ["jp"]},
+      "id": "kamogawacitycommunitybus-54d9ea",
+      "locationSet": {
+        "include": ["jp-12.geojson"]
+      },
       "tags": {
         "network": "鴨川市コミュニティバス",
         "network:en": "Kamogawa City Community Bus",

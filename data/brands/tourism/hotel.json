@@ -11,7 +11,7 @@
       ],
       "named": [
         "^(h[oô]tel )?((zur )?post|de france|de la gare|du parc|строитель)$",
-        "^(h[oô]tel )?(astoria|avenida|belvedere|central|city|colonial|continental|europa)\\s?(h[oô]tel)?$",
+        "^(h[oô]tel )?(astoria|avenida|belvedere|central|city|colonial|continental|eden|europa)\\s?(h[oô]tel)?$",
         "^(h[oô]tel )?(grand|imperial|krone|palace|panorama|park|plaza|royal|victoria)\\s?(h[oô]tel)?$",
         "^(酒店|旅馆)$",
         "^bellevue$",
@@ -1896,8 +1896,11 @@
     },
     {
       "displayName": "Ibis",
-      "id": "ibis-779ccb",
-      "locationSet": {"include": ["001"]},
+      "id": "ibis-8a2ff3",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn"]
+      },
       "matchNames": ["hotel ibis", "ibis hotel"],
       "tags": {
         "brand": "Ibis",
@@ -1941,6 +1944,16 @@
         "brand": "iH Hotel",
         "brand:wikidata": "Q126033607",
         "name": "iH Hotel",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "Innkeeper's Collection",
+      "id": "innkeeperscollection-3fca16",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "brand": "Innkeeper's Collection",
+        "brand:wikidata": "Q6035891",
         "tourism": "hotel"
       }
     },
@@ -2228,7 +2241,7 @@
       "matchNames": ["logis"],
       "tags": {
         "brand": "Logis Hotels",
-        "brand:wikidata": "Q125959917",
+        "brand:wikidata": "Q1725927",
         "name": "Logis Hotels",
         "tourism": "hotel"
       }
@@ -2278,13 +2291,14 @@
     },
     {
       "displayName": "lyf",
-      "id": "lyf-8aeec5",
+      "id": "lyf-414bf6",
       "locationSet": {
         "include": [
           "at",
           "au",
           "cn",
           "de",
+          "fx",
           "jp",
           "my",
           "ph",
@@ -2356,10 +2370,10 @@
     },
     {
       "displayName": "Mandarin Oriental Hotel",
-      "id": "mandarinorientalhotel-428a55",
+      "id": "mandarinorientalhotel-7aa199",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["cn", "hk", "mo", "tw"]
+        "exclude": ["cn", "tw"]
       },
       "tags": {
         "brand": "Mandarin Oriental Hotel",
@@ -3351,10 +3365,10 @@
     },
     {
       "displayName": "Sheraton",
-      "id": "sheraton-428a55",
+      "id": "sheraton-7aa199",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["cn", "hk", "mo", "tw"]
+        "exclude": ["cn", "tw"]
       },
       "tags": {
         "brand": "Sheraton",
@@ -4129,18 +4143,6 @@
       }
     },
     {
-      "displayName": "Vienna Hotels",
-      "id": "viennahotels-af4cd2",
-      "locationSet": {"include": ["cn"]},
-      "matchNames": ["vienna hotel"],
-      "tags": {
-        "brand": "Vienna Hotels",
-        "brand:wikidata": "Q7928333",
-        "name": "Vienna Hotels",
-        "tourism": "hotel"
-      }
-    },
-    {
       "displayName": "Vienna House",
       "id": "viennahouse-046fe6",
       "locationSet": {"include": ["150"]},
@@ -4357,7 +4359,7 @@
         "brand": "アパホテル",
         "brand:en": "APA Hotel",
         "brand:ja": "アパホテル",
-        "brand:wikidata": "Q11284497",
+        "brand:wikidata": "Q17191643",
         "name": "アパホテル",
         "name:en": "APA Hotel",
         "name:ja": "アパホテル",
@@ -4655,6 +4657,22 @@
         "name": "秋果酒店",
         "name:en": "Qiuguo Hotel",
         "name:zh": "秋果酒店",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "维也纳酒店",
+      "id": "viennahotels-af4cd2",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["vienna hotel"],
+      "tags": {
+        "brand": "维也纳酒店",
+        "brand:en": "Vienna Hotels",
+        "brand:wikidata": "Q7928333",
+        "brand:zh": "维也纳酒店",
+        "name": "维也纳酒店",
+        "name:en": "Vienna Hotels",
+        "name:zh": "维也纳酒店",
         "tourism": "hotel"
       }
     },
