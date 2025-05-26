@@ -1995,16 +1995,6 @@
       }
     },
     {
-      "displayName": "CSG",
-      "id": "csg-cf3c91",
-      "locationSet": {"include": ["cn"]},
-      "tags": {
-        "operator": "CSG",
-        "operator:wikidata": "Q209039",
-        "power": "line"
-      }
-    },
-    {
       "displayName": "CTEEP",
       "id": "cteep-ddc6a3",
       "locationSet": {"include": ["br"]},
@@ -5282,6 +5272,9 @@
       "displayName": "Lesotho Electricity Company",
       "id": "lesothoelectricitycompany-541e2d",
       "locationSet": {"include": ["ls"]},
+      "matchNames": [
+        "lesotho electricity compant"
+      ],
       "tags": {
         "operator": "Lesotho Electricity Company",
         "power": "line"
@@ -6047,7 +6040,8 @@
       "locationSet": {"include": ["gb-eng"]},
       "matchNames": [
         "national grid et",
-        "national grid plc"
+        "national grid plc",
+        "nget"
       ],
       "tags": {
         "operator": "National Grid Electricity Transmission",
@@ -7873,6 +7867,15 @@
       }
     },
     {
+      "displayName": "SONABEL",
+      "id": "sonabel-09c831",
+      "locationSet": {"include": ["bf", "gh"]},
+      "tags": {
+        "operator": "SONABEL",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Sonelgaz",
       "id": "sonelgaz-1c2f9f",
       "locationSet": {"include": ["dz"]},
@@ -9000,6 +9003,19 @@
       }
     },
     {
+      "displayName": "Uttar Pradesh State Electricity Board",
+      "id": "uttarpradeshstateelectricityboard-cfbb86",
+      "locationSet": {
+        "include": ["in-up.geojson"]
+      },
+      "matchNames": ["state electricity board"],
+      "tags": {
+        "operator": "Uttar Pradesh State Electricity Board",
+        "operator:wikidata": "Q18357620",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Vale S.A.",
       "id": "valesa-ddc6a3",
       "locationSet": {"include": ["br"]},
@@ -9485,6 +9501,7 @@
       "displayName": "АО \"ИЭСК\"",
       "id": "f7ee36-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-IRK",
       "tags": {
         "operator": "АО \"ИЭСК\"",
         "power": "line"
@@ -9494,17 +9511,9 @@
       "displayName": "АО \"Самарская сетевая компания\"",
       "id": "4e721a-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAM",
       "tags": {
         "operator": "АО \"Самарская сетевая компания\"",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "АО \"Янтарьэнерго\"",
-      "id": "f0d7c2-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "АО \"Янтарьэнерго\"",
         "power": "line"
       }
     },
@@ -9512,6 +9521,8 @@
       "displayName": "АО СУЭНКО",
       "id": "8e6ee5-99800a",
       "locationSet": {"include": ["ru"]},
+      "matchNames": ["пао суэнко"],
+      "note": "ISO 3166-2 RU-KGN",
       "tags": {
         "operator": "АО СУЭНКО",
         "power": "line"
@@ -9598,6 +9609,7 @@
       "displayName": "ЗАО \"Энергетика и Связь Строительства\"",
       "id": "a4c9ec-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAM",
       "tags": {
         "operator": "ЗАО \"Энергетика и Связь Строительства\"",
         "power": "line"
@@ -9617,6 +9629,7 @@
       "displayName": "Калмэнерго",
       "id": "96c48a-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KL, RU-STA",
       "tags": {
         "operator": "Калмэнерго",
         "power": "line"
@@ -9652,9 +9665,22 @@
       }
     },
     {
+      "displayName": "МОЭСК",
+      "id": "8e35df-99800a",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["оао \"моэск\""],
+      "note": "ISO 3166-2 RU-MOS, RU-MOW",
+      "tags": {
+        "operator": "МОЭСК",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "МРСК СК",
       "id": "591585-99800a",
       "locationSet": {"include": ["ru"]},
+      "matchNames": ["оао «мрск ск»"],
+      "note": "ISO 3166-2 RU-DA, RU-KB, RU-KC, RU-SE, RU-STA",
       "tags": {
         "operator": "МРСК СК",
         "power": "line"
@@ -9664,6 +9690,7 @@
       "displayName": "МРСК Центра",
       "id": "86e0e8-99800a",
       "locationSet": {"include": ["ru"]},
+      "matchNames": ["оао \"мрск центра\""],
       "tags": {
         "operator": "МРСК Центра",
         "power": "line"
@@ -9673,6 +9700,9 @@
       "displayName": "МРСК Центра и Приволжья",
       "id": "4d72e8-99800a",
       "locationSet": {"include": ["ru"]},
+      "matchNames": [
+        "оао «мрск центра и приволжья»"
+      ],
       "tags": {
         "operator": "МРСК Центра и Приволжья",
         "power": "line"
@@ -9682,71 +9712,9 @@
       "displayName": "МРСК-1",
       "id": "06d162-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KOS, RU-TVE, RU-YAR",
       "tags": {
         "operator": "МРСК-1",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ОАО \"МОЭСК\"",
-      "id": "f37282-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "ОАО \"МОЭСК\"",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ОАО \"МРСК Центра\"",
-      "id": "904e6b-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "ОАО \"МРСК Центра\"",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ОАО \"МРСК ЮГА\"",
-      "id": "6822f3-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "ОАО \"МРСК ЮГА\"",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ОАО \"ФСК ЕЭС\"",
-      "id": "a80300-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "ОАО \"ФСК ЕЭС\"",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ОАО «МРСК СК»",
-      "id": "56a442-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "ОАО «МРСК СК»",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ОАО «МРСК Центра и Приволжья»",
-      "id": "e9dfd9-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "ОАО «МРСК Центра и Приволжья»",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ОАО «РусГидро»",
-      "id": "ef0fa4-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "ОАО «РусГидро»",
         "power": "line"
       }
     },
@@ -9754,6 +9722,7 @@
       "displayName": "ООО \"Востокнефтепровод\"",
       "id": "23025a-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-AMU, RU-SA",
       "tags": {
         "operator": "ООО \"Востокнефтепровод\"",
         "power": "line"
@@ -9763,17 +9732,20 @@
       "displayName": "ПАО \"МРСК Волги\" - Самарские РС",
       "id": "464ab6-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAM, RU-ULY",
       "tags": {
         "operator": "ПАО \"МРСК Волги\" - Самарские РС",
         "power": "line"
       }
     },
     {
-      "displayName": "ПАО \"МРСК ЮГА\"",
-      "id": "6e0b52-99800a",
+      "displayName": "ПАО «Магаданэнерго»",
+      "id": "88b9ff-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MAG",
       "tags": {
-        "operator": "ПАО \"МРСК ЮГА\"",
+        "operator": "ПАО «Магаданэнерго»",
+        "operator:wikidata": "Q4273879",
         "power": "line"
       }
     },
@@ -9781,17 +9753,10 @@
       "displayName": "ПАО «Россети Кубань»",
       "id": "3b4dee-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-AD, RU-KDA",
       "tags": {
         "operator": "ПАО «Россети Кубань»",
-        "power": "line"
-      }
-    },
-    {
-      "displayName": "ПАО СУЭНКО",
-      "id": "11be48-99800a",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "operator": "ПАО СУЭНКО",
+        "operator:wikidata": "Q4243549",
         "power": "line"
       }
     },
@@ -9799,6 +9764,7 @@
       "displayName": "ПО \"Сасовские электрические сети\"",
       "id": "fc6b1d-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MO, RU-RYA",
       "tags": {
         "operator": "ПО \"Сасовские электрические сети\"",
         "power": "line"
@@ -9808,6 +9774,7 @@
       "displayName": "ПО ЗЭС",
       "id": "5743cb-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ROS",
       "tags": {
         "operator": "ПО ЗЭС",
         "power": "line"
@@ -9826,6 +9793,7 @@
       "displayName": "Россети",
       "id": "rosseti-99800a",
       "locationSet": {"include": ["ru"]},
+      "matchNames": ["пао россети"],
       "tags": {
         "operator": "Россети",
         "operator:en": "Rosseti",
@@ -9835,9 +9803,36 @@
       }
     },
     {
+      "displayName": "Россети Юг",
+      "id": "d62d15-99800a",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": [
+        "оао \"мрск юга\"",
+        "пао \"мрск юга\""
+      ],
+      "note": "ISO 3166-2 RU-KL, RU-ROS",
+      "tags": {
+        "operator": "Россети Юг",
+        "operator:wikidata": "Q4273591",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "РусГидро",
+      "id": "70aabc-99800a",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["оао «русгидро»"],
+      "tags": {
+        "operator": "РусГидро",
+        "operator:wikidata": "Q2035424",
+        "power": "line"
+      }
+    },
+    {
       "displayName": "Сахалинэнерго",
       "id": "sakhalinenergo-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAK",
       "tags": {
         "operator": "Сахалинэнерго",
         "operator:en": "Sakhalinenergo",
@@ -9872,6 +9867,7 @@
       "displayName": "Филиал ПАО \"МРСК Сибири\" -\"Омскэнерго\"",
       "id": "7977c5-99800a",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-OMS",
       "tags": {
         "operator": "Филиал ПАО \"МРСК Сибири\" -\"Омскэнерго\"",
         "power": "line"
@@ -9881,6 +9877,7 @@
       "displayName": "ФСК ЕЭС",
       "id": "1728dd-99800a",
       "locationSet": {"include": ["ru"]},
+      "matchNames": ["оао \"фск еэс\""],
       "tags": {
         "operator": "ФСК ЕЭС",
         "operator:wikidata": "Q3063197",
@@ -9907,6 +9904,19 @@
       "tags": {
         "operator": "Черкасиобленерго",
         "operator:wikidata": "Q60986585",
+        "power": "line"
+      }
+    },
+    {
+      "displayName": "Янтарьэнерго",
+      "id": "1080b9-87df5b",
+      "locationSet": {
+        "include": ["ru-kgd.geojson"]
+      },
+      "matchNames": ["ао \"янтарьэнерго\""],
+      "tags": {
+        "operator": "Янтарьэнерго",
+        "operator:wikidata": "Q4538282",
         "power": "line"
       }
     },
@@ -9949,7 +9959,7 @@
       "displayName": "中国南方电网",
       "id": "chinasouthernpowergrid-cf3c91",
       "locationSet": {"include": ["cn"]},
-      "matchNames": ["南方电网"],
+      "matchNames": ["csg", "南方电网"],
       "tags": {
         "operator": "中国南方电网",
         "operator:en": "China Southern Power Grid",
@@ -9976,6 +9986,7 @@
       "displayName": "中核新华-江永新善",
       "id": "e255e9-cf3c91",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "中核新华-江永新善",
         "power": "line"
@@ -10113,6 +10124,7 @@
       "displayName": "国网吉林省供电有限公司",
       "id": "e8a76c-cf3c91",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-JL",
       "tags": {
         "operator": "国网吉林省供电有限公司",
         "power": "line"
@@ -10122,6 +10134,7 @@
       "displayName": "广西能源",
       "id": "56a686-cf3c91",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-GX",
       "tags": {
         "operator": "广西能源",
         "power": "line"
@@ -10173,6 +10186,7 @@
       "displayName": "湖南华电-永江新能",
       "id": "3c5a38-cf3c91",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "湖南华电-永江新能",
         "power": "line"
@@ -10225,13 +10239,17 @@
     },
     {
       "displayName": "魏桥创业",
-      "id": "d9f62d-9dbdec",
+      "id": "shandongweiqiaopioneeringgroup-9dbdec",
       "locationSet": {
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-SD",
       "tags": {
         "operator": "魏桥创业",
+        "operator:en": "Shandong Weiqiao Pioneering Group",
+        "operator:wikidata": "Q17036101",
+        "operator:zh": "魏桥创业",
         "power": "line"
       }
     }

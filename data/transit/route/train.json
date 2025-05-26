@@ -4,7 +4,9 @@
     "exclude": {
       "generic": ["^train$"],
       "named": [
-        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$"
+        "^(city|international|local|mtb|national|rail|regional|urban)$",
+        "^(municipal|τοπική)$",
+        "^entur$"
       ]
     }
   },
@@ -322,15 +324,6 @@
       "tags": {
         "network": "ch-integral",
         "network:wikidata": "Q55503992",
-        "route": "train"
-      }
-    },
-    {
-      "displayName": "CN-railway",
-      "id": "cnrailway-61c516",
-      "locationSet": {"include": ["cn"]},
-      "tags": {
-        "network": "CN-railway",
         "route": "train"
       }
     },
@@ -763,6 +756,7 @@
       "displayName": "ID ŽK (Slovensko)",
       "id": "integrovanadopravazilinskehokraja-b6707b",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-ZI",
       "tags": {
         "network": "Integrovaná doprava Žilinského kraja",
         "network:short": "ID ŽK",
@@ -798,8 +792,9 @@
     },
     {
       "displayName": "IDS BK",
-      "id": "idsbk-b6707b",
-      "locationSet": {"include": ["sk"]},
+      "id": "idsbk-62fcf4",
+      "locationSet": {"include": ["hu", "sk"]},
+      "note": "ISO 3166-2 SK-BL, SK-TA",
       "tags": {
         "network": "IDS BK",
         "network:wikidata": "Q4241634",
@@ -810,6 +805,7 @@
       "displayName": "IDS Východ",
       "id": "idsvychod-b6707b",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-KI, SK-PV",
       "tags": {
         "network": "IDS Východ",
         "network:wikidata": "Q105226836",
@@ -963,10 +959,16 @@
     },
     {
       "displayName": "Koleje Dolnośląskie",
-      "id": "kolejedolnoslaskie-aa16a7",
+      "id": "kolejedolnoslaskie-259af7",
       "locationSet": {
-        "include": ["cz", "de", "pl"]
+        "include": [
+          "cz-52.geojson",
+          "cz-53.geojson",
+          "de-sn.geojson",
+          "pl"
+        ]
       },
+      "note": "ISO 3166-2 PL-02, PL-08, PL-32",
       "tags": {
         "network": "Koleje Dolnośląskie",
         "network:short": "KD",
@@ -989,8 +991,11 @@
     },
     {
       "displayName": "Koleje Śląskie",
-      "id": "kolejeslaskie-163923",
-      "locationSet": {"include": ["cz", "pl"]},
+      "id": "kolejeslaskie-f1205f",
+      "locationSet": {
+        "include": ["cz-80.geojson", "pl"]
+      },
+      "note": "ISO 3166-2 PL-12, PL-24",
       "tags": {
         "network": "Koleje Śląskie",
         "network:short": "KSl",
@@ -2880,9 +2885,15 @@
     },
     {
       "displayName": "VOR",
-      "id": "vor-5316b2",
+      "id": "vor-5a3457",
       "locationSet": {
-        "include": ["at", "cz", "hu", "sk"]
+        "include": [
+          "at",
+          "cz-31.geojson",
+          "cz-64.geojson",
+          "hu",
+          "sk-bl.geojson"
+        ]
       },
       "tags": {
         "network": "VOR",
@@ -3046,9 +3057,13 @@
     },
     {
       "displayName": "БЧ",
-      "id": "277604-4f6875",
-      "locationSet": {"include": ["ru"]},
-      "tags": {"network": "БЧ", "route": "train"}
+      "id": "277604-a6e217",
+      "locationSet": {"include": ["by", "ru"]},
+      "tags": {
+        "network": "БЧ",
+        "network:wikidata": "Q76987",
+        "route": "train"
+      }
     },
     {
       "displayName": "МЦД",
@@ -3206,6 +3221,7 @@
         "北京城铁",
         "北京都市铁路"
       ],
+      "note": "ISO 3166-2 CN-BJ, CN-HE",
       "tags": {
         "network": "北京市郊铁路",
         "network:en": "Beijing Suburban Railway",
