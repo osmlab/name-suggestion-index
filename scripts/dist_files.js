@@ -511,7 +511,7 @@ function buildTaginfo() {
       'description': 'Canonical features for OpenStreetMap',
       'project_url': 'https://github.com/osmlab/name-suggestion-index',
       'doc_url': 'https://github.com/osmlab/name-suggestion-index/blob/main/README.md',
-      'icon_url': 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/fastr-food-15.svg',
+      'icon_url': 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/fast-food-15.svg',
       'contact_name': 'Bryan Housel',
       'contact_email': 'bhousel@gmail.com'
     }
