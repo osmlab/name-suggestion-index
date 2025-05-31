@@ -2,26 +2,40 @@
   "properties": {
     "path": "brands/amenity/atm",
     "skipCollection": true,
-    "preserveTags": ["^name"],
     "exclude": {"generic": ["^atm$"]}
   },
   "items": [
     {
       "note": "Auto create ATMs for all banks (remove names per #7236)",
-      "templateExclude": ["monobank"],
+      "templateExclude": [
+        "abnamro",
+        "bankinghub",
+        "monobank"
+      ],
       "templateSource": "brands/amenity/bank",
       "templateTags": {
+        "alt_name": "",
         "amenity": "atm",
+        "full_name": "",
         "name": "",
+        "official_name": "",
         "operator": "{source.tags.brand}",
-        "operator:wikidata": "{source.tags.brand:wikidata}"
+        "operator:wikidata": "{source.tags.brand:wikidata}",
+        "short_name": ""
       }
     },
     {
       "displayName": "Allpoint",
-      "id": "allpoint-a81297",
+      "id": "allpoint-5fc18b",
       "locationSet": {
-        "include": ["au", "ca", "gb", "mx", "us"]
+        "include": [
+          "au",
+          "ca",
+          "gb",
+          "mx",
+          "nz",
+          "us"
+        ]
       },
       "tags": {
         "amenity": "atm",
@@ -30,13 +44,15 @@
       }
     },
     {
-      "displayName": "American Crypto ATM",
-      "id": "americancryptoatm-93d3a2",
+      "displayName": "American Crypto",
+      "id": "americancrypto-93d3a2",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["american crypto atm"],
       "matchTags": ["amenity/bank"],
       "tags": {
         "amenity": "atm",
-        "brand": "American Crypto ATM"
+        "brand": "American Crypto",
+        "brand:wikidata": "Q127753246"
       }
     },
     {
@@ -75,7 +91,7 @@
     {
       "displayName": "Bancontact CASH",
       "id": "bancontactcash-8a4913",
-      "locationSet": {"include": ["bel"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "atm",
         "brand": "Bancontact CASH",
@@ -119,11 +135,22 @@
       }
     },
     {
+      "displayName": "Cash Express",
+      "id": "cashexpress-997829",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "amenity": "atm",
+        "brand": "Cash Express",
+        "brand:wikidata": "Q130262361"
+      }
+    },
+    {
       "displayName": "Cashzone",
       "id": "cashzone-396707",
       "locationSet": {"include": ["gb"]},
       "matchNames": [
         "cardtronics",
+        "cardtronics uk",
         "cardtronics uk ltd",
         "cashzone ltd"
       ],
@@ -223,6 +250,16 @@
       }
     },
     {
+      "displayName": "EasyPay",
+      "id": "easypay-e5108a",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "amenity": "atm",
+        "brand": "EasyPay",
+        "brand:wikidata": "Q110583289"
+      }
+    },
+    {
       "displayName": "Euronet",
       "id": "euronet-d5d850",
       "locationSet": {
@@ -242,6 +279,10 @@
       "displayName": "Geldmaat",
       "id": "geldmaat-5333ab",
       "locationSet": {"include": ["nl"]},
+      "matchNames": [
+        "abn amro",
+        "abn amro bank n.v."
+      ],
       "tags": {
         "amenity": "atm",
         "brand": "Geldmaat",
@@ -258,6 +299,17 @@
         "amenity": "atm",
         "brand": "Hitachi",
         "brand:wikidata": "Q53238"
+      }
+    },
+    {
+      "displayName": "Instacoin",
+      "id": "instacoin-ddac74",
+      "locationSet": {"include": ["ca"]},
+      "matchNames": ["instacoin atm"],
+      "tags": {
+        "amenity": "atm",
+        "brand": "Instacoin",
+        "brand:wikidata": "Q133247271"
       }
     },
     {
@@ -324,6 +376,33 @@
       }
     },
     {
+      "displayName": "Old Mutual",
+      "id": "oldmutual-ff45b4",
+      "locationSet": {
+        "include": [
+          "bw",
+          "cn",
+          "gh",
+          "ke",
+          "mw",
+          "na",
+          "ng",
+          "rw",
+          "ss",
+          "sz",
+          "tz",
+          "ug",
+          "za",
+          "zw"
+        ]
+      },
+      "tags": {
+        "amenity": "atm",
+        "brand": "Old Mutual",
+        "brand:wikidata": "Q289704"
+      }
+    },
+    {
       "displayName": "Pathward (MetaBank)",
       "id": "pathward-93d3a2",
       "locationSet": {"include": ["us"]},
@@ -343,7 +422,7 @@
         "brand": "Planet Cash",
         "brand:wikidata": "Q117744569",
         "operator": "ITCARD S.A.",
-        "operator:wikidata": "Q117744575"
+        "operator:wikidata": "Q97183761"
       }
     },
     {
@@ -431,6 +510,24 @@
         "brand:he": "בנק טינקוף",
         "brand:ru": "Тинькофф Банк",
         "brand:wikidata": "Q4457878"
+      }
+    },
+    {
+      "displayName": "中華郵政",
+      "id": "chunghwapost-9a6797",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": ["中華郵政公司", "中華郵政股份有限公司"],
+      "tags": {
+        "alt_name": "中華郵政;郵局",
+        "amenity": "atm",
+        "brand": "中華郵政",
+        "brand:en": "Chunghwa Post",
+        "brand:nan": "Tiong-hôa Iû-chèng",
+        "brand:nan-Hant": "中華郵政",
+        "brand:nan-Latn-pehoeji": "Tiong-hôa Iû-chèng",
+        "brand:nan-Latn-tailo": "Tiong-huâ Iû-tsìng",
+        "brand:wikidata": "Q709259",
+        "brand:zh": "中華郵政"
       }
     }
   ]

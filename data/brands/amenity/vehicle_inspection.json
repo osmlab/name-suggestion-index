@@ -3,10 +3,14 @@
     "path": "brands/amenity/vehicle_inspection",
     "exclude": {
       "generic": [
-        "^vehicle inspection$",
+        "^stacja kontroli pojazdów$",
+        "^vehicle inspection( station)?$",
         "^техосмотр$"
       ],
-      "named": ["^itv$"]
+      "named": [
+        "^itv$",
+        "^okręgowa stacja kontroli pojazdów$"
+      ]
     }
   },
   "items": [
@@ -19,6 +23,16 @@
         "brand": "Applus Bilsyn",
         "brand:wikidata": "Q5412861",
         "name": "Applus Bilsyn"
+      }
+    },
+    {
+      "displayName": "Auto Sécurité",
+      "id": "autosecurite-53baa7",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "amenity": "vehicle_inspection",
+        "brand": "Auto Sécurité",
+        "name": "Auto Sécurité"
       }
     },
     {
@@ -62,6 +76,7 @@
         "include": ["de", "dk", "fr"]
       },
       "matchTags": ["shop/car_repair"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "DEKRA",
@@ -88,6 +103,7 @@
         "gesellschaft für technische überwachung"
       ],
       "matchTags": ["shop/car_repair"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "GTÜ",
@@ -96,13 +112,24 @@
       }
     },
     {
-      "displayName": "Okręgowa Stacja Kontroli Pojazdów",
-      "id": "okregowastacjakontrolipojazdow-db5414",
-      "locationSet": {"include": ["pl"]},
+      "displayName": "Norisko",
+      "id": "norisko-4cf8cf",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "vehicle_inspection",
-        "brand": "Okręgowa Stacja Kontroli Pojazdów",
-        "name": "Okręgowa Stacja Kontroli Pojazdów"
+        "brand": "Norisko",
+        "name": "Norisko"
+      }
+    },
+    {
+      "displayName": "Puspakom",
+      "id": "puspakom-0c47dd",
+      "locationSet": {"include": ["my"]},
+      "tags": {
+        "amenity": "vehicle_inspection",
+        "brand": "Puspakom",
+        "brand:wikidata": "Q7261909",
+        "name": "Puspakom"
       }
     },
     {
@@ -117,104 +144,87 @@
       }
     },
     {
-      "displayName": "Stacja Kontroli Pojazdów",
-      "id": "stacjakontrolipojazdow-db5414",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "amenity": "vehicle_inspection",
-        "brand": "Stacja Kontroli Pojazdów",
-        "name": "Stacja Kontroli Pojazdów"
-      }
-    },
-    {
       "displayName": "TÜV Hanse",
       "id": "tuvhanse-da4a1b",
       "locationSet": {"include": ["de"]},
-      "preserveTags": ["^name", "^short_name"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "TÜV Hanse",
         "brand:wikidata": "Q2463537",
-        "name": "TÜV Hanse",
-        "short_name": "TÜV"
+        "name": "TÜV Hanse"
       }
     },
     {
       "displayName": "TÜV Hessen",
       "id": "tuvhessen-da4a1b",
       "locationSet": {"include": ["de"]},
-      "preserveTags": ["^name", "^short_name"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "TÜV Hessen",
         "brand:wikidata": "Q2463542",
-        "name": "TÜV Hessen",
-        "short_name": "TÜV"
+        "name": "TÜV Hessen"
       }
     },
     {
       "displayName": "TÜV Nord",
       "id": "tuvnord-da4a1b",
       "locationSet": {"include": ["de"]},
-      "preserveTags": ["^name", "^short_name"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "TÜV Nord",
         "brand:wikidata": "Q2463547",
-        "name": "TÜV Nord",
-        "short_name": "TÜV"
+        "name": "TÜV Nord"
       }
     },
     {
       "displayName": "TÜV Rheinland",
       "id": "tuvrheinland-da4a1b",
       "locationSet": {"include": ["de"]},
-      "preserveTags": ["^name", "^short_name"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "TÜV Rheinland",
         "brand:wikidata": "Q632391",
-        "name": "TÜV Rheinland",
-        "short_name": "TÜV"
+        "name": "TÜV Rheinland"
       }
     },
     {
       "displayName": "TÜV Saarland",
       "id": "tuvsaarland-da4a1b",
       "locationSet": {"include": ["de"]},
-      "preserveTags": ["^name", "^short_name"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "TÜV Saarland",
         "brand:wikidata": "Q996314",
-        "name": "TÜV Saarland",
-        "short_name": "TÜV"
+        "name": "TÜV Saarland"
       }
     },
     {
       "displayName": "TÜV Süd",
       "id": "tuvsud-da4a1b",
       "locationSet": {"include": ["de"]},
-      "preserveTags": ["^name", "^short_name"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "TÜV Süd",
         "brand:wikidata": "Q880718",
-        "name": "TÜV Süd",
-        "short_name": "TÜV"
+        "name": "TÜV Süd"
       }
     },
     {
       "displayName": "TÜV Thüringen",
       "id": "tuvthuringen-da4a1b",
       "locationSet": {"include": ["de"]},
-      "preserveTags": ["^name", "^short_name"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "vehicle_inspection",
         "brand": "TÜV Thüringen",
         "brand:wikidata": "Q2463551",
-        "name": "TÜV Thüringen",
-        "short_name": "TÜV"
+        "name": "TÜV Thüringen"
       }
     },
     {

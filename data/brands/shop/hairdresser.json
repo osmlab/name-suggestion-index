@@ -5,6 +5,7 @@
       "generic": [
         "^((le|the) )?salo{1,2}n( de)?\\s?(coiffure|fryzjerski|beauté)?\\s?(homme|dame)?$",
         "^(barbea?r[ií]a|berber)$",
+        "^(estética|peluquer[ií]a)( unisex)?$",
         "^(frizerie|fris(eu|ö)r|fryzjer)$",
         "^(the )?barber(ia|shop|\\sshop)?$",
         "^(парикмахер(ская)?|персона|перукарня)$",
@@ -12,23 +13,16 @@
         "^haar(genau|monie|scharf)$",
         "^hair\\s?(design|dresser|lounge|salon|studio|style)$",
         "^kadeřnictví$",
-        "^peluquer[ií]a$",
-        "^peluquería unisex$",
+        "^kirpykla$",
         "^salão de beleza$",
         "^салон красоты$",
         "^حلاق$"
       ],
       "named": [
-        "^(figaro|haarwerk|the cutting room|стиль|локон|шарм|fodrászat)$",
-        "^art of hair$",
-        "^biguine$",
-        "^espace coiffure$",
-        "^glamour$",
-        "^ihr friseur$",
-        "^new look$",
-        "^schnittpunkt$",
-        "^каприз$",
-        "^фея$"
+        "^(a cut above|art of hair|biguine|cutting edge|espace coiffure|figaro|glamour|golden scissors|haarwerk|hair & beauty|hairport)$",
+        "^(ihr friseur|new look|schnittpunkt|style|the cutting room|the hair lounge)$",
+        "^(каприз|фея|стиль|локон|шарм)$",
+        "^fodrászat$"
       ]
     }
   },
@@ -51,6 +45,7 @@
       "tags": {
         "brand": "Timpson",
         "brand:wikidata": "Q7807658",
+        "hairdresser": "barber",
         "male": "yes",
         "name": "Barbershop by Timpson",
         "shop": "hairdresser"
@@ -203,6 +198,36 @@
       }
     },
     {
+      "displayName": "Estética",
+      "id": "estetica-b2eb62",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "brand": "Estética",
+        "name": "Estética",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Estética Unisex",
+      "id": "esteticaunisex-b2eb62",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "brand": "Estética Unisex",
+        "name": "Estética Unisex",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Fabio Salsa",
+      "id": "fabiosalsa-426627",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "brand": "Fabio Salsa",
+        "name": "Fabio Salsa",
+        "shop": "hairdresser"
+      }
+    },
+    {
       "displayName": "Fantastic Sams",
       "id": "fantasticsams-28f1a5",
       "locationSet": {"include": ["us"]},
@@ -227,13 +252,14 @@
       }
     },
     {
-      "displayName": "First Choice Haircutters",
-      "id": "firstchoicehaircutters-7e5a14",
+      "displayName": "First Choice Hair",
+      "id": "firstchoicehair-7e5a14",
       "locationSet": {"include": ["ca"]},
+      "matchNames": ["first choice haircutters"],
       "tags": {
-        "brand": "First Choice Haircutters",
+        "brand": "First Choice Hair",
         "brand:wikidata": "Q5452622",
-        "name": "First Choice Haircutters",
+        "name": "First Choice Hair",
         "shop": "hairdresser"
       }
     },
@@ -263,8 +289,8 @@
     },
     {
       "displayName": "Frédéric Moreno",
-      "id": "fredericmoreno-40f1cc",
-      "locationSet": {"include": ["fr"]},
+      "id": "fredericmoreno-426627",
+      "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "Frédéric Moreno",
         "brand:wikidata": "Q105395188",
@@ -365,6 +391,25 @@
       }
     },
     {
+      "displayName": "Holiday Hair",
+      "id": "holidayhair-f208c6",
+      "locationSet": {
+        "include": [
+          "us-de.geojson",
+          "us-md.geojson",
+          "us-nj.geojson",
+          "us-oh.geojson",
+          "us-pa.geojson",
+          "us-wv.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Holiday Hair",
+        "name": "Holiday Hair",
+        "shop": "hairdresser"
+      }
+    },
+    {
       "displayName": "Igorance",
       "id": "igorance-6ad147",
       "locationSet": {"include": ["lu"]},
@@ -439,16 +484,6 @@
         "brand": "Kinki Kappers",
         "brand:wikidata": "Q124152910",
         "name": "Kinki Kappers",
-        "shop": "hairdresser"
-      }
-    },
-    {
-      "displayName": "Kirpykla",
-      "id": "kirpykla-1e6f8d",
-      "locationSet": {"include": ["lt"]},
-      "tags": {
-        "brand": "Kirpykla",
-        "name": "Kirpykla",
         "shop": "hairdresser"
       }
     },
@@ -553,11 +588,23 @@
     },
     {
       "displayName": "New Style",
-      "id": "newstyle-ece769",
-      "locationSet": {"include": ["001"]},
+      "id": "newstyle-b224bb",
+      "locationSet": {"include": ["150"]},
       "tags": {
         "brand": "New Style",
         "name": "New Style",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "OldBoy",
+      "id": "oldboy-1e82c2",
+      "locationSet": {
+        "include": ["150", "cy", "ru"]
+      },
+      "tags": {
+        "brand": "OldBoy",
+        "name": "OldBoy",
         "shop": "hairdresser"
       }
     },
@@ -649,7 +696,7 @@
       }
     },
     {
-      "displayName": "Regis Salons (US)",
+      "displayName": "Regis Salons (USA)",
       "id": "regis-28f1a5",
       "locationSet": {"include": ["us"]},
       "tags": {
@@ -657,6 +704,20 @@
         "brand": "Regis",
         "brand:wikidata": "Q7309325",
         "name": "Regis",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Rocket Barber Shop",
+      "id": "rocketbarbershop-23df39",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "brand": "Rocket Barber Shop",
+        "brand:wikidata": "Q130298468",
+        "hairdresser": "barber",
+        "name": "Rocket Barber Shop",
         "shop": "hairdresser"
       }
     },
@@ -680,8 +741,24 @@
       "tags": {
         "brand": "Ruffians",
         "brand:wikidata": "Q111499433",
+        "hairdresser": "barber",
         "male": "yes",
         "name": "Ruffians",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Rush Hair",
+      "id": "rushhair-7aa40b",
+      "locationSet": {"include": ["gb-eng"]},
+      "matchNames": [
+        "rush hair & beauty",
+        "rush hairdressers"
+      ],
+      "tags": {
+        "brand": "Rush Hair",
+        "brand:wikidata": "Q132737191",
+        "name": "Rush Hair",
         "shop": "hairdresser"
       }
     },
@@ -732,14 +809,17 @@
       }
     },
     {
-      "displayName": "SmartStyle by Regis",
+      "displayName": "SmartStyle",
       "id": "smartstyle-46af32",
       "locationSet": {"include": ["ca", "us"]},
-      "matchNames": ["smartstyle hair salons"],
+      "matchNames": [
+        "smartstyle family hair salon",
+        "smartstyle hair salons"
+      ],
       "matchTags": ["shop/beauty"],
       "tags": {
-        "brand": "Regis",
-        "brand:wikidata": "Q7309325",
+        "brand": "SmartStyle",
+        "brand:wikidata": "Q125781169",
         "name": "SmartStyle",
         "shop": "hairdresser"
       }
@@ -910,13 +990,24 @@
       }
     },
     {
+      "displayName": "Vog Coiffure",
+      "id": "vogcoiffure-40f1cc",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "brand": "Vog Coiffure",
+        "name": "Vog Coiffure",
+        "shop": "hairdresser"
+      }
+    },
+    {
       "displayName": "Виктория",
-      "id": "victoria-ece769",
-      "locationSet": {"include": ["001"]},
+      "id": "victoria-1e04bd",
+      "locationSet": {"include": ["by", "ru"]},
       "tags": {
         "brand": "Виктория",
         "name": "Виктория",
         "name:en": "Victoria",
+        "name:ru": "Виктория",
         "shop": "hairdresser"
       }
     },
@@ -945,19 +1036,36 @@
     },
     {
       "displayName": "Имидж",
-      "id": "image-ece769",
-      "locationSet": {"include": ["001"]},
+      "id": "image-9b9e42",
+      "locationSet": {
+        "include": ["by", "kg", "kz", "md", "ru"]
+      },
       "tags": {
         "brand": "Имидж",
         "name": "Имидж",
         "name:en": "Image",
+        "name:ru": "Имидж",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "Престиж",
+      "id": "6ca89e-230c63",
+      "locationSet": {
+        "include": ["by", "kg", "kz", "ru"]
+      },
+      "tags": {
+        "brand": "Престиж",
+        "name": "Престиж",
         "shop": "hairdresser"
       }
     },
     {
       "displayName": "Светлана",
-      "id": "e18b4b-ece769",
-      "locationSet": {"include": ["001"]},
+      "id": "e18b4b-347366",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Светлана",
         "name": "Светлана",
@@ -976,8 +1084,8 @@
     },
     {
       "displayName": "Эконом",
-      "id": "0c3de9-ece769",
-      "locationSet": {"include": ["001"]},
+      "id": "0c3de9-1e04bd",
+      "locationSet": {"include": ["by", "ru"]},
       "tags": {
         "brand": "Эконом",
         "name": "Эконом",
@@ -1027,6 +1135,18 @@
         "name": "ファミリーカット1000",
         "name:en": "Family Cut 1000",
         "name:ja": "ファミリーカット1000",
+        "shop": "hairdresser"
+      }
+    },
+    {
+      "displayName": "プラージュ",
+      "id": "14ab00-946510",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "brand": "プラージュ",
+        "brand:ja": "プラージュ",
+        "name": "プラージュ",
+        "name:ja": "プラージュ",
         "shop": "hairdresser"
       }
     }

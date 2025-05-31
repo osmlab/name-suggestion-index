@@ -1,7 +1,13 @@
 {
   "properties": {
     "path": "operators/amenity/social_facility",
-    "exclude": {"generic": ["^social facility$"]}
+    "exclude": {
+      "generic": [
+        "^prefeitura municipal$",
+        "^social facility$"
+      ],
+      "named": ["^foodsharing.de$"]
+    }
   },
   "items": [
     {
@@ -11,6 +17,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Abbeyfield",
+        "operator:type": "charitable",
         "operator:wikidata": "Q4664101"
       }
     },
@@ -20,7 +27,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Abrapa"
+        "operator": "Abrapa",
+        "operator:type": "private"
       }
     },
     {
@@ -30,7 +38,19 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "ADAPEI",
+        "operator:type": "private",
         "operator:wikidata": "Q2824082"
+      }
+    },
+    {
+      "displayName": "ADMR",
+      "id": "admr-704240",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "ADMR",
+        "operator:type": "private",
+        "operator:wikidata": "Q2819099"
       }
     },
     {
@@ -40,6 +60,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Adoma",
+        "operator:type": "private",
         "operator:wikidata": "Q366026"
       }
     },
@@ -49,7 +70,9 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "advita Pflegedienst GmbH"
+        "operator": "advita Pflegedienst GmbH",
+        "operator:type": "private",
+        "operator:wikidata": "Q130214503"
       }
     },
     {
@@ -58,7 +81,22 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "AEIM"
+        "operator": "AEIM",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Agensi Anti-Dadah Kebangsaan",
+      "id": "agensiantidadahkebangsaan-966bc0",
+      "locationSet": {"include": ["my"]},
+      "matchNames": [
+        "agensi anti-dadah kebangsaan (aadk)"
+      ],
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Agensi Anti-Dadah Kebangsaan",
+        "operator:short": "AADK",
+        "operator:type": "government"
       }
     },
     {
@@ -75,11 +113,26 @@
     },
     {
       "displayName": "Ajuntament de Barcelona",
-      "id": "ajuntamentdebarcelona-a8af6f",
-      "locationSet": {"include": ["es"]},
+      "id": "ajuntamentdebarcelona-4392ed",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Ajuntament de Barcelona"
+        "operator": "Ajuntament de Barcelona",
+        "operator:type": "government",
+        "operator:wikidata": "Q3129773"
+      }
+    },
+    {
+      "displayName": "Alliade",
+      "id": "alliade-627b49",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Alliade",
+        "operator:type": "private",
+        "operator:wikidata": "Q123696221"
       }
     },
     {
@@ -93,6 +146,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Alloheim Senioren-Residenzen",
+        "operator:type": "private",
         "operator:wikidata": "Q15782485"
       }
     },
@@ -102,7 +156,8 @@
       "locationSet": {"include": ["ca"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Amica"
+        "operator": "Amica",
+        "operator:type": "private"
       }
     },
     {
@@ -113,6 +168,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Anchor",
+        "operator:type": "private",
         "operator:wikidata": "Q65091469",
         "social_facility:for": "senior"
       }
@@ -124,7 +180,17 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Anglicare",
+        "operator:type": "private",
         "operator:wikidata": "Q4763563"
+      }
+    },
+    {
+      "displayName": "Arcare",
+      "id": "arcare-9d36ac",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Arcare"
       }
     },
     {
@@ -133,7 +199,8 @@
       "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Armonea"
+        "operator": "Armonea",
+        "operator:type": "private"
       }
     },
     {
@@ -142,7 +209,9 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Arpavie"
+        "operator": "Arpavie",
+        "operator:type": "private",
+        "operator:wikidata": "Q128791731"
       }
     },
     {
@@ -152,6 +221,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Arvida",
+        "operator:type": "private",
         "operator:wikidata": "Q115565733",
         "social_facility": "group_home",
         "social_facility:for": "senior"
@@ -164,7 +234,24 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Associação de Pais e Amigos dos Excepcionais",
+        "operator:type": "ngo",
         "operator:wikidata": "Q16494876"
+      }
+    },
+    {
+      "displayName": "Asylorganisation Zürich",
+      "id": "asylorganisationzurich-f2c9df",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
+      "matchNames": [
+        "aoz, asylorganisation zürich"
+      ],
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Asylorganisation Zürich",
+        "operator:short": "AOZ",
+        "operator:type": "private"
       }
     },
     {
@@ -175,16 +262,33 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Attendo",
+        "operator:type": "private",
         "operator:wikidata": "Q11853322"
       }
     },
     {
       "displayName": "Ayuntamiento de Bilbao. Área de Acción Social / Bilboko Udala. Gizarte Ekintza Saila",
-      "id": "ayuntamientodebilbaoareadeaccionsocialbilbokoudalagizarteekintzasaila-a8af6f",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodebilbaoareadeaccionsocialbilbokoudalagizarteekintzasaila-6d9f53",
+      "locationSet": {
+        "include": ["es-bi.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Ayuntamiento de Bilbao. Área de Acción Social / Bilboko Udala. Gizarte Ekintza Saila"
+        "operator": "Ayuntamiento de Bilbao. Área de Acción Social / Bilboko Udala. Gizarte Ekintza Saila",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Ayuntamiento de Madrid",
+      "id": "ayuntamientodemadrid-324b90",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Ayuntamiento de Madrid",
+        "operator:type": "government",
+        "operator:wikidata": "Q3773976"
       }
     },
     {
@@ -193,7 +297,19 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Azienda Socio Sanitaria Territoriale della Brianza"
+        "operator": "Azienda Socio Sanitaria Territoriale della Brianza",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "AZURIT Rohr GmbH",
+      "id": "azuritrohrgmbh-9a82eb",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "AZURIT Rohr GmbH",
+        "operator:type": "private",
+        "operator:wikidata": "Q47716901"
       }
     },
     {
@@ -204,16 +320,45 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Barchester Healthcare",
+        "operator:type": "private",
         "operator:wikidata": "Q4859884"
       }
     },
     {
       "displayName": "BC Housing",
-      "id": "bchousing-4dbadb",
-      "locationSet": {"include": ["ca"]},
+      "id": "bchousing-8d05c1",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "BC Housing"
+        "operator": "BC Housing",
+        "operator:type": "public",
+        "operator:wikidata": "Q4835296"
+      }
+    },
+    {
+      "displayName": "Bergen kommune",
+      "id": "bergenkommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Bergen kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q10428388"
+      }
+    },
+    {
+      "displayName": "Bergische Diakonie Aprath",
+      "id": "bergischediakonieaprath-f38aef",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Bergische Diakonie Aprath",
+        "operator:type": "association",
+        "operator:wikidata": "Q819833"
       }
     },
     {
@@ -225,6 +370,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Bremer Heimstiftung",
+        "operator:type": "ngo",
         "operator:wikidata": "Q907638"
       }
     },
@@ -235,16 +381,21 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Brookdale Senior Living",
+        "operator:type": "private",
         "operator:wikidata": "Q4974387"
       }
     },
     {
       "displayName": "BSZ Stiftung",
-      "id": "bszstiftung-5de282",
-      "locationSet": {"include": ["ch"]},
+      "id": "bszstiftung-52b44a",
+      "locationSet": {
+        "include": ["ch-sz.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "BSZ Stiftung"
+        "operator": "BSZ Stiftung",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q105761109"
       }
     },
     {
@@ -254,7 +405,21 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Bupa",
+        "operator:type": "private",
         "operator:wikidata": "Q931628"
+      }
+    },
+    {
+      "displayName": "Cambridge City Council",
+      "id": "cambridgecitycouncil-ddcbac",
+      "locationSet": {
+        "include": ["gb-east-england.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Cambridge City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q5025388"
       }
     },
     {
@@ -264,6 +429,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Care UK",
+        "operator:type": "private",
         "operator:wikidata": "Q5038862"
       }
     },
@@ -273,7 +439,19 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "CCAS"
+        "operator": "CCAS",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Centraal Orgaan opvang Asielzoekers",
+      "id": "centraalorgaanopvangasielzoekers-627b49",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Centraal Orgaan opvang Asielzoekers",
+        "operator:type": "public",
+        "operator:wikidata": "Q2115828"
       }
     },
     {
@@ -282,7 +460,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "CG91"
+        "operator": "CG91",
+        "operator:type": "private"
       }
     },
     {
@@ -292,6 +471,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Chartwell",
+        "operator:type": "private",
         "operator:wikidata": "Q5086953"
       }
     },
@@ -302,25 +482,34 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Coallia",
+        "operator:type": "ngo",
         "operator:wikidata": "Q56312228"
       }
     },
     {
       "displayName": "Comune di Genova",
-      "id": "comunedigenova-feb2f4",
-      "locationSet": {"include": ["it"]},
+      "id": "comunedigenova-9cadb3",
+      "locationSet": {
+        "include": ["it-42.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Comune di Genova"
+        "operator": "Comune di Genova",
+        "operator:type": "government",
+        "operator:wikidata": "Q1449"
       }
     },
     {
       "displayName": "Comunidad de Madrid",
-      "id": "comunidaddemadrid-a8af6f",
-      "locationSet": {"include": ["es"]},
+      "id": "comunidaddemadrid-324b90",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Comunidad de Madrid"
+        "operator": "Comunidad de Madrid",
+        "operator:type": "government",
+        "operator:wikidata": "Q578788"
       }
     },
     {
@@ -329,7 +518,41 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Cornelius-Werk Diakonische Dienste gGmbH"
+        "operator": "Cornelius-Werk Diakonische Dienste gGmbH",
+        "operator:type": "private",
+        "operator:wikidata": "Q130153797"
+      }
+    },
+    {
+      "displayName": "Covida",
+      "id": "covida-ac7a28",
+      "locationSet": {
+        "include": ["be-vli.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Covida",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "CROUS de Paris",
+      "id": "crousdeparis-704240",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "CROUS de Paris",
+        "operator:type": "association",
+        "operator:wikidata": "Q92754394"
+      }
+    },
+    {
+      "displayName": "Dagelijks Leven",
+      "id": "dagelijksleven-627b49",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Dagelijks Leven"
       }
     },
     {
@@ -340,16 +563,22 @@
       },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Daheim e.V."
+        "operator": "Daheim e.V.",
+        "operator:type": "private",
+        "operator:wikidata": "Q130154353"
       }
     },
     {
       "displayName": "Département de Maine-et-Loire",
-      "id": "departementdemaineetloire-704240",
-      "locationSet": {"include": ["fx"]},
+      "id": "departementdemaineetloire-13ea39",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Département de Maine-et-Loire"
+        "operator": "Département de Maine-et-Loire",
+        "operator:type": "government",
+        "operator:wikidata": "Q105079609"
       }
     },
     {
@@ -359,19 +588,11 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Department of Health",
+        "operator:en": "Department of Health",
         "operator:short": "DOH",
+        "operator:tl": "Kagawaran ng Kalusugan",
+        "operator:type": "government",
         "operator:wikidata": "Q3545669"
-      }
-    },
-    {
-      "displayName": "Department of Interior and Local Government (Philippines)",
-      "id": "departmentofinteriorandlocalgovernment-1b29d4",
-      "locationSet": {"include": ["ph"]},
-      "tags": {
-        "amenity": "social_facility",
-        "operator": "Department of Interior and Local Government",
-        "operator:short": "DILG",
-        "operator:wikidata": "Q3543505"
       }
     },
     {
@@ -381,8 +602,28 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Department of Social Welfare and Development",
+        "operator:en": "Department of Social Welfare and Development",
         "operator:short": "DSWD",
+        "operator:tl": "Kagawaran ng Kagalingang Panlipunan at Pagpapaunlad",
+        "operator:type": "government",
         "operator:wikidata": "Q3547113"
+      }
+    },
+    {
+      "displayName": "Department of the Interior and Local Government (Philippines)",
+      "id": "departmentoftheinteriorandlocalgovernment-1b29d4",
+      "locationSet": {"include": ["ph"]},
+      "matchNames": [
+        "department of interior and local government"
+      ],
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Department of the Interior and Local Government",
+        "operator:en": "Department of the Interior and Local Government",
+        "operator:short": "DILG",
+        "operator:tl": "Kagawaran ng Interyor at Pamahalaang Lokal",
+        "operator:type": "government",
+        "operator:wikidata": "Q3543505"
       }
     },
     {
@@ -394,16 +635,31 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Diakoniewerk Essen",
+        "operator:type": "charitable",
         "operator:wikidata": "Q1208293"
       }
     },
     {
-      "displayName": "Domicil Bern AG",
-      "id": "domicilbernag-5de282",
-      "locationSet": {"include": ["ch"]},
+      "displayName": "Diakonisches Werk Innere Mission Leipzig e.V.",
+      "id": "diakonischeswerkinneremissionleipzigev-9a82eb",
+      "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Domicil Bern AG"
+        "operator": "Diakonisches Werk Innere Mission Leipzig e.V.",
+        "operator:type": "private",
+        "operator:wikidata": "Q130273250"
+      }
+    },
+    {
+      "displayName": "Domicil Bern AG",
+      "id": "domicilbernag-af9918",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Domicil Bern AG",
+        "operator:type": "private"
       }
     },
     {
@@ -412,7 +668,9 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Domitys"
+        "operator": "Domitys",
+        "operator:type": "private",
+        "operator:wikidata": "Q121166126"
       }
     },
     {
@@ -424,7 +682,19 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "DomusVi",
+        "operator:type": "private",
         "operator:wikidata": "Q111208441"
+      }
+    },
+    {
+      "displayName": "Drammen kommune",
+      "id": "drammenkommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Drammen kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q26525"
       }
     },
     {
@@ -433,7 +703,9 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Edenis"
+        "operator": "Edenis",
+        "operator:type": "private",
+        "operator:wikidata": "Q116538831"
       }
     },
     {
@@ -442,7 +714,9 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "ELIM Diakonie GmbH"
+        "operator": "ELIM Diakonie GmbH",
+        "operator:type": "private",
+        "operator:wikidata": "Q130273225"
       }
     },
     {
@@ -453,6 +727,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Esperi Care",
+        "operator:type": "private",
         "operator:wikidata": "Q13423463"
       }
     },
@@ -466,6 +741,7 @@
         "amenity": "social_facility",
         "operator": "Evangelische Heimstiftung",
         "operator:short": "EHS",
+        "operator:type": "ngo",
         "operator:wikidata": "Q1380202"
       }
     },
@@ -483,6 +759,7 @@
         "amenity": "social_facility",
         "operator": "Evangelische Stiftung Neinstedt",
         "operator:short": "ESN",
+        "operator:type": "ngo",
         "operator:wikidata": "Q1974948"
       }
     },
@@ -496,7 +773,25 @@
         "amenity": "social_facility",
         "operator": "Evangelische Stiftung Neuerkerode",
         "operator:short": "ESN",
+        "operator:type": "ngo",
         "operator:wikidata": "Q1381175"
+      }
+    },
+    {
+      "displayName": "Evangelischer Verein für Innere Mission in Nassau",
+      "id": "evangelischervereinfurinneremissioninnassau-516e6a",
+      "locationSet": {
+        "include": [
+          "de-he.geojson",
+          "de-rp.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Evangelischer Verein für Innere Mission in Nassau",
+        "operator:short": "EVIM",
+        "operator:type": "ngo",
+        "operator:wikidata": "Q15446972"
       }
     },
     {
@@ -506,16 +801,35 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Extendicare",
+        "operator:type": "private",
         "operator:wikidata": "Q5421912"
       }
     },
     {
-      "displayName": "f & w fördern und wohnen AöR",
-      "id": "fandwfordernundwohnenaor-9a82eb",
-      "locationSet": {"include": ["de"]},
+      "displayName": "F&W",
+      "id": "fandw-dca067",
+      "locationSet": {
+        "include": ["de-hh.geojson"]
+      },
+      "matchNames": [
+        "f & w fördern und wohnen aör"
+      ],
       "tags": {
         "amenity": "social_facility",
-        "operator": "f & w fördern und wohnen AöR"
+        "operator": "F&W",
+        "operator:type": "government",
+        "operator:wikidata": "Q133777809"
+      }
+    },
+    {
+      "displayName": "Fedasil",
+      "id": "fedasil-5c0b3d",
+      "locationSet": {"include": ["be"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Fedasil",
+        "operator:type": "public",
+        "operator:wikidata": "Q2766025"
       }
     },
     {
@@ -525,6 +839,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Fondation Léopold Bellan",
+        "operator:type": "ngo",
         "operator:wikidata": "Q37669450"
       }
     },
@@ -535,7 +850,8 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Fondation Partage et Vie",
-        "operator:wikidata": "Q65156773"
+        "operator:type": "ngo",
+        "operator:wikidata": "Q60171160"
       }
     },
     {
@@ -545,7 +861,19 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Four Seasons Health Care",
+        "operator:type": "private",
         "operator:wikidata": "Q5475480"
+      }
+    },
+    {
+      "displayName": "Fredrikstad kommune",
+      "id": "fredrikstadkommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Fredrikstad kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q107135"
       }
     },
     {
@@ -554,16 +882,26 @@
       "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Fundação de Ação Social"
+        "operator": "Fundação de Ação Social",
+        "operator:type": "private"
       }
     },
     {
       "displayName": "Generalitat de Catalunya",
-      "id": "generalitatdecatalunya-a8af6f",
-      "locationSet": {"include": ["es"]},
+      "id": "generalitatdecatalunya-a778ba",
+      "locationSet": {
+        "include": [
+          "es-b.geojson",
+          "es-gi.geojson",
+          "es-l.geojson",
+          "es-t.geojson"
+        ]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Generalitat de Catalunya"
+        "operator": "Generalitat de Catalunya",
+        "operator:type": "public",
+        "operator:wikidata": "Q8022"
       }
     },
     {
@@ -573,16 +911,30 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Genesis HealthCare",
+        "operator:type": "private",
         "operator:wikidata": "Q5532813"
       }
     },
     {
-      "displayName": "Göteborgs Stad",
+      "displayName": "GGZ Drenthe",
+      "id": "ggzdrenthe-627b49",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "GGZ Drenthe",
+        "operator:type": "private",
+        "operator:wikidata": "Q2684358"
+      }
+    },
+    {
+      "displayName": "Göteborgs stad",
       "id": "goteborgsstad-0c56f6",
       "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Göteborgs Stad"
+        "operator": "Göteborgs stad",
+        "operator:type": "government",
+        "operator:wikidata": "Q52502"
       }
     },
     {
@@ -593,16 +945,33 @@
       },
       "tags": {
         "amenity": "social_facility",
-        "operator": "GSE gGmbH"
+        "operator": "GSE gGmbH",
+        "operator:type": "private",
+        "operator:wikidata": "Q130273163"
       }
     },
     {
       "displayName": "Haderslev Kommune",
-      "id": "haderslevkommune-18f4fe",
-      "locationSet": {"include": ["dk"]},
+      "id": "haderslevkommune-d61588",
+      "locationSet": {
+        "include": ["dk-83.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Haderslev Kommune"
+        "operator": "Haderslev Kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q21143"
+      }
+    },
+    {
+      "displayName": "Hanover Scotland",
+      "id": "hanoverscotland-bdda3a",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Hanover Scotland",
+        "operator:type": "private",
+        "operator:wikidata": "Q30257128"
       }
     },
     {
@@ -612,6 +981,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "HC One",
+        "operator:type": "private",
         "operator:wikidata": "Q5629072"
       }
     },
@@ -623,6 +993,7 @@
         "amenity": "social_facility",
         "operator": "Health Service Executive",
         "operator:short": "HSE",
+        "operator:type": "public",
         "operator:wikidata": "Q5690681"
       }
     },
@@ -635,6 +1006,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Heiliggeistspitalstiftung Freiburg",
+        "operator:type": "charitable",
         "operator:wikidata": "Q98684447"
       }
     },
@@ -645,6 +1017,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Heilsarmee",
+        "operator:type": "charitable",
         "operator:wikidata": "Q188307"
       }
     },
@@ -654,7 +1027,53 @@
       "locationSet": {"include": ["fi"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Helsingin kaupunki"
+        "operator": "Helsingin kaupunki",
+        "operator:type": "government",
+        "operator:wikidata": "Q20251620"
+      }
+    },
+    {
+      "displayName": "Het Gastenhuis",
+      "id": "hetgastenhuis-627b49",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Het Gastenhuis",
+        "operator:type": "private",
+        "operator:wikidata": "Q125288107"
+      }
+    },
+    {
+      "displayName": "Hoffnungstaler Stiftung Lobetal",
+      "id": "hoffnungstalerstiftunglobetal-4664ab",
+      "locationSet": {
+        "include": [
+          "de-bb.geojson",
+          "de-be.geojson",
+          "de-st.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Hoffnungstaler Stiftung Lobetal",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q1623064"
+      }
+    },
+    {
+      "displayName": "Humanas Pflege",
+      "id": "humanaspflege-b42b1a",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
+      "matchNames": [
+        "humanas pflege gmbh & co. kg"
+      ],
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Humanas Pflege",
+        "operator:type": "private",
+        "operator:wikidata": "Q133777327"
       }
     },
     {
@@ -663,17 +1082,22 @@
       "locationSet": {"include": ["pe"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Inabif"
+        "operator": "Inabif",
+        "operator:type": "private"
       }
     },
     {
       "displayName": "Innsbrucker Soziale Dienste GmbH",
-      "id": "innsbruckersozialedienstegmbh-f689e0",
-      "locationSet": {"include": ["at"]},
+      "id": "innsbruckersozialedienstegmbh-a22112",
+      "locationSet": {
+        "include": ["at-7.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
         "operator": "Innsbrucker Soziale Dienste GmbH",
-        "operator:short": "ISD"
+        "operator:short": "ISD",
+        "operator:type": "private",
+        "operator:wikidata": "Q108273149"
       }
     },
     {
@@ -684,7 +1108,19 @@
       },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Integrationsmodell Ortsverband Essen e.V."
+        "operator": "Integrationsmodell Ortsverband Essen e.V.",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Internationaler Bund",
+      "id": "internationalerbund-9a82eb",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Internationaler Bund",
+        "operator:type": "association",
+        "operator:wikidata": "Q1363596"
       }
     },
     {
@@ -693,7 +1129,20 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Ipse de Bruggen"
+        "operator": "Ipse de Bruggen",
+        "operator:type": "ngo",
+        "operator:wikidata": "Q50038064"
+      }
+    },
+    {
+      "displayName": "Jabatan Kebajikan Masyarakat",
+      "id": "jabatankebajikanmasyarakat-966bc0",
+      "locationSet": {"include": ["my"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Jabatan Kebajikan Masyarakat",
+        "operator:type": "government",
+        "operator:wikidata": "Q7354381"
       }
     },
     {
@@ -702,16 +1151,76 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Johanniter Seniorenhäuser GmbH"
+        "operator": "Johanniter Seniorenhäuser GmbH",
+        "operator:type": "private",
+        "operator:wikidata": "Q127329486"
+      }
+    },
+    {
+      "displayName": "Junta de Andalucía",
+      "id": "juntadeandalucia-26a1e8",
+      "locationSet": {
+        "include": [
+          "es-al.geojson",
+          "es-ca.geojson",
+          "es-co.geojson",
+          "es-gr.geojson",
+          "es-h.geojson",
+          "es-j.geojson",
+          "es-ma.geojson",
+          "es-se.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Junta de Andalucía",
+        "operator:type": "government",
+        "operator:wikidata": "Q2743342"
       }
     },
     {
       "displayName": "Junta de Castilla y León",
-      "id": "juntadecastillayleon-a8af6f",
-      "locationSet": {"include": ["es"]},
+      "id": "juntadecastillayleon-ce34c9",
+      "locationSet": {
+        "include": [
+          "es-av.geojson",
+          "es-bu.geojson",
+          "es-le.geojson",
+          "es-p.geojson",
+          "es-sa.geojson",
+          "es-sg.geojson",
+          "es-so.geojson",
+          "es-va.geojson",
+          "es-za.geojson"
+        ]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Junta de Castilla y León"
+        "operator": "Junta de Castilla y León",
+        "operator:type": "government",
+        "operator:wikidata": "Q3314606"
+      }
+    },
+    {
+      "displayName": "Karlskrona kommun",
+      "id": "karlskronakommun-0c56f6",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Karlskrona kommun",
+        "operator:type": "government",
+        "operator:wikidata": "Q1128384"
+      }
+    },
+    {
+      "displayName": "Karlstads kommun",
+      "id": "karlstadskommun-0c56f6",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Karlstads kommun",
+        "operator:type": "government",
+        "operator:wikidata": "Q498453"
       }
     },
     {
@@ -721,6 +1230,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Kirkens Korshær",
+        "operator:type": "charitable",
         "operator:wikidata": "Q12321915"
       }
     },
@@ -733,16 +1243,8 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Kleeblatt Pflegeheime gGmbH",
+        "operator:type": "private",
         "operator:wikidata": "Q1746127"
-      }
-    },
-    {
-      "displayName": "Klinik Sonnhalde",
-      "id": "kliniksonnhalde-5de282",
-      "locationSet": {"include": ["ch"]},
-      "tags": {
-        "amenity": "social_facility",
-        "operator": "Klinik Sonnhalde"
       }
     },
     {
@@ -761,7 +1263,19 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Korian",
+        "operator:type": "private",
         "operator:wikidata": "Q3198944"
+      }
+    },
+    {
+      "displayName": "Kristiansand kommune",
+      "id": "kristiansandkommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Kristiansand kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q2415"
       }
     },
     {
@@ -771,6 +1285,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Kursana",
+        "operator:type": "private",
         "operator:wikidata": "Q1793215"
       }
     },
@@ -781,7 +1296,19 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Leger des Heils",
+        "operator:type": "charitable",
         "operator:wikidata": "Q11688635"
+      }
+    },
+    {
+      "displayName": "Leonard Cheshire Disability",
+      "id": "leonardcheshiredisability-bdda3a",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Leonard Cheshire Disability",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q6525177"
       }
     },
     {
@@ -791,16 +1318,21 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Magyar Máltai Szeretetszolgálat",
+        "operator:type": "charitable",
         "operator:wikidata": "Q1162102"
       }
     },
     {
       "displayName": "Mairie de Paris",
-      "id": "mairiedeparis-704240",
-      "locationSet": {"include": ["fx"]},
+      "id": "mairiedeparis-0553d6",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Mairie de Paris"
+        "operator": "Mairie de Paris",
+        "operator:type": "government",
+        "operator:wikidata": "Q3278478"
       }
     },
     {
@@ -809,7 +1341,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Marente"
+        "operator": "Marente",
+        "operator:type": "private"
       }
     },
     {
@@ -819,7 +1352,18 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "McCarthy & Stone",
+        "operator:type": "private",
         "operator:wikidata": "Q16997473"
+      }
+    },
+    {
+      "displayName": "Mehiläinen Oy",
+      "id": "mehilainenoy-d65e34",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Mehiläinen Oy",
+        "operator:type": "private"
       }
     },
     {
@@ -828,26 +1372,105 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Melikgazi Belediyesi"
+        "operator": "Melikgazi Belediyesi",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Metlifecare",
+      "id": "metlifecare-97ad99",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Metlifecare",
+        "operator:type": "private",
+        "operator:wikidata": "Q22906887"
       }
     },
     {
       "displayName": "Metropolitan Regional Housing Authority",
-      "id": "metropolitanregionalhousingauthority-4dbadb",
-      "locationSet": {"include": ["ca"]},
+      "id": "metropolitanregionalhousingauthority-c3d1c8",
+      "locationSet": {
+        "include": ["ca-ns.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Metropolitan Regional Housing Authority"
+        "operator": "Metropolitan Regional Housing Authority",
+        "operator:type": "public"
       }
     },
     {
-      "displayName": "MINSAP",
-      "id": "minsap-7d5963",
+      "displayName": "MHA",
+      "id": "mha-c79a8f",
+      "locationSet": {"include": ["gb-eng"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "MHA",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q6823832"
+      }
+    },
+    {
+      "displayName": "Miasto Stołeczne Warszawa",
+      "id": "miastostolecznewarszawa-325437",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Miasto Stołeczne Warszawa",
+        "operator:type": "government",
+        "operator:wikidata": "Q270"
+      }
+    },
+    {
+      "displayName": "Ministerio de Salud Pública (Cuba)",
+      "id": "ministeriodesaludpublica-7d5963",
       "locationSet": {"include": ["cu"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "MINSAP",
+        "operator": "Ministerio de Salud Pública",
+        "operator:short": "MINSAP",
+        "operator:type": "government",
         "operator:wikidata": "Q6017421"
+      }
+    },
+    {
+      "displayName": "Molde kommune",
+      "id": "moldekommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Molde kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q104095"
+      }
+    },
+    {
+      "displayName": "Moss kommune",
+      "id": "mosskommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Moss kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q109021"
+      }
+    },
+    {
+      "displayName": "Münchenstift",
+      "id": "munchenstift-b322b0",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "matchNames": [
+        "münchenstift gmbh gemeinnützige gesellschaft der stadt münchen"
+      ],
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Münchenstift",
+        "operator:type": "public",
+        "operator:wikidata": "Q112813235"
       }
     },
     {
@@ -856,7 +1479,9 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "NHS"
+        "operator": "NHS",
+        "operator:type": "public",
+        "operator:wikidata": "Q918396"
       }
     },
     {
@@ -865,7 +1490,9 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Norrköpings kommun"
+        "operator": "Norrköpings kommun",
+        "operator:type": "government",
+        "operator:wikidata": "Q504676"
       }
     },
     {
@@ -876,6 +1503,7 @@
         "amenity": "social_facility",
         "operator": "Norwegian Refugee Council",
         "operator:short": "NRC",
+        "operator:type": "ngo",
         "operator:wikidata": "Q1247077"
       }
     },
@@ -886,6 +1514,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Oceania Healthcare",
+        "operator:type": "private",
         "operator:wikidata": "Q109627069",
         "social_facility": "group_home",
         "social_facility:for": "senior"
@@ -898,6 +1527,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "OCMW",
+        "operator:type": "public",
         "operator:wikidata": "Q2679662"
       }
     },
@@ -909,7 +1539,19 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Orpéa",
+        "operator:type": "private",
         "operator:wikidata": "Q3347694"
+      }
+    },
+    {
+      "displayName": "Oslo kommune",
+      "id": "oslokommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Oslo kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q5245991"
       }
     },
     {
@@ -920,6 +1562,7 @@
         "amenity": "social_facility",
         "operator": "Palang Merah Indonesia",
         "operator:short": "PMI",
+        "operator:type": "ngo",
         "operator:wikidata": "Q3003251"
       }
     },
@@ -932,17 +1575,35 @@
         "amenity": "social_facility",
         "name": "Plunket",
         "operator": "Plunket",
+        "operator:type": "charitable",
         "operator:wikidata": "Q7205515",
         "social_facility:for": "child"
       }
     },
     {
-      "displayName": "PMRO",
-      "id": "pmro-7e1cff",
-      "locationSet": {"include": ["br"]},
+      "displayName": "Prefeitura Municipal de Rio das Ostras",
+      "id": "prefeituramunicipalderiodasostras-5bd13a",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "PMRO"
+        "operator": "Prefeitura Municipal de Rio das Ostras",
+        "operator:short": "PMRO",
+        "operator:type": "government",
+        "operator:wikidata": "Q61930515"
+      }
+    },
+    {
+      "displayName": "Pro Mente Tirol",
+      "id": "promentetirol-a22112",
+      "locationSet": {
+        "include": ["at-7.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Pro Mente Tirol",
+        "operator:type": "private"
       }
     },
     {
@@ -951,7 +1612,8 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Retirement Villages Group Ltd"
+        "operator": "Retirement Villages Group Ltd",
+        "operator:type": "private"
       }
     },
     {
@@ -961,7 +1623,21 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Revera",
+        "operator:type": "private",
         "operator:wikidata": "Q7318069"
+      }
+    },
+    {
+      "displayName": "Rummelsberger Diakonie",
+      "id": "rummelsbergerdiakonie-b322b0",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Rummelsberger Diakonie",
+        "operator:type": "private",
+        "operator:wikidata": "Q2175634"
       }
     },
     {
@@ -971,6 +1647,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Ryman Healthcare",
+        "operator:type": "private",
         "operator:wikidata": "Q7385191",
         "social_facility": "group_home",
         "social_facility:for": "senior"
@@ -982,17 +1659,82 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Sanctuary Care"
+        "operator": "Sanctuary Care",
+        "operator:type": "private"
       }
     },
     {
-      "displayName": "Save The Children International",
+      "displayName": "Sandnes kommune",
+      "id": "sandneskommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Sandnes kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q27587"
+      }
+    },
+    {
+      "displayName": "Sanitas",
+      "id": "sanitas-704240",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Sanitas",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Santa Casa da Misericórdia",
+      "id": "santacasadamisericordia-c337c4",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Santa Casa da Misericórdia",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q3122827"
+      }
+    },
+    {
+      "displayName": "Save the Children International",
       "id": "savethechildreninternational-01cce6",
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Save The Children International",
+        "operator": "Save the Children International",
+        "operator:type": "ngo",
         "operator:wikidata": "Q215934"
+      }
+    },
+    {
+      "displayName": "Scorlewald - Raphaëlstichting",
+      "id": "scorlewaldraphaelstichting-627b49",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Scorlewald - Raphaëlstichting",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Secours Catholique",
+      "id": "secourscatholique-704240",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Secours Catholique",
+        "operator:type": "religious",
+        "operator:wikidata": "Q3477205"
+      }
+    },
+    {
+      "displayName": "Southern Cross Care",
+      "id": "southerncrosscare-9d36ac",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Southern Cross Care",
+        "operator:type": "private"
       }
     },
     {
@@ -1003,7 +1745,9 @@
       },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Sozialwerk der Freien Christengemeinde Bremen e.V."
+        "operator": "Sozialwerk der Freien Christengemeinde Bremen e.V.",
+        "operator:type": "ngo",
+        "operator:wikidata": "Q130273117"
       }
     },
     {
@@ -1014,22 +1758,53 @@
       },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Stadt Köln"
+        "operator": "Stadt Köln",
+        "operator:type": "government",
+        "operator:wikidata": "Q365"
       }
     },
     {
       "displayName": "Stadt Zürich, GUD",
-      "id": "stadtzurichgud-5de282",
-      "locationSet": {"include": ["ch"]},
+      "id": "stadtzurichgud-f2c9df",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Stadt Zürich, GUD"
+        "operator": "Stadt Zürich, GUD",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Städtische Altenpflegeheime Leipzig gGmbH",
+      "id": "stadtischealtenpflegeheimeleipzigggmbh-000f65",
+      "locationSet": {
+        "include": ["de-sn.geojson"]
+      },
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Städtische Altenpflegeheime Leipzig gGmbH",
+        "operator:type": "private",
+        "operator:wikidata": "Q130155576"
+      }
+    },
+    {
+      "displayName": "Stavanger kommune",
+      "id": "stavangerkommune-2efea4",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Stavanger kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q25416"
       }
     },
     {
       "displayName": "Stiftung Alterswohnungen der Stadt Zürich",
-      "id": "stiftungalterswohnungenderstadtzurich-5de282",
-      "locationSet": {"include": ["ch"]},
+      "id": "stiftungalterswohnungenderstadtzurich-f2c9df",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "matchNames": [
         "stiftung alterswohnungen der stadt zürich (saw)"
       ],
@@ -1037,16 +1812,20 @@
         "amenity": "social_facility",
         "operator": "Stiftung Alterswohnungen der Stadt Zürich",
         "operator:short": "SAW",
+        "operator:type": "public",
         "operator:wikidata": "Q2348865"
       }
     },
     {
       "displayName": "Stiftung Brändi",
-      "id": "stiftungbrandi-5de282",
-      "locationSet": {"include": ["ch"]},
+      "id": "stiftungbrandi-cf20ba",
+      "locationSet": {
+        "include": ["ch-lu.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
         "operator": "Stiftung Brändi",
+        "operator:type": "public",
         "operator:wikidata": "Q1246490"
       }
     },
@@ -1059,37 +1838,51 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Stiftung Eben-Ezer",
+        "operator:type": "public",
         "operator:wikidata": "Q1761856"
       }
     },
     {
-      "displayName": "Stiftung für Schwerbehinderte Luzern - SSBL",
-      "id": "stiftungfurschwerbehinderteluzernssbl-5de282",
-      "locationSet": {"include": ["ch"]},
+      "displayName": "Stiftung für Schwerbehinderte Luzern",
+      "id": "stiftungfurschwerbehinderteluzern-cf20ba",
+      "locationSet": {
+        "include": ["ch-lu.geojson"]
+      },
+      "matchNames": [
+        "stiftung für schwerbehinderte luzern - ssbl"
+      ],
       "tags": {
         "amenity": "social_facility",
-        "operator": "Stiftung für Schwerbehinderte Luzern - SSBL",
+        "operator": "Stiftung für Schwerbehinderte Luzern",
         "operator:short": "SSBL",
+        "operator:type": "public",
         "operator:wikidata": "Q15849287"
       }
     },
     {
       "displayName": "Stiftung Rütimattli",
-      "id": "stiftungrutimattli-5de282",
-      "locationSet": {"include": ["ch"]},
+      "id": "stiftungrutimattli-3fbede",
+      "locationSet": {
+        "include": ["ch-ow.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
         "operator": "Stiftung Rütimattli",
+        "operator:type": "public",
         "operator:wikidata": "Q1645398"
       }
     },
     {
       "displayName": "Stiftung Zürcher Kinder- und Jugendheime",
-      "id": "stiftungzurcherkinderundjugendheime-5de282",
-      "locationSet": {"include": ["ch"]},
+      "id": "stiftungzurcherkinderundjugendheime-f2c9df",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Stiftung Zürcher Kinder- und Jugendheime"
+        "operator": "Stiftung Zürcher Kinder- und Jugendheime",
+        "operator:type": "public",
+        "operator:wikidata": "Q33121178"
       }
     },
     {
@@ -1099,6 +1892,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Summerset",
+        "operator:type": "private",
         "operator:wikidata": "Q22909162",
         "social_facility": "group_home",
         "social_facility:for": "senior"
@@ -1111,6 +1905,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Sunrise Senior Living",
+        "operator:type": "private",
         "operator:wikidata": "Q612714"
       }
     },
@@ -1130,6 +1925,7 @@
         "amenity": "social_facility",
         "operator": "Suomen Punainen Risti",
         "operator:short": "SPR",
+        "operator:type": "ngo",
         "operator:wikidata": "Q409603"
       }
     },
@@ -1139,7 +1935,9 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "SVRZ"
+        "operator": "SVRZ",
+        "operator:type": "private",
+        "operator:wikidata": "Q126900038"
       }
     },
     {
@@ -1148,18 +1946,31 @@
       "locationSet": {"include": ["ch"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Tertianum"
+        "operator": "Tertianum",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "The Mission to Seafarers",
+      "id": "themissiontoseafarers-01cce6",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "The Mission to Seafarers",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q7751762",
+        "social_facility:for": "seafarer"
       }
     },
     {
       "displayName": "The Salvation Army",
       "id": "thesalvationarmy-01cce6",
       "locationSet": {"include": ["001"]},
-      "matchNames": ["salvation army"],
+      "matchNames": ["salvation army", "tsa"],
       "tags": {
         "amenity": "social_facility",
         "operator": "The Salvation Army",
-        "operator:short": "TSA",
+        "operator:type": "charitable",
         "operator:wikidata": "Q188307"
       }
     },
@@ -1181,7 +1992,8 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "ULSS 7 Pedemontana"
+        "operator": "ULSS 7 Pedemontana",
+        "operator:type": "private"
       }
     },
     {
@@ -1190,7 +2002,9 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Umeå kommun"
+        "operator": "Umeå kommun",
+        "operator:type": "government",
+        "operator:wikidata": "Q507709"
       }
     },
     {
@@ -1200,6 +2014,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "UNHCR",
+        "operator:type": "ngo",
         "operator:wikidata": "Q132551"
       }
     },
@@ -1209,7 +2024,9 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "Vardaga"
+        "operator": "Vardaga",
+        "operator:type": "private",
+        "operator:wikidata": "Q91008926"
       }
     },
     {
@@ -1219,26 +2036,51 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "Vitanas",
+        "operator:type": "private",
         "operator:wikidata": "Q2528621"
       }
     },
     {
       "displayName": "Viva Luzern AG",
-      "id": "vivaluzernag-5de282",
-      "locationSet": {"include": ["ch"]},
+      "id": "vivaluzernag-cf20ba",
+      "locationSet": {
+        "include": ["ch-lu.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
-        "operator": "Viva Luzern AG"
+        "operator": "Viva Luzern AG",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Volunteers of America",
+      "id": "volunteersofamerica-04bb0a",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Volunteers of America",
+        "operator:type": "charitable",
+        "operator:wikidata": "Q7941085"
+      }
+    },
+    {
+      "displayName": "Vulpia",
+      "id": "vulpia-5c0b3d",
+      "locationSet": {"include": ["be"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Vulpia"
       }
     },
     {
       "displayName": "World Food Programme",
-      "id": "wfp-01cce6",
+      "id": "worldfoodprogramme-01cce6",
       "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "WFP",
+        "operator": "World Food Programme",
         "operator:short": "WFP",
+        "operator:type": "ngo",
         "operator:wikidata": "Q204344"
       }
     },
@@ -1249,6 +2091,7 @@
       "tags": {
         "amenity": "social_facility",
         "operator": "World Vision",
+        "operator:type": "ngo",
         "operator:wikidata": "Q2594001"
       }
     },
@@ -1258,29 +2101,45 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "social_facility",
-        "operator": "WVO Zorg"
+        "operator": "WVO Zorg",
+        "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Zorggroep Noordwest-Veluwe",
+      "id": "zorggroepnoordwestveluwe-627b49",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "social_facility",
+        "operator": "Zorggroep Noordwest-Veluwe",
+        "operator:type": "private"
       }
     },
     {
       "displayName": "はぴねす福祉会",
-      "id": "happinesswelfareassociation-51378b",
-      "locationSet": {"include": ["jp"]},
+      "id": "happinesswelfareassociation-f83667",
+      "locationSet": {
+        "include": ["jp-38.geojson"]
+      },
       "tags": {
         "amenity": "social_facility",
         "operator": "はぴねす福祉会",
         "operator:en": "Happiness Welfare Association",
         "operator:ja": "はぴねす福祉会",
+        "operator:type": "ngo",
         "operator:wikidata": "Q116986439"
       }
     },
     {
       "displayName": "公益財団法人ドナルド・マクドナルド・ハウス・チャリティーズ・ジャパン",
-      "id": "30bf1a-51378b",
+      "id": "ronaldmcdonaldhousecharitiesjapan-51378b",
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "social_facility",
         "operator": "公益財団法人ドナルド・マクドナルド・ハウス・チャリティーズ・ジャパン",
-        "operator:ja": "公益財団法人ドナルド・マクドナルド・ハウス・チャリティーズ・ジャパン"
+        "operator:en": "Ronald McDonald House Charities Japan",
+        "operator:ja": "公益財団法人ドナルド・マクドナルド・ハウス・チャリティーズ・ジャパン",
+        "operator:type": "charitable"
       }
     }
   ]

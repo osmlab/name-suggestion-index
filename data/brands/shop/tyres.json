@@ -3,6 +3,7 @@
     "path": "brands/shop/tyres",
     "exclude": {
       "generic": [
+        "^(michelin|pirelli)$",
         "^(tyres|wulkanizacja|vulcanizare)$",
         "^(вулканизация|шиномонтаж)$",
         "^borrachar[ií]a$",
@@ -13,6 +14,21 @@
     }
   },
   "items": [
+    {
+      "displayName": "Advantage",
+      "id": "advantage-d7c451",
+      "locationSet": {"include": ["nz"]},
+      "matchNames": [
+        "advantage tyres",
+        "beaurepaires"
+      ],
+      "tags": {
+        "brand": "Advantage",
+        "brand:wikidata": "Q131625974",
+        "name": "Advantage",
+        "shop": "tyres"
+      }
+    },
     {
       "displayName": "Alliance Tire Company",
       "id": "alliancetirecompany-1d5291",
@@ -43,17 +59,6 @@
         "brand": "Apollo Tyres",
         "brand:wikidata": "Q4780362",
         "name": "Apollo Tyres",
-        "shop": "tyres"
-      }
-    },
-    {
-      "displayName": "Beaurepaires",
-      "id": "beaurepaires-6139cc",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "brand": "Beaurepaires",
-        "brand:wikidata": "Q4877630",
-        "name": "Beaurepaires",
         "shop": "tyres"
       }
     },
@@ -149,8 +154,8 @@
     },
     {
       "displayName": "Costco Tire Center",
-      "id": "costcotirecenter-b51b37",
-      "locationSet": {"include": ["ca", "us"]},
+      "id": "costcotirecenter-db574d",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Costco",
         "brand:wikidata": "Q715583",
@@ -162,6 +167,7 @@
       "displayName": "Costco Tire Centre",
       "id": "costcotirecentre-20a245",
       "locationSet": {"include": ["ca"]},
+      "matchNames": ["costco tire center"],
       "tags": {
         "brand": "Costco",
         "brand:wikidata": "Q715583",
@@ -172,8 +178,8 @@
     {
       "displayName": "Dekkmann",
       "id": "dekkmann-3a2f39",
+      "issues": [5500],
       "locationSet": {"include": ["no"]},
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
       "preserveTags": ["^name"],
       "tags": {
         "brand": "Dekkmann",
@@ -218,6 +224,48 @@
       }
     },
     {
+      "displayName": "Dunlop",
+      "id": "dunlop-975e12",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["nz"]
+      },
+      "tags": {
+        "brand": "Dunlop",
+        "brand:wikidata": "Q5315444",
+        "name": "Dunlop",
+        "shop": "tyres"
+      }
+    },
+    {
+      "displayName": "Dunlop Super Dealer",
+      "id": "dunlopsuperdealer-6139cc",
+      "locationSet": {"include": ["au"]},
+      "matchNames": ["beaurepaires"],
+      "tags": {
+        "brand": "Dunlop Super Dealer",
+        "brand:wikidata": "Q131625949",
+        "name": "Dunlop Super Dealer",
+        "shop": "tyres"
+      }
+    },
+    {
+      "displayName": "Dunn Tire",
+      "id": "dunntire-c22d36",
+      "locationSet": {
+        "include": [
+          "us-ny.geojson",
+          "us-pa.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Dunn Tire",
+        "brand:wikidata": "Q127790186",
+        "name": "Dunn Tire",
+        "shop": "tyres"
+      }
+    },
+    {
       "displayName": "Ehrhardt Reifen + Autoservice",
       "id": "ehrhardtreifenautoservice-24681a",
       "locationSet": {"include": ["de"]},
@@ -230,7 +278,7 @@
       }
     },
     {
-      "displayName": "Eurotyre (Belgium/Netherlands)",
+      "displayName": "Eurotyre (Belgium/Nederland)",
       "id": "eurotyre-eb61ab",
       "locationSet": {"include": ["be", "nl"]},
       "tags": {
@@ -311,30 +359,6 @@
       }
     },
     {
-      "displayName": "Mavis Discount Tire",
-      "id": "mavisdiscounttire-db574d",
-      "locationSet": {"include": ["us"]},
-      "matchNames": ["mavis tires & brakes"],
-      "preserveTags": ["^name"],
-      "tags": {
-        "brand": "Mavis Discount Tire",
-        "brand:wikidata": "Q65058420",
-        "name": "Mavis Discount Tire",
-        "shop": "tyres"
-      }
-    },
-    {
-      "displayName": "Michelin",
-      "id": "michelin-1d5291",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Michelin",
-        "brand:wikidata": "Q151107",
-        "name": "Michelin",
-        "shop": "tyres"
-      }
-    },
-    {
       "displayName": "OK Tire",
       "id": "oktire-20a245",
       "locationSet": {"include": ["ca"]},
@@ -342,17 +366,6 @@
         "brand": "OK Tire",
         "brand:wikidata": "Q118368331",
         "name": "OK Tire",
-        "shop": "tyres"
-      }
-    },
-    {
-      "displayName": "Pirelli",
-      "id": "pirelli-1d5291",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Pirelli",
-        "brand:wikidata": "Q207770",
-        "name": "Pirelli",
         "shop": "tyres"
       }
     },
@@ -421,8 +434,9 @@
     {
       "displayName": "Tiger Wheel & Tyre",
       "id": "tigerwheelandtyre-54a38f",
+      "issues": [8604],
       "locationSet": {"include": ["za"]},
-      "note": "Category may not be perfect, but matches current usage. https://github.com/osmlab/name-suggestion-index/pull/8604",
+      "note": "Category may not be perfect, but matches current usage.",
       "tags": {
         "brand": "Tiger Wheel & Tyre",
         "brand:wikidata": "Q120762656",
@@ -436,7 +450,7 @@
     },
     {
       "displayName": "Tire Choice Auto Service Center",
-      "id": "q7809168-db574d",
+      "id": "tirechoice-db574d",
       "locationSet": {"include": ["us"]},
       "matchNames": [
         "tire choice auto service center",
@@ -444,8 +458,8 @@
       ],
       "tags": {
         "brand": "Tire Choice",
-        "brand:wikidata": "Q420541",
-        "name": "Q7809168",
+        "brand:wikidata": "Q7809168",
+        "name": "Tire Choice",
         "shop": "tyres"
       }
     },
@@ -468,6 +482,18 @@
         "brand": "Tire Kingdom",
         "brand:wikidata": "Q17090159",
         "name": "Tire Kingdom",
+        "shop": "tyres"
+      }
+    },
+    {
+      "displayName": "Tire Pros",
+      "id": "tirepros-db574d",
+      "locationSet": {"include": ["us"]},
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "Tire Pros",
+        "brand:wikidata": "Q130527675",
+        "name": "Tire Pros",
         "shop": "tyres"
       }
     },
@@ -523,6 +549,17 @@
       }
     },
     {
+      "displayName": "Tyremart",
+      "id": "tyremart-54a38f",
+      "locationSet": {"include": ["za"]},
+      "tags": {
+        "brand": "Tyremart",
+        "brand:wikidata": "Q123382009",
+        "name": "Tyremart",
+        "shop": "tyres"
+      }
+    },
+    {
       "displayName": "Tyreplus",
       "id": "tyreplus-99cc81",
       "locationSet": {
@@ -567,6 +604,7 @@
       "displayName": "Vergölst",
       "id": "vergolst-24681a",
       "locationSet": {"include": ["de"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Vergölst",
         "brand:wikidata": "Q1673875",
@@ -578,8 +616,8 @@
     {
       "displayName": "Vianor",
       "id": "vianor-1d5291",
+      "issues": [5500],
       "locationSet": {"include": ["001"]},
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
       "preserveTags": ["^name"],
       "tags": {
         "brand": "Vianor",
@@ -617,8 +655,8 @@
     },
     {
       "displayName": "Колёса Даром",
-      "id": "c2bd06-1d5291",
-      "locationSet": {"include": ["001"]},
+      "id": "c2bd06-4fce7e",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Колёса Даром",
         "name": "Колёса Даром",

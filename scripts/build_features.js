@@ -17,8 +17,8 @@ const withLocale = localeCompare('en-US');
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 
 // JSON
-import geojsonSchemaJSON from '../schema/geojson.json' assert {type: 'json'};
-import featureSchemaJSON from '../schema/feature.json' assert {type: 'json'};
+const geojsonSchemaJSON = JSON5.parse(fs.readFileSync('schema/geojson.json', 'utf8'));
+const featureSchemaJSON = JSON5.parse(fs.readFileSync('schema/feature.json', 'utf8'));
 
 const Validator = jsonschema.Validator;
 let v = new Validator();
@@ -108,7 +108,7 @@ function collectFeatures() {
     if (feature.id)    { obj.id = feature.id; }
     if (feature.properties) {
       obj.properties = feature.properties;
-      delete obj.properties.id;  // to prevent possiblity of conflicting ids
+      delete obj.properties.id;  // to prevent possibility of conflicting ids
     } else {
       obj.properties = {};
     }
@@ -146,7 +146,7 @@ function collectFeatures() {
   });
 
   // sort features by id, see: 800ca866f
-  features.sort((a, b) => withLocale(a.id, b.id))
+  features.sort((a, b) => withLocale(a.id, b.id));
 
   const featureCount = Object.keys(files).length;
   console.log(`🧩  features:\t${featureCount}`);

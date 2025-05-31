@@ -3,9 +3,24 @@
     "path": "brands/amenity/charging_station",
     "skipCollection": true,
     "preserveTags": ["^name"],
-    "exclude": {"generic": ["^charging station$"]}
+    "exclude": {
+      "generic": ["^charging station$"],
+      "named": ["^tesla, inc.$"]
+    }
   },
   "items": [
+    {
+      "displayName": "Believ",
+      "id": "believ-cc3397",
+      "locationSet": {"include": ["gb"]},
+      "matchNames": ["believe", "liberty charge"],
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "Believ",
+        "brand:wikidata": "Q129085075",
+        "name": "Believ"
+      }
+    },
     {
       "displayName": "BP Pulse",
       "id": "bppulse-ed9b3b",
@@ -54,6 +69,16 @@
         "name": "Chargy",
         "operator": "Chargy",
         "operator:wikidata": "Q62702950"
+      }
+    },
+    {
+      "displayName": "Electrocharge",
+      "id": "electrocharge-59a92d",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "Electrocharge",
+        "brand:wikidata": "Q133307258"
       }
     },
     {
@@ -108,7 +133,8 @@
       "locationSet": {"include": ["no"]},
       "tags": {
         "amenity": "charging_station",
-        "brand": "Kople"
+        "brand": "Kople",
+        "brand:wikidata": "Q126708777"
       }
     },
     {
@@ -130,6 +156,28 @@
         "brand": "Mer",
         "brand:wikidata": "Q100821564",
         "name": "Mer"
+      }
+    },
+    {
+      "displayName": "MOL Plugee",
+      "id": "molplugee-ce45cd",
+      "locationSet": {
+        "include": [
+          "cz",
+          "hr",
+          "hu",
+          "ro",
+          "si",
+          "sk"
+        ]
+      },
+      "matchNames": ["mol nyrt."],
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "MOL Plugee",
+        "brand:wikidata": "Q549181",
+        "operator": "MOL",
+        "operator:wikidata": "Q549181"
       }
     },
     {
@@ -203,6 +251,16 @@
       }
     },
     {
+      "displayName": "Powerbox.one",
+      "id": "powerboxone-391bca",
+      "locationSet": {"include": ["cz", "sk"]},
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "Powerbox.one",
+        "brand:wikidata": "Q131535492"
+      }
+    },
+    {
       "displayName": "Powerdot",
       "id": "powerdot-f718d2",
       "locationSet": {
@@ -213,15 +271,15 @@
         "brand": "Powerdot",
         "brand:wikidata": "Q123574541",
         "name": "Powerdot",
-        "operator": "PowerDot",
+        "operator": "Powerdot",
         "operator:wikidata": "Q123574541"
       }
     },
     {
       "displayName": "Recharge",
-      "id": "recharge-508422",
+      "id": "recharge-12f14e",
       "locationSet": {
-        "include": ["fi", "no", "se"]
+        "include": ["dk", "fi", "no", "se"]
       },
       "matchNames": [
         "fortum",
@@ -231,6 +289,7 @@
       "tags": {
         "amenity": "charging_station",
         "brand": "Recharge",
+        "brand:wikidata": "Q126540050",
         "name": "Recharge",
         "operator": "Recharge"
       }
@@ -243,7 +302,9 @@
       "tags": {
         "amenity": "charging_station",
         "brand": "Rivian Adventure Network",
-        "brand:wikidata": "Q7338847"
+        "brand:wikidata": "Q7338847",
+        "operator": "Rivian",
+        "operator:wikidata": "Q7338847"
       }
     },
     {
@@ -254,31 +315,39 @@
       "tags": {
         "amenity": "charging_station",
         "brand": "Rivian Waypoints",
-        "brand:wikidata": "Q7338847"
+        "brand:wikidata": "Q7338847",
+        "operator": "Rivian",
+        "operator:wikidata": "Q7338847"
+      }
+    },
+    {
+      "displayName": "Smart Charge",
+      "id": "smartcharge-cc3397",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "charging_station",
+        "brand": "Smart Charge",
+        "brand:wikidata": "Q127686420",
+        "operator": "Sainsbury's",
+        "operator:wikidata": "Q152096"
       }
     },
     {
       "displayName": "Tesla Destination Charger",
-      "id": "tesladestinationcharger-67e574",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["no"]
-      },
+      "id": "tesladestinationcharger-4bd82e",
+      "locationSet": {"include": ["001"]},
+      "matchNames": ["tesla wall connector"],
       "tags": {
         "amenity": "charging_station",
-        "brand": "Tesla, Inc.",
+        "brand": "Tesla",
         "brand:wikidata": "Q478214",
-        "name": "Tesla Destination Charger",
-        "short_name": "Tesla"
+        "name": "Tesla Destination Charger"
       }
     },
     {
       "displayName": "Tesla Supercharger",
-      "id": "teslasupercharger-67e574",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["no"]
-      },
+      "id": "teslasupercharger-4bd82e",
+      "locationSet": {"include": ["001"]},
       "matchNames": [
         "tesla motors",
         "tesla motors inc",
@@ -290,21 +359,8 @@
         "brand": "Tesla Supercharger",
         "brand:wikidata": "Q17089620",
         "name": "Tesla Supercharger",
-        "operator": "Tesla, Inc.",
-        "operator:wikidata": "Q478214",
-        "short_name": "Tesla"
-      }
-    },
-    {
-      "displayName": "Tesla Supercharger (Norge)",
-      "id": "teslasupercharger-054d0f",
-      "locationSet": {"include": ["no"]},
-      "matchNames": ["tesla motors"],
-      "tags": {
-        "amenity": "charging_station",
-        "brand": "Tesla",
-        "brand:wikidata": "Q478214",
-        "name": "Tesla Supercharger"
+        "operator": "Tesla",
+        "operator:wikidata": "Q478214"
       }
     },
     {
@@ -313,6 +369,7 @@
       "locationSet": {
         "include": ["ch", "de", "fr", "gb", "ie"]
       },
+      "matchNames": ["ubitricity gmbh"],
       "tags": {
         "amenity": "charging_station",
         "brand": "ubitricity",
@@ -367,10 +424,12 @@
         "amenity": "charging_station",
         "brand": "Malanka",
         "brand:be": "Маланка",
+        "brand:en": "Malanka",
         "brand:ru": "Маланка",
         "brand:wikidata": "Q110634998",
         "name": "Malanka",
         "name:be": "Маланка",
+        "name:en": "Malanka",
         "name:ru": "Маланка",
         "operator": "Белоруснефть",
         "operator:wikidata": "Q4082693"
@@ -380,13 +439,16 @@
       "displayName": "Энергия Москвы",
       "id": "energyofmoscow-012f44",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOW",
       "tags": {
         "amenity": "charging_station",
         "brand": "Энергия Москвы",
         "brand:en": "Energy of Moscow",
+        "brand:ru": "Энергия Москвы",
         "brand:wikidata": "Q125346046",
         "network": "Энергия Москвы",
         "network:en": "Energy of Moscow",
+        "network:ru": "Энергия Москвы",
         "network:wikidata": "Q125346046"
       }
     },
@@ -399,6 +461,7 @@
         "brand": "小鹏",
         "brand:en": "Xpeng",
         "brand:wikidata": "Q63035278",
+        "brand:zh": "小鹏",
         "name": "小鹏超充站",
         "name:en": "Xpeng Supercharger",
         "name:zh": "小鹏超充站"
@@ -413,6 +476,7 @@
         "brand": "特来电",
         "brand:en": "Teld",
         "brand:wikidata": "Q118487238",
+        "brand:zh": "特来电",
         "name": "特来电",
         "name:en": "Teld",
         "name:zh": "特来电"

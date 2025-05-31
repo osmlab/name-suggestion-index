@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        node-version: [18, 20]
+        node-version: ['^20.10', '22']
 
     steps:
     - uses: actions/checkout@v4
@@ -27,4 +28,5 @@ jobs:
     - run: |
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
+    - run: npm run lint
     - run: npm run test
