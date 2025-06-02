@@ -1,4 +1,6 @@
-Copyright 2021, name-suggestion-index contributors
+## BSD 3-Clause
+
+Copyright 2025, name-suggestion-index contributors
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

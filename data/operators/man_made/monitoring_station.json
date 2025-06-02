@@ -3,7 +3,13 @@
     "path": "operators/man_made/monitoring_station",
     "preserveTags": ["^name"],
     "exclude": {
-      "generic": ["^monitoring station$"]
+      "generic": [
+        "^estaciones particulares$",
+        "^monitoring station$"
+      ],
+      "named": [
+        "^myrtknet, jabatan ukur dan pemetaan malaysia \\(jupem\\)$"
+      ]
     }
   },
   "items": [
@@ -52,6 +58,19 @@
       }
     },
     {
+      "displayName": "Agencia Nacional de Tierras",
+      "id": "agencianacionaldetierras-eaf2bf",
+      "locationSet": {"include": ["co"]},
+      "matchNames": [
+        "instituto colombiano de la reforma agraria"
+      ],
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Agencia Nacional de Tierras",
+        "operator:wikidata": "Q131401861"
+      }
+    },
+    {
       "displayName": "Agenzia Regionale per la Prevenzione Ambientale del Veneto",
       "id": "agenziaregionaleperlaprevenzioneambientaledelveneto-73d6fa",
       "locationSet": {"include": ["it"]},
@@ -62,8 +81,10 @@
     },
     {
       "displayName": "Amt der Steiermärkischen Landesregierung A15 Energie, Wohnbau. Technik",
-      "id": "amtdersteiermarkischenlandesregierunga15energiewohnbautechnik-5d5a13",
-      "locationSet": {"include": ["at"]},
+      "id": "amtdersteiermarkischenlandesregierunga15energiewohnbautechnik-b7373e",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Amt der Steiermärkischen Landesregierung A15 Energie, Wohnbau. Technik"
@@ -83,8 +104,10 @@
     },
     {
       "displayName": "ARPA LAZIO",
-      "id": "arpalazio-73d6fa",
-      "locationSet": {"include": ["it"]},
+      "id": "arpalazio-46fbfb",
+      "locationSet": {
+        "include": ["it-62.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "ARPA LAZIO"
@@ -92,26 +115,37 @@
     },
     {
       "displayName": "ARPA Piemonte",
-      "id": "arpapiemonte-73d6fa",
-      "locationSet": {"include": ["it"]},
+      "id": "arpapiemonte-484419",
+      "locationSet": {
+        "include": ["it-21.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "ARPA Piemonte"
+        "operator": "ARPA Piemonte",
+        "operator:wikidata": "Q389834"
       }
     },
     {
       "displayName": "ARPAL",
-      "id": "arpal-73d6fa",
-      "locationSet": {"include": ["it"]},
+      "id": "arpal-76bbf8",
+      "locationSet": {
+        "include": [
+          "it-42.geojson",
+          "it-52.geojson"
+        ]
+      },
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "ARPAL"
+        "operator": "ARPAL",
+        "operator:wikidata": "Q30255444"
       }
     },
     {
       "displayName": "ARSARP",
-      "id": "arsarp-73d6fa",
-      "locationSet": {"include": ["it"]},
+      "id": "arsarp-3ab61f",
+      "locationSet": {
+        "include": ["it-67.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "ARSARP"
@@ -123,16 +157,17 @@
       "locationSet": {"include": ["si"]},
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "ARSO"
+        "operator": "ARSO",
+        "operator:wikidata": "Q7541808"
       }
     },
     {
-      "displayName": "Asfinag",
+      "displayName": "ASFINAG",
       "id": "asfinag-5d5a13",
       "locationSet": {"include": ["at"]},
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Asfinag",
+        "operator": "ASFINAG",
         "operator:wikidata": "Q297650"
       }
     },
@@ -146,6 +181,23 @@
       }
     },
     {
+      "displayName": "AT (Auckland Transport)",
+      "id": "at-c4e69c",
+      "locationSet": {
+        "include": [
+          "nz-auk.geojson",
+          "nz-wko.geojson"
+        ]
+      },
+      "matchNames": ["auckland transport"],
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "AT",
+        "operator:type": "government",
+        "operator:wikidata": "Q4819567"
+      }
+    },
+    {
       "displayName": "Atmo Auvergne-Rhône-Alpes",
       "id": "atmoauvergnerhonealpes-7e4705",
       "locationSet": {
@@ -153,7 +205,8 @@
       },
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Atmo Auvergne-Rhône-Alpes"
+        "operator": "Atmo Auvergne-Rhône-Alpes",
+        "operator:wikidata": "Q64929579"
       }
     },
     {
@@ -170,28 +223,15 @@
       }
     },
     {
-      "displayName": "Auckland Transport",
-      "id": "aucklandtransport-c4e69c",
+      "displayName": "Ayuntamiento de Santander",
+      "id": "ayuntamientodesantander-b74e42",
       "locationSet": {
-        "include": [
-          "nz-auk.geojson",
-          "nz-wko.geojson"
-        ]
+        "include": ["es-s.geojson"]
       },
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Auckland Transport",
-        "operator:type": "government",
-        "operator:wikidata": "Q4819567"
-      }
-    },
-    {
-      "displayName": "Ayuntamiento de Santander",
-      "id": "ayuntamientodesantander-4de89d",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "man_made": "monitoring_station",
-        "operator": "Ayuntamiento de Santander"
+        "operator": "Ayuntamiento de Santander",
+        "operator:wikidata": "Q5714934"
       }
     },
     {
@@ -208,12 +248,16 @@
       }
     },
     {
-      "displayName": "bcc",
-      "id": "bcc-505a45",
-      "locationSet": {"include": ["gb"]},
+      "displayName": "Birmingham City Council",
+      "id": "birminghamcitycouncil-ee3921",
+      "locationSet": {
+        "include": ["gb-bir.geojson"]
+      },
+      "matchNames": ["bcc"],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "bcc"
+        "operator": "Birmingham City Council",
+        "operator:wikidata": "Q4916650"
       }
     },
     {
@@ -241,12 +285,31 @@
       }
     },
     {
-      "displayName": "Brussels Mobility",
-      "id": "brusselsmobility-3026fb",
-      "locationSet": {"include": ["be"]},
+      "displayName": "Bruxelles Environnement - Leefmilieu Brussel",
+      "id": "bruxellesenvironnementleefmilieubrussel-df01bd",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Brussels Mobility",
+        "operator": "Bruxelles Environnement - Leefmilieu Brussel",
+        "operator:fr": "Bruxelles Environnement",
+        "operator:nl": "Leefmilieu Brussel",
+        "operator:wikidata": "Q2927109"
+      }
+    },
+    {
+      "displayName": "Bruxelles Mobilité - Brussel Mobiliteit",
+      "id": "bruxellesmobilitebrusselmobiliteit-df01bd",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Bruxelles Mobilité - Brussel Mobiliteit",
+        "operator:en": "Brussels Mobility",
+        "operator:fr": "Bruxelles Mobilité",
+        "operator:nl": "Brussel Mobiliteit",
         "operator:type": "government",
         "operator:wikidata": "Q2231661"
       }
@@ -299,12 +362,27 @@
       }
     },
     {
-      "displayName": "Central Hidroelectrica De Caldas S.A.",
-      "id": "centralhidroelectricadecaldassa-eaf2bf",
-      "locationSet": {"include": ["co"]},
+      "displayName": "Center for Operational Oceanographic Products and Services",
+      "id": "centerforoperationaloceanographicproductsandservices-35adb7",
+      "locationSet": {"include": ["us"]},
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Central Hidroelectrica De Caldas S.A."
+        "operator": "Center for Operational Oceanographic Products and Services",
+        "operator:short": "CO-OPS",
+        "operator:wikidata": "Q123032876"
+      }
+    },
+    {
+      "displayName": "Central Hidroeléctrica de Caldas",
+      "id": "centralhidroelectricadecaldas-eaf2bf",
+      "locationSet": {"include": ["co"]},
+      "matchNames": [
+        "central hidroelectrica de caldas s.a."
+      ],
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Central Hidroeléctrica de Caldas",
+        "operator:wikidata": "Q24960312"
       }
     },
     {
@@ -317,12 +395,13 @@
       }
     },
     {
-      "displayName": "Centro Nacional De Investigaciones De Cafe",
+      "displayName": "Centro Nacional de Investigaciones de Café",
       "id": "centronacionaldeinvestigacionesdecafe-eaf2bf",
       "locationSet": {"include": ["co"]},
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Centro Nacional De Investigaciones De Cafe"
+        "operator": "Centro Nacional de Investigaciones de Café",
+        "operator:wikidata": "Q21511954"
       }
     },
     {
@@ -390,7 +469,7 @@
       }
     },
     {
-      "displayName": "Corporacion Autonoma Regional De La Frontera Nororiental",
+      "displayName": "Corporación Autónoma Regional de la Frontera Nororiental",
       "id": "corporacionautonomaregionaldelafronteranororiental-eaf2bf",
       "locationSet": {"include": ["co"]},
       "matchNames": [
@@ -398,8 +477,9 @@
       ],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Corporacion Autonoma Regional De La Frontera Nororiental",
-        "operator:short": "Corponor"
+        "operator": "Corporación Autónoma Regional de la Frontera Nororiental",
+        "operator:short": "Corponor",
+        "operator:wikidata": "Q20725091"
       }
     },
     {
@@ -416,7 +496,7 @@
       }
     },
     {
-      "displayName": "Corporacion Autonoma Regional Del Valle Del Cauca",
+      "displayName": "Corporación Autónoma Regional del Valle del Cauca",
       "id": "corporacionautonomaregionaldelvalledelcauca-eaf2bf",
       "locationSet": {"include": ["co"]},
       "matchNames": [
@@ -424,8 +504,9 @@
       ],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Corporacion Autonoma Regional Del Valle Del Cauca",
-        "operator:short": "CVC"
+        "operator": "Corporación Autónoma Regional del Valle del Cauca",
+        "operator:short": "CVC",
+        "operator:wikidata": "Q5788888"
       }
     },
     {
@@ -438,9 +519,23 @@
       }
     },
     {
+      "displayName": "Cropos",
+      "id": "cropos-fc1094",
+      "locationSet": {"include": ["hr"]},
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Cropos"
+      }
+    },
+    {
       "displayName": "CRS",
-      "id": "crs-73d6fa",
-      "locationSet": {"include": ["it"]},
+      "id": "crs-9409ae",
+      "locationSet": {
+        "include": [
+          "it-34.geojson",
+          "it-36.geojson"
+        ]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "CRS"
@@ -450,9 +545,11 @@
       "displayName": "CTBTO",
       "id": "ctbto-756944",
       "locationSet": {"include": ["sh"]},
+      "matchNames": ["un ctbto"],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "CTBTO"
+        "operator": "CTBTO",
+        "operator:wikidata": "Q356694"
       }
     },
     {
@@ -492,13 +589,15 @@
       }
     },
     {
-      "displayName": "Department of Science and Technology",
+      "displayName": "Department of Science and Technology (Philippines)",
       "id": "departmentofscienceandtechnology-afd051",
       "locationSet": {"include": ["ph"]},
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Department of Science and Technology",
+        "operator:en": "Department of Science and Technology",
         "operator:short": "DOST",
+        "operator:tl": "Kagawaran ng Agham at Teknolohiya",
         "operator:wikidata": "Q3547215"
       }
     },
@@ -528,14 +627,14 @@
       }
     },
     {
-      "displayName": "Deutsches Zentrum für Luft und Raumfahrt",
+      "displayName": "Deutsches Zentrum für Luft- und Raumfahrt",
       "id": "deutscheszentrumfurluftundraumfahrt-91e43b",
       "locationSet": {
         "include": ["de", "fx", "lu"]
       },
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Deutsches Zentrum für Luft und Raumfahrt",
+        "operator": "Deutsches Zentrum für Luft- und Raumfahrt",
         "operator:short": "DLR",
         "operator:wikidata": "Q157332"
       }
@@ -550,12 +649,15 @@
       }
     },
     {
-      "displayName": "DMİ",
-      "id": "dmi-5f056e",
-      "locationSet": {"include": ["tr"]},
+      "displayName": "DIRIF",
+      "id": "dirif-03885e",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "DMİ"
+        "operator": "DIRIF",
+        "operator:wikidata": "Q27551460"
       }
     },
     {
@@ -578,12 +680,16 @@
       }
     },
     {
-      "displayName": "Empresa De Acueducto Y Alcantarillado De Bogota E.S.P",
-      "id": "empresadeacueductoyalcantarilladodebogotaesp-eaf2bf",
+      "displayName": "Empresa de Acueducto y Alcantarillado de Bogotá",
+      "id": "empresadeacueductoyalcantarilladodebogota-eaf2bf",
       "locationSet": {"include": ["co"]},
+      "matchNames": [
+        "empresa de acueducto y alcantarillado de bogota e.s.p"
+      ],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Empresa De Acueducto Y Alcantarillado De Bogota E.S.P"
+        "operator": "Empresa de Acueducto y Alcantarillado de Bogotá",
+        "operator:wikidata": "Q5831767"
       }
     },
     {
@@ -596,12 +702,17 @@
       }
     },
     {
-      "displayName": "Empresas Publicas De Medellin E.S.P.",
-      "id": "empresaspublicasdemedellinesp-eaf2bf",
+      "displayName": "Empresas Públicas de Medellín",
+      "id": "empresaspublicasdemedellin-eaf2bf",
       "locationSet": {"include": ["co"]},
+      "matchNames": [
+        "empresas publicas de medellin e.s.p."
+      ],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Empresas Publicas De Medellin E.S.P."
+        "operator": "Empresas Públicas de Medellín",
+        "operator:short": "EPM",
+        "operator:wikidata": "Q3053381"
       }
     },
     {
@@ -625,15 +736,6 @@
       }
     },
     {
-      "displayName": "Estaciones Particulares",
-      "id": "estacionesparticulares-eaf2bf",
-      "locationSet": {"include": ["co"]},
-      "tags": {
-        "man_made": "monitoring_station",
-        "operator": "Estaciones Particulares"
-      }
-    },
-    {
       "displayName": "Estadistica Departamental De Antioquia",
       "id": "estadisticadepartamentaldeantioquia-eaf2bf",
       "locationSet": {"include": ["co"]},
@@ -643,12 +745,16 @@
       }
     },
     {
-      "displayName": "Federacion Nacional De Cafeteros",
-      "id": "federacionnacionaldecafeteros-eaf2bf",
+      "displayName": "Federación Nacional de Cafeteros de Colombia",
+      "id": "federacionnacionaldecafeterosdecolombia-eaf2bf",
       "locationSet": {"include": ["co"]},
+      "matchNames": [
+        "federacion nacional de cafeteros"
+      ],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Federacion Nacional De Cafeteros"
+        "operator": "Federación Nacional de Cafeteros de Colombia",
+        "operator:wikidata": "Q5439970"
       }
     },
     {
@@ -663,21 +769,25 @@
       }
     },
     {
-      "displayName": "Ferrocarriles Nacionales",
-      "id": "ferrocarrilesnacionales-eaf2bf",
+      "displayName": "Ferrocarriles Nacionales de Colombia",
+      "id": "ferrocarrilesnacionalesdecolombia-eaf2bf",
       "locationSet": {"include": ["co"]},
+      "matchNames": ["ferrocarriles nacionales"],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Ferrocarriles Nacionales"
+        "operator": "Ferrocarriles Nacionales de Colombia",
+        "operator:wikidata": "Q5860783"
       }
     },
     {
-      "displayName": "Fővárosi Vízművek Zrt.",
-      "id": "fovarosivizmuvekzrt-8e971f",
+      "displayName": "Fővárosi Vízművek",
+      "id": "fovarosivizmuvek-8e971f",
       "locationSet": {"include": ["hu"]},
+      "matchNames": ["fővárosi vízművek zrt."],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Fővárosi Vízművek Zrt."
+        "operator": "Fővárosi Vízművek",
+        "operator:wikidata": "Q118725712"
       }
     },
     {
@@ -719,7 +829,8 @@
       "locationSet": {"include": ["aq", "nz"]},
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "GeoNet"
+        "operator": "GeoNet",
+        "operator:wikidata": "Q130755651"
       }
     },
     {
@@ -790,8 +901,10 @@
     },
     {
       "displayName": "Harita Genel Müdürlüğü",
-      "id": "haritagenelmudurlugu-5954cb",
-      "locationSet": {"include": ["cy", "tr"]},
+      "id": "haritagenelmudurlugu-6619be",
+      "locationSet": {
+        "include": ["northern cyprus", "tr"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Harita Genel Müdürlüğü",
@@ -800,8 +913,10 @@
     },
     {
       "displayName": "Heart of the City",
-      "id": "heartofthecity-2206e2",
-      "locationSet": {"include": ["nz"]},
+      "id": "heartofthecity-4c3d8e",
+      "locationSet": {
+        "include": ["nz-auk.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Heart of the City"
@@ -809,8 +924,10 @@
     },
     {
       "displayName": "HGM,TKGM,TUBİTAK",
-      "id": "hgmtkgmtubitak-5954cb",
-      "locationSet": {"include": ["cy", "tr"]},
+      "id": "hgmtkgmtubitak-6619be",
+      "locationSet": {
+        "include": ["northern cyprus", "tr"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "HGM,TKGM,TUBİTAK"
@@ -818,8 +935,10 @@
     },
     {
       "displayName": "Hydrographischer Dienst OÖ",
-      "id": "hydrographischerdienstoo-5d5a13",
-      "locationSet": {"include": ["at"]},
+      "id": "hydrographischerdienstoo-af3c8e",
+      "locationSet": {
+        "include": ["at-4.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Hydrographischer Dienst OÖ"
@@ -827,8 +946,10 @@
     },
     {
       "displayName": "Hydrographischer Dienst Steiermark",
-      "id": "hydrographischerdienststeiermark-5d5a13",
-      "locationSet": {"include": ["at"]},
+      "id": "hydrographischerdienststeiermark-b7373e",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Hydrographischer Dienst Steiermark"
@@ -836,8 +957,10 @@
     },
     {
       "displayName": "Hydrographischer Dienst Tirol",
-      "id": "hydrographischerdiensttirol-5d5a13",
-      "locationSet": {"include": ["at"]},
+      "id": "hydrographischerdiensttirol-10d800",
+      "locationSet": {
+        "include": ["at-7.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Hydrographischer Dienst Tirol"
@@ -861,6 +984,7 @@
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Illinois Department of Transportation",
+        "operator:short": "IDOT",
         "operator:wikidata": "Q4925114"
       }
     },
@@ -875,30 +999,22 @@
       }
     },
     {
-      "displayName": "IMGW",
-      "id": "imgw-3409e6",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "man_made": "monitoring_station",
-        "operator": "IMGW"
-      }
-    },
-    {
-      "displayName": "IMGW-PIB",
-      "id": "imgwpib-3409e6",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "man_made": "monitoring_station",
-        "operator": "IMGW-PIB"
-      }
-    },
-    {
       "displayName": "Ingenieros Tecnicos Consultores",
       "id": "ingenierostecnicosconsultores-eaf2bf",
       "locationSet": {"include": ["co"]},
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Ingenieros Tecnicos Consultores"
+      }
+    },
+    {
+      "displayName": "InPost",
+      "id": "inpost-3409e6",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "InPost",
+        "operator:wikidata": "Q3182097"
       }
     },
     {
@@ -915,15 +1031,6 @@
       }
     },
     {
-      "displayName": "Instituto Colombiano De La Reforma Agraria",
-      "id": "institutocolombianodelareformaagraria-eaf2bf",
-      "locationSet": {"include": ["co"]},
-      "tags": {
-        "man_made": "monitoring_station",
-        "operator": "Instituto Colombiano De La Reforma Agraria"
-      }
-    },
-    {
       "displayName": "Instituto De Fomento Algodonero",
       "id": "institutodefomentoalgodonero-eaf2bf",
       "locationSet": {"include": ["co"]},
@@ -933,12 +1040,24 @@
       }
     },
     {
-      "displayName": "Instituto De Hidrologia Meteorologia Y Estudios Ambientales",
+      "displayName": "Instituto de Hidrología, Meteorología y Estudios Ambientales",
       "id": "institutodehidrologiameteorologiayestudiosambientales-eaf2bf",
       "locationSet": {"include": ["co"]},
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Instituto De Hidrologia Meteorologia Y Estudios Ambientales"
+        "operator": "Instituto de Hidrología, Meteorología y Estudios Ambientales",
+        "operator:wikidata": "Q2890179"
+      }
+    },
+    {
+      "displayName": "Instituto de Meteorología de Cuba",
+      "id": "institutodemeteorologiadecuba-74ddf7",
+      "locationSet": {"include": ["cu"]},
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Instituto de Meteorología de Cuba",
+        "operator:short": "INSMET",
+        "operator:wikidata": "Q16579262"
       }
     },
     {
@@ -968,18 +1087,23 @@
       "displayName": "Instytut Meteorologii i Gospodarki Wodnej",
       "id": "instytutmeteorologiiigospodarkiwodnej-3409e6",
       "locationSet": {"include": ["pl"]},
+      "matchNames": ["imgw-pib"],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Instytut Meteorologii i Gospodarki Wodnej"
+        "operator": "Instytut Meteorologii i Gospodarki Wodnej",
+        "operator:short": "IMGW",
+        "operator:wikidata": "Q11713124"
       }
     },
     {
-      "displayName": "Interconexion Electrica S.A.",
+      "displayName": "Interconexión Eléctrica S.A.",
       "id": "interconexionelectricasa-eaf2bf",
       "locationSet": {"include": ["co"]},
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Interconexion Electrica S.A."
+        "operator": "Interconexión Eléctrica S.A.",
+        "operator:short": "ISA",
+        "operator:wikidata": "Q109425108"
       }
     },
     {
@@ -992,12 +1116,14 @@
       }
     },
     {
-      "displayName": "Isagen S.A. E.S.P",
-      "id": "isagensaesp-eaf2bf",
+      "displayName": "Isagen",
+      "id": "isagen-eaf2bf",
       "locationSet": {"include": ["co"]},
+      "matchNames": ["isagen s.a. e.s.p"],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Isagen S.A. E.S.P"
+        "operator": "Isagen",
+        "operator:wikidata": "Q3146879"
       }
     },
     {
@@ -1007,6 +1133,17 @@
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Ispra"
+      }
+    },
+    {
+      "displayName": "Kanton Zürich, Baudirektion, Tiefbauamt",
+      "id": "kantonzurichbaudirektiontiefbauamt-33ba29",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Kanton Zürich, Baudirektion, Tiefbauamt"
       }
     },
     {
@@ -1049,6 +1186,18 @@
         "man_made": "monitoring_station",
         "operator": "Land Tirol",
         "operator:wikidata": "Q42880"
+      }
+    },
+    {
+      "displayName": "Landesamt für Umwelt- und Arbeitsschutz",
+      "id": "landesamtfurumweltundarbeitsschutz-8e593f",
+      "locationSet": {
+        "include": ["de-sl.geojson"]
+      },
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Landesamt für Umwelt- und Arbeitsschutz",
+        "operator:wikidata": "Q1328895"
       }
     },
     {
@@ -1134,20 +1283,50 @@
     },
     {
       "displayName": "MA 22",
-      "id": "ma22-5d5a13",
-      "locationSet": {"include": ["at"]},
+      "id": "ma22-3cbf4c",
+      "locationSet": {
+        "include": ["at-9.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "MA 22"
       }
     },
     {
+      "displayName": "Magistrát města Brna",
+      "id": "magistratmestabrna-b87bfb",
+      "locationSet": {
+        "include": ["cz-64.geojson"]
+      },
+      "matchNames": ["mmb"],
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Magistrát města Brna",
+        "operator:wikidata": "Q118601137"
+      }
+    },
+    {
       "displayName": "Meetnet Vlaamse Banken",
-      "id": "meetnetvlaamsebanken-3026fb",
-      "locationSet": {"include": ["be"]},
+      "id": "meetnetvlaamsebanken-b18006",
+      "locationSet": {
+        "include": ["be-vwv.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Meetnet Vlaamse Banken"
+      }
+    },
+    {
+      "displayName": "Městský úřad České Budějovice",
+      "id": "mestskyuradceskebudejovice-da58c6",
+      "locationSet": {
+        "include": ["cz-31.geojson"]
+      },
+      "matchNames": ["mmcb"],
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Městský úřad České Budějovice",
+        "operator:wikidata": "Q118592806"
       }
     },
     {
@@ -1193,9 +1372,11 @@
       "displayName": "Meteoroloji Genel Müdürlüğü",
       "id": "meteorolojigenelmudurlugu-5f056e",
       "locationSet": {"include": ["tr"]},
+      "matchNames": ["DMİ"],
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Meteoroloji Genel Müdürlüğü",
+        "operator:short": "MGM",
         "operator:wikidata": "Q7855314"
       }
     },
@@ -1208,6 +1389,19 @@
         "man_made": "monitoring_station",
         "operator": "MeteoSchweiz",
         "operator:wikidata": "Q674998"
+      }
+    },
+    {
+      "displayName": "Métropole européenne de Lille",
+      "id": "metropoleeuropeennedelille-732870",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Métropôle européenne de Lille",
+        "operator:short": "MEL",
+        "operator:wikidata": "Q471969"
       }
     },
     {
@@ -1234,12 +1428,14 @@
       }
     },
     {
-      "displayName": "Ministerio De Agricultura",
-      "id": "ministeriodeagricultura-eaf2bf",
+      "displayName": "Ministerio de Agricultura y Desarrollo Rural",
+      "id": "ministeriodeagriculturaydesarrollorural-eaf2bf",
       "locationSet": {"include": ["co"]},
+      "matchNames": ["ministerio de agricultura"],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Ministerio De Agricultura"
+        "operator": "Ministerio de Agricultura y Desarrollo Rural",
+        "operator:wikidata": "Q3062224"
       }
     },
     {
@@ -1252,30 +1448,16 @@
       }
     },
     {
-      "displayName": "Ministerio De Obras Publicas",
-      "id": "ministeriodeobraspublicas-eaf2bf",
+      "displayName": "Ministerio de Transporte de Colombia",
+      "id": "ministeriodetransportedecolombia-eaf2bf",
       "locationSet": {"include": ["co"]},
+      "matchNames": [
+        "ministerio de obras publicas"
+      ],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "Ministerio De Obras Publicas"
-      }
-    },
-    {
-      "displayName": "MMB",
-      "id": "mmb-c67c8a",
-      "locationSet": {"include": ["cz"]},
-      "tags": {
-        "man_made": "monitoring_station",
-        "operator": "MMB"
-      }
-    },
-    {
-      "displayName": "MMCB",
-      "id": "mmcb-c67c8a",
-      "locationSet": {"include": ["cz"]},
-      "tags": {
-        "man_made": "monitoring_station",
-        "operator": "MMCB"
+        "operator": "Ministerio de Transporte de Colombia",
+        "operator:wikidata": "Q3315422"
       }
     },
     {
@@ -1350,8 +1532,10 @@
     },
     {
       "displayName": "Observatorio Pierre Auger",
-      "id": "observatoriopierreauger-7438ae",
-      "locationSet": {"include": ["ar"]},
+      "id": "observatoriopierreauger-6dae19",
+      "locationSet": {
+        "include": ["ar-m.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Observatorio Pierre Auger",
@@ -1427,9 +1611,21 @@
       }
     },
     {
-      "displayName": "Provincie Limburg",
-      "id": "provincielimburg-dc8a1d",
-      "locationSet": {"include": ["be", "nl"]},
+      "displayName": "Provincie Limburg (België)",
+      "id": "provincielimburg-31f245",
+      "locationSet": {
+        "include": ["be-vli.geojson"]
+      },
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Provincie Limburg",
+        "operator:wikidata": "Q1095"
+      }
+    },
+    {
+      "displayName": "Provincie Limburg (Nederland)",
+      "id": "provincielimburg-2cb44b",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Provincie Limburg",
@@ -1577,8 +1773,15 @@
     },
     {
       "displayName": "Servei Meteorològic de Catalunya",
-      "id": "serveimeteorologicdecatalunya-4de89d",
-      "locationSet": {"include": ["es"]},
+      "id": "serveimeteorologicdecatalunya-a9e149",
+      "locationSet": {
+        "include": [
+          "es-b.geojson",
+          "es-gi.geojson",
+          "es-l.geojson",
+          "es-t.geojson"
+        ]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Servei Meteorològic de Catalunya",
@@ -1610,12 +1813,14 @@
       }
     },
     {
-      "displayName": "SHMU",
-      "id": "shmu-a6407c",
+      "displayName": "Slovenský hydrometeorologický ústav",
+      "id": "slovenskyhydrometeorologickyustav-a6407c",
       "locationSet": {"include": ["sk"]},
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "SHMU"
+        "operator": "Slovenský hydrometeorologický ústav",
+        "operator:short": "SHMÚ",
+        "operator:wikidata": "Q2384148"
       }
     },
     {
@@ -1697,6 +1902,29 @@
       }
     },
     {
+      "displayName": "Stowarzyszenie Metropolia Poznań",
+      "id": "stowarzyszeniemetropoliapoznan-3409e6",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Stowarzyszenie Metropolia Poznań",
+        "operator:wikidata": "Q133190083"
+      }
+    },
+    {
+      "displayName": "Texas Coastal Ocean Observation Network",
+      "id": "texascoastaloceanobservationnetwork-5f06a6",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Texas Coastal Ocean Observation Network",
+        "operator:wikidata": "Q130375316"
+      }
+    },
+    {
       "displayName": "Thüringer Landesamt für Umwelt, Bergbau und Naturschutz",
       "id": "thuringerlandesamtfurumweltbergbauundnaturschutz-ec2810",
       "locationSet": {
@@ -1723,21 +1951,28 @@
       }
     },
     {
-      "displayName": "UDİM",
-      "id": "udim-5954cb",
-      "locationSet": {"include": ["cy", "tr"]},
+      "displayName": "Transport for NSW",
+      "id": "transportfornsw-6d1e55",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "matchNames": ["tfnsw"],
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "UDİM"
+        "monitoring:traffic": "yes",
+        "operator": "Transport for NSW",
+        "operator:wikidata": "Q7834923"
       }
     },
     {
-      "displayName": "UN CTBTO",
-      "id": "unctbto-756944",
-      "locationSet": {"include": ["sh"]},
+      "displayName": "UDİM",
+      "id": "udim-6619be",
+      "locationSet": {
+        "include": ["northern cyprus", "tr"]
+      },
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "UN CTBTO"
+        "operator": "UDİM"
       }
     },
     {
@@ -1762,6 +1997,19 @@
       }
     },
     {
+      "displayName": "Utah Department of Transportation",
+      "id": "utahdepartmentoftransportation-130bd9",
+      "locationSet": {
+        "include": ["us-ut.geojson"]
+      },
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Utah Department of Transportation",
+        "operator:short": "UDOT",
+        "operator:wikidata": "Q2506783"
+      }
+    },
+    {
       "displayName": "Vegagerðin",
       "id": "vegagerdhin-27e2b0",
       "locationSet": {"include": ["is"]},
@@ -1770,6 +2018,16 @@
         "operator": "Vegagerðin",
         "operator:type": "government",
         "operator:wikidata": "Q2754030"
+      }
+    },
+    {
+      "displayName": "Vigicrues",
+      "id": "vigicrues-94cf3c",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "Vigicrues",
+        "operator:wikidata": "Q28493804"
       }
     },
     {
@@ -1831,8 +2089,10 @@
     },
     {
       "displayName": "Wegener Center für Klima und Globalen Wandel",
-      "id": "wegenercenterfurklimaundglobalenwandel-5d5a13",
-      "locationSet": {"include": ["at"]},
+      "id": "wegenercenterfurklimaundglobalenwandel-b7373e",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
       "tags": {
         "man_made": "monitoring_station",
         "operator": "Wegener Center für Klima und Globalen Wandel",
@@ -1876,9 +2136,11 @@
       "displayName": "ФГБУ «Уральское УГМС»",
       "id": "7fa42f-7489c8",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SVE",
       "tags": {
         "man_made": "monitoring_station",
-        "operator": "ФГБУ «Уральское УГМС»"
+        "operator": "ФГБУ «Уральское УГМС»",
+        "operator:wikidata": "Q109350362"
       }
     },
     {
@@ -1897,6 +2159,16 @@
       "tags": {
         "man_made": "monitoring_station",
         "operator": "交通部中央氣象局",
+        "operator:wikidata": "Q257136"
+      }
+    },
+    {
+      "displayName": "交通部中央氣象署",
+      "id": "f4a1ba-9afd0a",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "man_made": "monitoring_station",
+        "operator": "交通部中央氣象署",
         "operator:wikidata": "Q257136"
       }
     }

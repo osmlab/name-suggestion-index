@@ -114,11 +114,13 @@
         "exclude": ["jp"]
       },
       "matchNames": ["anytime fitness australia"],
+      "preserveTags": ["^opening_hours"],
       "tags": {
         "brand": "Anytime Fitness",
         "brand:wikidata": "Q4778364",
         "leisure": "fitness_centre",
-        "name": "Anytime Fitness"
+        "name": "Anytime Fitness",
+        "opening_hours": "24/7"
       }
     },
     {
@@ -311,6 +313,7 @@
       "displayName": "Buzz Gym",
       "id": "buzzgym-a89c8d",
       "locationSet": {"include": ["gb-eng"]},
+      "preserveTags": ["^opening_hours"],
       "tags": {
         "brand": "Buzz Gym",
         "brand:wikidata": "Q117834439",
@@ -458,8 +461,11 @@
     },
     {
       "displayName": "Curves",
-      "id": "curves-c8777b",
-      "locationSet": {"include": ["001"]},
+      "id": "curves-f3f46d",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["jp"]
+      },
       "tags": {
         "brand": "Curves",
         "brand:wikidata": "Q5196080",
@@ -703,17 +709,6 @@
         "brand:wikidata": "Q104213893",
         "leisure": "fitness_centre",
         "name": "Fitness House"
-      }
-    },
-    {
-      "displayName": "Fitness Hut",
-      "id": "fitnesshut-b368e8",
-      "locationSet": {"include": ["pt"]},
-      "tags": {
-        "brand": "Fitness Hut",
-        "brand:wikidata": "Q129425164",
-        "leisure": "fitness_centre",
-        "name": "Fitness Hut"
       }
     },
     {
@@ -1032,6 +1027,7 @@
       "locationSet": {
         "include": ["ca", "gb", "us"]
       },
+      "matchNames": ["xsport fitness"],
       "tags": {
         "brand": "LA Fitness",
         "brand:wikidata": "Q6457180",
@@ -1143,6 +1139,17 @@
       }
     },
     {
+      "displayName": "Next Level",
+      "id": "nextlevel-144da6",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "Next Level",
+        "brand:wikidata": "Q132340069",
+        "leisure": "fitness_centre",
+        "name": "Next Level"
+      }
+    },
+    {
       "displayName": "Nordic Wellness",
       "id": "nordicwellness-f113b7",
       "locationSet": {"include": ["se"]},
@@ -1244,6 +1251,17 @@
       }
     },
     {
+      "displayName": "Pulse",
+      "id": "pulse-144da6",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "Pulse",
+        "brand:wikidata": "Q134078543",
+        "leisure": "fitness_centre",
+        "name": "Pulse"
+      }
+    },
+    {
       "displayName": "Pure Barre",
       "id": "purebarre-9a38b2",
       "locationSet": {"include": ["ca", "us"]},
@@ -1322,10 +1340,10 @@
     {
       "displayName": "Sats",
       "id": "sats-44c5d4",
+      "issues": [5500],
       "locationSet": {
         "include": ["dk", "fi", "no", "se"]
       },
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
       "preserveTags": ["^name"],
       "tags": {
         "brand": "Sats",
@@ -1433,8 +1451,13 @@
     },
     {
       "displayName": "SportClub",
-      "id": "sportclub-9c6809",
-      "locationSet": {"include": ["ar"]},
+      "id": "sportclub-547721",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
       "tags": {
         "brand": "SportClub",
         "brand:wikidata": "Q118314171",
@@ -1480,7 +1503,7 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "brand": "STC",
-        "brand:wikidata": "Q124061743",
+        "brand:wikidata": "Q115114066",
         "leisure": "fitness_centre",
         "name": "STC"
       }
@@ -1589,6 +1612,17 @@
       }
     },
     {
+      "displayName": "UFC Gym",
+      "id": "ufcgym-809afb",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "UFC Gym",
+        "brand:wikidata": "Q122511683",
+        "leisure": "fitness_centre",
+        "name": "UFC Gym"
+      }
+    },
+    {
       "displayName": "update Fitness",
       "id": "updatefitness-2831bb",
       "locationSet": {"include": ["ch"]},
@@ -1656,12 +1690,24 @@
       }
     },
     {
-      "displayName": "VivaGym",
+      "displayName": "VivaGym (España)",
       "id": "vivagym-14abfa",
       "locationSet": {"include": ["es"]},
       "tags": {
         "brand": "VivaGym",
         "brand:wikidata": "Q123378009",
+        "leisure": "fitness_centre",
+        "name": "VivaGym"
+      }
+    },
+    {
+      "displayName": "VivaGym (Portugal)",
+      "id": "vivagym-b368e8",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": ["fitness hut"],
+      "tags": {
+        "brand": "VivaGym",
+        "brand:wikidata": "Q129425164",
         "leisure": "fitness_centre",
         "name": "VivaGym"
       }
@@ -1759,17 +1805,6 @@
         "brand:wikidata": "Q79244612",
         "leisure": "fitness_centre",
         "name": "Xercise4Less"
-      }
-    },
-    {
-      "displayName": "XSport Fitness",
-      "id": "xsportfitness-809afb",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "brand": "XSport Fitness",
-        "brand:wikidata": "Q122981991",
-        "leisure": "fitness_centre",
-        "name": "XSport Fitness"
       }
     },
     {

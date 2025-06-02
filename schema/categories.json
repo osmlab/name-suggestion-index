@@ -152,6 +152,7 @@
         "exclude":         { "not" : {} },
         "id":              { "not" : {} },
         "include":         { "not" : {} },
+        "issues":          { "not" : {} },
         "locationSet":     { "not" : {} },
         "matchNames":      { "not" : {} },
         "matchTags":       { "not" : {} },
@@ -216,6 +217,17 @@
           "description": "(optional) An optional note - can contain anything about the item.",
           "type": "string"
         },
+
+	"issues": {
+	  "description": "(optional) An optional referene to any issues, pull requests or discussions.",
+	  "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "intiger",
+            "minimum": 0,
+            "pattern": "^[0-9]+$"
+          }
+	},
 
         "tags": {
           "$comment": "Exclude properties that should appear elsewhere to avoid common mistakes",

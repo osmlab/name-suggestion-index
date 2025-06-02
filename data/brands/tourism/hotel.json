@@ -11,7 +11,7 @@
       ],
       "named": [
         "^(h[oô]tel )?((zur )?post|de france|de la gare|du parc|строитель)$",
-        "^(h[oô]tel )?(astoria|avenida|belvedere|central|city|colonial|continental|europa)\\s?(h[oô]tel)?$",
+        "^(h[oô]tel )?(astoria|avenida|belvedere|central|city|colonial|continental|eden|europa)\\s?(h[oô]tel)?$",
         "^(h[oô]tel )?(grand|imperial|krone|palace|panorama|park|plaza|royal|victoria)\\s?(h[oô]tel)?$",
         "^(酒店|旅馆)$",
         "^bellevue$",
@@ -67,17 +67,6 @@
         "brand": "AC Hotel",
         "brand:wikidata": "Q5653536",
         "name": "AC Hotel",
-        "tourism": "hotel"
-      }
-    },
-    {
-      "displayName": "Accor",
-      "id": "accor-779ccb",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Accor",
-        "brand:wikidata": "Q212599",
-        "name": "Accor",
         "tourism": "hotel"
       }
     },
@@ -338,7 +327,7 @@
       }
     },
     {
-      "displayName": "AVANI",
+      "displayName": "Avani",
       "id": "avanihotelsandresorts-e9c192",
       "locationSet": {
         "include": [
@@ -393,6 +382,18 @@
         "brand": "Ayenda",
         "brand:wikidata": "Q122723982",
         "name": "Ayenda",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "Azimut Hotels",
+      "id": "azimut-9679cc",
+      "locationSet": {"include": ["ru", "uz"]},
+      "matchNames": ["азимут"],
+      "tags": {
+        "brand": "Azimut",
+        "brand:wikidata": "Q4033119",
+        "name": "Azimut",
         "tourism": "hotel"
       }
     },
@@ -540,7 +541,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Best Western Plus",
-        "brand:wikidata": "Q830334",
+        "brand:wikidata": "Q38623383",
         "name": "Best Western Plus",
         "tourism": "hotel"
       }
@@ -1371,9 +1372,9 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Four Points by Sheraton",
+        "brand:short": "Four Points",
         "brand:wikidata": "Q1439966",
         "name": "Four Points by Sheraton",
-        "short_name": "Four Points",
         "tourism": "hotel"
       }
     },
@@ -1463,7 +1464,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Grand Hyatt",
-        "brand:wikidata": "Q1425063",
+        "brand:wikidata": "Q115794899",
         "name": "Grand Hyatt",
         "tourism": "hotel"
       }
@@ -1592,10 +1593,10 @@
       },
       "tags": {
         "brand": "Hawthorn Suites",
+        "brand:short": "Hawthorn",
         "brand:wikidata": "Q5685511",
         "name": "Hawthorn Suites",
         "official_name": "Hawthorn Suites by Wyndham",
-        "short_name": "Hawthorn",
         "tourism": "hotel"
       }
     },
@@ -1849,19 +1850,20 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Hyatt Regency",
-        "brand:wikidata": "Q1425063",
+        "brand:wikidata": "Q115794868",
         "name": "Hyatt Regency",
         "tourism": "hotel"
       }
     },
     {
-      "displayName": "Hyatt Residence Club",
-      "id": "hyattresidenceclub-6ac210",
+      "displayName": "Hyatt Vacation Club",
+      "id": "hyattvacationclub-6ac210",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["hyatt residence club"],
       "tags": {
-        "brand": "Hyatt Residence Club",
-        "brand:wikidata": "Q109871442",
-        "name": "Hyatt Residence Club",
+        "brand": "Hyatt Vacation Club",
+        "brand:wikidata": "Q131706454",
+        "name": "Hyatt Vacation Club",
         "tourism": "hotel"
       }
     },
@@ -1894,8 +1896,11 @@
     },
     {
       "displayName": "Ibis",
-      "id": "ibis-779ccb",
-      "locationSet": {"include": ["001"]},
+      "id": "ibis-8a2ff3",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn"]
+      },
       "matchNames": ["hotel ibis", "ibis hotel"],
       "tags": {
         "brand": "Ibis",
@@ -1939,6 +1944,16 @@
         "brand": "iH Hotel",
         "brand:wikidata": "Q126033607",
         "name": "iH Hotel",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "Innkeeper's Collection",
+      "id": "innkeeperscollection-3fca16",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "brand": "Innkeeper's Collection",
+        "brand:wikidata": "Q6035891",
         "tourism": "hotel"
       }
     },
@@ -2140,7 +2155,6 @@
           "nl"
         ]
       },
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Leonardo Boutique",
         "brand:wikidata": "Q1819101",
@@ -2163,7 +2177,6 @@
         ]
       },
       "matchNames": ["jurys", "jurys inn"],
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Leonardo Hotels",
         "brand:wikidata": "Q1819101",
@@ -2176,7 +2189,6 @@
       "id": "leonardohotels-f8f6ae",
       "locationSet": {"include": ["gb", "ie"]},
       "matchNames": ["jurys", "jurys inn"],
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Leonardo Hotels",
         "brand:wikidata": "Q12060924",
@@ -2191,7 +2203,6 @@
         "include": ["de", "gb", "it", "nl", "pl"]
       },
       "matchNames": ["jurys", "jurys inn"],
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Leonardo Royal Hotel",
         "brand:wikidata": "Q1819101",
@@ -2230,7 +2241,7 @@
       "matchNames": ["logis"],
       "tags": {
         "brand": "Logis Hotels",
-        "brand:wikidata": "Q125959917",
+        "brand:wikidata": "Q1725927",
         "name": "Logis Hotels",
         "tourism": "hotel"
       }
@@ -2251,9 +2262,9 @@
       },
       "tags": {
         "brand": "Lotte Hotels & Resorts",
+        "brand:short": "Lotte",
         "brand:wikidata": "Q326720",
         "name": "Lotte Hotel",
-        "short_name": "Lotte",
         "tourism": "hotel"
       }
     },
@@ -2275,6 +2286,30 @@
         "brand": "LXR",
         "brand:wikidata": "Q64605184",
         "name": "LXR",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "lyf",
+      "id": "lyf-414bf6",
+      "locationSet": {
+        "include": [
+          "at",
+          "au",
+          "cn",
+          "de",
+          "fx",
+          "jp",
+          "my",
+          "ph",
+          "sg",
+          "th"
+        ]
+      },
+      "tags": {
+        "brand": "lyf",
+        "brand:wikidata": "Q132680230",
+        "name": "lyf",
         "tourism": "hotel"
       }
     },
@@ -2335,10 +2370,10 @@
     },
     {
       "displayName": "Mandarin Oriental Hotel",
-      "id": "mandarinorientalhotel-428a55",
+      "id": "mandarinorientalhotel-7aa199",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["cn", "hk", "mo", "tw"]
+        "exclude": ["cn", "tw"]
       },
       "tags": {
         "brand": "Mandarin Oriental Hotel",
@@ -2804,7 +2839,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Park Hyatt",
-        "brand:wikidata": "Q1425063",
+        "brand:wikidata": "Q115794911",
         "name": "Park Hyatt",
         "tourism": "hotel"
       }
@@ -2837,7 +2872,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "PARKROYAL",
-        "brand:wikidata": "Q4272131",
+        "brand:wikidata": "Q7138631",
         "name": "PARKROYAL",
         "tourism": "hotel"
       }
@@ -3167,6 +3202,28 @@
       }
     },
     {
+      "displayName": "Rixos",
+      "id": "rixos-cdcd15",
+      "locationSet": {
+        "include": [
+          "ae",
+          "eg",
+          "hr",
+          "kz",
+          "me",
+          "qa",
+          "sa",
+          "tr"
+        ]
+      },
+      "tags": {
+        "brand": "Rixos Hotels",
+        "brand:wikidata": "Q6075716",
+        "name": "Rixos",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "Romantik",
       "id": "romantikhotel-779ccb",
       "locationSet": {"include": ["001"]},
@@ -3308,8 +3365,11 @@
     },
     {
       "displayName": "Sheraton",
-      "id": "sheraton-779ccb",
-      "locationSet": {"include": ["001"]},
+      "id": "sheraton-7aa199",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["cn", "tw"]
+      },
       "tags": {
         "brand": "Sheraton",
         "brand:wikidata": "Q634831",
@@ -3379,7 +3439,7 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "brand": "Sleep Inn & Suites",
-        "brand:wikidata": "Q1075788",
+        "brand:wikidata": "Q69588194",
         "name": "Sleep Inn & Suites",
         "tourism": "hotel"
       }
@@ -3524,6 +3584,30 @@
         "brand": "Staybridge Suites",
         "brand:wikidata": "Q7605116",
         "name": "Staybridge Suites",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "Staycity",
+      "id": "staycity-53713d",
+      "locationSet": {
+        "include": [
+          "at",
+          "de",
+          "fx",
+          "gb-eng",
+          "gb-sct",
+          "ie"
+        ]
+      },
+      "matchNames": [
+        "staycity aparthotel",
+        "staycity aparthotels"
+      ],
+      "tags": {
+        "brand": "Staycity",
+        "brand:wikidata": "Q132982109",
+        "name": "Staycity",
         "tourism": "hotel"
       }
     },
@@ -3688,7 +3772,6 @@
       "locationSet": {
         "include": ["at", "de", "gb", "nl"]
       },
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "the niu",
         "brand:wikidata": "Q116486979",
@@ -4037,7 +4120,7 @@
       }
     },
     {
-      "displayName": "Vīb",
+      "displayName": "Vib",
       "id": "vib-779ccb",
       "locationSet": {"include": ["001"]},
       "tags": {
@@ -4060,15 +4143,14 @@
       }
     },
     {
-      "displayName": "Vienna Hotels",
-      "id": "viennahotels-b22a38",
-      "locationSet": {"include": ["in"]},
-      "matchNames": ["vienna hotel"],
+      "displayName": "Vienna House",
+      "id": "viennahouse-046fe6",
+      "locationSet": {"include": ["150"]},
       "tags": {
-        "brand": "Vienna Hotels",
-        "brand:wikidata": "Q7928333",
-        "name": "Vienna Hotels",
-        "official_name": "Vienna Hotels by Wyndham",
+        "brand": "Vienna House",
+        "brand:wikidata": "Q2523363",
+        "name": "Vienna House",
+        "official_name": "Vienna House by Wyndham",
         "tourism": "hotel"
       }
     },
@@ -4100,9 +4182,9 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "W Hotels",
+        "brand:short": "W",
         "brand:wikidata": "Q7958488",
         "name": "W Hotels",
-        "short_name": "W",
         "tourism": "hotel"
       }
     },
@@ -4277,7 +4359,7 @@
         "brand": "アパホテル",
         "brand:en": "APA Hotel",
         "brand:ja": "アパホテル",
-        "brand:wikidata": "Q11284497",
+        "brand:wikidata": "Q17191643",
         "name": "アパホテル",
         "name:en": "APA Hotel",
         "name:ja": "アパホテル",
@@ -4337,6 +4419,54 @@
       }
     },
     {
+      "displayName": "喜來登",
+      "id": "sheraton-e06ce0",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "brand": "喜來登",
+        "brand:en": "Sheraton",
+        "brand:wikidata": "Q634831",
+        "brand:zh": "喜來登",
+        "name": "喜來登",
+        "name:en": "Sheraton",
+        "name:zh": "喜來登",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "喜來登 Sheraton",
+      "id": "sheraton-6fa074",
+      "locationSet": {"include": ["hk", "mo"]},
+      "tags": {
+        "brand": "喜來登 Sheraton",
+        "brand:en": "Sheraton",
+        "brand:wikidata": "Q634831",
+        "brand:zh": "喜來登",
+        "name": "喜來登 Sheraton",
+        "name:en": "Sheraton",
+        "name:zh": "喜來登",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "喜来登",
+      "id": "sheraton-28932e",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {
+        "brand": "喜来登",
+        "brand:en": "Sheraton",
+        "brand:wikidata": "Q634831",
+        "brand:zh": "喜来登",
+        "name": "喜来登",
+        "name:en": "Sheraton",
+        "name:zh": "喜来登",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "國賓大飯店",
       "id": "ambassadorhotel-e06ce0",
       "locationSet": {"include": ["tw"]},
@@ -4371,6 +4501,24 @@
       }
     },
     {
+      "displayName": "宜必思酒店",
+      "id": "ibis-28932e",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {
+        "brand": "宜必思酒店",
+        "brand:en": "Ibis",
+        "brand:wikidata": "Q920166",
+        "brand:zh": "宜必思酒店",
+        "name": "宜必思酒店",
+        "name:en": "Ibis",
+        "name:zh": "宜必思酒店",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "尚客优快捷酒店",
       "id": "thankyouhotel-af4cd2",
       "locationSet": {"include": ["cn"]},
@@ -4386,28 +4534,12 @@
       }
     },
     {
-      "displayName": "康橋商旅",
-      "id": "kindnesshotel-e06ce0",
-      "locationSet": {"include": ["tw"]},
-      "tags": {
-        "brand": "康橋商旅",
-        "brand:en": "Kindness Hotel",
-        "brand:wikidata": "Q130214272",
-        "brand:zh": "康橋商旅",
-        "name": "康橋商旅",
-        "name:en": "Kindness Hotel",
-        "name:zh": "康橋商旅",
-        "tourism": "hotel"
-      }
-    },
-    {
       "displayName": "文华东方酒店集团",
       "id": "mandarinorientalhotel-28932e",
       "locationSet": {
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "文华东方酒店集团",
         "brand:en": "Mandarin Oriental Hotel",
@@ -4517,7 +4649,6 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "秋果酒店",
         "brand:en": "Qiuguo Hotel",
@@ -4526,6 +4657,22 @@
         "name": "秋果酒店",
         "name:en": "Qiuguo Hotel",
         "name:zh": "秋果酒店",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "维也纳酒店",
+      "id": "viennahotels-af4cd2",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["vienna hotel"],
+      "tags": {
+        "brand": "维也纳酒店",
+        "brand:en": "Vienna Hotels",
+        "brand:wikidata": "Q7928333",
+        "brand:zh": "维也纳酒店",
+        "name": "维也纳酒店",
+        "name:en": "Vienna Hotels",
+        "name:zh": "维也纳酒店",
         "tourism": "hotel"
       }
     },

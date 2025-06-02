@@ -27,7 +27,7 @@ const trees = treesJSON.trees;
 const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
-const presetsFile = 'node_modules/@openstreetmap/id-tagging-schema/dist/presets.json'
+const presetsFile = 'node_modules/@openstreetmap/id-tagging-schema/dist/presets.json';
 const presetsJSON = JSON5.parse(fs.readFileSync(presetsFile, 'utf8'));
 
 // We use LocationConflation for validating and processing the locationSets
@@ -35,6 +35,12 @@ const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollectio
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
+console.log(chalk.blue('-'.repeat(70)));
+console.log(chalk.blue('📦  Build distributable files'));
+console.log(chalk.blue('-'.repeat(70)));
+
+console.log('');
+console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over 30 seconds) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 _cache.path = sortObject(_cache.path);
@@ -79,7 +85,14 @@ function buildAll() {
   });
 
   // Write `nsi.json` as a single file containing everything by path
-  const output = { nsi: _cache.path };
+  // Reverse sort the paths, we want 'brands' to override 'operators'
+  // see: https://github.com/osmlab/name-suggestion-index/issues/5693#issuecomment-2819259226
+  const rsorted = {};
+  Object.keys(_cache.path).sort((a, b) => withLocale(b, a)).forEach(tkv => {
+    rsorted[tkv] = _cache.path[tkv];
+  });
+
+  const output = { nsi: rsorted };
   writeFileWithMeta('dist/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
 
   buildIDPresets();     // nsi-id-presets.json
@@ -264,7 +277,7 @@ function buildIDPresets() {
               const vals = nsiVal.split(';');
               const findResult = vals.indexOf(idVal);
               if (-1 === findResult) {
-                return false
+                return false;
               }
               // For a smaller element index rating will be higher
               currentMatchSemicolonRating -= findResult;
@@ -378,6 +391,7 @@ function buildIDPresets() {
       if (fields)              targetPreset.fields = fields;
       if (preset.reference)    targetPreset.reference = preset.reference;
       if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
+      if (preserveTags.length) targetPreset.preserveTags = preserveTags; // #10083
 
       targetPreset.tags = sortObject(targetTags);
       targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
@@ -386,9 +400,12 @@ function buildIDPresets() {
     });
   });
 
-  missing.forEach(tkv => {
-    console.warn(chalk.yellow(`Warning - no iD source preset found for ${tkv}`));
-  });
+  if ( missing.size > 0 ) {
+    console.log(chalk.yellow(`\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
+    missing.forEach(tkv => {
+      console.log(`* no iD source preset found for ${tkv}`);
+    });
+  }
 
   let output = { presets: targetPresets };
   writeFileWithMeta('dist/presets/nsi-id-presets.json', stringify(output) + '\n');
@@ -494,7 +511,7 @@ function buildTaginfo() {
       'description': 'Canonical features for OpenStreetMap',
       'project_url': 'https://github.com/osmlab/name-suggestion-index',
       'doc_url': 'https://github.com/osmlab/name-suggestion-index/blob/main/README.md',
-      'icon_url': 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/fastr-food-15.svg',
+      'icon_url': 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/fast-food-15.svg',
       'contact_name': 'Bryan Housel',
       'contact_email': 'bhousel@gmail.com'
     }

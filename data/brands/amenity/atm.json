@@ -2,26 +2,40 @@
   "properties": {
     "path": "brands/amenity/atm",
     "skipCollection": true,
-    "preserveTags": ["^name"],
     "exclude": {"generic": ["^atm$"]}
   },
   "items": [
     {
       "note": "Auto create ATMs for all banks (remove names per #7236)",
-      "templateExclude": ["monobank"],
+      "templateExclude": [
+        "abnamro",
+        "bankinghub",
+        "monobank"
+      ],
       "templateSource": "brands/amenity/bank",
       "templateTags": {
+        "alt_name": "",
         "amenity": "atm",
+        "full_name": "",
         "name": "",
+        "official_name": "",
         "operator": "{source.tags.brand}",
-        "operator:wikidata": "{source.tags.brand:wikidata}"
+        "operator:wikidata": "{source.tags.brand:wikidata}",
+        "short_name": ""
       }
     },
     {
       "displayName": "Allpoint",
-      "id": "allpoint-a81297",
+      "id": "allpoint-5fc18b",
       "locationSet": {
-        "include": ["au", "ca", "gb", "mx", "us"]
+        "include": [
+          "au",
+          "ca",
+          "gb",
+          "mx",
+          "nz",
+          "us"
+        ]
       },
       "tags": {
         "amenity": "atm",
@@ -30,13 +44,15 @@
       }
     },
     {
-      "displayName": "American Crypto ATM",
-      "id": "americancryptoatm-93d3a2",
+      "displayName": "American Crypto",
+      "id": "americancrypto-93d3a2",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["american crypto atm"],
       "matchTags": ["amenity/bank"],
       "tags": {
         "amenity": "atm",
-        "brand": "American Crypto ATM"
+        "brand": "American Crypto",
+        "brand:wikidata": "Q127753246"
       }
     },
     {
@@ -75,7 +91,7 @@
     {
       "displayName": "Bancontact CASH",
       "id": "bancontactcash-8a4913",
-      "locationSet": {"include": ["bel"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "atm",
         "brand": "Bancontact CASH",
@@ -134,6 +150,7 @@
       "locationSet": {"include": ["gb"]},
       "matchNames": [
         "cardtronics",
+        "cardtronics uk",
         "cardtronics uk ltd",
         "cashzone ltd"
       ],
@@ -233,6 +250,16 @@
       }
     },
     {
+      "displayName": "EasyPay",
+      "id": "easypay-e5108a",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "amenity": "atm",
+        "brand": "EasyPay",
+        "brand:wikidata": "Q110583289"
+      }
+    },
+    {
       "displayName": "Euronet",
       "id": "euronet-d5d850",
       "locationSet": {
@@ -252,6 +279,10 @@
       "displayName": "Geldmaat",
       "id": "geldmaat-5333ab",
       "locationSet": {"include": ["nl"]},
+      "matchNames": [
+        "abn amro",
+        "abn amro bank n.v."
+      ],
       "tags": {
         "amenity": "atm",
         "brand": "Geldmaat",
@@ -268,6 +299,32 @@
         "amenity": "atm",
         "brand": "Hitachi",
         "brand:wikidata": "Q53238"
+      }
+    },
+    {
+      "displayName": "India1 ATM",
+      "id": "india1atm-ad0527",
+      "locationSet": {"include": ["in"]},
+      "matchNames": [
+        "india one",
+        "india one atm",
+        "india1"
+      ],
+      "tags": {
+        "amenity": "atm",
+        "brand": "India1 ATM",
+        "brand:wikidata": "Q134601469"
+      }
+    },
+    {
+      "displayName": "Instacoin",
+      "id": "instacoin-ddac74",
+      "locationSet": {"include": ["ca"]},
+      "matchNames": ["instacoin atm"],
+      "tags": {
+        "amenity": "atm",
+        "brand": "Instacoin",
+        "brand:wikidata": "Q133247271"
       }
     },
     {
@@ -380,7 +437,7 @@
         "brand": "Planet Cash",
         "brand:wikidata": "Q117744569",
         "operator": "ITCARD S.A.",
-        "operator:wikidata": "Q117744575"
+        "operator:wikidata": "Q97183761"
       }
     },
     {
@@ -456,17 +513,24 @@
       }
     },
     {
-      "displayName": "Тинькофф Банк",
-      "id": "tinkoffbank-da35c8",
+      "displayName": "Т-Банк",
+      "id": "tbank-da35c8",
       "locationSet": {"include": ["ru"]},
-      "matchNames": ["tinkoff", "тинькофф"],
+      "matchNames": [
+        "tinkoff",
+        "tinkoff bank",
+        "тинькофф",
+        "тинькофф банк",
+        "בנק טינקוף",
+        "بانک تینکوف"
+      ],
       "tags": {
         "amenity": "atm",
-        "brand": "Тинькофф Банк",
-        "brand:en": "Tinkoff Bank",
-        "brand:fa": "بانک تینکوف",
-        "brand:he": "בנק טינקוף",
-        "brand:ru": "Тинькофф Банк",
+        "brand": "Т-Банк",
+        "brand:en": "T-Bank",
+        "brand:fa": "تی-بانک",
+        "brand:he": "טי-בנק",
+        "brand:ru": "Т-Банк",
         "brand:wikidata": "Q4457878"
       }
     },

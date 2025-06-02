@@ -1,6 +1,6 @@
 {
   "name": "name-suggestion-index",
-  "version": "6.0.20241124",
+  "version": "6.0.20250601",
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "Diego Sangunietti (https://github.com/sguinetti)",
     "doublah (https://github.com/doublah)",
     "ENT8R <info.ent8r@gmail.com> (https://github.com/ENT8R)",
+    "Evan Carroll <me@evancarroll.com> (https://github.com/EvanCarroll)",
     "Ferdi (https://github.com/Identitaet)",
     "Han Chao <hanchao0123@hotmail.com> (https://github.com/hanchao)",
     "Héctor Ochoa Ortiz (https://github.com/Robot8A)",
@@ -82,9 +83,9 @@
   "main": "./dist/javascript/nsi.cjs",
   "module": "./index.mjs",
   "exports": {
+    "dist/*": "./dist/*",
     "import": "./index.mjs",
-    "require": "./dist/javascript/nsi.cjs",
-    "dist/*": "./dist/*"
+    "require": "./dist/javascript/nsi.cjs"
   },
   "scripts": {
     "all": "run-s build wikidata dist",
@@ -112,38 +113,40 @@
   },
   "devDependencies": {
     "@aitodotai/json-stringify-pretty-compact": "^1.3.0",
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
-    "@fortawesome/free-brands-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@eslint/js": "^9.25.1",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@ideditor/nsi-collector": "^1.0.20240823",
+    "@ideditor/nsi-collector": "^1.0.20250518",
     "@mapbox/geojson-area": "^0.2.2",
     "@mapbox/geojson-rewind": "^0.5.2",
-    "@openstreetmap/id-tagging-schema": "~6.8.1",
-    "@rapideditor/location-conflation": "~1.4.0",
-    "c8": "^10.1.2",
-    "chalk": "5.3.0",
+    "@openstreetmap/id-tagging-schema": "~6.11.0",
+    "@rapideditor/location-conflation": "~1.5.0",
+    "c8": "^10.1.3",
+    "chalk": "5.4.1",
     "clear": "^0.1.0",
-    "esbuild": "^0.24.0",
-    "eslint": "^9.15.0",
-    "fs-extra": "^11.2.0",
+    "esbuild": "^0.25.5",
+    "eslint": "^9.25.1",
+    "fs-extra": "^11.3.0",
     "geojson-bounds": "^1.0.4",
     "geojson-precision": "^1.0.0",
-    "glob": "^10.4.5",
+    "glob": "^11.0.2",
+    "globals": "^16.0.0",
     "json5": "^2.2.3",
-    "jsonschema": "^1.4.1",
+    "jsonschema": "^1.5.0",
     "locale-compare": "^2.0.0",
     "npm-run-all": "^4.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
     "safe-regex": "^2.1.1",
-    "shelljs": "^0.8.5",
-    "wikibase-edit": "^7.1.2",
-    "wikibase-sdk": "^10.2.1",
+    "shelljs": "^0.9.2",
+    "wikibase-edit": "^7.2.4",
+    "wikibase-sdk": "^10.2.3",
     "xmlbuilder2": "^3.1.1"
   },
   "engines": {
-    "node": "^18.20 || >=20.10"
+    "node": ">=20.10"
   }
 }

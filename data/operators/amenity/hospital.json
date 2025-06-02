@@ -5,6 +5,7 @@
     "exclude": {
       "generic": [
         "^(govern?ment( authorities)?|govt( hospital)?|municipal|priva(do|te)|public|private not for profit|provincial|village)$",
+        "^catholic church$",
         "^centro (de salud|de saúde|médico)$",
         "^community$",
         "^hospital$",
@@ -21,7 +22,8 @@
       ],
       "named": [
         "^(центральна районна лікарня|црб)$",
-        "^(центральная районная )?больница$"
+        "^(центральная районная )?больница$",
+        "^croydon university hospital$"
       ]
     }
   },
@@ -80,20 +82,23 @@
       }
     },
     {
-      "displayName": "Advocate Aurora Health",
-      "id": "advocateaurorahealth-888e5a",
-      "locationSet": {"include": ["us"]},
-      "matchNames": [
-        "advocate health care",
-        "aurora health care"
-      ],
+      "displayName": "Advocate Health Care",
+      "id": "advocatehealthcare-929fa5",
+      "locationSet": {
+        "include": [
+          "us-ca.geojson",
+          "us-ia.geojson",
+          "us-il.geojson",
+          "us-in.geojson",
+          "us-wi.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Advocate Aurora Health",
-        "operator:short": "AAH",
+        "operator": "Advocate Health Care",
         "operator:type": "private",
-        "operator:wikidata": "Q4822546"
+        "operator:wikidata": "Q30254233"
       }
     },
     {
@@ -106,6 +111,18 @@
         "operator": "Agaplesion",
         "operator:type": "private",
         "operator:wikidata": "Q55445"
+      }
+    },
+    {
+      "displayName": "Akademiska sjukhuset",
+      "id": "akademiskasjukhuset-653dc5",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Akademiska sjukhuset",
+        "operator:type": "university",
+        "operator:wikidata": "Q430594"
       }
     },
     {
@@ -272,14 +289,36 @@
     },
     {
       "displayName": "Atrium Health",
-      "id": "atriumhealth-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "atriumhealth-991ea9",
+      "locationSet": {
+        "include": [
+          "us-al.geojson",
+          "us-ga.geojson",
+          "us-nc.geojson",
+          "us-sc.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Atrium Health",
         "operator:type": "private",
         "operator:wikidata": "Q5044932"
+      }
+    },
+    {
+      "displayName": "Aurora Health Care",
+      "id": "aurorahealthcare-a89708",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "matchNames": ["advocate aurora health"],
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Aurora Health Care",
+        "operator:type": "private",
+        "operator:wikidata": "Q4822546"
       }
     },
     {
@@ -305,8 +344,21 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Avon and Wiltshire Mental Health Partnership NHS Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q4829257"
+      }
+    },
+    {
+      "displayName": "Azienda USL Toscana Centro",
+      "id": "aziendausltoscanacentro-eb6309",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Azienda USL Toscana Centro",
+        "operator:wikidata": "Q98852445"
       }
     },
     {
@@ -463,12 +515,15 @@
       "displayName": "Caja Nacional de Salud (Bolivia)",
       "id": "cajanacionaldesalud-bdc341",
       "locationSet": {"include": ["bo"]},
+      "matchNames": [
+        "caja nacional de salud cns"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Caja Nacional de Salud",
         "operator:short": "CNS",
-        "operator:type": "private"
+        "operator:type": "public"
       }
     },
     {
@@ -536,8 +591,15 @@
     },
     {
       "displayName": "ChristianaCare",
-      "id": "christianacare-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "christianacare-9c32f9",
+      "locationSet": {
+        "include": [
+          "us-de.geojson",
+          "us-md.geojson",
+          "us-nj.geojson",
+          "us-pa.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -609,7 +671,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Cornwall Partnership NHS Foundation Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q16988175"
       }
     },
@@ -656,17 +718,6 @@
         "operator": "Covenant Health",
         "operator:type": "private",
         "operator:wikidata": "Q5178997"
-      }
-    },
-    {
-      "displayName": "Croydon University Hospital",
-      "id": "croydonuniversityhospital-b0b612",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Croydon University Hospital",
-        "operator:type": "university"
       }
     },
     {
@@ -726,9 +777,11 @@
       }
     },
     {
-      "displayName": "Department of Health and Family Welfare",
-      "id": "departmentofhealthandfamilywelfare-585fc8",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Department of Health and Family Welfare (Kerala)",
+      "id": "departmentofhealthandfamilywelfare-7a3502",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -737,9 +790,11 @@
       }
     },
     {
-      "displayName": "Department of Health Services (India)",
-      "id": "departmentofhealthservices-585fc8",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Department of Health Services (Kerala)",
+      "id": "departmentofhealthservices-7a3502",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "matchNames": [
         "department of health",
         "department of health service",
@@ -756,8 +811,10 @@
     },
     {
       "displayName": "Department of Public Health Service",
-      "id": "departmentofpublichealthservice-585fc8",
-      "locationSet": {"include": ["in"]},
+      "id": "departmentofpublichealthservice-7a3502",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -775,7 +832,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Devon Partnership NHS Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q16988718"
       }
     },
@@ -807,7 +864,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Dorset HealthCare University NHS Foundation Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q16988978"
       }
     },
@@ -884,7 +941,7 @@
         "name": "ESI Hospital",
         "operator": "Employees' State Insurance",
         "operator:short": "ESI",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q3595726"
       }
     },
@@ -911,6 +968,18 @@
         "operator": "Essentia Health",
         "operator:type": "private",
         "operator:wikidata": "Q16975060"
+      }
+    },
+    {
+      "displayName": "Etablissement Public de Santé Mentale de la Vallée de l'Arve",
+      "id": "etablissementpublicdesantementaledelavalleedelarve-d077fe",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Etablissement Public de Santé Mentale de la Vallée de l'Arve"
       }
     },
     {
@@ -961,7 +1030,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Fraser Health Authority",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q5493608"
       }
     },
@@ -995,8 +1064,14 @@
     },
     {
       "displayName": "Generalitat Valenciana",
-      "id": "generalitatvalenciana-34fe48",
-      "locationSet": {"include": ["es"]},
+      "id": "generalitatvalenciana-78638c",
+      "locationSet": {
+        "include": [
+          "es-a.geojson",
+          "es-cs.geojson",
+          "es-v.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1020,8 +1095,13 @@
     },
     {
       "displayName": "Gobierno de la Ciudad de Buenos Aires",
-      "id": "gobiernodelaciudaddebuenosaires-b92ad7",
-      "locationSet": {"include": ["ar"]},
+      "id": "gobiernodelaciudaddebuenosaires-e6d349",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1044,8 +1124,10 @@
     },
     {
       "displayName": "Government of Kerala",
-      "id": "governmentofkerala-585fc8",
-      "locationSet": {"include": ["in"]},
+      "id": "governmentofkerala-7a3502",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1063,7 +1145,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Great Ormond Street Hospital for Children NHS Foundation Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q19873658"
       }
     },
@@ -1080,7 +1162,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Greater Manchester Mental Health NHS Foundation Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q16993309"
       }
     },
@@ -1196,7 +1278,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Imperial College Healthcare NHS Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q14956770"
       }
     },
@@ -1228,18 +1310,19 @@
       }
     },
     {
-      "displayName": "Inova",
-      "id": "inova-37da20",
+      "displayName": "Inova Health System",
+      "id": "inovahealthsystem-37da20",
       "locationSet": {
         "include": [
           "us-md.geojson",
           "us-va.geojson"
         ]
       },
+      "matchNames": ["inova"],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Inova",
+        "operator": "Inova Health System",
         "operator:type": "private",
         "operator:wikidata": "Q16996992"
       }
@@ -1279,7 +1362,8 @@
         "healthcare": "hospital",
         "operator": "Instituto Hondureño de Seguridad Social",
         "operator:short": "IHSS",
-        "operator:type": "government"
+        "operator:type": "government",
+        "operator:wikidata": "Q16487105"
       }
     },
     {
@@ -1290,6 +1374,8 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Instituto Mexicano del Seguro Social",
+        "operator:en": "Mexican Social Security Institute",
+        "operator:es": "Instituto Mexicano del Seguro Social",
         "operator:short": "IMSS",
         "operator:type": "government",
         "operator:wikidata": "Q904999"
@@ -1505,7 +1591,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Maidstone and Tunbridge Wells NHS Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q16997207"
       }
     },
@@ -1671,8 +1757,15 @@
     },
     {
       "displayName": "Mercy",
-      "id": "mercy-888e5a",
-      "locationSet": {"include": ["us"]},
+      "id": "mercy-341371",
+      "locationSet": {
+        "include": [
+          "us-ar.geojson",
+          "us-ks.geojson",
+          "us-mo.geojson",
+          "us-ok.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1780,14 +1873,16 @@
       }
     },
     {
-      "displayName": "Ministère de la Santé (Sénégal)",
-      "id": "ministeredelasante-c21448",
+      "displayName": "Ministère de la Santé et de l'Action Sociale",
+      "id": "ministeredelasanteetdelactionsociale-c21448",
       "locationSet": {"include": ["sn"]},
+      "matchNames": ["ministère de la santé"],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Ministère de la Santé",
-        "operator:type": "government"
+        "operator": "Ministère de la Santé et de l'Action Sociale",
+        "operator:type": "government",
+        "operator:wikidata": "Q30285491"
       }
     },
     {
@@ -1799,7 +1894,8 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Ministère de la Santé Publique",
-        "operator:type": "government"
+        "operator:type": "government",
+        "operator:wikidata": "Q50037306"
       }
     },
     {
@@ -1810,7 +1906,8 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Ministério da Saúde",
-        "operator:type": "government"
+        "operator:type": "government",
+        "operator:wikidata": "Q30290560"
       }
     },
     {
@@ -1839,8 +1936,10 @@
     },
     {
       "displayName": "Ministerio de Salud - Gobierno de la Provincia del Neuquén",
-      "id": "ministeriodesaludgobiernodelaprovinciadelneuquen-b92ad7",
-      "locationSet": {"include": ["ar"]},
+      "id": "ministeriodesaludgobiernodelaprovinciadelneuquen-de8d0c",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1850,8 +1949,10 @@
     },
     {
       "displayName": "Ministerio de Salud - Gobierno de Río Negro",
-      "id": "ministeriodesaludgobiernoderionegro-b92ad7",
-      "locationSet": {"include": ["ar"]},
+      "id": "ministeriodesaludgobiernoderionegro-fed2a2",
+      "locationSet": {
+        "include": ["ar-r.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -1902,13 +2003,14 @@
       }
     },
     {
-      "displayName": "Ministerio de Salud (Perú)",
-      "id": "ministeriodesalud-d29164",
+      "displayName": "Ministerio de Salud del Perú",
+      "id": "ministeriodesaluddelperu-d29164",
       "locationSet": {"include": ["pe"]},
+      "matchNames": ["ministerio de salud"],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Ministerio de Salud",
+        "operator": "Ministerio de Salud del Perú",
         "operator:short": "MINSA",
         "operator:type": "government",
         "operator:wikidata": "Q3065012"
@@ -1943,15 +2045,16 @@
     },
     {
       "displayName": "Ministerio de Salud Pública y Asistencia Social (Guatemala)",
-      "id": "ministeriodesalud-0cfb3e",
+      "id": "ministeriodesaludpublicayasistenciasocial-0cfb3e",
       "locationSet": {"include": ["gt"]},
       "matchNames": [
+        "ministerio de salud",
         "ministerio de salud pública"
       ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
-        "operator": "Ministerio de Salud",
+        "operator": "Ministerio de Salud Pública y Asistencia Social",
         "operator:short": "MSPAS",
         "operator:type": "government",
         "operator:wikidata": "Q6017425"
@@ -2104,7 +2207,8 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Ministry of Health & Wellness",
-        "operator:type": "government"
+        "operator:type": "government",
+        "operator:wikidata": "Q96340620"
       }
     },
     {
@@ -2237,7 +2341,8 @@
         "healthcare": "hospital",
         "operator": "National Primary Health Care Development Agency",
         "operator:short": "NPHCDA",
-        "operator:type": "public"
+        "operator:type": "public",
+        "operator:wikidata": "Q30261975"
       }
     },
     {
@@ -2248,7 +2353,8 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "National Urban Health Mission",
-        "operator:type": "private"
+        "operator:type": "government",
+        "operator:wikidata": "Q13112734"
       }
     },
     {
@@ -2277,8 +2383,10 @@
     },
     {
       "displayName": "Niederösterreichische Landeskliniken-Holding",
-      "id": "niederosterreichischelandesklinikenholding-7f2aa5",
-      "locationSet": {"include": ["at"]},
+      "id": "niederosterreichischelandesklinikenholding-a4bb91",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2395,7 +2503,8 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Nuffield Health",
-        "operator:type": "private"
+        "operator:type": "private",
+        "operator:wikidata": "Q7068711"
       }
     },
     {
@@ -2426,8 +2535,14 @@
     },
     {
       "displayName": "Osakidetza",
-      "id": "osakidetza-34fe48",
-      "locationSet": {"include": ["es"]},
+      "id": "osakidetza-aee43e",
+      "locationSet": {
+        "include": [
+          "es-bi.geojson",
+          "es-ss.geojson",
+          "es-vi.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2464,6 +2579,30 @@
         "operator": "PeaceHealth",
         "operator:type": "private",
         "operator:wikidata": "Q16966652"
+      }
+    },
+    {
+      "displayName": "Pirkanmaan hyvinvointialue",
+      "id": "pirkanmaanhyvinvointialue-ed090b",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Pirkanmaan hyvinvointialue",
+        "operator:type": "public",
+        "operator:wikidata": "Q110245172"
+      }
+    },
+    {
+      "displayName": "Pohjois-Pohjanmaan hyvinvointialue",
+      "id": "pohjoispohjanmaanhyvinvointialue-ed090b",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Pohjois-Pohjanmaan hyvinvointialue",
+        "operator:type": "public",
+        "operator:wikidata": "Q110237082"
       }
     },
     {
@@ -2504,8 +2643,10 @@
     },
     {
       "displayName": "Provincia de Santa Fe",
-      "id": "provinciadesantafe-b92ad7",
-      "locationSet": {"include": ["ar"]},
+      "id": "provinciadesantafe-632554",
+      "locationSet": {
+        "include": ["ar-s.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2538,6 +2679,22 @@
         "operator": "Queensland Health",
         "operator:type": "government",
         "operator:wikidata": "Q17006271"
+      }
+    },
+    {
+      "displayName": "Quirónsalud",
+      "id": "quironsalud-fde486",
+      "issues": [10853],
+      "locationSet": {
+        "include": ["co", "es", "pt"]
+      },
+      "matchNames": ["quirón"],
+      "note": "operator:type omitted from preset as its value varies",
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "Quirónsalud",
+        "operator:wikidata": "Q5886225"
       }
     },
     {
@@ -2605,17 +2762,6 @@
       }
     },
     {
-      "displayName": "RSUD Selayar",
-      "id": "rsudselayar-03d8c5",
-      "locationSet": {"include": ["id"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "RSUD Selayar",
-        "operator:type": "private"
-      }
-    },
-    {
       "displayName": "SA Health",
       "id": "sahealth-26d4fb",
       "locationSet": {
@@ -2631,8 +2777,20 @@
     },
     {
       "displayName": "SACYL",
-      "id": "sacyl-34fe48",
-      "locationSet": {"include": ["es"]},
+      "id": "sacyl-850ed8",
+      "locationSet": {
+        "include": [
+          "es-av.geojson",
+          "es-bu.geojson",
+          "es-le.geojson",
+          "es-p.geojson",
+          "es-sa.geojson",
+          "es-sg.geojson",
+          "es-so.geojson",
+          "es-va.geojson",
+          "es-za.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2772,8 +2930,19 @@
     },
     {
       "displayName": "Servicio Andaluz de Salud",
-      "id": "servicioandaluzdesalud-34fe48",
-      "locationSet": {"include": ["es"]},
+      "id": "servicioandaluzdesalud-0e8970",
+      "locationSet": {
+        "include": [
+          "es-al.geojson",
+          "es-ca.geojson",
+          "es-co.geojson",
+          "es-gr.geojson",
+          "es-h.geojson",
+          "es-j.geojson",
+          "es-ma.geojson",
+          "es-se.geojson"
+        ]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2802,7 +2971,7 @@
       }
     },
     {
-      "displayName": "Sistema Único de Saúde",
+      "displayName": "Sistema Único de Saúde (Brasil)",
       "id": "sistemaunicodesaude-d30bb4",
       "locationSet": {"include": ["br"]},
       "tags": {
@@ -2831,11 +3000,14 @@
       "locationSet": {
         "include": ["gb-som.geojson"]
       },
+      "matchNames": [
+        "yeovil district hospital nhs foundation trust"
+      ],
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Somerset NHS Foundation Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q96405998"
       }
     },
@@ -2902,8 +3074,10 @@
     },
     {
       "displayName": "Steiermärkische Krankenanstaltengesellschaft m.b.H.",
-      "id": "steiermarkischekrankenanstaltengesellschaftmbh-7f2aa5",
-      "locationSet": {"include": ["at"]},
+      "id": "steiermarkischekrankenanstaltengesellschaftmbh-5682c5",
+      "locationSet": {
+        "include": ["at-6.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -2934,18 +3108,6 @@
         "operator": "Sutter Health",
         "operator:type": "private",
         "operator:wikidata": "Q7650154"
-      }
-    },
-    {
-      "displayName": "Svet zdravia",
-      "id": "svetzdravia-ecf182",
-      "locationSet": {"include": ["sk"]},
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Svet zdravia",
-        "operator:type": "private",
-        "operator:wikidata": "Q96137636"
       }
     },
     {
@@ -3093,7 +3255,7 @@
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "University Hospitals Dorset NHS Foundation Trust",
-        "operator:type": "private",
+        "operator:type": "public",
         "operator:wikidata": "Q99964922"
       }
     },
@@ -3157,6 +3319,11 @@
         "veterans affairs",
         "veterans affairs hospital",
         "veterans affairs medical center"
+      ],
+      "preserveTags": [
+        "^emergency$",
+        "^name",
+        "^short_name"
       ],
       "tags": {
         "amenity": "hospital",
@@ -3226,23 +3393,11 @@
       }
     },
     {
-      "displayName": "Yeovil District Hospital NHS Foundation Trust",
-      "id": "yeovildistricthospitalnhsfoundationtrust-5fb324",
-      "locationSet": {
-        "include": ["gb-som.geojson"]
-      },
-      "tags": {
-        "amenity": "hospital",
-        "healthcare": "hospital",
-        "operator": "Yeovil District Hospital NHS Foundation Trust",
-        "operator:type": "private",
-        "operator:wikidata": "Q8052494"
-      }
-    },
-    {
       "displayName": "Ziekenhuis Netwerk Antwerpen",
-      "id": "ziekenhuisnetwerkantwerpen-1fd604",
-      "locationSet": {"include": ["be"]},
+      "id": "ziekenhuisnetwerkantwerpen-3b7573",
+      "locationSet": {
+        "include": ["be-van.geojson"]
+      },
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -3267,11 +3422,24 @@
       "displayName": "Городская клиническая больница №20 им. И.С. Берзона",
       "id": "58dff7-7b7c97",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KYA",
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
         "operator": "Городская клиническая больница №20 им. И.С. Берзона",
         "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "ООО \"Промышленная Медицина\"",
+      "id": "bc1750-7b7c97",
+      "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KEM",
+      "tags": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "operator": "ООО \"Промышленная Медицина\"",
+        "operator:type": "public"
       }
     },
     {
@@ -3302,6 +3470,7 @@
       "displayName": "哈尔滨医科大学",
       "id": "f5a5f0-618ef1",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HL",
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",
@@ -3331,6 +3500,7 @@
       "displayName": "首都医科大学",
       "id": "capitalmedicaluniversity-618ef1",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-BJ",
       "tags": {
         "amenity": "hospital",
         "healthcare": "hospital",

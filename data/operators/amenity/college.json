@@ -3,23 +3,16 @@
     "path": "operators/amenity/college",
     "exclude": {
       "generic": [
-        "^(governo |)federal$",
+        "^((governo )?federal|federal government)$",
         "^autonomo$",
         "^college$"
+      ],
+      "named": [
+        "^(city colleges of chicago|florence-darlington technical college)$"
       ]
     }
   },
   "items": [
-    {
-      "displayName": "#IFES",
-      "id": "ifes-628adc",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "college",
-        "operator": "#IFES",
-        "operator:type": "private"
-      }
-    },
     {
       "displayName": "Centro Paula Souza",
       "id": "centropaulasouza-628adc",
@@ -80,6 +73,19 @@
       }
     },
     {
+      "displayName": "Gmina Lublin",
+      "id": "gminalublin-5c2933",
+      "locationSet": {
+        "include": ["pl-06.geojson"]
+      },
+      "tags": {
+        "amenity": "college",
+        "operator": "Gmina Lublin",
+        "operator:type": "government",
+        "operator:wikidata": "Q37333"
+      }
+    },
+    {
       "displayName": "Government of Ghana",
       "id": "governmentofghana-182686",
       "locationSet": {"include": ["gh"]},
@@ -104,6 +110,18 @@
       }
     },
     {
+      "displayName": "IFET",
+      "id": "institutofederaldeeducacaocienciaetecnologia-628adc",
+      "locationSet": {"include": ["br"]},
+      "matchNames": ["#ifes"],
+      "tags": {
+        "amenity": "college",
+        "operator": "Instituto Federal de Educação, Ciência e Tecnologia",
+        "operator:type": "public",
+        "operator:wikidata": "Q10302972"
+      }
+    },
+    {
       "displayName": "Instituto Nacional de Aprendizaje",
       "id": "institutonacionaldeaprendizaje-12434b",
       "locationSet": {"include": ["cr"]},
@@ -116,13 +134,17 @@
       }
     },
     {
-      "displayName": "Ministère de l'Éducation nationale, de l'Enseignement supérieur et de la Recherche",
-      "id": "ministeredeleducationnationaledelenseignementsuperieuretdelarecherche-dac3bc",
+      "displayName": "Ministère de l'Enseignement supérieur et de la Recherche",
+      "id": "ministeredelenseignementsuperieuretdelarecherche-dac3bc",
       "locationSet": {"include": ["fx"]},
+      "matchNames": [
+        "ministère de l'éducation nationale, de l'enseignement supérieur et de la recherche"
+      ],
       "tags": {
         "amenity": "college",
-        "operator": "Ministère de l'Éducation nationale, de l'Enseignement supérieur et de la Recherche",
-        "operator:type": "government"
+        "operator": "Ministère de l'Enseignement supérieur et de la Recherche",
+        "operator:type": "government",
+        "operator:wikidata": "Q2726949"
       }
     },
     {
@@ -196,8 +218,10 @@
     },
     {
       "displayName": "Skk School Spółka Z Ograniczoną Odpowiedzialnością",
-      "id": "skkschoolspolkazograniczonaodpowiedzialnoscia-5630d8",
-      "locationSet": {"include": ["pl"]},
+      "id": "skkschoolspolkazograniczonaodpowiedzialnoscia-86a36e",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "amenity": "college",
         "operator": "Skk School Spółka Z Ograniczoną Odpowiedzialnością",
@@ -268,13 +292,27 @@
       }
     },
     {
+      "displayName": "Universidad de Guadalajara",
+      "id": "universidaddeguadalajara-cb82d4",
+      "locationSet": {
+        "include": ["mx-jal.geojson"]
+      },
+      "tags": {
+        "amenity": "college",
+        "operator": "Universidad de Guadalajara",
+        "operator:type": "public",
+        "operator:wikidata": "Q164028"
+      }
+    },
+    {
       "displayName": "Universidade de São Paulo",
       "id": "universidadedesaopaulo-628adc",
       "locationSet": {"include": ["br"]},
       "tags": {
         "amenity": "college",
         "operator": "Universidade de São Paulo",
-        "operator:type": "private"
+        "operator:type": "public",
+        "operator:wikidata": "Q835960"
       }
     },
     {
@@ -297,21 +335,8 @@
       "tags": {
         "amenity": "college",
         "operator": "Universiti Malaya",
-        "operator:type": "private"
-      }
-    },
-    {
-      "displayName": "University of California, Irvine",
-      "id": "universityofcaliforniairvine-6e795f",
-      "locationSet": {
-        "include": ["us-ca-orange_county.geojson"]
-      },
-      "matchNames": ["uc irvine"],
-      "tags": {
-        "amenity": "college",
-        "operator": "University of California, Irvine",
         "operator:type": "public",
-        "operator:wikidata": "Q868421"
+        "operator:wikidata": "Q1142924"
       }
     },
     {
@@ -321,7 +346,8 @@
       "tags": {
         "amenity": "college",
         "operator": "University of Duhok",
-        "operator:type": "private"
+        "operator:type": "private",
+        "operator:wikidata": "Q3666468"
       }
     },
     {
@@ -344,37 +370,77 @@
       "tags": {
         "amenity": "college",
         "operator": "University of the Highlands and Islands",
-        "operator:type": "private"
+        "operator:type": "private",
+        "operator:wikidata": "Q1470817"
+      }
+    },
+    {
+      "displayName": "Департамент освіти і науки Львівської обласної державної адміністрації",
+      "id": "fcd51e-1fdda0",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "amenity": "college",
+        "operator": "Департамент освіти і науки Львівської обласної державної адміністрації",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Міністерство освіти і науки України",
+      "id": "f52b8a-1fdda0",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "amenity": "college",
+        "operator": "Міністерство освіти і науки України",
+        "operator:type": "government",
+        "operator:wikidata": "Q4294532"
       }
     },
     {
       "displayName": "中国科学技术大学",
       "id": "5a23d3-bccf1d",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-AH",
       "tags": {
         "amenity": "college",
         "operator": "中国科学技术大学",
-        "operator:type": "private"
+        "operator:type": "public",
+        "operator:wikidata": "Q1074103"
       }
     },
     {
       "displayName": "北京理工大学珠海学院",
       "id": "356029-bccf1d",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-GD",
       "tags": {
         "amenity": "college",
         "operator": "北京理工大学珠海学院",
-        "operator:type": "private"
+        "operator:type": "private",
+        "operator:wikidata": "Q10902359"
+      }
+    },
+    {
+      "displayName": "職業訓練局 Vocational Training Council",
+      "id": "87516b-c46c71",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "college",
+        "operator": "職業訓練局 Vocational Training Council",
+        "operator:type": "public",
+        "operator:wikidata": "Q15178640"
       }
     },
     {
       "displayName": "金沢工業大学",
-      "id": "b43625-9f2162",
-      "locationSet": {"include": ["jp"]},
+      "id": "b43625-b01670",
+      "locationSet": {
+        "include": ["jp-17.geojson"]
+      },
       "tags": {
         "amenity": "college",
         "operator": "金沢工業大学",
-        "operator:type": "private"
+        "operator:type": "private",
+        "operator:wikidata": "Q6360885"
       }
     }
   ]
