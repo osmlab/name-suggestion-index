@@ -3,6 +3,7 @@
     "path": "operators/power/plant",
     "exclude": {
       "generic": [
+        "^(individual|個人)$",
         "^(power)?\\s?plant$",
         "^private developer$"
       ],
@@ -125,16 +126,6 @@
       "locationSet": {"include": ["us"]},
       "tags": {
         "operator": "AES Distributed Energy",
-        "power": "plant"
-      }
-    },
-    {
-      "displayName": "Agder Energi",
-      "id": "agderenergi-44cc7f",
-      "locationSet": {"include": ["no"]},
-      "tags": {
-        "operator": "Agder Energi",
-        "operator:wikidata": "Q4355084",
         "power": "plant"
       }
     },
@@ -369,6 +360,19 @@
       }
     },
     {
+      "displayName": "Berliner Energie und Wärme",
+      "id": "berlinerenergieundwarme-920d74",
+      "locationSet": {
+        "include": ["de-be.geojson"]
+      },
+      "tags": {
+        "operator": "Berliner Energie und Wärme",
+        "operator:short": "BEW",
+        "operator:wikidata": "Q42975492",
+        "power": "plant"
+      }
+    },
+    {
       "displayName": "Biffa",
       "id": "biffa-961ad5",
       "locationSet": {"include": ["gb"]},
@@ -581,8 +585,10 @@
     },
     {
       "displayName": "Compañía Eólica Aragonesa",
-      "id": "companiaeolicaaragonesa-d14bb1",
-      "locationSet": {"include": ["es"]},
+      "id": "companiaeolicaaragonesa-c6ed01",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "matchNames": [
         "compañía eólica aragonesa, s.a. (ceasa)"
       ],
@@ -1172,10 +1178,11 @@
     },
     {
       "displayName": "Enerparc",
-      "id": "enerparc-8bd004",
-      "locationSet": {"include": ["de", "es"]},
+      "id": "enerparc-5f13e6",
+      "locationSet": {"include": ["de", "es-ib"]},
       "tags": {
         "operator": "Enerparc",
+        "operator:wikidata": "Q134607237",
         "power": "plant"
       }
     },
@@ -1592,6 +1599,18 @@
       }
     },
     {
+      "displayName": "Goldbeck Solar",
+      "id": "goldbecksolar-19eaf3",
+      "locationSet": {
+        "include": ["de", "gb-eng", "kz"]
+      },
+      "tags": {
+        "operator": "Goldbeck Solar",
+        "operator:wikidata": "Q123683846",
+        "power": "plant"
+      }
+    },
+    {
       "displayName": "Goldman Sachs Renewable Power Group",
       "id": "goldmansachsrenewablepowergroup-2ac081",
       "locationSet": {"include": ["us"]},
@@ -1917,8 +1936,13 @@
     },
     {
       "displayName": "Innogy Spain, S.A.U",
-      "id": "innogyspainsau-d14bb1",
-      "locationSet": {"include": ["es"]},
+      "id": "innogyspainsau-69c1ff",
+      "locationSet": {
+        "include": [
+          "es-hu.geojson",
+          "es-z.geojson"
+        ]
+      },
       "tags": {
         "operator": "Innogy Spain, S.A.U",
         "power": "plant"
@@ -1977,8 +2001,10 @@
     },
     {
       "displayName": "Karnataka Power Corporation Limited",
-      "id": "karnatakapowercorporationlimited-bf89c5",
-      "locationSet": {"include": ["in"]},
+      "id": "karnatakapowercorporationlimited-43561b",
+      "locationSet": {
+        "include": ["in-ka.geojson"]
+      },
       "tags": {
         "operator": "Karnataka Power Corporation Limited",
         "operator:wikidata": "Q6372867",
@@ -2119,6 +2145,7 @@
       "displayName": "Madhya Pradesh Power Generating Company Limited",
       "id": "madhyapradeshpowergeneratingcompanylimited-bf89c5",
       "locationSet": {"include": ["in"]},
+      "note": "ISO 3166-2 IN-MP",
       "tags": {
         "operator": "Madhya Pradesh Power Generating Company Limited",
         "operator:wikidata": "Q6727604",
@@ -2139,8 +2166,10 @@
     },
     {
       "displayName": "Maharashtra State Power Generation Company",
-      "id": "maharashtrastatepowergenerationcompany-bf89c5",
-      "locationSet": {"include": ["in"]},
+      "id": "maharashtrastatepowergenerationcompany-3351de",
+      "locationSet": {
+        "include": ["in-mh.geojson"]
+      },
       "tags": {
         "operator": "Maharashtra State Power Generation Company",
         "operator:wikidata": "Q97251179",
@@ -2598,12 +2627,13 @@
     },
     {
       "displayName": "Ørsted",
-      "id": "orsted-67f0f6",
+      "id": "orsted-187652",
       "locationSet": {
         "include": [
           "de",
           "dk",
           "gb",
+          "ie",
           "nl",
           "se",
           "us"
@@ -2666,6 +2696,7 @@
       "displayName": "Perusahaan Listrik Negara",
       "id": "perusahaanlistriknegara-db9f5e",
       "locationSet": {"include": ["id"]},
+      "matchNames": ["pt pln"],
       "tags": {
         "operator": "Perusahaan Listrik Negara",
         "operator:short": "PLN",
@@ -2763,8 +2794,10 @@
     },
     {
       "displayName": "PT Pembangkitan Jawa Bali",
-      "id": "ptpembangkitanjawabali-db9f5e",
-      "locationSet": {"include": ["id"]},
+      "id": "ptpembangkitanjawabali-e47eed",
+      "locationSet": {
+        "include": ["id-jw", "id-sm"]
+      },
       "matchNames": [
         "pembangkitan jawa bali",
         "pt pjb"
@@ -2813,8 +2846,13 @@
     },
     {
       "displayName": "Punjab State Power Corporation",
-      "id": "punjabstatepowercorporation-bf89c5",
-      "locationSet": {"include": ["in"]},
+      "id": "punjabstatepowercorporation-4b8fd4",
+      "locationSet": {
+        "include": [
+          "in-hp.geojson",
+          "in-pb.geojson"
+        ]
+      },
       "matchNames": [
         "punjab state electricity board"
       ],
@@ -3213,12 +3251,13 @@
     },
     {
       "displayName": "Sonnedix",
-      "id": "sonnedix-ff7844",
+      "id": "sonnedix-2242fd",
       "locationSet": {
-        "include": ["es", "fr", "pr"]
+        "include": ["es", "fx", "pr"]
       },
       "tags": {
         "operator": "Sonnedix",
+        "operator:wikidata": "Q48997473",
         "power": "plant"
       }
     },
@@ -3394,8 +3433,10 @@
     },
     {
       "displayName": "TANGEDCO",
-      "id": "tangedco-bf89c5",
-      "locationSet": {"include": ["in"]},
+      "id": "tangedco-122714",
+      "locationSet": {
+        "include": ["in-tn.geojson"]
+      },
       "tags": {
         "operator": "TANGEDCO",
         "operator:wikidata": "Q17074901",
@@ -3414,8 +3455,10 @@
     },
     {
       "displayName": "Telangana State Power Generation Corporation Limited",
-      "id": "telanganastatepowergenerationcorporationlimited-bf89c5",
-      "locationSet": {"include": ["in"]},
+      "id": "telanganastatepowergenerationcorporationlimited-23de56",
+      "locationSet": {
+        "include": ["in-ts.geojson"]
+      },
       "tags": {
         "operator": "Telangana State Power Generation Corporation Limited",
         "operator:short": "TSGENCO",
@@ -3459,12 +3502,12 @@
       }
     },
     {
-      "displayName": "Tesla, Inc.",
-      "id": "teslainc-e6c8aa",
+      "displayName": "Tesla",
+      "id": "tesla-e6c8aa",
       "locationSet": {"include": ["001"]},
-      "matchNames": ["tesla"],
+      "matchNames": ["tesla inc"],
       "tags": {
-        "operator": "Tesla, Inc.",
+        "operator": "Tesla",
         "operator:wikidata": "Q478214",
         "power": "plant"
       }
@@ -3538,6 +3581,15 @@
       "locationSet": {"include": ["cu"]},
       "tags": {
         "operator": "UNE",
+        "power": "plant"
+      }
+    },
+    {
+      "displayName": "UNE – EMFRE",
+      "id": "uneemfre-722bca",
+      "locationSet": {"include": ["cu"]},
+      "tags": {
+        "operator": "UNE – EMFRE",
         "power": "plant"
       }
     },
@@ -3909,6 +3961,7 @@
       "displayName": "АО \"Красногорская теплосеть\"",
       "id": "f4512b-d6d29e",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOS",
       "tags": {
         "operator": "АО \"Красногорская теплосеть\"",
         "power": "plant"
@@ -3975,8 +4028,10 @@
       "displayName": "МОЭК",
       "id": "738c38-d6d29e",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOS, RU-MOW",
       "tags": {
         "operator": "МОЭК",
+        "operator:wikidata": "Q4303935",
         "power": "plant"
       }
     },
@@ -3996,6 +4051,7 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "operator": "ПАО «Т Плюс»",
+        "operator:wikidata": "Q4123114",
         "power": "plant"
       }
     },
@@ -4174,6 +4230,7 @@
       "displayName": "中国华能-北方联合",
       "id": "0f34d2-42ff7b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-NM",
       "tags": {
         "operator": "中国华能-北方联合",
         "power": "plant"
@@ -4196,17 +4253,9 @@
       "tags": {
         "operator": "中国华能集团",
         "operator:en": "China Huaneng Group",
+        "operator:short": "华能",
         "operator:wikidata": "Q842509",
         "operator:zh": "中国华能集团",
-        "power": "plant"
-      }
-    },
-    {
-      "displayName": "中国大唐",
-      "id": "3995df-42ff7b",
-      "locationSet": {"include": ["cn"]},
-      "tags": {
-        "operator": "中国大唐",
         "power": "plant"
       }
     },
@@ -4220,11 +4269,26 @@
       }
     },
     {
+      "displayName": "中国大唐集团",
+      "id": "chinadatangcorporation-42ff7b",
+      "locationSet": {"include": ["cn"]},
+      "matchNames": ["中国大唐"],
+      "tags": {
+        "operator": "中国大唐集团",
+        "operator:en": "China Datang Corporation",
+        "operator:short": "大唐",
+        "operator:wikidata": "Q2963711",
+        "operator:zh": "中国大唐集团",
+        "power": "plant"
+      }
+    },
+    {
       "displayName": "中国石化",
       "id": "fd1cea-42ff7b",
       "locationSet": {"include": ["cn"]},
       "tags": {
         "operator": "中国石化",
+        "operator:wikidata": "Q831445",
         "power": "plant"
       }
     },
@@ -4234,6 +4298,7 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "operator": "中国石油",
+        "operator:wikidata": "Q503182",
         "power": "plant"
       }
     },
@@ -4243,15 +4308,20 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "operator": "中国节能",
+        "operator:wikidata": "Q5099674",
         "power": "plant"
       }
     },
     {
-      "displayName": "中国電力株式会社",
-      "id": "dc7674-083ddd",
+      "displayName": "中国電力",
+      "id": "chugokuelectricpowercompany-083ddd",
       "locationSet": {"include": ["jp"]},
+      "matchNames": ["中国電力株式会社"],
       "tags": {
-        "operator": "中国電力株式会社",
+        "operator": "中国電力",
+        "operator:en": "Chugoku Electric Power Company",
+        "operator:ja": "中国電力",
+        "operator:wikidata": "Q73171",
         "power": "plant"
       }
     },
@@ -4259,11 +4329,12 @@
       "displayName": "中部電力",
       "id": "chubuelectricpowercompany-083ddd",
       "locationSet": {"include": ["jp"]},
+      "matchNames": ["中部電力株式会社"],
       "tags": {
-        "operator": "中部電力株式会社",
+        "operator": "中部電力",
         "operator:en": "Chubu Electric Power Company",
-        "operator:ja": "中部電力株式会社",
-        "operator:short": "中部電力",
+        "operator:ja": "中部電力",
+        "operator:short": "中電",
         "operator:wikidata": "Q1091203",
         "power": "plant"
       }
@@ -4272,20 +4343,15 @@
       "displayName": "九州電力",
       "id": "kyushuelectricpowercompany-083ddd",
       "locationSet": {"include": ["jp"]},
+      "matchNames": ["九州電力株式会社"],
       "tags": {
         "operator": "九州電力",
         "operator:en": "Kyushu Electric Power Company",
-        "operator:ja": "九州電力株式会社",
-        "operator:short": "九州電力",
+        "operator:ja": "九州電力",
+        "operator:short": "九電",
         "operator:wikidata": "Q694507",
         "power": "plant"
       }
-    },
-    {
-      "displayName": "個人",
-      "id": "a1d1ec-083ddd",
-      "locationSet": {"include": ["jp"]},
-      "tags": {"operator": "個人", "power": "plant"}
     },
     {
       "displayName": "光大环保",
@@ -4307,8 +4373,13 @@
     },
     {
       "displayName": "北海道電力",
-      "id": "hokkaidoelectricpowercompany-083ddd",
-      "locationSet": {"include": ["jp"]},
+      "id": "hokkaidoelectricpowercompany-c93ef5",
+      "locationSet": {
+        "include": [
+          "jp-01.geojson",
+          "jp-02.geojson"
+        ]
+      },
       "tags": {
         "operator": "北海道電力",
         "operator:en": "Hokkaido Electric Power Company",
@@ -4332,6 +4403,7 @@
       "displayName": "协合新能",
       "id": "316ec6-42ff7b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-GX, CN-HN",
       "tags": {
         "operator": "协合新能",
         "power": "plant"
@@ -4356,6 +4428,7 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "operator": "国家电投",
+        "operator:wikidata": "Q20062801",
         "power": "plant"
       }
     },
@@ -4396,11 +4469,13 @@
       }
     },
     {
-      "displayName": "广东粤电",
-      "id": "303876-42ff7b",
+      "displayName": "广东能源集团",
+      "id": "2da729-42ff7b",
       "locationSet": {"include": ["cn"]},
+      "matchNames": ["广东粤电"],
+      "note": "ISO 3166-2 CN-GD",
       "tags": {
-        "operator": "广东粤电",
+        "operator": "广东能源集团",
         "operator:wikidata": "Q107268866",
         "power": "plant"
       }
@@ -4459,9 +4534,23 @@
       }
     },
     {
+      "displayName": "株式会社Eネクスト",
+      "id": "enextcompany-0d27d4",
+      "locationSet": {
+        "include": ["jp-22.geojson"]
+      },
+      "tags": {
+        "operator": "株式会社Eネクスト",
+        "operator:en": "E Next Company",
+        "operator:ja": "株式会社Eネクスト",
+        "power": "plant"
+      }
+    },
+    {
       "displayName": "江永县水利水电责任公司",
       "id": "7f3ec1-42ff7b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "江永县水利水电责任公司",
         "power": "plant"
@@ -4498,8 +4587,10 @@
     },
     {
       "displayName": "群馬県企業局",
-      "id": "f8514d-083ddd",
-      "locationSet": {"include": ["jp"]},
+      "id": "f8514d-d2d0a3",
+      "locationSet": {
+        "include": ["jp-10.geojson"]
+      },
       "tags": {
         "operator": "群馬県企業局",
         "operator:wikidata": "Q11609576",
@@ -4537,6 +4628,7 @@
       "displayName": "魏桥创业",
       "id": "shandongweiqiaopioneeringgroup-42ff7b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-SD",
       "tags": {
         "operator": "魏桥创业",
         "operator:en": "Shandong Weiqiao Pioneering Group",

@@ -3,8 +3,8 @@
     "path": "operators/amenity/childcare",
     "exclude": {
       "generic": [
-        "^childcare$",
-        "^daycare$",
+        "^(child|day)care$",
+        "^(council|grama ?panchayath)$",
         "^educational institute$"
       ]
     }
@@ -12,8 +12,10 @@
   "items": [
     {
       "displayName": "Asha Worker",
-      "id": "ashaworker-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "id": "ashaworker-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
         "operator": "Asha Worker",
@@ -41,9 +43,11 @@
       }
     },
     {
-      "displayName": "Department of Social Justice",
-      "id": "departmentofsocialjustice-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Department of Social Justice (Kerala)",
+      "id": "departmentofsocialjustice-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
         "operator": "Department of Social Justice",
@@ -51,12 +55,14 @@
       }
     },
     {
-      "displayName": "Department Of Women And Child Development",
-      "id": "departmentofwomenandchilddevelopment-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Department of Women and Child Development (Kerala)",
+      "id": "departmentofwomenandchilddevelopment-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Department Of Women And Child Development",
+        "operator": "Department of Women and Child Development",
         "operator:type": "government"
       }
     },
@@ -74,23 +80,15 @@
     },
     {
       "displayName": "Government of Kerala",
-      "id": "governmentofkerala-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "id": "governmentofkerala-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
         "operator": "Government of Kerala",
         "operator:type": "government",
         "operator:wikidata": "Q3522885"
-      }
-    },
-    {
-      "displayName": "gramapanchayath",
-      "id": "gramapanchayath-4b0d98",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "amenity": "childcare",
-        "operator": "gramapanchayath",
-        "operator:type": "private"
       }
     },
     {
@@ -155,12 +153,15 @@
     },
     {
       "displayName": "Othukkungal grama panchayath",
-      "id": "othukkungalgramapanchayath-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "id": "othukkungalgramapanchayath-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
         "operator": "Othukkungal grama panchayath",
-        "operator:type": "private"
+        "operator:type": "government",
+        "operator:wikidata": "Q7108716"
       }
     },
     {
@@ -213,12 +214,15 @@
     },
     {
       "displayName": "横手市",
-      "id": "bdecba-559440",
-      "locationSet": {"include": ["jp"]},
+      "id": "bdecba-1116fc",
+      "locationSet": {
+        "include": ["jp-05.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
         "operator": "横手市",
-        "operator:type": "government"
+        "operator:type": "government",
+        "operator:wikidata": "Q496479"
       }
     }
   ]

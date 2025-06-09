@@ -2,7 +2,7 @@
   "properties": {
     "path": "operators/route/railway",
     "exclude": {
-      "generic": ["^railway|tracks?$"],
+      "generic": ["^(railway|tracks?)$"],
       "named": [
         "(db netz|db infrago|db station|deutsche bahn)"
       ]
@@ -228,8 +228,15 @@
     },
     {
       "displayName": "ETS/RFV",
-      "id": "euskaltrenbidesarearedferroviariavasca-eeecbf",
-      "locationSet": {"include": ["es", "fx"]},
+      "id": "euskaltrenbidesarearedferroviariavasca-06961a",
+      "locationSet": {
+        "include": [
+          "es-bi.geojson",
+          "es-ss.geojson",
+          "es-vi.geojson",
+          "fr-naq.geojson"
+        ]
+      },
       "tags": {
         "operator": "Euskal Trenbide Sarea/Red Ferroviaria Vasca",
         "operator:es": "Red Ferroviaria Vasca",
@@ -243,8 +250,15 @@
     },
     {
       "displayName": "Ferrocarrils de la Generalitat de Catalunya",
-      "id": "ferrocarrilsdelageneralitatdecatalunya-762e69",
-      "locationSet": {"include": ["es"]},
+      "id": "ferrocarrilsdelageneralitatdecatalunya-61e43c",
+      "locationSet": {
+        "include": [
+          "es-b.geojson",
+          "es-gi.geojson",
+          "es-l.geojson",
+          "es-t.geojson"
+        ]
+      },
       "matchNames": [
         "fgc ferrocarrils de la generalitat de catalunya"
       ],
@@ -715,12 +729,13 @@
       }
     },
     {
-      "displayName": "Железнице Србије",
-      "id": "b5cfb7-dc2a17",
+      "displayName": "Инфраструктура железнице Србије",
+      "id": "f8b493-dc2a17",
       "locationSet": {"include": ["rs"]},
+      "matchNames": ["железнице србије"],
       "tags": {
-        "operator": "Железнице Србије",
-        "operator:wikidata": "Q83878",
+        "operator": "Инфраструктура железнице Србије",
+        "operator:wikidata": "Q25459124",
         "route": "railway"
       }
     },
@@ -812,8 +827,13 @@
     },
     {
       "displayName": "名古屋鉄道",
-      "id": "nagoyarailroad-c878da",
-      "locationSet": {"include": ["jp"]},
+      "id": "nagoyarailroad-720116",
+      "locationSet": {
+        "include": [
+          "jp-21.geojson",
+          "jp-23.geojson"
+        ]
+      },
       "tags": {
         "operator": "名古屋鉄道",
         "operator:en": "Nagoya Railroad",

@@ -3,7 +3,10 @@
     "path": "brands/amenity/charging_station",
     "skipCollection": true,
     "preserveTags": ["^name"],
-    "exclude": {"generic": ["^charging station$"]}
+    "exclude": {
+      "generic": ["^charging station$"],
+      "named": ["^tesla, inc.$"]
+    }
   },
   "items": [
     {
@@ -331,25 +334,20 @@
     },
     {
       "displayName": "Tesla Destination Charger",
-      "id": "tesladestinationcharger-67e574",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["no"]
-      },
+      "id": "tesladestinationcharger-4bd82e",
+      "locationSet": {"include": ["001"]},
+      "matchNames": ["tesla wall connector"],
       "tags": {
         "amenity": "charging_station",
-        "brand": "Tesla, Inc.",
+        "brand": "Tesla",
         "brand:wikidata": "Q478214",
         "name": "Tesla Destination Charger"
       }
     },
     {
       "displayName": "Tesla Supercharger",
-      "id": "teslasupercharger-67e574",
-      "locationSet": {
-        "include": ["001"],
-        "exclude": ["no"]
-      },
+      "id": "teslasupercharger-4bd82e",
+      "locationSet": {"include": ["001"]},
       "matchNames": [
         "tesla motors",
         "tesla motors inc",
@@ -360,20 +358,9 @@
         "amenity": "charging_station",
         "brand": "Tesla Supercharger",
         "brand:wikidata": "Q17089620",
-        "operator": "Tesla, Inc.",
+        "name": "Tesla Supercharger",
+        "operator": "Tesla",
         "operator:wikidata": "Q478214"
-      }
-    },
-    {
-      "displayName": "Tesla Supercharger (Norge)",
-      "id": "teslasupercharger-054d0f",
-      "locationSet": {"include": ["no"]},
-      "matchNames": ["tesla motors"],
-      "tags": {
-        "amenity": "charging_station",
-        "brand": "Tesla",
-        "brand:wikidata": "Q478214",
-        "name": "Tesla Supercharger"
       }
     },
     {
@@ -452,6 +439,7 @@
       "displayName": "Энергия Москвы",
       "id": "energyofmoscow-012f44",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOW",
       "tags": {
         "amenity": "charging_station",
         "brand": "Энергия Москвы",

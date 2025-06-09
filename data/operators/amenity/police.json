@@ -4,6 +4,7 @@
     "exclude": {
       "generic": [
         "^((local|municipal) )?police$",
+        "^policía local$",
         "^polizia( (locale|municipale))?$",
         "^п[ао]л(іцыя|иция|иција|іція|иций)$",
         "^中华人民共和国公安部"
@@ -322,8 +323,10 @@
     },
     {
       "displayName": "Delhi Police",
-      "id": "delhipolice-d0526a",
-      "locationSet": {"include": ["in"]},
+      "id": "delhipolice-230fee",
+      "locationSet": {
+        "include": ["in-dl.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Delhi Police",
@@ -752,8 +755,10 @@
     },
     {
       "displayName": "Jammu and Kashmir Police",
-      "id": "jammuandkashmirpolice-0bc1d6",
-      "locationSet": {"include": ["in", "pk"]},
+      "id": "jammuandkashmirpolice-29c3e5",
+      "locationSet": {
+        "include": ["in-jk.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Jammu and Kashmir Police",
@@ -848,8 +853,10 @@
     },
     {
       "displayName": "Kerala Police",
-      "id": "keralapolice-d0526a",
-      "locationSet": {"include": ["in"]},
+      "id": "keralapolice-c0bc16",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kerala Police",
@@ -860,8 +867,10 @@
     },
     {
       "displayName": "Komenda Miejska Policji w Lublinie",
-      "id": "komendamiejskapolicjiwlublinie-821ef5",
-      "locationSet": {"include": ["pl"]},
+      "id": "komendamiejskapolicjiwlublinie-f0e921",
+      "locationSet": {
+        "include": ["pl-06.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Komenda Miejska Policji w Lublinie"
@@ -1304,8 +1313,15 @@
     },
     {
       "displayName": "Mossos d'Esquadra",
-      "id": "mossosdesquadra-dd66e9",
-      "locationSet": {"include": ["es"]},
+      "id": "mossosdesquadra-cce906",
+      "locationSet": {
+        "include": [
+          "es-b.geojson",
+          "es-gi.geojson",
+          "es-l.geojson",
+          "es-t.geojson"
+        ]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Mossos d'Esquadra",
@@ -1618,6 +1634,16 @@
       }
     },
     {
+      "displayName": "Oulun poliisilaitos",
+      "id": "oulunpoliisilaitos-4900fa",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Oulun poliisilaitos",
+        "operator:wikidata": "Q92422920"
+      }
+    },
+    {
       "displayName": "Peel Regional Police",
       "id": "peelregionalpolice-ecdb14",
       "locationSet": {
@@ -1753,6 +1779,18 @@
         "amenity": "police",
         "operator": "Polícia Civil do Estado de São Paulo",
         "operator:wikidata": "Q10350993"
+      }
+    },
+    {
+      "displayName": "Polícia Civil do Estado de Sergipe",
+      "id": "policiacivildoestadodesergipe-8453d9",
+      "locationSet": {
+        "include": ["br-se.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "Polícia Civil do Estado de Sergipe",
+        "operator:wikidata": "Q10350991"
       }
     },
     {
@@ -1981,16 +2019,6 @@
         "operator:en": "Federal Police of Brazil",
         "operator:pt": "Polícia Federal do Brasil",
         "operator:wikidata": "Q2289697"
-      }
-    },
-    {
-      "displayName": "Policía Local",
-      "id": "policialocal-dd66e9",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Policía Local",
-        "operator:wikidata": "Q1507792"
       }
     },
     {
@@ -2781,8 +2809,10 @@
     },
     {
       "displayName": "Punjab Police (India)",
-      "id": "punjabpolice-d0526a",
-      "locationSet": {"include": ["in"]},
+      "id": "punjabpolice-8f76e8",
+      "locationSet": {
+        "include": ["in-pb.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Punjab Police",
@@ -2924,6 +2954,18 @@
         "amenity": "police",
         "operator": "Secretaria de Estado de Segurança Pública e Defesa Social",
         "operator:short": "SEGUP"
+      }
+    },
+    {
+      "displayName": "Secretaría de Seguridad Ciudadana",
+      "id": "secretariadeseguridadciudadana-d22912",
+      "locationSet": {
+        "include": ["mx-cmx.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "Secretaría de Seguridad Ciudadana",
+        "operator:wikidata": "Q6867469"
       }
     },
     {
@@ -3354,8 +3396,10 @@
     },
     {
       "displayName": "Zone de Police Bruxelles CAPITALE Ixelles – Politiezone Brussel HOOFDSTAD Elsene",
-      "id": "zonedepolicebruxellescapitaleixellespolitiezonebrusselhoofdstadelsene-36e2c8",
-      "locationSet": {"include": ["be"]},
+      "id": "zonedepolicebruxellescapitaleixellespolitiezonebrusselhoofdstadelsene-45bc05",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "matchNames": ["pz 5339", "zp 5339"],
       "tags": {
         "amenity": "police",
@@ -3496,13 +3540,16 @@
     },
     {
       "displayName": "北海道警察本部",
-      "id": "hokkaidoprefecturalpolice-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "hokkaidoprefecturalpolice-8c1555",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "北海道警察本部",
         "operator:en": "Hokkaido Prefectural Police",
-        "operator:ja": "北海道警察本部"
+        "operator:ja": "北海道警察本部",
+        "operator:wikidata": "Q4804887"
       }
     },
     {
@@ -3541,8 +3588,10 @@
     },
     {
       "displayName": "吹田警察署",
-      "id": "0f0a19-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "0f0a19-5ea5fe",
+      "locationSet": {
+        "include": ["jp-27.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "吹田警察署"
@@ -3650,11 +3699,14 @@
     },
     {
       "displayName": "宮城県警察",
-      "id": "473bdf-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "473bdf-bd2fdb",
+      "locationSet": {
+        "include": ["jp-04.geojson"]
+      },
       "tags": {
         "amenity": "police",
-        "operator": "宮城県警察"
+        "operator": "宮城県警察",
+        "operator:wikidata": "Q11453797"
       }
     },
     {
@@ -3664,6 +3716,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-JS",
       "tags": {
         "amenity": "police",
         "operator": "宿迁市公安局"
@@ -3673,6 +3726,7 @@
       "displayName": "宿迁市公安局宿城分局",
       "id": "728b10-18678f",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-JS",
       "tags": {
         "amenity": "police",
         "operator": "宿迁市公安局宿城分局"
@@ -3682,6 +3736,7 @@
       "displayName": "宿迁市公安局宿豫分局",
       "id": "d71507-18678f",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-JS",
       "tags": {
         "amenity": "police",
         "operator": "宿迁市公安局宿豫分局"
@@ -3689,8 +3744,10 @@
     },
     {
       "displayName": "山形県警察",
-      "id": "yamagataprefecturalpolice-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "yamagataprefecturalpolice-a5a103",
+      "locationSet": {
+        "include": ["jp-06.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "山形県警察",
@@ -3701,13 +3758,16 @@
     },
     {
       "displayName": "岩手県警察本部",
-      "id": "iwateprefecturalpolice-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "iwateprefecturalpolice-7e4bb5",
+      "locationSet": {
+        "include": ["jp-03.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "岩手県警察本部",
         "operator:en": "Iwate Prefectural Police",
-        "operator:ja": "岩手県警察本部"
+        "operator:ja": "岩手県警察本部",
+        "operator:wikidata": "Q11474796"
       }
     },
     {
@@ -3754,8 +3814,10 @@
     },
     {
       "displayName": "新庄警察署",
-      "id": "0a5e2f-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "0a5e2f-a5a103",
+      "locationSet": {
+        "include": ["jp-06.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "新庄警察署",
@@ -3873,11 +3935,14 @@
     },
     {
       "displayName": "石川県警察",
-      "id": "c4849a-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "c4849a-7e1aa1",
+      "locationSet": {
+        "include": ["jp-17.geojson"]
+      },
       "tags": {
         "amenity": "police",
-        "operator": "石川県警察"
+        "operator": "石川県警察",
+        "operator:wikidata": "Q11586044"
       }
     },
     {
@@ -4046,8 +4111,10 @@
     },
     {
       "displayName": "那覇警察署",
-      "id": "8e766a-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "8e766a-1e458f",
+      "locationSet": {
+        "include": ["jp-47.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "那覇警察署"
@@ -4055,8 +4122,10 @@
     },
     {
       "displayName": "酒田警察署",
-      "id": "241ff3-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "241ff3-a5a103",
+      "locationSet": {
+        "include": ["jp-06.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "酒田警察署",
@@ -4065,8 +4134,10 @@
     },
     {
       "displayName": "金沢中警察署",
-      "id": "df8591-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "df8591-7e1aa1",
+      "locationSet": {
+        "include": ["jp-17.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "金沢中警察署"
@@ -4168,8 +4239,10 @@
     },
     {
       "displayName": "鹿児島県警察",
-      "id": "kagoshimaprefecturalpolice-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "kagoshimaprefecturalpolice-383268",
+      "locationSet": {
+        "include": ["jp-46.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "鹿児島県警察",

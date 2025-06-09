@@ -10,13 +10,15 @@
         "^(community|council|gemeinde|mairie|municipal|ngo)$",
         "^(mck|pu[bp]lic\\s?(toilet)?s?|toilettes publiques|wc umum)$",
         "^(private toilets?|wc pribadi)$",
-        "^sonstiger betreiber$"
+        "^sonstiger betreiber$",
+        "^автодор$"
       ],
       "named": [
         "^camp lowden$",
         "^camping village il sole$",
         "^care/hcr$",
-        "^lower kearsley recreation site$"
+        "^lower kearsley recreation site$",
+        "^nette toilette$"
       ]
     }
   },
@@ -45,14 +47,13 @@
       }
     },
     {
-      "displayName": "AFCD",
-      "id": "agriculturefisheriesandconservationdepartment-70c95d",
-      "locationSet": {"include": ["hk"]},
+      "displayName": "ADRA",
+      "id": "adra-48c608",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Agriculture, Fisheries and Conservation Department",
-        "operator:short": "AFCD",
-        "operator:wikidata": "Q841909"
+        "operator": "ADRA",
+        "operator:wikidata": "Q290625"
       }
     },
     {
@@ -109,8 +110,10 @@
     },
     {
       "displayName": "Ayuntamiento de Pamplona",
-      "id": "ayuntamientodepamplona-4984c1",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodepamplona-481ffb",
+      "locationSet": {
+        "include": ["es-na.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "Ayuntamiento de Pamplona",
@@ -119,8 +122,10 @@
     },
     {
       "displayName": "Bangalore Metro Rail Corporation Limited",
-      "id": "bangaloremetrorailcorporationlimited-5a8295",
-      "locationSet": {"include": ["in"]},
+      "id": "bangaloremetrorailcorporationlimited-6e5f2a",
+      "locationSet": {
+        "include": ["in-ka.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "Bangalore Metro Rail Corporation Limited",
@@ -129,8 +134,10 @@
     },
     {
       "displayName": "BBMP",
-      "id": "bruhatbengalurumahanagarapalike-5a8295",
-      "locationSet": {"include": ["in"]},
+      "id": "bruhatbengalurumahanagarapalike-6e5f2a",
+      "locationSet": {
+        "include": ["in-ka.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "ಬೃಹತ್ ಬೆಂಗಳೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ",
@@ -575,6 +582,18 @@
       }
     },
     {
+      "displayName": "Forestry Corporation of NSW",
+      "id": "forestrycorporationofnsw-3fb4b7",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "amenity": "toilets",
+        "operator": "Forestry Corporation of NSW",
+        "operator:wikidata": "Q30267212"
+      }
+    },
+    {
       "displayName": "Fort Cobb State Park",
       "id": "fortcobbstatepark-c3f3e2",
       "locationSet": {
@@ -600,12 +619,17 @@
       }
     },
     {
-      "displayName": "FUTAKO TAMAGAWA RISE",
-      "id": "futakotamagawarise-efac16",
-      "locationSet": {"include": ["jp"]},
+      "displayName": "Futako-Tamagawa Rise",
+      "id": "futakotamagawarise-791c1b",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
-        "operator": "FUTAKO TAMAGAWA RISE"
+        "operator": "Futako-Tamagawa Rise",
+        "operator:en": "Futako-Tamagawa Rise",
+        "operator:ja": "二子玉川ライズ",
+        "operator:wikidata": "Q11371457"
       }
     },
     {
@@ -864,8 +888,10 @@
     },
     {
       "displayName": "Metro Warszawskie Sp. z o.o.",
-      "id": "metrowarszawskiespzoo-dbab0a",
-      "locationSet": {"include": ["pl"]},
+      "id": "metrowarszawskiespzoo-524a27",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "Metro Warszawskie Sp. z o.o.",
@@ -1353,8 +1379,10 @@
     },
     {
       "displayName": "Stad Gent",
-      "id": "stadgent-d606a5",
-      "locationSet": {"include": ["be"]},
+      "id": "stadgent-83caf0",
+      "locationSet": {
+        "include": ["be-vov.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "Stad Gent",
@@ -1583,6 +1611,16 @@
       }
     },
     {
+      "displayName": "Transport for Wales",
+      "id": "transportforwales-c6e0b4",
+      "locationSet": {"include": ["gb-wls"]},
+      "tags": {
+        "amenity": "toilets",
+        "operator": "Transport for Wales",
+        "operator:wikidata": "Q48740007"
+      }
+    },
+    {
       "displayName": "Trenes Argentinos",
       "id": "trenesargentinos-3cb239",
       "locationSet": {"include": ["ar"]},
@@ -1649,6 +1687,7 @@
       "displayName": "Usługi Komunalne Miasta Poznań",
       "id": "uslugikomunalnemiastapoznan-dbab0a",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "amenity": "toilets",
         "operator": "Usługi Komunalne Miasta Poznań"
@@ -1692,8 +1731,10 @@
     },
     {
       "displayName": "Ville de Bruxelles - Stad Brussel",
-      "id": "villedebruxellesstadbrussel-d606a5",
-      "locationSet": {"include": ["be"]},
+      "id": "villedebruxellesstadbrussel-f957aa",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "Ville de Bruxelles - Stad Brussel",
@@ -1858,11 +1899,33 @@
     },
     {
       "displayName": "Yayasan Al-Fath Bina Insan Sakinah",
-      "id": "yayasanalfathbinainsansakinah-5e6ea6",
-      "locationSet": {"include": ["id"]},
+      "id": "yayasanalfathbinainsansakinah-7ee902",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "amenity": "toilets",
         "operator": "Yayasan Al-Fath Bina Insan Sakinah"
+      }
+    },
+    {
+      "displayName": "Zarząd Zieleni Miejskiej",
+      "id": "zarzadzielenimiejskiej-873732",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
+      "tags": {
+        "amenity": "toilets",
+        "operator": "Zarząd Zieleni Miejskiej"
+      }
+    },
+    {
+      "displayName": "ZDiUM Wrocław",
+      "id": "zdiumwroclaw-873732",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
+      "tags": {
+        "amenity": "toilets",
+        "operator": "ZDiUM Wrocław"
       }
     },
     {
@@ -1886,30 +1949,25 @@
       }
     },
     {
-      "displayName": "Автодор",
-      "id": "1994ef-074c50",
-      "locationSet": {"include": ["ru", "ua"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "Автодор"
-      }
-    },
-    {
       "displayName": "Газпромнефть",
       "id": "0b910f-b276e9",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Газпромнефть"
+        "operator": "Газпромнефть",
+        "operator:wikidata": "Q1461799"
       }
     },
     {
       "displayName": "ГУП «Водоканал Санкт-Петербурга»",
-      "id": "edaa6f-b276e9",
-      "locationSet": {"include": ["ru"]},
+      "id": "edaa6f-756d61",
+      "locationSet": {
+        "include": ["ru-spe.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
-        "operator": "ГУП «Водоканал Санкт-Петербурга»"
+        "operator": "ГУП «Водоканал Санкт-Петербурга»",
+        "operator:wikidata": "Q4114077"
       }
     },
     {
@@ -1927,22 +1985,15 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Лукойл"
-      }
-    },
-    {
-      "displayName": "ОАО \"РЖД\"",
-      "id": "5ea107-b276e9",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "amenity": "toilets",
-        "operator": "ОАО \"РЖД\""
+        "operator": "Лукойл",
+        "operator:wikidata": "Q329347"
       }
     },
     {
       "displayName": "ООО «Комхоз-Сервис»",
       "id": "0da572-b276e9",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOW",
       "tags": {
         "amenity": "toilets",
         "operator": "ООО «Комхоз-Сервис»"
@@ -1954,7 +2005,22 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Роснефть"
+        "operator": "Роснефть",
+        "operator:wikidata": "Q1141123"
+      }
+    },
+    {
+      "displayName": "Российские железные дороги",
+      "id": "russianrailways-b276e9",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["оао «ржд»"],
+      "tags": {
+        "amenity": "toilets",
+        "operator": "Российские железные дороги",
+        "operator:en": "Russian Railways",
+        "operator:ru": "Российские железные дороги",
+        "operator:short": "РЖД",
+        "operator:wikidata": "Q660770"
       }
     },
     {
@@ -1963,7 +2029,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "Татнефть"
+        "operator": "Татнефть",
+        "operator:wikidata": "Q1616858"
       }
     },
     {
@@ -2115,18 +2182,23 @@
     },
     {
       "displayName": "会津若松市 花と緑の課",
-      "id": "aabdcb-efac16",
-      "locationSet": {"include": ["jp"]},
+      "id": "aizuwakamatsucityflowerandgreenerydivision-0802c3",
+      "locationSet": {
+        "include": ["jp-07.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "会津若松市 花と緑の課",
+        "operator:en": "Aizuwakamatsu City Flower and Greenery Division",
         "operator:ja": "会津若松市 花と緑の課"
       }
     },
     {
       "displayName": "公益財団法人 浜名湖総合環境財団",
-      "id": "c1803f-efac16",
-      "locationSet": {"include": ["jp"]},
+      "id": "c1803f-1846da",
+      "locationSet": {
+        "include": ["jp-22.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
         "operator": "公益財団法人 浜名湖総合環境財団"
@@ -2139,6 +2211,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-BJ",
       "tags": {
         "amenity": "toilets",
         "operator": "北京市西城区环境卫生服务中心"
@@ -2151,6 +2224,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-BJ",
       "tags": {
         "amenity": "toilets",
         "operator": "北京海淀生态环保有限公司"
@@ -2163,27 +2237,35 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-BJ",
       "tags": {
         "amenity": "toilets",
-        "operator": "北京石油化工学院"
+        "operator": "北京石油化工学院",
+        "operator:wikidata": "Q4881146"
       }
     },
     {
       "displayName": "品川区",
-      "id": "9b71a0-efac16",
-      "locationSet": {"include": ["jp"]},
+      "id": "9b71a0-791c1b",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
-        "operator": "品川区"
+        "operator": "品川区",
+        "operator:wikidata": "Q233495"
       }
     },
     {
       "displayName": "大田区",
-      "id": "431e24-efac16",
-      "locationSet": {"include": ["jp"]},
+      "id": "431e24-791c1b",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "amenity": "toilets",
-        "operator": "大田区"
+        "operator": "大田区",
+        "operator:wikidata": "Q217234"
       }
     },
     {
@@ -2193,6 +2275,7 @@
         "include": ["cn"],
         "exclude": ["hk", "mo"]
       },
+      "note": "ISO 3166-2 CN-GS",
       "tags": {
         "amenity": "toilets",
         "operator": "天水湖公厕"
@@ -2208,12 +2291,30 @@
       }
     },
     {
+      "displayName": "漁農自然護理署 Agriculture, Fisheries and Conservation Department",
+      "id": "agriculturefisheriesandconservationdepartment-70c95d",
+      "locationSet": {"include": ["hk"]},
+      "tags": {
+        "amenity": "toilets",
+        "operator": "漁農自然護理署 Agriculture, Fisheries and Conservation Department",
+        "operator:en": "Agriculture, Fisheries and Conservation Department",
+        "operator:short": "漁農署 AFCD",
+        "operator:short:en": "AFCD",
+        "operator:short:zh": "漁農署",
+        "operator:wikidata": "Q841909",
+        "operator:zh": "漁農自然護理署",
+        "operator:zh-Hans": "渔农自然护理署",
+        "operator:zh-Hant": "漁農自然護理署"
+      }
+    },
+    {
       "displayName": "独立行政法人国立高等専門学校機構",
       "id": "40c6ae-efac16",
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "toilets",
-        "operator": "独立行政法人国立高等専門学校機構"
+        "operator": "独立行政法人国立高等専門学校機構",
+        "operator:wikidata": "Q11421321"
       }
     },
     {

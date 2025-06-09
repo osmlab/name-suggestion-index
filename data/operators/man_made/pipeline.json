@@ -5,7 +5,8 @@
       "generic": [
         "^gminna spółka wodna$",
         "^pipeline$",
-        "^wasserzweckverband$"
+        "^wasserzweckverband$",
+        "^теплотрасса$"
       ]
     }
   },
@@ -42,12 +43,12 @@
       }
     },
     {
-      "displayName": "ACEA",
+      "displayName": "Acea",
       "id": "acea-e17829",
       "locationSet": {"include": ["it"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "ACEA",
+        "operator": "Acea",
         "operator:wikidata": "Q3604235"
       }
     },
@@ -519,8 +520,10 @@
     },
     {
       "displayName": "Bangalore Water Supply and Sewerage Board",
-      "id": "bangalorewatersupplyandsewerageboard-fbc79a",
-      "locationSet": {"include": ["in"]},
+      "id": "bangalorewatersupplyandsewerageboard-9c8b3e",
+      "locationSet": {
+        "include": ["in-ka.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
         "operator": "Bangalore Water Supply and Sewerage Board",
@@ -730,18 +733,19 @@
       }
     },
     {
-      "displayName": "BEW Berliner Energie und Wärme AG",
-      "id": "bewberlinerenergieundwarmeag-55a794",
+      "displayName": "BEW Berliner Energie und Wärme",
+      "id": "bewberlinerenergieundwarme-55a794",
       "locationSet": {
         "include": ["de-be.geojson"]
       },
       "matchNames": [
+        "bew berliner energie und wärme ag",
         "vattenfall wärme ag",
         "vattenfall wärme berlin ag"
       ],
       "tags": {
         "man_made": "pipeline",
-        "operator": "BEW Berliner Energie und Wärme AG",
+        "operator": "BEW Berliner Energie und Wärme",
         "operator:short": "BEW",
         "operator:wikidata": "Q42975492"
       }
@@ -954,6 +958,18 @@
       }
     },
     {
+      "displayName": "Brookston Energy",
+      "id": "brookstonenergy-46297b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "matchNames": ["brookston energy, inc."],
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Brookston Energy"
+      }
+    },
+    {
       "displayName": "BSB Recycling GmbH, ehemalig Blei- und Silberhütte Braubach",
       "id": "bsbrecyclinggmbhehemaligbleiundsilberhuttebraubach-d2c0da",
       "locationSet": {
@@ -1059,6 +1075,7 @@
       "displayName": "Caloring",
       "id": "caloring-b36b52",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "man_made": "pipeline",
         "operator": "Caloring"
@@ -1115,19 +1132,15 @@
       }
     },
     {
-      "displayName": "Can",
-      "id": "can-86ac77",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "man_made": "pipeline",
-        "operator": "Can"
-      }
-    },
-    {
       "displayName": "Canal de Isabel II",
-      "id": "canaldeisabelii-86ac77",
-      "locationSet": {"include": ["es"]},
-      "matchNames": ["canal isabel ii"],
+      "id": "canaldeisabelii-a3c5d4",
+      "locationSet": {
+        "include": [
+          "es-gu.geojson",
+          "es-m.geojson"
+        ]
+      },
+      "matchNames": ["can", "canal isabel ii"],
       "tags": {
         "man_made": "pipeline",
         "operator": "Canal de Isabel II",
@@ -1294,6 +1307,7 @@
       "displayName": "Centralna Pompownia \"Bolko\"",
       "id": "centralnapompowniabolko-b36b52",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-24",
       "tags": {
         "man_made": "pipeline",
         "operator": "Centralna Pompownia \"Bolko\""
@@ -1646,20 +1660,31 @@
     },
     {
       "displayName": "Confederación Hidrográfica del Júcar",
-      "id": "confederacionhidrograficadeljucar-86ac77",
-      "locationSet": {"include": ["es"]},
+      "id": "confederacionhidrograficadeljucar-46ce5c",
+      "locationSet": {
+        "include": [
+          "es-ab.geojson",
+          "es-cs.geojson",
+          "es-cu.geojson",
+          "es-v.geojson"
+        ]
+      },
       "tags": {
         "man_made": "pipeline",
-        "operator": "Confederación Hidrográfica del Júcar"
+        "operator": "Confederación Hidrográfica del Júcar",
+        "operator:wikidata": "Q8349721"
       }
     },
     {
       "displayName": "Consorcio de Aguas Bilbao Bizkaia",
-      "id": "consorciodeaguasbilbaobizkaia-86ac77",
-      "locationSet": {"include": ["es"]},
+      "id": "consorciodeaguasbilbaobizkaia-f3c062",
+      "locationSet": {
+        "include": ["es-bi.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
-        "operator": "Consorcio de Aguas Bilbao Bizkaia"
+        "operator": "Consorcio de Aguas Bilbao Bizkaia",
+        "operator:wikidata": "Q84572966"
       }
     },
     {
@@ -1733,9 +1758,20 @@
       }
     },
     {
+      "displayName": "Creos",
+      "id": "creos-06dff4",
+      "locationSet": {"include": ["lu"]},
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Creos",
+        "operator:wikidata": "Q21036415"
+      }
+    },
+    {
       "displayName": "Creos Deutschland",
       "id": "creosdeutschland-da7c89",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["creos"],
       "tags": {
         "man_made": "pipeline",
         "operator": "Creos Deutschland",
@@ -2147,6 +2183,21 @@
       "tags": {
         "man_made": "pipeline",
         "operator": "Double Eagle Pipeline"
+      }
+    },
+    {
+      "displayName": "DOW",
+      "id": "dow-4b8fc4",
+      "locationSet": {
+        "include": [
+          "be-van.geojson",
+          "be-vov.geojson",
+          "nl"
+        ]
+      },
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "DOW"
       }
     },
     {
@@ -3079,13 +3130,25 @@
       }
     },
     {
+      "displayName": "Erdgas Münster",
+      "id": "erdgasmunster-da7c89",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Erdgas Münster",
+        "operator:wikidata": "Q15808294",
+        "substance": "gas"
+      }
+    },
+    {
       "displayName": "Erdgas Ostschweiz AG",
       "id": "erdgasostschweizag-e0d926",
       "locationSet": {"include": ["ch"]},
       "tags": {
         "man_made": "pipeline",
         "operator": "Erdgas Ostschweiz AG",
-        "operator:wikidata": "Q1349174"
+        "operator:wikidata": "Q1349174",
+        "substance": "gas"
       }
     },
     {
@@ -3100,7 +3163,8 @@
       "tags": {
         "man_made": "pipeline",
         "operator": "Erdgas Zentralschweiz",
-        "operator:wikidata": "Q1276501"
+        "operator:wikidata": "Q1276501",
+        "substance": "gas"
       }
     },
     {
@@ -3340,9 +3404,13 @@
       "displayName": "Fernleitungs-Betriebsgesellschaft",
       "id": "fernleitungsbetriebsgesellschaft-da7c89",
       "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "fernleitungs-betriebsgesellschaft mbh"
+      ],
       "tags": {
         "man_made": "pipeline",
-        "operator": "Fernleitungs-Betriebsgesellschaft"
+        "operator": "Fernleitungs-Betriebsgesellschaft",
+        "operator:wikidata": "Q87647495"
       }
     },
     {
@@ -3630,15 +3698,6 @@
       }
     },
     {
-      "displayName": "Gas Natural",
-      "id": "gasnatural-86ac77",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "man_made": "pipeline",
-        "operator": "Gas Natural"
-      }
-    },
-    {
       "displayName": "Gas Natural BAN",
       "id": "gasnaturalban-7e984f",
       "locationSet": {
@@ -3784,7 +3843,8 @@
       "matchNames": ["gaz-system s.a."],
       "tags": {
         "man_made": "pipeline",
-        "operator": "Gaz-System"
+        "operator": "Gaz-System",
+        "operator:wikidata": "Q5528948"
       }
     },
     {
@@ -3950,8 +4010,10 @@
     },
     {
       "displayName": "GPEC",
-      "id": "gpec-b36b52",
-      "locationSet": {"include": ["pl"]},
+      "id": "gpec-763818",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
         "operator": "GPEC"
@@ -4463,8 +4525,8 @@
     },
     {
       "displayName": "Indonesia Power",
-      "id": "indonesiapower-c4d207",
-      "locationSet": {"include": ["id-jw"]},
+      "id": "indonesiapower-2fbc97",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "man_made": "pipeline",
         "operator": "Indonesia Power",
@@ -4612,6 +4674,16 @@
       }
     },
     {
+      "displayName": "Jemena",
+      "id": "jemena-588004",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Jemena",
+        "operator:wikidata": "Q6177098"
+      }
+    },
+    {
       "displayName": "Joint Bunkering Services",
       "id": "jointbunkeringservices-b6e068",
       "locationSet": {"include": ["za"]},
@@ -4621,12 +4693,15 @@
       }
     },
     {
-      "displayName": "JRC/IRMM",
-      "id": "jrcirmm-5c754e",
-      "locationSet": {"include": ["be"]},
+      "displayName": "JRC-IRMM",
+      "id": "jrcirmm-0680d1",
+      "locationSet": {
+        "include": ["be-van.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
-        "operator": "JRC/IRMM"
+        "operator": "JRC-IRMM",
+        "operator:wikidata": "Q924157"
       }
     },
     {
@@ -4714,11 +4789,14 @@
     },
     {
       "displayName": "KGHM",
-      "id": "kghm-b36b52",
-      "locationSet": {"include": ["pl"]},
+      "id": "kghm-5b0285",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
-        "operator": "KGHM"
+        "operator": "KGHM",
+        "operator:wikidata": "Q1476710"
       }
     },
     {
@@ -4838,8 +4916,10 @@
     },
     {
       "displayName": "Koksik",
-      "id": "koksik-b36b52",
-      "locationSet": {"include": ["pl"]},
+      "id": "koksik-763818",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
         "operator": "Koksik"
@@ -5187,8 +5267,14 @@
     },
     {
       "displayName": "Mancomunidad de los Canales del Taibilla",
-      "id": "mancomunidaddeloscanalesdeltaibilla-86ac77",
-      "locationSet": {"include": ["es"]},
+      "id": "mancomunidaddeloscanalesdeltaibilla-2a9cbf",
+      "locationSet": {
+        "include": [
+          "es-a.geojson",
+          "es-ab.geojson",
+          "es-mu.geojson"
+        ]
+      },
       "tags": {
         "man_made": "pipeline",
         "operator": "Mancomunidad de los Canales del Taibilla",
@@ -5658,6 +5744,7 @@
       "displayName": "MPEC Rzeszów",
       "id": "mpecrzeszow-b36b52",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-18",
       "tags": {
         "man_made": "pipeline",
         "operator": "MPEC Rzeszów"
@@ -5667,6 +5754,7 @@
       "displayName": "MPEC S.A",
       "id": "mpecsa-b36b52",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "man_made": "pipeline",
         "operator": "MPEC S.A"
@@ -5789,7 +5877,8 @@
       "tags": {
         "man_made": "pipeline",
         "operator": "NaTran",
-        "operator:wikidata": "Q820035"
+        "operator:wikidata": "Q820035",
+        "substance": "gas"
       }
     },
     {
@@ -5814,6 +5903,7 @@
       "displayName": "Naturgy",
       "id": "naturgy-86ac77",
       "locationSet": {"include": ["es"]},
+      "matchNames": ["gas natural"],
       "tags": {
         "man_made": "pipeline",
         "operator": "Naturgy",
@@ -5973,14 +6063,14 @@
     },
     {
       "displayName": "Nord Stream AG",
-      "id": "nordstreamag-904332",
+      "id": "nordstreamag-f8e464",
       "locationSet": {
         "include": [
           [16.5, 55.5, 300],
-          "de",
+          "de-mv.geojson",
           "ee",
           "lv",
-          "ru"
+          "ru-len.geojson"
         ]
       },
       "tags": {
@@ -6308,7 +6398,8 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "Orange"
+        "operator": "Orange",
+        "operator:wikidata": "Q1431486"
       }
     },
     {
@@ -6497,7 +6588,8 @@
       "locationSet": {"include": ["id"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "PDAM"
+        "operator": "PDAM",
+        "operator:wikidata": "Q12501578"
       }
     },
     {
@@ -6532,6 +6624,20 @@
         "man_made": "pipeline",
         "operator": "PEMEX",
         "operator:wikidata": "Q871308"
+      }
+    },
+    {
+      "displayName": "Pemex Logística",
+      "id": "pemexlogistica-e19bbf",
+      "locationSet": {
+        "include": [
+          "mx-oax.geojson",
+          "mx-ver.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Pemex Logística"
       }
     },
     {
@@ -6580,7 +6686,8 @@
       "locationSet": {"include": ["id"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "Pertamina"
+        "operator": "Pertamina",
+        "operator:wikidata": "Q1641044"
       }
     },
     {
@@ -6663,21 +6770,28 @@
       }
     },
     {
-      "displayName": "PGE Górnictwo i Energetyka Konwencjonalna S.A.",
-      "id": "pgegornictwoienergetykakonwencjonalnasa-b36b52",
+      "displayName": "PGE Górnictwo i Energetyka Konwencjonalna",
+      "id": "pgegornictwoienergetykakonwencjonalna-b36b52",
       "locationSet": {"include": ["pl"]},
+      "matchNames": [
+        "pge górnictwo i energetyka konwencjonalna s.a."
+      ],
       "tags": {
         "man_made": "pipeline",
-        "operator": "PGE Górnictwo i Energetyka Konwencjonalna S.A."
+        "operator": "PGE Górnictwo i Energetyka Konwencjonalna",
+        "operator:wikidata": "Q60980173"
       }
     },
     {
-      "displayName": "PGNiG TERMIKA",
-      "id": "pgnigtermika-b36b52",
-      "locationSet": {"include": ["pl"]},
+      "displayName": "PGNiG Termika",
+      "id": "pgnigtermika-b4d5f7",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
-        "operator": "PGNiG TERMIKA"
+        "operator": "PGNiG Termika",
+        "operator:wikidata": "Q11696556"
       }
     },
     {
@@ -6769,8 +6883,8 @@
     },
     {
       "displayName": "PLTP Patuha",
-      "id": "pltppatuha-2fbc97",
-      "locationSet": {"include": ["id"]},
+      "id": "pltppatuha-c4d207",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "man_made": "pipeline",
         "operator": "PLTP Patuha"
@@ -6989,7 +7103,8 @@
       "locationSet": {"include": ["es"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "Redexis"
+        "operator": "Redexis",
+        "operator:wikidata": "Q27778983"
       }
     },
     {
@@ -7154,7 +7269,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "Rosneft"
+        "operator": "Rosneft",
+        "operator:wikidata": "Q1141123"
       }
     },
     {
@@ -7265,9 +7381,11 @@
       "displayName": "Sakhalin Energy",
       "id": "sakhalinenergy-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAK",
       "tags": {
         "man_made": "pipeline",
-        "operator": "Sakhalin Energy"
+        "operator": "Sakhalin Energy",
+        "operator:wikidata": "Q4409407"
       }
     },
     {
@@ -7673,6 +7791,17 @@
       }
     },
     {
+      "displayName": "Sistema Intermunicipal de Agua y Alcantarillado",
+      "id": "sistemaintermunicipaldeaguayalcantarillado-7528ea",
+      "locationSet": {
+        "include": ["mx-jal.geojson"]
+      },
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Sistema Intermunicipal de Agua y Alcantarillado"
+      }
+    },
+    {
       "displayName": "SM Energy Company",
       "id": "smenergycompany-9b1cf7",
       "locationSet": {
@@ -7753,6 +7882,15 @@
         "operator": "Société du Pipeline Sud-Européen",
         "operator:short": "SPSE",
         "operator:wikidata": "Q7552961"
+      }
+    },
+    {
+      "displayName": "Solvic",
+      "id": "solvic-5c754e",
+      "locationSet": {"include": ["be"]},
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Solvic"
       }
     },
     {
@@ -8005,6 +8143,7 @@
       "displayName": "Spółka Energetyczna Jaworzno",
       "id": "spolkaenergetycznajaworzno-b36b52",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-24",
       "tags": {
         "man_made": "pipeline",
         "operator": "Spółka Energetyczna Jaworzno"
@@ -8014,6 +8153,7 @@
       "displayName": "Spółka Wodociągowo–Kanalizacyjna Dzimierz – Nowa Wieś",
       "id": "spolkawodociagowokanalizacyjnadzimierznowawies-b36b52",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-24",
       "tags": {
         "man_made": "pipeline",
         "operator": "Spółka Wodociągowo–Kanalizacyjna Dzimierz – Nowa Wieś"
@@ -8025,7 +8165,8 @@
       "locationSet": {"include": ["sk"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "SPP"
+        "operator": "SPP",
+        "operator:wikidata": "Q836281"
       }
     },
     {
@@ -8349,18 +8490,19 @@
       }
     },
     {
-      "displayName": "SWKiel Netz GmbH",
-      "id": "swkielnetzgmbh-9683bf",
+      "displayName": "SWKiel Netz",
+      "id": "swkielnetz-9683bf",
       "locationSet": {
         "include": ["de-sh.geojson"]
       },
       "matchNames": [
         "stadtwerke kiel",
-        "stadtwerke kiel ag"
+        "stadtwerke kiel ag",
+        "swkiel netz gmbh"
       ],
       "tags": {
         "man_made": "pipeline",
-        "operator": "SWKiel Netz GmbH",
+        "operator": "SWKiel Netz",
         "operator:wikidata": "Q130385984"
       }
     },
@@ -8574,26 +8716,29 @@
           "fr-occ.geojson"
         ]
       },
+      "matchNames": ["tigf"],
       "tags": {
         "man_made": "pipeline",
         "operator": "Teréga",
-        "operator:wikidata": "Q3537771"
+        "operator:wikidata": "Q3537771",
+        "substance": "gas"
       }
     },
     {
-      "displayName": "terranets bw GmbH",
-      "id": "terranetsbwgmbh-0b5f1c",
+      "displayName": "Terranets BW",
+      "id": "terranetsbw-0b5f1c",
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
       "matchNames": [
         "gasversorgung süddeutschland",
         "gasversorgung süddeutschland gmbh",
-        "gvs netz"
+        "gvs netz",
+        "terranets bw gmbh"
       ],
       "tags": {
         "man_made": "pipeline",
-        "operator": "terranets bw GmbH",
+        "operator": "Terranets BW",
         "operator:wikidata": "Q2405189",
         "substance": "gas"
       }
@@ -9314,6 +9459,7 @@
       "locationSet": {
         "include": ["kz", "ru", "uz"]
       },
+      "note": "ISO 3166-2 RU-CHE, RU-ORE",
       "tags": {
         "man_made": "pipeline",
         "operator": "UralTransGas"
@@ -9653,6 +9799,18 @@
         "man_made": "pipeline",
         "operator": "Watercare",
         "operator:wikidata": "Q96414325"
+      }
+    },
+    {
+      "displayName": "WaterNSW",
+      "id": "waternsw-7a96c6",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "WaterNSW",
+        "operator:wikidata": "Q65049612"
       }
     },
     {
@@ -10022,6 +10180,17 @@
       }
     },
     {
+      "displayName": "Zakład Gospodarki Komunalnej w Górze Kalwarii",
+      "id": "zakladgospodarkikomunalnejwgorzekalwarii-b4d5f7",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Zakład Gospodarki Komunalnej w Górze Kalwarii"
+      }
+    },
+    {
       "displayName": "Zarvona Energy",
       "id": "zarvonaenergy-46297b",
       "locationSet": {
@@ -10060,17 +10229,23 @@
     },
     {
       "displayName": "АО «Интер РАО - Электрогенерация»",
-      "id": "3e4273-a0c8bd",
-      "locationSet": {"include": ["ru"]},
+      "id": "3e4273-e3e62f",
+      "locationSet": {
+        "include": ["ru-kgd.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
-        "operator": "АО «Интер РАО - Электрогенерация»"
+        "operator": "АО «Интер РАО - Электрогенерация»",
+        "operator:wikidata": "Q66277586"
       }
     },
     {
       "displayName": "АО «Транснефть — Верхняя Волга»",
       "id": "b7b538-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "matchNames": [
+        "ооо «транснефть — верхняя волга»"
+      ],
       "tags": {
         "man_made": "pipeline",
         "operator": "АО «Транснефть — Верхняя Волга»"
@@ -10083,6 +10258,18 @@
       "tags": {
         "man_made": "pipeline",
         "operator": "АО «Транснефть — Север»"
+      }
+    },
+    {
+      "displayName": "Арктикгаз",
+      "id": "d1deaa-a0c8bd",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["ао «арктикгаз»"],
+      "note": "ISO 3166-2 RU-YAN",
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "Арктикгаз",
+        "operator:wikidata": "Q7457804"
       }
     },
     {
@@ -10105,13 +10292,15 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "Газпром"
+        "operator": "Газпром",
+        "operator:wikidata": "Q102673"
       }
     },
     {
       "displayName": "Газпром газораспределение Великий Новгород",
       "id": "3e27f7-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-NGR",
       "tags": {
         "man_made": "pipeline",
         "operator": "Газпром газораспределение Великий Новгород"
@@ -10121,6 +10310,7 @@
       "displayName": "ДЭУ Советского района",
       "id": "0acdef-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-NVS",
       "tags": {
         "man_made": "pipeline",
         "operator": "ДЭУ Советского района"
@@ -10130,6 +10320,7 @@
       "displayName": "Екатеринбургская теплосетевая компания",
       "id": "701032-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SVE",
       "tags": {
         "man_made": "pipeline",
         "operator": "Екатеринбургская теплосетевая компания"
@@ -10175,6 +10366,7 @@
       "displayName": "Михайловское тепловое хозяйство",
       "id": "97ff9d-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-VGG",
       "tags": {
         "man_made": "pipeline",
         "operator": "Михайловское тепловое хозяйство"
@@ -10184,6 +10376,7 @@
       "displayName": "НорильскГазпром",
       "id": "60840b-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KYA",
       "tags": {
         "man_made": "pipeline",
         "operator": "НорильскГазпром"
@@ -10193,18 +10386,22 @@
       "displayName": "ОАО \"Гомельтранснефть Дружба\"",
       "id": "0e50c9-e76619",
       "locationSet": {"include": ["by", "ru"]},
+      "note": "ISO 3166-2 RU-BRY",
       "tags": {
         "man_made": "pipeline",
-        "operator": "ОАО \"Гомельтранснефть Дружба\""
+        "operator": "ОАО \"Гомельтранснефть Дружба\"",
+        "operator:wikidata": "Q64605280"
       }
     },
     {
       "displayName": "ОАО \"Трансаммиак\"",
       "id": "13afd2-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-BEL, RU-TAM, RU-VOR",
       "tags": {
         "man_made": "pipeline",
-        "operator": "ОАО \"Трансаммиак\""
+        "operator": "ОАО \"Трансаммиак\"",
+        "operator:wikidata": "Q4461971"
       }
     },
     {
@@ -10220,6 +10417,7 @@
       "displayName": "ООО \"Газпром трансгаз Сургут\"",
       "id": "689785-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KHM, RU-TYU",
       "tags": {
         "man_made": "pipeline",
         "operator": "ООО \"Газпром трансгаз Сургут\""
@@ -10229,18 +10427,10 @@
       "displayName": "ООО \"Газпром трансгаз Югорск\"",
       "id": "8a9d59-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-BA, RU-PER, RU-SVE",
       "tags": {
         "man_made": "pipeline",
         "operator": "ООО \"Газпром трансгаз Югорск\""
-      }
-    },
-    {
-      "displayName": "ООО \"Газпром трансгаз Югорск\", ОАО \"Газпром\"",
-      "id": "55fdab-a0c8bd",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "man_made": "pipeline",
-        "operator": "ООО \"Газпром трансгаз Югорск\", ОАО \"Газпром\""
       }
     },
     {
@@ -10288,7 +10478,8 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "ООО «Газпром трансгаз Москва»"
+        "operator": "ООО «Газпром трансгаз Москва»",
+        "operator:wikidata": "Q4131796"
       }
     },
     {
@@ -10319,6 +10510,26 @@
       }
     },
     {
+      "displayName": "ООО «НК «Югранефтепром»",
+      "id": "db794e-a0c8bd",
+      "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KHM, RU-YAN",
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "ООО «НК «Югранефтепром»"
+      }
+    },
+    {
+      "displayName": "ООО «Новатэк-Юрхаровнефтегаз»",
+      "id": "e08801-a0c8bd",
+      "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-YAN",
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "ООО «Новатэк-Юрхаровнефтегаз»"
+      }
+    },
+    {
       "displayName": "ООО «Транснефть — Балтика»",
       "id": "375d9f-a0c8bd",
       "locationSet": {"include": ["ru"]},
@@ -10328,18 +10539,11 @@
       }
     },
     {
-      "displayName": "ООО «Транснефть — Верхняя Волга»",
-      "id": "5bdec0-a0c8bd",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "man_made": "pipeline",
-        "operator": "ООО «Транснефть — Верхняя Волга»"
-      }
-    },
-    {
       "displayName": "ООО «Транснефть — Порт Приморск»",
-      "id": "cbfe80-a0c8bd",
-      "locationSet": {"include": ["ru"]},
+      "id": "cbfe80-344b3d",
+      "locationSet": {
+        "include": ["ru-len.geojson"]
+      },
       "tags": {
         "man_made": "pipeline",
         "operator": "ООО «Транснефть — Порт Приморск»"
@@ -10349,6 +10553,7 @@
       "displayName": "Органический синтез",
       "id": "399e5e-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-TA",
       "tags": {
         "man_made": "pipeline",
         "operator": "Органический синтез"
@@ -10364,39 +10569,36 @@
       }
     },
     {
-      "displayName": "СКРУ-3 АО «Уралкалий»",
-      "id": "d20da1-a0c8bd",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "man_made": "pipeline",
-        "operator": "СКРУ-3 АО «Уралкалий»"
-      }
-    },
-    {
       "displayName": "Татэнерго",
       "id": "fa25fa-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-TA",
       "tags": {
         "man_made": "pipeline",
-        "operator": "Татэнерго"
+        "operator": "Татэнерго",
+        "operator:wikidata": "Q4452709"
       }
     },
     {
       "displayName": "ТГК-11",
       "id": "514ea7-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-OMS",
       "tags": {
         "man_made": "pipeline",
-        "operator": "ТГК-11"
+        "operator": "ТГК-11",
+        "operator:wikidata": "Q4456172"
       }
     },
     {
       "displayName": "ТГК-14",
       "id": "d5bc82-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ZAB",
       "tags": {
         "man_made": "pipeline",
-        "operator": "ТГК-14"
+        "operator": "ТГК-14",
+        "operator:wikidata": "Q4456173"
       }
     },
     {
@@ -10406,15 +10608,6 @@
       "tags": {
         "man_made": "pipeline",
         "operator": "Теплосети"
-      }
-    },
-    {
-      "displayName": "теплотрасса",
-      "id": "90997a-a0c8bd",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "man_made": "pipeline",
-        "operator": "теплотрасса"
       }
     },
     {
@@ -10494,7 +10687,18 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "man_made": "pipeline",
-        "operator": "Транснефть"
+        "operator": "Транснефть",
+        "operator:wikidata": "Q2116312"
+      }
+    },
+    {
+      "displayName": "ТЭЦ-1",
+      "id": "28ab8a-a0c8bd",
+      "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ME",
+      "tags": {
+        "man_made": "pipeline",
+        "operator": "ТЭЦ-1"
       }
     },
     {
@@ -10553,18 +10757,10 @@
       }
     },
     {
-      "displayName": "Ухта-Торжок",
-      "id": "f54129-a0c8bd",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "man_made": "pipeline",
-        "operator": "Ухта-Торжок"
-      }
-    },
-    {
       "displayName": "ФГУП УЭВ",
       "id": "f383ea-a0c8bd",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-NVS",
       "tags": {
         "man_made": "pipeline",
         "operator": "ФГУП УЭВ"
@@ -10596,6 +10792,7 @@
       "displayName": "临沂富源热电有限公司",
       "id": "48d7b3-8e8c5b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-SD",
       "tags": {
         "man_made": "pipeline",
         "operator": "临沂富源热电有限公司"
@@ -10605,15 +10802,22 @@
       "displayName": "曹妃甸港",
       "id": "e40afb-8e8c5b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HE",
       "tags": {
         "man_made": "pipeline",
-        "operator": "曹妃甸港"
+        "operator": "曹妃甸港",
+        "operator:wikidata": "Q990594"
       }
     },
     {
       "displayName": "横浜市水道局",
-      "id": "yokohamawaterworksbureau-9676b4",
-      "locationSet": {"include": ["jp"]},
+      "id": "yokohamawaterworksbureau-83ab8d",
+      "locationSet": {
+        "include": [
+          "jp-13.geojson",
+          "jp-14.geojson"
+        ]
+      },
       "tags": {
         "man_made": "pipeline",
         "operator": "横浜市水道局",

@@ -24,7 +24,8 @@
       "named": [
         "^(ind[ei]pend(ent|\\.)|posto|spbu)$",
         "^bandera blanca$",
-        "^branca$"
+        "^branca$",
+        "^otr$"
       ]
     }
   },
@@ -638,6 +639,25 @@
       }
     },
     {
+      "displayName": "Autotrans",
+      "id": "autotrans-ed4144",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": [
+        "азс \"autotrans\"",
+        "азс \"автотранс\""
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Autotrans",
+        "brand:en": "Autotrans",
+        "brand:uk": "Автотранс",
+        "brand:wikidata": "Q134428249",
+        "name": "Autotrans",
+        "name:en": "Autotrans",
+        "name:uk": "Автотранс"
+      }
+    },
+    {
       "displayName": "Avanti",
       "id": "avanti-565075",
       "locationSet": {"include": ["at"]},
@@ -1177,8 +1197,11 @@
     },
     {
       "displayName": "Carrefour",
-      "id": "carrefour-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "carrefour-ff2f90",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["us"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "Carrefour",
@@ -1199,8 +1222,11 @@
     },
     {
       "displayName": "Carrefour Market",
-      "id": "carrefourmarket-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "carrefourmarket-ff2f90",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["us"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "Carrefour Market",
@@ -1291,6 +1317,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Centex",
+        "brand:wikidata": "Q134288894",
         "name": "Centex"
       }
     },
@@ -1864,6 +1891,16 @@
         "brand": "Domo",
         "brand:wikidata": "Q5291326",
         "name": "Domo"
+      }
+    },
+    {
+      "displayName": "Driv",
+      "id": "driv-38a742",
+      "locationSet": {"include": ["no"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Driv",
+        "name": "Driv"
       }
     },
     {
@@ -2890,6 +2927,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Go'on",
+        "brand:wikidata": "Q132010768",
         "name": "Go'on"
       }
     },
@@ -2942,6 +2980,7 @@
         "brand": "GS칼텍스",
         "brand:en": "GS Caltex",
         "brand:ko": "GS칼텍스",
+        "brand:wikidata": "Q624012",
         "name": "GS칼텍스",
         "name:en": "GS Caltex",
         "name:ko": "GS칼텍스"
@@ -3520,6 +3559,7 @@
       "tags": {
         "amenity": "fuel",
         "brand": "Kadoil",
+        "brand:wikidata": "Q126901221",
         "name": "Kadoil"
       }
     },
@@ -3586,12 +3626,26 @@
       "displayName": "KLO",
       "id": "klo-ed4144",
       "locationSet": {"include": ["ua"]},
-      "matchNames": ["кло"],
       "tags": {
         "amenity": "fuel",
         "brand": "KLO",
+        "brand:en": "KLO",
+        "brand:uk": "КЛО",
         "brand:wikidata": "Q60966526",
-        "name": "KLO"
+        "name": "KLO",
+        "name:en": "KLO",
+        "name:uk": "КЛО"
+      }
+    },
+    {
+      "displayName": "KM-Prona",
+      "id": "kmprona-45c895",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "KM-Prona",
+        "brand:wikidata": "Q92342984",
+        "name": "KM-Prona"
       }
     },
     {
@@ -3613,6 +3667,17 @@
         "brand": "Kobil",
         "brand:wikidata": "Q22906119",
         "name": "Kobil"
+      }
+    },
+    {
+      "displayName": "Kralupol",
+      "id": "kralupol-5f489f",
+      "locationSet": {"include": ["cz", "sk"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Kralupol",
+        "brand:wikidata": "Q58623408",
+        "name": "Kralupol"
       }
     },
     {
@@ -4358,8 +4423,10 @@
     },
     {
       "displayName": "OIL!",
-      "id": "oil-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "oil-4b4296",
+      "locationSet": {
+        "include": ["at", "ch", "de", "dk", "hu"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "OIL!",
@@ -4555,17 +4622,6 @@
         "amenity": "fuel",
         "brand": "Oro Negro",
         "name": "Oro Negro"
-      }
-    },
-    {
-      "displayName": "OTR",
-      "id": "otr-9ed9c0",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "amenity": "fuel",
-        "brand": "OTR",
-        "brand:wikidata": "Q116394019",
-        "name": "OTR"
       }
     },
     {
@@ -6726,6 +6782,7 @@
         "азс укрнафта",
         "пат укрнафта"
       ],
+      "matchTags": ["shop/kiosk"],
       "tags": {
         "amenity": "fuel",
         "brand": "Ukrnafta",
@@ -6734,7 +6791,8 @@
         "brand:wikidata": "Q2447961",
         "name": "Ukrnafta",
         "name:en": "Ukrnafta",
-        "name:uk": "Укрнафта"
+        "name:uk": "Укрнафта",
+        "name:uk-Latn": "Ukrnafta"
       }
     },
     {
