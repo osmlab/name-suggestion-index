@@ -40,7 +40,7 @@ console.log(chalk.blue('📦  Build distributable files'));
 console.log(chalk.blue('-'.repeat(70)));
 
 console.log('');
-console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over 30 seconds) ...`));
+console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over a minute, maybe more) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 _cache.path = sortObject(_cache.path);
