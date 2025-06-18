@@ -4,7 +4,8 @@
     "exclude": {
       "generic": ["^trolleybus$"],
       "named": [
-        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$"
+        "^(city|international|local|mtb|municipal|national|rail|regional|urban)$",
+        "^ru:municipal$"
       ]
     }
   },
@@ -32,8 +33,10 @@
     },
     {
       "displayName": "ATM (Milano)",
-      "id": "atm-a22f82",
-      "locationSet": {"include": ["it"]},
+      "id": "atm-7ab9b9",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
       "tags": {
         "network": "ATM",
         "network:wikidata": "Q381955",
@@ -42,8 +45,13 @@
     },
     {
       "displayName": "Bernmobil",
-      "id": "bernmobil-052ea8",
-      "locationSet": {"include": ["ch"]},
+      "id": "bernmobil-50d5d3",
+      "locationSet": {
+        "include": [
+          "ch-be.geojson",
+          "ch-fr.geojson"
+        ]
+      },
       "tags": {
         "network": "Bernmobil",
         "network:wikidata": "Q681700",
@@ -53,14 +61,14 @@
       }
     },
     {
-      "displayName": "CTP (România)",
-      "id": "companiadetransportpublicclujnapocasa-6b6251",
+      "displayName": "Compania de Transport Public Cluj-Napoca",
+      "id": "companiadetransportpublicclujnapoca-6b6251",
       "locationSet": {"include": ["ro"]},
       "matchNames": [
         "ctp (compania de transport public cluj napoca sa)"
       ],
       "tags": {
-        "network": "Compania de Transport Public Cluj Napoca SA",
+        "network": "Compania de Transport Public Cluj-Napoca",
         "network:short": "CTP",
         "network:wikidata": "Q266625",
         "route": "trolleybus"
@@ -88,6 +96,23 @@
       }
     },
     {
+      "displayName": "IDPK",
+      "id": "integrovanadopravaplzenskehokraje-ab87e1",
+      "locationSet": {
+        "include": ["cz-32.geojson"]
+      },
+      "matchNames": ["mhd plzeň"],
+      "tags": {
+        "network": "Integrovaná doprava Plzeňského kraje",
+        "network:short": "IDPK",
+        "network:wikidata": "Q12021682",
+        "operator": "Plzeňské městské dopravní podniky",
+        "operator:short": "PMDP",
+        "operator:wikidata": "Q2099900",
+        "route": "trolleybus"
+      }
+    },
+    {
       "displayName": "IDS JMK",
       "id": "idsjmk-706c20",
       "locationSet": {"include": ["cz"]},
@@ -102,8 +127,10 @@
     },
     {
       "displayName": "IDS ZID",
-      "id": "idszid-706c20",
-      "locationSet": {"include": ["cz"]},
+      "id": "idszid-64bab8",
+      "locationSet": {
+        "include": ["cz-72.geojson"]
+      },
       "tags": {
         "network": "IDS ZID",
         "network:wikidata": "Q10861159",
@@ -137,8 +164,10 @@
     },
     {
       "displayName": "Libero",
-      "id": "libero-052ea8",
-      "locationSet": {"include": ["ch"]},
+      "id": "libero-56dd22",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
       "tags": {
         "network": "Libero",
         "network:wikidata": "Q2394193",
@@ -147,8 +176,10 @@
     },
     {
       "displayName": "Lublin",
-      "id": "lublin-ac5bc5",
-      "locationSet": {"include": ["pl"]},
+      "id": "lublin-e4f380",
+      "locationSet": {
+        "include": ["pl-06.geojson"]
+      },
       "tags": {
         "network": "Lublin",
         "network:wikidata": "Q27686568",
@@ -174,8 +205,10 @@
     },
     {
       "displayName": "MHD Bratislava",
-      "id": "mhdbratislava-acc88b",
-      "locationSet": {"include": ["sk"]},
+      "id": "mhdbratislava-60f55e",
+      "locationSet": {
+        "include": ["sk-bl.geojson"]
+      },
       "tags": {
         "network": "MHD Bratislava",
         "network:wikidata": "Q7258005",
@@ -186,8 +219,10 @@
     },
     {
       "displayName": "MHD Hradec Králové",
-      "id": "mhdhradeckralove-706c20",
-      "locationSet": {"include": ["cz"]},
+      "id": "mhdhradeckralove-3c4862",
+      "locationSet": {
+        "include": ["cz-52.geojson"]
+      },
       "tags": {
         "network": "MHD Hradec Králové",
         "network:wikidata": "Q11865048",
@@ -198,8 +233,10 @@
     },
     {
       "displayName": "MHD Jihlava",
-      "id": "mhdjihlava-706c20",
-      "locationSet": {"include": ["cz"]},
+      "id": "mhdjihlava-287375",
+      "locationSet": {
+        "include": ["cz-63.geojson"]
+      },
       "tags": {
         "network": "MHD Jihlava",
         "route": "trolleybus"
@@ -207,8 +244,10 @@
     },
     {
       "displayName": "MHD Opava",
-      "id": "mhdopava-706c20",
-      "locationSet": {"include": ["cz"]},
+      "id": "mhdopava-19e5db",
+      "locationSet": {
+        "include": ["cz-80.geojson"]
+      },
       "tags": {
         "network": "MHD Opava",
         "network:wikidata": "Q12043044",
@@ -218,31 +257,24 @@
       }
     },
     {
-      "displayName": "MHD Plzeň",
-      "id": "mhdplzen-706c20",
-      "locationSet": {"include": ["cz"]},
-      "tags": {
-        "network": "MHD Plzeň",
-        "network:wikidata": "Q12021682",
-        "operator": "PMDP",
-        "operator:wikidata": "Q2099900",
-        "route": "trolleybus"
-      }
-    },
-    {
       "displayName": "MHD Prešov",
       "id": "mhdpresov-acc88b",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-PV",
       "tags": {
         "network": "MHD Prešov",
+        "network:wikidata": "Q131400368",
         "operator": "Dopravný podnik mesta Prešov",
+        "operator:short": "DPMP",
         "route": "trolleybus"
       }
     },
     {
       "displayName": "MHD Teplice",
-      "id": "mhdteplice-706c20",
-      "locationSet": {"include": ["cz"]},
+      "id": "mhdteplice-040969",
+      "locationSet": {
+        "include": ["cz-42.geojson"]
+      },
       "tags": {
         "network": "MHD Teplice",
         "network:wikidata": "Q12021691",
@@ -253,8 +285,10 @@
     },
     {
       "displayName": "MHD Ústí nad Labem",
-      "id": "mhdustinadlabem-706c20",
-      "locationSet": {"include": ["cz"]},
+      "id": "mhdustinadlabem-040969",
+      "locationSet": {
+        "include": ["cz-42.geojson"]
+      },
       "tags": {
         "network": "MHD Ústí nad Labem",
         "network:wikidata": "Q12021691",
@@ -265,8 +299,10 @@
     },
     {
       "displayName": "MHD v Pardubicích",
-      "id": "mhdvpardubicich-706c20",
-      "locationSet": {"include": ["cz"]},
+      "id": "mhdvpardubicich-6aa65f",
+      "locationSet": {
+        "include": ["cz-53.geojson"]
+      },
       "tags": {
         "network": "MHD v Pardubicích",
         "operator": "Dopravní podnik města Pardubic",
@@ -275,9 +311,25 @@
       }
     },
     {
+      "displayName": "MHD Žilina",
+      "id": "mhdzilina-acc88b",
+      "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-ZI",
+      "tags": {
+        "network": "MHD Žilina",
+        "network:wikidata": "Q110521812",
+        "operator": "Dopravný podnik mesta Žiliny",
+        "operator:short": "DPMŽ",
+        "operator:wikidata": "Q13407157",
+        "route": "trolleybus"
+      }
+    },
+    {
       "displayName": "Mobilis",
-      "id": "mobilis-052ea8",
-      "locationSet": {"include": ["ch"]},
+      "id": "mobilis-c36613",
+      "locationSet": {
+        "include": ["ch-vd.geojson"]
+      },
       "tags": {
         "network": "Mobilis",
         "network:wikidata": "Q2394222",
@@ -301,20 +353,32 @@
     },
     {
       "displayName": "ODIS",
-      "id": "odis-706c20",
-      "locationSet": {"include": ["cz"]},
+      "id": "odis-6959ea",
+      "locationSet": {
+        "include": [
+          "cz-71.geojson",
+          "cz-72.geojson",
+          "cz-80.geojson"
+        ]
+      },
       "tags": {
         "network": "ODIS",
         "network:wikidata": "Q12043044",
-        "operator": "DPO",
+        "operator": "Dopravní podnik Ostrava",
+        "operator:short": "DPO",
         "operator:wikidata": "Q11323689",
         "route": "trolleybus"
       }
     },
     {
       "displayName": "Ostwind",
-      "id": "ostwind-052ea8",
-      "locationSet": {"include": ["ch"]},
+      "id": "ostwind-fad92c",
+      "locationSet": {
+        "include": [
+          "ch-sg.geojson",
+          "ch-sh.geojson"
+        ]
+      },
       "tags": {
         "network": "Ostwind",
         "network:wikidata": "Q2394207",
@@ -323,12 +387,28 @@
     },
     {
       "displayName": "Passepartout",
-      "id": "passepartout-052ea8",
-      "locationSet": {"include": ["ch"]},
+      "id": "passepartout-78e806",
+      "locationSet": {
+        "include": ["ch-lu.geojson"]
+      },
       "tags": {
         "network": "Passepartout",
         "network:short": "TVLU",
         "network:wikidata": "Q2394205",
+        "route": "trolleybus"
+      }
+    },
+    {
+      "displayName": "Pražská integrovaná doprava",
+      "id": "prazskaintegrovanadoprava-706c20",
+      "locationSet": {"include": ["cz"]},
+      "matchNames": [
+        "prague integrated transport"
+      ],
+      "tags": {
+        "network": "Pražská integrovaná doprava",
+        "network:short": "PID",
+        "network:wikidata": "Q2108171",
         "route": "trolleybus"
       }
     },
@@ -352,20 +432,13 @@
       }
     },
     {
-      "displayName": "RU:municipal",
-      "id": "rumunicipal-ea4a14",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "network": "RU:municipal",
-        "route": "trolleybus"
-      }
-    },
-    {
       "displayName": "RU:SAR:Саратов:троллейбусы",
       "id": "2490b6-ea4a14",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAR",
       "tags": {
         "network": "RU:SAR:Саратов:троллейбусы",
+        "network:wikidata": "Q4408478",
         "route": "trolleybus"
       }
     },
@@ -376,16 +449,20 @@
       "tags": {
         "network": "S.T.P.T.",
         "network:wikidata": "Q2010200",
+        "operator": "S.T.P.T.",
         "operator:wikidata": "Q929687",
         "route": "trolleybus"
       }
     },
     {
       "displayName": "Salzburger Verkehrsverbund",
-      "id": "salzburgerverkehrsverbund-0d37d5",
-      "locationSet": {"include": ["at"]},
+      "id": "salzburgerverkehrsverbund-86785f",
+      "locationSet": {
+        "include": ["at-5.geojson"]
+      },
       "tags": {
         "network": "Salzburger Verkehrsverbund",
+        "network:short": "SVV",
         "network:wikidata": "Q1254319",
         "operator": "Salzburg AG",
         "operator:wikidata": "Q2215905",
@@ -409,8 +486,10 @@
     },
     {
       "displayName": "SETA",
-      "id": "seta-a22f82",
-      "locationSet": {"include": ["it"]},
+      "id": "seta-e28c5e",
+      "locationSet": {
+        "include": ["it-45.geojson"]
+      },
       "tags": {
         "network": "SETA",
         "network:wikidata": "Q3963329",
@@ -418,17 +497,7 @@
       }
     },
     {
-      "displayName": "SPTrans",
-      "id": "sptrans-e2c444",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "network": "SPTrans",
-        "network:wikidata": "Q7392689",
-        "route": "trolleybus"
-      }
-    },
-    {
-      "displayName": "STB",
+      "displayName": "Societatea de Transport București",
       "id": "societateadetransportbucuresti-6b6251",
       "locationSet": {"include": ["ro"]},
       "matchNames": [
@@ -444,9 +513,21 @@
       }
     },
     {
+      "displayName": "SPTrans",
+      "id": "sptrans-e2c444",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "network": "SPTrans",
+        "network:wikidata": "Q7392689",
+        "route": "trolleybus"
+      }
+    },
+    {
       "displayName": "STCLM",
-      "id": "stclm-6f0cb3",
-      "locationSet": {"include": ["fr"]},
+      "id": "stclm-8f61b1",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
       "tags": {
         "network": "STCLM",
         "network:wikidata": "Q665810",
@@ -461,14 +542,17 @@
         "network": "Szeged",
         "network:wikidata": "Q720449",
         "operator": "Szegedi Közlekedési Társaság",
+        "operator:short": "SZKT",
         "operator:wikidata": "Q1295391",
         "route": "trolleybus"
       }
     },
     {
       "displayName": "TCL",
-      "id": "tcl-6f0cb3",
-      "locationSet": {"include": ["fr"]},
+      "id": "tcl-7f3ea5",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "network": "TCL",
         "network:wikidata": "Q8700",
@@ -479,8 +563,10 @@
     },
     {
       "displayName": "TPER",
-      "id": "tper-a22f82",
-      "locationSet": {"include": ["it"]},
+      "id": "tper-e28c5e",
+      "locationSet": {
+        "include": ["it-45.geojson"]
+      },
       "tags": {
         "network": "TPER",
         "network:wikidata": "Q3997843",
@@ -488,7 +574,21 @@
       }
     },
     {
-      "displayName": "TransLink (British Columbia)",
+      "displayName": "TRAM Castellón",
+      "id": "transportemetropolitanodelaplana-bb8e7c",
+      "locationSet": {
+        "include": ["es-cs.geojson"]
+      },
+      "tags": {
+        "network": "Transporte Metropolitano de la Plana",
+        "network:short": "TRAM Castellón",
+        "network:wikidata": "Q1123731",
+        "operator": "Via Reservada",
+        "route": "trolleybus"
+      }
+    },
+    {
+      "displayName": "Translink (British Columbia)",
       "id": "translink-c54f8a",
       "locationSet": {
         "include": ["ca-bc.geojson"]
@@ -517,8 +617,10 @@
     },
     {
       "displayName": "Unireso",
-      "id": "unireso-052ea8",
-      "locationSet": {"include": ["ch"]},
+      "id": "unireso-9f25ab",
+      "locationSet": {
+        "include": ["ch-ge.geojson"]
+      },
       "tags": {
         "network": "Unireso",
         "network:wikidata": "Q1312883",
@@ -536,6 +638,7 @@
       },
       "tags": {
         "network": "Verkehrsverbund Berlin-Brandenburg",
+        "network:short": "VBB",
         "network:wikidata": "Q315451",
         "operator": "Barnimer Busgesellschaft",
         "operator:short": "BBG",
@@ -587,17 +690,24 @@
       "displayName": "Zarząd Transportu Metropolitalnego",
       "id": "zarzadtransportumetropolitalnego-ac5bc5",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12, PL-24",
       "tags": {
         "network": "Zarząd Transportu Metropolitalnego",
         "network:wikidata": "Q48862619",
         "operator": "Tyskie Linie Trolejbusowe",
+        "operator:wikidata": "Q130340846",
         "route": "trolleybus"
       }
     },
     {
       "displayName": "ZKM Gdynia",
-      "id": "zkmgdynia-ac5bc5",
-      "locationSet": {"include": ["pl"]},
+      "id": "zkmgdynia-afe888",
+      "locationSet": {
+        "include": [
+          "pl-22.geojson",
+          "pl-28.geojson"
+        ]
+      },
       "tags": {
         "network": "ZKM Gdynia",
         "network:wikidata": "Q9387114",
@@ -607,11 +717,27 @@
     },
     {
       "displayName": "ZVV",
-      "id": "zvv-052ea8",
-      "locationSet": {"include": ["ch"]},
+      "id": "zvv-e669dd",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "network": "ZVV",
         "network:wikidata": "Q201977",
+        "route": "trolleybus"
+      }
+    },
+    {
+      "displayName": "ΟΑΣΑ",
+      "id": "oasa-1b380e",
+      "locationSet": {
+        "include": ["gr-i.geojson"]
+      },
+      "tags": {
+        "network": "ΟΑΣΑ",
+        "network:el": "ΟΑΣΑ",
+        "network:en": "OASA",
+        "network:wikidata": "Q1814382",
         "route": "trolleybus"
       }
     },
@@ -628,6 +754,7 @@
       "displayName": "Альметьевск",
       "id": "a15a2c-ea4a14",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-TA; name of city",
       "tags": {
         "network": "Альметьевск",
         "route": "trolleybus"
@@ -650,8 +777,10 @@
       "displayName": "Брянский троллейбус",
       "id": "d93e53-ea4a14",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-BRY",
       "tags": {
         "network": "Брянский троллейбус",
+        "network:wikidata": "Q4097562",
         "route": "trolleybus"
       }
     },
@@ -677,6 +806,7 @@
       "displayName": "Городской общественный транспорт Екатеринбурга",
       "id": "d86b94-ea4a14",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SVE",
       "tags": {
         "network": "Городской общественный транспорт Екатеринбурга",
         "route": "trolleybus"
@@ -686,6 +816,7 @@
       "displayName": "Городской общественный транспорт Нальчика",
       "id": "eeb3d1-ea4a14",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KB",
       "tags": {
         "network": "Городской общественный транспорт Нальчика",
         "route": "trolleybus"
@@ -735,11 +866,29 @@
     },
     {
       "displayName": "Комитет по Транспорту Санкт-Петербурга",
-      "id": "saintpetersburgtransportcommittee-ea4a14",
-      "locationSet": {"include": ["ru"]},
+      "id": "saintpetersburgtransportcommittee-c8d96d",
+      "locationSet": {
+        "include": [
+          "ru-len.geojson",
+          "ru-spe.geojson"
+        ]
+      },
       "tags": {
         "network": "Комитет по Транспорту Санкт-Петербурга",
-        "network:en": "Saint-Petersburg Transport Committee",
+        "network:en": "Saint Petersburg Transport Committee",
+        "network:ru": "Комитет по Транспорту Санкт-Петербурга",
+        "network:wikidata": "Q115120075",
+        "route": "trolleybus"
+      }
+    },
+    {
+      "displayName": "Миколаївський тролейбус",
+      "id": "1843a5-2bb881",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "network": "Миколаївський тролейбус",
+        "network:wikidata": "Q3540261",
+        "operator": "Миколаївелектротранс",
         "route": "trolleybus"
       }
     },
@@ -753,9 +902,21 @@
       }
     },
     {
+      "displayName": "Омский троллейбус",
+      "id": "21a30c-ea4a14",
+      "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-OMS",
+      "tags": {
+        "network": "Омский троллейбус",
+        "network:wikidata": "Q4334741",
+        "route": "trolleybus"
+      }
+    },
+    {
       "displayName": "Оренбургская троллейбусная сеть",
       "id": "a13f90-ea4a14",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ORE",
       "tags": {
         "network": "Оренбургская троллейбусная сеть",
         "route": "trolleybus"
@@ -765,6 +926,7 @@
       "displayName": "Петрозаводск",
       "id": "647543-ea4a14",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KR; name of city",
       "tags": {
         "network": "Петрозаводск",
         "route": "trolleybus"
@@ -774,8 +936,10 @@
       "displayName": "Томский троллейбус",
       "id": "de1c4e-ea4a14",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-TOM",
       "tags": {
         "network": "Томский троллейбус",
+        "network:wikidata": "Q4460399",
         "route": "trolleybus"
       }
     },
@@ -803,6 +967,7 @@
       "displayName": "上海公交",
       "id": "shanghaibus-95023b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-JS, CN-SH, CN-ZJ",
       "tags": {
         "network": "上海公交",
         "network:en": "Shanghai Bus",
@@ -815,6 +980,7 @@
       "displayName": "北京公交",
       "id": "beijingpublictransport-95023b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-BJ, CN-HE",
       "tags": {
         "network": "北京公交",
         "network:en": "Beijing Public Transport",
@@ -827,6 +993,7 @@
       "displayName": "济南公交",
       "id": "jinanpublictransport-95023b",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-SD",
       "tags": {
         "network": "济南公交",
         "network:en": "Jinan Public Transport",

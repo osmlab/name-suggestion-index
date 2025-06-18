@@ -285,7 +285,7 @@ function filterCollected() {
 // Load the index files under `data/*`
 //
 function loadIndex() {
-  const START = '🏗   ' + chalk.yellow(`Loading index files (this might take around 30 seconds) ...`);
+  const START = '🏗   ' + chalk.yellow(`Loading index files (this might take over a minute, maybe more) ...`);
   const END = '👍  ' + chalk.green(`done loading`);
   console.log('');
   console.log(START);
@@ -348,7 +348,7 @@ function mergeItems() {
   // Any country codes which should be replaced by more standard ones in the locationSets
   const countryReplacements = {
     'uk': 'gb',  // Exceptionally reserved, United Kingdom is officially assigned the alpha-2 code GB
-  }
+  };
 
   const START = '🏗   ' + chalk.yellow(`Merging items...`);
   const END = '👍  ' + chalk.green(`done merging`);
@@ -592,11 +592,11 @@ function mergeItems() {
   }
 
   function normalizeCountryCode(countries, country) {
-    const index = countries.indexOf(country.toLowerCase())
+    const index = countries.indexOf(country.toLowerCase());
     if (index >= 0) {
       const replace = countryReplacements[country.toLowerCase()];
       if (replace && replace !== undefined) {
-        countries[index] = replace.toLowerCase()
+        countries[index] = replace.toLowerCase();
       }
     }
   }
