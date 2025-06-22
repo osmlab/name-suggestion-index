@@ -4,7 +4,7 @@ The following areas are included as part of [country-coder](https://github.com/r
 
 - [nz-cit](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-cit%22%5D%7D&referrer=nsi) - Chatham Islands Territory
 
-Regions of New Zealand targeted with a feature using [ISO 3166-2:NZ](https://en.wikipedia.org/wiki/ISO_3166-2:NZ)
+## Regions of New Zealand targeted with a feature using [ISO 3166-2:NZ](https://en.wikipedia.org/wiki/ISO_3166-2:NZ)
 
 - [nz-auk.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-auk.geojson%22%5D%7D&referrer=nsi) - Auckland
 - [nz-bop.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-bop.geojson%22%5D%7D&referrer=nsi) - Bay of Plenty
@@ -22,3 +22,97 @@ Regions of New Zealand targeted with a feature using [ISO 3166-2:NZ](https://en.
 - [nz-tas.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-tas.geojson%22%5D%7D&referrer=nsi) - Tasman
 - [nz-wko.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-wko.geojson%22%5D%7D&referrer=nsi) - Waikato
 - [nz-wtc.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-wtc.geojson%22%5D%7D&referrer=nsi) - West Coast
+
+## Territorial Local Authorities of New Zealand targeted with a feature using `nz-<kebab-cased authority name>`
+
+- [nz-far-north-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-far-north-district.geojson%22%5D%7D&referrer=nsi) - Far North District
+- [nz-whangarei-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-whangarei-district.geojson%22%5D%7D&referrer=nsi) - Whangarei District
+- [nz-kaipara-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-kaipara-district.geojson%22%5D%7D&referrer=nsi) - Kaipara District
+- [nz-thames-coromandel-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-thames-coromandel-district.geojson%22%5D%7D&referrer=nsi) - Thames-Coromandel District
+- [nz-hauraki-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-hauraki-district.geojson%22%5D%7D&referrer=nsi) - Hauraki District
+- [nz-waikato-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waikato-district.geojson%22%5D%7D&referrer=nsi) - Waikato District
+- [nz-matamata-piako-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-matamata-piako-district.geojson%22%5D%7D&referrer=nsi) - Matamata-Piako District
+- [nz-hamilton-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-hamilton-city.geojson%22%5D%7D&referrer=nsi) - Hamilton City
+- [nz-waipa-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waipa-district.geojson%22%5D%7D&referrer=nsi) - Waipa District
+- [nz-otorohanga-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-otorohanga-district.geojson%22%5D%7D&referrer=nsi) - Otorohanga District
+- [nz-south-waikato-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-south-waikato-district.geojson%22%5D%7D&referrer=nsi) - South Waikato District
+- [nz-waitomo-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waitomo-district.geojson%22%5D%7D&referrer=nsi) - Waitomo District
+- [nz-taupo-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-taupo-district.geojson%22%5D%7D&referrer=nsi) - Taupo District
+- [nz-western-bay-of-plenty-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-western-bay-of-plenty-district.geojson%22%5D%7D&referrer=nsi) - Western Bay Of Plenty District
+- [nz-tauranga-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-tauranga-city.geojson%22%5D%7D&referrer=nsi) - Tauranga City
+- [nz-rotorua-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-rotorua-district.geojson%22%5D%7D&referrer=nsi) - Rotorua District
+- [nz-whakatane-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-whakatane-district.geojson%22%5D%7D&referrer=nsi) - Whakatane District
+- [nz-kawerau-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-kawerau-district.geojson%22%5D%7D&referrer=nsi) - Kawerau District
+- [nz-opotiki-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-opotiki-district.geojson%22%5D%7D&referrer=nsi) - Opotiki District
+- [nz-gisborne-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-gisborne-district.geojson%22%5D%7D&referrer=nsi) - Gisborne District
+- [nz-wairoa-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-wairoa-district.geojson%22%5D%7D&referrer=nsi) - Wairoa District
+- [nz-hastings-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-hastings-district.geojson%22%5D%7D&referrer=nsi) - Hastings District
+- [nz-napier-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-napier-city.geojson%22%5D%7D&referrer=nsi) - Napier City
+- [nz-central-hawkes-bay-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-central-hawke- [nz-far-north-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-far-north-district.geojson%22%5D%7D&referrer=nsi) - Far North District
+- [nz-whangarei-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-whangarei-district.geojson%22%5D%7D&referrer=nsi) - Whangarei District
+- [nz-kaipara-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-kaipara-district.geojson%22%5D%7D&referrer=nsi) - Kaipara District
+- [nz-thames-coromandel-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-thames-coromandel-district.geojson%22%5D%7D&referrer=nsi) - Thames-Coromandel District
+- [nz-hauraki-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-hauraki-district.geojson%22%5D%7D&referrer=nsi) - Hauraki District
+- [nz-waikato-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waikato-district.geojson%22%5D%7D&referrer=nsi) - Waikato District
+- [nz-matamata-piako-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-matamata-piako-district.geojson%22%5D%7D&referrer=nsi) - Matamata-Piako District
+- [nz-hamilton-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-hamilton-city.geojson%22%5D%7D&referrer=nsi) - Hamilton City
+- [nz-waipa-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waipa-district.geojson%22%5D%7D&referrer=nsi) - Waipa District
+- [nz-otorohanga-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-otorohanga-district.geojson%22%5D%7D&referrer=nsi) - Otorohanga District
+- [nz-south-waikato-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-south-waikato-district.geojson%22%5D%7D&referrer=nsi) - South Waikato District
+- [nz-waitomo-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waitomo-district.geojson%22%5D%7D&referrer=nsi) - Waitomo District
+- [nz-taupo-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-taupo-district.geojson%22%5D%7D&referrer=nsi) - Taupo District
+- [nz-western-bay-of-plenty-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-western-bay-of-plenty-district.geojson%22%5D%7D&referrer=nsi) - Western Bay Of Plenty District
+- [nz-tauranga-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-tauranga-city.geojson%22%5D%7D&referrer=nsi) - Tauranga City
+- [nz-rotorua-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-rotorua-district.geojson%22%5D%7D&referrer=nsi) - Rotorua District
+- [nz-whakatane-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-whakatane-district.geojson%22%5D%7D&referrer=nsi) - Whakatane District
+- [nz-kawerau-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-kawerau-district.geojson%22%5D%7D&referrer=nsi) - Kawerau District
+- [nz-opotiki-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-opotiki-district.geojson%22%5D%7D&referrer=nsi) - Opotiki District
+- [nz-gisborne-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-gisborne-district.geojson%22%5D%7D&referrer=nsi) - Gisborne District
+- [nz-wairoa-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-wairoa-district.geojson%22%5D%7D&referrer=nsi) - Wairoa District
+- [nz-hastings-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-hastings-district.geojson%22%5D%7D&referrer=nsi) - Hastings District
+- [nz-napier-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-napier-city.geojson%22%5D%7D&referrer=nsi) - Napier City
+- [nz-central-hawkes-bay-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-central-hawkes-bay-district.geojson%22%5D%7D&referrer=nsi) - Central Hawke's Bay District
+- [nz-new-plymouth-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-new-plymouth-district.geojson%22%5D%7D&referrer=nsi) - New Plymouth District
+- [nz-stratford-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-stratford-district.geojson%22%5D%7D&referrer=nsi) - Stratford District
+- [nz-south-taranaki-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-south-taranaki-district.geojson%22%5D%7D&referrer=nsi) - South Taranaki District
+- [nz-ruapehu-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-ruapehu-district.geojson%22%5D%7D&referrer=nsi) - Ruapehu District
+- [nz-whanganui-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-whanganui-district.geojson%22%5D%7D&referrer=nsi) - Whanganui District
+- [nz-rangitikei-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-rangitikei-district.geojson%22%5D%7D&referrer=nsi) - Rangitikei District
+- [nz-manawatu-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-manawatu-district.geojson%22%5D%7D&referrer=nsi) - Manawatu District
+- [nz-palmerston-north-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-palmerston-north-city.geojson%22%5D%7D&referrer=nsi) - Palmerston North City
+- [nz-tararua-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-tararua-district.geojson%22%5D%7D&referrer=nsi) - Tararua District
+- [nz-horowhenua-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-horowhenua-district.geojson%22%5D%7D&referrer=nsi) - Horowhenua District
+- [nz-kapiti-coast-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-kapiti-coast-district.geojson%22%5D%7D&referrer=nsi) - Kapiti Coast District
+- [nz-porirua-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-porirua-city.geojson%22%5D%7D&referrer=nsi) - Porirua City
+- [nz-upper-hutt-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-upper-hutt-city.geojson%22%5D%7D&referrer=nsi) - Upper Hutt City
+- [nz-lower-hutt-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-lower-hutt-city.geojson%22%5D%7D&referrer=nsi) - Lower Hutt City
+- [nz-wellington-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-wellington-city.geojson%22%5D%7D&referrer=nsi) - Wellington City
+- [nz-masterton-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-masterton-district.geojson%22%5D%7D&referrer=nsi) - Masterton District
+- [nz-carterton-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-carterton-district.geojson%22%5D%7D&referrer=nsi) - Carterton District
+- [nz-south-wairarapa-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-south-wairarapa-district.geojson%22%5D%7D&referrer=nsi) - South Wairarapa District
+- [nz-tasman-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-tasman-district.geojson%22%5D%7D&referrer=nsi) - Tasman District
+- [nz-nelson-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-nelson-city.geojson%22%5D%7D&referrer=nsi) - Nelson City
+- [nz-marlborough-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-marlborough-district.geojson%22%5D%7D&referrer=nsi) - Marlborough District
+- [nz-kaikoura-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-kaikoura-district.geojson%22%5D%7D&referrer=nsi) - Kaikoura District
+- [nz-buller-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-buller-district.geojson%22%5D%7D&referrer=nsi) - Buller District
+- [nz-grey-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-grey-district.geojson%22%5D%7D&referrer=nsi) - Grey District
+- [nz-westland-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-westland-district.geojson%22%5D%7D&referrer=nsi) - Westland District
+- [nz-hurunui-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-hurunui-district.geojson%22%5D%7D&referrer=nsi) - Hurunui District
+- [nz-waimakariri-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waimakariri-district.geojson%22%5D%7D&referrer=nsi) - Waimakariri District
+- [nz-christchurch-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-christchurch-city.geojson%22%5D%7D&referrer=nsi) - Christchurch City
+- [nz-selwyn-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-selwyn-district.geojson%22%5D%7D&referrer=nsi) - Selwyn District
+- [nz-ashburton-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-ashburton-district.geojson%22%5D%7D&referrer=nsi) - Ashburton District
+- [nz-timaru-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-timaru-district.geojson%22%5D%7D&referrer=nsi) - Timaru District
+- [nz-mackenzie-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-mackenzie-district.geojson%22%5D%7D&referrer=nsi) - Mackenzie District
+- [nz-waimate-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waimate-district.geojson%22%5D%7D&referrer=nsi) - Waimate District
+- [nz-chatham-islands-territory.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-chatham-islands-territory.geojson%22%5D%7D&referrer=nsi) - Chatham Islands Territory
+- [nz-waitaki-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-waitaki-district.geojson%22%5D%7D&referrer=nsi) - Waitaki District
+- [nz-central-otago-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-central-otago-district.geojson%22%5D%7D&referrer=nsi) - Central Otago District
+- [nz-queenstown-lakes-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-queenstown-lakes-district.geojson%22%5D%7D&referrer=nsi) - Queenstown-Lakes District
+- [nz-dunedin-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-dunedin-city.geojson%22%5D%7D&referrer=nsi) - Dunedin City
+- [nz-clutha-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-clutha-district.geojson%22%5D%7D&referrer=nsi) - Clutha District
+- [nz-southland-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-southland-district.geojson%22%5D%7D&referrer=nsi) - Southland District
+- [nz-gore-district.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-gore-district.geojson%22%5D%7D&referrer=nsi) - Gore District
+- [nz-invercargill-city.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-invercargill-city.geojson%22%5D%7D&referrer=nsi) - Invercargill City
+- [nz-auckland.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-auckland.geojson%22%5D%7D&referrer=nsi) - Auckland
+- [nz-area-outside-territorial-authority.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nz-area-outside-territorial-authority.geojson%22%5D%7D&referrer=nsi) - Area Outside Territorial Authority
