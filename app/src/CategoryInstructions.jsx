@@ -29,6 +29,11 @@ export function CategoryInstructions() {
     itemType = 'network';
     logo = 'logos';
     wikidataTag = 'network:wikidata';
+  } else {
+    a = 'an';
+    itemType = 'item';
+    logo = 'logos';
+    wikidataTag = '*:wikidata';
   }
 
   // Flags don't have Facebook accounts
