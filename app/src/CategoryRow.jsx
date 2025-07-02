@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUnlock, faLock } from '@fortawesome/free-solid-svg-icons'; // SSL local and Unlock icon.
 import { AppContext, getFilterParams, stripDiacritics } from './AppContext';
 import { CategoryRowSocialLinks} from './CategoryRowSocialLinks';
+import { TREES } from './constants';
 
 
 export function CategoryRow(props) {
@@ -131,6 +132,15 @@ way[${k}=${v}][network:wikidata=${qid}],
 relation[${k}=${v}][network:wikidata=${qid}]
 { color:green; fill-color:green; }
 }}`;
+  } else if (t === '*') {
+    n = Object.values(TREES)
+      .map(tree => item.tags[tree.tag])
+      .find(Boolean)
+      ?.replaceAll('"','\\\"');
+    tags = item.tags || {};
+    qid = Object.values(TREES)
+      .map(tree => item.tags[tree.wikidataTag])
+      .find(Boolean);
   }
 
   const wd = context.wikidata[qid] || {};
@@ -249,6 +259,7 @@ relation[${k}=${v}][network:wikidata=${qid}]
   }
 
   function searchOverpassLink(name, overpassQuery) {
+    if (!overpassQuery) return null;
     const q = encodeURIComponent(overpassQuery);
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
     const title = `Search Overpass Turbo for ${n}`;

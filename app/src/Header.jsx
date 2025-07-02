@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import { AppContext, getFilterParams, qsString } from './AppContext';
+import { AppContext, getFilterParams } from './AppContext';
+import { TREES } from './constants';
 
 
 export function Header() {
@@ -75,22 +75,19 @@ function Title() {
 
 
 function TreeSwitcher() {
-  const context = useContext(AppContext);
-  const params = context.params;
-  const t = params.t;
+  const { params, setParams } = useContext(AppContext);
   const filters = getFilterParams(params);
 
-  const others = ['brands', 'flags', 'operators', 'transit'].filter(d => d !== t);
-  const links = others.map(t => {
-    const linkparams = Object.assign({ t: t }, filters);
-    return (
-      <li key={t}><Link to={'index.html?' + qsString(linkparams)}>{t}/</Link></li>
-    )
-  });
-
-  const list = links.length ? (<> see also: <ul>{links}</ul> </>) : null;
   return (
-    <div id='treeswitcher'>{list}</div>
+    <select
+      id='treeswitcher'
+      value={params.t}
+      onChange={(e) => setParams({ t: e.target.value, ...filters })}
+    >
+      {['*', ...Object.keys(TREES)].map(tree => (
+        <option key={tree} value={tree}>{tree}</option>
+      ))}
+    </select>
   );
 }
 

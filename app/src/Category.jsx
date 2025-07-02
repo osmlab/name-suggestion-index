@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AppContext, isItemFiltered, getFilterParams, qsString } from './AppContext';
 import { CategoryInstructions } from './CategoryInstructions';
 import { CategoryRow } from './CategoryRow';
+import { TREES } from './constants';
 
 
 export function Category() {
@@ -34,7 +35,12 @@ export function Category() {
       }
     }
 
-    items = index.path && index.path[tkv];
+    items = t === '*'
+      ? Object.keys(TREES)
+        .flatMap(t => index.path?.[`${t}/${k}/${v}`] || [])
+        .sort((a, b) => a.displayName.localeCompare(b.displayName))
+      : index.path?.[tkv];
+
     if (!message && !Array.isArray(items) || !items.length) {
       message = `No items found for "${tkv}".`;
     }
