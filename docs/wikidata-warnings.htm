@@ -188,12 +188,13 @@
             when visited. Calls to the Facebook Graph API will return a generic error when
             attempting to read these accounts, regardless of access status, which is also something
             the <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment.
-            Unlike properly configured branded Facebook pages with access restrictions, Wikidata
-            does not have a way to label incorrectly configured accounts; thus,
-            "<code>npm run wikidata</code>" cannot detect whether an account has "personal"
-            characteristics or suppress the resulting Graph API warning from these accounts.
-            As such, the warning table below may contain false positives where Wikidata is
-            pointing to a valid, existing, and publicly viewable account.
+            Incorrectly configured accounts can be labeled on the Wikidata entry by using the qualifier
+            "<a href="https://www.wikidata.org/wiki/Property:P6477">does not have characteristic</a>" on
+            the Facebook username statement and setting its value to
+            "<a href="https://www.wikidata.org/wiki/Q134432781">professional account</a>".
+            "<code>npm run wikidata</code>" will ignore the Facebook API warning for these accounts, and also
+            warn of any Facebook accounts that are marked as having "personal" characteristics but have
+            since been reconfigured to be publicly viewable, properly configured branded Facebook pages.
           </li>
         </ul>
       </li>
