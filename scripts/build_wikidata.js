@@ -375,8 +375,8 @@ function processEntities(result) {
             if ( q.snaktype !== 'value' ) continue;
 
             const value = q.datavalue.value.id;
-            // Q134432781 - professional account
-            if (value === 'Q134432781') {
+            // Q101420143 - Facebook page, Q134432781 - professional account
+            if (value === 'Q101420143' || value === 'Q134432781') {
               restriction = value;
               break;
             }
