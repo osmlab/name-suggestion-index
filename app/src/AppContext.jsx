@@ -83,7 +83,7 @@ export function AppContextProvider() {
       if (params[k]) {
         newParams[k] = params[k];
       } else if (k === 't') {       // if no tree specified,
-        newParams[k] = 'brands';    // default to the 'brands' tree
+        newParams[k] = '*';    // default to all
       }
     });
 
