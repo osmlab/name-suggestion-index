@@ -7,6 +7,7 @@
         "^(bebedouro|drinking water|живая вода)$",
         "^(croix-rouge|red cross)$",
         "^(institution|wsb|wsp) \\(staff\\)$",
+        "^(вода|колонка с водой)$",
         "^\\(local\\) private sector- name\\/no$",
         "^community \\(technician\\) name\\/no$",
         "^institution staff$",
@@ -16,8 +17,7 @@
         "^private([\\/_]individual)?$",
         "^public$",
         "^tom$",
-        "^yes$",
-        "^вода$"
+        "^yes$"
       ],
       "named": [
         "^acquedotto pugliese - cooperativa comunità melpignano$"
@@ -173,12 +173,15 @@
       }
     },
     {
-      "displayName": "aquaduin",
-      "id": "aquaduin-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Aquaduin",
+      "id": "aquaduin-a2bffc",
+      "locationSet": {
+        "include": ["be-vwv.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "aquaduin"
+        "operator": "Aquaduin",
+        "operator:wikidata": "Q59535248"
       }
     },
     {
@@ -322,8 +325,10 @@
     },
     {
       "displayName": "Camp Alpine",
-      "id": "campalpine-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "campalpine-f48dad",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Camp Alpine"
@@ -409,21 +414,15 @@
       }
     },
     {
-      "displayName": "City of Richmond",
-      "id": "cityofrichmond-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "displayName": "City of Richmond (British Columbia)",
+      "id": "cityofrichmond-f4df2b",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "City of Richmond"
-      }
-    },
-    {
-      "displayName": "Commune de Sarzeau",
-      "id": "communedesarzeau-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Commune de Sarzeau"
+        "operator": "City of Richmond",
+        "operator:wikidata": "Q236837"
       }
     },
     {
@@ -488,11 +487,14 @@
     },
     {
       "displayName": "Comune di Monticiano",
-      "id": "comunedimonticiano-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "comunedimonticiano-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Comune di Monticiano"
+        "operator": "Comune di Monticiano",
+        "operator:wikidata": "Q91272"
       }
     },
     {
@@ -818,11 +820,12 @@
     },
     {
       "displayName": "Kereta Api Indonesia",
-      "id": "keretaapiindonesia-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "keretaapiindonesia-69d1b3",
+      "locationSet": {"include": ["id-jw"]},
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Kereta Api Indonesia"
+        "operator": "Kereta Api Indonesia",
+        "operator:wikidata": "Q2745027"
       }
     },
     {
@@ -866,6 +869,19 @@
       "tags": {
         "amenity": "drinking_water",
         "operator": "LWSC"
+      }
+    },
+    {
+      "displayName": "Mairie de Sarzeau",
+      "id": "mairiedesarzeau-48930b",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
+      "matchNames": ["commune de sarzeau"],
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Mairie de Sarzeau",
+        "operator:wikidata": "Q115909985"
       }
     },
     {
@@ -1326,11 +1342,14 @@
     },
     {
       "displayName": "Stadtwerke Düsseldorf",
-      "id": "stadtwerkedusseldorf-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "stadtwerkedusseldorf-a3ecbe",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "Stadtwerke Düsseldorf"
+        "operator": "Stadtwerke Düsseldorf",
+        "operator:wikidata": "Q2328468"
       }
     },
     {
@@ -1754,15 +1773,6 @@
       }
     },
     {
-      "displayName": "Колонка с водой",
-      "id": "3393a1-3fbe17",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "Колонка с водой"
-      }
-    },
-    {
       "displayName": "Роганская",
       "id": "ed5c7c-099377",
       "locationSet": {"include": ["ua"]},
@@ -1773,8 +1783,8 @@
     },
     {
       "displayName": "Роганська",
-      "id": "5a1de0-3fbe17",
-      "locationSet": {"include": ["001"]},
+      "id": "5a1de0-099377",
+      "locationSet": {"include": ["ua"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "Роганська"
