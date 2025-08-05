@@ -2,7 +2,11 @@
   "properties": {
     "path": "brands/amenity/money_transfer",
     "exclude": {
-      "generic": ["^money transfer$", "^wakala$"]
+      "generic": [
+        "^mobile? money( transfer)?$",
+        "^money transfer$",
+        "^wakala$"
+      ]
     }
   },
   "items": [
@@ -45,25 +49,13 @@
       }
     },
     {
-      "displayName": "Mobile Money",
-      "id": "mobilemoney-1032f8",
-      "locationSet": {"include": ["001"]},
-      "matchNames": [
-        "mobil money",
-        "mobile money transfer"
-      ],
-      "tags": {
-        "amenity": "money_transfer",
-        "brand": "Mobile Money",
-        "brand:wikidata": "Q20312600",
-        "name": "Mobile Money"
-      }
-    },
-    {
       "displayName": "MoneyGram",
       "id": "moneygram-1032f8",
       "locationSet": {"include": ["001"]},
-      "matchTags": ["amenity/bureau_de_change"],
+      "matchTags": [
+        "amenity/bureau_de_change",
+        "office/financial"
+      ],
       "tags": {
         "amenity": "money_transfer",
         "brand": "MoneyGram",
@@ -86,6 +78,8 @@
       "displayName": "Ria",
       "id": "ria-1032f8",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["ria money transfer"],
+      "matchTags": ["office/financial"],
       "tags": {
         "amenity": "money_transfer",
         "brand": "Ria",
@@ -113,9 +107,11 @@
         "amenity": "money_transfer",
         "brand": "Юнистрим",
         "brand:en": "Unistream",
+        "brand:ru": "Юнистрим",
         "brand:wikidata": "Q4534572",
         "name": "Юнистрим",
-        "name:en": "Unistream"
+        "name:en": "Unistream",
+        "name:ru": "Юнистрим"
       }
     },
     {

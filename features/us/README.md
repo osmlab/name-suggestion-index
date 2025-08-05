@@ -9,7 +9,17 @@ The following areas are included as part of [country-coder](https://github.com/r
 - [gu](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gu%22%5D%7D&referrer=nsi) - Territory of Guam
 - [mp](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22mp%22%5D%7D&referrer=nsi) - Territory of Northern Mariana Islands
 - [vi](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22vi%22%5D%7D&referrer=nsi) - Territory of Virgin Islands of the United States
+- [conus](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22conus%22%5D%7D&referrer=nsi) - Contiguous United States (Lower 48)
 - [um](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um%22%5D%7D&referrer=nsi) - United States Minor Outlying Islands (Baker Island, Howland Island, Jarvis Island, Johnston Atoll, Kingman Reef, Midway Atoll, Navassa Island, Palmyra Atoll, and Wake Island)
+  - [um-81](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-81%22%5D%7D&referrer=nsi) - Baker Island
+  - [um-84](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-84%22%5D%7D&referrer=nsi) - Howland Island
+  - [um-86](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-86%22%5D%7D&referrer=nsi) - Jarvis Island
+  - [jt](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jt%22%5D%7D&referrer=nsi) - Johnston Atoll
+  - [um-89](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-89%22%5D%7D&referrer=nsi) - Kingman Reef
+  - [mi](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22mi%22%5D%7D&referrer=nsi) - Midway Atoll
+  - [um-76](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-76%22%5D%7D&referrer=nsi) - Navassa Island
+  - [um-95](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22um-95%22%5D%7D&referrer=nsi) - Palmyra Atoll
+  - [wk](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22wk%22%5D%7D&referrer=nsi) - Wake Island
 
 States of the United States targeted with a feature using [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US)
 
@@ -77,16 +87,17 @@ Areas of the United States targeted with a feature not using [ISO 3166-2:US](htt
 - [US-CA-Orange_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-orange_county.geojson%22%5D%7D&referrer=nsi) - Orange County, California
 - [US-CA-San_Luis_Obispo_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ca-san_luis_obispo_county.geojson%22%5D%7D&referrer=nsi) - San Luis Obispo County, California
 - [US-FL-Florida_Keys.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-fl-florida_keys.geojson%22%5D%7D&referrer=nsi) - Florida Keys
+- [US-IL-Cook_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-il-cook_county.geojson%22%5D%7D&referrer=nsi) - Cook County, Illinois
 - [US-MD-Baltimore.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-md-baltimore.geojson%22%5D%7D&referrer=nsi) - City of Baltimore, Maryland
 - [US-NV-Southern.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-nv-southern.geojson%22%5D%7D&referrer=nsi) - Southern Nevada
 - [US-NV-Washoe_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-nv-washoe_county.geojson%22%5D%7D&referrer=nsi) - Washoe County, Nevada
 - [US-NY-New_York_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ny-new_york_city.geojson%22%5D%7D&referrer=nsi) - New York City
 - [US-OH-Cuyahoga_County.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-oh-cuyahoga_county.geojson%22%5D%7D&referrer=nsi) - Cuyahoga County, Ohio
+- [US-TX-Austin.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-tx-austin.geojson%22%5D%7D&referrer=nsi) - City of Austin, Texas
 
 Operating areas of entities in the United States targeted with a feature not using [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US)
 
 - [US-NE-First_State_Bank_East.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ne-first_state_bank_east.geojson%22%5D%7D&referrer=nsi) - First State Bank (eastern Nebraska)
-- [US-NE-First_State_Bank_West.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-ne-first_state_bank_west.geojson%22%5D%7D&referrer=nsi) - First State Bank (western Nebraska)
 - [US-OH-Greater_Dayton_RTA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-oh-greater_dayton_rta.geojson%22%5D%7D&referrer=nsi) - Greater Dayton Regional Transit Authority (Ohio)
 - [US-CAT_Hood_River.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-cat_hood_river.geojson%22%5D%7D&referrer=nsi) - CAT (Hood River, Oregon/Washington)
 - [US-FoodLand_Eastern.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22us-foodland_eastern.geojson%22%5D%7D&referrer=nsi) - FoodLand (Eastern USA)

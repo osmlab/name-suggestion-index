@@ -108,7 +108,7 @@ function collectFeatures() {
     if (feature.id)    { obj.id = feature.id; }
     if (feature.properties) {
       obj.properties = feature.properties;
-      delete obj.properties.id;  // to prevent possiblity of conflicting ids
+      delete obj.properties.id;  // to prevent possibility of conflicting ids
     } else {
       obj.properties = {};
     }
@@ -146,7 +146,7 @@ function collectFeatures() {
   });
 
   // sort features by id, see: 800ca866f
-  features.sort((a, b) => withLocale(a.id, b.id))
+  features.sort((a, b) => withLocale(a.id, b.id));
 
   const featureCount = Object.keys(files).length;
   console.log(`🧩  features:\t${featureCount}`);

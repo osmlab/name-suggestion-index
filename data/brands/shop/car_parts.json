@@ -6,7 +6,8 @@
         "^(car parts|repuestos automotrices)$",
         "^lubri(centro|ficantes)$",
         "^авто(рынок|ремонт|сервис|запчасти|запчастини)?$",
-        "^автома(г|газин|стерская)?$"
+        "^автома(г|газин|стерская)?$",
+        "^магазин автозапчастей$"
       ],
       "named": ["^форсаж$"]
     }
@@ -14,10 +15,8 @@
   "items": [
     {
       "displayName": "Advance Auto Parts",
-      "id": "advanceautoparts-c59633",
-      "locationSet": {
-        "include": ["ca", "us", "vi"]
-      },
+      "id": "advanceautoparts-c70e2b",
+      "locationSet": {"include": ["ca", "us"]},
       "matchTags": ["shop/doityourself"],
       "tags": {
         "brand": "Advance Auto Parts",
@@ -113,10 +112,26 @@
       }
     },
     {
+      "displayName": "Benson Auto Parts",
+      "id": "bensonautoparts-aab137",
+      "locationSet": {
+        "include": [
+          "ca-on.geojson",
+          "ca-qc.geojson"
+        ]
+      },
+      "tags": {
+        "brand": "Benson Auto Parts",
+        "brand:wikidata": "Q133249533",
+        "name": "Benson Auto Parts",
+        "shop": "car_parts"
+      }
+    },
+    {
       "displayName": "BilXtra",
       "id": "bilxtra-ccf30a",
+      "issues": [5500],
       "locationSet": {"include": ["no"]},
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
       "preserveTags": ["^name"],
       "tags": {
         "brand": "BilXtra",
@@ -169,8 +184,8 @@
     },
     {
       "displayName": "Carquest",
-      "id": "carquest-bb9baa",
-      "locationSet": {"include": ["us"]},
+      "id": "carquest-c70e2b",
+      "locationSet": {"include": ["ca", "us"]},
       "matchNames": [
         "baxter",
         "baxter auto parts"
@@ -340,8 +355,8 @@
     },
     {
       "displayName": "Lada Dеталь",
-      "id": "e07a01-1f0f41",
-      "locationSet": {"include": ["001"]},
+      "id": "e07a01-a188f5",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Lada Dеталь",
         "name": "Lada Dеталь",
@@ -350,11 +365,25 @@
     },
     {
       "displayName": "Lecar Store",
-      "id": "lecarstore-1f0f41",
-      "locationSet": {"include": ["001"]},
+      "id": "lecarstore-a188f5",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Lecar Store",
         "name": "Lecar Store",
+        "shop": "car_parts"
+      }
+    },
+    {
+      "displayName": "LKQ",
+      "id": "lkq-9e6a0d",
+      "locationSet": {
+        "include": ["150", "ca", "in", "us"]
+      },
+      "preserveTags": ["^name"],
+      "tags": {
+        "brand": "LKQ",
+        "brand:wikidata": "Q20711490",
+        "name": "LKQ",
         "shop": "car_parts"
       }
     },
@@ -390,23 +419,13 @@
       }
     },
     {
-      "displayName": "Mr. Tire",
-      "id": "mrtire-bb9baa",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "brand": "Mr. Tire",
-        "brand:wikidata": "Q6929249",
-        "name": "Mr. Tire",
-        "shop": "car_parts"
-      }
-    },
-    {
       "displayName": "NAPA Auto Parts",
       "id": "napaautoparts-808aac",
       "locationSet": {
         "include": ["ca", "mx", "us"]
       },
       "matchNames": ["napa", "the napa network"],
+      "matchTags": ["shop/car"],
       "preserveTags": ["^name$"],
       "tags": {
         "brand": "NAPA Auto Parts",
@@ -419,7 +438,7 @@
       "displayName": "O'Reilly Auto Parts",
       "id": "oreillyautoparts-bb9baa",
       "locationSet": {"include": ["us"]},
-      "matchNames": ["o'reilly"],
+      "matchNames": ["o'reilly", "o'reilly auto"],
       "matchTags": [
         "shop/car",
         "shop/doityourself"
@@ -509,28 +528,16 @@
     {
       "displayName": "thansen",
       "id": "thansen-c9a26e",
+      "issues": [5500],
       "locationSet": {
         "include": ["dk", "no", "se"]
       },
-      "note": "https://github.com/osmlab/name-suggestion-index/issues/5500",
       "preserveTags": ["^name"],
       "tags": {
         "alt_name": "T. Hansen",
         "brand": "thansen",
         "brand:wikidata": "Q12338957",
         "name": "thansen",
-        "shop": "car_parts"
-      }
-    },
-    {
-      "displayName": "The Parts Alliance",
-      "id": "thepartsalliance-5f9b90",
-      "locationSet": {"include": ["gb"]},
-      "note": "Might have been absorbed into GFS Car Parts",
-      "tags": {
-        "brand": "The Parts Alliance",
-        "brand:wikidata": "Q80964997",
-        "name": "The Parts Alliance",
         "shop": "car_parts"
       }
     },
@@ -572,8 +579,8 @@
     },
     {
       "displayName": "Авто1",
-      "id": "224cf6-1f0f41",
-      "locationSet": {"include": ["001"]},
+      "id": "224cf6-59fdca",
+      "locationSet": {"include": ["by"]},
       "tags": {
         "brand": "Авто1",
         "name": "Авто1",
@@ -582,8 +589,10 @@
     },
     {
       "displayName": "Автомаркет",
-      "id": "91bc86-1f0f41",
-      "locationSet": {"include": ["001"]},
+      "id": "91bc86-4d2c56",
+      "locationSet": {
+        "include": ["by", "kz", "ru"]
+      },
       "tags": {
         "brand": "Автомаркет",
         "name": "Автомаркет",
@@ -592,8 +601,8 @@
     },
     {
       "displayName": "Автомиг",
-      "id": "2f7b71-1f0f41",
-      "locationSet": {"include": ["001"]},
+      "id": "2f7b71-a188f5",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Автомиг",
         "name": "Автомиг",
@@ -609,6 +618,16 @@
         "name": "Автомотив",
         "name:en": "Avtomotiv",
         "name:ru": "Автомотив",
+        "shop": "car_parts"
+      }
+    },
+    {
+      "displayName": "Аккумуляторы",
+      "id": "ed1240-331b80",
+      "locationSet": {"include": ["by", "ru"]},
+      "tags": {
+        "brand": "Аккумуляторы",
+        "name": "Аккумуляторы",
         "shop": "car_parts"
       }
     },
@@ -653,22 +672,22 @@
       }
     },
     {
+      "displayName": "Вираж",
+      "id": "1585e2-a188f5",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "brand": "Вираж",
+        "name": "Вираж",
+        "shop": "car_parts"
+      }
+    },
+    {
       "displayName": "Колесо.ру",
       "id": "37b991-a188f5",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Колесо.ру",
         "name": "Колесо.ру",
-        "shop": "car_parts"
-      }
-    },
-    {
-      "displayName": "Магазин автозапчастей",
-      "id": "96a3b4-1f0f41",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Магазин автозапчастей",
-        "name": "Магазин автозапчастей",
         "shop": "car_parts"
       }
     },
