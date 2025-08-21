@@ -725,6 +725,7 @@
       "id": "amp-510934",
       "locationSet": {"include": ["au", "nz"]},
       "matchNames": ["amp bank"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "AMP",
@@ -778,6 +779,7 @@
       "id": "anz-510934",
       "locationSet": {"include": ["au", "nz"]},
       "matchNames": ["anz bank"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "ANZ",
@@ -930,6 +932,16 @@
         "name:en": "ArmSwissBank",
         "name:hy": "Արմսվիսբանկ",
         "name:ru": "Армсвисбанк"
+      }
+    },
+    {
+      "displayName": "Artea",
+      "id": "artea-b7a026",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Artea",
+        "name": "Artea"
       }
     },
     {
@@ -2994,6 +3006,7 @@
       "displayName": "Bankwest (Australia)",
       "id": "bankwest-f304bd",
       "locationSet": {"include": ["au"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "Bankwest",
@@ -3769,6 +3782,7 @@
       "displayName": "Bendigo Bank",
       "id": "bendigobank-f304bd",
       "locationSet": {"include": ["au"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "Bendigo Bank",
@@ -4182,6 +4196,7 @@
       "displayName": "BOM",
       "id": "bom-f304bd",
       "locationSet": {"include": ["au"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "BOM",
@@ -4194,6 +4209,7 @@
       "displayName": "BOQ",
       "id": "boq-f304bd",
       "locationSet": {"include": ["au"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "BOQ",
@@ -7738,6 +7754,7 @@
       "displayName": "Heritage Bank (Australia)",
       "id": "heritagebank-f304bd",
       "locationSet": {"include": ["au"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "Heritage Bank",
@@ -9498,6 +9515,7 @@
       "id": "nab-f304bd",
       "locationSet": {"include": ["au"]},
       "matchNames": ["national australia bank"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "NAB",
@@ -11009,6 +11027,7 @@
       "locationSet": {
         "include": ["au", "id", "nl", "nz", "us"]
       },
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "Rabobank",
@@ -11217,10 +11236,13 @@
       }
     },
     {
-      "displayName": "RBC",
-      "id": "rbc-e1345b",
-      "locationSet": {"include": ["ca"]},
+      "displayName": "RBC Banque Royale",
+      "id": "rbcbanqueroyale-ff5d57",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
       "matchNames": [
+        "banque royale",
         "hsbc",
         "hsbc bank canada",
         "rbc financial group",
@@ -11232,7 +11254,33 @@
         "brand:en": "RBC Royal Bank",
         "brand:fr": "RBC Banque Royale",
         "brand:wikidata": "Q735261",
-        "name": "RBC",
+        "name": "RBC Banque Royale",
+        "name:en": "RBC Royal Bank",
+        "name:fr": "RBC Banque Royale",
+        "official_name": "Royal Bank of Canada"
+      }
+    },
+    {
+      "displayName": "RBC Royal Bank",
+      "id": "rbcroyalbank-9178f2",
+      "locationSet": {
+        "include": ["ca"],
+        "exclude": ["ca-qc.geojson"]
+      },
+      "matchNames": [
+        "banque royale",
+        "hsbc",
+        "hsbc bank canada",
+        "rbc financial group",
+        "royal bank"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "RBC",
+        "brand:en": "RBC Royal Bank",
+        "brand:fr": "RBC Banque Royale",
+        "brand:wikidata": "Q735261",
+        "name": "RBC Royal Bank",
         "name:en": "RBC Royal Bank",
         "name:fr": "RBC Banque Royale",
         "official_name": "Royal Bank of Canada"
@@ -11527,6 +11575,28 @@
         "brand": "Sacombank",
         "brand:wikidata": "Q6123772",
         "name": "Sacombank"
+      }
+    },
+    {
+      "displayName": "Saham Bank سهام بنك",
+      "id": "sahambank-11534a",
+      "locationSet": {"include": ["ma"]},
+      "matchNames": [
+        "société générale",
+        "société générale الشركة العامة",
+        "société générale سوسيتيه جنرال",
+        "الشركة العامة",
+        "سوسيتيه جنرال"
+      ],
+      "tags": {
+        "amenity": "bank",
+        "brand": "Saham Bank سهام بنك",
+        "brand:ar": "سهام بنك",
+        "brand:fr": "Saham Bank",
+        "brand:wikidata": "Q3488352",
+        "name": "Saham Bank سهام بنك",
+        "name:ar": "سهام بنك",
+        "name:fr": "Saham Bank"
       }
     },
     {
@@ -12194,25 +12264,6 @@
       }
     },
     {
-      "displayName": "Société Générale الشركة العامة",
-      "id": "societegenerale-11534a",
-      "locationSet": {"include": ["ma"]},
-      "matchNames": [
-        "société générale سوسيتيه جنرال",
-        "سوسيتيه جنرال"
-      ],
-      "tags": {
-        "amenity": "bank",
-        "brand": "Société Générale الشركة العامة",
-        "brand:ar": "الشركة العامة",
-        "brand:fr": "Société Générale",
-        "brand:wikidata": "Q3488352",
-        "name": "Société Générale الشركة العامة",
-        "name:ar": "الشركة العامة",
-        "name:fr": "Société Générale"
-      }
-    },
-    {
       "displayName": "Société Marseillaise de Crédit",
       "id": "societemarseillaisedecredit-b30a91",
       "locationSet": {"include": ["fx"]},
@@ -12497,6 +12548,7 @@
       "id": "stgeorge-f304bd",
       "locationSet": {"include": ["au"]},
       "matchNames": ["st.george bank"],
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "St.George",
@@ -12688,6 +12740,7 @@
       "displayName": "Suncorp",
       "id": "suncorp-f304bd",
       "locationSet": {"include": ["au"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "Suncorp",
@@ -13063,6 +13116,16 @@
         "brand": "Truist",
         "brand:wikidata": "Q795486",
         "name": "Truist"
+      }
+    },
+    {
+      "displayName": "Trustco Bank",
+      "id": "trustcobank-b7a026",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "bank",
+        "brand": "Trustco Bank",
+        "name": "Trustco Bank"
       }
     },
     {
@@ -14041,6 +14104,7 @@
       "displayName": "Westpac",
       "id": "westpac-510934",
       "locationSet": {"include": ["au", "nz"]},
+      "preserveTags": ["^name"],
       "tags": {
         "amenity": "bank",
         "brand": "Westpac",
