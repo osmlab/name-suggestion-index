@@ -519,24 +519,30 @@ function buildTaginfo() {
 
   // collect all tag pairs
   let tagPairs = {};
-  _cache.id.forEach(item => {
-    for (const k in item.tags) {
-      let v = item.tags[k];
+  for (const path in _cache.path) {
+    for (const item of _cache.path[path].items) {
+      for (const k in item.tags) {
+        let v = item.tags[k];
 
-      // Don't export every value for many tags this project uses..
-      // ('tag matches any of these')(?!('not followed by :type'))
-      if (/(bic|brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
-        v = '*';
-      }
+        // Don't export every value for many tags this project uses..
+        // ('tag matches any of these')(?!('not followed by :type'))
+        if (/(bic|brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
+          v = '*';
+        }
 
-      const kv = `${k}/${v}`;
-      tagPairs[kv] = { key: k };
+        const kv = `${k}/${v}`;
+        tagPairs[kv] ||= { key: k };
 
-      if (v !== '*') {
-        tagPairs[kv].value = v;
+        if (v !== '*') {
+          tagPairs[kv].value = v;
+          const [, kPreset, vPreset] = path.split('/');
+          if (k === kPreset && v === vPreset) {
+            tagPairs[kv].doc_url = `${packageJSON.homepage}/?k=${k}&v=${v}`;
+          }
+        }
       }
     }
-  });
+  }
 
   taginfo.tags = Object.keys(tagPairs).sort(withLocale).map(kv => tagPairs[kv]);
   fs.writeFileSync('dist/taginfo.json', stringify(taginfo, { maxLength: 100 }) + '\n');
