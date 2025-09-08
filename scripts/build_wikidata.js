@@ -177,7 +177,7 @@ if (!_total) {
 // Chunk into multiple wikidata API requests..
 let _urls = wbk.getManyEntities({
   ids: _qids,
-  languages: ['en'],
+  languages: ['en','mul'],
   props: ['info', 'labels', 'descriptions', 'claims', 'sitelinks'],
   format: 'json'
 });
@@ -236,6 +236,7 @@ function processEntities(result) {
     let target = _wikidata[qid];
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
+    let labelmul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
 
     if (entity.redirects) {
       const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
