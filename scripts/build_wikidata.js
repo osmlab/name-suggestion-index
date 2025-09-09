@@ -42,7 +42,7 @@ const fetchOptionsQuery = {
   agent: fetchOptions.agent,
   method: 'GET',
   headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
-}
+};
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
@@ -114,7 +114,7 @@ if (_secrets && _secrets.wikibase) {
 // what to fetch
 let _cache = {};
 console.log('');
-console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over 30 seconds) ...`));
+console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over a minute, maybe more) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
@@ -177,7 +177,7 @@ if (!_total) {
 // Chunk into multiple wikidata API requests..
 let _urls = wbk.getManyEntities({
   ids: _qids,
-  languages: ['en'],
+  languages: ['en','mul'],
   props: ['info', 'labels', 'descriptions', 'claims', 'sitelinks'],
   format: 'json'
 });
@@ -236,8 +236,9 @@ function processEntities(result) {
     let target = _wikidata[qid];
     let entity = result.entities[qid];
     let label = entity.labels && entity.labels.en && entity.labels.en.value;
+    let labelmul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
 
-    if (!!entity.redirects) {
+    if (entity.redirects) {
       const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
       console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
       _warnings.push(warning);
@@ -355,14 +356,28 @@ function processEntities(result) {
       for (let i = 0; i < entity.claims['P2013'].length; i++) {
         const c = entity.claims['P2013'][i];
         if ( c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser ) {
-          const qualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
-          for (let j = 0; j < qualifiers.length; j++) {
-            const q = qualifiers[j];
+          const accessQualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
+          for (let j = 0; j < accessQualifiers.length; j++) {
+            const q = accessQualifiers[j];
             if ( q.snaktype !== 'value' ) continue;
 
             const value = q.datavalue.value.id;
             // Q113165094 - location restrictions, Q58370623 - private account, Q107459441 - only visible when logged in
             if (value === 'Q58370623' || value === 'Q107459441' || value === 'Q113165094') {
+              restriction = value;
+              break;
+            }
+          }
+
+          // get "does not have characteristic" status of selected value
+          const charQualifiers = (c.qualifiers && c.qualifiers.P6477) || [];
+          for (let j = 0; j < charQualifiers.length; j++) {
+            const q = charQualifiers[j];
+            if ( q.snaktype !== 'value' ) continue;
+
+            const value = q.datavalue.value.id;
+            // Q101420143 - Facebook page, Q134432781 - professional account
+            if (value === 'Q101420143' || value === 'Q134432781') {
               restriction = value;
               break;
             }
@@ -442,6 +457,7 @@ function processEntities(result) {
 
         const excluding = item.qualifiers?.P1011 ?? [];
         if (excluding.includes('Q168678')) return;  // but skip if 'excluding' = 'brand name', see #9134
+        if (excluding.includes('Q431289')) return;  // but skip if 'excluding' = 'brand', see #8239
 
         let dissolution = { date: item.value };
 
@@ -695,7 +711,7 @@ function fetchFacebookLogo(qid, username, restriction) {
         throw new Error(json.error.message);
       }
 
-      // Default profile pictures aren't useful to the index #2750
+      // Default profile pictures aren't useful to the index - #2750
       if (json.data && !json.data.is_silhouette) {
         target.logos.facebook = logoURL;
       }
@@ -705,7 +721,13 @@ function fetchFacebookLogo(qid, username, restriction) {
         // show warning if Wikidata notes that access to the profile is restricted in certain ways, but the profile is public - #10233
         // location restrictions (Q113165094) are skipped from this check because the API call will return different results
         // when run by users from different countries
-        const warning = { qid: qid, msg: `Facebook username @${username} has a restricted access qualifier, but is publicly accessible` };
+        let warningText;
+        if ( restriction === 'Q134432781' ) {
+          warningText = `is marked as a personal account, but was successfully read as a public professional account`;
+        } else {
+          warningText = `has a restricted access qualifier, but is publicly accessible`;
+        }
+        const warning = { qid: qid, msg: `Facebook username @${username} ${warningText}` };
         console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
         _warnings.push(warning);
       }
@@ -716,7 +738,8 @@ function fetchFacebookLogo(qid, username, restriction) {
         target.identities.facebook = userid;
         return fetchFacebookLogo(qid, userid, restriction);   // retry with just the numeric id
       } else {
-        // suppress warning if Wikidata notes that access to the profile is restricted in some way - #10233
+        // suppress warning if Wikidata notes that access to the profile is restricted in some way (#10233)
+        // or if the profile is set up as a personal account
         if ( !restriction ) {
           const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
           console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
@@ -836,6 +859,19 @@ function enLabelForQID(qid) {
       if (looksLatin(item.tags.operator)) return item.tags.operator;
       if (looksLatin(item.tags.network))  return item.tags.network;
       if (looksLatin(item.displayName))   return item.displayName;
+
+      const latintags = ['name:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]+-Latn(-[a-z]+)?'];
+      for (let i = 0; i < latintags.length; i++) {
+        let keylist = [];
+        const ex = new RegExp(`^${latintags[i]}$`);
+        Object.keys(item.tags).forEach(key => {
+          if (ex.test(key)) keylist.push(key);
+        });
+
+        for ( let j = 0; j < keylist.length; j++ ) {
+          if (looksLatin(item.tags[keylist[j]])) return item.tags[keylist[j]];
+        }
+      }
     }
   }
 

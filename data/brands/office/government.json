@@ -3,16 +3,23 @@
     "path": "brands/office/government",
     "exclude": {
       "generic": [
+        "^(district office|starostwo powiatowe)$",
         "^(government|администрация)$",
-        "^câmara municipal$",
+        "^(village office|sołtys)$",
+        "^câmara (de vereadores|municipal)$",
         "^mairie$",
-        "^village office$",
         "^казначейство$",
         "^налоговая$"
       ],
       "named": [
+        "^(civil registry office|registro civil|urząd stanu cywilnego|загс)$",
         "^(department of motor vehicles|passport office|паспортный стол)$",
-        "^(registro civil|загс)$",
+        "^(tax office|urząd skarbowy)$",
+        "^bürgerbüro$",
+        "^conselho tutelar$",
+        "^finanzamt$",
+        "^gesundheitsamt$",
+        "^standesamt$",
         "^налоговая инспекция$",
         "^пенсионный фонд$",
         "^центр занятости( населения)?$"
@@ -27,26 +34,6 @@
       "tags": {
         "brand": "Agenzia delle Entrate",
         "name": "Agenzia delle Entrate",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Bürgerbüro",
-      "id": "burgerburo-8b6533",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "brand": "Bürgerbüro",
-        "name": "Bürgerbüro",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Câmara de Vereadores",
-      "id": "camaradevereadores-efb6ac",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "brand": "Câmara de Vereadores",
-        "name": "Câmara de Vereadores",
         "office": "government"
       }
     },
@@ -71,26 +58,6 @@
       }
     },
     {
-      "displayName": "Conselho Tutelar",
-      "id": "conselhotutelar-efb6ac",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "brand": "Conselho Tutelar",
-        "name": "Conselho Tutelar",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Finanzamt",
-      "id": "finanzamt-70633b",
-      "locationSet": {"include": ["at", "de"]},
-      "tags": {
-        "brand": "Finanzamt",
-        "name": "Finanzamt",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "France Services",
       "id": "franceservices-9f865c",
       "locationSet": {"include": ["fx"]},
@@ -102,12 +69,16 @@
       }
     },
     {
-      "displayName": "Gesundheitsamt",
-      "id": "gesundheitsamt-70633b",
-      "locationSet": {"include": ["at", "de"]},
+      "displayName": "France Travail",
+      "id": "francetravail-f941ae",
+      "locationSet": {"include": ["fr"]},
+      "matchNames": ["pôle emploi"],
+      "matchTags": ["office/employment_agency"],
       "tags": {
-        "brand": "Gesundheitsamt",
-        "name": "Gesundheitsamt",
+        "brand": "France Travail",
+        "brand:wikidata": "Q8901192",
+        "government": "employment_agency",
+        "name": "France Travail",
         "office": "government"
       }
     },
@@ -173,6 +144,16 @@
       }
     },
     {
+      "displayName": "Ministerio Público",
+      "id": "ministeriopublico-0bc456",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Ministerio Público",
+        "name": "Ministerio Público",
+        "office": "government"
+      }
+    },
+    {
       "displayName": "NAV",
       "id": "nav-62c570",
       "locationSet": {"include": ["hu"]},
@@ -212,16 +193,6 @@
       "tags": {
         "brand": "PARCOURS GC",
         "name": "PARCOURS GC",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Pôle Emploi",
-      "id": "poleemploi-f941ae",
-      "locationSet": {"include": ["fr"]},
-      "tags": {
-        "brand": "Pôle Emploi",
-        "name": "Pôle Emploi",
         "office": "government"
       }
     },
@@ -396,38 +367,6 @@
       }
     },
     {
-      "displayName": "Sołtys",
-      "id": "soltys-16cbc6",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "brand": "Sołtys",
-        "name": "Sołtys",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Standesamt",
-      "id": "standesamt-4160dc",
-      "locationSet": {
-        "include": ["at", "ch", "de"]
-      },
-      "tags": {
-        "brand": "Standesamt",
-        "name": "Standesamt",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Starostwo Powiatowe",
-      "id": "starostwopowiatowe-16cbc6",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "brand": "Starostwo Powiatowe",
-        "name": "Starostwo Powiatowe",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "SUNARP",
       "id": "sunarp-3bb68d",
       "locationSet": {"include": ["pe"]},
@@ -448,31 +387,12 @@
       }
     },
     {
-      "displayName": "Urząd Skarbowy",
-      "id": "urzadskarbowy-16cbc6",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "brand": "Urząd Skarbowy",
-        "name": "Urząd Skarbowy",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Urząd Stanu Cywilnego",
-      "id": "urzadstanucywilnego-16cbc6",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "brand": "Urząd Stanu Cywilnego",
-        "name": "Urząd Stanu Cywilnego",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "Zakład Ubezpieczeń Społecznych",
       "id": "zakladubezpieczenspolecznych-16cbc6",
       "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Zakład Ubezpieczeń Społecznych",
+        "brand:wikidata": "Q144881",
         "name": "Zakład Ubezpieczeń Społecznych",
         "office": "government"
       }
@@ -517,6 +437,7 @@
       "locationSet": {"include": ["ru"]},
       "matchNames": [
         "госуслуги",
+        "мфц «мои документы»",
         "центр госуслуг"
       ],
       "tags": {
@@ -534,21 +455,12 @@
       }
     },
     {
-      "displayName": "МФЦ «Мои документы»",
-      "id": "4d4f03-d70bbf",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "brand": "МФЦ «Мои документы»",
-        "name": "МФЦ «Мои документы»",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "Росреестр",
       "id": "3e96ea-d70bbf",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Росреестр",
+        "brand:wikidata": "Q4481676",
         "name": "Росреестр",
         "office": "government"
       }
@@ -557,6 +469,7 @@
       "displayName": "ТОСП центра \"Мои Документы\"",
       "id": "8f8a96-d70bbf",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SA",
       "tags": {
         "brand": "ТОСП центра \"Мои Документы\"",
         "name": "ТОСП центра \"Мои Документы\"",

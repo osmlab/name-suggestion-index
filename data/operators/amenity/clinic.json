@@ -6,8 +6,8 @@
       "generic": [
         "^(clinic|urgent\\s?care)$",
         "^(consultorio )?(local|médico)$",
-        "^(consultorio|municipal|private(_profit)?|priv[eé]{0,2}|provincial|public)$",
-        "^(gov(ern?ment)?|prefeitura( municipal)?)$",
+        "^(consultorio|municipal|private(_profit|\\/individual)?|priv[eé]{0,2}|provincial|public)$",
+        "^(gov|govern?ment|prefeitura( municipal)?)$",
         "^(polyclinique|poliklinika)$",
         "^centro (de salud|de saúde|médico)$",
         "^combination$",
@@ -308,8 +308,11 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "City of Cape Town",
+        "operator:af": "Stad Kaapstad",
+        "operator:en": "City of Cape Town",
         "operator:type": "government",
-        "operator:wikidata": "Q1185115"
+        "operator:wikidata": "Q1185115",
+        "operator:xh": "IsiXeko saseKapa"
       }
     },
     {
@@ -409,9 +412,9 @@
     },
     {
       "displayName": "Cook County Health",
-      "id": "cookcountyhealth-15fccf",
+      "id": "cookcountyhealth-920795",
       "locationSet": {
-        "include": ["us-il.geojson"]
+        "include": ["us-il-cook_county.geojson"]
       },
       "tags": {
         "amenity": "clinic",
@@ -467,9 +470,11 @@
       }
     },
     {
-      "displayName": "Department of Health and Family Welfare",
-      "id": "departmentofhealthandfamilywelfare-2b695d",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Department of Health and Family Welfare (Kerala)",
+      "id": "departmentofhealthandfamilywelfare-6908f4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -478,13 +483,16 @@
       }
     },
     {
-      "displayName": "Department of Health Services (India)",
-      "id": "departmentofhealthservices-2b695d",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Department of Health Services (Kerala)",
+      "id": "departmentofhealthservices-6908f4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Department of Health Services",
+        "operator:short": "DHS",
         "operator:type": "government"
       }
     },
@@ -641,6 +649,17 @@
       }
     },
     {
+      "displayName": "Fundação Municipal de Saúde",
+      "id": "fundacaomunicipaldesaude-5f4b12",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Fundação Municipal de Saúde",
+        "operator:type": "public"
+      }
+    },
+    {
       "displayName": "GAMC",
       "id": "gamc-6d7468",
       "locationSet": {"include": ["bo"]},
@@ -666,8 +685,14 @@
     },
     {
       "displayName": "Generalitat Valenciana",
-      "id": "generalitatvalenciana-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "generalitatvalenciana-eeac99",
+      "locationSet": {
+        "include": [
+          "es-a.geojson",
+          "es-cs.geojson",
+          "es-v.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -938,6 +963,25 @@
       }
     },
     {
+      "displayName": "Institut Català de la Salut",
+      "id": "institutcataladelasalut-799ef5",
+      "locationSet": {
+        "include": [
+          "es-b.geojson",
+          "es-gi.geojson",
+          "es-l.geojson",
+          "es-t.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Institut Català de la Salut",
+        "operator:type": "public",
+        "operator:wikidata": "Q11926710"
+      }
+    },
+    {
       "displayName": "Instituto Mexicano del Seguro Social",
       "id": "institutomexicanodelsegurosocial-093f43",
       "locationSet": {"include": ["mx"]},
@@ -993,8 +1037,19 @@
     },
     {
       "displayName": "Junta de Andalucía",
-      "id": "juntadeandalucia-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "juntadeandalucia-2d561d",
+      "locationSet": {
+        "include": [
+          "es-al.geojson",
+          "es-ca.geojson",
+          "es-co.geojson",
+          "es-gr.geojson",
+          "es-h.geojson",
+          "es-j.geojson",
+          "es-ma.geojson",
+          "es-se.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -1074,6 +1129,7 @@
       "displayName": "Krakowski Szpital Specjalistyczny imienia świętego Jana Pawła II",
       "id": "krakowskiszpitalspecjalistycznyimieniaswietegojanapawlaii-73e20b",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -1096,6 +1152,18 @@
         "operator": "KwaZulu-Natal Department of Health",
         "operator:type": "government",
         "operator:wikidata": "Q116647976"
+      }
+    },
+    {
+      "displayName": "Länsi-Uudenmaan hyvinvointialue",
+      "id": "lansiuudenmaanhyvinvointialue-6db834",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Länsi-Uudenmaan hyvinvointialue",
+        "operator:type": "public",
+        "operator:wikidata": "Q110245203"
       }
     },
     {
@@ -1225,11 +1293,24 @@
       }
     },
     {
+      "displayName": "Mehiläinen",
+      "id": "mehilainen-6db834",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Mehiläinen",
+        "operator:type": "private",
+        "operator:wikidata": "Q10580005"
+      }
+    },
+    {
       "displayName": "Mercy",
-      "id": "mercy-0636e2",
+      "id": "mercy-15e087",
       "locationSet": {
         "include": [
           "us-ar.geojson",
+          "us-ks.geojson",
           "us-mo.geojson",
           "us-ok.geojson"
         ]
@@ -1540,6 +1621,18 @@
       }
     },
     {
+      "displayName": "NHS Lothian",
+      "id": "nhslothian-d8bee9",
+      "locationSet": {"include": ["gb-sct"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "NHS Lothian",
+        "operator:type": "public",
+        "operator:wikidata": "Q6954149"
+      }
+    },
+    {
       "displayName": "North West Department of Health",
       "id": "northwestdepartmentofhealth-0d0fcb",
       "locationSet": {"include": ["za"]},
@@ -1603,24 +1696,17 @@
       }
     },
     {
-      "displayName": "Novosalus",
-      "id": "novosalus-2b695d",
+      "displayName": "Novosalus Technologies",
+      "id": "novosalustechnologies-2b695d",
       "locationSet": {"include": ["in"]},
+      "matchNames": [
+        "novosalus",
+        "novosalus technology"
+      ],
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
-        "operator": "Novosalus",
-        "operator:type": "private"
-      }
-    },
-    {
-      "displayName": "Novosalus Technology",
-      "id": "novosalustechnology-2b695d",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Novosalus Technology",
+        "operator": "Novosalus Technologies",
         "operator:type": "private"
       }
     },
@@ -1689,8 +1775,14 @@
     },
     {
       "displayName": "Osakidetza",
-      "id": "osakidetza-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "osakidetza-ec6199",
+      "locationSet": {
+        "include": [
+          "es-bi.geojson",
+          "es-ss.geojson",
+          "es-vi.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -1735,6 +1827,18 @@
         "healthcare": "clinic",
         "operator": "Pays",
         "operator:type": "private"
+      }
+    },
+    {
+      "displayName": "Pirkanmaan hyvinvointialue",
+      "id": "pirkanmaanhyvinvointialue-6db834",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Pirkanmaan hyvinvointialue",
+        "operator:type": "public",
+        "operator:wikidata": "Q110245172"
       }
     },
     {
@@ -1790,23 +1894,6 @@
       }
     },
     {
-      "displayName": "Prefeitura da Cidade do Rio de Janeiro",
-      "id": "prefeituradacidadedoriodejaneiro-4e3c1b",
-      "locationSet": {
-        "include": ["br-rj.geojson"]
-      },
-      "matchNames": [
-        "prefeitura do rio de janeiro"
-      ],
-      "tags": {
-        "amenity": "clinic",
-        "healthcare": "clinic",
-        "operator": "Prefeitura da Cidade do Rio de Janeiro",
-        "operator:type": "government",
-        "operator:wikidata": "Q8678"
-      }
-    },
-    {
       "displayName": "Prefeitura de Camocim",
       "id": "prefeituradecamocim-d148ab",
       "locationSet": {
@@ -1832,6 +1919,24 @@
         "operator": "Prefeitura do Natal",
         "operator:type": "government",
         "operator:wikidata": "Q56449990"
+      }
+    },
+    {
+      "displayName": "Prefeitura do Rio de Janeiro",
+      "id": "prefeituradoriodejaneiro-4e3c1b",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
+      "matchNames": [
+        "prefeitura da cidade do rio de janeiro",
+        "prefeitura do rio"
+      ],
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura do Rio de Janeiro",
+        "operator:type": "government",
+        "operator:wikidata": "Q53930899"
       }
     },
     {
@@ -1936,6 +2041,34 @@
       }
     },
     {
+      "displayName": "Prefeitura Municipal de São José",
+      "id": "prefeituramunicipaldesaojose-b1ce44",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura Municipal de São José",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Prefeitura Municipal de São Paulo",
+      "id": "prefeituramunicipaldesaopaulo-f10a78",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Prefeitura Municipal de São Paulo",
+        "operator:short": "PMSP",
+        "operator:type": "government",
+        "operator:wikidata": "Q10351100"
+      }
+    },
+    {
       "displayName": "Prefeitura Municipal de Seropédica",
       "id": "prefeituramunicipaldeseropedica-4e3c1b",
       "locationSet": {
@@ -1999,7 +2132,7 @@
         "healthcare": "clinic",
         "operator": "Provincia de Santa Fe",
         "operator:type": "government",
-        "operator:wikidata": "Q44823"
+        "operator:wikidata": "Q107624317"
       }
     },
     {
@@ -2028,6 +2161,22 @@
       }
     },
     {
+      "displayName": "Quirónsalud",
+      "id": "quironsalud-4be2e8",
+      "issues": [10853],
+      "locationSet": {
+        "include": ["co", "es", "pt"]
+      },
+      "matchNames": ["quirón"],
+      "note": "operator:type omitted from preset as its value varies",
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Quirónsalud",
+        "operator:wikidata": "Q5886225"
+      }
+    },
+    {
       "displayName": "Regina Maria",
       "id": "reginamaria-7d9042",
       "locationSet": {"include": ["ro"]},
@@ -2051,9 +2200,34 @@
       }
     },
     {
+      "displayName": "Region Östergötland",
+      "id": "regionostergotland-020929",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Region Östergötland",
+        "operator:type": "government",
+        "operator:wikidata": "Q3231915"
+      }
+    },
+    {
+      "displayName": "Region Västernorrland",
+      "id": "regionvasternorrland-020929",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Region Västernorrland",
+        "operator:type": "government",
+        "operator:wikidata": "Q8100253"
+      }
+    },
+    {
       "displayName": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa Poznań",
       "id": "regionalnecentrumkrwiodawstwaikrwiolecznictwapoznan-73e20b",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2065,6 +2239,7 @@
       "displayName": "Regionalne Centrum Krwiodawstwa i Krwiolecznictwa w Bydgoszczy",
       "id": "regionalnecentrumkrwiodawstwaikrwiolecznictwawbydgoszczy-73e20b",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04",
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2101,8 +2276,20 @@
     },
     {
       "displayName": "SACYL",
-      "id": "sacyl-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "sacyl-ce0d6c",
+      "locationSet": {
+        "include": [
+          "es-av.geojson",
+          "es-bu.geojson",
+          "es-le.geojson",
+          "es-p.geojson",
+          "es-sa.geojson",
+          "es-sg.geojson",
+          "es-so.geojson",
+          "es-va.geojson",
+          "es-za.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2165,6 +2352,37 @@
         "operator": "Sana Kliniken",
         "operator:type": "private",
         "operator:wikidata": "Q2220152"
+      }
+    },
+    {
+      "displayName": "Sanford Health",
+      "id": "sanfordhealth-8f05df",
+      "locationSet": {
+        "include": [
+          "us-ia.geojson",
+          "us-mn.geojson",
+          "us-nd.geojson",
+          "us-sd.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Sanford Health",
+        "operator:type": "private",
+        "operator:wikidata": "Q7417625"
+      }
+    },
+    {
+      "displayName": "Sanitas",
+      "id": "sanitas-edc4ef",
+      "locationSet": {"include": ["es"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Sanitas",
+        "operator:type": "private",
+        "operator:wikidata": "Q21711175"
       }
     },
     {
@@ -2306,8 +2524,19 @@
     },
     {
       "displayName": "Servicio Andaluz de Salud",
-      "id": "servicioandaluzdesalud-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "servicioandaluzdesalud-2d561d",
+      "locationSet": {
+        "include": [
+          "es-al.geojson",
+          "es-ca.geojson",
+          "es-co.geojson",
+          "es-gr.geojson",
+          "es-h.geojson",
+          "es-j.geojson",
+          "es-ma.geojson",
+          "es-se.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2319,8 +2548,16 @@
     },
     {
       "displayName": "Servicio de Salud de Castilla-La Mancha",
-      "id": "serviciodesaluddecastillalamancha-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "serviciodesaluddecastillalamancha-37c413",
+      "locationSet": {
+        "include": [
+          "es-ab.geojson",
+          "es-cr.geojson",
+          "es-cu.geojson",
+          "es-gu.geojson",
+          "es-to.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2332,8 +2569,13 @@
     },
     {
       "displayName": "Servicio Extremeño de Salud",
-      "id": "servicioextremenodesalud-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "servicioextremenodesalud-3b9117",
+      "locationSet": {
+        "include": [
+          "es-ba.geojson",
+          "es-cc.geojson"
+        ]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2345,8 +2587,10 @@
     },
     {
       "displayName": "Servicio Madrileño de Salud",
-      "id": "serviciomadrilenodesalud-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "serviciomadrilenodesalud-852236",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2371,8 +2615,15 @@
     },
     {
       "displayName": "Servizo Galego de Saúde",
-      "id": "servizogalegodesaude-edc4ef",
-      "locationSet": {"include": ["es"]},
+      "id": "servizogalegodesaude-6152de",
+      "locationSet": {
+        "include": [
+          "es-c.geojson",
+          "es-lu.geojson",
+          "es-or.geojson",
+          "es-po.geojson"
+        ]
+      },
       "matchNames": [
         "sergas - xunta de galicia",
         "servizo galego de saúde (sergas)"
@@ -2384,6 +2635,18 @@
         "operator:short": "SERGAS",
         "operator:type": "public",
         "operator:wikidata": "Q3393183"
+      }
+    },
+    {
+      "displayName": "SESARAM",
+      "id": "sesaram-9cc891",
+      "locationSet": {"include": ["pt-30"]},
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "SESARAM",
+        "operator:type": "government",
+        "operator:wikidata": "Q131428254"
       }
     },
     {
@@ -2456,11 +2719,12 @@
       "displayName": "Szpital Uniwersytecki Collegium Medicum Uniwersytetu Jagiellońskiego",
       "id": "szpitaluniwersyteckicollegiummedicumuniwersytetujagiellonskiego-73e20b",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "Szpital Uniwersytecki Collegium Medicum Uniwersytetu Jagiellońskiego",
-        "operator:type": "private"
+        "operator:type": "university"
       }
     },
     {
@@ -2500,6 +2764,7 @@
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "UCI Health",
+        "operator:type": "university",
         "operator:wikidata": "Q50036865"
       }
     },
@@ -2603,6 +2868,7 @@
         "veterans affairs",
         "veterans affairs clinic"
       ],
+      "preserveTags": ["^name", "^short_name"],
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2613,6 +2879,20 @@
         "operator:type": "government",
         "operator:wikidata": "Q6580225",
         "short_name": "VA"
+      }
+    },
+    {
+      "displayName": "Vancouver Coastal Health",
+      "id": "vancouvercoastalhealth-c828ee",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "amenity": "clinic",
+        "healthcare": "clinic",
+        "operator": "Vancouver Coastal Health",
+        "operator:type": "public",
+        "operator:wikidata": "Q7914144"
       }
     },
     {
@@ -2691,11 +2971,12 @@
       "displayName": "ГБУЗ МО 'Раменская ЦРБ'",
       "id": "cd5719-14b936",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOS",
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
         "operator": "ГБУЗ МО 'Раменская ЦРБ'",
-        "operator:type": "private"
+        "operator:type": "public"
       }
     },
     {
@@ -2709,13 +2990,16 @@
         "healthcare:speciality": "diagnostic_radiology",
         "name": "МИБС",
         "operator": "МИБС",
-        "operator:type": "private"
+        "operator:type": "private",
+        "operator:wikidata": "Q28948804"
       }
     },
     {
       "displayName": "Скандинавия",
-      "id": "e9ace9-14b936",
-      "locationSet": {"include": ["ru"]},
+      "id": "e9ace9-2d690a",
+      "locationSet": {
+        "include": ["ru-spe.geojson"]
+      },
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",
@@ -2727,6 +3011,7 @@
       "displayName": "ССМЦ",
       "id": "aa83b0-14b936",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOS, RU-MOW, RU-RYA, RU-TUL",
       "tags": {
         "amenity": "clinic",
         "healthcare": "clinic",

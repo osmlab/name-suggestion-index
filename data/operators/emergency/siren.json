@@ -1,7 +1,12 @@
 {
   "properties": {
     "path": "operators/emergency/siren",
-    "exclude": {"generic": ["^(fire )?siren$"]}
+    "exclude": {
+      "generic": [
+        "^(fire )?siren$",
+        "^straż pożarna$"
+      ]
+    }
   },
   "items": [
     {
@@ -224,6 +229,18 @@
       }
     },
     {
+      "displayName": "City of Rockwall",
+      "id": "cityofrockwall-034cb0",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "emergency": "siren",
+        "operator": "City of Rockwall",
+        "operator:wikidata": "Q383014"
+      }
+    },
+    {
       "displayName": "City of Sand Springs",
       "id": "cityofsandsprings-058349",
       "locationSet": {
@@ -334,20 +351,26 @@
     },
     {
       "displayName": "HMP",
-      "id": "hmp-af0ad5",
-      "locationSet": {"include": ["cz"]},
+      "id": "hmp-dc1120",
+      "locationSet": {
+        "include": ["cz-10.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "HMP"
+        "operator": "HMP",
+        "operator:wikidata": "Q12034893"
       }
     },
     {
       "displayName": "HZS HMP",
-      "id": "hzshmp-af0ad5",
-      "locationSet": {"include": ["cz"]},
+      "id": "hzshmp-dc1120",
+      "locationSet": {
+        "include": ["cz-10.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "HZS HMP"
+        "operator": "HZS HMP",
+        "operator:wikidata": "Q63002573"
       }
     },
     {
@@ -520,7 +543,7 @@
       }
     },
     {
-      "displayName": "Springfield Fire Department",
+      "displayName": "Springfield Fire Department (Illinois)",
       "id": "springfieldfiredepartment-fc0e7f",
       "locationSet": {
         "include": ["us-il.geojson"]
@@ -652,15 +675,6 @@
       }
     },
     {
-      "displayName": "Straż pożarna",
-      "id": "strazpozarna-fe489a",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "emergency": "siren",
-        "operator": "Straż pożarna"
-      }
-    },
-    {
       "displayName": "TIWAG",
       "id": "tiwag-99055c",
       "locationSet": {"include": ["at"]},
@@ -692,6 +706,18 @@
       }
     },
     {
+      "displayName": "Verbandsgemeinde Bernkastel-Kues",
+      "id": "verbandsgemeindebernkastelkues-d10492",
+      "locationSet": {
+        "include": ["de-rp.geojson"]
+      },
+      "tags": {
+        "emergency": "siren",
+        "operator": "Verbandsgemeinde Bernkastel-Kues",
+        "operator:wikidata": "Q643228"
+      }
+    },
+    {
       "displayName": "Verbandsgemeinde Gerolstein",
       "id": "verbandsgemeindegerolstein-d10492",
       "locationSet": {
@@ -701,6 +727,18 @@
         "emergency": "siren",
         "operator": "Verbandsgemeinde Gerolstein",
         "operator:wikidata": "Q52404118"
+      }
+    },
+    {
+      "displayName": "Verbandsgemeinde Kirchberg",
+      "id": "verbandsgemeindekirchberg-d10492",
+      "locationSet": {
+        "include": ["de-rp.geojson"]
+      },
+      "tags": {
+        "emergency": "siren",
+        "operator": "Verbandsgemeinde Kirchberg",
+        "operator:wikidata": "Q559333"
       }
     },
     {
@@ -733,25 +771,53 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "emergency": "siren",
-        "operator": "Ростелеком"
+        "operator": "Ростелеком",
+        "operator:wikidata": "Q1477012"
+      }
+    },
+    {
+      "displayName": "国土交通省",
+      "id": "fdf694-7c4e73",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "emergency": "siren",
+        "operator": "国土交通省"
       }
     },
     {
       "displayName": "廿日市市",
-      "id": "102513-1cc03d",
-      "locationSet": {"include": ["jp"]},
+      "id": "102513-3b3283",
+      "locationSet": {
+        "include": ["jp-34.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "廿日市市"
+        "operator": "廿日市市",
+        "operator:wikidata": "Q736897"
+      }
+    },
+    {
+      "displayName": "相模原市",
+      "id": "765f57-87bad6",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
+      "tags": {
+        "emergency": "siren",
+        "operator": "相模原市",
+        "operator:wikidata": "Q209779"
       }
     },
     {
       "displayName": "青梅市",
-      "id": "98f747-1cc03d",
-      "locationSet": {"include": ["jp"]},
+      "id": "98f747-b4cdd2",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "青梅市"
+        "operator": "青梅市",
+        "operator:wikidata": "Q237683"
       }
     }
   ]

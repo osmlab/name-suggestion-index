@@ -2,7 +2,6 @@
   "properties": {
     "path": "brands/amenity/atm",
     "skipCollection": true,
-    "preserveTags": ["^name"],
     "exclude": {"generic": ["^atm$"]}
   },
   "items": [
@@ -15,10 +14,14 @@
       ],
       "templateSource": "brands/amenity/bank",
       "templateTags": {
+        "alt_name": "",
         "amenity": "atm",
+        "full_name": "",
         "name": "",
+        "official_name": "",
         "operator": "{source.tags.brand}",
-        "operator:wikidata": "{source.tags.brand:wikidata}"
+        "operator:wikidata": "{source.tags.brand:wikidata}",
+        "short_name": ""
       }
     },
     {
@@ -88,7 +91,7 @@
     {
       "displayName": "Bancontact CASH",
       "id": "bancontactcash-8a4913",
-      "locationSet": {"include": ["bel"]},
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "atm",
         "brand": "Bancontact CASH",
@@ -299,6 +302,32 @@
       }
     },
     {
+      "displayName": "India1 ATM",
+      "id": "india1atm-ad0527",
+      "locationSet": {"include": ["in"]},
+      "matchNames": [
+        "india one",
+        "india one atm",
+        "india1"
+      ],
+      "tags": {
+        "amenity": "atm",
+        "brand": "India1 ATM",
+        "brand:wikidata": "Q134601469"
+      }
+    },
+    {
+      "displayName": "Instacoin",
+      "id": "instacoin-ddac74",
+      "locationSet": {"include": ["ca"]},
+      "matchNames": ["instacoin atm"],
+      "tags": {
+        "amenity": "atm",
+        "brand": "Instacoin",
+        "brand:wikidata": "Q133247271"
+      }
+    },
+    {
       "displayName": "LibertyX",
       "id": "libertyx-93d3a2",
       "locationSet": {"include": ["us"]},
@@ -386,6 +415,16 @@
         "amenity": "atm",
         "brand": "Old Mutual",
         "brand:wikidata": "Q289704"
+      }
+    },
+    {
+      "displayName": "Otto",
+      "id": "otto-6eeb13",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "atm",
+        "brand": "Otto",
+        "brand:wikidata": "Q7109498"
       }
     },
     {
@@ -484,18 +523,73 @@
       }
     },
     {
-      "displayName": "Тинькофф Банк",
-      "id": "tinkoffbank-da35c8",
+      "displayName": "Т-Банк",
+      "id": "tbank-da35c8",
       "locationSet": {"include": ["ru"]},
-      "matchNames": ["tinkoff", "тинькофф"],
+      "matchNames": [
+        "tinkoff",
+        "tinkoff bank",
+        "тинькофф",
+        "тинькофф банк",
+        "בנק טינקוף",
+        "بانک تینکوف"
+      ],
       "tags": {
         "amenity": "atm",
-        "brand": "Тинькофф Банк",
-        "brand:en": "Tinkoff Bank",
-        "brand:fa": "بانک تینکوف",
-        "brand:he": "בנק טינקוף",
-        "brand:ru": "Тинькофф Банк",
+        "brand": "Т-Банк",
+        "brand:en": "T-Bank",
+        "brand:fa": "تی-بانک",
+        "brand:he": "טי-בנק",
+        "brand:ru": "Т-Банк",
         "brand:wikidata": "Q4457878"
+      }
+    },
+    {
+      "displayName": "セブン銀行",
+      "id": "sevenbank-52efab",
+      "locationSet": {"include": ["jp"]},
+      "matchNames": ["7銀行"],
+      "tags": {
+        "amenity": "atm",
+        "brand": "セブン銀行",
+        "brand:en": "Seven Bank",
+        "brand:ja": "セブン銀行",
+        "brand:wikidata": "Q7457182",
+        "name": "セブン銀行",
+        "name:en": "Seven Bank",
+        "name:ja": "セブン銀行"
+      }
+    },
+    {
+      "displayName": "ビューアルッテ",
+      "id": "viewaltte-52efab",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "amenity": "atm",
+        "brand": "ビューアルッテ",
+        "brand:en": "View Altte",
+        "brand:ja": "ビューアルッテ",
+        "brand:wikidata": "Q11330938",
+        "operator": "ビューカード",
+        "operator:en": "Viewcard",
+        "operator:ja": "ビューカード",
+        "operator:wikidata": "Q11330939"
+      }
+    },
+    {
+      "displayName": "ローソン銀行",
+      "id": "lawsonbank-52efab",
+      "locationSet": {"include": ["jp"]},
+      "matchNames": ["ローソン", "ローソンatm"],
+      "tags": {
+        "amenity": "atm",
+        "brand": "ローソン銀行",
+        "brand:en": "Lawson Bank",
+        "brand:ja": "ローソン銀行",
+        "brand:wikidata": "Q11350963",
+        "name": "ローソン銀行",
+        "name:en": "Lawson Bank",
+        "name:ja": "ローソン銀行"
       }
     },
     {
