@@ -1,7 +1,7 @@
 {
   "properties": {
     "path": "brands/tourism/hotel",
-    "preserveTags": ["^name"],
+    "preserveTags": ["^name", "^official_name"],
     "exclude": {
       "generic": [
         "^(commercial )?hotel$",
@@ -20,6 +20,18 @@
     }
   },
   "items": [
+    {
+      "displayName": "@HOME",
+      "id": "home-779ccb",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "@HOME",
+        "brand:wikidata": "Q135249100",
+        "name": "@HOME",
+        "official_name": "@HOME by Best Western",
+        "tourism": "hotel"
+      }
+    },
     {
       "displayName": "7天酒店",
       "id": "7daysinn-af4cd2",
@@ -111,7 +123,7 @@
       "matchNames": ["aiden hotel"],
       "tags": {
         "brand": "Aiden",
-        "brand:wikidata": "Q830334",
+        "brand:wikidata": "Q135247220",
         "name": "Aiden",
         "official_name": "Aiden by Best Western",
         "tourism": "hotel"
@@ -352,6 +364,7 @@
           "zm"
         ]
       },
+      "matchNames": ["avani"],
       "tags": {
         "brand": "Avani Hotels & Resorts",
         "brand:wikidata": "Q48989823",
@@ -389,7 +402,7 @@
       "displayName": "Azimut Hotels",
       "id": "azimut-9679cc",
       "locationSet": {"include": ["ru", "uz"]},
-      "matchNames": ["азимут"],
+      "matchNames": ["azimut hotels", "азимут"],
       "tags": {
         "brand": "Azimut",
         "brand:wikidata": "Q4033119",
@@ -552,7 +565,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Best Western Premier",
-        "brand:wikidata": "Q830334",
+        "brand:wikidata": "Q135248460",
         "name": "Best Western Premier",
         "tourism": "hotel"
       }
@@ -630,7 +643,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "BW Premier Collection",
-        "brand:wikidata": "Q830334",
+        "brand:wikidata": "Q135248830",
         "name": "BW Premier Collection",
         "tourism": "hotel"
       }
@@ -641,7 +654,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "BW Signature Collection",
-        "brand:wikidata": "Q830334",
+        "brand:wikidata": "Q135249021",
         "name": "BW Signature Collection",
         "tourism": "hotel"
       }
@@ -797,6 +810,19 @@
         "brand": "Clarion Pointe",
         "brand:wikidata": "Q1075788",
         "name": "Clarion Pointe",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "Clayton Hotels",
+      "id": "claytonhotels-d2ca03",
+      "locationSet": {
+        "include": ["de", "gb", "ie", "nl"]
+      },
+      "tags": {
+        "brand": "Clayton Hotels",
+        "brand:wikidata": "Q135974895",
+        "name": "Clayton Hotels",
         "tourism": "hotel"
       }
     },
@@ -967,12 +993,18 @@
       "id": "daysinn-6df761",
       "locationSet": {
         "include": [
+          "ar",
+          "az",
+          "br",
           "ca",
           "ch",
           "cn",
+          "de",
           "gb",
+          "gu",
           "id",
           "in",
+          "jo",
           "kr",
           "mx",
           "my",
@@ -980,6 +1012,7 @@
           "sg",
           "sn",
           "th",
+          "tr",
           "us"
         ]
       },
@@ -1246,6 +1279,18 @@
       }
     },
     {
+      "displayName": "Executive Residency",
+      "id": "executiveresidency-779ccb",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Executive Residency",
+        "brand:wikidata": "Q135249087",
+        "name": "Executive Residency",
+        "official_name": "Executive Residency by Best Western",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "Extended Stay America",
       "id": "extendedstayamerica-6ac210",
       "locationSet": {"include": ["us"]},
@@ -1402,6 +1447,18 @@
       }
     },
     {
+      "displayName": "Garner Hotels",
+      "id": "garnerhotels-779ccb",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "Garner Hotels",
+        "brand:wikidata": "Q136125302",
+        "name": "Garner Hotels",
+        "official_name": "Garner Hotels by IHG",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "Gaylord",
       "id": "gaylord-6ac210",
       "locationSet": {"include": ["us"]},
@@ -1418,7 +1475,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Glo",
-        "brand:wikidata": "Q830334",
+        "brand:wikidata": "Q135249046",
         "name": "Glo",
         "official_name": "Glo Best Western",
         "tourism": "hotel"
@@ -2851,6 +2908,7 @@
       "displayName": "Park Inn",
       "id": "parkinn-779ccb",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["park inn by radisson"],
       "tags": {
         "brand": "Park Inn",
         "brand:wikidata": "Q60711675",
@@ -3162,7 +3220,10 @@
       "displayName": "Renaissance",
       "id": "renaissance-779ccb",
       "locationSet": {"include": ["001"]},
-      "matchNames": ["renaissance hotel"],
+      "matchNames": [
+        "renaissance hotel",
+        "renaissance hotels"
+      ],
       "tags": {
         "brand": "Renaissance",
         "brand:wikidata": "Q2143252",
@@ -3315,17 +3376,6 @@
         "brand": "Scandic Hotels",
         "brand:wikidata": "Q129391",
         "name": "Scandic Hotels",
-        "tourism": "hotel"
-      }
-    },
-    {
-      "displayName": "Selina",
-      "id": "selina-779ccb",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Selina",
-        "brand:wikidata": "Q110173599",
-        "name": "Selina",
         "tourism": "hotel"
       }
     },
@@ -3642,6 +3692,136 @@
       }
     },
     {
+      "displayName": "Sure Hotel",
+      "id": "surehotel-2f3d1f",
+      "locationSet": {
+        "include": [
+          "de",
+          "fr",
+          "gb",
+          "it",
+          "no",
+          "se"
+        ]
+      },
+      "tags": {
+        "brand": "Sure Hotel",
+        "brand:wikidata": "Q135246628",
+        "name": "Sure Hotel",
+        "official_name": "Sure Hotel by Best Western",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "Sure Hotel Collection",
+      "id": "surehotelcollection-76db09",
+      "locationSet": {
+        "include": [
+          "au",
+          "de",
+          "dk",
+          "fr",
+          "gb",
+          "gr",
+          "it",
+          "se"
+        ]
+      },
+      "tags": {
+        "brand": "Sure Hotel Collection",
+        "brand:wikidata": "Q135246644",
+        "name": "Sure Hotel Collection",
+        "official_name": "Sure Hotel Collection by Best Western",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "Sure Hotel Studio",
+      "id": "surehotelstudio-d1a91e",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "brand": "Sure Hotel Studio",
+        "brand:wikidata": "Q135246687",
+        "name": "Sure Hotel Studio",
+        "official_name": "Sure Hotel Studio by Best Western",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "SureStay",
+      "id": "surestay-e644f7",
+      "locationSet": {
+        "include": [
+          "au",
+          "ca",
+          "in",
+          "la",
+          "th",
+          "us"
+        ]
+      },
+      "matchNames": ["surestay hotels"],
+      "tags": {
+        "brand": "SureStay",
+        "brand:wikidata": "Q135246628",
+        "name": "SureStay",
+        "official_name": "SureStay by Best Western",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "SureStay Collection",
+      "id": "surestaycollection-18e013",
+      "locationSet": {
+        "include": ["au", "it", "ke", "th", "us"]
+      },
+      "matchNames": [
+        "surestay collection hotels"
+      ],
+      "tags": {
+        "brand": "SureStay Collection",
+        "brand:wikidata": "Q135246644",
+        "name": "SureStay Collection",
+        "official_name": "SureStay Collection by Best Western",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "SureStay Plus",
+      "id": "surestayplus-38ba67",
+      "locationSet": {
+        "include": [
+          "ca",
+          "in",
+          "jp",
+          "ph",
+          "th",
+          "us"
+        ]
+      },
+      "tags": {
+        "brand": "SureStay Plus",
+        "brand:wikidata": "Q135246640",
+        "name": "SureStay Plus",
+        "official_name": "SureStay Plus by Best Western",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "SureStay Studio",
+      "id": "surestaystudio-a1bf43",
+      "locationSet": {
+        "include": ["ca", "ph", "us"]
+      },
+      "tags": {
+        "brand": "SureStay Studio",
+        "brand:wikidata": "Q135246687",
+        "name": "SureStay Studio",
+        "official_name": "SureStay Studio by Best Western",
+        "tourism": "hotel"
+      }
+    },
+    {
       "displayName": "Swiss-Belhotel",
       "id": "swissbelhotel-779ccb",
       "locationSet": {"include": ["001"]},
@@ -3880,6 +4060,7 @@
       "displayName": "The Westin",
       "id": "thewestin-779ccb",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["westin hotels & resorts"],
       "tags": {
         "brand": "Westin",
         "brand:wikidata": "Q1969162",
@@ -4128,7 +4309,7 @@
       "locationSet": {"include": ["001"]},
       "tags": {
         "brand": "Vib",
-        "brand:wikidata": "Q830334",
+        "brand:wikidata": "Q135249054",
         "name": "Vib",
         "official_name": "Vib Best Western",
         "tourism": "hotel"
@@ -4216,6 +4397,9 @@
           "us"
         ]
       },
+      "matchNames": [
+        "waldorf astoria hotels & resorts"
+      ],
       "tags": {
         "brand": "Waldorf Astoria",
         "brand:wikidata": "Q3239392",
@@ -4246,6 +4430,17 @@
         "brand": "WoodSpring Suites",
         "brand:wikidata": "Q30672853",
         "name": "WoodSpring Suites",
+        "tourism": "hotel"
+      }
+    },
+    {
+      "displayName": "WorldHotels",
+      "id": "worldhotel-779ccb",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "brand": "WorldHotels",
+        "brand:wikidata": "Q135246666",
+        "name": "Worldhotel",
         "tourism": "hotel"
       }
     },
