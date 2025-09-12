@@ -24,6 +24,7 @@ If you have any questions or want to reach out to a maintainer, ping any of thes
  - [archpdx (arch0345)](https://github.com/arch0345)
  - [Bryan Housel](https://github.com/bhousel)
  - [Cj Malone](https://github.com/Cj-Malone)
+ - [ilias52730](https://github.com/ilias52730)
  - [kjonosm](https://github.com/kjonosm)
  - [快乐的老鼠宝宝 (LaoshuBaby)](https://github.com/LaoshuBaby)
  - [Minh Nguyễn (1ec5)](https://github.com/1ec5)
