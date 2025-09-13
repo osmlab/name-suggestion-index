@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { AppContext, isItemFiltered, getFilterParams, qsString } from './AppContext';
 import { OverviewInstructions } from './OverviewInstructions';
-
+import { TREES } from './constants';
 
 export function Overview() {
   const context = useContext(AppContext);
@@ -13,27 +13,16 @@ export function Overview() {
   const t = params.t;
 
   // setup defaults for this tree..
-  let fallbackIcon, wikidataTag;
-  if (t === 'brands') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
-    wikidataTag = 'brand:wikidata';
-  } else if (t === 'flags') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/embassy-15.svg';
-    wikidataTag = 'flag:wikidata';
-  } else if (t === 'operators') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/briefcase.svg';
-    wikidataTag = 'operator:wikidata';
-  } else if (t === 'transit') {
-    fallbackIcon = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/board_transit.svg';
-    wikidataTag = 'network:wikidata';
-  }
+  const { fallbackIcon, wikidataTag } = TREES[t] || {
+    fallbackIcon: 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/marker-15.svg'
+  };
 
   let message;
   let paths;
   if (context.isLoading()) {
     message = 'Loading, please wait...';
   } else {
-    paths = Object.keys(index.path).filter(tkv => tkv.split('/')[0] === t);
+    paths = Object.keys(index.path).filter(tkv => tkv.split('/')[0] === t || t === '*');
     if (!paths.length) {
       message = `No entries found for "${t}".`;
     }
@@ -57,11 +46,19 @@ export function Overview() {
   let f = Object.assign({}, filters);  // copy
   delete f.inc;
 
+  /** @type {{ [kv: string]: string[] }} */
+  const pathsByKV = {};
+  for (const tkv of paths) {
+    const [, k, v] = tkv.split('/', 3);
+    const kv = `${k}/${v}`;
+    pathsByKV[kv] ||= [];
+    pathsByKV[kv].push(tkv);
+  }
+
   // Display the categories under this tree.
   const categories = [];
-  for (const tkv of paths.sort()) {
-    const [t, k, v] = tkv.split('/', 3);
-    const kv = `${k}/${v}`;
+  for (const kv of Object.keys(pathsByKV).sort()) {
+    const [k, v] = kv.split('/', 2);
 
     // pick an icon for this category
     let iconURL = context.icons[kv];
@@ -75,7 +72,7 @@ export function Overview() {
       iconURL = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/power_tower.svg';
     }
 
-    const items = index.path[tkv];
+    const items = pathsByKV[kv].flatMap(tkv => index.path[tkv])
     let count = 0;
     let complete = 0;
 
@@ -84,7 +81,9 @@ export function Overview() {
       if (!isFiltered) {
         count++;
         const tags = item.tags || {};
-        const qid = tags[wikidataTag];
+        const qid = t === '*'
+          ? Object.values(TREES).map(tree => tags[tree.wikidataTag]).find(Boolean)
+          : tags[wikidataTag];
         const wd = context.wikidata[qid] || {};
         const logos = wd.logos || {};
         if (Object.keys(logos).length) {
@@ -98,7 +97,7 @@ export function Overview() {
     const linkparams = Object.assign({ t: t, k: k, v: v }, filters);
 
     categories.push(
-      <div key={tkv} className={klass} >
+      <div key={kv} className={klass} >
       <img className='icon' src={iconURL} />
       <Link to={'index.html?' + qsString(linkparams)}>{`${kv} (${complete}/${count})`}</Link>
       </div>
