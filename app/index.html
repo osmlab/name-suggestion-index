@@ -10,7 +10,11 @@
 
 <body>
 <div id='root' class='hasRows'></div>
-<script src='./src/index.jsx'></script>
+<script type="module">
+  import React from 'react';
+  globalThis.React = React;
+</script>
+<script type="module" src='./src/index.jsx'></script>
 <noscript>Your browser does not support JavaScript!</noscript>
 </body>
 
