@@ -25,6 +25,9 @@ export function OverviewInstructions() {
     itemType = 'network';
     wikidataTag = 'network:wikidata';
     tempt = 'transit networks';
+  } else {
+    wikidataTag = '*:wikidata';
+    tempt = 'items';
   }
 
   return (
