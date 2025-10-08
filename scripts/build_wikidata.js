@@ -235,8 +235,9 @@ function processEntities(result) {
     const meta = _qidMetadata[qid];
     let target = _wikidata[qid];
     let entity = result.entities[qid];
-    let label = entity.labels && entity.labels.en && entity.labels.en.value;
-    let labelmul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
+    const labelEn = entity.labels && entity.labels.en && entity.labels.en.value;
+    const labelMul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
+    let label = labelEn ? labelEn : labelMul;
 
     if (entity.redirects) {
       const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
