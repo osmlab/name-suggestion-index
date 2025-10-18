@@ -2,9 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUnlock } from '@fortawesome/free-solid-svg-icons'; // SSL Unlock icon.
-import { faLock }   from '@fortawesome/free-solid-svg-icons'; // SSL lock icon.
-
+import { faUnlock, faLock } from '@fortawesome/free-solid-svg-icons'; // SSL local and Unlock icon.
 import { AppContext, getFilterParams, stripDiacritics } from './AppContext';
 import { CategoryRowSocialLinks} from './CategoryRowSocialLinks';
 
