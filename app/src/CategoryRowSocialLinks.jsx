@@ -1,17 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faPinterestSquare } from '@fortawesome/free-brands-svg-icons';
-import { faSnapchatSquare } from '@fortawesome/free-brands-svg-icons';
-import { faTiktok } from '@fortawesome/free-brands-svg-icons';
-import { faSquareThreads } from '@fortawesome/free-brands-svg-icons';
-import { faSquareXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faVk } from '@fortawesome/free-brands-svg-icons';
-import { faWeibo } from '@fortawesome/free-brands-svg-icons';
-import { faWeixin } from '@fortawesome/free-brands-svg-icons';
-import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
-
+import {
+  faFacebookSquare,
+  faInstagram,
+  faLinkedin,
+  faPinterestSquare,
+  faSnapchatSquare,
+  faTiktok,
+  faSquareThreads,
+  faSquareXTwitter,
+  faVk,
+  faWeibo,
+  faWeixin,
+  faYoutubeSquare,
+} from "@fortawesome/free-brands-svg-icons";
 
 export function CategoryRowSocialLinks(props) {
   let items = [];
