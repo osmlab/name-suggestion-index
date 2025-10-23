@@ -4,7 +4,6 @@ import geojsonArea from '@mapbox/geojson-area';
 import geojsonBounds from 'geojson-bounds';
 import geojsonPrecision from 'geojson-precision';
 import geojsonRewind from '@mapbox/geojson-rewind';
-import { globSync } from 'glob';
 import JSON5 from 'json5';
 import jsonschema from 'jsonschema';
 import path from 'node:path';
@@ -55,8 +54,10 @@ function collectFeatures() {
   let features = [];
   let files = {};
 
-  globSync('features/**/*', { nodir: true }).forEach(file => {
-    if (/\.md$/i.test(file)) return;  // ignore markdown/readme files - #7292
+  for (const dirent of fs.globSync('features/**/*', { withFileTypes: true })) {
+    if (dirent.isDirectory()) continue;
+    const file = dirent.parentPath + '/' + dirent.name;
+    if (/\.md$/i.test(file)) continue;  // ignore markdown/readme files - #7292
 
     if (!/\.geojson$/.test(file)) {
       console.error(styleText('red', `Error - file should have a .geojson extension:`));
@@ -143,7 +144,7 @@ function collectFeatures() {
     }
     features.push(feature);
     files[id] = file;
-  });
+  }
 
   // sort features by id, see: 800ca866f
   features.sort((a, b) => withLocale(a.id, b.id));

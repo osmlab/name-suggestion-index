@@ -1,6 +1,5 @@
 // External
 import fs from 'node:fs';
-import { globSync } from 'glob';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
@@ -101,10 +100,10 @@ function buildAll() {
   buildSitemap();
 
   // minify all .json files under dist/
-  globSync(`dist/**/*.json`).forEach(file => {
+  for (const file of fs.globSync(`dist/**/*.json`)) {
     const minFile = file.replace('.json', '.min.json');
     minifySync(file, minFile);
-  });
+  }
 }
 
 
