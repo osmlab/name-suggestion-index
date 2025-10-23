@@ -1,5 +1,4 @@
 // External
-import chalk from 'chalk';
 import fs from 'node:fs';
 import http from 'node:http';
 import https from 'node:https';
@@ -9,6 +8,7 @@ import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+import { styleText } from 'node:util';
 import wikibase from 'wikibase-sdk';
 import wikibaseEdit from 'wikibase-edit';
 const withLocale = localeCompare('en-US');
@@ -48,9 +48,9 @@ const fetchOptionsQuery = {
 // set to true if you just want to test what the script will do without updating Wikidata
 const DRYRUN = false;
 
-console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('📓  Build Wikidata cache'));
-console.log(chalk.blue('-'.repeat(70)));
+console.log(styleText('blue', '-'.repeat(70)));
+console.log(styleText('blue', '📓  Build Wikidata cache'));
+console.log(styleText('blue', '-'.repeat(70)));
 
 // First, try to load the user's secrets.
 // This is optional but needed if you want this script to:
@@ -80,19 +80,19 @@ try {
 } catch (err) { /* ignore */ }
 
 if (_secrets && !_secrets.wikibase) {
-  console.error(chalk.red('WHOA!'));
-  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
-  console.error(chalk.yellow('We were expecting to find a `wikibase` property.'));
-  console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error(styleText('red', 'WHOA!'));
+  console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
+  console.error(styleText('yellow', 'We were expecting to find a `wikibase` property.'));
+  console.error(styleText('yellow', 'Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
 }
 
 if (_secrets.wikibase && !_secrets.wikibase.oauth) {
-  console.error(chalk.red('WHOA!'));
-  console.error(chalk.yellow('The `./secrets.json` file format has changed a bit.'));
-  console.error(chalk.yellow('We were expecting to find an `oauth` property.'));
-  console.error(chalk.yellow('Check `scripts/build_wikidata.js` for details...'));
+  console.error(styleText('red', 'WHOA!'));
+  console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
+  console.error(styleText('yellow', 'We were expecting to find an `oauth` property.'));
+  console.error(styleText('yellow', 'Check `scripts/build_wikidata.js` for details...'));
   console.error('');
   process.exit(1);
 }
@@ -114,14 +114,14 @@ if (_secrets && _secrets.wikibase) {
 // what to fetch
 let _cache = {};
 console.log('');
-console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over a minute, maybe more) ...`));
+console.log('🏗   ' + styleText('yellow', `Loading index files (this might take over a minute, maybe more) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 
 
 // Gather all QIDs referenced by any tag..
 console.log('');
-console.log('🏗   ' + chalk.yellow(`Syncing Wikidata with name-suggestion-index ...`));
+console.log('🏗   ' + styleText('yellow', `Syncing Wikidata with name-suggestion-index ...`));
 console.log('       ... this is done in batches, and may take around 10 minutes ...');
 let _wikidata = {};
 let _qidItems = {};       // any item referenced by a qid
@@ -177,7 +177,7 @@ if (!_total) {
 // Chunk into multiple wikidata API requests..
 let _urls = wbk.getManyEntities({
   ids: _qids,
-  languages: ['en'],
+  languages: ['en','mul'],
   props: ['info', 'labels', 'descriptions', 'claims', 'sitelinks'],
   format: 'json'
 });
@@ -201,7 +201,7 @@ function doFetch(index) {
 
   let currURL = _urls[index];
   let backoff = false;
-  console.log(chalk.yellow.bold(`\nBatch ${index+1}/${_urls.length}`));
+  console.log(styleText(['yellow','bold'], `\nBatch ${index+1}/${_urls.length}`));
 
   return fetch(currURL, fetchOptions)
     .then(response => {
@@ -210,9 +210,9 @@ function doFetch(index) {
     })
     .then(result => processEntities(result))
     .catch(e => {
-      console.warn(chalk.green.bold('fetch error:'));
-      console.warn(chalk.white(JSON.stringify(e)));
-      console.warn(chalk.green.bold('retrying...'));
+      console.warn(styleText(['green','bold'], 'fetch error:'));
+      console.warn(styleText('white', JSON.stringify(e)));
+      console.warn(styleText(['green','bold'], 'retrying...'));
       backoff = true;
       --index;
     })
@@ -235,18 +235,20 @@ function processEntities(result) {
     const meta = _qidMetadata[qid];
     let target = _wikidata[qid];
     let entity = result.entities[qid];
-    let label = entity.labels && entity.labels.en && entity.labels.en.value;
+    const labelEn = entity.labels && entity.labels.en && entity.labels.en.value;
+    const labelMul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
+    let label = labelEn ? labelEn : labelMul;
 
     if (entity.redirects) {
       const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
-      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+      console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
       _warnings.push(warning);
     }
 
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const warning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.` };
-      console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+      console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
       _warnings.push(warning);
       return;
     }
@@ -265,7 +267,7 @@ function processEntities(result) {
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
         const warning = { qid: qid, msg: `Entity for "${label}" is missing an English label.` };
-        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+        console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       }
     }
@@ -355,14 +357,28 @@ function processEntities(result) {
       for (let i = 0; i < entity.claims['P2013'].length; i++) {
         const c = entity.claims['P2013'][i];
         if ( c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser ) {
-          const qualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
-          for (let j = 0; j < qualifiers.length; j++) {
-            const q = qualifiers[j];
+          const accessQualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
+          for (let j = 0; j < accessQualifiers.length; j++) {
+            const q = accessQualifiers[j];
             if ( q.snaktype !== 'value' ) continue;
 
             const value = q.datavalue.value.id;
             // Q113165094 - location restrictions, Q58370623 - private account, Q107459441 - only visible when logged in
             if (value === 'Q58370623' || value === 'Q107459441' || value === 'Q113165094') {
+              restriction = value;
+              break;
+            }
+          }
+
+          // get "does not have characteristic" status of selected value
+          const charQualifiers = (c.qualifiers && c.qualifiers.P6477) || [];
+          for (let j = 0; j < charQualifiers.length; j++) {
+            const q = charQualifiers[j];
+            if ( q.snaktype !== 'value' ) continue;
+
+            const value = q.datavalue.value.id;
+            // Q101420143 - Facebook page, Q134432781 - professional account
+            if (value === 'Q101420143' || value === 'Q134432781') {
               restriction = value;
               break;
             }
@@ -474,7 +490,7 @@ function processEntities(result) {
           if (dissolution.countries) {
             warning.msg += `\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
           }
-          console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+          console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
           _warnings.push(warning);
         }
         target.dissolutions.push(dissolution);
@@ -626,8 +642,8 @@ function getClaimValues(entity, prop, includeDeprecated) {
 // - `dissolved.json`
 //
 function finish() {
-  const START = '🏗   ' + chalk.yellow('Writing output files');
-  const END = '👍  ' + chalk.green('output files updated');
+  const START = '🏗   ' + styleText('yellow', 'Writing output files');
+  const END = '👍  ' + styleText('green', 'output files updated');
   console.log('');
   console.log(START);
   console.time(END);
@@ -670,8 +686,8 @@ function finish() {
 
   // `console.warn` whatever warnings we've gathered
   if (_warnings.length) {
-    console.log(chalk.yellow.bold(`\nWarnings:`));
-    _warnings.forEach(warning => console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg)));
+    console.log(styleText(['yellow','bold'], `\nWarnings:`));
+    _warnings.forEach(warning => console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg)));
   }
 }
 
@@ -696,7 +712,7 @@ function fetchFacebookLogo(qid, username, restriction) {
         throw new Error(json.error.message);
       }
 
-      // Default profile pictures aren't useful to the index #2750
+      // Default profile pictures aren't useful to the index - #2750
       if (json.data && !json.data.is_silhouette) {
         target.logos.facebook = logoURL;
       }
@@ -706,8 +722,14 @@ function fetchFacebookLogo(qid, username, restriction) {
         // show warning if Wikidata notes that access to the profile is restricted in certain ways, but the profile is public - #10233
         // location restrictions (Q113165094) are skipped from this check because the API call will return different results
         // when run by users from different countries
-        const warning = { qid: qid, msg: `Facebook username @${username} has a restricted access qualifier, but is publicly accessible` };
-        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+        let warningText;
+        if ( restriction === 'Q134432781' ) {
+          warningText = `is marked as a personal account, but was successfully read as a public professional account`;
+        } else {
+          warningText = `has a restricted access qualifier, but is publicly accessible`;
+        }
+        const warning = { qid: qid, msg: `Facebook username @${username} ${warningText}` };
+        console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       }
       return true;
@@ -717,10 +739,11 @@ function fetchFacebookLogo(qid, username, restriction) {
         target.identities.facebook = userid;
         return fetchFacebookLogo(qid, userid, restriction);   // retry with just the numeric id
       } else {
-        // suppress warning if Wikidata notes that access to the profile is restricted in some way - #10233
+        // suppress warning if Wikidata notes that access to the profile is restricted in some way (#10233)
+        // or if the profile is set up as a personal account
         if ( !restriction ) {
           const warning = { qid: qid, msg: `Facebook username @${username}: ${e}` };
-          console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+          console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
           _warnings.push(warning);
         }
       }
@@ -735,7 +758,7 @@ function removeOldNsiClaims() {
   if (!_wbEdit) return Promise.resolve();
 
   console.log('');
-  console.log('🏗   ' + chalk.yellow(`Searching Wikidata for obsolete NSI identifier claims ...`));
+  console.log('🏗   ' + styleText('yellow', `Searching Wikidata for obsolete NSI identifier claims ...`));
   const query = `
     SELECT ?qid ?nsiId ?guid
     WHERE {
@@ -761,7 +784,7 @@ function removeOldNsiClaims() {
     })
     .then(processWbEditQueue)
     .catch(e => {
-      console.warn(chalk.red(e));
+      console.warn(styleText('red', e));
     });
 }
 
@@ -778,7 +801,7 @@ function processWbEditQueue(queue) {
   const request = queue.pop();
   const qid = request.qid;
   const msg = request.msg;
-  console.log(chalk.blue(`Updating Wikidata ${queue.length}:  ${msg}`));
+  console.log(styleText('blue', `Updating Wikidata ${queue.length}:  ${msg}`));
   delete request.qid;
   delete request.msg;
 
@@ -803,7 +826,7 @@ function processWbEditQueue(queue) {
     return task
       .catch(e => {
         const warning = { qid: qid, msg: e };
-        console.warn(chalk.yellow(warning.qid.padEnd(12)) + chalk.red(warning.msg));
+        console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       })
       .then(() => delay(300))

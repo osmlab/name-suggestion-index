@@ -1,16 +1,15 @@
 // External
-import chalk from 'chalk';
 import fs from 'node:fs';
 import geojsonArea from '@mapbox/geojson-area';
 import geojsonBounds from 'geojson-bounds';
 import geojsonPrecision from 'geojson-precision';
 import geojsonRewind from '@mapbox/geojson-rewind';
-import { globSync } from 'glob';
 import JSON5 from 'json5';
 import jsonschema from 'jsonschema';
 import path from 'node:path';
 import localeCompare from 'locale-compare';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+import { styleText } from 'node:util';
 const withLocale = localeCompare('en-US');
 
 // Internal
@@ -25,15 +24,15 @@ let v = new Validator();
 v.addSchema(geojsonSchemaJSON, 'http://json.schemastore.org/geojson.json');
 
 
-console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('🧩  Build features'));
-console.log(chalk.blue('-'.repeat(70)));
+console.log(styleText('blue', '-'.repeat(70)));
+console.log(styleText('blue', '🧩  Build features'));
+console.log(styleText('blue', '-'.repeat(70)));
 buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + chalk.yellow('Building features...');
-  const END = '👍  ' + chalk.green('features built');
+  const START = '🏗   ' + styleText('yellow', 'Building features...');
+  const END = '👍  ' + styleText('green', 'features built');
   console.log('');
   console.log(START);
   console.time(END);
@@ -55,12 +54,14 @@ function collectFeatures() {
   let features = [];
   let files = {};
 
-  globSync('features/**/*', { nodir: true }).forEach(file => {
-    if (/\.md$/i.test(file)) return;  // ignore markdown/readme files - #7292
+  for (const dirent of fs.globSync('features/**/*', { withFileTypes: true })) {
+    if (dirent.isDirectory()) continue;
+    const file = dirent.parentPath + '/' + dirent.name;
+    if (/\.md$/i.test(file)) continue;  // ignore markdown/readme files - #7292
 
     if (!/\.geojson$/.test(file)) {
-      console.error(chalk.red(`Error - file should have a .geojson extension:`));
-      console.error('  ' + chalk.yellow(file));
+      console.error(styleText('red', `Error - file should have a .geojson extension:`));
+      console.error('  ' + styleText('yellow', file));
       process.exit(1);
     }
 
@@ -69,8 +70,8 @@ function collectFeatures() {
     try {
       parsed = JSON5.parse(contents);
     } catch (jsonParseError) {
-      console.error(chalk.red(`Error - ${jsonParseError.message} in:`));
-      console.error('  ' + chalk.yellow(file));
+      console.error(styleText('red', `Error - ${jsonParseError.message} in:`));
+      console.error('  ' + styleText('yellow', file));
       process.exit(1);
     }
 
@@ -97,8 +98,8 @@ function collectFeatures() {
     //     const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
     //     const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
     //     console.warn('');
-    //     console.warn(chalk.yellow(`Warning - GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
-    //     console.warn('  ' + chalk.yellow(file));
+    //     console.warn(styleText('yellow', `Warning - GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
+    //     console.warn('  ' + styleText('yellow', file));
     //   }
     // }
 
@@ -115,13 +116,13 @@ function collectFeatures() {
 
     if (feature.geometry) {
       if (feature.geometry.type !== 'Polygon' && feature.geometry.type !== 'MultiPolygon') {
-        console.error(chalk.red('Error - Feature type must be "Polygon" or "MultiPolygon" in:'));
-        console.error('  ' + chalk.yellow(file));
+        console.error(styleText('red', 'Error - Feature type must be "Polygon" or "MultiPolygon" in:'));
+        console.error('  ' + styleText('yellow', file));
         process.exit(1);
       }
       if (!feature.geometry.coordinates) {
-        console.error(chalk.red('Error - Feature missing coordinates in:'));
-        console.error('  ' + chalk.yellow(file));
+        console.error(styleText('red', 'Error - Feature missing coordinates in:'));
+        console.error('  ' + styleText('yellow', file));
         process.exit(1);
       }
       obj.geometry = {
@@ -136,14 +137,14 @@ function collectFeatures() {
     prettifyFile(file, feature, contents);
 
     if (files[id]) {
-      console.error(chalk.red('Error - Duplicate filenames: ') + chalk.yellow(id));
-      console.error('  ' + chalk.yellow(files[id]));
-      console.error('  ' + chalk.yellow(file));
+      console.error(styleText('red', 'Error - Duplicate filenames: ') + styleText('yellow', id));
+      console.error('  ' + styleText('yellow', files[id]));
+      console.error('  ' + styleText('yellow', file));
       process.exit(1);
     }
     features.push(feature);
     files[id] = file;
-  });
+  }
 
   // sort features by id, see: 800ca866f
   features.sort((a, b) => withLocale(a.id, b.id));
@@ -184,13 +185,13 @@ function countCoordinates(coords) {
 function validateFile(file, resource, schema) {
   const validationErrors = v.validate(resource, schema).errors;
   if (validationErrors.length) {
-    console.error(chalk.red('Error - Schema validation:'));
-    console.error('  ' + chalk.yellow(file + ': '));
+    console.error(styleText('red', 'Error - Schema validation:'));
+    console.error('  ' + styleText('yellow', file + ': '));
     validationErrors.forEach(error => {
       if (error.property) {
-        console.error('  ' + chalk.yellow(error.property + ' ' + error.message));
+        console.error('  ' + styleText('yellow', error.property + ' ' + error.message));
       } else {
-        console.error('  ' + chalk.yellow(error));
+        console.error('  ' + styleText('yellow', error));
       }
     });
     process.exit(1);
