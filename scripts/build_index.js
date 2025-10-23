@@ -1,11 +1,11 @@
 // External
-import chalk from 'chalk';
 import fs from 'node:fs';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import safeRegex from 'safe-regex';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+import { styleText } from 'node:util';
 const withLocale = localeCompare('en-US');
 
 // Internal
@@ -27,9 +27,9 @@ const trees = treesJSON.trees;
 const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
 const loco = new LocationConflation(featureCollectionJSON);
 
-console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('🗂   Build index'));
-console.log(chalk.blue('-'.repeat(70)));
+console.log(styleText('blue', '-'.repeat(70)));
+console.log(styleText('blue', '🗂   Build index'));
+console.log(styleText('blue', '-'.repeat(70)));
 
 let _config = {};
 loadConfig();
@@ -68,8 +68,8 @@ function loadConfig() {
     try {
       data = JSON5.parse(contents);
     } catch (jsonParseError) {
-      console.error(chalk.red(`Error - ${jsonParseError.message} reading:`));
-      console.error('  ' + chalk.yellow(file));
+      console.error(styleText('red', `Error - ${jsonParseError.message} reading:`));
+      console.error('  ' + styleText('yellow', file));
       process.exit(1);
     }
 
@@ -139,8 +139,8 @@ function loadConfig() {
 // https://stackoverflow.com/a/43872595
 function checkRegex(fileName, pattern) {
   if (!safeRegex(pattern)) {
-    console.error(chalk.red('\nError - Potentially unsafe regular expression:'));
-    console.error('  ' + chalk.yellow(fileName + ': ' + pattern));
+    console.error(styleText('red', '\nError - Potentially unsafe regular expression:'));
+    console.error('  ' + styleText('yellow', fileName + ': ' + pattern));
     process.exit(1);
   }
 }
@@ -160,7 +160,7 @@ function loadCollected() {
       _currCollectionDate = +matched[1];
     }
   } catch (err) {
-    console.error(chalk.yellow(`Warning - ${err.message} reading 'nsi-collector/package.json'`));
+    console.error(styleText('yellow', `Warning - ${err.message} reading 'nsi-collector/package.json'`));
   }
 
   ['name', 'brand', 'operator', 'network'].forEach(tag => {
@@ -170,8 +170,8 @@ function loadCollected() {
     try {
       data = JSON5.parse(contents);
     } catch (jsonParseError) {
-      console.error(chalk.red(`Error - ${jsonParseError.message} reading:`));
-      console.error('  ' + chalk.yellow(file));
+      console.error(styleText('red', `Error - ${jsonParseError.message} reading:`));
+      console.error('  ' + styleText('yellow', file));
       process.exit(1);
     }
 
@@ -184,8 +184,8 @@ function loadCollected() {
 // Filter the tags collected into _keep and _discard lists
 //
 function filterCollected() {
-  const START = '🏗   ' + chalk.yellow(`Filtering values collected from OSM...`);
-  const END = '👍  ' + chalk.green(`done filtering`);
+  const START = '🏗   ' + styleText('yellow', `Filtering values collected from OSM...`);
+  const END = '👍  ' + styleText('green', `done filtering`);
   console.log('');
   console.log(START);
   console.time(END);
@@ -222,7 +222,7 @@ function filterCollected() {
 
     // Continue, do filtering, and replace keep/discard lists..
     if (!shownSparkle) {
-      console.log(chalk.yellow(`✨   New nsi-collector version ${_currCollectionDate} (was ${lastCollectionDate}).  Updating filter lists:`));
+      console.log(styleText('yellow', `✨   New nsi-collector version ${_currCollectionDate} (was ${lastCollectionDate}).  Updating filter lists:`));
       shownSparkle = true;
     }
 
@@ -285,8 +285,8 @@ function filterCollected() {
 // Load the index files under `data/*`
 //
 function loadIndex() {
-  const START = '🏗   ' + chalk.yellow(`Loading index files (this might take over a minute, maybe more) ...`);
-  const END = '👍  ' + chalk.green(`done loading`);
+  const START = '🏗   ' + styleText('yellow', `Loading index files (this might take over a minute, maybe more) ...`);
+  const END = '👍  ' + styleText('green', `done loading`);
   console.log('');
   console.log(START);
   console.time(END);
@@ -295,20 +295,20 @@ function loadIndex() {
   fileTree.expandTemplates(_cache, loco);
   console.timeEnd(END);
 
-  const MATCH_INDEX_END = '👍  ' + chalk.green(`built match index`);
+  const MATCH_INDEX_END = '👍  ' + styleText('green', `built match index`);
   console.time(MATCH_INDEX_END);
   matcher.buildMatchIndex(_cache.path);
   console.timeEnd(MATCH_INDEX_END);
 
   let warnMatched = matcher.getWarnings();
   if (warnMatched.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - matchIndex errors:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  `key/value/name` occurs multiple times in the match index.'));
-    console.warn(chalk.gray('  To resolve these, make sure the key/value/name does not appear in multiple trees'));
-    console.warn(chalk.gray('    (e.g. `amenity/post_office/ups` should not be both a "brand" and an "operator"'));
-    console.warn(chalk.gray('-').repeat(70));
-    warnMatched.forEach(w => console.warn(chalk.yellow(w)));
+    console.warn(styleText('yellow', '\n⚠️   Warning - matchIndex errors:'));
+    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', ('  `key/value/name` occurs multiple times in the match index.')));
+    console.warn(styleText('gray', ('  To resolve these, make sure the key/value/name does not appear in multiple trees')));
+    console.warn(styleText('gray', ('    (e.g. `amenity/post_office/ups` should not be both a "brand" and an "operator"')));
+    console.warn(styleText('gray', ('-').repeat(70)));
+    warnMatched.forEach(w => console.warn(styleText('yellow', w)));
     console.warn('total ' + warnMatched.length);
   }
 
@@ -316,7 +316,7 @@ function loadIndex() {
 
   // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
   // We don't need a location index for this script, but it's useful to know.
-  const LOCATION_INDEX_END = '👍  ' + chalk.green(`built location index`);
+  const LOCATION_INDEX_END = '👍  ' + styleText('green', `built location index`);
   console.time(LOCATION_INDEX_END);
   matcher.buildLocationIndex(_cache.path, loco);
   console.timeEnd(LOCATION_INDEX_END);
@@ -327,8 +327,8 @@ function loadIndex() {
 // Save the updated index files under `data/*`
 //
 function saveIndex() {
-  const START = '🏗   ' + chalk.yellow(`Saving index files...`);
-  const END = '👍  ' + chalk.green(`done saving`);
+  const START = '🏗   ' + styleText('yellow', `Saving index files...`);
+  const END = '👍  ' + styleText('green', `done saving`);
   console.log('');
   console.log(START);
   console.time(END);
@@ -350,8 +350,8 @@ function mergeItems() {
     'uk': 'gb',  // Exceptionally reserved, United Kingdom is officially assigned the alpha-2 code GB
   };
 
-  const START = '🏗   ' + chalk.yellow(`Merging items...`);
-  const END = '👍  ' + chalk.green(`done merging`);
+  const START = '🏗   ' + styleText('yellow', `Merging items...`);
+  const END = '👍  ' + styleText('green', `done merging`);
   console.log('');
   console.log(START);
   console.time(END);
@@ -609,7 +609,7 @@ function mergeItems() {
 //
 function checkItems(t) {
   console.log('');
-  console.log('🏗   ' + chalk.yellow(`Checking ${t}...`));
+  console.log('🏗   ' + styleText('yellow', `Checking ${t}...`));
 
   const tree = _config.trees[t];
   const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
@@ -738,50 +738,50 @@ function checkItems(t) {
   });
 
   if (warnMissingTag.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Missing tag:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  To resolve these, add the missing tag.'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(styleText('yellow', '\n⚠️   Warning - Missing tag:'));
+    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', ('  To resolve these, add the missing tag.')));
+    console.warn(styleText('gray', ('-').repeat(70)));
     warnMissingTag.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> missing tag? -> ' + chalk.yellow('"' + w[1] + '"')
+      styleText('yellow', '  "' + w[0] + '"') + ' -> missing tag? -> ' + styleText('yellow', '"' + w[1] + '"')
     ));
     console.warn('total ' + warnMissingTag.length);
   }
 
   if (warnFormatTag.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Unusual OpenStreetMap tag:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  To resolve these, make sure the OpenStreetMap tag is correct.'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(styleText('yellow', '\n⚠️   Warning - Unusual OpenStreetMap tag:'));
+    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', ('  To resolve these, make sure the OpenStreetMap tag is correct.')));
+    console.warn(styleText('gray', ('-').repeat(70)));
     warnFormatTag.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> unusual tag? -> ' + chalk.yellow('"' + w[1] + '"')
+      styleText('yellow', '  "' + w[0] + '"') + ' -> unusual tag? -> ' + styleText('yellow', '"' + w[1] + '"')
     ));
     console.warn('total ' + warnFormatTag.length);
   }
 
   if (warnDuplicate.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Potential duplicate:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  If the items are two different businesses,'));
-    console.warn(chalk.gray('    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.'));
-    console.warn(chalk.gray('  If the items are duplicates of the same business,'));
-    console.warn(chalk.gray('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
-    console.warn(chalk.gray('  If the duplicate item is a generic word,'));
-    console.warn(chalk.gray('    add a filter to config/filter_brands.json and delete the unwanted item.'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(styleText('yellow', '\n⚠️   Warning - Potential duplicate:'));
+    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', ('  If the items are two different businesses,')));
+    console.warn(styleText('gray', ('    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.')));
+    console.warn(styleText('gray', ('  If the items are duplicates of the same business,')));
+    console.warn(styleText('gray', ('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.')));
+    console.warn(styleText('gray', ('  If the duplicate item is a generic word,')));
+    console.warn(styleText('gray', ('    add a filter to config/filter_brands.json and delete the unwanted item.')));
+    console.warn(styleText('gray', ('-').repeat(70)));
     warnDuplicate.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> duplicates? -> ' + chalk.yellow('"' + w[1] + '"')
+      styleText('yellow', '  "' + w[0] + '"') + ' -> duplicates? -> ' + styleText('yellow', '"' + w[1] + '"')
     ));
     console.warn('total ' + warnDuplicate.length);
   }
 
   if (warnFormatWikidata.length) {
-    console.warn(chalk.yellow('\n⚠️   Warning - Incorrect `wikidata` format:'));
-    console.warn(chalk.gray('-').repeat(70));
-    console.warn(chalk.gray('  To resolve these, make sure "*:wikidata" tag looks like "Q191615".'));
-    console.warn(chalk.gray('-').repeat(70));
+    console.warn(styleText('yellow', '\n⚠️   Warning - Incorrect `wikidata` format:'));
+    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', ('  To resolve these, make sure "*:wikidata" tag looks like "Q191615".')));
+    console.warn(styleText('gray', ('-').repeat(70)));
     warnFormatWikidata.forEach(w => console.warn(
-      chalk.yellow('  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
+      styleText('yellow', '  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
     ));
     console.warn('total ' + warnFormatWikidata.length);
   }
@@ -789,7 +789,7 @@ function checkItems(t) {
   const pctWd = total > 0 ? (totalWd * 100 / total).toFixed(1) : 0;
 
   console.log('');
-  console.info(chalk.blue.bold(`${tree.emoji}  ${t}/* completeness:`));
-  console.info(chalk.blue.bold(`    ${total} total`));
-  console.info(chalk.blue.bold(`    ${totalWd} (${pctWd}%) with a '${tree.mainTag}' tag`));
+  console.info(styleText(['blue', 'bold'], `${tree.emoji}  ${t}/* completeness:`));
+  console.info(styleText(['blue', 'bold'], `    ${total} total`));
+  console.info(styleText(['blue', 'bold'], `    ${totalWd} (${pctWd}%) with a '${tree.mainTag}' tag`));
 }

@@ -1,12 +1,11 @@
 // External
-import chalk from 'chalk';
 import fs from 'node:fs';
-import { globSync } from 'glob';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+import { styleText } from 'node:util';
 import xmlbuilder2 from 'xmlbuilder2';
 
 const withLocale = localeCompare('en-US');
@@ -35,12 +34,12 @@ const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollectio
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
-console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('📦  Build distributable files'));
-console.log(chalk.blue('-'.repeat(70)));
+console.log(styleText('blue', '-'.repeat(70)));
+console.log(styleText('blue', '📦  Build distributable files'));
+console.log(styleText('blue', '-'.repeat(70)));
 
 console.log('');
-console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over a minute, maybe more) ...`));
+console.log('🏗   ' + styleText('yellow', `Loading index files (this might take over a minute, maybe more) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 _cache.path = sortObject(_cache.path);
@@ -49,8 +48,8 @@ buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + chalk.yellow('Building data...');
-  const END = '👍  ' + chalk.green('data built');
+  const START = '🏗   ' + styleText('yellow', 'Building data...');
+  const END = '👍  ' + styleText('green', 'data built');
 
   console.log('');
   console.log(START);
@@ -101,10 +100,10 @@ function buildAll() {
   buildSitemap();
 
   // minify all .json files under dist/
-  globSync(`dist/**/*.json`).forEach(file => {
+  for (const file of fs.globSync(`dist/**/*.json`)) {
     const minFile = file.replace('.json', '.min.json');
     minifySync(file, minFile);
-  });
+  }
 }
 
 
@@ -401,7 +400,7 @@ function buildIDPresets() {
   });
 
   if ( missing.size > 0 ) {
-    console.log(chalk.yellow(`\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
+    console.log(styleText('yellow', `\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
     missing.forEach(tkv => {
       console.log(`* no iD source preset found for ${tkv}`);
     });
@@ -584,8 +583,8 @@ function minifySync(inPath, outPath) {
     const minified = JSON.stringify(JSON5.parse(contents));
     fs.writeFileSync(outPath, minified);
   } catch (err) {
-    console.error(chalk.red(`Error - ${err.message} minifying:`));
-    console.error('  ' + chalk.yellow(inPath));
+    console.error(styleText('red', `Error - ${err.message} minifying:`));
+    console.error('  ' + styleText('yellow', inPath));
     process.exit(1);
   }
 }
