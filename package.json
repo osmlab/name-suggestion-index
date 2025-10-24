@@ -2,10 +2,23 @@
   "name": "name-suggestion-index",
   "version": "6.0.20250908",
   "license": "BSD-3-Clause",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/osmlab/name-suggestion-index.git"
-  },
+  "description": "Canonical common brand names for OpenStreetMap",
+  "homepage": "https://nsi.guide",
+  "repository": "github:osmlab/name-suggestion-index",
+  "keywords": [
+    "brands",
+    "canonicalization",
+    "flags",
+    "franchises",
+    "javascript",
+    "names",
+    "OpenStreetMap",
+    "operators",
+    "OSM",
+    "routes",
+    "transit",
+    "wikidata"
+  ],
   "contributors": [
     "Adamant36 (https://github.com/Adamant36)",
     "afanasovich (https://github.com/afanasovich)",
@@ -58,55 +71,36 @@
     "xeluna (https://github.com/xeluna)",
     "Yağızhan (https://github.com/evrifaessa)"
   ],
-  "description": "Canonical common brand names for OpenStreetMap",
-  "homepage": "https://nsi.guide",
-  "keywords": [
-    "brands",
-    "canonicalization",
-    "flags",
-    "franchises",
-    "javascript",
-    "names",
-    "OpenStreetMap",
-    "operators",
-    "OSM",
-    "routes",
-    "transit",
-    "wikidata"
-  ],
   "files": [
-    "index.mjs",
     "config/",
     "dist/",
     "lib/",
-    "schema/"
+    "schema/",
+    "src/"
   ],
   "type": "module",
-  "main": "./dist/javascript/nsi.cjs",
-  "module": "./index.mjs",
   "exports": {
     "dist/*": "./dist/*",
-    "import": "./index.mjs",
-    "require": "./dist/javascript/nsi.cjs"
+    "import": "./dist/javascript/nsi.mjs",
+    "require": "./dist/javascript/nsi.cjs",
+    "browser": "./dist/javascript/nsi.iife.js"
   },
   "scripts": {
-    "all": "run-s build wikidata dist",
-    "appbuild": "npm run docbuild",
-    "dist": "run-s dist:version dist:files dist:javascript",
-    "dist:files": "node scripts/dist_files.js",
-    "dist:javascript": "run-p dist:browser dist:cjs",
-    "dist:browser": "esbuild ./index.mjs --platform=browser --format=iife --global-name=nsi --bundle --sourcemap --outfile=./dist/javascript/nsi.iife.js",
-    "dist:cjs": "esbuild ./index.mjs --platform=node --format=cjs --bundle --sourcemap --outfile=./dist/javascript/nsi.cjs",
-    "dist:version": "node scripts/dist_version.js",
+    "all": "run-s clean lint build test",
+    "appbuild": "bun run docbuild",
     "docbuild": "esbuild ./app/src/index.jsx --platform=browser --target=es2021 --format=iife --global-name=nsiguide --jsx=automatic --bundle --minify --sourcemap --outfile=./docs/index.js",
-    "build": "run-s build:features build:index",
-    "build:features": "node scripts/build_features.js",
-    "build:index": "node scripts/build_index.js",
-    "test": "run-s build test:node",
-    "test:node": "c8 node --test tests/*.js",
-    "lint": "eslint scripts/*.js lib/*.js",
-    "validate": "node scripts/validate.js",
-    "wikidata": "node scripts/build_wikidata.js"
+    "build": "run-s build:js build:features build:index",
+    "build:js": "bun ./scripts/build_js.ts",
+    "build:features": "bun run ./scripts/build_features.ts",
+    "build:index": "bun run ./scripts/build_index.js",
+    "clean": "bun run ./scripts/clean.ts",
+    "dist": "run-s dist:version dist:files",
+    "dist:files": "bun run ./scripts/dist_files.js",
+    "dist:version": "bun run ./scripts/dist_version.js",
+    "test": "bun test --dots --coverage ./test/*.js",
+    "lint": "eslint ./lib/*.js ./test/*.js",
+    "validate": "bun run ./scripts/validate.js",
+    "wikidata": "bun run ./scripts/build_wikidata.js"
   },
   "dependencies": {
     "diacritics": "^1.3.0",
@@ -123,9 +117,7 @@
     "@mapbox/geojson-area": "^0.2.2",
     "@mapbox/geojson-rewind": "^0.5.2",
     "@openstreetmap/id-tagging-schema": "~6.12.0",
-    "@rapideditor/location-conflation": "~1.6.0",
-    "c8": "^10.1.3",
-    "esbuild": "^0.25.8",
+    "@rapideditor/location-conflation": "~1.7.0",
     "eslint": "^9.38.0",
     "geojson-bounds": "^1.0.4",
     "geojson-precision": "^1.0.0",
@@ -133,17 +125,19 @@
     "json5": "^2.2.3",
     "jsonschema": "^1.5.0",
     "locale-compare": "^2.0.0",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all2": "^8.0.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^6.26.2",
     "safe-regex": "^2.1.1",
     "shelljs": "^0.10.0",
+    "typescript": "^5.9.3",
     "wikibase-edit": "^7.2.4",
     "wikibase-sdk": "^10.2.3",
     "xmlbuilder2": "^4.0.0"
   },
   "engines": {
+    "bun": ">=1.3.0",
     "node": ">=22"
   }
 }

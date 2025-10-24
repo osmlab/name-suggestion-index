@@ -1,5 +1,5 @@
 // External
-import fs from 'node:fs';
+import fs from 'bun:fs';
 import http from 'node:http';
 import https from 'node:https';
 import { iso1A2Code } from '@rapideditor/country-coder';
@@ -8,7 +8,7 @@ import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
-import { styleText } from 'node:util';
+import { styleText } from 'bun:util';
 import wikibase from 'wikibase-sdk';
 import wikibaseEdit from 'wikibase-edit';
 const withLocale = localeCompare('en-US');

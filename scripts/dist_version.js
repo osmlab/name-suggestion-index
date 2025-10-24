@@ -1,10 +1,6 @@
-// External
-import fs from 'node:fs';
-import JSON5 from 'json5';
-import { styleText } from 'node:util';
+import { styleText } from 'bun:util';
 
-// JSON
-const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
+const packageJSON = await Bun.file('package.json').json();
 
 // YYYYMMDD
 const now = new Date();
@@ -18,5 +14,5 @@ const newVersion = oldVersion.replace(/(\d){8}/, `${yyyy}${mm}${dd}`);
 if (newVersion !== oldVersion) {
   console.log('🎉  ' + styleText('green', 'Bumping package version to ') + styleText(['green','bold'], `v${newVersion}`));
   const output = Object.assign(packageJSON, { version: newVersion });
-  fs.writeFileSync('package.json', JSON.stringify(output, null, 2) + '\n');
+  await Bun.write('package.json', JSON.stringify(output, null, 2) + '\n');
 }

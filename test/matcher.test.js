@@ -1,14 +1,12 @@
-import { after, before, test } from 'node:test';
-import { strict as assert } from 'node:assert';
-import fs from 'node:fs';
-import JSON5 from 'json5';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from 'bun:test';
+import { strict as assert } from 'bun:assert';
 import LocationConflation from '@rapideditor/location-conflation';
-import { Matcher } from '../index.mjs';
+import { Matcher } from '../src/nsi.mjs';
 
-const data = JSON5.parse(fs.readFileSync('tests/matcher.data.json', 'utf8'));
+const data = await Bun.file('./test/matcher.data.json').json();
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
+const featureCollection = await Bun.file('./dist/featureCollection.json').json();
 const loco = new LocationConflation(featureCollection);
 
 const USA = [-98.58, 39.828];
@@ -16,35 +14,35 @@ const QUEBEC = [-71.208, 46.814];
 const HONGKONG = [114.19, 22.33];
 
 
-test('index building', async t => {
+describe('index building', () => {
   let _matcher, _warn;
 
-  t.before(() => {
+  beforeAll(() => {
     _warn = console.warn;
     console.warn = () => {};  // silence console.warn
   });
 
-  t.after(() => {
+  afterAll(() => {
     console.warn = _warn;
   });
 
-  t.beforeEach(() => {
+  beforeEach(() => {
     _matcher = new Matcher();
   });
 
-  t.afterEach(() => {
+  afterEach(() => {
     _matcher = null;
   });
 
-  await t.test('buildMatchIndex does not throw', t => {
+  it('buildMatchIndex does not throw', () => {
     assert.doesNotThrow(() => _matcher.buildMatchIndex(data));
   });
 
-  await t.test('buildLocationIndex does not throw', t => {
+  it('buildLocationIndex does not throw', () => {
     assert.doesNotThrow(() => _matcher.buildLocationIndex(data, loco));
   });
 
-  await t.test('buildLocationIndex does not throw even with unrecognized locationSet', t => {
+  it('buildLocationIndex does not throw even with unrecognized locationSet', () => {
     const bad = {
       'brands/amenity/fast_food': {
         properties: { path: 'brands/amenity/fast_food' },
@@ -57,11 +55,11 @@ test('index building', async t => {
           }
         ]
       }
-    }
+    };
     assert.doesNotThrow(() => _matcher.buildLocationIndex(bad, loco));
   });
 
-  await t.test('buildLocationIndex does not throw even with empty locationSet', t => {
+  it('buildLocationIndex does not throw even with empty locationSet', () => {
     const bad = {
       'brands/amenity/fast_food': {
         properties: { path: 'brands/amenity/fast_food' },
@@ -74,20 +72,20 @@ test('index building', async t => {
           }
         ]
       }
-    }
+    };
     assert.doesNotThrow(() => _matcher.buildLocationIndex(bad, loco));
   });
 
-  await t.test('match throws if matchIndex not yet built', t => {
+  it('match throws if matchIndex not yet built', () => {
     assert.throws(() => _matcher.match('amenity', 'fast_food', 'KFC'), 'not built');
   });
 });
 
 
-test('match', async t => {
+describe('match', () => {
   let _matcher;
 
-  t.before(() => {
+  beforeAll(() => {
     _matcher = new Matcher();
     _matcher.buildMatchIndex(data);
     _matcher.buildLocationIndex(data, loco);
@@ -95,19 +93,19 @@ test('match', async t => {
 
   // In practice, duplidate ids can't happen anymore.
   // We should find a better way to flag potential duplicates in the index.
-  await t.test('getWarnings', t => {
+  it('getWarnings', () => {
     const warnings  = _matcher.getWarnings();
     assert.ok(warnings instanceof Array);
     assert.equal(warnings.length, 0);
   });
 
-  await t.test('returns null if no match', t => {
+  it('returns null if no match', () => {
     const result = _matcher.match('amenity', 'fast_food', 'Applebees');
     assert.equal(result, null);
   });
 
-  await t.test('excluded/generic name matching', async t => {
-    await t.test('matches excluded generic pattern with main tagpair', t => {
+  describe('excluded/generic name matching', () => {
+    it('matches excluded generic pattern with main tagpair', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Food Court');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -116,7 +114,7 @@ test('match', async t => {
       assert.equal(result[0].kv, 'amenity/fast_food');
     });
 
-    await t.test('match excluded generic pattern with alternate tagpair in matchGroups', t => {
+    it('match excluded generic pattern with alternate tagpair in matchGroups', () => {
       const result = _matcher.match('amenity', 'cafe', 'Food Court');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -125,7 +123,7 @@ test('match', async t => {
       assert.equal(result[0].kv, 'amenity/fast_food');
     });
 
-    await t.test('match globally excluded generic pattern from genericWords.json', t => {
+    it('match globally excluded generic pattern from genericWords.json', () => {
       const result = _matcher.match('amenity', 'cafe', '???');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -134,7 +132,7 @@ test('match', async t => {
       assert.equal(result[0].kv, undefined);
     });
 
-    await t.test('matches excluded name pattern with main tagpair', t => {
+    it('matches excluded name pattern with main tagpair', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Kebabai');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -143,7 +141,7 @@ test('match', async t => {
       assert.equal(result[0].kv, 'amenity/fast_food');
     });
 
-    await t.test('match excluded name pattern with alternate tagpair in matchGroups', t => {
+    it('match excluded name pattern with alternate tagpair in matchGroups', () => {
       const result = _matcher.match('amenity', 'cafe', 'Kebabai');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -153,8 +151,8 @@ test('match', async t => {
     });
   });
 
-  await t.test('basic matching, single result', async t => {
-    await t.test('matches exact key/value/name', t => {
+  describe('basic matching, single result', () => {
+    it('matches exact key/value/name', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Honey Baked Ham');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -166,7 +164,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'honeybakedham');
     });
 
-    await t.test('match on `official_name` tag', t => {
+    it('match on `official_name` tag', () => {
       const result = _matcher.match('amenity', 'fast_food', 'The Honey Baked Ham Company');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -176,7 +174,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'thehoneybakedhamcompany');
     });
 
-    await t.test('match on local `name:*` tag', t => {
+    it('match on local `name:*` tag', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Honig Bebackener Schinken');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -186,7 +184,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'honigbebackenerschinken');
     });
 
-    await t.test('match on `*:wikidata` tag', t => {
+    it('match on `*:wikidata` tag', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Q5893363');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -196,12 +194,12 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'q5893363');
     });
 
-    await t.test('does not match on `*:etymology` tag', t => {
+    it('does not match on `*:etymology` tag', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Ignore Me');
       assert.equal(result, null);
     });
 
-    await t.test('fuzzy match name', t => {
+    it('fuzzy match name', () => {
       const result = _matcher.match('amenity', 'fast_food', 'HoNeyBaKed\thäm!');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -211,7 +209,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'honeybakedham');    // variations in capitalization, spacing, etc, reduce to the same nsimple
     });
 
-    await t.test('match alternate tagpairs in matchTags', t => {
+    it('match alternate tagpairs in matchTags', () => {
       const result = _matcher.match('shop', 'butcher', 'Honey Baked Ham');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -221,7 +219,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'honeybakedham');
     });
 
-    await t.test('match alternate names in matchNames', t => {
+    it('match alternate names in matchNames', () => {
       const result = _matcher.match('amenity', 'fast_food', 'honey baked ham company');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -231,7 +229,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'honeybakedhamcompany');   // `honeybakedhamcompany` is alternate name in matchNames
     });
 
-    await t.test('match alternate tagpairs in matchGroups', t => {
+    it('match alternate tagpairs in matchGroups', () => {
       const result = _matcher.match('amenity', 'cafe', 'honey baked ham');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -241,7 +239,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'honeybakedham');
     });
 
-    await t.test('match generic tagpair amenity/yes', t => {
+    it('match generic tagpair amenity/yes', () => {
       const result = _matcher.match('amenity', 'yes', 'honey baked ham');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -251,7 +249,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'honeybakedham');
     });
 
-    await t.test('match generic tagpair shop/yes', t => {
+    it('match generic tagpair shop/yes', () => {
       const result = _matcher.match('shop', 'yes', 'honey baked ham');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -261,7 +259,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'honeybakedham');
     });
 
-    await t.test('match generic tagpair building/yes', t => {
+    it('match generic tagpair building/yes', () => {
       const result = _matcher.match('building', 'yes', 'honey baked ham');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -273,8 +271,8 @@ test('match', async t => {
   });
 
 
-  await t.test('advanced matching, multiple result', async t => {
-    await t.test('matches KFC with unspecified location, results sort by area descending', t => {
+  describe('advanced matching, multiple result', () => {
+    it('matches KFC with unspecified location, results sort by area descending', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 3);
@@ -301,7 +299,7 @@ test('match', async t => {
       assert.equal(result[2].nsimple, 'kfc');
     });
 
-    await t.test('matches KFC in USA', t => {
+    it('matches KFC in USA', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC', USA);
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -309,17 +307,17 @@ test('match', async t => {
       assert.equal(result[0].itemID, 'kfc-658eea');    // KFC worldwide
     });
 
-    await t.test('does not match PFK in USA', t => {
+    it('does not match PFK in USA', () => {
       const result = _matcher.match('amenity', 'fast_food', 'PFK', USA);
       assert.equal(result, null);
     });
 
-    await t.test('does not match 肯德基 in USA', t => {
+    it('does not match 肯德基 in USA', () => {
       const result = _matcher.match('amenity', 'fast_food', '肯德基', USA);
       assert.equal(result, null);
     });
 
-    await t.test('matches PFK in Quebec', t => {
+    it('matches PFK in Quebec', () => {
       const result = _matcher.match('amenity', 'fast_food', 'PFK', QUEBEC);
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -327,7 +325,7 @@ test('match', async t => {
       assert.equal(result[0].itemID, 'pfk-a54c14');
     });
 
-    await t.test('matches KFC in Quebec, but sorts PFK first', t => {
+    it('matches KFC in Quebec, but sorts PFK first', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC', QUEBEC);
       assert.ok(result instanceof Array);
       assert.equal(result.length, 2);
@@ -337,12 +335,12 @@ test('match', async t => {
       assert.equal(result[1].itemID, 'kfc-658eea');    // world area = 511207893 km²
     });
 
-    await t.test('does not match 肯德基 in Quebec', t => {
+    it('does not match 肯德基 in Quebec', () => {
       const result = _matcher.match('amenity', 'fast_food', '肯德基', QUEBEC);
       assert.equal(result, null);
     });
 
-    await t.test('matches 肯德基 in China', t => {
+    it('matches 肯德基 in China', () => {
       const result = _matcher.match('amenity', 'fast_food', '肯德基', HONGKONG);
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -350,7 +348,7 @@ test('match', async t => {
       assert.equal(result[0].itemID, 'kfc-1ff19c');
     });
 
-    await t.test('matches KFC in China, but sorts 肯德基 first', t => {
+    it('matches KFC in China, but sorts 肯德基 first', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC', HONGKONG);
       assert.ok(result instanceof Array);
       assert.equal(result.length, 2);
@@ -360,12 +358,12 @@ test('match', async t => {
       assert.equal(result[1].itemID, 'kfc-658eea');    // world area = 511207893 km²
     });
 
-    await t.test('does not match PFK in China', t => {
+    it('does not match PFK in China', () => {
       const result = _matcher.match('amenity', 'fast_food', 'PFK', HONGKONG);
       assert.equal(result, null);
     });
 
-    await t.test('matches Gap with unspecified location, sorts primary before alternate', t => {
+    it('matches Gap with unspecified location, sorts primary before alternate', () => {
       const result = _matcher.match('shop', 'clothes', 'Gap');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 2);
@@ -385,7 +383,7 @@ test('match', async t => {
       assert.equal(result[1].nsimple, 'gap');
     });
 
-    await t.test('matches Baby Gap with unspecified location, sorts primary before alternate', t => {
+    it('matches Baby Gap with unspecified location, sorts primary before alternate', () => {
       const result = _matcher.match('shop', 'clothes', 'Baby Gap');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -398,8 +396,8 @@ test('match', async t => {
     });
   });
 
-  await t.test('nothing bad happens if a k/v category is present in multiple trees', async t => {
-    await t.test('matches an item from the brands tree', t => {
+  describe('nothing bad happens if a k/v category is present in multiple trees', () => {
+    it('matches an item from the brands tree', () => {
       const result = _matcher.match('amenity', 'post_office', 'UPS');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -409,7 +407,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'ups');
     });
 
-    await t.test('matches an item from the operators tree', t => {
+    it('matches an item from the operators tree', () => {
       const result = _matcher.match('amenity', 'post_office', 'USPS');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -418,7 +416,7 @@ test('match', async t => {
       assert.equal(result[0].kv, 'amenity/post_office');
     });
 
-    await t.test('matches a generic from the brands tree', t => {
+    it('matches a generic from the brands tree', () => {
       const result = _matcher.match('amenity', 'post_office', 'Copyshop');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -427,7 +425,7 @@ test('match', async t => {
       assert.equal(result[0].kv, 'amenity/post_office');
     });
 
-    await t.test('matches a generic from the operators tree', t => {
+    it('matches a generic from the operators tree', () => {
       const result = _matcher.match('amenity', 'post_office', 'Spar');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -437,8 +435,8 @@ test('match', async t => {
     });
   });
 
-  await t.test('transit matching', async t => {
-    await t.test('match on `network` tag', t => {
+  describe('transit matching', () => {
+    it('match on `network` tag', () => {
       const result = _matcher.match('route', 'train', 'verkehrs und tarifverbund stuttgart');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -448,7 +446,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'verkehrsundtarifverbundstuttgart');
     });
 
-    await t.test('match on `network:short` tag', t => {
+    it('match on `network:short` tag', () => {
       const result = _matcher.match('route', 'train', 'VVS');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -456,7 +454,7 @@ test('match', async t => {
       assert.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
     });
 
-    await t.test('match on `network:guid` tag', t => {
+    it('match on `network:guid` tag', () => {
       const result = _matcher.match('route', 'train', 'DE-BW-VVS');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -464,7 +462,7 @@ test('match', async t => {
       assert.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
     });
 
-    await t.test('match on `network:wikidata` tag', t => {
+    it('match on `network:wikidata` tag', () => {
       const result = _matcher.match('route', 'train', 'Q2516108');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -472,20 +470,20 @@ test('match', async t => {
       assert.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
     });
 
-    await t.test('does not match on route/yes', t => {
+    it('does not match on route/yes', () => {
       const result = _matcher.match('route', 'yes', 'VVS');
       assert.equal(result, null);
     });
 
-    await t.test('does not match on building/yes', t => {
+    it('does not match on building/yes', () => {
       const result = _matcher.match('building', 'yes', 'VVS');
       assert.equal(result, null);
     });
   });
 
 
-  await t.test('flag matching', async t => {
-    await t.test('match on `flag:name/subject` tag', t => {
+  describe('flag matching', () => {
+    it('match on `flag:name/subject` tag', () => {
       const result = _matcher.match('man_made', 'flagpole', 'New Zealand');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -498,7 +496,7 @@ test('match', async t => {
       // but we already returned it as a 'primary' match, so shouldn't see another result for it.
     });
 
-    await t.test('match on `country` tag', t => {
+    it('match on `country` tag', () => {
       const result = _matcher.match('man_made', 'flagpole', 'NZ');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -508,7 +506,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'nz');
     });
 
-    await t.test('match on `flag:wikidata` tag', t => {
+    it('match on `flag:wikidata` tag', () => {
       const result = _matcher.match('man_made', 'flagpole', 'Q160260');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -518,7 +516,7 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'q160260');
     });
 
-    await t.test('match on `subject:wikidata` tag', t => {
+    it('match on `subject:wikidata` tag', () => {
       const result = _matcher.match('man_made', 'flagpole', 'Q664');
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);
@@ -528,17 +526,17 @@ test('match', async t => {
       assert.equal(result[0].nsimple, 'q664');
     });
 
-    await t.test('does not match on man_made/yes', t => {
+    it('does not match on man_made/yes', () => {
       const result = _matcher.match('man_made', 'yes', 'new zealand');
       assert.equal(result, null);
     });
 
-    await t.test('does not match on building/yes', t => {
+    it('does not match on building/yes', () => {
       const result = _matcher.match('building', 'yes', 'new zealand');
       assert.equal(result, null);
     });
 
-    await t.test('matches state flag of Georgia before country flag of Georgia in USA', t => {
+    it('matches state flag of Georgia before country flag of Georgia in USA', () => {
       const result = _matcher.match('man_made', 'flagpole', 'georgia', USA);
       assert.ok(result instanceof Array);
       assert.equal(result.length, 2);
@@ -558,7 +556,7 @@ test('match', async t => {
       assert.equal(result[1].nsimple, 'georgia');
     });
 
-    await t.test('matches only country flag of Georgia outside the USA', t => {
+    it('matches only country flag of Georgia outside the USA', () => {
       const result = _matcher.match('man_made', 'flagpole', 'georgia', HONGKONG);
       assert.ok(result instanceof Array);
       assert.equal(result.length, 1);

@@ -1,50 +1,51 @@
-import { after, before, test } from 'node:test';
-import { strict as assert } from 'node:assert';
-import { simplify } from '../index.mjs';
+import { describe, it } from 'bun:test';
+import { strict as assert } from 'bun:assert';
+import { simplify } from '../src/nsi.mjs';
 
-test('simplify', async t => {
 
-  await t.test('lowercases', t => {
+describe('simplify', () => {
+
+  it('lowercases', () => {
     assert.equal(simplify('Aldo'), 'aldo');
   });
 
-  await t.test('replaces diacritics', t => {
+  it('replaces diacritics', () => {
     assert.equal(simplify('André'), 'andre');
   });
 
-  await t.test('removes spaces', t => {
+  it('removes spaces', () => {
     assert.equal(simplify('Jimmy Choo'), 'jimmychoo');
   });
 
-  await t.test('removes various dashes', t => {
+  it('removes various dashes', () => {
     assert.equal(simplify('PTV - Metropolitan'), 'ptvmetropolitan');  // hypen
     assert.equal(simplify('PTV – Metropolitan'), 'ptvmetropolitan');  // en dash (U+2013)
     assert.equal(simplify('PTV — Metropolitan'), 'ptvmetropolitan');  // em dash (U+2014)
     assert.equal(simplify('PTV ― Metropolitan'), 'ptvmetropolitan');  // horizontal bar (U+2015)
   });
 
-  await t.test('removes unprintable unicode (like RTL/LTR marks, zero width space, zero width nonjoiner)', t => {
+  it('removes unprintable unicode (like RTL/LTR marks, zero width space, zero width nonjoiner)', () => {
     assert.equal(simplify('\u200FJim\u200Bmy\u200CChoo\u200E'), 'jimmychoo');
   });
 
-  await t.test('removes punctuation', t => {
+  it('removes punctuation', () => {
     assert.equal(simplify('K+K Schuh-Center'), 'kkschuhcenter');
   });
 
-  await t.test('replaces & with and', t => {
+  it('replaces & with and', () => {
     assert.equal(simplify('Johnston & Murphy'), 'johnstonandmurphy');
   });
 
-  await t.test('replaces ß (eszett) with ss', t => {
+  it('replaces ß (eszett) with ss', () => {
     assert.equal(simplify('Beßon'), 'besson');
   });
 
-  await t.test('replaces İ (0130) or i̇ (0069 0307) with i', t => {   // #5017, #8261 for examples
+  it('replaces İ (0130) or i̇ (0069 0307) with i', () => {   // #5017, #8261 for examples
     assert.equal(simplify('İnşaat'), 'insaat');
     assert.equal(simplify('i̇nşaat'), 'insaat');
   });
 
-  await t.test('returns empty string if no input', t => {
+  it('returns empty string if no input', () => {
     assert.equal(simplify(), '');
     assert.equal(simplify(null), '');
     assert.equal(simplify({}), '');
