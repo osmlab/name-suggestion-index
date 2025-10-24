@@ -1,11 +1,10 @@
 // External
-import fs from 'node:fs';
-import JSON5 from 'json5';
+import { Glob } from 'bun';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import safeRegex from 'safe-regex';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
-import { styleText } from 'node:util';
+import { styleText } from 'bun:util';
 const withLocale = localeCompare('en-US');
 
 // Internal
@@ -19,12 +18,11 @@ import { validate } from '../lib/validate.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
-// JSON
-const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
+const treesJSON = await Bun.file('./config/trees.json').json();
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
+const featureCollectionJSON = await Bun.file('./dist/featureCollection.json').json();
 const loco = new LocationConflation(featureCollectionJSON);
 
 console.log(styleText('blue', '-'.repeat(70)));
@@ -32,10 +30,10 @@ console.log(styleText('blue', '🗂   Build index'));
 console.log(styleText('blue', '-'.repeat(70)));
 
 let _config = {};
-loadConfig();
+await loadConfig();
 
 let _cache = {};
-loadIndex();
+await loadIndex();
 
 checkItems('brands');
 checkItems('flags');
@@ -46,12 +44,12 @@ let _currCollectionDate = 0;
 let _collected = {};
 let _discard = {};
 let _keep = {};
-loadCollected();
-filterCollected();
+await loadCollected();
+await filterCollected();
 
 mergeItems();
 
-saveIndex();
+await saveIndex();
 console.log('');
 
 
@@ -59,32 +57,23 @@ console.log('');
 //
 // Load, validate, cleanup config files
 //
-function loadConfig() {
-  ['trees', 'replacements', 'genericWords'].forEach(which => {
-    const schema = JSON5.parse(fs.readFileSync(`./schema/${which}.json`, 'utf8'));
-    const file = `config/${which}.json`;
-    const contents = fs.readFileSync(file, 'utf8');
-    let data;
-    try {
-      data = JSON5.parse(contents);
-    } catch (jsonParseError) {
-      console.error(styleText('red', `Error - ${jsonParseError.message} reading:`));
-      console.error('  ' + styleText('yellow', file));
-      process.exit(1);
-    }
+async function loadConfig() {
+  for (const which of ['trees', 'replacements', 'genericWords']) {
+    const schema = await Bun.file(`./schema/${which}.json`).json();
+    const filepath = `config/${which}.json`;
+    const data = await Bun.file(filepath).json();
 
     // check JSON schema
-    validate(file, data, schema);
+    validate(filepath, data, schema);
 
     // check regexes
     if (which === 'trees') {
       Object.values(data.trees).forEach(tree => {
-        checkRegex(file, tree.nameTags.primary);
-        checkRegex(file, tree.nameTags.alternate);
+        checkRegex(filepath, tree.nameTags.primary);
+        checkRegex(filepath, tree.nameTags.alternate);
       });
-
     } else if (which === 'genericWords') {
-      Object.values(data.genericWords).forEach(pattern => checkRegex(file, pattern));
+      Object.values(data.genericWords).forEach(pattern => checkRegex(filepath, pattern));
     }
 
     // Clean and sort the files for consistency, save them that way.
@@ -127,20 +116,19 @@ function loadConfig() {
     }
 
     // Lowercase and sort the files for consistency, save them that way.
-    fs.writeFileSync(file, stringify(data) + '\n');
+    await Bun.write(filepath, stringify(data) + '\n');
 
     _config[which] = data[which];
-  });
-
+  }
 }
 
 
 // check for potentially unsafe regular expressions:
 // https://stackoverflow.com/a/43872595
-function checkRegex(fileName, pattern) {
+function checkRegex(filepath, pattern) {
   if (!safeRegex(pattern)) {
     console.error(styleText('red', '\nError - Potentially unsafe regular expression:'));
-    console.error('  ' + styleText('yellow', fileName + ': ' + pattern));
+    console.error('  ' + styleText('yellow', `${filepath}: ${pattern}`));
     process.exit(1);
   }
 }
@@ -149,11 +137,10 @@ function checkRegex(fileName, pattern) {
 // Load the version number and the lists of tags collected from:
 // https://github.com/ideditor/nsi-collector
 //
-function loadCollected() {
+async function loadCollected() {
   try {
-    const file = `./node_modules/@ideditor/nsi-collector/package.json`;
-    const contents = fs.readFileSync(file, 'utf8');
-    const collectorJSON = JSON5.parse(contents);
+    const filepath = `./node_modules/@ideditor/nsi-collector/package.json`;
+    const collectorJSON = await Bun.file(filepath).json();
     const rawVersion = collectorJSON.version;
     const matched = rawVersion.match(/[~^]?\d+\.\d+\.(\d+)/);
     if (matched) {
@@ -163,28 +150,27 @@ function loadCollected() {
     console.error(styleText('yellow', `Warning - ${err.message} reading 'nsi-collector/package.json'`));
   }
 
-  ['name', 'brand', 'operator', 'network'].forEach(tag => {
-    const file = `./node_modules/@ideditor/nsi-collector/dist/osm/${tag}s_all.json`;
-    const contents = fs.readFileSync(file, 'utf8');
+  for (const tag of ['name', 'brand', 'operator', 'network']) {
+    const filepath = `./node_modules/@ideditor/nsi-collector/dist/osm/${tag}s_all.json`;
     let data;
     try {
-      data = JSON5.parse(contents);
+      data = await Bun.file(filepath).json();
     } catch (jsonParseError) {
       console.error(styleText('red', `Error - ${jsonParseError.message} reading:`));
-      console.error('  ' + styleText('yellow', file));
+      console.error('  ' + styleText('yellow', filepath));
       process.exit(1);
     }
 
     _collected[tag] = data;
-  });
+  }
 }
 
 
 //
 // Filter the tags collected into _keep and _discard lists
 //
-function filterCollected() {
-  const START = '🏗   ' + styleText('yellow', `Filtering values collected from OSM...`);
+async function filterCollected() {
+  const START = '🏗   ' + styleText('yellow', `Filtering values collected from OSM…`);
   const END = '👍  ' + styleText('green', `done filtering`);
   console.log('');
   console.log(START);
@@ -196,18 +182,16 @@ function filterCollected() {
   genericRegex.push(new RegExp(/;/, 'i'));   // also discard values with semicolons
 
 
-  Object.keys(_config.trees).forEach(t => {
-    const tree = _config.trees[t];
-    if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) return;
+  for (const [t, tree] of Object.entries(_config.trees)) {
+    if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) continue;
 
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
     let lastCollectionDate = -1;
-    let contents, data;
+    let data;
 
     try {  // Load existing "keep" file
-      contents = fs.readFileSync(`dist/filtered/${t}_keep.json`, 'utf8');
-      data = JSON5.parse(contents);
+      data = await Bun.file(`dist/filtered/${t}_keep.json`).json();
       lastCollectionDate = +(data._meta.collectionDate) || -1;
       keep = _keep[t] = data.keep;
     } catch (err) {
@@ -218,7 +202,7 @@ function filterCollected() {
     // 1. we have data in `keep`, and..
     // 2. that data is fresh (newer or same as installed nsi-collector dependency) - #5519
     // (comment out this next line to force replace the keep/discard lists)
-    if (Object.keys(keep).length && lastCollectionDate >= _currCollectionDate) return;
+    if (Object.keys(keep).length && lastCollectionDate >= _currCollectionDate) continue;
 
     // Continue, do filtering, and replace keep/discard lists..
     if (!shownSparkle) {
@@ -230,12 +214,12 @@ function filterCollected() {
     // STEP 1:  All the collected "names" from OSM start out in `discard`
     //
     keep = {};
-    tree.sourceTags.forEach(tag => {
-      let collected = _collected[tag];
+    for (const tag of tree.sourceTags) {
+      const collected = _collected[tag];
       for (const kvn in collected) {
         discard[kvn] = Math.max((discard[kvn] || 0), collected[kvn]);
       }
-    });
+    }
 
     //
     // STEP 2:  Move "names" that aren't excluded from `discard` -> `keep`
@@ -271,27 +255,27 @@ function filterCollected() {
     const meta = { collectionDate: _currCollectionDate.toString(10) };
 
     stringified = stringify({ discard: sortObject(discard) }) + '\n';
-    writeFileWithMeta(`dist/filtered/${t}_discard.json`, stringified, meta);
+    await writeFileWithMeta(`dist/filtered/${t}_discard.json`, stringified, meta);
 
     stringified = stringify({ keep: sortObject(keep) }) + '\n';
-    writeFileWithMeta(`dist/filtered/${t}_keep.json`, stringified, meta);
-  });
+    await writeFileWithMeta(`dist/filtered/${t}_keep.json`, stringified, meta);
+  }
 
   console.timeEnd(END);
 }
 
 
 //
-// Load the index files under `data/*`
+// Load the index files under `./data/*`
 //
-function loadIndex() {
-  const START = '🏗   ' + styleText('yellow', `Loading index files (this might take over a minute, maybe more) ...`);
+async function loadIndex() {
+  const START = '🏗   ' + styleText('yellow', `Loading index files…`);
   const END = '👍  ' + styleText('green', `done loading`);
   console.log('');
   console.log(START);
   console.time(END);
 
-  fileTree.read(_cache, loco);
+  await fileTree.read(_cache, loco);
   fileTree.expandTemplates(_cache, loco);
   console.timeEnd(END);
 
@@ -312,28 +296,26 @@ function loadIndex() {
     console.warn('total ' + warnMatched.length);
   }
 
-
-
-  // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
-  // We don't need a location index for this script, but it's useful to know.
-  const LOCATION_INDEX_END = '👍  ' + styleText('green', `built location index`);
-  console.time(LOCATION_INDEX_END);
-  matcher.buildLocationIndex(_cache.path, loco);
-  console.timeEnd(LOCATION_INDEX_END);
+//  // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
+//  // We don't need a location index for this script, but it's useful to know.
+//  const LOCATION_INDEX_END = '👍  ' + styleText('green', `built location index`);
+//  console.time(LOCATION_INDEX_END);
+//  matcher.buildLocationIndex(_cache.path, loco);
+//  console.timeEnd(LOCATION_INDEX_END);
 }
 
 
 //
 // Save the updated index files under `data/*`
 //
-function saveIndex() {
-  const START = '🏗   ' + styleText('yellow', `Saving index files...`);
+async function saveIndex() {
+  const START = '🏗   ' + styleText('yellow', `Saving index files…`);
   const END = '👍  ' + styleText('green', `done saving`);
   console.log('');
   console.log(START);
   console.time(END);
 
-  fileTree.write(_cache);
+  await fileTree.write(_cache);
   console.timeEnd(END);
 }
 
@@ -350,7 +332,7 @@ function mergeItems() {
     'uk': 'gb',  // Exceptionally reserved, United Kingdom is officially assigned the alpha-2 code GB
   };
 
-  const START = '🏗   ' + styleText('yellow', `Merging items...`);
+  const START = '🏗   ' + styleText('yellow', `Merging items…`);
   const END = '👍  ' + styleText('green', `done merging`);
   console.log('');
   console.log(START);
@@ -581,14 +563,14 @@ function mergeItems() {
   // Copy main tag value to local tag value, but only if local value not assigned yet
   // re: 6788#issuecomment-1188024213
   function setLanguageTags(tags, code) {
-    ['name', 'brand', 'operator', 'network'].forEach(k => {
+    for (const k of ['name', 'brand', 'operator', 'network']) {
       const v = tags[k];
       const loc_k = `${k}:${code}`;   // e.g. `name:ja`
       const loc_v = tags[loc_k];
       if (v && !loc_v) {
         tags[loc_k] = v;
       }
-    });
+    }
   }
 
   function normalizeCountryCode(countries, country) {
@@ -609,7 +591,7 @@ function mergeItems() {
 //
 function checkItems(t) {
   console.log('');
-  console.log('🏗   ' + styleText('yellow', `Checking ${t}...`));
+  console.log('🏗   ' + styleText('yellow', `Checking ${t}…`));
 
   const tree = _config.trees[t];
   const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;

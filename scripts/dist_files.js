@@ -1,11 +1,11 @@
 // External
-import fs from 'node:fs';
+import fs from 'bun:fs';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
-import { styleText } from 'node:util';
+import { styleText } from 'bun:util';
 import xmlbuilder2 from 'xmlbuilder2';
 
 const withLocale = localeCompare('en-US');
