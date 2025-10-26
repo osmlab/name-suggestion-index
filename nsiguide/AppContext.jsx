@@ -9,7 +9,7 @@ import { Footer } from './Footer';
 import { Overview } from './Overview';
 
 // Load the name-suggestion-index data files
-const DIST = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist';
+const DIST = 'https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist';
 const INDEX = `${DIST}/nsi.min.json`;
 const WIKIDATA = `${DIST}/wikidata.min.json`;
 const DISSOLVED = `${DIST}/dissolved.min.json`;
