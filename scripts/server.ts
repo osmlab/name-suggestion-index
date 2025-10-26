@@ -43,33 +43,34 @@ const server = Bun.serve({
     }
 
     const filepath = './' + path.join('/');
-
     try {
       const file = Bun.file(filepath);
       if (await file.exists()) {
-        console.log(styleText('greenBright', `200:  Found → '${filepath}'`));
-
-        if (/html$/.test(filepath)) {
+        console.log(
+          styleText('greenBright', `200:  Found → '${file.name}'`) +
+          styleText('green', `  ${file.type}'`)
+        );
+        if (/(html|javascript)/.test(file.type)) {
           const content: string = await file.text();
-          return new Response(replaceCDNPath(content), { headers: { 'content-type': 'text/html' }});
+          return new Response(replaceCDNPath(content), { headers: { 'content-type': file.type }});
         } else {
           return new Response(file);
         }
+      } else {
+        console.log(styleText('redBright', `404:  Not Found → '${filepath}'`));
+        return new Response('Not Found', { status: 404 });
       }
     } catch (error) {
-      // Handle potential errors during file access
-      console.error(`Error serving file: ${filepath}`, error);
+      console.log(styleText('redBright', `500:  Server Error → '${filepath}'`));
+      console.error(error);
+      return new Response('Internal Server Error', { status: 500 });
     }
-
-    // If file not found or error, return 404
-    console.log(styleText('redBright', `404:  Not Found → '${filepath}'`));
-    return new Response('Not Found', { status: 404 });
   }
 });
 
 console.log('');
 console.log(styleText(['blue', 'bold'], `Bun v${Bun.version}`));
-console.log(styleText('cyanBright', `Serving:    ['docs/*', 'dist/*']`));
+console.log(styleText('cyanBright', `Serving:    docs/*, dist/*`));
 console.log(styleText('cyanBright', `Listening:  ${server.url}`));
 console.log(styleText(['whiteBright', 'bold'], `Ctrl-C to stop`));
 console.log('');
