@@ -1326,9 +1326,7 @@
       "matchNames": [
         "circle k canada",
         "mac's",
-        "mac's convenience stores",
-        "ok",
-        "ok-mart"
+        "mac's convenience stores"
       ],
       "tags": {
         "brand": "Circle K",
@@ -1367,6 +1365,18 @@
         "brand": "Clark's Pump-N-Shop",
         "brand:wikidata": "Q65118218",
         "name": "Clark's Pump-N-Shop",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "Claro",
+      "id": "claro-07a460",
+      "locationSet": {"include": ["ch"]},
+      "matchNames": ["claro fair trade"],
+      "tags": {
+        "brand": "Claro",
+        "brand:wikidata": "Q3679155",
+        "name": "Claro",
         "shop": "convenience"
       }
     },
@@ -2506,6 +2516,16 @@
       }
     },
     {
+      "displayName": "GOmart",
+      "id": "gomart-9d5235",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "brand": "GOmart",
+        "name": "GOmart",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Gomex",
       "id": "gomex-3015fb",
       "locationSet": {"include": ["rs"]},
@@ -3360,6 +3380,7 @@
       "displayName": "Londis (Ireland)",
       "id": "londis-cb4625",
       "locationSet": {"include": ["ie"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Londis",
         "brand:wikidata": "Q21015800",
@@ -3371,6 +3392,7 @@
       "displayName": "Londis (UK)",
       "id": "londis-232829",
       "locationSet": {"include": ["gb"]},
+      "preserveTags": ["^name"],
       "tags": {
         "brand": "Londis",
         "brand:wikidata": "Q21008564",
@@ -4089,8 +4111,10 @@
     },
     {
       "displayName": "My Auchan",
-      "id": "myauchan-f3ab02",
-      "locationSet": {"include": ["fx", "pt"]},
+      "id": "myauchan-5dd5a6",
+      "locationSet": {
+        "include": ["fx", "pt", "ro"]
+      },
       "matchTags": ["shop/supermarket"],
       "tags": {
         "brand": "My Auchan",
@@ -5216,8 +5240,19 @@
     },
     {
       "displayName": "Shoprite Mini",
-      "id": "shopritemini-c7b713",
-      "locationSet": {"include": ["za"]},
+      "id": "shopritemini-65248a",
+      "locationSet": {
+        "include": [
+          "ao",
+          "bw",
+          "ls",
+          "mz",
+          "na",
+          "sz",
+          "za",
+          "zm"
+        ]
+      },
       "tags": {
         "brand": "Shoprite Mini",
         "brand:wikidata": "Q1857639",
@@ -6932,6 +6967,17 @@
       }
     },
     {
+      "displayName": "КварталМаг",
+      "id": "e93bd8-854be4",
+      "locationSet": {"include": ["bg"]},
+      "tags": {
+        "brand": "КварталМаг",
+        "brand:wikidata": "Q136378283",
+        "name": "КварталМаг",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "Квартет вкусов",
       "id": "8a217e-e33fbc",
       "locationSet": {"include": ["ru"]},
@@ -8585,6 +8631,29 @@
       }
     },
     {
+      "displayName": "新力有家",
+      "id": "uhome-9729f7",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "matchNames": ["有家便利店"],
+      "tags": {
+        "brand": "新力有家",
+        "brand:en": "U-Home",
+        "brand:wikidata": "Q136192169",
+        "brand:zh": "新力有家",
+        "brand:zh-Hans": "新力有家",
+        "brand:zh-Hant": "新力有家",
+        "name": "新力有家",
+        "name:en": "U-Home",
+        "name:zh": "新力有家",
+        "name:zh-Hans": "新力有家",
+        "name:zh-Hant": "新力有家",
+        "shop": "convenience"
+      }
+    },
+    {
       "displayName": "易客来",
       "id": "intolife-da9ca7",
       "locationSet": {"include": ["cn"]},
@@ -8650,17 +8719,23 @@
     },
     {
       "displayName": "罗森",
-      "id": "lawson-da9ca7",
-      "locationSet": {"include": ["cn"]},
+      "id": "lawson-9729f7",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
       "tags": {
         "brand": "罗森",
-        "brand:en": "LAWSON",
+        "brand:en": "Lawson",
         "brand:wikidata": "Q1557223",
         "brand:zh": "罗森",
+        "brand:zh-Hans": "罗森",
+        "brand:zh-Hant": "羅森",
         "name": "罗森",
         "name:en": "Lawson",
         "name:zh": "罗森",
-        "operator": "罗森（中国）投资有限公司",
+        "name:zh-Hans": "罗森",
+        "name:zh-Hant": "羅森",
         "shop": "convenience"
       }
     },
@@ -8712,16 +8787,45 @@
     },
     {
       "displayName": "蝦皮店到店",
-      "id": "shopeexpress-aa89a7",
+      "id": "spxexpress-aa89a7",
       "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "shopee express",
+        "shopee xpress",
+        "spx",
+        "蝦皮門市"
+      ],
+      "note": "use `amenity=parcel_locker` for unmanned stores",
       "tags": {
         "brand": "蝦皮店到店",
-        "brand:en": "Shopee Xpress",
+        "brand:en": "SPX Express",
         "brand:wikidata": "Q109676747",
         "brand:zh": "蝦皮店到店",
         "name": "蝦皮店到店",
-        "name:en": "Shopee Xpress",
+        "name:en": "SPX Express",
         "name:zh": "蝦皮店到店",
+        "name:zh-Hant": "蝦皮店到店",
+        "shop": "convenience"
+      }
+    },
+    {
+      "displayName": "邻几",
+      "id": "goodspot-9729f7",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "tags": {
+        "brand": "邻几",
+        "brand:en": "Good Spot",
+        "brand:wikidata": "Q136192152",
+        "brand:zh-Hans": "邻几",
+        "brand:zh-Hant": "鄰幾",
+        "name": "邻几",
+        "name:en": "Good Spot",
+        "name:zh": "邻几",
+        "name:zh-Hans": "邻几",
+        "name:zh-Hant": "鄰幾",
         "shop": "convenience"
       }
     },

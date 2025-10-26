@@ -414,7 +414,6 @@
       },
       "tags": {
         "network": "ZTM Warszawa",
-        "network:metro": "Metro Warszawskie",
         "network:wikidata": "Q11777882",
         "operator": "Metro Warszawskie",
         "route": "subway"
@@ -864,21 +863,6 @@
       }
     },
     {
-      "displayName": "Toronto subway",
-      "id": "torontosubway-0ff3e0",
-      "locationSet": {
-        "include": ["ca-on.geojson"]
-      },
-      "tags": {
-        "network": "Toronto subway",
-        "network:wikidata": "Q20379",
-        "operator": "Toronto Transit Commission",
-        "operator:short": "TTC",
-        "operator:wikidata": "Q17978",
-        "route": "subway"
-      }
-    },
-    {
       "displayName": "TRAM Metropolità d'Alacant",
       "id": "trammetropolitadalacant-120cc8",
       "locationSet": {
@@ -911,15 +895,36 @@
       }
     },
     {
+      "displayName": "TTC",
+      "id": "ttc-0ff3e0",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "matchNames": [
+        "toronto subway",
+        "ttc subway"
+      ],
+      "tags": {
+        "network": "TTC",
+        "network:wikidata": "Q6612865",
+        "operator": "Toronto Transit Commission",
+        "operator:short": "TTC",
+        "operator:wikidata": "Q17978",
+        "route": "subway"
+      }
+    },
+    {
       "displayName": "U-Bahn Wien",
-      "id": "ubahnwien-212ff1",
+      "id": "vor-212ff1",
       "locationSet": {
         "include": ["at-9.geojson"]
       },
+      "matchNames": ["u-bahn wien"],
       "tags": {
-        "network": "U-Bahn Wien",
-        "network:wikidata": "Q209400",
+        "network": "VOR",
+        "network:wikidata": "Q2516485",
         "operator": "Wiener Linien",
+        "operator:short": "WL",
         "operator:wikidata": "Q668849",
         "route": "subway"
       }

@@ -2353,12 +2353,36 @@
       }
     },
     {
-      "displayName": "BlaBlaBus",
-      "id": "blablabus-add5eb",
-      "locationSet": {"include": ["fx"]},
-      "matchNames": ["ouibus"],
+      "displayName": "BlaBlaCar Bus",
+      "id": "blablacarbus-6926f5",
+      "locationSet": {
+        "include": [
+          "at",
+          "be",
+          "ch",
+          "cz",
+          "de",
+          "es",
+          "fx",
+          "gb",
+          "hr",
+          "hu",
+          "it",
+          "lu",
+          "nl",
+          "pt",
+          "si",
+          "sk"
+        ]
+      },
+      "matchNames": [
+        "blablabus",
+        "blablacar",
+        "idbus",
+        "ouibus"
+      ],
       "tags": {
-        "network": "BlaBlaBus",
+        "network": "BlaBlaCar Bus",
         "network:wikidata": "Q1653380",
         "route": "bus"
       }
@@ -3093,6 +3117,19 @@
         "network": "CABS",
         "network:wikidata": "Q106548110",
         "operator": "Campus Area Bus Service",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Calgary Transit",
+      "id": "calgarytransit-286824",
+      "locationSet": {
+        "include": ["ca-ab.geojson"]
+      },
+      "tags": {
+        "network": "Calgary Transit",
+        "network:short": "CT",
+        "network:wikidata": "Q143630",
         "route": "bus"
       }
     },
@@ -4892,18 +4929,6 @@
       }
     },
     {
-      "displayName": "CT",
-      "id": "ct-286824",
-      "locationSet": {
-        "include": ["ca-ab.geojson"]
-      },
-      "tags": {
-        "network": "CT",
-        "network:wikidata": "Q143630",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "CT Bus",
       "id": "ctbus-9c403a",
       "locationSet": {"include": ["ro"]},
@@ -5188,6 +5213,19 @@
       "tags": {
         "network": "DDOT",
         "network:wikidata": "Q5265906",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Decatur Public Transit System",
+      "id": "decaturpublictransitsystem-582e4c",
+      "locationSet": {
+        "include": [[-88.9523, 39.84475]]
+      },
+      "tags": {
+        "network": "Decatur Public Transit System",
+        "network:short": "DPTS",
+        "network:wikidata": "Q5248803",
         "route": "bus"
       }
     },
@@ -11170,10 +11208,14 @@
     },
     {
       "displayName": "MHD Banská Bystrica",
-      "id": "mhdbanskabystrica-a45453",
-      "locationSet": {"include": ["001"]},
+      "id": "mhdbanskabystrica-51c51c",
+      "locationSet": {"include": ["sk"]},
       "tags": {
         "network": "MHD Banská Bystrica",
+        "network:wikidata": "Q31196428",
+        "operator": "Slovenská autobusová doprava Zvolen",
+        "operator:short": "SAD Zvolen",
+        "operator:wikidata": "Q135071010",
         "route": "bus"
       }
     },
@@ -11206,13 +11248,10 @@
     },
     {
       "displayName": "MHD DPmML",
-      "id": "mhddpmml-ea0cc0",
-      "locationSet": {
-        "include": ["cz-42.geojson"]
-      },
+      "id": "mhddpmml-a45453",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "network": "MHD DPmML",
-        "network:wikidata": "Q11822093",
         "route": "bus"
       }
     },
@@ -11351,6 +11390,21 @@
         "network": "MHD Michalovce",
         "network:wikidata": "Q131400264",
         "operator": "DZS – MK TRANS",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "MHD Most a Litvínov",
+      "id": "mhdmostalitvinov-ea0cc0",
+      "locationSet": {
+        "include": ["cz-42.geojson"]
+      },
+      "tags": {
+        "network": "MHD Most a Litvínov",
+        "network:wikidata": "Q131560636",
+        "operator": "Dopravní podnik měst Mostu a Litvínova",
+        "operator:short": "DPmML",
+        "operator:wikidata": "Q11822093",
         "route": "bus"
       }
     },
@@ -14994,9 +15048,9 @@
     },
     {
       "displayName": "RegioJet",
-      "id": "regiojet-f8a7c1",
+      "id": "regiojet-89746d",
       "locationSet": {
-        "include": ["be", "cz", "lu"]
+        "include": ["be", "cz", "lu", "pl"]
       },
       "tags": {
         "network": "RegioJet",
@@ -16053,6 +16107,19 @@
       }
     },
     {
+      "displayName": "Ryde Racine",
+      "id": "ryderacine-28c67e",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "network": "Ryde Racine",
+        "network:wikidata": "Q4883698",
+        "operator": "City of Racine",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "S.T.P.T.",
       "id": "stpt-9c403a",
       "locationSet": {"include": ["ro"]},
@@ -16668,8 +16735,10 @@
       "locationSet": {
         "include": ["es-v.geojson"]
       },
+      "matchNames": ["suv"],
       "tags": {
         "network": "Servei Urbà de Viatgers",
+        "network:wikidata": "Q136088674",
         "operator": "Autos Vallduxense",
         "operator:short": "AVSA",
         "route": "bus"
@@ -20126,11 +20195,15 @@
     },
     {
       "displayName": "Transport Públic Generalitat Valenciana",
-      "id": "transportpublicgeneralitatvalenciana-9c427e",
+      "id": "transportpublicgeneralitatvalenciana-28bf89",
       "locationSet": {
         "include": [
           "es-a.geojson",
+          "es-ab.geojson",
           "es-cs.geojson",
+          "es-cu.geojson",
+          "es-mu.geojson",
+          "es-te.geojson",
           "es-v.geojson"
         ]
       },
@@ -20159,7 +20232,8 @@
       },
       "tags": {
         "network": "Transport Urbà de Castelló",
-        "network:short": "TUCS",
+        "network:short": "TUCs",
+        "network:wikidata": "Q10747168",
         "route": "bus"
       }
     },
@@ -23532,6 +23606,18 @@
       }
     },
     {
+      "displayName": "Zappalà & Torrisi",
+      "id": "zappalaandtorrisi-456b59",
+      "locationSet": {
+        "include": [[15.15757, 37.62833]]
+      },
+      "tags": {
+        "network": "Zappalà & Torrisi",
+        "network:wikidata": "Q136332646",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "Zarząd Transportu Metropolitalnego",
       "id": "zarzadtransportumetropolitalnego-9340cc",
       "locationSet": {"include": ["pl"]},
@@ -24969,6 +25055,7 @@
       "tags": {
         "network": "서울특별시 시내버스",
         "network:ko": "서울특별시 시내버스",
+        "network:wikidata": "Q3724007",
         "route": "bus"
       }
     },
@@ -24979,6 +25066,7 @@
       "tags": {
         "network": "익산시 시내버스",
         "network:ko": "익산시 시내버스",
+        "network:wikidata": "Q12613314",
         "route": "bus"
       }
     },
@@ -24995,12 +25083,22 @@
     },
     {
       "displayName": "천안시",
-      "id": "bf6076-776068",
-      "locationSet": {"include": ["kr"]},
-      "note": "This is city name",
+      "id": "bf6076-a45453",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "network": "천안시",
         "network:ko": "천안시",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "천안시 시내버스",
+      "id": "8d3e9f-776068",
+      "locationSet": {"include": ["kr"]},
+      "tags": {
+        "network": "천안시 시내버스",
+        "network:ko": "천안시 시내버스",
+        "network:wikidata": "Q12618920",
         "route": "bus"
       }
     },
@@ -25727,6 +25825,7 @@
       "id": "cityflyer-5398e8",
       "locationSet": {"include": ["hk"]},
       "tags": {
+        "colour": "#cc0000",
         "network": "城巴機場快線 Cityflyer",
         "network:en": "Cityflyer",
         "network:wikidata": "Q5124066",

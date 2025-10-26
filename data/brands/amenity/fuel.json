@@ -1631,7 +1631,7 @@
     },
     {
       "displayName": "Costco Gasoline",
-      "id": "costcogasoline-10ec5c",
+      "id": "costcogasoline-53e77b",
       "locationSet": {
         "include": [
           "au",
@@ -1645,7 +1645,8 @@
           "nz",
           "se",
           "us"
-        ]
+        ],
+        "exclude": ["ca-qc.geojson"]
       },
       "matchNames": [
         "costco gas",
@@ -2288,6 +2289,23 @@
         "brand": "Essar",
         "brand:wikidata": "Q5399372",
         "name": "Essar"
+      }
+    },
+    {
+      "displayName": "Essence Costco",
+      "id": "essencecostco-6b2bc8",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "matchNames": [
+        "costco gas",
+        "costco wholesale"
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Costco",
+        "brand:wikidata": "Q715583",
+        "name": "Essence Costco"
       }
     },
     {
@@ -4959,6 +4977,17 @@
       }
     },
     {
+      "displayName": "Petromoc",
+      "id": "petromoc-f5ed64",
+      "locationSet": {"include": ["mz"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Petromoc",
+        "brand:wikidata": "Q136375693",
+        "name": "Petromoc"
+      }
+    },
+    {
       "displayName": "Petron",
       "id": "petron-21bb35",
       "locationSet": {"include": ["my", "ph"]},
@@ -6236,6 +6265,17 @@
       }
     },
     {
+      "displayName": "Super Save Gas",
+      "id": "supersavegas-04874d",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Super Save Gas",
+        "brand:wikidata": "Q136397758",
+        "name": "Super Save Gas"
+      }
+    },
+    {
       "displayName": "Super U",
       "id": "superu-3772a0",
       "locationSet": {"include": ["fr"]},
@@ -6969,36 +7009,13 @@
       }
     },
     {
-      "displayName": "uSmile",
-      "id": "usmile-6d1a35",
-      "locationSet": {"include": ["hk", "mo"]},
+      "displayName": "uSmile 昆仑好",
+      "id": "c6c64b-b3d110",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "fuel",
-        "brand": "uSmile",
-        "brand:en": "uSmile",
-        "brand:wikidata": "Q66480830",
-        "brand:zh": "uSmile",
-        "name": "uSmile",
-        "name:en": "uSmile"
-      }
-    },
-    {
-      "displayName": "uSmile 昆仑好客",
-      "id": "usmile-e451ce",
-      "locationSet": {
-        "include": ["cn"],
-        "exclude": ["hk", "mo"]
-      },
-      "matchNames": ["usmile 便利店", "昆仑好"],
-      "tags": {
-        "amenity": "fuel",
-        "brand": "uSmile 昆仑好客",
-        "brand:en": "uSmile",
-        "brand:wikidata": "Q66480830",
-        "brand:zh": "昆仑好客",
-        "name": "uSmile 昆仑好",
-        "name:en": "uSmile",
-        "name:zh": "昆仑好客"
+        "brand": "uSmile 昆仑好",
+        "name": "uSmile 昆仑好"
       }
     },
     {
@@ -7456,6 +7473,21 @@
         "brand": "БРСМ-Нафта",
         "brand:wikidata": "Q56356523",
         "name": "БРСМ-Нафта"
+      }
+    },
+    {
+      "displayName": "Газпром Нефть",
+      "id": "gazpromneft-14ecc6",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Газпром Нефть",
+        "brand:en": "Gazprom Neft",
+        "brand:ru": "Газпром Нефть",
+        "brand:wikidata": "Q1461799",
+        "name": "Газпром Нефть",
+        "name:en": "Gazprom Neft",
+        "name:ru": "Газпром Нефть"
       }
     },
     {
@@ -8719,6 +8751,8 @@
         "exclude": ["hk"]
       },
       "matchNames": [
+        "usmile",
+        "usmile 昆仑好客",
         "中国石油 petrochina",
         "中国石油加油站",
         "中油",
@@ -8732,9 +8766,13 @@
         "brand:en": "PetroChina",
         "brand:wikidata": "Q503182",
         "brand:zh": "中国石油",
+        "brand:zh-Hans": "中国石油",
+        "brand:zh-Hant": "中國石油",
         "name": "中国石油",
         "name:en": "PetroChina",
-        "name:zh": "中国石油"
+        "name:zh": "中国石油",
+        "name:zh-Hans": "中国石油",
+        "name:zh-Hant": "中國石油"
       }
     },
     {

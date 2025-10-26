@@ -1,16 +1,17 @@
-import { after, before, test } from 'node:test';
-import { strict as assert } from 'node:assert';
-import { stemmer } from '../index.mjs';
+import { describe, it } from 'bun:test';
+import { strict as assert } from 'bun:assert';
+import { stemmer } from '../src/nsi.mjs';
 
-test('stemmer', async t => {
 
-  await t.test('removes noise', t => {
+describe('stemmer', () => {
+
+  it('removes noise', () => {
     assert.equal(stemmer('First National Bank'), 'firstnational');
     assert.equal(stemmer('Shell Gas'), 'shell');
     assert.equal(stemmer('Verizon Wireless'), 'verizon');
   });
 
-  await t.test('returns empty string if no input', t => {
+  it('returns empty string if no input', () => {
     assert.equal(stemmer(), '');
     assert.equal(stemmer(null), '');
     assert.equal(stemmer({}), '');
