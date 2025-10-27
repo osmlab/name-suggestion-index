@@ -87,10 +87,9 @@
   },
   "scripts": {
     "all": "run-s clean lint build test",
-    "build": "run-s build:js build:features build:index",
+    "build": "run-p build:js build:json",
     "build:js": "bun ./scripts/build_js.ts",
-    "build:features": "bun ./scripts/build_features.ts",
-    "build:index": "bun ./scripts/build_index.js",
+    "build:json": "bun ./scripts/build_json.ts",
     "clean": "bun ./scripts/clean.ts",
     "dist": "run-s dist:version dist:files",
     "dist:files": "bun ./scripts/dist_files.js",

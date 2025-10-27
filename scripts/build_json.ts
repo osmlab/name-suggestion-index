@@ -1,10 +1,17 @@
 // External
+//import geojsonArea from '@mapbox/geojson-area';
+//import geojsonBounds from 'geojson-bounds';
+import geojsonPrecision from 'geojson-precision';
+import geojsonRewind from '@mapbox/geojson-rewind';
 import { Glob } from 'bun';
+import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
+import path from 'node:path';
 import safeRegex from 'safe-regex';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
+import { Validator } from 'jsonschema';
 const withLocale = localeCompare('en-US');
 
 // Internal
@@ -18,40 +25,181 @@ import { validate } from '../lib/validate.js';
 import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
 const matcher = new Matcher();
 
+// JSON
 const treesJSON = await Bun.file('./config/trees.json').json();
 const trees = treesJSON.trees;
+const validator = new Validator();
 
-// We use LocationConflation for validating and processing the locationSets
-const featureCollectionJSON = await Bun.file('./dist/featureCollection.json').json();
-const loco = new LocationConflation(featureCollectionJSON);
-
-console.log(styleText('blue', '-'.repeat(70)));
-console.log(styleText('blue', '🗂   Build index'));
-console.log(styleText('blue', '-'.repeat(70)));
-
-let _config = {};
-await loadConfig();
-
-let _cache = {};
-await loadIndex();
-
-checkItems('brands');
-checkItems('flags');
-checkItems('operators');
-checkItems('transit');
-
+const _config = {};
+const _nsi = {};
+const _collected = {};
+const _discard = {};
+const _keep = {};
 let _currCollectionDate = 0;
-let _collected = {};
-let _discard = {};
-let _keep = {};
-await loadCollected();
-await filterCollected();
+let _loco = null;
 
-mergeItems();
+await buildAll();
 
-await saveIndex();
-console.log('');
 
+async function buildAll() {
+  // GeoJSON features
+  console.log('');
+  console.log(styleText('blue', '-'.repeat(70)));
+  console.log(styleText('blue', 'GeoJSON features'));
+  console.log(styleText('blue', '-'.repeat(70)));
+
+  const featureCollection = await buildFeatureCollection();
+  // We use LocationConflation for validating and processing the locationSets
+  _loco = new LocationConflation(featureCollection);
+
+
+  // NSI Data
+  console.log('');
+  console.log(styleText('blue', '-'.repeat(70)));
+  console.log(styleText('blue', 'NSI Data'));
+  console.log(styleText('blue', '-'.repeat(70)));
+
+  await loadConfig();
+  await loadIndex();
+
+  console.log('');
+  console.log('🏗   ' + styleText('yellow', `Running checks…`));
+  checkItems('brands');
+  checkItems('flags');
+  checkItems('operators');
+  checkItems('transit');
+
+  console.log('');
+  await loadCollected();
+  await filterCollected();
+
+  console.log('');
+  mergeItems();
+
+  console.log('');
+  await saveIndex();
+}
+
+
+//
+//
+async function buildFeatureCollection() {
+  const START = '🏗   ' + styleText('yellow', 'Building features...');
+  const END = '👍  ' + styleText('green', 'features built');
+  console.log(START);
+  console.time(END);
+
+  const features = await loadFeatures();
+  const featureCollection = { type: 'FeatureCollection', features: features };
+  const stringified = stringify(featureCollection, { maxLength: 9999 }) + '\n';
+  await writeFileWithMeta('./dist/featureCollection.json', stringified);
+
+  console.timeEnd(END);
+  return featureCollection;
+}
+
+
+// Gather feature files from `./features/**/*.geojson`
+async function loadFeatures() {
+  const featureSchemaJSON = await Bun.file('./schema/feature.json').json();
+  const geojsonSchemaJSON = await Bun.file('./schema/geojson.json').json();
+  validator.addSchema(geojsonSchemaJSON, 'http://json.schemastore.org/geojson.json');
+
+  const features = [];
+  const seen = new Map();   // Map<id, filepath>
+
+  const glob = new Glob('./features/**/*');
+  for (const filepath of glob.scanSync()) {
+    if (/\.md$/i.test(filepath)) continue;   // ignore markdown files
+    if (!/\.geojson$/.test(filepath)) {
+      console.error(styleText('red', `Error - file should have a .geojson extension:`));
+      console.error(styleText('yellow', '  ' + filepath));
+      process.exit(1);
+    }
+
+    const contents = await Bun.file(filepath).text();
+    let parsed;
+    try {
+      parsed = JSON5.parse(contents);
+    } catch (jsonParseError) {
+      console.error(styleText('red', `Error - ${jsonParseError.message} in:`));
+      console.error(styleText('yellow', '  ' + filepath));
+      process.exit(1);
+    }
+
+    let feature = geojsonPrecision(geojsonRewind(parsed, true), 5);
+    let fc = feature.features;
+
+    // A FeatureCollection with a single feature inside (geojson.io likes to make these).
+    if (feature.type === 'FeatureCollection' && Array.isArray(fc) && fc.length === 1) {
+      feature = fc[0];
+    }
+
+//    // Warn if this feature is so small it would better be represented as a circular area.
+//    let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
+//    area = Number(area.toFixed(2));
+//    if (area < 2000) {
+//      const extent = geojsonBounds.extent(feature);
+//      const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
+//      const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
+//      console.warn('');
+//      console.warn(styleText('yellow', `Warning for ` + styleText('yellow', filepath) + `:`));
+//      console.warn(styleText('yellow', `GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
+//    }
+
+    // use the filename as the feature.id
+    const id = path.basename(filepath).toLowerCase();
+    feature.id = id;
+
+    // sort properties
+    let obj = {};
+    if (feature.type)       { obj.type = feature.type; }
+    if (feature.id)         { obj.id = feature.id; }
+    if (feature.properties) { obj.properties = feature.properties; }
+
+    // validate that the feature has a suitable geometry
+    if (feature.geometry?.type !== 'Polygon' && feature.geometry?.type !== 'MultiPolygon') {
+      console.error(styleText('red', 'Error - Feature type must be "Polygon" or "MultiPolygon" in:'));
+      console.error('  ' + styleText('yellow', file));
+      process.exit(1);
+    }
+    if (!feature.geometry?.coordinates) {
+      console.error(styleText('red', 'Error - Feature missing coordinates in:'));
+      console.error('  ' + styleText('yellow', file));
+      process.exit(1);
+    }
+    obj.geometry = {
+      type: feature.geometry.type,
+      coordinates: feature.geometry.coordinates
+    };
+
+    feature = obj;
+
+    // check JSON schema
+    validate(validator, filepath, feature, featureSchemaJSON);
+
+    // prettify file
+    const pretty = stringify(feature, { maxLength: 100 }) + '\n';
+    if (pretty !== contents) {
+      await Bun.write(filepath, pretty);
+    }
+
+    if (seen.has(id)) {
+      console.error(styleText('red', 'Error - Duplicate filenames: ') + styleText('yellow', id));
+      console.error(styleText('yellow', '  ' + seen.get(id)));
+      console.error(styleText('yellow', '  ' + filepath));
+      process.exit(1);
+    }
+    features.push(feature);
+    seen.set(id, filepath);
+  }
+
+  // sort features by id, see: 800ca866f
+  features.sort((a, b) => withLocale(a.id, b.id));
+
+  console.log(`🧩  features:\tLoaded ${features.length} features`);
+  return features;
+}
 
 
 //
@@ -64,7 +212,7 @@ async function loadConfig() {
     const data = await Bun.file(filepath).json();
 
     // check JSON schema
-    validate(filepath, data, schema);
+    validate(validator, filepath, data, schema);
 
     // check regexes
     if (which === 'trees') {
@@ -172,7 +320,6 @@ async function loadCollected() {
 async function filterCollected() {
   const START = '🏗   ' + styleText('yellow', `Filtering values collected from OSM…`);
   const END = '👍  ' + styleText('green', `done filtering`);
-  console.log('');
   console.log(START);
   console.time(END);
   let shownSparkle = false;
@@ -229,7 +376,7 @@ async function filterCollected() {
       const [kv, n] = kvn.split('|', 2);  // kvn = "key/value|name"
       const tkv = `${t}/${kv}`;
       const file = `./data/${tkv}.json`;
-      const category = _cache.path[tkv];
+      const category = _nsi.path[tkv];
       if (!category) continue;   // not a category we track in the index, skip
 
       const categoryProps = category.properties || {};
@@ -271,17 +418,16 @@ async function filterCollected() {
 async function loadIndex() {
   const START = '🏗   ' + styleText('yellow', `Loading index files…`);
   const END = '👍  ' + styleText('green', `done loading`);
-  console.log('');
   console.log(START);
   console.time(END);
 
-  await fileTree.read(_cache, loco);
-  fileTree.expandTemplates(_cache, loco);
+  await fileTree.read(_nsi, _loco);
+  fileTree.expandTemplates(_nsi, _loco);
   console.timeEnd(END);
 
   const MATCH_INDEX_END = '👍  ' + styleText('green', `built match index`);
   console.time(MATCH_INDEX_END);
-  matcher.buildMatchIndex(_cache.path);
+  matcher.buildMatchIndex(_nsi.path);
   console.timeEnd(MATCH_INDEX_END);
 
   let warnMatched = matcher.getWarnings();
@@ -300,7 +446,7 @@ async function loadIndex() {
 //  // We don't need a location index for this script, but it's useful to know.
 //  const LOCATION_INDEX_END = '👍  ' + styleText('green', `built location index`);
 //  console.time(LOCATION_INDEX_END);
-//  matcher.buildLocationIndex(_cache.path, loco);
+//  matcher.buildLocationIndex(_nsi.path, _loco);
 //  console.timeEnd(LOCATION_INDEX_END);
 }
 
@@ -311,11 +457,10 @@ async function loadIndex() {
 async function saveIndex() {
   const START = '🏗   ' + styleText('yellow', `Saving index files…`);
   const END = '👍  ' + styleText('green', `done saving`);
-  console.log('');
   console.log(START);
   console.time(END);
 
-  await fileTree.write(_cache);
+  await fileTree.write(_nsi);
   console.timeEnd(END);
 }
 
@@ -334,7 +479,6 @@ function mergeItems() {
 
   const START = '🏗   ' + styleText('yellow', `Merging items…`);
   const END = '👍  ' + styleText('green', `done merging`);
-  console.log('');
   console.log(START);
   console.time(END);
 
@@ -395,11 +539,11 @@ function mergeItems() {
       }
 
       // Insert into index..
-      if (!_cache.path[tkv]) {
-        _cache.path[tkv] = { properties: { path: tkv }, items: [], templates: [] };
+      if (!_nsi.path[tkv]) {
+        _nsi.path[tkv] = { properties: { path: tkv }, items: [], templates: [] };
       }
 
-      _cache.path[tkv].items.push(item);
+      _nsi.path[tkv].items.push(item);
       totalNew++;
     });
 
@@ -407,9 +551,9 @@ function mergeItems() {
     //
     // UPDATE - Check all items in the tree for expected tags..
     //
-    const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === t);
+    const paths = Object.keys(_nsi.path).filter(tkv => tkv.split('/')[0] === t);
     paths.forEach(tkv => {
-      let items = _cache.path[tkv].items;
+      let items = _nsi.path[tkv].items;
       if (!Array.isArray(items) || !items.length) return;
 
       const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
@@ -548,7 +692,7 @@ function mergeItems() {
         });
 
         // regenerate id here, in case the locationSet has changed
-        const locationID = loco.validateLocationSet(item.locationSet).id;
+        const locationID = _loco.validateLocationSet(item.locationSet).id;
         item.id = idgen(item, tkv, locationID);
       });
     });
@@ -590,9 +734,6 @@ function mergeItems() {
 // Checks all the items for several kinds of issues
 //
 function checkItems(t) {
-  console.log('');
-  console.log('🏗   ' + styleText('yellow', `Checking ${t}…`));
-
   const tree = _config.trees[t];
   const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
 
@@ -605,11 +746,11 @@ function checkItems(t) {
   let total = 0;      // total items
   let totalWd = 0;    // total items with wikidata
 
-  const paths = Object.keys(_cache.path).filter(tkv => tkv.split('/')[0] === t);
+  const paths = Object.keys(_nsi.path).filter(tkv => tkv.split('/')[0] === t);
   const display = (val) => `${val.displayName} (${val.id})`;
 
   paths.forEach(tkv => {
-    const items = _cache.path[tkv].items;
+    const items = _nsi.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
     const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
@@ -696,7 +837,7 @@ function checkItems(t) {
   //     const name = tags.name || tags.brand;
   //     const stem = stemmer(name) || name;
   //     const itemwd = tags[tree.mainTag];
-  //     const itemls = loco.validateLocationSet(item.locationSet).id;
+  //     const itemls = _loco.validateLocationSet(item.locationSet).id;
 
   //     if (!seenName[stem]) seenName[stem] = new Set();
   //     seenName[stem].add(item);
@@ -705,7 +846,7 @@ function checkItems(t) {
   //       seenName[stem].forEach(other => {
   //         if (other.id === item.id) return;   // skip self
   //         const otherwd = other.tags[tree.mainTag];
-  //         const otherls = loco.validateLocationSet(other.locationSet).id;
+  //         const otherls = _loco.validateLocationSet(other.locationSet).id;
 
   //         // pick one of the items without a wikidata tag to be the "duplicate"
   //         if (!itemwd && (itemls === otherls || itemls === '+[Q2]')) {
