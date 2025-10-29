@@ -2,7 +2,7 @@
 import whichPolygon from 'which-polygon';
 
 // Internal
-import { simplify } from './simplify.js';
+import { simplify } from './simplify.ts';
 
 // JSON
 import matchGroupsJSON from '../config/matchGroups.json' with {type: 'json'};

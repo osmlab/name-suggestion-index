@@ -14,9 +14,9 @@ import wikibaseEdit from 'wikibase-edit';
 const withLocale = localeCompare('en-US');
 
 // Internal
-import { sortObject } from '../lib/sort_object.js';
-import { fileTree } from '../lib/file_tree.js';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
+import { sortObject } from '../lib/sort_object.ts';
+import { fileTree } from '../lib/file_tree.ts';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
 
 // JSON
 const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));

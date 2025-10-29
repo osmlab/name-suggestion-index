@@ -4,7 +4,7 @@ import stringify from '@aitodotai/json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
 
 // Internal
-import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
 
 
 prepublish();

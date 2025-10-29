@@ -11,9 +11,9 @@ import xmlbuilder2 from 'xmlbuilder2';
 const withLocale = localeCompare('en-US');
 
 // Internal
-import { fileTree } from '../lib/file_tree.js';
-import { sortObject } from '../lib/sort_object.js';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
+import { fileTree } from '../lib/file_tree.ts';
+import { sortObject } from '../lib/sort_object.ts';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
 
 // JSON
 const dissolvedJSON = JSON5.parse(fs.readFileSync('dist/dissolved.json', 'utf8'));
@@ -230,7 +230,7 @@ function buildIDPresets() {
     // There are a few exceptions to the name matching regexes.
     // Usually a tag suffix contains a language code like `name:en`, `name:ru`
     // but we want to exclude things like `operator:type`, `name:etymology`, etc..
-    // NOTE: here we intentionally exclude `:wikidata`, in `matcher.js` we do not.
+    // NOTE: here we intentionally exclude `:wikidata`, in `matcher.ts` we do not.
     const notName = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
     let childPresets = new Map();
@@ -323,7 +323,7 @@ function buildIDPresets() {
       }
 
       // Gather search terms - include all primary/alternate names and matchNames
-      // (There is similar code in lib/matcher.js)
+      // (There is similar code in lib/matcher.ts)
       let terms = new Set(item.matchNames || []);
       Object.keys(tags).forEach(osmkey => {
         if (osmkey === 'name') return;      // exclude `name` tag, as iD prioritizes it above `preset.terms` already

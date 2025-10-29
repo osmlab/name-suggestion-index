@@ -1,3 +1,3 @@
-export { Matcher } from '../lib/matcher.js';
-export { simplify } from '../lib/simplify.js';
-export { stemmer } from '../lib/stemmer.js';
+export { Matcher } from '../lib/matcher.ts';
+export { simplify } from '../lib/simplify.ts';
+export { stemmer } from '../lib/stemmer.ts';

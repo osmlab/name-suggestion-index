@@ -2,7 +2,7 @@
 import crypto from 'node:crypto';
 
 // Internal
-import { simplify } from './simplify.js';
+import { simplify } from './simplify.ts';
 
 
 // We want the identifiers to be useable in url strings and other places,

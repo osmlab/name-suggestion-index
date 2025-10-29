@@ -8,9 +8,9 @@ import { Validator } from 'jsonschema';
 const withLocale = localeCompare('en-US');
 
 // Internal
-import { idgen } from './idgen.js';
-import { sortObject } from './sort_object.js';
-import { validate } from './validate.js';
+import { idgen } from './idgen.ts';
+import { sortObject } from './sort_object.ts';
+import { validate } from './validate.ts';
 
 // JSON
 const treesJSON = await Bun.file('./config/trees.json').json();

@@ -15,14 +15,14 @@ import { Validator } from 'jsonschema';
 const withLocale = localeCompare('en-US');
 
 // Internal
-import { fileTree } from '../lib/file_tree.js';
-import { idgen } from '../lib/idgen.js';
-import { Matcher } from '../lib/matcher.js';
-import { simplify } from '../lib/simplify.js';
-import { sortObject } from '../lib/sort_object.js';
-import { stemmer } from '../lib/stemmer.js';
-import { validate } from '../lib/validate.js';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
+import { fileTree } from '../lib/file_tree.ts';
+import { idgen } from '../lib/idgen.ts';
+import { Matcher } from '../lib/matcher.ts';
+import { simplify } from '../lib/simplify.ts';
+import { sortObject } from '../lib/sort_object.ts';
+import { stemmer } from '../lib/stemmer.ts';
+import { validate } from '../lib/validate.ts';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
 const matcher = new Matcher();
 
 // JSON

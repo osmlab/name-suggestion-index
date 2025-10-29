@@ -3,7 +3,7 @@ import diacritics from 'diacritics';
 
 // remove spaces, punctuation, diacritics
 // for punction see https://stackoverflow.com/a/21224179
-export function simplify(str) {
+export function simplify(str?: string): string {
   if (typeof str !== 'string') return '';
 
   return diacritics.remove(

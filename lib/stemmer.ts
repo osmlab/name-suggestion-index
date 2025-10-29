@@ -1,9 +1,9 @@
 // Internal
-import { simplify } from './simplify.js';
+import { simplify } from './simplify.ts';
 
 // Removes noise from the name so that we can compare
 // similar names for catching duplicates.
-export function stemmer(str) {
+export function stemmer(str?: string): string {
   if (typeof str !== 'string') return '';
 
   const noise = [

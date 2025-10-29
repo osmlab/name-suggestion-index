@@ -71,7 +71,7 @@ export default [
     }
   },
   {
-    files: ['lib/matcher.js', 'lib/stemmer.js', 'lib/simplify.js'],
+    files: ['lib/matcher.ts', 'lib/stemmer.ts', 'lib/simplify.ts'],
     languageOptions: {
       globals: {
         ...globals.browser
