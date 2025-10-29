@@ -667,7 +667,8 @@ async function finish() {
       });
     }
 
-    _wikidata[qid] = sortObject(target);
+    // Don't `sortObject` the properties at this level, see #10259
+    // _wikidata[qid] = sortObject(target);
   });
 
   _warnings.sort(sortWarnings);
