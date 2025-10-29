@@ -94,10 +94,11 @@
     "dist": "run-s dist:version dist:files",
     "dist:files": "bun ./scripts/dist_files.js",
     "dist:version": "bun ./scripts/dist_version.js",
+    "lint": "eslint ./lib/*.js ./test/*.js",
+    "prepublishOnly": "bun ./scripts/prepublish.ts",
+    "postpublish": "bun ./scripts/postpublish.ts",
     "start": "bun ./scripts/server.ts",
     "test": "bun test --dots --coverage ./test/*.js",
-    "lint": "eslint ./lib/*.js ./test/*.js",
-    "validate": "bun ./scripts/validate.ts",
     "wikidata": "bun ./scripts/build_wikidata.js"
   },
   "dependencies": {
@@ -134,7 +135,6 @@
     "xmlbuilder2": "^4.0.0"
   },
   "engines": {
-    "bun": ">=1.3.0",
-    "node": ">=22"
+    "bun": ">=1.3.0"
   }
 }
