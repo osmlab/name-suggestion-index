@@ -21,7 +21,7 @@ await Promise.all([
     outdir: './dist/javascript',
     target: 'node',
     format: 'cjs',
-    external: ['*'],
+    external: ['diacritics', 'which-polygon'],
     sourcemap: 'linked',
     naming: 'nsi.c[ext]'  // .cjs
   }),
@@ -31,7 +31,7 @@ await Promise.all([
     outdir: './dist/javascript',
     target: 'node',
     format: 'esm',
-    external: ['*'],
+    external: ['diacritics', 'which-polygon'],
     sourcemap: 'linked',
     naming: 'nsi.m[ext]'  // .mjs
   })
