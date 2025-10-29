@@ -17,7 +17,7 @@ function replaceCDNPath(s: string): string {
 // p2 = cdn url     - removed
 // p3 = dist/file"  - 'dist' + file (if any) + end string
 function replacer(match: string, p1: string, p2: string, p3: string): string {
-  return p1 + p3.replace('.min', '');
+  return p1 + p3;
 }
 
 
@@ -42,7 +42,7 @@ const server = Bun.serve({
       path.shift();            // (remove leading 'docs')
     }
 
-    const filepath = './' + path.join('/');
+    const filepath = './' + path.join('/').replace('.min', '');
     try {
       const file = Bun.file(filepath);
       if (await file.exists()) {
