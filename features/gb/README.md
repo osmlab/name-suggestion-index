@@ -41,6 +41,7 @@ Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.
   - [gb-abe.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-abe.geojson%22%5D%7D&referrer=nsi) - Aberdeenshire
 - Wales
   - [gb-crf.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-crf.geojson%22%5D%7D&referrer=nsi) - City of Cardiff
+  - [gb-swa.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swa.geojson%22%5D%7D&referrer=nsi) - City of Swansea
 
 Areas of Great Britain targeted with a feature not using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 

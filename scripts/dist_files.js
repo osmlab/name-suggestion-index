@@ -1,20 +1,19 @@
 // External
-import chalk from 'chalk';
-import fs from 'node:fs';
-import { globSync } from 'glob';
+import fs from 'bun:fs';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
+import { styleText } from 'bun:util';
 import xmlbuilder2 from 'xmlbuilder2';
 
 const withLocale = localeCompare('en-US');
 
 // Internal
-import { fileTree } from '../lib/file_tree.js';
-import { sortObject } from '../lib/sort_object.js';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.js';
+import { fileTree } from '../lib/file_tree.ts';
+import { sortObject } from '../lib/sort_object.ts';
+import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
 
 // JSON
 const dissolvedJSON = JSON5.parse(fs.readFileSync('dist/dissolved.json', 'utf8'));
@@ -35,12 +34,12 @@ const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollectio
 const loco = new LocationConflation(featureCollectionJSON);
 
 let _cache = {};
-console.log(chalk.blue('-'.repeat(70)));
-console.log(chalk.blue('📦  Build distributable files'));
-console.log(chalk.blue('-'.repeat(70)));
+console.log(styleText('blue', '-'.repeat(70)));
+console.log(styleText('blue', '📦  Build distributable files'));
+console.log(styleText('blue', '-'.repeat(70)));
 
 console.log('');
-console.log('🏗   ' + chalk.yellow(`Loading index files (this might take over a minute, maybe more) ...`));
+console.log('🏗   ' + styleText('yellow', `Loading index files (this might take over a minute, maybe more) ...`));
 fileTree.read(_cache, loco);
 fileTree.expandTemplates(_cache, loco);
 _cache.path = sortObject(_cache.path);
@@ -49,8 +48,8 @@ buildAll();
 
 
 function buildAll() {
-  const START = '🏗   ' + chalk.yellow('Building data...');
-  const END = '👍  ' + chalk.green('data built');
+  const START = '🏗   ' + styleText('yellow', 'Building data...');
+  const END = '👍  ' + styleText('green', 'data built');
 
   console.log('');
   console.log(START);
@@ -101,10 +100,10 @@ function buildAll() {
   buildSitemap();
 
   // minify all .json files under dist/
-  globSync(`dist/**/*.json`).forEach(file => {
+  for (const file of fs.globSync(`dist/**/*.json`)) {
     const minFile = file.replace('.json', '.min.json');
     minifySync(file, minFile);
-  });
+  }
 }
 
 
@@ -231,7 +230,7 @@ function buildIDPresets() {
     // There are a few exceptions to the name matching regexes.
     // Usually a tag suffix contains a language code like `name:en`, `name:ru`
     // but we want to exclude things like `operator:type`, `name:etymology`, etc..
-    // NOTE: here we intentionally exclude `:wikidata`, in `matcher.js` we do not.
+    // NOTE: here we intentionally exclude `:wikidata`, in `matcher.ts` we do not.
     const notName = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
     let childPresets = new Map();
@@ -324,7 +323,7 @@ function buildIDPresets() {
       }
 
       // Gather search terms - include all primary/alternate names and matchNames
-      // (There is similar code in lib/matcher.js)
+      // (There is similar code in lib/matcher.ts)
       let terms = new Set(item.matchNames || []);
       Object.keys(tags).forEach(osmkey => {
         if (osmkey === 'name') return;      // exclude `name` tag, as iD prioritizes it above `preset.terms` already
@@ -401,7 +400,7 @@ function buildIDPresets() {
   });
 
   if ( missing.size > 0 ) {
-    console.log(chalk.yellow(`\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
+    console.log(styleText('yellow', `\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
     missing.forEach(tkv => {
       console.log(`* no iD source preset found for ${tkv}`);
     });
@@ -519,24 +518,30 @@ function buildTaginfo() {
 
   // collect all tag pairs
   let tagPairs = {};
-  _cache.id.forEach(item => {
-    for (const k in item.tags) {
-      let v = item.tags[k];
+  for (const path in _cache.path) {
+    for (const item of _cache.path[path].items) {
+      for (const k in item.tags) {
+        let v = item.tags[k];
 
-      // Don't export every value for many tags this project uses..
-      // ('tag matches any of these')(?!('not followed by :type'))
-      if (/(bic|brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
-        v = '*';
-      }
+        // Don't export every value for many tags this project uses..
+        // ('tag matches any of these')(?!('not followed by :type'))
+        if (/(bic|brand|brewery|country|flag|internet_access:ssid|max_age|min_age|name|network|operator|owner|ref|subject)(?!(:type))/.test(k)) {
+          v = '*';
+        }
 
-      const kv = `${k}/${v}`;
-      tagPairs[kv] = { key: k };
+        const kv = `${k}/${v}`;
+        tagPairs[kv] ||= { key: k };
 
-      if (v !== '*') {
-        tagPairs[kv].value = v;
+        if (v !== '*') {
+          tagPairs[kv].value = v;
+          const [, kPreset, vPreset] = path.split('/');
+          if (k === kPreset && v === vPreset) {
+            tagPairs[kv].doc_url = `${packageJSON.homepage}/?k=${k}&v=${v}`;
+          }
+        }
       }
     }
-  });
+  }
 
   taginfo.tags = Object.keys(tagPairs).sort(withLocale).map(kv => tagPairs[kv]);
   fs.writeFileSync('dist/taginfo.json', stringify(taginfo, { maxLength: 100 }) + '\n');
@@ -584,8 +589,8 @@ function minifySync(inPath, outPath) {
     const minified = JSON.stringify(JSON5.parse(contents));
     fs.writeFileSync(outPath, minified);
   } catch (err) {
-    console.error(chalk.red(`Error - ${err.message} minifying:`));
-    console.error('  ' + chalk.yellow(inPath));
+    console.error(styleText('red', `Error - ${err.message} minifying:`));
+    console.error('  ' + styleText('yellow', inPath));
     process.exit(1);
   }
 }

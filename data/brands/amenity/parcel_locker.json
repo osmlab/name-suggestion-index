@@ -92,7 +92,10 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "parcel_locker",
-        "brand": "Appkomat InPost"
+        "brand": "Appkomat InPost",
+        "brand:wikidata": "Q130375314",
+        "operator": "InPost",
+        "operator:wikidata": "Q3182097"
       }
     },
     {
@@ -189,16 +192,6 @@
         "brand": "Budbee",
         "brand:wikidata": "Q123582538",
         "name": "Budbee"
-      }
-    },
-    {
-      "displayName": "Cainiao",
-      "id": "cainiao-c00268",
-      "locationSet": {"include": ["ru"]},
-      "tags": {
-        "amenity": "parcel_locker",
-        "brand": "Cainiao",
-        "name": "Cainiao"
       }
     },
     {
@@ -628,6 +621,18 @@
       }
     },
     {
+      "displayName": "Lodówkomat InPost",
+      "id": "lodowkomatinpost-ce4e28",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Lodówkomat InPost",
+        "brand:wikidata": "Q126284966",
+        "operator": "InPost",
+        "operator:wikidata": "Q3182097"
+      }
+    },
+    {
       "displayName": "LP Express",
       "id": "lpexpress-e34866",
       "locationSet": {"include": ["lt"]},
@@ -757,17 +762,6 @@
         "brand": "Ozon Box",
         "brand:wikidata": "Q2365235",
         "name": "Ozon Box"
-      }
-    },
-    {
-      "displayName": "Packeta",
-      "id": "zbox-5a86e9",
-      "locationSet": {"include": ["150"]},
-      "tags": {
-        "amenity": "parcel_locker",
-        "brand": "Packeta",
-        "brand:wikidata": "Q67809905",
-        "name": "Z-Box"
       }
     },
     {
@@ -1075,20 +1069,16 @@
       }
     },
     {
-      "displayName": "Smartpost Itella",
-      "id": "smartpost-2f742e",
-      "locationSet": {"include": ["ee", "lt"]},
-      "tags": {
-        "amenity": "parcel_locker",
-        "brand": "Smartpost",
-        "brand:wikidata": "Q7543889",
-        "operator": "Itella"
-      }
-    },
-    {
       "displayName": "SmartPosti",
-      "id": "smartposti-e45cee",
-      "locationSet": {"include": ["lv"]},
+      "id": "smartposti-b4a3f3",
+      "locationSet": {
+        "include": ["ee", "lt", "lv"]
+      },
+      "matchNames": [
+        "itella",
+        "smartpost",
+        "smartpost itella"
+      ],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "SmartPosti",
@@ -1129,6 +1119,16 @@
       }
     },
     {
+      "displayName": "Vinted Go",
+      "id": "vintedgo-6a219a",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Vinted Go",
+        "name": "Vinted Go"
+      }
+    },
+    {
       "displayName": "Yeep",
       "id": "yeep-ad77d0",
       "locationSet": {"include": ["gb"]},
@@ -1138,6 +1138,34 @@
         "brand": "Yeep",
         "brand:wikidata": "Q123421114",
         "name": "Yeep"
+      }
+    },
+    {
+      "displayName": "Z-Box (Packeta)",
+      "id": "zbox-e15ec5",
+      "locationSet": {
+        "include": ["hu", "ro", "sk"]
+      },
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Z-Box",
+        "brand:wikidata": "Q121537464",
+        "name": "Z-Box",
+        "operator": "Packeta",
+        "operator:wikidata": "Q67809905"
+      }
+    },
+    {
+      "displayName": "Z-Box (Zásilkovna)",
+      "id": "zbox-48c9bb",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Z-Box",
+        "brand:wikidata": "Q121537464",
+        "name": "Z-Box",
+        "operator": "Zásilkovna",
+        "operator:wikidata": "Q25454926"
       }
     },
     {
@@ -1275,6 +1303,21 @@
       }
     },
     {
+      "displayName": "Цайняо",
+      "id": "cainiao-c00268",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Цайняо",
+        "brand:en": "Cainiao",
+        "brand:ru": "Цайняо",
+        "brand:wikidata": "Q16947973",
+        "name": "Цайняо",
+        "name:en": "Cainiao",
+        "name:ru": "Цайняо"
+      }
+    },
+    {
       "displayName": "Яндекс.Маркет",
       "id": "ac371d-c00268",
       "locationSet": {"include": ["ru"]},
@@ -1298,6 +1341,23 @@
         "name": "はこぽす",
         "name:en": "Hako Post",
         "name:ja": "はこぽす"
+      }
+    },
+    {
+      "displayName": "ファミロッカー",
+      "id": "familocker-83187c",
+      "locationSet": {"include": ["ja"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "ファミロッカー",
+        "brand:en": "Fami Locker",
+        "brand:ja": "ファミロッカー",
+        "brand:wikidata": "Q135552919",
+        "name": "ファミロッカー",
+        "name:en": "Fami Locker",
+        "name:ja": "ファミロッカー",
+        "parcel_mail_in": "yes",
+        "parcel_pickup": "yes"
       }
     },
     {
@@ -1358,13 +1418,42 @@
       }
     },
     {
+      "displayName": "菜鸟驿站",
+      "id": "cainiao-6dafef",
+      "locationSet": {"include": ["cn"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "菜鸟驿站",
+        "brand:en": "Cainiao",
+        "brand:wikidata": "Q16947973",
+        "brand:zh": "菜鸟驿站",
+        "name": "菜鸟驿站",
+        "name:en": "Cainiao",
+        "name:zh": "菜鸟驿站"
+      }
+    },
+    {
       "displayName": "蝦皮店到店",
-      "id": "f70d5a-89f0e2",
+      "id": "spxexpress-89f0e2",
       "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "shopee express",
+        "shopee xpress",
+        "spx",
+        "蝦皮智取店",
+        "蝦皮門市"
+      ],
+      "note": "use `shop=convenience` for general stores",
       "tags": {
         "amenity": "parcel_locker",
         "brand": "蝦皮店到店",
-        "brand:wikidata": "Q109676747"
+        "brand:en": "SPX Express",
+        "brand:wikidata": "Q109676747",
+        "brand:zh": "蝦皮店到店",
+        "name": "蝦皮店到店",
+        "name:en": "SPX Express",
+        "name:zh": "蝦皮店到店",
+        "name:zh-Hant": "蝦皮店到店"
       }
     },
     {
