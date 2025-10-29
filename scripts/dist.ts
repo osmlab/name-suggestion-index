@@ -396,7 +396,7 @@ async function buildJOSMPresets() {
     .att('author', 'Name Suggestion Index')
     .att('shortdescription', 'Name Suggestion Index')
     .att('description', packageJSON.description)
-    .att('link', 'https://github.com/' + packageJSON.repository)
+    .att('link', 'https://github.com/osmlab/name-suggestion-index')
     .att('version', packageJSON.version);
 
   let topGroup = presets
