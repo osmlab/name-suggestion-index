@@ -1,7 +1,7 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from 'bun:test';
 import { strict as assert } from 'bun:assert';
 import LocationConflation from '@rapideditor/location-conflation';
-import { Matcher } from '../src/nsi.mjs';
+import { Matcher } from '../src/nsi.ts';
 
 const data = await Bun.file('./test/matcher.data.json').json();
 

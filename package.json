@@ -80,16 +80,19 @@
   ],
   "type": "module",
   "exports": {
+    "bun": "./src/nsi.ts",
     "dist/*": "./dist/*",
-    "import": "./dist/javascript/nsi.mjs",
-    "require": "./dist/javascript/nsi.cjs",
-    "browser": "./dist/javascript/nsi.iife.js"
+    "types": "./dist/ts/src/nsi.d.ts",
+    "import": "./dist/js/nsi.mjs",
+    "require": "./dist/js/nsi.cjs",
+    "browser": "./dist/js/nsi.iife.js"
   },
   "scripts": {
     "all": "run-s clean lint build test",
-    "build": "run-p build:js build:json",
+    "build": "run-p build:js build:json build:ts",
     "build:js": "bun ./scripts/build_js.ts",
     "build:json": "bun ./scripts/build_json.ts",
+    "build:ts": "tsc",
     "clean": "bun ./scripts/clean.ts",
     "dist": "run-s dist:version dist:files",
     "dist:files": "bun ./scripts/dist_files.js",

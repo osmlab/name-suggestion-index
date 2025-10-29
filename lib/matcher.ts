@@ -13,8 +13,42 @@ const matchGroups = matchGroupsJSON.matchGroups;
 const trees = treesJSON.trees;
 
 
+type Vec2 = [number, number];
+type Vec3 = [number, number, number];
+type Location = Vec2 | Vec3 | string | number;
+
+interface LocationSet {
+  include?: Array<Location>,
+  exclude?: Array<Location>
+};
+
+interface LocationConflation {
+  validateLocation: (a: Location) => unknown;
+  resolveLocation: (a: Location) => unknown;
+  validateLocationSet: (a: LocationSet) => unknown;
+  resolveLocationSet: (a: LocationSet) => unknown;
+};
+
+type HitType = 'primary' | 'alternate' | 'excludeGeneric' | 'excludeNamed';
+interface Hit {
+  match: HitType;
+  itemID?: string;
+  area?: number;
+  kv?: string;
+  nsimple?: string;
+  pattern?: string;
+};
+
+
 export class Matcher {
-  //
+  private matchIndex;
+  private genericWords = new Map();
+  private itemLocation;
+  private locationSets;
+  private locationIndex;
+  private warnings: Array<string> = [];
+
+
   // `constructor`
   // initialize the genericWords regexes
   constructor() {
@@ -105,7 +139,7 @@ export class Matcher {
   //    …
   // }
   //
-  buildMatchIndex(data) {
+  buildMatchIndex(data: Record<string, any>): void {
     const that = this;
     if (that.matchIndex) return;   // it was built already
     that.matchIndex = new Map();
@@ -248,7 +282,7 @@ export class Matcher {
 
 
     // Insert this item into the matchIndex
-    function insertName(which, t, kv, nsimple, itemID) {
+    function insertName(which: string, t: string, kv: string, nsimple: string, itemID: string) {
       if (!nsimple) {
         that.warnings.push(`Warning: skipping empty ${which} name for item ${t}/${kv}: ${itemID}`);
         return;
@@ -287,7 +321,7 @@ export class Matcher {
     }
 
     // For certain categories we do not want to match generic KV pairs like `building/yes` or `amenity/yes`
-    function skipGenericKVMatches(t, k, v) {
+    function skipGenericKVMatches(t: string, k: string, v: string): boolean {
       return (
         t === 'flags' ||
         t === 'transit' ||
@@ -324,7 +358,7 @@ export class Matcher {
   //    …
   // }
   //
-  buildLocationIndex(data, loco) {
+  buildLocationIndex(data: Record<string, any>, loco: LocationConflation): void {
     const that = this;
     if (that.locationIndex) return;   // it was built already
 
@@ -341,8 +375,9 @@ export class Matcher {
         let resolved;
         try {
           resolved = loco.resolveLocationSet(item.locationSet);   // resolve a feature for this locationSet
-        } catch (err) {
-          console.warn(`buildLocationIndex: ${err.message}`);     // couldn't resolve
+        } catch (err: unknown) {
+          const message = (err instanceof Error) ? err.message : err;
+          console.warn(`buildLocationIndex: ${message}`);     // couldn't resolve
         }
         if (!resolved || !resolved.id) return;
 
@@ -420,7 +455,7 @@ export class Matcher {
   // 3. If the [k,v,n] tuple matches nothing of any kind, return `null`
   //
   //
-  match(k, v, n, loc) {
+  match(k: string, v: string, n: string, loc?: Vec2): Array<Hit> | null {
     const that = this;
     if (!that.matchIndex) {
       throw new Error('match:  matchIndex not built.');
@@ -436,8 +471,8 @@ export class Matcher {
 
     const nsimple = simplify(n);
 
-    let seen = new Set();
-    let results = [];
+    const seen = new Set();
+    const results: Array<Hit> = [];
     gatherResults('primary');
     gatherResults('alternate');
     if (results.length) return results;
@@ -446,14 +481,14 @@ export class Matcher {
     return results.length ? results : null;
 
 
-    function gatherResults(which) {
+    function gatherResults(which: string): void {
       // First try an exact match on k/v
       const kv = `${k}/${v}`;
       let didMatch = tryMatch(which, kv);
       if (didMatch) return;
 
       // If that didn't work, look in match groups for other pairs considered equivalent to k/v..
-      for (let mg in matchGroups) {
+      for (const mg in matchGroups) {
         const matchGroup = matchGroups[mg];
         const inGroup = matchGroup.some(otherkv => otherkv === kv);
         if (!inGroup) continue;
@@ -476,38 +511,39 @@ export class Matcher {
       }
     }
 
-
-    function tryMatch(which, kv) {
+    function tryMatch(which: string, kv: string): boolean {
       const branch = that.matchIndex.get(kv);
-      if (!branch) return;
+      if (!branch) return false;
 
       if (which === 'exclude') {  // Test name `n` against named and generic exclude patterns
         let regex = [...branch.excludeNamed.values()].find(regex => regex.test(n));
         if (regex) {
           results.push({ match: 'excludeNamed', pattern: String(regex), kv: kv });
-          return;
+          return false;
         }
         regex = [...branch.excludeGeneric.values()].find(regex => regex.test(n));
         if (regex) {
           results.push({ match: 'excludeGeneric', pattern: String(regex), kv: kv });
-          return;
+          return false;
         }
-        return;
+        return false;
       }
 
       const leaf = branch[which].get(nsimple);
-      if (!leaf || !leaf.size) return;
+      if (!leaf || !leaf.size) return false;
+      if (!(which === 'primary' || which === 'alternate')) return false;
 
       // If we get here, we matched something..
       // Prepare the results, calculate areas (if location index was set up)
-      let hits = Array.from(leaf).map(itemID => {
+      let hits: Array<Hit> = [];
+      for (const itemID of [...leaf]) {
         let area = Infinity;
         if (that.itemLocation && that.locationSets) {
           const location = that.locationSets.get(that.itemLocation.get(itemID));
           area = (location && location.properties.area) || Infinity;
         }
-        return { match: which, itemID: itemID, area: area, kv: kv, nsimple: nsimple };
-      });
+        hits.push({ match: which, itemID: itemID, area: area, kv: kv, nsimple: nsimple });
+      }
 
       let sortFn = byAreaDescending;
 
@@ -517,7 +553,7 @@ export class Matcher {
         sortFn = byAreaAscending;
       }
 
-      if (!hits.length) return;
+      if (!hits.length) return false;
 
       // push results
       hits.sort(sortFn).forEach(hit => {
@@ -529,17 +565,21 @@ export class Matcher {
       return true;
 
 
-      function isValidLocation(hit) {
+      function isValidLocation(hit: Hit): boolean {
         if (!that.itemLocation) return true;
         return matchLocations.find(props => props.id === that.itemLocation.get(hit.itemID));
       }
       // Sort smaller (more local) locations first.
-      function byAreaAscending(hitA, hitB) {
-        return hitA.area - hitB.area;
+      function byAreaAscending(hitA: Hit, hitB: Hit): number {
+        const areaA = hitA.area || 0;
+        const areaB = hitB.area || 0;
+        return areaA - areaB;
       }
       // Sort larger (more worldwide) locations first.
-      function byAreaDescending(hitA, hitB) {
-        return hitB.area - hitA.area;
+      function byAreaDescending(hitA: Hit, hitB: Hit): number {
+        const areaA = hitA.area || 0;
+        const areaB = hitB.area || 0;
+        return areaB - areaA;
       }
     }
   }
@@ -550,7 +590,7 @@ export class Matcher {
   // Return any warnings discovered when buiding the index.
   // (currently this does nothing)
   //
-  getWarnings() {
+  getWarnings(): Array<string> {
     return this.warnings;
   }
 }

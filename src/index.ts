@@ -1,2 +1,2 @@
-import * as nsi from './nsi.mjs';
+import * as nsi from './nsi.ts';
 globalThis.nsi = nsi;

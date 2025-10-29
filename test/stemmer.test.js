@@ -1,6 +1,6 @@
 import { describe, it } from 'bun:test';
 import { strict as assert } from 'bun:assert';
-import { stemmer } from '../src/nsi.mjs';
+import { stemmer } from '../src/nsi.ts';
 
 
 describe('stemmer', () => {

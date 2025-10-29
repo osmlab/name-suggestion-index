@@ -17,7 +17,7 @@ await Promise.all([
   }),
 
   Bun.build({
-    entrypoints: ['./src/nsi.mjs'],
+    entrypoints: ['./src/nsi.ts'],
     outdir: './dist/javascript',
     target: 'node',
     format: 'cjs',
@@ -27,7 +27,7 @@ await Promise.all([
   }),
 
   Bun.build({
-    entrypoints: ['./src/nsi.mjs'],
+    entrypoints: ['./src/nsi.ts'],
     outdir: './dist/javascript',
     target: 'node',
     format: 'esm',

@@ -1,6 +1,6 @@
 import { describe, it } from 'bun:test';
 import { strict as assert } from 'bun:assert';
-import { simplify } from '../src/nsi.mjs';
+import { simplify } from '../src/nsi.ts';
 
 
 describe('simplify', () => {

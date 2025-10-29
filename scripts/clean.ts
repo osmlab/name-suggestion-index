@@ -19,7 +19,10 @@ for (const f of files) {
 // Remove these specific folders
 const folders = [
   './coverage',
-  './dist/javascript'
+  './dist/javascript',
+  './dist/js',
+  './dist/json',
+  './dist/ts'
 ];
 for (const f of folders) {
   await $`rm -rf ${f}`;

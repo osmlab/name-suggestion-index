@@ -1,20 +1,18 @@
 {
-  "include": [""],
+  "include": ["./src/nsi.ts"],
   "compilerOptions": {
-    "module": "esnext",
+    "allowImportingTsExtensions": true,
     "declaration": true,
+    "declarationDir": "./dist/ts",
     "emitDeclarationOnly": true,
-    "outDir": "dist",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmitOnError": true,
     "noImplicitAny": false,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
+    "outDir": "./dist/ts",
     "resolveJsonModule": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "strictNullChecks": true,
-    "target": "esnext"
+    "strict": true,
+    "target": "ESNext"
   }
 }
