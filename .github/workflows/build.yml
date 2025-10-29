@@ -1,4 +1,4 @@
-name: test
+name: build
 
 on:
   push:
@@ -10,7 +10,7 @@ env:
   FORCE_COLOR: 2
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,5 +28,4 @@ jobs:
     - run: |
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
-    - run: bun run lint
-    - run: bun run test
+    - run: bun run all
