@@ -1,4 +1,4 @@
-// External
+import { $ } from 'bun';
 //import geojsonArea from '@mapbox/geojson-area';
 //import geojsonBounds from 'geojson-bounds';
 import geojsonPrecision from 'geojson-precision';
@@ -14,7 +14,6 @@ import { styleText } from 'bun:util';
 import { Validator } from 'jsonschema';
 const withLocale = localeCompare('en-US');
 
-// Internal
 import { fileTree } from '../lib/file_tree.ts';
 import { idgen } from '../lib/idgen.ts';
 import { Matcher } from '../lib/matcher.ts';
@@ -22,7 +21,6 @@ import { simplify } from '../lib/simplify.ts';
 import { sortObject } from '../lib/sort_object.ts';
 import { stemmer } from '../lib/stemmer.ts';
 import { validate } from '../lib/validate.ts';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
 const matcher = new Matcher();
 
 // JSON
@@ -37,8 +35,10 @@ const _discard = {};
 const _keep = {};
 let _loco = null;
 
-await buildAll();
+$.nothrow();  // If a shell command returns nonzero, keep going.
 
+
+await buildAll();
 
 async function buildAll() {
   // GeoJSON features
@@ -88,10 +88,13 @@ async function buildFeatureCollection() {
   console.log(START);
   console.time(END);
 
+  // Start fresh
+  await $`rm -f ./dist/json/featureCollection.*`;
+
   const features = await loadFeatures();
   const featureCollection = { type: 'FeatureCollection', features: features };
   const stringified = stringify(featureCollection, { maxLength: 9999 }) + '\n';
-  await writeFileWithMeta('./dist/json/featureCollection.json', stringified);
+  await Bun.write('./dist/json/featureCollection.json', stringified);
 
   console.timeEnd(END);
   return featureCollection;
@@ -352,7 +355,9 @@ async function filterCollected() {
   const END = '👍  ' + styleText('green', `done filtering`);
   console.log(START);
   console.time(END);
-  let shownSparkle = false;
+
+  // Start fresh
+  await $`rm -rf ./dist/json/filtered`;
 
   // Before starting, cache genericWords regexes.
   let genericRegex = _config.genericWords.map(s => new RegExp(s, 'i'));
@@ -364,15 +369,6 @@ async function filterCollected() {
 
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
-//    let data;
-//
-//    try {  // Load existing "keep" file
-//      data = await Bun.file(`dist/filtered/${t}_keep.json`).json();
-//      lastCollectionDate = +(data._meta.collectionDate) || -1;
-//      keep = _keep[t] = data.keep;
-//    } catch (err) {
-//      /* ignore - we can overwrite the keep file */
-//    }
 
     //
     // STEP 1:  All the collected "names" from OSM start out in `discard`
@@ -414,8 +410,8 @@ async function filterCollected() {
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    await writeFileWithMeta(`dist/json/filtered/${t}_discard.json`, stringify({ discard: sortObject(discard) }) + '\n');
-    await writeFileWithMeta(`dist/json/filtered/${t}_keep.json`, stringify({ keep: sortObject(keep) }) + '\n');
+    await Bun.write(`./dist/json/filtered/${t}_discard.json`, stringify({ discard: sortObject(discard) }) + '\n');
+    await Bun.write(`./dist/json/filtered/${t}_keep.json`, stringify({ keep: sortObject(keep) }) + '\n');
   }
 
   console.timeEnd(END);

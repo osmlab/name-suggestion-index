@@ -5,14 +5,14 @@
 ```bash
 git checkout main
 git pull origin
-npm install
-npm run build
-npm run wikidata
-npm run dist      # version number updates automatically and will print to console
+bun install
+bun run build
+bun run wikidata
+bun run dist      # version number updates automatically and will print to console
 git add . && git commit -m 'vA.B.C'
 git tag vA.B.C
 git push origin main vA.B.C
-npm publish
+bun publish
 ```
 
 ### Purge JSDelivr CDN cache

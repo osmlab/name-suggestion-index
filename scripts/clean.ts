@@ -1,5 +1,7 @@
 import { $, Glob } from 'bun';
 
+$.nothrow();  // If a shell command returns nonzero, keep going.
+
 // Remove these files if found anywhere
 const files = [
   '.DS_Store',
@@ -17,11 +19,13 @@ for (const f of files) {
 }
 
 // Remove these specific folders
+// (Because some of the files in ./dist/json take a while to generate,
+//  each script will be responsible for removing them)
 const folders = [
   './coverage',
   './dist/javascript',
   './dist/js',
-  './dist/json',
+//  './dist/json',
   './dist/ts'
 ];
 for (const f of folders) {
