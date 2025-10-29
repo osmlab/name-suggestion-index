@@ -1,9 +1,38 @@
 # Contributing
 
-We're always looking for help!
+This project uses **GitHub** to track issues and manage our source code.
+- Check out the [Git Guides](https://github.com/git-guides) to learn more.
 
-- Read [the Code of Conduct](CODE_OF_CONDUCT.md) and remember to be kind to one another.
-- See [the project wiki](https://github.com/osmlab/name-suggestion-index/wiki) for detailed info about how to contribute to this index, or read below for basic instructions.
+This project uses the **JavaScript** programming language.
+- [MDN's JavaScript guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide) is a great resource for learning about JavaScript.
+
+This project uses the **TypeScript** programming language.
+- Check out the [TypeScript Docs](https://www.typescriptlang.org/docs/) to learn more.
+- (It's a superset of JavaScript, so knowing that already will help you a lot).
+
+This project uses **Bun** as our development environment.
+- Check out the [Bun Docs](https://bun.com/docs) to learn more.
+- (It's similar to other JavaScript tools like Node/Jest/Esbuild/Vite, so knowing any of those already will help you a lot).
+- Bun supports both JavaScript and TypeScript.
+
+If you want to contribute to name-suggestion-index, you'll probably need to:
+- [Install Bun](https://bun.com/docs/installation)
+- `git clone` name-suggestion-index
+- `cd` into the project folder
+- `bun install` the dependencies
+
+As you change things, you'll want to `bun run all` to ensure that things are working.
+(This command just runs `clean`, `lint`, `build`, and `test`.)
+
+You can also test the code in a local server:
+- `bun start` - then open `http://127.0.0.1:8080/` in a browser.
+
+It's also good to check on the dependencies sometimes with commands like:
+- `bun outdated`  - what packages have updates available?
+- `bun update --interactive`  - choose which updates to apply
+
+Try to keep things simple!
+
 
 ## Adding new entries
 If a [notable](https://github.com/osmlab/name-suggestion-index/wiki/Judge-Case#notability) entity is missing from the Name Suggestion Index, you can add it manually to establish a preferred tagging. The project wiki has [detailed instructions](https://github.com/osmlab/name-suggestion-index/wiki/Adding-Wikidata-Tags#adding-missing-entities) on how to add a brand, operator, flag, or transit network, but these are the essential steps:
@@ -24,6 +53,7 @@ If you have any questions or want to reach out to a maintainer, ping any of thes
  - [archpdx (arch0345)](https://github.com/arch0345)
  - [Bryan Housel](https://github.com/bhousel)
  - [Cj Malone](https://github.com/Cj-Malone)
+ - [ilias52730](https://github.com/ilias52730)
  - [kjonosm](https://github.com/kjonosm)
  - [快乐的老鼠宝宝 (LaoshuBaby)](https://github.com/LaoshuBaby)
  - [Minh Nguyễn (1ec5)](https://github.com/1ec5)
