@@ -35,7 +35,6 @@ const _nsi = {};
 const _collected = {};
 const _discard = {};
 const _keep = {};
-let _currCollectionDate = 0;
 let _loco = null;
 
 await buildAll();
@@ -92,7 +91,7 @@ async function buildFeatureCollection() {
   const features = await loadFeatures();
   const featureCollection = { type: 'FeatureCollection', features: features };
   const stringified = stringify(featureCollection, { maxLength: 9999 }) + '\n';
-  await writeFileWithMeta('./dist/featureCollection.json', stringified);
+  await writeFileWithMeta('./dist/json/featureCollection.json', stringified);
 
   console.timeEnd(END);
   return featureCollection;
@@ -286,18 +285,49 @@ function checkRegex(filepath, pattern) {
 // https://github.com/ideditor/nsi-collector
 //
 async function loadCollected() {
+  let currCollectionDate = 0;
+  let seenCollectionDate = 0;
+
+  // Check that we have installed the correct nsi-collector dependency.
+  // If the user has an old version of nsi-collector, this can cause unwanted changes.
+  // Exit if the dates don't match or it looks like the user needs to update - see #5519
   try {
-    const filepath = `./node_modules/@ideditor/nsi-collector/package.json`;
-    const collectorJSON = await Bun.file(filepath).json();
+    const collectorJSON = await Bun.file('./node_modules/@ideditor/nsi-collector/package.json').json();
     const rawVersion = collectorJSON.version;
-    const matched = rawVersion.match(/[~^]?\d+\.\d+\.(\d+)/);
-    if (matched) {
-      _currCollectionDate = +matched[1];
+    const matched = rawVersion.match(/^\d+\.\d+\.(\d+)$/);
+    if (matched[1]) {
+      currCollectionDate = +matched[1];
+    } else {
+      throw new Error(`Bad version: ${rawVersion}`);
     }
   } catch (err) {
-    console.error(styleText('yellow', `Warning - ${err.message} reading 'nsi-collector/package.json'`));
+    console.error(styleText('red', `Error reading 'nsi-collector/package.json': ${err.message} `));
+    console.error(styleText('yellow', `Please run 'bun install' to fix.`));
+    process.exit(1);
   }
 
+  const dateFile = Bun.file('./config/collectionDate');
+  try {
+    if (await dateFile.exists()) {
+      const yyyymmdd = await dateFile.text();
+      seenCollectionDate = +yyyymmdd || 0;
+    }
+  } catch (err) {
+    /* ignore - dateFile will be replaced */
+  }
+
+  if (currCollectionDate < seenCollectionDate) {
+    console.error(styleText('red', `Outdated nsi-collector with date '${currCollectionDate}' < '${seenCollectionDate}'`));
+    console.error(styleText('yellow', `Please run 'bun install' to fix.`));
+    process.exit(1);
+
+  } else if (currCollectionDate > seenCollectionDate) {
+    console.log(styleText('yellow', `✨   New nsi-collector version ${currCollectionDate} (was ${seenCollectionDate}).`));
+    await Bun.write(dateFile, currCollectionDate.toString());
+  }
+
+
+  // Load the collected data..
   for (const tag of ['name', 'brand', 'operator', 'network']) {
     const filepath = `./node_modules/@ideditor/nsi-collector/dist/osm/${tag}s_all.json`;
     let data;
@@ -334,33 +364,19 @@ async function filterCollected() {
 
     let discard = _discard[t] = {};
     let keep = _keep[t] = {};
-    let lastCollectionDate = -1;
-    let data;
-
-    try {  // Load existing "keep" file
-      data = await Bun.file(`dist/filtered/${t}_keep.json`).json();
-      lastCollectionDate = +(data._meta.collectionDate) || -1;
-      keep = _keep[t] = data.keep;
-    } catch (err) {
-      /* ignore - we can overwrite the keep file */
-    }
-
-    // Exit here if:
-    // 1. we have data in `keep`, and..
-    // 2. that data is fresh (newer or same as installed nsi-collector dependency) - #5519
-    // (comment out this next line to force replace the keep/discard lists)
-    if (Object.keys(keep).length && lastCollectionDate >= _currCollectionDate) continue;
-
-    // Continue, do filtering, and replace keep/discard lists..
-    if (!shownSparkle) {
-      console.log(styleText('yellow', `✨   New nsi-collector version ${_currCollectionDate} (was ${lastCollectionDate}).  Updating filter lists:`));
-      shownSparkle = true;
-    }
+//    let data;
+//
+//    try {  // Load existing "keep" file
+//      data = await Bun.file(`dist/filtered/${t}_keep.json`).json();
+//      lastCollectionDate = +(data._meta.collectionDate) || -1;
+//      keep = _keep[t] = data.keep;
+//    } catch (err) {
+//      /* ignore - we can overwrite the keep file */
+//    }
 
     //
     // STEP 1:  All the collected "names" from OSM start out in `discard`
     //
-    keep = {};
     for (const tag of tree.sourceTags) {
       const collected = _collected[tag];
       for (const kvn in collected) {
@@ -398,14 +414,8 @@ async function filterCollected() {
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    let stringified;
-    const meta = { collectionDate: _currCollectionDate.toString(10) };
-
-    stringified = stringify({ discard: sortObject(discard) }) + '\n';
-    await writeFileWithMeta(`dist/filtered/${t}_discard.json`, stringified, meta);
-
-    stringified = stringify({ keep: sortObject(keep) }) + '\n';
-    await writeFileWithMeta(`dist/filtered/${t}_keep.json`, stringified, meta);
+    await writeFileWithMeta(`dist/json/filtered/${t}_discard.json`, stringify({ discard: sortObject(discard) }) + '\n');
+    await writeFileWithMeta(`dist/json/filtered/${t}_keep.json`, stringify({ keep: sortObject(keep) }) + '\n');
   }
 
   console.timeEnd(END);

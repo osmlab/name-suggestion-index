@@ -2,14 +2,14 @@
 await Promise.all([
    Bun.build({
     entrypoints: ['./nsiguide/index.jsx'],
-    outdir: './dist/javascript',
+    outdir: './dist/js',
     sourcemap: 'linked',
     naming: 'nsiguide.[ext]'  // .js
   }),
 
    Bun.build({
     entrypoints: ['./src/index.ts'],
-    outdir: './dist/javascript',
+    outdir: './dist/js',
     target: 'browser',
     format: 'iife',
     sourcemap: 'linked',
@@ -18,7 +18,7 @@ await Promise.all([
 
   Bun.build({
     entrypoints: ['./src/nsi.ts'],
-    outdir: './dist/javascript',
+    outdir: './dist/js',
     target: 'node',
     format: 'cjs',
     external: ['diacritics', 'which-polygon'],
@@ -28,7 +28,7 @@ await Promise.all([
 
   Bun.build({
     entrypoints: ['./src/nsi.ts'],
-    outdir: './dist/javascript',
+    outdir: './dist/js',
     target: 'node',
     format: 'esm',
     external: ['diacritics', 'which-polygon'],
