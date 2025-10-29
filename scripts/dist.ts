@@ -12,16 +12,19 @@ import { sortObject } from '../lib/sort_object.ts';
 // JSON
 const packageJSON = await Bun.file('./package.json').json();
 const treesJSON = await Bun.file('./config/trees.json').json();
+let featureCollectionJSON;
 try {
-  const featureCollectionJSON = await Bun.file('./dist/json/featureCollection.json').json();
+  featureCollectionJSON = await Bun.file('./dist/json/featureCollection.json').json();
 } catch (err) {
   console.error(styleText('red', `Error: ${err.message} `));
   console.error(styleText('yellow', `Please run 'bun run build' first.`));
   process.exit(1);
 }
+let dissolvedJSON;
+let wikidataJSON;
 try {
-  const dissolvedJSON = await Bun.file('./dist/json/dissolved.json').json();
-  const wikidataJSON = await Bun.file('./dist/json/wikidata.json').json();
+  dissolvedJSON = await Bun.file('./dist/json/dissolved.json').json();
+  wikidataJSON = await Bun.file('./dist/json/wikidata.json').json();
 } catch (err) {
   console.error(styleText('red', `Error: ${err.message} `));
   console.error(styleText('yellow', `Please run 'bun run wikidata' first.`));

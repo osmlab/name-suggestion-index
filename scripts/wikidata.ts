@@ -1,12 +1,10 @@
-// External
-import fs from 'bun:fs';
-import http from 'node:http';
-import https from 'node:https';
+// set to true if you just want to test what the script will do without updating Wikidata
+const DRYRUN = false;
+
+import { $ } from 'bun';
 import { iso1A2Code } from '@rapideditor/country-coder';
-import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
-import shell from 'shelljs';
 import stringify from '@aitodotai/json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
 import wikibase from 'wikibase-sdk';
@@ -16,37 +14,35 @@ const withLocale = localeCompare('en-US');
 // Internal
 import { sortObject } from '../lib/sort_object.ts';
 import { fileTree } from '../lib/file_tree.ts';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
 
 // JSON
-const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
-const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
+const packageJSON = await Bun.file('./package.json').json();
+const treesJSON = await Bun.file('./config/trees.json').json();
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
-const loco = new LocationConflation(featureCollectionJSON);
+let featureCollectionJSON;
+try {
+  featureCollectionJSON = await Bun.file('./dist/json/featureCollection.json').json();
+} catch (err) {
+  console.error(styleText('red', `Error: ${err.message} `));
+  console.error(styleText('yellow', `Please run 'bun run build' first.`));
+  process.exit(1);
+}
+const _loco = new LocationConflation(featureCollectionJSON);
 
 const wbk = wikibase({
   instance: 'https://www.wikidata.org',
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
-// set keepalive for all the connections - see #4948
-const httpAgent = new http.Agent({ keepAlive: true });
-const httpsAgent = new https.Agent({ keepAlive: true });
-const fetchOptions = {
-  agent: (url) => ((url.protocol === 'http:') ? httpAgent : httpsAgent)
-};
-const fetchOptionsQuery = {
-  agent: fetchOptions.agent,
-  method: 'GET',
-  headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
-};
 
+$.nothrow();  // If a shell command returns nonzero, keep going.
+// Start fresh
+await $`rm -f ./dist/json/dissolved.*`;
+await $`rm -f ./dist/json/warnings.*`;
+await $`rm -f ./dist/json/wikidata.*`;
 
-// set to true if you just want to test what the script will do without updating Wikidata
-const DRYRUN = false;
 
 console.log(styleText('blue', '-'.repeat(70)));
 console.log(styleText('blue', '📓  Build Wikidata cache'));
@@ -70,13 +66,10 @@ console.log(styleText('blue', '-'.repeat(70)));
 //     }
 //   }
 // }
-shell.config.silent = true;
-shell.mv('-f', './config/secrets.json', './secrets.json');
-shell.config.reset();
 
 let _secrets;
 try {
-  _secrets = JSON5.parse(fs.readFileSync('./secrets.json', 'utf8'));
+  _secrets = await Bun.file('./secrets.json').json();
 } catch (err) { /* ignore */ }
 
 if (_secrets && !_secrets.wikibase) {
@@ -112,26 +105,30 @@ if (_secrets && _secrets.wikibase) {
 
 
 // what to fetch
-let _cache = {};
-console.log('');
-console.log('🏗   ' + styleText('yellow', `Loading index files (this might take over a minute, maybe more) ...`));
-fileTree.read(_cache, loco);
-fileTree.expandTemplates(_cache, loco);
+const START = '🏗   ' + styleText('yellow', `Loading index files…`);
+const END = '👍  ' + styleText('green', `done loading`);
+console.log(START);
+console.time(END);
+
+const _nsi = {};
+await fileTree.read(_nsi, _loco);
+fileTree.expandTemplates(_nsi, _loco);
+console.timeEnd(END);
 
 
 // Gather all QIDs referenced by any tag..
 console.log('');
-console.log('🏗   ' + styleText('yellow', `Syncing Wikidata with name-suggestion-index ...`));
-console.log('       ... this is done in batches, and may take around 10 minutes ...');
+console.log('🏗   ' + styleText('yellow', `Syncing Wikidata with name-suggestion-index…`));
+console.log('       This is done in batches, and may take around 10 minutes…');
 let _wikidata = {};
 let _qidItems = {};       // any item referenced by a qid
 let _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
 let _qidMetadata = {};
-Object.keys(_cache.path).forEach(tkv => {
+Object.keys(_nsi.path).forEach(tkv => {
   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
   const t = parts[0];
 
-  const items = _cache.path[tkv].items;
+  const items = _nsi.path[tkv].items;
   if (!Array.isArray(items) || !items.length) return;
 
   items.forEach(item => {
@@ -203,7 +200,7 @@ function doFetch(index) {
   let backoff = false;
   console.log(styleText(['yellow','bold'], `\nBatch ${index+1}/${_urls.length}`));
 
-  return fetch(currURL, fetchOptions)
+  return fetch(currURL)
     .then(response => {
       if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
       return response.json();
@@ -641,7 +638,7 @@ function getClaimValues(entity, prop, includeDeprecated) {
 // - `wikidata.json`
 // - `dissolved.json`
 //
-function finish() {
+async function finish() {
   const START = '🏗   ' + styleText('yellow', 'Writing output files');
   const END = '👍  ' + styleText('green', 'output files updated');
   console.log('');
@@ -677,9 +674,9 @@ function finish() {
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
-    writeFileWithMeta('dist/warnings.json', stringify({ warnings: _warnings }) + '\n');
-    writeFileWithMeta('dist/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
-    writeFileWithMeta('dist/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
+    await Bun.write('./dist/json/warnings.json', stringify({ warnings: _warnings }) + '\n');
+    await Bun.write('./dist/json/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
+    await Bun.write('./dist/json/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
   }
 
   console.timeEnd(END);
@@ -703,7 +700,7 @@ function fetchFacebookLogo(qid, username, restriction) {
   if (m) userid = m[1];
 
   // Can specify no redirect to fetch json and speed up this process
-  return fetch(`${logoURL}&redirect=0`, fetchOptions)
+  return fetch(`${logoURL}&redirect=0`)
     .then(response => response.json())
     .then(json => {
       if (!json) return true;
@@ -766,7 +763,12 @@ function removeOldNsiClaims() {
       ?guid  ps:P8253  ?nsiId.
     }`;
 
-  return fetch(wbk.sparqlQuery(query), fetchOptionsQuery)
+  const opts = {
+    method: 'GET',
+    headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
+  };
+
+  return fetch(wbk.sparqlQuery(query), opts)
     .then(response => {
       if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
       return response.json();
@@ -842,7 +844,7 @@ function enLabelForQID(qid) {
   const meta = _qidMetadata[qid];
   const ids = Array.from(_qidItems[qid]);
   for (let i = 0; i < ids.length; i++) {
-    const item = _cache.id.get(ids[i]);
+    const item = _nsi.id.get(ids[i]);
 
     if (meta.what === 'flag') {
       if (looksLatin(item.tags.subject))  return `flag of ${item.tags.subject}`;
