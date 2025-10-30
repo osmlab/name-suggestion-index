@@ -153,9 +153,9 @@ async function buildIDPresets() {
   // - NSI identifiers will not collide with the iD identifiers (NSI ids don't look like tag values)
   //
 
-  let targetPresets = {};
-  let missing = new Set();
-  let paths = Object.keys(_nsi.path);
+  const targetPresets = {};
+  const missing = new Set();
+  const paths = Object.keys(_nsi.path);
 
   // Ferry hack! ⛴
   // Append a duplicate tkv for Ferry routes so we can generate them twice..
@@ -167,23 +167,33 @@ async function buildIDPresets() {
     paths.push('transit/route/ferry');   // add a duplicate tkv
   }
 
-  paths.sort(withLocale).forEach(tkv => {
+  for (const tkv of paths.sort(withLocale)) {
     const properties = _nsi.path[tkv].properties || {};
     const items = _nsi.path[tkv].items;
-    if (!Array.isArray(items) || !items.length) return;
+    if (!Array.isArray(items) || !items.length) continue;
 
-    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const t = parts[0];
-    let k = parts[1];
-    let v = parts[2];
+    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
     const tree = trees[t];
+    const kv = `${k}/${v}`;
 
-    let presetPath = `${k}/${v}`;
+    let presetPath = kv;
 
-    // Exceptions where the NSI key/value doesn't match the iD preset path key/value
-    if (k === 'route')                              presetPath = `type/route/${v}`;   // Route Relation
-    if (k === 'highway' && v === 'bus_stop')        presetPath = 'public_transport/platform/bus_point';
-    if (k === 'amenity' && v === 'ferry_terminal')  presetPath = 'public_transport/station_ferry';
+    // Exceptions where the NSI `key/value` doesn't match the iD preset path `key/value`
+    // See also https://github.com/openstreetmap/iD/issues/11527
+    // id-tagging-schema occasionally moves their presets around, changing their presetIDs.
+    if (k === 'route')                     presetPath = `type/route/${v}`;   // Route Relation
+    if (kv === 'highway/bus_stop')         presetPath = 'public_transport/platform/bus_point';
+    if (kv === 'amenity/ferry_terminal')   presetPath = 'public_transport/station_ferry';
+    if (kv === 'amenity/college')          presetPath = 'education/college';
+    if (kv === 'amenity/driving_school')   presetPath = 'education/driving_school';
+    if (kv === 'amenity/dancing_school')   presetPath = 'education/dancing_school';
+    if (kv === 'amenity/kindergarten')     presetPath = 'education/kindergarten';
+    if (kv === 'amenity/language_school')  presetPath = 'education/language_school';
+    if (kv === 'amenity/music_school')     presetPath = 'education/music_school';
+    if (kv === 'amenity/prep_school')      presetPath = 'education/prep_school';
+    if (kv === 'amenity/school')           presetPath = 'education/school';
+    if (kv === 'amenity/university')       presetPath = 'education/university';
+    if (kv === 'emergency/water_rescue')   presetPath = 'emergency/lifeboat_station';
 
     // Ferry hack! ⛴
     if (tkv === 'transit/route/ferry') {
@@ -207,17 +217,17 @@ async function buildIDPresets() {
     // NOTE: here we intentionally exclude `:wikidata`, in `matcher.ts` we do not.
     const notName = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
-    let childPresets = new Map();
-    for (const checkPath in presetsJSON){
+    const childPresets = new Map();
+    for (const checkPath in presetsJSON) {
       if (checkPath.startsWith(presetPath)) {
         childPresets.set(checkPath, presetsJSON[checkPath]);
       }
     }
 
-    items.forEach(item => {
+    for (const item of items) {
       const tags = item.tags;
       const qid = tags[wdTag];
-      if (!qid || !/^Q\d+$/.test(qid)) return;   // wikidata tag missing or looks wrong..
+      if (!qid || !/^Q\d+$/.test(qid)) continue;   // wikidata tag missing or looks wrong..
 
       let presetID, preset;
 
@@ -232,7 +242,7 @@ async function buildIDPresets() {
         let matchPresetPath;
         let matchPreset;
 
-        childPresets.forEach(function(checkPreset, checkPresetPath) {
+        childPresets.forEach((checkPreset, checkPresetPath) => {
           const checkPresetTags = Object.entries(checkPreset.tags);
           let currentMatchSemicolonRating = 0;
 
@@ -293,20 +303,20 @@ async function buildIDPresets() {
       // *still* no match?
       // bail out of this category
       if (!preset) {
-        return;
+        continue;
       }
 
       // Gather search terms - include all primary/alternate names and matchNames
       // (There is similar code in lib/matcher.ts)
-      let terms = new Set(item.matchNames || []);
-      Object.keys(tags).forEach(osmkey => {
-        if (osmkey === 'name') return;      // exclude `name` tag, as iD prioritizes it above `preset.terms` already
-        if (notName.test(osmkey)) return;   // osmkey is not a namelike tag, skip
+      const terms = new Set(item.matchNames || []);
+      for (const osmkey of Object.keys(tags)) {
+        if (osmkey === 'name') continue;      // exclude `name` tag, as iD prioritizes it above `preset.terms` already
+        if (notName.test(osmkey)) continue;   // osmkey is not a namelike tag, skip
 
         if (primaryName.test(osmkey) || alternateName.test(osmkey)) {
           terms.add(tags[osmkey].toLowerCase());
         }
-      });
+      }
 
       // generate our target preset
       const targetID = `${presetID}/${item.id}`;
@@ -351,7 +361,7 @@ async function buildIDPresets() {
         fields = ['name', 'operator', `{${presetID}}`];
       }
 
-      let targetPreset = {
+      const targetPreset = {
         name: item.displayName,
         locationSet: item.locationSet,
         icon: preset.icon,
@@ -370,8 +380,8 @@ async function buildIDPresets() {
       targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
 
       targetPresets[targetID] = targetPreset;
-    });
-  });
+    }
+  }
 
   if ( missing.size > 0 ) {
     console.log(styleText('yellow', `\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
@@ -407,17 +417,14 @@ async function buildJOSMPresets() {
   let tGroup, kGroup, vGroup;
 
   const paths = Object.keys(_nsi.path).sort(withLocale);
-  paths.forEach(tkv => {
-    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const t = parts[0];
-    const k = parts[1];
-    const v = parts[2];
+  for (const tkv of paths) {
+    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
 
     // Which wikidata tag is considered the "main" tag for this tree?
     const wdTag = trees[t].mainTag;
 
     // Include only items that have a wikidata tag and are not dissolved..
-    let items = (_nsi.path[tkv].items || [])
+    const items = (_nsi.path[tkv].items || [])
       .filter(item => {
         const qid = item.tags[wdTag];
         if (!qid || !/^Q\d+$/.test(qid)) return false;   // wikidata tag missing or looks wrong..
@@ -425,7 +432,7 @@ async function buildJOSMPresets() {
         return true;
       });
 
-    if (!items.length) return;  // skip this path
+    if (!items.length) continue;  // skip this path
 
     // Create new menu groups as t/k/v change
     if (t !== tPrev)  tGroup = topGroup.ele('group').att('name', t);
@@ -450,21 +457,21 @@ async function buildJOSMPresets() {
       presetType = 'node,closedway,multipolygon';   // default for POIs
     }
 
-    items.forEach(item => {
-      let preset = vGroup
+    for (const item of items) {
+      const preset = vGroup
         .ele('item')
         .att('name', item.displayName)
         .att('type', presetType);
 
-      for (const osmkey in item.tags) {
-        preset.ele('key').att('key', osmkey).att('value', item.tags[osmkey]);
+      for (const [osmkey, osmvalue] of Object.entries(item.tags)) {
+        preset.ele('key').att('key', osmkey).att('value', osmvalue);
       }
-    });
+    }
 
     tPrev = t;
     kPrev = k;
     vPrev = v;
-  });
+  }
 
   await Bun.write('./dist/presets/nsi-josm-presets.xml', root.end({ prettyPrint: true }));
   await Bun.write('./dist/presets/nsi-josm-presets.min.xml', root.end());
@@ -508,7 +515,7 @@ async function buildTaginfo() {
 
         if (v !== '*') {
           tagPairs[kv].value = v;
-          const [, kPreset, vPreset] = path.split('/');
+          const [_, kPreset, vPreset] = path.split('/');
           if (k === kPreset && v === vPreset) {
             tagPairs[kv].doc_url = `${packageJSON.homepage}/?k=${k}&v=${v}`;
           }
@@ -529,27 +536,23 @@ async function buildSitemap() {
   const changefreq = 'weekly';
   const lastmod = (new Date()).toISOString();
 
-  let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
-  let urlset = root.ele('urlset').att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+  const root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
+  const urlset = root.ele('urlset').att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
 
-  let index = urlset.ele('url');
+  const index = urlset.ele('url');
   index.ele('loc').txt('https://nsi.guide/index.html');
   index.ele('changefreq').txt(changefreq);
   index.ele('lastmod').txt(lastmod);
 
   // collect all paths
   const paths = Object.keys(_nsi.path).sort(withLocale);
-  paths.forEach(tkv => {
-    const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const t = parts[0];
-    const k = parts[1];
-    const v = parts[2];
-
-    let url = urlset.ele('url');
+  for (const tkv of paths) {
+    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const url = urlset.ele('url');
     url.ele('loc').txt(`https://nsi.guide/index.html?t=${t}&k=${k}&v=${v}`);
     url.ele('changefreq').txt(changefreq);
     url.ele('lastmod').txt(lastmod);
-  });
+  }
 
   await Bun.write('./docs/sitemap.xml', root.end({ prettyPrint: true }));
 }
