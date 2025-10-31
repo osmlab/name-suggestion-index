@@ -11,8 +11,8 @@ import { Overview } from './Overview';
 // Load the name-suggestion-index data files
 const DIST = 'https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist';
 const INDEX = `${DIST}/json/nsi.min.json`;
-const WIKIDATA = `${DIST}/json/wikidata.min.json`;
-const DISSOLVED = `${DIST}/json/dissolved.min.json`;
+const WIKIDATA = `${DIST}/wikidata/wikidata.min.json`;
+const DISSOLVED = `${DIST}/wikidata/dissolved.min.json`;
 
 // We can use iD's taginfo file to pick icons
 const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@latest/dist/taginfo.min.json';
