@@ -45,7 +45,7 @@ const _nsi = {};
 
 
 await loadIndex();
-await buildAll();
+await distAll();
 
 
 // Load the index files under `./data/*`
@@ -62,13 +62,15 @@ async function loadIndex() {
 
 
 // Generate the files under `./dist/*`
-async function buildAll() {
+async function distAll() {
   const START = '🏗   ' + styleText('yellow', 'Building data...');
   const END = '👍  ' + styleText('green', 'data built');
 
   console.log('');
   console.log(START);
   console.time(END);
+
+  await updateVersion();
 
   // Copy files from `./config` to `./dist/json`
   await $`cp -f ./config/genericWords.json  ./dist/json`;
@@ -79,20 +81,45 @@ async function buildAll() {
   // Write `nsi.json` as a single file containing everything by path
   // Reverse sort the paths, we want 'brands' to override 'operators'
   // see: https://github.com/osmlab/name-suggestion-index/issues/5693#issuecomment-2819259226
-  const rsorted = {};
+  const sorted = {};
   Object.keys(_nsi.path).sort((a, b) => withLocale(b, a)).forEach(tkv => {
-    rsorted[tkv] = _nsi.path[tkv];
+    sorted[tkv] = _nsi.path[tkv];
   });
 
-  const output = { nsi: rsorted };
+  const output = { nsi: sorted };
   await Bun.write('./dist/json/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
 
   await buildIDPresets();     // nsi-id-presets.json
   await buildJOSMPresets();   // nsi-josm-presets.json
-  await buildTaginfo();
+  await buildTaginfo();       // taginfo.json
   // await buildSitemap();  // lets not do this for now (maybe nsiguide can generate it?)
 }
 
+
+// Update the project version
+async function updateVersion() {
+  // Bump the project version..
+  const now = new Date();
+  const yyyy = now.getUTCFullYear();
+  const mm = ('0' + (now.getUTCMonth() + 1)).slice(-2);
+  const dd = ('0' + now.getUTCDate()).slice(-2);
+
+  const oldVersion = packageJSON.version;
+  let newVersion;
+  const match = packageJSON.version.match(/^(\d+)\.(\d+)/);
+  if (match[1] && match[2]) {
+    newVersion = `${match[1]}.${match[2]}.${yyyy}${mm}${dd}`;
+  }
+  if (!newVersion) {
+    throw new Error(`Error:  Invalid 'package.json' version: ${oldVersion}`);
+  }
+
+  if (newVersion !== oldVersion) {
+    console.log('🎉  ' + styleText('green', 'Bumping package version to ') + styleText(['green','bold'], `v${newVersion}`));
+    packageJSON.version = newVersion;
+    await $`bun pm pkg set version="${newVersion}"`;
+  }
+}
 
 
 // build iD presets
@@ -513,7 +540,7 @@ async function buildTaginfo() {
   }
 
   taginfo.tags = Object.keys(tagPairs).sort(withLocale).map(kv => tagPairs[kv]);
-  await Bun.write('./dist/json/taginfo.json', stringify(taginfo, { maxLength: 100 }) + '\n');
+  await Bun.write('./dist/json/taginfo.json', stringify(taginfo, { maxLength: 9999 }) + '\n');
 }
 
 

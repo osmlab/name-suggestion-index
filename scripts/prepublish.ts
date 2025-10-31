@@ -4,16 +4,6 @@ import { styleText } from 'bun:util';
 const CDNRoot = 'https://cdn.jsdelivr.net/npm/name-suggestion-index';
 const packageJSON = await Bun.file('./package.json').json();
 
-// Fallback to @latest, but try for a better major/minor version
-let version = '@latest';
-const match = packageJSON.version.match(/^(\d+)\.(\d+)/);
-if (match[1]) {
-  version = `@${match[1]}`;   // major
-  if (match[2]) {
-    version = `@${match[1]}.${match[2]}`;  // minor
-  }
-}
-
 
 prepublish();
 
@@ -45,25 +35,29 @@ async function prepublish() {
  */
 async function metadataJSON(filepath) {
   const file = Bun.file(filepath);
-  const contents = (await file.text()) || '';
+  let contents = (await file.text()) || '';
 
   if (contents[0] !== '{') {
     throw new Error(`No JSON: ${filepath}`);
 
-  } else if (!/\"_meta\":/.test(contents)) {  // if not done already
+  } else {
+    // If it exists already, remove it.
+    contents = contents.replaceAll(/\s+\"_meta[^}]+\},/gm, '');
+
     // Keep just the end part of the path without extension, e.g. `dist/json/file.json`
     const path = filepath.replace(/(.*)(\/dist.*)/i, '$2');
 
     // Calculate md5 of contents
-    const message = packageJSON.version + contents;
+    const version = packageJSON.version;
+    const message = version + contents;
     const hash = new Bun.CryptoHasher('md5').update(message).digest('hex');
     const now = new Date();
 
     const metadata = {
-      version:    packageJSON.version,
+      version:    version,
       generated:  now,
-      url:       `${CDNRoot}${version}${path}`,
-      hash:      hash
+      url:        `${CDNRoot}@${version}${path}`,
+      hash:       hash
     };
 
     // Stick metadata at the beginning of the file in the most hacky way possible

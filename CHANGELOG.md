@@ -16,16 +16,17 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 -->
 
 # 7.0.YYYYMMDD
-##### 2025-Oct-??  (coming soon)
+##### 2025-Oct-31
 * Various dependencies updated
 * Converted a bunch of the project to TypeScript and generate d.ts files under `./dist/ts`
 * This project uses [`bun`](https://bun.com/) now, for simpler developer tooling ([#11483],[#11488])
 * ⚠️  Exported files under `/dist` have changed:
   * _Generated files are no longer checked into git, but they are published to npm and available on JSDelivr CDN._
-  * JSON files are now under `/dist/json/*`
+  * Most JSON files are now under `/dist/json/*`
   * JavaScript files are now under `/dist/js/*`
   * TypeScript files are now under `/dist/ts/*`
-  * iD and JOSM preset files are now under `/dist/presets/*`
+  * iD/JOSM preset files are now under `/dist/presets/*`
+  * Wikidata files are now under `/dist/wikidata/*`
 
 [#11483]: https://github.com/osmlab/name-suggestion-index/issues/11483
 [#11488]: https://github.com/osmlab/name-suggestion-index/issues/11488
