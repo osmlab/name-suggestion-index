@@ -90,7 +90,7 @@ async function buildAll() {
   await buildIDPresets();     // nsi-id-presets.json
   await buildJOSMPresets();   // nsi-josm-presets.json
   await buildTaginfo();
-  await buildSitemap();
+  // await buildSitemap();  // lets not do this for now (maybe nsiguide can generate it?)
 }
 
 
