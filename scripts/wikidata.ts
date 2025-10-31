@@ -11,7 +11,6 @@ import wikibase from 'wikibase-sdk';
 import wikibaseEdit from 'wikibase-edit';
 const withLocale = localeCompare('en-US');
 
-// Internal
 import { sortObject } from '../lib/sort_object.ts';
 import { fileTree } from '../lib/file_tree.ts';
 
@@ -37,12 +36,11 @@ const wbk = wikibase({
 });
 
 
-$.nothrow();  // If a shell command returns nonzero, keep going.
 // Start fresh
-await $`rm -f ./dist/json/dissolved.*`;
-await $`rm -f ./dist/json/warnings.*`;
-await $`rm -f ./dist/json/wikidata.*`;
-
+$.nothrow();  // If a shell command returns nonzero, keep going.
+if (!DRYRUN) {
+  await $`rm -rf ./dist/wikidata`;
+}
 
 console.log(styleText('blue', '-'.repeat(70)));
 console.log(styleText('blue', '📓  Build Wikidata cache'));
@@ -675,9 +673,9 @@ async function finish() {
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
-    await Bun.write('./dist/json/warnings.json', stringify({ warnings: _warnings }) + '\n');
-    await Bun.write('./dist/json/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
-    await Bun.write('./dist/json/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
+    await Bun.write('./dist/wikidata/warnings.json', stringify({ warnings: _warnings }) + '\n');
+    await Bun.write('./dist/wikidata/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
+    await Bun.write('./dist/wikidata/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
   }
 
   console.timeEnd(END);

@@ -19,13 +19,13 @@ for (const f of files) {
 }
 
 // Remove these specific folders
-// (Because some of the files in ./dist/json take a while to generate,
-//  each script will be responsible for removing them)
+// (skip `./dist/wikidata`, as these take a while to generate)
 const folders = [
   './coverage',
   './dist/javascript',
   './dist/js',
-//  './dist/json',
+  './dist/json',
+  './dist/presets',
   './dist/ts'
 ];
 for (const f of folders) {

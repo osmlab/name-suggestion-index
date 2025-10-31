@@ -1,4 +1,3 @@
-import { $ } from 'bun';
 //import geojsonArea from '@mapbox/geojson-area';
 //import geojsonBounds from 'geojson-bounds';
 import geojsonPrecision from 'geojson-precision';
@@ -34,8 +33,6 @@ const _collected = {};
 const _discard = {};
 const _keep = {};
 let _loco = null;
-
-$.nothrow();  // If a shell command returns nonzero, keep going.
 
 
 await buildAll();
@@ -87,9 +84,6 @@ async function buildFeatureCollection() {
   const END = '👍  ' + styleText('green', 'features built');
   console.log(START);
   console.time(END);
-
-  // Start fresh
-  await $`rm -f ./dist/json/featureCollection.*`;
 
   const features = await loadFeatures();
   const featureCollection = { type: 'FeatureCollection', features: features };
@@ -355,9 +349,6 @@ async function filterCollected() {
   const END = '👍  ' + styleText('green', `done filtering`);
   console.log(START);
   console.time(END);
-
-  // Start fresh
-  await $`rm -rf ./dist/json/filtered`;
 
   // Before starting, cache genericWords regexes.
   let genericRegex = _config.genericWords.map(s => new RegExp(s, 'i'));

@@ -23,8 +23,8 @@ try {
 let dissolvedJSON;
 let wikidataJSON;
 try {
-  dissolvedJSON = await Bun.file('./dist/json/dissolved.json').json();
-  wikidataJSON = await Bun.file('./dist/json/wikidata.json').json();
+  dissolvedJSON = await Bun.file('./dist/wikidata/dissolved.json').json();
+  wikidataJSON = await Bun.file('./dist/wikidata/wikidata.json').json();
 } catch (err) {
   console.error(styleText('red', `Error: ${err.message} `));
   console.error(styleText('yellow', `Please run 'bun run wikidata' first.`));
@@ -42,8 +42,6 @@ const presetsJSON = await Bun.file(presetsFile).json();
 // We use LocationConflation for validating and processing the locationSets
 const _loco = new LocationConflation(featureCollectionJSON);
 const _nsi = {};
-
-$.nothrow();  // If a shell command returns nonzero, keep going.
 
 
 await loadIndex();
@@ -71,15 +69,6 @@ async function buildAll() {
   console.log('');
   console.log(START);
   console.time(END);
-
-  // Start fresh
-  await $`rm -rf ./dist/presets`;
-  await $`rm -f ./dist/json/genericWords.*`;
-  await $`rm -f ./dist/json/matchGroups.*`;
-  await $`rm -f ./dist/json/nsi.*`;
-  await $`rm -f ./dist/json/replacements.*`;
-  await $`rm -f ./dist/json/taginfo.*`;
-  await $`rm -f ./dist/json/trees.*`;
 
   // Copy files from `./config` to `./dist/json`
   await $`cp -f ./config/genericWords.json  ./dist/json`;
