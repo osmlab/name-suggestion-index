@@ -28,7 +28,7 @@ async function prepublish() {
   const promises = [];
   const glob = new Glob('./dist/**/*.json');
   for (const filepath of glob.scanSync()) {
-    if (/\.min\.json$/.test(filepath)) continue;  // but not .min.json
+    if (/\.min\.json$/.test(filepath)) continue;  // skip any existing `.min.json`
 
     await metadataJSON(filepath);
     await minifyJSON(filepath);
@@ -91,9 +91,9 @@ ${strProps}
  * @param  {string}  filepath - the path to the file we want to minify
  */
 async function minifyJSON(filepath) {
-  const outPath = filepath.replace('.json', '.min.json');
+  const outpath = filepath.replace('.json', '.min.json');
   const contents = await Bun.file(filepath).json();
 
   console.log(styleText('greenBright', outpath));
-  await Bun.write(outPath, JSON.stringify(contents));
+  await Bun.write(outpath, JSON.stringify(contents));
 }
