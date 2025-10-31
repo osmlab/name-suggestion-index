@@ -471,10 +471,9 @@ async function buildJOSMPresets() {
 // Create a taginfo project file
 // See:  https://wiki.openstreetmap.org/wiki/Taginfo/Projects
 async function buildTaginfo() {
-  const distURL = 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/json/taginfo.json';
-  let taginfo = {
+  const taginfo = {
     'data_format': 1,
-    'data_url': distURL,
+    'data_url': 'https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist/json/taginfo.json',
     'project': {
       'name': 'name-suggestion-index',
       'description': 'Canonical features for OpenStreetMap',
@@ -487,7 +486,7 @@ async function buildTaginfo() {
   };
 
   // collect all tag pairs
-  let tagPairs = {};
+  const tagPairs = {};
   for (const path in _nsi.path) {
     for (const item of _nsi.path[path].items) {
       for (const k in item.tags) {
