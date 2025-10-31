@@ -43,7 +43,7 @@ async function prepublish() {
  * This function adds a block of metadata to the beginning of a `.json` file.
  * @param  {string}  filepath - the path to the file we want to add metadata to
  */
-export async function metadataJSON(filepath) {
+async function metadataJSON(filepath) {
   const file = Bun.file(filepath);
   const contents = (await file.text()) || '';
 
