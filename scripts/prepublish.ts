@@ -15,7 +15,6 @@ async function prepublish() {
   console.log(START);
   console.time(END);
 
-  const promises = [];
   const glob = new Glob('./dist/**/*.json');
   for (const filepath of glob.scanSync()) {
     if (/\.min\.json$/.test(filepath)) continue;  // skip any existing `.min.json`
