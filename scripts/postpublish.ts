@@ -33,7 +33,7 @@ async function postpublish() {
   console.log(styleText('blueBright', 'Purging JSDelivr caches…'));
 
   const promises = [];
-  const glob = new Glob('./dist/**/*.{json,xml}');
+  const glob = new Glob('./dist/**/*');
   for (const filepath of glob.scanSync()) {
     // Keep just the end part of the path without extension, e.g. `dist/json/file.json`
     const path = filepath.replace(/(.*)(\/dist.*)/i, '$2');
