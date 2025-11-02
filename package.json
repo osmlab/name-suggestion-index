@@ -95,7 +95,7 @@
     "build:ts": "tsc",
     "clean": "bun ./scripts/clean.ts",
     "dist": "bun ./scripts/dist.ts",
-    "lint": "eslint ./test/*.js",
+    "lint": "eslint ./lib ./scripts ./src ./test",
     "prepublishOnly": "bun ./scripts/prepublish.ts",
     "postpublish": "bun ./scripts/postpublish.ts",
     "start": "bun ./scripts/server.ts",
@@ -131,6 +131,7 @@
     "safe-regex": "^2.1.1",
     "shelljs": "^0.10.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2",
     "wikibase-edit": "^7.2.4",
     "wikibase-sdk": "^10.2.3",
     "xmlbuilder2": "^4.0.0"

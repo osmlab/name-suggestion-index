@@ -337,7 +337,7 @@ async function buildIDPresets() {
       // generate our target preset
       const targetID = `${presetID}/${item.id}`;
 
-      let targetTags = {};
+      const targetTags = {};
       targetTags[wdTag] = tags[wdTag]; // add the `*:wikidata` tag
       for (const k in preset.tags) {     // prioritize NSI tags over iD preset tags (for `vending`, `cuisine`, etc)
         targetTags[k] = tags[k] || preset.tags[k];
@@ -355,7 +355,7 @@ async function buildIDPresets() {
       };
 
       let logoURL;
-      let logoURLs = wikidata[qid] && wikidata[qid].logos;
+      const logoURLs = wikidata[qid] && wikidata[qid].logos;
       if (logoURLs) {
         if (logoURLs.wikidata && preferCommons[qid]) {
           logoURL = logoURLs.wikidata;
@@ -401,12 +401,12 @@ async function buildIDPresets() {
 
   if ( missing.size > 0 ) {
     console.log(styleText('yellow', `\n⚠️  Category files without presets at @openstreetmap/id-tagging-schema for their key-value combination:`));
-    missing.forEach(tkv => {
+    for (const tkv of missing) {
       console.log(`* no iD source preset found for ${tkv}`);
-    });
+    }
   }
 
-  let output = { presets: targetPresets };
+  const output = { presets: targetPresets };
   await Bun.write('./dist/presets/nsi-id-presets.json', stringify(output) + '\n');
 }
 
@@ -416,8 +416,8 @@ async function buildIDPresets() {
 // to organize the presets into JOSM preset groups.
 // See:  https://josm.openstreetmap.de/wiki/TaggingPresets
 async function buildJOSMPresets() {
-  let root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
-  let presets = root.ele('presets')
+  const root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
+  const presets = root.ele('presets')
     .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
     .att('author', 'Name Suggestion Index')
     .att('shortdescription', 'Name Suggestion Index')
@@ -425,7 +425,7 @@ async function buildJOSMPresets() {
     .att('link', 'https://github.com/osmlab/name-suggestion-index')
     .att('version', packageJSON.version);
 
-  let topGroup = presets
+  const topGroup = presets
     .ele('group')
     .att('name', 'Name Suggestion Index');
 
