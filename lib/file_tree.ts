@@ -2,7 +2,7 @@
 import { Glob } from 'bun';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
 import { Validator } from 'jsonschema';
 const withLocale = localeCompare('en-US');
