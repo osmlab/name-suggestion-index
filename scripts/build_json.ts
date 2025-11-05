@@ -8,7 +8,7 @@ import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import path from 'node:path';
 import safeRegex from 'safe-regex';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
 import { Validator } from 'jsonschema';
 const withLocale = localeCompare('en-US');

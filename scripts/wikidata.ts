@@ -7,7 +7,7 @@ import { $ } from 'bun';
 import { iso1A2Code } from '@rapideditor/country-coder';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
 import wikibase from 'wikibase-sdk';
 import wikibaseEdit from 'wikibase-edit';
