@@ -43,8 +43,7 @@
 
     <script>
       async function nsiWikiWarnings() {
-        //let warningsFile = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/warnings.json";
-        let warningsFile = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/warnings.min.json";
+        const warningsFile = "https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist/wikidata/warnings.min.json";
 
         // Use 'fetch' to grab the raw 'warnings.json' or 'warnings.min.json' file from GitHub and place the JSON data in an object variable.
         const allWarningsFile = await fetch(warningsFile);
@@ -53,7 +52,7 @@
         // We only want the warning data, not the meta data (except the generated timestamp).
         const allWarnings = allWarningsData['warnings'];
         let generated = new Date(Date.parse(allWarningsData._meta.generated));
-            generated = generated.getDate() + "/" + (generated.getMonth() + 1) + "/" + generated.getFullYear();
+          generated = generated.toLocaleString('default', { day: 'numeric', month: 'long', year: 'numeric' });
 
 
         // Loop through each warning and add a <table> (<tr>) row for each warning.
@@ -140,8 +139,8 @@
 
     <p>
     When the command "<code>npm run wikidata</code>" is run by a maintainer of the project,
-    this will connect to Wikidata directly and attempt to download logos and descriptions for each
-    entry within the Name Suggestion Index (<abbr title="Name Suggestion Index">NSI</abbr>).
+    this will connect to <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">Wikidata</a> directly and attempt to download logos and
+    descriptions for each entry within the Name Suggestion Index (<abbr title="Name Suggestion Index">NSI</abbr>).
     Sometimes, Wikidata won't be able to provide the data the <abbr title="Name Suggestion Index">NSI</abbr> is
     looking for, and will return an error message. These error messages are displayed below. Common errors are
     social media accounts listed in a Wikidata entry which are out of date, or simply incorrect.
@@ -159,7 +158,7 @@
         administrator who performed the deletion. For additional guidance on how to request the undeletion
         of an entry, please view the
         "<a href="https://github.com/osmlab/name-suggestion-index/wiki/Editing-Wikidata#undeletion-of-wikidata-pages">Editing Wikidata</a>"
-        wiki page on the <abbr title="Name Suggestion Index">NSI</abbr> GitHub.
+        wiki page on the <abbr title="Name Suggestion Index">NSI</abbr> <a href="https://github.com/osmlab/name-suggestion-index">GitHub project</a>.
       </li>
       <li>
         <strong>Facebook account access ("Unsupported get request"):</strong>
@@ -188,14 +187,25 @@
             when visited. Calls to the Facebook Graph API will return a generic error when
             attempting to read these accounts, regardless of access status, which is also something
             the <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment.
-            Unlike properly configured branded Facebook pages with access restrictions, Wikidata
-            does not have a way to label incorrectly configured accounts; thus,
-            "<code>npm run wikidata</code>" cannot detect whether an account has "personal"
-            characteristics or suppress the resulting Graph API warning from these accounts.
-            As such, the warning table below may contain false positives where Wikidata is
-            pointing to a valid, existing, and publicly viewable account.
+            Incorrectly configured accounts can be labeled on the Wikidata entry by using the qualifier
+            "<a href="https://www.wikidata.org/wiki/Property:P6477">does not have characteristic</a>" on
+            the Facebook username statement and setting its value to
+            "<a href="https://www.wikidata.org/wiki/Q134432781">professional account</a>".
+            "<code>npm run wikidata</code>" will ignore the Facebook API warning for these accounts, and also
+            warn of any Facebook accounts that are marked as having "personal" characteristics but have
+            since been reconfigured to be publicly viewable, properly configured branded Facebook pages.
           </li>
         </ul>
+      </li>
+      <li>
+        <strong>Possible replacements:</strong> If a Wikidata entry has a
+        "<a href="https://www.wikidata.org/wiki/Property:P156">followed by</a>",
+        "<a href="https://www.wikidata.org/wiki/Property:P1366">replaced by</a>", or
+        "<a href="https://www.wikidata.org/wiki/Property:P7888">merged into</a>" statement,
+        "<code>npm run wikidata</code>" will make note of its value as a possible replacement for the entity.
+        These potential replacements should be evaluated for accuracy, and the
+        <abbr title="Name Suggestion Index">NSI</abbr> should be updated with the replacement if the
+        original entity is defunct and the suggested replacement is valid.
       </li>
       <li>
         <strong>Unresolved redirects:</strong> An "unresolved redirect" is when the Wikidata entry
@@ -209,14 +219,14 @@
     If you can, simply click on a Wikidata link below, and check to see if the error can be fixed. Please note that
     fixing an error will not remove the error message below until "<code>npm run wikidata</code>" has been run again,
     and "<code>npm run dist</code>" has been run to have <a href="https://nsi.guide">nsi.guide</a> pull the latest
-    data from the <abbr title="Name Suggestion Index">NSI</abbr> project.
+    data from the <abbr title="Name Suggestion Index">NSI</abbr> <a href="https://github.com/osmlab/name-suggestion-index">GitHub project</a>.
     </p>
 
     <table id="wikidataWarningsTable">
       <caption>Table of Wikidata errors!</caption>
       <thead>
         <tr>
-          <th>Wikidata</th>
+          <th>Wikidata QID</th>
           <th>Error Message</th>
         </tr>
        </thead>

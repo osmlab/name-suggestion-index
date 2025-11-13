@@ -20,8 +20,9 @@
         "^郵局$"
       ],
       "named": [
-        "^(co-?op( food)?|(the )?co-?operative( food)?)$",
-        "^(costcutter|londis|mccoll'?s|one stop|premier( stores)?|royal mail|spar|whsmith)$"
+        "(the )?co-?operative( food)?$",
+        "^(best-one|costcutter|kirkburton post office|londis|martin's|mccoll'?s|morrisons daily|nisa local|one stop|premier( stores)?|royal mail|spar|tesco express|whsmith|wh smith)$",
+        "^co-?op( food)?$"
       ]
     }
   },
@@ -38,6 +39,15 @@
         "official_name": "Servicios Postales Nacionales",
         "operator": "4-72",
         "operator:wikidata": "Q85800448"
+      }
+    },
+    {
+      "displayName": "Adex",
+      "id": "adex-6d9f6a",
+      "locationSet": {"include": ["al"]},
+      "tags": {
+        "amenity": "post_office",
+        "operator": "Adex"
       }
     },
     {
@@ -132,15 +142,6 @@
       }
     },
     {
-      "displayName": "Best-one",
-      "id": "bestone-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Best-one"
-      }
-    },
-    {
       "displayName": "BH Pošta",
       "id": "bhposta-736d07",
       "locationSet": {"include": ["ba"]},
@@ -181,20 +182,6 @@
       "tags": {
         "amenity": "post_office",
         "operator": "Bưu điện Trung tâm 3"
-      }
-    },
-    {
-      "displayName": "Canada Post",
-      "id": "canadapost-17c815",
-      "locationSet": {
-        "include": ["ca"],
-        "exclude": ["ca-qc.geojson"]
-      },
-      "matchNames": ["canada post/ poste canada"],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Canada Post",
-        "operator:wikidata": "Q1032001"
       }
     },
     {
@@ -395,6 +382,29 @@
       }
     },
     {
+      "displayName": "Deutsche Post Shop Essen GmbH",
+      "id": "deutschepostshopessengmbh-eb4547",
+      "locationSet": {
+        "include": [
+          "de-he.geojson",
+          "de-nw.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "post_office",
+        "operator": "Deutsche Post Shop Essen GmbH"
+      }
+    },
+    {
+      "displayName": "Deutsche Post Shop München GmbH",
+      "id": "deutschepostshopmunchengmbh-91a3cc",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "post_office",
+        "operator": "Deutsche Post Shop München GmbH"
+      }
+    },
+    {
       "displayName": "Die Post",
       "id": "diepost-62a267",
       "locationSet": {"include": ["ch"]},
@@ -528,6 +538,17 @@
         "amenity": "post_office",
         "operator": "Guernsey Post",
         "operator:wikidata": "Q5614904"
+      }
+    },
+    {
+      "displayName": "Harvard University Mail Services",
+      "id": "harvarduniversitymailservices-7e06d6",
+      "locationSet": {
+        "include": ["us-ma.geojson"]
+      },
+      "tags": {
+        "amenity": "post_office",
+        "operator": "Harvard University Mail Services"
       }
     },
     {
@@ -670,15 +691,6 @@
       }
     },
     {
-      "displayName": "Kirkburton Post Office",
-      "id": "kirkburtonpostoffice-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Kirkburton Post Office"
-      }
-    },
-    {
       "displayName": "KKTC Posta Dairesi",
       "id": "kktcpostadairesi-c16b13",
       "locationSet": {
@@ -796,15 +808,6 @@
       }
     },
     {
-      "displayName": "Martin's",
-      "id": "martins-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Martin's"
-      }
-    },
-    {
       "displayName": "Meest",
       "id": "meest-970b0c",
       "locationSet": {"include": ["ua"]},
@@ -831,15 +834,6 @@
       }
     },
     {
-      "displayName": "Morrisons Daily",
-      "id": "morrisonsdaily-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Morrisons Daily"
-      }
-    },
-    {
       "displayName": "MRW",
       "id": "mrw-0a445b",
       "locationSet": {
@@ -852,6 +846,16 @@
       }
     },
     {
+      "displayName": "NamPost",
+      "id": "nampost-ef6c1e",
+      "locationSet": {"include": ["na"]},
+      "tags": {
+        "amenity": "post_office",
+        "operator": "NamPost",
+        "operator:wikidata": "Q1509637"
+      }
+    },
+    {
       "displayName": "New Zealand Post",
       "id": "newzealandpost-ff95ef",
       "locationSet": {"include": ["nz"]},
@@ -860,15 +864,6 @@
         "amenity": "post_office",
         "operator": "New Zealand Post",
         "operator:wikidata": "Q1144511"
-      }
-    },
-    {
-      "displayName": "Nisa Local",
-      "id": "nisalocal-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Nisa Local"
       }
     },
     {
@@ -1166,22 +1161,6 @@
       }
     },
     {
-      "displayName": "Postes Canada",
-      "id": "postescanada-525cac",
-      "locationSet": {
-        "include": ["ca-qc.geojson"]
-      },
-      "matchNames": [
-        "canada post/ poste canada",
-        "poste canada"
-      ],
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Postes Canada",
-        "operator:wikidata": "Q1032001"
-      }
-    },
-    {
       "displayName": "Posti",
       "id": "posti-7504a1",
       "locationSet": {"include": ["fi"]},
@@ -1315,12 +1294,11 @@
       "displayName": "TCC",
       "id": "tcc-754eb3",
       "locationSet": {"include": ["co"]},
+      "matchNames": ["transcomerco"],
       "tags": {
         "amenity": "post_office",
-        "old_name": "Transcomerco",
         "operator": "TCC",
-        "operator:wikidata": "Q27968821",
-        "short_name": "TCC"
+        "operator:wikidata": "Q27968821"
       }
     },
     {
@@ -1332,15 +1310,6 @@
         "amenity": "post_office",
         "operator": "TEALCA",
         "operator:wikidata": "Q109606654"
-      }
-    },
-    {
-      "displayName": "Tesco Express",
-      "id": "tescoexpress-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "Tesco Express"
       }
     },
     {
@@ -1391,6 +1360,7 @@
       "locationSet": {"include": ["us"]},
       "matchNames": [
         "post office",
+        "u s post office / usps",
         "united states post office",
         "us post office",
         "us postal service",
@@ -1441,15 +1411,6 @@
         "amenity": "post_office",
         "operator": "Volg",
         "operator:wikidata": "Q2530746"
-      }
-    },
-    {
-      "displayName": "WH Smith",
-      "id": "whsmith-2ecbba",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "post_office",
-        "operator": "WH Smith"
       }
     },
     {
@@ -1622,25 +1583,6 @@
         "amenity": "post_office",
         "operator": "Пошта Србије",
         "operator:wikidata": "Q769311"
-      }
-    },
-    {
-      "displayName": "УК \"СДЭК\"",
-      "id": "386d0e-20381f",
-      "locationSet": {
-        "include": [
-          "am",
-          "az",
-          "by",
-          "kg",
-          "kz",
-          "ru",
-          "uz"
-        ]
-      },
-      "tags": {
-        "amenity": "post_office",
-        "operator": "УК \"СДЭК\""
       }
     },
     {

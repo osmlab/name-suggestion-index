@@ -52,8 +52,10 @@
     {
       "displayName": "Kiosk",
       "id": "kiosk-c47323",
+      "issues": [7692],
       "locationSet": {"include": ["nl"]},
       "matchNames": ["kiosk"],
+      "note": "match name required to work around generic name regex",
       "tags": {
         "brand": "Kiosk",
         "brand:wikidata": "Q109186217",
@@ -68,7 +70,7 @@
       "locationSet": {"include": ["lt"]},
       "tags": {
         "brand": "Lietuvos spauda",
-        "brand:wikidata": "Q6514414",
+        "brand:wikidata": "Q115548638",
         "name": "Lietuvos spauda",
         "shop": "kiosk"
       }
@@ -197,13 +199,18 @@
       }
     },
     {
-      "displayName": "Total",
-      "id": "total-332be8",
-      "locationSet": {"include": ["001"]},
+      "displayName": "TotalEnergies",
+      "id": "totalenergies-5fe041",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["us"]
+      },
+      "matchNames": ["total"],
+      "note": "Total is/has rebranded to TotalEnergies, We still have Total in matchNames if there are any lingering kiosks left",
       "tags": {
-        "brand": "Total",
+        "brand": "TotalEnergies",
         "brand:wikidata": "Q154037",
-        "name": "Total",
+        "name": "TotalEnergies",
         "shop": "kiosk"
       }
     },

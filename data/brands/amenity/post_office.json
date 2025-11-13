@@ -38,6 +38,20 @@
       }
     },
     {
+      "displayName": "Canada Post",
+      "id": "canadapost-6681b5",
+      "locationSet": {
+        "include": ["ca"],
+        "exclude": ["ca-qc.geojson"]
+      },
+      "matchNames": ["canada post/ poste canada"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Canada Post",
+        "brand:wikidata": "Q1032001"
+      }
+    },
+    {
       "displayName": "City Express (Србија)",
       "id": "cityexpress-59a7c7",
       "locationSet": {"include": ["rs"]},
@@ -297,6 +311,7 @@
       "locationSet": {"include": ["gb"]},
       "matchNames": [
         "post office ltd",
+        "royal mail",
         "the post office"
       ],
       "note": "When updated the id needs to be updated in data/operators/amenity/post_box.json templateExclude",
@@ -332,6 +347,22 @@
       }
     },
     {
+      "displayName": "Postes Canada",
+      "id": "postescanada-caf280",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "matchNames": [
+        "canada post/ poste canada",
+        "poste canada"
+      ],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Postes Canada",
+        "brand:wikidata": "Q1032001"
+      }
+    },
+    {
       "displayName": "PostNet",
       "id": "postnet-7f7712",
       "locationSet": {
@@ -351,6 +382,17 @@
         "brand": "PostNet",
         "brand:wikidata": "Q7233611",
         "name": "PostNet"
+      }
+    },
+    {
+      "displayName": "Purolator",
+      "id": "purolator-740d6a",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Purolator",
+        "brand:wikidata": "Q7261372",
+        "name": "Purolator"
       }
     },
     {
@@ -389,10 +431,10 @@
       "tags": {
         "amenity": "post_office",
         "brand": "The UPS Store",
+        "brand:short": "UPS",
         "brand:wikidata": "Q7771029",
         "name": "The UPS Store",
-        "shop": "copyshop",
-        "short_name": "UPS"
+        "shop": "copyshop"
       }
     },
     {
@@ -426,13 +468,39 @@
     },
     {
       "displayName": "СДЭК",
-      "id": "5ac048-1328c6",
-      "locationSet": {"include": ["ru"]},
+      "id": "5ac048-c762cb",
+      "locationSet": {
+        "include": [
+          "am",
+          "az",
+          "by",
+          "kg",
+          "kz",
+          "ru",
+          "uz"
+        ]
+      },
+      "matchNames": ["ук \"сдэк\""],
       "tags": {
         "amenity": "post_office",
         "brand": "СДЭК",
         "brand:wikidata": "Q28665980",
         "name": "СДЭК"
+      }
+    },
+    {
+      "displayName": "Цайняо",
+      "id": "cainiao-1328c6",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "amenity": "post_office",
+        "brand": "Цайняо",
+        "brand:en": "Cainiao",
+        "brand:ru": "Цайняо",
+        "brand:wikidata": "Q16947973",
+        "name": "Цайняо",
+        "name:en": "Cainiao",
+        "name:ru": "Цайняо"
       }
     },
     {
@@ -465,29 +533,53 @@
         "amenity": "post_office",
         "brand": "中通快递",
         "brand:en": "ZTO Express",
+        "brand:short": "中通",
         "brand:wikidata": "Q10876705",
         "brand:zh": "中通快递",
         "name": "中通快递",
         "name:en": "ZTO Express",
-        "name:zh": "中通快递",
-        "short_name": "中通"
+        "name:zh": "中通快递"
       }
     },
     {
       "displayName": "京东物流",
-      "id": "jdlogistics-de5f7a",
-      "locationSet": {"include": ["cn"]},
+      "id": "jdlogistics-d6fe70",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
       "matchNames": ["京东快递", "京东派"],
       "tags": {
         "amenity": "post_office",
         "brand": "京东物流",
         "brand:en": "JD Logistics",
+        "brand:short": "京东",
         "brand:wikidata": "Q67936681",
         "brand:zh": "京东物流",
         "name": "京东物流",
         "name:en": "JD Logistics",
-        "name:zh": "京东物流",
-        "short_name": "京东"
+        "name:zh": "京东物流"
+      }
+    },
+    {
+      "displayName": "京東物流 JD Logistics",
+      "id": "jdlogistics-d26828",
+      "locationSet": {"include": ["hk", "mo"]},
+      "matchNames": ["京東快遞", "京東派", "京東速遞"],
+      "tags": {
+        "amenity": "post_office",
+        "brand": "京東物流 JD Logistics",
+        "brand:en": "JD Logistics",
+        "brand:short": "京東",
+        "brand:wikidata": "Q67936681",
+        "brand:zh": "京東物流",
+        "brand:zh-Hans": "京東物流",
+        "brand:zh-Hant": "京東物流",
+        "name": "京東物流 JD Logistics",
+        "name:en": "JD Logistics",
+        "name:zh": "京東物流",
+        "name:zh-Hans": "京东物流",
+        "name:zh-Hant": "京東物流"
       }
     },
     {
@@ -499,12 +591,12 @@
         "amenity": "post_office",
         "brand": "圆通速递",
         "brand:en": "YTO Express",
+        "brand:short": "圆通",
         "brand:wikidata": "Q10926656",
         "brand:zh": "圆通速递",
         "name": "圆通速递",
         "name:en": "YTO Express",
-        "name:zh": "圆通速递",
-        "short_name": "圆通"
+        "name:zh": "圆通速递"
       }
     },
     {
@@ -516,12 +608,12 @@
         "amenity": "post_office",
         "brand": "德邦快递",
         "brand:en": "Deppon Express",
+        "brand:short": "德邦",
         "brand:wikidata": "Q109378877",
         "brand:zh": "德邦快递",
         "name": "德邦快递",
         "name:en": "Deppon Express",
-        "name:zh": "德邦快递",
-        "short_name": "德邦"
+        "name:zh": "德邦快递"
       }
     },
     {
@@ -532,12 +624,12 @@
         "amenity": "post_office",
         "brand": "申通快递",
         "brand:en": "STO Express",
+        "brand:short": "申通",
         "brand:wikidata": "Q10426347",
         "brand:zh": "申通快递",
         "name": "申通快递",
         "name:en": "STO Express",
-        "name:zh": "申通快递",
-        "short_name": "申通"
+        "name:zh": "申通快递"
       }
     },
     {
@@ -547,11 +639,11 @@
       "tags": {
         "amenity": "post_office",
         "brand": "菜鸟驿站",
-        "brand:en": "CAI NIAO",
+        "brand:en": "Cainiao",
         "brand:wikidata": "Q16947973",
         "brand:zh": "菜鸟驿站",
         "name": "菜鸟驿站",
-        "name:en": "CAI NIAO",
+        "name:en": "Cainiao",
         "name:zh": "菜鸟驿站"
       }
     },
@@ -564,12 +656,12 @@
         "amenity": "post_office",
         "brand": "韵达速递",
         "brand:en": "Yunda Express",
+        "brand:short": "韵达",
         "brand:wikidata": "Q17010677",
         "brand:zh": "韵达速递",
         "name": "韵达速递",
         "name:en": "Yunda Express",
-        "name:zh": "韵达速递",
-        "short_name": "韵达"
+        "name:zh": "韵达速递"
       }
     },
     {
@@ -604,12 +696,12 @@
         "amenity": "post_office",
         "brand": "顺丰速运",
         "brand:en": "SF Express",
+        "brand:short": "顺丰",
         "brand:wikidata": "Q7390019",
         "brand:zh": "顺丰速运",
         "name": "顺丰速运",
         "name:en": "SF Express",
-        "name:zh": "顺丰速运",
-        "short_name": "顺丰"
+        "name:zh": "顺丰速运"
       }
     }
   ]

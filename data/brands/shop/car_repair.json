@@ -4,12 +4,12 @@
     "preserveTags": ["^name"],
     "exclude": {
       "generic": [
-        "^(auto (serwis|service)|(car|t[iy]re]) repair)$",
-        "^(mécanique|tyres|wulkanizacja|vulcaniza(dora|re))$",
+        "^(auto (serwis|service)|(car|t[iy]re]) repair|pneuservis)$",
+        "^(mécanique|tyres|wulkanizacja|vulcaniza(dora|re)|ponchera)$",
         "^(вулканизация|шиномонтаж)$",
         "^a[uv]toservis$",
         "^borrachar[ií]a$",
-        "^garage\\s?(moto|auto)?$",
+        "^garage\\s?(moto|auto|automobile)?$",
         "^gomer[ií]a$",
         "^lubri(centro|ficantes)$",
         "^taller( mec[aá]nico)?$",
@@ -88,13 +88,13 @@
       }
     },
     {
-      "displayName": "A+ Glass",
+      "displayName": "A+Glass",
       "id": "aglass-98e3a2",
       "locationSet": {"include": ["fr"]},
       "tags": {
-        "brand": "A+ Glass",
-        "brand:wikidata": "Q123409768",
-        "name": "A+ Glass",
+        "brand": "A+Glass",
+        "brand:wikidata": "Q116688243",
+        "name": "A+Glass",
         "service:vehicle:glass": "yes",
         "shop": "car_repair"
       }
@@ -241,13 +241,14 @@
     },
     {
       "displayName": "BestDrive",
-      "id": "bestdrive-1b7e7a",
+      "id": "bestdrive-301101",
       "locationSet": {
         "include": [
           "bw",
           "cz",
           "fx",
           "na",
+          "no",
           "sk",
           "za"
         ]
@@ -279,6 +280,20 @@
         "brand": "Brakes Plus",
         "brand:wikidata": "Q62075246",
         "name": "Brakes Plus",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "Budget Brake & Muffler Auto Centres",
+      "id": "budgetbrakeandmufflerautocentres-455142",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "matchNames": ["budget brake"],
+      "tags": {
+        "brand": "Budget Brake & Muffler Auto Centres",
+        "brand:wikidata": "Q135205842",
+        "name": "Budget Brake & Muffler Auto Centres",
         "shop": "car_repair"
       }
     },
@@ -570,15 +585,26 @@
       }
     },
     {
+      "displayName": "Forstinger",
+      "id": "forstinger-d1144d",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "brand": "Forstinger",
+        "brand:wikidata": "Q132554064",
+        "name": "Forstinger",
+        "shop": "car_repair"
+      }
+    },
+    {
       "displayName": "France Pare-Brise",
       "id": "franceparebrise-46d04a",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "brand": "France Pare-Brise",
+        "brand:short": "FPB",
         "brand:wikidata": "Q63335107",
         "name": "France Pare-Brise",
-        "shop": "car_repair",
-        "short_name": "FPB"
+        "shop": "car_repair"
       }
     },
     {
@@ -638,7 +664,7 @@
       "displayName": "Great Canadian Oil Change",
       "id": "greatcanadianoilchange-10e248",
       "locationSet": {"include": ["ca"]},
-      "matchNames": ["gcoc"],
+      "matchNames": ["gcoc", "oil changers"],
       "tags": {
         "brand": "Great Canadian Oil Change",
         "brand:wikidata": "Q120502925",
@@ -757,6 +783,41 @@
       }
     },
     {
+      "displayName": "Master Mechanic",
+      "id": "mastermechanic-9c9847",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "brand": "Master Mechanic",
+        "brand:wikidata": "Q133255694",
+        "name": "Master Mechanic",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "Mavis Discount Tire",
+      "id": "mavisdiscounttire-878d90",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Mavis Discount Tire",
+        "brand:wikidata": "Q65058420",
+        "name": "Mavis Discount Tire",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "Mavis Tires & Brakes",
+      "id": "mavistiresandbrakes-878d90",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Mavis Tires & Brakes",
+        "brand:wikidata": "Q65058420",
+        "name": "Mavis Tires & Brakes",
+        "shop": "car_repair"
+      }
+    },
+    {
       "displayName": "Meca",
       "id": "meca-4150a7",
       "locationSet": {"include": ["se"]},
@@ -787,7 +848,6 @@
       "locationSet": {
         "include": ["dk", "no", "se"]
       },
-      "preserveTags": ["^name"],
       "tags": {
         "brand": "Mekonomen",
         "brand:wikidata": "Q10580079",
@@ -932,7 +992,6 @@
         "napa autocare mechanical center",
         "napa autocare truck center"
       ],
-      "preserveTags": ["^name$"],
       "tags": {
         "brand": "NAPA AutoCare Center",
         "brand:wikidata": "Q6970842",
@@ -958,10 +1017,10 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "brand": "National Tyres and Autocare",
+        "brand:short": "National Tyres",
         "brand:wikidata": "Q6979055",
         "name": "National Tyres and Autocare",
-        "shop": "car_repair",
-        "short_name": "National Tyres"
+        "shop": "car_repair"
       }
     },
     {
@@ -1007,6 +1066,17 @@
         "brand:wikidata": "Q120636586",
         "name": "NOVUS Glass",
         "service:vehicle:glass": "yes",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "O.K. Serwis",
+      "id": "okserwis-87ce46",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "brand": "O.K. Serwis",
+        "brand:wikidata": "Q128055917",
+        "name": "O.K. Serwis",
         "shop": "car_repair"
       }
     },
@@ -1063,8 +1133,12 @@
       "locationSet": {"include": ["sa"]},
       "tags": {
         "brand": "Petromin",
+        "brand:ar": "بترومين",
+        "brand:en": "Petromin",
         "brand:wikidata": "Q7179006",
         "name": "Petromin",
+        "name:ar": "بترومين",
+        "name:en": "Petromin",
         "shop": "car_repair"
       }
     },
@@ -1185,12 +1259,24 @@
       }
     },
     {
+      "displayName": "Rapid Pare Brise",
+      "id": "rapidparebrise-98e3a2",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "brand": "Rapid Pare Brise",
+        "brand:wikidata": "Q112064766",
+        "name": "Rapid Pare Brise",
+        "service:vehicle:glass": "yes",
+        "shop": "car_repair"
+      }
+    },
+    {
       "displayName": "Rivian Service Center",
       "id": "rivianservicecenter-3fdb50",
       "locationSet": {"include": ["ca", "us"]},
       "tags": {
         "brand": "Rivian",
-        "brand:wikidata": "Q120734061",
+        "brand:wikidata": "Q7338847",
         "name": "Rivian Service Center",
         "shop": "car_repair"
       }
@@ -1230,6 +1316,16 @@
         "brand": "Sears Auto Center",
         "brand:wikidata": "Q6499202",
         "name": "Sears Auto Center",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "displayName": "Service Auto",
+      "id": "serviceauto-4fc828",
+      "locationSet": {"include": ["md"]},
+      "tags": {
+        "brand": "Service Auto",
+        "name": "Service Auto",
         "shop": "car_repair"
       }
     },
@@ -1309,6 +1405,20 @@
       }
     },
     {
+      "displayName": "Strickland Brothers",
+      "id": "stricklandbrothers-878d90",
+      "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "strickland brothers 10 minute oil change"
+      ],
+      "tags": {
+        "brand": "Strickland Brothers",
+        "brand:wikidata": "Q122811625",
+        "name": "Strickland Brothers",
+        "shop": "car_repair"
+      }
+    },
+    {
       "displayName": "Sullivan Tire",
       "id": "sullivantire-bb46ab",
       "locationSet": {
@@ -1374,7 +1484,7 @@
       "id": "take5oilchange-3fdb50",
       "locationSet": {"include": ["ca", "us"]},
       "tags": {
-        "brand": "Take 5 Oil Change",
+        "brand": "Take 5",
         "brand:wikidata": "Q112359190",
         "name": "Take 5 Oil Change",
         "service:vehicle:oil_change": "yes",

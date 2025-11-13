@@ -35,11 +35,13 @@ Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.
   - [gb-nsm.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-nsm.geojson%22%5D%7D&referrer=nsi) - County of North Somerset
   - [gb-som.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-som.geojson%22%5D%7D&referrer=nsi) - County of Somerset
   - [gb-wil.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-wil.geojson%22%5D%7D&referrer=nsi) - County of Wiltshire
+  - [gb-iow.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-iow.geojson%22%5D%7D&referrer=nsi) - Isle of Wight 
 - Scotland
   - [gb-abd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-abd.geojson%22%5D%7D&referrer=nsi) - Aberdeen (City)
   - [gb-abe.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-abe.geojson%22%5D%7D&referrer=nsi) - Aberdeenshire
 - Wales
   - [gb-crf.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-crf.geojson%22%5D%7D&referrer=nsi) - City of Cardiff
+  - [gb-swa.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swa.geojson%22%5D%7D&referrer=nsi) - City of Swansea
 
 Areas of Great Britain targeted with a feature not using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 

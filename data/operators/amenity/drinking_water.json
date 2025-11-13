@@ -3,20 +3,21 @@
     "path": "operators/amenity/drinking_water",
     "exclude": {
       "generic": [
+        "^(ayuntamiento|commun(e|ity)|comune|gemeinde|mairie)$",
+        "^(bebedouro|drinking water|живая вода)$",
         "^(croix-rouge|red cross)$",
         "^(institution|wsb|wsp) \\(staff\\)$",
+        "^(вода|колонка с водой)$",
         "^\\(local\\) private sector- name\\/no$",
-        "^ayuntamiento|community|gemeinde|mairie$",
-        "^bebedouro|drinking water$",
         "^community \\(technician\\) name\\/no$",
         "^institution staff$",
+        "^mpwik$",
         "^ngo$",
         "^öffentlich$",
-        "^private$",
+        "^private([\\/_]individual)?$",
         "^public$",
         "^tom$",
-        "^yes$",
-        "^вода$"
+        "^yes$"
       ],
       "named": [
         "^acquedotto pugliese - cooperativa comunità melpignano$"
@@ -53,6 +54,15 @@
         "amenity": "drinking_water",
         "operator": "Acea",
         "operator:wikidata": "Q3604235"
+      }
+    },
+    {
+      "displayName": "ACORD",
+      "id": "acord-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "ACORD"
       }
     },
     {
@@ -117,8 +127,10 @@
     },
     {
       "displayName": "Ajuntament de l'Hospitalet de Llobregat",
-      "id": "ajuntamentdelhospitaletdellobregat-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "ajuntamentdelhospitaletdellobregat-fb4f0f",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ajuntament de l'Hospitalet de Llobregat",
@@ -127,8 +139,10 @@
     },
     {
       "displayName": "Ajuntament de Montcada i Reixac",
-      "id": "ajuntamentdemontcadaireixac-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "ajuntamentdemontcadaireixac-fb4f0f",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ajuntament de Montcada i Reixac",
@@ -137,8 +151,10 @@
     },
     {
       "displayName": "Ajuntament de València",
-      "id": "ajuntamentdevalencia-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "ajuntamentdevalencia-87ad47",
+      "locationSet": {
+        "include": ["es-v.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ajuntament de València",
@@ -146,9 +162,34 @@
       }
     },
     {
+      "displayName": "ak111",
+      "id": "ak111-87ad47",
+      "locationSet": {
+        "include": ["es-v.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "ak111"
+      }
+    },
+    {
+      "displayName": "Aquaduin",
+      "id": "aquaduin-a2bffc",
+      "locationSet": {
+        "include": ["be-vwv.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Aquaduin",
+        "operator:wikidata": "Q59535248"
+      }
+    },
+    {
       "displayName": "Ayuntamiento de Barbastro",
-      "id": "ayuntamientodebarbastro-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodebarbastro-84e395",
+      "locationSet": {
+        "include": ["es-hu.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ayuntamiento de Barbastro",
@@ -157,8 +198,10 @@
     },
     {
       "displayName": "Ayuntamiento de Los Corrales de Buelna",
-      "id": "ayuntamientodeloscorralesdebuelna-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodeloscorralesdebuelna-89268f",
+      "locationSet": {
+        "include": ["es-s.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ayuntamiento de Los Corrales de Buelna",
@@ -179,8 +222,10 @@
     },
     {
       "displayName": "Ayuntamiento de San Felices de Buelna",
-      "id": "ayuntamientodesanfelicesdebuelna-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodesanfelicesdebuelna-89268f",
+      "locationSet": {
+        "include": ["es-s.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ayuntamiento de San Felices de Buelna",
@@ -208,6 +253,42 @@
       "tags": {
         "amenity": "drinking_water",
         "operator": "Azienda Servizi Valtrompia S.p.A."
+      }
+    },
+    {
+      "displayName": "Bangalore Metro Rail Corporation Limited",
+      "id": "bangaloremetrorailcorporationlimited-ea399e",
+      "locationSet": {
+        "include": ["in-ka.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Bangalore Metro Rail Corporation Limited",
+        "operator:short": "BMRCL"
+      }
+    },
+    {
+      "displayName": "Bayside City Council",
+      "id": "baysidecitycouncil-bffbbc",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Bayside City Council",
+        "operator:wikidata": "Q56477771"
+      }
+    },
+    {
+      "displayName": "BC Parks",
+      "id": "bcparks-f4df2b",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "BC Parks",
+        "operator:wikidata": "Q2876928"
       }
     },
     {
@@ -243,6 +324,37 @@
       }
     },
     {
+      "displayName": "Camp Alpine",
+      "id": "campalpine-f48dad",
+      "locationSet": {
+        "include": ["us-or.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Camp Alpine"
+      }
+    },
+    {
+      "displayName": "CAO",
+      "id": "cao-a56c31",
+      "locationSet": {"include": ["ro"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "CAO"
+      }
+    },
+    {
+      "displayName": "Catholic Relief Services",
+      "id": "catholicreliefservices-3fbe17",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Catholic Relief Services",
+        "operator:short": "CRS",
+        "operator:wikidata": "Q2942152"
+      }
+    },
+    {
       "displayName": "Chemun de Urtijëi - Gemeinde St. Ulrich - Comune di Ortisei",
       "id": "chemundeurtijeigemeindestulrichcomunediortisei-6c07c4",
       "locationSet": {
@@ -274,9 +386,9 @@
     },
     {
       "displayName": "City of Austin (Texas)",
-      "id": "cityofaustin-6aaee1",
+      "id": "cityofaustin-589909",
       "locationSet": {
-        "include": ["us-tx.geojson"]
+        "include": ["us-tx-austin.geojson"]
       },
       "tags": {
         "amenity": "drinking_water",
@@ -308,6 +420,30 @@
         "operator": "City of Denton",
         "operator:type": "government",
         "operator:wikidata": "Q128306"
+      }
+    },
+    {
+      "displayName": "City of Richmond (British Columbia)",
+      "id": "cityofrichmond-f4df2b",
+      "locationSet": {
+        "include": ["ca-bc.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "City of Richmond",
+        "operator:wikidata": "Q236837"
+      }
+    },
+    {
+      "displayName": "Comune di Abbadia San Salvatore",
+      "id": "comunediabbadiasansalvatore-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Comune di Abbadia San Salvatore",
+        "operator:wikidata": "Q91096"
       }
     },
     {
@@ -356,6 +492,18 @@
         "amenity": "drinking_water",
         "operator": "Comune di Monteroni d'Arbia",
         "operator:wikidata": "Q91243"
+      }
+    },
+    {
+      "displayName": "Comune di Monticiano",
+      "id": "comunedimonticiano-1a4497",
+      "locationSet": {
+        "include": ["it-52.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Comune di Monticiano",
+        "operator:wikidata": "Q91272"
       }
     },
     {
@@ -409,6 +557,17 @@
       }
     },
     {
+      "displayName": "Danish Refugee Council",
+      "id": "danishrefugeecouncil-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Danish Refugee Council",
+        "operator:short": "DRC",
+        "operator:wikidata": "Q3272284"
+      }
+    },
+    {
       "displayName": "Darebin City Council",
       "id": "darebincitycouncil-bffbbc",
       "locationSet": {
@@ -431,6 +590,17 @@
       }
     },
     {
+      "displayName": "Derbyshire Scouts",
+      "id": "derbyshirescouts-e4766c",
+      "locationSet": {
+        "include": ["gb-east-midlands.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Derbyshire Scouts"
+      }
+    },
+    {
       "displayName": "Dunea",
       "id": "dunea-0a63fc",
       "locationSet": {"include": ["nl"]},
@@ -438,6 +608,15 @@
         "amenity": "drinking_water",
         "operator": "Dunea",
         "operator:wikidata": "Q2623164"
+      }
+    },
+    {
+      "displayName": "East African Ministries",
+      "id": "eastafricanministries-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "East African Ministries"
       }
     },
     {
@@ -452,8 +631,10 @@
     },
     {
       "displayName": "Emasa",
-      "id": "emasa-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "emasa-98cd99",
+      "locationSet": {
+        "include": ["es-ma.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Emasa"
@@ -461,12 +642,30 @@
     },
     {
       "displayName": "Emasesa",
-      "id": "emasesa-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "emasesa-17139b",
+      "locationSet": {
+        "include": ["es-se.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Emasesa",
         "operator:wikidata": "Q5831718"
+      }
+    },
+    {
+      "displayName": "Empresa Portuguesa de Águas Livres",
+      "id": "empresaportuguesadeaguaslivres-be9dcc",
+      "locationSet": {
+        "include": ["pt-11.geojson"]
+      },
+      "matchNames": [
+        "epal - empresa portuguesa de águas livres"
+      ],
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Empresa Portuguesa de Águas Livres",
+        "operator:short": "EPAL",
+        "operator:wikidata": "Q10272522"
       }
     },
     {
@@ -490,6 +689,15 @@
       }
     },
     {
+      "displayName": "Fuente",
+      "id": "fuente-3fbe17",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Fuente"
+      }
+    },
+    {
       "displayName": "Gemeinde Gampel-Bratsch",
       "id": "gemeindegampelbratsch-223315",
       "locationSet": {
@@ -499,6 +707,18 @@
         "amenity": "drinking_water",
         "operator": "Gemeinde Gampel-Bratsch",
         "operator:wikidata": "Q70639"
+      }
+    },
+    {
+      "displayName": "Gemeinde Ratschings",
+      "id": "gemeinderatschings-6c07c4",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Gemeinde Ratschings",
+        "operator:wikidata": "Q474345"
       }
     },
     {
@@ -569,6 +789,16 @@
       }
     },
     {
+      "displayName": "IOM",
+      "id": "iom-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "IOM",
+        "operator:wikidata": "Q472311"
+      }
+    },
+    {
       "displayName": "Iren",
       "id": "iren-8df115",
       "locationSet": {"include": ["it"]},
@@ -618,6 +848,28 @@
       }
     },
     {
+      "displayName": "Kereta Api Indonesia",
+      "id": "keretaapiindonesia-69d1b3",
+      "locationSet": {"include": ["id-jw"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Kereta Api Indonesia",
+        "operator:wikidata": "Q2745027"
+      }
+    },
+    {
+      "displayName": "Lake County Forest Preserves",
+      "id": "lakecountyforestpreserves-4671bc",
+      "locationSet": {
+        "include": ["us-il.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Lake County Forest Preserves",
+        "operator:wikidata": "Q17068552"
+      }
+    },
+    {
       "displayName": "London Drinking Fountain Fund",
       "id": "londondrinkingfountainfund-a0e8dc",
       "locationSet": {
@@ -629,12 +881,58 @@
       }
     },
     {
+      "displayName": "Lutheran World Federation",
+      "id": "lutheranworldfederation-3fbe17",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Lutheran World Federation",
+        "operator:short": "LWF",
+        "operator:wikidata": "Q942284"
+      }
+    },
+    {
       "displayName": "LWSC",
       "id": "lwsc-8d8858",
       "locationSet": {"include": ["zm"]},
       "tags": {
         "amenity": "drinking_water",
         "operator": "LWSC"
+      }
+    },
+    {
+      "displayName": "Mairie de Sarzeau",
+      "id": "mairiedesarzeau-48930b",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
+      "matchNames": ["commune de sarzeau"],
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Mairie de Sarzeau",
+        "operator:wikidata": "Q115909985"
+      }
+    },
+    {
+      "displayName": "Malteser International",
+      "id": "malteserinternational-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Malteser International",
+        "operator:wikidata": "Q318221"
+      }
+    },
+    {
+      "displayName": "Marktgemeinde Lustenau",
+      "id": "marktgemeindelustenau-44bf8e",
+      "locationSet": {
+        "include": ["at-8.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Marktgemeinde Lustenau",
+        "operator:wikidata": "Q488315"
       }
     },
     {
@@ -677,18 +975,11 @@
       }
     },
     {
-      "displayName": "MPWiK",
-      "id": "mpwik-f887e0",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "amenity": "drinking_water",
-        "operator": "MPWiK"
-      }
-    },
-    {
       "displayName": "MPWiK Wrocław",
-      "id": "mpwikwroclaw-f887e0",
-      "locationSet": {"include": ["pl"]},
+      "id": "mpwikwroclaw-4cf8a8",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "MPWiK Wrocław"
@@ -722,6 +1013,26 @@
         "amenity": "drinking_water",
         "operator": "Nederlandse Spoorwegen",
         "operator:wikidata": "Q23076"
+      }
+    },
+    {
+      "displayName": "Never Thirst",
+      "id": "neverthirst-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Never Thirst"
+      }
+    },
+    {
+      "displayName": "NRC",
+      "id": "norwegianrefugeecouncil-3fbe17",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Norwegian Refugee Council",
+        "operator:short": "NRC",
+        "operator:wikidata": "Q1247077"
       }
     },
     {
@@ -871,6 +1182,16 @@
       }
     },
     {
+      "displayName": "Samaritan's Purse",
+      "id": "samaritanspurse-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Samaritan's Purse",
+        "operator:wikidata": "Q3470648"
+      }
+    },
+    {
       "displayName": "SBB",
       "id": "sbb-a1fadc",
       "locationSet": {"include": ["ch"]},
@@ -932,6 +1253,10 @@
       "displayName": "SNCF Gares & Connexions",
       "id": "sncfgaresandconnexions-02ca9b",
       "locationSet": {"include": ["fx"]},
+      "matchNames": [
+        "sncf",
+        "sncf gares et connexions"
+      ],
       "tags": {
         "amenity": "drinking_water",
         "operator": "SNCF Gares & Connexions",
@@ -960,6 +1285,30 @@
         "amenity": "drinking_water",
         "operator": "Stadt Dornbirn",
         "operator:wikidata": "Q171219"
+      }
+    },
+    {
+      "displayName": "Stadt Erfurt",
+      "id": "stadterfurt-a9fb1c",
+      "locationSet": {
+        "include": ["de-th.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Stadt Erfurt",
+        "operator:wikidata": "Q1729"
+      }
+    },
+    {
+      "displayName": "Stadt Frankfurt am Main",
+      "id": "stadtfrankfurtammain-4e0a22",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Stadt Frankfurt am Main",
+        "operator:wikidata": "Q124797826"
       }
     },
     {
@@ -1014,6 +1363,18 @@
       }
     },
     {
+      "displayName": "Stadtwerke Düsseldorf",
+      "id": "stadtwerkedusseldorf-a3ecbe",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Stadtwerke Düsseldorf",
+        "operator:wikidata": "Q2328468"
+      }
+    },
+    {
       "displayName": "Stadtwerke Meran - Azienda Servizi Municipalizzati di Merano",
       "id": "stadtwerkemeranaziendaservizimunicipalizzatidimerano-6c07c4",
       "locationSet": {
@@ -1037,17 +1398,34 @@
     },
     {
       "displayName": "Taigua",
-      "id": "taigua-a7f52c",
-      "locationSet": {"include": ["es"]},
+      "id": "taigua-59b0f8",
+      "locationSet": {
+        "include": [
+          "es-b.geojson",
+          "es-l.geojson"
+        ]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Taigua"
       }
     },
     {
+      "displayName": "Thames Water",
+      "id": "thameswater-df9760",
+      "locationSet": {"include": ["gb-eng"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Thames Water",
+        "operator:wikidata": "Q2408951"
+      }
+    },
+    {
       "displayName": "Tiefbauamt Stuttgart",
-      "id": "tiefbauamtstuttgart-fc0883",
-      "locationSet": {"include": ["de"]},
+      "id": "tiefbauamtstuttgart-f29b2a",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Tiefbauamt Stuttgart"
@@ -1075,6 +1453,25 @@
       "tags": {
         "amenity": "drinking_water",
         "operator": "Trevornick Holiday Park"
+      }
+    },
+    {
+      "displayName": "TRV zrt",
+      "id": "trvzrt-321b46",
+      "locationSet": {"include": ["hu"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "TRV zrt"
+      }
+    },
+    {
+      "displayName": "UNHCR",
+      "id": "unhcr-3fbe17",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "UNHCR",
+        "operator:wikidata": "Q132551"
       }
     },
     {
@@ -1110,6 +1507,15 @@
       }
     },
     {
+      "displayName": "URCS",
+      "id": "urcs-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "URCS"
+      }
+    },
+    {
       "displayName": "Vale of Glamorgan Council",
       "id": "valeofglamorgancouncil-97bbae",
       "locationSet": {"include": ["gb-wls"]},
@@ -1134,8 +1540,10 @@
     },
     {
       "displayName": "Veřejná zeleň města Brna",
-      "id": "verejnazelenmestabrna-eb7dc3",
-      "locationSet": {"include": ["cz"]},
+      "id": "verejnazelenmestabrna-a14940",
+      "locationSet": {
+        "include": ["cz-64.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Veřejná zeleň města Brna",
@@ -1181,8 +1589,10 @@
     },
     {
       "displayName": "Ville de Liège",
-      "id": "villedeliege-d9e26a",
-      "locationSet": {"include": ["be"]},
+      "id": "villedeliege-42d015",
+      "locationSet": {
+        "include": ["be-wlg.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Ville de Liège",
@@ -1224,11 +1634,22 @@
       "displayName": "Východoslovenská vodárenská spoločnosť",
       "id": "vychodoslovenskavodarenskaspolocnost-82b290",
       "locationSet": {"include": ["sk"]},
+      "note": "ISO 3166-2 SK-KI, SK-PV",
       "tags": {
         "amenity": "drinking_water",
         "operator": "Východoslovenská vodárenská spoločnosť",
         "operator:short": "VVS",
         "operator:wikidata": "Q16520438"
+      }
+    },
+    {
+      "displayName": "Water Mission",
+      "id": "watermission-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Water Mission",
+        "operator:wikidata": "Q54624543"
       }
     },
     {
@@ -1252,8 +1673,10 @@
     },
     {
       "displayName": "Waterlink",
-      "id": "waterlink-d9e26a",
-      "locationSet": {"include": ["be"]},
+      "id": "waterlink-3d8099",
+      "locationSet": {
+        "include": ["be-van.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "Waterlink",
@@ -1280,6 +1703,15 @@
         "amenity": "drinking_water",
         "operator": "Wellington City Council",
         "operator:wikidata": "Q601800"
+      }
+    },
+    {
+      "displayName": "Welt Hunger Hilfe",
+      "id": "welthungerhilfe-357a6e",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Welt Hunger Hilfe"
       }
     },
     {
@@ -1315,6 +1747,16 @@
       }
     },
     {
+      "displayName": "World Vision",
+      "id": "worldvision-3fbe17",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "World Vision",
+        "operator:wikidata": "Q2594001"
+      }
+    },
+    {
       "displayName": "WVZ",
       "id": "wvz-32a6c1",
       "locationSet": {
@@ -1327,9 +1769,23 @@
       }
     },
     {
+      "displayName": "Yarra Valley Water",
+      "id": "yarravalleywater-bffbbc",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Yarra Valley Water",
+        "operator:wikidata": "Q8049513"
+      }
+    },
+    {
       "displayName": "ZWiK Sp. z o.o. w Oławie",
-      "id": "zwikspzoowolawie-f887e0",
-      "locationSet": {"include": ["pl"]},
+      "id": "zwikspzoowolawie-4cf8a8",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "ZWiK Sp. z o.o. w Oławie"
@@ -1337,11 +1793,32 @@
     },
     {
       "displayName": "ГУП «Водоканал Санкт-Петербурга»",
-      "id": "edaa6f-feac74",
-      "locationSet": {"include": ["ru"]},
+      "id": "edaa6f-4ed015",
+      "locationSet": {
+        "include": ["ru-spe.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "ГУП «Водоканал Санкт-Петербурга»"
+        "operator": "ГУП «Водоканал Санкт-Петербурга»",
+        "operator:wikidata": "Q4114077"
+      }
+    },
+    {
+      "displayName": "Роганская",
+      "id": "ed5c7c-099377",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Роганская"
+      }
+    },
+    {
+      "displayName": "Роганська",
+      "id": "5a1de0-099377",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "amenity": "drinking_water",
+        "operator": "Роганська"
       }
     },
     {
@@ -1356,11 +1833,14 @@
     },
     {
       "displayName": "会津若松市 花と緑の課",
-      "id": "aabdcb-07acb2",
-      "locationSet": {"include": ["jp"]},
+      "id": "aizuwakamatsucityflowerandgreenerydivision-7198ef",
+      "locationSet": {
+        "include": ["jp-07.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
         "operator": "会津若松市 花と緑の課",
+        "operator:en": "Aizuwakamatsu City Flower and Greenery Division",
         "operator:ja": "会津若松市 花と緑の課"
       }
     },
@@ -1375,20 +1855,26 @@
     },
     {
       "displayName": "品川区",
-      "id": "9b71a0-07acb2",
-      "locationSet": {"include": ["jp"]},
+      "id": "9b71a0-b1dd12",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "品川区"
+        "operator": "品川区",
+        "operator:wikidata": "Q233495"
       }
     },
     {
       "displayName": "大田区",
-      "id": "431e24-07acb2",
-      "locationSet": {"include": ["jp"]},
+      "id": "431e24-b1dd12",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "amenity": "drinking_water",
-        "operator": "大田区"
+        "operator": "大田区",
+        "operator:wikidata": "Q217234"
       }
     },
     {
