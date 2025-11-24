@@ -29,42 +29,6 @@
   },
   "items": [
     {
-      "displayName": "MHD Pardubice",
-      "locationSet": {
-        "include": ["cz-53.geojson"]
-      },
-      "tags": {
-        "network": "MHD Pardubice",
-        "network:wikidata": "Q136803187",
-        "operator": "Dopravní podnik města Pardubic",
-        "operator:short": "DPMP",
-        "operator:wikidata": "Q11822119",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "MHD Hlohovec",
-      "locationSet": {"include": ["sk"]},
-      "tags": {
-        "network": "MHD Hlohovec",
-        "network:wikidata": "Q110521790",
-        "operator": "Arriva Trnava",
-        "operator:wikidata": "Q131698585",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "MHD Senica",
-      "locationSet": {"include": ["sk"]},
-      "tags": {
-        "network": "MHD Senica",
-        "network:wikidata": "Q107782592",
-        "operator": "Arriva Trnava",
-        "operator:wikidata": "Q131698585",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "A-Welle",
       "id": "awelle-ba16da",
       "locationSet": {"include": ["ch"]},
@@ -2912,19 +2876,11 @@
       }
     },
     {
-      "displayName": "Transports Urbans de Sabadell",
-      "id": "busdesabadell-b0a08c",
-      "locationSet": {
-        "include": ["es-b.geojson"]
-      },
-      "matchNames": [
-        "tus",
-      ],
+      "displayName": "Bus de Sabadell",
+      "id": "busdesabadell-a45453",
+      "locationSet": {"include": ["001"]},
       "tags": {
-        "network": "Transports Urbans de Sabadell",
-        "network:short": "TUS",
-        "network:wikidata": "Q39080976",
-        "operator": "TUS, SCCL",
+        "network": "Bus de Sabadell",
         "route": "bus"
       }
     },
@@ -7993,7 +7949,7 @@
     },
     {
       "displayName": "IDS Východ",
-      "id": "idsvychod-51c51c",
+      "id": "integrovanydopravnysystemidsvychod-51c51c",
       "locationSet": {"include": ["sk"]},
       "note": "ISO 3166-2 SK-KI, SK-PV",
       "tags": {
@@ -10121,7 +10077,10 @@
     },
     {
       "displayName": "LTFRB Cordillera Administrative Region",
-      "locationSet": {"include": ["ph-15.geojson"]},
+      "id": "ltfrbcordilleraadministrativeregion-1b2b0d",
+      "locationSet": {
+        "include": ["ph-15.geojson"]
+      },
       "matchNames": [
         "baguio city jeepney",
         "baguio city puj",
@@ -10136,6 +10095,7 @@
     },
     {
       "displayName": "LTFRB Inter-Regional Inter-Provincial Bus",
+      "id": "ltfrbinterregionalbus-3785bf",
       "locationSet": {"include": ["ph"]},
       "matchNames": [
         "interregional provincial bus",
@@ -10150,14 +10110,21 @@
     },
     {
       "displayName": "LTFRB National Capital Region",
-      "locationSet": {"include": ["ph-00.geojson", "ph-03.geojson", "ph-40.geojson"]},
+      "id": "ltfrbnationalcapitalregion-1497eb",
+      "locationSet": {
+        "include": [
+          "ph-00.geojson",
+          "ph-03.geojson",
+          "ph-40.geojson"
+        ]
+      },
       "matchNames": [
         "metro manila city bus",
+        "metro manila jeepney",
         "metro manila pub",
         "metro manila public utility bus",
-        "metro manila jeepney",
-        "metro manila puj",
-        "metro manila public utility jeepney"
+        "metro manila public utility jeepney",
+        "metro manila puj"
       ],
       "tags": {
         "network": "LTFRB National Capital Region",
@@ -10168,7 +10135,10 @@
     },
     {
       "displayName": "LTFRB Negros Island Region",
-      "locationSet": {"include": ["ph-nir.geojson"]},
+      "id": "ltfrbnegrosislandregion-eb7431",
+      "locationSet": {
+        "include": ["ph-nir.geojson"]
+      },
       "matchNames": [
         "bacolod city",
         "bacolod city jeepney",
@@ -10183,8 +10153,29 @@
       }
     },
     {
+      "displayName": "LTFRB PUB",
+      "id": "ltfrbpub-a45453",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "network": "LTFRB PUB",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "LTFRB PUJ",
+      "id": "ltfrbpuj-a45453",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "network": "LTFRB PUJ",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "LTFRB Region III",
-      "locationSet": {"include": ["ph-03.geojson"]},
+      "id": "ltfrbregioniii-01290b",
+      "locationSet": {
+        "include": ["ph-03.geojson"]
+      },
       "matchNames": [
         "central luzon",
         "ph central luzon"
@@ -10197,7 +10188,10 @@
     },
     {
       "displayName": "LTFRB Region IV-A",
-      "locationSet": {"include": ["ph-40.geojson"]},
+      "id": "ltfrbregioniva-3dc147",
+      "locationSet": {
+        "include": ["ph-40.geojson"]
+      },
       "matchNames": [
         "batangas city jeepney",
         "batangss city puj",
@@ -10212,11 +10206,14 @@
     },
     {
       "displayName": "LTFRB Region VI",
-      "locationSet": {"include": ["ph-06.geojson"]},
+      "id": "ltfrbregionvi-22c78b",
+      "locationSet": {
+        "include": ["ph-06.geojson"]
+      },
       "matchNames": [
         "iloilo city",
-        "western visayas",
-        "ph western visayas"
+        "ph western visayas",
+        "western visayas"
       ],
       "tags": {
         "network": "LTFRB Region VI",
@@ -10226,13 +10223,16 @@
     },
     {
       "displayName": "LTFRB Region VII",
-      "locationSet": {"include": ["ph-07.geojson"]},
+      "id": "ltfrbregionvii-99939c",
+      "locationSet": {
+        "include": ["ph-07.geojson"]
+      },
       "matchNames": [
         "central visayas",
         "metro cebu city bus",
         "metro cebu jeepney",
-        "metro cebu puj",
         "metro cebu public utility jeepney",
+        "metro cebu puj",
         "ph central visayas"
       ],
       "tags": {
@@ -10243,13 +10243,16 @@
     },
     {
       "displayName": "LTFRB Region XI",
-      "locationSet": {"include": ["ph-11.geojson"]},
+      "id": "ltfrbregionxi-154fca",
+      "locationSet": {
+        "include": ["ph-11.geojson"]
+      },
       "matchNames": [
         "davao",
         "davao city bus",
         "davao city jeepney",
-        "davao city puj",
         "davao city public utility jeepney",
+        "davao city puj",
         "davao region",
         "ph davao region"
       ],
@@ -11395,6 +11398,18 @@
       }
     },
     {
+      "displayName": "MHD Hlohovec",
+      "id": "mhdhlohovec-51c51c",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "network": "MHD Hlohovec",
+        "network:wikidata": "Q110521790",
+        "operator": "Arriva Trnava",
+        "operator:wikidata": "Q131698585",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "MHD Hradec Králové",
       "id": "mhdhradeckralove-5d28f5",
       "locationSet": {
@@ -11568,6 +11583,21 @@
       }
     },
     {
+      "displayName": "MHD Pardubice",
+      "id": "mhdpardubice-98f63a",
+      "locationSet": {
+        "include": ["cz-53.geojson"]
+      },
+      "tags": {
+        "network": "MHD Pardubice",
+        "network:wikidata": "Q136803187",
+        "operator": "Dopravní podnik města Pardubic",
+        "operator:short": "DPMP",
+        "operator:wikidata": "Q11822119",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "MHD Piešťany",
       "id": "mhdpiestany-51c51c",
       "locationSet": {"include": ["sk"]},
@@ -11680,6 +11710,18 @@
       }
     },
     {
+      "displayName": "MHD Senica",
+      "id": "mhdsenica-51c51c",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "network": "MHD Senica",
+        "network:wikidata": "Q107782592",
+        "operator": "Arriva Trnava",
+        "operator:wikidata": "Q131698585",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "MHD Sereď",
       "id": "mhdsered-51c51c",
       "locationSet": {"include": ["sk"]},
@@ -11740,6 +11782,15 @@
         "operator": "Dopravní podnik města Ústí nad Labem",
         "operator:short": "DPmÚL",
         "operator:wikidata": "Q11822130",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "MHD v Pardubicích",
+      "id": "mhdvpardubicich-a45453",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "network": "MHD v Pardubicích",
         "route": "bus"
       }
     },
@@ -14768,6 +14819,12 @@
       }
     },
     {
+      "displayName": "PUB",
+      "id": "pub-a45453",
+      "locationSet": {"include": ["001"]},
+      "tags": {"network": "PUB", "route": "bus"}
+    },
+    {
       "displayName": "Public Transport of Gibraltar",
       "id": "publictransportofgibraltar-f58602",
       "locationSet": {"include": ["gi"]},
@@ -14798,6 +14855,12 @@
         "network:wikidata": "Q7258466",
         "route": "bus"
       }
+    },
+    {
+      "displayName": "PUJ",
+      "id": "puj-a45453",
+      "locationSet": {"include": ["001"]},
+      "tags": {"network": "PUJ", "route": "bus"}
     },
     {
       "displayName": "Puławy",
@@ -20684,6 +20747,20 @@
         "network": "Transports Région Arlysère",
         "network:wikidata": "Q37043990",
         "operator": "Transdev Albertville",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "Transports Urbans de Sabadell",
+      "id": "transportsurbansdesabadell-b0a08c",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
+      "tags": {
+        "network": "Transports Urbans de Sabadell",
+        "network:short": "TUS",
+        "network:wikidata": "Q39080976",
+        "operator": "TUS, SCCL",
         "route": "bus"
       }
     },
