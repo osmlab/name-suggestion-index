@@ -29,3 +29,8 @@ jobs:
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
     - run: bun run all
+    - name: Commit built data
+      run: |
+        git add -A data
+        git commit -m "build"
+        git push
