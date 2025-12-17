@@ -34,5 +34,5 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git config user.name "GitHub Actions"
         git add -A data
-        git commit -m "build"
+        git diff --cached --exit-code || git commit -m "build"
         git push
