@@ -1,7 +1,7 @@
 name: build
 
 on:
-  push:
+  pull_request:
     branches: [ main ]
 
 env:
@@ -18,6 +18,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v5
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
     - name: Use Bun ${{ matrix.bun-version }}
       uses: oven-sh/setup-bun@v2
       with:
@@ -27,3 +29,10 @@ jobs:
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
     - run: bun run all
+    - name: Commit built data
+      run: |
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config user.name "GitHub Actions"
+        git add -A data
+        git commit -m "build"
+        git push
