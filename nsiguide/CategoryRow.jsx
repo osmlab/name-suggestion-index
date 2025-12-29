@@ -141,6 +141,35 @@ relation[${k}=${v}][network:wikidata=${qid}]
     qid = Object.values(TREES)
       .map(tree => item.tags[tree.wikidataTag])
       .find(Boolean);
+
+    // for the green styling, every [*:]wikidata tag must be correct.
+    // merge these tags into an overpass tag filter string.
+    const filter = Object.keys(item.tags)
+      .filter(key => key.endsWith(":wikidata"))
+      .map(key => {
+        const plainKey = key?.replace(":wikidata", "");
+        return `['${plainKey}'='${item.tags[plainKey]}']['${key}'='${item.tags[key]}']`
+      })
+      .join('');
+
+    overpassQuery = `[out:json][timeout:100];
+(nwr["name"="${n}"];);
+out center;
+
+{{style:
+node,
+way,
+relation
+{ color:red; fill-color:red; }
+node['${k}'='${v}'],
+way['${k}'='${v}'],
+relation['${k}'='${v}']
+{ color:yellow; fill-color:yellow; }
+node['${k}'='${v}']${filter},
+way['${k}'='${v}']${filter},
+relation['${k}'='${v}']${filter}
+{ color:green; fill-color:green; }
+}}`;
   }
 
   const wd = context.wikidata[qid] || {};
@@ -259,7 +288,6 @@ relation[${k}=${v}][network:wikidata=${qid}]
   }
 
   function searchOverpassLink(name, overpassQuery) {
-    if (!overpassQuery) return null;
     const q = encodeURIComponent(overpassQuery);
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
     const title = `Search Overpass Turbo for ${n}`;
