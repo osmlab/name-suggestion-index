@@ -33,8 +33,8 @@
         "safe-regex": "^2.1.1",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.50.1",
-        "wikibase-edit": "^7.2.4",
-        "wikibase-sdk": "^10.2.3",
+        "wikibase-edit": "^8.0.6",
+        "wikibase-sdk": "^11.1.2",
         "xmlbuilder2": "^4.0.3",
       },
     },
@@ -103,6 +103,10 @@
     "@types/geojson": ["@types/geojson@7946.0.16", "", {}, "sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg=="],
 
     "@types/json-schema": ["@types/json-schema@7.0.15", "", {}, "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA=="],
+
+    "@types/lodash": ["@types/lodash@4.17.21", "", {}, "sha512-FOvQ0YPD5NOfPgMzJihoT+Za5pdkDJWcbpuj1DjaKZIr/gxodQjY/uWEFlTNqW2ugXHUiL8lRQgw63dzKHZdeQ=="],
+
+    "@types/lodash-es": ["@types/lodash-es@4.17.12", "", { "dependencies": { "@types/lodash": "*" } }, "sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ=="],
 
     "@typescript-eslint/eslint-plugin": ["@typescript-eslint/eslint-plugin@8.50.1", "", { "dependencies": { "@eslint-community/regexpp": "^4.10.0", "@typescript-eslint/scope-manager": "8.50.1", "@typescript-eslint/type-utils": "8.50.1", "@typescript-eslint/utils": "8.50.1", "@typescript-eslint/visitor-keys": "8.50.1", "ignore": "^7.0.0", "natural-compare": "^1.4.0", "ts-api-utils": "^2.1.0" }, "peerDependencies": { "@typescript-eslint/parser": "^8.50.1", "eslint": "^8.57.0 || ^9.0.0", "typescript": ">=4.8.4 <6.0.0" } }, "sha512-PKhLGDq3JAg0Jk/aK890knnqduuI/Qj+udH7wCf0217IGi4gt+acgCyPVe79qoT+qKUvHMDQkwJeKW9fwl8Cyw=="],
 
@@ -250,7 +254,7 @@
 
     "locate-path": ["locate-path@6.0.0", "", { "dependencies": { "p-locate": "^5.0.0" } }, "sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw=="],
 
-    "lodash.isequal": ["lodash.isequal@4.5.0", "", {}, "sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ=="],
+    "lodash-es": ["lodash-es@4.17.22", "", {}, "sha512-XEawp1t0gxSi9x01glktRZ5HDy0HXqrM0x5pXQM98EaI0NxO6jVM7omDOxsuEo5UIASAnm2bRp1Jt/e0a2XU8Q=="],
 
     "lodash.merge": ["lodash.merge@4.6.2", "", {}, "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ=="],
 
@@ -338,6 +342,8 @@
 
     "type-check": ["type-check@0.4.0", "", { "dependencies": { "prelude-ls": "^1.2.1" } }, "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew=="],
 
+    "type-fest": ["type-fest@4.41.0", "", {}, "sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA=="],
+
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
     "typescript-eslint": ["typescript-eslint@8.50.1", "", { "dependencies": { "@typescript-eslint/eslint-plugin": "8.50.1", "@typescript-eslint/parser": "8.50.1", "@typescript-eslint/typescript-estree": "8.50.1", "@typescript-eslint/utils": "8.50.1" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0", "typescript": ">=4.8.4 <6.0.0" } }, "sha512-ytTHO+SoYSbhAH9CrYnMhiLx8To6PSSvqnvXyPUgPETCvB6eBKmTI9w6XMPS3HsBRGkwTVBX+urA8dYQx6bHfQ=="],
@@ -354,9 +360,9 @@
 
     "which-polygon": ["which-polygon@2.2.1", "", { "dependencies": { "lineclip": "^1.1.5", "rbush": "^2.0.1" } }, "sha512-RlpWbqz12OMT0r2lEHk7IUPXz0hb1L/ZZsGushB2P2qxuBu1aq1+bcTfsLtfoRBYHsED6ruBMiwFaidvXZfQVw=="],
 
-    "wikibase-edit": ["wikibase-edit@7.2.4", "", { "dependencies": { "cross-fetch": "^4.1.0", "crypto-js": "^4.1.1", "lodash.isequal": "^4.5.0", "oauth-1.0a": "^2.2.6", "wikibase-sdk": "^10.1.0" } }, "sha512-Ejus6i/gzYNONFbpzsM02QOrWQd++04VBEtoIT+UiSZE7tQbD/xWUsu7XyIpFpynemJYx/Pt11DDFx45MpAwew=="],
+    "wikibase-edit": ["wikibase-edit@8.0.6", "", { "dependencies": { "@types/lodash-es": "^4.17.12", "cross-fetch": "^4.1.0", "crypto-js": "^4.1.1", "lodash-es": "^4.17.21", "oauth-1.0a": "^2.2.6", "type-fest": "^4.41.0", "typescript": "^5.9.2", "wikibase-sdk": "^11.1.0" } }, "sha512-SD6UQh4j8BqMyMd1E2N6YzUWrUG5+bSi+YAbdjVOKV/gxDHhVVM1giBd4+cw13bnKQ7UmO0xXxglJnXqIkEeXQ=="],
 
-    "wikibase-sdk": ["wikibase-sdk@10.2.3", "", {}, "sha512-TOSqq37x+uDgr0RA/gT2IhHd5kkEZ4PL9r5ug0UZnwL2cG2dUSjy7xVyjY6WTdyQHhXnkCCZuc09OhR9kEk4qg=="],
+    "wikibase-sdk": ["wikibase-sdk@11.1.2", "", { "dependencies": { "type-fest": "^4.41.0" } }, "sha512-Ixj8zopeQVKv6lJ5Cb+OqZK8ujXKa9zYqmkuFdZsXuBTXPkItmf2sUZNEAV3WAbxJfWK27LisMV15SpkcfVlsQ=="],
 
     "word-wrap": ["word-wrap@1.2.5", "", {}, "sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA=="],
 
