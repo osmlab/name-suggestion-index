@@ -3,13 +3,15 @@
     "path": "operators/amenity/police",
     "exclude": {
       "generic": [
-        "^police$",
+        "^((local|municipal) )?police$",
+        "^policía local$",
+        "^polizia( (locale|municipale))?$",
         "^п[ао]л(іцыя|иция|иција|іція|иций)$",
         "^中华人民共和国公安部"
       ],
       "named": [
         "^corpo forestale dello stato$",
-        "^polizia (locale|municipale)$"
+        "^ministère d'etat, ministère de l'interieur et de la sécurité$"
       ]
     }
   },
@@ -53,8 +55,10 @@
     },
     {
       "displayName": "Ayuntamiento de Madrid",
-      "id": "ayuntamientodemadrid-dd66e9",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodemadrid-cdff0a",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Ayuntamiento de Madrid",
@@ -63,8 +67,10 @@
     },
     {
       "displayName": "Baguio City Police Office",
-      "id": "baguiocitypoliceoffice-959114",
-      "locationSet": {"include": ["ph"]},
+      "id": "baguiocitypoliceoffice-69e451",
+      "locationSet": {
+        "include": ["ph-15.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Baguio City Police Office"
@@ -72,9 +78,9 @@
     },
     {
       "displayName": "Baltimore Police Department",
-      "id": "baltimorepolicedepartment-8d98c1",
+      "id": "baltimorepolicedepartment-069b69",
       "locationSet": {
-        "include": ["baltimore.geojson"]
+        "include": ["us-md-baltimore.geojson"]
       },
       "tags": {
         "amenity": "police",
@@ -110,14 +116,18 @@
     },
     {
       "displayName": "Brigada Militar do Rio Grande do Sul",
-      "id": "brigadamilitardoriograndedosul-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "brigadamilitardoriograndedosul-4f605e",
+      "locationSet": {
+        "include": ["br-rs.geojson"]
+      },
       "matchNames": ["brigada militar"],
       "tags": {
         "amenity": "police",
         "operator": "Brigada Militar do Rio Grande do Sul",
         "operator:en": "Military Police Brigade of Rio Grande do Sul",
-        "operator:short": "BMRS"
+        "operator:pt": "Brigada Militar do Rio Grande do Sul",
+        "operator:short": "BMRS",
+        "operator:wikidata": "Q9666780"
       }
     },
     {
@@ -250,8 +260,10 @@
     },
     {
       "displayName": "Comunidad de Madrid",
-      "id": "comunidaddemadrid-dd66e9",
-      "locationSet": {"include": ["es"]},
+      "id": "comunidaddemadrid-cdff0a",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Comunidad de Madrid",
@@ -311,21 +323,14 @@
     },
     {
       "displayName": "Delhi Police",
-      "id": "delhipolice-d0526a",
-      "locationSet": {"include": ["in"]},
+      "id": "delhipolice-230fee",
+      "locationSet": {
+        "include": ["in-dl.geojson"]
+      },
       "tags": {
         "amenity": "police",
-        "operator": "Delhi Police"
-      }
-    },
-    {
-      "displayName": "Departamento de Polícia Federal",
-      "id": "departamentodepoliciafederal-f7f40a",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Departamento de Polícia Federal",
-        "operator:wikidata": "Q2289697"
+        "operator": "Delhi Police",
+        "operator:wikidata": "Q3764926"
       }
     },
     {
@@ -363,6 +368,7 @@
         "amenity": "police",
         "operator": "Direction générale de la Sûreté nationale",
         "operator:ar": "المديرية العامة للأمن الوطني",
+        "operator:fr": "Direction générale de la Sûreté nationale",
         "operator:short": "DGSN",
         "operator:wikidata": "Q12218510"
       }
@@ -410,6 +416,7 @@
         "amenity": "police",
         "operator": "Dyfed–Powys Police",
         "operator:cy": "Heddlu Dyfed–Powys",
+        "operator:en": "Dyfed–Powys Police",
         "operator:wikidata": "Q3403354"
       }
     },
@@ -495,6 +502,7 @@
         "amenity": "police",
         "operator": "Gendarmerie nationale",
         "operator:ar": "الدرك الوطني",
+        "operator:fr": "Gendarmerie nationale",
         "operator:wikidata": "Q3100409"
       }
     },
@@ -510,8 +518,10 @@
     },
     {
       "displayName": "Governo do Estado de Santa Catarina",
-      "id": "governodoestadodesantacatarina-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodesantacatarina-5a51ec",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Governo do Estado de Santa Catarina",
@@ -520,8 +530,10 @@
     },
     {
       "displayName": "Governo do Estado do Rio Grande do Norte",
-      "id": "governodoestadodoriograndedonorte-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "governodoestadodoriograndedonorte-faf9f7",
+      "locationSet": {
+        "include": ["br-rn.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Governo do Estado do Rio Grande do Norte",
@@ -605,6 +617,7 @@
         "amenity": "police",
         "operator": "Guardia Nacional Bolivariana de Venezuela",
         "operator:en": "Bolivarian National Guard of Venezuela",
+        "operator:es": "Guardia Nacional Bolivariana de Venezuela",
         "operator:short": "GNB",
         "operator:wikidata": "Q3095409"
       }
@@ -617,6 +630,7 @@
         "amenity": "police",
         "operator": "Gwent Police",
         "operator:cy": "Heddlu Gwent",
+        "operator:en": "Gwent Police",
         "operator:wikidata": "Q1774842"
       }
     },
@@ -741,8 +755,10 @@
     },
     {
       "displayName": "Jammu and Kashmir Police",
-      "id": "jammuandkashmirpolice-0bc1d6",
-      "locationSet": {"include": ["in", "pk"]},
+      "id": "jammuandkashmirpolice-29c3e5",
+      "locationSet": {
+        "include": ["in-jk.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Jammu and Kashmir Police",
@@ -764,8 +780,10 @@
     },
     {
       "displayName": "Kantonspolizei Bern",
-      "id": "kantonspolizeibern-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "kantonspolizeibern-02306c",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kantonspolizei Bern",
@@ -774,8 +792,10 @@
     },
     {
       "displayName": "Kantonspolizei Schwyz",
-      "id": "kantonspolizeischwyz-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "kantonspolizeischwyz-de328a",
+      "locationSet": {
+        "include": ["ch-sz.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kantonspolizei Schwyz",
@@ -784,8 +804,10 @@
     },
     {
       "displayName": "Kantonspolizei Thurgau",
-      "id": "kantonspolizeithurgau-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "kantonspolizeithurgau-e5b07a",
+      "locationSet": {
+        "include": ["ch-tg.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kantonspolizei Thurgau",
@@ -794,8 +816,10 @@
     },
     {
       "displayName": "Kantonspolizei Zürich",
-      "id": "kantonspolizeizurich-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "kantonspolizeizurich-ad4a21",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kantonspolizei Zürich",
@@ -822,25 +846,31 @@
         "amenity": "police",
         "operator": "Kepolisian Negara Republik Indonesia",
         "operator:en": "Indonesian National Police",
+        "operator:id": "Kepolisian Negara Republik Indonesia",
         "operator:short": "POLRI",
         "operator:wikidata": "Q3103954"
       }
     },
     {
       "displayName": "Kerala Police",
-      "id": "keralapolice-d0526a",
-      "locationSet": {"include": ["in"]},
+      "id": "keralapolice-c0bc16",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Kerala Police",
+        "operator:en": "Kerala Police",
         "operator:ml": "കേരള പോലീസ്",
         "operator:wikidata": "Q17064579"
       }
     },
     {
       "displayName": "Komenda Miejska Policji w Lublinie",
-      "id": "komendamiejskapolicjiwlublinie-821ef5",
-      "locationSet": {"include": ["pl"]},
+      "id": "komendamiejskapolicjiwlublinie-f0e921",
+      "locationSet": {
+        "include": ["pl-06.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Komenda Miejska Policji w Lublinie"
@@ -1042,11 +1072,14 @@
     },
     {
       "displayName": "Landespolizeidirektion Niederösterreich",
-      "id": "landespolizeidirektionniederosterreich-6671a8",
-      "locationSet": {"include": ["at"]},
+      "id": "landespolizeidirektionniederosterreich-890ad1",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
       "tags": {
         "amenity": "police",
-        "operator": "Landespolizeidirektion Niederösterreich"
+        "operator": "Landespolizeidirektion Niederösterreich",
+        "operator:wikidata": "Q131363945"
       }
     },
     {
@@ -1089,8 +1122,10 @@
     },
     {
       "displayName": "Luzerner Polizei",
-      "id": "luzernerpolizei-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "luzernerpolizei-830d3c",
+      "locationSet": {
+        "include": ["ch-lu.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Luzerner Polizei",
@@ -1178,8 +1213,13 @@
     },
     {
       "displayName": "Midt- og Vestjyllands Politi",
-      "id": "midtogvestjyllandspoliti-786af7",
-      "locationSet": {"include": ["dk"]},
+      "id": "midtogvestjyllandspoliti-1622d4",
+      "locationSet": {
+        "include": [
+          "dk-81.geojson",
+          "dk-82.geojson"
+        ]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Midt- og Vestjyllands Politi",
@@ -1188,21 +1228,14 @@
     },
     {
       "displayName": "Midt- og Vestsjællands Politi",
-      "id": "midtogvestsjaellandspoliti-786af7",
-      "locationSet": {"include": ["dk"]},
+      "id": "midtogvestsjaellandspoliti-441ecf",
+      "locationSet": {
+        "include": ["dk-85.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Midt- og Vestsjællands Politi",
         "operator:wikidata": "Q116040097"
-      }
-    },
-    {
-      "displayName": "Ministère d'Etat, Ministère de l'Interieur et de la Sécurité",
-      "id": "ministeredetatministeredelinterieuretdelasecurite-92205f",
-      "locationSet": {"include": ["ci"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Ministère d'Etat, Ministère de l'Interieur et de la Sécurité"
       }
     },
     {
@@ -1228,15 +1261,17 @@
       }
     },
     {
-      "displayName": "Ministerio del Interior y Justicia",
-      "id": "ministeriodelinterioryjusticia-3383b4",
+      "displayName": "Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz",
+      "id": "ministeriodelpoderpopularpararelacionesinterioresjusticiaypaz-3383b4",
       "locationSet": {"include": ["ve"]},
       "matchNames": [
-        "ministerio de interior y justicia"
+        "ministerio de interior y justicia",
+        "ministerio del interior y justicia"
       ],
       "tags": {
         "amenity": "police",
-        "operator": "Ministerio del Interior y Justicia"
+        "operator": "Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz",
+        "operator:wikidata": "Q16607766"
       }
     },
     {
@@ -1278,8 +1313,15 @@
     },
     {
       "displayName": "Mossos d'Esquadra",
-      "id": "mossosdesquadra-dd66e9",
-      "locationSet": {"include": ["es"]},
+      "id": "mossosdesquadra-cce906",
+      "locationSet": {
+        "include": [
+          "es-b.geojson",
+          "es-gi.geojson",
+          "es-l.geojson",
+          "es-t.geojson"
+        ]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Mossos d'Esquadra",
@@ -1383,9 +1425,9 @@
     },
     {
       "displayName": "New York Police Department",
-      "id": "newyorkpolicedepartment-a48e36",
+      "id": "newyorkpolicedepartment-13fd26",
       "locationSet": {
-        "include": ["new_york_city.geojson"]
+        "include": ["us-ny-new_york_city.geojson"]
       },
       "matchNames": [
         "new york city police department"
@@ -1425,8 +1467,10 @@
     },
     {
       "displayName": "Nordjyllands Politi",
-      "id": "nordjyllandspoliti-786af7",
-      "locationSet": {"include": ["dk"]},
+      "id": "nordjyllandspoliti-f27ed8",
+      "locationSet": {
+        "include": ["dk-81.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Nordjyllands Politi",
@@ -1483,6 +1527,7 @@
         "amenity": "police",
         "operator": "North Wales Police",
         "operator:cy": "Heddlu Gogledd Cymru",
+        "operator:en": "North Wales Police",
         "operator:wikidata": "Q1774860"
       }
     },
@@ -1589,6 +1634,16 @@
       }
     },
     {
+      "displayName": "Oulun poliisilaitos",
+      "id": "oulunpoliisilaitos-4900fa",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Oulun poliisilaitos",
+        "operator:wikidata": "Q92422920"
+      }
+    },
+    {
       "displayName": "Peel Regional Police",
       "id": "peelregionalpolice-ecdb14",
       "locationSet": {
@@ -1613,12 +1668,13 @@
       }
     },
     {
-      "displayName": "Poder Judicial",
+      "displayName": "Poder Judicial (Costa Rica)",
       "id": "poderjudicial-05938a",
       "locationSet": {"include": ["cr"]},
       "tags": {
         "amenity": "police",
-        "operator": "Poder Judicial"
+        "operator": "Poder Judicial",
+        "operator:wikidata": "Q7644938"
       }
     },
     {
@@ -1679,8 +1735,10 @@
     },
     {
       "displayName": "Polícia Civil do Estado da Bahia",
-      "id": "policiacivildoestadodabahia-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiacivildoestadodabahia-199ea7",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Civil do Estado da Bahia",
@@ -1689,8 +1747,10 @@
     },
     {
       "displayName": "Polícia Civil do Estado de Minas Gerais",
-      "id": "policiacivildoestadodeminasgerais-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiacivildoestadodeminasgerais-5eef66",
+      "locationSet": {
+        "include": ["br-mg.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Civil do Estado de Minas Gerais",
@@ -1699,8 +1759,10 @@
     },
     {
       "displayName": "Polícia Civil do Estado de Santa Catarina",
-      "id": "policiacivildoestadodesantacatarina-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiacivildoestadodesantacatarina-5a51ec",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Civil do Estado de Santa Catarina",
@@ -1709,8 +1771,10 @@
     },
     {
       "displayName": "Polícia Civil do Estado de São Paulo",
-      "id": "policiacivildoestadodesaopaulo-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiacivildoestadodesaopaulo-0df637",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Civil do Estado de São Paulo",
@@ -1718,9 +1782,23 @@
       }
     },
     {
+      "displayName": "Polícia Civil do Estado de Sergipe",
+      "id": "policiacivildoestadodesergipe-8453d9",
+      "locationSet": {
+        "include": ["br-se.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "Polícia Civil do Estado de Sergipe",
+        "operator:wikidata": "Q10350991"
+      }
+    },
+    {
       "displayName": "Polícia Civil do Estado do Espírito Santo",
-      "id": "policiacivildoestadodoespiritosanto-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiacivildoestadodoespiritosanto-cf5b75",
+      "locationSet": {
+        "include": ["br-es.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Civil do Estado do Espírito Santo",
@@ -1728,9 +1806,23 @@
       }
     },
     {
+      "displayName": "Polícia Civil do Estado do Rio de Janeiro",
+      "id": "policiacivildoestadodoriodejaneiro-347580",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "Polícia Civil do Estado do Rio de Janeiro",
+        "operator:wikidata": "Q5124531"
+      }
+    },
+    {
       "displayName": "Policía de Catamarca",
-      "id": "policiadecatamarca-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadecatamarca-6fa7f7",
+      "locationSet": {
+        "include": ["ar-k.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de Catamarca",
@@ -1738,19 +1830,27 @@
       }
     },
     {
-      "displayName": "Policía de la Ciudad",
-      "id": "policiadelaciudad-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "displayName": "Policía de la Ciudad de Buenos Aires",
+      "id": "policiadelaciudaddebuenosaires-c38488",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
+      "matchNames": ["policia de la ciudad"],
       "tags": {
         "amenity": "police",
-        "operator": "Policía de la Ciudad",
+        "operator": "Policía de la Ciudad de Buenos Aires",
         "operator:wikidata": "Q28647622"
       }
     },
     {
       "displayName": "Policía de La Pampa",
-      "id": "policiadelapampa-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelapampa-4021d5",
+      "locationSet": {
+        "include": ["ar-l.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de La Pampa",
@@ -1759,8 +1859,13 @@
     },
     {
       "displayName": "Policía de la Provincia de Buenos Aires",
-      "id": "policiadelaprovinciadebuenosaires-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadebuenosaires-c38488",
+      "locationSet": {
+        "include": [
+          "ar-b.geojson",
+          "ar-c.geojson"
+        ]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Buenos Aires",
@@ -1769,8 +1874,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Córdoba",
-      "id": "policiadelaprovinciadecordoba-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadecordoba-ed1bd8",
+      "locationSet": {
+        "include": ["ar-x.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Córdoba",
@@ -1779,8 +1886,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Entre Ríos",
-      "id": "policiadelaprovinciadeentrerios-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadeentrerios-c437f3",
+      "locationSet": {
+        "include": ["ar-e.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Entre Ríos",
@@ -1789,8 +1898,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Misiones",
-      "id": "policiadelaprovinciademisiones-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciademisiones-b3f80b",
+      "locationSet": {
+        "include": ["ar-n.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Misiones",
@@ -1799,8 +1910,10 @@
     },
     {
       "displayName": "Policía de la Provincia de Neuquén",
-      "id": "policiadelaprovinciadeneuquen-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadeneuquen-2ae00c",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Neuquén",
@@ -1808,9 +1921,22 @@
       }
     },
     {
+      "displayName": "Policía de la Provincia de San Luis",
+      "id": "policiadelaprovinciadesanluis-a66f53",
+      "locationSet": {
+        "include": ["ar-d.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "Policía de la Provincia de San Luis"
+      }
+    },
+    {
       "displayName": "Policía de la Provincia de Santa Fe",
-      "id": "policiadelaprovinciadesantafe-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadelaprovinciadesantafe-6f8c3b",
+      "locationSet": {
+        "include": ["ar-s.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de la Provincia de Santa Fe",
@@ -1818,9 +1944,21 @@
       }
     },
     {
+      "displayName": "Policía de Puerto Rico",
+      "id": "policiadepuertorico-8542d8",
+      "locationSet": {"include": ["pr"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Policía de Puerto Rico",
+        "operator:wikidata": "Q3708780"
+      }
+    },
+    {
       "displayName": "Policía de Río Negro",
-      "id": "policiaderionegro-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiaderionegro-124cf2",
+      "locationSet": {
+        "include": ["ar-r.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de Río Negro",
@@ -1829,8 +1967,10 @@
     },
     {
       "displayName": "Policía de Santiago del Estero",
-      "id": "policiadesantiagodelestero-e73d55",
-      "locationSet": {"include": ["ar"]},
+      "id": "policiadesantiagodelestero-dbd40a",
+      "locationSet": {
+        "include": ["ar-g.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Policía de Santiago del Estero",
@@ -1861,6 +2001,7 @@
         "amenity": "police",
         "operator": "Polícia do Exército",
         "operator:en": "Army Police",
+        "operator:pt": "Polícia do Exército",
         "operator:short": "PE",
         "operator:wikidata": "Q4794219"
       }
@@ -1879,39 +2020,37 @@
       "displayName": "Polícia Federal do Brasil",
       "id": "policiafederaldobrasil-f7f40a",
       "locationSet": {"include": ["br"]},
-      "matchNames": ["federal"],
+      "matchNames": [
+        "departamento de polícia federal",
+        "federal"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Polícia Federal do Brasil",
         "operator:en": "Federal Police of Brazil",
+        "operator:pt": "Polícia Federal do Brasil",
         "operator:wikidata": "Q2289697"
       }
     },
     {
-      "displayName": "Policía Local",
-      "id": "policialocal-dd66e9",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Policía Local",
-        "operator:wikidata": "Q1507792"
-      }
-    },
-    {
       "displayName": "Polícia Militar da Bahia",
-      "id": "policiamilitardabahia-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardabahia-199ea7",
+      "locationSet": {
+        "include": ["br-ba.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar da Bahia",
         "operator:short": "PMBA",
-        "operator:wikidata": "Q10351014"
+        "operator:wikidata": "Q10351012"
       }
     },
     {
       "displayName": "Polícia Militar da Paraíba",
-      "id": "policiamilitardaparaiba-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardaparaiba-1b5ab8",
+      "locationSet": {
+        "include": ["br-pb.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar da Paraíba",
@@ -1921,8 +2060,10 @@
     },
     {
       "displayName": "Polícia Militar de Alagoas",
-      "id": "policiamilitardealagoas-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardealagoas-2ac7dd",
+      "locationSet": {
+        "include": ["br-al.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar de Alagoas",
@@ -1932,8 +2073,10 @@
     },
     {
       "displayName": "Polícia Militar de Mato Grosso do Sul",
-      "id": "policiamilitardematogrossodosul-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardematogrossodosul-7dcdd9",
+      "locationSet": {
+        "include": ["br-ms.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar de Mato Grosso do Sul",
@@ -1943,8 +2086,10 @@
     },
     {
       "displayName": "Polícia Militar de Minas Gerais",
-      "id": "policiamilitardeminasgerais-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardeminasgerais-5eef66",
+      "locationSet": {
+        "include": ["br-mg.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar de Minas Gerais",
@@ -1954,8 +2099,10 @@
     },
     {
       "displayName": "Polícia Militar de Pernambuco",
-      "id": "policiamilitardepernambuco-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardepernambuco-e16786",
+      "locationSet": {
+        "include": ["br-pe.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar de Pernambuco",
@@ -1965,8 +2112,10 @@
     },
     {
       "displayName": "Polícia Militar de Roraima",
-      "id": "policiamilitarderoraima-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitarderoraima-800492",
+      "locationSet": {
+        "include": ["br-rr.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar de Roraima",
@@ -1975,20 +2124,11 @@
       }
     },
     {
-      "displayName": "Polícia Militar de Santa Catarina",
-      "id": "policiamilitardesantacatarina-f7f40a",
-      "locationSet": {"include": ["br"]},
-      "tags": {
-        "amenity": "police",
-        "operator": "Polícia Militar de Santa Catarina",
-        "operator:short": "PMSC",
-        "operator:wikidata": "Q10351017"
-      }
-    },
-    {
       "displayName": "Polícia Militar do Amazonas",
-      "id": "policiamilitardoamazonas-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoamazonas-a3a7cc",
+      "locationSet": {
+        "include": ["br-am.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Amazonas",
@@ -1998,8 +2138,10 @@
     },
     {
       "displayName": "Polícia Militar do Distrito Federal",
-      "id": "policiamilitardodistritofederal-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardodistritofederal-50c96d",
+      "locationSet": {
+        "include": ["br-df.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Distrito Federal",
@@ -2009,8 +2151,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado de Goiás",
-      "id": "policiamilitardoestadodegoias-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodegoias-e8990e",
+      "locationSet": {
+        "include": ["br-go.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado de Goiás",
@@ -2020,8 +2164,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado de Mato Grosso",
-      "id": "policiamilitardoestadodematogrosso-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodematogrosso-bede3c",
+      "locationSet": {
+        "include": ["br-mt.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado de Mato Grosso",
@@ -2031,8 +2177,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado de Rondônia",
-      "id": "policiamilitardoestadoderondonia-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadoderondonia-200a68",
+      "locationSet": {
+        "include": ["br-ro.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado de Rondônia",
@@ -2042,18 +2190,26 @@
     },
     {
       "displayName": "Polícia Militar do Estado de Santa Catarina",
-      "id": "policiamilitardoestadodesantacatarina-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodesantacatarina-5a51ec",
+      "locationSet": {
+        "include": ["br-sc.geojson"]
+      },
+      "matchNames": [
+        "polícia militar de santa catarina"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado de Santa Catarina",
+        "operator:short": "PMSC",
         "operator:wikidata": "Q10351017"
       }
     },
     {
       "displayName": "Polícia Militar do Estado de São Paulo",
-      "id": "policiamilitardoestadodesaopaulo-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodesaopaulo-0df637",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado de São Paulo",
@@ -2063,8 +2219,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado de Sergipe",
-      "id": "policiamilitardoestadodesergipe-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodesergipe-8453d9",
+      "locationSet": {
+        "include": ["br-se.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado de Sergipe",
@@ -2074,8 +2232,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Acre",
-      "id": "policiamilitardoestadodoacre-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodoacre-b5c2fc",
+      "locationSet": {
+        "include": ["br-ac.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Acre",
@@ -2085,8 +2245,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Amapá",
-      "id": "policiamilitardoestadodoamapa-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodoamapa-b9253d",
+      "locationSet": {
+        "include": ["br-ap.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Amapá",
@@ -2096,8 +2258,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Ceará",
-      "id": "policiamilitardoestadodoceara-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodoceara-e543dc",
+      "locationSet": {
+        "include": ["br-ce.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Ceará",
@@ -2107,8 +2271,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Espírito Santo",
-      "id": "policiamilitardoestadodoespiritosanto-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodoespiritosanto-cf5b75",
+      "locationSet": {
+        "include": ["br-es.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Espírito Santo",
@@ -2118,8 +2284,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Maranhão",
-      "id": "policiamilitardoestadodomaranhao-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodomaranhao-222628",
+      "locationSet": {
+        "include": ["br-ma.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Maranhão",
@@ -2129,8 +2297,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Pará",
-      "id": "policiamilitardoestadodopara-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodopara-d9607c",
+      "locationSet": {
+        "include": ["br-pa.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Pará",
@@ -2140,8 +2310,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Piauí",
-      "id": "policiamilitardoestadodopiaui-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodopiaui-7e89b6",
+      "locationSet": {
+        "include": ["br-pi.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Piauí",
@@ -2151,8 +2323,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Rio de Janeiro",
-      "id": "policiamilitardoestadodoriodejaneiro-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodoriodejaneiro-347580",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Rio de Janeiro",
@@ -2162,8 +2336,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Rio Grande do Norte",
-      "id": "policiamilitardoestadodoriograndedonorte-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodoriograndedonorte-faf9f7",
+      "locationSet": {
+        "include": ["br-rn.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Rio Grande do Norte",
@@ -2173,8 +2349,10 @@
     },
     {
       "displayName": "Polícia Militar do Estado do Tocantins",
-      "id": "policiamilitardoestadodotocantins-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoestadodotocantins-624e2f",
+      "locationSet": {
+        "include": ["br-to.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Estado do Tocantins",
@@ -2184,8 +2362,10 @@
     },
     {
       "displayName": "Polícia Militar do Paraná",
-      "id": "policiamilitardoparana-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "policiamilitardoparana-6e8c53",
+      "locationSet": {
+        "include": ["br-pr.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Polícia Militar do Paraná",
@@ -2201,6 +2381,7 @@
         "amenity": "police",
         "operator": "Policía Nacional Bolivariana",
         "operator:en": "Bolivarian National Police",
+        "operator:es": "Policía Nacional Bolivariana",
         "operator:short": "PNB",
         "operator:wikidata": "Q7209712"
       }
@@ -2321,6 +2502,18 @@
       }
     },
     {
+      "displayName": "Polícia Rodoviária do Estado de São Paulo",
+      "id": "policiarodoviariadoestadodesaopaulo-0df637",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "Polícia Rodoviária do Estado de São Paulo",
+        "operator:wikidata": "Q7665658"
+      }
+    },
+    {
       "displayName": "Polícia Rodoviária Federal",
       "id": "policiarodoviariafederal-f7f40a",
       "locationSet": {"include": ["br"]},
@@ -2328,6 +2521,25 @@
         "amenity": "police",
         "operator": "Polícia Rodoviária Federal",
         "operator:wikidata": "Q1158853"
+      }
+    },
+    {
+      "displayName": "Policie České republiky",
+      "id": "policieceskerepubliky-8b7b09",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Policie České republiky",
+        "operator:wikidata": "Q1135262"
+      }
+    },
+    {
+      "displayName": "Policijska uprava zagrebačka",
+      "id": "policijskaupravazagrebacka-b55601",
+      "locationSet": {"include": ["hr"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Policijska uprava zagrebačka"
       }
     },
     {
@@ -2348,6 +2560,17 @@
         "amenity": "police",
         "operator": "Polis Diraja Malaysia",
         "operator:wikidata": "Q1664804"
+      }
+    },
+    {
+      "displayName": "Polizei Aachen",
+      "id": "polizeiaachen-d18cd0",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "Polizei Aachen"
       }
     },
     {
@@ -2582,10 +2805,14 @@
       "displayName": "Public Force of the Ministry of Public Security",
       "id": "publicforceofcostarica-05938a",
       "locationSet": {"include": ["cr"]},
-      "matchNames": ["msp"],
+      "matchNames": [
+        "msp",
+        "public force of the ministry of public security"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Public Force of Costa Rica",
+        "operator:en": "Public Force of Costa Rica",
         "operator:es": "Fuerza Pública de Costa Rica",
         "operator:wikidata": "Q2333698"
       }
@@ -2602,8 +2829,10 @@
     },
     {
       "displayName": "Punjab Police (India)",
-      "id": "punjabpolice-d0526a",
-      "locationSet": {"include": ["in"]},
+      "id": "punjabpolice-8f76e8",
+      "locationSet": {
+        "include": ["in-pb.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Punjab Police",
@@ -2634,8 +2863,10 @@
     },
     {
       "displayName": "Regione Siciliana",
-      "id": "regionesiciliana-f71f16",
-      "locationSet": {"include": ["it"]},
+      "id": "regionesiciliana-6a6f8c",
+      "locationSet": {
+        "include": ["it-82.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Regione Siciliana",
@@ -2694,7 +2925,10 @@
       "displayName": "RPF",
       "id": "indianrailways-d0526a",
       "locationSet": {"include": ["in"]},
-      "matchNames": ["railway protection force"],
+      "matchNames": [
+        "railway protection force",
+        "rpf"
+      ],
       "tags": {
         "amenity": "police",
         "operator": "Indian Railways",
@@ -2716,8 +2950,10 @@
     },
     {
       "displayName": "Secretaria da Segurança Pública do Estado de São Paulo",
-      "id": "secretariadasegurancapublicadoestadodesaopaulo-f7f40a",
-      "locationSet": {"include": ["br"]},
+      "id": "secretariadasegurancapublicadoestadodesaopaulo-0df637",
+      "locationSet": {
+        "include": ["br-sp.geojson"]
+      },
       "matchNames": [
         "secretaria de segurança pública do estado de são paulo"
       ],
@@ -2738,6 +2974,18 @@
         "amenity": "police",
         "operator": "Secretaria de Estado de Segurança Pública e Defesa Social",
         "operator:short": "SEGUP"
+      }
+    },
+    {
+      "displayName": "Secretaría de Seguridad Ciudadana",
+      "id": "secretariadeseguridadciudadana-d22912",
+      "locationSet": {
+        "include": ["mx-cmx.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "Secretaría de Seguridad Ciudadana",
+        "operator:wikidata": "Q6867469"
       }
     },
     {
@@ -2805,6 +3053,7 @@
         "amenity": "police",
         "operator": "South Wales Police",
         "operator:cy": "Heddlu De Cymru",
+        "operator:en": "South Wales Police",
         "operator:wikidata": "Q3403362"
       }
     },
@@ -2832,8 +3081,10 @@
     },
     {
       "displayName": "Stadtpolizei Zürich",
-      "id": "stadtpolizeizurich-e64270",
-      "locationSet": {"include": ["ch"]},
+      "id": "stadtpolizeizurich-ad4a21",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Stadtpolizei Zürich",
@@ -2903,8 +3154,10 @@
     },
     {
       "displayName": "Syd- og Sønderjyllands Politi",
-      "id": "sydogsonderjyllandspoliti-786af7",
-      "locationSet": {"include": ["dk"]},
+      "id": "sydogsonderjyllandspoliti-96d4bc",
+      "locationSet": {
+        "include": ["dk-83.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Syd- og Sønderjyllands Politi"
@@ -2912,8 +3165,13 @@
     },
     {
       "displayName": "Sydøstjyllands Politi",
-      "id": "sydostjyllandspoliti-786af7",
-      "locationSet": {"include": ["dk"]},
+      "id": "sydostjyllandspoliti-00bac1",
+      "locationSet": {
+        "include": [
+          "dk-82.geojson",
+          "dk-83.geojson"
+        ]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Sydøstjyllands Politi",
@@ -2922,8 +3180,10 @@
     },
     {
       "displayName": "Sydsjællands og Lolland-Falsters Politi",
-      "id": "sydsjaellandsoglollandfalsterspoliti-786af7",
-      "locationSet": {"include": ["dk"]},
+      "id": "sydsjaellandsoglollandfalsterspoliti-441ecf",
+      "locationSet": {
+        "include": ["dk-85.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "Sydsjællands og Lolland-Falsters Politi",
@@ -3155,6 +3415,32 @@
       }
     },
     {
+      "displayName": "Zimbabwe Republic Police",
+      "id": "zimbabwerepublicpolice-d97de2",
+      "locationSet": {"include": ["zw"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "Zimbabwe Republic Police",
+        "operator:short": "ZRP",
+        "operator:wikidata": "Q862599"
+      }
+    },
+    {
+      "displayName": "Zone de Police Bruxelles CAPITALE Ixelles – Politiezone Brussel HOOFDSTAD Elsene",
+      "id": "zonedepolicebruxellescapitaleixellespolitiezonebrusselhoofdstadelsene-45bc05",
+      "locationSet": {
+        "include": ["be-bru.geojson"]
+      },
+      "matchNames": ["pz 5339", "zp 5339"],
+      "tags": {
+        "amenity": "police",
+        "operator": "Zone de Police Bruxelles CAPITALE Ixelles – Politiezone Brussel HOOFDSTAD Elsene",
+        "operator:fr": "Zone de Police Bruxelles CAPITALE Ixelles",
+        "operator:nl": "Politiezone Brussel HOOFDSTAD Elsene",
+        "operator:wikidata": "Q2199865"
+      }
+    },
+    {
       "displayName": "МВД РК",
       "id": "51720c-cc5bd2",
       "locationSet": {"include": ["kz"]},
@@ -3172,6 +3458,7 @@
         "amenity": "police",
         "operator": "Министерство Внутренних Дел",
         "operator:en": "Ministry of Internal Affairs",
+        "operator:ru": "Министерство Внутренних Дел",
         "operator:short": "МВД",
         "operator:wikidata": "Q1192838"
       }
@@ -3200,6 +3487,7 @@
         "amenity": "police",
         "operator": "Полиция России",
         "operator:en": "Police of Russia",
+        "operator:ru": "Полиция России",
         "operator:wikidata": "Q1188211"
       }
     },
@@ -3215,6 +3503,7 @@
         "operator:ru": "Департамент патрульной полиции Министерства внутренних дел Грузии",
         "operator:short": "საპატრულო პოლიციი",
         "operator:short:en": "Patrol Police",
+        "operator:short:ka": "საპატრულო პოლიციი",
         "operator:short:ru": "Патрульная полиция",
         "operator:type": "government",
         "operator:wikidata": "Q56345209"
@@ -3268,6 +3557,18 @@
       }
     },
     {
+      "displayName": "佐賀県警察",
+      "id": "1fe525-80891c",
+      "locationSet": {
+        "include": ["jp-41.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "佐賀県警察",
+        "operator:wikidata": "Q11384774"
+      }
+    },
+    {
       "displayName": "刑事警察局",
       "id": "criminalinvestigationbureau-c45d37",
       "locationSet": {"include": ["tw"]},
@@ -3281,14 +3582,50 @@
       }
     },
     {
+      "displayName": "北海道警察 旭川方面本部",
+      "id": "648e44-8c1555",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "北海道警察 旭川方面本部",
+        "operator:wikidata": "Q11087092"
+      }
+    },
+    {
       "displayName": "北海道警察本部",
-      "id": "hokkaidoprefecturalpolice-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "hokkaidoprefecturalpolice-8c1555",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "北海道警察本部",
         "operator:en": "Hokkaido Prefectural Police",
-        "operator:ja": "北海道警察本部"
+        "operator:ja": "北海道警察本部",
+        "operator:wikidata": "Q4804887"
+      }
+    },
+    {
+      "displayName": "南投縣政府警察局",
+      "id": "nantoucountypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "nantou police",
+        "ncpb",
+        "ncpd",
+        "南投縣警察",
+        "南投縣警局",
+        "南投警察",
+        "南投警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "南投縣政府警察局",
+        "operator:en": "Nantou County Police Bureau",
+        "operator:wikidata": "Q130525080",
+        "operator:zh": "南投縣政府警察局"
       }
     },
     {
@@ -3306,11 +3643,55 @@
     },
     {
       "displayName": "吹田警察署",
-      "id": "0f0a19-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "0f0a19-5ea5fe",
+      "locationSet": {
+        "include": ["jp-27.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "吹田警察署"
+      }
+    },
+    {
+      "displayName": "嘉義市政府警察局",
+      "id": "chiayicitypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "ccpb",
+        "ccpd",
+        "chiayi police",
+        "嘉義市警察",
+        "嘉義市警局",
+        "嘉義警察",
+        "嘉義警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "嘉義市政府警察局",
+        "operator:en": "Chiayi City Police Bureau",
+        "operator:wikidata": "Q113575905",
+        "operator:zh": "嘉義市政府警察局"
+      }
+    },
+    {
+      "displayName": "嘉義縣警察局",
+      "id": "chiayicountypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "chiayi police",
+        "cypb",
+        "cypd",
+        "嘉義縣警察",
+        "嘉義縣警局",
+        "嘉義警察",
+        "嘉義警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "嘉義縣警察局",
+        "operator:en": "Chiayi County Police Bureau",
+        "operator:wikidata": "Q130525194",
+        "operator:zh": "嘉義縣警察局"
       }
     },
     {
@@ -3327,18 +3708,80 @@
       }
     },
     {
-      "displayName": "宮城県警察",
-      "id": "473bdf-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "displayName": "基隆市警察局",
+      "id": "keelungcitypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "kcpb",
+        "kcpd",
+        "keelung police",
+        "klg",
+        "基隆市警察",
+        "基隆市警局",
+        "基隆警察",
+        "基隆警局"
+      ],
       "tags": {
         "amenity": "police",
-        "operator": "宮城県警察"
+        "operator": "基隆市警察局",
+        "operator:en": "Keelung City Police Bureau",
+        "operator:wikidata": "Q22773799",
+        "operator:zh": "基隆市警察局"
+      }
+    },
+    {
+      "displayName": "宜蘭縣政府警察局",
+      "id": "yilancountypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "ilcpb",
+        "ilcpd",
+        "ilpb",
+        "ilpd",
+        "yilan police",
+        "宜蘭縣警察",
+        "宜蘭縣警局",
+        "宜蘭警察",
+        "宜蘭警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "宜蘭縣政府警察局",
+        "operator:en": "Yilan County Police Bureau",
+        "operator:wikidata": "Q130525221",
+        "operator:zh": "宜蘭縣政府警察局"
+      }
+    },
+    {
+      "displayName": "宮城県警察",
+      "id": "473bdf-bd2fdb",
+      "locationSet": {
+        "include": ["jp-04.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "宮城県警察",
+        "operator:wikidata": "Q11453797"
+      }
+    },
+    {
+      "displayName": "宿迁市公安局",
+      "id": "bee931-b8f02a",
+      "locationSet": {
+        "include": ["cn"],
+        "exclude": ["hk", "mo"]
+      },
+      "note": "ISO 3166-2 CN-JS",
+      "tags": {
+        "amenity": "police",
+        "operator": "宿迁市公安局"
       }
     },
     {
       "displayName": "宿迁市公安局宿城分局",
       "id": "728b10-18678f",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-JS",
       "tags": {
         "amenity": "police",
         "operator": "宿迁市公安局宿城分局"
@@ -3348,6 +3791,7 @@
       "displayName": "宿迁市公安局宿豫分局",
       "id": "d71507-18678f",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-JS",
       "tags": {
         "amenity": "police",
         "operator": "宿迁市公安局宿豫分局"
@@ -3355,8 +3799,10 @@
     },
     {
       "displayName": "山形県警察",
-      "id": "yamagataprefecturalpolice-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "yamagataprefecturalpolice-a5a103",
+      "locationSet": {
+        "include": ["jp-06.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "山形県警察",
@@ -3367,13 +3813,38 @@
     },
     {
       "displayName": "岩手県警察本部",
-      "id": "iwateprefecturalpolice-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "iwateprefecturalpolice-7e4bb5",
+      "locationSet": {
+        "include": ["jp-03.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "岩手県警察本部",
         "operator:en": "Iwate Prefectural Police",
-        "operator:ja": "岩手県警察本部"
+        "operator:ja": "岩手県警察本部",
+        "operator:wikidata": "Q11474796"
+      }
+    },
+    {
+      "displayName": "彰化縣警察局",
+      "id": "chunghacountypolicedepartment-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "chpb",
+        "chph",
+        "chungha police",
+        "彰化市警察",
+        "彰化市警局",
+        "彰化縣政府警察局",
+        "彰化警察",
+        "彰化警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "彰化縣警察局",
+        "operator:en": "Chungha County Police Department",
+        "operator:wikidata": "Q130487509",
+        "operator:zh": "彰化縣警察局"
       }
     },
     {
@@ -3398,12 +3869,37 @@
     },
     {
       "displayName": "新庄警察署",
-      "id": "0a5e2f-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "0a5e2f-a5a103",
+      "locationSet": {
+        "include": ["jp-06.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "新庄警察署",
         "operator:wikidata": "Q11502228"
+      }
+    },
+    {
+      "displayName": "新竹市警察局",
+      "id": "hsinchucitypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "hccp",
+        "hcpb",
+        "hcph",
+        "hsinchu police",
+        "新竹市政府警察局",
+        "新竹市警察",
+        "新竹市警局",
+        "新竹警察",
+        "新竹警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "新竹市警察局",
+        "operator:en": "Hsinchu City Police Bureau",
+        "operator:wikidata": "Q85880448",
+        "operator:zh": "新竹市警察局"
       }
     },
     {
@@ -3472,12 +3968,36 @@
       }
     },
     {
-      "displayName": "石川県警察",
-      "id": "c4849a-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "displayName": "澎湖縣政府警察局",
+      "id": "penghucountygovernmentpolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "penghu police",
+        "phpb",
+        "phpd",
+        "澎湖縣警察",
+        "澎湖縣警局",
+        "澎湖警察",
+        "澎湖警局"
+      ],
       "tags": {
         "amenity": "police",
-        "operator": "石川県警察"
+        "operator": "澎湖縣政府警察局",
+        "operator:en": "Penghu County Government Police Bureau",
+        "operator:wikidata": "Q117654413",
+        "operator:zh": "澎湖縣政府警察局"
+      }
+    },
+    {
+      "displayName": "石川県警察",
+      "id": "c4849a-7e1aa1",
+      "locationSet": {
+        "include": ["jp-17.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "石川県警察",
+        "operator:wikidata": "Q11586044"
       }
     },
     {
@@ -3553,6 +4073,29 @@
       }
     },
     {
+      "displayName": "臺東縣警察局",
+      "id": "taitungcountypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "taitung police",
+        "ttcpb",
+        "ttcpd",
+        "ttpb",
+        "ttpd",
+        "臺東縣警察",
+        "臺東縣警局",
+        "臺東警察",
+        "臺東警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "臺東縣警察局",
+        "operator:en": "Taitung County Police Bureau",
+        "operator:wikidata": "Q130525254",
+        "operator:zh": "臺東縣警察局"
+      }
+    },
+    {
       "displayName": "航空警察局",
       "id": "aviationpolicebureau-c45d37",
       "locationSet": {"include": ["tw"]},
@@ -3566,9 +4109,76 @@
       }
     },
     {
+      "displayName": "花蓮縣警察局",
+      "id": "hualiencountypolicedepartment-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "hlpb",
+        "hlpd",
+        "hualien police",
+        "宜蘭縣警察",
+        "宜蘭縣警局",
+        "宜蘭警察",
+        "宜蘭警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "花蓮縣警察局",
+        "operator:en": "Hualien County Police Department",
+        "operator:wikidata": "Q130525231",
+        "operator:zh": "花蓮縣警察局"
+      }
+    },
+    {
+      "displayName": "苗栗縣警察局",
+      "id": "miaolicountypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "mcp",
+        "miaoli police",
+        "mpb",
+        "mph",
+        "新竹市政府警察局",
+        "新竹市警察",
+        "新竹市警局",
+        "新竹警察",
+        "新竹警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "苗栗縣警察局",
+        "operator:en": "Miaoli County Police Bureau",
+        "operator:wikidata": "Q15903147",
+        "operator:zh": "苗栗縣警察局"
+      }
+    },
+    {
+      "displayName": "茨城県警察",
+      "id": "a85c97-446dcb",
+      "locationSet": {
+        "include": ["jp-08.geojson"]
+      },
+      "tags": {
+        "amenity": "police",
+        "operator": "茨城県警察",
+        "operator:wikidata": "Q11617512"
+      }
+    },
+    {
+      "displayName": "警視庁",
+      "id": "a92774-d00fc1",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "police",
+        "operator": "警視庁"
+      }
+    },
+    {
       "displayName": "那覇警察署",
-      "id": "8e766a-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "8e766a-1e458f",
+      "locationSet": {
+        "include": ["jp-47.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "那覇警察署"
@@ -3576,8 +4186,10 @@
     },
     {
       "displayName": "酒田警察署",
-      "id": "241ff3-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "241ff3-a5a103",
+      "locationSet": {
+        "include": ["jp-06.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "酒田警察署",
@@ -3586,11 +4198,34 @@
     },
     {
       "displayName": "金沢中警察署",
-      "id": "df8591-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "df8591-7e1aa1",
+      "locationSet": {
+        "include": ["jp-17.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "金沢中警察署"
+      }
+    },
+    {
+      "displayName": "金門縣警察局",
+      "id": "kinmencountypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "kinmen police",
+        "kpb",
+        "kpd",
+        "金門縣警察",
+        "金門縣警局",
+        "金門警察",
+        "金門警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "金門縣警察局",
+        "operator:en": "Kinmen County Police Bureau",
+        "operator:wikidata": "Q122930750",
+        "operator:zh": "金門縣警察局"
       }
     },
     {
@@ -3604,6 +4239,28 @@
         "operator:en": "Railway Police Bureau",
         "operator:wikidata": "Q10891310",
         "operator:zh": "鐵路警察局"
+      }
+    },
+    {
+      "displayName": "雲林縣警察局",
+      "id": "yunlincountypolicebureau-c45d37",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "ylhpb",
+        "ylpb",
+        "ylpd",
+        "yunlin police",
+        "雲林縣警察",
+        "雲林縣警局",
+        "雲林警察",
+        "雲林警局"
+      ],
+      "tags": {
+        "amenity": "police",
+        "operator": "雲林縣警察局",
+        "operator:en": "Yunlin County Police Bureau",
+        "operator:wikidata": "Q130525125",
+        "operator:zh": "雲林縣警察局"
       }
     },
     {
@@ -3646,12 +4303,15 @@
     },
     {
       "displayName": "鹿児島県警察",
-      "id": "kagoshimaprefecturalpolice-ae5e65",
-      "locationSet": {"include": ["jp"]},
+      "id": "kagoshimaprefecturalpolice-383268",
+      "locationSet": {
+        "include": ["jp-46.geojson"]
+      },
       "tags": {
         "amenity": "police",
         "operator": "鹿児島県警察",
         "operator:en": "Kagoshima Prefectural Police",
+        "operator:ja": "鹿児島県警察",
         "operator:wikidata": "Q11676846"
       }
     }

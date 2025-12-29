@@ -1,7 +1,12 @@
 {
   "properties": {
     "path": "operators/emergency/siren",
-    "exclude": {"generic": ["^(fire )?siren$"]}
+    "exclude": {
+      "generic": [
+        "^(fire )?siren$",
+        "^straż pożarna$"
+      ]
+    }
   },
   "items": [
     {
@@ -26,8 +31,10 @@
     },
     {
       "displayName": "Auckland Emergency Management",
-      "id": "aucklandemergencymanagement-653bcc",
-      "locationSet": {"include": ["nz"]},
+      "id": "aucklandemergencymanagement-84203e",
+      "locationSet": {
+        "include": ["nz-auk.geojson"]
+      },
       "tags": {
         "emergency": "siren",
         "operator": "Auckland Emergency Management"
@@ -83,16 +90,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Bundesstadt Bonn"
-      }
-    },
-    {
-      "displayName": "City Government of Davao",
-      "id": "citygovernmentofdavao-b5d215",
-      "locationSet": {"include": ["ph"]},
-      "tags": {
-        "emergency": "siren",
-        "operator": "City Government of Davao"
+        "operator": "Bundesstadt Bonn",
+        "operator:wikidata": "Q586"
       }
     },
     {
@@ -141,6 +140,19 @@
         "emergency": "siren",
         "operator": "City of Brooklyn Park",
         "operator:wikidata": "Q864128"
+      }
+    },
+    {
+      "displayName": "City of Davao",
+      "id": "cityofdavao-26df2d",
+      "locationSet": {
+        "include": ["ph-11.geojson"]
+      },
+      "matchNames": ["city government of davao"],
+      "tags": {
+        "emergency": "siren",
+        "operator": "City of Davao",
+        "operator:wikidata": "Q1473"
       }
     },
     {
@@ -214,6 +226,18 @@
         "emergency": "siren",
         "operator": "City of Plymouth",
         "operator:wikidata": "Q936753"
+      }
+    },
+    {
+      "displayName": "City of Rockwall",
+      "id": "cityofrockwall-034cb0",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "emergency": "siren",
+        "operator": "City of Rockwall",
+        "operator:wikidata": "Q383014"
       }
     },
     {
@@ -327,20 +351,26 @@
     },
     {
       "displayName": "HMP",
-      "id": "hmp-af0ad5",
-      "locationSet": {"include": ["cz"]},
+      "id": "hmp-dc1120",
+      "locationSet": {
+        "include": ["cz-10.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "HMP"
+        "operator": "HMP",
+        "operator:wikidata": "Q12034893"
       }
     },
     {
       "displayName": "HZS HMP",
-      "id": "hzshmp-af0ad5",
-      "locationSet": {"include": ["cz"]},
+      "id": "hzshmp-dc1120",
+      "locationSet": {
+        "include": ["cz-10.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "HZS HMP"
+        "operator": "HZS HMP",
+        "operator:wikidata": "Q63002573"
       }
     },
     {
@@ -362,7 +392,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Landeshauptstadt Düsseldorf"
+        "operator": "Landeshauptstadt Düsseldorf",
+        "operator:wikidata": "Q1718"
       }
     },
     {
@@ -373,14 +404,17 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Landkreis Northeim"
+        "operator": "Landkreis Northeim",
+        "operator:wikidata": "Q6018"
       }
     },
     {
       "displayName": "Los Angeles County Sheriff's Department",
-      "id": "losangelescountysheriffsdepartment-6e3e97",
+      "id": "losangelescountysheriffsdepartment-7b4625",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
       },
       "tags": {
         "emergency": "siren",
@@ -412,11 +446,14 @@
     },
     {
       "displayName": "Municipalidad de Lomas de Zamora",
-      "id": "municipalidaddelomasdezamora-cad0e3",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddelomasdezamora-6f3de7",
+      "locationSet": {
+        "include": ["ar-b.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "Municipalidad de Lomas de Zamora"
+        "operator": "Municipalidad de Lomas de Zamora",
+        "operator:wikidata": "Q642057"
       }
     },
     {
@@ -431,12 +468,18 @@
       }
     },
     {
-      "displayName": "Prefeitura Municipal de Maricá/Defesa Civil",
-      "id": "prefeituramunicipaldemaricadefesacivil-4e85b3",
-      "locationSet": {"include": ["br"]},
+      "displayName": "Prefeitura Municipal de Maricá",
+      "id": "prefeituramunicipaldemarica-768e06",
+      "locationSet": {
+        "include": ["br-rj.geojson"]
+      },
+      "matchNames": [
+        "prefeitura municipal de maricá/defesa civil"
+      ],
       "tags": {
         "emergency": "siren",
-        "operator": "Prefeitura Municipal de Maricá/Defesa Civil"
+        "operator": "Prefeitura Municipal de Maricá",
+        "operator:wikidata": "Q847037"
       }
     },
     {
@@ -478,11 +521,12 @@
     },
     {
       "displayName": "Severnside Sirens Trust",
-      "id": "severnsidesirenstrust-68aab9",
-      "locationSet": {"include": ["gb"]},
+      "id": "severnsidesirenstrust-9767ed",
+      "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "emergency": "siren",
-        "operator": "Severnside Sirens Trust"
+        "operator": "Severnside Sirens Trust",
+        "operator:wikidata": "Q85800512"
       }
     },
     {
@@ -494,11 +538,12 @@
       "tags": {
         "emergency": "siren",
         "operator": "Southern California Edison",
+        "operator:short": "SCE",
         "operator:wikidata": "Q1706317"
       }
     },
     {
-      "displayName": "Springfield Fire Department",
+      "displayName": "Springfield Fire Department (Illinois)",
       "id": "springfieldfiredepartment-fc0e7f",
       "locationSet": {
         "include": ["us-il.geojson"]
@@ -517,7 +562,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Baden-Baden"
+        "operator": "Stadt Baden-Baden",
+        "operator:wikidata": "Q4100"
       }
     },
     {
@@ -528,7 +574,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Brühl"
+        "operator": "Stadt Brühl",
+        "operator:wikidata": "Q7036"
       }
     },
     {
@@ -539,7 +586,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Dorsten"
+        "operator": "Stadt Dorsten",
+        "operator:wikidata": "Q3886"
       }
     },
     {
@@ -550,7 +598,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Gelsenkirchen"
+        "operator": "Stadt Gelsenkirchen",
+        "operator:wikidata": "Q2765"
       }
     },
     {
@@ -561,7 +610,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Gladbeck"
+        "operator": "Stadt Gladbeck",
+        "operator:wikidata": "Q3905"
       }
     },
     {
@@ -572,7 +622,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Heidelberg"
+        "operator": "Stadt Heidelberg",
+        "operator:wikidata": "Q2966"
       }
     },
     {
@@ -583,7 +634,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Köln"
+        "operator": "Stadt Köln",
+        "operator:wikidata": "Q365"
       }
     },
     {
@@ -594,7 +646,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Norderstedt"
+        "operator": "Stadt Norderstedt",
+        "operator:wikidata": "Q3928"
       }
     },
     {
@@ -605,7 +658,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Passau"
+        "operator": "Stadt Passau",
+        "operator:wikidata": "Q4190"
       }
     },
     {
@@ -616,16 +670,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Stadt Witten"
-      }
-    },
-    {
-      "displayName": "Straż pożarna",
-      "id": "strazpozarna-fe489a",
-      "locationSet": {"include": ["pl"]},
-      "tags": {
-        "emergency": "siren",
-        "operator": "Straż pożarna"
+        "operator": "Stadt Witten",
+        "operator:wikidata": "Q3764"
       }
     },
     {
@@ -660,6 +706,18 @@
       }
     },
     {
+      "displayName": "Verbandsgemeinde Bernkastel-Kues",
+      "id": "verbandsgemeindebernkastelkues-d10492",
+      "locationSet": {
+        "include": ["de-rp.geojson"]
+      },
+      "tags": {
+        "emergency": "siren",
+        "operator": "Verbandsgemeinde Bernkastel-Kues",
+        "operator:wikidata": "Q643228"
+      }
+    },
+    {
       "displayName": "Verbandsgemeinde Gerolstein",
       "id": "verbandsgemeindegerolstein-d10492",
       "locationSet": {
@@ -667,7 +725,20 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Verbandsgemeinde Gerolstein"
+        "operator": "Verbandsgemeinde Gerolstein",
+        "operator:wikidata": "Q52404118"
+      }
+    },
+    {
+      "displayName": "Verbandsgemeinde Kirchberg",
+      "id": "verbandsgemeindekirchberg-d10492",
+      "locationSet": {
+        "include": ["de-rp.geojson"]
+      },
+      "tags": {
+        "emergency": "siren",
+        "operator": "Verbandsgemeinde Kirchberg",
+        "operator:wikidata": "Q559333"
       }
     },
     {
@@ -678,7 +749,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Verbandsgemeinde Prüm"
+        "operator": "Verbandsgemeinde Prüm",
+        "operator:wikidata": "Q822400"
       }
     },
     {
@@ -689,7 +761,8 @@
       },
       "tags": {
         "emergency": "siren",
-        "operator": "Verbandsgemeinde Südeifel"
+        "operator": "Verbandsgemeinde Südeifel",
+        "operator:wikidata": "Q15852582"
       }
     },
     {
@@ -698,25 +771,53 @@
       "locationSet": {"include": ["ru"]},
       "tags": {
         "emergency": "siren",
-        "operator": "Ростелеком"
+        "operator": "Ростелеком",
+        "operator:wikidata": "Q1477012"
+      }
+    },
+    {
+      "displayName": "国土交通省",
+      "id": "fdf694-7c4e73",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "emergency": "siren",
+        "operator": "国土交通省"
       }
     },
     {
       "displayName": "廿日市市",
-      "id": "102513-1cc03d",
-      "locationSet": {"include": ["jp"]},
+      "id": "102513-3b3283",
+      "locationSet": {
+        "include": ["jp-34.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "廿日市市"
+        "operator": "廿日市市",
+        "operator:wikidata": "Q736897"
+      }
+    },
+    {
+      "displayName": "相模原市",
+      "id": "765f57-87bad6",
+      "locationSet": {
+        "include": ["jp-14.geojson"]
+      },
+      "tags": {
+        "emergency": "siren",
+        "operator": "相模原市",
+        "operator:wikidata": "Q209779"
       }
     },
     {
       "displayName": "青梅市",
-      "id": "98f747-1cc03d",
-      "locationSet": {"include": ["jp"]},
+      "id": "98f747-b4cdd2",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "emergency": "siren",
-        "operator": "青梅市"
+        "operator": "青梅市",
+        "operator:wikidata": "Q237683"
       }
     }
   ]

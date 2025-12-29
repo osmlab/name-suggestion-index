@@ -13,15 +13,13 @@
         "^söröző$"
       ],
       "named": [
-        "^(black horse|coach and horses|cross keys|crown inn|kings arms|kings head|new inn)$",
-        "^(prince of wales|queens head|red lion|rose & crown|rose and crown|railway hotel|royal hotel|royal oak)$",
-        "^(the anchor|the angel|the beehive|the bell|the bell inn|the black bull|the black horse|the bull)$",
-        "^(the castle|the chequers|the cricketers|the cross keys|the crown|the crown inn)$",
-        "^(the fox|the george|the golden lion|the green man|the greyhound|the kings arms|the kings head)$",
-        "^(the new inn|the plough|the plough inn|the pub|the queens head|the railway|the red lion)$",
-        "^(the rising sun|the royal oak|the ship|the ship inn|the star|the star inn|the sun inn)$",
-        "^(the swan|the swan inn|the victoria|the village inn|the wheatsheaf|the white hart|the white horse)$",
-        "^(the white lion|the white swan|the windmill|white hart|white horse)$"
+        "^(coach and horses|prince of wales|rose (&|and) crown|(railway|royal) hotel)$",
+        "^(the )?(cross keys|(kings|queens) head|(black|white) horse|(crown|new) inn|kings arms|red lion|royal oak|white hart)$",
+        "^the ((black )?bull|(golden|white) lion)$",
+        "^the (anchor|angel|beehive|castle|chequers|cricketers|crown|fox|globe|green man|greyhound|pub|railway|rising sun|victoria|wheatsheaf|white swan|windmill)$",
+        "^the (bell|george|plough|ship|star|swan)( inn)?$",
+        "^the (railway|sun|village) inn$",
+        "^toddy shop$"
       ]
     }
   },
@@ -128,6 +126,18 @@
       }
     },
     {
+      "displayName": "Castle Pubs",
+      "id": "castle-f71e9b",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
+      "tags": {
+        "amenity": "pub",
+        "brand": "Castle",
+        "brand:wikidata": "Q133280052"
+      }
+    },
+    {
       "displayName": "Castle Rock",
       "id": "castlerock-eaed91",
       "locationSet": {"include": ["gb"]},
@@ -148,6 +158,19 @@
         "amenity": "pub",
         "brand": "Chef & Brewer",
         "brand:wikidata": "Q5089491"
+      }
+    },
+    {
+      "displayName": "Craft Union",
+      "id": "craftunion-9b8a53",
+      "locationSet": {
+        "include": ["gb-eng", "gb-wls"]
+      },
+      "note": "Each pub is named differently.",
+      "tags": {
+        "amenity": "pub",
+        "brand": "Craft Union",
+        "brand:wikidata": "Q124956771"
       }
     },
     {
@@ -367,6 +390,16 @@
       }
     },
     {
+      "displayName": "Premium Country Pubs",
+      "id": "premiumcountrypubs-eaed91",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "pub",
+        "brand": "Premium Country Pubs",
+        "brand:wikidata": "Q118606900"
+      }
+    },
+    {
       "displayName": "Robinsons",
       "id": "robinsons-eaed91",
       "locationSet": {"include": ["gb"]},
@@ -506,26 +539,6 @@
       }
     },
     {
-      "displayName": "The George Inn",
-      "id": "thegeorgeinn-296a9c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "The George Inn",
-        "name": "The George Inn"
-      }
-    },
-    {
-      "displayName": "The Globe",
-      "id": "theglobe-296a9c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "The Globe",
-        "name": "The Globe"
-      }
-    },
-    {
       "displayName": "Thwaites",
       "id": "thwaites-eaed91",
       "locationSet": {"include": ["gb"]},
@@ -538,18 +551,6 @@
       }
     },
     {
-      "displayName": "Toddy Shop",
-      "id": "toddyshop-fb2db4",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "Toddy Shop",
-        "brand:wikidata": "Q7812761",
-        "drink:palm_wine": "yes",
-        "name": "Toddy Shop"
-      }
-    },
-    {
       "displayName": "Vintage Inns",
       "id": "vintageinns-eaed91",
       "locationSet": {"include": ["gb"]},
@@ -557,16 +558,6 @@
         "amenity": "pub",
         "brand": "Vintage Inns",
         "brand:wikidata": "Q87067899"
-      }
-    },
-    {
-      "displayName": "Wacky Warehouse",
-      "id": "wackywarehouse-296a9c",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "pub",
-        "brand": "Wacky Warehouse",
-        "name": "Wacky Warehouse"
       }
     },
     {
@@ -583,6 +574,7 @@
     {
       "displayName": "Wetherspoon",
       "id": "wetherspoon-eaed91",
+      "issues": [10071, 4183],
       "locationSet": {"include": ["gb"]},
       "matchNames": [
         "jd wetherspoon",
@@ -593,7 +585,8 @@
       "tags": {
         "amenity": "pub",
         "brand": "Wetherspoon",
-        "brand:wikidata": "Q6109362"
+        "brand:wikidata": "Q6109362",
+        "dog": "no"
       }
     },
     {
@@ -668,13 +661,16 @@
     },
     {
       "displayName": "庄や",
-      "id": "5d7ca5-0435b9",
+      "id": "shoya-0435b9",
       "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "pub",
         "brand": "庄や",
+        "brand:en": "Shoya",
         "brand:ja": "庄や",
+        "brand:wikidata": "Q122964078",
         "name": "庄や",
+        "name:en": "Shoya",
         "name:ja": "庄や"
       }
     },
@@ -695,13 +691,16 @@
     },
     {
       "displayName": "目利きの銀次",
-      "id": "bc257c-296a9c",
-      "locationSet": {"include": ["001"]},
+      "id": "mekikinoginji-0435b9",
+      "locationSet": {"include": ["jp"]},
       "tags": {
         "amenity": "pub",
         "brand": "目利きの銀次",
+        "brand:en": "Mekiki-no-Ginji",
         "brand:ja": "目利きの銀次",
+        "brand:wikidata": "Q109653557",
         "name": "目利きの銀次",
+        "name:en": "Mekiki-no-Ginji",
         "name:ja": "目利きの銀次"
       }
     },

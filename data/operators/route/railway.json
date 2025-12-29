@@ -2,7 +2,7 @@
   "properties": {
     "path": "operators/route/railway",
     "exclude": {
-      "generic": ["^railway|tracks?$"],
+      "generic": ["^(railway|tracks?)$"],
       "named": [
         "(db netz|db infrago|db station|deutsche bahn)"
       ]
@@ -41,8 +41,10 @@
     },
     {
       "displayName": "BLS",
-      "id": "bls-c5a8f6",
-      "locationSet": {"include": ["ch", "it"]},
+      "id": "bls-a9df5c",
+      "locationSet": {
+        "include": ["ch", "it-21.geojson"]
+      },
       "tags": {
         "operator": "BLS",
         "operator:wikidata": "Q246824",
@@ -78,8 +80,11 @@
     },
     {
       "displayName": "Canadian National Railway",
-      "id": "canadiannationalrailway-bfb76c",
-      "locationSet": {"include": ["ca", "conus"]},
+      "id": "canadiannationalrailway-207bfd",
+      "locationSet": {
+        "include": ["ca", "conus"],
+        "exclude": ["ca-qc.geojson"]
+      },
       "matchNames": [
         "canadian national",
         "cn",
@@ -94,9 +99,10 @@
     },
     {
       "displayName": "Canadian Pacific Kansas City",
-      "id": "canadianpacifickansascity-e8b07c",
+      "id": "canadianpacifickansascity-d21fbf",
       "locationSet": {
-        "include": ["ca", "conus", "mx"]
+        "include": ["ca", "conus", "mx"],
+        "exclude": ["ca-qc.geojson"]
       },
       "matchNames": [
         "canadian pacific",
@@ -113,6 +119,42 @@
       ],
       "tags": {
         "operator": "Canadian Pacific Kansas City",
+        "operator:wikidata": "Q117706368",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "Canadien National",
+      "id": "canadiennational-1c1189",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "matchNames": [
+        "canadian national",
+        "cn",
+        "cn rail",
+        "cn railway"
+      ],
+      "tags": {
+        "operator": "Canadien National",
+        "operator:wikidata": "Q624798",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "Canadien Pacifique Kansas City",
+      "id": "canadienpacifiquekansascity-1c1189",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "matchNames": [
+        "canadian pacific",
+        "canadian pacific railway",
+        "cp",
+        "cpkc"
+      ],
+      "tags": {
+        "operator": "Canadien Pacifique Kansas City",
         "operator:wikidata": "Q117706368",
         "route": "railway"
       }
@@ -186,9 +228,15 @@
     },
     {
       "displayName": "ETS/RFV",
-      "id": "euskaltrenbidesarearedferroviariavasca-eeecbf",
-      "locationSet": {"include": ["es", "fx"]},
-      "matchNames": ["ets", "rfv"],
+      "id": "euskaltrenbidesarearedferroviariavasca-06961a",
+      "locationSet": {
+        "include": [
+          "es-bi.geojson",
+          "es-ss.geojson",
+          "es-vi.geojson",
+          "fr-naq.geojson"
+        ]
+      },
       "tags": {
         "operator": "Euskal Trenbide Sarea/Red Ferroviaria Vasca",
         "operator:es": "Red Ferroviaria Vasca",
@@ -202,8 +250,15 @@
     },
     {
       "displayName": "Ferrocarrils de la Generalitat de Catalunya",
-      "id": "ferrocarrilsdelageneralitatdecatalunya-762e69",
-      "locationSet": {"include": ["es"]},
+      "id": "ferrocarrilsdelageneralitatdecatalunya-61e43c",
+      "locationSet": {
+        "include": [
+          "es-b.geojson",
+          "es-gi.geojson",
+          "es-l.geojson",
+          "es-t.geojson"
+        ]
+      },
       "matchNames": [
         "fgc ferrocarrils de la generalitat de catalunya"
       ],
@@ -242,8 +297,8 @@
     },
     {
       "displayName": "GYSEV",
-      "id": "gysev-236bfa",
-      "locationSet": {"include": ["at", "hu"]},
+      "id": "gysev-6c36c0",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "operator": "GYSEV",
         "operator:wikidata": "Q181697",
@@ -297,6 +352,8 @@
       "locationSet": {"include": ["ie"]},
       "tags": {
         "operator": "Irish Rail",
+        "operator:en": "Irish Rail",
+        "operator:ga": "Iarnród Éireann",
         "operator:wikidata": "Q73043",
         "route": "railway"
       }
@@ -408,9 +465,9 @@
     },
     {
       "displayName": "New York City Transit Authority",
-      "id": "newyorkcitytransitauthority-3071f2",
+      "id": "newyorkcitytransitauthority-d97a9c",
       "locationSet": {
-        "include": ["new_york_city.geojson"]
+        "include": ["us-ny-new_york_city.geojson"]
       },
       "tags": {
         "operator": "New York City Transit Authority",
@@ -466,13 +523,22 @@
       }
     },
     {
-      "displayName": "PKP Polskie Linie Kolejowe S.A.",
-      "id": "pkppolskieliniekolejowesa-b8385d",
+      "displayName": "PKP Polskie Linie Kolejowe",
+      "id": "pkppolskieliniekolejowe-b8385d",
       "locationSet": {"include": ["pl"]},
       "matchNames": ["pkp plk"],
       "tags": {
-        "operator": "PKP Polskie Linie Kolejowe S.A.",
+        "operator": "PKP Polskie Linie Kolejowe",
         "operator:wikidata": "Q1344677",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "PKP Polskie Linie Kolejowe S.A.",
+      "id": "pkppolskieliniekolejowesa-954af4",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "PKP Polskie Linie Kolejowe S.A.",
         "route": "railway"
       }
     },
@@ -544,22 +610,21 @@
       }
     },
     {
-      "displayName": "SNCF",
-      "id": "sncf-ced9a9",
-      "locationSet": {"include": ["fx"]},
-      "tags": {
-        "operator": "SNCF",
-        "operator:wikidata": "Q13646",
-        "route": "railway"
-      }
-    },
-    {
       "displayName": "SNCF Réseau",
       "id": "sncfreseau-ced9a9",
       "locationSet": {"include": ["fx"]},
       "tags": {
         "operator": "SNCF Réseau",
         "operator:wikidata": "Q21605526",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "SNCF Voyageurs",
+      "id": "sncfvoyageurs-954af4",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "SNCF Voyageurs",
         "route": "railway"
       }
     },
@@ -571,6 +636,16 @@
       "tags": {
         "operator": "Správa železnic, s. o.",
         "operator:wikidata": "Q1848025",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "SŽ Infrastruktura",
+      "id": "szinfrastruktura-f1bc21",
+      "locationSet": {"include": ["si"]},
+      "tags": {
+        "operator": "SŽ Infrastruktura",
+        "operator:wikidata": "Q101424662",
         "route": "railway"
       }
     },
@@ -631,32 +706,46 @@
       }
     },
     {
-      "displayName": "ŽSR",
-      "id": "zsr-ae10a0",
+      "displayName": "Železnice Slovenskej republiky",
+      "id": "zelezniceslovenskejrepubliky-ae10a0",
       "locationSet": {"include": ["sk"]},
       "tags": {
-        "operator": "ŽSR",
+        "operator": "Železnice Slovenskej republiky",
+        "operator:short": "ŽSR",
         "operator:wikidata": "Q393524",
         "route": "railway"
       }
     },
     {
-      "displayName": "ZSSK",
-      "id": "zssk-ae10a0",
+      "displayName": "Železničná spoločnosť Slovensko",
+      "id": "zeleznicnaspolocnostslovensko-ae10a0",
       "locationSet": {"include": ["sk"]},
       "tags": {
-        "operator": "ZSSK",
+        "operator": "Železničná spoločnosť Slovensko",
+        "operator:short": "ZSSK",
         "operator:wikidata": "Q393557",
         "route": "railway"
       }
     },
     {
-      "displayName": "Железнице Србије",
-      "id": "b5cfb7-dc2a17",
-      "locationSet": {"include": ["rs"]},
+      "displayName": "Οργανισμός Σιδηροδρόμων Ελλάδος",
+      "id": "459464-0abbc5",
+      "locationSet": {"include": ["gr"]},
       "tags": {
-        "operator": "Железнице Србије",
-        "operator:wikidata": "Q83878",
+        "operator": "Οργανισμός Σιδηροδρόμων Ελλάδος",
+        "operator:short": "ΟΣΕ",
+        "operator:wikidata": "Q602935",
+        "route": "railway"
+      }
+    },
+    {
+      "displayName": "Инфраструктура железнице Србије",
+      "id": "f8b493-dc2a17",
+      "locationSet": {"include": ["rs"]},
+      "matchNames": ["железнице србије"],
+      "tags": {
+        "operator": "Инфраструктура железнице Србије",
+        "operator:wikidata": "Q25459124",
         "route": "railway"
       }
     },
@@ -748,8 +837,13 @@
     },
     {
       "displayName": "名古屋鉄道",
-      "id": "nagoyarailroad-c878da",
-      "locationSet": {"include": ["jp"]},
+      "id": "nagoyarailroad-720116",
+      "locationSet": {
+        "include": [
+          "jp-21.geojson",
+          "jp-23.geojson"
+        ]
+      },
       "tags": {
         "operator": "名古屋鉄道",
         "operator:en": "Nagoya Railroad",
@@ -771,6 +865,18 @@
       }
     },
     {
+      "displayName": "神戸電鉄",
+      "id": "008a26-d1d0b1",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
+      "tags": {
+        "operator": "神戸電鉄",
+        "operator:wikidata": "Q836658",
+        "route": "railway"
+      }
+    },
+    {
       "displayName": "臺灣鐵路公司",
       "id": "taiwanrailwaycorporation-140976",
       "locationSet": {"include": ["tw"]},
@@ -780,15 +886,15 @@
         "operator:en": "Taiwan Railway Corporation",
         "operator:hak": "Thòi-vân Thiet-lu Kûng-sṳ̂",
         "operator:nan": "Tâi-oân Thih-lō͘ Kong-si",
-        "operator:nan-HJ": "臺灣鐵路公司",
-        "operator:nan-POJ": "Tâi-oân Thih-lō͘ Kong-si",
-        "operator:nan-TL": "Tâi-uân Thih-lōo Kong-si",
+        "operator:nan-Hant": "臺灣鐵路公司",
+        "operator:nan-Latn-pehoeji": "Tâi-oân Thih-lō͘ Kong-si",
+        "operator:nan-Latn-tailo": "Tâi-uân Thih-lōo Kong-si",
         "operator:short": "台鐵",
         "operator:short:en": "TRA",
         "operator:short:nan": "Tâi-thih",
-        "operator:short:nan-HJ": "台鐵",
-        "operator:short:nan-POJ": "Tâi-thih",
-        "operator:short:nan-TL": "Tâi-thih",
+        "operator:short:nan-Hant": "台鐵",
+        "operator:short:nan-Latn-pehoeji": "Tâi-thih",
+        "operator:short:nan-Latn-tailo": "Tâi-thih",
         "operator:short:zh": "台鐵",
         "operator:wikidata": "Q112151129",
         "operator:zh": "臺灣鐵路公司",

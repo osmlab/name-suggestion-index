@@ -3,34 +3,40 @@
     "path": "operators/amenity/library",
     "exclude": {
       "generic": [
+        "^(library|图书馆)$",
         "^county$",
         "^gemeinde$",
-        "^library$",
         "^mairie$",
-        "^public$",
-        "^图书馆$"
+        "^public$"
       ]
     }
   },
   "items": [
     {
       "displayName": "Aberdeen City Council",
-      "id": "aberdeencitycouncil-ecb85d",
-      "locationSet": {"include": ["gb-sct"]},
+      "id": "aberdeencitycouncil-033317",
+      "locationSet": {
+        "include": ["gb-abe.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Aberdeen City Council",
+        "operator:type": "government",
         "operator:wikidata": "Q2425849",
         "ref:isil": "GB-UK-AbCCL"
       }
     },
     {
       "displayName": "Ajuntament de València",
-      "id": "ajuntamentdevalencia-3746d4",
-      "locationSet": {"include": ["es"]},
+      "id": "ajuntamentdevalencia-55e102",
+      "locationSet": {
+        "include": ["es-v.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Ajuntament de València"
+        "operator": "Ajuntament de València",
+        "operator:type": "government",
+        "operator:wikidata": "Q26251945"
       }
     },
     {
@@ -73,6 +79,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Auckland Libraries",
+        "operator:en": "Auckland Libraries",
         "operator:mi": "Ngā Pātaka Kōrero o Tāmaki Makaurau",
         "operator:type": "government",
         "operator:wikidata": "Q4819503"
@@ -80,9 +87,9 @@
     },
     {
       "displayName": "Austin Public Library",
-      "id": "austinpubliclibrary-24a277",
+      "id": "austinpubliclibrary-d6c1f4",
       "locationSet": {
-        "include": ["us-tx.geojson"]
+        "include": ["us-tx-austin.geojson"]
       },
       "tags": {
         "amenity": "library",
@@ -93,20 +100,28 @@
     },
     {
       "displayName": "Ayuntamiento de Málaga",
-      "id": "ayuntamientodemalaga-3746d4",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodemalaga-b732f6",
+      "locationSet": {
+        "include": ["es-ma.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Ayuntamiento de Málaga"
+        "operator": "Ayuntamiento de Málaga",
+        "operator:type": "government",
+        "operator:wikidata": "Q5714892"
       }
     },
     {
       "displayName": "Ayuntamiento de Valladolid",
-      "id": "ayuntamientodevalladolid-3746d4",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodevalladolid-35d2f7",
+      "locationSet": {
+        "include": ["es-va.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Ayuntamiento de Valladolid"
+        "operator": "Ayuntamiento de Valladolid",
+        "operator:type": "government",
+        "operator:wikidata": "Q8210810"
       }
     },
     {
@@ -130,6 +145,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliocenter",
+        "operator:type": "public",
         "operator:wikidata": "Q59962372"
       }
     },
@@ -151,13 +167,16 @@
       "tags": {
         "amenity": "library",
         "operator": "BiblioPlus",
+        "operator:type": "public",
         "operator:wikidata": "Q121176809"
       }
     },
     {
       "displayName": "Biblioteca Comunale di Trento",
-      "id": "bibliotecacomunaleditrento-2a28a6",
-      "locationSet": {"include": ["it"]},
+      "id": "bibliotecacomunaleditrento-e79d63",
+      "locationSet": {
+        "include": ["it-32.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Biblioteca Comunale di Trento",
@@ -167,11 +186,14 @@
     },
     {
       "displayName": "Biblioteche Bologna",
-      "id": "bibliotechebologna-2a28a6",
-      "locationSet": {"include": ["it"]},
+      "id": "bibliotechebologna-c0ba41",
+      "locationSet": {
+        "include": ["it-45.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Biblioteche Bologna",
+        "operator:type": "public",
         "operator:wikidata": "Q104156391"
       }
     },
@@ -179,55 +201,71 @@
       "displayName": "Biblioteka Kraków",
       "id": "bibliotekakrakow-2579f7",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-12",
       "tags": {
         "amenity": "library",
         "operator": "Biblioteka Kraków",
+        "operator:type": "public",
         "operator:wikidata": "Q48841935"
       }
     },
     {
       "displayName": "Biblioteka Miejska w Łodzi",
-      "id": "bibliotekamiejskawlodzi-2579f7",
-      "locationSet": {"include": ["pl"]},
+      "id": "bibliotekamiejskawlodzi-e44273",
+      "locationSet": {
+        "include": ["pl-10.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Biblioteka Miejska w Łodzi"
+        "operator": "Biblioteka Miejska w Łodzi",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Biblioteka Publiczna im. J. U. Niemcewicza w Dzielnicy Ursynów m.st. Warszawy",
-      "id": "bibliotekapublicznaimjuniemcewiczawdzielnicyursynowmstwarszawy-2579f7",
-      "locationSet": {"include": ["pl"]},
+      "id": "bibliotekapublicznaimjuniemcewiczawdzielnicyursynowmstwarszawy-3e573f",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Biblioteka Publiczna im. J. U. Niemcewicza w Dzielnicy Ursynów m.st. Warszawy"
+        "operator": "Biblioteka Publiczna im. J. U. Niemcewicza w Dzielnicy Ursynów m.st. Warszawy",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Biblioteka Publiczna m.st. Warszawy",
-      "id": "bibliotekapublicznamstwarszawy-2579f7",
-      "locationSet": {"include": ["pl"]},
+      "id": "bibliotekapublicznamstwarszawy-3e573f",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Biblioteka Publiczna m.st. Warszawy"
+        "operator": "Biblioteka Publiczna m.st. Warszawy",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Biblioteka Publiczna w Dzielnicy Śródmieście m.st. Warszawy",
-      "id": "bibliotekapublicznawdzielnicysrodmiesciemstwarszawy-2579f7",
-      "locationSet": {"include": ["pl"]},
+      "id": "bibliotekapublicznawdzielnicysrodmiesciemstwarszawy-3e573f",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Biblioteka Publiczna w Dzielnicy Śródmieście m.st. Warszawy"
+        "operator": "Biblioteka Publiczna w Dzielnicy Śródmieście m.st. Warszawy",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Biblioteka Raczyńskich",
       "id": "bibliotekaraczynskich-2579f7",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "amenity": "library",
-        "operator": "Biblioteka Raczyńskich"
+        "operator": "Biblioteka Raczyńskich",
+        "operator:type": "public"
       }
     },
     {
@@ -236,7 +274,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "library",
-        "operator": "Bibliotheek AanZet"
+        "operator": "Bibliotheek AanZet",
+        "operator:type": "public"
       }
     },
     {
@@ -257,6 +296,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Eemland",
+        "operator:type": "public",
         "operator:wikidata": "Q24040756"
       }
     },
@@ -267,6 +307,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Eindhoven",
+        "operator:type": "public",
         "operator:wikidata": "Q59962015"
       }
     },
@@ -277,6 +318,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Gelderland Zuid",
+        "operator:type": "public",
         "operator:wikidata": "Q59962187"
       }
     },
@@ -287,6 +329,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Hoeksche Waard",
+        "operator:type": "public",
         "operator:wikidata": "Q59962194"
       }
     },
@@ -297,6 +340,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Kennemerwaard",
+        "operator:type": "public",
         "operator:wikidata": "Q59961887"
       }
     },
@@ -307,6 +351,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Lek & IJssel",
+        "operator:type": "public",
         "operator:wikidata": "Q59962114"
       }
     },
@@ -320,6 +365,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Oosterschelde",
+        "operator:type": "public",
         "operator:wikidata": "Q59962078"
       }
     },
@@ -330,6 +376,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Rijn en Venen",
+        "operator:type": "public",
         "operator:wikidata": "Q59961897"
       }
     },
@@ -340,6 +387,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Rivierenland",
+        "operator:type": "public",
         "operator:wikidata": "Q59771462"
       }
     },
@@ -350,6 +398,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Rotterdam",
+        "operator:type": "public",
         "operator:wikidata": "Q59962242"
       }
     },
@@ -360,6 +409,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Utrecht",
+        "operator:type": "public",
         "operator:wikidata": "Q59962322"
       }
     },
@@ -370,6 +420,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Waterland",
+        "operator:type": "public",
         "operator:wikidata": "Q59962225"
       }
     },
@@ -380,6 +431,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek West-Brabant",
+        "operator:type": "public",
         "operator:wikidata": "Q102180353"
       }
     },
@@ -390,6 +442,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Z-O-U-T",
+        "operator:type": "public",
         "operator:wikidata": "Q59962152"
       }
     },
@@ -403,6 +456,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Bibliotheek Zeeuws-Vlaanderen",
+        "operator:type": "public",
         "operator:wikidata": "Q59962288"
       }
     },
@@ -412,7 +466,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "library",
-        "operator": "Bibliotheken Mar en Fean"
+        "operator": "Bibliotheken Mar en Fean",
+        "operator:type": "public"
       }
     },
     {
@@ -421,7 +476,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "library",
-        "operator": "Bibliotheken Noord Fryslân"
+        "operator": "Bibliotheken Noord Fryslân",
+        "operator:type": "public"
       }
     },
     {
@@ -431,6 +487,7 @@
       "tags": {
         "amenity": "library",
         "operator": "BIJ de Bieb",
+        "operator:type": "public",
         "operator:wikidata": "Q123299703"
       }
     },
@@ -443,6 +500,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Birmingham City Council",
+        "operator:type": "government",
         "operator:wikidata": "Q4916650"
       }
     },
@@ -466,7 +524,22 @@
       "locationSet": {"include": ["lt"]},
       "tags": {
         "amenity": "library",
-        "operator": "Biržų rajono savivaldybės Jurgio Bielinio viešoji biblioteka"
+        "operator": "Biržų rajono savivaldybės Jurgio Bielinio viešoji biblioteka",
+        "operator:type": "public"
+      }
+    },
+    {
+      "displayName": "Bournemouth, Christchurch and Poole Council",
+      "id": "bournemouthchristchurchandpoolecouncil-1a7c11",
+      "locationSet": {
+        "include": ["gb-dor.geojson"]
+      },
+      "matchNames": ["bcp council"],
+      "tags": {
+        "amenity": "library",
+        "operator": "Bournemouth, Christchurch and Poole Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q54818205"
       }
     },
     {
@@ -484,14 +557,15 @@
       }
     },
     {
-      "displayName": "Brighton & Hove City Council",
+      "displayName": "Brighton and Hove City Council",
       "id": "brightonandhovecitycouncil-5f562a",
       "locationSet": {
         "include": ["gb-south-east-coast.geojson"]
       },
       "tags": {
         "amenity": "library",
-        "operator": "Brighton & Hove City Council",
+        "operator": "Brighton and Hove City Council",
+        "operator:type": "government",
         "operator:wikidata": "Q16953725",
         "ref:isil": "GB-UkBtBHCL"
       }
@@ -506,14 +580,27 @@
         "amenity": "library",
         "operator": "Brisbane City Council",
         "operator:type": "government",
-        "operator:wikidata": "Q917682"
+        "operator:wikidata": "Q56477660"
+      }
+    },
+    {
+      "displayName": "Bristol City Council",
+      "id": "bristolcitycouncil-8b0fb3",
+      "locationSet": {
+        "include": ["gb-bst.geojson"]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "Bristol City Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q16953796"
       }
     },
     {
       "displayName": "Brooklyn Public Library",
-      "id": "brooklynpubliclibrary-cd17a5",
+      "id": "brooklynpubliclibrary-df14d6",
       "locationSet": {
-        "include": ["new_york_city.geojson"]
+        "include": ["us-ny-new_york_city.geojson"]
       },
       "tags": {
         "amenity": "library",
@@ -539,8 +626,10 @@
     },
     {
       "displayName": "Büchereien Wien",
-      "id": "buchereienwien-3f5de0",
-      "locationSet": {"include": ["at"]},
+      "id": "buchereienwien-1625ae",
+      "locationSet": {
+        "include": ["at-9.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Büchereien Wien",
@@ -578,14 +667,29 @@
     },
     {
       "displayName": "Cardiff Council",
-      "id": "cardiffcouncil-e31f47",
-      "locationSet": {"include": ["gb-wls"]},
+      "id": "cardiffcouncil-88f8da",
+      "locationSet": {
+        "include": ["gb-crf.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Cardiff Council",
         "operator:cy": "Cyngor Caerdydd",
         "operator:en": "Cardiff Council",
+        "operator:type": "government",
         "operator:wikidata": "Q5038400"
+      }
+    },
+    {
+      "displayName": "CCACVI",
+      "id": "ccacvi-668c92",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "CCACVI",
+        "operator:wikidata": "Q2987982"
       }
     },
     {
@@ -594,7 +698,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "library",
-        "operator": "CCEG"
+        "operator": "CCEG",
+        "operator:type": "public"
       }
     },
     {
@@ -627,9 +732,9 @@
     },
     {
       "displayName": "Chicago Public Library",
-      "id": "chicagopubliclibrary-f51cb2",
+      "id": "chicagopubliclibrary-508b9c",
       "locationSet": {
-        "include": ["us-il.geojson"]
+        "include": ["us-il-cook_county.geojson"]
       },
       "tags": {
         "amenity": "library",
@@ -681,6 +786,7 @@
       "tags": {
         "amenity": "library",
         "operator": "City of Moreton Bay",
+        "operator:type": "government",
         "operator:wikidata": "Q85372032"
       }
     },
@@ -693,7 +799,7 @@
       "tags": {
         "amenity": "library",
         "operator": "City of San Antonio",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q975"
       }
     },
@@ -706,26 +812,45 @@
       "tags": {
         "amenity": "library",
         "operator": "City of San Diego",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q16552"
       }
     },
     {
       "displayName": "Clare County Library",
-      "id": "clarecountylibrary-283172",
-      "locationSet": {"include": ["ie"]},
+      "id": "clarecountylibrary-418067",
+      "locationSet": {
+        "include": ["ie-m.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Clare County Library",
+        "operator:en": "Clare County Library",
         "operator:ga": "Leabharlann Chontae an Chláir",
+        "operator:type": "public",
         "operator:wikidata": "Q56033590"
       }
     },
     {
-      "displayName": "Cleveland Public Library",
-      "id": "clevelandpubliclibrary-f8d891",
+      "displayName": "Clermont Auvergne Métropole",
+      "id": "clermontauvergnemetropole-391b22",
       "locationSet": {
-        "include": ["us-oh.geojson"]
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "Clermont Auvergne Métropole",
+        "operator:type": "government",
+        "operator:wikidata": "Q762950"
+      }
+    },
+    {
+      "displayName": "Cleveland Public Library",
+      "id": "clevelandpubliclibrary-b425fb",
+      "locationSet": {
+        "include": [
+          "us-oh-cuyahoga_county.geojson"
+        ]
       },
       "tags": {
         "amenity": "library",
@@ -751,29 +876,40 @@
     },
     {
       "displayName": "Communauté de communes Châteaubriant-Derval",
-      "id": "communautedecommuneschateaubriantderval-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "communautedecommuneschateaubriantderval-461dc5",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Communauté de communes Châteaubriant-Derval"
+        "operator": "Communauté de communes Châteaubriant-Derval",
+        "operator:type": "government",
+        "operator:wikidata": "Q28053807"
       }
     },
     {
       "displayName": "Communauté de communes du Pays d'Ancenis",
-      "id": "communautedecommunesdupaysdancenis-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "communautedecommunesdupaysdancenis-461dc5",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Communauté de communes du Pays d'Ancenis"
+        "operator": "Communauté de communes du Pays d'Ancenis",
+        "operator:type": "government",
+        "operator:wikidata": "Q1119261"
       }
     },
     {
       "displayName": "Comune di Milano",
-      "id": "comunedimilano-2a28a6",
-      "locationSet": {"include": ["it"]},
+      "id": "comunedimilano-ff35cb",
+      "locationSet": {
+        "include": ["it-25.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Comune di Milano",
+        "operator:type": "government",
         "operator:wikidata": "Q103903096"
       }
     },
@@ -786,7 +922,36 @@
       "tags": {
         "amenity": "library",
         "operator": "Cornwall Council",
+        "operator:type": "government",
         "operator:wikidata": "Q3774189"
+      }
+    },
+    {
+      "displayName": "Cuyahoga County Public Library",
+      "id": "cuyahogacountypubliclibrary-b425fb",
+      "locationSet": {
+        "include": [
+          "us-oh-cuyahoga_county.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "Cuyahoga County Public Library",
+        "operator:type": "public",
+        "operator:wikidata": "Q5197076"
+      }
+    },
+    {
+      "displayName": "DC Public Library",
+      "id": "dcpubliclibrary-d8e974",
+      "locationSet": {
+        "include": ["us-dc.geojson"]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "DC Public Library",
+        "operator:type": "public",
+        "operator:wikidata": "Q5283432"
       }
     },
     {
@@ -796,6 +961,7 @@
       "tags": {
         "amenity": "library",
         "operator": "de Bibliotheek CultuurPuntAltena",
+        "operator:type": "public",
         "operator:wikidata": "Q59962376"
       }
     },
@@ -806,6 +972,7 @@
       "tags": {
         "amenity": "library",
         "operator": "de Bibliotheek Midden-Brabant",
+        "operator:type": "public",
         "operator:wikidata": "Q59962312"
       }
     },
@@ -845,27 +1012,34 @@
       "tags": {
         "amenity": "library",
         "operator": "Devon County Council",
+        "operator:type": "government",
         "operator:wikidata": "Q6385990",
         "ref:isil": "GB-UkExDL"
       }
     },
     {
       "displayName": "Diputació de Barcelona",
-      "id": "diputaciodebarcelona-3746d4",
-      "locationSet": {"include": ["es"]},
+      "id": "diputaciodebarcelona-f7a909",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Diputació de Barcelona",
+        "operator:type": "government",
         "operator:wikidata": "Q1607008"
       }
     },
     {
       "displayName": "Directorate of Public Libraries",
-      "id": "directorateofpubliclibraries-f6bcdd",
-      "locationSet": {"include": ["in"]},
+      "id": "directorateofpubliclibraries-6abb8b",
+      "locationSet": {
+        "include": ["in-tn.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Directorate of Public Libraries"
+        "operator": "Directorate of Public Libraries",
+        "operator:type": "public"
       }
     },
     {
@@ -877,6 +1051,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Dorset Council",
+        "operator:type": "government",
         "operator:wikidata": "Q55609905",
         "ref:isil": "GB-UkDorDL"
       }
@@ -891,7 +1066,9 @@
       "tags": {
         "amenity": "library",
         "operator": "Dublin City Council",
+        "operator:en": "Dublin City Council",
         "operator:ga": "Comhairle Cathrach Bhaile Átha Cliath",
+        "operator:type": "government",
         "operator:wikidata": "Q4810766"
       }
     },
@@ -904,7 +1081,9 @@
       "tags": {
         "amenity": "library",
         "operator": "Dún Laoghaire-Rathdown County Council",
+        "operator:en": "Dún Laoghaire-Rathdown County Council",
         "operator:ga": "Comhairle Contae Dhún Laoghaire–Ráth an Dúin",
+        "operator:type": "government",
         "operator:wikidata": "Q5320425"
       }
     },
@@ -929,6 +1108,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Eepos kirjastot",
+        "operator:type": "public",
         "operator:wikidata": "Q42902042"
       }
     },
@@ -954,6 +1134,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Essex County Council",
+        "operator:type": "government",
         "operator:wikidata": "Q5399679"
       }
     },
@@ -973,11 +1154,14 @@
     },
     {
       "displayName": "Fougères Agglomération",
-      "id": "fougeresagglomeration-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "fougeresagglomeration-b386fe",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Fougères Agglomération",
+        "operator:type": "government",
         "operator:wikidata": "Q28003163"
       }
     },
@@ -1002,6 +1186,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Fővárosi Szabó Ervin Könyvtár",
+        "operator:type": "public",
         "operator:wikidata": "Q620968"
       }
     },
@@ -1033,19 +1218,6 @@
       }
     },
     {
-      "displayName": "Freie Universität Berlin",
-      "id": "freieuniversitatberlin-8a11d2",
-      "locationSet": {
-        "include": ["de-be.geojson"]
-      },
-      "tags": {
-        "amenity": "library",
-        "operator": "Freie Universität Berlin",
-        "operator:type": "university",
-        "operator:wikidata": "Q2496344"
-      }
-    },
-    {
       "displayName": "FVRLibraries",
       "id": "fortvancouverregionallibraries-48ecdd",
       "locationSet": {
@@ -1055,16 +1227,20 @@
         "amenity": "library",
         "operator": "Fort Vancouver Regional Libraries",
         "operator:short": "FVRL",
+        "operator:type": "public",
         "operator:wikidata": "Q5472215"
       }
     },
     {
       "displayName": "Geelong Regional Libraries",
-      "id": "geelongregionallibraries-04009a",
-      "locationSet": {"include": ["au"]},
+      "id": "geelongregionallibraries-afcf7d",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Geelong Regional Libraries"
+        "operator": "Geelong Regional Libraries",
+        "operator:type": "public"
       }
     },
     {
@@ -1078,6 +1254,7 @@
         "amenity": "library",
         "operator": "Hamilton Public Library",
         "operator:short": "HPL",
+        "operator:type": "public",
         "operator:wikidata": "Q5645111"
       }
     },
@@ -1090,6 +1267,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Hampshire County Council",
+        "operator:type": "government",
         "operator:wikidata": "Q5646045"
       }
     },
@@ -1145,11 +1323,15 @@
     },
     {
       "displayName": "Hertfordshire County Council",
-      "id": "hertfordshirecountycouncil-70004d",
-      "locationSet": {"include": ["gb"]},
+      "id": "hertfordshirecountycouncil-088e6d",
+      "locationSet": {
+        "include": ["gb-east-england.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Hertfordshire County Council"
+        "operator": "Hertfordshire County Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q5744765"
       }
     },
     {
@@ -1162,7 +1344,7 @@
         "amenity": "library",
         "operator": "Houston Public Library",
         "operator:short": "HPL",
-        "operator:type": "public",
+        "operator:type": "government",
         "operator:wikidata": "Q1647690"
       }
     },
@@ -1186,11 +1368,25 @@
       "tags": {
         "amenity": "library",
         "operator": "İstanbul Büyükşehir Belediyesi",
+        "operator:short": "İBB",
+        "operator:type": "public",
         "operator:wikidata": "Q6085390"
       }
     },
     {
-      "displayName": "JCLS",
+      "displayName": "Istituzione Sistema Biblioteche Centri Culturali",
+      "id": "istituzionesistemabibliotechecentriculturali-7d219c",
+      "locationSet": {
+        "include": ["it-62.geojson"]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "Istituzione Sistema Biblioteche Centri Culturali",
+        "operator:type": "public"
+      }
+    },
+    {
+      "displayName": "Jackson County Library Services",
       "id": "jacksoncountylibraryservices-199ec0",
       "locationSet": {
         "include": ["us-or.geojson"]
@@ -1201,6 +1397,28 @@
         "operator:short": "JCLS",
         "operator:type": "public",
         "operator:wikidata": "Q69488445"
+      }
+    },
+    {
+      "displayName": "Junta de Andalucía",
+      "id": "juntadeandalucia-4c814c",
+      "locationSet": {
+        "include": [
+          "es-al.geojson",
+          "es-ca.geojson",
+          "es-co.geojson",
+          "es-gr.geojson",
+          "es-h.geojson",
+          "es-j.geojson",
+          "es-ma.geojson",
+          "es-se.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "Junta de Andalucía",
+        "operator:type": "government",
+        "operator:wikidata": "Q2743342"
       }
     },
     {
@@ -1239,14 +1457,18 @@
       "tags": {
         "amenity": "library",
         "operator": "Kent County Council",
+        "operator:type": "government",
         "operator:wikidata": "Q6386127"
       }
     },
     {
       "displayName": "Kent State University",
-      "id": "kentstateuniversity-db82b9",
+      "id": "kentstateuniversity-737b54",
       "locationSet": {
-        "include": ["it", "us-oh.geojson"]
+        "include": [
+          "it-52.geojson",
+          "us-oh.geojson"
+        ]
       },
       "tags": {
         "amenity": "library",
@@ -1285,8 +1507,10 @@
     },
     {
       "displayName": "Knižnica pre mládež mesta Košice",
-      "id": "kniznicapremladezmestakosice-36c657",
-      "locationSet": {"include": ["sk"]},
+      "id": "kniznicapremladezmestakosice-b1185f",
+      "locationSet": {
+        "include": ["sk-ki.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Knižnica pre mládež mesta Košice",
@@ -1302,6 +1526,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Knjižnice grada Zagreba",
+        "operator:type": "public",
         "operator:wikidata": "Q17440978"
       }
     },
@@ -1312,13 +1537,16 @@
       "tags": {
         "amenity": "library",
         "operator": "KopGroep Bibliotheken",
+        "operator:type": "public",
         "operator:wikidata": "Q59961977"
       }
     },
     {
       "displayName": "Kornhausbibliotheken Bern",
-      "id": "kornhausbibliothekenbern-4042dc",
-      "locationSet": {"include": ["ch"]},
+      "id": "kornhausbibliothekenbern-4ad6fe",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Kornhausbibliotheken Bern",
@@ -1328,18 +1556,23 @@
     },
     {
       "displayName": "Książnica Płocka im. Władysława Broniewskiego",
-      "id": "ksiaznicaplockaimwladyslawabroniewskiego-2579f7",
-      "locationSet": {"include": ["pl"]},
+      "id": "ksiaznicaplockaimwladyslawabroniewskiego-3e573f",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Książnica Płocka im. Władysława Broniewskiego"
+        "operator": "Książnica Płocka im. Władysława Broniewskiego",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "LA County Library",
-      "id": "lacountylibrary-a762ed",
+      "id": "lacountylibrary-d6a8bf",
       "locationSet": {
-        "include": ["los_angeles_county.geojson"]
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
       },
       "tags": {
         "amenity": "library",
@@ -1403,7 +1636,21 @@
       "tags": {
         "amenity": "library",
         "operator": "Lancashire County Council",
+        "operator:type": "government",
         "operator:wikidata": "Q6386149"
+      }
+    },
+    {
+      "displayName": "Landkreis Oder-Spree",
+      "id": "landkreisoderspree-343622",
+      "locationSet": {
+        "include": ["de-bb.geojson"]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "Landkreis Oder-Spree",
+        "operator:type": "government",
+        "operator:wikidata": "Q6178"
       }
     },
     {
@@ -1414,6 +1661,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Libraries Tasmania",
+        "operator:type": "public",
         "operator:wikidata": "Q6458744"
       }
     },
@@ -1426,6 +1674,7 @@
       "tags": {
         "amenity": "library",
         "operator": "London Borough of Hounslow",
+        "operator:type": "government",
         "operator:wikidata": "Q214162",
         "ref:isil": "GB-UkHnHL"
       }
@@ -1439,6 +1688,7 @@
       "tags": {
         "amenity": "library",
         "operator": "London Borough of Merton",
+        "operator:type": "government",
         "operator:wikidata": "Q32504",
         "ref:isil": "GB-UkLoML"
       }
@@ -1456,6 +1706,7 @@
         "amenity": "library",
         "operator": "London Borough of Richmond Upon Thames",
         "operator:short": "LBRUT",
+        "operator:type": "government",
         "operator:wikidata": "Q32515",
         "ref:isil": "GB-UkRiBR"
       }
@@ -1469,6 +1720,7 @@
       "tags": {
         "amenity": "library",
         "operator": "London Borough of Wandsworth",
+        "operator:type": "government",
         "operator:wikidata": "Q210563",
         "ref:isil": "GB-UkLoWCL"
       }
@@ -1489,9 +1741,11 @@
     },
     {
       "displayName": "Los Angeles Public Library",
-      "id": "losangelespubliclibrary-a762ed",
+      "id": "losangelespubliclibrary-d6a8bf",
       "locationSet": {
-        "include": ["los_angeles_county.geojson"]
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
       },
       "tags": {
         "amenity": "library",
@@ -1503,11 +1757,14 @@
     },
     {
       "displayName": "Mairie de Paris",
-      "id": "mairiedeparis-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "mairiedeparis-024698",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Mairie de Paris",
+        "operator:type": "government",
         "operator:wikidata": "Q3278478"
       }
     },
@@ -1518,16 +1775,20 @@
       "tags": {
         "amenity": "library",
         "operator": "Mestna knjižnica Ljubljana",
+        "operator:type": "public",
         "operator:wikidata": "Q12796386"
       }
     },
     {
       "displayName": "Městská knihovna v Praze",
-      "id": "mestskaknihovnavpraze-cbbd2f",
-      "locationSet": {"include": ["cz"]},
+      "id": "mestskaknihovnavpraze-3c4854",
+      "locationSet": {
+        "include": ["cz-10.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Městská knihovna v Praze",
+        "operator:type": "public",
         "operator:wikidata": "Q9170816"
       }
     },
@@ -1546,20 +1807,26 @@
     },
     {
       "displayName": "Miejska Biblioteka Publiczna im. Hieronima Łopacińskiego w Lublinie",
-      "id": "miejskabibliotekapublicznaimhieronimalopacinskiegowlublinie-2579f7",
-      "locationSet": {"include": ["pl"]},
+      "id": "miejskabibliotekapublicznaimhieronimalopacinskiegowlublinie-4edc50",
+      "locationSet": {
+        "include": ["pl-06.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Miejska Biblioteka Publiczna im. Hieronima Łopacińskiego w Lublinie"
+        "operator": "Miejska Biblioteka Publiczna im. Hieronima Łopacińskiego w Lublinie",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Miejska Biblioteka Publiczna we Wrocławiu",
-      "id": "miejskabibliotekapublicznawewroclawiu-2579f7",
-      "locationSet": {"include": ["pl"]},
+      "id": "miejskabibliotekapublicznawewroclawiu-274132",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Miejska Biblioteka Publiczna we Wrocławiu"
+        "operator": "Miejska Biblioteka Publiczna we Wrocławiu",
+        "operator:type": "public"
       }
     },
     {
@@ -1619,11 +1886,15 @@
     },
     {
       "displayName": "Montpellier Méditerranée Métropole",
-      "id": "montpelliermediterraneemetropole-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "montpelliermediterraneemetropole-668c92",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Montpellier Méditerranée Métropole"
+        "operator": "Montpellier Méditerranée Métropole",
+        "operator:type": "government",
+        "operator:wikidata": "Q1119873"
       }
     },
     {
@@ -1654,18 +1925,22 @@
     },
     {
       "displayName": "Municipalidad de Neuquén",
-      "id": "municipalidaddeneuquen-281b8f",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddeneuquen-e12b56",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Municipalidad de Neuquén"
+        "operator": "Municipalidad de Neuquén",
+        "operator:type": "government",
+        "operator:wikidata": "Q118390946"
       }
     },
     {
       "displayName": "New York Public Library",
-      "id": "newyorkpubliclibrary-cd17a5",
+      "id": "newyorkpubliclibrary-df14d6",
       "locationSet": {
-        "include": ["new_york_city.geojson"]
+        "include": ["us-ny-new_york_city.geojson"]
       },
       "tags": {
         "amenity": "library",
@@ -1682,6 +1957,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Newport City Council",
+        "operator:type": "government",
         "operator:wikidata": "Q16998902",
         "ref:isil": "GB-WlNeCL"
       }
@@ -1709,6 +1985,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Noord Oost Brabantse Bibliotheken",
+        "operator:type": "public",
         "operator:wikidata": "Q59962207"
       }
     },
@@ -1721,6 +1998,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Norfolk County Council",
+        "operator:type": "government",
         "operator:wikidata": "Q6386227"
       }
     },
@@ -1750,38 +2028,45 @@
       "tags": {
         "amenity": "library",
         "operator": "North Northamptonshire",
+        "operator:type": "government",
         "operator:wikidata": "Q60790121"
       }
     },
     {
       "displayName": "North Somerset Council",
-      "id": "northsomersetcouncil-0ac97c",
+      "id": "northsomersetcouncil-beca46",
       "locationSet": {
-        "include": ["gb-som.geojson"]
+        "include": ["gb-nsm.geojson"]
       },
       "tags": {
         "amenity": "library",
         "operator": "North Somerset Council",
+        "operator:type": "government",
         "operator:wikidata": "Q17016922"
       }
     },
     {
       "displayName": "Northern Ireland Library Authority",
-      "id": "northernirelandlibraryauthority-70004d",
-      "locationSet": {"include": ["gb"]},
+      "id": "northernirelandlibraryauthority-134a25",
+      "locationSet": {"include": ["gb-nir"]},
       "tags": {
         "amenity": "library",
         "operator": "Northern Ireland Library Authority",
+        "operator:type": "public",
         "operator:wikidata": "Q50693680"
       }
     },
     {
       "displayName": "Nottinghamshire County Council",
-      "id": "nottinghamshirecountycouncil-70004d",
-      "locationSet": {"include": ["gb"]},
+      "id": "nottinghamshirecountycouncil-f83674",
+      "locationSet": {
+        "include": ["gb-east-midlands.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Nottinghamshire County Council"
+        "operator": "Nottinghamshire County Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q16934215"
       }
     },
     {
@@ -1808,9 +2093,9 @@
     },
     {
       "displayName": "OC Public Libraries",
-      "id": "ocpubliclibraries-b5320b",
+      "id": "ocpubliclibraries-585335",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": ["us-ca-orange_county.geojson"]
       },
       "tags": {
         "amenity": "library",
@@ -1860,6 +2145,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Ottawa Public Library",
+        "operator:en": "Ottawa Public Library",
         "operator:fr": "Bibliothèque publique d'Ottawa",
         "operator:short": "OPL",
         "operator:type": "public",
@@ -1902,17 +2188,25 @@
       "tags": {
         "amenity": "library",
         "operator": "Oxfordshire County Council",
+        "operator:type": "government",
         "operator:wikidata": "Q6386253",
         "ref:isil": "GB-UkOxOLS"
       }
     },
     {
-      "displayName": "PBZ Pestalozzi-Bibliothek Zürich",
-      "id": "pbzpestalozzibibliothekzurich-4042dc",
-      "locationSet": {"include": ["ch"]},
+      "displayName": "Pestalozzi-Bibliothek Zürich",
+      "id": "pestalozzibibliothekzurich-eb2614",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
+      "matchNames": [
+        "pbz pestalozzi-bibliothek zürich"
+      ],
       "tags": {
         "amenity": "library",
-        "operator": "PBZ Pestalozzi-Bibliothek Zürich",
+        "operator": "Pestalozzi-Bibliothek Zürich",
+        "operator:short": "PBZ",
+        "operator:type": "public",
         "operator:wikidata": "Q2073008"
       }
     },
@@ -1952,6 +2246,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Plymouth City Council",
+        "operator:type": "government",
         "operator:wikidata": "Q7205775",
         "ref:isil": "GB-UkPlL"
       }
@@ -1985,9 +2280,9 @@
     },
     {
       "displayName": "Queens Public Library",
-      "id": "queenspubliclibrary-cd17a5",
+      "id": "queenspubliclibrary-df14d6",
       "locationSet": {
-        "include": ["new_york_city.geojson"]
+        "include": ["us-ny-new_york_city.geojson"]
       },
       "tags": {
         "amenity": "library",
@@ -1999,11 +2294,14 @@
     },
     {
       "displayName": "Red Municipal de Bibliotecas de Murcia",
-      "id": "redmunicipaldebibliotecasdemurcia-3746d4",
-      "locationSet": {"include": ["es"]},
+      "id": "redmunicipaldebibliotecasdemurcia-7735b5",
+      "locationSet": {
+        "include": ["es-mu.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Red Municipal de Bibliotecas de Murcia"
+        "operator": "Red Municipal de Bibliotecas de Murcia",
+        "operator:type": "public"
       }
     },
     {
@@ -2012,7 +2310,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "library",
-        "operator": "Réseau des bibliothèques de Sèvremoine"
+        "operator": "Réseau des bibliothèques de Sèvremoine",
+        "operator:type": "public"
       }
     },
     {
@@ -2030,6 +2329,20 @@
       }
     },
     {
+      "displayName": "Saint Louis County Library",
+      "id": "saintlouiscountylibrary-0f14a0",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
+      "matchNames": ["st. louis county library"],
+      "tags": {
+        "amenity": "library",
+        "operator": "Saint Louis County Library",
+        "operator:type": "public",
+        "operator:wikidata": "Q7589610"
+      }
+    },
+    {
       "displayName": "Salford City Council",
       "id": "salfordcitycouncil-e51a5f",
       "locationSet": {
@@ -2041,6 +2354,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Salford City Council",
+        "operator:type": "government",
         "operator:wikidata": "Q17020402"
       }
     },
@@ -2054,14 +2368,14 @@
         "amenity": "library",
         "operator": "San Bernardino County Library",
         "operator:type": "public",
-        "operator:wikidata": "Q2901530"
+        "operator:wikidata": "Q30268360"
       }
     },
     {
       "displayName": "San Francisco Public Library",
-      "id": "sanfranciscopubliclibrary-b5320b",
+      "id": "sanfranciscopubliclibrary-92bbc9",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": ["us-ca-san_francisco.geojson"]
       },
       "tags": {
         "amenity": "library",
@@ -2087,8 +2401,10 @@
     },
     {
       "displayName": "Sapienza - Università di Roma",
-      "id": "sapienzauniversitadiroma-2a28a6",
-      "locationSet": {"include": ["it"]},
+      "id": "sapienzauniversitadiroma-7d219c",
+      "locationSet": {
+        "include": ["it-62.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Sapienza - Università di Roma",
@@ -2116,7 +2432,9 @@
       "tags": {
         "amenity": "library",
         "operator": "SDG Library",
-        "operator:fr": "Bibliothèque de SDG"
+        "operator:en": "SDG Library",
+        "operator:fr": "Bibliothèque de SDG",
+        "operator:type": "public"
       }
     },
     {
@@ -2131,6 +2449,19 @@
         "operator:short": "SPL",
         "operator:type": "public",
         "operator:wikidata": "Q7442157"
+      }
+    },
+    {
+      "displayName": "Siouxland Libraries",
+      "id": "siouxlandlibraries-a62533",
+      "locationSet": {
+        "include": ["us-sd.geojson"]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "Siouxland Libraries",
+        "operator:type": "public",
+        "operator:wikidata": "Q69490746"
       }
     },
     {
@@ -2195,13 +2526,16 @@
         "amenity": "library",
         "operator": "Stiftung Hamburger Öffentliche Bücherhallen",
         "operator:short": "HÖB",
+        "operator:type": "public",
         "operator:wikidata": "Q1573209"
       }
     },
     {
       "displayName": "Stiftung Kornhausbibliotheken",
-      "id": "stiftungkornhausbibliotheken-4042dc",
-      "locationSet": {"include": ["ch"]},
+      "id": "stiftungkornhausbibliotheken-4ad6fe",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Stiftung Kornhausbibliotheken",
@@ -2209,6 +2543,35 @@
         "operator:type": "public",
         "operator:wikidata": "Q1784554",
         "ref:isil": "CH-002073-3"
+      }
+    },
+    {
+      "displayName": "Swansea Council",
+      "id": "swanseacouncil-c13f29",
+      "locationSet": {
+        "include": ["gb-swa.geojson"]
+      },
+      "matchNames": [
+        "city and county of swansea council",
+        "cyngor dinas a sir abertawe"
+      ],
+      "tags": {
+        "amenity": "library",
+        "operator": "Swansea Council",
+        "operator:cy": "Cyngor Abertawe",
+        "operator:type": "government",
+        "operator:wikidata": "Q5123523"
+      }
+    },
+    {
+      "displayName": "Theek 5",
+      "id": "theek5-08efeb",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "library",
+        "operator": "Theek 5",
+        "operator:type": "public",
+        "operator:wikidata": "Q59962203"
       }
     },
     {
@@ -2234,6 +2597,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Tulare County Library",
+        "operator:type": "public",
         "operator:wikidata": "Q66369392"
       }
     },
@@ -2243,13 +2607,16 @@
       "locationSet": {"include": ["ve"]},
       "tags": {
         "amenity": "library",
-        "operator": "UCV: Facultad de Medicina"
+        "operator": "UCV: Facultad de Medicina",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Universidad de León",
-      "id": "universidaddeleon-3746d4",
-      "locationSet": {"include": ["es"]},
+      "id": "universidaddeleon-37341b",
+      "locationSet": {
+        "include": ["es-le.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Universidad de León",
@@ -2259,8 +2626,10 @@
     },
     {
       "displayName": "Universidad de Málaga",
-      "id": "universidaddemalaga-3746d4",
-      "locationSet": {"include": ["es"]},
+      "id": "universidaddemalaga-b732f6",
+      "locationSet": {
+        "include": ["es-ma.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Universidad de Málaga",
@@ -2270,8 +2639,10 @@
     },
     {
       "displayName": "Università degli Studi di Roma \"La Sapienza\"",
-      "id": "universitadeglistudidiromalasapienza-2a28a6",
-      "locationSet": {"include": ["it"]},
+      "id": "universitadeglistudidiromalasapienza-7d219c",
+      "locationSet": {
+        "include": ["it-62.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Università degli Studi di Roma \"La Sapienza\"",
@@ -2280,8 +2651,10 @@
     },
     {
       "displayName": "Università degli studi di Trieste",
-      "id": "universitadeglistudiditrieste-2a28a6",
-      "locationSet": {"include": ["it"]},
+      "id": "universitadeglistudiditrieste-0c255f",
+      "locationSet": {
+        "include": ["it-36.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Università degli studi di Trieste",
@@ -2291,8 +2664,10 @@
     },
     {
       "displayName": "Università di Bologna",
-      "id": "universitadibologna-2a28a6",
-      "locationSet": {"include": ["it"]},
+      "id": "universitadibologna-c0ba41",
+      "locationSet": {
+        "include": ["it-45.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Università di Bologna",
@@ -2328,8 +2703,10 @@
     },
     {
       "displayName": "Universität Wien",
-      "id": "universitatwien-3f5de0",
-      "locationSet": {"include": ["at"]},
+      "id": "universitatwien-1625ae",
+      "locationSet": {
+        "include": ["at-9.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Universität Wien",
@@ -2347,17 +2724,25 @@
         "amenity": "library",
         "operator": "Universitäts- und Landesbibliothek Sachsen-Anhalt",
         "operator:short": "ULB",
+        "operator:type": "public",
         "operator:wikidata": "Q1600777"
       }
     },
     {
-      "displayName": "Universitätsbibliothek Bern UB",
-      "id": "universitatsbibliothekbernub-4042dc",
-      "locationSet": {"include": ["ch"]},
+      "displayName": "Universitätsbibliothek Bern",
+      "id": "universitatsbibliothekbern-4ad6fe",
+      "locationSet": {
+        "include": ["ch-be.geojson"]
+      },
+      "matchNames": [
+        "universitätsbibliothek bern ub"
+      ],
       "tags": {
         "amenity": "library",
-        "operator": "Universitätsbibliothek Bern UB",
-        "operator:type": "university"
+        "operator": "Universitätsbibliothek Bern",
+        "operator:short": "UB",
+        "operator:type": "university",
+        "operator:wikidata": "Q15852122"
       }
     },
     {
@@ -2368,6 +2753,7 @@
       },
       "matchNames": [
         "freie universität",
+        "freie universität berlin",
         "fu",
         "fu berlin"
       ],
@@ -2445,8 +2831,10 @@
     },
     {
       "displayName": "Université Bordeaux Montaigne",
-      "id": "universitebordeauxmontaigne-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "universitebordeauxmontaigne-aef600",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Université Bordeaux Montaigne",
@@ -2456,8 +2844,10 @@
     },
     {
       "displayName": "Université de Lorraine",
-      "id": "universitedelorraine-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "universitedelorraine-c2daaf",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Université de Lorraine",
@@ -2480,11 +2870,14 @@
     },
     {
       "displayName": "Valence Romans Agglo",
-      "id": "valenceromansagglo-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "valenceromansagglo-391b22",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Valence Romans Agglo",
+        "operator:type": "government",
         "operator:wikidata": "Q3333858"
       }
     },
@@ -2504,21 +2897,27 @@
     },
     {
       "displayName": "Ville de Genève",
-      "id": "villedegeneve-4042dc",
-      "locationSet": {"include": ["ch"]},
+      "id": "villedegeneve-68bbbd",
+      "locationSet": {
+        "include": ["ch-ge.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Ville de Genève",
+        "operator:type": "government",
         "operator:wikidata": "Q71"
       }
     },
     {
       "displayName": "Ville de Lyon",
-      "id": "villedelyon-03d22a",
-      "locationSet": {"include": ["fx"]},
+      "id": "villedelyon-391b22",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "amenity": "library",
         "operator": "Ville de Lyon",
+        "operator:type": "government",
         "operator:wikidata": "Q3278474"
       }
     },
@@ -2548,6 +2947,7 @@
       "tags": {
         "amenity": "library",
         "operator": "West Northamptonshire",
+        "operator:type": "government",
         "operator:wikidata": "Q60790129"
       }
     },
@@ -2558,6 +2958,7 @@
       "tags": {
         "amenity": "library",
         "operator": "Westfriese Bibliotheken",
+        "operator:type": "public",
         "operator:wikidata": "Q59961947"
       }
     },
@@ -2569,7 +2970,9 @@
       },
       "tags": {
         "amenity": "library",
-        "operator": "Winnipeg Public Library"
+        "operator": "Winnipeg Public Library",
+        "operator:type": "public",
+        "operator:wikidata": "Q8025777"
       }
     },
     {
@@ -2578,7 +2981,8 @@
       "locationSet": {"include": ["ua"]},
       "tags": {
         "amenity": "library",
-        "operator": "ВІННИЦЬКА МІСЬКА ЦЕНТРАЛІЗОВАНА БІБЛІОТЕЧНА СИСТЕМА"
+        "operator": "ВІННИЦЬКА МІСЬКА ЦЕНТРАЛІЗОВАНА БІБЛІОТЕЧНА СИСТЕМА",
+        "operator:type": "public"
       }
     },
     {
@@ -2587,115 +2991,155 @@
       "locationSet": {"include": ["rs"]},
       "tags": {
         "amenity": "library",
-        "operator": "Градска Библиотека у Новом Саду"
+        "operator": "Градска Библиотека у Новом Саду",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "МБУ межпоселенческая \"Центральная библиотека Приморского района\"",
       "id": "cfe7c6-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ARK",
       "tags": {
         "amenity": "library",
-        "operator": "МБУ межпоселенческая \"Центральная библиотека Приморского района\""
+        "operator": "МБУ межпоселенческая \"Центральная библиотека Приморского района\"",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "МБУК \"Библиотеки Тольятти\"",
       "id": "b7690e-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAM",
       "tags": {
         "amenity": "library",
-        "operator": "МБУК \"Библиотеки Тольятти\""
+        "operator": "МБУК \"Библиотеки Тольятти\"",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "МБУК \"Объединение детских библиотек\"",
       "id": "d92d43-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAM",
       "tags": {
         "amenity": "library",
-        "operator": "МБУК \"Объединение детских библиотек\""
+        "operator": "МБУК \"Объединение детских библиотек\"",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "МУК \"ЦБ Богородского ГО\"",
       "id": "35eab1-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOS",
       "tags": {
         "amenity": "library",
-        "operator": "МУК \"ЦБ Богородского ГО\""
+        "operator": "МУК \"ЦБ Богородского ГО\"",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "МУК \"Централизованная библиотечная система\"",
       "id": "b338ab-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ARK",
       "tags": {
         "amenity": "library",
-        "operator": "МУК \"Централизованная библиотечная система\""
+        "operator": "МУК \"Централизованная библиотечная система\"",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "СПб ГБУ «Невская ЦБС»",
-      "id": "3087f4-5ddbe5",
-      "locationSet": {"include": ["ru"]},
+      "id": "3087f4-517b8d",
+      "locationSet": {
+        "include": ["ru-spe.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "СПб ГБУ «Невская ЦБС»"
+        "operator": "СПб ГБУ «Невская ЦБС»",
+        "operator:type": "public"
       }
     },
     {
-      "displayName": "Централизованная  библиотечная система  Красногвардейского района",
-      "id": "79a74c-5ddbe5",
+      "displayName": "ЦБС Автозаводского района",
+      "id": "1c44ed-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-NIZ",
       "tags": {
         "amenity": "library",
-        "operator": "Централизованная  библиотечная система  Красногвардейского района"
+        "operator": "ЦБС Автозаводского района",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Централизованная библиотечная система",
       "id": "afed6b-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "separate operators by this name exist in Воронеж (ISO 3166-2 RU-VOR), Сыктывкар (RU-KO), and Уральск (RU-BA)",
       "tags": {
         "amenity": "library",
-        "operator": "Централизованная библиотечная система"
+        "operator": "Централизованная библиотечная система",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Централизованная библиотечная система Выборгского района",
-      "id": "6df976-5ddbe5",
-      "locationSet": {"include": ["ru"]},
+      "id": "6df976-517b8d",
+      "locationSet": {
+        "include": ["ru-spe.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Централизованная библиотечная система Выборгского района"
+        "operator": "Централизованная библиотечная система Выборгского района",
+        "operator:type": "public"
+      }
+    },
+    {
+      "displayName": "Централизованная библиотечная система Красногвардейского района",
+      "id": "79a74c-517b8d",
+      "locationSet": {
+        "include": ["ru-spe.geojson"]
+      },
+      "tags": {
+        "amenity": "library",
+        "operator": "Централизованная библиотечная система Красногвардейского района",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Централизованная библиотечная система Фрунзенского района Санкт-Петербурга",
-      "id": "b8308f-5ddbe5",
-      "locationSet": {"include": ["ru"]},
+      "id": "b8308f-517b8d",
+      "locationSet": {
+        "include": ["ru-spe.geojson"]
+      },
       "tags": {
         "amenity": "library",
-        "operator": "Централизованная библиотечная система Фрунзенского района Санкт-Петербурга"
+        "operator": "Централизованная библиотечная система Фрунзенского района Санкт-Петербурга",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Центральная городская библиотека",
       "id": "479213-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MUR; Wikidata is likely Q18786177 but the operator name is too generic to use without a narrower geofence",
       "tags": {
         "amenity": "library",
-        "operator": "Центральная городская библиотека"
+        "operator": "Центральная городская библиотека",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Центральная детская библиотека",
       "id": "7a6882-5ddbe5",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MUR",
       "tags": {
         "amenity": "library",
-        "operator": "Центральная детская библиотека"
+        "operator": "Центральная детская библиотека",
+        "operator:type": "public"
       }
     },
     {
@@ -2718,6 +3162,7 @@
       "tags": {
         "amenity": "library",
         "operator": "新北市三重區公所",
+        "operator:type": "public",
         "operator:wikidata": "Q113609909"
       }
     },
@@ -2732,6 +3177,19 @@
         "operator:type": "government",
         "operator:wikidata": "Q11081463",
         "operator:zh": "新北市立圖書館"
+      }
+    },
+    {
+      "displayName": "桃園市立圖書館",
+      "id": "taoyuanpubliclibrary-6a5686",
+      "locationSet": {"include": ["tw"]},
+      "tags": {
+        "amenity": "library",
+        "operator": "桃園市立圖書館",
+        "operator:en": "Taoyuan Public Library",
+        "operator:type": "government",
+        "operator:wikidata": "Q11112014",
+        "operator:zh": "桃園市立圖書館"
       }
     },
     {
@@ -2757,17 +3215,6 @@
         "operator:type": "government",
         "operator:wikidata": "Q15896397",
         "operator:zh": "臺北市立圖書館"
-      }
-    },
-    {
-      "displayName": "首都图书馆",
-      "id": "d81552-6214cc",
-      "locationSet": {"include": ["cn"]},
-      "tags": {
-        "amenity": "library",
-        "operator": "首都图书馆",
-        "operator:type": "government",
-        "operator:zh": "首都图书馆"
       }
     },
     {

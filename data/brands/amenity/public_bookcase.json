@@ -3,14 +3,25 @@
     "path": "brands/amenity/public_bookcase",
     "exclude": {
       "generic": [
-        "^(public bookcase|bo[îi]te [aà] livres|(offener )?bücherschrank)$",
-        "^bücherbox$",
-        "^bücherzelle$",
-        "^knihobudka$"
+        "^(offener|öffentlicher)?\\s?bücher(box|schrank|zelle)$",
+        "^bo[îi]te [aà] liv?res?$",
+        "^knihobudka$",
+        "^public bookcase$"
       ]
     }
   },
   "items": [
+    {
+      "displayName": "Bibliocabine",
+      "id": "bibliocabina-227ad5",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "amenity": "public_bookcase",
+        "brand": "Bibliocabine",
+        "brand:wikidata": "Q130461884",
+        "name": "Bibliocabina"
+      }
+    },
     {
       "displayName": "Bieb Bieb Aalst",
       "id": "biebbieb-31eb16",
@@ -23,23 +34,15 @@
     },
     {
       "displayName": "Boekentil (Stad Leuven)",
-      "id": "boekentil-31eb16",
-      "locationSet": {"include": ["be"]},
+      "id": "boekentil-91f992",
+      "locationSet": {
+        "include": ["be-vbr.geojson"]
+      },
       "tags": {
         "amenity": "public_bookcase",
         "brand": "Boekentil",
         "brand:wikidata": "Q118958",
         "name": "Boekentil"
-      }
-    },
-    {
-      "displayName": "Boîte à lire",
-      "id": "boitealire-6e8312",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "public_bookcase",
-        "brand": "Boîte à lire",
-        "name": "Boîte à lire"
       }
     },
     {
@@ -52,6 +55,16 @@
         "brand": "Bücherhäuschen",
         "brand:wikidata": "Q1589627",
         "name": "Bücherhäuschen"
+      }
+    },
+    {
+      "displayName": "Cabane à livres",
+      "id": "cabanealivres-c4d8c7",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "amenity": "public_bookcase",
+        "brand": "Cabane à livres",
+        "name": "Cabane à livres"
       }
     },
     {
@@ -139,8 +152,7 @@
       "tags": {
         "amenity": "public_bookcase",
         "brand": "Little Free Library",
-        "brand:wikidata": "Q6650101",
-        "name": "Little Free Library"
+        "brand:wikidata": "Q6650101"
       }
     },
     {
@@ -173,16 +185,6 @@
         "amenity": "public_bookcase",
         "brand": "Minibieb",
         "name": "Minibieb"
-      }
-    },
-    {
-      "displayName": "Öffentlicher Bücherschrank",
-      "id": "offentlicherbucherschrank-6e8312",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "amenity": "public_bookcase",
-        "brand": "Öffentlicher Bücherschrank",
-        "name": "Öffentlicher Bücherschrank"
       }
     },
     {

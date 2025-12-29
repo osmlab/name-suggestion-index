@@ -4,9 +4,10 @@
     "exclude": {
       "generic": [
         "^(grad|općin)ska uprava$",
+        "^(mairie|prefeitura)$",
         "^commune$",
         "^gemeinde$",
-        "^mairie$",
+        "^local government unit$",
         "^public$",
         "^townhall$",
         "^сільрада$",
@@ -17,12 +18,14 @@
   },
   "items": [
     {
-      "displayName": "Bashkia Tirana",
-      "id": "bashkiatirana-1790fd",
+      "displayName": "Bashkia Tiranë",
+      "id": "bashkiatirane-1790fd",
       "locationSet": {"include": ["al"]},
+      "matchNames": ["bashkia tirana"],
       "tags": {
         "amenity": "townhall",
-        "operator": "Bashkia Tirana"
+        "operator": "Bashkia Tiranë",
+        "operator:wikidata": "Q13037436"
       }
     },
     {
@@ -51,16 +54,20 @@
       "locationSet": {"include": ["mt"]},
       "tags": {
         "amenity": "townhall",
-        "operator": "Gvern ta' Malta"
+        "operator": "Gvern ta' Malta",
+        "operator:wikidata": "Q5589242"
       }
     },
     {
       "displayName": "Mairie de Toulouse",
-      "id": "mairiedetoulouse-e1f1e2",
-      "locationSet": {"include": ["fx"]},
+      "id": "mairiedetoulouse-b2a871",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
       "tags": {
         "amenity": "townhall",
-        "operator": "Mairie de Toulouse"
+        "operator": "Mairie de Toulouse",
+        "operator:wikidata": "Q59916588"
       }
     },
     {
@@ -82,9 +89,24 @@
       }
     },
     {
+      "displayName": "Poblacion BLGU",
+      "id": "poblacionblgu-1cabdb",
+      "locationSet": {
+        "include": [
+          "ph-ceb.geojson",
+          "ph-nir.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "townhall",
+        "operator": "Poblacion BLGU"
+      }
+    },
+    {
       "displayName": "RU-VGG-2-23",
       "id": "ruvgg223-e37915",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-VGG",
       "tags": {
         "amenity": "townhall",
         "operator": "RU-VGG-2-23"
@@ -94,6 +116,7 @@
       "displayName": "RU-VGG-9-60",
       "id": "ruvgg960-e37915",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-VGG",
       "tags": {
         "amenity": "townhall",
         "operator": "RU-VGG-9-60"
@@ -173,11 +196,14 @@
     },
     {
       "displayName": "札幌市",
-      "id": "e1715c-31de42",
-      "locationSet": {"include": ["jp"]},
+      "id": "e1715c-56b9b1",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "amenity": "townhall",
-        "operator": "札幌市"
+        "operator": "札幌市",
+        "operator:wikidata": "Q37951"
       }
     },
     {

@@ -21,17 +21,27 @@ The following areas are [Regions of England](https://en.wikipedia.org/wiki/Regio
 
 Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
-- [gb-bst.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bst.geojson%22%5D%7D&referrer=nsi) - City of Bristol
-- [gb-lnd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lnd.geojson%22%5D%7D&referrer=nsi) - City of London (small central area, use [gb-lon.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lon.geojson%22%5D%7D&referrer=nsi) for London as a whole)
-- [gb-ply.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-ply.geojson%22%5D%7D&referrer=nsi) - City of Plymouth
-- [gb-swd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swd.geojson%22%5D%7D&referrer=nsi) - Borough of Swindon
-- [gb-bas.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bas.geojson%22%5D%7D&referrer=nsi) - County of Bath and North East Somerset
-- [gb-con.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-con.geojson%22%5D%7D&referrer=nsi) - County of Cornwall
-- [gb-dev.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-dev.geojson%22%5D%7D&referrer=nsi) - County of Devon
-- [gb-dor.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-dor.geojson%22%5D%7D&referrer=nsi) - County of Dorset
-- [gb-nsm.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-nsm.geojson%22%5D%7D&referrer=nsi) - County of North Somerset
-- [gb-som.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-som.geojson%22%5D%7D&referrer=nsi) - County of Somerset
-- [gb-wil.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-wil.geojson%22%5D%7D&referrer=nsi) - County of Wiltshire
+- England
+  - [gb-bir.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bir.geojson%22%5D%7D&referrer=nsi) - City of Birmingham
+  - [gb-bst.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bst.geojson%22%5D%7D&referrer=nsi) - City of Bristol
+  - [gb-lnd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lnd.geojson%22%5D%7D&referrer=nsi) - City of London (small central area, use [gb-lon.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lon.geojson%22%5D%7D&referrer=nsi) for London as a whole)
+  - [gb-ply.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-ply.geojson%22%5D%7D&referrer=nsi) - City of Plymouth
+  - [gb-swd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swd.geojson%22%5D%7D&referrer=nsi) - Borough of Swindon
+  - [gb-bas.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bas.geojson%22%5D%7D&referrer=nsi) - County of Bath and North East Somerset
+  - [gb-bpl.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bpl.geojson%22%5D%7D&referrer=nsi) - Blackpool
+  - [gb-con.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-con.geojson%22%5D%7D&referrer=nsi) - County of Cornwall
+  - [gb-dev.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-dev.geojson%22%5D%7D&referrer=nsi) - County of Devon
+  - [gb-dor.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-dor.geojson%22%5D%7D&referrer=nsi) - County of Dorset
+  - [gb-nsm.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-nsm.geojson%22%5D%7D&referrer=nsi) - County of North Somerset
+  - [gb-som.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-som.geojson%22%5D%7D&referrer=nsi) - County of Somerset
+  - [gb-wil.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-wil.geojson%22%5D%7D&referrer=nsi) - County of Wiltshire
+  - [gb-iow.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-iow.geojson%22%5D%7D&referrer=nsi) - Isle of Wight 
+- Scotland
+  - [gb-abd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-abd.geojson%22%5D%7D&referrer=nsi) - Aberdeen (City)
+  - [gb-abe.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-abe.geojson%22%5D%7D&referrer=nsi) - Aberdeenshire
+- Wales
+  - [gb-crf.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-crf.geojson%22%5D%7D&referrer=nsi) - City of Cardiff
+  - [gb-swa.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swa.geojson%22%5D%7D&referrer=nsi) - City of Swansea
 
 Areas of Great Britain targeted with a feature not using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 

@@ -3,30 +3,33 @@
     "path": "brands/office/government",
     "exclude": {
       "generic": [
+        "^(district office|starostwo powiatowe)$",
         "^(government|администрация)$",
-        "^village office$",
-        "^казначейство$"
+        "^(village office|sołtys)$",
+        "^câmara (de vereadores|municipal)$",
+        "^mairie$",
+        "^казначейство$",
+        "^налоговая$"
       ],
       "named": [
-        "^(department of motor vehicles|passport office)$"
+        "^(civil registry office|registro civil|urząd stanu cywilnego|загс)$",
+        "^(department of motor vehicles|passport office|паспортный стол)$",
+        "^(tax office|urząd skarbowy)$",
+        "^bürgerbüro$",
+        "^finanzamt$",
+        "^gesundheitsamt$",
+        "^standesamt$",
+        "^налоговая инспекция$",
+        "^пенсионный фонд$",
+        "^центр занятости( населения)?$"
       ]
     }
   },
   "items": [
     {
-      "displayName": "AFIP",
-      "id": "afip-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "AFIP",
-        "name": "AFIP",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "Agenzia delle Entrate",
-      "id": "agenziadelleentrate-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "agenziadelleentrate-618589",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "brand": "Agenzia delle Entrate",
         "name": "Agenzia delle Entrate",
@@ -34,49 +37,21 @@
       }
     },
     {
-      "displayName": "ANSES",
-      "id": "anses-0bc456",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Cartorio Eleitoral",
+      "id": "cartorioeleitoral-efb6ac",
+      "locationSet": {"include": ["br"]},
       "tags": {
-        "brand": "ANSES",
-        "name": "ANSES",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Bürgerbüro",
-      "id": "burgerburo-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Bürgerbüro",
-        "name": "Bürgerbüro",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Câmara de Vereadores",
-      "id": "camaradevereadores-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Câmara de Vereadores",
-        "name": "Câmara de Vereadores",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Câmara Municipal",
-      "id": "camaramunicipal-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Câmara Municipal",
-        "name": "Câmara Municipal",
+        "brand": "Cartorio Eleitoral",
+        "brand:wikidata": "Q3656204",
+        "government": "register_office",
+        "name": "Cartorio Eleitoral",
         "office": "government"
       }
     },
     {
       "displayName": "Centre des Finances Publiques",
-      "id": "centredesfinancespubliques-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "centredesfinancespubliques-f941ae",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "brand": "Centre des Finances Publiques",
         "name": "Centre des Finances Publiques",
@@ -85,8 +60,8 @@
     },
     {
       "displayName": "Centrelink",
-      "id": "centrelink-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "centrelink-cc3eb2",
+      "locationSet": {"include": ["au"]},
       "tags": {
         "brand": "Centrelink",
         "name": "Centrelink",
@@ -104,16 +79,6 @@
       }
     },
     {
-      "displayName": "Finanzamt",
-      "id": "finanzamt-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Finanzamt",
-        "name": "Finanzamt",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "France Services",
       "id": "franceservices-9f865c",
       "locationSet": {"include": ["fx"]},
@@ -126,28 +91,22 @@
     },
     {
       "displayName": "France Travail",
-      "id": "francetravail-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "francetravail-f941ae",
+      "locationSet": {"include": ["fr"]},
+      "matchNames": ["pôle emploi"],
+      "matchTags": ["office/employment_agency"],
       "tags": {
         "brand": "France Travail",
+        "brand:wikidata": "Q8901192",
+        "government": "employment_agency",
         "name": "France Travail",
         "office": "government"
       }
     },
     {
-      "displayName": "Gesundheitsamt",
-      "id": "gesundheitsamt-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Gesundheitsamt",
-        "name": "Gesundheitsamt",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "INPS",
-      "id": "inps-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "inps-36a710",
+      "locationSet": {"include": ["it", "ml"]},
       "tags": {
         "brand": "INPS",
         "name": "INPS",
@@ -155,9 +114,9 @@
       }
     },
     {
-      "displayName": "Instituto de Previsión Social",
-      "id": "institutodeprevisionsocial-0bc456",
-      "locationSet": {"include": ["001"]},
+      "displayName": "Instituto de Previsión Social (Argentina)",
+      "id": "institutodeprevisionsocial-f58552",
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "brand": "Instituto de Previsión Social",
         "name": "Instituto de Previsión Social",
@@ -165,9 +124,20 @@
       }
     },
     {
+      "displayName": "Instituto de Previsión Social (Chile)",
+      "id": "institutodeprevisionsocial-f76797",
+      "locationSet": {"include": ["cl"]},
+      "tags": {
+        "brand": "Instituto de Previsión Social",
+        "brand:wikidata": "Q5918318",
+        "name": "Instituto de Previsión Social",
+        "office": "government"
+      }
+    },
+    {
       "displayName": "Komenda Powiatowa Państwowej Straży Pożarnej",
-      "id": "komendapowiatowapanstwowejstrazypozarnej-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "komendapowiatowapanstwowejstrazypozarnej-16cbc6",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Komenda Powiatowa Państwowej Straży Pożarnej",
         "name": "Komenda Powiatowa Państwowej Straży Pożarnej",
@@ -176,8 +146,8 @@
     },
     {
       "displayName": "Kormányablak",
-      "id": "kormanyablak-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "kormanyablak-62c570",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "brand": "Kormányablak",
         "name": "Kormányablak",
@@ -186,8 +156,8 @@
     },
     {
       "displayName": "Krishi Bhavan",
-      "id": "krishibhavan-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "krishibhavan-e0bfec",
+      "locationSet": {"include": ["in"]},
       "tags": {
         "brand": "Krishi Bhavan",
         "name": "Krishi Bhavan",
@@ -195,19 +165,19 @@
       }
     },
     {
-      "displayName": "Mairie",
-      "id": "mairie-0bc456",
+      "displayName": "Ministerio Público",
+      "id": "ministeriopublico-0bc456",
       "locationSet": {"include": ["001"]},
       "tags": {
-        "brand": "Mairie",
-        "name": "Mairie",
+        "brand": "Ministerio Público",
+        "name": "Ministerio Público",
         "office": "government"
       }
     },
     {
       "displayName": "NAV",
-      "id": "nav-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "nav-62c570",
+      "locationSet": {"include": ["hu"]},
       "tags": {
         "brand": "NAV",
         "name": "NAV",
@@ -229,8 +199,8 @@
     },
     {
       "displayName": "PAMI",
-      "id": "pami-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "pami-f58552",
+      "locationSet": {"include": ["ar"]},
       "tags": {
         "brand": "PAMI",
         "name": "PAMI",
@@ -239,8 +209,8 @@
     },
     {
       "displayName": "PARCOURS GC",
-      "id": "parcoursgc-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "parcoursgc-07beba",
+      "locationSet": {"include": ["ml"]},
       "tags": {
         "brand": "PARCOURS GC",
         "name": "PARCOURS GC",
@@ -248,19 +218,9 @@
       }
     },
     {
-      "displayName": "Pôle Emploi",
-      "id": "poleemploi-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Pôle Emploi",
-        "name": "Pôle Emploi",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "Powiatowa Stacja Sanitarno-Epidemiologiczna",
-      "id": "powiatowastacjasanitarnoepidemiologiczna-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "powiatowastacjasanitarnoepidemiologiczna-16cbc6",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Powiatowa Stacja Sanitarno-Epidemiologiczna",
         "name": "Powiatowa Stacja Sanitarno-Epidemiologiczna",
@@ -269,8 +229,8 @@
     },
     {
       "displayName": "Powiatowy Inspektorat Nadzoru Budowlanego",
-      "id": "powiatowyinspektoratnadzorubudowlanego-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "powiatowyinspektoratnadzorubudowlanego-16cbc6",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Powiatowy Inspektorat Nadzoru Budowlanego",
         "name": "Powiatowy Inspektorat Nadzoru Budowlanego",
@@ -279,8 +239,8 @@
     },
     {
       "displayName": "Powiatowy Inspektorat Weterynarii",
-      "id": "powiatowyinspektoratweterynarii-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "powiatowyinspektoratweterynarii-16cbc6",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Powiatowy Inspektorat Weterynarii",
         "name": "Powiatowy Inspektorat Weterynarii",
@@ -289,8 +249,8 @@
     },
     {
       "displayName": "Powiatowy Urząd Pracy",
-      "id": "powiatowyurzadpracy-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "powiatowyurzadpracy-16cbc6",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Powiatowy Urząd Pracy",
         "name": "Powiatowy Urząd Pracy",
@@ -299,8 +259,8 @@
     },
     {
       "displayName": "Previdência Social",
-      "id": "previdenciasocial-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "previdenciasocial-efb6ac",
+      "locationSet": {"include": ["br"]},
       "tags": {
         "brand": "Previdência Social",
         "name": "Previdência Social",
@@ -308,29 +268,9 @@
       }
     },
     {
-      "displayName": "Receita Federal",
-      "id": "receitafederal-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Receita Federal",
-        "name": "Receita Federal",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Registro Civil",
-      "id": "registrocivil-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Registro Civil",
-        "name": "Registro Civil",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "SAIME",
-      "id": "saime-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "saime-aa4a76",
+      "locationSet": {"include": ["ve"]},
       "tags": {
         "brand": "SAIME",
         "name": "SAIME",
@@ -339,8 +279,8 @@
     },
     {
       "displayName": "Scheduled Outreach",
-      "id": "scheduledoutreach-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "scheduledoutreach-54ad31",
+      "locationSet": {"include": ["ca"]},
       "tags": {
         "brand": "Scheduled Outreach",
         "name": "Scheduled Outreach",
@@ -349,8 +289,8 @@
     },
     {
       "displayName": "Secretaria Municipal de Educação",
-      "id": "secretariamunicipaldeeducacao-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "secretariamunicipaldeeducacao-efb6ac",
+      "locationSet": {"include": ["br"]},
       "tags": {
         "brand": "Secretaria Municipal de Educação",
         "name": "Secretaria Municipal de Educação",
@@ -359,8 +299,8 @@
     },
     {
       "displayName": "Secretaria Municipal de Saúde",
-      "id": "secretariamunicipaldesaude-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "secretariamunicipaldesaude-efb6ac",
+      "locationSet": {"include": ["br"]},
       "tags": {
         "brand": "Secretaria Municipal de Saúde",
         "name": "Secretaria Municipal de Saúde",
@@ -369,8 +309,8 @@
     },
     {
       "displayName": "Sekretariat RW 01",
-      "id": "sekretariatrw01-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sekretariatrw01-daf34d",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "brand": "Sekretariat RW 01",
         "name": "Sekretariat RW 01",
@@ -379,8 +319,8 @@
     },
     {
       "displayName": "Sekretariat RW 02",
-      "id": "sekretariatrw02-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sekretariatrw02-daf34d",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "brand": "Sekretariat RW 02",
         "name": "Sekretariat RW 02",
@@ -389,8 +329,8 @@
     },
     {
       "displayName": "Sekretariat RW 03",
-      "id": "sekretariatrw03-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sekretariatrw03-daf34d",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "brand": "Sekretariat RW 03",
         "name": "Sekretariat RW 03",
@@ -399,8 +339,8 @@
     },
     {
       "displayName": "Sekretariat RW 04",
-      "id": "sekretariatrw04-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sekretariatrw04-daf34d",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "brand": "Sekretariat RW 04",
         "name": "Sekretariat RW 04",
@@ -409,8 +349,8 @@
     },
     {
       "displayName": "Sekretariat RW 05",
-      "id": "sekretariatrw05-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sekretariatrw05-daf34d",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "brand": "Sekretariat RW 05",
         "name": "Sekretariat RW 05",
@@ -419,8 +359,8 @@
     },
     {
       "displayName": "Sekretariat RW 06",
-      "id": "sekretariatrw06-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sekretariatrw06-daf34d",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "brand": "Sekretariat RW 06",
         "name": "Sekretariat RW 06",
@@ -429,8 +369,8 @@
     },
     {
       "displayName": "Sekretariat RW 07",
-      "id": "sekretariatrw07-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sekretariatrw07-daf34d",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "brand": "Sekretariat RW 07",
         "name": "Sekretariat RW 07",
@@ -439,8 +379,8 @@
     },
     {
       "displayName": "Sekretariat RW 08",
-      "id": "sekretariatrw08-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sekretariatrw08-daf34d",
+      "locationSet": {"include": ["id"]},
       "tags": {
         "brand": "Sekretariat RW 08",
         "name": "Sekretariat RW 08",
@@ -448,39 +388,9 @@
       }
     },
     {
-      "displayName": "Sołtys",
-      "id": "soltys-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Sołtys",
-        "name": "Sołtys",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Standesamt",
-      "id": "standesamt-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Standesamt",
-        "name": "Standesamt",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Starostwo Powiatowe",
-      "id": "starostwopowiatowe-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Starostwo Powiatowe",
-        "name": "Starostwo Powiatowe",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "SUNARP",
-      "id": "sunarp-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "sunarp-3bb68d",
+      "locationSet": {"include": ["pe"]},
       "tags": {
         "brand": "SUNARP",
         "name": "SUNARP",
@@ -489,8 +399,8 @@
     },
     {
       "displayName": "Trésor Public",
-      "id": "tresorpublic-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "tresorpublic-f941ae",
+      "locationSet": {"include": ["fr"]},
       "tags": {
         "brand": "Trésor Public",
         "name": "Trésor Public",
@@ -498,39 +408,22 @@
       }
     },
     {
-      "displayName": "Urząd Skarbowy",
-      "id": "urzadskarbowy-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Urząd Skarbowy",
-        "name": "Urząd Skarbowy",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Urząd Stanu Cywilnego",
-      "id": "urzadstanucywilnego-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Urząd Stanu Cywilnego",
-        "name": "Urząd Stanu Cywilnego",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "Zakład Ubezpieczeń Społecznych",
-      "id": "zakladubezpieczenspolecznych-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "zakladubezpieczenspolecznych-16cbc6",
+      "locationSet": {"include": ["pl"]},
       "tags": {
         "brand": "Zakład Ubezpieczeń Społecznych",
+        "brand:wikidata": "Q144881",
         "name": "Zakład Ubezpieczeń Społecznych",
         "office": "government"
       }
     },
     {
       "displayName": "БТИ",
-      "id": "f075b4-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "f075b4-ee18db",
+      "locationSet": {
+        "include": ["kz", "ru", "uz"]
+      },
       "tags": {
         "brand": "БТИ",
         "name": "БТИ",
@@ -539,8 +432,10 @@
     },
     {
       "displayName": "Военкомат",
-      "id": "1a8386-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "1a8386-ee18db",
+      "locationSet": {
+        "include": ["kz", "ru", "uz"]
+      },
       "tags": {
         "brand": "Военкомат",
         "name": "Военкомат",
@@ -548,19 +443,9 @@
       }
     },
     {
-      "displayName": "ЗАГС",
-      "id": "3f3d60-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "ЗАГС",
-        "name": "ЗАГС",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "Многофункциональный центр предоставления государственных и муниципальных услуг",
-      "id": "c0da8d-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "c0da8d-d70bbf",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Многофункциональный центр предоставления государственных и муниципальных услуг",
         "name": "Многофункциональный центр предоставления государственных и муниципальных услуг",
@@ -573,6 +458,7 @@
       "locationSet": {"include": ["ru"]},
       "matchNames": [
         "госуслуги",
+        "мфц «мои документы»",
         "центр госуслуг"
       ],
       "tags": {
@@ -590,69 +476,21 @@
       }
     },
     {
-      "displayName": "МФЦ «Мои документы»",
-      "id": "4d4f03-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "МФЦ «Мои документы»",
-        "name": "МФЦ «Мои документы»",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Налоговая",
-      "id": "06f601-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Налоговая",
-        "name": "Налоговая",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Налоговая инспекция",
-      "id": "764242-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Налоговая инспекция",
-        "name": "Налоговая инспекция",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Паспортный стол",
-      "id": "1ecb8b-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Паспортный стол",
-        "name": "Паспортный стол",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Пенсионный фонд",
-      "id": "7ace9b-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Пенсионный фонд",
-        "name": "Пенсионный фонд",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "Росреестр",
-      "id": "3e96ea-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "3e96ea-d70bbf",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "Росреестр",
+        "brand:wikidata": "Q4481676",
         "name": "Росреестр",
         "office": "government"
       }
     },
     {
       "displayName": "ТОСП центра \"Мои Документы\"",
-      "id": "8f8a96-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "8f8a96-d70bbf",
+      "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SA",
       "tags": {
         "brand": "ТОСП центра \"Мои Документы\"",
         "name": "ТОСП центра \"Мои Документы\"",
@@ -661,8 +499,8 @@
     },
     {
       "displayName": "УФМС",
-      "id": "56986c-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "56986c-d70bbf",
+      "locationSet": {"include": ["ru"]},
       "tags": {
         "brand": "УФМС",
         "name": "УФМС",
@@ -670,29 +508,9 @@
       }
     },
     {
-      "displayName": "Центр занятости",
-      "id": "b2b1c6-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Центр занятости",
-        "name": "Центр занятости",
-        "office": "government"
-      }
-    },
-    {
-      "displayName": "Центр занятости населения",
-      "id": "d472ed-0bc456",
-      "locationSet": {"include": ["001"]},
-      "tags": {
-        "brand": "Центр занятости населения",
-        "name": "Центр занятости населения",
-        "office": "government"
-      }
-    },
-    {
       "displayName": "اداره آموزش و پرورش",
-      "id": "78d24e-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "78d24e-fcf2bd",
+      "locationSet": {"include": ["ir"]},
       "tags": {
         "brand": "اداره آموزش و پرورش",
         "name": "اداره آموزش و پرورش",
@@ -701,8 +519,8 @@
     },
     {
       "displayName": "اداره برق",
-      "id": "d85205-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "d85205-fcf2bd",
+      "locationSet": {"include": ["ir"]},
       "tags": {
         "brand": "اداره برق",
         "name": "اداره برق",
@@ -711,8 +529,8 @@
     },
     {
       "displayName": "اداره ثبت احوال",
-      "id": "1ef86b-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "1ef86b-fcf2bd",
+      "locationSet": {"include": ["ir"]},
       "tags": {
         "brand": "اداره ثبت احوال",
         "name": "اداره ثبت احوال",
@@ -721,8 +539,8 @@
     },
     {
       "displayName": "اداره گاز",
-      "id": "1b6995-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "1b6995-fcf2bd",
+      "locationSet": {"include": ["ir"]},
       "tags": {
         "brand": "اداره گاز",
         "name": "اداره گاز",
@@ -731,8 +549,8 @@
     },
     {
       "displayName": "پلیس +۱۰",
-      "id": "8e85aa-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "8e85aa-fcf2bd",
+      "locationSet": {"include": ["ir"]},
       "tags": {
         "brand": "پلیس +۱۰",
         "name": "پلیس +۱۰",
@@ -741,8 +559,8 @@
     },
     {
       "displayName": "جهاد کشاورزی",
-      "id": "536f15-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "536f15-fcf2bd",
+      "locationSet": {"include": ["ir"]},
       "tags": {
         "brand": "جهاد کشاورزی",
         "name": "جهاد کشاورزی",
@@ -751,8 +569,8 @@
     },
     {
       "displayName": "دفتر پیشخوان دولت",
-      "id": "c106dc-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "c106dc-fcf2bd",
+      "locationSet": {"include": ["ir"]},
       "tags": {
         "brand": "دفتر پیشخوان دولت",
         "name": "دفتر پیشخوان دولت",
@@ -761,8 +579,8 @@
     },
     {
       "displayName": "کمیته امداد",
-      "id": "c45551-0bc456",
-      "locationSet": {"include": ["001"]},
+      "id": "c45551-fcf2bd",
+      "locationSet": {"include": ["ir"]},
       "tags": {
         "brand": "کمیته امداد",
         "name": "کمیته امداد",

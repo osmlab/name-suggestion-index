@@ -124,17 +124,16 @@ input:focus {
   padding-right: 10px;
 }
 #treeswitcher {
-  flex: 0 1 auto;
-  padding: 1em 0;
+  appearance: base-select;
+  background-color: #393939;
+  color: #aaa;
+  border: 1px solid #666;
 }
-#treeswitcher ul {
-  flex: 1;
-  display: inline;
-  padding: 0;
+#treeswitcher::picker-icon {
+  color: #999;
 }
-#treeswitcher li {
-  display: inline;
-  margin-left: 10px;
+#treeswitcher option {
+  color: #ddd;
 }
 
 #darkmode {
@@ -339,6 +338,7 @@ tbody td.tags {
 }
 tbody pre.tags {
   font-size: 10px;
+  white-space: pre-wrap;
 }
 tbody td.wikidata {
   max-width: 320px;

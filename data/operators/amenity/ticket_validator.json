@@ -5,6 +5,18 @@
   },
   "items": [
     {
+      "displayName": "Arriva",
+      "id": "arriva-766524",
+      "locationSet": {
+        "include": ["de-nw.geojson", "nl"]
+      },
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "Arriva",
+        "operator:wikidata": "Q680991"
+      }
+    },
+    {
       "displayName": "AT HOP Validator",
       "id": "at-0b3968",
       "locationSet": {
@@ -21,6 +33,31 @@
       }
     },
     {
+      "displayName": "Auvergne-Rhône-Alpes",
+      "id": "auvergnerhonealpes-c94544",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "Auvergne-Rhône-Alpes",
+        "operator:wikidata": "Q18338206"
+      }
+    },
+    {
+      "displayName": "Berliner Verkehrsbetriebe",
+      "id": "berlinerverkehrsbetriebe-e86cd8",
+      "locationSet": {
+        "include": ["de-be.geojson"]
+      },
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "Berliner Verkehrsbetriebe",
+        "operator:short": "BVG",
+        "operator:wikidata": "Q99633"
+      }
+    },
+    {
       "displayName": "Caltrain",
       "id": "caltrain-883676",
       "locationSet": {
@@ -28,8 +65,8 @@
       },
       "tags": {
         "amenity": "ticket_validator",
-        "network:wikidata": "Q166817",
-        "operator": "Caltrain"
+        "operator": "Caltrain",
+        "operator:wikidata": "Q166817"
       }
     },
     {
@@ -39,15 +76,6 @@
       "tags": {
         "amenity": "ticket_validator",
         "operator": "CasaTramway"
-      }
-    },
-    {
-      "displayName": "CFF",
-      "id": "cff-71d17c",
-      "locationSet": {"include": ["ch", "fx"]},
-      "tags": {
-        "amenity": "ticket_validator",
-        "operator": "CFF"
       }
     },
     {
@@ -67,7 +95,8 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "DB Vertrieb GmbH"
+        "operator": "DB Vertrieb GmbH",
+        "operator:wikidata": "Q1152124"
       }
     },
     {
@@ -81,31 +110,50 @@
       }
     },
     {
-      "displayName": "Keolis Rennes",
-      "id": "keolisrennes-0bced1",
-      "locationSet": {"include": ["fx"]},
+      "displayName": "IDS JMK",
+      "id": "idsjmk-abb2e4",
+      "locationSet": {"include": ["cz"]},
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "Keolis Rennes"
+        "operator": "IDS JMK",
+        "operator:wikidata": "Q12020731"
       }
     },
     {
-      "displayName": "Metlink",
-      "id": "metlink-8269c0",
-      "locationSet": {"include": ["nz"]},
+      "displayName": "Keolis Rennes",
+      "id": "keolisrennes-8fe767",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "Metlink"
+        "operator": "Keolis Rennes",
+        "operator:wikidata": "Q3195353"
+      }
+    },
+    {
+      "displayName": "Metlink (Wellington)",
+      "id": "metlink-3eb661",
+      "locationSet": {
+        "include": [
+          "nz-mwt.geojson",
+          "nz-wgn.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "Metlink",
+        "operator:wikidata": "Q7258026"
       }
     },
     {
       "displayName": "Nederlandse Spoorwegen",
       "id": "nederlandsespoorwegen-23194f",
       "locationSet": {"include": ["nl"]},
+      "matchNames": ["ns"],
       "tags": {
         "amenity": "ticket_validator",
         "operator": "Nederlandse Spoorwegen",
-        "operator:short": "NS",
         "operator:wikidata": "Q23076"
       }
     },
@@ -127,6 +175,7 @@
       "tags": {
         "amenity": "ticket_validator",
         "operator": "Regional Transportation District",
+        "operator:short": "RTD",
         "operator:wikidata": "Q7309183"
       }
     },
@@ -146,32 +195,26 @@
       }
     },
     {
-      "displayName": "SBB",
-      "id": "sbb-88b0ef",
-      "locationSet": {"include": ["ch"]},
+      "displayName": "SBB - CFF - FFS",
+      "id": "sbbcffffs-ac77cd",
+      "locationSet": {
+        "include": [
+          "ch",
+          "fr-ara.geojson",
+          "fr-bfc.geojson"
+        ]
+      },
+      "matchNames": [
+        "schweizerische bundesbahnen ag",
+        "swiss federal railways"
+      ],
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "SBB"
-      }
-    },
-    {
-      "displayName": "SBB CFF FFS",
-      "id": "sbbcffffs-88b0ef",
-      "locationSet": {"include": ["ch"]},
-      "matchNames": ["swiss federal railways"],
-      "tags": {
-        "amenity": "ticket_validator",
-        "operator": "SBB CFF FFS",
+        "operator": "SBB - CFF - FFS",
+        "operator:de": "SBB",
+        "operator:fr": "CFF",
+        "operator:it": "FFS",
         "operator:wikidata": "Q83835"
-      }
-    },
-    {
-      "displayName": "Schweizerische Bundesbahnen AG",
-      "id": "schweizerischebundesbahnenag-88b0ef",
-      "locationSet": {"include": ["ch"]},
-      "tags": {
-        "amenity": "ticket_validator",
-        "operator": "Schweizerische Bundesbahnen AG"
       }
     },
     {
@@ -181,6 +224,15 @@
       "tags": {
         "amenity": "ticket_validator",
         "operator": "SNCF"
+      }
+    },
+    {
+      "displayName": "SNCF Gares & Connexions",
+      "id": "sncfgaresandconnexions-9fdb02",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "SNCF Gares & Connexions"
       }
     },
     {
@@ -194,11 +246,14 @@
     },
     {
       "displayName": "TER Hauts-de-France",
-      "id": "terhautsdefrance-0bced1",
-      "locationSet": {"include": ["fx"]},
+      "id": "terhautsdefrance-258336",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "TER Hauts-de-France"
+        "operator": "TER Hauts-de-France",
+        "operator:wikidata": "Q38223166"
       }
     },
     {
@@ -207,11 +262,12 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "Transdev Vertrieb GmbH"
+        "operator": "Transdev Vertrieb GmbH",
+        "operator:wikidata": "Q129520185"
       }
     },
     {
-      "displayName": "Translink",
+      "displayName": "Translink (Queensland)",
       "id": "translink-2260c1",
       "locationSet": {
         "include": ["au-qld.geojson"]
@@ -224,8 +280,8 @@
     },
     {
       "displayName": "Transport for London",
-      "id": "transportforlondon-f9bd85",
-      "locationSet": {"include": ["gb"]},
+      "id": "transportforlondon-73d484",
+      "locationSet": {"include": ["gb-eng"]},
       "tags": {
         "amenity": "ticket_validator",
         "operator": "Transport for London",
@@ -239,6 +295,7 @@
       "locationSet": {
         "include": ["au-nsw.geojson"]
       },
+      "matchNames": ["tfnsw"],
       "tags": {
         "amenity": "ticket_validator",
         "operator": "Transport for NSW",
@@ -247,11 +304,14 @@
     },
     {
       "displayName": "Transport for West Midlands",
-      "id": "transportforwestmidlands-f9bd85",
-      "locationSet": {"include": ["gb"]},
+      "id": "transportforwestmidlands-1d1aee",
+      "locationSet": {
+        "include": ["gb-west-midlands.geojson"]
+      },
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "Transport for West Midlands"
+        "operator": "Transport for West Midlands",
+        "operator:wikidata": "Q7985947"
       }
     },
     {
@@ -269,7 +329,9 @@
       "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "Trenitalia"
+        "operator": "Trenitalia",
+        "operator:short": "TI",
+        "operator:wikidata": "Q286650"
       }
     },
     {
@@ -282,26 +344,71 @@
       }
     },
     {
-      "displayName": "WSW",
-      "id": "wsw-08753d",
+      "displayName": "Verkehrsverbund Rhein-Neckar",
+      "id": "verkehrsverbundrheinneckar-4f3d84",
       "locationSet": {
-        "include": ["de-nw.geojson"]
+        "include": ["de-bw.geojson"]
       },
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "WSW",
-        "operator:wikidata": "Q2537722"
+        "operator": "Verkehrsverbund Rhein-Neckar",
+        "operator:short": "VRN",
+        "operator:wikidata": "Q1553051"
       }
     },
     {
-      "displayName": "WSW mobil",
-      "id": "wswmobil-f980d0",
-      "locationSet": {"include": ["de"]},
-      "matchNames": ["wsw mobil gmbh"],
+      "displayName": "VVS",
+      "id": "vvs-9fdb02",
+      "locationSet": {"include": ["001"]},
       "tags": {
         "amenity": "ticket_validator",
-        "operator": "WSW mobil",
+        "operator": "VVS"
+      }
+    },
+    {
+      "displayName": "WSW mobil GmbH",
+      "id": "wswmobilgmbh-f980d0",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["wsw", "wsw mobil"],
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "WSW mobil GmbH",
         "operator:wikidata": "Q44880072"
+      }
+    },
+    {
+      "displayName": "Würzburger Versorgungs- und Verkehrs-GmbH",
+      "id": "wurzburgerversorgungsundverkehrsgmbh-1c8b87",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "Würzburger Versorgungs- und Verkehrs-GmbH",
+        "operator:short": "WVV",
+        "operator:wikidata": "Q1291006"
+      }
+    },
+    {
+      "displayName": "Київпастранс",
+      "id": "kyivpastrans-86a43e",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "Київпастранс",
+        "operator:en": "Kyivpastrans",
+        "operator:uk": "Київпастранс",
+        "operator:wikidata": "Q12110155"
+      }
+    },
+    {
+      "displayName": "Київський метрополітен",
+      "id": "cee87d-86a43e",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "amenity": "ticket_validator",
+        "operator": "Київський метрополітен",
+        "operator:wikidata": "Q215871"
       }
     },
     {
@@ -312,6 +419,7 @@
         "amenity": "ticket_validator",
         "operator": "中国铁路",
         "operator:en": "China Railway",
+        "operator:wikidata": "Q1073489",
         "operator:zh": "中国铁路"
       }
     }

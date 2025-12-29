@@ -3,25 +3,39 @@
     "path": "operators/amenity/community_centre",
     "exclude": {
       "generic": [
-        "^(community centre|government)$",
+        "^(commun(e|ity)|gemeinde)$",
+        "^(government|municipalité)$",
         "^(自治会|町内会)$",
-        "^commun(e|ity)$",
+        "^community centre$",
         "^evangelische kirche$",
-        "^gemeinde$",
         "^mairie$",
-        "^municipalité$",
         "^scouts$"
       ]
     }
   },
   "items": [
     {
-      "displayName": "Ajuntament de Barcelona",
-      "id": "ajuntamentdebarcelona-1f7aba",
-      "locationSet": {"include": ["es"]},
+      "displayName": "AGESCI",
+      "id": "agesci-30a064",
+      "locationSet": {"include": ["it"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ajuntament de Barcelona"
+        "operator": "AGESCI",
+        "operator:type": "association",
+        "operator:wikidata": "Q637335"
+      }
+    },
+    {
+      "displayName": "Ajuntament de Barcelona",
+      "id": "ajuntamentdebarcelona-b0bc99",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Ajuntament de Barcelona",
+        "operator:type": "government",
+        "operator:wikidata": "Q3129773"
       }
     },
     {
@@ -30,7 +44,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Association des Maisons de quartier de Reims"
+        "operator": "Association des Maisons de quartier de Reims",
+        "operator:type": "private"
       }
     },
     {
@@ -52,25 +67,64 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "AWO"
+        "operator": "AWO",
+        "operator:type": "private"
       }
     },
     {
       "displayName": "Ayuntamiento de Madrid",
-      "id": "ayuntamientodemadrid-1f7aba",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodemadrid-bf9ebc",
+      "locationSet": {
+        "include": ["es-m.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ayuntamiento de Madrid"
+        "operator": "Ayuntamiento de Madrid",
+        "operator:type": "government",
+        "operator:wikidata": "Q3773976"
       }
     },
     {
       "displayName": "Ayuntamiento de Málaga",
-      "id": "ayuntamientodemalaga-1f7aba",
-      "locationSet": {"include": ["es"]},
+      "id": "ayuntamientodemalaga-b7b38c",
+      "locationSet": {
+        "include": ["es-ma.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ayuntamiento de Málaga"
+        "operator": "Ayuntamiento de Málaga",
+        "operator:type": "government",
+        "operator:wikidata": "Q5714892"
+      }
+    },
+    {
+      "displayName": "Baltimore City Department of Recreation & Parks",
+      "id": "baltimorecitydepartmentofrecreationandparks-78231e",
+      "locationSet": {
+        "include": ["us-md-baltimore.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Baltimore City Department of Recreation & Parks",
+        "operator:short": "BCRP",
+        "operator:type": "government",
+        "operator:wikidata": "Q110062922"
+      }
+    },
+    {
+      "displayName": "Baltimore City Health Department",
+      "id": "baltimorecityhealthdepartment-78231e",
+      "locationSet": {
+        "include": ["us-md-baltimore.geojson"]
+      },
+      "matchNames": [
+        "baltimore city department of health"
+      ],
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Baltimore City Health Department",
+        "operator:type": "government",
+        "operator:wikidata": "Q21028393"
       }
     },
     {
@@ -81,7 +135,8 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Baltimore County Department of Aging"
+        "operator": "Baltimore County Department of Aging",
+        "operator:type": "government"
       }
     },
     {
@@ -92,7 +147,8 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Bezirksamt Eimsbüttel"
+        "operator": "Bezirksamt Eimsbüttel",
+        "operator:type": "government"
       }
     },
     {
@@ -103,7 +159,8 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Bezirksamt Hamburg-Mitte"
+        "operator": "Bezirksamt Hamburg-Mitte",
+        "operator:type": "government"
       }
     },
     {
@@ -114,7 +171,8 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Bezirksamt Hamburg-Nord"
+        "operator": "Bezirksamt Hamburg-Nord",
+        "operator:type": "government"
       }
     },
     {
@@ -124,6 +182,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Caritas",
+        "operator:type": "charitable",
         "operator:wikidata": "Q29508174"
       }
     },
@@ -133,18 +192,20 @@
       "locationSet": {"include": ["ec"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Caruiz Gadm Tena"
+        "operator": "Caruiz Gadm Tena",
+        "operator:type": "private"
       }
     },
     {
       "displayName": "Chicago Park District",
-      "id": "chicagoparkdistrict-706aee",
+      "id": "chicagoparkdistrict-a2bb95",
       "locationSet": {
-        "include": ["us-il.geojson"]
+        "include": ["us-il-cook_county.geojson"]
       },
       "tags": {
         "amenity": "community_centre",
         "operator": "Chicago Park District",
+        "operator:type": "public",
         "operator:wikidata": "Q2963322"
       }
     },
@@ -155,6 +216,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Chiro",
+        "operator:type": "ngo",
         "operator:wikidata": "Q2749394"
       }
     },
@@ -164,20 +226,43 @@
       "locationSet": {"include": ["za"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "City of Cape Town"
+        "operator": "City of Cape Town",
+        "operator:af": "Stad Kaapstad",
+        "operator:en": "City of Cape Town",
+        "operator:type": "government",
+        "operator:wikidata": "Q1185115",
+        "operator:xh": "IsiXeko saseKapa"
       }
     },
     {
-      "displayName": "City of Cleveland",
-      "id": "cityofcleveland-47f0c6",
+      "displayName": "City of Cleveland (Ohio)",
+      "id": "cityofcleveland-6cc217",
       "locationSet": {
-        "include": ["us-oh.geojson"]
+        "include": [
+          "us-oh-cuyahoga_county.geojson"
+        ]
       },
       "tags": {
         "amenity": "community_centre",
         "operator": "City of Cleveland",
         "operator:type": "government",
         "operator:wikidata": "Q37320"
+      }
+    },
+    {
+      "displayName": "City of Houston Community Center",
+      "id": "houstonparksandrecreationdepartment-f8f5df",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Houston Parks and Recreation Department",
+        "operator:short": "HPARD",
+        "operator:type": "government",
+        "operator:wikidata": "Q115018877",
+        "owner": "City of Houston",
+        "owner:wikidata": "Q16555"
       }
     },
     {
@@ -194,15 +279,59 @@
       }
     },
     {
-      "displayName": "City of Los Angeles",
-      "id": "cityoflosangeles-2a1c08",
+      "displayName": "City of London (Ontario)",
+      "id": "cityoflondon-6e645e",
       "locationSet": {
-        "include": ["us-ca.geojson"]
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "City of London",
+        "operator:type": "government",
+        "operator:wikidata": "Q92561"
+      }
+    },
+    {
+      "displayName": "City of Los Angeles",
+      "id": "cityoflosangeles-0fcd3d",
+      "locationSet": {
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
       },
       "tags": {
         "amenity": "community_centre",
         "operator": "City of Los Angeles",
+        "operator:type": "government",
         "operator:wikidata": "Q65"
+      }
+    },
+    {
+      "displayName": "City of Orlando",
+      "id": "cityoforlando-fb3645",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
+      "matchNames": ["orlando"],
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "City of Orlando",
+        "operator:type": "government",
+        "operator:wikidata": "Q49233"
+      }
+    },
+    {
+      "displayName": "City of Ottawa",
+      "id": "cityofottawa-6e645e",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "matchNames": ["ottawa"],
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "City of Ottawa",
+        "operator:type": "government",
+        "operator:wikidata": "Q5123850"
       }
     },
     {
@@ -232,21 +361,42 @@
       }
     },
     {
-      "displayName": "Concello de Abegondo",
-      "id": "concellodeabegondo-1f7aba",
-      "locationSet": {"include": ["es"]},
+      "displayName": "Commune de Sèvremont",
+      "id": "communedesevremont-c86722",
+      "locationSet": {
+        "include": ["fr-pdl.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Concello de Abegondo"
+        "operator": "Commune de Sèvremont",
+        "operator:type": "government",
+        "operator:wikidata": "Q118840318"
+      }
+    },
+    {
+      "displayName": "Concello de Abegondo",
+      "id": "concellodeabegondo-799a08",
+      "locationSet": {
+        "include": ["es-c.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Concello de Abegondo",
+        "operator:type": "government",
+        "operator:wikidata": "Q318323"
       }
     },
     {
       "displayName": "Concello de Carral",
-      "id": "concellodecarral-1f7aba",
-      "locationSet": {"include": ["es"]},
+      "id": "concellodecarral-799a08",
+      "locationSet": {
+        "include": ["es-c.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Concello de Carral"
+        "operator": "Concello de Carral",
+        "operator:type": "government",
+        "operator:wikidata": "Q601352"
       }
     },
     {
@@ -256,17 +406,32 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Gemeente Nijmegen",
+        "operator:type": "government",
         "operator:wikidata": "Q47887"
       }
     },
     {
       "displayName": "Gmina Chojnów",
-      "id": "gminachojnow-c977f5",
-      "locationSet": {"include": ["pl"]},
+      "id": "gminachojnow-17f7ad",
+      "locationSet": {
+        "include": ["pl-02.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "Gmina Chojnów",
+        "operator:type": "government",
         "operator:wikidata": "Q2463113"
+      }
+    },
+    {
+      "displayName": "Göteborgs Stad",
+      "id": "goteborgsstad-57685d",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Göteborgs Stad",
+        "operator:type": "government",
+        "operator:wikidata": "Q52502"
       }
     },
     {
@@ -278,7 +443,64 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Halifax Regional Municipality",
+        "operator:type": "government",
         "operator:wikidata": "Q2141"
+      }
+    },
+    {
+      "displayName": "Harris County Precinct 1",
+      "id": "harriscountyprecinct1-f8f5df",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Harris County Precinct 1",
+        "operator:short": "HCP1",
+        "operator:type": "government",
+        "operator:wikidata": "Q136086620"
+      }
+    },
+    {
+      "displayName": "Harris County Precinct 2",
+      "id": "harriscountyprecinct2-f8f5df",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Harris County Precinct 2",
+        "operator:short": "HCP2",
+        "operator:type": "government",
+        "operator:wikidata": "Q136086615"
+      }
+    },
+    {
+      "displayName": "Harris County Precinct 3",
+      "id": "harriscountyprecinct3-f8f5df",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Harris County Precinct 3",
+        "operator:short": "HCP3",
+        "operator:type": "government",
+        "operator:wikidata": "Q110064255"
+      }
+    },
+    {
+      "displayName": "Harris County Precinct 4",
+      "id": "harriscountyprecinct4-f8f5df",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Harris County Precinct 4",
+        "operator:short": "HCP4",
+        "operator:type": "government",
+        "operator:wikidata": "Q115120998"
       }
     },
     {
@@ -288,16 +510,19 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Helsingin kaupunki",
-        "operator:wikidata": "Q1757"
+        "operator:type": "government",
+        "operator:wikidata": "Q20251620"
       }
     },
     {
-      "displayName": "IESS",
-      "id": "iess-aa1b4b",
+      "displayName": "Instituto Ecuatoriano de Seguridad Social",
+      "id": "institutoecuatorianodeseguridadsocial-aa1b4b",
       "locationSet": {"include": ["ec"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "IESS",
+        "operator": "Instituto Ecuatoriano de Seguridad Social",
+        "operator:short": "IESS",
+        "operator:type": "government",
         "operator:wikidata": "Q5917290"
       }
     },
@@ -308,7 +533,20 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Institutul Cultural Român",
+        "operator:type": "public",
         "operator:wikidata": "Q2740485"
+      }
+    },
+    {
+      "displayName": "International Rescue Committee",
+      "id": "internationalrescuecommittee-e4e4f8",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "International Rescue Committee",
+        "operator:short": "IRC",
+        "operator:type": "ngo",
+        "operator:wikidata": "Q1666849"
       }
     },
     {
@@ -329,11 +567,23 @@
     },
     {
       "displayName": "Junta de Andalucía",
-      "id": "juntadeandalucia-1f7aba",
-      "locationSet": {"include": ["es"]},
+      "id": "juntadeandalucia-d0ed78",
+      "locationSet": {
+        "include": [
+          "es-al.geojson",
+          "es-ca.geojson",
+          "es-co.geojson",
+          "es-gr.geojson",
+          "es-h.geojson",
+          "es-j.geojson",
+          "es-ma.geojson",
+          "es-se.geojson"
+        ]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "Junta de Andalucía",
+        "operator:type": "government",
         "operator:wikidata": "Q2743342"
       }
     },
@@ -346,96 +596,134 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Kreisjugendring München-Stadt",
+        "operator:type": "ngo",
         "operator:wikidata": "Q1330682"
       }
     },
     {
-      "displayName": "Mairie de Creil",
-      "id": "mairiedecreil-7fe0be",
-      "locationSet": {"include": ["fr"]},
+      "displayName": "KSA",
+      "id": "ksa-d3b2a9",
+      "locationSet": {"include": ["be"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Mairie de Creil"
+        "operator": "KSA",
+        "operator:type": "association",
+        "operator:wikidata": "Q2244475"
+      }
+    },
+    {
+      "displayName": "Mairie de Creil",
+      "id": "mairiedecreil-953561",
+      "locationSet": {
+        "include": ["fr-hdf.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Mairie de Creil",
+        "operator:type": "government",
+        "operator:wikidata": "Q118524793"
+      }
+    },
+    {
+      "displayName": "Mairie de Sarzeau",
+      "id": "mairiedesarzeau-265d36",
+      "locationSet": {
+        "include": ["fr-bre.geojson"]
+      },
+      "matchNames": ["commune de sarzeau"],
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "Mairie de Sarzeau",
+        "operator:type": "government",
+        "operator:wikidata": "Q115909985"
       }
     },
     {
       "displayName": "Mairie de Torcy",
-      "id": "mairiedetorcy-7fe0be",
-      "locationSet": {"include": ["fr"]},
+      "id": "mairiedetorcy-8ae51c",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Mairie de Torcy"
+        "operator": "Mairie de Torcy",
+        "operator:type": "government",
+        "operator:wikidata": "Q118837878"
       }
     },
     {
-      "displayName": "Montpellier",
-      "id": "montpellier-7fe0be",
-      "locationSet": {"include": ["fr"]},
+      "displayName": "Mairie de Villenave-d'Ornon",
+      "id": "mairiedevillenavedornon-1d732e",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "matchNames": ["villenave-d'ornon"],
       "tags": {
         "amenity": "community_centre",
-        "operator": "Montpellier",
-        "operator:wikidata": "Q6441"
+        "operator": "Mairie de Villenave-d'Ornon",
+        "operator:type": "government",
+        "operator:wikidata": "Q118555147"
       }
     },
     {
       "displayName": "Municipalidad de Cutral Có",
-      "id": "municipalidaddecutralco-8bc081",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddecutralco-ff4eea",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Municipalidad de Cutral Có"
+        "operator": "Municipalidad de Cutral Có",
+        "operator:type": "government",
+        "operator:wikidata": "Q970536"
       }
     },
     {
       "displayName": "Municipalidad de Neuquén",
-      "id": "municipalidaddeneuquen-8bc081",
-      "locationSet": {"include": ["ar"]},
+      "id": "municipalidaddeneuquen-ff4eea",
+      "locationSet": {
+        "include": ["ar-q.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "Municipalidad de Neuquén",
-        "operator:wikidata": "Q44239"
+        "operator:type": "government",
+        "operator:wikidata": "Q118390946"
       }
     },
     {
-      "displayName": "Newry, Mourne & Down District Council",
-      "id": "newrymourneanddowndistrictcouncil-6bc20d",
-      "locationSet": {"include": ["gb"]},
-      "tags": {
-        "amenity": "community_centre",
-        "operator": "Newry, Mourne & Down District Council"
-      }
-    },
-    {
-      "displayName": "Orlando",
-      "id": "orlando-fb3645",
+      "displayName": "Municipalidad de Rosario",
+      "id": "municipalidadderosario-6c5dc1",
       "locationSet": {
-        "include": ["us-fl.geojson"]
+        "include": ["ar-s.geojson"]
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Orlando",
-        "operator:wikidata": "Q49233"
+        "operator": "Municipalidad de Rosario",
+        "operator:type": "government",
+        "operator:wikidata": "Q52535"
       }
     },
     {
-      "displayName": "Ottawa",
-      "id": "ottawa-6e645e",
-      "locationSet": {
-        "include": ["ca-on.geojson"]
-      },
+      "displayName": "Newry, Mourne and Down District Council",
+      "id": "newrymourneanddowndistrictcouncil-2e855e",
+      "locationSet": {"include": ["gb-nir"]},
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ottawa",
-        "operator:wikidata": "Q1930"
+        "operator": "Newry, Mourne and Down District Council",
+        "operator:type": "government",
+        "operator:wikidata": "Q16998911"
       }
     },
     {
       "displayName": "RU-VGG-2-23",
       "id": "ruvgg223-67abd2",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-VGG",
       "tags": {
         "amenity": "community_centre",
-        "operator": "RU-VGG-2-23"
+        "operator": "RU-VGG-2-23",
+        "operator:type": "government"
       }
     },
     {
@@ -445,7 +733,18 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Scouts South Africa",
+        "operator:type": "association",
         "operator:wikidata": "Q7565791"
+      }
+    },
+    {
+      "displayName": "SIBAT",
+      "id": "sibat-983654",
+      "locationSet": {"include": ["id-ml"]},
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "SIBAT",
+        "operator:type": "ngo"
       }
     },
     {
@@ -456,13 +755,17 @@
       },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Stadt Paderborn"
+        "operator": "Stadt Paderborn",
+        "operator:type": "government",
+        "operator:wikidata": "Q2971"
       }
     },
     {
       "displayName": "Stadtjugendring Augsburg",
-      "id": "stadtjugendringaugsburg-e0ccfa",
-      "locationSet": {"include": ["de-by"]},
+      "id": "stadtjugendringaugsburg-1aa910",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
       "matchNames": [
         "stadtjugendring augsburg (sjr) kdör"
       ],
@@ -470,16 +773,20 @@
         "amenity": "community_centre",
         "operator": "Stadtjugendring Augsburg",
         "operator:short": "SJR",
+        "operator:type": "private",
         "operator:wikidata": "Q130152840"
       }
     },
     {
       "displayName": "Stiftung Zürcher Gemeinschaftszentren",
-      "id": "stiftungzurchergemeinschaftszentren-6845b5",
-      "locationSet": {"include": ["ch"]},
+      "id": "stiftungzurchergemeinschaftszentren-4b6460",
+      "locationSet": {
+        "include": ["ch-zh.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "Stiftung Zürcher Gemeinschaftszentren",
+        "operator:type": "public",
         "operator:wikidata": "Q96178809"
       }
     },
@@ -490,6 +797,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Svenska kyrkan",
+        "operator:type": "religious",
         "operator:wikidata": "Q749243"
       }
     },
@@ -501,6 +809,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "The Salvation Army",
+        "operator:type": "charitable",
         "operator:wikidata": "Q188307"
       }
     },
@@ -513,16 +822,21 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "University of Florida",
+        "operator:type": "university",
         "operator:wikidata": "Q501758"
       }
     },
     {
       "displayName": "Ville de Besançon",
-      "id": "villedebesancon-602375",
-      "locationSet": {"include": ["fx"]},
+      "id": "villedebesancon-b39e7e",
+      "locationSet": {
+        "include": ["fr-bfc.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ville de Besançon"
+        "operator": "Ville de Besançon",
+        "operator:type": "government",
+        "operator:wikidata": "Q86697997"
       }
     },
     {
@@ -534,26 +848,22 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "Ville de Gatineau",
+        "operator:type": "government",
         "operator:wikidata": "Q141844"
       }
     },
     {
       "displayName": "Ville de Montpellier",
-      "id": "villedemontpellier-602375",
-      "locationSet": {"include": ["fx"]},
+      "id": "villedemontpellier-68cc74",
+      "locationSet": {
+        "include": ["fr-occ.geojson"]
+      },
+      "matchNames": ["montpellier"],
       "tags": {
         "amenity": "community_centre",
-        "operator": "Ville de Montpellier"
-      }
-    },
-    {
-      "displayName": "Villenave-d'Ornon",
-      "id": "villenavedornon-7fe0be",
-      "locationSet": {"include": ["fr"]},
-      "tags": {
-        "amenity": "community_centre",
-        "operator": "Villenave-d'Ornon",
-        "operator:wikidata": "Q235733"
+        "operator": "Ville de Montpellier",
+        "operator:type": "government",
+        "operator:wikidata": "Q86688720"
       }
     },
     {
@@ -567,6 +877,7 @@
       "tags": {
         "amenity": "community_centre",
         "operator": "YMCA",
+        "operator:type": "ngo",
         "operator:wikidata": "Q54834579"
       }
     },
@@ -574,45 +885,55 @@
       "displayName": "ГБУ \"Талисман\"",
       "id": "3e975b-67abd2",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOW",
       "tags": {
         "amenity": "community_centre",
-        "operator": "ГБУ \"Талисман\""
+        "operator": "ГБУ \"Талисман\"",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "ГБУ ЦДМСИ \"Крылья\"",
       "id": "334f15-67abd2",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOW",
       "tags": {
         "amenity": "community_centre",
-        "operator": "ГБУ ЦДМСИ \"Крылья\""
+        "operator": "ГБУ ЦДМСИ \"Крылья\"",
+        "operator:type": "public"
       }
     },
     {
       "displayName": "Дом детского тврочества",
       "id": "8dc1e2-67abd2",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAR",
       "tags": {
         "amenity": "community_centre",
-        "operator": "Дом детского тврочества"
+        "operator": "Дом детского тврочества",
+        "operator:type": "private"
       }
     },
     {
       "displayName": "МКУ \"МСКК\"",
       "id": "345ef1-67abd2",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-KLU",
       "tags": {
         "amenity": "community_centre",
-        "operator": "МКУ \"МСКК\""
+        "operator": "МКУ \"МСКК\"",
+        "operator:type": "government"
       }
     },
     {
       "displayName": "Муниципальное учреждение дополнительного образования «Центр детского творчества» Ленинского района г. Саратова",
       "id": "e5be1a-67abd2",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-SAR",
       "tags": {
         "amenity": "community_centre",
-        "operator": "Муниципальное учреждение дополнительного образования «Центр детского творчества» Ленинского района г. Саратова"
+        "operator": "Муниципальное учреждение дополнительного образования «Центр детского творчества» Ленинского района г. Саратова",
+        "operator:type": "public"
       }
     },
     {
@@ -622,116 +943,226 @@
       "note": "this appears to translate to Ministry of Culture, and is present in multiple Asian and African countries",
       "tags": {
         "amenity": "community_centre",
-        "operator": "وزارة الثقافة"
+        "operator": "وزارة الثقافة",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "つくば市",
+      "id": "cityoftsukuba-f93e45",
+      "locationSet": {
+        "include": ["jp-08.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "つくば市",
+        "operator:en": "City of Tsukuba",
+        "operator:ja": "つくば市",
+        "operator:type": "government",
+        "operator:wikidata": "Q273863"
+      }
+    },
+    {
+      "displayName": "中國青年救國團",
+      "id": "aa206b-0eb52d",
+      "locationSet": {"include": ["tw"]},
+      "matchNames": [
+        "china youth corps",
+        "cyc",
+        "救國團"
+      ],
+      "matchTags": [
+        "amenity/social_facility",
+        "office/ngo"
+      ],
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "中國青年救國團",
+        "operator:type": "ngo",
+        "operator:wikidata": "Q700615"
       }
     },
     {
       "displayName": "佐賀市",
-      "id": "b55ddb-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "b55ddb-a47e1e",
+      "locationSet": {
+        "include": ["jp-41.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "佐賀市"
+        "operator": "佐賀市",
+        "operator:type": "government",
+        "operator:wikidata": "Q209766"
       }
     },
     {
       "displayName": "八戸市",
-      "id": "df2604-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "df2604-9b01a3",
+      "locationSet": {
+        "include": ["jp-02.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "八戸市"
+        "operator": "八戸市",
+        "operator:type": "government",
+        "operator:wikidata": "Q191914"
       }
     },
     {
       "displayName": "加古川市",
-      "id": "745ff2-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "745ff2-47429f",
+      "locationSet": {
+        "include": ["jp-28.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "加古川市"
+        "operator": "加古川市",
+        "operator:type": "government",
+        "operator:wikidata": "Q750569"
       }
     },
     {
       "displayName": "半田市",
-      "id": "8b380e-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "8b380e-39e0e5",
+      "locationSet": {
+        "include": ["jp-23.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "半田市"
+        "operator": "半田市",
+        "operator:type": "government",
+        "operator:wikidata": "Q463171"
+      }
+    },
+    {
+      "displayName": "唐津市",
+      "id": "8246f5-a47e1e",
+      "locationSet": {
+        "include": ["jp-41.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "唐津市",
+        "operator:type": "government",
+        "operator:wikidata": "Q738275"
       }
     },
     {
       "displayName": "大田区",
-      "id": "431e24-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "431e24-9bde95",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "大田区"
+        "operator": "大田区",
+        "operator:type": "government",
+        "operator:wikidata": "Q217234"
       }
     },
     {
       "displayName": "新ひだか町",
-      "id": "4f449b-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "townofshinhidaka-e10a6d",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
         "operator": "新ひだか町",
-        "operator:ja": "新ひだか町"
+        "operator:en": "Town of Shinhidaka",
+        "operator:ja": "新ひだか町",
+        "operator:type": "government",
+        "operator:wikidata": "Q1210679"
       }
     },
     {
       "displayName": "札幌市",
-      "id": "e1715c-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "e1715c-e10a6d",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "札幌市"
+        "operator": "札幌市",
+        "operator:type": "government",
+        "operator:wikidata": "Q37951"
       }
     },
     {
       "displayName": "横手市",
-      "id": "bdecba-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "bdecba-e39c5b",
+      "locationSet": {
+        "include": ["jp-05.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "横手市"
+        "operator": "横手市",
+        "operator:type": "government",
+        "operator:wikidata": "Q496479"
       }
     },
     {
       "displayName": "浜松市",
-      "id": "dba649-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "dba649-f2ffe4",
+      "locationSet": {
+        "include": ["jp-22.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "浜松市"
+        "operator": "浜松市",
+        "operator:type": "government",
+        "operator:wikidata": "Q185125"
+      }
+    },
+    {
+      "displayName": "浦河町",
+      "id": "9f6ee1-e10a6d",
+      "locationSet": {
+        "include": ["jp-01.geojson"]
+      },
+      "tags": {
+        "amenity": "community_centre",
+        "operator": "浦河町",
+        "operator:type": "government",
+        "operator:wikidata": "Q1355506"
       }
     },
     {
       "displayName": "那覇市",
-      "id": "030961-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "030961-f6d74e",
+      "locationSet": {
+        "include": ["jp-47.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "那覇市"
+        "operator": "那覇市",
+        "operator:type": "government",
+        "operator:wikidata": "Q181966"
       }
     },
     {
       "displayName": "青木村",
-      "id": "8c34a6-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "8c34a6-58f221",
+      "locationSet": {
+        "include": ["jp-20.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "青木村"
+        "operator": "青木村",
+        "operator:type": "government",
+        "operator:wikidata": "Q615719"
       }
     },
     {
       "displayName": "鳥取市教育委員会",
-      "id": "19f193-e1672a",
-      "locationSet": {"include": ["jp"]},
+      "id": "19f193-806c06",
+      "locationSet": {
+        "include": ["jp-31.geojson"]
+      },
       "tags": {
         "amenity": "community_centre",
-        "operator": "鳥取市教育委員会"
+        "operator": "鳥取市教育委員会",
+        "operator:type": "public"
       }
     }
   ]

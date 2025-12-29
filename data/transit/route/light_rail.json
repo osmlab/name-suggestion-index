@@ -11,14 +11,15 @@
   "items": [
     {
       "displayName": "Baltimore Light RailLink",
-      "id": "baltimorelightraillink-486c34",
+      "id": "baltimorelightraillink-043cc9",
       "locationSet": {
-        "include": ["baltimore_and_dc.geojson"]
+        "include": ["us-baltimore_and_dc.geojson"]
       },
       "tags": {
         "network": "Baltimore Light RailLink",
         "network:wikidata": "Q3333820",
         "operator": "Maryland Transit Administration",
+        "operator:short": "MTA",
         "operator:wikidata": "Q1863801",
         "route": "light_rail"
       }
@@ -37,38 +38,43 @@
       }
     },
     {
-      "displayName": "Circumvesuviana",
-      "id": "circumvesuviana-cd1190",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "network": "Circumvesuviana",
-        "network:wikidata": "Q867565",
-        "operator": "Ente Autonomo Volturno",
-        "operator:wikidata": "Q3726202",
-        "route": "light_rail"
-      }
-    },
-    {
-      "displayName": "CTrain",
-      "id": "ctrain-8bcf03",
+      "displayName": "Calgary Transit",
+      "id": "calgarytransit-8bcf03",
       "locationSet": {
         "include": ["ca-ab.geojson"]
       },
-      "matchNames": ["calgary lrt", "ct"],
+      "matchNames": ["calgary lrt"],
       "tags": {
-        "network": "CTrain",
-        "network:wikidata": "Q1022321",
+        "network": "Calgary Transit",
+        "network:short": "CT",
+        "network:wikidata": "Q143630",
         "operator": "Calgary Transit",
         "operator:wikidata": "Q143630",
         "route": "light_rail"
       }
     },
     {
-      "displayName": "DART",
+      "displayName": "Circumvesuviana",
+      "id": "circumvesuviana-b98988",
+      "locationSet": {
+        "include": ["it-72.geojson"]
+      },
+      "tags": {
+        "network": "Circumvesuviana",
+        "network:wikidata": "Q867565",
+        "operator": "Ente Autonomo Volturno",
+        "operator:short": "EAV",
+        "operator:wikidata": "Q3726202",
+        "route": "light_rail"
+      }
+    },
+    {
+      "displayName": "DART (Dallas Area Rapid Transit)",
       "id": "dart-f91feb",
       "locationSet": {
         "include": ["us-tx.geojson"]
       },
+      "matchNames": ["dallas area rapid transit"],
       "tags": {
         "network": "DART",
         "network:wikidata": "Q380660",
@@ -88,8 +94,10 @@
     },
     {
       "displayName": "Dublin Area Rapid Transit",
-      "id": "dublinarearapidtransit-37caf4",
-      "locationSet": {"include": ["ie"]},
+      "id": "dublinarearapidtransit-cd5578",
+      "locationSet": {
+        "include": ["ie-l.geojson"]
+      },
       "tags": {
         "network": "Dublin Area Rapid Transit",
         "network:short": "DART",
@@ -118,31 +126,33 @@
     },
     {
       "displayName": "Edmonton LRT",
-      "id": "edmontonlrt-8bcf03",
+      "id": "ets-8bcf03",
       "locationSet": {
         "include": ["ca-ab.geojson"]
       },
       "matchNames": [
-        "edmonton transit system",
-        "ets"
+        "edmonton lrt",
+        "edmonton transit service",
+        "edmonton transit system"
       ],
       "tags": {
-        "network": "Edmonton LRT",
-        "network:wikidata": "Q1285861",
-        "operator": "Edmonton Transit Service",
-        "operator:wikidata": "Q3048058",
+        "network": "ETS",
+        "network:wikidata": "Q3048058",
         "route": "light_rail"
       }
     },
     {
       "displayName": "Ferrovie Laziali",
-      "id": "ferrovielaziali-cd1190",
-      "locationSet": {"include": ["it"]},
+      "id": "ferrovielaziali-eade07",
+      "locationSet": {
+        "include": ["it-62.geojson"]
+      },
       "tags": {
         "network": "Ferrovie Laziali",
         "network:short": "FL",
         "network:wikidata": "Q1408013",
         "operator": "Trenitalia",
+        "operator:short": "TI",
         "operator:wikidata": "Q286650",
         "route": "light_rail"
       }
@@ -189,6 +199,7 @@
         "network:short": "HBLR",
         "network:wikidata": "Q1357874",
         "operator": "NJ Transit",
+        "operator:short": "NJT",
         "operator:wikidata": "Q498553",
         "route": "light_rail"
       }
@@ -281,8 +292,8 @@
     },
     {
       "displayName": "Metro de Palma",
-      "id": "metrodepalma-7240fe",
-      "locationSet": {"include": ["es"]},
+      "id": "metrodepalma-1c0161",
+      "locationSet": {"include": ["es-ib"]},
       "matchNames": [
         "metro de palma de mallorca"
       ],
@@ -296,8 +307,10 @@
     },
     {
       "displayName": "Metro do Porto",
-      "id": "metrodoporto-16a21f",
-      "locationSet": {"include": ["pt"]},
+      "id": "metrodoporto-975e71",
+      "locationSet": {
+        "include": ["pt-13.geojson"]
+      },
       "matchNames": ["andante"],
       "tags": {
         "network": "Metro do Porto",
@@ -350,10 +363,13 @@
     },
     {
       "displayName": "MHD Košice",
-      "id": "mhdkosice-e4081b",
-      "locationSet": {"include": ["sk"]},
+      "id": "mhdkosice-938308",
+      "locationSet": {
+        "include": ["sk-ki.geojson"]
+      },
       "tags": {
         "network": "MHD Košice",
+        "network:wikidata": "Q104904552",
         "route": "light_rail"
       }
     },
@@ -407,6 +423,7 @@
         "network:short": "NLR",
         "network:wikidata": "Q3078283",
         "operator": "NJ Transit",
+        "operator:short": "NJT",
         "operator:wikidata": "Q498553",
         "route": "light_rail"
       }
@@ -447,6 +464,7 @@
         "network": "River LINE",
         "network:wikidata": "Q2155505",
         "operator": "NJ Transit",
+        "operator:short": "NJT",
         "operator:wikidata": "Q498553",
         "route": "light_rail"
       }
@@ -457,6 +475,9 @@
       "locationSet": {
         "include": ["us-co.geojson"]
       },
+      "matchNames": [
+        "regional transportation district"
+      ],
       "tags": {
         "network": "RTD",
         "network:wikidata": "Q7309183",
@@ -534,21 +555,17 @@
       }
     },
     {
-      "displayName": "TRAM Metropolità d'Alcant",
-      "id": "trammetropolitadalacant-b52bbd",
+      "displayName": "TRAM Metropolità d'Alacant",
+      "id": "trammetropolitadalacant-4005c4",
       "locationSet": {
-        "include": [
-          [-0.129, 38.53, 25],
-          [-0.4881, 38.3436, 25],
-          [0.0812, 38.7742, 20]
-        ]
+        "include": ["es-a.geojson"]
       },
       "matchNames": [
         "tram",
         "tram alicante",
         "tram metropolitano de alicante"
       ],
-      "note": "This entry is in Alcant, Benidorm and Gata de Gorgos",
+      "note": "This entry is in Alacant, Benidorm and Gata de Gorgos",
       "tags": {
         "network": "TRAM Metropolità d'Alacant",
         "network:wikidata": "Q2063567",
@@ -559,9 +576,9 @@
     },
     {
       "displayName": "Trambahía",
-      "id": "consorciometropolitanodetransportesdelabahiadecadiz-1fbc35",
+      "id": "consorciometropolitanodetransportesdelabahiadecadiz-dbf9c3",
       "locationSet": {
-        "include": [[-6, 36.5, 60]]
+        "include": ["es-ca.geojson"]
       },
       "matchNames": [
         "cádiz",
@@ -572,8 +589,6 @@
       "matchTags": ["route/train", "route/tram"],
       "tags": {
         "network": "Consorcio Metropolitano de Transportes de la Bahía de Cádiz",
-        "network:metro": "Trambahía",
-        "network:metro:wikidata": "Q6151804",
         "network:short": "CMTBC",
         "network:wikidata": "Q5784325",
         "operator": "Renfe",
@@ -632,8 +647,13 @@
     },
     {
       "displayName": "VOR",
-      "id": "vor-ddc932",
-      "locationSet": {"include": ["at"]},
+      "id": "vor-09cbaf",
+      "locationSet": {
+        "include": [
+          "at-3.geojson",
+          "at-9.geojson"
+        ]
+      },
       "tags": {
         "network": "VOR",
         "network:wikidata": "Q2516485",

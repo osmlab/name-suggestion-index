@@ -4,6 +4,7 @@
     "exclude": {
       "generic": [
         "^(セルフ)?デパート$",
+        "^[eé]pic(erie|ier)( بقال)?$",
         "^department store$",
         "^универ(маг|сам)$",
         "^універмаг$"
@@ -156,6 +157,7 @@
       "locationSet": {"include": ["my"]},
       "tags": {
         "brand": "Billion",
+        "brand:en": "Billion",
         "brand:wikidata": "Q106989381",
         "brand:zh": "万顺",
         "name": "Billion",
@@ -210,8 +212,8 @@
     },
     {
       "displayName": "Burlington",
-      "id": "burlington-bed633",
-      "locationSet": {"include": ["pr", "us"]},
+      "id": "burlington-592fe0",
+      "locationSet": {"include": ["us"]},
       "matchNames": ["burlington stores"],
       "tags": {
         "alt_name": "Burlington Coat Factory",
@@ -254,18 +256,6 @@
         "brand:th": "สรรพสินค้าเซ็นทรัล",
         "brand:wikidata": "Q5060703",
         "brand:zh": "尚泰",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "Century 21",
-      "id": "century21-592fe0",
-      "locationSet": {"include": ["us"]},
-      "matchNames": ["c21"],
-      "tags": {
-        "brand": "Century 21",
-        "brand:wikidata": "Q5063125",
-        "name": "Century 21",
         "shop": "department_store"
       }
     },
@@ -397,12 +387,26 @@
     },
     {
       "displayName": "Dunnes Stores",
-      "id": "dunnesstores-a29e63",
-      "locationSet": {"include": ["gb", "ie"]},
+      "id": "dunnesstores-7a9c59",
+      "locationSet": {
+        "include": ["es", "gb-nir", "ie"]
+      },
+      "preserveTags": ["^shop"],
       "tags": {
         "brand": "Dunnes Stores",
         "brand:wikidata": "Q1266203",
         "name": "Dunnes Stores",
+        "shop": "department_store"
+      }
+    },
+    {
+      "displayName": "Duty Free Americas",
+      "id": "dutyfreeamericas-592fe0",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Duty Free Americas",
+        "brand:wikidata": "Q129811729",
+        "name": "Duty Free Americas",
         "shop": "department_store"
       }
     },
@@ -456,16 +460,6 @@
         "brand": "Elektra",
         "brand:wikidata": "Q1142753",
         "name": "Elektra",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "Épicerie",
-      "id": "epicerie-e32af0",
-      "locationSet": {"include": ["ma"]},
-      "tags": {
-        "brand": "Épicerie",
-        "name": "Épicerie",
         "shop": "department_store"
       }
     },
@@ -891,9 +885,9 @@
     },
     {
       "displayName": "Lotte Department Store",
-      "id": "lottedepartmentstore-256de8",
+      "id": "lottedepartmentstore-96d9bf",
       "locationSet": {
-        "include": ["cn", "id", "kr", "ru", "vn"]
+        "include": ["cn", "id", "ru", "vn"]
       },
       "matchNames": ["lotte"],
       "tags": {
@@ -930,8 +924,11 @@
     },
     {
       "displayName": "M&S Outlet",
-      "id": "mandsoutlet-03e633",
-      "locationSet": {"include": ["001"]},
+      "id": "mandsoutlet-7685f6",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["us"]
+      },
       "matchNames": ["marks & spencer outlet"],
       "tags": {
         "brand": "Marks & Spencer",
@@ -1017,9 +1014,16 @@
     },
     {
       "displayName": "Marks & Spencer",
-      "id": "marksandspencer-611e9c",
+      "id": "marksandspencer-4dabe9",
       "locationSet": {
-        "include": ["gb", "gr", "ie", "in", "ru"]
+        "include": [
+          "cy",
+          "gb",
+          "gr",
+          "ie",
+          "in",
+          "ru"
+        ]
       },
       "matchNames": ["маркс и спенсер"],
       "tags": {
@@ -1054,8 +1058,19 @@
       }
     },
     {
+      "displayName": "Monge",
+      "id": "monge-f3a415",
+      "locationSet": {"include": ["cr"]},
+      "tags": {
+        "brand": "Monge",
+        "brand:wikidata": "Q130527490",
+        "name": "Monge",
+        "shop": "department_store"
+      }
+    },
+    {
       "displayName": "Muji",
-      "id": "muji-b9b204",
+      "id": "muji-5ebe4b",
       "locationSet": {
         "include": [
           "au",
@@ -1068,10 +1083,14 @@
           "gb",
           "ie",
           "it",
+          "my",
+          "ph",
           "pl",
           "pt",
           "se",
-          "tr"
+          "sg",
+          "tr",
+          "us"
         ]
       },
       "matchTags": ["shop/variety_store"],
@@ -1094,6 +1113,17 @@
         "brand": "Myer",
         "brand:wikidata": "Q1110323",
         "name": "Myer",
+        "shop": "department_store"
+      }
+    },
+    {
+      "displayName": "Navy Exchange",
+      "id": "navyexchange-592fe0",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "brand": "Navy Exchange",
+        "brand:wikidata": "Q22023369",
+        "name": "Navy Exchange",
         "shop": "department_store"
       }
     },
@@ -1142,6 +1172,17 @@
       }
     },
     {
+      "displayName": "Omar Effendi",
+      "id": "omareffendi-6a6e97",
+      "locationSet": {"include": ["eg"]},
+      "tags": {
+        "brand": "Omar Effendi",
+        "brand:wikidata": "Q6818793",
+        "name": "Omar Effendi",
+        "shop": "department_store"
+      }
+    },
+    {
       "displayName": "Palacio de Hierro",
       "id": "palaciodehierro-4c18c3",
       "locationSet": {"include": ["mx"]},
@@ -1159,10 +1200,12 @@
       "tags": {
         "alt_name": "Billion",
         "brand": "Pantai Timor",
+        "brand:en": "Pantai Timor",
         "brand:ms-Arab": "ڤنتاي تيمور",
         "brand:wikidata": "Q106989381",
         "brand:zh": "东海岸",
         "name": "Pantai Timor",
+        "name:en": "Pantai Timor",
         "name:ms-Arab": "ڤنتاي تيمور",
         "name:zh": "东海岸",
         "shop": "department_store"
@@ -1237,6 +1280,7 @@
       "locationSet": {"include": ["th"]},
       "tags": {
         "brand": "Robinson Department Store",
+        "brand:en": "Robinson Department Store",
         "brand:th": "ห้างสรรพสินค้าโรบินสัน",
         "brand:wikidata": "Q6642534",
         "operator": "Central Department Store",
@@ -1263,6 +1307,11 @@
       "displayName": "Runnings",
       "id": "runnings-592fe0",
       "locationSet": {"include": ["us"]},
+      "matchNames": [
+        "r. p. home & harvest",
+        "stock+field"
+      ],
+      "matchTags": ["shop/country_store"],
       "tags": {
         "brand": "Runnings",
         "brand:wikidata": "Q125924536",
@@ -1362,7 +1411,7 @@
       "locationSet": {"include": ["in"]},
       "tags": {
         "brand": "Shoppers Stop",
-        "brand:wikidata": "Q7501155",
+        "brand:wikidata": "Q7501182",
         "name": "Shoppers Stop",
         "shop": "department_store"
       }
@@ -1526,23 +1575,25 @@
       }
     },
     {
-      "displayName": "Woolworth",
-      "id": "woolworth-ca042d",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "brand": "Woolworth",
-        "brand:wikidata": "Q183538",
-        "name": "Woolworth",
-        "shop": "department_store"
-      }
-    },
-    {
       "displayName": "Woolworth (Del Sol)",
       "id": "woolworth-4c18c3",
       "locationSet": {"include": ["mx"]},
       "tags": {
         "brand": "Del Sol",
         "brand:wikidata": "Q113207674",
+        "name": "Woolworth",
+        "shop": "department_store"
+      }
+    },
+    {
+      "displayName": "Woolworth (Deutschland)",
+      "id": "woolworth-de286a",
+      "locationSet": {
+        "include": ["at", "cz", "de", "pl", "sk"]
+      },
+      "tags": {
+        "brand": "Woolworth",
+        "brand:wikidata": "Q183538",
         "name": "Woolworth",
         "shop": "department_store"
       }
@@ -1575,6 +1626,7 @@
       "locationSet": {"include": ["kr"]},
       "tags": {
         "brand": "롯데백화점",
+        "brand:en": "Lotte Department Store",
         "brand:ko": "롯데백화점",
         "brand:wikidata": "Q489905",
         "name": "롯데백화점",
@@ -1599,94 +1651,6 @@
         "operator:en": "Hyundai Department Store Group",
         "operator:ko": "현대백화점그룹",
         "operator:wikidata": "Q5962584",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "名创优品",
-      "id": "miniso-85e4e5",
-      "locationSet": {
-        "include": ["cn"],
-        "exclude": ["hk", "mo"]
-      },
-      "matchNames": ["名創優品"],
-      "tags": {
-        "brand": "名创优品",
-        "brand:en": "MINISO",
-        "brand:wikidata": "Q20732498",
-        "brand:zh": "名创优品",
-        "name": "名创优品",
-        "name:en": "MINISO",
-        "name:zh": "名创优品",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "名創優品 MINISO",
-      "id": "miniso-d07f6f",
-      "locationSet": {"include": ["hk", "mo"]},
-      "tags": {
-        "brand": "名創優品 MINISO",
-        "brand:en": "MINISO",
-        "brand:wikidata": "Q20732498",
-        "brand:zh": "名創優品",
-        "name": "名創優品 MINISO",
-        "name:en": "MINISO",
-        "name:zh": "名創優品",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "无印良品",
-      "id": "muji-85e4e5",
-      "locationSet": {
-        "include": ["cn"],
-        "exclude": ["hk", "mo"]
-      },
-      "matchNames": ["無印良品", "良品計画"],
-      "tags": {
-        "brand": "无印良品",
-        "brand:en": "Muji",
-        "brand:wikidata": "Q708789",
-        "brand:zh": "无印良品",
-        "name": "无印良品",
-        "name:en": "Muji",
-        "name:zh": "无印良品",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "無印良品",
-      "id": "muji-54e85b",
-      "locationSet": {
-        "include": ["my", "sg", "tw"]
-      },
-      "matchNames": ["良品計画"],
-      "tags": {
-        "brand": "無印良品",
-        "brand:en": "Muji",
-        "brand:ja": "無印良品",
-        "brand:wikidata": "Q708789",
-        "name": "無印良品",
-        "name:en": "Muji",
-        "name:ja": "無印良品",
-        "official_name:en": "Ryohin Keikaku",
-        "shop": "department_store"
-      }
-    },
-    {
-      "displayName": "無印良品 Muji",
-      "id": "muji-d07f6f",
-      "locationSet": {"include": ["hk", "mo"]},
-      "matchNames": ["良品計画"],
-      "tags": {
-        "brand": "無印良品 Muji",
-        "brand:en": "Muji",
-        "brand:ja": "無印良品",
-        "brand:wikidata": "Q708789",
-        "name": "無印良品 Muji",
-        "name:en": "Muji",
-        "name:ja": "無印良品",
         "shop": "department_store"
       }
     },

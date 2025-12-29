@@ -8,6 +8,7 @@ The following areas are included as part of [country-coder](https://github.com/r
 - [pf](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22pf%22%5D%7D&referrer=nsi) - French Polynesia (Polynésie française)
 - [tf](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22tf%22%5D%7D&referrer=nsi) - French Southern and Antarctic Lands (Terres australes et antarctiques françaises)
 - [gp](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gp%22%5D%7D&referrer=nsi) - Guadeloupe
+- [fx](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22fx%22%5D%7D&referrer=nsi) - Metropolitan France (France métropolitaine)
 - [nc](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22nc%22%5D%7D&referrer=nsi) - New Caledonia (Nouvelle-Calédonie)
 - [pm](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22pm%22%5D%7D&referrer=nsi) - Overseas Collectivity of Saint Pierre and Miquelon (Collectivité d'outre-mer de Saint-Pierre et Miquelon)
 - [gf](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gf%22%5D%7D&referrer=nsi) - Territorial Collectivity of French Guiana (Collectivité territoriale de Guyane)

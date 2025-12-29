@@ -9,7 +9,8 @@
         "^production manager$"
       ],
       "named": [
-        "^(private?)$",
+        "^entergy corporation and shell wind corporation$",
+        "^private?$",
         "^une – sen$",
         "^xcel energy\\/iberdrola renewables$",
         "^xcel\\/sunedison$"
@@ -23,15 +24,6 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "operator": "3D Energies",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "AB Ignitis grupė",
-      "id": "abignitisgrupe-f48411",
-      "locationSet": {"include": ["lt"]},
-      "tags": {
-        "operator": "AB Ignitis grupė",
         "power": "generator"
       }
     },
@@ -66,8 +58,10 @@
     },
     {
       "displayName": "Acampo Arias, S.L.",
-      "id": "acampoariassl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "acampoariassl-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Acampo Arias, S.L.",
         "power": "generator"
@@ -90,8 +84,10 @@
     },
     {
       "displayName": "Aciloe",
-      "id": "aciloe-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "aciloe-662c8d",
+      "locationSet": {
+        "include": ["es-v.geojson"]
+      },
       "tags": {
         "operator": "Aciloe",
         "power": "generator"
@@ -99,8 +95,10 @@
     },
     {
       "displayName": "ACS",
-      "id": "acs-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "acs-d35e64",
+      "locationSet": {
+        "include": ["es-bu.geojson"]
+      },
       "tags": {
         "operator": "ACS",
         "power": "generator"
@@ -108,8 +106,10 @@
     },
     {
       "displayName": "ACS/Canepa Green Energy",
-      "id": "acscanepagreenenergy-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "acscanepagreenenergy-960ded",
+      "locationSet": {
+        "include": ["es-lo.geojson"]
+      },
       "tags": {
         "operator": "ACS/Canepa Green Energy",
         "power": "generator"
@@ -151,19 +151,12 @@
     },
     {
       "displayName": "Age Generación Eólica SA",
-      "id": "agegeneracioneolicasa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "agegeneracioneolicasa-c03370",
+      "locationSet": {
+        "include": ["es-h.geojson"]
+      },
       "tags": {
         "operator": "Age Generación Eólica SA",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Age Generacion Eolica SA - Los Lirios",
-      "id": "agegeneracioneolicasaloslirios-ae5946",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "operator": "Age Generacion Eolica SA - Los Lirios",
         "power": "generator"
       }
     },
@@ -197,11 +190,14 @@
       }
     },
     {
-      "displayName": "Aguilon 20 S.A.",
-      "id": "aguilon20sa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "displayName": "Aguilón 20 S.A.",
+      "id": "aguilon20sa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
-        "operator": "Aguilon 20 S.A.",
+        "operator": "Aguilón 20 S.A.",
+        "operator:wikidata": "Q113464704",
         "power": "generator"
       }
     },
@@ -220,6 +216,7 @@
       "locationSet": {"include": ["gr"]},
       "tags": {
         "operator": "Aioliki Panachaikou",
+        "operator:wikidata": "Q113466681",
         "power": "generator"
       }
     },
@@ -249,6 +246,7 @@
       "locationSet": {
         "include": ["us-al.geojson"]
       },
+      "matchNames": ["alabama power company"],
       "tags": {
         "operator": "Alabama Power",
         "operator:wikidata": "Q4705296",
@@ -256,14 +254,15 @@
       }
     },
     {
-      "displayName": "ALDI (ALDI Nord group)",
-      "id": "aldi-0f3159",
+      "displayName": "Aldi (Aldi Nord group)",
+      "id": "aldi-fd3a93",
+      "issues": [10738],
       "locationSet": {
         "include": [
           "be",
           "dk",
           "es",
-          "fr",
+          "fx",
           "lu",
           "nl",
           "pl",
@@ -271,16 +270,17 @@
         ]
       },
       "matchNames": ["aldi france", "aldi nord"],
-      "note": "countries in which ALDI Nord group is active",
+      "note": "countries in which Aldi Nord group is active",
       "tags": {
-        "operator": "ALDI",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171373",
         "power": "generator"
       }
     },
     {
-      "displayName": "ALDI (ALDI Süd group)",
+      "displayName": "Aldi (Aldi Süd group)",
       "id": "aldi-2fe7a2",
+      "issues": [10738],
       "locationSet": {
         "include": [
           "au",
@@ -300,46 +300,50 @@
         "aldi uk",
         "aldi usa"
       ],
-      "note": "countries in which ALDI Süd group is active",
+      "note": "countries in which Aldi Süd group is active",
       "tags": {
-        "operator": "ALDI",
+        "operator": "Aldi",
         "operator:wikidata": "Q41171672",
         "power": "generator"
       }
     },
     {
-      "displayName": "ALDI Nord (Deutschland)",
+      "displayName": "Aldi Nord (Deutschland)",
       "id": "aldinord-8532fd",
+      "issues": [10738],
       "locationSet": {
         "include": ["de"],
         "exclude": ["aldi-sued.geojson"]
       },
       "matchNames": ["aldi gmbh & co. kg"],
-      "note": "German ALDI Nord branding",
+      "note": "German Aldi Nord branding",
       "tags": {
-        "operator": "ALDI Nord",
+        "operator": "Aldi Nord",
         "operator:wikidata": "Q41171373",
         "power": "generator"
       }
     },
     {
-      "displayName": "ALDI Süd (Deutschland)",
+      "displayName": "Aldi Süd (Deutschland)",
       "id": "aldisud-63ded7",
+      "issues": [10738],
       "locationSet": {
         "include": ["aldi-sued.geojson"]
       },
       "matchNames": ["aldi gmbh & co. kg"],
-      "note": "German ALDI Süd branding",
+      "note": "German Aldi Süd branding",
       "tags": {
-        "operator": "ALDI Süd",
+        "operator": "Aldi Süd",
         "operator:wikidata": "Q41171672",
         "power": "generator"
       }
     },
     {
       "displayName": "Alectoris Energía Sostenible 3, SL - Forestalia",
-      "id": "alectorisenergiasostenible3slforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "alectorisenergiasostenible3slforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Alectoris Energía Sostenible 3, SL - Forestalia",
         "power": "generator"
@@ -347,8 +351,10 @@
     },
     {
       "displayName": "Alectoris Energía Sostenible 6, SL - Forestalia",
-      "id": "alectorisenergiasostenible6slforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "alectorisenergiasostenible6slforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Alectoris Energía Sostenible 6, SL - Forestalia",
         "power": "generator"
@@ -553,10 +559,13 @@
     },
     {
       "displayName": "APB - PLZEŇ a.s.",
-      "id": "apbplzenas-e7507c",
-      "locationSet": {"include": ["cz"]},
+      "id": "apbplzenas-392d17",
+      "locationSet": {
+        "include": ["cz-41.geojson"]
+      },
       "tags": {
         "operator": "APB - PLZEŇ a.s.",
+        "operator:wikidata": "Q67805339",
         "power": "generator"
       }
     },
@@ -679,6 +688,18 @@
       "locationSet": {"include": ["be"]},
       "tags": {
         "operator": "Aspiravi",
+        "operator:wikidata": "Q133733088",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Assens Fjernvarme",
+      "id": "assensfjernvarme-374e6c",
+      "locationSet": {
+        "include": ["dk-83.geojson"]
+      },
+      "tags": {
+        "operator": "Assens Fjernvarme",
         "power": "generator"
       }
     },
@@ -711,9 +732,9 @@
     },
     {
       "displayName": "Austin Energy",
-      "id": "austinenergy-546c7b",
+      "id": "austinenergy-ccd1df",
       "locationSet": {
-        "include": ["us-tx.geojson"]
+        "include": ["us-tx-austin.geojson"]
       },
       "tags": {
         "operator": "Austin Energy",
@@ -770,8 +791,10 @@
     },
     {
       "displayName": "Balm Solar",
-      "id": "balmsolar-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "balmsolar-2af0cf",
+      "locationSet": {
+        "include": ["us-fl.geojson"]
+      },
       "tags": {
         "operator": "Balm Solar",
         "power": "generator"
@@ -849,8 +872,10 @@
     },
     {
       "displayName": "Berkshire Wind Power Cooperative",
-      "id": "berkshirewindpowercooperative-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "berkshirewindpowercooperative-c012c2",
+      "locationSet": {
+        "include": ["us-ma.geojson"]
+      },
       "tags": {
         "operator": "Berkshire Wind Power Cooperative",
         "power": "generator"
@@ -870,10 +895,16 @@
     },
     {
       "displayName": "Bernmobil",
-      "id": "bernmobil-b18b84",
-      "locationSet": {"include": ["ch"]},
+      "id": "bernmobil-80ad05",
+      "locationSet": {
+        "include": [
+          "ch-be.geojson",
+          "ch-fr.geojson"
+        ]
+      },
       "tags": {
         "operator": "Bernmobil",
+        "operator:wikidata": "Q681700",
         "power": "generator"
       }
     },
@@ -883,6 +914,38 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "operator": "Beşiktepe Üretim ve Ticaret A.Ş.",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Better Energy A/S",
+      "id": "betterenergyas-374e6c",
+      "locationSet": {
+        "include": ["dk-83.geojson"]
+      },
+      "tags": {
+        "operator": "Better Energy A/S",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Better Energy Stevning P/S",
+      "id": "betterenergystevningps-374e6c",
+      "locationSet": {
+        "include": ["dk-83.geojson"]
+      },
+      "tags": {
+        "operator": "Better Energy Stevning P/S",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "BKW",
+      "id": "bkw-b18b84",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "operator": "BKW",
+        "operator:wikidata": "Q670895",
         "power": "generator"
       }
     },
@@ -926,13 +989,16 @@
       "locationSet": {"include": ["gb"]},
       "tags": {
         "operator": "Bluefield Solar Income Fund",
+        "operator:wikidata": "Q114352274",
         "power": "generator"
       }
     },
     {
       "displayName": "Bon Vent de l'Ebre, S.L.U.",
-      "id": "bonventdelebreslu-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "bonventdelebreslu-cde625",
+      "locationSet": {
+        "include": ["es-t.geojson"]
+      },
       "tags": {
         "operator": "Bon Vent de l'Ebre, S.L.U.",
         "power": "generator"
@@ -1051,10 +1117,13 @@
     },
     {
       "displayName": "Bowling Green State University",
-      "id": "bowlinggreenstateuniversity-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "bowlinggreenstateuniversity-3c4f74",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
       "tags": {
         "operator": "Bowling Green State University",
+        "operator:short": "BGSU",
         "operator:wikidata": "Q895457",
         "power": "generator"
       }
@@ -1071,8 +1140,10 @@
     },
     {
       "displayName": "Braintree Electric Light Department",
-      "id": "braintreeelectriclightdepartment-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "braintreeelectriclightdepartment-c012c2",
+      "locationSet": {
+        "include": ["us-ma.geojson"]
+      },
       "tags": {
         "operator": "Braintree Electric Light Department",
         "power": "generator"
@@ -1108,8 +1179,10 @@
     },
     {
       "displayName": "Bright Energy",
-      "id": "brightenergy-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "brightenergy-854d0f",
+      "locationSet": {
+        "include": ["au-wa.geojson"]
+      },
       "tags": {
         "operator": "Bright Energy",
         "operator:wikidata": "Q78436358",
@@ -1181,6 +1254,17 @@
       }
     },
     {
+      "displayName": "Bürgerwindpark Beuchte",
+      "id": "burgerwindparkbeuchte-19830d",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "tags": {
+        "operator": "Bürgerwindpark Beuchte",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Bürgerwindpark Mittelholstein",
       "id": "burgerwindparkmittelholstein-b8ae25",
       "locationSet": {"include": ["de"]},
@@ -1208,11 +1292,12 @@
       }
     },
     {
-      "displayName": "CABEOLICA",
+      "displayName": "Cabeolica",
       "id": "cabeolica-6e1785",
       "locationSet": {"include": ["cv"]},
+      "matchNames": ["caboelica"],
       "tags": {
-        "operator": "CABEOLICA",
+        "operator": "Cabeolica",
         "power": "generator"
       }
     },
@@ -1346,8 +1431,10 @@
     },
     {
       "displayName": "Cayrol International",
-      "id": "cayrolinternational-33d749",
-      "locationSet": {"include": ["fx"]},
+      "id": "cayrolinternational-170e40",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
       "tags": {
         "operator": "Cayrol International",
         "power": "generator"
@@ -1355,8 +1442,10 @@
     },
     {
       "displayName": "Cedar Ridge Wind Farm",
-      "id": "cedarridgewindfarm-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "cedarridgewindfarm-27c60c",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
       "tags": {
         "operator": "Cedar Ridge Wind Farm",
         "power": "generator"
@@ -1403,20 +1492,24 @@
     },
     {
       "displayName": "CGN New Energy",
-      "id": "cgnnewenergy-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "cgnnewenergy-7a5436",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "operator": "CGN New Energy",
         "power": "generator"
       }
     },
     {
-      "displayName": "Chesf",
-      "id": "chesf-104cf6",
-      "locationSet": {"include": ["br"]},
+      "displayName": "CGT Eletrosul",
+      "id": "cgteletrosul-b9f52a",
+      "locationSet": {
+        "include": ["br-rs.geojson"]
+      },
       "tags": {
-        "operator": "Chesf",
-        "operator:wikidata": "Q5011113",
+        "operator": "CGT Eletrosul",
+        "operator:wikidata": "Q5359479",
         "power": "generator"
       }
     },
@@ -1432,20 +1525,12 @@
     },
     {
       "displayName": "Cirrus Wind Energy",
-      "id": "cirruswindenergy-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "cirruswindenergy-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Cirrus Wind Energy",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "City Government of Dasmariñas",
-      "id": "citygovernmentofdasmarinas-736f8c",
-      "locationSet": {"include": ["ph"]},
-      "tags": {
-        "operator": "City Government of Dasmariñas",
-        "operator:wikidata": "Q17068216",
         "power": "generator"
       }
     },
@@ -1463,18 +1548,25 @@
     },
     {
       "displayName": "City of Dasmariñas",
-      "id": "cityofdasmarinas-736f8c",
-      "locationSet": {"include": ["ph"]},
+      "id": "cityofdasmarinas-d3815d",
+      "locationSet": {
+        "include": ["ph-40.geojson"]
+      },
+      "matchNames": [
+        "city government of dasmariñas"
+      ],
       "tags": {
         "operator": "City of Dasmariñas",
-        "operator:wikidata": "Q63139",
+        "operator:wikidata": "Q17068216",
         "power": "generator"
       }
     },
     {
       "displayName": "City of Shafter",
-      "id": "cityofshafter-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "cityofshafter-a94a78",
+      "locationSet": {
+        "include": ["us-ca.geojson"]
+      },
       "tags": {
         "operator": "City of Shafter",
         "operator:wikidata": "Q985258",
@@ -1483,8 +1575,10 @@
     },
     {
       "displayName": "City of Truth or Consequences",
-      "id": "cityoftruthorconsequences-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "cityoftruthorconsequences-bcd865",
+      "locationSet": {
+        "include": ["us-nm.geojson"]
+      },
       "tags": {
         "operator": "City of Truth or Consequences",
         "operator:wikidata": "Q431932",
@@ -1540,8 +1634,10 @@
     },
     {
       "displayName": "Cogentrix",
-      "id": "cogentrix-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "cogentrix-a34a72",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
       "tags": {
         "operator": "Cogentrix",
         "power": "generator"
@@ -1570,8 +1666,10 @@
     },
     {
       "displayName": "Colorado Highlands Wind",
-      "id": "coloradohighlandswind-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "coloradohighlandswind-a34a72",
+      "locationSet": {
+        "include": ["us-co.geojson"]
+      },
       "matchNames": [
         "colorado highlands wind llc"
       ],
@@ -1595,8 +1693,10 @@
     },
     {
       "displayName": "Comiolica, S.L.",
-      "id": "comiolicasl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "comiolicasl-d0c865",
+      "locationSet": {
+        "include": ["es-te.geojson"]
+      },
       "tags": {
         "operator": "Comiolica, S.L.",
         "power": "generator"
@@ -1635,9 +1735,22 @@
       }
     },
     {
+      "displayName": "Companhia Hidro Elétrica do São Francisco",
+      "id": "companhiahidroeletricadosaofrancisco-104cf6",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "operator": "Companhia Hidro Elétrica do São Francisco",
+        "operator:short": "CHESF",
+        "operator:wikidata": "Q5011113",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Compañía Eólica Aragonesa",
-      "id": "companiaeolicaaragonesa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "companiaeolicaaragonesa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "matchNames": [
         "compañía eólica aragonesa, s.a. (ceasa)"
       ],
@@ -1648,9 +1761,23 @@
       }
     },
     {
+      "displayName": "Competitive Power Ventures",
+      "id": "competitivepowerventures-0ac8c5",
+      "locationSet": {
+        "include": ["us-ok.geojson"]
+      },
+      "matchNames": ["cpv"],
+      "tags": {
+        "operator": "Competitive Power Ventures",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Comunidad Indígena Nuevo San Juan Parangaricutiro",
-      "id": "comunidadindigenanuevosanjuanparangaricutiro-5ce1cf",
-      "locationSet": {"include": ["mx"]},
+      "id": "comunidadindigenanuevosanjuanparangaricutiro-0bcdea",
+      "locationSet": {
+        "include": ["mx-mic.geojson"]
+      },
       "tags": {
         "operator": "Comunidad Indígena Nuevo San Juan Parangaricutiro",
         "power": "generator"
@@ -1728,16 +1855,6 @@
       }
     },
     {
-      "displayName": "CWP Renewables",
-      "id": "cwprenewables-08761e",
-      "locationSet": {"include": ["au"]},
-      "tags": {
-        "operator": "CWP Renewables",
-        "operator:wikidata": "Q68782470",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "Dala Vind AB",
       "id": "dalavindab-ec34a3",
       "locationSet": {"include": ["se"]},
@@ -1748,8 +1865,10 @@
     },
     {
       "displayName": "Danta de Energías, S.A.",
-      "id": "dantadeenergiassa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "dantadeenergiassa-8652d9",
+      "locationSet": {
+        "include": ["es-so.geojson"]
+      },
       "tags": {
         "operator": "Danta de Energías, S.A.",
         "power": "generator"
@@ -1768,8 +1887,18 @@
     },
     {
       "displayName": "Decathlon",
-      "id": "decathlon-74685d",
-      "locationSet": {"include": ["001"]},
+      "id": "decathlon-a0441d",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": [
+          "bg",
+          "hk",
+          "ru",
+          "tw",
+          "ua",
+          "us"
+        ]
+      },
       "tags": {
         "operator": "Decathlon",
         "operator:wikidata": "Q509349",
@@ -1797,8 +1926,10 @@
     },
     {
       "displayName": "Desarrollo de energías Renovables de la Rioja, S. A.",
-      "id": "desarrollodeenergiasrenovablesdelariojasa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "desarrollodeenergiasrenovablesdelariojasa-960ded",
+      "locationSet": {
+        "include": ["es-lo.geojson"]
+      },
       "tags": {
         "operator": "Desarrollo de energías Renovables de la Rioja, S. A.",
         "power": "generator"
@@ -1806,8 +1937,10 @@
     },
     {
       "displayName": "Desarrollo Eólico Las Majas VII, SL - Forestalia",
-      "id": "desarrolloeolicolasmajasviislforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "desarrolloeolicolasmajasviislforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Desarrollo Eólico Las Majas VII, SL - Forestalia",
         "power": "generator"
@@ -1815,8 +1948,10 @@
     },
     {
       "displayName": "Desarrollo Eólico Las Majas XIX, SL - Forestalia",
-      "id": "desarrolloeolicolasmajasxixslforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "desarrolloeolicolasmajasxixslforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Desarrollo Eólico Las Majas XIX, SL - Forestalia",
         "power": "generator"
@@ -1824,8 +1959,10 @@
     },
     {
       "displayName": "Desarrollos Eólicos del Ebro, S.A.",
-      "id": "desarrolloseolicosdelebrosa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "desarrolloseolicosdelebrosa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Desarrollos Eólicos del Ebro, S.A.",
         "power": "generator"
@@ -1833,8 +1970,10 @@
     },
     {
       "displayName": "Desarrollos Eólicos El Águila, S.A.",
-      "id": "desarrolloseolicoselaguilasa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "desarrolloseolicoselaguilasa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Desarrollos Eólicos El Águila, S.A.",
         "power": "generator"
@@ -1857,16 +1996,6 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "operator": "Deutsche Offshore Testfeld- und Infrastruktur GmbH & Co. KG",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "DEWA",
-      "id": "dewa-40d406",
-      "locationSet": {"include": ["ae"]},
-      "tags": {
-        "operator": "DEWA",
-        "operator:wikidata": "Q1262868",
         "power": "generator"
       }
     },
@@ -1940,6 +2069,17 @@
       }
     },
     {
+      "displayName": "Dogger Bank C",
+      "id": "doggerbankc-ac1e30",
+      "locationSet": {
+        "include": [[2.7505, 55.03196]]
+      },
+      "tags": {
+        "operator": "Dogger Bank C",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Dominion Energy",
       "id": "dominionenergy-c58391",
       "locationSet": {
@@ -2009,6 +2149,17 @@
       }
     },
     {
+      "displayName": "Dubai Electricity and Water Authority",
+      "id": "dubaielectricityandwaterauthority-40d406",
+      "locationSet": {"include": ["ae"]},
+      "tags": {
+        "operator": "Dubai Electricity and Water Authority",
+        "operator:short": "DEWA",
+        "operator:wikidata": "Q1262868",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Duke Energy",
       "id": "dukeenergy-b7bbc1",
       "locationSet": {
@@ -2024,18 +2175,6 @@
       }
     },
     {
-      "displayName": "Duke Energy Carolinas",
-      "id": "dukeenergycarolinas-19ecba",
-      "locationSet": {"include": ["us"]},
-      "matchNames": [
-        "duke energy carolinas, llc"
-      ],
-      "tags": {
-        "operator": "Duke Energy Carolinas",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "Duke Energy Progress",
       "id": "dukeenergyprogress-19ecba",
       "locationSet": {"include": ["us"]},
@@ -2047,10 +2186,22 @@
     },
     {
       "displayName": "Dulacca Wind Farm",
-      "id": "dulaccawindfarm-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "dulaccawindfarm-fc806b",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "tags": {
         "operator": "Dulacca Wind Farm",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "E-Connection",
+      "id": "econnection-7c4044",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "operator": "E-Connection",
+        "operator:wikidata": "Q30256367",
         "power": "generator"
       }
     },
@@ -2112,8 +2263,10 @@
     },
     {
       "displayName": "Easa-Oute SA",
-      "id": "easaoutesa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "easaoutesa-9f2825",
+      "locationSet": {
+        "include": ["es-c.geojson"]
+      },
       "tags": {
         "operator": "Easa-Oute SA",
         "power": "generator"
@@ -2166,8 +2319,13 @@
     },
     {
       "displayName": "Ecotecnia - Los Pedreros",
-      "id": "ecotecnialospedreros-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "ecotecnialospedreros-b07116",
+      "locationSet": {
+        "include": [
+          "es-ab.geojson",
+          "es-mu.geojson"
+        ]
+      },
       "tags": {
         "operator": "Ecotecnia - Los Pedreros",
         "power": "generator"
@@ -2180,6 +2338,15 @@
       "tags": {
         "operator": "Ecotricity",
         "operator:wikidata": "Q5333901",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "EDF PEI",
+      "id": "edfpei-74685d",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "EDF PEI",
         "power": "generator"
       }
     },
@@ -2316,20 +2483,12 @@
     },
     {
       "displayName": "EEZ",
-      "id": "eez-c79aa4",
-      "locationSet": {"include": ["pl"]},
+      "id": "eez-8c28b7",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "operator": "EEZ",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "EGAT",
-      "id": "egat-4362ae",
-      "locationSet": {"include": ["th"]},
-      "tags": {
-        "operator": "EGAT",
-        "operator:wikidata": "Q3050569",
         "power": "generator"
       }
     },
@@ -2363,8 +2522,10 @@
     },
     {
       "displayName": "Elecdey Tarazona, S.A.",
-      "id": "elecdeytarazonasa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "elecdeytarazonasa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Elecdey Tarazona, S.A.",
         "power": "generator"
@@ -2402,6 +2563,16 @@
       }
     },
     {
+      "displayName": "Elektro",
+      "id": "elektro-104cf6",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "operator": "Elektro",
+        "operator:wikidata": "Q10271671",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Elektroprivreda Bosne i Hercegovine",
       "id": "elektroprivredabosneihercegovine-a096ef",
       "locationSet": {"include": ["ba"]},
@@ -2414,8 +2585,10 @@
     },
     {
       "displayName": "Elektrowerk Assling",
-      "id": "elektrowerkassling-7d0c03",
-      "locationSet": {"include": ["at"]},
+      "id": "elektrowerkassling-b3c54e",
+      "locationSet": {
+        "include": ["at-7.geojson"]
+      },
       "tags": {
         "operator": "Elektrowerk Assling",
         "power": "generator"
@@ -2427,6 +2600,16 @@
       "locationSet": {"include": ["ie"]},
       "tags": {
         "operator": "Element Power",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Eletrosul",
+      "id": "eletrosul-104cf6",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "operator": "Eletrosul",
+        "operator:wikidata": "Q5359479",
         "power": "generator"
       }
     },
@@ -2560,8 +2743,10 @@
     },
     {
       "displayName": "Endesa - Pena Ventosa",
-      "id": "endesapenaventosa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "endesapenaventosa-4f8897",
+      "locationSet": {
+        "include": ["es-lu.geojson"]
+      },
       "tags": {
         "operator": "Endesa - Pena Ventosa",
         "power": "generator"
@@ -2585,6 +2770,16 @@
       "tags": {
         "operator": "Eneco Wind",
         "operator:wikidata": "Q1341079",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Enefit Green AS",
+      "id": "enefitgreenas-7050ae",
+      "locationSet": {"include": ["ee"]},
+      "tags": {
+        "operator": "Enefit Green AS",
+        "operator:wikidata": "Q55285976",
         "power": "generator"
       }
     },
@@ -2629,10 +2824,23 @@
     },
     {
       "displayName": "EnerCit'IF",
-      "id": "enercitif-5ce1cf",
-      "locationSet": {"include": ["mx"]},
+      "id": "enercitif-794cff",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "operator": "EnerCit'IF",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Enerco Energy",
+      "id": "enercoenergy-e43bc9",
+      "locationSet": {
+        "include": ["ie-m.geojson"]
+      },
+      "tags": {
+        "operator": "Enerco Energy",
         "power": "generator"
       }
     },
@@ -2670,8 +2878,10 @@
     },
     {
       "displayName": "Energia Global Castellana",
-      "id": "energiaglobalcastellana-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "energiaglobalcastellana-d35e64",
+      "locationSet": {
+        "include": ["es-bu.geojson"]
+      },
       "tags": {
         "operator": "Energia Global Castellana",
         "power": "generator"
@@ -2707,8 +2917,13 @@
     },
     {
       "displayName": "Energie Steiermark",
-      "id": "energiesteiermark-7d0c03",
-      "locationSet": {"include": ["at"]},
+      "id": "energiesteiermark-a6368a",
+      "locationSet": {
+        "include": [
+          "at-1.geojson",
+          "at-6.geojson"
+        ]
+      },
       "tags": {
         "operator": "Energie Steiermark",
         "operator:wikidata": "Q1341214",
@@ -2753,6 +2968,15 @@
       }
     },
     {
+      "displayName": "énergreen production",
+      "id": "energreenproduction-33d749",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "operator": "énergreen production",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Energy Fiji Limited",
       "id": "energyfijilimited-32a62a",
       "locationSet": {"include": ["fj"]},
@@ -2765,8 +2989,10 @@
     },
     {
       "displayName": "Energy Park 44 sp. z o.o.",
-      "id": "energypark44spzoo-c79aa4",
-      "locationSet": {"include": ["pl"]},
+      "id": "energypark44spzoo-87831d",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "operator": "Energy Park 44 sp. z o.o.",
         "power": "generator"
@@ -2847,9 +3073,21 @@
       "displayName": "Engie Green",
       "id": "engiegreen-33d749",
       "locationSet": {"include": ["fx"]},
+      "matchNames": ["ostwind"],
       "tags": {
         "operator": "Engie Green",
         "operator:wikidata": "Q129986005",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "ENGIE Windpark Portfolio 1 GmbH",
+      "id": "engiewindparkportfolio1gmbh-434a70",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
+      "tags": {
+        "operator": "ENGIE Windpark Portfolio 1 GmbH",
         "power": "generator"
       }
     },
@@ -2864,19 +3102,22 @@
     },
     {
       "displayName": "ENHOL",
-      "id": "enhol-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "enhol-85f314",
+      "locationSet": {
+        "include": ["es-na.geojson"]
+      },
       "tags": {
         "operator": "ENHOL",
         "power": "generator"
       }
     },
     {
-      "displayName": "Enlight",
-      "id": "enlight-a37acc",
-      "locationSet": {"include": ["rs"]},
+      "displayName": "Enlight Renewable Energy",
+      "id": "enlightrenewableenergy-4ab3e5",
+      "locationSet": {"include": ["il", "rs"]},
+      "matchNames": ["enlight"],
       "tags": {
-        "operator": "Enlight",
+        "operator": "Enlight Renewable Energy",
         "operator:wikidata": "Q5379060",
         "power": "generator"
       }
@@ -2927,23 +3168,14 @@
       }
     },
     {
-      "displayName": "entega",
+      "displayName": "Entega",
       "id": "entega-57cee2",
       "locationSet": {
         "include": ["de-he.geojson"]
       },
       "tags": {
-        "operator": "entega",
+        "operator": "Entega",
         "operator:wikidata": "Q1563486",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Entergy Corporation and Shell Wind Corporation",
-      "id": "entergycorporationandshellwindcorporation-19ecba",
-      "locationSet": {"include": ["us"]},
-      "tags": {
-        "operator": "Entergy Corporation and Shell Wind Corporation",
         "power": "generator"
       }
     },
@@ -2964,9 +3196,22 @@
       }
     },
     {
+      "displayName": "Envision Energy",
+      "id": "envisionenergy-a9ea34",
+      "locationSet": {
+        "include": ["ar-b.geojson"]
+      },
+      "tags": {
+        "operator": "Envision Energy",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "EO-ZON Generación Eólica, S.L.",
-      "id": "eozongeneracioneolicasl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eozongeneracioneolicasl-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "EO-ZON Generación Eólica, S.L.",
         "power": "generator"
@@ -2992,8 +3237,14 @@
     },
     {
       "displayName": "Eolia",
-      "id": "eolia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolia-1bb2c6",
+      "locationSet": {
+        "include": [
+          "es-bu.geojson",
+          "es-cr.geojson",
+          "es-to.geojson"
+        ]
+      },
       "tags": {
         "operator": "Eolia",
         "power": "generator"
@@ -3001,8 +3252,10 @@
     },
     {
       "displayName": "Eólica",
-      "id": "eolica-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolica-57381e",
+      "locationSet": {
+        "include": ["es-to.geojson"]
+      },
       "tags": {
         "operator": "Eólica",
         "power": "generator"
@@ -3010,8 +3263,10 @@
     },
     {
       "displayName": "Eólica Cabezo San Roque, S.A.",
-      "id": "eolicacabezosanroquesa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolicacabezosanroquesa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Eólica Cabezo San Roque, S.A.",
         "power": "generator"
@@ -3019,8 +3274,10 @@
     },
     {
       "displayName": "Eólica de Medinaceli",
-      "id": "eolicademedinaceli-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolicademedinaceli-8652d9",
+      "locationSet": {
+        "include": ["es-so.geojson"]
+      },
       "tags": {
         "operator": "Eólica de Medinaceli",
         "power": "generator"
@@ -3028,8 +3285,10 @@
     },
     {
       "displayName": "Eólica de Radona",
-      "id": "eolicaderadona-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolicaderadona-8652d9",
+      "locationSet": {
+        "include": ["es-so.geojson"]
+      },
       "tags": {
         "operator": "Eólica de Radona",
         "power": "generator"
@@ -3037,44 +3296,38 @@
     },
     {
       "displayName": "Eólica Guadalteba",
-      "id": "eolicaguadalteba-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolicaguadalteba-808004",
+      "locationSet": {
+        "include": [
+          "es-ma.geojson",
+          "es-se.geojson"
+        ]
+      },
       "tags": {
         "operator": "Eólica Guadalteba",
         "power": "generator"
       }
     },
     {
-      "displayName": "Eolica Guadalteba - La Nava",
-      "id": "eolicaguadaltebalanava-ae5946",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "operator": "Eolica Guadalteba - La Nava",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "Eólica La Janda",
-      "id": "eolicalajanda-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolicalajanda-660d36",
+      "locationSet": {
+        "include": ["es-ca.geojson"]
+      },
       "tags": {
         "operator": "Eólica La Janda",
         "power": "generator"
       }
     },
     {
-      "displayName": "Eolica La Janda - Tejonero",
-      "id": "eolicalajandatejonero-ae5946",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "operator": "Eolica La Janda - Tejonero",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "Eólicas de Euskadi",
-      "id": "eolicasdeeuskadi-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolicasdeeuskadi-424f8d",
+      "locationSet": {
+        "include": [
+          "es-ss.geojson",
+          "es-vi.geojson"
+        ]
+      },
       "tags": {
         "operator": "Eólicas de Euskadi",
         "power": "generator"
@@ -3082,8 +3335,10 @@
     },
     {
       "displayName": "Eólicas de La Rioja",
-      "id": "eolicasdelarioja-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolicasdelarioja-960ded",
+      "locationSet": {
+        "include": ["es-lo.geojson"]
+      },
       "tags": {
         "operator": "Eólicas de La Rioja",
         "power": "generator"
@@ -3091,8 +3346,10 @@
     },
     {
       "displayName": "Eólicas El Coscojar, SL",
-      "id": "eolicaselcoscojarsl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eolicaselcoscojarsl-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Eólicas El Coscojar, SL",
         "power": "generator"
@@ -3145,11 +3402,12 @@
       }
     },
     {
-      "displayName": "EPV Tuulivoima Oy",
-      "id": "epvtuulivoimaoy-ae9fa2",
+      "displayName": "EPV Tuulivoima",
+      "id": "epvtuulivoima-ae9fa2",
       "locationSet": {"include": ["fi"]},
+      "matchNames": ["epv tuulivoima oy"],
       "tags": {
-        "operator": "EPV Tuulivoima Oy",
+        "operator": "EPV Tuulivoima",
         "power": "generator"
       }
     },
@@ -3166,8 +3424,10 @@
     },
     {
       "displayName": "Erby",
-      "id": "erby-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "erby-d35e64",
+      "locationSet": {
+        "include": ["es-bu.geojson"]
+      },
       "tags": {
         "operator": "Erby",
         "power": "generator"
@@ -3217,8 +3477,10 @@
     },
     {
       "displayName": "Eufer",
-      "id": "eufer-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "eufer-9f2825",
+      "locationSet": {
+        "include": ["es-c.geojson"]
+      },
       "tags": {
         "operator": "Eufer",
         "power": "generator"
@@ -3347,27 +3609,38 @@
       }
     },
     {
-      "displayName": "Explotaciones Eólicas El Puerto, S.A.",
-      "id": "explotacioneseolicaselpuertosa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "displayName": "Explotaciones Eólicas de Escucha, S.A.",
+      "id": "explotacioneseolicasdeescuchasa-d0c865",
+      "locationSet": {
+        "include": ["es-te.geojson"]
+      },
+      "matchNames": [
+        "explotaciones eólicas escucha, s.a."
+      ],
       "tags": {
-        "operator": "Explotaciones Eólicas El Puerto, S.A.",
+        "operator": "Explotaciones Eólicas de Escucha, S.A.",
+        "operator:wikidata": "Q113464713",
         "power": "generator"
       }
     },
     {
-      "displayName": "Explotaciones Eólicas Escucha, S.A.",
-      "id": "explotacioneseolicasescuchasa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "displayName": "Explotaciones Eólicas El Puerto, S.A.",
+      "id": "explotacioneseolicaselpuertosa-d0c865",
+      "locationSet": {
+        "include": ["es-te.geojson"]
+      },
       "tags": {
-        "operator": "Explotaciones Eólicas Escucha, S.A.",
+        "operator": "Explotaciones Eólicas El Puerto, S.A.",
+        "operator:wikidata": "Q113464363",
         "power": "generator"
       }
     },
     {
       "displayName": "Explotaciones Eólicas Saso Plano, S.A.",
-      "id": "explotacioneseolicassasoplanosa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "explotacioneseolicassasoplanosa-6071e7",
+      "locationSet": {
+        "include": ["es-hu.geojson"]
+      },
       "tags": {
         "operator": "Explotaciones Eólicas Saso Plano, S.A.",
         "power": "generator"
@@ -3375,8 +3648,10 @@
     },
     {
       "displayName": "Explotaciones Eólicas Sierra Costera, S.A.",
-      "id": "explotacioneseolicassierracosterasa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "explotacioneseolicassierracosterasa-d0c865",
+      "locationSet": {
+        "include": ["es-te.geojson"]
+      },
       "tags": {
         "operator": "Explotaciones Eólicas Sierra Costera, S.A.",
         "power": "generator"
@@ -3384,8 +3659,10 @@
     },
     {
       "displayName": "Explotaciones Eólicas Sierra de la Virgen, S.A. - ENEL",
-      "id": "explotacioneseolicassierradelavirgensaenel-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "explotacioneseolicassierradelavirgensaenel-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Explotaciones Eólicas Sierra de la Virgen, S.A. - ENEL",
         "power": "generator"
@@ -3393,8 +3670,10 @@
     },
     {
       "displayName": "Extresol 3",
-      "id": "extresol3-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "extresol3-dacfd6",
+      "locationSet": {
+        "include": ["es-ba.geojson"]
+      },
       "tags": {
         "operator": "Extresol 3",
         "power": "generator"
@@ -3406,16 +3685,6 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "operator": "Fäbodliden Vindkraft AB",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Falck Renewables",
-      "id": "falckrenewables-ae4916",
-      "locationSet": {"include": ["fx", "gb"]},
-      "tags": {
-        "operator": "Falck Renewables",
-        "operator:wikidata": "Q5431701",
         "power": "generator"
       }
     },
@@ -3569,8 +3838,10 @@
     },
     {
       "displayName": "Forestalia",
-      "id": "forestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "forestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Forestalia",
         "power": "generator"
@@ -3638,8 +3909,10 @@
     },
     {
       "displayName": "Fuerzas Energéticas del Sur de Europa IX, SL - Forestalia",
-      "id": "fuerzasenergeticasdelsurdeeuropaixslforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "fuerzasenergeticasdelsurdeeuropaixslforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Fuerzas Energéticas del Sur de Europa IX, SL - Forestalia",
         "power": "generator"
@@ -3647,8 +3920,10 @@
     },
     {
       "displayName": "Fuerzas Energéticas del Sur de Europa VII, SL",
-      "id": "fuerzasenergeticasdelsurdeeuropaviisl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "fuerzasenergeticasdelsurdeeuropaviisl-d0c865",
+      "locationSet": {
+        "include": ["es-te.geojson"]
+      },
       "tags": {
         "operator": "Fuerzas Energéticas del Sur de Europa VII, SL",
         "power": "generator"
@@ -3656,8 +3931,10 @@
     },
     {
       "displayName": "Fuerzas Energéticas del Sur de Europa X, SL - Forestalia",
-      "id": "fuerzasenergeticasdelsurdeeuropaxslforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "fuerzasenergeticasdelsurdeeuropaxslforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Fuerzas Energéticas del Sur de Europa X, SL - Forestalia",
         "power": "generator"
@@ -3665,8 +3942,10 @@
     },
     {
       "displayName": "Fuerzas Energéticas del Sur de Europa XI,SL - Forestalia",
-      "id": "fuerzasenergeticasdelsurdeeuropaxislforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "fuerzasenergeticasdelsurdeeuropaxislforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Fuerzas Energéticas del Sur de Europa XI,SL - Forestalia",
         "power": "generator"
@@ -3674,8 +3953,10 @@
     },
     {
       "displayName": "Fuerzas Energéticas del Sur de Europa XII, SL - Forestalia",
-      "id": "fuerzasenergeticasdelsurdeeuropaxiislforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "fuerzasenergeticasdelsurdeeuropaxiislforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Fuerzas Energéticas del Sur de Europa XII, SL - Forestalia",
         "power": "generator"
@@ -3683,8 +3964,10 @@
     },
     {
       "displayName": "Fuerzas Energéticas del Sur de Europa XV S.L. - Forestalia",
-      "id": "fuerzasenergeticasdelsurdeeuropaxvslforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "fuerzasenergeticasdelsurdeeuropaxvslforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Fuerzas Energéticas del Sur de Europa XV S.L. - Forestalia",
         "power": "generator"
@@ -3727,25 +4010,6 @@
       }
     },
     {
-      "displayName": "Gamesa",
-      "id": "gamesa-8b20a8",
-      "locationSet": {"include": ["es", "fx"]},
-      "tags": {
-        "operator": "Gamesa",
-        "operator:wikidata": "Q42916742",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Gamesa - Altamira",
-      "id": "gamesaaltamira-ae5946",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "operator": "Gamesa - Altamira",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "Gamma",
       "id": "gamma-7c4044",
       "locationSet": {"include": ["nl"]},
@@ -3764,9 +4028,20 @@
       }
     },
     {
+      "displayName": "Gazel Energie",
+      "id": "gazelenergie-74685d",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Gazel Energie",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "GDF Suez Zielona Energia Sp. z o.o.",
-      "id": "gdfsuezzielonaenergiaspzoo-c79aa4",
-      "locationSet": {"include": ["pl"]},
+      "id": "gdfsuezzielonaenergiaspzoo-8c28b7",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "operator": "GDF Suez Zielona Energia Sp. z o.o.",
         "power": "generator"
@@ -3794,8 +4069,10 @@
     },
     {
       "displayName": "Gecalsa",
-      "id": "gecalsa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "gecalsa-660d36",
+      "locationSet": {
+        "include": ["es-ca.geojson"]
+      },
       "tags": {
         "operator": "Gecalsa",
         "power": "generator"
@@ -3803,26 +4080,21 @@
     },
     {
       "displayName": "Gecalsa - El Hierro",
-      "id": "gecalsaelhierro-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "gecalsaelhierro-74678c",
+      "locationSet": {
+        "include": ["es-za.geojson"]
+      },
       "tags": {
         "operator": "Gecalsa - El Hierro",
         "power": "generator"
       }
     },
     {
-      "displayName": "Gecalsa - La Rabia",
-      "id": "gecalsalarabia-ae5946",
-      "locationSet": {"include": ["es"]},
-      "tags": {
-        "operator": "Gecalsa - La Rabia",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "Gecalsa - Montamarta",
-      "id": "gecalsamontamarta-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "gecalsamontamarta-74678c",
+      "locationSet": {
+        "include": ["es-za.geojson"]
+      },
       "tags": {
         "operator": "Gecalsa - Montamarta",
         "power": "generator"
@@ -3830,8 +4102,10 @@
     },
     {
       "displayName": "Gecalsa - Peñarroldana",
-      "id": "gecalsapenarroldana-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "gecalsapenarroldana-74678c",
+      "locationSet": {
+        "include": ["es-za.geojson"]
+      },
       "tags": {
         "operator": "Gecalsa - Peñarroldana",
         "power": "generator"
@@ -3839,17 +4113,22 @@
     },
     {
       "displayName": "Gemeinde Ubstadt-Weiher",
-      "id": "gemeindeubstadtweiher-b8ae25",
-      "locationSet": {"include": ["de"]},
+      "id": "gemeindeubstadtweiher-235ee2",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
       "tags": {
         "operator": "Gemeinde Ubstadt-Weiher",
+        "operator:wikidata": "Q520414",
         "power": "generator"
       }
     },
     {
       "displayName": "Generaciones Renovables del Gállego, SL - Forestalia",
-      "id": "generacionesrenovablesdelgallegoslforestalia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "generacionesrenovablesdelgallegoslforestalia-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Generaciones Renovables del Gállego, SL - Forestalia",
         "power": "generator"
@@ -3886,8 +4165,10 @@
     },
     {
       "displayName": "Geólica Magallón II, S.L.",
-      "id": "geolicamagalloniisl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "geolicamagalloniisl-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Geólica Magallón II, S.L.",
         "power": "generator"
@@ -4011,11 +4292,12 @@
       }
     },
     {
-      "displayName": "Göteborg Energi AB",
-      "id": "goteborgenergiab-ec34a3",
+      "displayName": "Göteborg Energi",
+      "id": "goteborgenergi-ec34a3",
       "locationSet": {"include": ["se"]},
+      "matchNames": ["göteborg energi ab"],
       "tags": {
-        "operator": "Göteborg Energi AB",
+        "operator": "Göteborg Energi",
         "operator:wikidata": "Q10512780",
         "power": "generator"
       }
@@ -4080,11 +4362,24 @@
     },
     {
       "displayName": "Green Investment Group",
-      "id": "greeninvestmentgroup-c79aa4",
-      "locationSet": {"include": ["pl"]},
+      "id": "greeninvestmentgroup-87831d",
+      "locationSet": {
+        "include": ["pl-22.geojson"]
+      },
       "tags": {
         "operator": "Green Investment Group",
         "operator:wikidata": "Q97968817",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Green Wind",
+      "id": "greenwind-d40edc",
+      "locationSet": {
+        "include": ["be", "de-bb.geojson"]
+      },
+      "tags": {
+        "operator": "Green Wind",
         "power": "generator"
       }
     },
@@ -4117,6 +4412,17 @@
       "tags": {
         "operator": "Greencoat Renewables",
         "operator:wikidata": "Q97354365",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "GreenGo Energy Group A/S",
+      "id": "greengoenergygroupas-374e6c",
+      "locationSet": {
+        "include": ["dk-83.geojson"]
+      },
+      "tags": {
+        "operator": "GreenGo Energy Group A/S",
         "power": "generator"
       }
     },
@@ -4204,8 +4510,10 @@
     },
     {
       "displayName": "Harvest Windfarm",
-      "id": "harvestwindfarm-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "harvestwindfarm-b3e144",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "matchNames": ["harvest windfarm llc"],
       "tags": {
         "operator": "Harvest Windfarm",
@@ -4265,8 +4573,10 @@
     },
     {
       "displayName": "Heritage Sustainable Energy",
-      "id": "heritagesustainableenergy-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "heritagesustainableenergy-b3e144",
+      "locationSet": {
+        "include": ["us-mi.geojson"]
+      },
       "tags": {
         "operator": "Heritage Sustainable Energy",
         "power": "generator"
@@ -4283,10 +4593,13 @@
     },
     {
       "displayName": "Hidromedia",
-      "id": "hidromedia-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "hidromedia-8652d9",
+      "locationSet": {
+        "include": ["es-so.geojson"]
+      },
       "tags": {
         "operator": "Hidromedia",
+        "operator:wikidata": "Q113464585",
         "power": "generator"
       }
     },
@@ -4312,6 +4625,7 @@
       "displayName": "HOFOR",
       "id": "hofor-c31bbc",
       "locationSet": {"include": ["dk"]},
+      "note": "Q6454066, Q113466089 and Q113466090 all discuss the company in some form - likely some conflation in play",
       "tags": {
         "operator": "HOFOR",
         "power": "generator"
@@ -4339,9 +4653,21 @@
       }
     },
     {
+      "displayName": "Horizon Power",
+      "id": "horizonpower-854d0f",
+      "locationSet": {
+        "include": ["au-wa.geojson"]
+      },
+      "tags": {
+        "operator": "Horizon Power",
+        "operator:wikidata": "Q5903476",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Hydro Tasmania",
-      "id": "hydrotasmania-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "hydrotasmania-569db4",
+      "locationSet": {"include": ["au-tas"]},
       "tags": {
         "operator": "Hydro Tasmania",
         "operator:wikidata": "Q1640187",
@@ -4388,8 +4714,10 @@
     },
     {
       "displayName": "Iberdrola Renewables",
-      "id": "iberdrolarenewables-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "iberdrolarenewables-4ed0ab",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
       "tags": {
         "operator": "Iberdrola Renewables",
         "power": "generator"
@@ -4415,8 +4743,10 @@
     },
     {
       "displayName": "Iberia Aprovechamientos Eólicos, S.A.",
-      "id": "iberiaaprovechamientoseolicossa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "iberiaaprovechamientoseolicossa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Iberia Aprovechamientos Eólicos, S.A.",
         "power": "generator"
@@ -4424,8 +4754,10 @@
     },
     {
       "displayName": "ICO",
-      "id": "ico-a327c1",
-      "locationSet": {"include": ["be"]},
+      "id": "ico-fc0ccd",
+      "locationSet": {
+        "include": ["be-vwv.geojson"]
+      },
       "tags": {
         "operator": "ICO",
         "power": "generator"
@@ -4443,19 +4775,94 @@
       }
     },
     {
-      "displayName": "IKB AG",
-      "id": "ikbag-7d0c03",
-      "locationSet": {"include": ["at"]},
+      "displayName": "Ignitis",
+      "id": "ignitis-c79aa4",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-16",
       "tags": {
-        "operator": "IKB AG",
+        "operator": "Ignitis",
+        "operator:wikidata": "Q113466310",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Ignitis grupė",
+      "id": "ignitisgrupe-f48411",
+      "locationSet": {"include": ["lt"]},
+      "matchNames": ["ab ignitis grupė"],
+      "tags": {
+        "operator": "Ignitis grupė",
+        "operator:wikidata": "Q583822",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "IKB",
+      "id": "ikb-b3c54e",
+      "locationSet": {
+        "include": ["at-7.geojson"]
+      },
+      "matchNames": ["ikb ag"],
+      "tags": {
+        "operator": "IKB",
         "operator:wikidata": "Q1275183",
         "power": "generator"
       }
     },
     {
       "displayName": "IKEA",
-      "id": "ikea-74685d",
-      "locationSet": {"include": ["001"]},
+      "id": "ikea-b6ae82",
+      "locationSet": {
+        "include": [
+          "ae",
+          "at",
+          "au",
+          "be",
+          "bh",
+          "ca",
+          "ch",
+          "cl",
+          "cz",
+          "de",
+          "dk",
+          "eg",
+          "es",
+          "fi",
+          "fr",
+          "gb",
+          "hk",
+          "hr",
+          "hu",
+          "ie",
+          "il",
+          "in",
+          "it",
+          "jo",
+          "kr",
+          "kw",
+          "ma",
+          "mo",
+          "mx",
+          "my",
+          "nl",
+          "no",
+          "nz",
+          "ph",
+          "pl",
+          "pt",
+          "qa",
+          "ro",
+          "rs",
+          "sa",
+          "se",
+          "sg",
+          "si",
+          "sk",
+          "th",
+          "ua",
+          "us"
+        ]
+      },
       "matchNames": ["ikea retail sp zoo"],
       "tags": {
         "operator": "IKEA",
@@ -4478,6 +4885,15 @@
       "locationSet": {"include": ["fi"]},
       "tags": {
         "operator": "Ilmatar Energy Oy",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Inch Cape Wind Farm",
+      "id": "inchcapewindfarm-190db7",
+      "locationSet": {"include": ["gb-sct"]},
+      "tags": {
+        "operator": "Inch Cape Wind Farm",
         "power": "generator"
       }
     },
@@ -4544,6 +4960,16 @@
       }
     },
     {
+      "displayName": "Ingka",
+      "id": "ingka-c79aa4",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
+      "tags": {
+        "operator": "Ingka",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Ingka Deutschland Windfarms GmbH",
       "id": "ingkadeutschlandwindfarmsgmbh-b8ae25",
       "locationSet": {"include": ["de"]},
@@ -4594,8 +5020,10 @@
     },
     {
       "displayName": "Innogy Renewables Polska",
-      "id": "innogyrenewablespolska-c79aa4",
-      "locationSet": {"include": ["pl"]},
+      "id": "innogyrenewablespolska-8c28b7",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "operator": "Innogy Renewables Polska",
         "power": "generator"
@@ -4603,8 +5031,13 @@
     },
     {
       "displayName": "Innogy Spain, S.A.U",
-      "id": "innogyspainsau-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "innogyspainsau-fa5c61",
+      "locationSet": {
+        "include": [
+          "es-hu.geojson",
+          "es-z.geojson"
+        ]
+      },
       "tags": {
         "operator": "Innogy Spain, S.A.U",
         "power": "generator"
@@ -4663,8 +5096,10 @@
     },
     {
       "displayName": "Iowa Lakes Electric Cooperative",
-      "id": "iowalakeselectriccooperative-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "iowalakeselectriccooperative-2c3da9",
+      "locationSet": {
+        "include": ["us-ia.geojson"]
+      },
       "tags": {
         "operator": "Iowa Lakes Electric Cooperative",
         "power": "generator"
@@ -4702,8 +5137,10 @@
     },
     {
       "displayName": "James Madison University",
-      "id": "jamesmadisonuniversity-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "jamesmadisonuniversity-4ed0ab",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
       "tags": {
         "operator": "James Madison University",
         "operator:wikidata": "Q258943",
@@ -4744,7 +5181,13 @@
       "displayName": "juwi",
       "id": "juwi-b8ae25",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["juwi ag"],
+      "matchNames": [
+        "juwi ag",
+        "juwi gmbh",
+        "windwärts",
+        "windwärts energie gmbh",
+        "windwärts gmbh"
+      ],
       "tags": {
         "operator": "juwi",
         "operator:wikidata": "Q1697142",
@@ -4776,6 +5219,17 @@
       "tags": {
         "operator": "juwi Operations & Maintenance GmbH",
         "operator:wikidata": "Q1697142",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "JWP Jade Windpark GmbH & Co. VI. Betriebs KG (orig. registr.)",
+      "id": "jwpjadewindparkgmbhandcovibetriebskgorigregistr-434a70",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
+      "tags": {
+        "operator": "JWP Jade Windpark GmbH & Co. VI. Betriebs KG (orig. registr.)",
         "power": "generator"
       }
     },
@@ -4853,8 +5307,13 @@
     },
     {
       "displayName": "KELAG",
-      "id": "kelag-7d0c03",
-      "locationSet": {"include": ["at"]},
+      "id": "kelag-666aab",
+      "locationSet": {
+        "include": [
+          "at-2.geojson",
+          "at-6.geojson"
+        ]
+      },
       "tags": {
         "operator": "KELAG",
         "operator:wikidata": "Q1453452",
@@ -4875,8 +5334,10 @@
     },
     {
       "displayName": "Kent State University",
-      "id": "kentstateuniversity-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "kentstateuniversity-3c4f74",
+      "locationSet": {
+        "include": ["us-oh.geojson"]
+      },
       "tags": {
         "operator": "Kent State University",
         "operator:wikidata": "Q1473615",
@@ -4921,8 +5382,10 @@
     },
     {
       "displayName": "Kochi Metro",
-      "id": "kochimetro-d7cade",
-      "locationSet": {"include": ["in"]},
+      "id": "kochimetro-cd9e64",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "operator": "Kochi Metro",
         "operator:wikidata": "Q3522910",
@@ -4950,8 +5413,8 @@
     },
     {
       "displayName": "Kotzebue Electric Association",
-      "id": "kotzebueelectricassociation-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "kotzebueelectricassociation-d933bc",
+      "locationSet": {"include": ["us-ak"]},
       "tags": {
         "operator": "Kotzebue Electric Association",
         "power": "generator"
@@ -5013,8 +5476,10 @@
     },
     {
       "displayName": "Las Majadas Wind Farm",
-      "id": "lasmajadaswindfarm-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "lasmajadaswindfarm-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Las Majadas Wind Farm",
         "power": "generator"
@@ -5060,6 +5525,17 @@
       }
     },
     {
+      "displayName": "Lemkær Vindkraft I/S",
+      "id": "lemkaervindkraftis-8a39c2",
+      "locationSet": {
+        "include": ["dk-82.geojson"]
+      },
+      "tags": {
+        "operator": "Lemkær Vindkraft I/S",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Lemnhult Energi AB",
       "id": "lemnhultenergiab-ec34a3",
       "locationSet": {"include": ["se"]},
@@ -5089,8 +5565,10 @@
     },
     {
       "displayName": "Lincoln Clean Energy",
-      "id": "lincolncleanenergy-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "lincolncleanenergy-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Lincoln Clean Energy",
         "power": "generator"
@@ -5148,8 +5626,10 @@
     },
     {
       "displayName": "London Fire Brigade",
-      "id": "londonfirebrigade-a0f939",
-      "locationSet": {"include": ["gb-eng"]},
+      "id": "londonfirebrigade-b31211",
+      "locationSet": {
+        "include": ["gb-lon.geojson"]
+      },
       "matchNames": ["london fire bridage"],
       "tags": {
         "operator": "London Fire Brigade",
@@ -5168,9 +5648,22 @@
       }
     },
     {
+      "displayName": "Lorica Windpark Biere GmbH & Co. KG",
+      "id": "loricawindparkbieregmbhandcokg-434a70",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
+      "tags": {
+        "operator": "Lorica Windpark Biere GmbH & Co. KG",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Lorte SL",
-      "id": "lortesl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "lortesl-374101",
+      "locationSet": {
+        "include": ["es-ma.geojson"]
+      },
       "tags": {
         "operator": "Lorte SL",
         "power": "generator"
@@ -5327,6 +5820,16 @@
       }
     },
     {
+      "displayName": "Matas",
+      "id": "matas-c31bbc",
+      "locationSet": {"include": ["dk"]},
+      "tags": {
+        "operator": "Matas",
+        "operator:wikidata": "Q6786143",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Maui Electric Company",
       "id": "mauielectriccompany-f56ef1",
       "locationSet": {"include": ["us-hi"]},
@@ -5347,9 +5850,10 @@
     },
     {
       "displayName": "MDU",
-      "id": "mdu-c40494",
+      "id": "mdu-1ae519",
       "locationSet": {
         "include": [
+          "us-mt.geojson",
           "us-nd.geojson",
           "us-sd.geojson"
         ]
@@ -5404,8 +5908,13 @@
     },
     {
       "displayName": "MESA",
-      "id": "mesa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "mesa-3778c4",
+      "locationSet": {
+        "include": [
+          "es-bi.geojson",
+          "es-so.geojson"
+        ]
+      },
       "tags": {
         "operator": "MESA",
         "power": "generator"
@@ -5448,8 +5957,10 @@
     },
     {
       "displayName": "Middlebury College",
-      "id": "middleburycollege-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "middleburycollege-281c4a",
+      "locationSet": {
+        "include": ["us-vt.geojson"]
+      },
       "tags": {
         "operator": "Middlebury College",
         "operator:wikidata": "Q1357891",
@@ -5471,6 +5982,7 @@
       "locationSet": {"include": ["sl"]},
       "tags": {
         "operator": "Ministry of Health and Sanitation",
+        "operator:wikidata": "Q21044897",
         "power": "generator"
       }
     },
@@ -5486,28 +5998,37 @@
     },
     {
       "displayName": "Molinos del Ebro S.A.",
-      "id": "molinosdelebrosa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "molinosdelebrosa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Molinos del Ebro S.A.",
+        "operator:wikidata": "Q113464405",
         "power": "generator"
       }
     },
     {
       "displayName": "Molinos del Jalón, S.A.",
-      "id": "molinosdeljalonsa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "molinosdeljalonsa-d0c865",
+      "locationSet": {
+        "include": ["es-te.geojson"]
+      },
       "tags": {
         "operator": "Molinos del Jalón, S.A.",
+        "operator:wikidata": "Q113464551",
         "power": "generator"
       }
     },
     {
       "displayName": "Molinos del Moncayo S.L",
-      "id": "molinosdelmoncayosl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "molinosdelmoncayosl-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Molinos del Moncayo S.L",
+        "operator:wikidata": "Q113464576",
         "power": "generator"
       }
     },
@@ -5522,8 +6043,10 @@
     },
     {
       "displayName": "Morcillas Tere",
-      "id": "morcillastere-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "morcillastere-d35e64",
+      "locationSet": {
+        "include": ["es-bu.geojson"]
+      },
       "tags": {
         "operator": "Morcillas Tere",
         "power": "generator"
@@ -5568,11 +6091,12 @@
       }
     },
     {
-      "displayName": "MVV Energie AG",
-      "id": "mvvenergieag-b8ae25",
+      "displayName": "MVV Energie",
+      "id": "mvvenergie-b8ae25",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["mvv energie ag"],
       "tags": {
-        "operator": "MVV Energie AG",
+        "operator": "MVV Energie",
         "operator:wikidata": "Q1882061",
         "power": "generator"
       }
@@ -5597,8 +6121,10 @@
     },
     {
       "displayName": "Naturener",
-      "id": "naturener-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "naturener-db2de1",
+      "locationSet": {
+        "include": ["us-mt.geojson"]
+      },
       "tags": {
         "operator": "Naturener",
         "power": "generator"
@@ -5682,8 +6208,10 @@
     },
     {
       "displayName": "New Gullen Range Wind Farm Pty. Ltd.",
-      "id": "newgullenrangewindfarmptyltd-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "newgullenrangewindfarmptyltd-4d20e6",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "matchNames": [
         "new gullen range wind farm pty. ltd. (ngrwf)"
       ],
@@ -5694,11 +6222,11 @@
       }
     },
     {
-      "displayName": "nextbike",
+      "displayName": "Nextbike",
       "id": "nextbike-74685d",
       "locationSet": {"include": ["001"]},
       "tags": {
-        "operator": "nextbike",
+        "operator": "Nextbike",
         "operator:wikidata": "Q2351279",
         "power": "generator"
       }
@@ -5730,8 +6258,10 @@
     },
     {
       "displayName": "Noble Power",
-      "id": "noblepower-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "noblepower-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Noble Power",
         "power": "generator"
@@ -5775,14 +6305,26 @@
       }
     },
     {
-      "displayName": "North Carolina Electric Member Corporation",
-      "id": "northcarolinaelectricmembercorporation-19ecba",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Nordseecluster A GmbH",
+      "id": "nordseeclusteragmbh-74685d",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Nordseecluster A GmbH",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "North Carolina Electric Membership Corporation",
+      "id": "northcarolinaelectricmembershipcorporation-019b7e",
+      "locationSet": {
+        "include": ["us-nc.geojson"]
+      },
       "matchNames": [
         "north carolina electric member corp"
       ],
       "tags": {
-        "operator": "North Carolina Electric Member Corporation",
+        "operator": "North Carolina Electric Membership Corporation",
+        "operator:wikidata": "Q131346418",
         "power": "generator"
       }
     },
@@ -5858,8 +6400,10 @@
     },
     {
       "displayName": "Novatus Energy",
-      "id": "novatusenergy-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "novatusenergy-906027",
+      "locationSet": {
+        "include": ["us-me.geojson"]
+      },
       "tags": {
         "operator": "Novatus Energy",
         "power": "generator"
@@ -5944,6 +6488,16 @@
       }
     },
     {
+      "displayName": "Ocean Winds",
+      "id": "oceanwinds-190db7",
+      "locationSet": {"include": ["gb-sct"]},
+      "tags": {
+        "operator": "Ocean Winds",
+        "operator:wikidata": "Q116008792",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Octopus Investments",
       "id": "octopusinvestments-9ac094",
       "locationSet": {"include": ["gb"]},
@@ -5980,8 +6534,10 @@
     },
     {
       "displayName": "Ökoenergie WP Obersiebenbrunn GmbH",
-      "id": "okoenergiewpobersiebenbrunngmbh-7d0c03",
-      "locationSet": {"include": ["at"]},
+      "id": "okoenergiewpobersiebenbrunngmbh-0752de",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
       "tags": {
         "operator": "Ökoenergie WP Obersiebenbrunn GmbH",
         "power": "generator"
@@ -5989,8 +6545,13 @@
     },
     {
       "displayName": "Olivento, S.L.U.",
-      "id": "oliventoslu-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "oliventoslu-02ca5d",
+      "locationSet": {
+        "include": [
+          "es-te.geojson",
+          "es-z.geojson"
+        ]
+      },
       "tags": {
         "operator": "Olivento, S.L.U.",
         "power": "generator"
@@ -5998,8 +6559,10 @@
     },
     {
       "displayName": "Oliviento S.L.",
-      "id": "olivientosl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "olivientosl-57381e",
+      "locationSet": {
+        "include": ["es-to.geojson"]
+      },
       "tags": {
         "operator": "Oliviento S.L.",
         "power": "generator"
@@ -6015,11 +6578,13 @@
       }
     },
     {
-      "displayName": "Olympia",
-      "id": "olympia-19ecba",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Onshore Wind Borne GmbH & Co. KG",
+      "id": "onshorewindbornegmbhandcokg-434a70",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
       "tags": {
-        "operator": "Olympia",
+        "operator": "Onshore Wind Borne GmbH & Co. KG",
         "power": "generator"
       }
     },
@@ -6029,16 +6594,6 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "operator": "Önusberget Vind AB",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Orion Energy Group",
-      "id": "orionenergygroup-19ecba",
-      "locationSet": {"include": ["us"]},
-      "matchNames": ["orion energy group llc"],
-      "tags": {
-        "operator": "Orion Energy Group",
         "power": "generator"
       }
     },
@@ -6054,12 +6609,13 @@
     },
     {
       "displayName": "Ørsted",
-      "id": "orsted-6f1448",
+      "id": "orsted-c468f7",
       "locationSet": {
         "include": [
           "de",
           "dk",
           "gb",
+          "ie",
           "nl",
           "se",
           "us"
@@ -6086,16 +6642,6 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "operator": "Ostermann",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Ostwind",
-      "id": "ostwind-0e9b20",
-      "locationSet": {"include": [[5.98, 54.35]]},
-      "tags": {
-        "operator": "Ostwind",
-        "operator:wikidata": "Q3347730",
         "power": "generator"
       }
     },
@@ -6143,6 +6689,15 @@
       }
     },
     {
+      "displayName": "OX2 Finland",
+      "id": "ox2finland-ae9fa2",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "operator": "OX2 Finland",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "OX2 Technical and Commercial Management AB",
       "id": "ox2technicalandcommercialmanagementab-ec34a3",
       "locationSet": {"include": ["se"]},
@@ -6153,8 +6708,10 @@
     },
     {
       "displayName": "Pacific Blue",
-      "id": "pacificblue-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "pacificblue-7a5436",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "operator": "Pacific Blue",
         "operator:wikidata": "Q7122497",
@@ -6191,8 +6748,10 @@
     },
     {
       "displayName": "Parque Eólico de Gevancas, S.A",
-      "id": "parqueeolicodegevancassa-60269d",
-      "locationSet": {"include": ["pt"]},
+      "id": "parqueeolicodegevancassa-a6f1cf",
+      "locationSet": {
+        "include": ["pt-17.geojson"]
+      },
       "tags": {
         "operator": "Parque Eólico de Gevancas, S.A",
         "power": "generator"
@@ -6209,8 +6768,10 @@
     },
     {
       "displayName": "Parque Eólico Farlan, SL",
-      "id": "parqueeolicofarlansl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "parqueeolicofarlansl-d0c865",
+      "locationSet": {
+        "include": ["es-te.geojson"]
+      },
       "tags": {
         "operator": "Parque Eólico Farlan, SL",
         "power": "generator"
@@ -6218,8 +6779,10 @@
     },
     {
       "displayName": "Parque Eólico La Sotonera, S.L.",
-      "id": "parqueeolicolasotonerasl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "parqueeolicolasotonerasl-6071e7",
+      "locationSet": {
+        "include": ["es-hu.geojson"]
+      },
       "tags": {
         "operator": "Parque Eólico La Sotonera, S.L.",
         "power": "generator"
@@ -6227,8 +6790,10 @@
     },
     {
       "displayName": "Parque Eólico Los Cantales SL",
-      "id": "parqueeolicoloscantalessl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "parqueeolicoloscantalessl-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Parque Eólico Los Cantales SL",
         "power": "generator"
@@ -6236,8 +6801,10 @@
     },
     {
       "displayName": "Parque Eólico Muniesa, SL",
-      "id": "parqueeolicomuniesasl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "parqueeolicomuniesasl-d0c865",
+      "locationSet": {
+        "include": ["es-te.geojson"]
+      },
       "tags": {
         "operator": "Parque Eólico Muniesa, SL",
         "power": "generator"
@@ -6272,8 +6839,8 @@
     },
     {
       "displayName": "Pattern Energy",
-      "id": "patternenergy-dede2e",
-      "locationSet": {"include": ["jp", "us"]},
+      "id": "patternenergy-58f53b",
+      "locationSet": {"include": ["mx", "us"]},
       "tags": {
         "operator": "Pattern Energy",
         "operator:wikidata": "Q60764012",
@@ -6292,6 +6859,17 @@
       }
     },
     {
+      "displayName": "Pedreira Cordeiro",
+      "id": "pedreiracordeiro-b89ab9",
+      "locationSet": {
+        "include": ["br-pb.geojson"]
+      },
+      "tags": {
+        "operator": "Pedreira Cordeiro",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Peel",
       "id": "peel-9ac094",
       "locationSet": {"include": ["gb"]},
@@ -6302,17 +6880,32 @@
     },
     {
       "displayName": "Peesa",
-      "id": "peesa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "peesa-8652d9",
+      "locationSet": {
+        "include": ["es-so.geojson"]
+      },
       "tags": {
         "operator": "Peesa",
         "power": "generator"
       }
     },
     {
+      "displayName": "Perusahaan Listrik Negara",
+      "id": "perusahaanlistriknegara-e605d3",
+      "locationSet": {"include": ["id"]},
+      "tags": {
+        "operator": "Perusahaan Listrik Negara",
+        "operator:short": "PLN",
+        "operator:wikidata": "Q4201636",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "PES Madero",
-      "id": "pesmadero-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "pesmadero-8652d9",
+      "locationSet": {
+        "include": ["es-so.geojson"]
+      },
       "tags": {
         "operator": "PES Madero",
         "power": "generator"
@@ -6393,12 +6986,13 @@
       }
     },
     {
-      "displayName": "PLN",
-      "id": "pln-e605d3",
-      "locationSet": {"include": ["id"]},
+      "displayName": "Plus Pack",
+      "id": "pluspack-374e6c",
+      "locationSet": {
+        "include": ["dk-83.geojson"]
+      },
       "tags": {
-        "operator": "PLN",
-        "operator:wikidata": "Q4201636",
+        "operator": "Plus Pack",
         "power": "generator"
       }
     },
@@ -6406,7 +7000,11 @@
       "displayName": "PNE",
       "id": "pne-b8ae25",
       "locationSet": {"include": ["de"]},
-      "matchNames": ["pne power generation gmbh"],
+      "matchNames": [
+        "pne ag",
+        "pne power generation gmbh",
+        "wkn windkraft nord gmbh"
+      ],
       "tags": {
         "operator": "PNE",
         "operator:wikidata": "Q1649779",
@@ -6442,6 +7040,7 @@
       "displayName": "Polenergia Farma Wiatrowa Mycielin Sp. z o.o.",
       "id": "polenergiafarmawiatrowamycielinspzoo-c79aa4",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-08",
       "tags": {
         "operator": "Polenergia Farma Wiatrowa Mycielin Sp. z o.o.",
         "power": "generator"
@@ -6458,16 +7057,6 @@
       },
       "tags": {
         "operator": "Powell Valley Electric Cooperative",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Poweo",
-      "id": "poweo-ef21ea",
-      "locationSet": {"include": ["be", "fx"]},
-      "tags": {
-        "operator": "Poweo",
-        "operator:wikidata": "Q3400834",
         "power": "generator"
       }
     },
@@ -6523,8 +7112,10 @@
     },
     {
       "displayName": "Proyectos Eólicos Aragoneses, S.L.",
-      "id": "proyectoseolicosaragonesessl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "proyectoseolicosaragonesessl-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Proyectos Eólicos Aragoneses, S.L.",
         "power": "generator"
@@ -6587,6 +7178,17 @@
       }
     },
     {
+      "displayName": "Quitman II Solar",
+      "id": "quitmaniisolar-42ce66",
+      "locationSet": {
+        "include": ["us-ga.geojson"]
+      },
+      "tags": {
+        "operator": "Quitman II Solar",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Rabbalshede Kraft AB",
       "id": "rabbalshedekraftab-ec34a3",
       "locationSet": {"include": ["se"]},
@@ -6616,8 +7218,10 @@
     },
     {
       "displayName": "Rattlesnake Flats",
-      "id": "rattlesnakeflats-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "rattlesnakeflats-58ce0f",
+      "locationSet": {
+        "include": ["us-wa.geojson"]
+      },
       "matchNames": ["rattlesnake flats llc"],
       "tags": {
         "operator": "Rattlesnake Flats",
@@ -6662,6 +7266,17 @@
       }
     },
     {
+      "displayName": "REHEnergie GbR Marc Hoffmann",
+      "id": "rehenergiegbrmarchoffmann-64ea79",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "tags": {
+        "operator": "REHEnergie GbR Marc Hoffmann",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Reirk Energy Ltd",
       "id": "reirkenergyltd-1f8ba0",
       "locationSet": {"include": ["ie"]},
@@ -6672,13 +7287,26 @@
     },
     {
       "displayName": "Reloj del Sol Wind Farm",
-      "id": "relojdelsolwindfarm-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "relojdelsolwindfarm-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "matchNames": [
         "reloj del sol wind farm, llc"
       ],
       "tags": {
         "operator": "Reloj del Sol Wind Farm",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Renantis",
+      "id": "renantis-ae4916",
+      "locationSet": {"include": ["fx", "gb"]},
+      "matchNames": ["falck renewables"],
+      "tags": {
+        "operator": "Renantis",
+        "operator:wikidata": "Q5431701",
         "power": "generator"
       }
     },
@@ -6698,8 +7326,15 @@
     },
     {
       "displayName": "Repower AG",
-      "id": "repowerag-b18b84",
-      "locationSet": {"include": ["ch"]},
+      "id": "repowerag-e3662a",
+      "locationSet": {
+        "include": [
+          "ch-gr.geojson",
+          "ch-sg.geojson",
+          "de-bb.geojson",
+          "de-st.geojson"
+        ]
+      },
       "tags": {
         "operator": "Repower AG",
         "operator:wikidata": "Q674712",
@@ -6717,8 +7352,10 @@
     },
     {
       "displayName": "RES Australia",
-      "id": "resaustralia-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "resaustralia-7a5436",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "operator": "RES Australia",
         "operator:wikidata": "Q7313077",
@@ -6747,19 +7384,25 @@
       }
     },
     {
-      "displayName": "Ridgeline Energy",
-      "id": "ridgelineenergy-19ecba",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Ridgewind Power Partners LLC",
+      "id": "ridgewindpowerpartnersllc-28ac1c",
+      "locationSet": {
+        "include": ["us-mn.geojson"]
+      },
       "tags": {
-        "operator": "Ridgeline Energy",
+        "operator": "Ridgewind Power Partners LLC",
         "power": "generator"
       }
     },
     {
       "displayName": "Rio Tinto Alcan",
-      "id": "riotintoalcan-0a4f45",
+      "id": "riotintoalcan-2e2ed1",
       "locationSet": {
-        "include": ["au", "ca-qc.geojson", "gb"]
+        "include": [
+          "au-qld.geojson",
+          "ca-qc.geojson",
+          "gb-sct"
+        ]
       },
       "matchNames": ["alcan"],
       "tags": {
@@ -6806,8 +7449,10 @@
     },
     {
       "displayName": "Rolla Municipal Utilities",
-      "id": "rollamunicipalutilities-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "rollamunicipalutilities-cf12d9",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
       "tags": {
         "operator": "Rolla Municipal Utilities",
         "power": "generator"
@@ -6844,11 +7489,13 @@
       }
     },
     {
-      "displayName": "RWE Generation SE",
-      "id": "rwegenerationse-b8ae25",
+      "displayName": "RWE Generation",
+      "id": "rwegeneration-b8ae25",
       "locationSet": {"include": ["de"]},
+      "matchNames": ["rwe generation se"],
       "tags": {
-        "operator": "RWE Generation SE",
+        "operator": "RWE Generation",
+        "operator:wikidata": "Q2796148",
         "power": "generator"
       }
     },
@@ -6945,8 +7592,13 @@
     },
     {
       "displayName": "Salzburg AG",
-      "id": "salzburgag-7d0c03",
-      "locationSet": {"include": ["at"]},
+      "id": "salzburgag-295d00",
+      "locationSet": {
+        "include": [
+          "at-4.geojson",
+          "at-5.geojson"
+        ]
+      },
       "tags": {
         "operator": "Salzburg AG",
         "operator:wikidata": "Q2215905",
@@ -6974,8 +7626,10 @@
     },
     {
       "displayName": "San Juan de Bargas Eólica, S.L.",
-      "id": "sanjuandebargaseolicasl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "sanjuandebargaseolicasl-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "San Juan de Bargas Eólica, S.L.",
         "power": "generator"
@@ -7019,8 +7673,10 @@
     },
     {
       "displayName": "Sapphire Wind Farm",
-      "id": "sapphirewindfarm-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "sapphirewindfarm-4d20e6",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
       "tags": {
         "operator": "Sapphire Wind Farm",
         "power": "generator"
@@ -7043,6 +7699,17 @@
       }
     },
     {
+      "displayName": "Saudi Electricity Company",
+      "id": "saudielectricitycompany-ab52f6",
+      "locationSet": {"include": ["sa"]},
+      "matchNames": ["saudi electricity"],
+      "tags": {
+        "operator": "Saudi Electricity Company",
+        "operator:wikidata": "Q12188903",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "SB Solarpark Borkum GmbH & Co. KG",
       "id": "sbsolarparkborkumgmbhandcokg-b8ae25",
       "locationSet": {"include": ["de"]},
@@ -7057,6 +7724,17 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "operator": "SCA Energy AB",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Schwarzkopf & Henkel Production Europe",
+      "id": "schwarzkopfandhenkelproductioneurope-64ea79",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "tags": {
+        "operator": "Schwarzkopf & Henkel Production Europe",
         "power": "generator"
       }
     },
@@ -7159,20 +7837,27 @@
       }
     },
     {
-      "displayName": "Sierra de Selva, S.L.",
-      "id": "sierradeselvasl-ae5946",
-      "locationSet": {"include": ["es"]},
+      "displayName": "Siemens Gamesa",
+      "id": "siemensgamesa-8b20a8",
+      "locationSet": {"include": ["es", "fx"]},
+      "matchNames": ["gamesa"],
       "tags": {
-        "operator": "Sierra de Selva, S.L.",
+        "operator": "Siemens Gamesa",
+        "operator:wikidata": "Q1493131",
         "power": "generator"
       }
     },
     {
-      "displayName": "Silicon Ranch",
-      "id": "siliconranch-19ecba",
-      "locationSet": {"include": ["us"]},
+      "displayName": "Sierra de Selva, S.L.",
+      "id": "sierradeselvasl-823f27",
+      "locationSet": {
+        "include": [
+          "es-na.geojson",
+          "es-z.geojson"
+        ]
+      },
       "tags": {
-        "operator": "Silicon Ranch",
+        "operator": "Sierra de Selva, S.L.",
         "power": "generator"
       }
     },
@@ -7196,8 +7881,10 @@
     },
     {
       "displayName": "Sistemas Energ/Forgoselo",
-      "id": "sistemasenergforgoselo-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "sistemasenergforgoselo-9f2825",
+      "locationSet": {
+        "include": ["es-c.geojson"]
+      },
       "tags": {
         "operator": "Sistemas Energ/Forgoselo",
         "power": "generator"
@@ -7205,8 +7892,10 @@
     },
     {
       "displayName": "Sistemas Energeticos Alhama-Linares",
-      "id": "sistemasenergeticosalhamalinares-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "sistemasenergeticosalhamalinares-960ded",
+      "locationSet": {
+        "include": ["es-lo.geojson"]
+      },
       "tags": {
         "operator": "Sistemas Energeticos Alhama-Linares",
         "power": "generator"
@@ -7214,8 +7903,10 @@
     },
     {
       "displayName": "Sistemas Energéticos Campoliva SAU - ENEL",
-      "id": "sistemasenergeticoscampolivasauenel-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "sistemasenergeticoscampolivasauenel-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Sistemas Energéticos Campoliva SAU - ENEL",
         "power": "generator"
@@ -7223,8 +7914,13 @@
     },
     {
       "displayName": "Sistemas Energéticos del Mocayo - Grupo Enhol",
-      "id": "sistemasenergeticosdelmocayogrupoenhol-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "sistemasenergeticosdelmocayogrupoenhol-b93082",
+      "locationSet": {
+        "include": [
+          "es-so.geojson",
+          "es-z.geojson"
+        ]
+      },
       "tags": {
         "operator": "Sistemas Energéticos del Mocayo - Grupo Enhol",
         "power": "generator"
@@ -7232,8 +7928,10 @@
     },
     {
       "displayName": "Sistemas Energéticos La Muela, S.A.",
-      "id": "sistemasenergeticoslamuelasa-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "sistemasenergeticoslamuelasa-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Sistemas Energéticos La Muela, S.A.",
         "power": "generator"
@@ -7241,8 +7939,10 @@
     },
     {
       "displayName": "Sistemas Energéticos Sierra del Carazo, SL - ENEL",
-      "id": "sistemasenergeticossierradelcarazoslenel-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "sistemasenergeticossierradelcarazoslenel-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Sistemas Energéticos Sierra del Carazo, SL - ENEL",
         "power": "generator"
@@ -7254,6 +7954,20 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "operator": "Sjisjka Vind AB",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "SK Wind GmbH & Co. KG",
+      "id": "skwindgmbhandcokg-618996",
+      "locationSet": {
+        "include": [
+          "de-rp.geojson",
+          "de-st.geojson"
+        ]
+      },
+      "tags": {
+        "operator": "SK Wind GmbH & Co. KG",
         "power": "generator"
       }
     },
@@ -7310,6 +8024,7 @@
       "matchNames": ["sl naturenergie gmbh"],
       "tags": {
         "operator": "SL NaturEnergie",
+        "operator:wikidata": "Q130604849",
         "power": "generator"
       }
     },
@@ -7402,6 +8117,17 @@
       }
     },
     {
+      "displayName": "Solarpark an der Elbe Pirna Betriebs GmbH",
+      "id": "solarparkanderelbepirnabetriebsgmbh-1f61f0",
+      "locationSet": {
+        "include": ["de-sn.geojson"]
+      },
+      "tags": {
+        "operator": "Solarpark an der Elbe Pirna Betriebs GmbH",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "SOLARWATT",
       "id": "solarwatt-b8ae25",
       "locationSet": {"include": ["de"]},
@@ -7443,8 +8169,10 @@
     },
     {
       "displayName": "South Texas Electric Cooperative",
-      "id": "southtexaselectriccooperative-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "southtexaselectriccooperative-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "South Texas Electric Cooperative",
         "operator:wikidata": "Q130232505",
@@ -7474,10 +8202,25 @@
     },
     {
       "displayName": "SPE",
-      "id": "spe-a327c1",
-      "locationSet": {"include": ["be"]},
+      "id": "spe-99a88c",
+      "locationSet": {
+        "include": ["be-wlg.geojson"]
+      },
       "tags": {
         "operator": "SPE",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Squadron Energy",
+      "id": "squadronenergy-4d20e6",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "matchNames": ["cwp renewables"],
+      "tags": {
+        "operator": "Squadron Energy",
+        "operator:wikidata": "Q131707930",
         "power": "generator"
       }
     },
@@ -7522,21 +8265,25 @@
     },
     {
       "displayName": "Stadt Karlsruhe",
-      "id": "stadtkarlsruhe-b8ae25",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "Stadt Karlsruhe",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Stadtwerke Karlsruhe GmbH",
-      "id": "stadtwerkekarlsruhegmbh-235ee2",
+      "id": "stadtkarlsruhe-235ee2",
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
       "tags": {
-        "operator": "Stadtwerke Karlsruhe GmbH",
+        "operator": "Stadt Karlsruhe",
+        "operator:wikidata": "Q1040",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Stadtwerke Karlsruhe",
+      "id": "stadtwerkekarlsruhe-235ee2",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
+      "matchNames": ["stadtwerke karlsruhe gmbh"],
+      "tags": {
+        "operator": "Stadtwerke Karlsruhe",
         "operator:wikidata": "Q2328532",
         "power": "generator"
       }
@@ -7587,6 +8334,7 @@
       },
       "tags": {
         "operator": "Stadtwerke Pfarrkirchen",
+        "operator:wikidata": "Q130604871",
         "power": "generator"
       }
     },
@@ -7605,13 +8353,17 @@
       }
     },
     {
-      "displayName": "Stadtwerke Walldorf GmbH & Co. KG",
-      "id": "stadtwerkewalldorfgmbhandcokg-235ee2",
+      "displayName": "Stadtwerke Walldorf",
+      "id": "stadtwerkewalldorf-235ee2",
       "locationSet": {
         "include": ["de-bw.geojson"]
       },
+      "matchNames": [
+        "stadtwerke walldorf gmbh & co. kg"
+      ],
       "tags": {
-        "operator": "Stadtwerke Walldorf GmbH & Co. KG",
+        "operator": "Stadtwerke Walldorf",
+        "operator:wikidata": "Q130605046",
         "power": "generator"
       }
     },
@@ -7700,8 +8452,10 @@
     },
     {
       "displayName": "Stephentown Spindle",
-      "id": "stephentownspindle-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "stephentownspindle-48f92d",
+      "locationSet": {
+        "include": ["us-ny.geojson"]
+      },
       "tags": {
         "operator": "Stephentown Spindle",
         "power": "generator"
@@ -7720,8 +8474,10 @@
     },
     {
       "displayName": "Stockyard Hill Wind Farm",
-      "id": "stockyardhillwindfarm-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "stockyardhillwindfarm-7a5436",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "operator": "Stockyard Hill Wind Farm",
         "power": "generator"
@@ -7917,8 +8673,10 @@
     },
     {
       "displayName": "Tannery Marketplace",
-      "id": "tannerymarketplace-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "tannerymarketplace-c012c2",
+      "locationSet": {
+        "include": ["us-ma.geojson"]
+      },
       "tags": {
         "operator": "Tannery Marketplace",
         "power": "generator"
@@ -7937,6 +8695,7 @@
       "displayName": "Target Corporation",
       "id": "targetcorporation-19ecba",
       "locationSet": {"include": ["us"]},
+      "matchNames": ["target"],
       "tags": {
         "operator": "Target Corporation",
         "operator:wikidata": "Q1046951",
@@ -7954,9 +8713,20 @@
       }
     },
     {
+      "displayName": "TECNEIRA",
+      "id": "tecneira-60269d",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "operator": "TECNEIRA",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Técnicas",
-      "id": "tecnicas-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "tecnicas-9f2825",
+      "locationSet": {
+        "include": ["es-c.geojson"]
+      },
       "tags": {
         "operator": "Técnicas",
         "power": "generator"
@@ -7993,9 +8763,24 @@
       }
     },
     {
+      "displayName": "Teplárny Brno",
+      "id": "teplarnybrno-8a8a65",
+      "locationSet": {
+        "include": ["cz-64.geojson"]
+      },
+      "tags": {
+        "operator": "Teplárny Brno",
+        "operator:wikidata": "Q54980987",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Terna Energy",
-      "id": "ternaenergy-74685d",
-      "locationSet": {"include": ["001"]},
+      "id": "ternaenergy-35952f",
+      "locationSet": {
+        "include": ["150", "us"],
+        "exclude": ["fr-20r.geojson", "it"]
+      },
       "tags": {
         "operator": "Terna Energy",
         "operator:wikidata": "Q21810652",
@@ -8012,6 +8797,16 @@
       }
     },
     {
+      "displayName": "Tesla",
+      "id": "tesla-7b0614",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "operator": "Tesla",
+        "operator:wikidata": "Q478214",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "TGC Renewables",
       "id": "tgcrenewables-9ac094",
       "locationSet": {"include": ["gb"]},
@@ -8022,8 +8817,10 @@
     },
     {
       "displayName": "Third Planet Windpower",
-      "id": "thirdplanetwindpower-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "thirdplanetwindpower-546c7b",
+      "locationSet": {
+        "include": ["us-tx.geojson"]
+      },
       "tags": {
         "operator": "Third Planet Windpower",
         "power": "generator"
@@ -8091,6 +8888,19 @@
       "locationSet": {"include": ["se"]},
       "tags": {
         "operator": "Tormoseröd Vindpark AB",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "TotalEnergies Électricité et Gaz France",
+      "id": "totalenergieselectriciteetgazfrance-54c2ea",
+      "locationSet": {
+        "include": ["fr-naq.geojson"]
+      },
+      "matchNames": ["poweo"],
+      "tags": {
+        "operator": "TotalEnergies Électricité et Gaz France",
+        "operator:wikidata": "Q3029396",
         "power": "generator"
       }
     },
@@ -8177,6 +8987,17 @@
       }
     },
     {
+      "displayName": "True North Datacenters",
+      "id": "truenorthdatacenters-4ed0ab",
+      "locationSet": {
+        "include": ["us-va.geojson"]
+      },
+      "tags": {
+        "operator": "True North Datacenters",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Trustpower",
       "id": "trustpower-239f09",
       "locationSet": {"include": ["au", "nz"]},
@@ -8188,8 +9009,10 @@
     },
     {
       "displayName": "TrustWind",
-      "id": "trustwind-60269d",
-      "locationSet": {"include": ["pt"]},
+      "id": "trustwind-bf02f3",
+      "locationSet": {
+        "include": ["pt-02.geojson"]
+      },
       "tags": {
         "operator": "TrustWind",
         "power": "generator"
@@ -8224,8 +9047,10 @@
     },
     {
       "displayName": "Two Dot Wind",
-      "id": "twodotwind-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "twodotwind-db2de1",
+      "locationSet": {
+        "include": ["us-mt.geojson"]
+      },
       "matchNames": ["two dot wind llc"],
       "tags": {
         "operator": "Two Dot Wind",
@@ -8243,8 +9068,10 @@
     },
     {
       "displayName": "UEM",
-      "id": "uem-33d749",
-      "locationSet": {"include": ["fx"]},
+      "id": "uem-5a7af0",
+      "locationSet": {
+        "include": ["fr-ges.geojson"]
+      },
       "tags": {
         "operator": "UEM",
         "operator:wikidata": "Q3552642",
@@ -8261,11 +9088,30 @@
       }
     },
     {
+      "displayName": "Uhl Windkraft",
+      "id": "uhlwindkraft-74685d",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "operator": "Uhl Windkraft",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Uhl Windkraft Projektierung GmbH & Co. KG",
       "id": "uhlwindkraftprojektierunggmbhandcokg-b8ae25",
       "locationSet": {"include": ["de"]},
       "tags": {
         "operator": "Uhl Windkraft Projektierung GmbH & Co. KG",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "UKA",
+      "id": "uka-b8ae25",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "operator": "UKA",
+        "operator:wikidata": "Q113465145",
         "power": "generator"
       }
     },
@@ -8308,6 +9154,18 @@
       "locationSet": {"include": ["tr"]},
       "tags": {
         "operator": "Universal Wind Enerji Elektrik Üretim A.Ş.",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "UrbaSolar",
+      "id": "urbasolar-170e40",
+      "locationSet": {
+        "include": ["fr-ara.geojson"]
+      },
+      "tags": {
+        "operator": "UrbaSolar",
+        "operator:wikidata": "Q59148098",
         "power": "generator"
       }
     },
@@ -8476,8 +9334,13 @@
     },
     {
       "displayName": "Ventis",
-      "id": "ventis-a327c1",
-      "locationSet": {"include": ["be"]},
+      "id": "ventis-1db5b4",
+      "locationSet": {
+        "include": [
+          "be-wbr.geojson",
+          "be-wht.geojson"
+        ]
+      },
       "tags": {
         "operator": "Ventis",
         "power": "generator"
@@ -8567,6 +9430,16 @@
       }
     },
     {
+      "displayName": "Verso Energy",
+      "id": "versoenergy-33d749",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "operator": "Verso Energy",
+        "operator:wikidata": "Q131888908",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Vestas",
       "id": "vestas-74685d",
       "locationSet": {"include": ["001"]},
@@ -8578,10 +9451,13 @@
     },
     {
       "displayName": "Viesgo Renovables, S.L.U.",
-      "id": "viesgorenovablesslu-ae5946",
-      "locationSet": {"include": ["es"]},
+      "id": "viesgorenovablesslu-4d4c0b",
+      "locationSet": {
+        "include": ["es-z.geojson"]
+      },
       "tags": {
         "operator": "Viesgo Renovables, S.L.U.",
+        "operator:wikidata": "Q113464319",
         "power": "generator"
       }
     },
@@ -8649,8 +9525,10 @@
     },
     {
       "displayName": "VLEEMO",
-      "id": "vleemo-a327c1",
-      "locationSet": {"include": ["be"]},
+      "id": "vleemo-c18ce0",
+      "locationSet": {
+        "include": ["be-van.geojson"]
+      },
       "tags": {
         "operator": "VLEEMO",
         "power": "generator"
@@ -8727,11 +9605,31 @@
       }
     },
     {
+      "displayName": "VSB Uusiutuva Energia Suomi Oy",
+      "id": "vsbuusiutuvaenergiasuomioy-ae9fa2",
+      "locationSet": {"include": ["fi"]},
+      "tags": {
+        "operator": "VSB Uusiutuva Energia Suomi Oy",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "W Power GmbH",
       "id": "wpowergmbh-b8ae25",
       "locationSet": {"include": ["de"]},
       "tags": {
         "operator": "W Power GmbH",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Wallenborn Windpark Waltersdorf I GmbH & Co. KG (orig. registr.)",
+      "id": "wallenbornwindparkwaltersdorfigmbhandcokgorigregistr-036845",
+      "locationSet": {
+        "include": ["de-th.geojson"]
+      },
+      "tags": {
+        "operator": "Wallenborn Windpark Waltersdorf I GmbH & Co. KG (orig. registr.)",
         "power": "generator"
       }
     },
@@ -8748,6 +9646,7 @@
       "displayName": "wdp",
       "id": "wdp-c79aa4",
       "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-30",
       "tags": {
         "operator": "wdp",
         "power": "generator"
@@ -8755,8 +9654,14 @@
     },
     {
       "displayName": "WEB Windenergie AG",
-      "id": "webwindenergieag-7d0c03",
-      "locationSet": {"include": ["at"]},
+      "id": "webwindenergieag-47fbc0",
+      "locationSet": {
+        "include": [
+          "at-1.geojson",
+          "at-3.geojson",
+          "at-9.geojson"
+        ]
+      },
       "tags": {
         "operator": "WEB Windenergie AG",
         "operator:wikidata": "Q2537048",
@@ -8813,6 +9718,7 @@
       ],
       "tags": {
         "operator": "WestWind Energy",
+        "operator:wikidata": "Q85848006",
         "power": "generator"
       }
     },
@@ -8878,8 +9784,10 @@
     },
     {
       "displayName": "Wind Field Korytnica Sp. z o.o.",
-      "id": "windfieldkorytnicaspzoo-c79aa4",
-      "locationSet": {"include": ["pl"]},
+      "id": "windfieldkorytnicaspzoo-130362",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
       "tags": {
         "operator": "Wind Field Korytnica Sp. z o.o.",
         "power": "generator"
@@ -8914,9 +9822,9 @@
     },
     {
       "displayName": "Windkraft Simonsfeld",
-      "id": "windkraftsimonsfeld-aab0d8",
+      "id": "windkraftsimonsfeld-4f665e",
       "locationSet": {
-        "include": ["at", "bg", "sk"]
+        "include": ["at-3.geojson", "bg", "sk"]
       },
       "tags": {
         "operator": "Windkraft Simonsfeld",
@@ -8926,10 +9834,23 @@
     },
     {
       "displayName": "Windlab",
-      "id": "windlab-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "windlab-7a5436",
+      "locationSet": {
+        "include": ["au-vic.geojson"]
+      },
       "tags": {
         "operator": "Windlab",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Windmüllerei",
+      "id": "windmullerei-1492dd",
+      "locationSet": {
+        "include": ["de-bb.geojson"]
+      },
+      "tags": {
+        "operator": "Windmüllerei",
         "power": "generator"
       }
     },
@@ -8941,6 +9862,17 @@
       "tags": {
         "operator": "WindMW",
         "operator:wikidata": "Q113465077",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Windpark Biere II GmbH & Co. KG Renditefonds",
+      "id": "windparkbiereiigmbhandcokgrenditefonds-434a70",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
+      "tags": {
+        "operator": "Windpark Biere II GmbH & Co. KG Renditefonds",
         "power": "generator"
       }
     },
@@ -8959,6 +9891,17 @@
       "locationSet": {"include": ["de"]},
       "tags": {
         "operator": "Windpark Golzow",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "Windpark Großvargula GmbH & Co. KG",
+      "id": "windparkgrossvargulagmbhandcokg-036845",
+      "locationSet": {
+        "include": ["de-th.geojson"]
+      },
+      "tags": {
+        "operator": "Windpark Großvargula GmbH & Co. KG",
         "power": "generator"
       }
     },
@@ -9053,6 +9996,17 @@
       }
     },
     {
+      "displayName": "Windpark Obhausen/Nemsdorf GmbH & Co. KG",
+      "id": "windparkobhausennemsdorfgmbhandcokg-434a70",
+      "locationSet": {
+        "include": ["de-st.geojson"]
+      },
+      "tags": {
+        "operator": "Windpark Obhausen/Nemsdorf GmbH & Co. KG",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Windpark Rethwisch GmbH",
       "id": "windparkrethwischgmbh-b8ae25",
       "locationSet": {"include": ["de"]},
@@ -9067,33 +10021,6 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "operator": "Windpark Vermeer BV (Eurus Energy)",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Windwärts",
-      "id": "windwarts-b8ae25",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "Windwärts",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Windwärts Energie GmbH",
-      "id": "windwartsenergiegmbh-b8ae25",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "Windwärts Energie GmbH",
-        "power": "generator"
-      }
-    },
-    {
-      "displayName": "Windwärts GmbH",
-      "id": "windwartsgmbh-b8ae25",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "Windwärts GmbH",
         "power": "generator"
       }
     },
@@ -9126,8 +10053,10 @@
     },
     {
       "displayName": "Wirtgen Invest Energy GmbH",
-      "id": "wirtgeninvestenergygmbh-c79aa4",
-      "locationSet": {"include": ["pl"]},
+      "id": "wirtgeninvestenergygmbh-8c28b7",
+      "locationSet": {
+        "include": ["pl-32.geojson"]
+      },
       "tags": {
         "operator": "Wirtgen Invest Energy GmbH",
         "power": "generator"
@@ -9157,15 +10086,6 @@
       }
     },
     {
-      "displayName": "WKN Windkraft Nord GmbH",
-      "id": "wknwindkraftnordgmbh-b8ae25",
-      "locationSet": {"include": ["de"]},
-      "tags": {
-        "operator": "WKN Windkraft Nord GmbH",
-        "power": "generator"
-      }
-    },
-    {
       "displayName": "Wohnbau Gießen",
       "id": "wohnbaugiessen-b8ae25",
       "locationSet": {"include": ["de"]},
@@ -9176,8 +10096,10 @@
     },
     {
       "displayName": "Woolooga Solar Farm",
-      "id": "wooloogasolarfarm-08761e",
-      "locationSet": {"include": ["au"]},
+      "id": "wooloogasolarfarm-fc806b",
+      "locationSet": {
+        "include": ["au-qld.geojson"]
+      },
       "tags": {
         "operator": "Woolooga Solar Farm",
         "power": "generator"
@@ -9233,6 +10155,18 @@
       }
     },
     {
+      "displayName": "xAI",
+      "id": "xai-625f48",
+      "locationSet": {
+        "include": ["us-tn.geojson"]
+      },
+      "tags": {
+        "operator": "xAI",
+        "operator:wikidata": "Q120599684",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "Xcel Energy",
       "id": "xcelenergy-19ecba",
       "locationSet": {"include": ["us"]},
@@ -9244,8 +10178,10 @@
     },
     {
       "displayName": "Yale University",
-      "id": "yaleuniversity-19ecba",
-      "locationSet": {"include": ["us"]},
+      "id": "yaleuniversity-866ce7",
+      "locationSet": {
+        "include": ["us-ct.geojson"]
+      },
       "tags": {
         "operator": "Yale University",
         "operator:wikidata": "Q49112",
@@ -9283,8 +10219,8 @@
     },
     {
       "displayName": "Zeeuwind",
-      "id": "zeeuwind-a327c1",
-      "locationSet": {"include": ["be"]},
+      "id": "zeeuwind-7c4044",
+      "locationSet": {"include": ["nl"]},
       "tags": {
         "operator": "Zeeuwind",
         "power": "generator"
@@ -9336,6 +10272,7 @@
       "displayName": "АО \"НоваВинд\"",
       "id": "0e380e-a02620",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-AD, RU-STA",
       "tags": {
         "operator": "АО \"НоваВинд\"",
         "power": "generator"
@@ -9372,6 +10309,7 @@
       "displayName": "ООО \"СЕДЬМОЙ ВЕТРОПАРК ФРВ\"",
       "id": "56cac1-a02620",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ROS",
       "tags": {
         "operator": "ООО \"СЕДЬМОЙ ВЕТРОПАРК ФРВ\"",
         "power": "generator"
@@ -9381,6 +10319,7 @@
       "displayName": "ООО \"ТРЕТИЙ ВЕТРОПАРК ФРВ\"",
       "id": "ecc548-a02620",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ROS",
       "tags": {
         "operator": "ООО \"ТРЕТИЙ ВЕТРОПАРК ФРВ\"",
         "power": "generator"
@@ -9390,6 +10329,7 @@
       "displayName": "ООО «Альтрэн»",
       "id": "9f88f8-a02620",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-ULY",
       "tags": {
         "operator": "ООО «Альтрэн»",
         "power": "generator"
@@ -9397,8 +10337,10 @@
     },
     {
       "displayName": "ООО «Петербургтеплоэнерго»",
-      "id": "b9d3d1-a02620",
-      "locationSet": {"include": ["ru"]},
+      "id": "b9d3d1-43175b",
+      "locationSet": {
+        "include": ["ru-spe.geojson"]
+      },
       "tags": {
         "operator": "ООО «Петербургтеплоэнерго»",
         "power": "generator"
@@ -9408,17 +10350,46 @@
       "displayName": "ПАО \"Мосэнерго\"",
       "id": "19460e-a02620",
       "locationSet": {"include": ["ru"]},
+      "note": "ISO 3166-2 RU-MOW",
       "tags": {
         "operator": "ПАО \"Мосэнерго\"",
+        "operator:wikidata": "Q1477022",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "ЭЛ5-Энерго",
+      "id": "0e1baa-a02620",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "operator": "ЭЛ5-Энерго",
+        "operator:wikidata": "Q835518",
         "power": "generator"
       }
     },
     {
       "displayName": "الشركة التونسية للكهرباء والغاز",
-      "id": "763bc8-8ba78f",
+      "id": "tunisiancompanyofelectricityandgas-8ba78f",
       "locationSet": {"include": ["tn"]},
       "tags": {
         "operator": "الشركة التونسية للكهرباء والغاز",
+        "operator:ar": "الشركة التونسية للكهرباء والغاز",
+        "operator:en": "Tunisian Company of Electricity and Gas",
+        "operator:wikidata": "Q3488699",
+        "power": "generator"
+      }
+    },
+    {
+      "displayName": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",
+      "id": "electricitygeneratingauthorityofthailand-4362ae",
+      "locationSet": {"include": ["th"]},
+      "matchNames": ["egat"],
+      "tags": {
+        "operator": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",
+        "operator:en": "Electricity Generating Authority of Thailand",
+        "operator:short": "กฟผ.",
+        "operator:th": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",
+        "operator:wikidata": "Q3050569",
         "power": "generator"
       }
     },
@@ -9584,11 +10555,14 @@
     },
     {
       "displayName": "한국전력공사",
-      "id": "3c9891-9277d2",
+      "id": "koreaelectricpowercorporation-9277d2",
       "locationSet": {"include": ["kr"]},
       "tags": {
         "operator": "한국전력공사",
+        "operator:en": "Korea Electric Power Corporation",
         "operator:ko": "한국전력공사",
+        "operator:short": "KEPCO",
+        "operator:wikidata": "Q486737",
         "power": "generator"
       }
     },
@@ -9634,8 +10608,10 @@
     },
     {
       "displayName": "グリーンパワーインベストメント",
-      "id": "greenpowerinvestment-11cc64",
-      "locationSet": {"include": ["jp"]},
+      "id": "greenpowerinvestment-78f3dc",
+      "locationSet": {
+        "include": ["jp-39.geojson"]
+      },
       "tags": {
         "operator": "グリーンパワーインベストメント",
         "operator:en": "Green Power Investment",
@@ -9646,8 +10622,14 @@
     },
     {
       "displayName": "コスモエコパワー株式会社",
-      "id": "cosmoecopowercoltd-11cc64",
-      "locationSet": {"include": ["jp"]},
+      "id": "cosmoecopowercoltd-99a46c",
+      "locationSet": {
+        "include": [
+          "jp-07.geojson",
+          "jp-08.geojson",
+          "jp-12.geojson"
+        ]
+      },
       "matchNames": ["エコ・パワー株式会社"],
       "tags": {
         "operator": "コスモエコパワー株式会社",
@@ -9679,6 +10661,7 @@
       "displayName": "中国华能-江华新能",
       "id": "0472d7-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "中国华能-江华新能",
         "power": "generator"
@@ -9754,6 +10737,7 @@
       "displayName": "中国能建-江永新能",
       "id": "997ca8-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "中国能建-江永新能",
         "power": "generator"
@@ -9768,6 +10752,7 @@
         "operator:en": "China Energy Conservation And Environmental Protection Group",
         "operator:short": "中国节能",
         "operator:short:en": "CECEP",
+        "operator:short:zh": "中国节能",
         "operator:wikidata": "Q5099674",
         "operator:zh": "中国节能环保集团",
         "power": "generator"
@@ -9778,7 +10763,7 @@
       "id": "chugokuelectricpowercompany-11cc64",
       "locationSet": {"include": ["jp"]},
       "matchNames": ["中国電力株式会社"],
-      "note": "This 中国 don't means China",
+      "note": "This 中国 doesn't mean China",
       "tags": {
         "operator": "中国電力",
         "operator:en": "Chugoku Electric Power Company",
@@ -9802,6 +10787,19 @@
       }
     },
     {
+      "displayName": "串間ウインドヒル株式会社",
+      "id": "kushimawindhillcompany-5c52b5",
+      "locationSet": {
+        "include": ["jp-45.geojson"]
+      },
+      "tags": {
+        "operator": "串間ウインドヒル株式会社",
+        "operator:en": "Kushima Windhill Company",
+        "operator:ja": "串間ウインドヒル株式会社",
+        "power": "generator"
+      }
+    },
+    {
       "displayName": "九州電力",
       "id": "kyushuelectricpowercompany-11cc64",
       "locationSet": {"include": ["jp"]},
@@ -9817,8 +10815,13 @@
     },
     {
       "displayName": "北海道電力",
-      "id": "hokkaidoelectricpowercompany-11cc64",
-      "locationSet": {"include": ["jp"]},
+      "id": "hokkaidoelectricpowercompany-513b98",
+      "locationSet": {
+        "include": [
+          "jp-01.geojson",
+          "jp-02.geojson"
+        ]
+      },
       "matchNames": ["北海道電力株式会社"],
       "tags": {
         "operator": "北海道電力",
@@ -9831,8 +10834,14 @@
     },
     {
       "displayName": "北陸電力",
-      "id": "hokurikuelectricpowercompany-11cc64",
-      "locationSet": {"include": ["jp"]},
+      "id": "hokurikuelectricpowercompany-db53ea",
+      "locationSet": {
+        "include": [
+          "jp-16.geojson",
+          "jp-17.geojson",
+          "jp-18.geojson"
+        ]
+      },
       "matchNames": ["北陸電力株式会社"],
       "tags": {
         "operator": "北陸電力",
@@ -9845,8 +10854,8 @@
     },
     {
       "displayName": "华润电力控股",
-      "id": "chinaresourcespower-413242",
-      "locationSet": {"include": ["cn", "hk"]},
+      "id": "chinaresourcespower-892ef2",
+      "locationSet": {"include": ["cn"]},
       "matchNames": [
         "华润",
         "华润电力",
@@ -9867,6 +10876,7 @@
       "locationSet": {"include": ["cn"]},
       "tags": {
         "operator": "华电国际电力股份有限公司",
+        "operator:wikidata": "Q5925035",
         "power": "generator"
       }
     },
@@ -9874,6 +10884,7 @@
       "displayName": "协和新能",
       "id": "6f6a43-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "协和新能",
         "power": "generator"
@@ -9896,6 +10907,7 @@
       "displayName": "含山龙源梅山风力发电有限公司",
       "id": "d8f023-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-AH",
       "tags": {
         "operator": "含山龙源梅山风力发电有限公司",
         "power": "generator"
@@ -9903,8 +10915,15 @@
     },
     {
       "displayName": "四国電力",
-      "id": "shikokuelectricpowercompany-11cc64",
-      "locationSet": {"include": ["jp"]},
+      "id": "shikokuelectricpowercompany-085b02",
+      "locationSet": {
+        "include": [
+          "jp-36.geojson",
+          "jp-37.geojson",
+          "jp-38.geojson",
+          "jp-39.geojson"
+        ]
+      },
       "matchNames": ["四国電力株式会社"],
       "tags": {
         "operator": "四国電力",
@@ -9919,6 +10938,7 @@
       "displayName": "国华(当涂)新能源有限公司",
       "id": "3d7a51-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-AH",
       "tags": {
         "operator": "国华(当涂)新能源有限公司",
         "power": "generator"
@@ -9940,10 +10960,13 @@
     },
     {
       "displayName": "国家电网",
-      "id": "024934-892ef2",
+      "id": "stategridcorporationofchina-892ef2",
       "locationSet": {"include": ["cn"]},
       "tags": {
         "operator": "国家电网",
+        "operator:en": "State Grid Corporation of China",
+        "operator:wikidata": "Q209078",
+        "operator:zh": "国家电网",
         "power": "generator"
       }
     },
@@ -9966,7 +10989,7 @@
       ],
       "tags": {
         "operator": "国家能源集团",
-        "operator:en": "CHN ENERGY",
+        "operator:en": "CHN Energy",
         "operator:short": "国家能投",
         "operator:wikidata": "Q38180956",
         "operator:zh": "国家能源集团",
@@ -9977,6 +11000,7 @@
       "displayName": "国网湖南-综合能源/中车株机",
       "id": "1d5859-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "国网湖南-综合能源/中车株机",
         "power": "generator"
@@ -9986,8 +11010,10 @@
       "displayName": "广东能源集团",
       "id": "2da729-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-GD",
       "tags": {
         "operator": "广东能源集团",
+        "operator:wikidata": "Q107268866",
         "power": "generator"
       }
     },
@@ -10034,8 +11060,10 @@
     },
     {
       "displayName": "沖縄電力",
-      "id": "okinawaelectricpowercompany-11cc64",
-      "locationSet": {"include": ["jp"]},
+      "id": "okinawaelectricpowercompany-cdf022",
+      "locationSet": {
+        "include": ["jp-47.geojson"]
+      },
       "matchNames": ["沖縄電力株式会社"],
       "tags": {
         "operator": "沖縄電力",
@@ -10050,6 +11078,7 @@
       "displayName": "浙江国资-运达丰合",
       "id": "5ab1e7-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "浙江国资-运达丰合",
         "power": "generator"
@@ -10059,6 +11088,7 @@
       "displayName": "浙江国资-运达丰安",
       "id": "847cc2-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "浙江国资-运达丰安",
         "power": "generator"
@@ -10068,6 +11098,7 @@
       "displayName": "浙江国资-运达丰广",
       "id": "0b43ca-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "浙江国资-运达丰广",
         "power": "generator"
@@ -10077,6 +11108,7 @@
       "displayName": "湘投国际",
       "id": "af6eff-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "湘投国际",
         "power": "generator"
@@ -10086,6 +11118,7 @@
       "displayName": "湘投能源",
       "id": "2278ea-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "湘投能源",
         "power": "generator"
@@ -10095,6 +11128,7 @@
       "displayName": "运达风电",
       "id": "c77307-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-HN",
       "tags": {
         "operator": "运达风电",
         "power": "generator"
@@ -10137,6 +11171,7 @@
       "displayName": "防城港新天绿色能源有限公司",
       "id": "c9b92b-892ef2",
       "locationSet": {"include": ["cn"]},
+      "note": "ISO 3166-2 CN-GX",
       "tags": {
         "operator": "防城港新天绿色能源有限公司",
         "power": "generator"

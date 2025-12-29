@@ -3,27 +3,20 @@
 ### Update version, tag, and publish
 
 ```bash
+# Make sure your main branch is up to date and all tests pass
 git checkout main
 git pull origin
-npm install
-npm run build
-npm run wikidata
-npm run dist      # version number updates automatically and will print to console
+bun install
+bun run all         # fast
+
+# These scripts prepare the files in the dist folder
+bun run wikidata    # slow, about 10 minutes
+bun run dist        # fast, version number updates automatically and will print to console
+
 git add . && git commit -m 'vA.B.C'
 git tag vA.B.C
 git push origin main vA.B.C
-npm publish
-```
+npm login           # npm uses shorter-life tokens now, this may be needed
+bun publish
 
-### Purge JSDelivr CDN cache
-Include any URLs that iD/Rapid/others might request.
-
-```bash
-curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/nsi.min.json'
-curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/dissolved.min.json'
-curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/featureCollection.min.json'
-curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/genericWords.min.json'
-curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/presets/nsi-id-presets.min.json'
-curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/replacements.min.json'
-curl 'https://purge.jsdelivr.net/npm/name-suggestion-index@6.0/dist/trees.min.json'
 ```

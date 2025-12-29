@@ -3,8 +3,8 @@
     "path": "operators/amenity/childcare",
     "exclude": {
       "generic": [
-        "^childcare$",
-        "^daycare$",
+        "^(child|day)care$",
+        "^(council|grama ?panchayath)$",
         "^educational institute$"
       ]
     }
@@ -12,11 +12,14 @@
   "items": [
     {
       "displayName": "Asha Worker",
-      "id": "ashaworker-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "id": "ashaworker-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Asha Worker"
+        "operator": "Asha Worker",
+        "operator:type": "private"
       }
     },
     {
@@ -25,7 +28,8 @@
       "locationSet": {"include": ["fx"]},
       "tags": {
         "amenity": "childcare",
-        "operator": "Babilou"
+        "operator": "Babilou",
+        "operator:type": "private"
       }
     },
     {
@@ -34,52 +38,73 @@
       "locationSet": {"include": ["hu"]},
       "tags": {
         "amenity": "childcare",
-        "operator": "Család- és Gyermekjóléti Központ"
+        "operator": "Család- és Gyermekjóléti Központ",
+        "operator:type": "private"
       }
     },
     {
-      "displayName": "Department of Social Justice",
-      "id": "departmentofsocialjustice-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Denk mit! Kinderbetreuungseinrichtungen",
+      "id": "denkmitkinderbetreuungseinrichtungen-d72f22",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "matchNames": [
+        "denk mit! kinderbetreuungseinrichtungen gmbh & co. kg"
+      ],
       "tags": {
         "amenity": "childcare",
-        "operator": "Department of Social Justice"
+        "operator": "Denk mit! Kinderbetreuungseinrichtungen",
+        "operator:type": "private",
+        "operator:wikidata": "Q130141041"
       }
     },
     {
-      "displayName": "Department Of Women And Child Development",
-      "id": "departmentofwomenandchilddevelopment-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "displayName": "Department of Social Justice (Kerala)",
+      "id": "departmentofsocialjustice-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Department Of Women And Child Development"
+        "operator": "Department of Social Justice",
+        "operator:type": "government"
+      }
+    },
+    {
+      "displayName": "Department of Women and Child Development (Kerala)",
+      "id": "departmentofwomenandchilddevelopment-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
+      "tags": {
+        "amenity": "childcare",
+        "operator": "Department of Women and Child Development",
+        "operator:type": "government"
       }
     },
     {
       "displayName": "Fondation de l'Enfance et de la Jeunesse",
-      "id": "fondationdelenfanceetdelajeunesse-305bb2",
-      "locationSet": {"include": ["ch"]},
+      "id": "fondationdelenfanceetdelajeunesse-b35c39",
+      "locationSet": {
+        "include": ["ch-vd.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Fondation de l'Enfance et de la Jeunesse"
+        "operator": "Fondation de l'Enfance et de la Jeunesse",
+        "operator:type": "private"
       }
     },
     {
       "displayName": "Government of Kerala",
-      "id": "governmentofkerala-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "id": "governmentofkerala-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Government of Kerala"
-      }
-    },
-    {
-      "displayName": "gramapanchayath",
-      "id": "gramapanchayath-4b0d98",
-      "locationSet": {"include": ["in"]},
-      "tags": {
-        "amenity": "childcare",
-        "operator": "gramapanchayath"
+        "operator": "Government of Kerala",
+        "operator:type": "government",
+        "operator:wikidata": "Q3522885"
       }
     },
     {
@@ -88,7 +113,19 @@
       "locationSet": {"include": ["fi"]},
       "tags": {
         "amenity": "childcare",
-        "operator": "Helsingin kaupunki"
+        "operator": "Helsingin kaupunki",
+        "operator:type": "government",
+        "operator:wikidata": "Q20251620"
+      }
+    },
+    {
+      "displayName": "Humankind",
+      "id": "humankind-ba986a",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "amenity": "childcare",
+        "operator": "Humankind",
+        "operator:wikidata": "Q126478163"
       }
     },
     {
@@ -98,6 +135,7 @@
       "tags": {
         "amenity": "childcare",
         "operator": "ICBF",
+        "operator:type": "government",
         "operator:wikidata": "Q5917268"
       }
     },
@@ -109,34 +147,47 @@
         "amenity": "childcare",
         "operator": "Integrated Child Development Services",
         "operator:short": "ICDS",
+        "operator:type": "public",
         "operator:wikidata": "Q1428431"
       }
     },
     {
       "displayName": "Københavns Kommune",
-      "id": "kobenhavnskommune-d273d3",
-      "locationSet": {"include": ["dk"]},
+      "id": "kobenhavnskommune-7bdbd2",
+      "locationSet": {
+        "include": ["dk-84.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Københavns Kommune"
+        "operator": "Københavns Kommune",
+        "operator:type": "government",
+        "operator:wikidata": "Q504125"
       }
     },
     {
       "displayName": "Mairie de Paris",
-      "id": "mairiedeparis-2fc6fb",
-      "locationSet": {"include": ["fx"]},
+      "id": "mairiedeparis-6dda0f",
+      "locationSet": {
+        "include": ["fr-idf.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Mairie de Paris"
+        "operator": "Mairie de Paris",
+        "operator:type": "government",
+        "operator:wikidata": "Q3278478"
       }
     },
     {
       "displayName": "Othukkungal grama panchayath",
-      "id": "othukkungalgramapanchayath-4b0d98",
-      "locationSet": {"include": ["in"]},
+      "id": "othukkungalgramapanchayath-4226e4",
+      "locationSet": {
+        "include": ["in-kl.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Othukkungal grama panchayath"
+        "operator": "Othukkungal grama panchayath",
+        "operator:type": "government",
+        "operator:wikidata": "Q7108716"
       }
     },
     {
@@ -145,7 +196,8 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "childcare",
-        "operator": "Partou"
+        "operator": "Partou",
+        "operator:type": "private"
       }
     },
     {
@@ -168,25 +220,35 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "amenity": "childcare",
-        "operator": "SKOzoK"
+        "operator": "SKOzoK",
+        "operator:type": "private",
+        "operator:wikidata": "Q121770112"
       }
     },
     {
       "displayName": "Ville de Marseille",
-      "id": "villedemarseille-2fc6fb",
-      "locationSet": {"include": ["fx"]},
+      "id": "villedemarseille-17bc4b",
+      "locationSet": {
+        "include": ["fr-pac.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "Ville de Marseille"
+        "operator": "Ville de Marseille",
+        "operator:type": "government",
+        "operator:wikidata": "Q3278475"
       }
     },
     {
       "displayName": "横手市",
-      "id": "bdecba-559440",
-      "locationSet": {"include": ["jp"]},
+      "id": "bdecba-1116fc",
+      "locationSet": {
+        "include": ["jp-05.geojson"]
+      },
       "tags": {
         "amenity": "childcare",
-        "operator": "横手市"
+        "operator": "横手市",
+        "operator:type": "government",
+        "operator:wikidata": "Q496479"
       }
     }
   ]

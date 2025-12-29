@@ -1,10 +1,47 @@
 {
   "properties": {
     "path": "operators/man_made/mast",
-    "skipCollection": true,
-    "exclude": {"generic": ["^mast"]}
+    "exclude": {
+      "generic": [
+        "^mast$",
+        "^straż pożarna$",
+        "^wasserskiseilbahn$"
+      ]
+    }
   },
   "items": [
+    {
+      "displayName": "2degrees",
+      "id": "2degrees-f18601",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "2degrees",
+        "operator:wikidata": "Q4633463"
+      }
+    },
+    {
+      "displayName": "A1 Belarus",
+      "id": "a1belarus-ff4b94",
+      "locationSet": {"include": ["by"]},
+      "matchNames": ["a1", "velcom"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "A1 Belarus",
+        "operator:wikidata": "Q1888809"
+      }
+    },
+    {
+      "displayName": "A1 Telekom Austria",
+      "id": "a1telekomaustria-16021f",
+      "locationSet": {"include": ["at"]},
+      "matchNames": ["a1", "telekom austria"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "A1 Telekom Austria",
+        "operator:wikidata": "Q279847"
+      }
+    },
     {
       "displayName": "Airwave",
       "id": "airwave-556014",
@@ -14,6 +51,76 @@
         "operator": "Airwave",
         "operator:wikidata": "Q4699058",
         "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "ALLTEL Corporation",
+      "id": "alltelcorporation-a42e80",
+      "locationSet": {
+        "include": [
+          "us-al.geojson",
+          "us-va.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "ALLTEL Corporation",
+        "operator:wikidata": "Q684083"
+      }
+    },
+    {
+      "displayName": "American Tower Corporation",
+      "id": "americantowercorporation-005557",
+      "locationSet": {"include": ["us"]},
+      "matchNames": ["american tower"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "American Tower Corporation",
+        "operator:wikidata": "Q4745263"
+      }
+    },
+    {
+      "displayName": "American Tower Germany",
+      "id": "americantowergermany-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "american tower",
+        "american tower corporation"
+      ],
+      "tags": {
+        "man_made": "mast",
+        "operator": "American Tower Germany"
+      }
+    },
+    {
+      "displayName": "American Towers LLC",
+      "id": "americantowersllc-ef38b2",
+      "locationSet": {"include": ["de", "us"]},
+      "matchNames": ["american towers"],
+      "note": "subsidiary of American Tower Corporation",
+      "tags": {
+        "man_made": "mast",
+        "operator": "American Towers LLC",
+        "operator:wikidata": "Q4745263"
+      }
+    },
+    {
+      "displayName": "ANFR",
+      "id": "anfr-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ANFR",
+        "operator:wikidata": "Q2826678"
+      }
+    },
+    {
+      "displayName": "ARBA",
+      "id": "arba-1e326f",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ARBA"
       }
     },
     {
@@ -29,10 +136,113 @@
       }
     },
     {
-      "displayName": "BPD Light Tower",
-      "id": "baltimorepolicedepartment-4e6285",
+      "displayName": "AT&T",
+      "id": "atandt-005557",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "AT&T",
+        "operator:wikidata": "Q35476"
+      }
+    },
+    {
+      "displayName": "ATC France",
+      "id": "atcfrance-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ATC France"
+      }
+    },
+    {
+      "displayName": "ATC Germany",
+      "id": "atcgermany-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ATC Germany"
+      }
+    },
+    {
+      "displayName": "BDBOS",
+      "id": "bdbos-cb1e7e",
       "locationSet": {
-        "include": ["baltimore.geojson"]
+        "include": [
+          "de-bw.geojson",
+          "de-rp.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "BDBOS",
+        "operator:wikidata": "Q1005549"
+      }
+    },
+    {
+      "displayName": "Bell Canada",
+      "id": "bellcanada-8bf244",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Bell Canada",
+        "operator:wikidata": "Q815694"
+      }
+    },
+    {
+      "displayName": "Bell Mobility",
+      "id": "bellmobility-8bf244",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Bell Mobility",
+        "operator:wikidata": "Q2894594"
+      }
+    },
+    {
+      "displayName": "Bergsport Arena GmbH",
+      "id": "bergsportarenagmbh-87f469",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Bergsport Arena GmbH"
+      }
+    },
+    {
+      "displayName": "BKK",
+      "id": "bkk-c83968",
+      "locationSet": {"include": ["hu"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "BKK"
+      }
+    },
+    {
+      "displayName": "Bouygues",
+      "id": "bouygues-62d71b",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Bouygues",
+        "operator:wikidata": "Q895325"
+      }
+    },
+    {
+      "displayName": "Bouygues Telecom",
+      "id": "bouyguestelecom-62d71b",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Bouygues Telecom",
+        "operator:wikidata": "Q581438"
+      }
+    },
+    {
+      "displayName": "BPD Light Tower",
+      "id": "baltimorepolicedepartment-6caef4",
+      "locationSet": {
+        "include": ["us-md-baltimore.geojson"]
       },
       "tags": {
         "man_made": "mast",
@@ -41,6 +251,135 @@
         "operator:wikidata": "Q2881660",
         "tower:construction": "freestanding",
         "tower:type": "lighting"
+      }
+    },
+    {
+      "displayName": "Bullie Broadcasting Corporation",
+      "id": "bulliebroadcastingcorporation-1f9df2",
+      "locationSet": {
+        "include": [
+          "us-ga.geojson",
+          "us-ky.geojson"
+        ]
+      },
+      "matchNames": ["bullie broadcasting corp"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Bullie Broadcasting Corporation"
+      }
+    },
+    {
+      "displayName": "Bundeswehr",
+      "id": "bundeswehr-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Bundeswehr",
+        "operator:wikidata": "Q56010"
+      }
+    },
+    {
+      "displayName": "Canadian Pacific Kansas City",
+      "id": "canadianpacifickansascity-8bfedb",
+      "locationSet": {
+        "include": ["ca", "conus", "mx"],
+        "exclude": ["ca-qc.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Canadian Pacific Kansas City",
+        "operator:wikidata": "Q117706368"
+      }
+    },
+    {
+      "displayName": "Canadien Pacifique Kansas City",
+      "id": "canadienpacifiquekansascity-7a7f54",
+      "locationSet": {
+        "include": ["ca-qc.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Canadien Pacifique Kansas City",
+        "operator:wikidata": "Q117706368"
+      }
+    },
+    {
+      "displayName": "Cellco Partnership",
+      "id": "cellcopartnership-005557",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Cellco Partnership"
+      }
+    },
+    {
+      "displayName": "Cellnex",
+      "id": "cellnex-59625b",
+      "locationSet": {
+        "include": ["fx", "gb", "pl"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Cellnex"
+      }
+    },
+    {
+      "displayName": "Centertel Sp.z o.o",
+      "id": "centertelspzoo-41b0bd",
+      "locationSet": {"include": ["pl"]},
+      "note": "ISO 3166-2 PL-04",
+      "tags": {
+        "man_made": "mast",
+        "operator": "Centertel Sp.z o.o"
+      }
+    },
+    {
+      "displayName": "Clarksville-Montgomery County School System",
+      "id": "clarksvillemontgomerycountyschoolsystem-142962",
+      "locationSet": {
+        "include": ["us-tn.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Clarksville-Montgomery County School System",
+        "operator:wikidata": "Q5127683"
+      }
+    },
+    {
+      "displayName": "Claro",
+      "id": "claro-bfbe0e",
+      "locationSet": {"include": ["ar", "br"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Claro",
+        "operator:wikidata": "Q1770208"
+      }
+    },
+    {
+      "displayName": "Crown Castle",
+      "id": "crowncastle-005557",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Crown Castle",
+        "operator:wikidata": "Q5189320"
+      }
+    },
+    {
+      "displayName": "Crown Castle South LLC",
+      "id": "crowncastlesouthllc-08b948",
+      "locationSet": {
+        "include": [
+          "us-fl.geojson",
+          "us-ky.geojson",
+          "us-nc.geojson",
+          "us-sc.geojson",
+          "us-tn.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Crown Castle South LLC"
       }
     },
     {
@@ -55,6 +394,135 @@
         "operator:short": "CTIL",
         "operator:wikidata": "Q60993796",
         "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "DB InfraGO",
+      "id": "dbinfrago-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "db infrago ag",
+        "db netz",
+        "db netz ag"
+      ],
+      "tags": {
+        "man_made": "mast",
+        "operator": "DB InfraGO",
+        "operator:wikidata": "Q122870674"
+      }
+    },
+    {
+      "displayName": "Deu. Telekom",
+      "id": "deutelekom-6ada36",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Deu. Telekom"
+      }
+    },
+    {
+      "displayName": "Deutsche Flugsicherung",
+      "id": "deutscheflugsicherung-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "dfs",
+        "dfs deutsche flugsicherung gmbh"
+      ],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Deutsche Flugsicherung",
+        "operator:wikidata": "Q636838"
+      }
+    },
+    {
+      "displayName": "Deutsche Funkturm",
+      "id": "deutschefunkturm-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "deutsche funkturm gmbh",
+        "dfmg",
+        "dfmg deutsche funkturm gmbh"
+      ],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Deutsche Funkturm",
+        "operator:wikidata": "Q1202561"
+      }
+    },
+    {
+      "displayName": "Deutsche Telekom",
+      "id": "deutschetelekom-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": [
+        "deutsche telekom ag",
+        "telekom"
+      ],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Deutsche Telekom",
+        "operator:wikidata": "Q9396"
+      }
+    },
+    {
+      "displayName": "DIGI",
+      "id": "digi-8cc065",
+      "locationSet": {"include": ["hu", "pt"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "DIGI"
+      }
+    },
+    {
+      "displayName": "Digicel",
+      "id": "digicel-bbe720",
+      "locationSet": {
+        "include": ["gp", "ht", "mq"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Digicel"
+      }
+    },
+    {
+      "displayName": "Douglas County Emergency Management Agency",
+      "id": "douglascountyemergencymanagementagency-cc57ef",
+      "locationSet": {
+        "include": ["us-ne.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Douglas County Emergency Management Agency",
+        "operator:wikidata": "Q125309107"
+      }
+    },
+    {
+      "displayName": "Du",
+      "id": "du-129521",
+      "locationSet": {"include": ["ae"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Du",
+        "operator:wikidata": "Q3595390"
+      }
+    },
+    {
+      "displayName": "E-Plus",
+      "id": "eplus-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "E-Plus",
+        "operator:wikidata": "Q675046"
+      }
+    },
+    {
+      "displayName": "EastLink",
+      "id": "eastlink-8bf244",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "EastLink",
+        "operator:wikidata": "Q5327589"
       }
     },
     {
@@ -75,6 +543,170 @@
       }
     },
     {
+      "displayName": "EI Towers S.p.A.",
+      "id": "eitowersspa-c21648",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "EI Towers S.p.A.",
+        "operator:wikidata": "Q18288262"
+      }
+    },
+    {
+      "displayName": "Eir",
+      "id": "eir-374a61",
+      "locationSet": {"include": ["ie"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Eir",
+        "operator:wikidata": "Q3049473"
+      }
+    },
+    {
+      "displayName": "Emitel",
+      "id": "emitel-41b0bd",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Emitel",
+        "operator:wikidata": "Q9253428"
+      }
+    },
+    {
+      "displayName": "Enedis",
+      "id": "enedis-62d71b",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Enedis",
+        "operator:wikidata": "Q3587594"
+      }
+    },
+    {
+      "displayName": "Entel",
+      "id": "entel-c9b362",
+      "locationSet": {"include": ["bo", "cl"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Entel",
+        "operator:wikidata": "Q450420"
+      }
+    },
+    {
+      "displayName": "Entel Bolivia",
+      "id": "entelbolivia-611711",
+      "locationSet": {"include": ["bo"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Entel Bolivia",
+        "operator:wikidata": "Q3054977"
+      }
+    },
+    {
+      "displayName": "Far East Broadcasting Company (Philippines)",
+      "id": "fareastbroadcastingcompanyphilippines-75f16c",
+      "locationSet": {
+        "include": ["ph-03.geojson"]
+      },
+      "note": "disambiguator is part of the company's actual name",
+      "tags": {
+        "man_made": "mast",
+        "operator": "Far East Broadcasting Company (Philippines)",
+        "operator:wikidata": "Q106640561"
+      }
+    },
+    {
+      "displayName": "Ferromex",
+      "id": "ferromex-4b976b",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Ferromex",
+        "operator:wikidata": "Q977145"
+      }
+    },
+    {
+      "displayName": "Ferrovalle",
+      "id": "ferrovalle-4b976b",
+      "locationSet": {"include": ["mx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Ferrovalle",
+        "operator:wikidata": "Q3069739"
+      }
+    },
+    {
+      "displayName": "Flugsicherung Wien-Schwechat",
+      "id": "flugsicherungwienschwechat-1e4623",
+      "locationSet": {
+        "include": ["at-3.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Flugsicherung Wien-Schwechat"
+      }
+    },
+    {
+      "displayName": "Free",
+      "id": "free-62d71b",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Free",
+        "operator:wikidata": "Q2467627"
+      }
+    },
+    {
+      "displayName": "Free Mobile",
+      "id": "freemobile-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Free Mobile"
+      }
+    },
+    {
+      "displayName": "Garda Síochána",
+      "id": "gardasiochana-374a61",
+      "locationSet": {"include": ["ie"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Garda Síochána",
+        "operator:wikidata": "Q1366959"
+      }
+    },
+    {
+      "displayName": "Gendarmerie nationale (France)",
+      "id": "gendarmerienationale-62d71b",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Gendarmerie nationale",
+        "operator:wikidata": "Q1422336"
+      }
+    },
+    {
+      "displayName": "Hessischer Rundfunk",
+      "id": "hessischerrundfunk-55e1cc",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Hessischer Rundfunk",
+        "operator:wikidata": "Q23565"
+      }
+    },
+    {
+      "displayName": "IFW-Free",
+      "id": "ifwfree-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "IFW-Free"
+      }
+    },
+    {
       "displayName": "iHeartMedia",
       "id": "iheartmedia-005557",
       "locationSet": {"include": ["us"]},
@@ -89,6 +721,169 @@
       }
     },
     {
+      "displayName": "Iliad",
+      "id": "iliad-c21648",
+      "locationSet": {"include": ["it"]},
+      "matchNames": ["iliad italia"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Iliad",
+        "operator:wikidata": "Q55433734"
+      }
+    },
+    {
+      "displayName": "Infraspeed",
+      "id": "infraspeed-90a535",
+      "locationSet": {"include": ["nl"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Infraspeed",
+        "operator:wikidata": "Q2396179"
+      }
+    },
+    {
+      "displayName": "Integrierte Regionalleitstelle Unterweser-Elbe",
+      "id": "integrierteregionalleitstelleunterweserelbe-87f469",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Integrierte Regionalleitstelle Unterweser-Elbe"
+      }
+    },
+    {
+      "displayName": "International Broadcasting Bureau",
+      "id": "internationalbroadcastingbureau-55e1cc",
+      "locationSet": {
+        "include": ["de-he.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "International Broadcasting Bureau"
+      }
+    },
+    {
+      "displayName": "INWIT",
+      "id": "inwit-6ada36",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "INWIT"
+      }
+    },
+    {
+      "displayName": "Irish Rail",
+      "id": "irishrail-374a61",
+      "locationSet": {"include": ["ie"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Irish Rail",
+        "operator:en": "Irish Rail",
+        "operator:ga": "Iarnród Éireann",
+        "operator:wikidata": "Q73043"
+      }
+    },
+    {
+      "displayName": "Itas Tim",
+      "id": "itastim-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Itas Tim"
+      }
+    },
+    {
+      "displayName": "KDDI",
+      "id": "kddi-3d75e9",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "KDDI",
+        "operator:wikidata": "Q971946"
+      }
+    },
+    {
+      "displayName": "Kreis Euskirchen",
+      "id": "kreiseuskirchen-7bef17",
+      "locationSet": {
+        "include": ["de-nw.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Kreis Euskirchen",
+        "operator:wikidata": "Q6280"
+      }
+    },
+    {
+      "displayName": "Kyivstar",
+      "id": "kyivstar-dd07fc",
+      "locationSet": {"include": ["ua"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Kyivstar",
+        "operator:wikidata": "Q2288463"
+      }
+    },
+    {
+      "displayName": "Land Baden-Württemberg",
+      "id": "landbadenwurttemberg-87eee4",
+      "locationSet": {
+        "include": ["de-bw.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Land Baden-Württemberg",
+        "operator:wikidata": "Q896892"
+      }
+    },
+    {
+      "displayName": "Landkreis Northeim",
+      "id": "landkreisnortheim-87f469",
+      "locationSet": {
+        "include": ["de-ni.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Landkreis Northeim",
+        "operator:wikidata": "Q6018"
+      }
+    },
+    {
+      "displayName": "Liberty",
+      "id": "liberty-ce34e8",
+      "locationSet": {"include": ["cr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Liberty",
+        "operator:wikidata": "Q6140527"
+      }
+    },
+    {
+      "displayName": "LIFE",
+      "id": "life-ff4b94",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "LIFE",
+        "operator:wikidata": "Q1975972"
+      }
+    },
+    {
+      "displayName": "Los Angeles County Sheriff's Department",
+      "id": "losangelescountysheriffsdepartment-cb17a4",
+      "locationSet": {
+        "include": [
+          "us-ca-los_angeles_county.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Los Angeles County Sheriff's Department",
+        "operator:wikidata": "Q3259709"
+      }
+    },
+    {
       "displayName": "MBNL",
       "id": "mobilebroadbandnetworklimited-556014",
       "locationSet": {"include": ["gb"]},
@@ -99,6 +894,41 @@
         "operator:short": "MBNL",
         "operator:wikidata": "Q116251739",
         "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "MEO",
+      "id": "meo-1e326f",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": ["ptc"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "MEO",
+        "operator:wikidata": "Q1365938"
+      }
+    },
+    {
+      "displayName": "Mobitel",
+      "id": "mobitel-fa1033",
+      "locationSet": {"include": ["si"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Mobitel",
+        "operator:wikidata": "Q3859745"
+      }
+    },
+    {
+      "displayName": "Movistar",
+      "id": "movistar-02b712",
+      "locationSet": {"include": ["005", "es"]},
+      "matchNames": [
+        "telefonica moviles españa",
+        "telefonica moviles españa, s.a.u."
+      ],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Movistar",
+        "operator:wikidata": "Q967735"
       }
     },
     {
@@ -136,6 +966,27 @@
       }
     },
     {
+      "displayName": "MTS",
+      "id": "mts-1bddbb",
+      "locationSet": {"include": ["by", "ru"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "MTS"
+      }
+    },
+    {
+      "displayName": "Municipalidad de Lomas de Zamora",
+      "id": "municipalidaddelomasdezamora-36f0e4",
+      "locationSet": {
+        "include": ["ar-b.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Municipalidad de Lomas de Zamora",
+        "operator:wikidata": "Q642057"
+      }
+    },
+    {
       "displayName": "National Air Traffic Services",
       "id": "nationalairtrafficservices-556014",
       "locationSet": {"include": ["gb"]},
@@ -161,6 +1012,89 @@
       }
     },
     {
+      "displayName": "Neuf Cegetel",
+      "id": "neufcegetel-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Neuf Cegetel",
+        "operator:wikidata": "Q504288"
+      }
+    },
+    {
+      "displayName": "New Cingular Wireless PCS",
+      "id": "newcingularwirelesspcs-ad330f",
+      "locationSet": {
+        "include": [
+          "us-al.geojson",
+          "us-ky.geojson"
+        ]
+      },
+      "matchNames": [
+        "new cingular wireless pcs, llc"
+      ],
+      "tags": {
+        "man_made": "mast",
+        "operator": "New Cingular Wireless PCS"
+      }
+    },
+    {
+      "displayName": "Niagara Parks Commission",
+      "id": "niagaraparkscommission-35efd8",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Niagara Parks Commission",
+        "operator:wikidata": "Q7023741"
+      }
+    },
+    {
+      "displayName": "Norfolk Southern",
+      "id": "norfolksouthern-d4bf8e",
+      "locationSet": {"include": ["conus"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Norfolk Southern",
+        "operator:wikidata": "Q1321054"
+      }
+    },
+    {
+      "displayName": "Northern Beaches Council",
+      "id": "northernbeachescouncil-0383b0",
+      "locationSet": {
+        "include": ["au-nsw.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Northern Beaches Council",
+        "operator:wikidata": "Q56477644"
+      }
+    },
+    {
+      "displayName": "NOS",
+      "id": "nos-1e326f",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "NOS",
+        "operator:wikidata": "Q136331"
+      }
+    },
+    {
+      "displayName": "NTTドコモ",
+      "id": "nttdocomo-3d75e9",
+      "locationSet": {"include": ["jp"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "NTTドコモ",
+        "operator:en": "NTT Docomo",
+        "operator:ja": "NTTドコモ",
+        "operator:wikidata": "Q853958"
+      }
+    },
+    {
       "displayName": "O2",
       "id": "o2-556014",
       "locationSet": {"include": ["gb"]},
@@ -168,6 +1102,7 @@
         "02",
         "cellnet",
         "o₂",
+        "o2-uk",
         "telefónica",
         "telefónica o2"
       ],
@@ -177,6 +1112,47 @@
         "operator": "O2",
         "operator:wikidata": "Q7072245",
         "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "ÖBB",
+      "id": "obb-16021f",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ÖBB",
+        "operator:wikidata": "Q83822"
+      }
+    },
+    {
+      "displayName": "ÖBB-Infrastruktur AG",
+      "id": "obbinfrastrukturag-16021f",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ÖBB-Infrastruktur AG",
+        "operator:short": "ÖBB Infra",
+        "operator:wikidata": "Q56425426"
+      }
+    },
+    {
+      "displayName": "Odašiljači i veze d.o.o.",
+      "id": "odasiljaciivezedoo-0982da",
+      "locationSet": {"include": ["hr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Odašiljači i veze d.o.o.",
+        "operator:wikidata": "Q7077292"
+      }
+    },
+    {
+      "displayName": "One",
+      "id": "one-c83968",
+      "locationSet": {"include": ["hu"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "One",
+        "operator:wikidata": "Q131329001"
       }
     },
     {
@@ -192,6 +1168,256 @@
       }
     },
     {
+      "displayName": "Orange România",
+      "id": "orangeromania-114542",
+      "locationSet": {"include": ["ro"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Orange România",
+        "operator:wikidata": "Q3355067"
+      }
+    },
+    {
+      "displayName": "Orange Services Fixes",
+      "id": "orangeservicesfixes-62d71b",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Orange Services Fixes"
+      }
+    },
+    {
+      "displayName": "ORS",
+      "id": "ors-16021f",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ORS",
+        "operator:wikidata": "Q304116"
+      }
+    },
+    {
+      "displayName": "Outremer Telecom",
+      "id": "outremertelecom-600599",
+      "locationSet": {
+        "include": ["gf", "gp", "mq"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Outremer Telecom",
+        "operator:wikidata": "Q3358661"
+      }
+    },
+    {
+      "displayName": "Pine Belt Cellular",
+      "id": "pinebeltcellular-7a90a8",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
+      "matchNames": ["pine belt cellular, inc."],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Pine Belt Cellular"
+      }
+    },
+    {
+      "displayName": "PKP Polskie Linie Kolejowe",
+      "id": "pkppolskieliniekolejowe-41b0bd",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "PKP Polskie Linie Kolejowe",
+        "operator:wikidata": "Q1344677"
+      }
+    },
+    {
+      "displayName": "PKP Polskie Linie Kolejowe S.A.",
+      "id": "pkppolskieliniekolejowesa-6ada36",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "PKP Polskie Linie Kolejowe S.A."
+      }
+    },
+    {
+      "displayName": "Play",
+      "id": "play-41b0bd",
+      "locationSet": {"include": ["pl"]},
+      "matchNames": ["p4", "p4 sp. z o.o."],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Play",
+        "operator:wikidata": "Q7202998"
+      }
+    },
+    {
+      "displayName": "Plus",
+      "id": "plus-41b0bd",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Plus",
+        "operator:wikidata": "Q7205598"
+      }
+    },
+    {
+      "displayName": "Policía de Misiones",
+      "id": "policiademisiones-0df118",
+      "locationSet": {
+        "include": ["ar-n.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Policía de Misiones",
+        "operator:wikidata": "Q124269876"
+      }
+    },
+    {
+      "displayName": "Polkomtel Sp.z o.o",
+      "id": "polkomtelspzoo-41b0bd",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Polkomtel Sp.z o.o",
+        "operator:wikidata": "Q11821892"
+      }
+    },
+    {
+      "displayName": "PTC S.A.",
+      "id": "ptcsa-41b0bd",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "PTC S.A.",
+        "operator:wikidata": "Q425956"
+      }
+    },
+    {
+      "displayName": "RadioCuba",
+      "id": "radiocuba-bf5d50",
+      "locationSet": {"include": ["cu"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "RadioCuba"
+      }
+    },
+    {
+      "displayName": "Rai Way",
+      "id": "raiway-c21648",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Rai Way",
+        "operator:wikidata": "Q3929528"
+      }
+    },
+    {
+      "displayName": "Rede dos Emissores Portugueses",
+      "id": "rededosemissoresportugueses-1e326f",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": ["rep"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Rede dos Emissores Portugueses",
+        "operator:wikidata": "Q7305685"
+      }
+    },
+    {
+      "displayName": "RFI",
+      "id": "rfi-c21648",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "RFI",
+        "operator:wikidata": "Q1060049"
+      }
+    },
+    {
+      "displayName": "Rogers Communications",
+      "id": "rogerscommunications-8bf244",
+      "locationSet": {"include": ["ca"]},
+      "matchNames": ["rogers"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Rogers Communications",
+        "operator:wikidata": "Q165684"
+      }
+    },
+    {
+      "displayName": "Rogers Wireless",
+      "id": "rogerswireless-35efd8",
+      "locationSet": {
+        "include": ["ca-on.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Rogers Wireless",
+        "operator:wikidata": "Q3439663"
+      }
+    },
+    {
+      "displayName": "RTE",
+      "id": "rte-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "RTE",
+        "operator:wikidata": "Q2178795"
+      }
+    },
+    {
+      "displayName": "RTÉ Transmission Network Designated Activity Company",
+      "id": "rtetransmissionnetworkdesignatedactivitycompany-374a61",
+      "locationSet": {"include": ["ie"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "RTÉ Transmission Network Designated Activity Company"
+      }
+    },
+    {
+      "displayName": "Rural Cellular Corporation",
+      "id": "ruralcellularcorporation-7a90a8",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Rural Cellular Corporation"
+      }
+    },
+    {
+      "displayName": "Rural Connectivity Group",
+      "id": "ruralconnectivitygroup-f18601",
+      "locationSet": {"include": ["nz"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Rural Connectivity Group",
+        "operator:wikidata": "Q55632109"
+      }
+    },
+    {
+      "displayName": "Saint Louis County Emergency Communications Commission",
+      "id": "saintlouiscountyemergencycommunicationscommission-b1f600",
+      "locationSet": {
+        "include": ["us-mo.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Saint Louis County Emergency Communications Commission",
+        "operator:wikidata": "Q123689350"
+      }
+    },
+    {
+      "displayName": "SBB",
+      "id": "sbb-74f060",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "SBB",
+        "operator:wikidata": "Q83835"
+      }
+    },
+    {
       "displayName": "Sentech",
       "id": "sentech-602a68",
       "locationSet": {"include": ["za"]},
@@ -203,10 +1429,170 @@
       }
     },
     {
-      "displayName": "Telekom",
-      "id": "telekom-488966",
+      "displayName": "Severnside Sirens Trust",
+      "id": "severnsidesirenstrust-d7429f",
+      "locationSet": {"include": ["gb-eng"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Severnside Sirens Trust",
+        "operator:wikidata": "Q85800512"
+      }
+    },
+    {
+      "displayName": "SFR",
+      "id": "sfr-62d71b",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "SFR",
+        "operator:wikidata": "Q218765"
+      }
+    },
+    {
+      "displayName": "SIRESP",
+      "id": "siresp-1e326f",
+      "locationSet": {"include": ["pt"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "SIRESP",
+        "operator:wikidata": "Q48871999"
+      }
+    },
+    {
+      "displayName": "SNCF",
+      "id": "sncf-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "SNCF",
+        "operator:wikidata": "Q13646"
+      }
+    },
+    {
+      "displayName": "SNCF Réseau",
+      "id": "sncfreseau-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "SNCF Réseau",
+        "operator:wikidata": "Q21605526"
+      }
+    },
+    {
+      "displayName": "Southern California Edison",
+      "id": "southerncaliforniaedison-e33ffd",
       "locationSet": {
-        "include": ["de", "hu", "ro", "si", "sk"]
+        "include": ["us-ca.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Southern California Edison",
+        "operator:short": "SCE",
+        "operator:wikidata": "Q1706317"
+      }
+    },
+    {
+      "displayName": "Spark New Zealand",
+      "id": "sparknewzealand-f18601",
+      "locationSet": {"include": ["nz"]},
+      "matchNames": ["spark", "spark nz"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Spark New Zealand",
+        "operator:wikidata": "Q1549526"
+      }
+    },
+    {
+      "displayName": "Südwestrundfunk",
+      "id": "sudwestrundfunk-cb1e7e",
+      "locationSet": {
+        "include": [
+          "de-bw.geojson",
+          "de-rp.geojson"
+        ]
+      },
+      "matchNames": ["swr"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Südwestrundfunk",
+        "operator:wikidata": "Q700133"
+      }
+    },
+    {
+      "displayName": "Swisscom",
+      "id": "swisscom-74f060",
+      "locationSet": {"include": ["ch"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Swisscom",
+        "operator:wikidata": "Q644324"
+      }
+    },
+    {
+      "displayName": "TDF",
+      "id": "tdf-62d71b",
+      "locationSet": {"include": ["fr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "TDF",
+        "operator:wikidata": "Q1162908"
+      }
+    },
+    {
+      "displayName": "Tele2",
+      "id": "tele2-5611d1",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Tele2"
+      }
+    },
+    {
+      "displayName": "Telecentras",
+      "id": "telecentras-70762c",
+      "locationSet": {"include": ["lt"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Telecentras"
+      }
+    },
+    {
+      "displayName": "Telecom",
+      "id": "telecom-faed7e",
+      "locationSet": {"include": ["ar", "it"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Telecom"
+      }
+    },
+    {
+      "displayName": "Telecom Italia Mobile",
+      "id": "telecomitaliamobile-84883b",
+      "locationSet": {
+        "include": ["it-36.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Telecom Italia Mobile",
+        "operator:wikidata": "Q1120617"
+      }
+    },
+    {
+      "displayName": "Telefónica Deutschland",
+      "id": "telefonicadeutschland-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "matchNames": ["telefónica germany"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Telefónica Deutschland",
+        "operator:wikidata": "Q2401561"
+      }
+    },
+    {
+      "displayName": "Telekom",
+      "id": "telekom-7cec54",
+      "locationSet": {
+        "include": ["hu", "ro", "si", "sk"]
       },
       "tags": {
         "communication:mobile_phone": "yes",
@@ -214,6 +1600,18 @@
         "operator": "Telekom",
         "operator:wikidata": "Q9396",
         "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "Telenor",
+      "id": "telenor-5eccfb",
+      "locationSet": {
+        "include": ["dk", "no", "se"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Telenor",
+        "operator:wikidata": "Q845632"
       }
     },
     {
@@ -225,6 +1623,36 @@
         "operator": "Telkom",
         "operator:wikidata": "Q1818970",
         "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "Telstra",
+      "id": "telstra-cb9fff",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Telstra",
+        "operator:wikidata": "Q721162"
+      }
+    },
+    {
+      "displayName": "Telus",
+      "id": "telus-8bf244",
+      "locationSet": {"include": ["ca"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Telus",
+        "operator:wikidata": "Q165858"
+      }
+    },
+    {
+      "displayName": "Teracom",
+      "id": "teracom-108d32",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Teracom",
+        "operator:wikidata": "Q7476318"
       }
     },
     {
@@ -241,19 +1669,237 @@
       }
     },
     {
-      "displayName": "Vodacom",
-      "id": "vodacom-02eecb",
+      "displayName": "Three UK",
+      "id": "threeuk-d7429f",
+      "locationSet": {"include": ["gb-eng"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Three UK"
+      }
+    },
+    {
+      "displayName": "TIM",
+      "id": "tim-a8a470",
+      "locationSet": {"include": ["br", "it"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "TIM",
+        "operator:wikidata": "Q144617"
+      }
+    },
+    {
+      "displayName": "TIWAG",
+      "id": "tiwag-16021f",
+      "locationSet": {"include": ["at"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "TIWAG",
+        "operator:wikidata": "Q1271744"
+      }
+    },
+    {
+      "displayName": "Toll Collect",
+      "id": "tollcollect-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Toll Collect",
+        "operator:wikidata": "Q314055"
+      }
+    },
+    {
+      "displayName": "TowerCast",
+      "id": "towercast-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "TowerCast",
+        "operator:wikidata": "Q3535939"
+      }
+    },
+    {
+      "displayName": "Trafikverket",
+      "id": "trafikverket-108d32",
+      "locationSet": {"include": ["se"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Trafikverket",
+        "operator:wikidata": "Q1677108"
+      }
+    },
+    {
+      "displayName": "Trenes Argentinos",
+      "id": "trenesargentinos-2e8e08",
+      "locationSet": {"include": ["ar"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Trenes Argentinos",
+        "operator:wikidata": "Q18170721"
+      }
+    },
+    {
+      "displayName": "TRT",
+      "id": "trt-cfd1c9",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "TRT",
+        "operator:wikidata": "Q83389"
+      }
+    },
+    {
+      "displayName": "Türk Telekom",
+      "id": "turktelekom-cfd1c9",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Türk Telekom",
+        "operator:wikidata": "Q263700"
+      }
+    },
+    {
+      "displayName": "Turkcell",
+      "id": "turkcell-cfd1c9",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Turkcell",
+        "operator:wikidata": "Q283852"
+      }
+    },
+    {
+      "displayName": "Uganda Immigration",
+      "id": "ugandaimmigration-be8a74",
+      "locationSet": {"include": ["ug"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Uganda Immigration"
+      }
+    },
+    {
+      "displayName": "ULAK",
+      "id": "ulak-cfd1c9",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ULAK"
+      }
+    },
+    {
+      "displayName": "United States Air Force",
+      "id": "unitedstatesairforce-ef38b2",
+      "locationSet": {"include": ["de", "us"]},
+      "matchNames": ["us air force"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "United States Air Force",
+        "operator:wikidata": "Q11223"
+      }
+    },
+    {
+      "displayName": "United States Cellular Corporation",
+      "id": "unitedstatescellularcorporation-005557",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "United States Cellular Corporation",
+        "operator:wikidata": "Q2466256"
+      }
+    },
+    {
+      "displayName": "USCC",
+      "id": "uscc-a365dd",
       "locationSet": {
-        "include": [
-          "cd",
-          "et",
-          "ke",
-          "ls",
-          "mz",
-          "tz",
-          "za"
-        ]
+        "include": ["us-ok.geojson"]
       },
+      "tags": {
+        "man_made": "mast",
+        "operator": "USCC"
+      }
+    },
+    {
+      "displayName": "Verizon",
+      "id": "verizon-005557",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Verizon",
+        "operator:wikidata": "Q467752"
+      }
+    },
+    {
+      "displayName": "Verizon Wireless",
+      "id": "verizonwireless-005557",
+      "locationSet": {"include": ["us"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Verizon Wireless",
+        "operator:wikidata": "Q919641"
+      }
+    },
+    {
+      "displayName": "Verizon Wireless of the East LP",
+      "id": "verizonwirelessoftheeastlp-7a90a8",
+      "locationSet": {
+        "include": ["us-al.geojson"]
+      },
+      "note": "dba Verizon Wireless",
+      "tags": {
+        "man_made": "mast",
+        "operator": "Verizon Wireless of the East LP",
+        "operator:wikidata": "Q919641"
+      }
+    },
+    {
+      "displayName": "Vivo",
+      "id": "vivo-47b711",
+      "locationSet": {"include": ["br"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vivo",
+        "operator:wikidata": "Q1428656"
+      }
+    },
+    {
+      "displayName": "Vodacom (D. R. Congo)",
+      "id": "vodacomcongo-5540e6",
+      "locationSet": {"include": ["cd"]},
+      "matchNames": ["vodacom"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodacom Congo",
+        "operator:wikidata": "Q130477507",
+        "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "Vodacom (Lesotho)",
+      "id": "vodacomlesotho-2fd42f",
+      "locationSet": {"include": ["ls"]},
+      "matchNames": ["vodacom"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodacom Lesotho",
+        "operator:wikidata": "Q130477539",
+        "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "Vodacom (Moçambique)",
+      "id": "vodacommocambique-031a1f",
+      "locationSet": {"include": ["mz"]},
+      "matchNames": ["vodacom"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodacom Moçambique",
+        "operator:wikidata": "Q130477552",
+        "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "Vodacom (South Africa)",
+      "id": "vodacom-602a68",
+      "locationSet": {"include": ["za"]},
       "tags": {
         "man_made": "mast",
         "operator": "Vodacom",
@@ -262,7 +1908,32 @@
       }
     },
     {
-      "displayName": "Vodafone",
+      "displayName": "Vodacom (Tanzania)",
+      "id": "vodacomtanzania-0f2159",
+      "locationSet": {"include": ["tz"]},
+      "matchNames": ["vodacom"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodacom Tanzania",
+        "operator:wikidata": "Q7939274",
+        "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "Vodafone (Egypt)",
+      "id": "vodafoneegypt-1329c8",
+      "locationSet": {"include": ["eg"]},
+      "matchNames": ["vodafone"],
+      "tags": {
+        "communication:mobile_phone": "yes",
+        "man_made": "mast",
+        "operator": "Vodafone Egypt",
+        "operator:wikidata": "Q1540525",
+        "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "Vodafone (UK)",
       "id": "vodafone-556014",
       "locationSet": {"include": ["gb"]},
       "matchNames": ["vodaphone"],
@@ -272,6 +1943,258 @@
         "operator": "Vodafone",
         "operator:wikidata": "Q122141",
         "tower:type": "communication"
+      }
+    },
+    {
+      "displayName": "Vodafone (Україна)",
+      "id": "vodafone-dd07fc",
+      "locationSet": {"include": ["ua"]},
+      "matchNames": ["mtc", "vodafone україна"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodafone",
+        "operator:wikidata": "Q846031"
+      }
+    },
+    {
+      "displayName": "Vodafone GmbH",
+      "id": "vodafonegmbh-0b2be4",
+      "locationSet": {"include": ["de"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodafone GmbH",
+        "operator:wikidata": "Q2529830"
+      }
+    },
+    {
+      "displayName": "Vodafone Italia",
+      "id": "vodafoneitalia-c14fdd",
+      "locationSet": {
+        "include": [
+          "it-32.geojson",
+          "it-36.geojson"
+        ]
+      },
+      "matchNames": ["vodafone omnitel"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodafone Italia",
+        "operator:wikidata": "Q4015982"
+      }
+    },
+    {
+      "displayName": "Vodafone Portugal",
+      "id": "vodafoneportugal-1e326f",
+      "locationSet": {"include": ["pt"]},
+      "matchNames": ["vodafone p"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodafone Portugal",
+        "operator:wikidata": "Q3562042"
+      }
+    },
+    {
+      "displayName": "Vodafone Türkiye",
+      "id": "vodafoneturkiye-cfd1c9",
+      "locationSet": {"include": ["tr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Vodafone Türkiye",
+        "operator:wikidata": "Q1784943"
+      }
+    },
+    {
+      "displayName": "Voies navigables de France",
+      "id": "voiesnavigablesdefrance-0ddfe9",
+      "locationSet": {"include": ["fx"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Voies navigables de France",
+        "operator:wikidata": "Q1240124"
+      }
+    },
+    {
+      "displayName": "Washington Place Homeowners' Association, Inc.",
+      "id": "washingtonplacehomeownersassociationinc-bab9d0",
+      "locationSet": {
+        "include": ["ph-40.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Washington Place Homeowners' Association, Inc."
+      }
+    },
+    {
+      "displayName": "Whitewater High School",
+      "id": "whitewaterhighschool-71ae21",
+      "locationSet": {
+        "include": ["us-wi.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Whitewater High School",
+        "operator:wikidata": "Q17065116"
+      }
+    },
+    {
+      "displayName": "WILLCOM",
+      "id": "willcom-e34f5c",
+      "locationSet": {
+        "include": [
+          "jp-11.geojson",
+          "jp-13.geojson"
+        ]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "WILLCOM",
+        "operator:wikidata": "Q4019894"
+      }
+    },
+    {
+      "displayName": "Wind",
+      "id": "wind-c21648",
+      "locationSet": {"include": ["it"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Wind"
+      }
+    },
+    {
+      "displayName": "Wind Tre",
+      "id": "windtre-84883b",
+      "locationSet": {
+        "include": ["it-36.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "Wind Tre",
+        "operator:wikidata": "Q28119223"
+      }
+    },
+    {
+      "displayName": "Yettel",
+      "id": "yettel-c83968",
+      "locationSet": {"include": ["hu"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Yettel",
+        "operator:wikidata": "Q268578"
+      }
+    },
+    {
+      "displayName": "Železnice Slovenskej republiky",
+      "id": "zelezniceslovenskejrepubliky-11e647",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Železnice Slovenskej republiky",
+        "operator:short": "ŽSR",
+        "operator:wikidata": "Q393524"
+      }
+    },
+    {
+      "displayName": "ŽSR",
+      "id": "zsr-11e647",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ŽSR",
+        "operator:wikidata": "Q393524"
+      }
+    },
+    {
+      "displayName": "Οργανισμός Σιδηροδρόμων Ελλάδος",
+      "id": "459464-1f01af",
+      "locationSet": {"include": ["gr"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Οργανισμός Σιδηροδρόμων Ελλάδος",
+        "operator:short": "ΟΣΕ",
+        "operator:wikidata": "Q602935"
+      }
+    },
+    {
+      "displayName": "Билайн",
+      "id": "c50c60-5611d1",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "Билайн",
+        "operator:wikidata": "Q402880"
+      }
+    },
+    {
+      "displayName": "Мегафон",
+      "id": "6389cc-5611d1",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["пао \"мегафон\""],
+      "tags": {
+        "man_made": "mast",
+        "operator": "Мегафон",
+        "operator:wikidata": "Q1720713"
+      }
+    },
+    {
+      "displayName": "МТС",
+      "id": "77e54a-ff4b94",
+      "locationSet": {"include": ["by"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "МТС",
+        "operator:wikidata": "Q1368919"
+      }
+    },
+    {
+      "displayName": "ООО \"Т2 Мобайл\"",
+      "id": "65134c-5611d1",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ООО \"Т2 Мобайл\""
+      }
+    },
+    {
+      "displayName": "ПАО \"ВымпелКом\"",
+      "id": "eb6008-5611d1",
+      "locationSet": {"include": ["ru"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "ПАО \"ВымпелКом\"",
+        "operator:wikidata": "Q1562826"
+      }
+    },
+    {
+      "displayName": "ПАО \"МТС\"",
+      "id": "deb53e-5611d1",
+      "locationSet": {"include": ["ru"]},
+      "matchNames": ["мтс"],
+      "tags": {
+        "man_made": "mast",
+        "operator": "ПАО \"МТС\"",
+        "operator:wikidata": "Q1368919"
+      }
+    },
+    {
+      "displayName": "楽天モバイル株式会社",
+      "id": "abc010-6ada36",
+      "locationSet": {"include": ["001"]},
+      "tags": {
+        "man_made": "mast",
+        "operator": "楽天モバイル株式会社",
+        "operator:ja": "楽天モバイル株式会社"
+      }
+    },
+    {
+      "displayName": "青梅市",
+      "id": "98f747-13249b",
+      "locationSet": {
+        "include": ["jp-13.geojson"]
+      },
+      "tags": {
+        "man_made": "mast",
+        "operator": "青梅市",
+        "operator:wikidata": "Q237683"
       }
     }
   ]

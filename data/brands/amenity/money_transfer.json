@@ -2,7 +2,11 @@
   "properties": {
     "path": "brands/amenity/money_transfer",
     "exclude": {
-      "generic": ["^money transfer$", "^wakala$"]
+      "generic": [
+        "^mobile? money( transfer)?$",
+        "^money transfer$",
+        "^wakala$"
+      ]
     }
   },
   "items": [
@@ -14,6 +18,17 @@
         "amenity": "money_transfer",
         "brand": "Boutique orange Monney",
         "name": "Boutique orange Monney"
+      }
+    },
+    {
+      "displayName": "Cash Plus",
+      "id": "cashplus-de9c03",
+      "locationSet": {"include": ["ma"]},
+      "tags": {
+        "amenity": "money_transfer",
+        "brand": "Cash Plus",
+        "brand:wikidata": "Q100258885",
+        "name": "Cash Plus"
       }
     },
     {
@@ -45,25 +60,13 @@
       }
     },
     {
-      "displayName": "Mobile Money",
-      "id": "mobilemoney-1032f8",
-      "locationSet": {"include": ["001"]},
-      "matchNames": [
-        "mobil money",
-        "mobile money transfer"
-      ],
-      "tags": {
-        "amenity": "money_transfer",
-        "brand": "Mobile Money",
-        "brand:wikidata": "Q20312600",
-        "name": "Mobile Money"
-      }
-    },
-    {
       "displayName": "MoneyGram",
       "id": "moneygram-1032f8",
       "locationSet": {"include": ["001"]},
-      "matchTags": ["amenity/bureau_de_change"],
+      "matchTags": [
+        "amenity/bureau_de_change",
+        "office/financial"
+      ],
       "tags": {
         "amenity": "money_transfer",
         "brand": "MoneyGram",
@@ -86,11 +89,28 @@
       "displayName": "Ria",
       "id": "ria-1032f8",
       "locationSet": {"include": ["001"]},
+      "matchNames": ["ria money transfer"],
+      "matchTags": ["office/financial"],
       "tags": {
         "amenity": "money_transfer",
         "brand": "Ria",
         "brand:wikidata": "Q18643673",
         "name": "Ria"
+      }
+    },
+    {
+      "displayName": "Wafacash وفاكاش",
+      "id": "wafacash-de9c03",
+      "locationSet": {"include": ["ma"]},
+      "tags": {
+        "amenity": "money_transfer",
+        "brand": "Wafacash وفاكاش",
+        "brand:ar": "وفاكاش",
+        "brand:fr": "Wafacash",
+        "brand:wikidata": "Q100258887",
+        "name": "Wafacash وفاكاش",
+        "name:ar": "وفاكاش",
+        "name:fr": "Wafacash"
       }
     },
     {
@@ -107,12 +127,17 @@
     },
     {
       "displayName": "Юнистрим",
-      "id": "b71687-8b917c",
+      "id": "unistream-8b917c",
       "locationSet": {"include": ["ru"]},
       "tags": {
         "amenity": "money_transfer",
         "brand": "Юнистрим",
-        "name": "Юнистрим"
+        "brand:en": "Unistream",
+        "brand:ru": "Юнистрим",
+        "brand:wikidata": "Q4534572",
+        "name": "Юнистрим",
+        "name:en": "Unistream",
+        "name:ru": "Юнистрим"
       }
     },
     {

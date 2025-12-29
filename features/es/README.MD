@@ -1,8 +1,73 @@
 # Features targeting Spain
 
+The following areas are included as part of [country-coder](https://github.com/rapideditor/country-coder) and don't need their own feature.
+
+- [es-ib](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ib%22%5D%7D&referrer=nsi) - Balearic Islands
+- [ic](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ic%22%5D%7D&referrer=nsi) - Canary Islands (Canarias)
+- [es-ce](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ce%22%5D%7D&referrer=nsi) - Ceuta
+- [es-ml](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ml%22%5D%7D&referrer=nsi) - Melilla
+
 Provinces of Spain targeted with a feature using [ISO 3166-2:ES](https://en.wikipedia.org/wiki/ISO_3166-2:ES)
 
-- [ES-B.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-b.geojson%22%5D%7D&referrer=nsi) - Barcelona
-- [ES-GI.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-gi.geojson%22%5D%7D&referrer=nsi) - Girona / Gerona
-- [ES-L.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-l.geojson%22%5D%7D&referrer=nsi) - Lleida
-- [ES-T.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-t.geojson%22%5D%7D&referrer=nsi) - Tarragona
+- Andalucía
+  - [ES-AL.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-al.geojson%22%5D%7D&referrer=nsi) - Almería
+  - [ES-CA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ca.geojson%22%5D%7D&referrer=nsi) - Cádiz
+  - [ES-CO.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-co.geojson%22%5D%7D&referrer=nsi) - Córdoba
+  - [ES-GR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-gr.geojson%22%5D%7D&referrer=nsi) - Granada
+  - [ES-H.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-h.geojson%22%5D%7D&referrer=nsi) - Huelva
+  - [ES-J.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-j.geojson%22%5D%7D&referrer=nsi) - Jaén
+  - [ES-MA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ma.geojson%22%5D%7D&referrer=nsi) - Málaga
+  - [ES-SE.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-se.geojson%22%5D%7D&referrer=nsi) - Sevilla
+- Aragón
+  - [ES-HU.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-hu.geojson%22%5D%7D&referrer=nsi) - Huesca
+  - [ES-TE.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-te.geojson%22%5D%7D&referrer=nsi) - Teruel
+  - [ES-Z.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-z.geojson%22%5D%7D&referrer=nsi) - Zaragoza
+- Principado de Asturias
+  - [ES-O.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-o.geojson%22%5D%7D&referrer=nsi) - Asturias
+- Cantabria
+  - [ES-S.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-s.geojson%22%5D%7D&referrer=nsi) - Cantabria
+- Castilla-La Mancha
+  - [ES-AB.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ab.geojson%22%5D%7D&referrer=nsi) - Albacete
+  - [ES-CR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-cr.geojson%22%5D%7D&referrer=nsi) - Ciudad Real
+  - [ES-CU.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-cu.geojson%22%5D%7D&referrer=nsi) - Cuenca
+  - [ES-GU.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-gu.geojson%22%5D%7D&referrer=nsi) - Guadalajara
+  - [ES-TO.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-to.geojson%22%5D%7D&referrer=nsi) - Toledo
+- Castilla y León
+  - [ES-AV.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-av.geojson%22%5D%7D&referrer=nsi) - Ávila
+  - [ES-BU.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-bu.geojson%22%5D%7D&referrer=nsi) - Burgos
+  - [ES-LE.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-le.geojson%22%5D%7D&referrer=nsi) - León
+  - [ES-P.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-p.geojson%22%5D%7D&referrer=nsi) - Palencia
+  - [ES-SA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-sa.geojson%22%5D%7D&referrer=nsi) - Salamanca
+  - [ES-SG.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-sg.geojson%22%5D%7D&referrer=nsi) - Segovia
+  - [ES-SO.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-so.geojson%22%5D%7D&referrer=nsi) - Soria
+  - [ES-VA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-va.geojson%22%5D%7D&referrer=nsi) - Valladolid
+  - [ES-ZA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-za.geojson%22%5D%7D&referrer=nsi) - Zamora
+- Cataluña
+  - [ES-B.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-b.geojson%22%5D%7D&referrer=nsi) - Barcelona
+  - [ES-GI.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-gi.geojson%22%5D%7D&referrer=nsi) - Girona
+  - [ES-L.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-l.geojson%22%5D%7D&referrer=nsi) - Lleidaida
+  - [ES-T.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-t.geojson%22%5D%7D&referrer=nsi) - Tarragona
+- Extremadura
+  - [ES-BA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ba.geojson%22%5D%7D&referrer=nsi) - Badajoz
+  - [ES-CC.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-cc.geojson%22%5D%7D&referrer=nsi) - Cáceres
+- Galicia
+  - [ES-C.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-c.geojson%22%5D%7D&referrer=nsi) - A Coruña
+  - [ES-LU.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-lu.geojson%22%5D%7D&referrer=nsi) - Lugo
+  - [ES-OR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-or.geojson%22%5D%7D&referrer=nsi) - Ourense
+  - [ES-PO.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-po.geojson%22%5D%7D&referrer=nsi) - Pontevedra
+- La Rioja
+  - [ES-LO.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-lo.geojson%22%5D%7D&referrer=nsi) - La Rioja
+- Comunidad de Madrid
+  - [ES-M.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-m.geojson%22%5D%7D&referrer=nsi) - Madrid
+- Región de Murcia
+  - [ES-MU.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-mu.geojson%22%5D%7D&referrer=nsi) - Murcia
+- Comunidad Foral de Navarra
+  - [ES-NA.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-na.geojson%22%5D%7D&referrer=nsi) - Navarra
+- País Vasco / Euskadi
+  - [ES-VI.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-vi.geojson%22%5D%7D&referrer=nsi) - Araba / Álava
+  - [ES-BI.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-bi.geojson%22%5D%7D&referrer=nsi) - Bizkaia
+  - [ES-SS.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-ss.geojson%22%5D%7D&referrer=nsi) - Gipuzkoa
+- Comunitat Valenciana
+  - [ES-A.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-a.geojson%22%5D%7D&referrer=nsi) - Alicante / Alacant
+  - [ES-CS.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-cs.geojson%22%5D%7D&referrer=nsi) - Castellón / Castelló
+  - [ES-V.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22es-v.geojson%22%5D%7D&referrer=nsi) - Valencia / València

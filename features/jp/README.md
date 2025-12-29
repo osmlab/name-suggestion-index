@@ -53,4 +53,4 @@ Prefectures of Japan targeted with a feature using [ISO 3166-2:JP](https://en.wi
 Areas of Japan targeted with a feature not using [ISO 3166-2:JP](https://en.wikipedia.org/wiki/ISO_3166-2:JP)
 
 - [jp-ntt-east.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-ntt-east.geojson%22%5D%7D&referrer=nsi) - NTT East (NTT東日本)
-- [jp-ntt-east.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-ntt-west.geojson%22%5D%7D&referrer=nsi) - NTT West (NTT西日本)
+- [jp-ntt-west.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-ntt-west.geojson%22%5D%7D&referrer=nsi) - NTT West (NTT西日本)

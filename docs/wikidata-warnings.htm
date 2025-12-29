@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-gb">
   <head>
-    <title>Warnings generated when running the wikidata script</title>
+    <title>Warnings generated when running the Wikidata script</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
@@ -43,8 +43,7 @@
 
     <script>
       async function nsiWikiWarnings() {
-        //let warningsFile = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/warnings.json";
-        let warningsFile = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/warnings.min.json";
+        const warningsFile = "https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist/wikidata/warnings.min.json";
 
         // Use 'fetch' to grab the raw 'warnings.json' or 'warnings.min.json' file from GitHub and place the JSON data in an object variable.
         const allWarningsFile = await fetch(warningsFile);
@@ -53,15 +52,15 @@
         // We only want the warning data, not the meta data (except the generated timestamp).
         const allWarnings = allWarningsData['warnings'];
         let generated = new Date(Date.parse(allWarningsData._meta.generated));
-            generated = generated.getDate() + "/" + (generated.getMonth() + 1) + "/" + generated.getFullYear();
+          generated = generated.toLocaleString('default', { day: 'numeric', month: 'long', year: 'numeric' });
 
 
         // Loop through each warning and add a <table> (<tr>) row for each warning.
         let tableRows = "";
-        let thisMatch, rowClass;
+        let rowClass;
 
         allWarnings.forEach(warning => {
-          // Assign each row an error type (default 'other') for the 'class' attribute, allowing for possible filtering / styling later. 
+          // Assign each row an error type (default 'other') for the 'class' attribute, allowing for possible filtering / styling later.
           rowClass = "other";
 
           // An "unresolved-redirect" won't be a string, it'll be an object, so check for that first, and set the 'warning.msg.name' as the 'warning.msg'.
@@ -74,30 +73,35 @@
             rowClass = "facebookerror";
           }
 
-          // If the warning is about a replacment Wikidata entry, make the suggested replacment a hyperlink.
+          // The Wikidata entry marks a public Facebook page as having restricted access.
+          if (warning.msg.match("restricted access qualifier")) {
+            rowClass = "facebookaccess";
+          }
+
+          // If the warning is about a replacement Wikidata entry, make the suggested replacement a hyperlink.
           if (warning.msg.match("might possibly be replaced by")) {
-            thisMatch = warning.msg.match(/Q[0-9]+/); // Grab the new Wiki QID, including the letter Q.
-            warning.msg = warning.msg.replace(thisMatch,"<a href=\"https://www.wikidata.org/wiki/" + thisMatch + "\">" + thisMatch + "</a>");
+            warning.msg = convertQIDToHyperLink(warning.msg);
             rowClass = "replacewiki";
           }
 
-          // The wikidata doesn't have an English label.
-          if (warning.msg.match("missing English label")) {
+          // The Wikidata entry doesn't have an English label.
+          if (warning.msg.match("missing an English label")) {
             rowClass = "englishlabel";
           }
 
-          // The wikidata was deleted.
+          // The Wikidata entry was deleted.
           if (warning.msg.match("was deleted")) {
             rowClass = "deleted";
           }
 
-          // The wikidata has an unresolved-redirect.
-          if (warning.msg.match("unresolved-redirect")) {
+          // The Wikidata entry has an unresolved redirect. Grab the Wikidata QID of the redirect target, and make it a hyperlink.
+          if (warning.msg.match("Wikidata QID redirects to")) {
+            warning.msg = convertQIDToHyperLink(warning.msg);
             rowClass = "unresolved";
           }
 
           tableRows += "<tr class=\"" + rowClass + "\">";
-          tableRows += "<td><a href=\"https://www.wikidata.org/wiki/" + warning.qid + "\">" + warning.qid + "</a></td>";
+          tableRows += "<td>" + wikidataLink(warning.qid) + "</td>";
           tableRows += "<td>" + warning.msg + "</td>";
           tableRows += "</tr>";
         });
@@ -107,7 +111,19 @@
         const wikiTableCaption = wikiTable1.getElementsByTagName("caption");
 
         wikiTableBody[0].innerHTML = tableRows;
-        wikiTableCaption[0].innerHTML = "Table of " + allWarnings.length + " Wikidata Errors (generated " + generated + ")!";
+        wikiTableCaption[0].innerHTML = "Table of " + allWarnings.length + " Wikidata errors (generated " + generated + ")!";
+      }
+
+      // Grabs a Wikidata QID, including the letter Q, and creates a link to it.
+      function convertQIDToHyperLink(msg)
+      {
+        const thisMatch = msg.match(/Q[0-9]+/);
+        return msg.replace(thisMatch,wikidataLink(thisMatch));
+      }
+
+      function wikidataLink(qid)
+      {
+        return "<a href=\"https://www.wikidata.org/wiki/" + qid + "\">" + qid + "</a>";
       }
 
       // Run the function nsiWikiWarnings() when the DOM has loaded.
@@ -123,39 +139,94 @@
 
     <p>
     When the command "<code>npm run wikidata</code>" is run by a maintainer of the project,
-    this will connect to Wikidata directly and attempt to download logos and descriptions for each
-    entry within the Name Suggestion Index (<abbr title="Name Suggestion Index">NSI</abbr>).
-    </p>
-
-    <p>
+    this will connect to <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">Wikidata</a> directly and attempt to download logos and
+    descriptions for each entry within the Name Suggestion Index (<abbr title="Name Suggestion Index">NSI</abbr>).
     Sometimes, Wikidata won't be able to provide the data the <abbr title="Name Suggestion Index">NSI</abbr> is
     looking for, and will return an error message. These error messages are displayed below. Common errors are
-    social media accounts listed in a Wikidata entry which are out of date, or simply incorrect. Some branded
-    Facebook accounts are set to require the user to be logged in when browsing (i.e. missing permissions), which is something the
-    <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment. 
+    social media accounts listed in a Wikidata entry which are out of date, or simply incorrect.
     </p>
 
     <p>
-    An <strong>unresolved-redirect</strong> is when the Wikidata entry
-    the <abbr title="Name Suggestion Index">NSI</abbr> links to is redirecting to a different (possibly newer)
-    Wikidata entry. In this instance, the Wikidata reference will need to be updated within
-    the <abbr title="Name Suggestion Index">NSI</abbr> data itself.
+    Guidance for resolving warnings:
     </p>
+
+    <ul>
+      <li>
+        <strong>Deleted Wikidata entries:</strong> If a Wikidata entry has been deleted, it might be possible
+        to request that it is reinstated by the Wikidata administrator who deleted it. Clicking the Wikidata
+        link of the deleted entry will bring up the deletion log for the entry, including the username of the
+        administrator who performed the deletion. For additional guidance on how to request the undeletion
+        of an entry, please view the
+        "<a href="https://github.com/osmlab/name-suggestion-index/wiki/Editing-Wikidata#undeletion-of-wikidata-pages">Editing Wikidata</a>"
+        wiki page on the <abbr title="Name Suggestion Index">NSI</abbr> <a href="https://github.com/osmlab/name-suggestion-index">GitHub project</a>.
+      </li>
+      <li>
+        <strong>Facebook account access ("Unsupported get request"):</strong>
+        <ul>
+          <li>
+            Some branded Facebook accounts are set with access restrictions, such as requiring
+            the user to be logged in when browsing. Calls to the Facebook Graph API will return
+            a generic error when attempting to read these accounts, which is something the
+            <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment.
+            If the exact access restriction is identified, it can be added to the
+            "<a href="https://www.wikidata.org/wiki/Property:P2013">Facebook username</a>"
+            statement on the Wikidata entry using the qualifier
+            "<a href="https://www.wikidata.org/wiki/Property:P6954">online access status</a>".
+            "<code>npm run wikidata</code>" will ignore the Facebook API warning for any accounts
+            with "online access status" set to "<a href="https://www.wikidata.org/wiki/Q58370623">private account</a>",
+            "<a href="https://www.wikidata.org/wiki/Q107459441">registration required</a>" (i.e., only visible when logged in), or
+            "<a href="https://www.wikidata.org/wiki/Q113165094">location restricted to country of publication</a>"
+            (i.e., the profile is only visible to users from certain countries, or is blocked
+            to users from certain countries). "<code>npm run wikidata</code>" will also warn of
+            any Facebook accounts that have a restricted access qualifier on Wikidata, but have
+            since had their privacy settings changed to make the account publicly viewable.
+          </li>
+          <li>
+            Other branded Facebook accounts may be incorrectly configured as a personal profile.
+            These accounts will have an "Add friend" button instead of "Like" or "Follow"
+            when visited. Calls to the Facebook Graph API will return a generic error when
+            attempting to read these accounts, regardless of access status, which is also something
+            the <abbr title="Name Suggestion Index">NSI</abbr> can't skirt around at the moment.
+            Incorrectly configured accounts can be labeled on the Wikidata entry by using the qualifier
+            "<a href="https://www.wikidata.org/wiki/Property:P6477">does not have characteristic</a>" on
+            the Facebook username statement and setting its value to
+            "<a href="https://www.wikidata.org/wiki/Q134432781">professional account</a>".
+            "<code>npm run wikidata</code>" will ignore the Facebook API warning for these accounts, and also
+            warn of any Facebook accounts that are marked as having "personal" characteristics but have
+            since been reconfigured to be publicly viewable, properly configured branded Facebook pages.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Possible replacements:</strong> If a Wikidata entry has a
+        "<a href="https://www.wikidata.org/wiki/Property:P156">followed by</a>",
+        "<a href="https://www.wikidata.org/wiki/Property:P1366">replaced by</a>", or
+        "<a href="https://www.wikidata.org/wiki/Property:P7888">merged into</a>" statement,
+        "<code>npm run wikidata</code>" will make note of its value as a possible replacement for the entity.
+        These potential replacements should be evaluated for accuracy, and the
+        <abbr title="Name Suggestion Index">NSI</abbr> should be updated with the replacement if the
+        original entity is defunct and the suggested replacement is valid.
+      </li>
+      <li>
+        <strong>Unresolved redirects:</strong> An "unresolved redirect" is when the Wikidata entry
+        the <abbr title="Name Suggestion Index">NSI</abbr> links to is redirecting to a different (possibly newer)
+        Wikidata entry. In this instance, the Wikidata reference will need to be updated within
+        the <abbr title="Name Suggestion Index">NSI</abbr> data itself.
+      </li>
+    </ul>
 
     <p>
     If you can, simply click on a Wikidata link below, and check to see if the error can be fixed. Please note that
-    fixing an error will not remove the error message below until "<code>npm run wikidata</code>" has been run again.
-    </p>
-
-    <p>
-    If a Wikidata entry has been deleted, it might be possible to request that it is reinstated by the Wiki admin who deleted it.
+    fixing an error will not remove the error message below until "<code>npm run wikidata</code>" has been run again,
+    and "<code>npm run dist</code>" has been run to have <a href="https://nsi.guide">nsi.guide</a> pull the latest
+    data from the <abbr title="Name Suggestion Index">NSI</abbr> <a href="https://github.com/osmlab/name-suggestion-index">GitHub project</a>.
     </p>
 
     <table id="wikidataWarningsTable">
-      <caption>Table of Wikidata Errors!</caption>
+      <caption>Table of Wikidata errors!</caption>
       <thead>
         <tr>
-          <th>Wikidata</th>
+          <th>Wikidata QID</th>
           <th>Error Message</th>
         </tr>
        </thead>

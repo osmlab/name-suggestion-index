@@ -51,6 +51,7 @@ Provinces of the Philippines targeted with a feature using [ISO 3166-2:PH](https
 - [PH-PAM.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-pam.geojson%22%5D%7D&referrer=nsi) - Pampanga
 - [PH-PAN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-pan.geojson%22%5D%7D&referrer=nsi) - Pangasinan
 - [PH-QUE.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-que.geojson%22%5D%7D&referrer=nsi) - Quezon (Keson)
+- [PH-SLU.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-slu.geojson%22%5D%7D&referrer=nsi) - Sulu
 - [PH-SUN.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-sun.geojson%22%5D%7D&referrer=nsi) - Surigao del Norte (Hilagang Surigaw)
 - [PH-SUR.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-sur.geojson%22%5D%7D&referrer=nsi) - Surigao del Sur (Timog Surigaw)
 - [PH-ZMB.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-zmb.geojson%22%5D%7D&referrer=nsi) - Zambales (Sambales)
@@ -68,8 +69,17 @@ Highly urbanized cities of the Philippines targeted with a feature using [ISO 31
 - [PH-00-Pasig_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-00-pasig_city.geojson%22%5D%7D&referrer=nsi) - Pasig
 - [PH-00-Valenzuela_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-00-valenzuela_city.geojson%22%5D%7D&referrer=nsi) - Valenzuela
 - [PH-03-Angeles_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-03-angeles_city.geojson%22%5D%7D&referrer=nsi) - Angeles
+- [PH-07-Cebu_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-07-cebu_city.geojson%22%5D%7D&referrer=nsi) - Cebu City (Lungsod ng Cebu)
 - [PH-07-Lapu-Lapu_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-07-lapu-lapu_city.geojson%22%5D%7D&referrer=nsi) - Lapu-Lapu City (Lungsod ng Lapu-Lapu)
 - [PH-07-Mandaue_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-07-mandaue_city.geojson%22%5D%7D&referrer=nsi) - Mandaue City (Lungsod ng Mandaue)
+- [PH-13-Butuan_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-13-butuan_city.geojson%22%5D%7D&referrer=nsi) - Butuan
+- [PH-41-Puerto_Princesa_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-41-puerto_princesa_city.geojson%22%5D%7D&referrer=nsi) - Puerto Princesa
+
+Independent component cities of the Philippines targeted with a feature using [ISO 3166-2:PH](https://en.wikipedia.org/wiki/ISO_3166-2:PH) and their English name
+- [PH-01-Dagupan_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-01-dagupan_city.geojson%22%5D%7D&referrer=nsi) - Dagupan
+- [PH-02-Santiago_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-02-santiago_city.geojson%22%5D%7D&referrer=nsi) - Santiago
+- [PH-05-Naga_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-05-naga_city.geojson%22%5D%7D&referrer=nsi) - Naga
+- [PH-08-Ormoc_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-08-ormoc_city.geojson%22%5D%7D&referrer=nsi) - Ormoc
 
 Component cities of the Philippines targeted with a feature using [ISO 3166-2:PH](https://en.wikipedia.org/wiki/ISO_3166-2:PH) and their English name
 - [PH-01-Alaminos_City.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22ph-01-alaminos_city.geojson%22%5D%7D&referrer=nsi) - Alaminos
