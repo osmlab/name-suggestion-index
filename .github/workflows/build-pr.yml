@@ -22,6 +22,7 @@ jobs:
     - uses: actions/checkout@v6
       with:
         ref: ${{ github.event.pull_request.head.ref }}
+    - run: git status
     - name: Use Bun ${{ matrix.bun-version }}
       uses: oven-sh/setup-bun@v2
       with:
@@ -31,6 +32,7 @@ jobs:
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
     - run: bun run all
+    - run: git status
     - uses: stefanzweifel/git-auto-commit-action@v7
       with:
         add_options: '-A'
