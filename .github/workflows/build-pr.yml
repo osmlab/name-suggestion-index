@@ -1,7 +1,7 @@
 name: build pr
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [ main ]
 
 env:
@@ -11,7 +11,7 @@ jobs:
   build-pr:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      pull-requests: write
 
     strategy:
       fail-fast: false
@@ -21,7 +21,8 @@ jobs:
     steps:
     - uses: actions/checkout@v6
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{ github.head_ref }}
     - name: Use Bun ${{ matrix.bun-version }}
       uses: oven-sh/setup-bun@v2
       with:
@@ -31,6 +32,16 @@ jobs:
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
     - run: bun run all
-    - uses: stefanzweifel/git-auto-commit-action@v7
+    - run: |
+        DIFF=$(git diff data/)
+        echo "DIFF<<EOF" >> $GITHUB_ENV
+        echo "$DIFF" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+    - name: Comment PR
+      if: ${{ env.DIFF }}
+      uses: thollander/actions-comment-pull-request@v3
       with:
-        add_options: '-A'
+        message: |
+          ```diff
+          ${{ env.DIFF }}
+          ```
