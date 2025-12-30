@@ -16,6 +16,7 @@ bun run dist        # fast, version number updates automatically and will print 
 git add . && git commit -m 'vA.B.C'
 git tag vA.B.C
 git push origin main vA.B.C
+npm login           # npm uses shorter-life tokens now, this may be needed
 bun publish
 
 ```
