@@ -20,8 +20,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v6
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
     - run: git status
     - name: Use Bun ${{ matrix.bun-version }}
       uses: oven-sh/setup-bun@v2
