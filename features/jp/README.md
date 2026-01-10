@@ -71,3 +71,13 @@ Areas of Japan targeted with a feature not using [ISO 3166-2:JP](https://en.wiki
 - [JP-01-hiyama.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-hiyama.geojson%22%5D%7D&referrer=nsi) - Hiyama (檜山)<sup>※1</sup>
 
 ※1 Both include the former Kumaiishi (熊石町, now Yakumo (八雲町)).
+
+- [JP-tohoku.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-tohoku.geojson%22%5D%7D&referrer=nsi) - Tohoku region (東北地方)
+- [JP-kanto.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-kanto.geojson%22%5D%7D&referrer=nsi) - Kanto region (関東地方)
+- [JP-chubu.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-chubu.geojson%22%5D%7D&referrer=nsi) - Chubu region (中部地方)
+- [JP-hokuriku.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-hokuriku.geojson%22%5D%7D&referrer=nsi) - Hokuriku region (北陸地方)
+- [JP-tokai.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-tokai.geojson%22%5D%7D&referrer=nsi) - Tokai region (東海地方)
+- [JP-kinki.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-kinki.geojson%22%5D%7D&referrer=nsi) - Kinki/Kansai region (近畿/関西地方)
+- [JP-chugoku.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-chugoku.geojson%22%5D%7D&referrer=nsi) - Chugoku region (中国地方)
+- [JP-shikoku.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-shikoku.geojson%22%5D%7D&referrer=nsi) - Shikoku region (四国地方)
+- [JP-kyushu.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-kyushu.geojson%22%5D%7D&referrer=nsi) - Kyushu region (九州地方)
