@@ -54,3 +54,20 @@ Areas of Japan targeted with a feature not using [ISO 3166-2:JP](https://en.wiki
 
 - [jp-ntt-east.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-ntt-east.geojson%22%5D%7D&referrer=nsi) - NTT East (NTT東日本)
 - [jp-ntt-west.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-ntt-west.geojson%22%5D%7D&referrer=nsi) - NTT West (NTT西日本)
+
+- [JP-01-soya.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-soya.geojson%22%5D%7D&referrer=nsi) - Soya (宗谷)
+- [JP-01-rumoi.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-rumoi.geojson%22%5D%7D&referrer=nsi) - Rumoi (留萌)
+- [JP-01-kamikawa.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-kamikawa.geojson%22%5D%7D&referrer=nsi) - Kamikawa (上川)
+- [JP-01-okhotsk.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-okhotsk.geojson%22%5D%7D&referrer=nsi) - Okhotsk (オホーツク)
+- [JP-01-nemuro.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-nemuro.geojson%22%5D%7D&referrer=nsi) - Nemuro (根室)
+- [JP-01-kushiro.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-kushiro.geojson%22%5D%7D&referrer=nsi) - Kushiro (釧路)
+- [JP-01-tokachi.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-tokachi.geojson%22%5D%7D&referrer=nsi) - Tokachi (十勝)
+- [JP-01-sorachi.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-sorachi.geojson%22%5D%7D&referrer=nsi) - Sorachi (空知)
+- [JP-01-ishikari.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-ishikari.geojson%22%5D%7D&referrer=nsi) - Ishikari (石狩)
+- [JP-01-shiribeshi.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-shiribeshi.geojson%22%5D%7D&referrer=nsi) - Shiribeshi (後志)
+- [JP-01-iburi.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-iburi.geojson%22%5D%7D&referrer=nsi) - Iburi (胆振)
+- [JP-01-hidaka.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-hidaka.geojson%22%5D%7D&referrer=nsi) - Hidaka (日高)
+- [JP-01-oshima.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-oshima.geojson%22%5D%7D&referrer=nsi) - Oshima (渡島)<sup>※1</sup>
+- [JP-01-hiyama.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22jp-01-hiyama.geojson%22%5D%7D&referrer=nsi) - Hiyama (檜山)<sup>※1</sup>
+
+※1 Both include the former Kumaiishi (熊石町, now Yakumo (八雲町)).
