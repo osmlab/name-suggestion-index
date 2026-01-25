@@ -1,10 +1,15 @@
 import { simplify } from './simplify.ts';
 
+interface Item {
+  tags: Record<string, string>;
+  displayName?: string;
+}
+
 
 // We want the identifiers to be useable in url strings and other places,
 // and avoid any unicode or right-to-left surprises,
 // so limit them to /^\w+$/  (only [A-Za-z0-9_] characters)
-export function idgen(item: unknown, tkv: string, locationID: string): string | null {
+export function idgen(item: Item, tkv: string, locationID: string): string | null {
   let name;
 
   const parts = tkv.split('/', 3);   // tkv = "tree/key/value"
