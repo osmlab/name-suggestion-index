@@ -1,7 +1,8 @@
-import { styleText } from 'bun:util';
+import { styleText } from 'node:util';
+import type { Validator, Schema } from 'jsonschema';
 
 // Perform JSON Schema validation
-export function validate(validator, filepath, object, schema) {
+export function validate(validator: Validator, filepath: string, object: unknown, schema: Schema): void {
 
   const validationErrors = validator.validate(object, schema, { nestedErrors: true }).errors;
   if (validationErrors.length) {

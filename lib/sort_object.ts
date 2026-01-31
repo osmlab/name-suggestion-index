@@ -4,10 +4,10 @@ const withLocale = localeCompare('en-US');
 
 // Returns an object with sorted keys and sorted values.
 // (This is useful for file diffing)
-export function sortObject(obj: Record<string, unknown>): Record<string, unknown> {
+export function sortObject(obj: Record<string, unknown>): Record<string, unknown> | null {
   if (!obj) return null;
 
-  const sorted = {};
+  const sorted: Record<string, unknown> = {};
   const keys = Object.keys(obj).sort(keyCompare);
   for (const k of keys) {
     const v = obj[k];

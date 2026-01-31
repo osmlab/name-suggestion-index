@@ -393,7 +393,7 @@ function processEntities(result) {
     }
 
     // P11245 - YouTube Handle
-    const youtubeHandle = getClaimValue(entity, 'P2397');
+    const youtubeHandle = getClaimValue(entity, 'P11245');
     if (youtubeHandle) {
       target.identities.youtubeHandle = youtubeHandle;
     }
