@@ -6,7 +6,7 @@ import { Matcher } from '../src/nsi.ts';
 const data = await Bun.file('./test/matcher.data.json').json();
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollection = await Bun.file('./dist/featureCollection.json').json();
+const featureCollection = await Bun.file('./dist/json/featureCollection.json').json();
 const loco = new LocationConflation(featureCollection);
 
 const USA = [-98.58, 39.828];

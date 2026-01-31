@@ -1,16 +1,14 @@
-name: test
+name: build
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 env:
   FORCE_COLOR: 2
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -19,7 +17,7 @@ jobs:
         bun-version: ['1.3']
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Use Bun ${{ matrix.bun-version }}
       uses: oven-sh/setup-bun@v2
       with:
@@ -28,5 +26,4 @@ jobs:
     - run: |
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
-    - run: bun run lint
-    - run: bun run test
+    - run: bun run all

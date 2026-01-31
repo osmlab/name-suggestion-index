@@ -43,8 +43,7 @@
 
     <script>
       async function nsiWikiWarnings() {
-        //let warningsFile = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/warnings.json";
-        let warningsFile = "https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/warnings.min.json";
+        const warningsFile = "https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist/wikidata/warnings.min.json";
 
         // Use 'fetch' to grab the raw 'warnings.json' or 'warnings.min.json' file from GitHub and place the JSON data in an object variable.
         const allWarningsFile = await fetch(warningsFile);

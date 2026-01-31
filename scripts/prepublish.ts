@@ -1,10 +1,8 @@
-// External
 import { Glob } from 'bun';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
 
-// Internal
-import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
+const CDNRoot = 'https://cdn.jsdelivr.net/npm/name-suggestion-index';
+const packageJSON = await Bun.file('./package.json').json();
 
 
 prepublish();
@@ -17,47 +15,78 @@ async function prepublish() {
   console.log(START);
   console.time(END);
 
-  // Refresh the files already in `./dist/json/*`, update metadata to match current version and time.
-  const completeJSON = await Bun.file('./dist/json/completeFeatureCollection.json').json();
-  const featuresJSON = await Bun.file('./dist/json/featureCollection.json').json();
-  const resourcesJSON = await Bun.file('./dist/json/resources.json').json();
-  const defaultsJSON = await Bun.file('./dist/json/defaults.json').json();
-
-  delete completeJSON._meta;
-  delete featuresJSON._meta;
-  delete resourcesJSON._meta;
-  delete defaultsJSON._meta;
-
-  await writeFileWithMeta('./dist/json/completeFeatureCollection.json', stringify(completeJSON) + '\n');
-  await writeFileWithMeta('./dist/json/defaults.json', stringify(defaultsJSON) + '\n');
-  await writeFileWithMeta('./dist/json/featureCollection.json', stringify(featuresJSON, { maxLength: 9999 }) + '\n');
-  await writeFileWithMeta('./dist/json/resources.json', stringify(resourcesJSON, { maxLength: 9999 }) + '\n');
-
-  // Minify the .json files under `./dist/json/*`
-  // JSDelivr CDN does not yet have automatic support for serving `.min.json`.
-  // We can watch this issue to see if they add it:  https://github.com/jsdelivr/jsdelivr/issues/18604
-  // Then maybe remove this code.
-  const glob = new Glob('./dist/json/*.json');
+  const glob = new Glob('./dist/**/*.json');
   for (const filepath of glob.scanSync()) {
-    await minifyJSON(filepath, filepath.replace('.json', '.min.json'));
+    if (/\.min\.json$/.test(filepath)) continue;  // skip any existing `.min.json`
+
+    await metadataJSON(filepath);
+    await minifyJSON(filepath);
   }
 
   console.timeEnd(END);
 }
 
 
-// minifyJSON
-// minifies a JSON file
-async function minifyJSON(inPath, outPath) {
-  try {
-    const contents = await Bun.file(inPath).json();
-    const minified = JSON.stringify(contents);
-    await Bun.write(outPath, minified);
-  } catch (err) {
-    console.error(styleText('red', `Error - ${err.message} minifying:`));
-    console.error(styleText('yellow', '  ' + inPath));
-    process.exit(1);
+/**
+ * metadataJSON
+ * This function adds a block of metadata to the beginning of a `.json` file.
+ * @param  {string}  filepath - the path to the file we want to add metadata to
+ */
+async function metadataJSON(filepath) {
+  const file = Bun.file(filepath);
+  let contents = (await file.text()) || '';
+
+  if (contents[0] !== '{') {
+    throw new Error(`No JSON: ${filepath}`);
+
+  } else {
+    // If it exists already, remove it.
+    contents = contents.replaceAll(/\s+\"_meta[^}]+\},/gm, '');
+
+    // Keep just the end part of the path without extension, e.g. `dist/json/file.json`
+    const path = filepath.replace(/(.*)(\/dist.*)/i, '$2');
+
+    // Calculate md5 of contents
+    const version = packageJSON.version;
+    const message = version + contents;
+    const hash = new Bun.CryptoHasher('md5').update(message).digest('hex');
+    const now = new Date();
+
+    const metadata = {
+      version:    version,
+      generated:  now,
+      url:        `${CDNRoot}@${version}${path}`,
+      hash:       hash
+    };
+
+    // Stick metadata at the beginning of the file in the most hacky way possible
+    const re = /\r?\n?[{}]\r?\n?/g;  // match curlies and their newline neighbors
+    const strProps = JSON.stringify(metadata, null, 4).replace(re, '');
+    const block = `
+  "_meta": {
+${strProps}
+  },`;
+
+    console.log(styleText('greenBright', filepath));
+    await Bun.write(file, contents.replace(/^\{/, '{' + block));
   }
 }
 
 
+/**
+ * minifyJSON
+ * This function creates a minified `.min.json` file in the same place as an original `.json` file.
+ *
+ * JSDelivr CDN does not yet have automatic support for serving `.min.json`.
+ * We can watch this issue to see if they add it:  https://github.com/jsdelivr/jsdelivr/issues/18604
+ * Then maybe remove this code.
+ *
+ * @param  {string}  filepath - the path to the file we want to minify
+ */
+async function minifyJSON(filepath) {
+  const outpath = filepath.replace('.json', '.min.json');
+  const contents = await Bun.file(filepath).json();
+
+  console.log(styleText('greenBright', outpath));
+  await Bun.write(outpath, JSON.stringify(contents));
+}

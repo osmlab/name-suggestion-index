@@ -1,52 +1,48 @@
-// External
-import fs from 'bun:fs';
-import http from 'node:http';
-import https from 'node:https';
+/* eslint-disable dot-notation */
+
+// set to true if you just want to test what the script will do without updating Wikidata
+const DRYRUN = false;
+
+import { $ } from 'bun';
 import { iso1A2Code } from '@rapideditor/country-coder';
-import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
-import shell from 'shelljs';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
 import wikibase from 'wikibase-sdk';
 import wikibaseEdit from 'wikibase-edit';
 const withLocale = localeCompare('en-US');
 
-// Internal
 import { sortObject } from '../lib/sort_object.ts';
 import { fileTree } from '../lib/file_tree.ts';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
 
 // JSON
-const packageJSON = JSON5.parse(fs.readFileSync('package.json', 'utf8'));
-const treesJSON = JSON5.parse(fs.readFileSync('config/trees.json', 'utf8'));
+const packageJSON = await Bun.file('./package.json').json();
+const treesJSON = await Bun.file('./config/trees.json').json();
 const trees = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
-const featureCollectionJSON = JSON5.parse(fs.readFileSync('dist/featureCollection.json', 'utf8'));
-const loco = new LocationConflation(featureCollectionJSON);
+let featureCollectionJSON;
+try {
+  featureCollectionJSON = await Bun.file('./dist/json/featureCollection.json').json();
+} catch (err) {
+  console.error(styleText('red', `Error: ${err.message} `));
+  console.error(styleText('yellow', `Please run 'bun run build' first.`));
+  process.exit(1);
+}
+const _loco = new LocationConflation(featureCollectionJSON);
 
 const wbk = wikibase({
   instance: 'https://www.wikidata.org',
   sparqlEndpoint: 'https://query.wikidata.org/sparql'
 });
 
-// set keepalive for all the connections - see #4948
-const httpAgent = new http.Agent({ keepAlive: true });
-const httpsAgent = new https.Agent({ keepAlive: true });
-const fetchOptions = {
-  agent: (url) => ((url.protocol === 'http:') ? httpAgent : httpsAgent)
-};
-const fetchOptionsQuery = {
-  agent: fetchOptions.agent,
-  method: 'GET',
-  headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
-};
 
-
-// set to true if you just want to test what the script will do without updating Wikidata
-const DRYRUN = false;
+// Start fresh
+$.nothrow();  // If a shell command returns nonzero, keep going.
+if (!DRYRUN) {
+  await $`rm -rf ./dist/wikidata`;
+}
 
 console.log(styleText('blue', '-'.repeat(70)));
 console.log(styleText('blue', '📓  Build Wikidata cache'));
@@ -70,13 +66,10 @@ console.log(styleText('blue', '-'.repeat(70)));
 //     }
 //   }
 // }
-shell.config.silent = true;
-shell.mv('-f', './config/secrets.json', './secrets.json');
-shell.config.reset();
 
 let _secrets;
 try {
-  _secrets = JSON5.parse(fs.readFileSync('./secrets.json', 'utf8'));
+  _secrets = await Bun.file('./secrets.json').json();
 } catch (err) { /* ignore */ }
 
 if (_secrets && !_secrets.wikibase) {
@@ -112,26 +105,31 @@ if (_secrets && _secrets.wikibase) {
 
 
 // what to fetch
-let _cache = {};
-console.log('');
-console.log('🏗   ' + styleText('yellow', `Loading index files (this might take over a minute, maybe more) ...`));
-fileTree.read(_cache, loco);
-fileTree.expandTemplates(_cache, loco);
+const START = '🏗   ' + styleText('yellow', `Loading index files…`);
+const END = '👍  ' + styleText('green', `done loading`);
+console.log(START);
+console.time(END);
+
+const _nsi = {};
+await fileTree.read(_nsi, _loco);
+fileTree.expandTemplates(_nsi, _loco);
+console.timeEnd(END);
 
 
 // Gather all QIDs referenced by any tag..
 console.log('');
-console.log('🏗   ' + styleText('yellow', `Syncing Wikidata with name-suggestion-index ...`));
-console.log('       ... this is done in batches, and may take around 10 minutes ...');
-let _wikidata = {};
-let _qidItems = {};       // any item referenced by a qid
-let _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
-let _qidMetadata = {};
-Object.keys(_cache.path).forEach(tkv => {
+console.log('🏗   ' + styleText('yellow', `Syncing Wikidata with name-suggestion-index…`));
+console.log('       This is done in batches, and may take around 10 minutes…');
+const _wikidata = {};
+const _qidItems = {};       // any item referenced by a qid
+const _qidIdItems = {};     // items where we actually want to update the NSI-identifier on wikidata
+const _qidMetadata = {};
+
+Object.keys(_nsi.path).forEach(tkv => {
   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
   const t = parts[0];
 
-  const items = _cache.path[tkv].items;
+  const items = _nsi.path[tkv].items;
   if (!Array.isArray(items) || !items.length) return;
 
   items.forEach(item => {
@@ -167,22 +165,22 @@ Object.keys(_cache.path).forEach(tkv => {
   });
 });
 
-let _qids = Object.keys(_wikidata);
-let _total = _qids.length;
+const _qids = Object.keys(_wikidata);
+const _total = _qids.length;
 if (!_total) {
   console.log('Nothing to fetch');
   process.exit();
 }
 
 // Chunk into multiple wikidata API requests..
-let _urls = wbk.getManyEntities({
+const _urls = wbk.getManyEntities({
   ids: _qids,
   languages: ['en','mul'],
   props: ['info', 'labels', 'descriptions', 'claims', 'sitelinks'],
   format: 'json'
 });
 
-let _warnings = [];
+const _warnings = [];
 
 doFetch()
   .then(() => delay(5000))
@@ -199,11 +197,11 @@ function doFetch(index) {
   index = index || 0;
   if (index >= _urls.length) return Promise.resolve();
 
-  let currURL = _urls[index];
+  const currURL = _urls[index];
   let backoff = false;
   console.log(styleText(['yellow','bold'], `\nBatch ${index+1}/${_urls.length}`));
 
-  return fetch(currURL, fetchOptions)
+  return fetch(currURL)
     .then(response => {
       if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
       return response.json();
@@ -228,13 +226,13 @@ function doFetch(index) {
 // then eventually resolves when all that work is done.
 //
 function processEntities(result) {
-  let facebookQueue = [];
-  let wbEditQueue = [];
+  const facebookQueue = [];
+  const wbEditQueue = [];
 
   Object.keys(result.entities).forEach(qid => {
     const meta = _qidMetadata[qid];
-    let target = _wikidata[qid];
-    let entity = result.entities[qid];
+    const target = _wikidata[qid];
+    const entity = result.entities[qid];
     const labelEn = entity.labels && entity.labels.en && entity.labels.en.value;
     const labelMul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
     let label = labelEn ? labelEn : labelMul;
@@ -273,7 +271,7 @@ function processEntities(result) {
     }
 
     // Get description...
-    let description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
+    const description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
     if (description) {
       target.description = description;
     }
@@ -354,13 +352,11 @@ function processEntities(result) {
       // get access status of selected value - #10233
       let restriction;
 
-      for (let i = 0; i < entity.claims['P2013'].length; i++) {
-        const c = entity.claims['P2013'][i];
-        if ( c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser ) {
+      for (const c of entity.claims['P2013']) {
+        if (c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser) {
           const accessQualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
-          for (let j = 0; j < accessQualifiers.length; j++) {
-            const q = accessQualifiers[j];
-            if ( q.snaktype !== 'value' ) continue;
+          for (const q of accessQualifiers) {
+            if (q.snaktype !== 'value') continue;
 
             const value = q.datavalue.value.id;
             // Q113165094 - location restrictions, Q58370623 - private account, Q107459441 - only visible when logged in
@@ -372,9 +368,8 @@ function processEntities(result) {
 
           // get "does not have characteristic" status of selected value
           const charQualifiers = (c.qualifiers && c.qualifiers.P6477) || [];
-          for (let j = 0; j < charQualifiers.length; j++) {
-            const q = charQualifiers[j];
-            if ( q.snaktype !== 'value' ) continue;
+          for (const q of charQualifiers) {
+            if (q.snaktype !== 'value') continue;
 
             const value = q.datavalue.value.id;
             // Q101420143 - Facebook page, Q134432781 - professional account
@@ -398,7 +393,7 @@ function processEntities(result) {
     }
 
     // P11245 - YouTube Handle
-    const youtubeHandle = getClaimValue(entity, 'P2397');
+    const youtubeHandle = getClaimValue(entity, 'P11245');
     if (youtubeHandle) {
       target.identities.youtubeHandle = youtubeHandle;
     }
@@ -460,7 +455,7 @@ function processEntities(result) {
         if (excluding.includes('Q168678')) return;  // but skip if 'excluding' = 'brand name', see #9134
         if (excluding.includes('Q431289')) return;  // but skip if 'excluding' = 'brand', see #8239
 
-        let dissolution = { date: item.value };
+        const dissolution = { date: item.value };
 
         if (item.qualifiers) {
           // P17 - Countries where the brand is dissoluted
@@ -479,7 +474,7 @@ function processEntities(result) {
           // Sometimes the successor is stored as a claim and not as a direct reference of the dissolution date claim
           // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
           // P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
-          let successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366') || getClaimValue(entity, 'P7888');
+          const successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366') || getClaimValue(entity, 'P7888');
           if (successor && successor.id) {
             dissolution.upgrade = successor.id;
           }
@@ -568,19 +563,17 @@ function processEntities(result) {
 //   - return the latest claim with "normal" rank
 function getClaimValue(entity, prop) {
   if (!entity.claims) return;
-  if (!entity.claims[prop]) return;
+  if (!Array.isArray(entity.claims[prop])) return;
 
   let value;
-  for (let i = 0; i < entity.claims[prop].length; i++) {
-    const c = entity.claims[prop][i];
+  for (const c of entity.claims[prop]) {
     if (c.rank === 'deprecated') continue;
     if (c.mainsnak.snaktype !== 'value') continue;
 
     // skip if we find an end time qualifier - P582
     let ended = false;
     const qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
-    for (let j = 0; j < qualifiers.length; j++) {
-      const q = qualifiers[j];
+    for (const q of qualifiers) {
       if (q.snaktype !== 'value') continue;
       const enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
       if (new Date() > enddate) {
@@ -603,19 +596,17 @@ function getClaimValue(entity, prop) {
 //   - push any claims with "preferred" rank to the front
 function getClaimValues(entity, prop, includeDeprecated) {
   if (!entity.claims) return;
-  if (!entity.claims[prop]) return;
+  if (!Array.isArray(entity.claims[prop])) return;
 
-  let values = [];
-  for (let i = 0; i < entity.claims[prop].length; i++) {
-    const c = entity.claims[prop][i];
+  const values = [];
+  for (const c of entity.claims[prop]) {
     if (c.rank === 'deprecated' && !includeDeprecated) continue;
     if (c.mainsnak.snaktype !== 'value') continue;
 
     // skip if we find an end time qualifier - P582
     let ended = false;
     const qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
-    for (let j = 0; j < qualifiers.length; j++) {
-      const q = qualifiers[j];
+    for (const q of qualifiers) {
       if (q.snaktype !== 'value') continue;
       const enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
       if (new Date() > enddate) {
@@ -641,17 +632,17 @@ function getClaimValues(entity, prop, includeDeprecated) {
 // - `wikidata.json`
 // - `dissolved.json`
 //
-function finish() {
+async function finish() {
   const START = '🏗   ' + styleText('yellow', 'Writing output files');
   const END = '👍  ' + styleText('green', 'output files updated');
   console.log('');
   console.log(START);
   console.time(END);
 
-  let dissolved = {};
+  const dissolved = {};
 
   Object.keys(_wikidata).forEach(qid => {
-    let target = _wikidata[qid];
+    const target = _wikidata[qid];
 
     // sort the properties that we are keeping..
     ['identities', 'logos', 'dissolutions'].forEach(prop => {
@@ -670,16 +661,17 @@ function finish() {
       });
     }
 
-    _wikidata[qid] = sortObject(target);
+    // Don't `sortObject` the properties at this level, see #10259
+    // _wikidata[qid] = sortObject(target);
   });
 
   _warnings.sort(sortWarnings);
 
   // Set `DRYRUN=true` at the beginning of this script to prevent actual file writes from happening.
   if (!DRYRUN) {
-    writeFileWithMeta('dist/warnings.json', stringify({ warnings: _warnings }) + '\n');
-    writeFileWithMeta('dist/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
-    writeFileWithMeta('dist/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
+    await Bun.write('./dist/wikidata/warnings.json', stringify({ warnings: _warnings }) + '\n');
+    await Bun.write('./dist/wikidata/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n');
+    await Bun.write('./dist/wikidata/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n');
   }
 
   console.timeEnd(END);
@@ -694,8 +686,8 @@ function finish() {
 
 // https://developers.facebook.com/docs/graph-api/reference/user/picture/
 function fetchFacebookLogo(qid, username, restriction) {
-  let target = _wikidata[qid];
-  let logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
+  const target = _wikidata[qid];
+  const logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
   let userid;
 
   // Does this "username" end in a numeric id?  If so, fallback to it.
@@ -703,7 +695,7 @@ function fetchFacebookLogo(qid, username, restriction) {
   if (m) userid = m[1];
 
   // Can specify no redirect to fetch json and speed up this process
-  return fetch(`${logoURL}&redirect=0`, fetchOptions)
+  return fetch(`${logoURL}&redirect=0`)
     .then(response => response.json())
     .then(json => {
       if (!json) return true;
@@ -766,14 +758,19 @@ function removeOldNsiClaims() {
       ?guid  ps:P8253  ?nsiId.
     }`;
 
-  return fetch(wbk.sparqlQuery(query), fetchOptionsQuery)
+  const opts = {
+    method: 'GET',
+    headers: new Headers( {'User-Agent': 'name-suggestion-index/6.0 (https://github.com/osmlab/name-suggestion-index)'} )
+  };
+
+  return fetch(wbk.sparqlQuery(query), opts)
     .then(response => {
       if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
       return response.json();
     })
     .then(wbk.simplify.sparqlResults)
     .then(results => {
-      let wbEditQueue = [];
+      const wbEditQueue = [];
       results.forEach(item => {
         if (!_qidIdItems[item.qid]) {
           const msg = `Removing old NSI identifier for ${item.qid}: ${item.nsiId}`;
@@ -840,9 +837,9 @@ function processWbEditQueue(queue) {
 // If we are pushing edits to Wikidata, add en labels for items that don't have them.
 function enLabelForQID(qid) {
   const meta = _qidMetadata[qid];
-  const ids = Array.from(_qidItems[qid]);
-  for (let i = 0; i < ids.length; i++) {
-    const item = _cache.id.get(ids[i]);
+
+  for (const id of Array.from(_qidItems[qid])) {
+    const item = _nsi.id.get(id);
 
     if (meta.what === 'flag') {
       if (looksLatin(item.tags.subject))  return `flag of ${item.tags.subject}`;
@@ -861,16 +858,21 @@ function enLabelForQID(qid) {
       if (looksLatin(item.tags.network))  return item.tags.network;
       if (looksLatin(item.displayName))   return item.displayName;
 
-      const latintags = ['name:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]+-Latn(-[a-z]+)?'];
-      for (let i = 0; i < latintags.length; i++) {
-        let keylist = [];
-        const ex = new RegExp(`^${latintags[i]}$`);
-        Object.keys(item.tags).forEach(key => {
-          if (ex.test(key)) keylist.push(key);
-        });
+      const latintags = [
+        'name:[a-z]+-Latn(-[a-z]+)?',
+        'brand:[a-z]+-Latn(-[a-z]+)?',
+        'operator:[a-z]+-Latn(-[a-z]+)?',
+        'network:[a-z]+-Latn(-[a-z]+)?'
+      ];
+      for (const latintag of latintags) {
+        const keylist = [];
+        const re = new RegExp(`^${latintag}$`);
+        for (const key of Object.keys(item.tags)) {
+          if (re.test(key)) keylist.push(key);
+        }
 
-        for ( let j = 0; j < keylist.length; j++ ) {
-          if (looksLatin(item.tags[keylist[j]])) return item.tags[keylist[j]];
+        for (const key of keylist) {
+          if (looksLatin(item.tags[key])) return item.tags[key];
         }
       }
     }
@@ -887,13 +889,7 @@ function enLabelForQID(qid) {
 
 
 function delay(msec) {
-  return new Promise(resolve => setTimeout(resolve, msec));
-}
-
-
-// Clamp a number between min and max
-function clamp(num, min, max) {
-  return Math.min(Math.max(num, min), max);
+  return new Promise(resolve => { setTimeout(resolve, msec); });
 }
 
 

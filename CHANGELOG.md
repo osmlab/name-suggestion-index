@@ -12,12 +12,25 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 # A.B.C
 ##### YYYY-MMM-DD
 
-* Added resources:
-* Added events:
-* Updated:
-
-[#xxxx]: https://github.com/osmlab/name-suggestion-index/issues/xxxx
+[#xxxxx]: https://github.com/osmlab/name-suggestion-index/issues/xxxxx
 -->
+
+# 7.0.YYYYMMDD
+##### 2025-Oct-31
+* Various dependencies updated
+* Converted a bunch of the project to TypeScript and generate d.ts files under `./dist/ts`
+* This project uses [`bun`](https://bun.com/) now, for simpler developer tooling ([#11483],[#11488])
+* ⚠️  Exported files under `/dist` have changed:
+  * _Generated files are no longer checked into git, but they are published to npm and available on JSDelivr CDN._
+  * Most JSON files are now under `/dist/json/*`
+  * JavaScript files are now under `/dist/js/*`
+  * TypeScript files are now under `/dist/ts/*`
+  * iD/JOSM preset files are now under `/dist/presets/*`
+  * Wikidata files are now under `/dist/wikidata/*`
+
+[#11483]: https://github.com/osmlab/name-suggestion-index/issues/11483
+[#11488]: https://github.com/osmlab/name-suggestion-index/issues/11488
+
 
 # 6.0.YYYYMMDD
 ##### 2021-Jun-24

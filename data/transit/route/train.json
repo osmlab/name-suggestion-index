@@ -6,7 +6,9 @@
       "named": [
         "^(city|international|local|mtb|national|rail|regional|urban)$",
         "^(municipal|τοπική)$",
-        "^entur$"
+        "^entur$",
+        "^코레일$",
+        "^名古屋地区$"
       ]
     }
   },
@@ -42,9 +44,7 @@
       "locationSet": {"include": ["nl"]},
       "tags": {
         "network": "Achterhoek-Rivierenland",
-        "network:wikidata": "Q108716027",
-        "operator": "Arriva",
-        "operator:wikidata": "Q2581356",
+        "network:wikidata": "Q136479765",
         "route": "train"
       }
     },
@@ -673,6 +673,32 @@
       }
     },
     {
+      "displayName": "Express Intercity",
+      "id": "expressintercity-7a26af",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "network": "Express Intercity",
+        "network:short": "EIC",
+        "network:wikidata": "Q1440014",
+        "operator": "PKP Intercity",
+        "operator:wikidata": "Q590406",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "Express Intercity Premium",
+      "id": "expressintercitypremium-7a26af",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "network": "Express Intercity Premium",
+        "network:short": "EIP",
+        "network:wikidata": "Q18084630",
+        "operator": "PKP Intercity",
+        "operator:wikidata": "Q590406",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Fertagus",
       "id": "fertagus-1688c6",
       "locationSet": {
@@ -891,6 +917,17 @@
       }
     },
     {
+      "displayName": "IDS JMK",
+      "id": "integrovanydopravnisystemjihomoravskehokraje-cc6cef",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "network": "Integrovaný dopravní systém Jihomoravského kraje",
+        "network:short": "IDS JMK",
+        "network:wikidata": "Q12020731",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "IDS PLUS",
       "id": "integrovanydopravnysystemplus-b6707b",
       "locationSet": {"include": ["sk"]},
@@ -945,6 +982,19 @@
       }
     },
     {
+      "displayName": "Intercity",
+      "id": "intercity-7a26af",
+      "locationSet": {"include": ["pl"]},
+      "tags": {
+        "network": "Intercity",
+        "network:short": "IC",
+        "network:wikidata": "Q590406",
+        "operator": "PKP Intercity",
+        "operator:wikidata": "Q590406",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "InterCity",
       "id": "intercity-73b98a",
       "locationSet": {"include": ["ie"]},
@@ -971,6 +1021,44 @@
         "operator": "Intermodalidad de Levante",
         "operator:short": "ILSA",
         "operator:wikidata": "Q111296380",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "ITX-마음",
+      "id": "itxmaum-96baee",
+      "locationSet": {"include": ["kr"]},
+      "matchNames": ["마음", "한국철도"],
+      "tags": {
+        "network": "ITX-마음",
+        "network:en": "ITX-Maum",
+        "network:ko": "ITX-마음",
+        "network:wikidata": "Q122238452",
+        "operator": "한국철도공사",
+        "operator:en": "Korea Railroad Corporation",
+        "operator:ko": "한국철도공사",
+        "operator:short": "KORAIL",
+        "operator:type": "public",
+        "operator:wikidata": "Q18169",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "ITX-새마을",
+      "id": "itxsaemaeul-96baee",
+      "locationSet": {"include": ["kr"]},
+      "matchNames": ["새마을", "한국철도"],
+      "tags": {
+        "network": "ITX-새마을",
+        "network:en": "ITX-Saemaeul",
+        "network:ko": "ITX-새마을",
+        "network:wikidata": "Q13707875",
+        "operator": "한국철도공사",
+        "operator:en": "Korea Railroad Corporation",
+        "operator:ko": "한국철도공사",
+        "operator:short": "KORAIL",
+        "operator:type": "public",
+        "operator:wikidata": "Q18169",
         "route": "train"
       }
     },
@@ -1152,8 +1240,11 @@
         "network": "KTX",
         "network:wikidata": "Q167674",
         "operator": "한국철도공사",
-        "operator:en": "Korea Railroad",
+        "operator:en": "Korea Railroad Corporation",
         "operator:ko": "한국철도공사",
+        "operator:short": "KORAIL",
+        "operator:type": "public",
+        "operator:wikidata": "Q18169",
         "route": "train"
       }
     },
@@ -3372,18 +3463,93 @@
       }
     },
     {
-      "displayName": "코레일",
-      "id": "korail-96baee",
+      "displayName": "대구권 광역전철",
+      "id": "daegumetropolitansubway-96baee",
+      "locationSet": {"include": ["kr"]},
+      "matchNames": [
+        "광역전철",
+        "광역철도",
+        "전철",
+        "한국철도"
+      ],
+      "tags": {
+        "network": "대구권 전철",
+        "network:en": "Daegu Metropolitan Subway",
+        "network:ko": "대구권 전철",
+        "network:wikidata": "Q49458",
+        "operator": "한국철도공사",
+        "operator:en": "Korea Railroad Corporation",
+        "operator:ko": "한국철도공사",
+        "operator:short": "KORAIL",
+        "operator:type": "public",
+        "operator:wikidata": "Q18169",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "동남권 광역전철",
+      "id": "busanmetro-96baee",
+      "locationSet": {"include": ["kr"]},
+      "matchNames": [
+        "광역전철",
+        "광역철도",
+        "전철",
+        "한국철도"
+      ],
+      "tags": {
+        "network": "부산 도시철도",
+        "network:en": "Busan Metro",
+        "network:ko": "부산 도시철도",
+        "network:wikidata": "Q51972",
+        "operator": "한국철도공사",
+        "operator:en": "Korea Railroad Corporation",
+        "operator:ko": "한국철도공사",
+        "operator:short": "KORAIL",
+        "operator:type": "public",
+        "operator:wikidata": "Q18169",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "무궁화호",
+      "id": "mugunghwatrain-96baee",
       "locationSet": {"include": ["kr"]},
       "matchNames": ["한국철도"],
       "tags": {
-        "network": "코레일",
-        "network:en": "Korail",
-        "network:ko": "코레일",
-        "network:wikidata": "Q18169",
+        "network": "무궁화호",
+        "network:en": "Mugunghwa Train",
+        "network:ko": "무궁화호",
+        "network:wikidata": "Q489480",
         "operator": "한국철도공사",
-        "operator:en": "Korea Railroad",
+        "operator:en": "Korea Railroad Corporation",
         "operator:ko": "한국철도공사",
+        "operator:short": "KORAIL",
+        "operator:type": "public",
+        "operator:wikidata": "Q18169",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "수도권 광역전철",
+      "id": "seoulmetropolitansubway-96baee",
+      "locationSet": {"include": ["kr"]},
+      "matchNames": [
+        "광역전철",
+        "광역철도",
+        "전철",
+        "한국철도"
+      ],
+      "tags": {
+        "network": "수도권 전철",
+        "network:en": "Seoul Metropolitan Subway",
+        "network:ko": "수도권 전철",
+        "network:wikidata": "Q16950",
+        "operator": "한국철도공사",
+        "operator:en": "Korea Railroad Corporation",
+        "operator:ko": "한국철도공사",
+        "operator:short": "KORAIL",
+        "operator:type": "public",
+        "operator:wikidata": "Q18169",
         "route": "train"
       }
     },
@@ -3391,6 +3557,7 @@
       "displayName": "アーバンネットワーク",
       "id": "b8f89f-717a77",
       "locationSet": {"include": ["jp"]},
+      "note": "近畿エリア or 関西エリア",
       "tags": {
         "network": "アーバンネットワーク",
         "network:ja": "アーバンネットワーク",
@@ -3491,15 +3658,6 @@
         "operator:short": "台灣高鐵公司",
         "operator:wikidata": "Q10915767",
         "operator:zh": "台灣高速鐵路股份有限公司",
-        "route": "train"
-      }
-    },
-    {
-      "displayName": "名古屋地区",
-      "id": "3631f6-717a77",
-      "locationSet": {"include": ["jp"]},
-      "tags": {
-        "network": "名古屋地区",
         "route": "train"
       }
     },
@@ -3688,21 +3846,6 @@
         "network:en": "Seibu Railway",
         "network:ja": "西武鉄道",
         "network:wikidata": "Q83543",
-        "route": "train"
-      }
-    },
-    {
-      "displayName": "通勤五方面作戦",
-      "id": "f51aac-be33de",
-      "locationSet": {
-        "include": [
-          "jp-08.geojson",
-          "jp-12.geojson",
-          "jp-13.geojson"
-        ]
-      },
-      "tags": {
-        "network": "通勤五方面作戦",
         "route": "train"
       }
     },
