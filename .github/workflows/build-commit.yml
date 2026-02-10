@@ -1,4 +1,4 @@
-name: build daily
+name: build and commit
 
 on:
   schedule:
@@ -32,5 +32,5 @@ jobs:
       uses: peter-evans/create-pull-request@v7
       with:
         commit-message: 'build'
-        title: 'Daily build'
+        title: 'Build NSI'
         branch: action/build-daily
