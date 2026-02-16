@@ -1,0 +1,36 @@
+name: build and commit
+
+on:
+  schedule:
+    - cron: '47 5 * * 1'
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: 2
+
+jobs:
+  build-nsi:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        bun-version: ['1.3']
+
+    steps:
+    - uses: actions/checkout@v6
+    - name: Use Bun ${{ matrix.bun-version }}
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: ${{ matrix.bun-version }}
+    - run: bun install
+    - run: |
+        echo "::remove-matcher owner=eslint-compact::"
+        echo "::remove-matcher owner=eslint-stylish::"
+    - run: bun run all
+    - name: Open PR
+      uses: peter-evans/create-pull-request@v7
+      with:
+        commit-message: 'build'
+        title: 'Build NSI'
+        branch: action/build-daily
