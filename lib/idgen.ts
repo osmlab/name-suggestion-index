@@ -1,43 +1,44 @@
-// External
-import crypto from 'node:crypto';
-
-// Internal
 import { simplify } from './simplify.ts';
+
+interface Item {
+  tags: Record<string, string>;
+  displayName?: string;
+}
 
 
 // We want the identifiers to be useable in url strings and other places,
 // and avoid any unicode or right-to-left surprises,
 // so limit them to /^\w+$/  (only [A-Za-z0-9_] characters)
-export function idgen(item, tkv, locationID) {
+export function idgen(item: Item, tkv: string, locationID: string): string | null {
   let name;
 
-  const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+  const parts = tkv.split('/', 3);   // tkv = "tree/key/value"
   const t = parts[0];
 
-  // run through the list of tags looking for a suitable name
-  let osmtags;
+  // Run through the list of OSM keys looking for a suitable name
+  let osmkeys;
   if (t === 'transit') {
-    osmtags = ['name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}', 'operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}'];
+    osmkeys = ['name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}', 'operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}'];
   } else if (t === 'operators') {
-    osmtags = ['operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}'];
+    osmkeys = ['operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}'];
   } else if (t === 'flags') {
-    osmtags = ['flag:name', 'subject'];
+    osmkeys = ['flag:name', 'subject'];
   } else {  // brands
-    osmtags = ['name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}', 'operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}'];
+    osmkeys = ['name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}', 'operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}'];
   }
 
   // First attempt, pick a name that matches /^\w+$/
-  for (let i = 0; i < osmtags.length; i++) {
+  for (const osmkey of osmkeys) {
     let tryname;
-    if ( osmtags[i].includes('[a-z]') ) {
-      let keylist = [];
-      const ex = new RegExp(`^${osmtags[i]}$`);
-      Object.keys(item.tags).forEach(key => {
-        if (ex.test(key)) keylist.push(key);
-      });
+    if (osmkey.includes('[a-z]')) {
+      const keylist = [];
+      const re = new RegExp(`^${osmkey}$`);
+      for (const key of Object.keys(item.tags)) {
+        if (re.test(key)) keylist.push(key);
+      }
 
-      for ( let j = 0; j < keylist.length; j++ ) {
-        tryname = simplify(item.tags[keylist[j]]);
+      for (const key of keylist) {
+        tryname = simplify(item.tags[key]);
         if (/^\w+$/.test(tryname)) {
           name = tryname;
           break;
@@ -45,8 +46,9 @@ export function idgen(item, tkv, locationID) {
       }
 
       if (name) break;
+
     } else {
-      tryname = item.tags[osmtags[i]];
+      tryname = item.tags[osmkey];
       if (!tryname) continue;
 
       tryname = simplify(tryname);
@@ -59,29 +61,27 @@ export function idgen(item, tkv, locationID) {
 
   // If that didn't work, try again but just create a short hash for it.
   if (!name) {
-    for (let i = 0; i < osmtags.length; i++) {
-      if ( osmtags[i].includes('[a-z]') ) {
-        let keylist = [];
-        const ex = new RegExp(`^${osmtags[i]}$`);
-        Object.keys(item.tags).forEach(key => {
-          if (ex.test(key)) keylist.push(key);
-        });
+    for (const osmkey of osmkeys) {
+      if (osmkey.includes('[a-z]')) {
+        const keylist = [];
+        const re = new RegExp(`^${osmkey}$`);
+        for (const key of Object.keys(item.tags)) {
+          if (re.test(key)) keylist.push(key);
+        }
 
         if (keylist.length > 0) {
           const message = simplify(item.tags[keylist[0]]);
-          name = crypto.createHash('md5')
-               .update(message)
-               .digest('hex')
-               .slice(0, 6);
+          name = new Bun.CryptoHasher('md5').update(message).digest('hex').slice(0, 6);
         }
 
         if (name) break;
+
       } else {
-        const tryname = item.tags[osmtags[i]];
+        const tryname = item.tags[osmkey];
         if (!tryname) continue;
 
         const message = simplify(tryname);
-        name = crypto.createHash('md5').update(message).digest('hex').slice(0, 6);
+        name = new Bun.CryptoHasher('md5').update(message).digest('hex').slice(0, 6);
         break;
       }
     }
@@ -89,7 +89,7 @@ export function idgen(item, tkv, locationID) {
 
   if (name && tkv && locationID) {
     const message = `${tkv} ${locationID}`;
-    const hash = crypto.createHash('md5').update(message).digest('hex').slice(0, 6);
+    const hash = new Bun.CryptoHasher('md5').update(message).digest('hex').slice(0, 6);
     return `${name}-${hash}`;
   } else {
     return null;

@@ -1,4 +1,3 @@
-// External
 //import geojsonArea from '@mapbox/geojson-area';
 //import geojsonBounds from 'geojson-bounds';
 import geojsonPrecision from 'geojson-precision';
@@ -9,25 +8,20 @@ import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import path from 'node:path';
 import safeRegex from 'safe-regex';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
+import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'bun:util';
 import { Validator } from 'jsonschema';
 const withLocale = localeCompare('en-US');
 
-// Internal
 import { fileTree } from '../lib/file_tree.ts';
 import { idgen } from '../lib/idgen.ts';
 import { Matcher } from '../lib/matcher.ts';
 import { simplify } from '../lib/simplify.ts';
 import { sortObject } from '../lib/sort_object.ts';
-import { stemmer } from '../lib/stemmer.ts';
+// import { stemmer } from '../lib/stemmer.ts';
 import { validate } from '../lib/validate.ts';
-import { writeFileWithMeta } from '../lib/write_file_with_meta.ts';
-const matcher = new Matcher();
 
-// JSON
-const treesJSON = await Bun.file('./config/trees.json').json();
-const trees = treesJSON.trees;
+const matcher = new Matcher();
 const validator = new Validator();
 
 const _config = {};
@@ -37,8 +31,8 @@ const _discard = {};
 const _keep = {};
 let _loco = null;
 
-await buildAll();
 
+await buildAll();
 
 async function buildAll() {
   // GeoJSON features
@@ -91,7 +85,7 @@ async function buildFeatureCollection() {
   const features = await loadFeatures();
   const featureCollection = { type: 'FeatureCollection', features: features };
   const stringified = stringify(featureCollection, { maxLength: 9999 }) + '\n';
-  await writeFileWithMeta('./dist/json/featureCollection.json', stringified);
+  await Bun.write('./dist/json/featureCollection.json', stringified);
 
   console.timeEnd(END);
   return featureCollection;
@@ -127,7 +121,7 @@ async function loadFeatures() {
     }
 
     let feature = geojsonPrecision(geojsonRewind(parsed, true), 5);
-    let fc = feature.features;
+    const fc = feature.features;
 
     // A FeatureCollection with a single feature inside (geojson.io likes to make these).
     if (feature.type === 'FeatureCollection' && Array.isArray(fc) && fc.length === 1) {
@@ -151,7 +145,7 @@ async function loadFeatures() {
     feature.id = id;
 
     // sort properties
-    let obj = {};
+    const obj = {};
     if (feature.type)       { obj.type = feature.type; }
     if (feature.id)         { obj.id = feature.id; }
     if (feature.properties) { obj.properties = feature.properties; }
@@ -159,12 +153,12 @@ async function loadFeatures() {
     // validate that the feature has a suitable geometry
     if (feature.geometry?.type !== 'Polygon' && feature.geometry?.type !== 'MultiPolygon') {
       console.error(styleText('red', 'Error - Feature type must be "Polygon" or "MultiPolygon" in:'));
-      console.error('  ' + styleText('yellow', file));
+      console.error('  ' + styleText('yellow', filepath));
       process.exit(1);
     }
     if (!feature.geometry?.coordinates) {
       console.error(styleText('red', 'Error - Feature missing coordinates in:'));
-      console.error('  ' + styleText('yellow', file));
+      console.error('  ' + styleText('yellow', filepath));
       process.exit(1);
     }
     obj.geometry = {
@@ -223,32 +217,30 @@ async function loadConfig() {
       Object.values(data.genericWords).forEach(pattern => checkRegex(filepath, pattern));
     }
 
-    // Clean and sort the files for consistency, save them that way.
+    // Clean and order the files for consistency, save them that way.
     if (which === 'trees') {
-      Object.keys(data.trees).forEach(t => {
-        let tree = data.trees[t];
-        let cleaned = {
-          emoji:      tree.emoji,
-          mainTag:    tree.mainTag,
-          sourceTag:  tree.sourceTag,
+      for (const [t, obj] of Object.entries(data.trees)) {
+        const cleaned = {
+          emoji:       obj.emoji,
+          mainTag:     obj.mainTag,
+          sourceTags:  obj.sourceTags,
           nameTags: {
-            primary:   tree.nameTags.primary,
-            alternate: tree.nameTags.alternate,
+            primary:   obj.nameTags.primary,
+            alternate: obj.nameTags.alternate,
           }
         };
-        tree = cleaned;
-      });
+        data.trees[t] = cleaned;
+      }
       data.trees = sortObject(data.trees);
 
     } else if (which === 'replacements') {
-      Object.keys(data.replacements).forEach(qid => {
-        let replacement = data.replacements[qid];
-        let cleaned = {
-          note:      replacement.note,
-          wikidata:  replacement.wikidata
+      for (const [qid, obj] of Object.entries(data.replacements)) {
+        const cleaned = {
+          note:      obj.note,
+          wikidata:  obj.wikidata
         };
-        replacement = cleaned;
-      });
+        data.replacements[qid] = cleaned;
+      }
       data.replacements = sortObject(data.replacements);
 
     } else if (which === 'genericWords') {
@@ -352,27 +344,17 @@ async function filterCollected() {
   const END = '👍  ' + styleText('green', `done filtering`);
   console.log(START);
   console.time(END);
-  let shownSparkle = false;
 
   // Before starting, cache genericWords regexes.
-  let genericRegex = _config.genericWords.map(s => new RegExp(s, 'i'));
+  const genericRegex = _config.genericWords.map(s => new RegExp(s, 'i'));
   genericRegex.push(new RegExp(/;/, 'i'));   // also discard values with semicolons
 
 
   for (const [t, tree] of Object.entries(_config.trees)) {
     if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) continue;
 
-    let discard = _discard[t] = {};
-    let keep = _keep[t] = {};
-//    let data;
-//
-//    try {  // Load existing "keep" file
-//      data = await Bun.file(`dist/filtered/${t}_keep.json`).json();
-//      lastCollectionDate = +(data._meta.collectionDate) || -1;
-//      keep = _keep[t] = data.keep;
-//    } catch (err) {
-//      /* ignore - we can overwrite the keep file */
-//    }
+    const discard = _discard[t] = {};
+    const keep = _keep[t] = {};
 
     //
     // STEP 1:  All the collected "names" from OSM start out in `discard`
@@ -387,7 +369,7 @@ async function filterCollected() {
     //
     // STEP 2:  Move "names" that aren't excluded from `discard` -> `keep`
     //
-    let categoryRegex = {};  // regex cache
+    const categoryRegex = {};  // regex cache
     for (const kvn in discard) {
       const [kv, n] = kvn.split('|', 2);  // kvn = "key/value|name"
       const tkv = `${t}/${kv}`;
@@ -414,8 +396,8 @@ async function filterCollected() {
     const keepCount = Object.keys(keep).length;
     console.log(`${tree.emoji}  ${t}:\t${keepCount} keep, ${discardCount} discard`);
 
-    await writeFileWithMeta(`dist/json/filtered/${t}_discard.json`, stringify({ discard: sortObject(discard) }) + '\n');
-    await writeFileWithMeta(`dist/json/filtered/${t}_keep.json`, stringify({ keep: sortObject(keep) }) + '\n');
+    await Bun.write(`./dist/json/filtered/${t}_discard.json`, stringify({ discard: sortObject(discard) }) + '\n');
+    await Bun.write(`./dist/json/filtered/${t}_keep.json`, stringify({ keep: sortObject(keep) }) + '\n');
   }
 
   console.timeEnd(END);
@@ -440,7 +422,7 @@ async function loadIndex() {
   matcher.buildMatchIndex(_nsi.path);
   console.timeEnd(MATCH_INDEX_END);
 
-  let warnMatched = matcher.getWarnings();
+  const warnMatched = matcher.getWarnings();
   if (warnMatched.length) {
     console.warn(styleText('yellow', '\n⚠️   Warning - matchIndex errors:'));
     console.warn(styleText('gray', ('-').repeat(70)));
@@ -495,9 +477,9 @@ function mergeItems() {
 
   Object.keys(_config.trees).forEach(t => {
     const tree = _config.trees[t];
+    const newItems = {};
     let total = 0;
     let totalNew = 0;
-    let newItems = {};
 
     //
     // INSERT - Look in `_keep` for new items not yet in the index..
@@ -505,17 +487,17 @@ function mergeItems() {
     const keeping = _keep[t] || {};
 
     // Find new items, keeping only the most popular spelling..
-    Object.keys(keeping).forEach(kvn => {
+    for (const kvn of Object.keys(keeping)) {
       const count = keeping[kvn];
       const [kv, n] = kvn.split('|', 2);     // kvn = "key/value|name"
       const [k, v] = kv.split('/', 2);
 
       const matched = matcher.match(k, v, n);
-      if (matched) return;     // already in the index (or generic)
+      if (matched) continue;     // already in the index (or generic)
 
       // Use the simplified name when comparing spelling popularity
       const nsimple = simplify(n);
-      if (!nsimple) return;  // invalid, or the name contains only punctuation?
+      if (!nsimple) continue;  // invalid, or the name contains only punctuation?
       const newid = `${k}/${v}|${nsimple}`;
       const otherNew = newItems[newid];
 
@@ -523,15 +505,15 @@ function mergeItems() {
       if (!otherNew || otherNew.count < count) {
         newItems[newid] = { kvn: kvn, count: count };
       }
-    });
+    }
 
     // Add the new items
-    Object.values(newItems).forEach(newItem => {
+    for (const newItem of Object.values(newItems)) {
       const [kv, n] = newItem.kvn.split('|', 2);     // kvn = "key/value|name"
       const [k, v] = kv.split('/', 2);
       const tkv = `${t}/${k}/${v}`;
 
-      let item = { tags: {} };
+      const item = { tags: {} };
       item.displayName = n;
       item.locationSet = { include: ['001'] };   // the whole world
       item.tags[k] = v;     // assign default tag k=v
@@ -555,7 +537,7 @@ function mergeItems() {
 
       _nsi.path[tkv].items.push(item);
       totalNew++;
-    });
+    }
 
 
     //
@@ -563,7 +545,7 @@ function mergeItems() {
     //
     const paths = Object.keys(_nsi.path).filter(tkv => tkv.split('/')[0] === t);
     paths.forEach(tkv => {
-      let items = _nsi.path[tkv].items;
+      const items = _nsi.path[tkv].items;
       if (!Array.isArray(items) || !items.length) return;
 
       const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
@@ -571,7 +553,7 @@ function mergeItems() {
 
       items.forEach(item => {
         total++;
-        let tags = item.tags;
+        const tags = item.tags;
         let name = '';   // which "name" we use for the locales check below
 
         // assign some default companion tags if missing
@@ -600,7 +582,7 @@ function mergeItems() {
           name = tags['flag:name'];
 
           // Sort the flags in the file according to their country of origin
-          let country = tags.country || item.locationSet.include[0];
+          const country = tags.country || item.locationSet.include[0];
           if (typeof country === 'string' && country.length === 2) {
             const cc = country.toUpperCase();
             const re = new RegExp('^' + cc);   // leading country code
@@ -747,11 +729,11 @@ function checkItems(t) {
   const tree = _config.trees[t];
   const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
 
-  let warnDuplicate = [];
-  let warnFormatWikidata = [];
-  let warnMissingTag = [];
-  let warnFormatTag = [];
-  let seenName = {};
+  const warnDuplicate = [];
+  const warnFormatWikidata = [];
+  const warnMissingTag = [];
+  const warnFormatTag = [];
+//  const seenName = {};
 
   let total = 0;      // total items
   let totalWd = 0;    // total items with wikidata
@@ -763,7 +745,7 @@ function checkItems(t) {
     const items = _nsi.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
-    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const [_t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
     const kv = `${k}/${v}`;
 
     items.forEach(item => {
@@ -806,7 +788,7 @@ function checkItems(t) {
         case 'man_made/flagpole':
           if (!tags['flag:type']) { warnMissingTag.push([display(item), 'flag:type']); }
           if (!/^wiphala/.test(item.id)) {
-            if (!tags['subject']) { warnMissingTag.push([display(item), 'subject']); }
+            if (!tags.subject) { warnMissingTag.push([display(item), 'subject']); }
             if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
           }
           break;
@@ -886,9 +868,9 @@ function checkItems(t) {
     console.warn(styleText('gray', ('-').repeat(70)));
     console.warn(styleText('gray', ('  To resolve these, make sure the OpenStreetMap tag is correct.')));
     console.warn(styleText('gray', ('-').repeat(70)));
-    warnFormatTag.forEach(w => console.warn(
-      styleText('yellow', '  "' + w[0] + '"') + ' -> unusual tag? -> ' + styleText('yellow', '"' + w[1] + '"')
-    ));
+    for (const w of warnFormatTag) {
+      console.warn(styleText('yellow', `  "${w[0]}" -> unusual tag? -> "${w[1]}"`));
+    }
     console.warn('total ' + warnFormatTag.length);
   }
 
@@ -902,9 +884,9 @@ function checkItems(t) {
     console.warn(styleText('gray', ('  If the duplicate item is a generic word,')));
     console.warn(styleText('gray', ('    add a filter to config/filter_brands.json and delete the unwanted item.')));
     console.warn(styleText('gray', ('-').repeat(70)));
-    warnDuplicate.forEach(w => console.warn(
-      styleText('yellow', '  "' + w[0] + '"') + ' -> duplicates? -> ' + styleText('yellow', '"' + w[1] + '"')
-    ));
+    for (const w of warnDuplicate) {
+      console.warn(styleText('yellow', `  "${w[0]}" -> duplicates? -> "${w[1]}"`));
+    }
     console.warn('total ' + warnDuplicate.length);
   }
 
@@ -913,9 +895,9 @@ function checkItems(t) {
     console.warn(styleText('gray', ('-').repeat(70)));
     console.warn(styleText('gray', ('  To resolve these, make sure "*:wikidata" tag looks like "Q191615".')));
     console.warn(styleText('gray', ('-').repeat(70)));
-    warnFormatWikidata.forEach(w => console.warn(
-      styleText('yellow', '  "' + w[0] + '"') + ' -> "*:wikidata": ' + '"' + w[1] + '"'
-    ));
+    for (const w of warnFormatWikidata) {
+      console.warn(styleText('yellow', `  "${w[0]}" -> "*:wikidata": "${w[1]}"`));
+    }
     console.warn('total ' + warnFormatWikidata.length);
   }
 

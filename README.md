@@ -1,4 +1,4 @@
-[![build](https://github.com/osmlab/name-suggestion-index/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/osmlab/name-suggestion-index/actions/workflows/test.yml)
+[![build](https://github.com/osmlab/name-suggestion-index/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/osmlab/name-suggestion-index/actions/workflows/build.yml)
 [![npm version](https://badge.fury.io/js/name-suggestion-index.svg)](https://badge.fury.io/js/name-suggestion-index)
 [![](https://data.jsdelivr.com/v1/package/npm/name-suggestion-index/badge?style=rounded)](https://www.jsdelivr.com/package/npm/name-suggestion-index)
 
@@ -58,12 +58,9 @@ Currently used in:
 See [the project wiki](https://github.com/osmlab/name-suggestion-index/wiki) for details.
 
 
-## Participate!
+## Contributing
 
-We're always looking for help!
-
-- Read [the Code of Conduct](CODE_OF_CONDUCT.md) and remember to be kind to one another.
-- See [the project wiki](https://github.com/osmlab/name-suggestion-index/wiki) for info about how to contribute to this index.
+See the [CONTRIBUTING.md](CONTRIBUTING.md) file for more info.
 
 If you have any questions or want to reach out to a maintainer, ping any of these folks:
  - [archpdx (arch0345)](https://github.com/arch0345)

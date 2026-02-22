@@ -1,7 +1,6 @@
-// External
+/* eslint @typescript-eslint/no-this-alias: "warn" */
 import whichPolygon from 'which-polygon';
 
-// Internal
 import { simplify } from './simplify.ts';
 
 // JSON
@@ -175,7 +174,7 @@ export class Matcher {
 
 
       // ADD ITEMS
-      let items = category.items;
+      const items = category.items;
       if (!Array.isArray(items) || !items.length) return;
 
 
@@ -251,7 +250,7 @@ export class Matcher {
         });
 
         // Index `matchNames` after indexing all other names..
-        let keepMatchNames = new Set();
+        const keepMatchNames = new Set();
         (item.matchNames || []).forEach(matchName => {
           // If this matchname isn't already indexed, add it to the alternate index
           const nsimple = simplify(matchName);
@@ -385,7 +384,7 @@ export class Matcher {
         if (that.locationSets.has(resolved.id)) return;   // we've seen this locationSet feature before..
 
         // First time seeing this locationSet feature, make a copy and add to locationSet cache..
-        let feature = _cloneDeep(resolved.feature);
+        const feature = _cloneDeep(resolved.feature);
         feature.id = resolved.id;      // Important: always use the locationSet `id` (`+[Q30]`), not the feature `id` (`Q30`)
         feature.properties.id = resolved.id;
 
@@ -493,8 +492,7 @@ export class Matcher {
         const inGroup = matchGroup.some(otherkv => otherkv === kv);
         if (!inGroup) continue;
 
-        for (let i = 0; i < matchGroup.length; i++) {
-          const otherkv = matchGroup[i];
+        for (const otherkv of matchGroup) {
           if (otherkv === kv) continue;  // skip self
           didMatch = tryMatch(which, otherkv);
           if (didMatch) return;

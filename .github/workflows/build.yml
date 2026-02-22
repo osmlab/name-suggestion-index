@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  FORCE_COLOR: 2
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        bun-version: ['1.3']
+
+    steps:
+    - uses: actions/checkout@v6
+    - name: Use Bun ${{ matrix.bun-version }}
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: ${{ matrix.bun-version }}
+    - run: bun install
+    - run: |
+        echo "::remove-matcher owner=eslint-compact::"
+        echo "::remove-matcher owner=eslint-stylish::"
+    - run: bun run all

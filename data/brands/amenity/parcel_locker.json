@@ -17,8 +17,8 @@
     },
     {
       "displayName": "Allegro One Box",
-      "id": "allegroonebox-85cd80",
-      "locationSet": {"include": ["cz", "pl"]},
+      "id": "allegroonebox-ce4e28",
+      "locationSet": {"include": ["pl"]},
       "matchNames": ["allegro"],
       "tags": {
         "amenity": "parcel_locker",
@@ -36,8 +36,7 @@
         "amenity": "parcel_locker",
         "brand": "AlzaBox",
         "brand:wikidata": "Q115254158",
-        "operator": "Alza",
-        "operator:wikidata": "Q10786832"
+        "name": "AlzaBox"
       }
     },
     {
@@ -92,6 +91,7 @@
       "locationSet": {"include": ["pl"]},
       "tags": {
         "amenity": "parcel_locker",
+        "app_operated": "only",
         "brand": "Appkomat InPost",
         "brand:wikidata": "Q130375314",
         "operator": "InPost",
@@ -127,7 +127,9 @@
         "amenity": "parcel_locker",
         "brand": "BalíkoBOX",
         "brand:wikidata": "Q131136953",
-        "name": "BalíkoBOX"
+        "name": "BalíkoBOX",
+        "operator": "Slovenská pošta",
+        "operator:wikidata": "Q1191849"
       }
     },
     {
@@ -138,7 +140,9 @@
         "amenity": "parcel_locker",
         "brand": "balíkovo box",
         "brand:wikidata": "Q132188077",
-        "name": "balíkovo box"
+        "name": "balíkovo box",
+        "operator": "Slovak Parcel Service",
+        "operator:wikidata": "Q132187919"
       }
     },
     {
@@ -341,8 +345,21 @@
       }
     },
     {
+      "displayName": "DPD Pickup Box",
+      "id": "dpdpickupbox-48c9bb",
+      "locationSet": {"include": ["cz"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "DPD Pickup Box",
+        "brand:wikidata": "Q114273730",
+        "name": "DPD Pickup Box",
+        "operator": "Direct Parcel Distribution CZ",
+        "operator:wikidata": "Q58550406"
+      }
+    },
+    {
       "displayName": "DPD Pickup Station",
-      "id": "dpdpickupstation-db785e",
+      "id": "dpdpickupstation-5c8577",
       "locationSet": {
         "include": [
           "ar",
@@ -351,7 +368,6 @@
           "by",
           "ch",
           "cn",
-          "cz",
           "de",
           "ee",
           "fr",
@@ -465,10 +481,10 @@
     },
     {
       "displayName": "GLS",
-      "id": "gls-a8561c",
+      "id": "gls-7f0db9",
       "locationSet": {
         "include": ["001"],
-        "exclude": ["hr", "si"]
+        "exclude": ["cz", "hr", "si", "sk"]
       },
       "matchNames": ["gls parcel locker"],
       "tags": {
@@ -499,6 +515,20 @@
         "brand": "GLS Paketomat",
         "brand:wikidata": "Q366182",
         "name": "GLS Paketomat"
+      }
+    },
+    {
+      "displayName": "GLS Parcel Box",
+      "id": "glsparcelbox-48c9bb",
+      "locationSet": {"include": ["cz"]},
+      "matchNames": ["gls"],
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "GLS Parcel Box",
+        "brand:wikidata": "Q366182",
+        "name": "GLS Parcel Box",
+        "operator": "General Logistics Systems Czech Republic",
+        "operator:wikidata": "Q135580045"
       }
     },
     {
@@ -739,6 +769,23 @@
       }
     },
     {
+      "displayName": "One Box",
+      "id": "onebox-48c9bb",
+      "locationSet": {"include": ["cz"]},
+      "matchNames": [
+        "allegro one box",
+        "one box by allegro"
+      ],
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "One Box",
+        "brand:wikidata": "Q110738715",
+        "name": "One Box",
+        "operator": "Allegro Retail",
+        "operator:wikidata": "Q96265995"
+      }
+    },
+    {
       "displayName": "Orlen Paczka",
       "id": "orlenpaczka-ce4e28",
       "locationSet": {"include": ["pl"]},
@@ -749,6 +796,18 @@
         "brand:wikidata": "Q110457879",
         "operator": "Orlen",
         "operator:wikidata": "Q971649"
+      }
+    },
+    {
+      "displayName": "Overseas Express paketomat",
+      "id": "overseasexpresspaketomat-30ebd7",
+      "locationSet": {"include": ["hr"]},
+      "tags": {
+        "amenity": "parcel_locker",
+        "brand": "Overseas Express Paketomat",
+        "brand:wikidata": "Q137765791",
+        "operator": "Overseas Express",
+        "operator:wikidata": "Q115972775"
       }
     },
     {
@@ -777,15 +836,13 @@
       }
     },
     {
-      "displayName": "Paket24",
+      "displayName": "Paket24 paketomat",
       "id": "paket24-30ebd7",
       "locationSet": {"include": ["hr"]},
       "tags": {
-        "alt_name": "Paketomat",
         "amenity": "parcel_locker",
         "brand": "Paket24",
         "brand:wikidata": "Q110748166",
-        "name": "Paket24",
         "operator": "Hrvatska pošta",
         "operator:wikidata": "Q507289"
       }
@@ -1146,13 +1203,12 @@
       "locationSet": {
         "include": ["hu", "ro", "sk"]
       },
+      "matchNames": ["packeta", "packeta z-box"],
       "tags": {
         "amenity": "parcel_locker",
         "brand": "Z-Box",
         "brand:wikidata": "Q121537464",
-        "name": "Z-Box",
-        "operator": "Packeta",
-        "operator:wikidata": "Q67809905"
+        "name": "Z-Box"
       }
     },
     {

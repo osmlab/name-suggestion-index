@@ -2,15 +2,23 @@
 import { Glob } from 'bun';
 import JSON5 from 'json5';
 import localeCompare from 'locale-compare';
-import stringify from '@aitodotai/json-stringify-pretty-compact';
-import { styleText } from 'bun:util';
+import stringify from 'json-stringify-pretty-compact';
+import { styleText } from 'node:util';
 import { Validator } from 'jsonschema';
+
+import type LocationConflation from '@rapideditor/location-conflation';
+
 const withLocale = localeCompare('en-US');
 
 // Internal
 import { idgen } from './idgen.ts';
 import { sortObject } from './sort_object.ts';
 import { validate } from './validate.ts';
+
+interface Cache {
+  id?: Map<string, unknown>;
+  path?: Record<string, unknown>;
+}
 
 // JSON
 const treesJSON = await Bun.file('./config/trees.json').json();
@@ -39,7 +47,7 @@ const validator = new Validator();
 
 export const fileTree = {
 
-read: async (cache, loco) => {
+read: async (cache: Cache, loco: LocationConflation) => {
   cache = cache || {};
   cache.id = cache.id || new Map();
   cache.path = cache.path || {};
@@ -73,14 +81,13 @@ read: async (cache, loco) => {
       // check JSON schema
       validate(validator, filepath, input, categoriesSchemaJSON);
 
-      let seenkv = {};
-
       const properties = input.properties || {};
       const tkv = properties.path;
       const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
       const k = parts[1];
       const v = parts[2];
       const kv = `${k}/${v}`;
+      const seenkv = {};
 
       // make sure t/k/v is unique
       if (cache.path[tkv]) {
@@ -102,9 +109,8 @@ read: async (cache, loco) => {
       }
 
       // check and merge each item
-      let seenName = {};
-
-      let items = input.items || [];
+      const seenName = {};
+      const items = input.items || [];
       for (const item of items) {
         itemCount++;
 
@@ -173,7 +179,7 @@ read: async (cache, loco) => {
 },
 
 
-write: async (cache) => {
+write: async (cache: Cache) => {
   cache = cache || {};
   cache.path = cache.path || {};
 
@@ -211,7 +217,7 @@ write: async (cache) => {
           item.templateSource = _clean(item.templateSource);
 
           // clean templateTags
-          let cleaned = {};
+          const cleaned = {};
           for (const k of Object.keys(item.templateTags)) {
             const osmkey = _clean(k);
             const osmval = _clean(item.templateTags[k]);
@@ -306,12 +312,12 @@ write: async (cache) => {
   }
 
 
-  function _clean(s) {
+  function _clean(s: string | unknown): string | unknown {
     if (typeof s !== 'string') return s;
     return s.trim();
   }
 
-  function _cleanLower(s) {
+  function _cleanLower(s: string | unknown): string | unknown {
     if (typeof s !== 'string') return s;
     if (/İ/.test(s)) {  // Avoid toLowerCasing this one, it changes - #8261
       return s.trim();
@@ -322,7 +328,7 @@ write: async (cache) => {
 },
 
 
-expandTemplates: (cache, loco) => {
+expandTemplates: (cache: Cache, loco: LocationConflation) => {
   cache = cache || {};
   cache.id = cache.id || new Map();
   cache.path = cache.path || {};
@@ -353,12 +359,12 @@ expandTemplates: (cache, loco) => {
           if (excludePatterns.some(pattern => pattern.test(sourceItem.id))) continue;
         }
 
-        let item = JSON.parse(JSON.stringify(sourceItem));  // deep clone
+        const item = JSON.parse(JSON.stringify(sourceItem));  // deep clone
         delete item.matchTags;     // don't copy matchTags (but do copy matchNames)
         item.fromTemplate = true;
 
         // replace tags
-        let tags = item.tags;
+        const tags = item.tags;
         for (const osmkey of Object.keys(templateTags)) {
           let tagValue = templateTags[osmkey];
 
@@ -366,13 +372,13 @@ expandTemplates: (cache, loco) => {
             tagValue = tagValue.replace(/{(\S+)}/g, (match, token) => {
               // token should contain something like 'source.tags.brand'
               let replacement = '';
-              let props = token.split('.');
+              const props = token.split('.');
               props.shift();   // Ignore first 'source'. It's just for show.
 
               let source = sourceItem;
               while (props.length) {
-                let prop = props.shift();
-                let found = source[prop];
+                const prop = props.shift();
+                const found = source[prop];
                 if (typeof found === 'object' && found !== null) {
                   source = found;
                 } else {
