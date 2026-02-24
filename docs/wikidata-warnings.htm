@@ -135,10 +135,10 @@
 
     <h1>Wikidata Warnings</h1>
 
-    <p>The table below shows all the warnings generated when "<code>npm run wikidata</code>" is run.</p>
+    <p>The table below shows all the warnings generated when "<code>bun run wikidata</code>" is run.</p>
 
     <p>
-    When the command "<code>npm run wikidata</code>" is run by a maintainer of the project,
+    When the command "<code>bun run wikidata</code>" is run by a maintainer of the project,
     this will connect to <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">Wikidata</a> directly and attempt to download logos and
     descriptions for each entry within the Name Suggestion Index (<abbr title="Name Suggestion Index">NSI</abbr>).
     Sometimes, Wikidata won't be able to provide the data the <abbr title="Name Suggestion Index">NSI</abbr> is
@@ -172,12 +172,12 @@
             "<a href="https://www.wikidata.org/wiki/Property:P2013">Facebook username</a>"
             statement on the Wikidata entry using the qualifier
             "<a href="https://www.wikidata.org/wiki/Property:P6954">online access status</a>".
-            "<code>npm run wikidata</code>" will ignore the Facebook API warning for any accounts
+            "<code>bun run wikidata</code>" will ignore the Facebook API warning for any accounts
             with "online access status" set to "<a href="https://www.wikidata.org/wiki/Q58370623">private account</a>",
             "<a href="https://www.wikidata.org/wiki/Q107459441">registration required</a>" (i.e., only visible when logged in), or
             "<a href="https://www.wikidata.org/wiki/Q113165094">location restricted to country of publication</a>"
             (i.e., the profile is only visible to users from certain countries, or is blocked
-            to users from certain countries). "<code>npm run wikidata</code>" will also warn of
+            to users from certain countries). "<code>bun run wikidata</code>" will also warn of
             any Facebook accounts that have a restricted access qualifier on Wikidata, but have
             since had their privacy settings changed to make the account publicly viewable.
           </li>
@@ -191,7 +191,7 @@
             "<a href="https://www.wikidata.org/wiki/Property:P6477">does not have characteristic</a>" on
             the Facebook username statement and setting its value to
             "<a href="https://www.wikidata.org/wiki/Q134432781">professional account</a>".
-            "<code>npm run wikidata</code>" will ignore the Facebook API warning for these accounts, and also
+            "<code>bun run wikidata</code>" will ignore the Facebook API warning for these accounts, and also
             warn of any Facebook accounts that are marked as having "personal" characteristics but have
             since been reconfigured to be publicly viewable, properly configured branded Facebook pages.
           </li>
@@ -202,7 +202,7 @@
         "<a href="https://www.wikidata.org/wiki/Property:P156">followed by</a>",
         "<a href="https://www.wikidata.org/wiki/Property:P1366">replaced by</a>", or
         "<a href="https://www.wikidata.org/wiki/Property:P7888">merged into</a>" statement,
-        "<code>npm run wikidata</code>" will make note of its value as a possible replacement for the entity.
+        "<code>bun run wikidata</code>" will make note of its value as a possible replacement for the entity.
         These potential replacements should be evaluated for accuracy, and the
         <abbr title="Name Suggestion Index">NSI</abbr> should be updated with the replacement if the
         original entity is defunct and the suggested replacement is valid.
@@ -217,8 +217,8 @@
 
     <p>
     If you can, simply click on a Wikidata link below, and check to see if the error can be fixed. Please note that
-    fixing an error will not remove the error message below until "<code>npm run wikidata</code>" has been run again,
-    and "<code>npm run dist</code>" has been run to have <a href="https://nsi.guide">nsi.guide</a> pull the latest
+    fixing an error will not remove the error message below until "<code>bun run wikidata</code>" has been run again,
+    and "<code>bun run dist</code>" has been run to have <a href="https://nsi.guide">nsi.guide</a> pull the latest
     data from the <abbr title="Name Suggestion Index">NSI</abbr> <a href="https://github.com/osmlab/name-suggestion-index">GitHub project</a>.
     </p>
 
