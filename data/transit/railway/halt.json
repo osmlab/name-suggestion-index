@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "path": "transit/railway/halt",
+    "skipCollection": true,
+    "preserveTags": ["^public_transport$"],
+    "exclude": {"generic": ["^halt$"]}
+  },
+  "items": [
+    {
+      "note": "railway=halt is a relatively rare tag, so only create it for route/train whitelisted here",
+      "templateInclude": [
+        "integrovanadopravaplzenskehokraje"
+      ],
+      "templateSource": "transit/route/train",
+      "templateTags": {
+        "railway": "halt",
+        "route": "",
+        "train": "yes"
+      }
+    }
+  ]
+}
