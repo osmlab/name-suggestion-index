@@ -81,7 +81,7 @@ if (_secrets && !_secrets.wikibase) {
   process.exit(1);
 }
 
-if (_secrets.wikibase && !_secrets.wikibase.oauth) {
+if (_secrets && _secrets.wikibase && !_secrets.wikibase.oauth) {
   console.error(styleText('red', 'WHOA!'));
   console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
   console.error(styleText('yellow', 'We were expecting to find an `oauth` property.'));

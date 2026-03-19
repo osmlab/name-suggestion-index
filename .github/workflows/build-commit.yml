@@ -29,8 +29,8 @@ jobs:
         echo "::remove-matcher owner=eslint-stylish::"
     - run: bun run all
     - name: Open PR
-      uses: peter-evans/create-pull-request@v7
+      uses: peter-evans/create-pull-request@v8
       with:
-        commit-message: 'build'
-        title: 'Build NSI'
+        commit-message: 'bun run all'
+        title: 'Build data'
         branch: action/build-daily

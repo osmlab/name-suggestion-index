@@ -554,6 +554,9 @@ function mergeItems() {
       items.forEach(item => {
         total++;
         const tags = item.tags;
+
+        item.tags[k] = v;   // Make sure the category k=v pair is present - #11916
+
         let name = '';   // which "name" we use for the locales check below
 
         // assign some default companion tags if missing
