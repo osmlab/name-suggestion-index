@@ -44,7 +44,7 @@ If a [notable](https://github.com/osmlab/name-suggestion-index/wiki/Judge-Case#n
   * Save your changes, and [submit a pull request](https://github.com/osmlab/name-suggestion-index/pulls) to the `name-suggestion-index` repository to include your changes.
 * If you're not comfortable with writing code:
   * [Submit an issue](https://github.com/osmlab/name-suggestion-index/issues) with as many details as possible about the entity you'd like to add. This includes the name, [Wikidata ID](https://github.com/osmlab/name-suggestion-index/wiki/Glossary#wikidata-id), OSM tag category, official website, etc. The more reference details you provide, the more likely it is that a maintainer will work on your request.
- 
+
 ## Modifying existing entries
 If there is a problem with an existing entry, please let us know! You can edit the code yourself to correct the problem (see above for basic instructions), or you can [submit an issue](https://github.com/osmlab/name-suggestion-index/issues) to bring the problem to the attention of the `name-suggestion-index` project maintainers. For more details, see the [Contributing overview page](https://github.com/osmlab/name-suggestion-index/wiki/Contributing#editing-existing-entries) on the project wiki.
 
@@ -63,3 +63,10 @@ If you have any questions or want to reach out to a maintainer, ping any of thes
 We can be found in:
 - [OpenStreetMap US Slack](https://slack.openstreetmap.us/) (`#poi` or `#general` channels)
 - [OpenStreetMap World Discord](https://discord.gg/openstreetmap)
+
+
+## AI-Assisted Contributions
+
+We welcome contributions made with the help of AI tools.
+If you use them, you are responsible for understanding and reviewing the output before submitting it.
+Generated code, issues, and PR descriptions should be clear and relevant — not verbose for the sake of it.

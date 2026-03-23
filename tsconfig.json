@@ -1,18 +1,46 @@
 {
-  "include": ["./src/nsi.ts"],
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "declaration": true,
-    "declarationDir": "./dist/ts",
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true,
+    // Language and Environment
+    "target": "ES2022",
+    "lib": ["ESNext"],
+
+    // Modules
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "noEmitOnError": true,
-    "noImplicitAny": false,
-    "outDir": "./dist/ts",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    // Emit
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "./dist/ts",
+    "outDir": "./dist/ts",
+    "sourceMap": true,
+    "noEmitOnError": true,
+
+    // Interop
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Type Checking
     "strict": true,
-    "target": "ESNext"
-  }
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitOverride": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "include": ["./src/nsi.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "scripts"
+  ]
 }
