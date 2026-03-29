@@ -1,4 +1,4 @@
-# Features targeting Great Britain
+# Features targeting Great Britain (and Northern Ireland)
 
 The following areas are included as part of [country-coder](https://github.com/rapideditor/country-coder) and don't need their own feature.
 
@@ -19,7 +19,7 @@ The following areas are [Regions of England](https://en.wikipedia.org/wiki/Regio
 - [gb-south-west.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-south-west.geojson%22%5D%7D&referrer=nsi) - South West
 - [gb-lon.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-lon.geojson%22%5D%7D&referrer=nsi) - London, England
 
-Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
+Areas of Great Britain  (and Northern Ireland) targeted with a feature using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
 - England
   - [gb-bir.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bir.geojson%22%5D%7D&referrer=nsi) - City of Birmingham
@@ -42,6 +42,8 @@ Areas of Great Britain targeted with a feature using [ISO 3166-2:GB](https://en.
 - Wales
   - [gb-crf.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-crf.geojson%22%5D%7D&referrer=nsi) - City of Cardiff
   - [gb-swa.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swa.geojson%22%5D%7D&referrer=nsi) - City of Swansea
+- Northen Ireland
+  - [gb-nmd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-nmd.geojson%22%5D%7D&referrer=nsi) - Newry, Mourne and Down District
 
 Areas of Great Britain targeted with a feature not using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
 
