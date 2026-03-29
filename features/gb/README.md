@@ -43,6 +43,7 @@ Areas of Great Britain  (and Northern Ireland) targeted with a feature using [IS
   - [gb-crf.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-crf.geojson%22%5D%7D&referrer=nsi) - City of Cardiff
   - [gb-swa.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-swa.geojson%22%5D%7D&referrer=nsi) - City of Swansea
 - Northen Ireland
+  - [gb-bfs.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-bfs.geojson%22%5D%7D&referrer=nsi) - City of Belfast
   - [gb-nmd.geojson](https://location-conflation.com/?locationSet=%7B%22include%22%3A%5B%22gb-nmd.geojson%22%5D%7D&referrer=nsi) - Newry, Mourne and Down District
 
 Areas of Great Britain targeted with a feature not using [ISO 3166-2:GB](https://en.wikipedia.org/wiki/ISO_3166-2:GB)
