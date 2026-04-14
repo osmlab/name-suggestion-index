@@ -45,3 +45,8 @@ When asked to do one of these tasks, prefer using the prompt file rather than im
   - The meaning of the code has changed
   - Specifically asked to remove them
 - Comments contain valuable domain knowledge - preserve them
+
+### Lint warnings
+- **Never work around lint warnings** by renaming, reformatting, or otherwise disguising the triggering code (e.g. rewriting `todo` as `@TODO` to dodge `no-warning-comments`).
+- Lint warnings like `todo`/`fixme` are intentional project health signals — they should remain visible.
+- If your change introduces a new lint warning, mention it; don't silently suppress it.
