@@ -9,9 +9,9 @@ import LocationConflation from '@rapideditor/location-conflation';
 import path from 'node:path';
 import safeRegex from 'safe-regex';
 import stringify from 'json-stringify-pretty-compact';
-import { styleText } from 'bun:util';
+import { styleText } from 'node:util';
 import { Validator } from 'jsonschema';
-const withLocale = localeCompare('en-US');
+const withLocale = localeCompare('en-US');  // specify 'en-US' for stable results
 
 import { fileTree } from '../lib/file_tree.ts';
 import { idgen } from '../lib/idgen.ts';

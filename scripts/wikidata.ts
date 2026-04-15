@@ -7,10 +7,11 @@ import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
 import wikibase, { type CustomSimplifiedClaim, type ItemId, type PropertyId } from 'wikibase-sdk';
 import wikibaseEdit, { type WikibaseEditAPI } from 'wikibase-edit';
-const withLocale = localeCompare('en-US');
+const withLocale = localeCompare('en-US');  // specify 'en-US' for stable results
 
-import { sortObject } from '../lib/sort_object.ts';
+import type { NsiCache } from '../lib/types.ts';
 import { fileTree } from '../lib/file_tree.ts';
+import { sortObject } from '../lib/sort_object.ts';
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
@@ -146,7 +147,7 @@ if (_secrets && !_secrets.wikibase) {
   console.error(styleText('red', 'WHOA!'));
   console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
   console.error(styleText('yellow', 'We were expecting to find a `wikibase` property.'));
-  console.error(styleText('yellow', 'Check `scripts/build_wikidata.js` for details...'));
+  console.error(styleText('yellow', 'Check `scripts/wikidata.ts` for details...'));
   console.error('');
   process.exit(1);
 }
@@ -155,7 +156,7 @@ if (_secrets && _secrets.wikibase && !_secrets.wikibase.oauth) {
   console.error(styleText('red', 'WHOA!'));
   console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
   console.error(styleText('yellow', 'We were expecting to find an `oauth` property.'));
-  console.error(styleText('yellow', 'Check `scripts/build_wikidata.js` for details...'));
+  console.error(styleText('yellow', 'Check `scripts/wikidata.ts` for details...'));
   console.error('');
   process.exit(1);
 }
@@ -180,8 +181,7 @@ const END = '👍  ' + styleText('green', `done loading`);
 console.log(START);
 console.time(END);
 
-// todo: better types for the main NSI data structures.
-const _nsi: { id: Map<string, any>; path: Record<string, any> } = {} as any;
+const _nsi = {} as NsiCache;
 await fileTree.read(_nsi, _loco);
 fileTree.expandTemplates(_nsi, _loco);
 console.timeEnd(END);
@@ -980,6 +980,7 @@ function enLabelForQID(qid: ItemId): string | null {
 
   for (const id of Array.from(_qidItems[qid])) {
     const item = _nsi.id.get(id);
+    if (!item) continue;
 
     if (meta.what === 'flag') {
       if (looksLatin(item.tags.subject))  return `flag of ${item.tags.subject}`;

@@ -1,15 +1,27 @@
 import { simplify } from './simplify.ts';
-
-interface Item {
-  tags: Record<string, string>;
-  displayName?: string;
-}
+import type { NsiItem } from './types.ts';
 
 
-// We want the identifiers to be useable in url strings and other places,
-// and avoid any unicode or right-to-left surprises,
-// so limit them to /^\w+$/  (only [A-Za-z0-9_] characters)
-export function idgen(item: Item, tkv: string, locationID: string): string | null {
+/**
+ * Generates a unique, URL-safe identifier for an NSI item.
+ *
+ * The id is built from a simplified name (derived from the item's tags) combined
+ * with a short MD5 hash of the `tkv + locationID` pair.  Only `[A-Za-z0-9_]`
+ * characters are allowed in the name portion so the id is safe for use in URLs.
+ *
+ * The function tries two passes over the item's tags (in a tree-dependent priority
+ * order) to find a suitable name:
+ *   1. Pick the first tag value whose simplified form matches `/^\w+$/`.
+ *   2. If no clean name is found, fall back to a 6-character MD5 hex hash of
+ *      the first available tag value.
+ *
+ * @param   item       - The item whose tags supply the name candidates
+ * @param   tkv        - A `tree/key/value` path (e.g. `"brands/amenity/bank"`)
+ * @param   locationID - A location identifier used to disambiguate items that
+ *                       share the same name and tkv
+ * @returns A string of the form `"name-hash"`, or `null` if no name could be derived from the tags.
+ */
+export function idgen(item: NsiItem, tkv: string, locationID: string): string | null {
   let name;
 
   const parts = tkv.split('/', 3);   // tkv = "tree/key/value"
