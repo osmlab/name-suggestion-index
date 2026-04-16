@@ -95,7 +95,7 @@
     "build": "bun run --parallel 'build:*'",
     "build:js": "bun ./scripts/build_js.ts",
     "build:json": "bun ./scripts/build_json.ts",
-    "build:ts": "tsc",
+    "build:ts": "tsc -p tsconfig.build.json",
     "clean": "bun ./scripts/clean.ts",
     "dist": "bun ./scripts/dist.ts",
     "lint": "eslint ./lib ./scripts ./src ./test",

@@ -11,14 +11,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
 
-    // Emit
-    "emitDeclarationOnly": true,
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "./dist/ts",
-    "outDir": "./dist/ts",
-    "sourceMap": true,
-    "noEmitOnError": true,
+    // Emit — disabled here; see tsconfig.build.json for declaration emit
+    "noEmit": true,
 
     // Interop
     "esModuleInterop": true,
@@ -37,10 +31,9 @@
     "noUnusedParameters": true,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["./src/nsi.ts", "./lib/ambient.d.ts"],
+  "include": ["src", "lib"],
   "exclude": [
     "node_modules",
-    "dist",
-    "scripts"
+    "dist"
   ]
 }

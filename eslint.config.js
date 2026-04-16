@@ -67,7 +67,7 @@ const rules = {
     "no-template-curly-in-string": "warn",
     "no-throw-literal": "error",
     "no-trailing-spaces": "warn",
-    "no-undef": "error",
+    "no-undef": "off",   // TypeScript handles this; ESLint's version doesn't understand TS type globals
     "no-undef-init": "warn",
     "no-unexpected-multiline": "error",
     "no-unneeded-ternary": "error",

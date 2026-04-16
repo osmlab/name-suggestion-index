@@ -76,6 +76,14 @@ export interface NsiCategory {
 /** The full NSI dataset: an object keyed by `tree/key/value` path. */
 export type NsiData = Record<string, NsiCategory>;
 
+export interface NsiDissolved {
+  dissolved: Record<string, Dissolution[]>;
+}
+
+export interface NsiPresets {
+  presets: Record<string, RapidPreset>;
+}
+
 
 // Match index types
 

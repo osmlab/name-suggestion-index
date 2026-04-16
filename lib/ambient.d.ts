@@ -17,10 +17,10 @@ declare module 'which-polygon' {
     [key: string]: unknown;
   }
 
-  export interface WhichPolygonQuery {
-    (point: [number, number], multi?: false): WhichPolygonResult | null;
-    (point: [number, number], multi: true): WhichPolygonResult[];
-    bbox(bbox: [number, number, number, number], multi?: boolean): WhichPolygonResult[];
+  export interface WhichPolygonQuery<T = WhichPolygonResult> {
+    (point: [number, number], multi?: false): T | null;
+    (point: [number, number], multi: true): T[];
+    bbox(bbox: [number, number, number, number], multi?: boolean): T[];
   }
 
   // Use a loose type for FeatureCollection to accept both internal GeoJSONObject types
@@ -31,5 +31,5 @@ declare module 'which-polygon' {
     features: unknown[];
   }
 
-  export default function whichPolygon(geojson: FeatureCollectionLike): WhichPolygonQuery;
+  export default function whichPolygon<T = WhichPolygonResult>(geojson: FeatureCollectionLike): WhichPolygonQuery<T>;
 }
