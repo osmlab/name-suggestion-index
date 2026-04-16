@@ -1,55 +1,43 @@
 ---
-description: Review the codebase and suggest (then implement) concrete improvements
+description: Review the codebase and suggest improvements
+argument-hint: additional optional context
 ---
 
-You are doing an improvement review of this codebase. The goal is to find **concrete, actionable improvements** — not a wishlist. Think like an experienced senior engineer or architect who respects the existing style and doesn't over-engineer.
+Find concrete improvements and flag things worth tracking for future work. Respect the existing style; don't over-engineer. Report findings only — do not make edits. The user will choose which suggestions to implement.
 
-## What to read first
+## Steps
 
-Get a broad picture of the project before forming any opinions. Use `#codebase` to survey the whole workspace — pay particular attention to:
-- Package/dependency manifests (`package.json`, `Cargo.toml`, `pyproject.toml`, etc.)
-- Compiler/type-checker config (`tsconfig.json`, `mypy.ini`, etc.)
-- Runtime/bundler config (`bunfig.toml`, `vite.config.*`, etc.)
-- Build and tooling scripts
-- The README — how the project presents itself and what it's for
+1. Read `AGENTS.md` to understand the project structure.
+2. Survey the codebase, paying particular attention to:
+   - Package/dependency manifests (`package.json`, etc.)
+   - Compiler/type-checker config (`tsconfig.json`, etc.)
+   - Runtime/bundler config (`bunfig.toml`, etc.)
+   - Build and tooling scripts
+   - `README` — how the project presents itself
 
 ## Categories to evaluate
 
-For each category below, look for real issues and note them. Skip categories where things look fine — don't invent problems.
+Skip categories where things look fine. Don't invent problems.
 
-**Correctness / bugs**
-- Are there any scripts or config values that are plainly wrong? (e.g. calling `npm run` in a Bun-only project)
-- Any TypeScript errors or implicit `any` types?
-- Any typos in user-facing strings (error messages, log output)?
+**Correctness / Bugs** — wrong config values, broken scripts, typos in user-facing output
 
-**TypeScript quality**
-- Are types as precise as they should be? (e.g. `String[]` vs `string[]`, missing type annotations on parameters)
-- Are there untyped third-party modules that need a `.d.ts` declaration?
-- Are there `tsconfig.json` options enabled that don't apply to this project?
+**Code Quality** — outdated practices, duplicated logic, unnecessary indirection, misleading comments, obvious simplifications
 
-**Runtime / tooling overlap**
-- Does the project use Node.js APIs where a Bun-native equivalent exists and is simpler? (e.g. `node:fs` vs `Bun.file()`)
-- Are there npm/yarn artifacts in the scripts that should use `bun`?
-- Are there dependencies that Bun now handles natively (e.g. a test runner, a bundler)?
+**Performance** — unnecessary looping, extra copies, redundant calls, known slow browser APIs
 
-**Dev experience**
-- Is there a fast linter+formatter that would be easy to add? (Biome is a good fit for Bun projects — one tool, zero config, very fast)
-- Are there missing or misleading `package.json` scripts?
-- Is the `.gitignore` / `.gitattributes` complete and correct?
+**TypeScript** — imprecise types, overuse of `any`/`unknown`, untyped third-party modules, irrelevant `tsconfig.json` options
 
-**Code clarity**
-- Are there comments that are outdated or misleading?
-- Are there any obvious simplifications (not refactors — just noise removal)?
+**Testing** — coverage gaps, tests that don't actually verify what they claim
+
+**Runtime / tooling** — `node:*` APIs where Bun-native equivalents exist, `npm`/`yarn` artifacts in scripts, dependencies Bun now handles natively
+
+**Developer Experience** — missing or misleading `package.json` scripts, incomplete `.gitignore`/`.gitattributes`, missing docs or source comments
+
+**Architecture / Technical Debt** — signs that complexity is accumulating: growing god-objects, framework or library choices that are becoming a liability, inconsistent patterns across similar code, coupling that makes changes harder than they should be, conventions the project has outgrown
 
 ## How to respond
 
-1. **Group findings by category.** Within each category, distinguish between:
-   - 🔴 Real issues (bugs, broken things) — implement the fix immediately
-   - 🟡 Improvements (best practices, clarity) — implement unless non-trivial
-   - 💡 Suggestions (optional tools, bigger changes) — describe but don't implement; let the user decide
-
-2. **Be direct and brief.** One sentence per finding is usually enough. Don't pad.
-
-3. **Implement the 🔴 and 🟡 items** using file edits. Verify there are no new TypeScript errors afterward.
-
-4. **Do not over-engineer.** A bug fix doesn't need surrounding code cleaned up. A simple improvement doesn't need extra configurability. Only change what needs changing.
+Group findings by category. Number each suggestion sequentially across all categories (1, 2, 3…) so the user can refer to them by number. For each finding:
+- 🔥 Actionable issue (bug, broken) — should be fixed soon
+- 👉 Improvement (best practice, clarity) — worth doing
+- 💡 Suggestion (optional, bigger change) — idea to track for future work
