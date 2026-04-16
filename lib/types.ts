@@ -76,6 +76,13 @@ export interface NsiCategory {
 /** The full NSI dataset: an object keyed by `tree/key/value` path. */
 export type NsiData = Record<string, NsiCategory>;
 
+export interface NsiDissolved {
+  dissolved: Record<string, Dissolution[]>
+};
+
+export interface NsiPresets {
+  presets: Record<string, RapidPreset>
+}
 
 // Match index types
 
@@ -105,7 +112,7 @@ export interface MatchIndexBranch {
 
 /** Top-level shape of `config/trees.json`. */
 export interface TreesConfig {
-  trees: Record<string, NsiTreeConfig>;
+  trees: Record<NsiTree, NsiTreeConfig>;
 }
 
 /** Top-level shape of `config/matchGroups.json`. */
@@ -177,4 +184,14 @@ export interface RapidPreset {
   reference?: { key?: string; value?: string };
   /** The ID of a preset that is preferable to this one (for deprecated presets) */
   replacement?: string;
+}
+
+
+/** @internal */
+declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace globalThis {
+        // eslint-disable-next-line no-var
+        var nsi: typeof import('../src/nsi');
+    }
 }

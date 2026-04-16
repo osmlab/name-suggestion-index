@@ -2,7 +2,8 @@
   "compilerOptions": {
     // Language and Environment
     "target": "ES2022",
-    "lib": ["ESNext", "DOM"],
+    "lib": ["ESNext"],
+    "types": ["bun"],
 
     // Modules
     "module": "ESNext",
@@ -18,6 +19,7 @@
     "declarationDir": "./dist/ts",
     "outDir": "./dist/ts",
     "sourceMap": true,
+    "stripInternal": true,
     "noEmitOnError": true,
 
     // Interop
@@ -26,7 +28,7 @@
 
     // Type Checking
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": false,
@@ -37,7 +39,7 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["./src/nsi.ts"],
+  "include": ["src", "lib", "scripts"],
   "exclude": [
     "node_modules",
     "dist",

@@ -9,7 +9,7 @@ import { idgen } from './idgen.ts';
 import { sortObject } from './sort_object.ts';
 import { validate } from './validate.ts';
 
-import type { NsiCache } from './types.ts';
+import type { NsiCache, NsiCategoryProperties, OsmTags } from './types.ts';
 import type LocationConflation from '@rapideditor/location-conflation';
 
 const withLocale = localeCompare('en-US');  // specify 'en-US' for stable results
@@ -234,7 +234,7 @@ write: async (cache: NsiCache) => {
           item.templateSource = _clean(item.templateSource);
 
           // clean templateTags
-          const cleaned: Record<string, unknown> = {};
+          const cleaned: OsmTags = {};
           for (const k of Object.keys(item.templateTags)) {
             const osmkey = _clean(k) as string;
             const osmval = _clean(item.templateTags[k]);
@@ -255,17 +255,19 @@ write: async (cache: NsiCache) => {
           // clean locationSet
           let cleaned: Record<string, any> = {};
           if (Array.isArray(item.locationSet.include)) {
+            // @ts-expect-error -- legacy issue
             cleaned.include = item.locationSet.include.map(_cleanLower).sort(withLocale);
           } else {
             cleaned.include = ['001'];  // default to world
           }
           if (Array.isArray(item.locationSet.exclude)) {
+            // @ts-expect-error -- legacy issue
             cleaned.exclude = item.locationSet.exclude.map(_cleanLower).sort(withLocale);
           }
           item.locationSet = cleaned;
 
           // clean matchNames/matchTags
-          for (const prop of ['matchNames', 'matchTags']) {
+          for (const prop of ['matchNames', 'matchTags'] as const) {
             if (item[prop]) {
               item[prop] = item[prop].map(_cleanLower).sort(withLocale);
             }
@@ -287,7 +289,7 @@ write: async (cache: NsiCache) => {
       const properties = category.properties || {};
       properties.exclude = properties.exclude || {};
 
-      const cleanedProps: Record<string, any> = {};
+      const cleanedProps = {} as NsiCategoryProperties;
       cleanedProps.path = tkv;
 
       if (properties.skipCollection) {
@@ -311,7 +313,7 @@ write: async (cache: NsiCache) => {
       // generate file
       const output = {
         properties: cleanedProps,
-        items: templateItems.concat(normalItems)
+        items: [...templateItems, ...normalItems],
       };
 
       itemCount += output.items.length;
@@ -336,6 +338,7 @@ write: async (cache: NsiCache) => {
    * @param   s - The value to clean
    * @returns The trimmed string, or the original value if not a string
    */
+  function _clean(s: string): string;
   function _clean(s: string | unknown): string | unknown {
     if (typeof s !== 'string') return s;
     return s.trim();
@@ -349,6 +352,7 @@ write: async (cache: NsiCache) => {
    * @returns The trimmed (and possibly lowercased) string, or the original value
    *          if not a string
    */
+  function _cleanLower(s: string): string;
   function _cleanLower(s: string | unknown): string | unknown {
     if (typeof s !== 'string') return s;
     if (/İ/.test(s)) {  // Avoid toLowerCasing this one, it changes - #8261
@@ -422,7 +426,7 @@ expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
               const props = token.split('.');
               props.shift();   // Ignore first 'source'. It's just for show.
 
-              let source = sourceItem;
+              let source: any = sourceItem;
               while (props.length) {
                 const prop = props.shift()!;
                 const found = source[prop];
@@ -458,13 +462,14 @@ expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
 
         // generate id
         const locationID = loco.validateLocationSet(item.locationSet).id;
-        item.id = idgen(item, tkv, locationID);
-        if (!item.id) {
+        const id = idgen(item, tkv, locationID);
+        if (!id) {
           console.error(styleText('red', `Error - Couldn't generate an id for:`));
           console.error('  ' + styleText('yellow', item.displayName));
           console.error('  ' + styleText('yellow', file));
           process.exit(1);
         }
+        item.id = id;
 
         // merge into caches
         if (cache.id.has(item.id)) {

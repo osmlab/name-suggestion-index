@@ -1,5 +1,6 @@
 import { styleText } from 'node:util';
 import type { Validator, Schema } from 'jsonschema';
+import type { NsiItem } from './types';
 
 
 /**
@@ -24,7 +25,7 @@ export function validate(validator: Validator, filepath: string, object: unknown
       if (e.property) {
         console.error('  ' + styleText('yellow', e.property + ' ' + e.message));
         if (e.name === 'uniqueItems') {
-          const arr: any[]  = e.instance;
+          const arr: NsiItem[]  = e.instance;
           const duplicates = arr
             .map(n => n.displayName || n)
             .filter((e, i, a) => a.indexOf(e) !== i);

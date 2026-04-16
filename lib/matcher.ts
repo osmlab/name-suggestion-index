@@ -2,8 +2,9 @@ import whichPolygon from 'which-polygon';
 import { simplify } from './simplify.ts';
 
 import type LocationConflation from '@rapideditor/location-conflation';
-import type { Vec2 } from '@rapideditor/location-conflation';
-import type { MatchHit, MatchIndexBranch, NsiData } from './types.ts';
+import type { FeatureProperties, Vec2 } from '@rapideditor/location-conflation';
+import type { MatchHit, MatchIndexBranch, NsiData, NsiTree } from './types.ts';
+import type { Feature, Geometry } from 'geojson';
 
 // Imported JSON (will be inlined when generating a bundle)
 import matchGroupsJSON from '../config/matchGroups.json' with {type: 'json'};
@@ -35,11 +36,11 @@ export class Matcher {
   /** Map of generic-word pattern strings to compiled RegExp objects. */
   private genericWords = new Map<string, RegExp>();
   /** Map of item IDs to their resolved locationSet IDs. */
-  private itemLocation: Map<string, string> | undefined;
+  public itemLocation: Map<string, string> | undefined;
   /** Map of locationSet IDs to resolved GeoJSON features. */
-  private locationSets: Map<string, { id?: string; properties: Record<string, any>; geometry: any }> | undefined;
+  public locationSets: Map<string, Feature<Geometry, FeatureProperties>> | undefined;
   /** A `which-polygon` spatial index over resolved locationSet features. */
-  private locationIndex: ReturnType<typeof whichPolygon> | undefined;
+  public locationIndex: whichPolygon.Query<FeatureProperties> | undefined;
   /** Warnings collected during index building (e.g. duplicate cache keys). */
   private warnings: Array<string> = [];
 
@@ -213,7 +214,7 @@ export class Matcher {
     for (const tkv of Object.keys(data)) {
       const category = data[tkv];
       const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const t = parts[0];
+      const t = parts[0] as NsiTree;
       const k = parts[1];
       const v = parts[2];
       const thiskv = `${k}/${v}`;
@@ -440,10 +441,10 @@ export class Matcher {
 
     // If we were supplied a location, and this.locationIndex has been set up,
     // get the locationSets that are valid there so we can filter results.
-    let matchLocations;
+    let matchLocations: FeatureProperties[] | null;
     if (Array.isArray(loc) && this.locationIndex) {
       // which-polygon query returns an array of GeoJSON properties, pass true to return all results
-      matchLocations = this.locationIndex([loc[0], loc[1], loc[0], loc[1]], true);
+      matchLocations = this.locationIndex([loc[0], loc[1]], true);
     }
 
     const nsimple = simplify(n);
@@ -460,9 +461,9 @@ export class Matcher {
       return (hitB.area || 0) - (hitA.area || 0);
     };
 
-    const isValidLocation = (hit: MatchHit): boolean => {
+    const isValidLocation = (hit: MatchHit) => {
       if (!this.itemLocation) return true;
-      return matchLocations.find(props => props.id === this.itemLocation!.get(hit.itemID!));
+      return matchLocations?.some(props => props.id === this.itemLocation!.get(hit.itemID!));
     };
 
     const tryMatch = (which: 'primary' | 'alternate' | 'exclude', kv: string): boolean => {
@@ -526,8 +527,7 @@ export class Matcher {
       if (didMatch) return;
 
       // If that didn't work, look in match groups for other pairs considered equivalent to k/v..
-      for (const mg in matchGroups) {
-        const matchGroup = matchGroups[mg];
+      for (const matchGroup of Object.values(matchGroups)) {
         const inGroup = matchGroup.some(otherkv => otherkv === kv);
         if (!inGroup) continue;
 
