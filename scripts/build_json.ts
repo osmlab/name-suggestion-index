@@ -4,14 +4,12 @@ import geojsonPrecision from 'geojson-precision';
 import geojsonRewind from '@mapbox/geojson-rewind';
 import { Glob } from 'bun';
 import JSON5 from 'json5';
-import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import path from 'node:path';
 import safeRegex from 'safe-regex';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
 import { Validator } from 'jsonschema';
-const withLocale = localeCompare('en-US');  // specify 'en-US' for stable results
 
 import { fileTree } from '../lib/file_tree.ts';
 import { idgen } from '../lib/idgen.ts';
@@ -21,6 +19,7 @@ import { sortObject } from '../lib/sort_object.ts';
 // import { stemmer } from '../lib/stemmer.ts';
 import { validate } from '../lib/validate.ts';
 
+const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 const matcher = new Matcher();
 const validator = new Validator();
 
@@ -29,7 +28,7 @@ const _nsi = {};
 const _collected = {};
 const _discard = {};
 const _keep = {};
-let _loco = null;
+let _loco: LocationConflation;
 
 
 await buildAll();
@@ -76,14 +75,14 @@ async function buildAll() {
 
 //
 //
-async function buildFeatureCollection() {
+async function buildFeatureCollection(): Promise<GeoJSON.FeatureCollection> {
   const START = '🏗   ' + styleText('yellow', 'Building features...');
   const END = '👍  ' + styleText('green', 'features built');
   console.log(START);
   console.time(END);
 
   const features = await loadFeatures();
-  const featureCollection = { type: 'FeatureCollection', features: features };
+  const featureCollection = { type: 'FeatureCollection', features: features } as GeoJSON.FeatureCollection;
   const stringified = stringify(featureCollection, { maxLength: 9999 }) + '\n';
   await Bun.write('./dist/json/featureCollection.json', stringified);
 
@@ -93,7 +92,7 @@ async function buildFeatureCollection() {
 
 
 // Gather feature files from `./features/**/*.geojson`
-async function loadFeatures() {
+async function loadFeatures(): Promise<GeoJSON.Feature[]> {
   const featureSchemaJSON = await Bun.file('./schema/feature.json').json();
   const geojsonSchemaJSON = await Bun.file('./schema/geojson.json').json();
   validator.addSchema(geojsonSchemaJSON, 'http://json.schemastore.org/geojson.json');

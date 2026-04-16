@@ -105,7 +105,7 @@ export interface MatchIndexBranch {
 
 /** Top-level shape of `config/trees.json`. */
 export interface TreesConfig {
-  trees: Record<string, NsiTreeConfig>;
+  trees: Record<NsiTree, NsiTreeConfig>;
 }
 
 /** Top-level shape of `config/matchGroups.json`. */

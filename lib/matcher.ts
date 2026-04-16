@@ -3,7 +3,8 @@ import { simplify } from './simplify.ts';
 
 import type LocationConflation from '@rapideditor/location-conflation';
 import type { Vec2 } from '@rapideditor/location-conflation';
-import type { MatchHit, MatchIndexBranch, NsiData } from './types.ts';
+import type { WhichPolygonResult } from 'which-polygon';
+import type { MatchHit, MatchIndexBranch, NsiData, NsiTree, NsiTreeConfig } from './types.ts';
 
 // Imported JSON (will be inlined when generating a bundle)
 import matchGroupsJSON from '../config/matchGroups.json' with {type: 'json'};
@@ -14,7 +15,7 @@ import treesJSON from '../config/trees.json' with {type: 'json'};
 const matchGroups = matchGroupsJSON.matchGroups;
 
 /** Tree configuration keyed by tree name (e.g. `brands`, `operators`). */
-const trees = treesJSON.trees;
+const trees: Record<NsiTree, NsiTreeConfig> = treesJSON.trees;
 
 
 /**
@@ -213,7 +214,7 @@ export class Matcher {
     for (const tkv of Object.keys(data)) {
       const category = data[tkv];
       const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const t = parts[0];
+      const t = parts[0] as NsiTree;
       const k = parts[1];
       const v = parts[2];
       const thiskv = `${k}/${v}`;
@@ -440,10 +441,10 @@ export class Matcher {
 
     // If we were supplied a location, and this.locationIndex has been set up,
     // get the locationSets that are valid there so we can filter results.
-    let matchLocations;
+    let matchLocations: WhichPolygonResult[] | undefined;
     if (Array.isArray(loc) && this.locationIndex) {
       // which-polygon query returns an array of GeoJSON properties, pass true to return all results
-      matchLocations = this.locationIndex([loc[0], loc[1], loc[0], loc[1]], true);
+      matchLocations = this.locationIndex([loc[0], loc[1]], true);
     }
 
     const nsimple = simplify(n);
@@ -462,7 +463,7 @@ export class Matcher {
 
     const isValidLocation = (hit: MatchHit): boolean => {
       if (!this.itemLocation) return true;
-      return matchLocations.find(props => props.id === this.itemLocation!.get(hit.itemID!));
+      return !!matchLocations?.find(props => props.id === this.itemLocation!.get(hit.itemID!));
     };
 
     const tryMatch = (which: 'primary' | 'alternate' | 'exclude', kv: string): boolean => {
@@ -527,8 +528,8 @@ export class Matcher {
 
       // If that didn't work, look in match groups for other pairs considered equivalent to k/v..
       for (const mg in matchGroups) {
-        const matchGroup = matchGroups[mg];
-        const inGroup = matchGroup.some(otherkv => otherkv === kv);
+        const matchGroup = matchGroups[mg as keyof typeof matchGroups];
+        const inGroup = matchGroup?.some(otherkv => otherkv === kv);
         if (!inGroup) continue;
 
         for (const otherkv of matchGroup) {

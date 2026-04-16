@@ -1,13 +1,12 @@
 /* eslint-disable dot-notation, @typescript-eslint/no-explicit-any */
 import { $ } from 'bun';
 import { iso1A2Code } from '@rapideditor/country-coder';
-import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
 import wikibase, { type CustomSimplifiedClaim, type ItemId, type PropertyId } from 'wikibase-sdk';
 import wikibaseEdit, { type WikibaseEditAPI } from 'wikibase-edit';
-const withLocale = localeCompare('en-US');  // specify 'en-US' for stable results
+const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
 import type { NsiCache } from '../lib/types.ts';
 import { fileTree } from '../lib/file_tree.ts';

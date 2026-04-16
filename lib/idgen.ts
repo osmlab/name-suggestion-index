@@ -1,5 +1,5 @@
 import { simplify } from './simplify.ts';
-import type { NsiItem } from './types.ts';
+import type { NsiItem, NsiTree } from './types.ts';
 
 
 /**
@@ -25,7 +25,7 @@ export function idgen(item: NsiItem, tkv: string, locationID: string): string | 
   let name;
 
   const parts = tkv.split('/', 3);   // tkv = "tree/key/value"
-  const t = parts[0];
+  const t = parts[0] as NsiTree;
 
   // Run through the list of OSM keys looking for a suitable name
   let osmkeys;

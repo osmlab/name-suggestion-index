@@ -1,15 +1,14 @@
 import { $ } from 'bun';
-import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
 import xmlbuilder2 from 'xmlbuilder2';
-const withLocale = localeCompare('en-US');  // specify 'en-US' for stable results
 
 import { fileTree } from '../lib/file_tree.ts';
 import { sortObject } from '../lib/sort_object.ts';
 import type { NsiCache, OsmTags, RapidPreset } from '../lib/types.ts';
 
+const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
 // JSON
 const packageJSON = await Bun.file('./package.json').json();

@@ -1,8 +1,12 @@
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
+import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
 
 const rules = {
+  plugins: {
+    import: importPlugin
+  },
   rules: {
     "accessor-pairs": "error",
     "array-callback-return": "warn",
@@ -26,7 +30,7 @@ const rules = {
     "no-catch-shadow": "error",
     "no-constructor-return": "error",
     "no-div-regex": "error",
-    "no-duplicate-imports": "warn",
+    'no-duplicate-imports': 'off',   // using 'import/no-duplicates' instead
     "no-eq-null": "error",
     "no-eval": "error",
     "no-extend-native": "error",
@@ -96,7 +100,9 @@ const rules = {
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-inferrable-types": ["warn", { "ignoreParameters": true }],
-    "@typescript-eslint/no-unused-vars": ["warn", { "vars": "all", "args": "none", "caughtErrors": "none", "destructuredArrayIgnorePattern": "^_" }]
+    "@typescript-eslint/no-unused-vars": ["warn", { "vars": "all", "args": "none", "caughtErrors": "none", "destructuredArrayIgnorePattern": "^_" }],
+
+    "import/no-duplicates": ['warn', { 'prefer-inline': false }]
   }
 };
 

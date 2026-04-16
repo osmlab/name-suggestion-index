@@ -1,6 +1,5 @@
 import { Glob } from 'bun';
 import JSON5 from 'json5';
-import localeCompare from 'locale-compare';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
 import { Validator } from 'jsonschema';
@@ -12,7 +11,7 @@ import { validate } from './validate.ts';
 import type { NsiCache } from './types.ts';
 import type LocationConflation from '@rapideditor/location-conflation';
 
-const withLocale = localeCompare('en-US');  // specify 'en-US' for stable results
+const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
 
 /** Tree definitions loaded from `config/trees.json`. */

@@ -1,5 +1,4 @@
-import localeCompare from 'locale-compare';
-const withLocale = localeCompare('en-US');  // specify 'en-US' for stable results
+const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
 
 /**
