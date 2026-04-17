@@ -11,14 +11,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
 
-    // Emit
-    "emitDeclarationOnly": true,
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "./dist/ts",
-    "outDir": "./dist/ts",
-    "sourceMap": true,
-    "noEmitOnError": true,
+    // Emit — disabled here; see tsconfig.build.json for declaration emit
+    "noEmit": true,
 
     // Interop
     "esModuleInterop": true,
@@ -26,21 +20,20 @@
 
     // Type Checking
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": false,
     "noImplicitOverride": true,
 
     // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["./src/nsi.ts"],
+  "include": ["src", "lib"],
   "exclude": [
     "node_modules",
-    "dist",
-    "scripts"
+    "dist"
   ]
 }

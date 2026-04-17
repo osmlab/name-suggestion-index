@@ -1,16 +1,16 @@
 /* eslint-disable dot-notation, @typescript-eslint/no-explicit-any */
 import { $ } from 'bun';
 import { iso1A2Code } from '@rapideditor/country-coder';
-import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
 import wikibase, { type CustomSimplifiedClaim, type ItemId, type PropertyId } from 'wikibase-sdk';
 import wikibaseEdit, { type WikibaseEditAPI } from 'wikibase-edit';
-const withLocale = localeCompare('en-US');
+const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
-import { sortObject } from '../lib/sort_object.ts';
+import type { NsiCache } from '../lib/types.ts';
 import { fileTree } from '../lib/file_tree.ts';
+import { sortObject } from '../lib/sort_object.ts';
 
 
 // set to true if you just want to test what the script will do without updating Wikidata
@@ -146,7 +146,7 @@ if (_secrets && !_secrets.wikibase) {
   console.error(styleText('red', 'WHOA!'));
   console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
   console.error(styleText('yellow', 'We were expecting to find a `wikibase` property.'));
-  console.error(styleText('yellow', 'Check `scripts/build_wikidata.js` for details...'));
+  console.error(styleText('yellow', 'Check `scripts/wikidata.ts` for details…'));
   console.error('');
   process.exit(1);
 }
@@ -155,7 +155,7 @@ if (_secrets && _secrets.wikibase && !_secrets.wikibase.oauth) {
   console.error(styleText('red', 'WHOA!'));
   console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
   console.error(styleText('yellow', 'We were expecting to find an `oauth` property.'));
-  console.error(styleText('yellow', 'Check `scripts/build_wikidata.js` for details...'));
+  console.error(styleText('yellow', 'Check `scripts/wikidata.ts` for details…'));
   console.error('');
   process.exit(1);
 }
@@ -180,8 +180,7 @@ const END = '👍  ' + styleText('green', `done loading`);
 console.log(START);
 console.time(END);
 
-// todo: better types for the main NSI data structures.
-const _nsi: { id: Map<string, any>; path: Record<string, any> } = {} as any;
+const _nsi = {} as NsiCache;
 await fileTree.read(_nsi, _loco);
 fileTree.expandTemplates(_nsi, _loco);
 console.timeEnd(END);
@@ -244,27 +243,50 @@ if (!_total) {
 }
 
 // Chunk into multiple wikidata API requests..
+// Include `maxage` to bypass CDN caching so we always work with fresh entity data — see #12061
 const _urls = wbk.getManyEntities({
   ids: _qids,
   languages: ['en','mul'],
   props: ['info', 'labels', 'descriptions', 'claims', 'sitelinks'],
   format: 'json'
-});
+}).map((url: string) => `${url}&maxage=0&smaxage=0`);
 
 const _warnings: Warning[] = [];
+const _entityCache: Record<ItemId, WdEntity> = {};
+const _wbEditQueue = new Map<string, WbEditRequest>();
 
-await doFetch();
-await Bun.sleep(5000);
+await fetchWikidata();
+await syncAllNsiIdentifiers();
 await removeOldNsiClaims();
+await drainWbEditQueue();
 await finish();
 
 
 /**
- * Fetches Wikidata API requests sequentially.
+ * Enqueues a Wikidata edit request, deduplicating by a composite key derived
+ * from the operation target (guid, qid, property, value, language).
+ * Later entries for the same key silently overwrite earlier ones.
+ * @param request - The edit request to enqueue.
+ * @see https://github.com/osmlab/name-suggestion-index/issues/12061
+ */
+function enqueueWbEdit(request: WbEditRequest): void {
+  const key = [
+    request.guid ?? '',
+    request.id ?? '',
+    request.property ?? '',
+    request.value ?? request.newValue ?? '',
+    request.language ?? '',
+  ].join('|');
+  _wbEditQueue.set(key, request);
+}
+
+
+/**
+ * Performs Wikidata API requests sequentially.
  * Retries on network errors up to MAX_RETRIES times per batch.
  * @returns Resolves when all batches have been fetched and processed.
  */
-async function doFetch() {
+async function fetchWikidata() {
   for (let index = 0; index < _urls.length; index++) {
     const currURL = _urls[index];
     console.log(styleText(['yellow','bold'], `\nBatch ${index+1}/${_urls.length}`));
@@ -274,7 +296,9 @@ async function doFetch() {
       let response;
       try {
         response = await fetch(currURL, FETCH_OPTS);
-        if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+        if (!response.ok) {
+          throw new Error(response.status + ' ' + response.statusText);
+        }
       } catch (e) {
         retries++;
         const msg = e instanceof Error ? e.message : String(e);
@@ -284,7 +308,7 @@ async function doFetch() {
           console.error(styleText('red', `Giving up on batch ${index+1} after ${MAX_RETRIES} attempts.`));
           break;
         }
-        console.warn(styleText(['green','bold'], 'retrying...'));
+        console.warn(styleText(['green','bold'], 'retrying…'));
         await Bun.sleep(5000);
         continue;
       }
@@ -308,12 +332,12 @@ async function doFetch() {
  */
 async function processEntities(result: WdApiResult): Promise<void> {
   const facebookQueue: FacebookQueueItem[] = [];
-  const wbEditQueue: WbEditRequest[] = [];
 
   for (const qid of (Object.keys(result.entities) as ItemId[])) {
     const meta = _qidMetadata[qid];
     const target = _wikidata[qid];
     const entity = result.entities[qid];
+    _entityCache[qid] = entity;
     const labelEn = entity.labels && entity.labels.en && entity.labels.en.value;
     const labelMul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
     let label = labelEn ? labelEn : labelMul;
@@ -332,7 +356,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
       continue;
     }
 
-    // Get label...
+    // Get label..
     if (label) {
       target.label = label;
     } else {
@@ -341,7 +365,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
       if (label && _wbEdit) {   // if we're allowed to make edits, just set the label
         target.label = label;
         const msg = `Adding English label for ${qid}: ${label}`;
-        wbEditQueue.push({ id: qid, language: 'en', value: label, msg: msg });
+        enqueueWbEdit({ id: qid, language: 'en', value: label, msg: msg });
 
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
@@ -351,13 +375,13 @@ async function processEntities(result: WdApiResult): Promise<void> {
       }
     }
 
-    // Get description...
+    // Get description..
     const description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
     if (description) {
       target.description = description;
     }
 
-    // Process claims below here...
+    // Process claims below here..
     if (!entity.claims) continue;
     target.logos = {};
     target.identities = {};
@@ -506,18 +530,12 @@ async function processEntities(result: WdApiResult): Promise<void> {
     const instanceOf = getClaimValue(entity, 'P31');
     if (!instanceOf && meta.p31) {
       const msg = `Setting P31 "instance of" = ${meta.p31} "${meta.what}" for ${qid}`;
-      wbEditQueue.push({ qid: qid, id: qid, property: 'P31', value: meta.p31, msg: msg });
-    }
-
-    // If we want this qid to have an P8253 property ..
-    if (_qidIdItems[qid]) {
-      syncNsiIdentifiers(qid, entity, wbEditQueue);
+      enqueueWbEdit({ qid: qid, id: qid, property: 'P31', value: meta.p31, msg: msg });
     }
 
   }  // foreach qid
 
   await Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username, obj.restriction)) );
-  await processWbEditQueue(wbEditQueue);
 }
 
 
@@ -621,12 +639,13 @@ function processDissolutions(qid: ItemId, entity: WdEntity, target: WikidataProp
 /**
  * Synchronises P8253 (name-suggestion-index identifier) claims on Wikidata
  * with the locally known set of NSI IDs for a given QID.
- * Queues updates, additions, and removals as needed.
+ * Enqueues updates, additions, and removals as needed.
  * @param qid - The Wikidata QID to sync identifiers for.
  * @param entity - The raw Wikidata entity object.
- * @param wbEditQueue - The queue to push edit requests onto.
  */
-function syncNsiIdentifiers(qid: ItemId, entity: WdEntity, wbEditQueue: WbEditRequest[]): void {
+function syncNsiIdentifiers(qid: ItemId, entity: WdEntity): void {
+  if (!entity.claims) return;
+
   // P8253 - name-suggestion-index identifier
   // sort ids so claim order is deterministic, to avoid unnecessary updating
   const nsiIds = Array.from(_qidIdItems[qid])
@@ -637,7 +656,7 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity, wbEditQueue: WbEditRe
   // Include this reference on all our claims - #4648
   const references = [{ P248: 'Q62108705' }];   // 'stated in': 'name suggestion index'
 
-  // Make the nsiClaims match the nsiIds...
+  // Make the nsiClaims match the nsiIds..
   let i = 0;
   let msg;
   for (i; i < nsiClaims.length; i++) {
@@ -651,22 +670,22 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity, wbEditQueue: WbEditRe
         } else if (claim.rank !== 'normal') {
           msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
         }
-        wbEditQueue.push({ qid: qid, guid: claim.id, newValue: nsiIds[i], rank: 'normal', references: references, msg: msg });
+        enqueueWbEdit({ qid: qid, guid: claim.id, newValue: nsiIds[i], rank: 'normal', references: references, msg: msg });
       }
       if (!claim.references || !claim.references.length) {
         msg = `Updating NSI identifier reference for ${qid}`;
-        wbEditQueue.push({ qid: qid, guid: claim.id, snaks: references[0], msg: msg });
+        enqueueWbEdit({ qid: qid, guid: claim.id, snaks: references[0], msg: msg });
       }
 
     } else {  // remove extra existing claims
       msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
-      wbEditQueue.push({ qid: qid, guid: claim.id, msg: msg });
+      enqueueWbEdit({ qid: qid, guid: claim.id, msg: msg });
     }
   }
 
   for (i; i < nsiIds.length; i++) {   // add new claims
     msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
-    wbEditQueue.push({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', references: references, msg: msg });
+    enqueueWbEdit({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', references: references, msg: msg });
   }
 }
 
@@ -852,12 +871,12 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
     }
 
     // queries of valid numeric IDs always return some data regardless of profile access status
-    if ( restriction && restriction !== 'Q113165094' && (!username.match(/^\d+$/) || target.logos!.facebook) ) {
+    if (restriction && restriction !== 'Q113165094' && (!username.match(/^\d+$/) || target.logos!.facebook)) {
       // show warning if Wikidata notes that access to the profile is restricted in certain ways, but the profile is public - #10233
       // location restrictions (Q113165094) are skipped from this check because the API call will return different results
       // when run by users from different countries
       let warningText;
-      if ( restriction === 'Q134432781' ) {
+      if (restriction === 'Q134432781') {
         warningText = `is marked as a personal account, but was successfully read as a public professional account`;
       } else {
         warningText = `has a restricted access qualifier, but is publicly accessible`;
@@ -887,6 +906,26 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
 
 
 /**
+ * Enqueues P8253 (NSI identifier) edits for all QIDs that need them.
+ * Runs as a dedicated pass after all entity data has been fetched, so that
+ * each QID is processed exactly once regardless of how many NSI items share it.
+ * @see https://github.com/osmlab/name-suggestion-index/issues/12061
+ */
+function syncAllNsiIdentifiers(): void {
+  if (!_wbEdit) return;
+
+  console.log('');
+  console.log('🏗   ' + styleText('yellow', `Syncing NSI identifiers (P8253) on Wikidata…`));
+
+  for (const qid of (Object.keys(_qidIdItems) as ItemId[])) {
+    const entity = _entityCache[qid];
+    if (!entity) continue;
+    syncNsiIdentifiers(qid, entity);
+  }
+}
+
+
+/**
  * Finds all items in Wikidata with NSI identifier claims (P8253)
  * and removes any old claims where the QID is no longer referenced.
  * @returns Resolves when all obsolete claims have been removed.
@@ -895,7 +934,7 @@ async function removeOldNsiClaims(): Promise<void> {
   if (!_wbEdit) return;
 
   console.log('');
-  console.log('🏗   ' + styleText('yellow', `Searching Wikidata for obsolete NSI identifier claims ...`));
+  console.log('🏗   ' + styleText('yellow', `Searching Wikidata for obsolete NSI identifier claims…`));
   const query = `
     SELECT ?qid ?nsiId ?guid
     WHERE {
@@ -908,14 +947,12 @@ async function removeOldNsiClaims(): Promise<void> {
     if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
     const json = await response.json();
     const results = wbk.simplify.sparqlResults(json);
-    const wbEditQueue: WbEditRequest[] = [];
     for (const item of results) {
       if (!_qidIdItems[item.qid as ItemId]) {
         const msg = `Removing old NSI identifier for ${item.qid}: ${item.nsiId}`;
-        wbEditQueue.push({ qid: item.qid as ItemId, guid: item.guid as string, msg: msg });
+        enqueueWbEdit({ qid: item.qid as ItemId, guid: item.guid as string, msg: msg });
       }
     }
-    await processWbEditQueue(wbEditQueue);
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.warn(styleText('red', msg));
@@ -924,19 +961,28 @@ async function removeOldNsiClaims(): Promise<void> {
 
 
 /**
- * Performs queued edits to Wikidata sequentially with a delay between each.
+ * Drains the module-level edit queue, sending all enqueued edits to Wikidata
+ * sequentially with a delay between each.
  * Set `DRYRUN=true` at the beginning of this script to prevent actual edits.
- * @param queue - The array of edit requests to process (mutated via `.pop()`).
  * @returns Resolves when all edits have been attempted.
  */
-async function processWbEditQueue(queue: WbEditRequest[]): Promise<void> {
+async function drainWbEditQueue(): Promise<void> {
   if (!_wbEdit) return;
 
-  while (queue.length) {
-    const request = queue.pop()!;
+  const edits = Array.from(_wbEditQueue.values());
+  _wbEditQueue.clear();
+  const total = edits.length;
+
+  if (!total) return;
+
+  console.log('');
+  console.log('🏗   ' + styleText('yellow', `Applying ${total} Wikidata edits…`));
+
+  for (let i = 0; i < total; i++) {
+    const request = edits[i];
     const qid = request.qid;
     const msg = request.msg;
-    console.log(styleText('blue', `Updating Wikidata ${queue.length}:  ${msg}`));
+    console.log(styleText(['blue','bold'], `  [${i + 1}/${total}]  ${msg}`));
     delete request.qid;
     delete request.msg;
 
@@ -965,6 +1011,8 @@ async function processWbEditQueue(queue: WbEditRequest[]): Promise<void> {
       }
     }
   }
+
+  console.log('👍  ' + styleText('green', `${total} Wikidata edits processed`));
 }
 
 
@@ -980,6 +1028,7 @@ function enLabelForQID(qid: ItemId): string | null {
 
   for (const id of Array.from(_qidItems[qid])) {
     const item = _nsi.id.get(id);
+    if (!item) continue;
 
     if (meta.what === 'flag') {
       if (looksLatin(item.tags.subject))  return `flag of ${item.tags.subject}`;

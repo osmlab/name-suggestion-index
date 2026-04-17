@@ -1,13 +1,14 @@
 import { $ } from 'bun';
-import localeCompare from 'locale-compare';
 import LocationConflation from '@rapideditor/location-conflation';
 import stringify from 'json-stringify-pretty-compact';
-import { styleText } from 'bun:util';
+import { styleText } from 'node:util';
 import xmlbuilder2 from 'xmlbuilder2';
-const withLocale = localeCompare('en-US');
 
 import { fileTree } from '../lib/file_tree.ts';
 import { sortObject } from '../lib/sort_object.ts';
+import type { NsiCache, OsmTags, RapidPreset } from '../lib/types.ts';
+
+const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
 // JSON
 const packageJSON = await Bun.file('./package.json').json();
@@ -15,8 +16,9 @@ const treesJSON = await Bun.file('./config/trees.json').json();
 let featureCollectionJSON;
 try {
   featureCollectionJSON = await Bun.file('./dist/json/featureCollection.json').json();
-} catch (err) {
-  console.error(styleText('red', `Error: ${err.message} `));
+} catch (err: unknown) {
+  const message = err instanceof Error ? err.message : String(err);
+  console.error(styleText('red', `Error: ${message} `));
   console.error(styleText('yellow', `Please run 'bun run build' first.`));
   process.exit(1);
 }
@@ -25,11 +27,13 @@ let wikidataJSON;
 try {
   dissolvedJSON = await Bun.file('./dist/wikidata/dissolved.json').json();
   wikidataJSON = await Bun.file('./dist/wikidata/wikidata.json').json();
-} catch (err) {
-  console.error(styleText('red', `Error: ${err.message} `));
+} catch (err: unknown) {
+  const message = err instanceof Error ? err.message : String(err);
+  console.error(styleText('red', `Error: ${message} `));
   console.error(styleText('yellow', `Please run 'bun run wikidata' first.`));
   process.exit(1);
 }
+
 
 const dissolved = dissolvedJSON.dissolved;
 const trees = treesJSON.trees;
@@ -41,7 +45,7 @@ const presetsJSON = await Bun.file(presetsFile).json();
 
 // We use LocationConflation for validating and processing the locationSets
 const _loco = new LocationConflation(featureCollectionJSON);
-const _nsi = {};
+const _nsi = {} as NsiCache;
 
 
 await loadIndex();
@@ -169,8 +173,8 @@ async function buildIDPresets() {
   // - NSI identifiers will not collide with the iD identifiers (NSI ids don't look like tag values)
   //
 
-  const targetPresets = {};
-  const missing = new Set();
+  const targetPresets: Record<string, RapidPreset> = {};
+  const missing = new Set<string>();
   const paths = Object.keys(_nsi.path);
 
   // Ferry hack! ⛴
@@ -188,7 +192,7 @@ async function buildIDPresets() {
     const items = _nsi.path[tkv].items;
     if (!Array.isArray(items) || !items.length) continue;
 
-    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const [t, k, v] = tkv.split('/', 3);   // tkv = "tree/key/value"
     const tree = trees[t];
     const kv = `${k}/${v}`;
 
@@ -233,7 +237,8 @@ async function buildIDPresets() {
     // NOTE: here we intentionally exclude `:wikidata`, in `matcher.ts` we do not.
     const notName = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
-    const childPresets = new Map();
+    // Look for iD presets that would fit this NSI presetPath.
+    const childPresets = new Map<string, RapidPreset>();
     for (const checkPath in presetsJSON) {
       if (checkPath.startsWith(presetPath)) {
         childPresets.set(checkPath, presetsJSON[checkPath]);
@@ -245,7 +250,8 @@ async function buildIDPresets() {
       const qid = tags[wdTag];
       if (!qid || !/^Q\d+$/.test(qid)) continue;   // wikidata tag missing or looks wrong..
 
-      let presetID, preset;
+      let presetID: string | undefined;
+      let preset: RapidPreset | undefined;
 
       // Sometimes we can choose a more specific iD preset then `key/value`..
       // Attempt to match a `key/value/extravalue`
@@ -259,7 +265,7 @@ async function buildIDPresets() {
         let matchPreset;
 
         childPresets.forEach((checkPreset, checkPresetPath) => {
-          const checkPresetTags = Object.entries(checkPreset.tags);
+          const checkPresetTags = Object.entries(checkPreset.tags as OsmTags);
           let currentMatchSemicolonRating = 0;
 
           const isPresetMatch = checkPresetTags.every(kv => {
@@ -297,16 +303,17 @@ async function buildIDPresets() {
           }
         });
 
-        console.assert('Preset must already be selected', matchPresetPath);
         presetID = matchPresetPath;
         preset = matchPreset;
       }
 
-      // fallback to `key/value`
+      // fallback to the first `key/value`
       if (!preset && childPresets.size === 1) {
         const presetKV = childPresets.entries().next().value;
-        presetID = presetKV[0];
-        preset = presetKV[1];
+        if (presetKV) {
+          presetID = presetKV[0];
+          preset = presetKV[1];
+        }
       }
 
       // still no match?
@@ -337,7 +344,7 @@ async function buildIDPresets() {
       // generate our target preset
       const targetID = `${presetID}/${item.id}`;
 
-      const targetTags = {};
+      const targetTags: OsmTags = {};
       targetTags[wdTag] = tags[wdTag]; // add the `*:wikidata` tag
       for (const k in preset.tags) {     // prioritize NSI tags over iD preset tags (for `vending`, `cuisine`, etc)
         targetTags[k] = tags[k] || preset.tags[k];
@@ -345,7 +352,7 @@ async function buildIDPresets() {
 
       // Prefer a wiki commons logo sometimes..
       // Related issues list: openstreetmap/iD#6361, #2798, #3122, #8042, #8373
-      const preferCommons = {
+      const preferCommons: Record<string, boolean> = {
         Q177054: true,    // Burger King
         Q524757: true,    // KFC
         Q779845: true,    // CBA
@@ -378,22 +385,22 @@ async function buildIDPresets() {
       }
 
       const targetPreset = {
-        name: item.displayName,
-        locationSet: item.locationSet,
-        icon: preset.icon,
-        geometry: preset.geometry,
-        matchScore: 2
-      };
+        name:         item.displayName,
+        locationSet:  item.locationSet,
+        icon:         preset.icon,
+        geometry:     preset.geometry,
+        matchScore:   2
+      } as RapidPreset;
 
       if (logoURL)             targetPreset.imageURL = logoURL;
       if (terms.size)          targetPreset.terms = Array.from(terms).sort(withLocale);
       if (fields)              targetPreset.fields = fields;
       if (preset.reference)    targetPreset.reference = preset.reference;
       if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
-      if (preserveTags.length) targetPreset.preserveTags = preserveTags; // #10083
+      if (preserveTags.length) targetPreset.preserveTags = preserveTags; // see NSI#10083
 
-      targetPreset.tags = sortObject(targetTags);
-      targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
+      targetPreset.tags = sortObject(targetTags) as OsmTags;
+      targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags)) as OsmTags;
 
       targetPresets[targetID] = targetPreset;
     }

@@ -1,5 +1,6 @@
 ---
-description: Stage and commit all changes in this repo
+description: Stage, commit, and push all changes in this repo
+argument-hint: commit detail to include, for example: `(closes ​#123)`
 ---
 
 You are performing a git commit for this repo. Do the following steps in order:
@@ -16,4 +17,9 @@ You are performing a git commit for this repo. Do the following steps in order:
      git commit -F /tmp/commitmsg.txt
      rm /tmp/commitmsg.txt
      ```
+   - If a commit detail argument was provided (e.g. `closes #123`), include it on its own line after the first line (subject), separated by a blank line:
+     ```
+     printf '%s\n' 'First line' '' 'closes #123' > /tmp/commitmsg.txt
+     ```
 5. Run `git push` to push commits up to the origin
+
