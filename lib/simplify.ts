@@ -1,8 +1,16 @@
-// External
 import diacritics from 'diacritics';
 
-// remove spaces, punctuation, diacritics
-// for punction see https://stackoverflow.com/a/21224179
+/**
+ * Simplifies a string by removing spaces, punctuation, and diacritics,
+ * replacing `&` with `and`, and lowercasing the result.
+ * Useful for generating normalized keys that can be compared across languages and scripts.
+ *
+ * For punctuation ranges see https://stackoverflow.com/a/21224179
+ *
+ * @param   str - The input string to simplify
+ * @returns A normalized, lowercase string with all whitespace, punctuation, and diacritics removed.
+ *          Returns an empty string if the input is not a string.
+ */
 export function simplify(str?: string): string {
   if (typeof str !== 'string') return '';
 

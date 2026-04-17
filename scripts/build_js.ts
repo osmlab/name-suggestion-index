@@ -36,3 +36,5 @@ await Promise.all([
     naming: 'nsi.m[ext]'  // .mjs
   })
 ]);
+
+export {};

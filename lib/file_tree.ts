@@ -1,53 +1,59 @@
-// External
 import { Glob } from 'bun';
 import JSON5 from 'json5';
-import localeCompare from 'locale-compare';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
 import { Validator } from 'jsonschema';
 
-import type LocationConflation from '@rapideditor/location-conflation';
-
-const withLocale = localeCompare('en-US');
-
-// Internal
 import { idgen } from './idgen.ts';
 import { sortObject } from './sort_object.ts';
 import { validate } from './validate.ts';
 
-interface Cache {
-  id?: Map<string, unknown>;
-  path?: Record<string, unknown>;
-}
+import type { NsiCache, NsiCategoryProperties, OsmTags } from './types.ts';
+import type LocationConflation from '@rapideditor/location-conflation';
 
-// JSON
+const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
+
+
+/** Tree definitions loaded from `config/trees.json`. */
 const treesJSON = await Bun.file('./config/trees.json').json();
 const trees = treesJSON.trees;
+
+/** JSON Schema for category files, loaded from `schema/categories.json`. */
 const categoriesSchemaJSON = await Bun.file('./schema/categories.json').json();
 const validator = new Validator();
 
 
-// The code in here
-//  - validates data on read, generating any missing data
-//  - cleans data on write, sorting and lowercasing all the keys and arrays
-
-// cache: {
-//   'id': {                      // `cache.id` is a Map of item id -> items
-//     'firstbank-978cca': {…},
-//     …
-//   },
-//   'path': {                    // `cache.path` is an Object of t/k/v paths -> category data
-//     'brands/amenity/bank': {
-//       'properties':  {…},
-//       'items':       […],
-//       'templates':   […]
-//     }
-//   },
-
-
+/**
+ * Utilities for reading, writing, and expanding NSI data files under `./data/`.
+ *
+ * - Validates data on read, generating any missing fields (ids, tags).
+ * - Cleans data on write, sorting and lowercasing keys and arrays.
+ * - Expands template items into concrete items.
+ *
+ * The cache structure is:
+ * ```
+ * {
+ *   id:   Map<itemId, item>,
+ *   path: {
+ *     'brands/amenity/bank': { properties, items, templates },
+ *     …
+ *   }
+ * }
+ * ```
+ */
 export const fileTree = {
 
-read: async (cache: Cache, loco: LocationConflation) => {
+/**
+ * Reads all NSI data files from `./data/`, validates them against the JSON
+ * Schema, generates item ids, and populates the cache.
+ *
+ * @param   cache - The cache object to populate (created if falsy)
+ * @param   loco  - A `LocationConflation` instance for validating locationSets
+ * @returns The populated cache
+ * @throws  Terminates via `process.exit(1)` on schema errors, duplicate paths,
+ *          duplicate ids, invalid JSON, or unresolvable locationSets.
+ */
+read: async (cache: NsiCache, loco: LocationConflation) => {
   cache = cache || {};
   cache.id = cache.id || new Map();
   cache.path = cache.path || {};
@@ -72,8 +78,9 @@ read: async (cache: Cache, loco: LocationConflation) => {
       let input;
       try {
         input = JSON5.parse(contents);
-      } catch (jsonParseError) {
-        console.error(styleText('red', `Error - ${jsonParseError.message} reading:`));
+      } catch (jsonParseError: unknown) {
+        const message = jsonParseError instanceof Error ? jsonParseError.message : String(jsonParseError);
+        console.error(styleText('red', `Error - ${message} reading:`));
         console.error('  ' + styleText('yellow', filepath));
         process.exit(1);
       }
@@ -87,7 +94,7 @@ read: async (cache: Cache, loco: LocationConflation) => {
       const k = parts[1];
       const v = parts[2];
       const kv = `${k}/${v}`;
-      const seenkv = {};
+      const seenkv: Record<string, string> = {};
 
       // make sure t/k/v is unique
       if (cache.path[tkv]) {
@@ -109,7 +116,7 @@ read: async (cache: Cache, loco: LocationConflation) => {
       }
 
       // check and merge each item
-      const seenName = {};
+      const seenName: Record<string, boolean> = {};
       const items = input.items || [];
       for (const item of items) {
         itemCount++;
@@ -140,8 +147,9 @@ read: async (cache: Cache, loco: LocationConflation) => {
 //          if (!resolved.feature.geometry.coordinates.length || !resolved.feature.properties.area) {
 //            throw new Error(`locationSet ${locationID} resolves to an empty feature.`);
 //          }
-        } catch (err) {
-          console.error(styleText('red', `Error - ${err.message} in:`));
+        } catch (err: unknown) {
+          const message = err instanceof Error ? err.message : String(err);
+          console.error(styleText('red', `Error - ${message} in:`));
           console.error('  ' + styleText('yellow', item.displayName));
           console.error('  ' + styleText('yellow', filepath));
           process.exit(1);
@@ -179,7 +187,15 @@ read: async (cache: Cache, loco: LocationConflation) => {
 },
 
 
-write: async (cache: Cache) => {
+/**
+ * Writes all cached category data back to `./data/` as pretty-printed JSON files.
+ * Sorts and cleans keys, tag values, matchNames, matchTags, and category
+ * properties before writing.
+ *
+ * @param   cache - The cache to write (expects `cache.path` to be populated)
+ * @throws  Terminates via `process.exit(1)` on file-write errors.
+ */
+write: async (cache: NsiCache) => {
   cache = cache || {};
   cache.path = cache.path || {};
 
@@ -207,19 +223,19 @@ write: async (cache: Cache) => {
         .map(item => {
           // clean templateInclude/templateExclude
           if (item.templateInclude) {
-            item.templateInclude = item.templateInclude.map(s => s.toLowerCase()).sort(withLocale);
+            item.templateInclude = item.templateInclude.map((s: string) => s.toLowerCase()).sort(withLocale);
           }
           if (item.templateExclude) {
-            item.templateExclude = item.templateExclude.map(s => s.toLowerCase()).sort(withLocale);
+            item.templateExclude = item.templateExclude.map((s: string) => s.toLowerCase()).sort(withLocale);
           }
 
           // clean templateSource
           item.templateSource = _clean(item.templateSource);
 
           // clean templateTags
-          const cleaned = {};
+          const cleaned: OsmTags = {};
           for (const k of Object.keys(item.templateTags)) {
-            const osmkey = _clean(k);
+            const osmkey = _clean(k) as string;
             const osmval = _clean(item.templateTags[k]);
             cleaned[osmkey] = osmval;
           }
@@ -236,13 +252,15 @@ write: async (cache: Cache) => {
           item.displayName = _clean(item.displayName);
 
           // clean locationSet
-          let cleaned = {};
+          let cleaned: Record<string, any> = {};
           if (Array.isArray(item.locationSet.include)) {
+            // @ts-expect-error -- legacy issue
             cleaned.include = item.locationSet.include.map(_cleanLower).sort(withLocale);
           } else {
             cleaned.include = ['001'];  // default to world
           }
           if (Array.isArray(item.locationSet.exclude)) {
+            // @ts-expect-error -- legacy issue
             cleaned.exclude = item.locationSet.exclude.map(_cleanLower).sort(withLocale);
           }
           item.locationSet = cleaned;
@@ -257,7 +275,7 @@ write: async (cache: Cache) => {
           // clean OSM tags
           cleaned = {};
           for (const k of Object.keys(item.tags)) {
-            const osmkey = _clean(k);
+            const osmkey = _clean(k) as string;
             const osmval = _clean(item.tags[k]);
             cleaned[osmkey] = osmval;
           }
@@ -270,14 +288,14 @@ write: async (cache: Cache) => {
       const properties = category.properties || {};
       properties.exclude = properties.exclude || {};
 
-      const cleanedProps = {};
+      const cleanedProps = {} as NsiCategoryProperties;
       cleanedProps.path = tkv;
 
       if (properties.skipCollection) {
         cleanedProps.skipCollection = properties.skipCollection;
       }
       if (Array.isArray(properties.preserveTags)) {
-        cleanedProps.preserveTags = properties.preserveTags.map(_cleanLower).sort(withLocale);
+        cleanedProps.preserveTags = (properties.preserveTags.map(_cleanLower) as string[]).sort(withLocale);
       }
 
       cleanedProps.exclude = {};
@@ -294,15 +312,16 @@ write: async (cache: Cache) => {
       // generate file
       const output = {
         properties: cleanedProps,
-        items: templateItems.concat(normalItems)
+        items: [...templateItems, ...normalItems],
       };
 
       itemCount += output.items.length;
 
       try {
         await Bun.write(file, stringify(output, { maxLength: 50 }) + '\n');
-      } catch (err) {
-        console.error(styleText('red', `Error - ${err.message} writing:`));
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.error(styleText('red', `Error - ${message} writing:`));
         console.error('  ' + styleText('yellow', file));
         process.exit(1);
       }
@@ -312,11 +331,27 @@ write: async (cache: Cache) => {
   }
 
 
+  /**
+   * Trims whitespace from a value if it is a string; returns non-strings unchanged.
+   *
+   * @param   s - The value to clean
+   * @returns The trimmed string, or the original value if not a string
+   */
+  function _clean(s: string): string;
   function _clean(s: string | unknown): string | unknown {
     if (typeof s !== 'string') return s;
     return s.trim();
   }
 
+  /**
+   * Trims and lowercases a string value.  Skips lowercasing strings that
+   * contain `İ` (Turkish capital I with dot) to avoid locale-dependent mutation (#8261).
+   *
+   * @param   s - The value to clean
+   * @returns The trimmed (and possibly lowercased) string, or the original value
+   *          if not a string
+   */
+  function _cleanLower(s: string): string;
   function _cleanLower(s: string | unknown): string | unknown {
     if (typeof s !== 'string') return s;
     if (/İ/.test(s)) {  // Avoid toLowerCasing this one, it changes - #8261
@@ -328,7 +363,22 @@ write: async (cache: Cache) => {
 },
 
 
-expandTemplates: (cache: Cache, loco: LocationConflation) => {
+/**
+ * Expands template items in each category into concrete items by cloning
+ * source items, replacing tag tokens, and generating new ids.
+ *
+ * Template items reference a `templateSource` path and optionally filter
+ * source items via `templateInclude` / `templateExclude` regex patterns.
+ * Tag values may contain `{source.tags.xxx}` tokens that are resolved
+ * against the source item.
+ *
+ * @param   cache - The cache (must already be populated by {@link fileTree.read})
+ * @param   loco  - A `LocationConflation` instance for id generation
+ * @returns The cache with template items expanded into `cache.path[tkv].items`
+ * @throws  Terminates via `process.exit(1)` if a template references an invalid
+ *          source path or if an id cannot be generated.
+ */
+expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
   cache = cache || {};
   cache.id = cache.id || new Map();
   cache.path = cache.path || {};
@@ -339,8 +389,8 @@ expandTemplates: (cache: Cache, loco: LocationConflation) => {
 
     // expand each template item into real items..
     for (const templateItem of templateItems) {
-      const includePatterns = (templateItem.templateInclude || []).map(s => new RegExp(s, 'i'));
-      const excludePatterns = (templateItem.templateExclude || []).map(s => new RegExp(s, 'i'));
+      const includePatterns: RegExp[] = (templateItem.templateInclude || []).map((s: string) => new RegExp(s, 'i'));
+      const excludePatterns: RegExp[] = (templateItem.templateExclude || []).map((s: string) => new RegExp(s, 'i'));
       const templateSource = templateItem.templateSource;
       const templateTags = templateItem.templateTags;
 
@@ -359,7 +409,7 @@ expandTemplates: (cache: Cache, loco: LocationConflation) => {
           if (excludePatterns.some(pattern => pattern.test(sourceItem.id))) continue;
         }
 
-        const item = JSON.parse(JSON.stringify(sourceItem));  // deep clone
+        const item = structuredClone(sourceItem);
         delete item.matchTags;     // don't copy matchTags (but do copy matchNames)
         item.fromTemplate = true;
 
@@ -369,15 +419,15 @@ expandTemplates: (cache: Cache, loco: LocationConflation) => {
           let tagValue = templateTags[osmkey];
 
           if (tagValue) {
-            tagValue = tagValue.replace(/{(\S+)}/g, (match, token) => {
+            tagValue = tagValue.replace(/{(\S+)}/g, (_match: string, token: string) => {
               // token should contain something like 'source.tags.brand'
               let replacement = '';
               const props = token.split('.');
               props.shift();   // Ignore first 'source'. It's just for show.
 
-              let source = sourceItem;
+              let source: any = sourceItem;
               while (props.length) {
-                const prop = props.shift();
+                const prop = props.shift()!;
                 const found = source[prop];
                 if (typeof found === 'object' && found !== null) {
                   source = found;
@@ -411,13 +461,14 @@ expandTemplates: (cache: Cache, loco: LocationConflation) => {
 
         // generate id
         const locationID = loco.validateLocationSet(item.locationSet).id;
-        item.id = idgen(item, tkv, locationID);
-        if (!item.id) {
+        const id = idgen(item, tkv, locationID);
+        if (!id) {
           console.error(styleText('red', `Error - Couldn't generate an id for:`));
           console.error('  ' + styleText('yellow', item.displayName));
           console.error('  ' + styleText('yellow', file));
           process.exit(1);
         }
+        item.id = id;
 
         // merge into caches
         if (cache.id.has(item.id)) {
