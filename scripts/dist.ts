@@ -77,10 +77,10 @@ async function distAll() {
   await updateVersion();
 
   // Copy files from `./config` to `./dist/json`
-  await $`cp -f ./config/genericWords.json  ./dist/json`;
-  await $`cp -f ./config/matchGroups.json  ./dist/json`;
-  await $`cp -f ./config/replacements.json  ./dist/json`;
-  await $`cp -f ./config/trees.json  ./dist/json`;
+  await $`cp ./config/genericWords.json  ./dist/json`;
+  await $`cp ./config/matchGroups.json  ./dist/json`;
+  await $`cp ./config/replacements.json  ./dist/json`;
+  await $`cp ./config/trees.json  ./dist/json`;
 
   // Write `nsi.json` as a single file containing everything by path
   // Reverse sort the paths, we want 'brands' to override 'operators'
