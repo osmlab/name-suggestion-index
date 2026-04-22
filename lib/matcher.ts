@@ -1,13 +1,10 @@
-import whichPolygon from 'which-polygon';
+import { LocationConflation } from '@rapideditor/location-conflation';
 import { simplify } from './simplify.ts';
 
-import type LocationConflation from '@rapideditor/location-conflation';
-import type { FeatureProperties, Vec2 } from '@rapideditor/location-conflation';
-import type { WhichPolygonQuery } from 'which-polygon';
-import type { Feature, Geometry } from 'geojson';
+import type { LocationSetID, Vec2 } from '@rapideditor/location-conflation';
 import type { MatchHit, MatchIndexBranch, NsiData, NsiTree, NsiTreeConfig } from './types.ts';
 
-// Imported JSON (will be inlined when generating a bundle)
+// Imported JSON (will be inlined by bun)
 import matchGroupsJSON from '../config/matchGroups.json' with {type: 'json'};
 import genericWordsJSON from '../config/genericWords.json' with {type: 'json'};
 import treesJSON from '../config/trees.json' with {type: 'json'};
@@ -36,12 +33,10 @@ export class Matcher {
   private matchIndex: Map<string, MatchIndexBranch> | undefined;
   /** Map of generic-word pattern strings to compiled RegExp objects. */
   private genericWords = new Map<string, RegExp>();
-  /** Map of item IDs to their resolved locationSet IDs. */
-  public itemLocation: Map<string, string> | undefined;
-  /** Map of locationSet IDs to resolved GeoJSON features. */
-  public locationSets: Map<string, Feature<Geometry, FeatureProperties>> | undefined;
-  /** A `which-polygon` spatial index over resolved locationSet features. */
-  public locationIndex: WhichPolygonQuery<FeatureProperties> | undefined;
+  /** The `LocationConflation` instance used to resolve locationSets (set by {@link buildLocationIndex}). */
+  private loco: LocationConflation | undefined;
+  /** Map of item id → locationSetID, populated by {@link buildLocationIndex}. */
+  private itemLocationSetID: Map<string, LocationSetID> | undefined;
   /** Warnings collected during index building (e.g. duplicate cache keys). */
   private warnings: Array<string> = [];
 
@@ -100,28 +95,11 @@ export class Matcher {
       this.genericWords.set(s, new RegExp(s, 'i'));
     }
 
-    // The `itemLocation` structure maps itemIDs to locationSetIDs:
-    // {
-    //   'firstbank-f17495':  '+[first_bank_western_us.geojson]',
-    //   'firstbank-978cca':  '+[first_bank_carolinas.geojson]',
-    //   'coop-76454b':       '+[Q16]',
-    //   'coopfood-a8278b':   '+[Q23666]',
-    //   …
-    // }
-    this.itemLocation = undefined;
-
-    // The `locationSets` structure maps locationSetIDs to *resolved* locationSets:
-    // {
-    //   '+[first_bank_western_us.geojson]':  GeoJSON {…},
-    //   '+[first_bank_carolinas.geojson]':   GeoJSON {…},
-    //   '+[Q16]':                            GeoJSON {…},
-    //   '+[Q23666]':                         GeoJSON {…},
-    //   …
-    // }
-    this.locationSets = undefined;
-
-    // The `locationIndex` is an instance of which-polygon spatial index for the locationSets.
-    this.locationIndex = undefined;
+    // A reference to the `LocationConflation` instance supplied to `buildLocationIndex`.
+    // At match time we call `loco.locationSetsAt(point)` and `loco.getLocationSetArea(id)`
+    // instead of maintaining our own parallel indexes.
+    this.loco = undefined;
+    this.itemLocationSetID = undefined;
 
     // Array of match conflict pairs (currently unused)
     this.warnings = [];
@@ -349,57 +327,41 @@ export class Matcher {
 
 
   /**
-   * Builds a `which-polygon` spatial index by resolving every item's
-   * locationSet into GeoJSON.  This is optional — skip it if you don't
-   * need location-aware matching.  Resolution can be slow for large datasets.
+   * Registers every item's `locationSet` with the supplied {@link LocationConflation}
+   * instance so that {@link match} can do location-aware filtering.  This is optional —
+   * skip it if you don't need location-aware matching.
+   *
+   * Under the hood this just calls `loco.registerLocationSets(items)`, which:
+   *   - assigns `item.locationSetID` in place (e.g. `'+[Q30]'`),
+   *   - builds an inverted spatial index without resolving combined polygons,
+   *   - is tolerant of bad/empty locationSets (falls back to world).
    *
    * `data` must be an object keyed by `tree/key/value` paths (same format as
    * {@link buildMatchIndex}).
    *
    * @param data - NSI category data indexed by `tree/key/value` path
-   * @param loco - A `LocationConflation` instance used to resolve locationSets
+   * @param loco - Optional `LocationConflation` instance used to index locationSets.
+   *   If omitted, a new bare instance is created internally.  Callers that have their
+   *   own configured instance (e.g. with a FeatureCollection of custom `.geojson`
+   *   features) should pass it in so indexing and lookups share the same cache.
+   *   Whichever instance is used, the matcher keeps a reference and delegates
+   *   `locationSetsAt` / `getLocationSetArea` calls to it at match time.
    */
-  buildLocationIndex(data: NsiData, loco: LocationConflation): void {
-    if (this.locationIndex) return;   // it was built already
+  buildLocationIndex(data: NsiData, loco?: LocationConflation): void {
+    loco = loco ?? new LocationConflation();
+    this.loco = loco;
 
-    this.itemLocation = new Map();
-    this.locationSets = new Map();
+    const itemLocationSetID = new Map<string, LocationSetID>();
+    this.itemLocationSetID = itemLocationSetID;
 
     for (const tkv of Object.keys(data)) {
       const items = data[tkv].items;
       if (!Array.isArray(items) || !items.length) continue;
-
-      for (const item of items) {
-        if (this.itemLocation.has(item.id)) continue;   // we've seen item id already - shouldn't be possible?
-
-        let resolved;
-        try {
-          resolved = loco.resolveLocationSet(item.locationSet);   // resolve a feature for this locationSet
-        } catch (err: unknown) {
-          const message = (err instanceof Error) ? err.message : err;
-          console.warn(`buildLocationIndex: ${message}`);     // couldn't resolve
-        }
-        if (!resolved || !resolved.id) continue;
-
-        this.itemLocation.set(item.id, resolved.id);      // link it to the item
-        if (this.locationSets.has(resolved.id)) continue;   // we've seen this locationSet feature before..
-
-        // First time seeing this locationSet feature, make a copy and add to locationSet cache..
-        const feature = structuredClone(resolved.feature);
-        feature.id = resolved.id;      // Important: always use the locationSet `id` (`+[Q30]`), not the feature `id` (`Q30`)
-        feature.properties.id = resolved.id;
-
-        if (!feature.geometry.coordinates.length || !feature.properties.area) {
-          console.warn(`buildLocationIndex: locationSet ${resolved.id} for ${item.id} resolves to an empty feature:`);
-          console.warn(JSON.stringify(feature));
-          continue;
-        }
-
-        this.locationSets.set(resolved.id, feature);
+      const registered = loco.registerLocationSets(items);
+      for (const item of registered) {
+        itemLocationSetID.set(item.id, item.locationSetID);
       }
     }
-
-    this.locationIndex = whichPolygon({ type: 'FeatureCollection', features: [...this.locationSets.values()] });
   }
 
 
@@ -439,13 +401,14 @@ export class Matcher {
       throw new Error('match:  matchIndex not built.');
     }
     const matchIndex = this.matchIndex;
+    const loco = this.loco;
+    const itemLocationSetID = this.itemLocationSetID;
 
-    // If we were supplied a location, and this.locationIndex has been set up,
-    // get the locationSets that are valid there so we can filter results.
-    let matchLocations: FeatureProperties[] | null;
-    if (Array.isArray(loc) && this.locationIndex) {
-      // which-polygon query returns an array of GeoJSON properties, pass true to return all results
-      matchLocations = this.locationIndex([loc[0], loc[1]], true);
+    // If we were supplied a location, and the location index has been set up,
+    // get the locationSetIDs that are valid there so we can filter results.
+    let matchSetIDs: Set<LocationSetID> | null = null;
+    if (Array.isArray(loc) && loco) {
+      matchSetIDs = new Set(loco.locationSetsAt([loc[0], loc[1]]));
     }
 
     const nsimple = simplify(n);
@@ -463,8 +426,9 @@ export class Matcher {
     };
 
     const isValidLocation = (hit: MatchHit) => {
-      if (!this.itemLocation) return true;
-      return matchLocations?.some(props => props.id === this.itemLocation!.get(hit.itemID!));
+      if (!matchSetIDs || !itemLocationSetID) return true;
+      const setID = itemLocationSetID.get(hit.itemID!);
+      return setID ? matchSetIDs.has(setID) : false;
     };
 
     const tryMatch = (which: 'primary' | 'alternate' | 'exclude', kv: string): boolean => {
@@ -494,9 +458,11 @@ export class Matcher {
       let hits: Array<MatchHit> = [];
       for (const itemID of [...leaf]) {
         let area = Infinity;
-        if (this.itemLocation && this.locationSets) {
-          const location = this.locationSets.get(this.itemLocation.get(itemID)!);
-          area = (location && location.properties.area) || Infinity;
+        if (loco && itemLocationSetID) {
+          const setID = itemLocationSetID.get(itemID);
+          if (setID) {
+            area = loco.getLocationSetArea(setID) ?? Infinity;
+          }
         }
         hits.push({ match: which, itemID: itemID, area: area, kv: kv, nsimple: nsimple });
       }
@@ -504,7 +470,7 @@ export class Matcher {
       let sortFn = byAreaDescending;
 
       // Filter the match to include only results valid in the requested `loc`..
-      if (matchLocations) {
+      if (matchSetIDs) {
         hits = hits.filter(isValidLocation);
         sortFn = byAreaAscending;
       }

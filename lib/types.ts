@@ -1,4 +1,4 @@
-import type { LocationSet } from '@rapideditor/location-conflation';
+import type { HasLocationSet, LocationSet } from '@rapideditor/location-conflation';
 
 
 /** Tags must always consist of key,value string pairs (no undefined) */
@@ -47,7 +47,7 @@ export interface NsiCategoryProperties {
 }
 
 /** A single NSI item representing a brand/operator/transit network/flag. */
-export interface NsiItem {
+export interface NsiItem extends HasLocationSet {
   id: string;
   displayName: string;
   tags: OsmTags;
