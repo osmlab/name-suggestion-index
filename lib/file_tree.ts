@@ -266,7 +266,7 @@ write: async (cache: NsiCache) => {
           item.locationSet = cleaned;
 
           // clean matchNames/matchTags
-          for (const prop of ['matchNames', 'matchTags']) {
+          for (const prop of ['matchNames', 'matchTags'] as const) {
             if (item[prop]) {
               item[prop] = item[prop].map(_cleanLower).sort(withLocale);
             }
