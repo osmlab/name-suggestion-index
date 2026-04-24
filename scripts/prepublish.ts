@@ -43,7 +43,7 @@ async function metadataJSON(filepath) {
     // If it exists already, remove it.
     contents = contents.replaceAll(/\s+\"_meta[^}]+\},/gm, '');
 
-    // Keep just the end part of the path without extension, e.g. `dist/json/file.json`
+    // Keep just the end part of the path with extension, e.g. `dist/json/file.json`
     const path = filepath.replace(/(.*)(\/dist.*)/i, '$2');
 
     // Calculate md5 of contents
