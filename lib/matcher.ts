@@ -406,9 +406,9 @@ export class Matcher {
 
     // If we were supplied a location, and the location index has been set up,
     // get the locationSetIDs that are valid there so we can filter results.
-    let matchSetIDs: Set<LocationSetID> | null = null;
+    let validHere: Map<LocationSetID, number> | null = null;
     if (Array.isArray(loc) && loco) {
-      matchSetIDs = new Set(loco.locationSetsAt([loc[0], loc[1]]));
+      validHere = loco.locationSetsAt(loc);
     }
 
     const nsimple = simplify(n);
@@ -426,9 +426,9 @@ export class Matcher {
     };
 
     const isValidLocation = (hit: MatchHit) => {
-      if (!matchSetIDs || !itemLocationSetID) return true;
-      const setID = itemLocationSetID.get(hit.itemID!);
-      return setID ? matchSetIDs.has(setID) : false;
+      if (!validHere || !itemLocationSetID) return true;
+      const locationSetID = itemLocationSetID.get(hit.itemID!);
+      return locationSetID ? validHere.has(locationSetID) : false;
     };
 
     const tryMatch = (which: 'primary' | 'alternate' | 'exclude', kv: string): boolean => {
@@ -470,7 +470,7 @@ export class Matcher {
       let sortFn = byAreaDescending;
 
       // Filter the match to include only results valid in the requested `loc`..
-      if (matchSetIDs) {
+      if (validHere) {
         hits = hits.filter(isValidLocation);
         sortFn = byAreaAscending;
       }
