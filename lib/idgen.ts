@@ -1,5 +1,5 @@
 import { simplify } from './simplify.ts';
-import type { NsiItem, NsiTree } from './types.ts';
+import type { NsiItem, NsiPath, NsiTree } from './types.ts';
 
 
 /**
@@ -21,7 +21,7 @@ import type { NsiItem, NsiTree } from './types.ts';
  *                       share the same name and tkv
  * @returns A string of the form `"name-hash"`, or `null` if no name could be derived from the tags.
  */
-export function idgen(item: NsiItem, tkv: string, locationID: string): string | null {
+export function idgen(item: NsiItem, tkv: NsiPath, locationID: string): string | null {
   let name;
 
   const parts = tkv.split('/', 3);   // tkv = "tree/key/value"

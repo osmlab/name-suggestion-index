@@ -18,17 +18,39 @@ import { simplify } from '../lib/simplify.ts';
 import { sortObject } from '../lib/sort_object.ts';
 // import { stemmer } from '../lib/stemmer.ts';
 import { validate } from '../lib/validate.ts';
+import type {
+  NsiCache,
+  NsiGenericWordsJSON,
+  NsiItem,
+  NsiPath,
+  NsiReplacementsJSON,
+  NsiTree,
+  NsiTreeProperties,
+  NsiTreesJSON,
+  OsmTags,
+} from '../lib/types.ts';
+
+/** A single OSM source tag we collect names for (from `nsi-collector`). */
+type CollectedTag = 'name' | 'brand' | 'operator' | 'network';
+
+/** Map of `"key/value|name"` → occurrence count, as collected from OSM. */
+type CollectedCounts = Record<string, number>;
 
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 const matcher = new Matcher();
 const validator = new Validator();
 
-const _config = {};
-const _nsi = {};
-const _collected = {};
-const _discard = {};
-const _keep = {};
+const _nsi: NsiCache = { id: new Map(), path: {} };
+const _collected: Record<CollectedTag, CollectedCounts> = {
+  name: {}, brand: {}, operator: {}, network: {}
+};
+const _discard: Partial<Record<NsiTree, CollectedCounts>> = {};
+const _keep: Partial<Record<NsiTree, CollectedCounts>> = {};
+
 let _loco: LocationConflation;
+let _trees: NsiTreesJSON['trees'];
+let _replacements: NsiReplacementsJSON['replacements'];
+let _genericWords: NsiGenericWordsJSON['genericWords'];
 
 
 await buildAll();
@@ -110,17 +132,21 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
     }
 
     const contents = await Bun.file(filepath).text();
-    let parsed;
+    let parsed: unknown;
     try {
       parsed = JSON5.parse(contents);
     } catch (jsonParseError) {
-      console.error(styleText('red', `Error - ${jsonParseError.message} in:`));
+      console.error(styleText('red', `Error - ${(jsonParseError as Error).message} in:`));
       console.error(styleText('yellow', '  ' + filepath));
       process.exit(1);
     }
 
-    let feature = geojsonPrecision(geojsonRewind(parsed, true), 5);
-    const fc = feature.features;
+    // Note: geojson-precision's types only allow `Geometry`, but it actually accepts any GeoJSON object.
+    let feature = geojsonPrecision(
+      geojsonRewind(parsed as GeoJSON.GeoJSON, true) as unknown as GeoJSON.Geometry,
+      5
+    ) as unknown as GeoJSON.Feature | GeoJSON.FeatureCollection;
+    const fc = (feature as GeoJSON.FeatureCollection).features;
 
     // A FeatureCollection with a single feature inside (geojson.io likes to make these).
     if (feature.type === 'FeatureCollection' && Array.isArray(fc) && fc.length === 1) {
@@ -141,10 +167,11 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
 
     // use the filename as the feature.id
     const id = path.basename(filepath).toLowerCase();
+    feature = feature as GeoJSON.Feature;
     feature.id = id;
 
     // sort properties
-    const obj = {};
+    const obj = {} as GeoJSON.Feature;
     if (feature.type)       { obj.type = feature.type; }
     if (feature.id)         { obj.id = feature.id; }
     if (feature.properties) { obj.properties = feature.properties; }
@@ -163,7 +190,7 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
     obj.geometry = {
       type: feature.geometry.type,
       coordinates: feature.geometry.coordinates
-    };
+    } as GeoJSON.Polygon | GeoJSON.MultiPolygon;
 
     feature = obj;
 
@@ -187,7 +214,7 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
   }
 
   // sort features by id, see: 800ca866f
-  features.sort((a, b) => withLocale(a.id, b.id));
+  features.sort((a, b) => withLocale(String(a.id), String(b.id)));
 
   console.log(`🧩  features:\tLoaded ${features.length} features`);
   return features;
@@ -198,7 +225,7 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
 // Load, validate, cleanup config files
 //
 async function loadConfig() {
-  for (const which of ['trees', 'replacements', 'genericWords']) {
+  for (const which of ['trees', 'replacements', 'genericWords'] as const) {
     const schema = await Bun.file(`./schema/${which}.json`).json();
     const filepath = `config/${which}.json`;
     const data = await Bun.file(filepath).json();
@@ -208,18 +235,21 @@ async function loadConfig() {
 
     // check regexes
     if (which === 'trees') {
-      Object.values(data.trees).forEach(tree => {
+      const treesData = data as NsiTreesJSON;
+      Object.values(treesData.trees).forEach(tree => {
         checkRegex(filepath, tree.nameTags.primary);
         checkRegex(filepath, tree.nameTags.alternate);
       });
     } else if (which === 'genericWords') {
-      Object.values(data.genericWords).forEach(pattern => checkRegex(filepath, pattern));
+      const gwData = data as NsiGenericWordsJSON;
+      gwData.genericWords.forEach(pattern => checkRegex(filepath, pattern));
     }
 
     // Clean and order the files for consistency, save them that way.
     if (which === 'trees') {
-      for (const [t, obj] of Object.entries(data.trees)) {
-        const cleaned = {
+      const treesData = data as NsiTreesJSON;
+      for (const [t, obj] of Object.entries(treesData.trees) as [NsiTree, NsiTreeProperties][]) {
+        const cleaned: NsiTreeProperties = {
           emoji:       obj.emoji,
           mainTag:     obj.mainTag,
           sourceTags:  obj.sourceTags,
@@ -228,22 +258,24 @@ async function loadConfig() {
             alternate: obj.nameTags.alternate,
           }
         };
-        data.trees[t] = cleaned;
+        treesData.trees[t] = cleaned;
       }
-      data.trees = sortObject(data.trees);
+      treesData.trees = sortObject(treesData.trees) as Record<NsiTree, NsiTreeProperties>;
 
     } else if (which === 'replacements') {
-      for (const [qid, obj] of Object.entries(data.replacements)) {
+      const repData = data as NsiReplacementsJSON;
+      for (const [qid, obj] of Object.entries(repData.replacements)) {
         const cleaned = {
           note:      obj.note,
           wikidata:  obj.wikidata
         };
-        data.replacements[qid] = cleaned;
+        repData.replacements[qid] = cleaned;
       }
-      data.replacements = sortObject(data.replacements);
+      repData.replacements = sortObject(repData.replacements) as NsiReplacementsJSON['replacements'];
 
     } else if (which === 'genericWords') {
-      data.genericWords = data.genericWords.map(s => {
+      const gwData = data as NsiGenericWordsJSON;
+      gwData.genericWords = gwData.genericWords.map((s: string) => {
         if (/İ/.test(s)) {   // Avoid toLowerCasing this one, it changes - #8261
           return s.trim();
         } else {
@@ -256,14 +288,20 @@ async function loadConfig() {
     // Lowercase and sort the files for consistency, save them that way.
     await Bun.write(filepath, stringify(data) + '\n');
 
-    _config[which] = data[which];
+    if (which === 'trees') {
+      _trees = (data as NsiTreesJSON).trees;
+    } else if (which === 'replacements') {
+      _replacements = (data as NsiReplacementsJSON).replacements;
+    } else if (which === 'genericWords') {
+      _genericWords = (data as NsiGenericWordsJSON).genericWords;
+    }
   }
 }
 
 
 // check for potentially unsafe regular expressions:
 // https://stackoverflow.com/a/43872595
-function checkRegex(filepath, pattern) {
+function checkRegex(filepath: string, pattern: string): void {
   if (!safeRegex(pattern)) {
     console.error(styleText('red', '\nError - Potentially unsafe regular expression:'));
     console.error('  ' + styleText('yellow', `${filepath}: ${pattern}`));
@@ -292,7 +330,7 @@ async function loadCollected() {
       throw new Error(`Bad version: ${rawVersion}`);
     }
   } catch (err) {
-    console.error(styleText('red', `Error reading 'nsi-collector/package.json': ${err.message} `));
+    console.error(styleText('red', `Error reading 'nsi-collector/package.json': ${(err as Error).message} `));
     console.error(styleText('yellow', `Please run 'bun install' to fix.`));
     process.exit(1);
   }
@@ -319,18 +357,18 @@ async function loadCollected() {
 
 
   // Load the collected data..
-  for (const tag of ['name', 'brand', 'operator', 'network']) {
+  for (const tag of ['name', 'brand', 'operator', 'network'] as const) {
     const filepath = `./node_modules/@ideditor/nsi-collector/dist/osm/${tag}s_all.json`;
-    let data;
+    let data: CollectedCounts;
     try {
       data = await Bun.file(filepath).json();
     } catch (jsonParseError) {
-      console.error(styleText('red', `Error - ${jsonParseError.message} reading:`));
+      console.error(styleText('red', `Error - ${(jsonParseError as Error).message} reading:`));
       console.error('  ' + styleText('yellow', filepath));
       process.exit(1);
     }
 
-    _collected[tag] = data;
+    _collected[tag] = data!;
   }
 }
 
@@ -345,20 +383,20 @@ async function filterCollected() {
   console.time(END);
 
   // Before starting, cache genericWords regexes.
-  const genericRegex = _config.genericWords.map(s => new RegExp(s, 'i'));
+  const genericRegex = _genericWords.map(s => new RegExp(s, 'i'));
   genericRegex.push(new RegExp(/;/, 'i'));   // also discard values with semicolons
 
 
-  for (const [t, tree] of Object.entries(_config.trees)) {
+  for (const [t, tree] of Object.entries(_trees) as [NsiTree, NsiTreeProperties][]) {
     if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) continue;
 
-    const discard = _discard[t] = {};
-    const keep = _keep[t] = {};
+    const discard: CollectedCounts = _discard[t] = {};
+    const keep: CollectedCounts = _keep[t] = {};
 
     //
     // STEP 1:  All the collected "names" from OSM start out in `discard`
     //
-    for (const tag of tree.sourceTags) {
+    for (const tag of tree.sourceTags as CollectedTag[]) {
       const collected = _collected[tag];
       for (const kvn in collected) {
         discard[kvn] = Math.max((discard[kvn] || 0), collected[kvn]);
@@ -368,10 +406,10 @@ async function filterCollected() {
     //
     // STEP 2:  Move "names" that aren't excluded from `discard` -> `keep`
     //
-    const categoryRegex = {};  // regex cache
+    const categoryRegex: Record<NsiPath, RegExp[]> = {};  // regex cache
     for (const kvn in discard) {
       const [kv, n] = kvn.split('|', 2);  // kvn = "key/value|name"
-      const tkv = `${t}/${kv}`;
+      const tkv: NsiPath = `${t}/${kv}`;
       const file = `./data/${tkv}.json`;
       const category = _nsi.path[tkv];
       if (!category) continue;   // not a category we track in the index, skip
@@ -382,7 +420,10 @@ async function filterCollected() {
       if (!categoryRegex[tkv]) {
         const exclude = categoryProps.exclude || {};
         const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
-        categoryRegex[tkv] = excludePatterns.map(s => checkRegex(file, s) || new RegExp(s, 'i'));
+        categoryRegex[tkv] = excludePatterns.map((s: string) => {
+          checkRegex(file, s);
+          return new RegExp(s, 'i');
+        });
       }
       const isExcluded = categoryRegex[tkv].some(re => re.test(n)) || genericRegex.some(re => re.test(n));
       if (!isExcluded) {
@@ -474,16 +515,16 @@ function mergeItems() {
   console.time(END);
 
 
-  Object.keys(_config.trees).forEach(t => {
-    const tree = _config.trees[t];
-    const newItems = {};
+  (Object.keys(_trees) as NsiTree[]).forEach(t => {
+    const tree = _trees[t];
+    const newItems: Record<string, { kvn: NsiPath; count: number }> = {};
     let total = 0;
     let totalNew = 0;
 
     //
     // INSERT - Look in `_keep` for new items not yet in the index..
     //
-    const keeping = _keep[t] || {};
+    const keeping: CollectedCounts = _keep[t] || {};
 
     // Find new items, keeping only the most popular spelling..
     for (const kvn of Object.keys(keeping)) {
@@ -510,28 +551,32 @@ function mergeItems() {
     for (const newItem of Object.values(newItems)) {
       const [kv, n] = newItem.kvn.split('|', 2);     // kvn = "key/value|name"
       const [k, v] = kv.split('/', 2);
-      const tkv = `${t}/${k}/${v}`;
+      const tkv: NsiPath = `${t}/${k}/${v}`;
 
-      const item = { tags: {} };
-      item.displayName = n;
-      item.locationSet = { include: ['001'] };   // the whole world
-      item.tags[k] = v;     // assign default tag k=v
+      const tags: OsmTags = {};
+      const item: NsiItem = {
+        id: '',
+        displayName: n,
+        locationSet: { include: ['001'] },   // the whole world
+        tags,
+      };
+      tags[k] = v;     // assign default tag k=v
 
       // Perform tree-specific tag defaults here..
       if (t === 'brands') {
-        item.tags.brand = n;
-        item.tags.name = n;
+        tags.brand = n;
+        tags.name = n;
 
       } else if (t === 'operators') {
-        item.tags.operator = n;
+        tags.operator = n;
 
       } else if (t === 'transit') {
-        item.tags.network = n;
+        tags.network = n;
       }
 
       // Insert into index..
       if (!_nsi.path[tkv]) {
-        _nsi.path[tkv] = { properties: { path: tkv }, items: [], templates: [] };
+        _nsi.path[tkv] = { properties: { path: tkv, exclude: {} }, items: [], templates: [] };
       }
 
       _nsi.path[tkv].items.push(item);
@@ -584,7 +629,7 @@ function mergeItems() {
           name = tags['flag:name'];
 
           // Sort the flags in the file according to their country of origin
-          const country = tags.country || item.locationSet.include[0];
+          const country = tags.country || item.locationSet.include?.[0];
           if (typeof country === 'string' && country.length === 2) {
             const cc = country.toUpperCase();
             const re = new RegExp('^' + cc);   // leading country code
@@ -664,7 +709,7 @@ function mergeItems() {
           // anything ending in `wikidata`
           if (/wikidata$/.test(osmkey)) {
             const wd = tags[osmkey];
-            const replace = _config.replacements[wd];    // If it matches a QID in the replacement list...
+            const replace = _replacements[wd];    // If it matches a QID in the replacement list...
 
             if (replace && replace.wikidata !== undefined) {   // replace or delete `*:wikidata` tag
               if (replace.wikidata) {
@@ -687,7 +732,8 @@ function mergeItems() {
 
         // regenerate id here, in case the locationSet has changed
         const locationID = _loco.validateLocationSet(item.locationSet).id;
-        item.id = idgen(item, tkv, locationID);
+        const newId = idgen(item, tkv, locationID);
+        if (newId) item.id = newId;
       });
     });
 
@@ -700,7 +746,7 @@ function mergeItems() {
 
   // Copy main tag value to local tag value, but only if local value not assigned yet
   // re: 6788#issuecomment-1188024213
-  function setLanguageTags(tags, code) {
+  function setLanguageTags(tags: OsmTags, code: string): void {
     for (const k of ['name', 'brand', 'operator', 'network']) {
       const v = tags[k];
       const loc_k = `${k}:${code}`;   // e.g. `name:ja`
@@ -711,10 +757,10 @@ function mergeItems() {
     }
   }
 
-  function normalizeCountryCode(countries, country) {
+  function normalizeCountryCode(countries: Array<string | number | number[]>, country: string): void {
     const index = countries.indexOf(country.toLowerCase());
     if (index >= 0) {
-      const replace = countryReplacements[country.toLowerCase()];
+      const replace = countryReplacements[country.toLowerCase() as keyof typeof countryReplacements];
       if (replace && replace !== undefined) {
         countries[index] = replace.toLowerCase();
       }
@@ -727,21 +773,21 @@ function mergeItems() {
 // checkItems()
 // Checks all the items for several kinds of issues
 //
-function checkItems(t) {
-  const tree = _config.trees[t];
+function checkItems(t: NsiTree) {
+  const tree = _trees[t];
   const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
 
-  const warnDuplicate = [];
-  const warnFormatWikidata = [];
-  const warnMissingTag = [];
-  const warnFormatTag = [];
+  const warnDuplicate: Array<[string, string]> = [];
+  const warnFormatWikidata: Array<[string, string]> = [];
+  const warnMissingTag: Array<[string, string]> = [];
+  const warnFormatTag: Array<[string, string]> = [];
 //  const seenName = {};
 
   let total = 0;      // total items
   let totalWd = 0;    // total items with wikidata
 
   const paths = Object.keys(_nsi.path).filter(tkv => tkv.split('/')[0] === t);
-  const display = (val) => `${val.displayName} (${val.id})`;
+  const display = (val: NsiItem): string => `${val.displayName} (${val.id})`;
 
   paths.forEach(tkv => {
     const items = _nsi.path[tkv].items;

@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     // Language and Environment
-    "target": "ES2022",
     "lib": ["ESNext"],
+    "target": "ESNext",
 
     // Modules
     "module": "ESNext",
@@ -31,7 +31,11 @@
     "noUnusedParameters": true,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["src", "lib"],
+  "include": [
+    "lib/**/*",
+    "scripts/**/*",
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "dist"

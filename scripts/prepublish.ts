@@ -1,5 +1,5 @@
 import { Glob } from 'bun';
-import { styleText } from 'bun:util';
+import { styleText } from 'node:util';
 
 const CDNRoot = 'https://cdn.jsdelivr.net/npm/name-suggestion-index';
 const packageJSON = await Bun.file('./package.json').json();
@@ -30,9 +30,9 @@ async function prepublish() {
 /**
  * metadataJSON
  * This function adds a block of metadata to the beginning of a `.json` file.
- * @param  {string}  filepath - the path to the file we want to add metadata to
+ * @param  filepath  The path to the file we want to add metadata to
  */
-async function metadataJSON(filepath) {
+async function metadataJSON(filepath: string) {
   const file = Bun.file(filepath);
   let contents = (await file.text()) || '';
 
@@ -81,9 +81,9 @@ ${strProps}
  * We can watch this issue to see if they add it:  https://github.com/jsdelivr/jsdelivr/issues/18604
  * Then maybe remove this code.
  *
- * @param  {string}  filepath - the path to the file we want to minify
+ * @param  filepath The path to the file we want to minify
  */
-async function minifyJSON(filepath) {
+async function minifyJSON(filepath: string) {
   const outpath = filepath.replace('.json', '.min.json');
   const contents = await Bun.file(filepath).json();
 

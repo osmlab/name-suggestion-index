@@ -8,7 +8,7 @@ import wikibase, { type CustomSimplifiedClaim, type ItemId, type PropertyId } fr
 import wikibaseEdit, { type WikibaseEditAPI } from 'wikibase-edit';
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
-import type { NsiCache } from '../lib/types.ts';
+import type { WikidataDissolution, NsiCache, NsiTree, NsiTreeProperties, NsiTreesJSON, WikidataWarning, WikidataEntry } from '../lib/types.ts';
 import { fileTree } from '../lib/file_tree.ts';
 import { sortObject } from '../lib/sort_object.ts';
 
@@ -17,31 +17,12 @@ import { sortObject } from '../lib/sort_object.ts';
 const DRYRUN = false;
 
 // Types for the Wikidata API responses and internal data structures
-interface Warning {
-  qid: ItemId;
-  msg: string;
-}
+// Shared output-file types (`WikidataWarning`, `WikidataDissolution`, `WikidataEntry`) live in `../lib/types.ts`
+// and are imported above so downstream consumers see the same shapes.
 
 interface QidMetadata {
   what: 'business' | 'flag' | 'transport network' | 'subject' | 'organization';
   p31?: ItemId;
-}
-
-interface WikidataProps {
-  label?: string;
-  description?: string;
-  logos?: Record<string, string>;
-  identities?: Record<string, string>;
-  dissolutions?: Dissolution[];
-  officialWebsites?: string[];
-  urlMatchPatterns?: string[];
-  locationInfoWebsites?: string[];
-}
-
-interface Dissolution {
-  date: string;
-  countries?: string[];
-  upgrade?: ItemId;
 }
 
 interface WbEditRequest {
@@ -78,8 +59,8 @@ interface WdApiResult { entities: Record<string, WdEntity> }
 
 // JSON
 const packageJSON = await Bun.file('./package.json').json();
-const treesJSON = await Bun.file('./config/trees.json').json();
-const trees = treesJSON.trees;
+const treesJSON: NsiTreesJSON = await Bun.file('./config/trees.json').json();
+const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
 
 // We use LocationConflation for validating and processing the locationSets
 let featureCollectionJSON;
@@ -190,14 +171,14 @@ console.timeEnd(END);
 console.log('');
 console.log('🏗   ' + styleText('yellow', `Syncing Wikidata with name-suggestion-index…`));
 console.log('       This is done in batches, and may take around 10 minutes…');
-const _wikidata: Record<ItemId, WikidataProps> = {};
+const _wikidata: Record<ItemId, WikidataEntry> = {};
 const _qidItems: Record<ItemId, Set<string>> = {};       // any item referenced by a qid
 const _qidIdItems: Record<ItemId, Set<string>> = {};     // items where we actually want to update the NSI-identifier on wikidata
 const _qidMetadata: Record<ItemId, QidMetadata> = {};
 
 for (const tkv of Object.keys(_nsi.path)) {
   const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-  const t = parts[0];
+  const t = parts[0] as NsiTree;
 
   const items = _nsi.path[tkv].items;
   if (!Array.isArray(items) || !items.length) continue;
@@ -221,7 +202,7 @@ for (const tkv of Object.keys(_nsi.path)) {
       } else if (osmtag === 'network') {
         _qidMetadata[qid] = { what: 'transport network', p31: 'Q924286' };
       } else if (osmtag === 'subject') {
-        _qidMetadata[qid] = { what: 'subject' };  // skip p31, a subject can be anything - #7661
+        _qidMetadata[qid] = { what: 'subject' };  // skip p31, a subject can be anything - NSI#7661
       } else {
         _qidMetadata[qid] = { what: 'organization', p31: 'Q43229' };
       }
@@ -243,7 +224,7 @@ if (!_total) {
 }
 
 // Chunk into multiple wikidata API requests..
-// Include `maxage` to bypass CDN caching so we always work with fresh entity data — see #12061
+// Include `maxage` to bypass CDN caching so we always work with fresh entity data — see NSI#12061
 const _urls = wbk.getManyEntities({
   ids: _qids,
   languages: ['en','mul'],
@@ -251,7 +232,7 @@ const _urls = wbk.getManyEntities({
   format: 'json'
 }).map((url: string) => `${url}&maxage=0&smaxage=0`);
 
-const _warnings: Warning[] = [];
+const _warnings: WikidataWarning[] = [];
 const _entityCache: Record<ItemId, WdEntity> = {};
 const _wbEditQueue = new Map<string, WbEditRequest>();
 
@@ -314,7 +295,7 @@ async function fetchWikidata() {
       }
 
       // Parse and process — errors here are bugs, not transient network issues
-      const result = await response.json();
+      const result = await response.json() as WdApiResult;
       await processEntities(result);
       await Bun.sleep(500);
       break;
@@ -550,7 +531,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
 function getFacebookRestriction(entity: WdEntity, facebookUser: string): ItemId | undefined {
   for (const c of entity.claims['P2013']) {
     if (c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser) {
-      // get access status of selected value - #10233
+      // get access status of selected value - NSI#10233
       const accessQualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
       for (const q of accessQualifiers) {
         if (q.snaktype !== 'value') continue;
@@ -583,22 +564,22 @@ function getFacebookRestriction(entity: WdEntity, facebookUser: string): ItemId 
 
 /**
  * Processes P576 (dissolution date) claims for an entity, building
- * `Dissolution` objects with optional country restrictions and successor QIDs.
+ * `WikidataDissolution` objects with optional country restrictions and successor QIDs.
  * Pushes warnings for entities that may have been replaced.
  * @param qid - The Wikidata QID of the entity.
  * @param entity - The raw Wikidata entity object.
  * @param target - The `WikidataTarget` to populate with dissolution data.
  */
-function processDissolutions(qid: ItemId, entity: WdEntity, target: WikidataProps): void {
+function processDissolutions(qid: ItemId, entity: WdEntity, target: WikidataEntry): void {
   const claims = (wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }) as CustomSimplifiedClaim[]);
   for (const item of claims) {
     if (!item.value) continue;
 
     const excluding = item.qualifiers?.P1011 ?? [];
-    if (excluding.includes('Q168678')) continue;  // but skip if 'excluding' = 'brand name', see #9134
-    if (excluding.includes('Q431289')) continue;  // but skip if 'excluding' = 'brand', see #8239
+    if (excluding.includes('Q168678')) continue;  // but skip if 'excluding' = 'brand name', see NSI#9134
+    if (excluding.includes('Q431289')) continue;  // but skip if 'excluding' = 'brand', see NSI#8239
 
-    const dissolution: Dissolution = { date: String(item.value) };
+    const dissolution: WikidataDissolution = { date: String(item.value) };
 
     if (item.qualifiers) {
       // P17 - Countries where the brand is dissoluted
@@ -653,7 +634,7 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity): void {
   const nsiClaims = (wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true }) as CustomSimplifiedClaim[])
     .sort((a, b) => withLocale(String(a.value), String(b.value)));
 
-  // Include this reference on all our claims - #4648
+  // Include this reference on all our claims - NSI#4648
   const references = [{ P248: 'Q62108705' }];   // 'stated in': 'name suggestion index'
 
   // Make the nsiClaims match the nsiIds..
@@ -785,7 +766,7 @@ async function finish(): Promise<void> {
   console.log(START);
   console.time(END);
 
-  const dissolved: Record<string, Dissolution[]> = {};
+  const dissolved: Record<string, WikidataDissolution[]> = {};
 
   for (const qid of (Object.keys(_wikidata) as ItemId[])) {
     const target = _wikidata[qid];
@@ -807,7 +788,7 @@ async function finish(): Promise<void> {
       }
     }
 
-    // Don't `sortObject` the properties at this level, see #10259
+    // Don't `sortObject` the properties at this level, see NSI#10259
     // _wikidata[qid] = sortObject(target);
   }
 
@@ -857,7 +838,8 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
     // Can specify no redirect to fetch json and speed up this process
     const response = await fetch(`${logoURL}&redirect=0`);
     if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-    const json = await response.json();
+    interface FbPictureResponse { error?: { message?: string }; data?: { is_silhouette?: boolean } }
+    const json = await response.json() as FbPictureResponse | null;
 
     if (!json) return true;
 
@@ -865,14 +847,14 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
       throw new Error(json.error.message);
     }
 
-    // Default profile pictures aren't useful to the index - #2750
+    // Default profile pictures aren't useful to the index - NSI#2750
     if (json.data && !json.data.is_silhouette) {
       target.logos!.facebook = logoURL;
     }
 
     // queries of valid numeric IDs always return some data regardless of profile access status
     if (restriction && restriction !== 'Q113165094' && (!username.match(/^\d+$/) || target.logos!.facebook)) {
-      // show warning if Wikidata notes that access to the profile is restricted in certain ways, but the profile is public - #10233
+      // show warning if Wikidata notes that access to the profile is restricted in certain ways, but the profile is public - NSI#10233
       // location restrictions (Q113165094) are skipped from this check because the API call will return different results
       // when run by users from different countries
       let warningText;
@@ -892,9 +874,9 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
       target.identities!.facebook = userid;
       return fetchFacebookLogo(qid, userid, restriction);   // retry with just the numeric id
     } else {
-      // suppress warning if Wikidata notes that access to the profile is restricted in some way (#10233)
+      // suppress warning if Wikidata notes that access to the profile is restricted in some way, see NSI#10233.
       // or if the profile is set up as a personal account
-      if ( !restriction ) {
+      if (!restriction) {
         const msg = e instanceof Error ? e.message : String(e);
         const warning = { qid: qid, msg: `Facebook username @${username}: ${msg}` };
         console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
@@ -945,7 +927,7 @@ async function removeOldNsiClaims(): Promise<void> {
   try {
     const response = await fetch(wbk.sparqlQuery(query), FETCH_OPTS);
     if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-    const json = await response.json();
+    const json = await response.json() as Parameters<typeof wbk.simplify.sparqlResults>[0];
     const results = wbk.simplify.sparqlResults(json);
     for (const item of results) {
       if (!_qidIdItems[item.qid as ItemId]) {
@@ -1005,7 +987,7 @@ async function drainWbEditQueue(): Promise<void> {
 
       } catch (e) {
         const errorMsg = e instanceof Error ? e.message : String(e);
-        const warning: Warning = { qid: qid!, msg: errorMsg };
+        const warning: WikidataWarning = { qid: qid!, msg: errorMsg };
         console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       }
@@ -1090,7 +1072,7 @@ function utilQsString(obj: Record<string, string | number>): string {
  * @param b - Second warning.
  * @returns A negative, zero, or positive number for sort ordering.
  */
-function sortWarnings(a: Warning, b: Warning): number {
+function sortWarnings(a: WikidataWarning, b: WikidataWarning): number {
   const qid = /^Q(\d+)$/;
   const aMatch = a.qid.match(qid);
   const bMatch = b.qid.match(qid);

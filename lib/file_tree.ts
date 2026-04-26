@@ -8,15 +8,15 @@ import { idgen } from './idgen.ts';
 import { sortObject } from './sort_object.ts';
 import { validate } from './validate.ts';
 
-import type { NsiCache, NsiCategoryProperties, OsmTags } from './types.ts';
+import type { NsiCache, NsiCategoryProperties, NsiPath, NsiTree, NsiTreeProperties, NsiTreesJSON, OsmTags } from './types.ts';
 import type LocationConflation from '@rapideditor/location-conflation';
 
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
 
 /** Tree definitions loaded from `config/trees.json`. */
-const treesJSON = await Bun.file('./config/trees.json').json();
-const trees = treesJSON.trees;
+const treesJSON: NsiTreesJSON = await Bun.file('./config/trees.json').json();
+const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
 
 /** JSON Schema for category files, loaded from `schema/categories.json`. */
 const categoriesSchemaJSON = await Bun.file('./schema/categories.json').json();
@@ -58,7 +58,7 @@ read: async (cache: NsiCache, loco: LocationConflation) => {
   cache.id = cache.id || new Map();
   cache.path = cache.path || {};
 
-  for (const t of Object.keys(trees)) {
+  for (const t of Object.keys(trees) as NsiTree[]) {
     const tree = trees[t];
     let itemCount = 0;
     let fileCount = 0;
@@ -89,14 +89,14 @@ read: async (cache: NsiCache, loco: LocationConflation) => {
       validate(validator, filepath, input, categoriesSchemaJSON);
 
       const properties = input.properties || {};
-      const tkv = properties.path;
+      const tkv = properties.path as NsiPath;
       const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
       const k = parts[1];
       const v = parts[2];
       const kv = `${k}/${v}`;
       const seenkv: Record<string, string> = {};
 
-      // make sure t/k/v is unique
+      // make sure path is unique
       if (cache.path[tkv]) {
         console.error(styleText('red', `Error - '${tkv}' found in multiple files.`));
         console.error('  ' + styleText('yellow', filepath));
@@ -199,12 +199,12 @@ write: async (cache: NsiCache) => {
   cache = cache || {};
   cache.path = cache.path || {};
 
-  for (const t of Object.keys(trees)) {
+  for (const t of Object.keys(trees) as NsiTree[]) {
     const tree = trees[t];
     let itemCount = 0;
     let fileCount = 0;
 
-    for (const tkv of Object.keys(cache.path)) {
+    for (const tkv of Object.keys(cache.path) as NsiPath[]) {
       if (tkv.split('/')[0] !== t) continue;
 
       const category = cache.path[tkv];
