@@ -10,6 +10,7 @@ import { validate } from './validate.ts';
 
 import type { NsiCache, NsiCategoryProperties, NsiPath, NsiTree, NsiTreeProperties, NsiTreesJSON, OsmTags } from './types.ts';
 import type LocationConflation from '@rapideditor/location-conflation';
+import type { Location, LocationSet } from '@rapideditor/location-conflation';
 
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
@@ -65,7 +66,7 @@ read: async (cache: NsiCache, loco: LocationConflation) => {
 
     const glob = new Glob(`./data/${t}/**/*`);
     for (const filepath of glob.scanSync()) {
-      if (/\.md$/i.test(filepath)) continue;  // ignore markdown/readme files - #7292
+      if (/\.md$/i.test(filepath)) continue;  // ignore markdown/readme files - NSI#7292
 
       if (!/\.json$/.test(filepath)) {
         console.error(styleText('red', `Error - file should have a .json extension:`));
@@ -230,13 +231,13 @@ write: async (cache: NsiCache) => {
           }
 
           // clean templateSource
-          item.templateSource = _clean(item.templateSource);
+          item.templateSource = _trim(item.templateSource);
 
           // clean templateTags
           const cleaned: OsmTags = {};
           for (const k of Object.keys(item.templateTags)) {
-            const osmkey = _clean(k) as string;
-            const osmval = _clean(item.templateTags[k]);
+            const osmkey = _trim(k) as string;
+            const osmval = _trim(item.templateTags[k]);
             cleaned[osmkey] = osmval;
           }
           item.templateTags = sortObject(cleaned);
@@ -249,37 +250,36 @@ write: async (cache: NsiCache) => {
         .sort((a, b) => withLocale(a.displayName, b.displayName))   // sort normalItems by displayName
         .map(item => {
           // clean displayName
-          item.displayName = _clean(item.displayName);
+          item.displayName = _trim(item.displayName);
 
-          // clean locationSet
-          let cleaned: Record<string, any> = {};
-          if (Array.isArray(item.locationSet.include)) {
-            // @ts-expect-error -- legacy issue
-            cleaned.include = item.locationSet.include.map(_cleanLower).sort(withLocale);
-          } else {
-            cleaned.include = ['001'];  // default to world
+          // clean locationSet — normalize to a `LocationSet` with sorted,
+          // lowercased entries; default `include` to world (`['001']`) if missing.
+          const cleanedLS: LocationSet = {};
+          const include = item.locationSet?.include;
+          cleanedLS.include = (Array.isArray(include) && include.length)
+            ? include.map(_cleanLocation).sort(_compareLocations)
+            : ['001'];  // default to world
+          const exclude = item.locationSet?.exclude;
+          if (Array.isArray(exclude) && exclude.length) {
+            cleanedLS.exclude = exclude.map(_cleanLocation).sort(_compareLocations);
           }
-          if (Array.isArray(item.locationSet.exclude)) {
-            // @ts-expect-error -- legacy issue
-            cleaned.exclude = item.locationSet.exclude.map(_cleanLower).sort(withLocale);
-          }
-          item.locationSet = cleaned;
+          item.locationSet = cleanedLS;
 
           // clean matchNames/matchTags
           for (const prop of ['matchNames', 'matchTags'] as const) {
             if (item[prop]) {
-              item[prop] = item[prop].map(_cleanLower).sort(withLocale);
+              item[prop] = item[prop].map(_cleanString).sort(withLocale);
             }
           }
 
           // clean OSM tags
-          cleaned = {};
+          const cleanedTags: OsmTags = {};
           for (const k of Object.keys(item.tags)) {
-            const osmkey = _clean(k) as string;
-            const osmval = _clean(item.tags[k]);
-            cleaned[osmkey] = osmval;
+            const osmkey = _trim(k) as string;
+            const osmval = _trim(item.tags[k]);
+            cleanedTags[osmkey] = osmval;
           }
-          item.tags = sortObject(cleaned);
+          item.tags = sortObject(cleanedTags);
 
           return sortObject(item);
         });
@@ -295,18 +295,18 @@ write: async (cache: NsiCache) => {
         cleanedProps.skipCollection = properties.skipCollection;
       }
       if (Array.isArray(properties.preserveTags)) {
-        cleanedProps.preserveTags = (properties.preserveTags.map(_cleanLower) as string[]).sort(withLocale);
+        cleanedProps.preserveTags = (properties.preserveTags.map(_cleanString) as string[]).sort(withLocale);
       }
 
       cleanedProps.exclude = {};
       if (Array.isArray(properties.exclude.generic)) {
-        cleanedProps.exclude.generic = properties.exclude.generic.map(_cleanLower).sort(withLocale);
+        cleanedProps.exclude.generic = properties.exclude.generic.map(_cleanString).sort(withLocale);
       } else {
         const v2 = v.replace(/_/g, ' ');    // add the value as a generic name exclude (e.g. 'restaurant')
         cleanedProps.exclude.generic = [`^${v2}$`];
       }
       if (Array.isArray(properties.exclude.named)) {
-        cleanedProps.exclude.named = properties.exclude.named.map(_cleanLower).sort(withLocale);
+        cleanedProps.exclude.named = properties.exclude.named.map(_cleanString).sort(withLocale);
       }
 
       // generate file
@@ -337,28 +337,45 @@ write: async (cache: NsiCache) => {
    * @param   s - The value to clean
    * @returns The trimmed string, or the original value if not a string
    */
-  function _clean(s: string): string;
-  function _clean(s: string | unknown): string | unknown {
+  function _trim(s: string): string;
+  function _trim(s: string | unknown): string | unknown {
     if (typeof s !== 'string') return s;
     return s.trim();
   }
 
   /**
    * Trims and lowercases a string value.  Skips lowercasing strings that
-   * contain `İ` (Turkish capital I with dot) to avoid locale-dependent mutation (#8261).
-   *
+   * contain `İ` (Turkish capital I with dot) to avoid locale-dependent mutation (NSI#8261).
    * @param   s - The value to clean
    * @returns The trimmed (and possibly lowercased) string, or the original value
    *          if not a string
    */
-  function _cleanLower(s: string): string;
-  function _cleanLower(s: string | unknown): string | unknown {
+  function _cleanString(s: string): string;
+  function _cleanString(s: string | unknown): string | unknown {
     if (typeof s !== 'string') return s;
-    if (/İ/.test(s)) {  // Avoid toLowerCasing this one, it changes - #8261
+    if (/İ/.test(s)) {  // Avoid toLowerCasing this one, it changes - NSI#8261
       return s.trim();
     } else {
       return s.trim().toLowerCase();
     }
+  }
+
+  /**
+   * Clean a single `Location` value from a `LocationSet` `include`/`exclude` array.
+   * Strings are trimmed/lowercased; numeric and `[lon,lat(,radius)]` tuple
+   * locations are passed through unchanged.
+   */
+  function _cleanLocation(loc: Location): Location {
+    return typeof loc === 'string' ? _cleanString(loc) : loc;
+  }
+
+  /**
+   * Comparator for sorting `Location` arrays in a stable, locale-aware way.
+   * Coerces numeric/tuple locations to strings via `String()` so they sort
+   * deterministically alongside string locations.
+   */
+  function _compareLocations(a: Location, b: Location): number {
+    return withLocale(String(a), String(b));
   }
 },
 
@@ -447,7 +464,7 @@ expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
             tags[osmkey] = tagValue;
           } else {
             delete tags[osmkey];
-            // remove any related multilingual keys - #10378
+            // remove any related multilingual keys - NSI#10378
             const multilingual_keys = ['name', 'alt_name', 'official_name', 'short_name', 'full_name'];
             if (multilingual_keys.includes(osmkey)) {
               for (const key of Object.keys(tags)) {
@@ -475,7 +492,7 @@ expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
           // Note - in case of duplicates, it's ok to fail silently.
           // It's allowed to copy multiple source categories into a single
           // destination category, and there may be duplicates when we do this.
-          // For example `route/railway` and `route/tracks` for #8124
+          // For example `route/railway` and `route/tracks` for NSI#8124
         } else {
           cache.path[tkv].items.push(item);
           cache.id.set(item.id, item);
