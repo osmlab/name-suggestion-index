@@ -1,5 +1,5 @@
 import { describe, it } from 'bun:test';
-import { strict as assert } from 'bun:assert';
+import assert from 'node:assert/strict';
 import { stemmer } from '../src/nsi.ts';
 
 
@@ -13,8 +13,8 @@ describe('stemmer', () => {
 
   it('returns empty string if no input', () => {
     assert.equal(stemmer(), '');
-    assert.equal(stemmer(null), '');
-    assert.equal(stemmer({}), '');
+    assert.equal(stemmer(null as unknown as string), '');
+    assert.equal(stemmer({} as unknown as string), '');
   });
 
 });

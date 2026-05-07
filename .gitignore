@@ -1,19 +1,33 @@
-coverage/
-dist/
+# Dependencies
 node_modules/
 
-.DS_Store
-.idea
-.vscode
-npm-debug.log
-lerna-debug.log
-package-lock.json
-yarn.lock
+# Build output
+dist/
+build/
 
+# Environment / secrets
+.env
+.env.*
+!.env.example
 secrets.json
 
-*.backup
-*.bz2
-*.osm
-*.pbf
-*.swp
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+coverage/
+.vscode/
+!.vscode/extensions.json
+.idea/
+
+# Agent memory
+SCRATCHPAD.md
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime temp files
+*.tmp
+*.temp

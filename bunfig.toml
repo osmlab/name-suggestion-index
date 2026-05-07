@@ -7,3 +7,8 @@ minimumReleaseAgeExcludes = ["@rapideditor/country-coder", "@rapideditor/locatio
 # equivalent to `bun --bun` for all `bun run` commands
 bun = true
 shell = "bun"
+
+[test]
+# skip coverage of tests and sample data
+coverageSkipTestFiles = true
+coveragePathIgnorePatterns = ['test/**']

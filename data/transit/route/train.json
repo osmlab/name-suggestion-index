@@ -5,8 +5,8 @@
       "generic": ["^train$"],
       "named": [
         "^(city|international|local|mtb|national|rail|regional|urban)$",
+        "^(entur|rfi|trenitalia)$",
         "^(municipal|τοπική)$",
-        "^entur$",
         "^코레일$",
         "^名古屋地区$"
       ]
@@ -423,10 +423,8 @@
     },
     {
       "displayName": "Commuter",
-      "id": "commuter-91413c",
-      "locationSet": {
-        "include": ["ie-d.geojson"]
-      },
+      "id": "commuter-73b98a",
+      "locationSet": {"include": ["ie"]},
       "matchNames": ["dublin commuter"],
       "tags": {
         "network": "Commuter",
@@ -565,6 +563,19 @@
         "network:wikidata": "Q108716138",
         "operator": "Qbuzz",
         "operator:wikidata": "Q3146926",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "DÚK",
+      "id": "dopravausteckehokraje-ef4abb",
+      "locationSet": {
+        "include": ["cz-42.geojson"]
+      },
+      "tags": {
+        "network": "Doprava Ústeckého kraje",
+        "network:short": "DÚK",
+        "network:wikidata": "Q12021691",
         "route": "train"
       }
     },
@@ -951,7 +962,20 @@
       }
     },
     {
-      "displayName": "IDZK (Česko)",
+      "displayName": "IDSOK",
+      "id": "integrovanydopravnisystemolomouckehokraje-eb732a",
+      "locationSet": {
+        "include": ["cz-71.geojson"]
+      },
+      "tags": {
+        "network": "Integrovaný dopravní systém Olomouckého kraje",
+        "network:short": "IDSOK",
+        "network:wikidata": "Q12021688",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "IDZK",
       "id": "integrovanadopravazlinskehokraje-e2fb0f",
       "locationSet": {
         "include": [
@@ -1005,6 +1029,23 @@
         "operator:en": "Irish Rail",
         "operator:ga": "Iarnród Éireann",
         "operator:wikidata": "Q73043",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "IREDO",
+      "id": "integrovanaregionalnidopravakralovehradeckehoapardubickehokraje-3c56f0",
+      "locationSet": {
+        "include": [
+          "cz-52.geojson",
+          "cz-53.geojson",
+          "pl-02.geojson"
+        ]
+      },
+      "tags": {
+        "network": "Integrovaná regionální doprava Královéhradeckého a Pardubického kraje",
+        "network:short": "IREDO",
+        "network:wikidata": "Q12021384",
         "route": "train"
       }
     },
@@ -1597,6 +1638,24 @@
       }
     },
     {
+      "displayName": "Nahverkehr Mainfranken",
+      "id": "nahverkehrmainfranken-cbece5",
+      "locationSet": {
+        "include": ["de-by.geojson"]
+      },
+      "matchNames": [
+        "verkehrsunternehmens-verbund mainfranken",
+        "verkehrsverbund mainfranken",
+        "vvm"
+      ],
+      "tags": {
+        "network": "Nahverkehr Mainfranken",
+        "network:short": "NVM",
+        "network:wikidata": "Q131385745",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "Nahverkehrsverbund Schleswig-Holstein",
       "id": "nahverkehrsverbundschleswigholstein-d50f2c",
       "locationSet": {"include": ["de", "dk"]},
@@ -2083,16 +2142,6 @@
       }
     },
     {
-      "displayName": "RFI",
-      "id": "rfi-66b763",
-      "locationSet": {"include": ["it"]},
-      "tags": {
-        "network": "RFI",
-        "network:wikidata": "Q1060049",
-        "route": "train"
-      }
-    },
-    {
       "displayName": "RhB",
       "id": "rhb-0c66c7",
       "locationSet": {
@@ -2404,6 +2453,10 @@
       "locationSet": {
         "include": ["au-nsw.geojson"]
       },
+      "matchNames": [
+        "tfnsw",
+        "transport for nsw"
+      ],
       "tags": {
         "network": "Sydney Trains",
         "network:wikidata": "Q7660181",
@@ -2830,21 +2883,6 @@
       }
     },
     {
-      "displayName": "Trenitalia",
-      "id": "trenitalia-66b763",
-      "locationSet": {"include": ["it"]},
-      "matchNames": ["trenitalia s.p.a"],
-      "tags": {
-        "network": "Trenitalia",
-        "network:short": "TI",
-        "network:wikidata": "Q286650",
-        "operator": "Trenitalia",
-        "operator:short": "TI",
-        "operator:wikidata": "Q286650",
-        "route": "train"
-      }
-    },
-    {
       "displayName": "Türkiye Cumhuriyeti Devlet Demiryolları",
       "id": "turkiyecumhuriyetidevletdemiryollari-764b53",
       "locationSet": {"include": ["tr"]},
@@ -3000,20 +3038,6 @@
         "network": "Verkehrsverbund Kärnten",
         "network:short": "VVK",
         "network:wikidata": "Q2516465",
-        "route": "train"
-      }
-    },
-    {
-      "displayName": "Verkehrsverbund Mainfranken",
-      "id": "verkehrsverbundmainfranken-da20e0",
-      "locationSet": {"include": ["de"]},
-      "matchNames": [
-        "verkehrsunternehmens-verbund mainfranken"
-      ],
-      "tags": {
-        "network": "Verkehrsverbund Mainfranken",
-        "network:short": "VVM",
-        "network:wikidata": "Q2516466",
         "route": "train"
       }
     },
@@ -3206,6 +3230,22 @@
       }
     },
     {
+      "displayName": "Warszawska Kolej Dojazdowa",
+      "id": "warszawskakolejdojazdowa-8d7802",
+      "locationSet": {
+        "include": ["pl-14.geojson"]
+      },
+      "tags": {
+        "network": "Warszawska Kolej Dojazdowa",
+        "network:short": "WKD",
+        "network:wikidata": "Q773832",
+        "operator": "Warszawska Kolej Dojazdowa",
+        "operator:short": "WKD",
+        "operator:wikidata": "Q137943194",
+        "route": "train"
+      }
+    },
+    {
       "displayName": "WES",
       "id": "westsideexpressservice-58257a",
       "locationSet": {
@@ -3250,18 +3290,6 @@
       }
     },
     {
-      "displayName": "WKD",
-      "id": "wkd-8d7802",
-      "locationSet": {
-        "include": ["pl-14.geojson"]
-      },
-      "tags": {
-        "network": "WKD",
-        "network:wikidata": "Q773832",
-        "route": "train"
-      }
-    },
-    {
       "displayName": "Železničná spoločnosť Slovensko",
       "id": "zeleznicnaspolocnostslovensko-62fcf4",
       "locationSet": {"include": ["hu", "sk"]},
@@ -3272,6 +3300,19 @@
         "operator": "Železničná spoločnosť Slovensko",
         "operator:short": "ZSSK",
         "operator:wikidata": "Q393557",
+        "route": "train"
+      }
+    },
+    {
+      "displayName": "ZID",
+      "id": "zlinskaintegrovanadoprava-6cad4b",
+      "locationSet": {
+        "include": ["cz-72.geojson"]
+      },
+      "tags": {
+        "network": "Zlínská integrovaná doprava",
+        "network:short": "ZID",
+        "network:wikidata": "Q10861159",
         "route": "train"
       }
     },

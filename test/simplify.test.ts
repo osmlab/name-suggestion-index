@@ -1,5 +1,5 @@
 import { describe, it } from 'bun:test';
-import { strict as assert } from 'bun:assert';
+import assert from 'node:assert/strict';
 import { simplify } from '../src/nsi.ts';
 
 
@@ -47,8 +47,8 @@ describe('simplify', () => {
 
   it('returns empty string if no input', () => {
     assert.equal(simplify(), '');
-    assert.equal(simplify(null), '');
-    assert.equal(simplify({}), '');
+    assert.equal(simplify(null as unknown as string), '');
+    assert.equal(simplify({} as unknown as string), '');
   });
 
 });

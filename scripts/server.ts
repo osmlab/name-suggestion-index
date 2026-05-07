@@ -1,4 +1,4 @@
-import { styleText } from 'bun:util';
+import { styleText } from 'node:util';
 
 const project = 'name-suggestion-index';
 const hostname = '127.0.0.1';
@@ -16,7 +16,7 @@ function replaceCDNPath(s: string): string {
 // p1 = "           - begin string
 // p2 = cdn url     - removed
 // p3 = dist/file"  - 'dist' + file (if any) + end string
-function replacer(match: string, p1: string, p2: string, p3: string): string {
+function replacer(_match: string, p1: string, _p2: string, p3: string): string {
   return p1 + p3;
 }
 

@@ -6,8 +6,11 @@
   },
   "items": [
     {
-      "note": "Auto create tram stops for all tram routes except Софийски градски транспорт, see #7054",
-      "templateExclude": ["2055e9"],
+      "note": "Auto create tram stops for all tram routes, with exceptions",
+      "templateExclude": [
+        "8d3b09",
+        "transportgzm"
+      ],
       "templateSource": "transit/route/tram",
       "templateTags": {
         "railway": "tram_stop",
@@ -15,9 +18,21 @@
       }
     },
     {
+      "displayName": "Transport GZM",
+      "id": "transportgzm-ba7600",
+      "locationSet": {"include": ["pl"]},
+      "note": "GZM - do not inherit operator, see #11943",
+      "tags": {
+        "network": "Transport GZM",
+        "network:wikidata": "Q124678630",
+        "railway": "tram_stop"
+      }
+    },
+    {
       "displayName": "Градски транспорт София",
       "id": "8d3b09-fef454",
       "locationSet": {"include": ["bg"]},
+      "note": "Софийски градски транспорт - do not inherit operator, see #7054",
       "tags": {
         "network": "Градски транспорт София",
         "network:wikidata": "Q124360139",
