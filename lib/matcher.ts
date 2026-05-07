@@ -1,7 +1,7 @@
 import { LocationConflation } from '@rapideditor/location-conflation';
 import { simplify } from './simplify.ts';
 
-import type { LocationSetID, Vec2 } from '@rapideditor/location-conflation';
+import type { HasLocationSet, HasLocationSetID, LocationSetID, Vec2 } from '@rapideditor/location-conflation';
 import type { MatchHit, MatchIndexBranch, NsiData, NsiMatchGroupsJSON, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
 
 // Imported JSON (will be inlined by bun)
@@ -14,6 +14,22 @@ const matchGroups: NsiMatchGroupsJSON['matchGroups'] = matchGroupsJSON.matchGrou
 
 /** Tree configuration keyed by tree name (e.g. `brands`, `operators`). */
 const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
+
+
+//  This is an unfortunate TypeScript-ism, essentially it does not consider a class instance
+//  with private or protected members to be type-compatible with itself.
+//  The workaround is to define an interface type so that instead of saying
+//   "buildLocationIndex accepts a LocationConflation instance"
+//  we need to say
+//   "buildLocationIndex accepts something that looks like a LocationConflation instance"
+// @see https://www.reddit.com/r/typescript/comments/wv3d5m/private_properties_different_versions_of_same/
+// @see https://github.com/microsoft/TypeScript/issues/18499 (and related)
+/** LocationConflation _structural_ type - see name-suggestion-index#12150 **/
+export interface LocationResolver {
+  registerLocationSets<T extends HasLocationSet>(objects: T[]): (T & HasLocationSetID)[];
+  locationSetsAt(loc: Vec2): Map<LocationSetID, number>;
+  getLocationSetArea(locationSetID: LocationSetID): number | undefined;
+}
 
 
 /**
@@ -33,8 +49,8 @@ export class Matcher {
   private matchIndex: Map<string, MatchIndexBranch> | undefined;
   /** Map of generic-word pattern strings to compiled RegExp objects. */
   private genericWords = new Map<string, RegExp>();
-  /** The `LocationConflation` instance used to resolve locationSets (set by {@link buildLocationIndex}). */
-  private loco: LocationConflation | undefined;
+  /** The location resolver used to resolve locationSets (set by {@link buildLocationIndex}). */
+  private loco: LocationResolver | undefined;
   /** Map of item id → locationSetID, populated by {@link buildLocationIndex}. */
   private itemLocationSetID: Map<string, LocationSetID> | undefined;
   /** Warnings collected during index building (e.g. duplicate cache keys). */
@@ -347,7 +363,7 @@ export class Matcher {
    *   Whichever instance is used, the matcher keeps a reference and delegates
    *   `locationSetsAt` / `getLocationSetArea` calls to it at match time.
    */
-  buildLocationIndex(data: NsiData, loco?: LocationConflation): void {
+  buildLocationIndex(data: NsiData, loco?: LocationResolver): void {
     loco = loco ?? new LocationConflation();
     this.loco = loco;
 
