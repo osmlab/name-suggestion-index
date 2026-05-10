@@ -1,55 +1,66 @@
-/* eslint @typescript-eslint/no-this-alias: "warn" */
-import whichPolygon from 'which-polygon';
-
+import { LocationConflation } from '@rapideditor/location-conflation';
 import { simplify } from './simplify.ts';
 
-// JSON
+import type { HasLocationSet, HasLocationSetID, LocationSetID, Vec2 } from '@rapideditor/location-conflation';
+import type { MatchHit, MatchIndexBranch, NsiData, NsiMatchGroupsJSON, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
+
+// Imported JSON (will be inlined by bun)
 import matchGroupsJSON from '../config/matchGroups.json' with {type: 'json'};
 import genericWordsJSON from '../config/genericWords.json' with {type: 'json'};
 import treesJSON from '../config/trees.json' with {type: 'json'};
 
-const matchGroups = matchGroupsJSON.matchGroups;
-const trees = treesJSON.trees;
+/** Match-group definitions keyed by group name. */
+const matchGroups: NsiMatchGroupsJSON['matchGroups'] = matchGroupsJSON.matchGroups;
+
+/** Tree configuration keyed by tree name (e.g. `brands`, `operators`). */
+const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
 
 
-type Vec2 = [number, number];
-type Vec3 = [number, number, number];
-type Location = Vec2 | Vec3 | string | number;
-
-interface LocationSet {
-  include?: Array<Location>,
-  exclude?: Array<Location>
-};
-
-interface LocationConflation {
-  validateLocation: (a: Location) => unknown;
-  resolveLocation: (a: Location) => unknown;
-  validateLocationSet: (a: LocationSet) => unknown;
-  resolveLocationSet: (a: LocationSet) => unknown;
-};
-
-type HitType = 'primary' | 'alternate' | 'excludeGeneric' | 'excludeNamed';
-interface Hit {
-  match: HitType;
-  itemID?: string;
-  area?: number;
-  kv?: string;
-  nsimple?: string;
-  pattern?: string;
-};
+//  This is an unfortunate TypeScript-ism, essentially it does not consider a class instance
+//  with private or protected members to be type-compatible with itself.
+//  The workaround is to define an interface type so that instead of saying
+//   "buildLocationIndex accepts a LocationConflation instance"
+//  we need to say
+//   "buildLocationIndex accepts something that looks like a LocationConflation instance"
+// @see https://www.reddit.com/r/typescript/comments/wv3d5m/private_properties_different_versions_of_same/
+// @see https://github.com/microsoft/TypeScript/issues/18499 (and related)
+/** LocationConflation _structural_ type - see name-suggestion-index#12150 **/
+export interface LocationResolver {
+  registerLocationSets<T extends HasLocationSet>(objects: T[]): (T & HasLocationSetID)[];
+  locationSetsAt(loc: Vec2): Map<LocationSetID, number>;
+  getLocationSetArea(locationSetID: LocationSetID): number | undefined;
+}
 
 
+/**
+ * Matches OpenStreetMap `[key, value, name]` tuples against the
+ * Name Suggestion Index (NSI) canonical items.
+ *
+ * Typical usage:
+ * ```ts
+ * const matcher = new Matcher();
+ * matcher.buildMatchIndex(data);
+ * matcher.buildLocationIndex(data, loco);   // optional
+ * const hits = matcher.match('amenity', 'bank', 'Wells Fargo', [-122.4, 37.8]);
+ * ```
+ */
 export class Matcher {
-  private matchIndex;
-  private genericWords = new Map();
-  private itemLocation;
-  private locationSets;
-  private locationIndex;
+  /** Primary match index: `kv → { primary, alternate, excludeGeneric, excludeNamed }`. */
+  private matchIndex: Map<string, MatchIndexBranch> | undefined;
+  /** Map of generic-word pattern strings to compiled RegExp objects. */
+  private genericWords = new Map<string, RegExp>();
+  /** The location resolver used to resolve locationSets (set by {@link buildLocationIndex}). */
+  private loco: LocationResolver | undefined;
+  /** Map of item id → locationSetID, populated by {@link buildLocationIndex}. */
+  private itemLocationSetID: Map<string, LocationSetID> | undefined;
+  /** Warnings collected during index building (e.g. duplicate cache keys). */
   private warnings: Array<string> = [];
 
 
-  // `constructor`
-  // initialize the genericWords regexes
+  /**
+   * Creates a new Matcher and initialises the generic-word regex table
+   * from `config/genericWords.json`.
+   */
   constructor() {
     // The `matchIndex` is a specialized structure that allows us to quickly answer
     //   _"Given a [key/value tagpair, name, location], what canonical items (brands etc) can match it?"_
@@ -96,65 +107,74 @@ export class Matcher {
     // The `genericWords` structure matches the contents of genericWords.json to instantiated RegExp objects
     // Map (String 'pattern' -> RegExp),
     this.genericWords = new Map();
-    (genericWordsJSON.genericWords || []).forEach(s => this.genericWords.set(s, new RegExp(s, 'i')));
+    for (const s of (genericWordsJSON.genericWords || [])) {
+      this.genericWords.set(s, new RegExp(s, 'i'));
+    }
 
-    // The `itemLocation` structure maps itemIDs to locationSetIDs:
-    // {
-    //   'firstbank-f17495':  '+[first_bank_western_us.geojson]',
-    //   'firstbank-978cca':  '+[first_bank_carolinas.geojson]',
-    //   'coop-76454b':       '+[Q16]',
-    //   'coopfood-a8278b':   '+[Q23666]',
-    //   …
-    // }
-    this.itemLocation = undefined;
-
-    // The `locationSets` structure maps locationSetIDs to *resolved* locationSets:
-    // {
-    //   '+[first_bank_western_us.geojson]':  GeoJSON {…},
-    //   '+[first_bank_carolinas.geojson]':   GeoJSON {…},
-    //   '+[Q16]':                            GeoJSON {…},
-    //   '+[Q23666]':                         GeoJSON {…},
-    //   …
-    // }
-    this.locationSets = undefined;
-
-    // The `locationIndex` is an instance of which-polygon spatial index for the locationSets.
-    this.locationIndex = undefined;
+    // A reference to the `LocationConflation` instance supplied to `buildLocationIndex`.
+    // At match time we call `loco.locationSetsAt(point)` and `loco.getLocationSetArea(id)`
+    // instead of maintaining our own parallel indexes.
+    this.loco = undefined;
+    this.itemLocationSetID = undefined;
 
     // Array of match conflict pairs (currently unused)
     this.warnings = [];
   }
 
 
-  //
-  // `buildMatchIndex()`
-  // Call this to prepare the matcher for use
-  //
-  // `data` needs to be an Object indexed on a 'tree/key/value' path.
-  // (e.g. cache filled by `fileTree.read` or data found in `dist/nsi.json`)
-  // {
-  //    'brands/amenity/bank': { properties: {}, items: [ {}, {}, … ] },
-  //    'brands/amenity/bar':  { properties: {}, items: [ {}, {}, … ] },
-  //    …
-  // }
-  //
-  buildMatchIndex(data: Record<string, any>): void {
-    const that = this;
-    if (that.matchIndex) return;   // it was built already
-    that.matchIndex = new Map();
+  /**
+   * Builds the primary match index from NSI category data.
+   * After calling this method the matcher is ready to use via {@link match}.
+   *
+   * `data` must be an object keyed by `tree/key/value` paths, e.g.:
+   * ```json
+   * {
+   *   "brands/amenity/bank": { "properties": {}, "items": [ … ] },
+   *   "brands/amenity/bar":  { "properties": {}, "items": [ … ] }
+   * }
+   * ```
+   * (typically the cache built by `fileTree.read` or loaded from `dist/nsi.json`)
+   *
+   * @param data - NSI category data indexed by `tree/key/value` path
+   */
+  buildMatchIndex(data: NsiData): void {
+    if (this.matchIndex) return;   // it was built already
+
+    const matchIndex = new Map<string, MatchIndexBranch>();
+    this.matchIndex = matchIndex;
 
     const seenTree = new Map();  // warn if the same [k, v, nsimple] appears in multiple trees - #5625
 
-    Object.keys(data).forEach(tkv => {
-      const category = data[tkv];
-      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const t = parts[0];
-      const k = parts[1];
-      const v = parts[2];
-      const thiskv = `${k}/${v}`;
-      const tree = trees[t];
+    // For certain categories we do not want to match generic KV pairs like `building/yes` or `amenity/yes`
+    const skipGenericKVMatches = (t: string, k: string, v: string): boolean => {
+      return (
+        t === 'flags' ||
+        t === 'transit' ||
+        k === 'landuse' ||
+        v === 'atm' ||
+        v === 'bicycle_parking' ||
+        v === 'car_sharing' ||
+        v === 'caravan_site' ||
+        v === 'charging_station' ||
+        v === 'dog_park' ||
+        v === 'parking' ||
+        v === 'phone' ||
+        v === 'playground' ||
+        v === 'post_box' ||
+        v === 'public_bookcase' ||
+        v === 'recycling' ||
+        v === 'vending_machine'
+      );
+    };
 
-      let branch = that.matchIndex.get(thiskv);
+    // Insert this item into the matchIndex
+    const insertName = (which: 'primary' | 'alternate', t: string, kv: string, nsimple: string, itemID: string) => {
+      if (!nsimple) {
+        this.warnings.push(`Warning: skipping empty ${which} name for item ${t}/${kv}: ${itemID}`);
+        return;
+      }
+
+      let branch = matchIndex.get(kv);
       if (!branch) {
         branch = {
           primary: new Map(),
@@ -162,20 +182,61 @@ export class Matcher {
           excludeGeneric: new Map(),
           excludeNamed: new Map()
         };
-        that.matchIndex.set(thiskv, branch);
+        matchIndex.set(kv, branch);
+      }
+
+      let leaf = branch[which].get(nsimple);
+      if (!leaf) {
+        leaf = new Set();
+        branch[which].set(nsimple, leaf);
+      }
+
+      leaf.add(itemID);   // insert
+
+      // check for duplicates - #5625
+      if (!/yes$/.test(kv)) {  // ignore genericKV like amenity/yes, building/yes, etc
+        const kvnsimple = `${kv}/${nsimple}`;
+        const existing = seenTree.get(kvnsimple);
+        if (existing && existing !== t) {
+          const items = Array.from(leaf);
+          this.warnings.push(`Duplicate cache key "${kvnsimple}" in trees "${t}" and "${existing}", check items: ${items}`);
+          return;
+        }
+        seenTree.set(kvnsimple, t);
+      }
+    };
+
+    for (const tkv of Object.keys(data) as NsiPath[]) {
+      const category = data[tkv];
+      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+      const t = parts[0] as NsiTree;
+      const k = parts[1];
+      const v = parts[2];
+      const thiskv = `${k}/${v}`;
+      const tree = trees[t];
+
+      let branch = matchIndex.get(thiskv);
+      if (!branch) {
+        branch = {
+          primary: new Map(),
+          alternate: new Map(),
+          excludeGeneric: new Map(),
+          excludeNamed: new Map()
+        };
+        matchIndex.set(thiskv, branch);
       }
 
       // ADD EXCLUSIONS
       const properties = category.properties || {};
       const exclude = properties.exclude || {};
-      (exclude.generic || []).forEach(s => branch.excludeGeneric.set(s, new RegExp(s, 'i')));
-      (exclude.named || []).forEach(s => branch.excludeNamed.set(s, new RegExp(s, 'i')));
+      for (const s of (exclude.generic || [])) branch.excludeGeneric.set(s, new RegExp(s, 'i'));
+      for (const s of (exclude.named || []))   branch.excludeNamed.set(s, new RegExp(s, 'i'));
       const excludeRegexes = [...branch.excludeGeneric.values(), ...branch.excludeNamed.values()];
 
 
       // ADD ITEMS
       const items = category.items;
-      if (!Array.isArray(items) || !items.length) return;
+      if (!Array.isArray(items) || !items.length) continue;
 
 
       // Primary name patterns, match tags to take first
@@ -200,22 +261,22 @@ export class Matcher {
       // Collect alternate tagpairs for this kv category from matchGroups.
       // We might also pick up a few more generic KVs (like `shop/yes`)
       const matchGroupKV = new Set();
-      Object.values(matchGroups).forEach(matchGroup => {
+      for (const matchGroup of Object.values(matchGroups)) {
         const inGroup = matchGroup.some(otherkv => otherkv === thiskv);
-        if (!inGroup) return;
+        if (!inGroup) continue;
 
-        matchGroup.forEach(otherkv => {
-          if (otherkv === thiskv) return;   // skip self
+        for (const otherkv of matchGroup) {
+          if (otherkv === thiskv) continue;   // skip self
           matchGroupKV.add(otherkv);
 
           const otherk = otherkv.split('/', 2)[0];   // we might pick up a `shop/yes`
           genericKV.add(`${otherk}/yes`);
-        });
-      });
+        }
+      }
 
       // For each item, insert all [key, value, name] combinations into the match index
-      items.forEach(item => {
-        if (!item.id) return;
+      for (const item of items) {
+        if (!item.id) continue;
 
         // Automatically remove redundant `matchTags` - #3417, #8137
         // (i.e. This kv is already covered by matchGroups, so it doesn't need to be in `item.matchTags`
@@ -237,25 +298,25 @@ export class Matcher {
         }
 
         // Index all the namelike tag values
-        Object.keys(item.tags).forEach(osmkey => {
-          if (notName.test(osmkey)) return;   // osmkey is not a namelike tag, skip
+        for (const osmkey of Object.keys(item.tags)) {
+          if (notName.test(osmkey)) continue;   // osmkey is not a namelike tag, skip
           const osmvalue = item.tags[osmkey];
-          if (!osmvalue || excludeRegexes.some(regex => regex.test(osmvalue))) return;   // osmvalue missing or excluded
+          if (!osmvalue || excludeRegexes.some(regex => regex.test(osmvalue))) continue;   // osmvalue missing or excluded
 
           if (primaryName.test(osmkey)) {
-            kvTags.forEach(kv => insertName('primary', t, kv, simplify(osmvalue), item.id));
+            for (const kv of kvTags) insertName('primary', t, kv, simplify(osmvalue), item.id);
           } else if (alternateName.test(osmkey)) {
-            kvTags.forEach(kv => insertName('alternate', t, kv, simplify(osmvalue), item.id));
+            for (const kv of kvTags) insertName('alternate', t, kv, simplify(osmvalue), item.id);
           }
-        });
+        }
 
         // Index `matchNames` after indexing all other names..
-        const keepMatchNames = new Set();
-        (item.matchNames || []).forEach(matchName => {
+        const keepMatchNames = new Set<string>();
+        for (const matchName of (item.matchNames || [])) {
           // If this matchname isn't already indexed, add it to the alternate index
           const nsimple = simplify(matchName);
-          kvTags.forEach(kv => {
-            const branch = that.matchIndex.get(kv);
+          for (const kv of kvTags) {
+            const branch = matchIndex.get(kv);
             const primaryLeaf = branch && branch.primary.get(nsimple);
             const alternateLeaf = branch && branch.alternate.get(nsimple);
             const inPrimary = primaryLeaf && primaryLeaf.has(item.id);
@@ -265,8 +326,8 @@ export class Matcher {
               insertName('alternate', t, kv, nsimple, item.id);
               keepMatchNames.add(matchName);
             }
-          });
-        });
+          }
+        }
 
         // Automatically remove redundant `matchNames` - #3417
         // (i.e. This name got indexed some other way, so it doesn't need to be in `item.matchNames`)
@@ -276,241 +337,118 @@ export class Matcher {
           delete item.matchNames;
         }
 
-      });   // each item
-    });   // each tkv
-
-
-    // Insert this item into the matchIndex
-    function insertName(which: string, t: string, kv: string, nsimple: string, itemID: string) {
-      if (!nsimple) {
-        that.warnings.push(`Warning: skipping empty ${which} name for item ${t}/${kv}: ${itemID}`);
-        return;
-      }
-
-      let branch = that.matchIndex.get(kv);
-      if (!branch) {
-        branch = {
-          primary: new Map(),
-          alternate: new Map(),
-          excludeGeneric: new Map(),
-          excludeNamed: new Map()
-        };
-        that.matchIndex.set(kv, branch);
-      }
-
-      let leaf = branch[which].get(nsimple);
-      if (!leaf) {
-        leaf = new Set();
-        branch[which].set(nsimple, leaf);
-      }
-
-      leaf.add(itemID);   // insert
-
-      // check for duplicates - #5625
-      if (!/yes$/.test(kv)) {  // ignore genericKV like amenity/yes, building/yes, etc
-        const kvnsimple = `${kv}/${nsimple}`;
-        const existing = seenTree.get(kvnsimple);
-        if (existing && existing !== t) {
-          const items = Array.from(leaf);
-          that.warnings.push(`Duplicate cache key "${kvnsimple}" in trees "${t}" and "${existing}", check items: ${items}`);
-          return;
-        }
-        seenTree.set(kvnsimple, t);
-      }
-    }
-
-    // For certain categories we do not want to match generic KV pairs like `building/yes` or `amenity/yes`
-    function skipGenericKVMatches(t: string, k: string, v: string): boolean {
-      return (
-        t === 'flags' ||
-        t === 'transit' ||
-        k === 'landuse' ||
-        v === 'atm' ||
-        v === 'bicycle_parking' ||
-        v === 'car_sharing' ||
-        v === 'caravan_site' ||
-        v === 'charging_station' ||
-        v === 'dog_park' ||
-        v === 'parking' ||
-        v === 'phone' ||
-        v === 'playground' ||
-        v === 'post_box' ||
-        v === 'public_bookcase' ||
-        v === 'recycling' ||
-        v === 'vending_machine'
-      );
-    }
+      }   // each item
+    }   // each tkv
   }
 
 
-  //
-  // `buildLocationIndex()`
-  // Call this to prepare a which-polygon location index.
-  // This *resolves* all the locationSets into GeoJSON, which takes some time.
-  // You can skip this step if you don't care about matching within a location.
-  //
-  // `data` needs to be an Object indexed on a 'tree/key/value' path.
-  // (e.g. cache filled by `fileTree.read` or data found in `dist/nsi.json`)
-  // {
-  //    'brands/amenity/bank': { properties: {}, items: [ {}, {}, … ] },
-  //    'brands/amenity/bar':  { properties: {}, items: [ {}, {}, … ] },
-  //    …
-  // }
-  //
-  buildLocationIndex(data: Record<string, any>, loco: LocationConflation): void {
-    const that = this;
-    if (that.locationIndex) return;   // it was built already
+  /**
+   * Registers every item's `locationSet` with the supplied {@link LocationConflation}
+   * instance so that {@link match} can do location-aware filtering.  This is optional —
+   * skip it if you don't need location-aware matching.
+   *
+   * Under the hood this just calls `loco.registerLocationSets(items)`, which:
+   *   - assigns `item.locationSetID` in place (e.g. `'+[Q30]'`),
+   *   - builds an inverted spatial index without resolving combined polygons,
+   *   - is tolerant of bad/empty locationSets (falls back to world).
+   *
+   * `data` must be an object keyed by `tree/key/value` paths (same format as
+   * {@link buildMatchIndex}).
+   *
+   * @param data - NSI category data indexed by `tree/key/value` path
+   * @param loco - Optional `LocationConflation` instance used to index locationSets.
+   *   If omitted, a new bare instance is created internally.  Callers that have their
+   *   own configured instance (e.g. with a FeatureCollection of custom `.geojson`
+   *   features) should pass it in so indexing and lookups share the same cache.
+   *   Whichever instance is used, the matcher keeps a reference and delegates
+   *   `locationSetsAt` / `getLocationSetArea` calls to it at match time.
+   */
+  buildLocationIndex(data: NsiData, loco?: LocationResolver): void {
+    loco = loco ?? new LocationConflation();
+    this.loco = loco;
 
-    that.itemLocation = new Map();
-    that.locationSets = new Map();
+    const itemLocationSetID = new Map<string, LocationSetID>();
+    this.itemLocationSetID = itemLocationSetID;
 
-    Object.keys(data).forEach(tkv => {
+    for (const tkv of Object.keys(data) as NsiPath[]) {
       const items = data[tkv].items;
-      if (!Array.isArray(items) || !items.length) return;
-
-      items.forEach(item => {
-        if (that.itemLocation.has(item.id)) return;   // we've seen item id already - shouldn't be possible?
-
-        let resolved;
-        try {
-          resolved = loco.resolveLocationSet(item.locationSet);   // resolve a feature for this locationSet
-        } catch (err: unknown) {
-          const message = (err instanceof Error) ? err.message : err;
-          console.warn(`buildLocationIndex: ${message}`);     // couldn't resolve
-        }
-        if (!resolved || !resolved.id) return;
-
-        that.itemLocation.set(item.id, resolved.id);      // link it to the item
-        if (that.locationSets.has(resolved.id)) return;   // we've seen this locationSet feature before..
-
-        // First time seeing this locationSet feature, make a copy and add to locationSet cache..
-        const feature = _cloneDeep(resolved.feature);
-        feature.id = resolved.id;      // Important: always use the locationSet `id` (`+[Q30]`), not the feature `id` (`Q30`)
-        feature.properties.id = resolved.id;
-
-        if (!feature.geometry.coordinates.length || !feature.properties.area) {
-          console.warn(`buildLocationIndex: locationSet ${resolved.id} for ${item.id} resolves to an empty feature:`);
-          console.warn(JSON.stringify(feature));
-          return;
-        }
-
-        that.locationSets.set(resolved.id, feature);
-      });
-    });
-
-    that.locationIndex = whichPolygon({ type: 'FeatureCollection', features: [...that.locationSets.values()] });
-
-    function _cloneDeep(obj) {
-      return JSON.parse(JSON.stringify(obj));
+      if (!Array.isArray(items) || !items.length) continue;
+      const registered = loco.registerLocationSets(items);
+      for (const item of registered) {
+        itemLocationSetID.set(item.id, item.locationSetID);
+      }
     }
   }
 
 
-  //
-  // `match()`
-  // Pass parts and return an Array of matches.
-  // `k` - key
-  // `v` - value
-  // `n` - namelike
-  // `loc` - optional - [lon,lat] location to search
-  //
-  // 1. If the [k,v,n] tuple matches a canonical item…
-  // Return an Array of match results.
-  // Each result will include the area in km² that the item is valid.
-  //
-  // Order of results:
-  // Primary ordering will be on the "match" column:
-  //   "primary" - where the query matches the `name` tag, followed by
-  //   "alternate" - where the query matches an alternate name tag (e.g. short_name, brand, operator, etc)
-  // Secondary ordering will be on the "area" column:
-  //   "area descending" if no location was provided, (worldwide before local)
-  //   "area ascending" if location was provided (local before worldwide)
-  //
-  // [
-  //   { match: 'primary',   itemID: String,  area: Number,  kv: String,  nsimple: String },
-  //   { match: 'primary',   itemID: String,  area: Number,  kv: String,  nsimple: String },
-  //   { match: 'alternate', itemID: String,  area: Number,  kv: String,  nsimple: String },
-  //   { match: 'alternate', itemID: String,  area: Number,  kv: String,  nsimple: String },
-  //   …
-  // ]
-  //
-  // -or-
-  //
-  // 2. If the [k,v,n] tuple matches an exclude pattern…
-  // Return an Array with a single exclude result, either
-  //
-  // [ { match: 'excludeGeneric', pattern: String,  kv: String } ]  // "generic" e.g. "Food Court"
-  //   or
-  // [ { match: 'excludeNamed', pattern: String,  kv: String } ]    // "named", e.g. "Kebabai"
-  //
-  // About results
-  //   "generic" - a generic word that is probably not really a name.
-  //     For these, iD should warn the user "Hey don't put 'food court' in the name tag".
-  //   "named" - a real name like "Kebabai" that is just common, but not a brand.
-  //     For these, iD should just let it be. We don't include these in NSI, but we don't want to nag users about it either.
-  //
-  // -or-
-  //
-  // 3. If the [k,v,n] tuple matches nothing of any kind, return `null`
-  //
-  //
-  match(k: string, v: string, n: string, loc?: Vec2): Array<Hit> | null {
-    const that = this;
-    if (!that.matchIndex) {
+  /**
+   * Matches a `[key, value, name]` tuple against the index and returns results.
+   *
+   * **Case 1 — canonical match:**
+   * Returns an array of {@link Hit} objects sorted by match quality:
+   *   - `"primary"` hits (matches `name` tag) come first,
+   *   - `"alternate"` hits (matches `alt_name`, `brand`, etc.) come second.
+   *
+   * Within each group, results are sorted by area:
+   *   - **area descending** (worldwide → local) when no `loc` is given,
+   *   - **area ascending** (local → worldwide) when `loc` is given.
+   *
+   * Each hit includes the item's `area` in km².
+   *
+   * **Case 2 — exclude match:**
+   * Returns a single-element array with either:
+   *   - `{ match: 'excludeGeneric', pattern, kv }` — a generic word (e.g. "Food Court")
+   *     that is probably not a real name.
+   *   - `{ match: 'excludeNamed', pattern, kv }` — a real but common name (e.g. "Kebabai")
+   *     that is not a brand.
+   *
+   * **Case 3 — no match:**
+   * Returns `null`.
+   *
+   * @param   k   - OSM key (e.g. `"amenity"`)
+   * @param   v   - OSM value (e.g. `"bank"`)
+   * @param   n   - A name-like string to look up (e.g. `"Wells Fargo"`)
+   * @param   loc - Optional `[lon, lat]` coordinate to restrict results by location
+   * @returns An array of {@link Hit} results, or `null` if nothing matched.
+   * @throws  {Error} If the match index has not been built yet.
+   */
+  match(k: string, v: string, n: string, loc?: Vec2): Array<MatchHit> | null {
+    if (!this.matchIndex) {
       throw new Error('match:  matchIndex not built.');
     }
+    const matchIndex = this.matchIndex;
+    const loco = this.loco;
+    const itemLocationSetID = this.itemLocationSetID;
 
-    // If we were supplied a location, and a that.locationIndex has been set up,
-    // get the locationSets that are valid there so we can filter results.
-    let matchLocations;
-    if (Array.isArray(loc) && that.locationIndex) {
-      // which-polygon query returns an array of GeoJSON properties, pass true to return all results
-      matchLocations = that.locationIndex([loc[0], loc[1], loc[0], loc[1]], true);
+    // If we were supplied a location, and the location index has been set up,
+    // get the locationSetIDs that are valid there so we can filter results.
+    let validHere: Map<LocationSetID, number> | null = null;
+    if (Array.isArray(loc) && loco) {
+      validHere = loco.locationSetsAt(loc);
     }
 
     const nsimple = simplify(n);
 
     const seen = new Set();
-    const results: Array<Hit> = [];
-    gatherResults('primary');
-    gatherResults('alternate');
-    if (results.length) return results;
+    const results: Array<MatchHit> = [];
 
-    gatherResults('exclude');
-    return results.length ? results : null;
+    // Sort smaller (more local) locations first.
+    const byAreaAscending = (hitA: MatchHit, hitB: MatchHit): number => {
+      return (hitA.area || 0) - (hitB.area || 0);
+    };
+    // Sort larger (more worldwide) locations first.
+    const byAreaDescending = (hitA: MatchHit, hitB: MatchHit): number => {
+      return (hitB.area || 0) - (hitA.area || 0);
+    };
 
+    const isValidLocation = (hit: MatchHit) => {
+      if (!validHere || !itemLocationSetID) return true;
+      const locationSetID = itemLocationSetID.get(hit.itemID!);
+      return locationSetID ? validHere.has(locationSetID) : false;
+    };
 
-    function gatherResults(which: string): void {
-      // First try an exact match on k/v
-      const kv = `${k}/${v}`;
-      let didMatch = tryMatch(which, kv);
-      if (didMatch) return;
-
-      // If that didn't work, look in match groups for other pairs considered equivalent to k/v..
-      for (const mg in matchGroups) {
-        const matchGroup = matchGroups[mg];
-        const inGroup = matchGroup.some(otherkv => otherkv === kv);
-        if (!inGroup) continue;
-
-        for (const otherkv of matchGroup) {
-          if (otherkv === kv) continue;  // skip self
-          didMatch = tryMatch(which, otherkv);
-          if (didMatch) return;
-        }
-      }
-
-      // If finished 'exclude' pass and still haven't matched anything, try the global `genericWords.json` patterns
-      if (which === 'exclude') {
-        const regex = [...that.genericWords.values()].find(regex => regex.test(n));
-        if (regex) {
-          results.push({ match: 'excludeGeneric', pattern: String(regex) });  // note no `branch`, no `kv`
-          return;
-        }
-      }
-    }
-
-    function tryMatch(which: string, kv: string): boolean {
-      const branch = that.matchIndex.get(kv);
+    const tryMatch = (which: 'primary' | 'alternate' | 'exclude', kv: string): boolean => {
+      const branch = matchIndex.get(kv);
       if (!branch) return false;
 
       if (which === 'exclude') {  // Test name `n` against named and generic exclude patterns
@@ -533,12 +471,14 @@ export class Matcher {
 
       // If we get here, we matched something..
       // Prepare the results, calculate areas (if location index was set up)
-      let hits: Array<Hit> = [];
+      let hits: Array<MatchHit> = [];
       for (const itemID of [...leaf]) {
         let area = Infinity;
-        if (that.itemLocation && that.locationSets) {
-          const location = that.locationSets.get(that.itemLocation.get(itemID));
-          area = (location && location.properties.area) || Infinity;
+        if (loco && itemLocationSetID) {
+          const setID = itemLocationSetID.get(itemID);
+          if (setID) {
+            area = loco.getLocationSetArea(setID) ?? Infinity;
+          }
         }
         hits.push({ match: which, itemID: itemID, area: area, kv: kv, nsimple: nsimple });
       }
@@ -546,7 +486,7 @@ export class Matcher {
       let sortFn = byAreaDescending;
 
       // Filter the match to include only results valid in the requested `loc`..
-      if (matchLocations) {
+      if (validHere) {
         hits = hits.filter(isValidLocation);
         sortFn = byAreaAscending;
       }
@@ -554,40 +494,58 @@ export class Matcher {
       if (!hits.length) return false;
 
       // push results
-      hits.sort(sortFn).forEach(hit => {
-        if (seen.has(hit.itemID)) return;
+      for (const hit of hits.sort(sortFn)) {
+        if (seen.has(hit.itemID)) continue;
         seen.add(hit.itemID);
         results.push(hit);
-      });
+      }
 
       return true;
+    };
 
+    const gatherResults = (which: 'primary' | 'alternate' | 'exclude'): void => {
+      // First try an exact match on k/v
+      const kv = `${k}/${v}`;
+      let didMatch = tryMatch(which, kv);
+      if (didMatch) return;
 
-      function isValidLocation(hit: Hit): boolean {
-        if (!that.itemLocation) return true;
-        return matchLocations.find(props => props.id === that.itemLocation.get(hit.itemID));
+      // If that didn't work, look in match groups for other pairs considered equivalent to k/v..
+      for (const matchGroup of Object.values(matchGroups)) {
+        const inGroup = matchGroup.some(otherkv => otherkv === kv);
+        if (!inGroup) continue;
+
+        for (const otherkv of matchGroup) {
+          if (otherkv === kv) continue;  // skip self
+          didMatch = tryMatch(which, otherkv);
+          if (didMatch) return;
+        }
       }
-      // Sort smaller (more local) locations first.
-      function byAreaAscending(hitA: Hit, hitB: Hit): number {
-        const areaA = hitA.area || 0;
-        const areaB = hitB.area || 0;
-        return areaA - areaB;
+
+      // If finished 'exclude' pass and still haven't matched anything, try the global `genericWords.json` patterns
+      if (which === 'exclude') {
+        const regex = [...this.genericWords.values()].find(regex => regex.test(n));
+        if (regex) {
+          results.push({ match: 'excludeGeneric', pattern: String(regex) });  // note no `branch`, no `kv`
+          return;
+        }
       }
-      // Sort larger (more worldwide) locations first.
-      function byAreaDescending(hitA: Hit, hitB: Hit): number {
-        const areaA = hitA.area || 0;
-        const areaB = hitB.area || 0;
-        return areaB - areaA;
-      }
-    }
+    };
+
+    gatherResults('primary');
+    gatherResults('alternate');
+    if (results.length) return results;
+
+    gatherResults('exclude');
+    return results.length ? results : null;
   }
 
 
-  //
-  // `getWarnings()`
-  // Return any warnings discovered when buiding the index.
-  // (currently this does nothing)
-  //
+  /**
+   * Returns any warnings discovered while building the match index
+   * (e.g. duplicate cache keys across trees).
+   *
+   * @returns An array of warning message strings (may be empty).
+   */
   getWarnings(): Array<string> {
     return this.warnings;
   }

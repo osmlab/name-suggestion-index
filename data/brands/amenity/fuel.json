@@ -187,6 +187,18 @@
       }
     },
     {
+      "displayName": "Agri Go Fuel",
+      "id": "agrigofuel-6cdea6",
+      "locationSet": {"include": ["nl"]},
+      "matchNames": ["agrisneltank"],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Agri Go Fuel",
+        "brand:wikidata": "Q131581029",
+        "name": "Agri Go Fuel"
+      }
+    },
+    {
       "displayName": "Agrola",
       "id": "agrola-27a80f",
       "locationSet": {"include": ["ch"]},
@@ -1473,8 +1485,11 @@
     },
     {
       "displayName": "Circle K",
-      "id": "circlek-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "circlek-bcd6e0",
+      "locationSet": {
+        "include": ["001"],
+        "exclude": ["de"]
+      },
       "matchNames": ["circle k canada"],
       "tags": {
         "amenity": "fuel",
@@ -1938,6 +1953,22 @@
       }
     },
     {
+      "displayName": "Duck Thru",
+      "id": "duckthru-6c8513",
+      "locationSet": {
+        "include": [
+          "us-nc.geojson",
+          "us-va.geojson"
+        ]
+      },
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Duck Thru",
+        "brand:wikidata": "Q139631383",
+        "name": "Duck Thru"
+      }
+    },
+    {
       "displayName": "Dyneff",
       "id": "dyneff-addd1b",
       "locationSet": {"include": ["es", "fr"]},
@@ -2002,6 +2033,17 @@
         "name": "EG Australia",
         "operator": "EG Australia",
         "operator:wikidata": "Q5023980"
+      }
+    },
+    {
+      "displayName": "EG On the Move",
+      "id": "egonthemove-20aed2",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "EG On the Move",
+        "brand:wikidata": "Q130223576",
+        "name": "EG On the Move"
       }
     },
     {
@@ -2132,17 +2174,6 @@
       "displayName": "ENEOS",
       "id": "eneos-fbe2e4",
       "locationSet": {"include": ["jp"]},
-      "matchNames": [
-        "esso",
-        "mobil",
-        "tonen general",
-        "エッソ",
-        "エッソ石油",
-        "エネオス エネジェット",
-        "ゼネラル",
-        "ゼネラル石油",
-        "モービル"
-      ],
       "tags": {
         "amenity": "fuel",
         "brand": "ENEOS",
@@ -2152,6 +2183,36 @@
         "name": "ENEOS",
         "name:en": "ENEOS",
         "name:ja": "エネオス"
+      }
+    },
+    {
+      "displayName": "ENEOS EneJet",
+      "id": "eneosenejet-fbe2e4",
+      "locationSet": {"include": ["jp"]},
+      "matchNames": [
+        "enejet",
+        "esso",
+        "express",
+        "mobil",
+        "tonen general",
+        "エクスプレス",
+        "エッソ",
+        "エッソ石油",
+        "エネジェット",
+        "ゼネラル",
+        "ゼネラル石油",
+        "モービル",
+        "東燃ゼネラル石油"
+      ],
+      "tags": {
+        "amenity": "fuel",
+        "brand": "ENEOS EneJet",
+        "brand:en": "ENEOS EneJet",
+        "brand:ja": "エネオス エネジェット",
+        "brand:wikidata": "Q11289795",
+        "name": "ENEOS EneJet",
+        "name:en": "ENEOS EneJet",
+        "name:ja": "エネオス エネジェット"
       }
     },
     {
@@ -3176,6 +3237,17 @@
       }
     },
     {
+      "displayName": "Hass",
+      "id": "hass-1cae22",
+      "locationSet": {"include": ["ke"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Hass",
+        "brand:wikidata": "Q30587816",
+        "name": "Hass"
+      }
+    },
+    {
       "displayName": "Hele",
       "id": "hele-45054e",
       "locationSet": {"include": ["us-hi"]},
@@ -3279,15 +3351,16 @@
     },
     {
       "displayName": "HP",
-      "id": "hp-989925",
+      "id": "hindustanpetroleum-989925",
       "locationSet": {"include": ["in"]},
       "matchNames": ["hp petrol pump"],
       "tags": {
         "amenity": "fuel",
         "brand": "Hindustan Petroleum",
         "brand:wikidata": "Q1619375",
-        "name": "HP",
-        "official_name": "Hindustan Petroleum"
+        "name": "Hindustan Petroleum",
+        "official_name": "Hindustan Petroleum",
+        "short_name": "HP"
       }
     },
     {
@@ -4284,8 +4357,17 @@
     },
     {
       "displayName": "MOL",
-      "id": "mol-b3d110",
-      "locationSet": {"include": ["001"]},
+      "id": "mol-f55142",
+      "locationSet": {
+        "include": [
+          "cz",
+          "hu",
+          "pl",
+          "ro",
+          "rs",
+          "si"
+        ]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "MOL",
@@ -4647,7 +4729,7 @@
     },
     {
       "displayName": "OMV",
-      "id": "omv-b3d110",
+      "id": "omv-af9909",
       "locationSet": {
         "include": [
           "at",
@@ -4656,10 +4738,10 @@
           "hu",
           "ro",
           "rs",
-          "sk",
+          "sk"
         ]
       },
-      "matchNames": ["OMB"],
+      "matchNames": ["omb"],
       "tags": {
         "amenity": "fuel",
         "brand": "OMV",
@@ -4701,9 +4783,16 @@
     },
     {
       "displayName": "Orlen",
-      "id": "orlen-5730fb",
+      "id": "orlen-712fd1",
       "locationSet": {
-        "include": ["cz", "de", "hu", "lt", "pl", "sk"]
+        "include": [
+          "cz",
+          "de",
+          "hu",
+          "lt",
+          "pl",
+          "sk"
+        ]
       },
       "tags": {
         "amenity": "fuel",
@@ -6126,6 +6215,17 @@
       }
     },
     {
+      "displayName": "Solo Oil",
+      "id": "solooil-9ed9c0",
+      "locationSet": {"include": ["au"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Solo Oil",
+        "brand:wikidata": "Q115517074",
+        "name": "Solo Oil"
+      }
+    },
+    {
       "displayName": "Sonangol",
       "id": "sonangol-a1d251",
       "locationSet": {"include": ["ao"]},
@@ -6195,6 +6295,18 @@
       }
     },
     {
+      "displayName": "SPP CNG",
+      "id": "sppcng-11d3b6",
+      "locationSet": {"include": ["sk"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "SPP CNG",
+        "brand:wikidata": "Q138637571",
+        "fuel:cng": "yes",
+        "name": "SPP CNG"
+      }
+    },
+    {
       "displayName": "Sprint",
       "id": "sprint-495186",
       "locationSet": {"include": ["de"]},
@@ -6207,8 +6319,10 @@
     },
     {
       "displayName": "St1",
-      "id": "st1-cf1d83",
-      "locationSet": {"include": ["fi", "se"]},
+      "id": "st1-c8bbc2",
+      "locationSet": {
+        "include": ["fi", "no", "se"]
+      },
       "tags": {
         "amenity": "fuel",
         "brand": "St1",
@@ -6280,16 +6394,9 @@
     },
     {
       "displayName": "Statoil",
-      "id": "statoil-442e61",
+      "id": "statoil-ac665c",
       "locationSet": {
-        "include": [
-          "dk",
-          "ee",
-          "ie",
-          "pl",
-          "ru",
-          "se"
-        ]
+        "include": ["dk", "ee", "ie", "pl", "se"]
       },
       "tags": {
         "amenity": "fuel",
@@ -7282,6 +7389,17 @@
       }
     },
     {
+      "displayName": "Welcome Break",
+      "id": "welcomebreak-20aed2",
+      "locationSet": {"include": ["gb"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "Welcome Break",
+        "brand:wikidata": "Q7980609",
+        "name": "Welcome Break"
+      }
+    },
+    {
       "displayName": "Wesco",
       "id": "wesco-c5cf43",
       "locationSet": {"include": ["us"]},
@@ -8071,6 +8189,7 @@
         "name": "გალფი",
         "name:en": "Gulf",
         "name:ka": "გალფი",
+        "name:ru": "Галф",
         "operator": "სან პეტროლიუმ ჯორჯია",
         "operator:en": "Sun Petroleum Georgia",
         "operator:ka": "სან პეტროლიუმ ჯორჯია"
@@ -8105,26 +8224,44 @@
         "brand:wikidata": "Q131470032",
         "name": "ეკოპეტროლი",
         "name:en": "Ekopetrol",
-        "name:ka": "ეკოპეტროლი"
+        "name:ka": "ეკოპეტროლი",
+        "name:ru": "Экопетрол"
       }
     },
     {
-      "displayName": "ვისოლ",
+      "displayName": "ვისოლი",
       "id": "wissol-7489db",
       "locationSet": {"include": ["ge"]},
+      "matchNames": ["ვისოლ"],
       "tags": {
         "amenity": "fuel",
-        "brand": "ვისოლ",
-        "brand:en": "WISSOL",
-        "brand:ka": "ვისოლ",
+        "brand": "ვისოლი",
+        "brand:en": "Wissol",
+        "brand:ka": "ვისოლი",
         "brand:wikidata": "Q8027737",
-        "name": "ვისოლ",
+        "name": "ვისოლი",
         "name:en": "Wissol",
-        "name:ka": "ვისოლ",
+        "name:ka": "ვისოლი",
+        "name:ru": "Виссол",
         "operator": "ვისოლ პეტროლიუმ ჯორჯია",
         "operator:en": "Wissol Petroleum Georgia",
         "operator:ka": "ვისოლ პეტროლიუმ ჯორჯია",
         "operator:wikidata": "Q8027737"
+      }
+    },
+    {
+      "displayName": "თოფიჩი",
+      "id": "topichi-7489db",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "თოფიჩი",
+        "brand:en": "Topichi",
+        "brand:ka": "თოფიჩი",
+        "name": "თოფიჩი",
+        "name:en": "Topichi",
+        "name:ka": "თოფიჩი",
+        "name:ru": "Топичи"
       }
     },
     {
@@ -8145,6 +8282,21 @@
         "operator": "შპს ლუკოილ ჯორჯია",
         "operator:en": "Lukoil Georgia",
         "operator:ka": "შპს ლუკოილ ჯორჯია"
+      }
+    },
+    {
+      "displayName": "მ-ოილი",
+      "id": "moil-7489db",
+      "locationSet": {"include": ["ge"]},
+      "tags": {
+        "amenity": "fuel",
+        "brand": "მ-ოილი",
+        "brand:en": "M-Oil",
+        "brand:ka": "მ-ოილი",
+        "name": "მ-ოილი",
+        "name:en": "M-Oil",
+        "name:ka": "მ-ოილი",
+        "name:ru": "М-Ойл"
       }
     },
     {
@@ -8193,7 +8345,8 @@
         "brand:wikidata": "Q131470029",
         "name": "პორტალი",
         "name:en": "Portal",
-        "name:ka": "პორტალი"
+        "name:ka": "პორტალი",
+        "name:ru": "Портал"
       }
     },
     {
@@ -8208,7 +8361,8 @@
         "brand:wikidata": "Q1788862",
         "name": "რომპეტროლი",
         "name:en": "Rompetrol",
-        "name:ka": "რომპეტროლი"
+        "name:ka": "რომპეტროლი",
+        "name:ru": "Ромпетрол"
       }
     },
     {
@@ -8225,6 +8379,7 @@
         "name": "სოკარი",
         "name:en": "Socar",
         "name:ka": "სოკარი",
+        "name:ru": "Сокар",
         "operator": "სოკარ ჯორჯია პეტროლეუმი",
         "operator:en": "SOCAR Georgia Petroleum",
         "operator:ka": "სოკარ ჯორჯია პეტროლეუმი"
@@ -8242,7 +8397,8 @@
         "brand:wikidata": "Q131470028",
         "name": "ქონექთი",
         "name:en": "Connect",
-        "name:ka": "ქონექთი"
+        "name:ka": "ქონექთი",
+        "name:ru": "Коннект"
       }
     },
     {

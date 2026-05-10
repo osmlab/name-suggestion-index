@@ -1,21 +1,22 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from 'bun:test';
-import { strict as assert } from 'bun:assert';
+import assert from 'node:assert/strict';
 import LocationConflation from '@rapideditor/location-conflation';
 import { Matcher } from '../src/nsi.ts';
-
-const data = await Bun.file('./test/matcher.data.json').json();
+import type { NsiData } from '../src/nsi.ts';
+import * as sample from './matcher.sample.ts';
 
 // We use LocationConflation for validating and processing the locationSets
 const featureCollection = await Bun.file('./dist/json/featureCollection.json').json();
 const loco = new LocationConflation(featureCollection);
 
-const USA = [-98.58, 39.828];
-const QUEBEC = [-71.208, 46.814];
-const HONGKONG = [114.19, 22.33];
+const USA: [number, number] = [-98.58, 39.828];
+const QUEBEC: [number, number] = [-71.208, 46.814];
+const HONGKONG: [number, number] = [114.19, 22.33];
 
 
 describe('index building', () => {
-  let _matcher, _warn;
+  let _matcher: Matcher;
+  let _warn: typeof console.warn;
 
   beforeAll(() => {
     _warn = console.warn;
@@ -31,21 +32,21 @@ describe('index building', () => {
   });
 
   afterEach(() => {
-    _matcher = null;
+    _matcher = null as unknown as Matcher;
   });
 
   it('buildMatchIndex does not throw', () => {
-    assert.doesNotThrow(() => _matcher.buildMatchIndex(data));
+    assert.doesNotThrow(() => _matcher.buildMatchIndex(sample.data));
   });
 
   it('buildLocationIndex does not throw', () => {
-    assert.doesNotThrow(() => _matcher.buildLocationIndex(data, loco));
+    assert.doesNotThrow(() => _matcher.buildLocationIndex(sample.data, loco));
   });
 
   it('buildLocationIndex does not throw even with unrecognized locationSet', () => {
-    const bad = {
+    const bad: NsiData = {
       'brands/amenity/fast_food': {
-        properties: { path: 'brands/amenity/fast_food' },
+        properties: { path: 'brands/amenity/fast_food', exclude: {} },
         items: [
           {
             displayName: 'Garbage',
@@ -60,9 +61,9 @@ describe('index building', () => {
   });
 
   it('buildLocationIndex does not throw even with empty locationSet', () => {
-    const bad = {
+    const bad: NsiData = {
       'brands/amenity/fast_food': {
-        properties: { path: 'brands/amenity/fast_food' },
+        properties: { path: 'brands/amenity/fast_food', exclude: {} },
         items: [
           {
             displayName: 'Garbage',
@@ -83,19 +84,19 @@ describe('index building', () => {
 
 
 describe('match', () => {
-  let _matcher;
+  let _matcher: Matcher;
 
   beforeAll(() => {
     _matcher = new Matcher();
-    _matcher.buildMatchIndex(data);
-    _matcher.buildLocationIndex(data, loco);
+    _matcher.buildMatchIndex(sample.data);
+    _matcher.buildLocationIndex(sample.data, loco);
   });
 
   // In practice, duplidate ids can't happen anymore.
   // We should find a better way to flag potential duplicates in the index.
   it('getWarnings', () => {
     const warnings  = _matcher.getWarnings();
-    assert.ok(warnings instanceof Array);
+    assert.ok(warnings);
     assert.equal(warnings.length, 0);
   });
 
@@ -107,7 +108,7 @@ describe('match', () => {
   describe('excluded/generic name matching', () => {
     it('matches excluded generic pattern with main tagpair', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Food Court');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
       assert.equal(result[0].pattern, '/^(fast food|food court)$/i');
@@ -116,7 +117,7 @@ describe('match', () => {
 
     it('match excluded generic pattern with alternate tagpair in matchGroups', () => {
       const result = _matcher.match('amenity', 'cafe', 'Food Court');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
       assert.equal(result[0].pattern, '/^(fast food|food court)$/i');
@@ -125,7 +126,7 @@ describe('match', () => {
 
     it('match globally excluded generic pattern from genericWords.json', () => {
       const result = _matcher.match('amenity', 'cafe', '???');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'excludeGeneric');      // 'excludeGeneric' = matched a generic exclude pattern
       assert.equal(result[0].pattern, '/^\\?+$/i');
@@ -134,7 +135,7 @@ describe('match', () => {
 
     it('matches excluded name pattern with main tagpair', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Kebabai');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'excludeNamed');      // 'excludeNamed' = matched a named exclude pattern
       assert.equal(result[0].pattern, '/^(city (grill|pizza)|kebabai)$/i');
@@ -143,7 +144,7 @@ describe('match', () => {
 
     it('match excluded name pattern with alternate tagpair in matchGroups', () => {
       const result = _matcher.match('amenity', 'cafe', 'Kebabai');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'excludeNamed');      // 'excludeNamed' = matched a named exclude pattern
       assert.equal(result[0].pattern, '/^(city (grill|pizza)|kebabai)$/i');
@@ -154,19 +155,19 @@ describe('match', () => {
   describe('basic matching, single result', () => {
     it('matches exact key/value/name', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Honey Baked Ham');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');      // 'primary' = matched the `name` tag
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
-      assert.ok(result[0].area > 21000000);          // usa area ≈ 21817019 km²
-      assert.ok(result[0].area < 22000000);
+      assert.ok(result[0].area! > 21000000);          // usa area ≈ 21817019 km²
+      assert.ok(result[0].area! < 22000000);
       assert.equal(result[0].kv, 'amenity/fast_food');
       assert.equal(result[0].nsimple, 'honeybakedham');
     });
 
     it('match on `official_name` tag', () => {
       const result = _matcher.match('amenity', 'fast_food', 'The Honey Baked Ham Company');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');    // 'alternate' = an alternate tag like `official_name`
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -176,7 +177,7 @@ describe('match', () => {
 
     it('match on local `name:*` tag', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Honig Bebackener Schinken');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');      // localized `name:*` tags are 'primary' matches too
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -186,7 +187,7 @@ describe('match', () => {
 
     it('match on `*:wikidata` tag', () => {
       const result = _matcher.match('amenity', 'fast_food', 'Q5893363');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');    // `brand:wikidata` qid values are 'alternate' matches too
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -201,7 +202,7 @@ describe('match', () => {
 
     it('fuzzy match name', () => {
       const result = _matcher.match('amenity', 'fast_food', 'HoNeyBaKed\thäm!');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -211,7 +212,7 @@ describe('match', () => {
 
     it('match alternate tagpairs in matchTags', () => {
       const result = _matcher.match('shop', 'butcher', 'Honey Baked Ham');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -221,7 +222,7 @@ describe('match', () => {
 
     it('match alternate names in matchNames', () => {
       const result = _matcher.match('amenity', 'fast_food', 'honey baked ham company');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');             // 'alternate' = matchNames are 'alternate' matches
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -231,7 +232,7 @@ describe('match', () => {
 
     it('match alternate tagpairs in matchGroups', () => {
       const result = _matcher.match('amenity', 'cafe', 'honey baked ham');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -241,7 +242,7 @@ describe('match', () => {
 
     it('match generic tagpair amenity/yes', () => {
       const result = _matcher.match('amenity', 'yes', 'honey baked ham');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -251,7 +252,7 @@ describe('match', () => {
 
     it('match generic tagpair shop/yes', () => {
       const result = _matcher.match('shop', 'yes', 'honey baked ham');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');        // the name still makes this a 'primary' match
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -261,7 +262,7 @@ describe('match', () => {
 
     it('match generic tagpair building/yes', () => {
       const result = _matcher.match('building', 'yes', 'honey baked ham');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');           // the name still makes this a 'primary' match
       assert.equal(result[0].itemID, 'honeybakedham-4d2ff4');
@@ -274,34 +275,34 @@ describe('match', () => {
   describe('advanced matching, multiple result', () => {
     it('matches KFC with unspecified location, results sort by area descending', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 3);
 
       assert.equal(result[0].match, 'primary');            // 'primary' = matched the `name` tag
       assert.equal(result[0].itemID, 'kfc-658eea');        // KFC worldwide
-      assert.ok(result[0].area > 510000000);               // world area ≈ 511207893 km²
-      assert.ok(result[0].area < 520000000);
+      assert.ok(result[0].area! > 510000000);               // world area ≈ 511207893 km²
+      assert.ok(result[0].area! < 520000000);
       assert.equal(result[0].kv, 'amenity/fast_food');
       assert.equal(result[0].nsimple, 'kfc');
 
       assert.equal(result[1].match, 'primary');            // 'primary' = matched the `name:en` tag
       assert.equal(result[1].itemID, 'kfc-1ff19c');        // KFC China
-      assert.ok(result[1].area > 10000000);                // china area ≈ 10386875 km²
-      assert.ok(result[1].area < 11000000);
+      assert.ok(result[1].area! > 10000000);                // china area ≈ 10386875 km²
+      assert.ok(result[1].area! < 11000000);
       assert.equal(result[1].kv, 'amenity/fast_food');
       assert.equal(result[1].nsimple, 'kfc');
 
       assert.equal(result[2].match, 'primary');            // 'primary' = matched the `name:en` tag
       assert.equal(result[2].itemID, 'pfk-a54c14');        // KFC Quebec ("PFK")
-      assert.ok(result[2].area > 1800000);                 // quebec area ≈ 1821913 km²
-      assert.ok(result[2].area < 1900000);
+      assert.ok(result[2].area! > 1800000);                 // quebec area ≈ 1821913 km²
+      assert.ok(result[2].area! < 1900000);
       assert.equal(result[2].kv, 'amenity/fast_food');
       assert.equal(result[2].nsimple, 'kfc');
     });
 
     it('matches KFC in USA', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC', USA);
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');        // 'primary' = matched the `name` tag
       assert.equal(result[0].itemID, 'kfc-658eea');    // KFC worldwide
@@ -319,7 +320,7 @@ describe('match', () => {
 
     it('matches PFK in Quebec', () => {
       const result = _matcher.match('amenity', 'fast_food', 'PFK', QUEBEC);
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');        // 'primary' = matched the `name` tag
       assert.equal(result[0].itemID, 'pfk-a54c14');
@@ -327,7 +328,7 @@ describe('match', () => {
 
     it('matches KFC in Quebec, but sorts PFK first', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC', QUEBEC);
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 2);
       assert.equal(result[0].match, 'primary');        // 'primary' = matched the `name:en` tag
       assert.equal(result[0].itemID, 'pfk-a54c14');    // quebec area = 1821913 km²
@@ -342,7 +343,7 @@ describe('match', () => {
 
     it('matches 肯德基 in China', () => {
       const result = _matcher.match('amenity', 'fast_food', '肯德基', HONGKONG);
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');        // 'primary' = matched the `name` tag
       assert.equal(result[0].itemID, 'kfc-1ff19c');
@@ -350,7 +351,7 @@ describe('match', () => {
 
     it('matches KFC in China, but sorts 肯德基 first', () => {
       const result = _matcher.match('amenity', 'fast_food', 'KFC', HONGKONG);
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 2);
       assert.equal(result[0].match, 'primary');        // 'primary' = matched the `name:en` tag
       assert.equal(result[0].itemID, 'kfc-1ff19c');    // china area = 10386875 km²
@@ -365,32 +366,32 @@ describe('match', () => {
 
     it('matches Gap with unspecified location, sorts primary before alternate', () => {
       const result = _matcher.match('shop', 'clothes', 'Gap');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 2);
 
       assert.equal(result[0].match, 'primary');            // 'primary' = matched the `name` tag
       assert.equal(result[0].itemID, 'gap-3937bd');        // Gap worldwide
-      assert.ok(result[0].area > 510000000);               // world area ≈ 511207893 km²
-      assert.ok(result[0].area < 520000000);
+      assert.ok(result[0].area! > 510000000);               // world area ≈ 511207893 km²
+      assert.ok(result[0].area! < 520000000);
       assert.equal(result[0].kv, 'shop/clothes');
       assert.equal(result[0].nsimple, 'gap');
 
       assert.equal(result[1].match, 'alternate');          // 'alternate' = matched the `brand` tag
       assert.equal(result[1].itemID, 'babygap-0a21d9');    // Baby Gap
-      assert.ok(result[1].area > 21000000);                // usa area ≈ 21817019 km²
-      assert.ok(result[1].area < 22000000);
+      assert.ok(result[1].area! > 21000000);                // usa area ≈ 21817019 km²
+      assert.ok(result[1].area! < 22000000);
       assert.equal(result[1].kv, 'shop/clothes');
       assert.equal(result[1].nsimple, 'gap');
     });
 
     it('matches Baby Gap with unspecified location, sorts primary before alternate', () => {
       const result = _matcher.match('shop', 'clothes', 'Baby Gap');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');            // 'primary' = matched the `name` tag
       assert.equal(result[0].itemID, 'babygap-0a21d9');    // Baby Gap
-      assert.ok(result[0].area > 21000000);                // usa area ≈ 21817019 km²
-      assert.ok(result[0].area < 22000000);
+      assert.ok(result[0].area! > 21000000);                // usa area ≈ 21817019 km²
+      assert.ok(result[0].area! < 22000000);
       assert.equal(result[0].kv, 'shop/clothes');
       assert.equal(result[0].nsimple, 'babygap');
     });
@@ -399,7 +400,7 @@ describe('match', () => {
   describe('nothing bad happens if a k/v category is present in multiple trees', () => {
     it('matches an item from the brands tree', () => {
       const result = _matcher.match('amenity', 'post_office', 'UPS');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');      // 'alternate' = matched the `short_name` tag
       assert.equal(result[0].itemID, 'theupsstore-d4e3fc');
@@ -409,7 +410,7 @@ describe('match', () => {
 
     it('matches an item from the operators tree', () => {
       const result = _matcher.match('amenity', 'post_office', 'USPS');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');      // 'alternate' = matched the `short_name` tag
       assert.equal(result[0].itemID, 'unitedstatespostalservice-b9aa24');
@@ -418,7 +419,7 @@ describe('match', () => {
 
     it('matches a generic from the brands tree', () => {
       const result = _matcher.match('amenity', 'post_office', 'Copyshop');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'excludeNamed');   // 'excludeNamed' = matched a named exclude pattern
       assert.equal(result[0].pattern, '/^copyshop$/i');
@@ -427,7 +428,7 @@ describe('match', () => {
 
     it('matches a generic from the operators tree', () => {
       const result = _matcher.match('amenity', 'post_office', 'Spar');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'excludeNamed');   // 'excludeNamed' = matched a named exclude pattern
       assert.equal(result[0].pattern, '/^spar$/i');
@@ -438,7 +439,7 @@ describe('match', () => {
   describe('transit matching', () => {
     it('match on `network` tag', () => {
       const result = _matcher.match('route', 'train', 'verkehrs und tarifverbund stuttgart');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');      // 'primary' = matched the `network` tag
       assert.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
@@ -448,7 +449,7 @@ describe('match', () => {
 
     it('match on `network:short` tag', () => {
       const result = _matcher.match('route', 'train', 'VVS');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');    // 'alternate' = matched the `network:short` tag
       assert.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
@@ -456,7 +457,7 @@ describe('match', () => {
 
     it('match on `network:guid` tag', () => {
       const result = _matcher.match('route', 'train', 'DE-BW-VVS');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');    // 'alternate' = matched the `network:guid` tag
       assert.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
@@ -464,7 +465,7 @@ describe('match', () => {
 
     it('match on `network:wikidata` tag', () => {
       const result = _matcher.match('route', 'train', 'Q2516108');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');    // 'alternate' = matched the `network:wikidata` tag
       assert.equal(result[0].itemID, 'verkehrsundtarifverbundstuttgart-da20e0');
@@ -485,7 +486,7 @@ describe('match', () => {
   describe('flag matching', () => {
     it('match on `flag:name/subject` tag', () => {
       const result = _matcher.match('man_made', 'flagpole', 'New Zealand');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');    // 'primary' = matched the `flag:name` tag
       assert.equal(result[0].itemID, 'newzealand-e5dc93');
@@ -498,7 +499,7 @@ describe('match', () => {
 
     it('match on `country` tag', () => {
       const result = _matcher.match('man_made', 'flagpole', 'NZ');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');    // 'alternate' = matched the `country` tag
       assert.equal(result[0].itemID, 'newzealand-e5dc93');
@@ -508,7 +509,7 @@ describe('match', () => {
 
     it('match on `flag:wikidata` tag', () => {
       const result = _matcher.match('man_made', 'flagpole', 'Q160260');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');    // 'alternate' = matched the `flag:wikidata` tag
       assert.equal(result[0].itemID, 'newzealand-e5dc93');
@@ -518,7 +519,7 @@ describe('match', () => {
 
     it('match on `subject:wikidata` tag', () => {
       const result = _matcher.match('man_made', 'flagpole', 'Q664');
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'alternate');    // 'alternate' = matched the `subject:wikidata` tag
       assert.equal(result[0].itemID, 'newzealand-e5dc93');
@@ -538,32 +539,32 @@ describe('match', () => {
 
     it('matches state flag of Georgia before country flag of Georgia in USA', () => {
       const result = _matcher.match('man_made', 'flagpole', 'georgia', USA);
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 2);
 
       assert.equal(result[0].match, 'primary');            // 'primary' = matched the `flag:name` tag
       assert.equal(result[0].itemID, 'georgia-85bb3f');    // Georgia, the US state
-      assert.ok(result[0].area > 21000000);                // usa area ≈ 21817019 km²
-      assert.ok(result[0].area < 22000000);
+      assert.ok(result[0].area! > 21000000);                // usa area ≈ 21817019 km²
+      assert.ok(result[0].area! < 22000000);
       assert.equal(result[0].kv, 'man_made/flagpole');
       assert.equal(result[0].nsimple, 'georgia');
 
       assert.equal(result[1].match, 'primary');            // 'primary' = matched the `flag:name` tag
       assert.equal(result[1].itemID, 'georgia-e5dc93');    // Georgia, the country
-      assert.ok(result[1].area > 510000000);               // world area ≈ 511207893 km²
-      assert.ok(result[1].area < 520000000);
+      assert.ok(result[1].area! > 510000000);               // world area ≈ 511207893 km²
+      assert.ok(result[1].area! < 520000000);
       assert.equal(result[1].kv, 'man_made/flagpole');
       assert.equal(result[1].nsimple, 'georgia');
     });
 
     it('matches only country flag of Georgia outside the USA', () => {
       const result = _matcher.match('man_made', 'flagpole', 'georgia', HONGKONG);
-      assert.ok(result instanceof Array);
+      assert.ok(result);
       assert.equal(result.length, 1);
       assert.equal(result[0].match, 'primary');            // 'primary' = matched the `flag:name` tag
       assert.equal(result[0].itemID, 'georgia-e5dc93');    // Georgia, the country
-      assert.ok(result[0].area > 510000000);               // world area ≈ 511207893 km²
-      assert.ok(result[0].area < 520000000);
+      assert.ok(result[0].area! > 510000000);               // world area ≈ 511207893 km²
+      assert.ok(result[0].area! < 520000000);
       assert.equal(result[0].kv, 'man_made/flagpole');
       assert.equal(result[0].nsimple, 'georgia');
     });

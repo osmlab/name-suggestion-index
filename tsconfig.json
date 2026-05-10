@@ -1,18 +1,49 @@
 {
-  "include": ["./src/nsi.ts"],
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "declaration": true,
-    "declarationDir": "./dist/ts",
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true,
+    // Language and Environment
+    "lib": ["ESNext"],
+    "target": "ESNext",
+
+    // Modules
     "module": "ESNext",
+    "moduleDetection": "force",
     "moduleResolution": "bundler",
-    "noEmitOnError": true,
-    "noImplicitAny": false,
-    "outDir": "./dist/ts",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    // Emit — disabled here; see tsconfig.build.json for declaration emit
+    "noEmit": true,
+
+    // Interop
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Type Checking
     "strict": true,
-    "target": "ESNext"
-  }
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
+    "erasableSyntaxOnly": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "include": [
+    "lib/**/*",
+    "scripts/**/*",
+    "src/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

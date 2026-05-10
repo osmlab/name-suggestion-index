@@ -15,6 +15,23 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 [#xxxxx]: https://github.com/osmlab/name-suggestion-index/issues/xxxxx
 -->
 
+# 7.1.YYYYMMDD
+##### 2026-Apr-27
+* ⚠️  Bump to [`@rapideditor/location-conflation`](https://github.com/rapideditor/location-conflation) v3 — downstream consumers must upgrade simultaneously
+* ⚠️ `Matcher.buildLocationIndex(data: NsiData, loco?: LocationConflation)` now expects a `LocationConflation` v3 instance.
+  * Consumers who call `matcher.buildLocationIndex(data, loco)` should now pass in their own configured `LocationConflation` instance so indexing and lookups share the same cache
+  * This eliminates the need for downstream apps (e.g. Rapid) to monkey-patch the matcher to use a shared `LocationConflation` cache!
+  * Removed the `which-polygon` dependency — location lookups are now handled inside `LocationConflation` v3.
+  * Note that the `loco` param is optional — if omitted, the `Matcher` can create its own local `LocationConflation` resolver.
+* New: Preset generating functions are now exported from `name-suggestion-index` as pure, in-memory functions
+  * `buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): BuildIDPresetsResult` - Generates iD presets JSON
+  * `buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): XMLBuilder` - Generated JOSM presets XML
+  * These accept NSI data, source iD presets, wikidata, dissolutions) as arguments — no file I/O, no console output, no input mutation
+  * Suitable for downstream apps (e.g. Rapid) that fetch NSI data on-the-fly and want to generate presets in the browser
+  * `dist.ts` now wraps these functions for the file-writing CLI behavior (we still provide the presets under `dist/presets/` as before)
+* New: Project now provides a complete set of TypeScript types to cover all data structures and file shapes.
+
+
 # 7.0.YYYYMMDD
 ##### 2025-Oct-31
 * Various dependencies updated
@@ -61,3 +78,10 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 [#4906]: https://github.com/osmlab/name-suggestion-index/issues/4906
 [#4924]: https://github.com/osmlab/name-suggestion-index/issues/4924
 [#4964]: https://github.com/osmlab/name-suggestion-index/issues/4964
+
+
+<!-- sync:
+version=1
+source=https://github.com/rapideditor/agent-practices/blob/main/templates/CHANGELOG.md
+instructions="Create only if missing, substituting the project name and repo details for this project; never overwrite the details of an existing changelog."
+-->
