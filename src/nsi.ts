@@ -10,7 +10,9 @@ export type {
 } from '../lib/presets_id.ts';
 
 export type {
-  BuildJOSMPresetsOptions
+  BuildJOSMPresetsOptions,
+  JOSMPresetsSerializer,
+  JOSMPresetsSerializerOptions
 } from '../lib/presets_josm.ts';
 
 export * from '../lib/types.ts';

@@ -1,7 +1,12 @@
-import xmlbuilder2 from 'xmlbuilder2';
+import XMLBuilder from 'fast-xml-builder';
 
-import type { XMLBuilder } from 'xmlbuilder2/lib/interfaces.js';
 import type { DissolvedMap, NsiData, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
+import type { XmlBuilderOptions } from 'fast-xml-builder';
+
+const xmlBuilderOptions = {
+  ignoreAttributes: false,
+  suppressEmptyNode: true
+} satisfies XmlBuilderOptions;
 
 // Imported JSON (will be inlined by bun)
 import treesJSON from '../config/trees.json' with {type: 'json'};
@@ -20,13 +25,72 @@ export interface BuildJOSMPresetsOptions {
   dissolved?: DissolvedMap;
 }
 
+/** Options for {@link JOSMPresetsSerializer.serialize}. */
+export interface JOSMPresetsSerializerOptions {
+  /** If `true`, produce indented, human-readable XML; if absent or `false`, produce compact single-line XML. */
+  prettyPrint?: boolean;
+}
+
+/**
+ * Returned by {@link buildJOSMPresets}. Holds the built-up preset data and can
+ * serialize it to XML on demand, with or without pretty-printing.
+ */
+export interface JOSMPresetsSerializer {
+  /**
+   * Serialize the presets to an XML string beginning with the UTF-8 declaration.
+   * @param opts - Serialization options
+   * @returns An XML string. Pass `{ prettyPrint: true }` for indented output;
+   *          omit or pass `false` for compact single-line output.
+   */
+  serialize(opts?: JOSMPresetsSerializerOptions): string;
+}
+
+interface JOSMKeyXML {
+  '@_key': string;
+  '@_value': string;
+}
+
+interface JOSMItemXML {
+  '@_name': string;
+  '@_type': string;
+  key: JOSMKeyXML[];
+}
+
+interface JOSMBranchGroupXML {
+  '@_name': string;
+  group: JOSMGroupXML[];
+}
+
+interface JOSMLeafGroupXML {
+  '@_name': string;
+  item: JOSMItemXML[];
+}
+
+type JOSMGroupXML = JOSMBranchGroupXML | JOSMLeafGroupXML;
+
+interface JOSMPresetsXML {
+  '?xml': {
+    '@_version': '1.0';
+    '@_encoding': 'UTF-8';
+  };
+  presets: {
+    '@_xmlns': string;
+    '@_author': string;
+    '@_shortdescription': string;
+    '@_description': string;
+    '@_link': string;
+    '@_version': string;
+    group: JOSMBranchGroupXML;
+  };
+}
+
 
 /**
  * Build JOSM tagging presets from NSI data, organised into nested groups
  * by `tree → key → value`.
  *
- * Returns the `xmlbuilder2` root document; the caller chooses how to serialize
- * (e.g. `result.end({ prettyPrint: true })` or `result.end()` for minified).
+ * Returns a {@link JOSMPresetsSerializer}; call `result.serialize({ prettyPrint: true })`
+ * for indented output or `result.serialize()` for compact single-line output.
  *
  * This is a pure function: it does no I/O, performs no console output, and does not
  * mutate any of its inputs.
@@ -34,27 +98,30 @@ export interface BuildJOSMPresetsOptions {
  * @see https://josm.openstreetmap.de/wiki/TaggingPresets
  *
  * @param data - NSI category data indexed by `tree/key/value` path
- * @param opts - Project metadata and the dissolutions map
- * @returns the XML root document
+ * @param opts - Project metadata and optional dissolution map
+ * @returns A serializer that produces either pretty-printed or minified XML
  */
-export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): XMLBuilder {
+export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): JOSMPresetsSerializer {
   const dissolved = opts.dissolved || {};
 
-  const root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
-  const presets = root.ele('presets')
-    .att('xmlns', 'http://josm.openstreetmap.de/tagging-preset-1.0')
-    .att('author', 'Name Suggestion Index')
-    .att('shortdescription', 'Name Suggestion Index')
-    .att('description', opts.description)
-    .att('link', 'https://github.com/osmlab/name-suggestion-index')
-    .att('version', opts.version);
-
-  const topGroup = presets
-    .ele('group')
-    .att('name', 'Name Suggestion Index');
+  const topGroup: JOSMBranchGroupXML = { '@_name': 'Name Suggestion Index', group: [] };
+  const xml: JOSMPresetsXML = {
+    '?xml': { '@_version': '1.0', '@_encoding': 'UTF-8' },
+    presets: {
+      '@_xmlns': 'http://josm.openstreetmap.de/tagging-preset-1.0',
+      '@_author': 'Name Suggestion Index',
+      '@_shortdescription': 'Name Suggestion Index',
+      '@_description': opts.description,
+      '@_link': 'https://github.com/osmlab/name-suggestion-index',
+      '@_version': opts.version,
+      group: topGroup
+    }
+  };
 
   let tPrev, kPrev, vPrev;
-  let tGroup, kGroup, vGroup;
+  let tGroup: JOSMBranchGroupXML | undefined;
+  let kGroup: JOSMBranchGroupXML | undefined;
+  let vGroup: JOSMLeafGroupXML | undefined;
 
   const paths = Object.keys(data).sort(withLocale) as NsiPath[];
   for (const tkv of paths) {
@@ -75,9 +142,22 @@ export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): 
     if (!items.length) continue;  // skip this path
 
     // Create new menu groups as t/k/v change
-    if (t !== tPrev)  tGroup = topGroup.ele('group').att('name', t);
-    if (k !== kPrev)  kGroup = tGroup!.ele('group').att('name', k);
-    if (v !== vPrev)  vGroup = kGroup!.ele('group').att('name', v);
+    const tChanged = t !== tPrev;
+    const kChanged = tChanged || k !== kPrev;
+    const vChanged = kChanged || v !== vPrev;
+
+    if (tChanged) {
+      tGroup = { '@_name': t, group: [] };
+      topGroup.group.push(tGroup);
+    }
+    if (kChanged) {
+      kGroup = { '@_name': k, group: [] };
+      tGroup!.group.push(kGroup);
+    }
+    if (vChanged) {
+      vGroup = { '@_name': v, item: [] };
+      kGroup!.group.push(vGroup);
+    }
 
     // Choose allowable geometries for the category
     let presetType;
@@ -98,14 +178,14 @@ export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): 
     }
 
     for (const item of items) {
-      const preset = vGroup!
-        .ele('item')
-        .att('name', item.displayName)
-        .att('type', presetType);
-
-      for (const [osmkey, osmvalue] of Object.entries(item.tags)) {
-        preset.ele('key').att('key', osmkey).att('value', osmvalue);
-      }
+      vGroup!.item.push({
+        '@_name': item.displayName,
+        '@_type': presetType,
+        key: Object.entries(item.tags).map(([osmkey, osmvalue]) => ({
+          '@_key': osmkey,
+          '@_value': osmvalue
+        }))
+      });
     }
 
     tPrev = t;
@@ -113,5 +193,13 @@ export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): 
     vPrev = v;
   }
 
-  return root;
+  return {
+    serialize(opts?: JOSMPresetsSerializerOptions): string {
+      const builder = new XMLBuilder({
+        ...xmlBuilderOptions,
+        format: opts?.prettyPrint === true
+      });
+      return builder.build(xml);
+    }
+  };
 }
