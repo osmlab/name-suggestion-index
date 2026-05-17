@@ -1,23 +1,15 @@
 import { $ } from 'bun';
 import LocationConflation from '@rapideditor/location-conflation';
+import XMLBuilder from 'fast-xml-builder';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
-import xmlbuilder2 from 'xmlbuilder2';
 
 import { fileTree } from '../lib/file_tree.ts';
 import { buildIDPresets } from '../lib/presets_id.ts';
 import { buildJOSMPresets } from '../lib/presets_josm.ts';
 
-import type {
-  NsiCache,
-  NsiData,
-  NsiDissolved,
-  NsiJSON,
-  NsiPath,
-  NsiWikidataJSON,
-  TaginfoItem,
-  TaginfoJSON
-} from '../lib/types.ts';
+import type { XmlBuilderOptions } from 'fast-xml-builder';
+import type { NsiCache, NsiData, NsiDissolved, NsiJSON, NsiPath, NsiWikidataJSON, TaginfoItem, TaginfoJSON } from '../lib/types.ts';
 
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
@@ -61,7 +53,7 @@ await loadIndex();
 await distAll();
 
 
-// Load the index files under `./data/*`
+/** Read and expand all category files under `./data/*` into `_nsi`. */
 async function loadIndex() {
   const START = '🏗   ' + styleText('yellow', `Loading index files…`);
   const END = '👍  ' + styleText('green', `done loading`);
@@ -74,7 +66,7 @@ async function loadIndex() {
 }
 
 
-// Generate the files under `./dist/*`
+/** Generate all output files under `./dist/*`. */
 async function distAll() {
   const START = '🏗   ' + styleText('yellow', 'Building data...');
   const END = '👍  ' + styleText('green', 'data built');
@@ -109,7 +101,7 @@ async function distAll() {
 }
 
 
-// Update the project version
+/** Bump the `version` field in `package.json` to a date-stamped value (`Major.Minor.YYYYMMDD`). */
 async function updateVersion() {
   // Bump the project version..
   const now = new Date();
@@ -135,8 +127,10 @@ async function updateVersion() {
 }
 
 
-// build iD presets
-// https://github.com/openstreetmap/id-tagging-schema
+/**
+ * Build iD editor presets from NSI data and write to `./dist/presets/nsi-id-presets.json`.
+ * @see https://github.com/openstreetmap/id-tagging-schema
+ */
 async function writeIDPresets() {
   const result = buildIDPresets(_nsi.path, {
     sourcePresets: presetsJSON,
@@ -156,25 +150,29 @@ async function writeIDPresets() {
 }
 
 
-// `writeJOSMPresets()`
-// Create JOSM presets using the tree/key/value structure
-// to organize the presets into JOSM preset groups.
-// See:  https://josm.openstreetmap.de/wiki/TaggingPresets
+/**
+ * Build JOSM tagging presets from NSI data and write them to:
+ * - `./dist/presets/nsi-josm-presets.xml` (pretty-printed)
+ * - `./dist/presets/nsi-josm-presets.min.xml` (compact)
+ * @see https://josm.openstreetmap.de/wiki/TaggingPresets
+ */
 async function writeJOSMPresets() {
-  const root = buildJOSMPresets(_nsi.path, {
+  const result = buildJOSMPresets(_nsi.path, {
     version: packageJSON.version,
     description: packageJSON.description,
     dissolved: dissolved
   });
 
-  await Bun.write('./dist/presets/nsi-josm-presets.xml', root.end({ prettyPrint: true }));
-  await Bun.write('./dist/presets/nsi-josm-presets.min.xml', root.end());
+  await Bun.write('./dist/presets/nsi-josm-presets.xml', result.serialize({ prettyPrint: true }));
+  await Bun.write('./dist/presets/nsi-josm-presets.min.xml', result.serialize());
 }
 
 
-// `buildTaginfo()`
-// Create a taginfo project file
-// See:  https://wiki.openstreetmap.org/wiki/Taginfo/Projects
+/**
+ * Collect all `key=value` tag pairs used across NSI data and write a taginfo
+ * project file to `./dist/json/taginfo.json`.
+ * @see https://wiki.openstreetmap.org/wiki/Taginfo/Projects
+ */
 async function buildTaginfo() {
   const taginfo: Partial<TaginfoJSON> = {
     'data_format': 1,
@@ -221,30 +219,39 @@ async function buildTaginfo() {
 }
 
 
-// `buildSitemap()`
-// Create the sitemap for https://nsi.guide
-// See:  https://en.wikipedia.org/wiki/Sitemaps
+/**
+ * Generate a sitemap for https://nsi.guide and write it to `./docs/sitemap.xml`.
+ * @see https://en.wikipedia.org/wiki/Sitemaps
+ */
 export async function buildSitemap() {
   const changefreq = 'weekly';
   const lastmod = (new Date()).toISOString();
 
-  const root = xmlbuilder2.create({ version: '1.0', encoding: 'UTF-8' });
-  const urlset = root.ele('urlset').att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
-
-  const index = urlset.ele('url');
-  index.ele('loc').txt('https://nsi.guide/index.html');
-  index.ele('changefreq').txt(changefreq);
-  index.ele('lastmod').txt(lastmod);
-
-  // collect all paths
   const paths = Object.keys(_nsi.path).sort(withLocale) as NsiPath[];
-  for (const tkv of paths) {
-    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
-    const url = urlset.ele('url');
-    url.ele('loc').txt(`https://nsi.guide/index.html?t=${t}&k=${k}&v=${v}`);
-    url.ele('changefreq').txt(changefreq);
-    url.ele('lastmod').txt(lastmod);
-  }
+  const url = [
+    { loc: 'https://nsi.guide/index.html', changefreq, lastmod },
+    ...paths.map(tkv => {
+      const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+      return {
+        loc: `https://nsi.guide/index.html?t=${t}&k=${k}&v=${v}`,
+        changefreq,
+        lastmod
+      };
+    })
+  ];
 
-  await Bun.write('./docs/sitemap.xml', root.end({ prettyPrint: true }));
+  const xmlBuilderOptions = {
+    ignoreAttributes: false,
+    suppressEmptyNode: true
+  } satisfies XmlBuilderOptions;
+
+  const builder = new XMLBuilder({ ...xmlBuilderOptions, format: true });
+  const xml = builder.build({
+    '?xml': { '@_version': '1.0', '@_encoding': 'UTF-8' },
+    urlset: {
+      '@_xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9',
+      url
+    }
+  });
+  await Bun.write('./docs/sitemap.xml', xml);
 }
