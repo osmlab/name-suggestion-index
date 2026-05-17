@@ -14,6 +14,11 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 
 [#xxxxx]: https://github.com/osmlab/name-suggestion-index/issues/xxxxx
 -->
+# 7.2.YYYYMMDD
+  * Replaced `xmlbuilder2` with `fast-xml-builder` for XML generation.
+  * ⚠️  `buildJOSMPresets` now returns a serializer wrapper instead of an `XMLBuilder` instance
+    * `buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): JOSMPresetsSerializer` - Generates JOSM presets XML
+    * Call `result.serialize({ prettyPrint: true })` for pretty output, `result.serialize()` for minified output.
 
 # 7.1.YYYYMMDD
 ##### 2026-Apr-27

@@ -327,9 +327,9 @@ describe('buildIDPresets', () => {
 
 
 describe('buildJOSMPresets', () => {
-  it('returns an XMLBuilder document that can be serialized', () => {
+  it('returns an XML document wrapper that can be serialized', () => {
     const root = buildJOSMPresets(sample.data, { version: '1.2.3', description: 'test' });
-    const xml = root.end({ prettyPrint: true });
+    const xml = root.serialize({ prettyPrint: true });
     assert.ok(xml.includes('<presets'));
     assert.ok(xml.includes('version="1.2.3"'));
     assert.ok(xml.includes('description="test"'));
@@ -338,7 +338,7 @@ describe('buildJOSMPresets', () => {
 
   it('organises items under tree/key/value groups', () => {
     const root = buildJOSMPresets(sample.data, { version: '1', description: 'd' });
-    const xml = root.end({ prettyPrint: true });
+    const xml = root.serialize({ prettyPrint: true });
     assert.ok(xml.includes('name="brands"'));
     assert.ok(xml.includes('name="amenity"'));
     assert.ok(xml.includes('name="post_office"'));
@@ -348,15 +348,33 @@ describe('buildJOSMPresets', () => {
 
   it('emits key/value tag pairs as nested <key> elements', () => {
     const root = buildJOSMPresets(sample.data, { version: '1', description: 'd' });
-    const xml = root.end({ prettyPrint: true });
+    const xml = root.serialize({ prettyPrint: true });
     assert.ok(xml.includes('key="brand:wikidata"'));
     assert.ok(xml.includes('value="Q7771029"'));
+  });
+
+  it('escapes XML attribute values', () => {
+    const special = {
+      'brands/amenity/cafe': {
+        properties: { path: 'brands/amenity/cafe', exclude: {} },
+        items: [{
+          id: 'aandb-aabbcc',
+          displayName: 'A & B "Cafe"',
+          locationSet: { include: ['001'] },
+          tags: { amenity: 'cafe', brand: 'A & B "Cafe"', 'brand:wikidata': 'Q1' }
+        }]
+      }
+    };
+    const root = buildJOSMPresets(special, { version: '1', description: 'd' });
+    const xml = root.serialize();
+    assert.ok(xml.includes('name="A &amp; B &quot;Cafe&quot;"'));
+    assert.ok(xml.includes('value="A &amp; B &quot;Cafe&quot;"'));
   });
 
   it('excludes dissolved items', () => {
     const dissolved = { 'theupsstore-d4e3fc': [{ date: '2099-01-01' }] };
     const root = buildJOSMPresets(sample.data, { version: '1', description: 'd', dissolved });
-    const xml = root.end();
+    const xml = root.serialize();
     assert.ok(!xml.includes('The UPS Store'));
     assert.ok(xml.includes('United States Postal Service'));   // others still present
   });
@@ -374,7 +392,7 @@ describe('buildJOSMPresets', () => {
       }
     };
     const root = buildJOSMPresets(bad, { version: '1', description: 'd' });
-    const xml = root.end();
+    const xml = root.serialize();
     assert.ok(!xml.includes('NoQID Brand'));
   });
 
@@ -391,7 +409,7 @@ describe('buildJOSMPresets', () => {
       }
     };
     const root = buildJOSMPresets(ferry, { version: '1', description: 'd' });
-    const xml = root.end();
+    const xml = root.serialize();
     assert.ok(xml.includes('type="way,closedway,relation"'));
   });
 
@@ -408,7 +426,7 @@ describe('buildJOSMPresets', () => {
       }
     };
     const root = buildJOSMPresets(power, { version: '1', description: 'd' });
-    const xml = root.end();
+    const xml = root.serialize();
     assert.ok(xml.includes('type="way,closedway"'));
   });
 
@@ -425,7 +443,7 @@ describe('buildJOSMPresets', () => {
       }
     };
     const root = buildJOSMPresets(power, { version: '1', description: 'd' });
-    const xml = root.end();
+    const xml = root.serialize();
     assert.ok(xml.includes('type="node"'));
   });
 
