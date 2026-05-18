@@ -188,6 +188,42 @@ describe('buildIDPresets', () => {
     assert.ok(!result.presets['amenity/fast_food/chicken/comboshop-aaa111']);
   });
 
+  it('falls back to the generic key preset when multiple child presets exist but none match the item tags', () => {
+    // Two specific child presets exist under `amenity/fast_food`, but neither matches
+    // the item's `cuisine=pizza` - pickBestChildPreset returns no match, so we fall
+    // back to the generic `amenity` preset.
+    const presets = {
+      amenity: sourcePresets.amenity,
+      'amenity/fast_food/chicken': {
+        name: 'Chicken Fast Food', icon: 'temaki-chicken', geometry: ['point', 'area'],
+        tags: { amenity: 'fast_food', cuisine: 'chicken' }
+      },
+      'amenity/fast_food/burger': {
+        name: 'Burger Fast Food', icon: 'maki-burger', geometry: ['point', 'area'],
+        tags: { amenity: 'fast_food', cuisine: 'burger' }
+      }
+    };
+    const pizzaData = {
+      'brands/amenity/fast_food': {
+        properties: { path: 'brands/amenity/fast_food', exclude: {} },
+        items: [{
+          id: 'pizzashop-bbb222',
+          displayName: 'Pizza Shop',
+          locationSet: { include: ['001'] },
+          tags: {
+            amenity: 'fast_food',
+            brand: 'Pizza Shop',
+            'brand:wikidata': 'Q8888888',
+            cuisine: 'pizza'
+          }
+        }]
+      }
+    };
+    const result = buildIDPresets(pizzaData, { sourcePresets: presets });
+    assert.ok(result.presets['amenity/pizzashop-bbb222']);
+    assert.ok(result.missing.includes('brands/amenity/fast_food'));
+  });
+
   it('falls back to a generic key preset when no key/value preset is found', () => {
     // Include only the bare `amenity` preset → all items fall back to it.
     const result = buildIDPresets(sample.data, { sourcePresets: { amenity: sourcePresets.amenity } });
