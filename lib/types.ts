@@ -180,10 +180,22 @@ export type WikidataMap = Record<string, WikidataEntry>;
 /** Convenience alias for the inner map of {@link NsiDissolved}, keyed by NSI item id. */
 export type DissolvedMap = Record<string, WikidataDissolution[]>;
 
+/** Classification for a {@link WikidataWarning}, set by the wikidata script */
+export type WikidataWarningCategory =
+  | 'unresolved-redirect'
+  | 'deleted'
+  | 'missing-label'
+  | 'replacement'
+  | 'facebook-api'
+  | 'facebook-access'
+  | 'edit-error'
+  | 'other';
+
 /** A single warning entry written to `dist/wikidata/warnings.json`. */
 export interface WikidataWarning {
   qid: string;
   msg: string;
+  category: WikidataWarningCategory;
 }
 
 
