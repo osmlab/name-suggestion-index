@@ -1,6 +1,5 @@
 import { $ } from 'bun';
 import LocationConflation from '@rapideditor/location-conflation';
-import XMLBuilder from 'fast-xml-builder';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
 
@@ -8,8 +7,7 @@ import { fileTree } from '../lib/file_tree.ts';
 import { buildIDPresets } from '../lib/presets_id.ts';
 import { buildJOSMPresets } from '../lib/presets_josm.ts';
 
-import type { XmlBuilderOptions } from 'fast-xml-builder';
-import type { NsiCache, NsiData, NsiDissolved, NsiJSON, NsiPath, NsiWikidataJSON, TaginfoItem, TaginfoJSON } from '../lib/types.ts';
+import type { NsiCache, NsiData, NsiDissolved, NsiJSON, NsiWikidataJSON, TaginfoItem, TaginfoJSON } from '../lib/types.ts';
 
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
@@ -97,7 +95,6 @@ async function distAll() {
   await writeIDPresets();     // nsi-id-presets.json
   await writeJOSMPresets();   // nsi-josm-presets.json
   await buildTaginfo();       // taginfo.json
-  // await buildSitemap();  // lets not do this for now (maybe nsiguide can generate it?)
 }
 
 
@@ -216,42 +213,4 @@ async function buildTaginfo() {
 
   taginfo.tags = Object.keys(tagPairs).sort(withLocale).map(kv => tagPairs[kv]);
   await Bun.write('./dist/json/taginfo.json', stringify(taginfo, { maxLength: 9999 }) + '\n');
-}
-
-
-/**
- * Generate a sitemap for https://nsi.guide and write it to `./docs/sitemap.xml`.
- * @see https://en.wikipedia.org/wiki/Sitemaps
- */
-export async function buildSitemap() {
-  const changefreq = 'weekly';
-  const lastmod = (new Date()).toISOString();
-
-  const paths = Object.keys(_nsi.path).sort(withLocale) as NsiPath[];
-  const url = [
-    { loc: 'https://nsi.guide/index.html', changefreq, lastmod },
-    ...paths.map(tkv => {
-      const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
-      return {
-        loc: `https://nsi.guide/index.html?t=${t}&k=${k}&v=${v}`,
-        changefreq,
-        lastmod
-      };
-    })
-  ];
-
-  const xmlBuilderOptions = {
-    ignoreAttributes: false,
-    suppressEmptyNode: true
-  } satisfies XmlBuilderOptions;
-
-  const builder = new XMLBuilder({ ...xmlBuilderOptions, format: true });
-  const xml = builder.build({
-    '?xml': { '@_version': '1.0', '@_encoding': 'UTF-8' },
-    urlset: {
-      '@_xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9',
-      url
-    }
-  });
-  await Bun.write('./docs/sitemap.xml', xml);
 }
