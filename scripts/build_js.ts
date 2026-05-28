@@ -8,6 +8,13 @@ await Promise.all([
   }),
 
    Bun.build({
+    entrypoints: ['./nsiguide/warnings-index.jsx'],
+    outdir: './dist/js',
+    sourcemap: 'linked',
+    naming: 'nsiguide-warnings.[ext]'  // .js
+  }),
+
+   Bun.build({
     entrypoints: ['./src/index.ts'],
     outdir: './dist/js',
     target: 'browser',
