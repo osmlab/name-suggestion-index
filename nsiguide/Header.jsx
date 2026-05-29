@@ -8,18 +8,40 @@ import { TREES } from './constants';
 
 
 export function Header() {
+  const { params } = useContext(AppContext);
+  const isOnWarningsView = params.view === 'warnings';
+
   return (
     <div id='header'>
       <Title/>
+      { isOnWarningsView && <BackToGuide/> }
       <div id='header-controls'>
-        <TreeSwitcher/>
+        { !isOnWarningsView && <TreeSwitcher/> }
         <DarkMode/>
-        <WikidataWarnings/>
+        { !isOnWarningsView && <WikidataWarnings/> }
         <GitHub/>
       </div>
     </div>
   );
 };
+
+
+function BackToGuide() {
+  const { params, setParams } = useContext(AppContext);
+
+  const onClick = (e) => {
+    e.preventDefault();
+    const next = { ...params };
+    delete next.view;
+    setParams(next);
+  };
+
+  return (
+    <div id='nav'>
+      <a href='#' onClick={onClick}>← Back to nsi.guide</a>
+    </div>
+  );
+}
 
 
 function Title() {
@@ -28,6 +50,18 @@ function Title() {
   const t = params.t;
   const k = params.k;
   const v = params.v;
+
+  if (params.view === 'warnings') {
+    document.title = 'Name Suggestion Index - Wikidata Warnings';
+    return (
+      <div id='title'>
+        <h1>
+          <FontAwesomeIcon icon={faTriangleExclamation} className='hi' style={{ color: '#f0b400' }} />
+          Wikidata Warnings
+        </h1>
+      </div>
+    );
+  }
 
   // try to pick an icon
   let iconURL;
@@ -147,9 +181,16 @@ function GitHub() {
 
 
 function WikidataWarnings() {
+  const { params, setParams } = useContext(AppContext);
+
+  const onClick = (e) => {
+    e.preventDefault();
+    setParams({ ...params, view: 'warnings' });
+  };
+
   return (
     <div id='wikiwarnings'>
-      <a href='wikidata-warnings.htm' target='_blank' title='View Wikidata warnings'>
+      <a href='#' onClick={onClick} title='View Wikidata warnings'>
         <FontAwesomeIcon icon={faTriangleExclamation} size='2x' />
       </a>
     </div>
