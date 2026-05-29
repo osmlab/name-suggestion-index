@@ -14,8 +14,10 @@ export function Filters() {
 
   return (
     <div className={klass}>
-      <span className='icon'><FontAwesomeIcon icon={faFilter} /></span>
-      <span className='filterby'>Filter by</span>
+      <span className='filterhead'>
+        <span className='icon'><FontAwesomeIcon icon={faFilter} /></span>
+        <span className='filterby'>Filter by</span>
+      </span>
 
       <span className='field'>
         <label htmlFor='tt'>Text:</label>

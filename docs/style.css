@@ -74,11 +74,14 @@ input[type=text] {
   text-overflow: ellipsis;
 }
 .dark textarea,
-.dark input[type=text],
-.dark input[type=checkbox] {
+.dark input[type=text] {
   background-color: #666;
   color: #ddd;
   border: 1px solid #777;
+}
+.dark input[type=checkbox] {
+  accent-color: #666;
+  color-scheme: dark;
 }
 
 button {
@@ -112,26 +115,51 @@ input:focus {
 /* Sections */
 #header {
   display: flex;
-  align-items: start;
-  padding: 5px 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 8px;
+  padding: 10px 16px;
   background: #111;
   color: #ddd;
   font-weight: bold;
-  flex-direction: column;
 }
 #header a:visited, #header a       { color: #aaf; }
 #header a:hover, #header a:active  { color: #ccf; }
+
+#title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+#title h1 {
+  display: flex;
+  align-items: center;
+  font-size: clamp(16px, 4vw, 28px);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+#header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
 
 #title img.icon {
   filter: invert(1);
   opacity: 1;
   padding-right: 10px;
+  flex-shrink: 0;
 }
+
 #treeswitcher {
   appearance: base-select;
   background-color: #393939;
   color: #aaa;
   border: 1px solid #666;
+  padding: 4px 8px;
 }
 #treeswitcher::picker-icon {
   color: #999;
@@ -141,38 +169,39 @@ input:focus {
 }
 
 #darkmode {
-  flex: 0 0 120px;
-  padding: 1em 0;
-  flex: 0 0 90px;
-  padding: 5px 10px;
+  display: flex;
   align-items: center;
-  justify-content: flex-start;
   font-size: 16px;
 }
 #darkmode > svg {
   margin: 0 5px;
 }
-
-@media screen and (min-width: 614px) {
-  div#header {
-    flex-direction: row;
-    align-items: center;
-  }
-  div#darkmode {
-    display: flex;
-    padding: 0 28px;
-    align-items: center;
-  }
-}
-
 #darkmode > svg.fa-sun { color: gold; }
 .dark #darkmode > svg.fa-sun { color: unset; }
 #darkmode > svg.fa-moon { color: unset; }
 .dark #darkmode > svg.fa-moon { color: #88c; }
 
-#octocat { flex: 0 0 40px; }
+#octocat, #wikiwarnings {
+  display: flex;
+  align-items: center;
+}
 #octocat a:visited, #octocat a       { color: #fff; }
 #octocat a:hover, #octocat a:active  { color: #ddd; }
+
+#wikiwarnings a:visited, #wikiwarnings a       { color: #f5b400; }
+#wikiwarnings a:hover, #wikiwarnings a:active  { color: #ffd24d; }
+
+@media screen and (max-width: 420px) {
+  #header {
+    column-gap: 10px;
+  }
+  #header-controls {
+    gap: 10px;
+  }
+  #darkmode > svg {
+    margin: 0 2px;
+  }
+}
 
 #content { padding: 0 20px 60px 20px; }
 #footer  {
@@ -180,14 +209,6 @@ input:focus {
   padding: 20px;
   color: #aaa;
   font-size: 12px;
-}
-@media (min-width: 640px) {
-  div#treeswitcher {
-    padding: 0em 1em;
-  }
-  div#darkmode {
-    padding: 0em 1em;
-  }
 }
 
 
@@ -219,12 +240,26 @@ input:focus {
 .filters .filterby {
   margin: 0;
   font-weight: bold;
+  width: max-content;
 }
-.filters .field label { margin-right: 0.5em; }
-.filters .field { margin: 0; }
+.filters .filterhead {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.filters .field label {
+  width: max-content;
+  margin-right: 0.5em;
+}
+.filters .field {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
 .filters .field button.clearFilters { margin: 0 !important; }
 
-@media (min-width: 640px) {
+@media (min-width: 660px) {
   .filters {
     flex-direction: row;
     align-items: center;

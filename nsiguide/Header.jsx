@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { AppContext, getFilterParams } from './AppContext';
@@ -9,11 +9,14 @@ import { TREES } from './constants';
 
 export function Header() {
   return (
-    <div id='header' className='hasCols'>
+    <div id='header'>
       <Title/>
-      <TreeSwitcher/>
-      <DarkMode/>
-      <GitHub/>
+      <div id='header-controls'>
+        <TreeSwitcher/>
+        <DarkMode/>
+        <WikidataWarnings/>
+        <GitHub/>
+      </div>
     </div>
   );
 };
@@ -137,6 +140,17 @@ function GitHub() {
     <div id='octocat'>
       <a href='https://github.com/osmlab/name-suggestion-index' target='_blank'>
         <FontAwesomeIcon icon={faGithub} size='2x' />
+      </a>
+    </div>
+  );
+}
+
+
+function WikidataWarnings() {
+  return (
+    <div id='wikiwarnings'>
+      <a href='wikidata-warnings.htm' target='_blank' title='View Wikidata warnings'>
+        <FontAwesomeIcon icon={faTriangleExclamation} size='2x' />
       </a>
     </div>
   );
