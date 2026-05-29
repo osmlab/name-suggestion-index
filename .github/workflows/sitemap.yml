@@ -1,0 +1,35 @@
+name: regenerate sitemap
+
+on:
+  push:
+    tags:
+      - '**'
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: 2
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        ref: main
+        fetch-depth: 0    # full history so `git log` can compute per-file lastmod
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+    - run: bun install
+    - run: bun run dist:sitemap
+    - name: Open PR
+      uses: peter-evans/create-pull-request@v8
+      with:
+        commit-message: 'chore: regenerate sitemap'
+        title: 'chore: regenerate sitemap'
+        body: |
+          Regenerates `docs/sitemap.xml` after tag `${{ github.ref_name }}`.
+        branch: chore/regenSitemap
+        add-paths: docs/sitemap.xml
