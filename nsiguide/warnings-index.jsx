@@ -9,8 +9,6 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import { Warnings } from "./Warnings";
 
-document.title = "NSI — Wikidata Warnings";
-
 const setDarkMode = (val) => {
   const el = document.getElementById("root");
   if (!el) return;
