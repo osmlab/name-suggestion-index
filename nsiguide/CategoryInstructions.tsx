@@ -4,8 +4,8 @@ import { AppContext } from './AppContext';
 
 export function CategoryInstructions() {
   const context = useContext(AppContext);
-  const params = context.params;
-  const t = params.t;
+  const params = context?.params;
+  const t = params?.t;
 
   // setup defaults for this tree..
   let a, itemType, logo, wikidataTag;

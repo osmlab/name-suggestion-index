@@ -4,8 +4,8 @@ import { AppContext } from './AppContext';
 
 export function OverviewInstructions() {
   const context = useContext(AppContext);
-  const params = context.params;
-  const t = params.t;
+  const params = context?.params;
+  const t = params?.t;
 
   // setup defaults for this tree..
   let itemType, wikidataTag, tempt;

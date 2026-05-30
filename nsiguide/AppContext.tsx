@@ -1,12 +1,14 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, type Dispatch, type SetStateAction } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import diacritics from 'diacritics';
 
 import { Category } from './Category';
 import { Header } from './Header';
-import { Filters } from './Filters'
+import { Filters } from './Filters';
 import { Footer } from './Footer';
 import { Overview } from './Overview';
+
+import type { NsiItem, DissolvedMap, WikidataMap } from '../lib/types';
 
 // Load the name-suggestion-index data files
 const DIST = 'https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist';
@@ -18,15 +20,67 @@ const DISSOLVED = `${DIST}/wikidata/dissolved.min.json`;
 const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@latest/dist/taginfo.min.json';
 
 
-export const AppContext = createContext(null);
+/** A simple `key=value` string map used for url params / hash filters. */
+type StringMap = Record<string, string>;
+
+/** An NSI item with the cached `tkv` (tree/key/value) path added by {@link useNsi}. */
+export type IndexedNsiItem = NsiItem & {
+  tkv: string;
+  filtered?: boolean;
+  selected?: boolean;
+  note?: string;
+  issues?: Array<string | number>;
+};
+
+/** Metadata block prepended to the published `nsi.json` (see `scripts/prepublish.ts`). */
+interface NsiMeta {
+  version: string;
+  generated: string;
+  url: string;
+  hash: string;
+}
+
+/** In-memory NSI cache built by {@link useNsi}. */
+interface NsiIndex {
+  path: Record<string, IndexedNsiItem[]>;
+  id: Record<string, IndexedNsiItem>;
+  meta?: NsiMeta;
+}
+
+/** Map of `key` or `key/value` -> icon url, built by {@link useTaginfo}. */
+type IconMap = Record<string, string>;
+
+/** Filter params extracted from the url query string by {@link getFilterParams}. */
+interface FilterParams {
+  tt?: string;
+  cc?: string;
+  inc?: 'true';
+  dis?: 'true';
+}
+
+/** The app-wide context value provided by {@link AppContextProvider}. */
+interface AppState {
+  index: NsiIndex;
+  icons: IconMap;
+  dissolved: DissolvedMap;
+  wikidata: WikidataMap;
+  isLoading: () => boolean;
+  params: StringMap;
+  setParams: Dispatch<SetStateAction<StringMap>>;
+  hash: string;
+  setHash: Dispatch<SetStateAction<string>>;
+}
+
+
+export const AppContext = createContext<AppState | null>(null);
 
 export function AppContextProvider() {
   const [index, indexLoading] = useNsi(INDEX);
   const [icons, iconsLoading] = useTaginfo(TAGINFO);
-  const [wikidata, wikidataLoading] = useFetch(WIKIDATA);
-  const [dissolved, dissolvedLoading] = useFetch(DISSOLVED);
-  const [params, setParams] = useState({});
-  const [hash, setHash] = useState('');
+  const [wikidata, wikidataLoading] = useFetch<{ wikidata?: WikidataMap }>(WIKIDATA);
+  const [dissolved, dissolvedLoading] = useFetch<{ dissolved?: DissolvedMap }>(DISSOLVED);
+  const [params, setParams] = useState<StringMap>({});
+  const [hash, setHash] = useState<string>('');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,19 +92,19 @@ export function AppContextProvider() {
   useEffect(() => {
     let newHash = location.hash;
     let newSearch = location.search;
-    let newParams = stringQs(newSearch);
+    const newParams = stringQs(newSearch);
 
     // if passed an `id` param, lookup that item and override the `t`,`k`,`v` params
-    let itemID = newParams.id;
+    const itemID = newParams.id;
     if (itemID) {
       if (indexLoading) return;   // wait for index to load, we'll come back to this.
 
       const item = index.id[itemID];
       if (item) {
         const parts = item.tkv.split('/', 3);     // tkv = 'tree/key/value'
-        newParams.t = parts[0];
-        newParams.k = parts[1];
-        newParams.v = parts[2];
+        newParams.t = parts[0] ?? '';
+        newParams.k = parts[1] ?? '';
+        newParams.v = parts[2] ?? '';
 
         // move it from the `id` param to the hash
         newHash = '#' + itemID;
@@ -78,10 +132,10 @@ export function AppContextProvider() {
     if (indexLoading) return;  // come back to it later
 
     // Put params in this order
-    const newParams = {};
-    ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc', 'dis'].forEach(k => {
+    const newParams: StringMap = {};
+    (['t', 'k', 'v', 'id', 'tt', 'cc', 'inc', 'dis'] as const).forEach(k => {
       if (params[k]) {
-        newParams[k] = params[k];
+        newParams[k] = params[k]!;
       } else if (k === 't') {       // if no tree specified,
         newParams[k] = '*';    // default to all
       }
@@ -99,11 +153,11 @@ export function AppContextProvider() {
   }, [params, hash, indexLoading]);
 
 
-  const appState = {
+  const appState: AppState = {
     index: index,
     icons: icons,
-    dissolved: dissolved.dissolved,
-    wikidata: wikidata.wikidata,
+    dissolved: dissolved.dissolved ?? {},
+    wikidata: wikidata.wikidata ?? {},
     isLoading: () => (indexLoading || iconsLoading || wikidataLoading || dissolvedLoading),
     params: params,
     setParams: setParams,
@@ -126,13 +180,13 @@ export function AppContextProvider() {
 
 
 // Fetch some data
-function useFetch(url) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+function useFetch<T extends object>(url: string): [T, boolean] {
+  const [data, setData] = useState<T>({} as T);
+  const [loading, setLoading] = useState<boolean>(true);
 
   async function fetchUrl() {
     const response = await fetch(url);
-    const json = await response.json();
+    const json = await response.json() as T;
     setData(json);
     setLoading(false);
   }
@@ -143,14 +197,18 @@ function useFetch(url) {
 
 
 // same as useFetch, but load name-suggestion-index data into a cache
-function useNsi(url) {
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
+function useNsi(url: string): [NsiIndex, boolean] {
+  const [data, setData] = useState<NsiIndex>({ path: {}, id: {} });
+  const [loading, setLoading] = useState<boolean>(true);
 
   async function fetchUrl() {
     const response = await fetch(url);
-    const json = await response.json();
-    let index = { path: {}, id: {}, meta: json._meta };
+    const json = await response.json() as {
+      nsi: Record<string, { items?: IndexedNsiItem[] }>;
+      _meta?: NsiMeta;
+    };
+    const index: NsiIndex = { path: {}, id: {} };
+    if (json._meta) index.meta = json._meta;
 
     // populate cache
     for (const [tkv, category] of Object.entries(json.nsi)) {
@@ -174,15 +232,17 @@ function useNsi(url) {
 
 
 // same as useFetch, but process taginfo file to retrieve icon urls
-function useTaginfo(url) {
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
+function useTaginfo(url: string): [IconMap, boolean] {
+  const [data, setData] = useState<IconMap>({});
+  const [loading, setLoading] = useState<boolean>(true);
 
   async function fetchUrl() {
     const response = await fetch(url);
-    const json = await response.json();
+    const json = await response.json() as {
+      tags: Array<{ key?: string; value?: string; icon_url?: string }>;
+    };
     const tags = json.tags;
-    let icons = {};
+    const icons: IconMap = {};
 
     // populate icons
     for (const tag of tags) {
@@ -205,15 +265,15 @@ function useTaginfo(url) {
 
 
 // convert a query string to an object of `k=v` pairs
-export function stringQs(str) {
+export function stringQs(str: string): StringMap {
   let i = 0;  // advance past any leading '?' or '#' characters
   while (i < str.length && (str[i] === '?' || str[i] === '#')) i++;
   str = str.slice(i);
 
-  return str.split('&').reduce((obj, pair) => {
+  return str.split('&').reduce<StringMap>((obj, pair) => {
     const parts = pair.split('=');
     if (parts.length === 2) {
-      obj[parts[0]] = (null === parts[1]) ? '' : decodeURIComponent(parts[1]);
+      obj[parts[0]!] = (null === parts[1]!) ? '' : decodeURIComponent(parts[1]!);
     }
     return obj;
   }, {});
@@ -221,21 +281,21 @@ export function stringQs(str) {
 
 
 // convert an object of `k=v` pairs to a querystring
-export function qsString(obj) {
+export function qsString(obj: StringMap): string {
   return Object.keys(obj).map(key => {
-    return encodeURIComponent(key) + '=' + (encodeURIComponent(obj[key]));
+    return encodeURIComponent(key) + '=' + (encodeURIComponent(obj[key]!));
   }).join('&');
 }
 
 
 // Gets the filtering params from the url params and cleans them up
-export function getFilterParams(params) {
+export function getFilterParams(params: StringMap): FilterParams {
   const tt = (params.tt || '').toLowerCase();
   const cc = (params.cc || '').toLowerCase().trim();
   const inc = (params.inc || '').toLowerCase().trim() === 'true';
   const dis = (params.dis || '').toLowerCase().trim() === 'true';
 
-  const result = {};
+  const result: FilterParams = {};
   if (tt) result.tt = tt;
   if (cc) result.cc = cc;
   if (inc) result.inc = 'true';
@@ -246,7 +306,7 @@ export function getFilterParams(params) {
 
 // Determines if the given item is filtered by the given filtering rules.
 // true if the item is filtered (hidden), false if not filtered (visible)
-export function isItemFiltered(context, filters, item) {
+export function isItemFiltered(context: AppState, filters: FilterParams, item: IndexedNsiItem): boolean {
   const params = context.params;
   const t = params.t;
 
@@ -261,7 +321,7 @@ export function isItemFiltered(context, filters, item) {
     let match = false;
 
     // check tag keys, values, and matchNames
-    const toCheck = new Set();
+    const toCheck = new Set<string>();
     for (const [key, val] of Object.entries(item.tags)) {
       toCheck.add(stripDiacritics(key));
       toCheck.add(stripDiacritics(val));
@@ -286,7 +346,7 @@ export function isItemFiltered(context, filters, item) {
 
     // check locationset include
     // todo: improve countrycode filters - #4077
-    const toCheck = new Set();
+    const toCheck = new Set<string>();
     for (const code of (item.locationSet.include || [])) {
       if (typeof code !== 'string') continue;
       toCheck.add(stripDiacritics(code));
@@ -303,7 +363,7 @@ export function isItemFiltered(context, filters, item) {
   // check 'incomplete'
   // if we have wikidata tag and at least one logo, it's "complete"
   if (filters.inc === 'true') {
-    let wikidataTag;
+    let wikidataTag: string | undefined;
     if (t === 'brands') {
       wikidataTag = 'brand:wikidata';
     } else if (t === 'flags') {
@@ -315,8 +375,8 @@ export function isItemFiltered(context, filters, item) {
     }
 
     const tags = item.tags || {};
-    const qid = tags[wikidataTag];
-    const wd = context.wikidata[qid] || {};
+    const qid = wikidataTag ? tags[wikidataTag] : undefined;
+    const wd = (qid && context.wikidata[qid]) || {};
     const logos = wd.logos || {};
 
     if (Object.keys(logos).length) return true;
@@ -327,7 +387,7 @@ export function isItemFiltered(context, filters, item) {
 
 
 //
-export function stripDiacritics(str) {
+export function stripDiacritics(str: string): string {
   if (typeof str !== 'string') return '';
 
   return diacritics.remove(

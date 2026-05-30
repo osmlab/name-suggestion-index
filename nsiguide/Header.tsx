@@ -24,14 +24,14 @@ export function Header() {
 
 function Title() {
   const context = useContext(AppContext);
-  const params = context.params;
-  const t = params.t;
-  const k = params.k;
-  const v = params.v;
+  const params = context?.params;
+  const t = params?.t;
+  const k = params?.k;
+  const v = params?.v;
 
   // try to pick an icon
   let iconURL;
-  if (!context.isLoading() && k && v) {
+  if (!context?.isLoading() && k && v) {
     let fallbackIcon;
     if (t === 'brands') {
       fallbackIcon = 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/shop-15.svg';
@@ -44,8 +44,8 @@ function Title() {
     }
 
     const kv = `${k}/${v}`;
-    iconURL = context.icons[kv];
-    if (!iconURL) iconURL = context.icons[k];   // fallback to generic key=* icon
+    iconURL = context?.icons[kv];
+    if (!iconURL) iconURL = context?.icons[k];  // fallback to generic key=* icon
     if (!iconURL) iconURL = fallbackIcon;       // fallback to generic icon
 
     // exceptions:
@@ -78,13 +78,16 @@ function Title() {
 
 
 function TreeSwitcher() {
-  const { params, setParams } = useContext(AppContext);
+  const context = useContext(AppContext);
+  if (!context) return null;
+
+  const { params, setParams } = context ?? {};
   const filters = getFilterParams(params);
 
   return (
     <select
       id='treeswitcher'
-      value={params.t}
+      value={params?.t}
       onChange={(e) => setParams({ t: e.target.value, ...filters })}
     >
       {['*', ...Object.keys(TREES)].map(tree => (
@@ -105,8 +108,8 @@ function DarkMode() {
     }
   }
 
-  setDarkMode(currValue);
-  const checkedProp = (currValue === 'true') ? { defaultChecked: 'true' } : {};
+  setDarkMode(currValue === 'true' ? 'true' : 'false');
+  const checkedProp = (currValue === 'true') ? { defaultChecked: true } : {};
 
   return (
     <div id='darkmode' className='control'>
@@ -119,17 +122,19 @@ function DarkMode() {
     </div>
   );
 
-  function toggleDarkMode(e) {
+  function toggleDarkMode() {
     const newValue = (window.localStorage.getItem('nsi-darkmode') === 'true') ? 'false' : 'true';
     window.localStorage.setItem('nsi-darkmode', newValue);
     setDarkMode(newValue);
   }
 
-  function setDarkMode(val) {
+  function setDarkMode(val: "true" | "false" | null) {
+    const root = document.getElementById('root');
+    if (!root) return;
     if (val === 'true') {
-      document.getElementById('root').classList.add('dark');
+      root.classList.add('dark');
     } else {
-      document.getElementById('root').classList.remove('dark');
+      root.classList.remove('dark');
     }
   }
 }
