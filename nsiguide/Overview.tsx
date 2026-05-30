@@ -7,18 +7,19 @@ import { TREES } from './constants';
 
 export function Overview() {
   const context = useContext(AppContext);
-  const index = context.index;
-  const params = context.params;
+  if (!context) return null;
+
+  const { index, params } = context;
   const filters = getFilterParams(params);
-  const t = params.t;
+  const t = params.t ?? '*';
 
   // setup defaults for this tree..
-  const { fallbackIcon, wikidataTag } = TREES[t] || {
-    fallbackIcon: 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/marker-15.svg'
-  };
+  const tree = TREES[t as keyof typeof TREES];
+  const fallbackIcon = tree?.fallbackIcon ?? 'https://cdn.jsdelivr.net/npm/@mapbox/maki@6/icons/marker-15.svg';
+  const wikidataTag = tree?.wikidataTag;
 
-  let message;
-  let paths;
+  let message: string | undefined;
+  let paths: string[] = [];
   if (context.isLoading()) {
     message = 'Loading, please wait...';
   } else {
@@ -38,16 +39,13 @@ export function Overview() {
       </>
     );
   }
-//      { wikidataTag ? OverviewInstructions() : null }
-
 
   // For the counting code below, we'll apply the filtering rules but without 'inc',
   // so we can properly count complete vs incomplete.
-  let f = Object.assign({}, filters);  // copy
+  const f = Object.assign({}, filters);  // copy
   delete f.inc;
 
-  /** @type {{ [kv: string]: string[] }} */
-  const pathsByKV = {};
+  const pathsByKV: Record<string, string[]> = {};
   for (const tkv of paths) {
     const [, k, v] = tkv.split('/', 3);
     const kv = `${k}/${v}`;
@@ -72,7 +70,7 @@ export function Overview() {
       iconURL = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/power_tower.svg';
     }
 
-    const items = pathsByKV[kv].flatMap(tkv => index.path[tkv])
+    const items = (pathsByKV[kv] ?? []).flatMap(tkv => index.path[tkv] ?? []);
     let count = 0;
     let complete = 0;
 
@@ -82,9 +80,9 @@ export function Overview() {
         count++;
         const tags = item.tags || {};
         const qid = t === '*'
-          ? Object.values(TREES).map(tree => tags[tree.wikidataTag]).find(Boolean)
-          : tags[wikidataTag];
-        const wd = context.wikidata[qid] || {};
+          ? Object.values(TREES).map(treeDef => tags[treeDef.wikidataTag]).find(Boolean)
+          : (wikidataTag ? tags[wikidataTag] : undefined);
+        const wd = (qid && context.wikidata[qid]) || {};
         const logos = wd.logos || {};
         if (Object.keys(logos).length) {
           complete++;
@@ -94,7 +92,7 @@ export function Overview() {
 
     const isComplete = (complete === count);
     const klass = 'category' + ((!count || (filters.inc && isComplete)) ? ' hide' : '');
-    const linkparams = Object.assign({ t: t, k: k, v: v }, filters);
+    const linkparams: Record<string, string> = { t: t, k: k ?? '', v: v ?? '', ...filters };
 
     categories.push(
       <div key={kv} className={klass} >

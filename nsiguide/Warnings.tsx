@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, Fragment } from "react";
+import { useState, useEffect, useMemo, Fragment, type ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFilter,
@@ -7,12 +7,14 @@ import {
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
 
+import type { WikidataWarning, WikidataWarningCategory } from '../lib/types';
+
 const WARNINGS_URL =
   "https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist/wikidata/warnings.min.json";
 
 // Warning categories. Keys here must match the `category` field emitted by
 // scripts/wikidata.ts (see `WikidataWarningCategory` in lib/types.ts).
-const CATEGORIES = {
+const CATEGORIES: Record<WikidataWarningCategory, { label: string }> = {
   "deleted":             { label: "Deleted entry" },
   "unresolved-redirect": { label: "Unresolved redirect" },
   "replacement":         { label: "Possible replacement" },
@@ -23,8 +25,33 @@ const CATEGORIES = {
   "other":               { label: "Other" },
 };
 
+const CATEGORY_ENTRIES = Object.entries(CATEGORIES) as Array<[WikidataWarningCategory, { label: string }]>;
+
+type SortKey = 'category' | 'qid' | 'msg';
+type SortDir = 'asc' | 'desc';
+type WarningFilterCategory = WikidataWarningCategory | 'all';
+
+type WarningFromJson = Omit<WikidataWarning, 'category'> & {
+  category?: string;
+};
+
+type NormalizedWarning = Omit<WikidataWarning, 'category'> & {
+  category: WikidataWarningCategory;
+};
+
+interface WarningsData {
+  warnings?: WarningFromJson[];
+  _meta?: {
+    generated?: string;
+  };
+}
+
+function isWarningCategory(category: unknown): category is WikidataWarningCategory {
+  return typeof category === 'string' && category in CATEGORIES;
+}
+
 // Render a warning message, turning QIDs (Q12345) and any developers.facebook.com URL into links
-const renderMessage = (msg) => {
+const renderMessage = (msg: string): ReactNode[] => {
   // Split on QIDs and the facebook docs URL
   const pattern =
     /(Q\d+|https:\/\/developers\.facebook\.com\/docs\/graph-api)/g;
@@ -53,18 +80,18 @@ const renderMessage = (msg) => {
   });
 };
 
-const useWarnings = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+const useWarnings = (): [WarningsData | null, string | null] => {
+  const [data, setData] = useState<WarningsData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
       try {
         const response = await fetch(WARNINGS_URL);
-        const json = await response.json();
+        const json = await response.json() as WarningsData;
         setData(json);
       } catch (err) {
-        setError(err.message || String(err));
+        setError(err instanceof Error ? err.message : String(err));
       }
     })();
   }, []);
@@ -74,25 +101,25 @@ const useWarnings = () => {
 
 export const Warnings = () => {
   const [data, error] = useWarnings();
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState<WarningFilterCategory>("all");
   const [qidFilter, setQidFilter] = useState("");
   const [msgFilter, setMsgFilter] = useState("");
-  const [sortKey, setSortKey] = useState("category");
-  const [sortDir, setSortDir] = useState("asc");
+  const [sortKey, setSortKey] = useState<SortKey>("category");
+  const [sortDir, setSortDir] = useState<SortDir>("asc");
 
   // Use the `category` field emitted by the build script; fall back to "other" if absent
-  const warnings = useMemo(() => {
+  const warnings = useMemo<NormalizedWarning[]>(() => {
     if (!data?.warnings) return [];
-    return data.warnings.map((w) => ({
+    return data.warnings.map((w): NormalizedWarning => ({
       ...w,
-      category: CATEGORIES[w.category] ? w.category : "other",
+      category: isWarningCategory(w.category) ? w.category : "other",
     }));
   }, [data]);
 
   // Counts per category (computed against the unfiltered set)
   const counts = useMemo(() => {
-    const c = { all: warnings.length };
-    for (const key of Object.keys(CATEGORIES)) c[key] = 0;
+    const c = { all: warnings.length } as Record<WikidataWarningCategory | 'all', number>;
+    for (const [key] of CATEGORY_ENTRIES) c[key] = 0;
     for (const w of warnings) c[w.category]++;
     return c;
   }, [warnings]);
@@ -100,7 +127,7 @@ export const Warnings = () => {
   const filtered = useMemo(() => {
     const qNeedle = qidFilter.trim().toUpperCase();
     const mNeedle = msgFilter.trim().toLowerCase();
-    let rows = warnings.filter((w) => {
+    let rows: NormalizedWarning[] = warnings.filter((w) => {
       if (category !== "all" && w.category !== category) return false;
       if (qNeedle && !w.qid.toUpperCase().includes(qNeedle)) return false;
       if (mNeedle && !w.msg.toLowerCase().includes(mNeedle)) return false;
@@ -127,7 +154,7 @@ export const Warnings = () => {
     return rows;
   }, [warnings, category, qidFilter, msgFilter, sortKey, sortDir]);
 
-  const toggleSort = (key) => {
+  const toggleSort = (key: SortKey) => {
     if (sortKey === key) {
       setSortDir(sortDir === "asc" ? "desc" : "asc");
     } else {
@@ -136,9 +163,10 @@ export const Warnings = () => {
     }
   };
 
-  const sortIcon = (key) => {
-    if (sortKey !== key)
+  const sortIcon = (key: SortKey) => {
+    if (sortKey !== key) {
       return <FontAwesomeIcon icon={faSort} className="sorticon dim" />;
+    };
     return (
       <FontAwesomeIcon
         icon={sortDir === "asc" ? faSortUp : faSortDown}
@@ -170,10 +198,10 @@ export const Warnings = () => {
           <select
             id="wcat"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value as WarningFilterCategory)}
           >
             <option value="all">All ({counts.all})</option>
-            {Object.entries(CATEGORIES).map(([key, def]) => (
+            {CATEGORY_ENTRIES.map(([key, def]) => (
               <option key={key} value={key} disabled={!counts[key]}>
                 {def.label} ({counts[key] || 0})
               </option>
@@ -187,7 +215,7 @@ export const Warnings = () => {
             type="text"
             id="wqid"
             autoCorrect="off"
-            size="14"
+            size={14}
             placeholder="Q12345"
             value={qidFilter}
             onChange={(e) => setQidFilter(e.target.value)}
@@ -200,7 +228,7 @@ export const Warnings = () => {
             type="text"
             id="wmsg"
             autoCorrect="off"
-            size="20"
+            size={20}
             value={msgFilter}
             onChange={(e) => setMsgFilter(e.target.value)}
           />

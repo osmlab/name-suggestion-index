@@ -14,8 +14,10 @@ import {
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
 
-export function CategoryRowSocialLinks(props) {
-  let items = [];
+import type { WikidataIdentities } from '../lib/types';
+
+export function CategoryRowSocialLinks(props: WikidataIdentities) {
+  const items = [];
   let href;
 
   if (props.facebook) {

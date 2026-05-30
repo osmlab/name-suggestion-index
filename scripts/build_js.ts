@@ -1,7 +1,7 @@
 
 await Promise.all([
    Bun.build({
-    entrypoints: ['./nsiguide/index.jsx'],
+    entrypoints: ['./nsiguide/index.tsx'],
     outdir: './dist/js',
     sourcemap: 'linked',
     naming: 'nsiguide.[ext]'  // .js
