@@ -164,8 +164,9 @@ export const Warnings = () => {
   };
 
   const sortIcon = (key: SortKey) => {
-    if (sortKey !== key)
+    if (sortKey !== key) {
       return <FontAwesomeIcon icon={faSort} className="sorticon dim" />;
+    };
     return (
       <FontAwesomeIcon
         icon={sortDir === "asc" ? faSortUp : faSortDown}
