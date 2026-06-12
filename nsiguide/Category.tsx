@@ -9,20 +9,17 @@ import { TREES } from './constants';
 
 export function Category() {
   const context = useContext(AppContext);
-  const index = context.index;
-  const params = context.params;
-  const hash = context.hash;
-  let selectedID = hash && hash.slice(1);   // remove leading '#'
+  if (!context) return null;
+  const { index, params, hash } = context;
+  const selectedID = hash && hash.slice(1);   // remove leading '#'
 
-  const t = params.t;
-  const k = params.k;
-  const v = params.v;
+  const { t, k, v } = params;
   const tkv = `${t}/${k}/${v}`;
   let message;
   let items;
 
   const filters = getFilterParams(params);
-  const backparams = Object.assign({ t: t }, filters);
+  const backparams: Record<string, string> = { t: t ?? '*', ...filters };
 
   if (context.isLoading()) {
     message = 'Loading, please wait...';
@@ -71,7 +68,7 @@ export function Category() {
     }
   }
 
-  const rows = items.map(item => {
+  const rows = items?.map(item => {
     item.selected = (item.id === selectedID);
     item.filtered = isItemFiltered(context, filters, item);
     return (

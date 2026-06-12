@@ -3,11 +3,12 @@ import { styleText } from 'node:util';
 const project = 'name-suggestion-index';
 const hostname = '127.0.0.1';
 const port = 8080;
-const matchCDN = new RegExp(`(['"\`])(https?:\/\/cdn.jsdelivr.*${project}.*\/)(dist.*["'\`])`, 'gi');
+const matchCDN = new RegExp(`(['"\`])(https?:\/\/cdn.jsdelivr.*${project}.*\/)((?:dist|docs).*["'\`])`, 'gi');
 
 
-// Replace urls for CDN `dist/*` files with local `dist/*` files.
+// Replace urls for CDN `dist/*` or `docs/*` files with local files.
 // e.g. 'https://cdn.jsdelivr.net/npm/path/to/dist/file.min.js' -> '/dist/file.js'
+// e.g. 'https://cdn.jsdelivr.net/npm/path/to/docs/style.css'   -> '/docs/style.css'
 function replaceCDNPath(s: string): string {
   return s.replaceAll(matchCDN, replacer);
 }
@@ -38,7 +39,7 @@ const server = Bun.serve({
     if (path[last] === '') {   // no filename, default to 'index.html'
       path[last] = 'index.html';
     }
-    if (path[1] === 'dist') {  // Also allow serving files from './dist/*'
+    if (path[1] === 'dist' || path[1] === 'docs') {  // Also allow serving files from './dist/*' or './docs/*'
       path.shift();            // (remove leading 'docs')
     }
 

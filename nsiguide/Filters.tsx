@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, type ChangeEvent, type MouseEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,8 +7,8 @@ import { AppContext, getFilterParams } from './AppContext';
 
 export function Filters() {
   const context = useContext(AppContext);
-  const params = context.params;
-  const setParams = context.setParams;
+  if (!context) return null;
+  const { params, setParams } = context;
   const filters = getFilterParams(params);
   const klass = 'filters' + (Object.keys(filters).length ? ' active' : '');
 
@@ -21,12 +21,12 @@ export function Filters() {
 
       <span className='field'>
         <label htmlFor='tt'>Text:</label>
-        <input type='text' id='tt' name='tt' autoCorrect='off' size='15' value={filters.tt || ''} onChange={filtersChanged} />
+        <input type='text' id='tt' name='tt' autoCorrect='off' size={15} value={filters.tt || ''} onChange={filtersChanged} />
       </span>
 
       <span className='field'>
         <label htmlFor='cc'>Country Code:</label>
-        <input type='text' id='cc' name='cc' autoCorrect='off' maxLength='6' size='3' value={filters.cc || ''} onChange={filtersChanged} />
+        <input type='text' id='cc' name='cc' autoCorrect='off' maxLength={6} size={3} value={filters.cc || ''} onChange={filtersChanged} />
       </span>
 
       <span className='field'>
@@ -46,9 +46,7 @@ export function Filters() {
   );
 
 
-
-
-  function filtersChanged(event) {
+  function filtersChanged(event: ChangeEvent<HTMLInputElement>) {
     let val;
 
     if (event.target.type === 'checkbox') {
@@ -68,9 +66,9 @@ export function Filters() {
   }
 
 
-  function clearFilters(event) {
+  function clearFilters(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    event.target.blur();
+    event.currentTarget.blur();
 
     const newParams = Object.assign({}, params);  // copy
     for (const k of ['tt', 'cc', 'inc', 'dis']) {
