@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import diacritics from 'diacritics';
 
@@ -7,6 +7,7 @@ import { Header } from './Header';
 import { Filters } from './Filters'
 import { Footer } from './Footer';
 import { Overview } from './Overview';
+import { Warnings } from './Warnings';
 
 // Load the name-suggestion-index data files
 const DIST = 'https://cdn.jsdelivr.net/npm/name-suggestion-index@latest/dist';
@@ -79,7 +80,7 @@ export function AppContextProvider() {
 
     // Put params in this order
     const newParams = {};
-    ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc', 'dis'].forEach(k => {
+    ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc', 'dis', 'view'].forEach(k => {
       if (params[k]) {
         newParams[k] = params[k];
       } else if (k === 't') {       // if no tree specified,
@@ -114,15 +115,30 @@ export function AppContextProvider() {
   return (
     <AppContext.Provider value={appState}>
       <Header/>
-      <Filters/>
-      <div id='content'>
-        { (params.k && params.v) ? <Category/> : <Overview/> }
-      </div>
+      <View/>
       <Footer/>
     </AppContext.Provider>
   );
 }
 
+
+function View() {
+  const { params } = useContext(AppContext);
+
+  switch (params.view) {
+    case 'warnings':
+      return <Warnings/>;
+    default:
+      return (
+        <>
+          <Filters/>
+          <div id='content'>
+            { (params.k && params.v) ? <Category/> : <Overview/> }
+          </div>
+        </>
+      );
+  }
+}
 
 
 // Fetch some data

@@ -40,7 +40,7 @@ export function OverviewInstructions() {
       in <a target='_blank' href='https://www.wikidata.org'>Wikidata</a>, a free and open knowledge database.
       <br/>
       You can help us by adding {tempt} to the index, matching {tempt} to Wikidata identifiers,
-      or <a target='_blank' href='wikidata-warnings.htm'>improving</a> the Wikidata page for already indexed {tempt}.<br/>
+      or <a href='#' onClick={(e) => { e.preventDefault(); context.setParams({ ...params, view: 'warnings' }); }}>improving</a> the Wikidata page for already indexed {tempt}.<br/>
       <br/>
       Below is a list of categories used by OpenStreetMap. Each category displays a count of {tempt} <strong>"(complete / total)"</strong>,
       where "complete" means the {tempt} have been matched to a Wikidata identifier and a logo.<br/>
