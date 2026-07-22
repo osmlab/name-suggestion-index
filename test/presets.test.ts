@@ -1,28 +1,32 @@
 import { describe, it } from 'bun:test';
 import assert from 'node:assert/strict';
+import type { Presets } from '@openstreetmap/id-tagging-schema';
 import { buildIDPresets, buildJOSMPresets } from '../src/nsi.ts';
 import * as sample from './matcher.sample.ts';
 
 
 // Minimal stand-in for the `@openstreetmap/id-tagging-schema` presets dictionary.
-const sourcePresets = {
+const sourcePresets: Presets = {
   'amenity': {
     name: 'Amenity',
     icon: 'maki-marker',
     geometry: ['point', 'area'],
-    tags: { amenity: '*' }
+    tags: { amenity: '*' },
+    fields: ['a', 'b'],
   },
   'amenity/post_office': {
     name: 'Post Office',
     icon: 'maki-post',
     geometry: ['point', 'area'],
-    tags: { amenity: 'post_office' }
+    tags: { amenity: 'post_office' },
+    fields: ['c', 'd'],
   },
   'amenity/fast_food': {
     name: 'Fast Food',
     icon: 'maki-fast-food',
     geometry: ['point', 'area'],
-    tags: { amenity: 'fast_food' }
+    tags: { amenity: 'fast_food' },
+    fields: ['e', 'f'],
   }
 };
 
@@ -138,7 +142,7 @@ describe('buildIDPresets', () => {
 
   it('chooses the most specific child preset when multiple match', () => {
     // Source presets where `amenity/fast_food/chicken` is more specific than `amenity/fast_food`.
-    const presets = {
+    const presets: Presets = {
       ...sourcePresets,
       'amenity/fast_food/chicken': {
         name: 'Chicken Fast Food',
@@ -156,7 +160,7 @@ describe('buildIDPresets', () => {
   });
 
   it('handles semicolon-separated multi-value tags (e.g. cuisine)', () => {
-    const presets = {
+    const presets: Presets = {
       ...sourcePresets,
       'amenity/fast_food/burger': {
         name: 'Burger Fast Food', icon: 'maki-burger', geometry: ['point', 'area'],
@@ -192,7 +196,7 @@ describe('buildIDPresets', () => {
     // Two specific child presets exist under `amenity/fast_food`, but neither matches
     // the item's `cuisine=pizza` - pickBestChildPreset returns no match, so we fall
     // back to the generic `amenity` preset.
-    const presets = {
+    const presets: Presets = {
       amenity: sourcePresets.amenity,
       'amenity/fast_food/chicken': {
         name: 'Chicken Fast Food', icon: 'temaki-chicken', geometry: ['point', 'area'],
@@ -249,7 +253,7 @@ describe('buildIDPresets', () => {
         }]
       }
     };
-    const presets = {
+    const presets: Presets = {
       'education/college': {
         name: 'College', icon: 'maki-college', geometry: ['point', 'area'],
         tags: { amenity: 'college' }
@@ -271,7 +275,7 @@ describe('buildIDPresets', () => {
         }]
       }
     };
-    const presets = {
+    const presets: Presets = {
       'type/route/bus': {
         name: 'Bus Route', icon: 'maki-bus', geometry: ['line'],
         tags: { type: 'route', route: 'bus' }
@@ -293,7 +297,7 @@ describe('buildIDPresets', () => {
         }]
       }
     };
-    const presets = {
+    const presets: Presets = {
       'type/route/ferry': {
         name: 'Ferry Route', icon: 'maki-ferry', geometry: ['line'],
         tags: { type: 'route', route: 'ferry' }
@@ -322,7 +326,7 @@ describe('buildIDPresets', () => {
     };
     const result = buildIDPresets(preserved, { sourcePresets });
     const preset = result.presets['amenity/post_office/localpost-444444'];
-    assert.deepEqual(preset.fields, ['name', 'brand', '{amenity/post_office}']);
+    assert.deepEqual(preset.fields, ['name', 'brand', 'c', 'd']);
     assert.deepEqual(preset.preserveTags, ['^name']);
   });
 
@@ -341,7 +345,7 @@ describe('buildIDPresets', () => {
     };
     const result = buildIDPresets(preserved, { sourcePresets });
     const preset = result.presets['amenity/post_office/localop-555555'];
-    assert.deepEqual(preset.fields, ['name', 'operator', '{amenity/post_office}']);
+    assert.deepEqual(preset.fields, ['name', 'operator', 'c', 'd']);
   });
 
   it('falls back to wikidata logo when no facebook logo is present', () => {
@@ -487,5 +491,35 @@ describe('buildJOSMPresets', () => {
     const snapshot = JSON.stringify(sample.data);
     buildJOSMPresets(sample.data, { version: '1', description: 'd' });
     assert.equal(JSON.stringify(sample.data), snapshot);
+  });
+
+  it('allows downstream users to supply a preset class instead of a object', () => {
+    const preserved = {
+      'operators/amenity/post_office': {
+        properties: { path: 'operators/amenity/post_office', exclude: {} },
+        items: [{
+          id: 'localop-555555',
+          displayName: 'Local Op',
+          locationSet: { include: ['001'] },
+          preserveTags: ['^name'],
+          tags: { amenity: 'post_office', operator: 'Local Op', 'operator:wikidata': 'Q5555555' }
+        }]
+      }
+    };
+    const result = buildIDPresets(preserved, {
+      sourcePresets: {
+        'amenity/post_office': {
+          name: 'Post Office',
+          icon: 'maki-post',
+          geometry: ['point', 'area'],
+          tags: { amenity: 'post_office' },
+          // @ts-expect-error -- this is intentionally wrong, to mimic what iD an RapiD do
+          fields: () => { throw new Error('this function should not be claled by NSI'); },
+          originalFields: ['e', 'f'],
+        }
+      }
+    });
+    const preset = result.presets['amenity/post_office/localop-555555'];
+    assert.deepEqual(preset.fields, ['name', 'operator', 'e', 'f']);
   });
 });

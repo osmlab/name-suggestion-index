@@ -1,3 +1,4 @@
+import type { Preset } from '@openstreetmap/id-tagging-schema';
 import type { HasLocationSet, LocationSet } from '@rapideditor/location-conflation';
 
 
@@ -254,43 +255,13 @@ export interface NsiWarningsJSON {
  * present on the presets that {@link buildIDPresets} generates, but the
  * source iD presets supplied as input do not have them.
  *
- * @see https://github.com/ideditor/schema-builder/blob/main/schemas/preset.json
+ * @see https://github.com/openstreetmap/id-tagging-schema/blob/main/schemas/preset.json
  */
-export interface IDPreset extends HasLocationSet {
-  /** Display name */
-  name: string;
-  /** Region IDs where this preset is or isn't valid. See: https://github.com/ideditor/location-conflation */
-  locationSet?: LocationSet;
-  /** Name of preset icon which represents this preset */
-  icon: string;
-  /** Geometry types this Preset works with */
-  geometry: string[];
+export interface IDPreset extends Preset {
   /** Score for ranking search results */
   matchScore?: number;
-  /** URL of a remote image that is more specific than 'icon' */
-  imageURL?: string;
-  /** Alternate names that may be displayed in the UI */
-  aliases?: string[];
-  /** Related words used for searching */
-  terms?: string[];
-  /** Tags that identify this Preset */
-  tags: OsmTags;
-  /** Tags to add when applying this Preset */
-  addTags?: OsmTags;
-  /** Tags to remove when removing this Preset */
-  removeTags?: OsmTags;
   /** Regexes to match tags that should be preserved - a validator should not try to replace these tags, see NSI#10083 */
   preserveTags?: string[];
-  /** Field IDs for this Preset */
-  fields?: string[];
-  /** Additional Field IDs shown in "more fields" */
-  moreFields?: string[];
-  /** Whether this Preset appears in search results */
-  searchable?: boolean;
-  /** Reference data for documentation lookup */
-  reference?: { key?: string; value?: string };
-  /** The ID of a preset that is preferable to this one (for deprecated presets) */
-  replacement?: string;
 }
 
 

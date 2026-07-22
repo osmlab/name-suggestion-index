@@ -1,5 +1,6 @@
 import { $ } from 'bun';
 import LocationConflation from '@rapideditor/location-conflation';
+import type { Presets } from '@openstreetmap/id-tagging-schema';
 import XMLBuilder from 'fast-xml-builder';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
@@ -42,7 +43,7 @@ const wikidata = wikidataJSON.wikidata;
 
 // iD's presets which we will build on
 const presetsFile = './node_modules/@openstreetmap/id-tagging-schema/dist/presets.json';
-const presetsJSON = await Bun.file(presetsFile).json();
+const presetsJSON: Presets = await Bun.file(presetsFile).json();
 
 // We use LocationConflation for validating and processing the locationSets
 const _loco = new LocationConflation(featureCollectionJSON);
