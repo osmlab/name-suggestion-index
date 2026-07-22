@@ -1,3 +1,4 @@
+import type { Preset, Presets } from '@openstreetmap/id-tagging-schema';
 import { sortObject } from './sort_object.ts';
 
 import type {
@@ -21,7 +22,7 @@ const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
 /** Options for {@link buildIDPresets}. */
 export interface BuildIDPresetsOptions {
   /** The id-tagging-schema source presets dictionary (the `presets` field of `presets.json`). */
-  sourcePresets: Record<string, IDPreset>;
+  sourcePresets: Presets;
   /** Map of QID → wikidata info, used to source preset `imageURL` values. */
   wikidata?: WikidataMap;
   /** Map of NSI item id → dissolved record. Items present here become non-searchable. */
@@ -82,9 +83,9 @@ function resolvePresetPath(tkv: NsiPath, k: string, v: string, kv: string, ferry
 
 /** Picks the most specific iD preset matching an NSI item's tags. */
 function pickBestChildPreset(
-  childPresets: Map<string, IDPreset>,
+  childPresets: Map<string, Preset>,
   tags: OsmTags
-): { presetID?: string; preset?: IDPreset } {
+): { presetID?: string; preset?: Preset } {
   if (childPresets.size === 0) return {};
 
   if (childPresets.size === 1) {
@@ -97,7 +98,7 @@ function pickBestChildPreset(
   let matchTagsCount = 0;
   let matchSemicolonRating = 0;
   let matchPresetPath: string | undefined;
-  let matchPreset: IDPreset | undefined;
+  let matchPreset: Preset | undefined;
 
   for (const [checkPresetPath, checkPreset] of childPresets) {
     const checkPresetTags = Object.entries(checkPreset.tags as OsmTags);
@@ -178,11 +179,16 @@ function collectTerms(
  * fields are shown.  This triggers iD to lock the brand/operator field but allow
  * edits to the "name" field.
  */
-function buildFields(t: string, presetID: string, preserveTags: string[]): string[] | undefined {
-  if (!preserveTags.some(s => s === '^name')) return undefined;
-  if (t === 'brands')    return ['name', 'brand', `{${presetID}}`];
-  if (t === 'operators') return ['name', 'operator', `{${presetID}}`];
-  return undefined;
+function buildFields(t: string, preset: Preset & { originalFields?: string[] }, preserveTags: string[]): string[] {
+  const fields = preset.originalFields || preset.fields || [];
+
+  if (!preserveTags.some(s => s === '^name')) return fields;
+  // `originalFields` is preferred over `fields` to be backwards compatible with old versions
+  // of iD (released between May 2026 and July 2026). This can eventually be removed once there
+  // is no one using these old versions of iD.
+  if (t === 'brands')    return ['name', 'brand', ...fields];
+  if (t === 'operators') return ['name', 'operator', ...fields];
+  return fields;
 }
 
 
@@ -246,7 +252,7 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
   // - NSI identifiers will not collide with the preset identifiers (NSI ids don't look like tag values)
   //
 
-  const targetPresets: Record<string, IDPreset> = {};
+  const targetPresets: Record<string, Preset> = {};
   const missing = new Set<string>();
   const paths = Object.keys(data);
 
@@ -287,7 +293,7 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
     const notName = /:(colour|type|left|right|etymology|pronunciation|wikipedia|wikidata)$/i;
 
     // Look for iD presets that would fit this NSI presetPath.
-    const childPresets = new Map<string, IDPreset>();
+    const childPresets = new Map<string, Preset>();
     for (const checkPath in sourcePresets) {
       if (checkPath.startsWith(presetPath)) {
         childPresets.set(checkPath, sourcePresets[checkPath]);
@@ -325,19 +331,20 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
       const logoURL = pickLogoURL(qid, wikidata);
 
       const preserveTags = item.preserveTags || properties.preserveTags || [];
-      const fields = buildFields(t, presetID!, preserveTags);
 
-      const targetPreset = {
+      const targetPreset: IDPreset = {
         name:         item.displayName,
-        locationSet:  item.locationSet,
-        icon:         preset.icon,
+        locationSet:  item.locationSet as {} & IDPreset['locationSet'],
+        icon:         preset.icon!,
         geometry:     preset.geometry,
+        fields:       buildFields(t, preset, preserveTags),
+        moreFields:   preset.moreFields || [],
+        tags:         sortObject(targetTags),
         matchScore:   2
-      } as IDPreset;
+      };
 
       if (logoURL)             targetPreset.imageURL = logoURL;
       if (terms.size)          targetPreset.terms = Array.from(terms).sort(withLocale);
-      if (fields)              targetPreset.fields = fields;
       if (preset.reference)    targetPreset.reference = preset.reference;
       if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
       if (preserveTags.length) targetPreset.preserveTags = preserveTags; // see NSI#10083
