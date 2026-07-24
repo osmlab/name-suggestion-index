@@ -1,22 +1,10 @@
-import { sortObject } from './sort_object.ts';
-
-import type {
-  DissolvedMap,
-  NsiData,
-  NsiPath,
-  NsiTree,
-  NsiTreeProperties,
-  OsmTags,
-  IDPreset,
-  WikidataMap
-} from './types.ts';
-
-const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
-
 // Imported JSON (will be inlined by bun)
-import treesJSON from '../config/trees.json' with {type: 'json'};
-const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
+import treesJSON from '../config/trees.json' with { type: 'json' };
+import { sortObject } from './sort_object.ts';
+import type { DissolvedMap, IDPreset, NsiData, NsiPath, NsiTree, NsiTreeProperties, OsmTags, WikidataMap } from './types.ts';
 
+const withLocale = new Intl.Collator('en-US').compare; // specify 'en-US' for stable sorting
+const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
 
 /** Options for {@link buildIDPresets}. */
 export interface BuildIDPresetsOptions {
@@ -36,23 +24,22 @@ export interface BuildIDPresetsResult {
   missing: NsiPath[];
 }
 
-
 // Exceptions where the NSI `key/value` doesn't match the iD preset path `key/value`.
 // See also https://github.com/openstreetmap/iD/issues/11527
 // id-tagging-schema occasionally moves their presets around, changing their presetIDs.
 const presetPathOverrides: Record<string, string> = {
-  'highway/bus_stop':        'public_transport/platform/bus_point',
-  'amenity/ferry_terminal':  'public_transport/station_ferry',
-  'amenity/college':         'education/college',
-  'amenity/driving_school':  'education/driving_school',
-  'amenity/dancing_school':  'education/dancing_school',
-  'amenity/kindergarten':    'education/kindergarten',
+  'highway/bus_stop': 'public_transport/platform/bus_point',
+  'amenity/ferry_terminal': 'public_transport/station_ferry',
+  'amenity/college': 'education/college',
+  'amenity/driving_school': 'education/driving_school',
+  'amenity/dancing_school': 'education/dancing_school',
+  'amenity/kindergarten': 'education/kindergarten',
   'amenity/language_school': 'education/language_school',
-  'amenity/music_school':    'education/music_school',
-  'amenity/prep_school':     'education/prep_school',
-  'amenity/school':          'education/school',
-  'amenity/university':      'education/university',
-  'emergency/water_rescue':  'emergency/lifeboat_station'
+  'amenity/music_school': 'education/music_school',
+  'amenity/prep_school': 'education/prep_school',
+  'amenity/school': 'education/school',
+  'amenity/university': 'education/university',
+  'emergency/water_rescue': 'emergency/lifeboat_station'
 };
 
 // Tags that NSI allows to process as multi-valued
@@ -61,14 +48,13 @@ const semicolonSplittedKeys = ['beauty', 'clothes', 'cuisine', 'healthcare:speci
 // Prefer a wiki commons logo for these QIDs.
 // Related issues list: iD#6361, NSI#2798, NSI#3122, NSI#8042, NSI#8373
 const preferCommons: Record<string, boolean> = {
-  Q177054: true,    // Burger King
-  Q524757: true,    // KFC
-  Q779845: true,    // CBA
-  Q1205312: true,   // In-N-Out
-  Q10443115: true,  // Carlings
-  Q38076: true      // McDonald's
+  Q177054: true, // Burger King
+  Q524757: true, // KFC
+  Q779845: true, // CBA
+  Q1205312: true, // In-N-Out
+  Q10443115: true, // Carlings
+  Q38076: true // McDonald's
 };
-
 
 /** Resolves the iD preset path to look under for a given NSI tkv. */
 function resolvePresetPath(tkv: NsiPath, k: string, v: string, kv: string, ferryIndex: number): string {
@@ -79,12 +65,8 @@ function resolvePresetPath(tkv: NsiPath, k: string, v: string, kv: string, ferry
   return presetPathOverrides[kv] || kv;
 }
 
-
 /** Picks the most specific iD preset matching an NSI item's tags. */
-function pickBestChildPreset(
-  childPresets: Map<string, IDPreset>,
-  tags: OsmTags
-): { presetID?: string; preset?: IDPreset } {
+function pickBestChildPreset(childPresets: Map<string, IDPreset>, tags: OsmTags): { presetID?: string; preset?: IDPreset } {
   if (childPresets.size === 0) return {};
 
   if (childPresets.size === 1) {
@@ -118,14 +100,14 @@ function pickBestChildPreset(
         currentMatchSemicolonRating -= findResult;
         return true;
       }
-      return (osmVal === nsiVal);
+      return osmVal === nsiVal;
     });
 
     // If rating of current element is higher than the saved one, we overwrite saved
-    if (isPresetMatch && (
-      (checkPresetTags.length > matchTagsCount) ||
-      (checkPresetTags.length === matchTagsCount && currentMatchSemicolonRating > matchSemicolonRating)
-    )) {
+    if (
+      isPresetMatch &&
+      (checkPresetTags.length > matchTagsCount || (checkPresetTags.length === matchTagsCount && currentMatchSemicolonRating > matchSemicolonRating))
+    ) {
       matchTagsCount = checkPresetTags.length;
       matchSemicolonRating = currentMatchSemicolonRating;
       matchPresetPath = checkPresetPath;
@@ -133,11 +115,8 @@ function pickBestChildPreset(
     }
   }
 
-  return matchPreset && matchPresetPath
-    ? { presetID: matchPresetPath, preset: matchPreset }
-    : {};
+  return matchPreset && matchPresetPath ? { presetID: matchPresetPath, preset: matchPreset } : {};
 }
-
 
 /** Picks a logo URL from wikidata for a given QID. */
 function pickLogoURL(qid: string, wikidata: WikidataMap): string | undefined {
@@ -148,27 +127,20 @@ function pickLogoURL(qid: string, wikidata: WikidataMap): string | undefined {
   return logoURLs.wikidata;
 }
 
-
 /**
  * Collects search terms for an NSI item — its matchNames plus name-like tag values.
  */
-function collectTerms(
-  item: { matchNames?: string[]; tags: OsmTags },
-  primaryName: RegExp,
-  alternateName: RegExp,
-  notName: RegExp
-): Set<string> {
+function collectTerms(item: { matchNames?: string[]; tags: OsmTags }, primaryName: RegExp, alternateName: RegExp, notName: RegExp): Set<string> {
   const terms = new Set(item.matchNames || []);
   for (const osmkey of Object.keys(item.tags)) {
-    if (osmkey === 'name') continue;      // exclude `name` tag, as iD prioritizes it above `preset.terms` already
-    if (notName.test(osmkey)) continue;   // osmkey is not a namelike tag, skip
+    if (osmkey === 'name') continue; // exclude `name` tag, as iD prioritizes it above `preset.terms` already
+    if (notName.test(osmkey)) continue; // osmkey is not a namelike tag, skip
     if (primaryName.test(osmkey) || alternateName.test(osmkey)) {
       terms.add(item.tags[osmkey].toLowerCase());
     }
   }
   return terms;
 }
-
 
 /**
  * Returns the `fields` array for an NSI preset when `^name` is being preserved,
@@ -180,11 +152,10 @@ function collectTerms(
  */
 function buildFields(t: string, presetID: string, preserveTags: string[]): string[] | undefined {
   if (!preserveTags.some(s => s === '^name')) return undefined;
-  if (t === 'brands')    return ['name', 'brand', `{${presetID}}`];
+  if (t === 'brands') return ['name', 'brand', `{${presetID}}`];
   if (t === 'operators') return ['name', 'operator', `{${presetID}}`];
   return undefined;
 }
-
 
 /**
  * Build iD/Rapid presets from NSI data.
@@ -257,7 +228,7 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
   // `route/ferry` - for a Way
   let ferryCount = 0;
   if (data['transit/route/ferry']) {
-    paths.push('transit/route/ferry');   // add a duplicate tkv
+    paths.push('transit/route/ferry'); // add a duplicate tkv
   }
 
   for (const tkv of paths.sort(withLocale) as NsiPath[]) {
@@ -265,12 +236,12 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
     const items = data[tkv].items;
     if (!Array.isArray(items) || !items.length) continue;
 
-    const [t, k, v] = tkv.split('/', 3);   // tkv = "tree/key/value"
+    const [t, k, v] = tkv.split('/', 3); // tkv = "tree/key/value"
     const tree = trees[t as NsiTree];
     const kv = `${k}/${v}`;
 
     // Ferry hack! ⛴ - duplicated tkv generates `type/route/ferry` then `route/ferry`
-    const ferryIndex = (tkv === 'transit/route/ferry') ? ferryCount++ : 0;
+    const ferryIndex = tkv === 'transit/route/ferry' ? ferryCount++ : 0;
     const presetPath = resolvePresetPath(tkv, k, v, kv, ferryIndex);
 
     // Which wikidata tag is considered the "main" tag for this tree?
@@ -297,7 +268,7 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
     for (const item of items) {
       const tags = item.tags;
       const qid = tags[wdTag];
-      if (!qid || !/^Q\d+$/.test(qid)) continue;   // wikidata tag missing or looks wrong..
+      if (!qid || !/^Q\d+$/.test(qid)) continue; // wikidata tag missing or looks wrong..
 
       // Sometimes we can choose a more specific iD preset than `key/value`,
       // otherwise fall back to a generic like `amenity/yes`, `shop/yes`.
@@ -307,7 +278,7 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
         preset = sourcePresets[presetID];
         missing.add(tkv);
       }
-      if (!preset) continue;   // *still* no match - bail out
+      if (!preset) continue; // *still* no match - bail out
 
       // Gather search terms - include all primary/alternate names and matchNames
       // (There is similar code in lib/matcher.ts)
@@ -318,7 +289,8 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
 
       const targetTags: OsmTags = {};
       targetTags[wdTag] = tags[wdTag]; // add the `*:wikidata` tag
-      for (const presetKey in preset.tags) {  // prioritize NSI tags over iD preset tags (for `vending`, `cuisine`, etc)
+      for (const presetKey in preset.tags) {
+        // prioritize NSI tags over iD preset tags (for `vending`, `cuisine`, etc)
         targetTags[presetKey] = tags[presetKey] || preset.tags[presetKey];
       }
 
@@ -328,18 +300,18 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
       const fields = buildFields(t, presetID!, preserveTags);
 
       const targetPreset = {
-        name:         item.displayName,
-        locationSet:  item.locationSet,
-        icon:         preset.icon,
-        geometry:     preset.geometry,
-        matchScore:   2
+        name: item.displayName,
+        locationSet: item.locationSet,
+        icon: preset.icon,
+        geometry: preset.geometry,
+        matchScore: 2
       } as IDPreset;
 
-      if (logoURL)             targetPreset.imageURL = logoURL;
-      if (terms.size)          targetPreset.terms = Array.from(terms).sort(withLocale);
-      if (fields)              targetPreset.fields = fields;
-      if (preset.reference)    targetPreset.reference = preset.reference;
-      if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
+      if (logoURL) targetPreset.imageURL = logoURL;
+      if (terms.size) targetPreset.terms = Array.from(terms).sort(withLocale);
+      if (fields) targetPreset.fields = fields;
+      if (preset.reference) targetPreset.reference = preset.reference;
+      if (dissolved[item.id]) targetPreset.searchable = false; // dissolved/closed businesses
       if (preserveTags.length) targetPreset.preserveTags = preserveTags; // see NSI#10083
 
       targetPreset.tags = sortObject(targetTags) as OsmTags;

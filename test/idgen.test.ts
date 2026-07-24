@@ -1,10 +1,11 @@
-import assert from "node:assert/strict";
-import { describe, it } from "bun:test";
-import { idgen } from "../lib/idgen.ts";
-import type { NsiItem } from "../lib/types.ts";
+import { describe, it } from 'bun:test';
+import assert from 'node:assert/strict';
+
+import { idgen } from '../lib/idgen.ts';
+import type { NsiItem } from '../lib/types.ts';
 
 // Helper to create a typed NsiItem with the given tags
-const itemWithTags = (tags: Record<string, string>): NsiItem => ({ tags } as NsiItem);
+const itemWithTags = (tags: Record<string, string>): NsiItem => ({ tags }) as NsiItem;
 
 describe('idgen', () => {
   it('returns a "name-hash" string where hash is 6 hex chars', () => {
@@ -35,7 +36,6 @@ describe('idgen', () => {
     assert.notEqual(a, b);
   });
 
-
   describe('name selection — brands tree', () => {
     it('prefers `name` over `brand`', () => {
       const item = itemWithTags({ name: 'Aldo', brand: 'Other', operator: 'AnotherOther', network: 'YetAnotherOther' });
@@ -62,7 +62,6 @@ describe('idgen', () => {
     });
   });
 
-
   describe('name selection — operators tree', () => {
     it('prefers `operator` over `name`', () => {
       const item = itemWithTags({ name: 'Other', operator: 'Acme' });
@@ -77,7 +76,6 @@ describe('idgen', () => {
     });
   });
 
-
   describe('name selection — transit tree', () => {
     it('prefers `name` over `network` and `operator`', () => {
       const item = itemWithTags({ name: 'Acme', network: 'N', operator: 'O' });
@@ -91,7 +89,6 @@ describe('idgen', () => {
       assert.ok(id!.startsWith('acme-'));
     });
   });
-
 
   describe('name selection — flags tree', () => {
     it('uses `flag:name`', () => {
@@ -112,7 +109,6 @@ describe('idgen', () => {
       assert.equal(id, null);
     });
   });
-
 
   describe('regex-keyed tags (language variants)', () => {
     it('matches `name:en`', () => {
@@ -151,7 +147,6 @@ describe('idgen', () => {
     });
   });
 
-
   describe('simplification of the name portion', () => {
     it('lowercases and removes spaces', () => {
       const item = itemWithTags({ name: 'Jimmy Choo' });
@@ -172,7 +167,6 @@ describe('idgen', () => {
     });
   });
 
-
   describe('hash fallback for non-/^\\w+$/ names', () => {
     it('falls back to a 6-char md5 hex when no key yields a clean name', () => {
       // After simplification, '!!!' becomes '' which is not `/^\w+$/`.
@@ -192,7 +186,6 @@ describe('idgen', () => {
     });
   });
 
-
   describe('null returns', () => {
     it('returns null when the item has no usable tags', () => {
       const item = itemWithTags({});
@@ -200,7 +193,7 @@ describe('idgen', () => {
       assert.equal(id, null);
     });
 
-    it('returns null when the item has only tags outside the tree\'s key list', () => {
+    it("returns null when the item has only tags outside the tree's key list", () => {
       const item = itemWithTags({ subject: 'Aldo' });
       const id = idgen(item, 'brands/shop/clothes', 'us');
       assert.equal(id, null);

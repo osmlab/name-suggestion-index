@@ -1,5 +1,4 @@
-const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
-
+const withLocale = new Intl.Collator('en-US').compare; // specify 'en-US' for stable sorting
 
 /**
  * Returns a shallow copy of an object with its keys sorted and any array values sorted.
@@ -22,7 +21,6 @@ export function sortObject<T extends Record<string, unknown>>(obj: T): T | null 
   }
   return sorted as T;
 
-
   /**
    * Compares two object keys, sorting Wikidata QIDs (`Q123`) numerically
    * and everything else with en-US locale collation.
@@ -36,7 +34,7 @@ export function sortObject<T extends Record<string, unknown>>(obj: T): T | null 
     const aMatch = a.match(qid);
     const bMatch = b.match(qid);
     if (aMatch && bMatch) {
-      return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);   // sort QIDs numerically
+      return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10); // sort QIDs numerically
     } else {
       return withLocale(a, b);
     }

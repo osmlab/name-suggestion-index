@@ -1,19 +1,18 @@
 import { Glob } from 'bun';
-import JSON5 from 'json5';
-import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
+
+import stringify from 'json-stringify-pretty-compact';
+import JSON5 from 'json5';
 import { Validator } from 'jsonschema';
+import type LocationConflation from '@rapideditor/location-conflation';
+import type { Location, LocationSet } from '@rapideditor/location-conflation';
 
 import { idgen } from './idgen.ts';
 import { sortObject } from './sort_object.ts';
 import { validate } from './validate.ts';
-
 import type { NsiCache, NsiCategoryProperties, NsiPath, NsiTree, NsiTreeProperties, NsiTreesJSON, OsmTags } from './types.ts';
-import type LocationConflation from '@rapideditor/location-conflation';
-import type { Location, LocationSet } from '@rapideditor/location-conflation';
 
-const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
-
+const withLocale = new Intl.Collator('en-US').compare; // specify 'en-US' for stable sorting
 
 /** Tree definitions loaded from `config/trees.json`. */
 const treesJSON: NsiTreesJSON = await Bun.file('./config/trees.json').json();
@@ -22,7 +21,6 @@ const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
 /** JSON Schema for category files, loaded from `schema/categories.json`. */
 const categoriesSchemaJSON = await Bun.file('./schema/categories.json').json();
 const validator = new Validator();
-
 
 /**
  * Utilities for reading, writing, and expanding NSI data files under `./data/`.
@@ -43,467 +41,461 @@ const validator = new Validator();
  * ```
  */
 export const fileTree = {
+  /**
+   * Reads all NSI data files from `./data/`, validates them against the JSON
+   * Schema, generates item ids, and populates the cache.
+   *
+   * @param   cache - The cache object to populate (created if falsy)
+   * @param   loco  - A `LocationConflation` instance for validating locationSets
+   * @returns The populated cache
+   * @throws  Terminates via `process.exit(1)` on schema errors, duplicate paths,
+   *          duplicate ids, invalid JSON, or unresolvable locationSets.
+   */
+  read: async (cache: NsiCache, loco: LocationConflation) => {
+    cache = cache || {};
+    cache.id = cache.id || new Map();
+    cache.path = cache.path || {};
 
-/**
- * Reads all NSI data files from `./data/`, validates them against the JSON
- * Schema, generates item ids, and populates the cache.
- *
- * @param   cache - The cache object to populate (created if falsy)
- * @param   loco  - A `LocationConflation` instance for validating locationSets
- * @returns The populated cache
- * @throws  Terminates via `process.exit(1)` on schema errors, duplicate paths,
- *          duplicate ids, invalid JSON, or unresolvable locationSets.
- */
-read: async (cache: NsiCache, loco: LocationConflation) => {
-  cache = cache || {};
-  cache.id = cache.id || new Map();
-  cache.path = cache.path || {};
+    for (const t of Object.keys(trees) as NsiTree[]) {
+      const tree = trees[t];
+      let itemCount = 0;
+      let fileCount = 0;
 
-  for (const t of Object.keys(trees) as NsiTree[]) {
-    const tree = trees[t];
-    let itemCount = 0;
-    let fileCount = 0;
+      const glob = new Glob(`./data/${t}/**/*`);
+      for (const filepath of glob.scanSync()) {
+        if (/\.md$/i.test(filepath)) continue; // ignore markdown/readme files - NSI#7292
 
-    const glob = new Glob(`./data/${t}/**/*`);
-    for (const filepath of glob.scanSync()) {
-      if (/\.md$/i.test(filepath)) continue;  // ignore markdown/readme files - NSI#7292
-
-      if (!/\.json$/.test(filepath)) {
-        console.error(styleText('red', `Error - file should have a .json extension:`));
-        console.error('  ' + styleText('yellow', filepath));
-        process.exit(1);
-      }
-
-      fileCount++;
-      const contents = await Bun.file(filepath).text();
-      let input;
-      try {
-        input = JSON5.parse(contents);
-      } catch (jsonParseError: unknown) {
-        const message = jsonParseError instanceof Error ? jsonParseError.message : String(jsonParseError);
-        console.error(styleText('red', `Error - ${message} reading:`));
-        console.error('  ' + styleText('yellow', filepath));
-        process.exit(1);
-      }
-
-      // check JSON schema
-      validate(validator, filepath, input, categoriesSchemaJSON);
-
-      const properties = input.properties || {};
-      const tkv = properties.path as NsiPath;
-      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const k = parts[1];
-      const v = parts[2];
-      const kv = `${k}/${v}`;
-      const seenkv: Record<string, string> = {};
-
-      // make sure path is unique
-      if (cache.path[tkv]) {
-        console.error(styleText('red', `Error - '${tkv}' found in multiple files.`));
-        console.error('  ' + styleText('yellow', filepath));
-        process.exit(1);
-      } else {
-        cache.path[tkv] = { properties: properties, items: [], templates: [] };
-      }
-
-      // make sure each k/v pair appears in only one tree
-      const other = seenkv[kv];
-      if (other && other !== t) {
-        console.error(styleText('red', `Error - '${kv}' found in multiple trees: ${other} and ${t}.`));
-        console.error('  ' + styleText('yellow', filepath));
-        process.exit(1);
-      } else {
-        seenkv[kv] = t;
-      }
-
-      // check and merge each item
-      const seenName: Record<string, boolean> = {};
-      const items = input.items || [];
-      for (const item of items) {
-        itemCount++;
-
-        if (item.templateSource) {    // It's a template item
-          cache.path[tkv].templates!.push(item);
-          continue;
+        if (!/\.json$/.test(filepath)) {
+          console.error(styleText('red', `Error - file should have a .json extension:`));
+          console.error('  ' + styleText('yellow', filepath));
+          process.exit(1);
         }
 
-        // check displayName for uniqueness within this category
-        if (seenName[item.displayName]) {
-          console.error(styleText('red', `Error - duplicate displayName '${item.displayName}' in:`));
+        fileCount++;
+        const contents = await Bun.file(filepath).text();
+        let input;
+        try {
+          input = JSON5.parse(contents);
+        } catch (jsonParseError: unknown) {
+          const message = jsonParseError instanceof Error ? jsonParseError.message : String(jsonParseError);
+          console.error(styleText('red', `Error - ${message} reading:`));
+          console.error('  ' + styleText('yellow', filepath));
+          process.exit(1);
+        }
+
+        // check JSON schema
+        validate(validator, filepath, input, categoriesSchemaJSON);
+
+        const properties = input.properties || {};
+        const tkv = properties.path as NsiPath;
+        const parts = tkv.split('/', 3); // tkv = "tree/key/value"
+        const k = parts[1];
+        const v = parts[2];
+        const kv = `${k}/${v}`;
+        const seenkv: Record<string, string> = {};
+
+        // make sure path is unique
+        if (cache.path[tkv]) {
+          console.error(styleText('red', `Error - '${tkv}' found in multiple files.`));
           console.error('  ' + styleText('yellow', filepath));
           process.exit(1);
         } else {
-          seenName[item.displayName] = true;
+          cache.path[tkv] = { properties: properties, items: [], templates: [] };
         }
 
-        // check locationSet
-        let locationID;
+        // make sure each k/v pair appears in only one tree
+        const other = seenkv[kv];
+        if (other && other !== t) {
+          console.error(styleText('red', `Error - '${kv}' found in multiple trees: ${other} and ${t}.`));
+          console.error('  ' + styleText('yellow', filepath));
+          process.exit(1);
+        } else {
+          seenkv[kv] = t;
+        }
+
+        // check and merge each item
+        const seenName: Record<string, boolean> = {};
+        const items = input.items || [];
+        for (const item of items) {
+          itemCount++;
+
+          if (item.templateSource) {
+            // It's a template item
+            cache.path[tkv].templates!.push(item);
+            continue;
+          }
+
+          // check displayName for uniqueness within this category
+          if (seenName[item.displayName]) {
+            console.error(styleText('red', `Error - duplicate displayName '${item.displayName}' in:`));
+            console.error('  ' + styleText('yellow', filepath));
+            process.exit(1);
+          } else {
+            seenName[item.displayName] = true;
+          }
+
+          // check locationSet
+          let locationID;
+          try {
+            // validating the locationset is fast
+            const valid = loco.validateLocationSet(item.locationSet);
+            locationID = valid.id;
+            // full resolution is slow, only necessary to see whether it returns an actual usable geojson
+            //          const resolved = loco.resolveLocationSet(item.locationSet);
+            //          locationID = resolved.id;
+            //          if (!resolved.feature.geometry.coordinates.length || !resolved.feature.properties.area) {
+            //            throw new Error(`locationSet ${locationID} resolves to an empty feature.`);
+            //          }
+          } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : String(err);
+            console.error(styleText('red', `Error - ${message} in:`));
+            console.error('  ' + styleText('yellow', item.displayName));
+            console.error('  ' + styleText('yellow', filepath));
+            process.exit(1);
+          }
+
+          // check tags
+          item.tags[k] = v; // sanity check: `k=v` must exist as a tag.
+
+          // generate id
+          item.id = idgen(item, tkv, locationID);
+          if (!item.id) {
+            console.error(styleText('red', `Error - Couldn't generate an id for:`));
+            console.error('  ' + styleText('yellow', item.displayName));
+            console.error('  ' + styleText('yellow', filepath));
+            process.exit(1);
+          }
+
+          // merge into caches
+          if (cache.id.has(item.id)) {
+            console.error(styleText('red', `Error - Duplicate id '${item.id}' in:`));
+            console.error('  ' + styleText('yellow', item.displayName));
+            console.error('  ' + styleText('yellow', filepath));
+            process.exit(1);
+          } else {
+            cache.path[tkv].items.push(item);
+            cache.id.set(item.id, item);
+          }
+        }
+      }
+
+      console.log(`${tree.emoji}  ${t}:\tLoaded ${itemCount} items in ${fileCount} files`);
+    }
+
+    return cache;
+  },
+
+  /**
+   * Writes all cached category data back to `./data/` as pretty-printed JSON files.
+   * Sorts and cleans keys, tag values, matchNames, matchTags, and category
+   * properties before writing.
+   *
+   * @param   cache - The cache to write (expects `cache.path` to be populated)
+   * @throws  Terminates via `process.exit(1)` on file-write errors.
+   */
+  write: async (cache: NsiCache) => {
+    cache = cache || {};
+    cache.path = cache.path || {};
+
+    for (const t of Object.keys(trees) as NsiTree[]) {
+      const tree = trees[t];
+      let itemCount = 0;
+      let fileCount = 0;
+
+      for (const tkv of Object.keys(cache.path) as NsiPath[]) {
+        if (tkv.split('/')[0] !== t) continue;
+
+        const category = cache.path[tkv];
+        const parts = tkv.split('/', 3); // tkv = "tree/key/value"
+        const v = parts[2];
+
+        const file = `./data/${tkv}.json`;
+        fileCount++;
+
+        let templateItems = category.templates || [];
+        let normalItems = category.items || [];
+        if (!templateItems.length && !normalItems.length) continue; // nothing to do
+
+        templateItems = templateItems
+          .sort((a, b) => withLocale(a.templateSource, b.templateSource)) // sort templateItems by templateSource
+          .map(item => {
+            // clean templateInclude/templateExclude
+            if (item.templateInclude) {
+              item.templateInclude = item.templateInclude.map((s: string) => s.toLowerCase()).sort(withLocale);
+            }
+            if (item.templateExclude) {
+              item.templateExclude = item.templateExclude.map((s: string) => s.toLowerCase()).sort(withLocale);
+            }
+
+            // clean templateSource
+            item.templateSource = _trim(item.templateSource);
+
+            // clean templateTags
+            const cleaned: OsmTags = {};
+            for (const k of Object.keys(item.templateTags)) {
+              const osmkey = _trim(k) as string;
+              const osmval = _trim(item.templateTags[k]);
+              cleaned[osmkey] = osmval;
+            }
+            item.templateTags = sortObject(cleaned);
+
+            return sortObject(item);
+          });
+
+        normalItems = normalItems
+          .filter(item => !item.fromTemplate)
+          .sort((a, b) => withLocale(a.displayName, b.displayName)) // sort normalItems by displayName
+          .map(item => {
+            // clean displayName
+            item.displayName = _trim(item.displayName);
+
+            // clean locationSet — normalize to a `LocationSet` with sorted,
+            // lowercased entries; default `include` to world (`['001']`) if missing.
+            const cleanedLS: LocationSet = {};
+            const include = item.locationSet?.include;
+            cleanedLS.include = Array.isArray(include) && include.length ? include.map(_cleanLocation).sort(_compareLocations) : ['001']; // default to world
+            const exclude = item.locationSet?.exclude;
+            if (Array.isArray(exclude) && exclude.length) {
+              cleanedLS.exclude = exclude.map(_cleanLocation).sort(_compareLocations);
+            }
+            item.locationSet = cleanedLS;
+
+            // clean matchNames/matchTags
+            for (const prop of ['matchNames', 'matchTags'] as const) {
+              if (item[prop]) {
+                item[prop] = item[prop].map(_cleanString).sort(withLocale);
+              }
+            }
+
+            // clean OSM tags
+            const cleanedTags: OsmTags = {};
+            for (const k of Object.keys(item.tags)) {
+              const osmkey = _trim(k) as string;
+              const osmval = _trim(item.tags[k]);
+              cleanedTags[osmkey] = osmval;
+            }
+            item.tags = sortObject(cleanedTags);
+
+            return sortObject(item);
+          });
+
+        // clean category properties
+        const properties = category.properties || {};
+        properties.exclude = properties.exclude || {};
+
+        const cleanedProps = {} as NsiCategoryProperties;
+        cleanedProps.path = tkv;
+
+        if (properties.skipCollection) {
+          cleanedProps.skipCollection = properties.skipCollection;
+        }
+        if (Array.isArray(properties.preserveTags)) {
+          cleanedProps.preserveTags = (properties.preserveTags.map(_cleanString) as string[]).sort(withLocale);
+        }
+
+        cleanedProps.exclude = {};
+        if (Array.isArray(properties.exclude.generic)) {
+          cleanedProps.exclude.generic = properties.exclude.generic.map(_cleanString).sort(withLocale);
+        } else {
+          const v2 = v.replace(/_/g, ' '); // add the value as a generic name exclude (e.g. 'restaurant')
+          cleanedProps.exclude.generic = [`^${v2}$`];
+        }
+        if (Array.isArray(properties.exclude.named)) {
+          cleanedProps.exclude.named = properties.exclude.named.map(_cleanString).sort(withLocale);
+        }
+
+        // generate file
+        const output = {
+          properties: cleanedProps,
+          items: [...templateItems, ...normalItems]
+        };
+
+        itemCount += output.items.length;
+
         try {
-// validating the locationset is fast
-          const valid = loco.validateLocationSet(item.locationSet);
-          locationID = valid.id;
-// full resolution is slow, only necessary to see whether it returns an actual usable geojson
-//          const resolved = loco.resolveLocationSet(item.locationSet);
-//          locationID = resolved.id;
-//          if (!resolved.feature.geometry.coordinates.length || !resolved.feature.properties.area) {
-//            throw new Error(`locationSet ${locationID} resolves to an empty feature.`);
-//          }
+          await Bun.write(file, stringify(output, { maxLength: 50 }) + '\n');
         } catch (err: unknown) {
           const message = err instanceof Error ? err.message : String(err);
-          console.error(styleText('red', `Error - ${message} in:`));
-          console.error('  ' + styleText('yellow', item.displayName));
-          console.error('  ' + styleText('yellow', filepath));
-          process.exit(1);
-        }
-
-        // check tags
-        item.tags[k] = v;    // sanity check: `k=v` must exist as a tag.
-
-        // generate id
-        item.id = idgen(item, tkv, locationID);
-        if (!item.id) {
-          console.error(styleText('red', `Error - Couldn't generate an id for:`));
-          console.error('  ' + styleText('yellow', item.displayName));
-          console.error('  ' + styleText('yellow', filepath));
-          process.exit(1);
-        }
-
-        // merge into caches
-        if (cache.id.has(item.id)) {
-          console.error(styleText('red', `Error - Duplicate id '${item.id}' in:`));
-          console.error('  ' + styleText('yellow', item.displayName));
-          console.error('  ' + styleText('yellow', filepath));
-          process.exit(1);
-        } else {
-          cache.path[tkv].items.push(item);
-          cache.id.set(item.id, item);
-        }
-      }
-    }
-
-    console.log(`${tree.emoji}  ${t}:\tLoaded ${itemCount} items in ${fileCount} files`);
-  }
-
-  return cache;
-},
-
-
-/**
- * Writes all cached category data back to `./data/` as pretty-printed JSON files.
- * Sorts and cleans keys, tag values, matchNames, matchTags, and category
- * properties before writing.
- *
- * @param   cache - The cache to write (expects `cache.path` to be populated)
- * @throws  Terminates via `process.exit(1)` on file-write errors.
- */
-write: async (cache: NsiCache) => {
-  cache = cache || {};
-  cache.path = cache.path || {};
-
-  for (const t of Object.keys(trees) as NsiTree[]) {
-    const tree = trees[t];
-    let itemCount = 0;
-    let fileCount = 0;
-
-    for (const tkv of Object.keys(cache.path) as NsiPath[]) {
-      if (tkv.split('/')[0] !== t) continue;
-
-      const category = cache.path[tkv];
-      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const v = parts[2];
-
-      const file = `./data/${tkv}.json`;
-      fileCount++;
-
-      let templateItems = category.templates || [];
-      let normalItems = category.items || [];
-      if (!templateItems.length && !normalItems.length) continue;   // nothing to do
-
-      templateItems = templateItems
-        .sort((a, b) => withLocale(a.templateSource, b.templateSource))   // sort templateItems by templateSource
-        .map(item => {
-          // clean templateInclude/templateExclude
-          if (item.templateInclude) {
-            item.templateInclude = item.templateInclude.map((s: string) => s.toLowerCase()).sort(withLocale);
-          }
-          if (item.templateExclude) {
-            item.templateExclude = item.templateExclude.map((s: string) => s.toLowerCase()).sort(withLocale);
-          }
-
-          // clean templateSource
-          item.templateSource = _trim(item.templateSource);
-
-          // clean templateTags
-          const cleaned: OsmTags = {};
-          for (const k of Object.keys(item.templateTags)) {
-            const osmkey = _trim(k) as string;
-            const osmval = _trim(item.templateTags[k]);
-            cleaned[osmkey] = osmval;
-          }
-          item.templateTags = sortObject(cleaned);
-
-          return sortObject(item);
-        });
-
-      normalItems = normalItems
-        .filter(item => !item.fromTemplate)
-        .sort((a, b) => withLocale(a.displayName, b.displayName))   // sort normalItems by displayName
-        .map(item => {
-          // clean displayName
-          item.displayName = _trim(item.displayName);
-
-          // clean locationSet — normalize to a `LocationSet` with sorted,
-          // lowercased entries; default `include` to world (`['001']`) if missing.
-          const cleanedLS: LocationSet = {};
-          const include = item.locationSet?.include;
-          cleanedLS.include = (Array.isArray(include) && include.length)
-            ? include.map(_cleanLocation).sort(_compareLocations)
-            : ['001'];  // default to world
-          const exclude = item.locationSet?.exclude;
-          if (Array.isArray(exclude) && exclude.length) {
-            cleanedLS.exclude = exclude.map(_cleanLocation).sort(_compareLocations);
-          }
-          item.locationSet = cleanedLS;
-
-          // clean matchNames/matchTags
-          for (const prop of ['matchNames', 'matchTags'] as const) {
-            if (item[prop]) {
-              item[prop] = item[prop].map(_cleanString).sort(withLocale);
-            }
-          }
-
-          // clean OSM tags
-          const cleanedTags: OsmTags = {};
-          for (const k of Object.keys(item.tags)) {
-            const osmkey = _trim(k) as string;
-            const osmval = _trim(item.tags[k]);
-            cleanedTags[osmkey] = osmval;
-          }
-          item.tags = sortObject(cleanedTags);
-
-          return sortObject(item);
-        });
-
-      // clean category properties
-      const properties = category.properties || {};
-      properties.exclude = properties.exclude || {};
-
-      const cleanedProps = {} as NsiCategoryProperties;
-      cleanedProps.path = tkv;
-
-      if (properties.skipCollection) {
-        cleanedProps.skipCollection = properties.skipCollection;
-      }
-      if (Array.isArray(properties.preserveTags)) {
-        cleanedProps.preserveTags = (properties.preserveTags.map(_cleanString) as string[]).sort(withLocale);
-      }
-
-      cleanedProps.exclude = {};
-      if (Array.isArray(properties.exclude.generic)) {
-        cleanedProps.exclude.generic = properties.exclude.generic.map(_cleanString).sort(withLocale);
-      } else {
-        const v2 = v.replace(/_/g, ' ');    // add the value as a generic name exclude (e.g. 'restaurant')
-        cleanedProps.exclude.generic = [`^${v2}$`];
-      }
-      if (Array.isArray(properties.exclude.named)) {
-        cleanedProps.exclude.named = properties.exclude.named.map(_cleanString).sort(withLocale);
-      }
-
-      // generate file
-      const output = {
-        properties: cleanedProps,
-        items: [...templateItems, ...normalItems],
-      };
-
-      itemCount += output.items.length;
-
-      try {
-        await Bun.write(file, stringify(output, { maxLength: 50 }) + '\n');
-      } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : String(err);
-        console.error(styleText('red', `Error - ${message} writing:`));
-        console.error('  ' + styleText('yellow', file));
-        process.exit(1);
-      }
-    }
-
-    console.log(`${tree.emoji}  ${t}:\tWrote ${itemCount} items in ${fileCount} files`);
-  }
-
-
-  /**
-   * Trims whitespace from a value if it is a string; returns non-strings unchanged.
-   *
-   * @param   s - The value to clean
-   * @returns The trimmed string, or the original value if not a string
-   */
-  function _trim(s: string): string;
-  function _trim(s: string | unknown): string | unknown {
-    if (typeof s !== 'string') return s;
-    return s.trim();
-  }
-
-  /**
-   * Trims and lowercases a string value.  Skips lowercasing strings that
-   * contain `İ` (Turkish capital I with dot) to avoid locale-dependent mutation (NSI#8261).
-   * @param   s - The value to clean
-   * @returns The trimmed (and possibly lowercased) string, or the original value
-   *          if not a string
-   */
-  function _cleanString(s: string): string;
-  function _cleanString(s: string | unknown): string | unknown {
-    if (typeof s !== 'string') return s;
-    if (/İ/.test(s)) {  // Avoid toLowerCasing this one, it changes - NSI#8261
-      return s.trim();
-    } else {
-      return s.trim().toLowerCase();
-    }
-  }
-
-  /**
-   * Clean a single `Location` value from a `LocationSet` `include`/`exclude` array.
-   * Strings are trimmed/lowercased; numeric and `[lon,lat(,radius)]` tuple
-   * locations are passed through unchanged.
-   */
-  function _cleanLocation(loc: Location): Location {
-    return typeof loc === 'string' ? _cleanString(loc) : loc;
-  }
-
-  /**
-   * Comparator for sorting `Location` arrays in a stable, locale-aware way.
-   * Coerces numeric/tuple locations to strings via `String()` so they sort
-   * deterministically alongside string locations.
-   */
-  function _compareLocations(a: Location, b: Location): number {
-    return withLocale(String(a), String(b));
-  }
-},
-
-
-/**
- * Expands template items in each category into concrete items by cloning
- * source items, replacing tag tokens, and generating new ids.
- *
- * Template items reference a `templateSource` path and optionally filter
- * source items via `templateInclude` / `templateExclude` regex patterns.
- * Tag values may contain `{source.tags.xxx}` tokens that are resolved
- * against the source item.
- *
- * @param   cache - The cache (must already be populated by {@link fileTree.read})
- * @param   loco  - A `LocationConflation` instance for id generation
- * @returns The cache with template items expanded into `cache.path[tkv].items`
- * @throws  Terminates via `process.exit(1)` if a template references an invalid
- *          source path or if an id cannot be generated.
- */
-expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
-  cache = cache || {};
-  cache.id = cache.id || new Map();
-  cache.path = cache.path || {};
-
-  for (const tkv of Object.keys(cache.path)) {
-    const file = `./data/${tkv}.json`;
-    const templateItems = cache.path[tkv].templates || [];
-
-    // expand each template item into real items..
-    for (const templateItem of templateItems) {
-      const includePatterns: RegExp[] = (templateItem.templateInclude || []).map((s: string) => new RegExp(s, 'i'));
-      const excludePatterns: RegExp[] = (templateItem.templateExclude || []).map((s: string) => new RegExp(s, 'i'));
-      const templateSource = templateItem.templateSource;
-      const templateTags = templateItem.templateTags;
-
-      const sourceItems = cache.path[templateSource].items;
-      if (!Array.isArray(sourceItems)) {
-        console.error(styleText('red', `Error - template item references invalid source path '${templateSource}' in:`));
-        console.error('  ' + styleText('yellow', file));
-        process.exit(1);
-      }
-
-      for (const sourceItem of sourceItems) {
-        if (includePatterns.length) {
-          if (!includePatterns.some(pattern => pattern.test(sourceItem.id))) continue;
-        }
-        if (excludePatterns.length) {
-          if (excludePatterns.some(pattern => pattern.test(sourceItem.id))) continue;
-        }
-
-        const item = structuredClone(sourceItem);
-        delete item.matchTags;     // don't copy matchTags (but do copy matchNames)
-        item.fromTemplate = true;
-
-        // replace tags
-        const tags = item.tags;
-        for (const osmkey of Object.keys(templateTags)) {
-          let tagValue = templateTags[osmkey];
-
-          if (tagValue) {
-            tagValue = tagValue.replace(/{(\S+)}/g, (_match: string, token: string) => {
-              // token should contain something like 'source.tags.brand'
-              let replacement = '';
-              const props = token.split('.');
-              props.shift();   // Ignore first 'source'. It's just for show.
-
-              let source: unknown = sourceItem;
-              while (props.length) {
-                const prop = props.shift()!;
-                if (typeof source !== 'object' || source === null) break;
-                const found = (source as Record<string, unknown>)[prop];
-                if (typeof found === 'object' && found !== null) {
-                  source = found;
-                } else {
-                  replacement = found as string;
-                }
-              }
-              return replacement;
-            });
-
-            if (tagValue === 'undefined' || tagValue === 'null') {
-              tagValue = '';   // wipe out bogus string replacements
-            }
-          }
-
-          if (tagValue) {
-            tags[osmkey] = tagValue;
-          } else {
-            delete tags[osmkey];
-            // remove any related multilingual keys - NSI#10378
-            const multilingual_keys = ['name', 'alt_name', 'official_name', 'short_name', 'full_name'];
-            if (multilingual_keys.includes(osmkey)) {
-              for (const key of Object.keys(tags)) {
-                if (key.startsWith(osmkey + ':')) {
-                  delete tags[key];
-                }
-              }
-            }
-          }
-        }
-
-        // generate id
-        const locationID = loco.validateLocationSet(item.locationSet).id;
-        const id = idgen(item, tkv, locationID);
-        if (!id) {
-          console.error(styleText('red', `Error - Couldn't generate an id for:`));
-          console.error('  ' + styleText('yellow', item.displayName));
+          console.error(styleText('red', `Error - ${message} writing:`));
           console.error('  ' + styleText('yellow', file));
           process.exit(1);
         }
-        item.id = id;
-
-        // merge into caches
-        if (cache.id.has(item.id)) {
-          // Note - in case of duplicates, it's ok to fail silently.
-          // It's allowed to copy multiple source categories into a single
-          // destination category, and there may be duplicates when we do this.
-          // For example `route/railway` and `route/tracks` for NSI#8124
-        } else {
-          cache.path[tkv].items.push(item);
-          cache.id.set(item.id, item);
-        }
       }
 
+      console.log(`${tree.emoji}  ${t}:\tWrote ${itemCount} items in ${fileCount} files`);
     }
+
+    /**
+     * Trims whitespace from a value if it is a string; returns non-strings unchanged.
+     *
+     * @param   s - The value to clean
+     * @returns The trimmed string, or the original value if not a string
+     */
+    function _trim(s: string): string;
+    function _trim(s: string | unknown): string | unknown {
+      if (typeof s !== 'string') return s;
+      return s.trim();
+    }
+
+    /**
+     * Trims and lowercases a string value.  Skips lowercasing strings that
+     * contain `İ` (Turkish capital I with dot) to avoid locale-dependent mutation (NSI#8261).
+     * @param   s - The value to clean
+     * @returns The trimmed (and possibly lowercased) string, or the original value
+     *          if not a string
+     */
+    function _cleanString(s: string): string;
+    function _cleanString(s: string | unknown): string | unknown {
+      if (typeof s !== 'string') return s;
+      if (/İ/.test(s)) {
+        // Avoid toLowerCasing this one, it changes - NSI#8261
+        return s.trim();
+      } else {
+        return s.trim().toLowerCase();
+      }
+    }
+
+    /**
+     * Clean a single `Location` value from a `LocationSet` `include`/`exclude` array.
+     * Strings are trimmed/lowercased; numeric and `[lon,lat(,radius)]` tuple
+     * locations are passed through unchanged.
+     */
+    function _cleanLocation(loc: Location): Location {
+      return typeof loc === 'string' ? _cleanString(loc) : loc;
+    }
+
+    /**
+     * Comparator for sorting `Location` arrays in a stable, locale-aware way.
+     * Coerces numeric/tuple locations to strings via `String()` so they sort
+     * deterministically alongside string locations.
+     */
+    function _compareLocations(a: Location, b: Location): number {
+      return withLocale(String(a), String(b));
+    }
+  },
+
+  /**
+   * Expands template items in each category into concrete items by cloning
+   * source items, replacing tag tokens, and generating new ids.
+   *
+   * Template items reference a `templateSource` path and optionally filter
+   * source items via `templateInclude` / `templateExclude` regex patterns.
+   * Tag values may contain `{source.tags.xxx}` tokens that are resolved
+   * against the source item.
+   *
+   * @param   cache - The cache (must already be populated by {@link fileTree.read})
+   * @param   loco  - A `LocationConflation` instance for id generation
+   * @returns The cache with template items expanded into `cache.path[tkv].items`
+   * @throws  Terminates via `process.exit(1)` if a template references an invalid
+   *          source path or if an id cannot be generated.
+   */
+  expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
+    cache = cache || {};
+    cache.id = cache.id || new Map();
+    cache.path = cache.path || {};
+
+    for (const tkv of Object.keys(cache.path)) {
+      const file = `./data/${tkv}.json`;
+      const templateItems = cache.path[tkv].templates || [];
+
+      // expand each template item into real items..
+      for (const templateItem of templateItems) {
+        const includePatterns: RegExp[] = (templateItem.templateInclude || []).map((s: string) => new RegExp(s, 'i'));
+        const excludePatterns: RegExp[] = (templateItem.templateExclude || []).map((s: string) => new RegExp(s, 'i'));
+        const templateSource = templateItem.templateSource;
+        const templateTags = templateItem.templateTags;
+
+        const sourceItems = cache.path[templateSource].items;
+        if (!Array.isArray(sourceItems)) {
+          console.error(styleText('red', `Error - template item references invalid source path '${templateSource}' in:`));
+          console.error('  ' + styleText('yellow', file));
+          process.exit(1);
+        }
+
+        for (const sourceItem of sourceItems) {
+          if (includePatterns.length) {
+            if (!includePatterns.some(pattern => pattern.test(sourceItem.id))) continue;
+          }
+          if (excludePatterns.length) {
+            if (excludePatterns.some(pattern => pattern.test(sourceItem.id))) continue;
+          }
+
+          const item = structuredClone(sourceItem);
+          delete item.matchTags; // don't copy matchTags (but do copy matchNames)
+          item.fromTemplate = true;
+
+          // replace tags
+          const tags = item.tags;
+          for (const osmkey of Object.keys(templateTags)) {
+            let tagValue = templateTags[osmkey];
+
+            if (tagValue) {
+              tagValue = tagValue.replace(/{(\S+)}/g, (_match: string, token: string) => {
+                // token should contain something like 'source.tags.brand'
+                let replacement = '';
+                const props = token.split('.');
+                props.shift(); // Ignore first 'source'. It's just for show.
+
+                let source: unknown = sourceItem;
+                while (props.length) {
+                  const prop = props.shift()!;
+                  if (typeof source !== 'object' || source === null) break;
+                  const found = (source as Record<string, unknown>)[prop];
+                  if (typeof found === 'object' && found !== null) {
+                    source = found;
+                  } else {
+                    replacement = found as string;
+                  }
+                }
+                return replacement;
+              });
+
+              if (tagValue === 'undefined' || tagValue === 'null') {
+                tagValue = ''; // wipe out bogus string replacements
+              }
+            }
+
+            if (tagValue) {
+              tags[osmkey] = tagValue;
+            } else {
+              delete tags[osmkey];
+              // remove any related multilingual keys - NSI#10378
+              const multilingual_keys = ['name', 'alt_name', 'official_name', 'short_name', 'full_name'];
+              if (multilingual_keys.includes(osmkey)) {
+                for (const key of Object.keys(tags)) {
+                  if (key.startsWith(osmkey + ':')) {
+                    delete tags[key];
+                  }
+                }
+              }
+            }
+          }
+
+          // generate id
+          const locationID = loco.validateLocationSet(item.locationSet).id;
+          const id = idgen(item, tkv, locationID);
+          if (!id) {
+            console.error(styleText('red', `Error - Couldn't generate an id for:`));
+            console.error('  ' + styleText('yellow', item.displayName));
+            console.error('  ' + styleText('yellow', file));
+            process.exit(1);
+          }
+          item.id = id;
+
+          // merge into caches
+          if (cache.id.has(item.id)) {
+            // Note - in case of duplicates, it's ok to fail silently.
+            // It's allowed to copy multiple source categories into a single
+            // destination category, and there may be duplicates when we do this.
+            // For example `route/railway` and `route/tracks` for NSI#8124
+          } else {
+            cache.path[tkv].items.push(item);
+            cache.id.set(item.id, item);
+          }
+        }
+      }
+    }
+
+    return cache;
   }
-
-  return cache;
-}
-
 };

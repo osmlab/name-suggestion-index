@@ -5,7 +5,6 @@ const hostname = '127.0.0.1';
 const port = 8080;
 const matchCDN = new RegExp(`(['"\`])(https?:\/\/cdn.jsdelivr.*${project}.*\/)(dist.*["'\`])`, 'gi');
 
-
 // Replace urls for CDN `dist/*` files with local `dist/*` files.
 // e.g. 'https://cdn.jsdelivr.net/npm/path/to/dist/file.min.js' -> '/dist/file.js'
 function replaceCDNPath(s: string): string {
@@ -20,7 +19,6 @@ function replacer(_match: string, p1: string, _p2: string, p3: string): string {
   return p1 + p3;
 }
 
-
 // Start the server!
 const server = Bun.serve({
   hostname: hostname,
@@ -34,25 +32,24 @@ const server = Bun.serve({
     const last = path.length - 1;
     console.log(styleText('yellowBright', `${req.method}:  ${url.pathname}`));
 
-    path[0] = 'docs';          // leading '/' -> serve from './docs/*'
-    if (path[last] === '') {   // no filename, default to 'index.html'
+    path[0] = 'docs'; // leading '/' -> serve from './docs/*'
+    if (path[last] === '') {
+      // no filename, default to 'index.html'
       path[last] = 'index.html';
     }
-    if (path[1] === 'dist') {  // Also allow serving files from './dist/*'
-      path.shift();            // (remove leading 'docs')
+    if (path[1] === 'dist') {
+      // Also allow serving files from './dist/*'
+      path.shift(); // (remove leading 'docs')
     }
 
     const filepath = './' + path.join('/').replace('.min', '');
     try {
       const file = Bun.file(filepath);
       if (await file.exists()) {
-        console.log(
-          styleText('greenBright', `200:  Found → '${file.name}'`) +
-          styleText('green', `  ${file.type}'`)
-        );
+        console.log(styleText('greenBright', `200:  Found → '${file.name}'`) + styleText('green', `  ${file.type}'`));
         if (/(html|javascript)/.test(file.type)) {
           const content: string = await file.text();
-          return new Response(replaceCDNPath(content), { headers: { 'content-type': file.type }});
+          return new Response(replaceCDNPath(content), { headers: { 'content-type': file.type } });
         } else {
           return new Response(file);
         }

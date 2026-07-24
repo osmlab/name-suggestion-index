@@ -12,7 +12,7 @@ export const data: NsiData = {
       {
         displayName: 'The UPS Store',
         id: 'theupsstore-d4e3fc',
-        locationSet: {include: ['ca', 'us']},
+        locationSet: { include: ['ca', 'us'] },
         tags: {
           'amenity': 'post_office',
           'brand': 'The UPS Store',
@@ -33,7 +33,7 @@ export const data: NsiData = {
       {
         displayName: 'United States Postal Service',
         id: 'unitedstatespostalservice-b9aa24',
-        locationSet: {include: ['us']},
+        locationSet: { include: ['us'] },
         tags: {
           'amenity': 'post_office',
           'operator': 'United States Postal Service',
@@ -56,7 +56,7 @@ export const data: NsiData = {
       {
         displayName: 'Honey Baked Ham',
         id: 'honeybakedham-4d2ff4',
-        locationSet: {include: ['us']},
+        locationSet: { include: ['us'] },
         matchNames: ['honey baked ham company'],
         matchTags: ['shop/butcher'],
         tags: {
@@ -75,7 +75,7 @@ export const data: NsiData = {
       {
         displayName: 'KFC',
         id: 'kfc-658eea',
-        locationSet: {include: ['001']},
+        locationSet: { include: ['001'] },
         tags: {
           'alt_name': 'Kentucky Fried Chicken',
           'amenity': 'fast_food',
@@ -131,7 +131,7 @@ export const data: NsiData = {
       {
         displayName: 'Baby Gap',
         id: 'babygap-0a21d9',
-        locationSet: {include: ['us']},
+        locationSet: { include: ['us'] },
         tags: {
           'brand': 'Gap',
           'brand:wikidata': 'Q420822',
@@ -142,7 +142,7 @@ export const data: NsiData = {
       {
         displayName: 'Gap',
         id: 'gap-3937bd',
-        locationSet: {include: ['001']},
+        locationSet: { include: ['001'] },
         matchNames: ['the gap'],
         tags: {
           'brand': 'Gap',
@@ -161,7 +161,7 @@ export const data: NsiData = {
       {
         displayName: 'Verkehrs- und Tarifverbund Stuttgart',
         id: 'verkehrsundtarifverbundstuttgart-da20e0',
-        locationSet: {include: ['de']},
+        locationSet: { include: ['de'] },
         tags: {
           'network': 'Verkehrs- und Tarifverbund Stuttgart',
           'network:guid': 'DE-BW-VVS',
@@ -180,7 +180,7 @@ export const data: NsiData = {
       {
         displayName: 'GE - Georgia (Country)',
         id: 'georgia-e5dc93',
-        locationSet: {include: ['001']},
+        locationSet: { include: ['001'] },
         tags: {
           'country': 'GE',
           'flag:name': 'Georgia',
@@ -194,7 +194,7 @@ export const data: NsiData = {
       {
         displayName: 'US - Georgia (U.S. State)',
         id: 'georgia-85bb3f',
-        locationSet: {include: ['us']},
+        locationSet: { include: ['us'] },
         tags: {
           'flag:colour': 'red',
           'flag:name': 'Georgia',
@@ -208,7 +208,7 @@ export const data: NsiData = {
       {
         displayName: 'NZ - New Zealand',
         id: 'newzealand-e5dc93',
-        locationSet: {include: ['001']},
+        locationSet: { include: ['001'] },
         tags: {
           'country': 'NZ',
           'flag:name': 'New Zealand',

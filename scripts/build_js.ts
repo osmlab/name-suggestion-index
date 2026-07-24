@@ -1,19 +1,18 @@
-
 await Promise.all([
-   Bun.build({
+  Bun.build({
     entrypoints: ['./nsiguide/index.jsx'],
     outdir: './dist/js',
     sourcemap: 'linked',
-    naming: 'nsiguide.[ext]'  // .js
+    naming: 'nsiguide.[ext]' // .js
   }),
 
-   Bun.build({
+  Bun.build({
     entrypoints: ['./src/index.ts'],
     outdir: './dist/js',
     target: 'browser',
     format: 'iife',
     sourcemap: 'linked',
-    naming: 'nsi.iife.[ext]'  // .iife.js
+    naming: 'nsi.iife.[ext]' // .iife.js
   }),
 
   Bun.build({
@@ -23,7 +22,7 @@ await Promise.all([
     format: 'cjs',
     packages: 'external',
     sourcemap: 'linked',
-    naming: 'nsi.c[ext]'  // .cjs
+    naming: 'nsi.c[ext]' // .cjs
   }),
 
   Bun.build({
@@ -33,7 +32,7 @@ await Promise.all([
     format: 'esm',
     packages: 'external',
     sourcemap: 'linked',
-    naming: 'nsi.m[ext]'  // .mjs
+    naming: 'nsi.m[ext]' // .mjs
   })
 ]);
 

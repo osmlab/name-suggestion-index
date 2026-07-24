@@ -1,9 +1,7 @@
 import type { HasLocationSet, LocationSet } from '@rapideditor/location-conflation';
 
-
 /** Tags must always consist of key,value string pairs (no undefined) */
 export type OsmTags = Record<string, string>;
-
 
 //
 // NSI core data structure types
@@ -18,8 +16,8 @@ export interface NsiTreeProperties {
   mainTag: string;
   sourceTags?: string[] | undefined;
   nameTags: {
-    primary: string;    // regex pattern string
-    alternate: string;  // regex pattern string
+    primary: string; // regex pattern string
+    alternate: string; // regex pattern string
   };
 }
 
@@ -85,7 +83,6 @@ export interface NsiPresets {
   presets: Record<string, IDPreset>;
 }
 
-
 //
 // NSI Cache, used by FileTree to read/write the data.
 //
@@ -97,7 +94,6 @@ export interface NsiCache {
   /** Object of {@link NsiPath} → category data. */
   path: Record<NsiPath, NsiCategory>;
 }
-
 
 //
 // Match index types
@@ -118,12 +114,11 @@ export interface MatchHit {
 
 /** One branch of the match index (the data stored under a single `key/value` pair). */
 export interface MatchIndexBranch {
-  primary: Map<string, Set<string>>;        // nsimple → Set<itemID>
-  alternate: Map<string, Set<string>>;      // nsimple → Set<itemID>
-  excludeGeneric: Map<string, RegExp>;      // pattern string → RegExp
-  excludeNamed: Map<string, RegExp>;        // pattern string → RegExp
+  primary: Map<string, Set<string>>; // nsimple → Set<itemID>
+  alternate: Map<string, Set<string>>; // nsimple → Set<itemID>
+  excludeGeneric: Map<string, RegExp>; // pattern string → RegExp
+  excludeNamed: Map<string, RegExp>; // pattern string → RegExp
 }
-
 
 //
 // Wikidata / dissolution / warning types
@@ -198,7 +193,6 @@ export interface WikidataWarning {
   category: WikidataWarningCategory;
 }
 
-
 //
 // File shapes
 // These describe the JSON files used by downsteam consumers (e.g. Rapid)
@@ -226,10 +220,13 @@ export interface NsiGenericWordsJSON {
 
 /** Top-level shape of `dist/replacements.json`. */
 export interface NsiReplacementsJSON {
-  replacements: Record<string, {
-    note: string;
-    wikidata: string;
-  }>;
+  replacements: Record<
+    string,
+    {
+      note: string;
+      wikidata: string;
+    }
+  >;
 }
 
 /** Top-level shape of `dist/wikidata/wikidata.json`. */
@@ -241,7 +238,6 @@ export interface NsiWikidataJSON {
 export interface NsiWarningsJSON {
   warnings: WikidataWarning[];
 }
-
 
 //
 // Generated iD/Rapid Preset type
@@ -292,7 +288,6 @@ export interface IDPreset extends HasLocationSet {
   /** The ID of a preset that is preferable to this one (for deprecated presets) */
   replacement?: string;
 }
-
 
 // Generated Taginfo file shapes
 // See: https://wiki.openstreetmap.org/wiki/Taginfo/Projects

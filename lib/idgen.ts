@@ -1,7 +1,6 @@
 import { simplify } from './simplify.ts';
 import type { NsiItem, NsiPath, NsiTree } from './types.ts';
 
-
 /**
  * Generates a unique, URL-safe identifier for an NSI item.
  *
@@ -24,19 +23,74 @@ import type { NsiItem, NsiPath, NsiTree } from './types.ts';
 export function idgen(item: NsiItem, tkv: NsiPath, locationID: string): string | null {
   let name;
 
-  const parts = tkv.split('/', 3);   // tkv = "tree/key/value"
+  const parts = tkv.split('/', 3); // tkv = "tree/key/value"
   const t = parts[0] as NsiTree;
 
   // Run through the list of OSM keys looking for a suitable name
   let osmkeys;
   if (t === 'transit') {
-    osmkeys = ['name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}', 'operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}'];
+    osmkeys = [
+      'name',
+      'name:en',
+      'name:[a-z]+-Latn(-[a-z]+)?',
+      'int_name',
+      'name:[a-z]{2,3}',
+      'network',
+      'network:en',
+      'network:[a-z]+-Latn(-[a-z]+)?',
+      'network:[a-z]{2,3}',
+      'operator',
+      'operator:en',
+      'operator:[a-z]+-Latn(-[a-z]+)?',
+      'operator:[a-z]{2,3}',
+      'brand',
+      'brand:en',
+      'brand:[a-z]+-Latn(-[a-z]+)?',
+      'brand:[a-z]{2,3}'
+    ];
   } else if (t === 'operators') {
-    osmkeys = ['operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}'];
+    osmkeys = [
+      'operator',
+      'operator:en',
+      'operator:[a-z]+-Latn(-[a-z]+)?',
+      'operator:[a-z]{2,3}',
+      'name',
+      'name:en',
+      'name:[a-z]+-Latn(-[a-z]+)?',
+      'int_name',
+      'name:[a-z]{2,3}',
+      'brand',
+      'brand:en',
+      'brand:[a-z]+-Latn(-[a-z]+)?',
+      'brand:[a-z]{2,3}',
+      'network',
+      'network:en',
+      'network:[a-z]+-Latn(-[a-z]+)?',
+      'network:[a-z]{2,3}'
+    ];
   } else if (t === 'flags') {
     osmkeys = ['flag:name', 'subject'];
-  } else {  // brands
-    osmkeys = ['name', 'name:en', 'name:[a-z]+-Latn(-[a-z]+)?', 'int_name', 'name:[a-z]{2,3}', 'brand', 'brand:en', 'brand:[a-z]+-Latn(-[a-z]+)?', 'brand:[a-z]{2,3}', 'operator', 'operator:en', 'operator:[a-z]+-Latn(-[a-z]+)?', 'operator:[a-z]{2,3}', 'network', 'network:en', 'network:[a-z]+-Latn(-[a-z]+)?', 'network:[a-z]{2,3}'];
+  } else {
+    // brands
+    osmkeys = [
+      'name',
+      'name:en',
+      'name:[a-z]+-Latn(-[a-z]+)?',
+      'int_name',
+      'name:[a-z]{2,3}',
+      'brand',
+      'brand:en',
+      'brand:[a-z]+-Latn(-[a-z]+)?',
+      'brand:[a-z]{2,3}',
+      'operator',
+      'operator:en',
+      'operator:[a-z]+-Latn(-[a-z]+)?',
+      'operator:[a-z]{2,3}',
+      'network',
+      'network:en',
+      'network:[a-z]+-Latn(-[a-z]+)?',
+      'network:[a-z]{2,3}'
+    ];
   }
 
   // First attempt, pick a name that matches /^\w+$/
@@ -58,7 +112,6 @@ export function idgen(item: NsiItem, tkv: NsiPath, locationID: string): string |
       }
 
       if (name) break;
-
     } else {
       tryname = item.tags[osmkey];
       if (!tryname) continue;
@@ -87,7 +140,6 @@ export function idgen(item: NsiItem, tkv: NsiPath, locationID: string): string |
         }
 
         if (name) break;
-
       } else {
         const tryname = item.tags[osmkey];
         if (!tryname) continue;

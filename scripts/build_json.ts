@@ -1,15 +1,17 @@
 //import geojsonArea from '@mapbox/geojson-area';
 //import geojsonBounds from 'geojson-bounds';
-import geojsonPrecision from 'geojson-precision';
-import geojsonRewind from '@mapbox/geojson-rewind';
+
 import { Glob } from 'bun';
-import JSON5 from 'json5';
-import LocationConflation from '@rapideditor/location-conflation';
 import path from 'node:path';
-import safeRegex from 'safe-regex';
-import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
+
+import geojsonRewind from '@mapbox/geojson-rewind';
+import LocationConflation from '@rapideditor/location-conflation';
+import geojsonPrecision from 'geojson-precision';
+import stringify from 'json-stringify-pretty-compact';
+import JSON5 from 'json5';
 import { Validator } from 'jsonschema';
+import safeRegex from 'safe-regex';
 
 import { fileTree } from '../lib/file_tree.ts';
 import { idgen } from '../lib/idgen.ts';
@@ -18,18 +20,7 @@ import { simplify } from '../lib/simplify.ts';
 import { sortObject } from '../lib/sort_object.ts';
 // import { stemmer } from '../lib/stemmer.ts';
 import { validate } from '../lib/validate.ts';
-
-import type {
-  NsiCache,
-  NsiGenericWordsJSON,
-  NsiItem,
-  NsiPath,
-  NsiReplacementsJSON,
-  NsiTree,
-  NsiTreeProperties,
-  NsiTreesJSON,
-  OsmTags,
-} from '../lib/types.ts';
+import type { NsiCache, NsiGenericWordsJSON, NsiItem, NsiPath, NsiReplacementsJSON, NsiTree, NsiTreeProperties, NsiTreesJSON, OsmTags } from '../lib/types.ts';
 
 /** A single OSM source tag we collect names for (from `nsi-collector`). */
 type CollectedTag = 'name' | 'brand' | 'operator' | 'network';
@@ -37,13 +28,16 @@ type CollectedTag = 'name' | 'brand' | 'operator' | 'network';
 /** Map of `"key/value|name"` → occurrence count, as collected from OSM. */
 type CollectedCounts = Record<string, number>;
 
-const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
+const withLocale = new Intl.Collator('en-US').compare; // specify 'en-US' for stable sorting
 const matcher = new Matcher();
 const validator = new Validator();
 
 const _nsi: NsiCache = { id: new Map(), path: {} };
 const _collected: Record<CollectedTag, CollectedCounts> = {
-  name: {}, brand: {}, operator: {}, network: {}
+  name: {},
+  brand: {},
+  operator: {},
+  network: {}
 };
 const _discard: Partial<Record<NsiTree, CollectedCounts>> = {};
 const _keep: Partial<Record<NsiTree, CollectedCounts>> = {};
@@ -52,7 +46,6 @@ let _loco: LocationConflation;
 let _trees: NsiTreesJSON['trees'];
 let _replacements: NsiReplacementsJSON['replacements'];
 let _genericWords: NsiGenericWordsJSON['genericWords'];
-
 
 await buildAll();
 
@@ -66,7 +59,6 @@ async function buildAll() {
   const featureCollection = await buildFeatureCollection();
   // We use LocationConflation for validating and processing the locationSets
   _loco = new LocationConflation(featureCollection);
-
 
   // NSI Data
   console.log('');
@@ -95,7 +87,6 @@ async function buildAll() {
   await saveIndex();
 }
 
-
 //
 //
 async function buildFeatureCollection(): Promise<GeoJSON.FeatureCollection> {
@@ -113,7 +104,6 @@ async function buildFeatureCollection(): Promise<GeoJSON.FeatureCollection> {
   return featureCollection;
 }
 
-
 // Gather feature files from `./features/**/*.geojson`
 async function loadFeatures(): Promise<GeoJSON.Feature[]> {
   const featureSchemaJSON = await Bun.file('./schema/feature.json').json();
@@ -121,11 +111,11 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
   validator.addSchema(geojsonSchemaJSON, 'http://json.schemastore.org/geojson.json');
 
   const features = [];
-  const seen = new Map();   // Map<id, filepath>
+  const seen = new Map(); // Map<id, filepath>
 
   const glob = new Glob('./features/**/*');
   for (const filepath of glob.scanSync()) {
-    if (/\.md$/i.test(filepath)) continue;   // ignore markdown files
+    if (/\.md$/i.test(filepath)) continue; // ignore markdown files
     if (!/\.geojson$/.test(filepath)) {
       console.error(styleText('red', `Error - file should have a .geojson extension:`));
       console.error(styleText('yellow', '  ' + filepath));
@@ -143,10 +133,9 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
     }
 
     // Note: geojson-precision's types only allow `Geometry`, but it actually accepts any GeoJSON object.
-    let feature = geojsonPrecision(
-      geojsonRewind(parsed as GeoJSON.GeoJSON, true) as unknown as GeoJSON.Geometry,
-      5
-    ) as unknown as GeoJSON.Feature | GeoJSON.FeatureCollection;
+    let feature = geojsonPrecision(geojsonRewind(parsed as GeoJSON.GeoJSON, true) as unknown as GeoJSON.Geometry, 5) as unknown as
+      | GeoJSON.Feature
+      | GeoJSON.FeatureCollection;
     const fc = (feature as GeoJSON.FeatureCollection).features;
 
     // A FeatureCollection with a single feature inside (geojson.io likes to make these).
@@ -154,17 +143,17 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
       feature = fc[0];
     }
 
-//    // Warn if this feature is so small it would better be represented as a circular area.
-//    let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
-//    area = Number(area.toFixed(2));
-//    if (area < 2000) {
-//      const extent = geojsonBounds.extent(feature);
-//      const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
-//      const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
-//      console.warn('');
-//      console.warn(styleText('yellow', `Warning for ` + styleText('yellow', filepath) + `:`));
-//      console.warn(styleText('yellow', `GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
-//    }
+    //    // Warn if this feature is so small it would better be represented as a circular area.
+    //    let area = geojsonArea.geometry(feature.geometry) / 1e6;   // m² to km²
+    //    area = Number(area.toFixed(2));
+    //    if (area < 2000) {
+    //      const extent = geojsonBounds.extent(feature);
+    //      const lon = ((extent[0] + extent[2]) / 2).toFixed(4);
+    //      const lat = ((extent[1] + extent[3]) / 2).toFixed(4);
+    //      console.warn('');
+    //      console.warn(styleText('yellow', `Warning for ` + styleText('yellow', filepath) + `:`));
+    //      console.warn(styleText('yellow', `GeoJSON feature for small area (${area} km²).  Consider circular include location instead: [${lon}, ${lat}]`));
+    //    }
 
     // use the filename as the feature.id
     const id = path.basename(filepath).toLowerCase();
@@ -173,9 +162,15 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
 
     // sort properties
     const obj = {} as GeoJSON.Feature;
-    if (feature.type)       { obj.type = feature.type; }
-    if (feature.id)         { obj.id = feature.id; }
-    if (feature.properties) { obj.properties = feature.properties; }
+    if (feature.type) {
+      obj.type = feature.type;
+    }
+    if (feature.id) {
+      obj.id = feature.id;
+    }
+    if (feature.properties) {
+      obj.properties = feature.properties;
+    }
 
     // validate that the feature has a suitable geometry
     if (feature.geometry?.type !== 'Polygon' && feature.geometry?.type !== 'MultiPolygon') {
@@ -221,7 +216,6 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
   return features;
 }
 
-
 //
 // Load, validate, cleanup config files
 //
@@ -251,39 +245,39 @@ async function loadConfig() {
       const treesData = data as NsiTreesJSON;
       for (const [t, obj] of Object.entries(treesData.trees) as [NsiTree, NsiTreeProperties][]) {
         const cleaned: NsiTreeProperties = {
-          emoji:       obj.emoji,
-          mainTag:     obj.mainTag,
-          sourceTags:  obj.sourceTags,
+          emoji: obj.emoji,
+          mainTag: obj.mainTag,
+          sourceTags: obj.sourceTags,
           nameTags: {
-            primary:   obj.nameTags.primary,
-            alternate: obj.nameTags.alternate,
+            primary: obj.nameTags.primary,
+            alternate: obj.nameTags.alternate
           }
         };
         treesData.trees[t] = cleaned;
       }
       treesData.trees = sortObject(treesData.trees) as Record<NsiTree, NsiTreeProperties>;
-
     } else if (which === 'replacements') {
       const repData = data as NsiReplacementsJSON;
       for (const [qid, obj] of Object.entries(repData.replacements)) {
         const cleaned = {
-          note:      obj.note,
-          wikidata:  obj.wikidata
+          note: obj.note,
+          wikidata: obj.wikidata
         };
         repData.replacements[qid] = cleaned;
       }
       repData.replacements = sortObject(repData.replacements) as NsiReplacementsJSON['replacements'];
-
     } else if (which === 'genericWords') {
       const gwData = data as NsiGenericWordsJSON;
-      gwData.genericWords = gwData.genericWords.map((s: string) => {
-        if (/İ/.test(s)) {   // Avoid toLowerCasing this one, it changes - #8261
-          return s.trim();
-        } else {
-          return s.trim().toLowerCase();
-        }
-      })
-      .sort(withLocale);
+      gwData.genericWords = gwData.genericWords
+        .map((s: string) => {
+          if (/İ/.test(s)) {
+            // Avoid toLowerCasing this one, it changes - #8261
+            return s.trim();
+          } else {
+            return s.trim().toLowerCase();
+          }
+        })
+        .sort(withLocale);
     }
 
     // Lowercase and sort the files for consistency, save them that way.
@@ -298,7 +292,6 @@ async function loadConfig() {
     }
   }
 }
-
 
 // check for potentially unsafe regular expressions:
 // https://stackoverflow.com/a/43872595
@@ -342,18 +335,18 @@ async function loadCollected() {
       const yyyymmdd = await dateFile.text();
       seenCollectionDate = +yyyymmdd || 0;
     }
-  } catch { /* ignore - dateFile will be replaced */ }
+  } catch {
+    /* ignore - dateFile will be replaced */
+  }
 
   if (currCollectionDate < seenCollectionDate) {
     console.error(styleText('red', `Outdated nsi-collector with date '${currCollectionDate}' < '${seenCollectionDate}'`));
     console.error(styleText('yellow', `Please run 'bun install' to fix.`));
     process.exit(1);
-
   } else if (currCollectionDate > seenCollectionDate) {
     console.log(styleText('yellow', `✨   New nsi-collector version ${currCollectionDate} (was ${seenCollectionDate}).`));
     await Bun.write(dateFile, currCollectionDate.toString());
   }
-
 
   // Load the collected data..
   for (const tag of ['name', 'brand', 'operator', 'network'] as const) {
@@ -371,7 +364,6 @@ async function loadCollected() {
   }
 }
 
-
 //
 // Filter the tags collected into _keep and _discard lists
 //
@@ -383,8 +375,7 @@ async function filterCollected() {
 
   // Before starting, cache genericWords regexes.
   const genericRegex = _genericWords.map(s => new RegExp(s, 'i'));
-  genericRegex.push(new RegExp(/;/, 'i'));   // also discard values with semicolons
-
+  genericRegex.push(new RegExp(/;/, 'i')); // also discard values with semicolons
 
   for (const [t, tree] of Object.entries(_trees) as [NsiTree, NsiTreeProperties][]) {
     if (!Array.isArray(tree.sourceTags) || !tree.sourceTags.length) continue;
@@ -400,27 +391,27 @@ async function filterCollected() {
     for (const tag of tree.sourceTags as CollectedTag[]) {
       const collected = _collected[tag];
       for (const kvn in collected) {
-        discard[kvn] = Math.max((discard[kvn] || 0), collected[kvn]);
+        discard[kvn] = Math.max(discard[kvn] || 0, collected[kvn]);
       }
     }
 
     //
     // STEP 2:  Move "names" that aren't excluded from `discard` -> `keep`
     //
-    const categoryRegex: Record<NsiPath, RegExp[]> = {};  // regex cache
+    const categoryRegex: Record<NsiPath, RegExp[]> = {}; // regex cache
     for (const kvn in discard) {
-      const [kv, n] = kvn.split('|', 2);  // kvn = "key/value|name"
+      const [kv, n] = kvn.split('|', 2); // kvn = "key/value|name"
       const tkv: NsiPath = `${t}/${kv}`;
       const file = `./data/${tkv}.json`;
       const category = _nsi.path[tkv];
-      if (!category) continue;   // not a category we track in the index, skip
+      if (!category) continue; // not a category we track in the index, skip
 
       const categoryProps = category.properties || {};
-      if (categoryProps.skipCollection) continue;   // not a category where we want to collect new names, skip
+      if (categoryProps.skipCollection) continue; // not a category where we want to collect new names, skip
 
       if (!categoryRegex[tkv]) {
         const exclude = categoryProps.exclude || {};
-        const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
+        const excludePatterns = (exclude.generic || []).concat(exclude.named || []);
         categoryRegex[tkv] = excludePatterns.map((s: string) => {
           checkRegex(file, s);
           return new RegExp(s, 'i');
@@ -444,7 +435,6 @@ async function filterCollected() {
   console.timeEnd(END);
 }
 
-
 //
 // Load the index files under `./data/*`
 //
@@ -466,23 +456,22 @@ async function loadIndex() {
   const warnMatched = matcher.getWarnings();
   if (warnMatched.length) {
     console.warn(styleText('yellow', '\n⚠️   Warning - matchIndex errors:'));
-    console.warn(styleText('gray', ('-').repeat(70)));
-    console.warn(styleText('gray', ('  `key/value/name` occurs multiple times in the match index.')));
-    console.warn(styleText('gray', ('  To resolve these, make sure the key/value/name does not appear in multiple trees')));
-    console.warn(styleText('gray', ('    (e.g. `amenity/post_office/ups` should not be both a "brand" and an "operator"')));
-    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', '-'.repeat(70)));
+    console.warn(styleText('gray', '  `key/value/name` occurs multiple times in the match index.'));
+    console.warn(styleText('gray', '  To resolve these, make sure the key/value/name does not appear in multiple trees'));
+    console.warn(styleText('gray', '    (e.g. `amenity/post_office/ups` should not be both a "brand" and an "operator"'));
+    console.warn(styleText('gray', '-'.repeat(70)));
     warnMatched.forEach(w => console.warn(styleText('yellow', w)));
     console.warn('total ' + warnMatched.length);
   }
 
-//  // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
-//  // We don't need a location index for this script, but it's useful to know.
-//  const LOCATION_INDEX_END = '👍  ' + styleText('green', `built location index`);
-//  console.time(LOCATION_INDEX_END);
-//  matcher.buildLocationIndex(_nsi.path, _loco);
-//  console.timeEnd(LOCATION_INDEX_END);
+  //  // It takes a few seconds to resolve all of the locationSets into GeoJSON and insert into which-polygon
+  //  // We don't need a location index for this script, but it's useful to know.
+  //  const LOCATION_INDEX_END = '👍  ' + styleText('green', `built location index`);
+  //  console.time(LOCATION_INDEX_END);
+  //  matcher.buildLocationIndex(_nsi.path, _loco);
+  //  console.timeEnd(LOCATION_INDEX_END);
 }
-
 
 //
 // Save the updated index files under `data/*`
@@ -497,7 +486,6 @@ async function saveIndex() {
   console.timeEnd(END);
 }
 
-
 //
 // mergeItems()
 // Iterate over the names we are keeping and:
@@ -507,14 +495,13 @@ async function saveIndex() {
 function mergeItems() {
   // Any country codes which should be replaced by more standard ones in the locationSets
   const countryReplacements = {
-    'uk': 'gb',  // Exceptionally reserved, United Kingdom is officially assigned the alpha-2 code GB
+    'uk': 'gb' // Exceptionally reserved, United Kingdom is officially assigned the alpha-2 code GB
   };
 
   const START = '🏗   ' + styleText('yellow', `Merging items…`);
   const END = '👍  ' + styleText('green', `done merging`);
   console.log(START);
   console.time(END);
-
 
   (Object.keys(_trees) as NsiTree[]).forEach(t => {
     const tree = _trees[t];
@@ -530,15 +517,15 @@ function mergeItems() {
     // Find new items, keeping only the most popular spelling..
     for (const kvn of Object.keys(keeping)) {
       const count = keeping[kvn];
-      const [kv, n] = kvn.split('|', 2);     // kvn = "key/value|name"
+      const [kv, n] = kvn.split('|', 2); // kvn = "key/value|name"
       const [k, v] = kv.split('/', 2);
 
       const matched = matcher.match(k, v, n);
-      if (matched) continue;     // already in the index (or generic)
+      if (matched) continue; // already in the index (or generic)
 
       // Use the simplified name when comparing spelling popularity
       const nsimple = simplify(n);
-      if (!nsimple) continue;  // invalid, or the name contains only punctuation?
+      if (!nsimple) continue; // invalid, or the name contains only punctuation?
       const newid = `${k}/${v}|${nsimple}`;
       const otherNew = newItems[newid];
 
@@ -550,7 +537,7 @@ function mergeItems() {
 
     // Add the new items
     for (const newItem of Object.values(newItems)) {
-      const [kv, n] = newItem.kvn.split('|', 2);     // kvn = "key/value|name"
+      const [kv, n] = newItem.kvn.split('|', 2); // kvn = "key/value|name"
       const [k, v] = kv.split('/', 2);
       const tkv: NsiPath = `${t}/${k}/${v}`;
 
@@ -558,19 +545,17 @@ function mergeItems() {
       const item: NsiItem = {
         id: '',
         displayName: n,
-        locationSet: { include: ['001'] },   // the whole world
-        tags,
+        locationSet: { include: ['001'] }, // the whole world
+        tags
       };
-      tags[k] = v;     // assign default tag k=v
+      tags[k] = v; // assign default tag k=v
 
       // Perform tree-specific tag defaults here..
       if (t === 'brands') {
         tags.brand = n;
         tags.name = n;
-
       } else if (t === 'operators') {
         tags.operator = n;
-
       } else if (t === 'transit') {
         tags.network = n;
       }
@@ -584,7 +569,6 @@ function mergeItems() {
       totalNew++;
     }
 
-
     //
     // UPDATE - Check all items in the tree for expected tags..
     //
@@ -593,39 +577,38 @@ function mergeItems() {
       const items = _nsi.path[tkv].items;
       if (!Array.isArray(items) || !items.length) return;
 
-      const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+      const [t, k, v] = tkv.split('/', 3); // tkv = "tree/key/value"
       const kv = `${k}/${v}`;
 
       items.forEach(item => {
         total++;
         const tags = item.tags;
 
-        item.tags[k] = v;   // Make sure the category k=v pair is present - #11916
+        item.tags[k] = v; // Make sure the category k=v pair is present - #11916
 
-        let name = '';   // which "name" we use for the locales check below
+        let name = ''; // which "name" we use for the locales check below
 
         // assign some default companion tags if missing
         if (kv === 'amenity/cafe') {
-          if (!tags.takeaway)    tags.takeaway = 'yes';
-          if (!tags.cuisine)     tags.cuisine = 'coffee_shop';
+          if (!tags.takeaway) tags.takeaway = 'yes';
+          if (!tags.cuisine) tags.cuisine = 'coffee_shop';
         } else if (kv === 'amenity/fast_food') {
-          if (!tags.takeaway)    tags.takeaway = 'yes';
+          if (!tags.takeaway) tags.takeaway = 'yes';
         } else if (kv === 'amenity/clinic') {
-          if (!tags.healthcare)  tags.healthcare = 'clinic';
+          if (!tags.healthcare) tags.healthcare = 'clinic';
         } else if (kv === 'amenity/dentist') {
-          if (!tags.healthcare)  tags.healthcare = 'dentist';
+          if (!tags.healthcare) tags.healthcare = 'dentist';
         } else if (kv === 'amenity/doctors') {
-          if (!tags.healthcare)  tags.healthcare = 'doctor';
+          if (!tags.healthcare) tags.healthcare = 'doctor';
         } else if (kv === 'amenity/hospital') {
-          if (!tags.healthcare)  tags.healthcare = 'hospital';
+          if (!tags.healthcare) tags.healthcare = 'hospital';
         } else if (kv === 'amenity/pharmacy') {
-          if (!tags.healthcare)  tags.healthcare = 'pharmacy';
+          if (!tags.healthcare) tags.healthcare = 'pharmacy';
         }
 
         // Perform tree-specific tag cleanups here..
         if (t === 'brands') {
           name = tags.brand || tags.name;
-
         } else if (t === 'flags') {
           name = tags['flag:name'];
 
@@ -633,12 +616,11 @@ function mergeItems() {
           const country = tags.country || item.locationSet.include?.[0];
           if (typeof country === 'string' && country.length === 2) {
             const cc = country.toUpperCase();
-            const re = new RegExp('^' + cc);   // leading country code
+            const re = new RegExp('^' + cc); // leading country code
             if (!re.test(item.displayName)) {
               item.displayName = cc + ' - ' + item.displayName;
             }
           }
-
         } else if (t === 'operators') {
           name = tags.operator || tags.name || tags.brand;
 
@@ -646,13 +628,12 @@ function mergeItems() {
           Object.keys(tags).forEach(osmkey => {
             if (/brand/.test(osmkey)) {
               const brandkey = osmkey;
-              const operatorkey = brandkey.replace('brand', 'operator');   // `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
+              const operatorkey = brandkey.replace('brand', 'operator'); // `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
               if (!tags[operatorkey]) {
                 tags[operatorkey] = tags[brandkey];
               }
             }
           });
-
         } else if (t === 'transit') {
           name = tags.network;
         }
@@ -660,36 +641,45 @@ function mergeItems() {
         // If the name can only be reasonably read in one country,
         // assign `locationSet`, and localize tags like `name:xx`
         // https://www.regular-expressions.info/unicode.html
-        if (/[\u0590-\u05FF]/.test(name)) {          // Hebrew
+        if (/[\u0590-\u05FF]/.test(name)) {
+          // Hebrew
           // note: old ISO 639-1 lang code for Hebrew was `iw`, now `he`
-          if (!item.locationSet)  item.locationSet = { include: ['iw'] };
+          if (!item.locationSet) item.locationSet = { include: ['iw'] };
           setLanguageTags(tags, 'he');
-        } else if (/[\u0E00-\u0E7F]/.test(name)) {   // Thai
-          if (!item.locationSet)  item.locationSet = { include: ['th'] };
+        } else if (/[\u0E00-\u0E7F]/.test(name)) {
+          // Thai
+          if (!item.locationSet) item.locationSet = { include: ['th'] };
           setLanguageTags(tags, 'th');
-        } else if (/[\u1000-\u109F]/.test(name)) {   // Myanmar
-          if (!item.locationSet)  item.locationSet = { include: ['mm'] };
+        } else if (/[\u1000-\u109F]/.test(name)) {
+          // Myanmar
+          if (!item.locationSet) item.locationSet = { include: ['mm'] };
           setLanguageTags(tags, 'my');
-        } else if (/[\u1100-\u11FF]/.test(name)) {   // Hangul
-          if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        } else if (/[\u1100-\u11FF]/.test(name)) {
+          // Hangul
+          if (!item.locationSet) item.locationSet = { include: ['kr'] };
           setLanguageTags(tags, 'ko');
-        } else if (/[\u1700-\u171F]/.test(name)) {   // Tagalog
-          if (!item.locationSet)  item.locationSet = { include: ['ph'] };
+        } else if (/[\u1700-\u171F]/.test(name)) {
+          // Tagalog
+          if (!item.locationSet) item.locationSet = { include: ['ph'] };
           setLanguageTags(tags, 'tl');
-        } else if (/[\u3040-\u30FF]/.test(name)) {   // Hirgana or Katakana
-          if (!item.locationSet)  item.locationSet = { include: ['jp'] };
+        } else if (/[\u3040-\u30FF]/.test(name)) {
+          // Hirgana or Katakana
+          if (!item.locationSet) item.locationSet = { include: ['jp'] };
           setLanguageTags(tags, 'ja');
-        } else if (/[\u3130-\u318F]/.test(name)) {   // Hangul
-          if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        } else if (/[\u3130-\u318F]/.test(name)) {
+          // Hangul
+          if (!item.locationSet) item.locationSet = { include: ['kr'] };
           setLanguageTags(tags, 'ko');
-        } else if (/[\uA960-\uA97F]/.test(name)) {   // Hangul
-          if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        } else if (/[\uA960-\uA97F]/.test(name)) {
+          // Hangul
+          if (!item.locationSet) item.locationSet = { include: ['kr'] };
           setLanguageTags(tags, 'ko');
-        } else if (/[\uAC00-\uD7AF]/.test(name)) {   // Hangul
-          if (!item.locationSet)  item.locationSet = { include: ['kr'] };
+        } else if (/[\uAC00-\uD7AF]/.test(name)) {
+          // Hangul
+          if (!item.locationSet) item.locationSet = { include: ['kr'] };
           setLanguageTags(tags, 'ko');
         } else {
-          if (!item.locationSet)  item.locationSet = { include: ['001'] };   // the whole world
+          if (!item.locationSet) item.locationSet = { include: ['001'] }; // the whole world
         }
 
         // Perform common tag cleanups here..
@@ -710,9 +700,10 @@ function mergeItems() {
           // anything ending in `wikidata`
           if (/wikidata$/.test(osmkey)) {
             const wd = tags[osmkey];
-            const replace = _replacements[wd];    // If it matches a QID in the replacement list...
+            const replace = _replacements[wd]; // If it matches a QID in the replacement list...
 
-            if (replace && replace.wikidata !== undefined) {   // replace or delete `*:wikidata` tag
+            if (replace && replace.wikidata !== undefined) {
+              // replace or delete `*:wikidata` tag
               if (replace.wikidata) {
                 tags[osmkey] = replace.wikidata;
               } else {
@@ -739,18 +730,16 @@ function mergeItems() {
     });
 
     console.log(`${tree.emoji}  ${t}:\t${total} total, ${totalNew} new`);
-
   });
 
   console.timeEnd(END);
-
 
   // Copy main tag value to local tag value, but only if local value not assigned yet
   // re: 6788#issuecomment-1188024213
   function setLanguageTags(tags: OsmTags, code: string): void {
     for (const k of ['name', 'brand', 'operator', 'network']) {
       const v = tags[k];
-      const loc_k = `${k}:${code}`;   // e.g. `name:ja`
+      const loc_k = `${k}:${code}`; // e.g. `name:ja`
       const loc_v = tags[loc_k];
       if (v && !loc_v) {
         tags[loc_k] = v;
@@ -769,14 +758,14 @@ function mergeItems() {
   }
 }
 
-
 //
 // checkItems()
 // Checks all the items for several kinds of issues
 //
 function checkItems(t: NsiTree) {
   const tree = _trees[t];
-  const oddChars = /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
+  const oddChars =
+    /[\s=!"#%'*{},.\/:?\(\)\[\]@\\$\^*+<>«»~`’\u00a1\u00a7\u00b6\u00b7\u00bf\u037e\u0387\u055a-\u055f\u0589\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u166d\u166e\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u1805\u1807-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1bff\u1c3b-\u1c3f\u1c7e\u1c7f\u1cc0-\u1cc7\u1cd3\u200b-\u200f\u2016\u2017\u2020-\u2027\u2030-\u2038\u203b-\u203e\u2041-\u2043\u2047-\u2051\u2053\u2055-\u205e\u2cf9-\u2cfc\u2cfe\u2cff\u2d70\u2e00\u2e01\u2e06-\u2e08\u2e0b\u2e0e-\u2e16\u2e18\u2e19\u2e1b\u2e1e\u2e1f\u2e2a-\u2e2e\u2e30-\u2e39\u3001-\u3003\u303d\u30fb\ua4fe\ua4ff\ua60d-\ua60f\ua673\ua67e\ua6f2-\ua6f7\ua874-\ua877\ua8ce\ua8cf\ua8f8-\ua8fa\ua92e\ua92f\ua95f\ua9c1-\ua9cd\ua9de\ua9df\uaa5c-\uaa5f\uaade\uaadf\uaaf0\uaaf1\uabeb\ufe10-\ufe16\ufe19\ufe30\ufe45\ufe46\ufe49-\ufe4c\ufe50-\ufe52\ufe54-\ufe57\ufe5f-\ufe61\ufe68\ufe6a\ufe6b\ufeff\uff01-\uff03\uff05-\uff07\uff0a\uff0c\uff0e\uff0f\uff1a\uff1b\uff1f\uff20\uff3c\uff61\uff64\uff65]+/g;
 
   const warnDuplicate: [string, string][] = [];
   const warnFormatWikidata: [string, string][] = [];
@@ -784,8 +773,8 @@ function checkItems(t: NsiTree) {
   const warnFormatTag: [string, string][] = [];
   // const seenName = {};
 
-  let total = 0;      // total items
-  let totalWd = 0;    // total items with wikidata
+  let total = 0; // total items
+  let totalWd = 0; // total items with wikidata
 
   const paths = Object.keys(_nsi.path).filter(tkv => tkv.split('/')[0] === t);
   const display = (val: NsiItem): string => `${val.displayName} (${val.id})`;
@@ -794,7 +783,7 @@ function checkItems(t: NsiTree) {
     const items = _nsi.path[tkv].items;
     if (!Array.isArray(items) || !items.length) return;
 
-    const [_t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const [_t, k, v] = tkv.split('/', 3); // tkv = "tree/key/value"
     const kv = `${k}/${v}`;
 
     items.forEach(item => {
@@ -805,7 +794,8 @@ function checkItems(t: NsiTree) {
 
       // check tags
       Object.keys(tags).forEach(osmkey => {
-        if (/:wikidata$/.test(osmkey)) {       // Check '*:wikidata' tags
+        if (/:wikidata$/.test(osmkey)) {
+          // Check '*:wikidata' tags
           const wd = tags[osmkey];
           if (!/^Q\d+$/.test(wd)) {
             warnFormatWikidata.push([display(item), wd]);
@@ -818,31 +808,49 @@ function checkItems(t: NsiTree) {
         case 'amenity/clinic':
         case 'amenity/hospital':
         case 'amenity/pharmacy':
-          if (!tags.healthcare) { warnMissingTag.push([display(item), 'healthcare']); }
+          if (!tags.healthcare) {
+            warnMissingTag.push([display(item), 'healthcare']);
+          }
           break;
         case 'amenity/gambling':
         case 'leisure/adult_gaming_centre':
-          if (!tags.gambling) { warnMissingTag.push([display(item), 'gambling']); }
+          if (!tags.gambling) {
+            warnMissingTag.push([display(item), 'gambling']);
+          }
           break;
         case 'amenity/fast_food':
         case 'amenity/restaurant':
-          if (!tags.cuisine) { warnMissingTag.push([display(item), 'cuisine']); }
+          if (!tags.cuisine) {
+            warnMissingTag.push([display(item), 'cuisine']);
+          }
           break;
         case 'amenity/training':
-          if (!tags.training) { warnMissingTag.push([display(item), 'training']); }
+          if (!tags.training) {
+            warnMissingTag.push([display(item), 'training']);
+          }
           break;
         case 'amenity/vending_machine':
-          if (!tags.vending) { warnMissingTag.push([display(item), 'vending']); }
+          if (!tags.vending) {
+            warnMissingTag.push([display(item), 'vending']);
+          }
           break;
         case 'man_made/flagpole':
-          if (!tags['flag:type']) { warnMissingTag.push([display(item), 'flag:type']); }
+          if (!tags['flag:type']) {
+            warnMissingTag.push([display(item), 'flag:type']);
+          }
           if (!/^wiphala/.test(item.id)) {
-            if (!tags.subject) { warnMissingTag.push([display(item), 'subject']); }
-            if (!tags['subject:wikidata']) { warnMissingTag.push([display(item), 'subject:wikidata']); }
+            if (!tags.subject) {
+              warnMissingTag.push([display(item), 'subject']);
+            }
+            if (!tags['subject:wikidata']) {
+              warnMissingTag.push([display(item), 'subject:wikidata']);
+            }
           }
           break;
         case 'shop/beauty':
-          if (!tags.beauty) { warnMissingTag.push([display(item), 'beauty']); }
+          if (!tags.beauty) {
+            warnMissingTag.push([display(item), 'beauty']);
+          }
           break;
       }
 
@@ -868,61 +876,59 @@ function checkItems(t: NsiTree) {
         }
       });
 
-//      // This was a good idea a while ago, but I'm not sure whether it makes sense any more.
-//      // It raises a lot of false positives and our contributors do a pretty good job of noticing
-//      // when new items duplicate existing items.
-//      // We don't currently use the stemmer anywhere else, and maybe we could get rid of it,
-//      // it's not very sophisitcated and probably better alternatives exist.
-//      // (The point of this code is, for example, if a new item appears named "Home Depot",
-//      //  it would warn that we already have an item called "The Home Depot")
-//      if (!item.fromTemplate) {
-//        // Warn about "new" (no wikidata) items that may duplicate an "existing" (has wikidata) item.
-//        // The criteria for this warning is:
-//        // - One of the items has no `brand:wikidata`
-//        // - The items have nearly the same name
-//        // - The items have the same locationSet (or the one without wikidata is worldwide)
-//        const name = tags.name || tags.brand;
-//        const stem = stemmer(name) || name;
-//        const itemwd = tags[tree.mainTag];
-//        const itemls = _loco.validateLocationSet(item.locationSet).id;
-//
-//        if (!seenName[stem]) seenName[stem] = new Set();
-//        seenName[stem].add(item);
-//
-//        if (seenName[stem].size > 1) {
-//          seenName[stem].forEach(other => {
-//            if (other.id === item.id) return;   // skip self
-//            const otherwd = other.tags[tree.mainTag];
-//            const otherls = _loco.validateLocationSet(other.locationSet).id;
-//
-//            // pick one of the items without a wikidata tag to be the "duplicate"
-//            if (!itemwd && (itemls === otherls || itemls === '+[Q2]')) {
-//              warnDuplicate.push([display(item), display(other)]);
-//            } else if (!otherwd && (otherls === itemls || otherls === '+[Q2]')) {
-//              warnDuplicate.push([display(other), display(item)]);
-//            }
-//          });
-//        }
-//      }
+      //      // This was a good idea a while ago, but I'm not sure whether it makes sense any more.
+      //      // It raises a lot of false positives and our contributors do a pretty good job of noticing
+      //      // when new items duplicate existing items.
+      //      // We don't currently use the stemmer anywhere else, and maybe we could get rid of it,
+      //      // it's not very sophisitcated and probably better alternatives exist.
+      //      // (The point of this code is, for example, if a new item appears named "Home Depot",
+      //      //  it would warn that we already have an item called "The Home Depot")
+      //      if (!item.fromTemplate) {
+      //        // Warn about "new" (no wikidata) items that may duplicate an "existing" (has wikidata) item.
+      //        // The criteria for this warning is:
+      //        // - One of the items has no `brand:wikidata`
+      //        // - The items have nearly the same name
+      //        // - The items have the same locationSet (or the one without wikidata is worldwide)
+      //        const name = tags.name || tags.brand;
+      //        const stem = stemmer(name) || name;
+      //        const itemwd = tags[tree.mainTag];
+      //        const itemls = _loco.validateLocationSet(item.locationSet).id;
+      //
+      //        if (!seenName[stem]) seenName[stem] = new Set();
+      //        seenName[stem].add(item);
+      //
+      //        if (seenName[stem].size > 1) {
+      //          seenName[stem].forEach(other => {
+      //            if (other.id === item.id) return;   // skip self
+      //            const otherwd = other.tags[tree.mainTag];
+      //            const otherls = _loco.validateLocationSet(other.locationSet).id;
+      //
+      //            // pick one of the items without a wikidata tag to be the "duplicate"
+      //            if (!itemwd && (itemls === otherls || itemls === '+[Q2]')) {
+      //              warnDuplicate.push([display(item), display(other)]);
+      //            } else if (!otherwd && (otherls === itemls || otherls === '+[Q2]')) {
+      //              warnDuplicate.push([display(other), display(item)]);
+      //            }
+      //          });
+      //        }
+      //      }
     });
   });
 
   if (warnMissingTag.length) {
     console.warn(styleText('yellow', '\n⚠️   Warning - Missing tag:'));
-    console.warn(styleText('gray', ('-').repeat(70)));
-    console.warn(styleText('gray', ('  To resolve these, add the missing tag.')));
-    console.warn(styleText('gray', ('-').repeat(70)));
-    warnMissingTag.forEach(w => console.warn(
-      styleText('yellow', '  "' + w[0] + '"') + ' -> missing tag? -> ' + styleText('yellow', '"' + w[1] + '"')
-    ));
+    console.warn(styleText('gray', '-'.repeat(70)));
+    console.warn(styleText('gray', '  To resolve these, add the missing tag.'));
+    console.warn(styleText('gray', '-'.repeat(70)));
+    warnMissingTag.forEach(w => console.warn(styleText('yellow', '  "' + w[0] + '"') + ' -> missing tag? -> ' + styleText('yellow', '"' + w[1] + '"')));
     console.warn('total ' + warnMissingTag.length);
   }
 
   if (warnFormatTag.length) {
     console.warn(styleText('yellow', '\n⚠️   Warning - Unusual OpenStreetMap tag:'));
-    console.warn(styleText('gray', ('-').repeat(70)));
-    console.warn(styleText('gray', ('  To resolve these, make sure the OpenStreetMap tag is correct.')));
-    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', '-'.repeat(70)));
+    console.warn(styleText('gray', '  To resolve these, make sure the OpenStreetMap tag is correct.'));
+    console.warn(styleText('gray', '-'.repeat(70)));
     for (const w of warnFormatTag) {
       console.warn(styleText('yellow', `  "${w[0]}" -> unusual tag? -> "${w[1]}"`));
     }
@@ -931,14 +937,14 @@ function checkItems(t: NsiTree) {
 
   if (warnDuplicate.length) {
     console.warn(styleText('yellow', '\n⚠️   Warning - Potential duplicate:'));
-    console.warn(styleText('gray', ('-').repeat(70)));
-    console.warn(styleText('gray', ('  If the items are two different businesses,')));
-    console.warn(styleText('gray', ('    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.')));
-    console.warn(styleText('gray', ('  If the items are duplicates of the same business,')));
-    console.warn(styleText('gray', ('    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.')));
-    console.warn(styleText('gray', ('  If the duplicate item is a generic word,')));
-    console.warn(styleText('gray', ('    add a filter to config/filter_brands.json and delete the unwanted item.')));
-    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', '-'.repeat(70)));
+    console.warn(styleText('gray', '  If the items are two different businesses,'));
+    console.warn(styleText('gray', '    make sure they both have accurate locationSets (e.g. "us"/"ca") and wikidata identifiers.'));
+    console.warn(styleText('gray', '  If the items are duplicates of the same business,'));
+    console.warn(styleText('gray', '    add `matchTags`/`matchNames` properties to the item that you want to keep, and delete the unwanted item.'));
+    console.warn(styleText('gray', '  If the duplicate item is a generic word,'));
+    console.warn(styleText('gray', '    add a filter to config/filter_brands.json and delete the unwanted item.'));
+    console.warn(styleText('gray', '-'.repeat(70)));
     for (const w of warnDuplicate) {
       console.warn(styleText('yellow', `  "${w[0]}" -> duplicates? -> "${w[1]}"`));
     }
@@ -947,16 +953,16 @@ function checkItems(t: NsiTree) {
 
   if (warnFormatWikidata.length) {
     console.warn(styleText('yellow', '\n⚠️   Warning - Incorrect `wikidata` format:'));
-    console.warn(styleText('gray', ('-').repeat(70)));
-    console.warn(styleText('gray', ('  To resolve these, make sure "*:wikidata" tag looks like "Q191615".')));
-    console.warn(styleText('gray', ('-').repeat(70)));
+    console.warn(styleText('gray', '-'.repeat(70)));
+    console.warn(styleText('gray', '  To resolve these, make sure "*:wikidata" tag looks like "Q191615".'));
+    console.warn(styleText('gray', '-'.repeat(70)));
     for (const w of warnFormatWikidata) {
       console.warn(styleText('yellow', `  "${w[0]}" -> "*:wikidata": "${w[1]}"`));
     }
     console.warn('total ' + warnFormatWikidata.length);
   }
 
-  const pctWd = total > 0 ? (totalWd * 100 / total).toFixed(1) : 0;
+  const pctWd = total > 0 ? ((totalWd * 100) / total).toFixed(1) : 0;
 
   console.log('');
   console.info(styleText(['blue', 'bold'], `${tree.emoji}  ${t}/* completeness:`));

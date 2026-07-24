@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faMoon, faSun, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { AppContext, getFilterParams } from './AppContext';
 import { TREES } from './constants';
-
 
 export function Header() {
   const { params } = useContext(AppContext);
@@ -13,23 +12,22 @@ export function Header() {
 
   return (
     <div id='header'>
-      <Title/>
-      { isOnWarningsView && <BackToGuide/> }
+      <Title />
+      {isOnWarningsView && <BackToGuide />}
       <div id='header-controls'>
-        { !isOnWarningsView && <TreeSwitcher/> }
-        <DarkMode/>
-        { !isOnWarningsView && <WikidataWarnings/> }
-        <GitHub/>
+        {!isOnWarningsView && <TreeSwitcher />}
+        <DarkMode />
+        {!isOnWarningsView && <WikidataWarnings />}
+        <GitHub />
       </div>
     </div>
   );
-};
-
+}
 
 function BackToGuide() {
   const { params, setParams } = useContext(AppContext);
 
-  const onClick = (e) => {
+  const onClick = e => {
     e.preventDefault();
     const next = { ...params };
     delete next.view;
@@ -38,11 +36,12 @@ function BackToGuide() {
 
   return (
     <div id='nav'>
-      <a href='#' onClick={onClick}>← Back to nsi.guide</a>
+      <a href='#' onClick={onClick}>
+        ← Back to nsi.guide
+      </a>
     </div>
   );
 }
-
 
 function Title() {
   const context = useContext(AppContext);
@@ -79,18 +78,19 @@ function Title() {
 
     const kv = `${k}/${v}`;
     iconURL = context.icons[kv];
-    if (!iconURL) iconURL = context.icons[k];   // fallback to generic key=* icon
-    if (!iconURL) iconURL = fallbackIcon;       // fallback to generic icon
+    if (!iconURL) iconURL = context.icons[k]; // fallback to generic key=* icon
+    if (!iconURL) iconURL = fallbackIcon; // fallback to generic icon
 
     // exceptions:
-    if (kv === 'power/minor_line') {  // iD's power pole icon has a fill
+    if (kv === 'power/minor_line') {
+      // iD's power pole icon has a fill
       iconURL = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/power_pole.svg';
     } else if (kv === 'route/power') {
       iconURL = 'https://cdn.jsdelivr.net/npm/@rapideditor/temaki@5/icons/power_tower.svg';
     }
   }
 
-  const icon = iconURL ? (<img className='icon' src={iconURL} />) : null;
+  const icon = iconURL ? <img className='icon' src={iconURL} /> : null;
 
   // pick a title
   let title;
@@ -106,33 +106,35 @@ function Title() {
   }
 
   return (
-    <div id='title'><h1>{icon}{title}</h1></div>
+    <div id='title'>
+      <h1>
+        {icon}
+        {title}
+      </h1>
+    </div>
   );
 }
-
 
 function TreeSwitcher() {
   const { params, setParams } = useContext(AppContext);
   const filters = getFilterParams(params);
 
   return (
-    <select
-      id='treeswitcher'
-      value={params.t}
-      onChange={(e) => setParams({ t: e.target.value, ...filters })}
-    >
+    <select id='treeswitcher' value={params.t} onChange={e => setParams({ t: e.target.value, ...filters })}>
       {['*', ...Object.keys(TREES)].map(tree => (
-        <option key={tree} value={tree}>{tree}</option>
+        <option key={tree} value={tree}>
+          {tree}
+        </option>
       ))}
     </select>
   );
 }
 
-
 function DarkMode() {
   let currValue = window.localStorage.getItem('nsi-darkmode');
 
-  if (currValue === null) {  // initial, no preference set, use media query to check it
+  if (currValue === null) {
+    // initial, no preference set, use media query to check it
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       currValue = 'true';
       window.localStorage.setItem('nsi-darkmode', currValue);
@@ -140,7 +142,7 @@ function DarkMode() {
   }
 
   setDarkMode(currValue);
-  const checkedProp = (currValue === 'true') ? { defaultChecked: 'true' } : {};
+  const checkedProp = currValue === 'true' ? { defaultChecked: 'true' } : {};
 
   return (
     <div id='darkmode' className='control'>
@@ -154,7 +156,7 @@ function DarkMode() {
   );
 
   function toggleDarkMode() {
-    const newValue = (window.localStorage.getItem('nsi-darkmode') === 'true') ? 'false' : 'true';
+    const newValue = window.localStorage.getItem('nsi-darkmode') === 'true' ? 'false' : 'true';
     window.localStorage.setItem('nsi-darkmode', newValue);
     setDarkMode(newValue);
   }
@@ -168,7 +170,6 @@ function DarkMode() {
   }
 }
 
-
 function GitHub() {
   return (
     <div id='octocat'>
@@ -179,11 +180,10 @@ function GitHub() {
   );
 }
 
-
 function WikidataWarnings() {
   const { params, setParams } = useContext(AppContext);
 
-  const onClick = (e) => {
+  const onClick = e => {
     e.preventDefault();
     setParams({ ...params, view: 'warnings' });
   };

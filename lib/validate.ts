@@ -1,7 +1,8 @@
 import { styleText } from 'node:util';
-import type { Validator, Schema } from 'jsonschema';
-import type { NsiItem } from './types.ts';
 
+import type { Schema, Validator } from 'jsonschema';
+
+import type { NsiItem } from './types.ts';
 
 /**
  * Validates an object against a JSON Schema and exits the process on failure.
@@ -26,9 +27,7 @@ export function validate(validator: Validator, filepath: string, object: unknown
         console.error('  ' + styleText('yellow', e.property + ' ' + e.message));
         if (e.name === 'uniqueItems') {
           const arr: NsiItem[] = e.instance;
-          const duplicates = arr
-            .map(n => n.displayName || n)
-            .filter((e, i, a) => a.indexOf(e) !== i);
+          const duplicates = arr.map(n => n.displayName || n).filter((e, i, a) => a.indexOf(e) !== i);
           console.error('  ' + styleText('yellow', JSON.stringify(duplicates)));
         }
       } else {

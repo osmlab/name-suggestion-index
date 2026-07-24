@@ -8,12 +8,11 @@ const packageJSON = await Bun.file('./package.json').json();
 const versions = ['@latest'];
 const match = (packageJSON.version as string).match(/^(\d+)\.(\d+)/);
 if (match?.[1]) {
-  versions.push(`@${match[1]}`);   // major
+  versions.push(`@${match[1]}`); // major
   if (match[2]) {
-    versions.push(`@${match[1]}.${match[2]}`);  // minor
+    versions.push(`@${match[1]}.${match[2]}`); // minor
   }
 }
-
 
 postpublish();
 

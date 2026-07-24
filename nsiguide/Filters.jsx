@@ -1,9 +1,8 @@
 import { useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { AppContext, getFilterParams } from './AppContext';
-
 
 export function Filters() {
   const context = useContext(AppContext);
@@ -15,7 +14,9 @@ export function Filters() {
   return (
     <div className={klass}>
       <span className='filterhead'>
-        <span className='icon'><FontAwesomeIcon icon={faFilter} /></span>
+        <span className='icon'>
+          <FontAwesomeIcon icon={faFilter} />
+        </span>
         <span className='filterby'>Filter by</span>
       </span>
 
@@ -40,13 +41,12 @@ export function Filters() {
       </span>
 
       <span className='field'>
-        <button type='button' className='clearFilters' name='clearFilters' onClick={clearFilters}>Clear</button>
+        <button type='button' className='clearFilters' name='clearFilters' onClick={clearFilters}>
+          Clear
+        </button>
       </span>
     </div>
   );
-
-
-
 
   function filtersChanged(event) {
     let val;
@@ -67,17 +67,15 @@ export function Filters() {
     setParams(newParams);
   }
 
-
   function clearFilters(event) {
     event.preventDefault();
     event.target.blur();
 
-    const newParams = Object.assign({}, params);  // copy
+    const newParams = Object.assign({}, params); // copy
     for (const k of ['tt', 'cc', 'inc', 'dis']) {
       delete newParams[k];
     }
 
     setParams(newParams);
   }
-
-};
+}

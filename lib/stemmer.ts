@@ -1,6 +1,5 @@
 import { simplify } from './simplify.ts';
 
-
 /**
  * Removes common "noise" words from a name string and then simplifies the result.
  * Used to generate a stem for catching near-duplicate names
@@ -14,15 +13,7 @@ import { simplify } from './simplify.ts';
 export function stemmer(str?: string): string {
   if (typeof str !== 'string') return '';
 
-  const noise = [
-    /ban(k|c)(a|o)?/ig,
-    /банк/ig,
-    /coop/ig,
-    /express/ig,
-    /(gas|fuel)/ig,
-    /wireless/ig,
-    /(shop|store)/ig
-  ];
+  const noise = [/ban(k|c)(a|o)?/gi, /банк/gi, /coop/gi, /express/gi, /(gas|fuel)/gi, /wireless/gi, /(shop|store)/gi];
 
   str = noise.reduce((acc, regex) => acc.replace(regex, ''), str);
   return simplify(str);

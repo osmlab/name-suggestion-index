@@ -1,7 +1,7 @@
 import XMLBuilder from 'fast-xml-builder';
+import type { XmlBuilderOptions } from 'fast-xml-builder';
 
 import type { DissolvedMap, NsiData, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
-import type { XmlBuilderOptions } from 'fast-xml-builder';
 
 const xmlBuilderOptions = {
   ignoreAttributes: false,
@@ -9,11 +9,10 @@ const xmlBuilderOptions = {
 } satisfies XmlBuilderOptions;
 
 // Imported JSON (will be inlined by bun)
-import treesJSON from '../config/trees.json' with {type: 'json'};
+import treesJSON from '../config/trees.json' with { type: 'json' };
 
 const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
-const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
-
+const withLocale = new Intl.Collator('en-US').compare; // specify 'en-US' for stable sorting
 
 /** Options for {@link buildJOSMPresets}. */
 export interface BuildJOSMPresetsOptions {
@@ -84,7 +83,6 @@ interface JOSMPresetsXML {
   };
 }
 
-
 /**
  * Build JOSM tagging presets from NSI data, organised into nested groups
  * by `tree → key → value`.
@@ -125,21 +123,20 @@ export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): 
 
   const paths = Object.keys(data).sort(withLocale) as NsiPath[];
   for (const tkv of paths) {
-    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const [t, k, v] = tkv.split('/', 3); // tkv = "tree/key/value"
 
     // Which wikidata tag is considered the "main" tag for this tree?
     const wdTag = trees[t as NsiTree].mainTag;
 
     // Include only items that have a wikidata tag and are not dissolved..
-    const items = (data[tkv].items || [])
-      .filter(item => {
-        const qid = item.tags[wdTag];
-        if (!qid || !/^Q\d+$/.test(qid)) return false;   // wikidata tag missing or looks wrong..
-        if (dissolved[item.id]) return false;            // dissolved/closed businesses..
-        return true;
-      });
+    const items = (data[tkv].items || []).filter(item => {
+      const qid = item.tags[wdTag];
+      if (!qid || !/^Q\d+$/.test(qid)) return false; // wikidata tag missing or looks wrong..
+      if (dissolved[item.id]) return false; // dissolved/closed businesses..
+      return true;
+    });
 
-    if (!items.length) continue;  // skip this path
+    if (!items.length) continue; // skip this path
 
     // Create new menu groups as t/k/v change
     const tChanged = t !== tPrev;
@@ -164,7 +161,8 @@ export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): 
     if (t === 'flags') {
       presetType = 'node';
     } else if (k === 'route') {
-      if (v === 'ferry') {  // Ferry hack! ⛴
+      if (v === 'ferry') {
+        // Ferry hack! ⛴
         presetType = 'way,closedway,relation';
       } else {
         presetType = 'relation';
@@ -174,7 +172,7 @@ export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): 
     } else if (k === 'power' && (v === 'pole' || v === 'tower')) {
       presetType = 'node';
     } else {
-      presetType = 'node,closedway,multipolygon';   // default for POIs
+      presetType = 'node,closedway,multipolygon'; // default for POIs
     }
 
     for (const item of items) {
