@@ -25,8 +25,14 @@
               ":NODE:",
               ":BLANK_LINE:",
               ["react", "react/**", "react-*", "react-*/**"],
-              { "type": false, "source": [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:"] },
-              { "type": true, "source": [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:"] },
+              {
+                "type": false,
+                "source": [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:"]
+              },
+              {
+                "type": true,
+                "source": [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:"]
+              },
               ":BLANK_LINE:",
               { "type": false, "source": [":ALIAS:", ":PATH:"] },
               { "type": true, "source": [":ALIAS:", ":PATH:"] },
@@ -47,7 +53,7 @@
   "json": {
     "assist": { "enabled": true },
     "linter": { "enabled": true },
-    "formatter": { "enabled": false }
+    "formatter": { "enabled": true }
   },
   "css": {
     "assist": { "enabled": true },
@@ -133,5 +139,15 @@
         "noUselessEscapeInString": "off"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/data/**", "**/config/**"],
+      "json": {
+        "formatter": {
+          "enabled": false
+        }
+      }
+    }
+  ]
 }

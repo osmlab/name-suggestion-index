@@ -6,20 +6,17 @@
   "additionalProperties": false,
   "required": ["replacements"],
   "properties": {
-
     "replacements": {
       "description": "(required) Legacy Wikidata QID identifiers that should be replaced with new QID identifiers.",
       "type": "object",
       "additionalProperties": false,
       "patternProperties": {
-
         "^Q\\d+$": {
           "description": "(required) The legacy Wikidata QID.",
           "type": "object",
           "additionalProperties": false,
           "required": ["wikidata"],
           "properties": {
-
             "wikidata": {
               "description": "(required) The replacement Wikidata QID.",
               "type": "string"
@@ -34,12 +31,9 @@
               "description": "(optional) An optional note - can contain anything about the item.",
               "type": "string"
             }
-
           }
         }
-
       }
     }
-
   }
 }

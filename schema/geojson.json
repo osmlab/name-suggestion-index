@@ -7,7 +7,6 @@
   "required": ["type"],
 
   "properties": {
-
     "type": {
       "title": "Type",
       "type": "string",
@@ -51,7 +50,6 @@
 
       "not": {
         "anyOf": [
-
           {
             "properties": {
               "type": { "enum": ["name"] },
@@ -78,7 +76,6 @@
                   "type": "object",
                   "required": ["href"],
                   "properties": {
-
                     "href": {
                       "title": "href",
                       "type": "string",
@@ -91,16 +88,13 @@
                       "type": "string",
                       "description": "The value of the optional `type` member must be a string that hints at the format used to represent CRS parameters at the provided URI. Suggested values are: `proj4`, `ogcwkt`, `esriwkt`, but others can be used."
                     }
-
                   }
                 }
               }
             }
           }
-
         ]
       }
-
     },
 
     "bbox": {
@@ -112,11 +106,9 @@
         "type": "number"
       }
     }
-
   },
 
   "oneOf": [
-
     {
       "title": "Point",
       "description": "For type `Point`, the `coordinates` member must be a single position.",
@@ -239,19 +231,14 @@
         }
       }
     }
-
   ],
 
   "definitions": {
-
     "coordinates": {
       "title": "Coordinates",
       "type": "array",
       "items": {
-        "oneOf": [
-          { "type": "array" },
-          { "type": "number" }
-        ]
+        "oneOf": [{ "type": "array" }, { "type": "number" }]
       }
     },
 
@@ -279,27 +266,19 @@
       "required": ["geometry", "properties"],
 
       "properties": {
-
         "type": { "enum": ["Feature"] },
 
         "geometry": {
           "title": "Geometry",
-          "oneOf": [
-            { "$ref": "#/definitions/geometry" },
-            { "type": "null" }
-          ]
+          "oneOf": [{ "$ref": "#/definitions/geometry" }, { "type": "null" }]
         },
 
         "properties": {
           "title": "Properties",
-          "oneOf": [
-            { "type": "object" },
-            { "type": "null" }
-          ]
+          "oneOf": [{ "type": "object" }, { "type": "null" }]
         },
 
         "id": {}
-
       }
     },
 
@@ -347,7 +326,5 @@
         "type": "number"
       }
     }
-
   }
-
 }

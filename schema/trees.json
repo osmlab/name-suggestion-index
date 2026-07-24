@@ -5,19 +5,16 @@
   "additionalProperties": false,
   "required": ["trees"],
   "properties": {
-
     "trees": {
       "type": "object",
       "additionalProperties": false,
       "patternProperties": {
-
         "^\\S+$": {
           "description": "(required) The name of the tree (e.g. 'brands')",
           "type": "object",
           "additionalProperties": false,
           "required": ["emoji", "mainTag", "nameTags"],
           "properties": {
-
             "emoji": {
               "description": "(required) An emoji used for logging and output (e.g. '🍔')",
               "type": "string"
@@ -57,10 +54,8 @@
                 }
               }
             }
-
           }
         }
-
       }
     }
   }
