@@ -1,4 +1,3 @@
-/* eslint-disable dot-notation, @typescript-eslint/no-explicit-any */
 import { $ } from 'bun';
 import { iso1A2Code } from '@rapideditor/country-coder';
 import LocationConflation from '@rapideditor/location-conflation';
@@ -121,7 +120,7 @@ console.log(styleText('blue', '-'.repeat(70)));
 let _secrets;
 try {
   _secrets = await Bun.file('./secrets.json').json();
-} catch (err) { /* ignore */ }
+} catch { /* ignore */ }
 
 if (_secrets && !_secrets.wikibase) {
   console.error(styleText('red', 'WHOA!'));
@@ -132,7 +131,7 @@ if (_secrets && !_secrets.wikibase) {
   process.exit(1);
 }
 
-if (_secrets && _secrets.wikibase && !_secrets.wikibase.oauth) {
+if (_secrets?.wikibase && !_secrets.wikibase.oauth) {
   console.error(styleText('red', 'WHOA!'));
   console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
   console.error(styleText('yellow', 'We were expecting to find an `oauth` property.'));
@@ -145,7 +144,7 @@ if (_secrets && _secrets.wikibase && !_secrets.wikibase.oauth) {
 // To update wikidata
 // add your oauth credentials into `./secrets.json`
 let _wbEdit: WikibaseEditAPI | undefined;
-if (_secrets && _secrets.wikibase) {
+if (_secrets?.wikibase) {
   _wbEdit = wikibaseEdit({
     instance: 'https://www.wikidata.org',
     credentials: _secrets.wikibase,
@@ -319,8 +318,8 @@ async function processEntities(result: WdApiResult): Promise<void> {
     const target = _wikidata[qid];
     const entity = result.entities[qid];
     _entityCache[qid] = entity;
-    const labelEn = entity.labels && entity.labels.en && entity.labels.en.value;
-    const labelMul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
+    const labelEn = entity.labels?.en?.value;
+    const labelMul =  entity.labels?.mul?.value;
     let label = labelEn ? labelEn : labelMul;
 
     if (entity.redirects) {
@@ -329,7 +328,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
       _warnings.push(warning);
     }
 
-    if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
+    if (Object.hasOwn(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const warning: WikidataWarning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.`, category: 'deleted' };
       console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
@@ -357,7 +356,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
     }
 
     // Get description..
-    const description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
+    const description = entity.descriptions?.en?.value;
     if (description) {
       target.description = description;
     }
@@ -529,10 +528,10 @@ async function processEntities(result: WdApiResult): Promise<void> {
  * @see https://github.com/osmlab/name-suggestion-index/issues/10233
  */
 function getFacebookRestriction(entity: WdEntity, facebookUser: string): ItemId | undefined {
-  for (const c of entity.claims['P2013']) {
+  for (const c of entity.claims.P2013) {
     if (c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser) {
       // get access status of selected value - NSI#10233
-      const accessQualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
+      const accessQualifiers = (c.qualifiers?.P6954) || [];
       for (const q of accessQualifiers) {
         if (q.snaktype !== 'value') continue;
 
@@ -544,7 +543,7 @@ function getFacebookRestriction(entity: WdEntity, facebookUser: string): ItemId 
       }
 
       // get "does not have characteristic" status of selected value
-      const charQualifiers = (c.qualifiers && c.qualifiers.P6477) || [];
+      const charQualifiers = (c.qualifiers?.P6477) || [];
       for (const q of charQualifiers) {
         if (q.snaktype !== 'value') continue;
 
@@ -599,7 +598,7 @@ function processDissolutions(qid: ItemId, entity: WdEntity, target: WikidataEntr
       // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
       // P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
       const successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366') || getClaimValue(entity, 'P7888');
-      if (successor && successor.id) {
+      if (successor?.id) {
         dissolution.upgrade = successor.id;
       }
     }
@@ -654,7 +653,7 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity): void {
         }
         enqueueWbEdit({ qid: qid, guid: claimID, newValue: nsiIds[i], rank: 'normal', references: references, msg: msg! });
       }
-      if (!claim.references || !claim.references.length) {
+      if (!claim.references?.length) {
         msg = `Updating NSI identifier reference for ${qid}`;
         enqueueWbEdit({ qid: qid, guid: claimID, snaks: references[0], msg: msg });
       }
@@ -693,7 +692,7 @@ function getClaimValue(entity: WdEntity, prop: PropertyId): any {
 
     // skip if we find an end time qualifier - P582
     let ended = false;
-    const qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
+    const qualifiers = (c.qualifiers?.P582) || [];
     for (const q of qualifiers) {
       if (q.snaktype !== 'value') continue;
       const enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
@@ -732,7 +731,7 @@ function getClaimValues(entity: WdEntity, prop: PropertyId, includeDeprecated: b
 
     // skip if we find an end time qualifier - P582
     let ended = false;
-    const qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
+    const qualifiers = (c.qualifiers?.P582) || [];
     for (const q of qualifiers) {
       if (q.snaktype !== 'value') continue;
       const enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
@@ -822,11 +821,11 @@ async function finish(): Promise<void> {
  * @param qid - The Wikidata QID associated with this entity.
  * @param username - The Facebook username or page ID.
  * @param restriction - A Wikidata QID indicating an access restriction qualifier, or `undefined`.
- * @returns `true` on success, or `void` on failure.
+ * @returns `true` on success, or `undefined` on failure.
  * @throws {Error} Re-throws if the Facebook API returns an error and no numeric fallback is available.
  * @see https://developers.facebook.com/docs/graph-api/reference/user/picture/
  */
-async function fetchFacebookLogo(qid: ItemId, username: string, restriction: ItemId | undefined): Promise<true | void> {
+async function fetchFacebookLogo(qid: ItemId, username: string, restriction: ItemId | undefined): Promise<true | undefined> {
   const target = _wikidata[qid];
   const logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
   let userid;
@@ -844,7 +843,7 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
 
     if (!json) return true;
 
-    if (json.error && json.error.message) {
+    if (json.error?.message) {
       throw new Error(json.error.message);
     }
 
@@ -883,6 +882,7 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
         console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       }
+      return undefined;
     }
   }
 }

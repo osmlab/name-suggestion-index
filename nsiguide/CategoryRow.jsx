@@ -1,9 +1,8 @@
+/** biome-ignore-all lint/security/noDangerouslySetInnerHtml: to be improved on in the future */
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUnlock, faLock } from '@fortawesome/free-solid-svg-icons'; // SSL local and Unlock icon.
-import { AppContext, getFilterParams, stripDiacritics } from './AppContext';
+import { AppContext, getFilterParams } from './AppContext';
 import { CategoryRowSocialLinks} from './CategoryRowSocialLinks';
 import { TREES } from './constants';
 
@@ -35,17 +34,16 @@ export function CategoryRow(props) {
   if (item.selected) rowClasses.push('selected');
 
   // setup defaults for this tree..
-  let n, kvn, tags, qid, overpassQuery;
+  let n, tags, qid, overpassQuery;
 
   if (t === 'brands') {
     n = item.tags.brand || item.tags.name;
     if (n != null) {
-      n = n.replaceAll('"','\\\"');
+      n = n.replaceAll('"','\\"');
     }
-    kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['brand:wikidata'];
-    let bn = tags['brand'];
+    const bn = tags.brand;
     overpassQuery = `[out:json][timeout:100];
 (nwr["name"="${n}"];);
 out center;
@@ -70,7 +68,6 @@ relation[${k}=${v}][brand=${bn}][brand:wikidata=${qid}]
     if (n != null) {
       n = n.replaceAll('"','\\\"');
     }
-    kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['flag:wikidata'];
     overpassQuery = `[out:json][timeout:100];
@@ -82,7 +79,6 @@ out center;`;
     if (n != null) {
       n = n.replaceAll('"','\\\"');
     }
-    kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['operator:wikidata'];
     overpassQuery = `[out:json][timeout:100];
@@ -109,7 +105,6 @@ relation[${k}=${v}][operator:wikidata=${qid}]
     if (n != null) {
       n = n.replaceAll('"','\\\"');
     }
-    kvn = `${k}/${v}|${n}`;
     tags = item.tags || {};
     qid = tags['network:wikidata'];
     overpassQuery = `[out:json][timeout:100];
@@ -190,7 +185,7 @@ relation['${k}'='${v}']${filter}
         <div className='nsikey'><pre>{item.id}</pre></div>
         <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
         <div className='viewlink'>
-          { searchOverpassLink(n, overpassQuery) }<br/>
+          { searchOverpassLink(overpassQuery) }<br/>
           { searchGoogleLink(n) }<br/>
           <strong>Search:&nbsp;</strong>
           { searchWikipediaLink(n) }
@@ -220,7 +215,7 @@ relation['${k}'='${v}']${filter}
         <div className='nsikey'><pre>{item.id}</pre></div>
         <div className='locations'>{ locoDisplay(item.locationSet, n) }</div>
         <div className='viewlink'>
-          { searchOverpassLink(n, overpassQuery) }<br/>
+          { searchOverpassLink(overpassQuery) }<br/>
           { searchGoogleLink(n) }<br/>
           <strong>Search:&nbsp;</strong>
           { searchWikipediaLink(n) }
@@ -287,7 +282,7 @@ relation['${k}'='${v}']${filter}
     return (<a target='_blank' href={href} title={title}>Wikidata</a>);
   }
 
-  function searchOverpassLink(name, overpassQuery) {
+  function searchOverpassLink(overpassQuery) {
     const q = encodeURIComponent(overpassQuery);
     const href = `https://overpass-turbo.eu/?Q=${q}&R`;
     const title = `Search Overpass Turbo for ${n}`;
@@ -348,60 +343,60 @@ relation['${k}'='${v}']${filter}
       let url, linktext;
 
       /* Brands */
-      if ((t=='brands') && (k=='advertising') && (v=='totem'))
+      if ((t==='brands') && (k==='advertising') && (v==='totem'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=fuel'; linktext = '/brands/amenity/fuel.json';}
 
-      if ((t=='brands') && (k=='amenity') && (v=='atm'))
+      if ((t==='brands') && (k==='amenity') && (v==='atm'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=bank'; linktext = '/brands/amenity/bank.json';}
 
-      if ((t=='brands') && (k=='man_made') && (v=='charge_point'))
+      if ((t==='brands') && (k==='man_made') && (v==='charge_point'))
         {url = '/index.html?t=brands&amp;k=amenity&amp;v=charging_station'; linktext = '/brands/amenity/charging_station.json';}
 
-      if ((t=='brands') && (k=='shop') && (v=='car_repair'))
+      if ((t==='brands') && (k==='shop') && (v==='car_repair'))
         {url = '/index.html?t=brands&amp;k=shop&amp;v=car'; linktext = '/brands/shop/car.json';}
 
       /* Operators */
-      if ((t=='operators') && (k=='leisure') && (v=='nature_reserve'))
+      if ((t==='operators') && (k==='leisure') && (v==='nature_reserve'))
         {url = '/index.html?t=operators&amp;k=leisure&amp;v=park'; linktext = '/operators/leisure/park.json';}
 
-      if ((t=='operators') && (k=='man_made') && (v=='charge_point'))
+      if ((t==='operators') && (k==='man_made') && (v==='charge_point'))
         {url = '/index.html?t=operators&amp;k=amenity&amp;v=charging_station'; linktext = '/operators/amenity/charging_station.json';}
-      if ((t=='operators') && (k=='man_made') && ((v=='pumping_station') || (v=='reservoir_covered')))
+      if ((t==='operators') && (k==='man_made') && ((v==='pumping_station') || (v==='reservoir_covered')))
         {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; linktext = '/operators/office/water_utility.json';}
-      if ((t=='operators') && (k=='man_made') && (v=='tower'))
+      if ((t==='operators') && (k==='man_made') && (v==='tower'))
         {url = '/index.html?t=operators&amp;k=man_made&amp;v=mast'; linktext = '/operators/man_made/mast.json';}
-      if ((t=='operators') && (k=='man_made') && ((v=='water_tower') || (v=='water_works')))
+      if ((t==='operators') && (k==='man_made') && ((v==='water_tower') || (v==='water_works')))
         {url = '/index.html?t=operators&amp;k=office&amp;v=water_utility'; linktext = '/operators/office/water_utility.json';}
 
-      if ((t=='operators') && (k=='pipeline') && (v=='substation'))
+      if ((t==='operators') && (k==='pipeline') && (v==='substation'))
         {url = '/index.html?t=operators&amp;k=man_made&amp;v=pipeline'; linktext = 'operators/man_made/pipeline.json';}
 
-      if ((t=='operators') && (k=='power') && ((v=='minor_line') || (v=='pole') || (v=='tower')))
+      if ((t==='operators') && (k==='power') && ((v==='minor_line') || (v==='pole') || (v==='tower')))
         {url = '/index.html?t=operators&amp;k=power&amp;v=line'; linktext = '/operators/power/line.json';}
-      if ((t=='operators') && (k=='power') && (v=='transformer'))
+      if ((t==='operators') && (k==='power') && (v==='transformer'))
         {url = '/index.html?t=operators&amp;k=power&amp;v=substation'; linktext = '/operators/power/substation.json';}
 
       /* Transit */
-      if ((t=='transit') && (k=='amenity') && (v=='ferry_terminal'))
+      if ((t==='transit') && (k==='amenity') && (v==='ferry_terminal'))
         {url = '/index.html?t=transit&amp;k=route&amp;v=ferry'; linktext = '/transit/route/ferry.json';}
 
-      if ((t=='transit') && (k=='highway') && (v=='bus_stop'))
+      if ((t==='transit') && (k==='highway') && (v==='bus_stop'))
         {url = '/index.html?t=transit&amp;k=route&amp;v=bus'; linktext = '/transit/route/bus.json';}
 
-      if ((t=='transit') && (k=='public_transport') && (v=='station_light_rail'))
+      if ((t==='transit') && (k==='public_transport') && (v==='station_light_rail'))
         {url = '/index.html?t=transit&amp;k=route&amp;v=light_rail'; linktext = '/transit/route/light_rail.json';}
-      if ((t=='transit') && (k=='public_transport') && (v=='station_subway'))
+      if ((t==='transit') && (k==='public_transport') && (v==='station_subway'))
         {url = '/index.html?t=transit&amp;k=route&amp;v=light_rail'; linktext = '/transit/route/subway.json';}
 
-      if ((t=='transit') && (k=='railway') && (v=='station'))
+      if ((t==='transit') && (k==='railway') && (v==='station'))
         {url = '/index.html?t=transit&amp;k=route&amp;v=train'; linktext = '/transit/route/train.json';}
-      if ((t=='transit') && (k=='railway') && (v=='tram_stop'))
+      if ((t==='transit') && (k==='railway') && (v==='tram_stop'))
         {url = '/index.html?t=transit&amp;k=route&amp;v=tram'; linktext = '/transit/route/tram.json';}
 
-      if ((v=='post_box') || (v=='catenary_mast')) {
+      if ((v==='post_box') || (v==='catenary_mast')) {
         /* Post Boxes and catenary masts use multiple templates */
         let url2, linktext2, searchLabel, searchLabel2;
-        if (v=='post_box'){
+        if (v==='post_box'){
           url = '/index.html?t=brands&amp;k=amenity&amp;v=post_office';
           linktext = '/brands/amenity/post_office.json';
           searchLabel = 'brands';
@@ -409,7 +404,7 @@ relation['${k}'='${v}']${filter}
           linktext2 = '/operators/amenity/post_office.json';
           searchLabel2 = 'operators';
         }
-        if (v=='catenary_mast') {
+        if (v==='catenary_mast') {
           url = '/index.html?t=operators&amp;k=route&amp;v=railway';
           linktext = '/operators/route/railway.json';
           searchLabel = 'railway';

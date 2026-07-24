@@ -54,7 +54,7 @@ export class Matcher {
   /** Map of item id → locationSetID, populated by {@link buildLocationIndex}. */
   private itemLocationSetID: Map<string, LocationSetID> | undefined;
   /** Warnings collected during index building (e.g. duplicate cache keys). */
-  private warnings: Array<string> = [];
+  private warnings: string[] = [];
 
 
   /**
@@ -317,10 +317,10 @@ export class Matcher {
           const nsimple = simplify(matchName);
           for (const kv of kvTags) {
             const branch = matchIndex.get(kv);
-            const primaryLeaf = branch && branch.primary.get(nsimple);
-            const alternateLeaf = branch && branch.alternate.get(nsimple);
-            const inPrimary = primaryLeaf && primaryLeaf.has(item.id);
-            const inAlternate = alternateLeaf && alternateLeaf.has(item.id);
+            const primaryLeaf = branch?.primary.get(nsimple);
+            const alternateLeaf = branch?.alternate.get(nsimple);
+            const inPrimary = primaryLeaf?.has(item.id);
+            const inAlternate = alternateLeaf?.has(item.id);
 
             if (!inPrimary && !inAlternate) {
               insertName('alternate', t, kv, nsimple, item.id);
@@ -412,7 +412,7 @@ export class Matcher {
    * @returns An array of {@link Hit} results, or `null` if nothing matched.
    * @throws  {Error} If the match index has not been built yet.
    */
-  match(k: string, v: string, n: string, loc?: Vec2): Array<MatchHit> | null {
+  match(k: string, v: string, n: string, loc?: Vec2): MatchHit[] | null {
     if (!this.matchIndex) {
       throw new Error('match:  matchIndex not built.');
     }
@@ -430,7 +430,7 @@ export class Matcher {
     const nsimple = simplify(n);
 
     const seen = new Set();
-    const results: Array<MatchHit> = [];
+    const results: MatchHit[] = [];
 
     // Sort smaller (more local) locations first.
     const byAreaAscending = (hitA: MatchHit, hitB: MatchHit): number => {
@@ -466,12 +466,12 @@ export class Matcher {
       }
 
       const leaf = branch[which].get(nsimple);
-      if (!leaf || !leaf.size) return false;
+      if (!leaf?.size) return false;
       if (!(which === 'primary' || which === 'alternate')) return false;
 
       // If we get here, we matched something..
       // Prepare the results, calculate areas (if location index was set up)
-      let hits: Array<MatchHit> = [];
+      let hits: MatchHit[] = [];
       for (const itemID of [...leaf]) {
         let area = Infinity;
         if (loco && itemLocationSetID) {
@@ -546,7 +546,7 @@ export class Matcher {
    *
    * @returns An array of warning message strings (may be empty).
    */
-  getWarnings(): Array<string> {
+  getWarnings(): string[] {
     return this.warnings;
   }
 }

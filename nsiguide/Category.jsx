@@ -12,7 +12,7 @@ export function Category() {
   const index = context.index;
   const params = context.params;
   const hash = context.hash;
-  let selectedID = hash && hash.slice(1);   // remove leading '#'
+  const selectedID = hash?.slice(1);   // remove leading '#'
 
   const t = params.t;
   const k = params.k;
@@ -62,7 +62,7 @@ export function Category() {
     // Browser may have tried this already on initial render before data was there.
     // This component will render and return the rows, so scroll to the row after a delay.
     if (selectedID) {
-      window.setTimeout(function() {
+      window.setTimeout(() => {
         const el = document.getElementById(selectedID);
         if (el) {
           el.scrollIntoView();

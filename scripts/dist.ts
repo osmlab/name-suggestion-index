@@ -15,7 +15,7 @@ const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for s
 
 // JSON
 const packageJSON = await Bun.file('./package.json').json();
-let featureCollectionJSON;
+let featureCollectionJSON
 try {
   featureCollectionJSON = await Bun.file('./dist/json/featureCollection.json').json();
 } catch (err: unknown) {
@@ -192,7 +192,6 @@ async function buildTaginfo() {
   const tagPairs: Record<string, TaginfoItem> = {};
   for (const [path, category] of Object.entries(_nsi.path)) {
     for (const item of category.items) {
-      // eslint-disable-next-line prefer-const
       for (let [k, v] of Object.entries(item.tags)) {
         // Don't export every value for many tags this project uses..
         // ('tag matches any of these')(?!('not followed by :type'))

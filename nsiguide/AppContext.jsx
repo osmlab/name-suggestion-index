@@ -39,10 +39,10 @@ export function AppContextProvider() {
   useEffect(() => {
     let newHash = location.hash;
     let newSearch = location.search;
-    let newParams = stringQs(newSearch);
+    const newParams = stringQs(newSearch);
 
     // if passed an `id` param, lookup that item and override the `t`,`k`,`v` params
-    let itemID = newParams.id;
+    const itemID = newParams.id;
     if (itemID) {
       if (indexLoading) return;   // wait for index to load, we'll come back to this.
 
@@ -166,7 +166,7 @@ function useNsi(url) {
   async function fetchUrl() {
     const response = await fetch(url);
     const json = await response.json();
-    let index = { path: {}, id: {}, meta: json._meta };
+    const index = { path: {}, id: {}, meta: json._meta };
 
     // populate cache
     for (const [tkv, category] of Object.entries(json.nsi)) {
@@ -198,7 +198,7 @@ function useTaginfo(url) {
     const response = await fetch(url);
     const json = await response.json();
     const tags = json.tags;
-    let icons = {};
+    const icons = {};
 
     // populate icons
     for (const tag of tags) {

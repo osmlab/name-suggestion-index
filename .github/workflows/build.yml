@@ -18,9 +18,5 @@ jobs:
     - uses: oven-sh/setup-bun@v2
     - name: Install dependencies
       run: bun install
-    - name: Remove eslint problem matchers
-      run: |
-        echo "::remove-matcher owner=eslint-compact::"
-        echo "::remove-matcher owner=eslint-stylish::"
     - name: Run all
       run: bun run all

@@ -153,7 +153,7 @@ function DarkMode() {
     </div>
   );
 
-  function toggleDarkMode(e) {
+  function toggleDarkMode() {
     const newValue = (window.localStorage.getItem('nsi-darkmode') === 'true') ? 'false' : 'true';
     window.localStorage.setItem('nsi-darkmode', newValue);
     setDarkMode(newValue);

@@ -1,9 +1,8 @@
 import * as nsi from './nsi.ts';
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
+  // biome-ignore lint/style/noNamespace: extending globalThis
   namespace globalThis {
-    // eslint-disable-next-line no-var
     var nsi: typeof import('./nsi');
   }
 }

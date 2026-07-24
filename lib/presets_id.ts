@@ -141,7 +141,7 @@ function pickBestChildPreset(
 
 /** Picks a logo URL from wikidata for a given QID. */
 function pickLogoURL(qid: string, wikidata: WikidataMap): string | undefined {
-  const logoURLs = wikidata[qid] && wikidata[qid].logos;
+  const logoURLs = wikidata[qid]?.logos;
   if (!logoURLs) return undefined;
   if (logoURLs.wikidata && preferCommons[qid]) return logoURLs.wikidata;
   if (logoURLs.facebook) return logoURLs.facebook;

@@ -64,5 +64,3 @@ async function postpublish() {
   await Promise.all(promises);
   console.log(END);
 }
-
-export { };

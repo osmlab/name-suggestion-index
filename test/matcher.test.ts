@@ -20,7 +20,7 @@ describe('index building', () => {
 
   beforeAll(() => {
     _warn = console.warn;
-    console.warn = () => {};  // silence console.warn
+    console.warn = () => { /* silence console.warn */ };
   });
 
   afterAll(() => {

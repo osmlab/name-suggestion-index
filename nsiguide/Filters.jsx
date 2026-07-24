@@ -40,7 +40,7 @@ export function Filters() {
       </span>
 
       <span className='field'>
-        <button className='clearFilters' name='clearFilters' onClick={clearFilters}>Clear</button>
+        <button type='button' className='clearFilters' name='clearFilters' onClick={clearFilters}>Clear</button>
       </span>
     </div>
   );

@@ -31,11 +31,9 @@ export function Overview() {
   // Display a message if the data isn't ready yet, or if this is not an actual tree.
   if (message) {
     return (
-      <>
       <div className='container'>
       {message}
       </div>
-      </>
     );
   }
 //      { wikidataTag ? OverviewInstructions() : null }
@@ -43,7 +41,7 @@ export function Overview() {
 
   // For the counting code below, we'll apply the filtering rules but without 'inc',
   // so we can properly count complete vs incomplete.
-  let f = Object.assign({}, filters);  // copy
+  const f = Object.assign({}, filters);  // copy
   delete f.inc;
 
   /** @type {{ [kv: string]: string[] }} */

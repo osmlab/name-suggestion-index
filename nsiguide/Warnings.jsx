@@ -33,6 +33,7 @@ const renderMessage = (msg) => {
     if (/^Q\d+$/.test(part)) {
       return (
         <a
+          // biome-ignore lint/suspicious/noArrayIndexKey: TODO - use a better key
           key={i}
           href={`https://www.wikidata.org/wiki/${part}`}
           target="_blank"
@@ -44,11 +45,13 @@ const renderMessage = (msg) => {
     }
     if (part === "https://developers.facebook.com/docs/graph-api") {
       return (
+        // biome-ignore lint/suspicious/noArrayIndexKey: TODO - use a better key
         <a key={i} href={part} target="_blank" rel="noreferrer">
           {part}
         </a>
       );
     }
+    // biome-ignore lint/suspicious/noArrayIndexKey: TODO - use a better key
     return <Fragment key={i}>{part}</Fragment>;
   });
 };
@@ -207,7 +210,7 @@ export const Warnings = () => {
         </span>
 
         <span className="field">
-          <button className="clearFilters" onClick={clearFilters}>
+          <button type="button" className="clearFilters" onClick={clearFilters}>
             Clear
           </button>
         </span>
@@ -354,6 +357,7 @@ export const Warnings = () => {
               </thead>
               <tbody>
                 {filtered.map((w, i) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: TODO - use a better key
                   <tr key={`${w.qid}-${i}`} className={`warn ${w.category}`}>
                     <td className="qid">
                       <a
