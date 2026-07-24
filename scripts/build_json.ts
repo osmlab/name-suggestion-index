@@ -1,6 +1,3 @@
-//import geojsonArea from '@mapbox/geojson-area';
-//import geojsonBounds from 'geojson-bounds';
-
 import { Glob } from 'bun';
 import path from 'node:path';
 import { styleText } from 'node:util';
