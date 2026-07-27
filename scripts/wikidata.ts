@@ -324,14 +324,14 @@ async function processEntities(result: WdApiResult): Promise<void> {
     let label = labelEn ? labelEn : labelMul;
 
     if (entity.redirects) {
-      const warning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}` };
+      const warning: WikidataWarning = { qid: qid, msg: `Wikidata QID redirects to ${entity.redirects.to}`, category: 'unresolved-redirect' };
       console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
       _warnings.push(warning);
     }
 
     if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
-      const warning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.` };
+      const warning: WikidataWarning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.`, category: 'deleted' };
       console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
       _warnings.push(warning);
       continue;
@@ -350,7 +350,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
 
       } else {   // otherwise raise a warning for the user to deal with.
         label = label || qid;
-        const warning = { qid: qid, msg: `Entity for "${label}" is missing an English label.` };
+        const warning: WikidataWarning = { qid: qid, msg: `Entity for "${label}" is missing an English label.`, category: 'missing-label' };
         console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       }
@@ -605,7 +605,7 @@ function processDissolutions(qid: ItemId, entity: WdEntity, target: WikidataEntr
     }
 
     if (dissolution.upgrade) {
-      const warning = { qid: qid, msg: `${target.label} might possibly be replaced by ${dissolution.upgrade}` };
+      const warning: WikidataWarning = { qid: qid, msg: `${target.label} might possibly be replaced by ${dissolution.upgrade}`, category: 'replacement' };
       if (dissolution.countries) {
         warning.msg += `\nThis applies only to the following countries: ${JSON.stringify(dissolution.countries)}.`;
       }
@@ -864,7 +864,7 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
       } else {
         warningText = `has a restricted access qualifier, but is publicly accessible`;
       }
-      const warning = { qid: qid, msg: `Facebook username @${username} ${warningText}` };
+      const warning: WikidataWarning = { qid: qid, msg: `Facebook username @${username} ${warningText}`, category: 'facebook-access' };
       console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
       _warnings.push(warning);
     }
@@ -879,7 +879,7 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
       // or if the profile is set up as a personal account
       if (!restriction) {
         const msg = e instanceof Error ? e.message : String(e);
-        const warning = { qid: qid, msg: `Facebook username @${username}: ${msg}` };
+        const warning: WikidataWarning = { qid: qid, msg: `Facebook username @${username}: ${msg}`, category: 'facebook-api' };
         console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       }
@@ -988,7 +988,7 @@ async function drainWbEditQueue(): Promise<void> {
 
       } catch (e) {
         const errorMsg = e instanceof Error ? e.message : String(e);
-        const warning: WikidataWarning = { qid: qid!, msg: errorMsg };
+        const warning: WikidataWarning = { qid: qid!, msg: errorMsg, category: 'edit-error' };
         console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       }

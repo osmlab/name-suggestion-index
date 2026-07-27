@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { AppContext, getFilterParams } from './AppContext';
@@ -8,15 +8,40 @@ import { TREES } from './constants';
 
 
 export function Header() {
+  const { params } = useContext(AppContext);
+  const isOnWarningsView = params.view === 'warnings';
+
   return (
-    <div id='header' className='hasCols'>
+    <div id='header'>
       <Title/>
-      <TreeSwitcher/>
-      <DarkMode/>
-      <GitHub/>
+      { isOnWarningsView && <BackToGuide/> }
+      <div id='header-controls'>
+        { !isOnWarningsView && <TreeSwitcher/> }
+        <DarkMode/>
+        { !isOnWarningsView && <WikidataWarnings/> }
+        <GitHub/>
+      </div>
     </div>
   );
 };
+
+
+function BackToGuide() {
+  const { params, setParams } = useContext(AppContext);
+
+  const onClick = (e) => {
+    e.preventDefault();
+    const next = { ...params };
+    delete next.view;
+    setParams(next);
+  };
+
+  return (
+    <div id='nav'>
+      <a href='#' onClick={onClick}>← Back to nsi.guide</a>
+    </div>
+  );
+}
 
 
 function Title() {
@@ -25,6 +50,18 @@ function Title() {
   const t = params.t;
   const k = params.k;
   const v = params.v;
+
+  if (params.view === 'warnings') {
+    document.title = 'Name Suggestion Index - Wikidata Warnings';
+    return (
+      <div id='title'>
+        <h1>
+          <FontAwesomeIcon icon={faTriangleExclamation} className='hi' style={{ color: '#f0b400' }} />
+          Wikidata Warnings
+        </h1>
+      </div>
+    );
+  }
 
   // try to pick an icon
   let iconURL;
@@ -137,6 +174,24 @@ function GitHub() {
     <div id='octocat'>
       <a href='https://github.com/osmlab/name-suggestion-index' target='_blank'>
         <FontAwesomeIcon icon={faGithub} size='2x' />
+      </a>
+    </div>
+  );
+}
+
+
+function WikidataWarnings() {
+  const { params, setParams } = useContext(AppContext);
+
+  const onClick = (e) => {
+    e.preventDefault();
+    setParams({ ...params, view: 'warnings' });
+  };
+
+  return (
+    <div id='wikiwarnings'>
+      <a href='#' onClick={onClick} title='View Wikidata warnings'>
+        <FontAwesomeIcon icon={faTriangleExclamation} size='2x' />
       </a>
     </div>
   );
