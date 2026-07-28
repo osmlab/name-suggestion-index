@@ -14,11 +14,21 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 
 [#xxxxx]: https://github.com/osmlab/name-suggestion-index/issues/xxxxx
 -->
+
+# 8.0.YYYYMMDD
+##### 2026-Jul-28
+  * ⚠️  Bump to [`openstreetmap/id-tagging-schema`](https://github.com/openstreetmap/id-tagging-schema) v7 — downstream consumers must upgrade simultaneously ([#12449])
+
+[#12449]: https://github.com/osmlab/name-suggestion-index/pull/12449
+
+
 # 7.2.YYYYMMDD
+##### 2026-May-15
   * Replaced `xmlbuilder2` with `fast-xml-builder` for XML generation.
   * ⚠️  `buildJOSMPresets` now returns a serializer wrapper instead of an `XMLBuilder` instance
     * `buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): JOSMPresetsSerializer` - Generates JOSM presets XML
     * Call `result.serialize({ prettyPrint: true })` for pretty output, `result.serialize()` for minified output.
+
 
 # 7.1.YYYYMMDD
 ##### 2026-Apr-27

@@ -1,5 +1,5 @@
-import type { Preset } from '@openstreetmap/id-tagging-schema';
 import type { HasLocationSet, LocationSet } from '@rapideditor/location-conflation';
+import type { Preset } from '@openstreetmap/id-tagging-schema';
 
 
 /** Tags must always consist of key,value string pairs (no undefined) */
@@ -251,15 +251,13 @@ export interface NsiWarningsJSON {
 /**
  * Properties that define an iD/Rapid Preset.
  *
- * Note: `locationSet` and `matchScore` are NSI extensions — they are always
- * present on the presets that {@link buildIDPresets} generates, but the
- * source iD presets supplied as input do not have them.
+ * Note: `preserveTags` is an NSI extension — it may be present on the presets
+ * that {@link buildIDPresets} generates, but the source iD presets supplied
+ * as input do not have them.
  *
  * @see https://github.com/openstreetmap/id-tagging-schema/blob/main/schemas/preset.json
  */
 export interface IDPreset extends Preset {
-  /** Score for ranking search results */
-  matchScore?: number;
   /** Regexes to match tags that should be preserved - a validator should not try to replace these tags, see NSI#10083 */
   preserveTags?: string[];
 }

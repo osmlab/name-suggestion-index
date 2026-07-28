@@ -3,6 +3,7 @@ import XMLBuilder from 'fast-xml-builder';
 import type { DissolvedMap, NsiData, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
 import type { XmlBuilderOptions } from 'fast-xml-builder';
 
+
 const xmlBuilderOptions = {
   ignoreAttributes: false,
   suppressEmptyNode: true

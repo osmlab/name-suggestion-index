@@ -1,16 +1,16 @@
 import { $ } from 'bun';
 import LocationConflation from '@rapideditor/location-conflation';
-import type { Presets } from '@openstreetmap/id-tagging-schema';
-import XMLBuilder from 'fast-xml-builder';
 import stringify from 'json-stringify-pretty-compact';
 import { styleText } from 'node:util';
+import XMLBuilder from 'fast-xml-builder';
 
 import { fileTree } from '../lib/file_tree.ts';
 import { buildIDPresets } from '../lib/presets_id.ts';
 import { buildJOSMPresets } from '../lib/presets_josm.ts';
 
-import type { XmlBuilderOptions } from 'fast-xml-builder';
+import type { Presets } from '@openstreetmap/id-tagging-schema';
 import type { NsiCache, NsiData, NsiDissolved, NsiJSON, NsiPath, NsiWikidataJSON, TaginfoItem, TaginfoJSON } from '../lib/types.ts';
+import type { XmlBuilderOptions } from 'fast-xml-builder';
 
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
