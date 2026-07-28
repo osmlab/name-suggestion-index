@@ -45,7 +45,8 @@ export function CategoryInstructions() {
   return (
     <div className='instructions'>Some things you can do here:
       <ul>
-      <li>Is {a} {itemType} missing or something is incorrect? <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/issues'>Open an issue</a> or pull request to add it!</li>
+      <li>Is {a} {itemType} missing or incorrect? You can use <a target='_blank' href="https://ga-kevin-codes.codeberg.page/Suggest-A-Brand/">Suggest-A-Brand</a>,
+        or <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/issues">open an issue</a> on our GitHub to let us know.</li>
       <li>Click the "Search Overpass Turbo" link to see where the {itemType} is mapped in OpenStreetMap.</li>
       <li>If a record is missing a <code>'{wikidataTag}'</code> tag, you can do the research to add it to our project, or filter it out if it is not {a} {itemType}.<br/>
         See <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md'>CONTRIBUTING.md</a> for more info.</li>

@@ -45,7 +45,7 @@ ul {
 .hi { font-size: 20px; margin-right: 10px; }
 .dark .hi { filter: saturate(0); }
 .nav { margin-top: 10px; }
-.instructions { max-width: 1000px; margin-top: 20px; }
+.instructions { max-width: 1000px; margin: 20px 0; }
 pre { font-size: 12px; margin: 0; }
 .hide { display: none; }
 
@@ -269,10 +269,15 @@ input:focus {
 
 /* Overview Page */
 div.container {
-  margin-top: 20px;
-  columns: auto 275px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
 }
 div.category {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  white-space: nowrap;
   padding: 2px 5px;
 }
 

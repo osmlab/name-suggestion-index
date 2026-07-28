@@ -97,10 +97,7 @@ export function Overview() {
     const linkparams = Object.assign({ t: t, k: k, v: v }, filters);
 
     categories.push(
-      <div key={kv} className={klass} >
-      <img className='icon' src={iconURL} />
-      <Link to={'index.html?' + qsString(linkparams)}>{`${kv} (${complete}/${count})`}</Link>
-      </div>
+      <div key={kv} className={klass} ><img className='icon' src={iconURL} />&nbsp;<Link to={'index.html?' + qsString(linkparams)}>{kv}&nbsp;({complete}/{count})</Link></div>
     );
   }
 

@@ -7,27 +7,28 @@ export function OverviewInstructions() {
   const params = context.params;
   const t = params.t;
 
-  // setup defaults for this tree..
-  let itemType, wikidataTag, tempt;
+  // Setup replacement strings based on the chosen tree..
+  let itemType, itemTypes, wikidataTag;
   if (t === 'brands') {
     itemType = 'brand';
+    itemTypes = 'brands';
     wikidataTag = 'brand:wikidata';
-    tempt = 'brands';
   } else if (t === 'flags') {
     itemType = 'flag';
+    itemTypes = 'flags';
     wikidataTag = 'flag:wikidata';
-    tempt = 'flags';
   } else if (t === 'operators') {
     itemType = 'operator';
+    itemTypes = 'operators';
     wikidataTag = 'operator:wikidata';
-    tempt = 'operators';
   } else if (t === 'transit') {
     itemType = 'network';
+    itemTypes = 'transit networks';
     wikidataTag = 'network:wikidata';
-    tempt = 'transit networks';
   } else {
+    itemType = 'item';
+    itemTypes = 'items';
     wikidataTag = '*:wikidata';
-    tempt = 'items';
   }
 
   return (
@@ -39,11 +40,14 @@ export function OverviewInstructions() {
       This tag is pretty special because we can use it to link features in OpenStreetMap to records
       in <a target='_blank' href='https://www.wikidata.org'>Wikidata</a>, a free and open knowledge database.
       <br/>
-      You can help us by adding {tempt} to the index, matching {tempt} to Wikidata identifiers,
-      or <a href='#' onClick={(e) => { e.preventDefault(); context.setParams({ ...params, view: 'warnings' }); }}>improving</a> the Wikidata page for already indexed {tempt}.<br/>
+      You can help us by adding {itemTypes} to the index, matching {itemTypes} to Wikidata identifiers,
+      or <a href='#' onClick={(e) => { e.preventDefault(); context.setParams({ ...params, view: 'warnings' }); }}>improving</a> the Wikidata page for already indexed {itemTypes}.<br/>
       <br/>
-      Below is a list of categories used by OpenStreetMap. Each category displays a count of {tempt} <strong>"(complete / total)"</strong>,
-      where "complete" means the {tempt} have been matched to a Wikidata identifier and a logo.<br/>
+      If something is missing from this list, you can use <a target='_blank' href="https://ga-kevin-codes.codeberg.page/Suggest-A-Brand/">Suggest-A-Brand</a>,
+      or <a target="_blank" href="https://github.com/osmlab/name-suggestion-index/issues">open an issue</a> on our GitHub to let us know.<br/>
+      <br/>
+      Below is a list of categories used by OpenStreetMap. Each category displays a count of {itemTypes} <strong>"(complete / total)"</strong>,
+      where "complete" means the {itemTypes} have been matched to a Wikidata identifier and a logo.<br/>
       <br/>
       See <a target='_blank' href='https://github.com/osmlab/name-suggestion-index/blob/main/CONTRIBUTING.md'>CONTRIBUTING.md</a> for more info.<br/>
     </div>
