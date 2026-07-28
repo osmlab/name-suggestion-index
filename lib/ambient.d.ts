@@ -9,4 +9,3 @@ declare module '@mapbox/geojson-rewind' {
    */
   export default function rewind<T extends GeoJSON>(gj: T, outer?: boolean): T;
 }
-

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AppContext } from './AppContext';
 
+import { AppContext } from './AppContext';
 
 export function Footer() {
   const context = useContext(AppContext);
@@ -10,7 +10,5 @@ export function Footer() {
   const released = generated && new Date(Date.parse(generated));
   const display = released && version && `NSI v${version} (Generated: ${released})`;
 
-  return (
-    <div id='footer'>{display}</div>
-  );
-};
+  return <div id='footer'>{display}</div>;
+}

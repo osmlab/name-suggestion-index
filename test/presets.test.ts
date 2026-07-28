@@ -1,8 +1,8 @@
 import { describe, it } from 'bun:test';
 import assert from 'node:assert/strict';
+
 import { buildIDPresets, buildJOSMPresets } from '../src/nsi.ts';
 import * as sample from './matcher.sample.ts';
-
 
 // Minimal stand-in for the `@openstreetmap/id-tagging-schema` presets dictionary.
 const sourcePresets = {
@@ -25,7 +25,6 @@ const sourcePresets = {
     tags: { amenity: 'fast_food' }
   }
 };
-
 
 describe('buildIDPresets', () => {
   it('returns presets keyed by <presetID>/<itemID>', () => {
@@ -83,21 +82,23 @@ describe('buildIDPresets', () => {
     assert.equal(preset.imageURL, 'https://fb/ups.png');
   });
 
-  it('prefers commons logo over facebook for special QIDs (e.g. McDonald\'s Q38076)', () => {
+  it("prefers commons logo over facebook for special QIDs (e.g. McDonald's Q38076)", () => {
     // Construct a minimal dataset hitting the preferCommons list.
     const mcdata = {
       'brands/amenity/fast_food': {
         properties: { path: 'brands/amenity/fast_food', exclude: {} },
-        items: [{
-          id: 'mcdonalds-abc123',
-          displayName: "McDonald's",
-          locationSet: { include: ['001'] },
-          tags: {
-            amenity: 'fast_food',
-            brand: "McDonald's",
-            'brand:wikidata': 'Q38076'
+        items: [
+          {
+            id: 'mcdonalds-abc123',
+            displayName: "McDonald's",
+            locationSet: { include: ['001'] },
+            tags: {
+              amenity: 'fast_food',
+              brand: "McDonald's",
+              'brand:wikidata': 'Q38076'
+            }
           }
-        }]
+        ]
       }
     };
     const wikidata = {
@@ -118,12 +119,14 @@ describe('buildIDPresets', () => {
     const bad = {
       'brands/amenity/post_office': {
         properties: { path: 'brands/amenity/post_office', exclude: {} },
-        items: [{
-          id: 'noqid-000000',
-          displayName: 'NoQID',
-          locationSet: { include: ['001'] },
-          tags: { amenity: 'post_office', brand: 'NoQID' }   // no brand:wikidata
-        }]
+        items: [
+          {
+            id: 'noqid-000000',
+            displayName: 'NoQID',
+            locationSet: { include: ['001'] },
+            tags: { amenity: 'post_office', brand: 'NoQID' } // no brand:wikidata
+          }
+        ]
       }
     };
     const result = buildIDPresets(bad, { sourcePresets });
@@ -159,28 +162,34 @@ describe('buildIDPresets', () => {
     const presets = {
       ...sourcePresets,
       'amenity/fast_food/burger': {
-        name: 'Burger Fast Food', icon: 'maki-burger', geometry: ['point', 'area'],
+        name: 'Burger Fast Food',
+        icon: 'maki-burger',
+        geometry: ['point', 'area'],
         tags: { amenity: 'fast_food', cuisine: 'burger' }
       },
       'amenity/fast_food/chicken': {
-        name: 'Chicken Fast Food', icon: 'temaki-chicken', geometry: ['point', 'area'],
+        name: 'Chicken Fast Food',
+        icon: 'temaki-chicken',
+        geometry: ['point', 'area'],
         tags: { amenity: 'fast_food', cuisine: 'chicken' }
       }
     };
     const multiCuisine = {
       'brands/amenity/fast_food': {
         properties: { path: 'brands/amenity/fast_food', exclude: {} },
-        items: [{
-          id: 'comboshop-aaa111',
-          displayName: 'Combo Shop',
-          locationSet: { include: ['001'] },
-          tags: {
-            amenity: 'fast_food',
-            brand: 'Combo Shop',
-            'brand:wikidata': 'Q9999999',
-            cuisine: 'burger;chicken'  // burger first → higher rating
+        items: [
+          {
+            id: 'comboshop-aaa111',
+            displayName: 'Combo Shop',
+            locationSet: { include: ['001'] },
+            tags: {
+              amenity: 'fast_food',
+              brand: 'Combo Shop',
+              'brand:wikidata': 'Q9999999',
+              cuisine: 'burger;chicken' // burger first → higher rating
+            }
           }
-        }]
+        ]
       }
     };
     const result = buildIDPresets(multiCuisine, { sourcePresets: presets });
@@ -195,28 +204,34 @@ describe('buildIDPresets', () => {
     const presets = {
       amenity: sourcePresets.amenity,
       'amenity/fast_food/chicken': {
-        name: 'Chicken Fast Food', icon: 'temaki-chicken', geometry: ['point', 'area'],
+        name: 'Chicken Fast Food',
+        icon: 'temaki-chicken',
+        geometry: ['point', 'area'],
         tags: { amenity: 'fast_food', cuisine: 'chicken' }
       },
       'amenity/fast_food/burger': {
-        name: 'Burger Fast Food', icon: 'maki-burger', geometry: ['point', 'area'],
+        name: 'Burger Fast Food',
+        icon: 'maki-burger',
+        geometry: ['point', 'area'],
         tags: { amenity: 'fast_food', cuisine: 'burger' }
       }
     };
     const pizzaData = {
       'brands/amenity/fast_food': {
         properties: { path: 'brands/amenity/fast_food', exclude: {} },
-        items: [{
-          id: 'pizzashop-bbb222',
-          displayName: 'Pizza Shop',
-          locationSet: { include: ['001'] },
-          tags: {
-            amenity: 'fast_food',
-            brand: 'Pizza Shop',
-            'brand:wikidata': 'Q8888888',
-            cuisine: 'pizza'
+        items: [
+          {
+            id: 'pizzashop-bbb222',
+            displayName: 'Pizza Shop',
+            locationSet: { include: ['001'] },
+            tags: {
+              amenity: 'fast_food',
+              brand: 'Pizza Shop',
+              'brand:wikidata': 'Q8888888',
+              cuisine: 'pizza'
+            }
           }
-        }]
+        ]
       }
     };
     const result = buildIDPresets(pizzaData, { sourcePresets: presets });
@@ -241,17 +256,21 @@ describe('buildIDPresets', () => {
     const collegeData = {
       'brands/amenity/college': {
         properties: { path: 'brands/amenity/college', exclude: {} },
-        items: [{
-          id: 'someuni-111111',
-          displayName: 'Some College',
-          locationSet: { include: ['001'] },
-          tags: { amenity: 'college', brand: 'Some College', 'brand:wikidata': 'Q1234567' }
-        }]
+        items: [
+          {
+            id: 'someuni-111111',
+            displayName: 'Some College',
+            locationSet: { include: ['001'] },
+            tags: { amenity: 'college', brand: 'Some College', 'brand:wikidata': 'Q1234567' }
+          }
+        ]
       }
     };
     const presets = {
       'education/college': {
-        name: 'College', icon: 'maki-college', geometry: ['point', 'area'],
+        name: 'College',
+        icon: 'maki-college',
+        geometry: ['point', 'area'],
         tags: { amenity: 'college' }
       }
     };
@@ -263,17 +282,21 @@ describe('buildIDPresets', () => {
     const routeData = {
       'transit/route/bus': {
         properties: { path: 'transit/route/bus', exclude: {} },
-        items: [{
-          id: 'busline-222222',
-          displayName: 'Bus Line',
-          locationSet: { include: ['001'] },
-          tags: { type: 'route', route: 'bus', network: 'BL', 'network:wikidata': 'Q2222222' }
-        }]
+        items: [
+          {
+            id: 'busline-222222',
+            displayName: 'Bus Line',
+            locationSet: { include: ['001'] },
+            tags: { type: 'route', route: 'bus', network: 'BL', 'network:wikidata': 'Q2222222' }
+          }
+        ]
       }
     };
     const presets = {
       'type/route/bus': {
-        name: 'Bus Route', icon: 'maki-bus', geometry: ['line'],
+        name: 'Bus Route',
+        icon: 'maki-bus',
+        geometry: ['line'],
         tags: { type: 'route', route: 'bus' }
       }
     };
@@ -285,21 +308,27 @@ describe('buildIDPresets', () => {
     const ferryData = {
       'transit/route/ferry': {
         properties: { path: 'transit/route/ferry', exclude: {} },
-        items: [{
-          id: 'ferryco-333333',
-          displayName: 'Ferry Co',
-          locationSet: { include: ['001'] },
-          tags: { type: 'route', route: 'ferry', network: 'FC', 'network:wikidata': 'Q3333333' }
-        }]
+        items: [
+          {
+            id: 'ferryco-333333',
+            displayName: 'Ferry Co',
+            locationSet: { include: ['001'] },
+            tags: { type: 'route', route: 'ferry', network: 'FC', 'network:wikidata': 'Q3333333' }
+          }
+        ]
       }
     };
     const presets = {
       'type/route/ferry': {
-        name: 'Ferry Route', icon: 'maki-ferry', geometry: ['line'],
+        name: 'Ferry Route',
+        icon: 'maki-ferry',
+        geometry: ['line'],
         tags: { type: 'route', route: 'ferry' }
       },
       'route/ferry': {
-        name: 'Ferry Way', icon: 'maki-ferry', geometry: ['line'],
+        name: 'Ferry Way',
+        icon: 'maki-ferry',
+        geometry: ['line'],
         tags: { route: 'ferry' }
       }
     };
@@ -312,12 +341,14 @@ describe('buildIDPresets', () => {
     const preserved = {
       'brands/amenity/post_office': {
         properties: { path: 'brands/amenity/post_office', exclude: {}, preserveTags: ['^name'] },
-        items: [{
-          id: 'localpost-444444',
-          displayName: 'Local Post',
-          locationSet: { include: ['001'] },
-          tags: { amenity: 'post_office', brand: 'Local Post', 'brand:wikidata': 'Q4444444' }
-        }]
+        items: [
+          {
+            id: 'localpost-444444',
+            displayName: 'Local Post',
+            locationSet: { include: ['001'] },
+            tags: { amenity: 'post_office', brand: 'Local Post', 'brand:wikidata': 'Q4444444' }
+          }
+        ]
       }
     };
     const result = buildIDPresets(preserved, { sourcePresets });
@@ -330,13 +361,15 @@ describe('buildIDPresets', () => {
     const preserved = {
       'operators/amenity/post_office': {
         properties: { path: 'operators/amenity/post_office', exclude: {} },
-        items: [{
-          id: 'localop-555555',
-          displayName: 'Local Op',
-          locationSet: { include: ['001'] },
-          preserveTags: ['^name'],
-          tags: { amenity: 'post_office', operator: 'Local Op', 'operator:wikidata': 'Q5555555' }
-        }]
+        items: [
+          {
+            id: 'localop-555555',
+            displayName: 'Local Op',
+            locationSet: { include: ['001'] },
+            preserveTags: ['^name'],
+            tags: { amenity: 'post_office', operator: 'Local Op', 'operator:wikidata': 'Q5555555' }
+          }
+        ]
       }
     };
     const result = buildIDPresets(preserved, { sourcePresets });
@@ -360,7 +393,6 @@ describe('buildIDPresets', () => {
     assert.equal(preset.imageURL, undefined);
   });
 });
-
 
 describe('buildJOSMPresets', () => {
   it('returns an XML document wrapper that can be serialized', () => {
@@ -393,12 +425,14 @@ describe('buildJOSMPresets', () => {
     const special = {
       'brands/amenity/cafe': {
         properties: { path: 'brands/amenity/cafe', exclude: {} },
-        items: [{
-          id: 'aandb-aabbcc',
-          displayName: 'A & B "Cafe"',
-          locationSet: { include: ['001'] },
-          tags: { amenity: 'cafe', brand: 'A & B "Cafe"', 'brand:wikidata': 'Q1' }
-        }]
+        items: [
+          {
+            id: 'aandb-aabbcc',
+            displayName: 'A & B "Cafe"',
+            locationSet: { include: ['001'] },
+            tags: { amenity: 'cafe', brand: 'A & B "Cafe"', 'brand:wikidata': 'Q1' }
+          }
+        ]
       }
     };
     const root = buildJOSMPresets(special, { version: '1', description: 'd' });
@@ -412,19 +446,21 @@ describe('buildJOSMPresets', () => {
     const root = buildJOSMPresets(sample.data, { version: '1', description: 'd', dissolved });
     const xml = root.serialize();
     assert.ok(!xml.includes('The UPS Store'));
-    assert.ok(xml.includes('United States Postal Service'));   // others still present
+    assert.ok(xml.includes('United States Postal Service')); // others still present
   });
 
   it('excludes items missing a valid wikidata QID', () => {
     const bad = {
       'brands/amenity/post_office': {
         properties: { path: 'brands/amenity/post_office', exclude: {} },
-        items: [{
-          id: 'noqid-000000',
-          displayName: 'NoQID Brand',
-          locationSet: { include: ['001'] },
-          tags: { amenity: 'post_office', brand: 'NoQID Brand' }
-        }]
+        items: [
+          {
+            id: 'noqid-000000',
+            displayName: 'NoQID Brand',
+            locationSet: { include: ['001'] },
+            tags: { amenity: 'post_office', brand: 'NoQID Brand' }
+          }
+        ]
       }
     };
     const root = buildJOSMPresets(bad, { version: '1', description: 'd' });
@@ -436,12 +472,14 @@ describe('buildJOSMPresets', () => {
     const ferry = {
       'transit/route/ferry': {
         properties: { path: 'transit/route/ferry', exclude: {} },
-        items: [{
-          id: 'acme_ferry-aabbcc',
-          displayName: 'Acme Ferry',
-          locationSet: { include: ['001'] },
-          tags: { route: 'ferry', network: 'Acme Ferry', 'network:wikidata': 'Q1' }
-        }]
+        items: [
+          {
+            id: 'acme_ferry-aabbcc',
+            displayName: 'Acme Ferry',
+            locationSet: { include: ['001'] },
+            tags: { route: 'ferry', network: 'Acme Ferry', 'network:wikidata': 'Q1' }
+          }
+        ]
       }
     };
     const root = buildJOSMPresets(ferry, { version: '1', description: 'd' });
@@ -453,12 +491,14 @@ describe('buildJOSMPresets', () => {
     const power = {
       'operators/power/line': {
         properties: { path: 'operators/power/line', exclude: {} },
-        items: [{
-          id: 'acme_power-aabbcc',
-          displayName: 'Acme Power',
-          locationSet: { include: ['001'] },
-          tags: { power: 'line', operator: 'Acme Power', 'operator:wikidata': 'Q2' }
-        }]
+        items: [
+          {
+            id: 'acme_power-aabbcc',
+            displayName: 'Acme Power',
+            locationSet: { include: ['001'] },
+            tags: { power: 'line', operator: 'Acme Power', 'operator:wikidata': 'Q2' }
+          }
+        ]
       }
     };
     const root = buildJOSMPresets(power, { version: '1', description: 'd' });
@@ -470,12 +510,14 @@ describe('buildJOSMPresets', () => {
     const power = {
       'operators/power/pole': {
         properties: { path: 'operators/power/pole', exclude: {} },
-        items: [{
-          id: 'acme_power-aabbcc',
-          displayName: 'Acme Power',
-          locationSet: { include: ['001'] },
-          tags: { power: 'pole', operator: 'Acme Power', 'operator:wikidata': 'Q2' }
-        }]
+        items: [
+          {
+            id: 'acme_power-aabbcc',
+            displayName: 'Acme Power',
+            locationSet: { include: ['001'] },
+            tags: { power: 'pole', operator: 'Acme Power', 'operator:wikidata': 'Q2' }
+          }
+        ]
       }
     };
     const root = buildJOSMPresets(power, { version: '1', description: 'd' });

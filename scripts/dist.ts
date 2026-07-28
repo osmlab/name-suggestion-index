@@ -1,17 +1,17 @@
 import { $ } from 'bun';
+import { styleText } from 'node:util';
+
 import LocationConflation from '@rapideditor/location-conflation';
 import XMLBuilder from 'fast-xml-builder';
 import stringify from 'json-stringify-pretty-compact';
-import { styleText } from 'node:util';
+import type { XmlBuilderOptions } from 'fast-xml-builder';
 
 import { fileTree } from '../lib/file_tree.ts';
 import { buildIDPresets } from '../lib/presets_id.ts';
 import { buildJOSMPresets } from '../lib/presets_josm.ts';
-
-import type { XmlBuilderOptions } from 'fast-xml-builder';
 import type { NsiCache, NsiData, NsiDissolved, NsiJSON, NsiPath, NsiWikidataJSON, TaginfoItem, TaginfoJSON } from '../lib/types.ts';
 
-const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
+const withLocale = new Intl.Collator('en-US').compare; // specify 'en-US' for stable sorting
 
 // JSON
 const packageJSON = await Bun.file('./package.json').json();
@@ -36,7 +36,6 @@ try {
   process.exit(1);
 }
 
-
 const dissolved = dissolvedJSON.dissolved;
 const wikidata = wikidataJSON.wikidata;
 
@@ -48,10 +47,8 @@ const presetsJSON = await Bun.file(presetsFile).json();
 const _loco = new LocationConflation(featureCollectionJSON);
 const _nsi = {} as NsiCache;
 
-
 await loadIndex();
 await distAll();
-
 
 /** Read and expand all category files under `./data/*` into `_nsi`. */
 async function loadIndex() {
@@ -64,7 +61,6 @@ async function loadIndex() {
   fileTree.expandTemplates(_nsi, _loco);
   console.timeEnd(END);
 }
-
 
 /** Generate all output files under `./dist/*`. */
 async function distAll() {
@@ -87,19 +83,20 @@ async function distAll() {
   // Reverse sort the paths, we want 'brands' to override 'operators'
   // see: https://github.com/osmlab/name-suggestion-index/issues/5693#issuecomment-2819259226
   const sorted: NsiData = {};
-  Object.keys(_nsi.path).sort((a, b) => withLocale(b, a)).forEach(tkv => {
-    sorted[tkv] = _nsi.path[tkv];
-  });
+  Object.keys(_nsi.path)
+    .sort((a, b) => withLocale(b, a))
+    .forEach(tkv => {
+      sorted[tkv] = _nsi.path[tkv];
+    });
 
   const output: NsiJSON = { nsi: sorted };
   await Bun.write('./dist/json/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
 
-  await writeIDPresets();     // nsi-id-presets.json
-  await writeJOSMPresets();   // nsi-josm-presets.json
-  await buildTaginfo();       // taginfo.json
+  await writeIDPresets(); // nsi-id-presets.json
+  await writeJOSMPresets(); // nsi-josm-presets.json
+  await buildTaginfo(); // taginfo.json
   // await buildSitemap();  // lets not do this for now (maybe nsiguide can generate it?)
 }
-
 
 /** Bump the `version` field in `package.json` to a date-stamped value (`Major.Minor.YYYYMMDD`). */
 async function updateVersion() {
@@ -120,12 +117,11 @@ async function updateVersion() {
   }
 
   if (newVersion !== oldVersion) {
-    console.log('🎉  ' + styleText('green', 'Bumping package version to ') + styleText(['green','bold'], `v${newVersion}`));
+    console.log('🎉  ' + styleText('green', 'Bumping package version to ') + styleText(['green', 'bold'], `v${newVersion}`));
     packageJSON.version = newVersion;
     await $`bun pm pkg set version="${newVersion}"`;
   }
 }
-
 
 /**
  * Build iD editor presets from NSI data and write to `./dist/presets/nsi-id-presets.json`.
@@ -149,7 +145,6 @@ async function writeIDPresets() {
   await Bun.write('./dist/presets/nsi-id-presets.json', stringify(output) + '\n');
 }
 
-
 /**
  * Build JOSM tagging presets from NSI data and write them to:
  * - `./dist/presets/nsi-josm-presets.xml` (pretty-printed)
@@ -166,7 +161,6 @@ async function writeJOSMPresets() {
   await Bun.write('./dist/presets/nsi-josm-presets.xml', result.serialize({ prettyPrint: true }));
   await Bun.write('./dist/presets/nsi-josm-presets.min.xml', result.serialize());
 }
-
 
 /**
  * Collect all `key=value` tag pairs used across NSI data and write a taginfo
@@ -192,7 +186,6 @@ async function buildTaginfo() {
   const tagPairs: Record<string, TaginfoItem> = {};
   for (const [path, category] of Object.entries(_nsi.path)) {
     for (const item of category.items) {
-      // eslint-disable-next-line prefer-const
       for (let [k, v] of Object.entries(item.tags)) {
         // Don't export every value for many tags this project uses..
         // ('tag matches any of these')(?!('not followed by :type'))
@@ -214,10 +207,11 @@ async function buildTaginfo() {
     }
   }
 
-  taginfo.tags = Object.keys(tagPairs).sort(withLocale).map(kv => tagPairs[kv]);
+  taginfo.tags = Object.keys(tagPairs)
+    .sort(withLocale)
+    .map(kv => tagPairs[kv]);
   await Bun.write('./dist/json/taginfo.json', stringify(taginfo, { maxLength: 9999 }) + '\n');
 }
-
 
 /**
  * Generate a sitemap for https://nsi.guide and write it to `./docs/sitemap.xml`.
@@ -225,13 +219,13 @@ async function buildTaginfo() {
  */
 export async function buildSitemap() {
   const changefreq = 'weekly';
-  const lastmod = (new Date()).toISOString();
+  const lastmod = new Date().toISOString();
 
   const paths = Object.keys(_nsi.path).sort(withLocale) as NsiPath[];
   const url = [
     { loc: 'https://nsi.guide/index.html', changefreq, lastmod },
     ...paths.map(tkv => {
-      const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+      const [t, k, v] = tkv.split('/', 3); // tkv = "tree/key/value"
       return {
         loc: `https://nsi.guide/index.html?t=${t}&k=${k}&v=${v}`,
         changefreq,

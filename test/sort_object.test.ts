@@ -1,7 +1,7 @@
 import { describe, it } from 'bun:test';
 import assert from 'node:assert/strict';
-import { sortObject } from '../lib/sort_object.ts';
 
+import { sortObject } from '../lib/sort_object.ts';
 
 describe('sortObject', () => {
   it('returns null for a falsy input', () => {

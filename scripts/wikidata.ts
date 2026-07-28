@@ -1,17 +1,17 @@
-/* eslint-disable dot-notation, @typescript-eslint/no-explicit-any */
 import { $ } from 'bun';
+import { styleText } from 'node:util';
+
 import { iso1A2Code } from '@rapideditor/country-coder';
 import LocationConflation from '@rapideditor/location-conflation';
 import stringify from 'json-stringify-pretty-compact';
-import { styleText } from 'node:util';
-import wikibase, { type CustomSimplifiedClaim, type ItemId, type PropertyId } from 'wikibase-sdk';
 import wikibaseEdit, { type WikibaseEditAPI } from 'wikibase-edit';
-const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
+import wikibase, { type CustomSimplifiedClaim, type ItemId, type PropertyId } from 'wikibase-sdk';
 
-import type { WikidataDissolution, NsiCache, NsiTree, NsiTreeProperties, NsiTreesJSON, WikidataWarning, WikidataEntry } from '../lib/types.ts';
 import { fileTree } from '../lib/file_tree.ts';
 import { sortObject } from '../lib/sort_object.ts';
+import type { NsiCache, NsiTree, NsiTreeProperties, NsiTreesJSON, WikidataDissolution, WikidataEntry, WikidataWarning } from '../lib/types.ts';
 
+const withLocale = new Intl.Collator('en-US').compare; // specify 'en-US' for stable sorting
 
 // set to true if you just want to test what the script will do without updating Wikidata
 const DRYRUN = false;
@@ -54,8 +54,9 @@ interface FacebookQueueItem {
 
 // Wikidata entity shapes are controlled by the Wikidata API — use Record<string, any> at the boundary
 type WdEntity = Record<string, any>;
-interface WdApiResult { entities: Record<string, WdEntity> }
-
+interface WdApiResult {
+  entities: Record<string, WdEntity>;
+}
 
 // JSON
 const packageJSON = await Bun.file('./package.json').json();
@@ -86,11 +87,11 @@ const LATIN_TAG_PATTERNS = [
   /^name:[a-z]+-Latn(-[a-z]+)?$/,
   /^brand:[a-z]+-Latn(-[a-z]+)?$/,
   /^operator:[a-z]+-Latn(-[a-z]+)?$/,
-  /^network:[a-z]+-Latn(-[a-z]+)?$/,
+  /^network:[a-z]+-Latn(-[a-z]+)?$/
 ];
 
 // Start fresh
-$.nothrow();  // If a shell command returns nonzero, keep going.
+$.nothrow(); // If a shell command returns nonzero, keep going.
 if (!DRYRUN) {
   await $`rm -rf ./dist/wikidata`;
 }
@@ -121,7 +122,9 @@ console.log(styleText('blue', '-'.repeat(70)));
 let _secrets;
 try {
   _secrets = await Bun.file('./secrets.json').json();
-} catch (err) { /* ignore */ }
+} catch {
+  /* ignore */
+}
 
 if (_secrets && !_secrets.wikibase) {
   console.error(styleText('red', 'WHOA!'));
@@ -132,7 +135,7 @@ if (_secrets && !_secrets.wikibase) {
   process.exit(1);
 }
 
-if (_secrets && _secrets.wikibase && !_secrets.wikibase.oauth) {
+if (_secrets?.wikibase && !_secrets.wikibase.oauth) {
   console.error(styleText('red', 'WHOA!'));
   console.error(styleText('yellow', 'The `./secrets.json` file format has changed a bit.'));
   console.error(styleText('yellow', 'We were expecting to find an `oauth` property.'));
@@ -141,19 +144,17 @@ if (_secrets && _secrets.wikibase && !_secrets.wikibase.oauth) {
   process.exit(1);
 }
 
-
 // To update wikidata
 // add your oauth credentials into `./secrets.json`
 let _wbEdit: WikibaseEditAPI | undefined;
-if (_secrets && _secrets.wikibase) {
+if (_secrets?.wikibase) {
   _wbEdit = wikibaseEdit({
     instance: 'https://www.wikidata.org',
     credentials: _secrets.wikibase,
     summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
-    userAgent: `${packageJSON.name}/${packageJSON.version} (${packageJSON.homepage})`,
+    userAgent: `${packageJSON.name}/${packageJSON.version} (${packageJSON.homepage})`
   });
 }
-
 
 // what to fetch
 const START = '🏗   ' + styleText('yellow', `Loading index files…`);
@@ -166,18 +167,17 @@ await fileTree.read(_nsi, _loco);
 fileTree.expandTemplates(_nsi, _loco);
 console.timeEnd(END);
 
-
 // Gather all QIDs referenced by any tag..
 console.log('');
 console.log('🏗   ' + styleText('yellow', `Syncing Wikidata with name-suggestion-index…`));
 console.log('       This is done in batches, and may take around 10 minutes…');
 const _wikidata: Record<ItemId, WikidataEntry> = {};
-const _qidItems: Record<ItemId, Set<string>> = {};       // any item referenced by a qid
-const _qidIdItems: Record<ItemId, Set<string>> = {};     // items where we actually want to update the NSI-identifier on wikidata
+const _qidItems: Record<ItemId, Set<string>> = {}; // any item referenced by a qid
+const _qidIdItems: Record<ItemId, Set<string>> = {}; // items where we actually want to update the NSI-identifier on wikidata
 const _qidMetadata: Record<ItemId, QidMetadata> = {};
 
 for (const tkv of Object.keys(_nsi.path)) {
-  const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+  const parts = tkv.split('/', 3); // tkv = "tree/key/value"
   const t = parts[0] as NsiTree;
 
   const items = _nsi.path[tkv].items;
@@ -190,8 +190,8 @@ for (const tkv of Object.keys(_nsi.path)) {
       const qid = tags[wdTag] as ItemId;
       if (!qid || !/^Q\d+$/.test(qid)) continue;
 
-      if (!_wikidata[qid])  _wikidata[qid] = {};
-      if (!_qidItems[qid])  _qidItems[qid] = new Set();
+      if (!_wikidata[qid]) _wikidata[qid] = {};
+      if (!_qidItems[qid]) _qidItems[qid] = new Set();
       _qidItems[qid].add(item.id);
 
       // What to set P31 "instance of" to if missing
@@ -202,14 +202,14 @@ for (const tkv of Object.keys(_nsi.path)) {
       } else if (osmtag === 'network') {
         _qidMetadata[qid] = { what: 'transport network', p31: 'Q924286' };
       } else if (osmtag === 'subject') {
-        _qidMetadata[qid] = { what: 'subject' };  // skip p31, a subject can be anything - NSI#7661
+        _qidMetadata[qid] = { what: 'subject' }; // skip p31, a subject can be anything - NSI#7661
       } else {
         _qidMetadata[qid] = { what: 'organization', p31: 'Q43229' };
       }
 
-      const isMainTag = (wdTag === trees[t].mainTag);
+      const isMainTag = wdTag === trees[t].mainTag;
       if (isMainTag) {
-        if (!_qidIdItems[qid])  _qidIdItems[qid] = new Set();
+        if (!_qidIdItems[qid]) _qidIdItems[qid] = new Set();
         _qidIdItems[qid].add(item.id);
       }
     }
@@ -225,12 +225,14 @@ if (!_total) {
 
 // Chunk into multiple wikidata API requests..
 // Include `maxage` to bypass CDN caching so we always work with fresh entity data — see NSI#12061
-const _urls = wbk.getManyEntities({
-  ids: _qids,
-  languages: ['en','mul'],
-  props: ['info', 'labels', 'descriptions', 'claims', 'sitelinks'],
-  format: 'json'
-}).map((url: string) => `${url}&maxage=0&smaxage=0`);
+const _urls = wbk
+  .getManyEntities({
+    ids: _qids,
+    languages: ['en', 'mul'],
+    props: ['info', 'labels', 'descriptions', 'claims', 'sitelinks'],
+    format: 'json'
+  })
+  .map((url: string) => `${url}&maxage=0&smaxage=0`);
 
 const _warnings: WikidataWarning[] = [];
 const _entityCache: Record<ItemId, WdEntity> = {};
@@ -242,7 +244,6 @@ await removeOldNsiClaims();
 await drainWbEditQueue();
 await finish();
 
-
 /**
  * Enqueues a Wikidata edit request, deduplicating by a composite key derived
  * from the operation target (guid, qid, property, value, language).
@@ -251,16 +252,9 @@ await finish();
  * @see https://github.com/osmlab/name-suggestion-index/issues/12061
  */
 function enqueueWbEdit(request: WbEditRequest): void {
-  const key = [
-    request.guid ?? '',
-    request.id ?? '',
-    request.property ?? '',
-    request.value ?? request.newValue ?? '',
-    request.language ?? '',
-  ].join('|');
+  const key = [request.guid ?? '', request.id ?? '', request.property ?? '', request.value ?? request.newValue ?? '', request.language ?? ''].join('|');
   _wbEditQueue.set(key, request);
 }
-
 
 /**
  * Performs Wikidata API requests sequentially.
@@ -270,7 +264,7 @@ function enqueueWbEdit(request: WbEditRequest): void {
 async function fetchWikidata() {
   for (let index = 0; index < _urls.length; index++) {
     const currURL = _urls[index];
-    console.log(styleText(['yellow','bold'], `\nBatch ${index+1}/${_urls.length}`));
+    console.log(styleText(['yellow', 'bold'], `\nBatch ${index + 1}/${_urls.length}`));
 
     let retries = 0;
     while (true) {
@@ -283,26 +277,25 @@ async function fetchWikidata() {
       } catch (e) {
         retries++;
         const msg = e instanceof Error ? e.message : String(e);
-        console.warn(styleText(['green','bold'], `fetch error (attempt ${retries}/${MAX_RETRIES}):`));
+        console.warn(styleText(['green', 'bold'], `fetch error (attempt ${retries}/${MAX_RETRIES}):`));
         console.warn(styleText('white', msg));
         if (retries >= MAX_RETRIES) {
-          console.error(styleText('red', `Giving up on batch ${index+1} after ${MAX_RETRIES} attempts.`));
+          console.error(styleText('red', `Giving up on batch ${index + 1} after ${MAX_RETRIES} attempts.`));
           break;
         }
-        console.warn(styleText(['green','bold'], 'retrying…'));
+        console.warn(styleText(['green', 'bold'], 'retrying…'));
         await Bun.sleep(5000);
         continue;
       }
 
       // Parse and process — errors here are bugs, not transient network issues
-      const result = await response.json() as WdApiResult;
+      const result = (await response.json()) as WdApiResult;
       await processEntities(result);
       await Bun.sleep(500);
       break;
     }
   }
 }
-
 
 /**
  * Processes the fetched results from the Wikidata API,
@@ -314,13 +307,13 @@ async function fetchWikidata() {
 async function processEntities(result: WdApiResult): Promise<void> {
   const facebookQueue: FacebookQueueItem[] = [];
 
-  for (const qid of (Object.keys(result.entities) as ItemId[])) {
+  for (const qid of Object.keys(result.entities) as ItemId[]) {
     const meta = _qidMetadata[qid];
     const target = _wikidata[qid];
     const entity = result.entities[qid];
     _entityCache[qid] = entity;
-    const labelEn = entity.labels && entity.labels.en && entity.labels.en.value;
-    const labelMul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
+    const labelEn = entity.labels?.en?.value;
+    const labelMul = entity.labels?.mul?.value;
     let label = labelEn ? labelEn : labelMul;
 
     if (entity.redirects) {
@@ -329,7 +322,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
       _warnings.push(warning);
     }
 
-    if (Object.prototype.hasOwnProperty.call(entity, 'missing')) {
+    if (Object.hasOwn(entity, 'missing')) {
       label = enLabelForQID(qid) || qid;
       const warning: WikidataWarning = { qid: qid, msg: `⚠️  Entity for "${label}" was deleted.`, category: 'deleted' };
       console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
@@ -343,12 +336,13 @@ async function processEntities(result: WdApiResult): Promise<void> {
     } else {
       // try to pick an English label.
       label = enLabelForQID(qid);
-      if (label && _wbEdit) {   // if we're allowed to make edits, just set the label
+      if (label && _wbEdit) {
+        // if we're allowed to make edits, just set the label
         target.label = label;
         const msg = `Adding English label for ${qid}: ${label}`;
         enqueueWbEdit({ id: qid, language: 'en', value: label, msg: msg });
-
-      } else {   // otherwise raise a warning for the user to deal with.
+      } else {
+        // otherwise raise a warning for the user to deal with.
         label = label || qid;
         const warning: WikidataWarning = { qid: qid, msg: `Entity for "${label}" is missing an English label.`, category: 'missing-label' };
         console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
@@ -357,7 +351,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
     }
 
     // Get description..
-    const description = entity.descriptions && entity.descriptions.en && entity.descriptions.en.value;
+    const description = entity.descriptions?.en?.value;
     if (description) {
       target.description = description;
     }
@@ -369,7 +363,6 @@ async function processEntities(result: WdApiResult): Promise<void> {
     target.dissolutions = [];
     target.officialWebsites = [];
 
-
     let imageFile;
     if (meta.what === 'flag') {
       // P18 - Image (use this for flags)
@@ -379,18 +372,14 @@ async function processEntities(result: WdApiResult): Promise<void> {
       // P154 - Logo Image
       // P158 - Seal Image
       // P94 - Coat of Arms Image
-      imageFile = getClaimValue(entity, 'P8972') ||
-        getClaimValue(entity, 'P154') ||
-        getClaimValue(entity, 'P158') ||
-        getClaimValue(entity, 'P94');
+      imageFile = getClaimValue(entity, 'P8972') || getClaimValue(entity, 'P154') || getClaimValue(entity, 'P158') || getClaimValue(entity, 'P94');
     }
     if (imageFile) {
       const re = /\.svg$/i;
       if (re.test(imageFile)) {
         target.logos.wikidata = `https://commons.wikimedia.org/wiki/Special:FilePath/${imageFile}`;
       } else {
-        target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' +
-          utilQsString({ title: `Special:Redirect/file/${imageFile}`, width: 150 });
+        target.logos.wikidata = 'https://commons.wikimedia.org/w/index.php?' + utilQsString({ title: `Special:Redirect/file/${imageFile}`, width: 150 });
       }
     }
 
@@ -435,7 +424,7 @@ async function processEntities(result: WdApiResult): Promise<void> {
     if (facebookUser) {
       target.identities.facebook = facebookUser;
       const restriction = getFacebookRestriction(entity, facebookUser);
-      facebookQueue.push({ qid: qid, username: facebookUser, restriction: restriction });    // queue logo fetch
+      facebookQueue.push({ qid: qid, username: facebookUser, restriction: restriction }); // queue logo fetch
     }
 
     // P2397 - YouTube ID
@@ -503,7 +492,6 @@ async function processEntities(result: WdApiResult): Promise<void> {
       processDissolutions(qid, entity, target);
     }
 
-
     // If we are allowed to make edits to wikidata, continue beyond here
     if (!_wbEdit) continue;
 
@@ -513,12 +501,10 @@ async function processEntities(result: WdApiResult): Promise<void> {
       const msg = `Setting P31 "instance of" = ${meta.p31} "${meta.what}" for ${qid}`;
       enqueueWbEdit({ qid: qid, id: qid, property: 'P31', value: meta.p31, msg: msg });
     }
+  } // foreach qid
 
-  }  // foreach qid
-
-  await Promise.all( facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username, obj.restriction)) );
+  await Promise.all(facebookQueue.map(obj => fetchFacebookLogo(obj.qid, obj.username, obj.restriction)));
 }
-
 
 /**
  * Inspects qualifiers on the Facebook ID claim (P2013) to determine
@@ -529,10 +515,10 @@ async function processEntities(result: WdApiResult): Promise<void> {
  * @see https://github.com/osmlab/name-suggestion-index/issues/10233
  */
 function getFacebookRestriction(entity: WdEntity, facebookUser: string): ItemId | undefined {
-  for (const c of entity.claims['P2013']) {
+  for (const c of entity.claims.P2013) {
     if (c.mainsnak.snaktype === 'value' && c.mainsnak.datavalue.value === facebookUser) {
       // get access status of selected value - NSI#10233
-      const accessQualifiers = (c.qualifiers && c.qualifiers.P6954) || [];
+      const accessQualifiers = c.qualifiers?.P6954 || [];
       for (const q of accessQualifiers) {
         if (q.snaktype !== 'value') continue;
 
@@ -544,7 +530,7 @@ function getFacebookRestriction(entity: WdEntity, facebookUser: string): ItemId 
       }
 
       // get "does not have characteristic" status of selected value
-      const charQualifiers = (c.qualifiers && c.qualifiers.P6477) || [];
+      const charQualifiers = c.qualifiers?.P6477 || [];
       for (const q of charQualifiers) {
         if (q.snaktype !== 'value') continue;
 
@@ -561,7 +547,6 @@ function getFacebookRestriction(entity: WdEntity, facebookUser: string): ItemId 
   return undefined;
 }
 
-
 /**
  * Processes P576 (dissolution date) claims for an entity, building
  * `WikidataDissolution` objects with optional country restrictions and successor QIDs.
@@ -571,13 +556,13 @@ function getFacebookRestriction(entity: WdEntity, facebookUser: string): ItemId 
  * @param target - The `WikidataTarget` to populate with dissolution data.
  */
 function processDissolutions(qid: ItemId, entity: WdEntity, target: WikidataEntry): void {
-  const claims = (wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }) as CustomSimplifiedClaim[]);
+  const claims = wbk.simplify.propertyClaims(entity.claims.P576, { keepQualifiers: true }) as CustomSimplifiedClaim[];
   for (const item of claims) {
     if (!item.value) continue;
 
     const excluding = item.qualifiers?.P1011 ?? [];
-    if (excluding.includes('Q168678')) continue;  // but skip if 'excluding' = 'brand name', see NSI#9134
-    if (excluding.includes('Q431289')) continue;  // but skip if 'excluding' = 'brand', see NSI#8239
+    if (excluding.includes('Q168678')) continue; // but skip if 'excluding' = 'brand name', see NSI#9134
+    if (excluding.includes('Q431289')) continue; // but skip if 'excluding' = 'brand', see NSI#8239
 
     const dissolution: WikidataDissolution = { date: String(item.value) };
 
@@ -599,7 +584,7 @@ function processDissolutions(qid: ItemId, entity: WdEntity, target: WikidataEntr
       // Only set the value if there is nothing set yet, as the reference value of the claim might be more detailed
       // P156 - followed by; P1366 - replaced by (successor); P7888 - merged into (successor)
       const successor = getClaimValue(entity, 'P156') || getClaimValue(entity, 'P1366') || getClaimValue(entity, 'P7888');
-      if (successor && successor.id) {
+      if (successor?.id) {
         dissolution.upgrade = successor.id;
       }
     }
@@ -616,7 +601,6 @@ function processDissolutions(qid: ItemId, entity: WdEntity, target: WikidataEntr
   }
 }
 
-
 /**
  * Synchronises P8253 (name-suggestion-index identifier) claims on Wikidata
  * with the locally known set of NSI IDs for a given QID.
@@ -629,13 +613,13 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity): void {
 
   // P8253 - name-suggestion-index identifier
   // sort ids so claim order is deterministic, to avoid unnecessary updating
-  const nsiIds = Array.from(_qidIdItems[qid])
-    .sort(withLocale);
-  const nsiClaims = (wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true }) as CustomSimplifiedClaim[])
-    .sort((a, b) => withLocale(String(a.value), String(b.value)));
+  const nsiIds = Array.from(_qidIdItems[qid]).sort(withLocale);
+  const nsiClaims = (wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true }) as CustomSimplifiedClaim[]).sort((a, b) =>
+    withLocale(String(a.value), String(b.value))
+  );
 
   // Include this reference on all our claims - NSI#4648
-  const references = [{ P248: 'Q62108705' }];   // 'stated in': 'name suggestion index'
+  const references = [{ P248: 'Q62108705' }]; // 'stated in': 'name suggestion index'
 
   // Make the nsiClaims match the nsiIds..
   let i = 0;
@@ -644,7 +628,8 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity): void {
     const claim = nsiClaims[i];
     const claimID = claim.id as string;
 
-    if (i < nsiIds.length) {   // match existing claims to ids, and force all ranks to 'normal'
+    if (i < nsiIds.length) {
+      // match existing claims to ids, and force all ranks to 'normal'
       let msg;
       if (claim.value !== nsiIds[i] || claim.rank !== 'normal') {
         if (claim.value !== nsiIds[i]) {
@@ -654,23 +639,23 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity): void {
         }
         enqueueWbEdit({ qid: qid, guid: claimID, newValue: nsiIds[i], rank: 'normal', references: references, msg: msg! });
       }
-      if (!claim.references || !claim.references.length) {
+      if (!claim.references?.length) {
         msg = `Updating NSI identifier reference for ${qid}`;
         enqueueWbEdit({ qid: qid, guid: claimID, snaks: references[0], msg: msg });
       }
-
-    } else {  // remove extra existing claims
+    } else {
+      // remove extra existing claims
       msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
       enqueueWbEdit({ qid: qid, guid: claimID, msg: msg });
     }
   }
 
-  for (i; i < nsiIds.length; i++) {   // add new claims
+  for (i; i < nsiIds.length; i++) {
+    // add new claims
     msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
     enqueueWbEdit({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', references: references, msg: msg });
   }
 }
-
 
 /**
  * Gets a single claim value, considering claim rank.
@@ -693,7 +678,7 @@ function getClaimValue(entity: WdEntity, prop: PropertyId): any {
 
     // skip if we find an end time qualifier - P582
     let ended = false;
-    const qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
+    const qualifiers = c.qualifiers?.P582 || [];
     for (const q of qualifiers) {
       if (q.snaktype !== 'value') continue;
       const enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
@@ -705,11 +690,10 @@ function getClaimValue(entity: WdEntity, prop: PropertyId): any {
     if (ended) continue;
 
     value = c.mainsnak.datavalue.value;
-    if (c.rank === 'preferred') return value;  // return immediately
+    if (c.rank === 'preferred') return value; // return immediately
   }
   return value;
 }
-
 
 /**
  * Gets all claim values for a property.
@@ -732,7 +716,7 @@ function getClaimValues(entity: WdEntity, prop: PropertyId, includeDeprecated: b
 
     // skip if we find an end time qualifier - P582
     let ended = false;
-    const qualifiers = (c.qualifiers && c.qualifiers.P582) || [];
+    const qualifiers = c.qualifiers?.P582 || [];
     for (const q of qualifiers) {
       if (q.snaktype !== 'value') continue;
       const enddate = wbk.wikibaseTimeToDateObject(q.datavalue.value.time);
@@ -743,7 +727,8 @@ function getClaimValues(entity: WdEntity, prop: PropertyId, includeDeprecated: b
     }
     if (ended && !includeDeprecated) continue;
 
-    if (c.rank === 'preferred'){  // List preferred values first
+    if (c.rank === 'preferred') {
+      // List preferred values first
       values.unshift(c.mainsnak.datavalue.value);
     } else {
       values.push(c.mainsnak.datavalue.value);
@@ -751,7 +736,6 @@ function getClaimValues(entity: WdEntity, prop: PropertyId, includeDeprecated: b
   }
   return values;
 }
-
 
 /**
  * Wraps up and writes output files:
@@ -769,11 +753,11 @@ async function finish(): Promise<void> {
 
   const dissolved: Record<string, WikidataDissolution[]> = {};
 
-  for (const qid of (Object.keys(_wikidata) as ItemId[])) {
+  for (const qid of Object.keys(_wikidata) as ItemId[]) {
     const target = _wikidata[qid];
 
     // sort the properties that we are keeping..
-    for (const prop of (['identities', 'logos', 'dissolutions'] as const)) {
+    for (const prop of ['identities', 'logos', 'dissolutions'] as const) {
       if (target[prop] && Object.keys(target[prop]).length) {
         if ((target[prop] as object).constructor.name === 'Object') {
           (target as Record<string, any>)[prop] = sortObject(target[prop] as Record<string, any>);
@@ -800,7 +784,7 @@ async function finish(): Promise<void> {
     await Promise.all([
       Bun.write('./dist/wikidata/warnings.json', stringify({ warnings: _warnings }) + '\n'),
       Bun.write('./dist/wikidata/wikidata.json', stringify({ wikidata: sortObject(_wikidata) }) + '\n'),
-      Bun.write('./dist/wikidata/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n'),
+      Bun.write('./dist/wikidata/dissolved.json', stringify({ dissolved: sortObject(dissolved) }, { maxLength: 100 }) + '\n')
     ]);
   }
 
@@ -808,13 +792,12 @@ async function finish(): Promise<void> {
 
   // `console.warn` whatever warnings we've gathered
   if (_warnings.length) {
-    console.log(styleText(['yellow','bold'], `\nWarnings:`));
+    console.log(styleText(['yellow', 'bold'], `\nWarnings:`));
     for (const warning of _warnings) {
       console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
     }
   }
 }
-
 
 /**
  * Fetches a Facebook profile picture URL for the given username.
@@ -822,11 +805,11 @@ async function finish(): Promise<void> {
  * @param qid - The Wikidata QID associated with this entity.
  * @param username - The Facebook username or page ID.
  * @param restriction - A Wikidata QID indicating an access restriction qualifier, or `undefined`.
- * @returns `true` on success, or `void` on failure.
+ * @returns `true` on success, or `undefined` on failure.
  * @throws {Error} Re-throws if the Facebook API returns an error and no numeric fallback is available.
  * @see https://developers.facebook.com/docs/graph-api/reference/user/picture/
  */
-async function fetchFacebookLogo(qid: ItemId, username: string, restriction: ItemId | undefined): Promise<true | void> {
+async function fetchFacebookLogo(qid: ItemId, username: string, restriction: ItemId | undefined): Promise<true | undefined> {
   const target = _wikidata[qid];
   const logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
   let userid;
@@ -839,12 +822,15 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
     // Can specify no redirect to fetch json and speed up this process
     const response = await fetch(`${logoURL}&redirect=0`);
     if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-    interface FbPictureResponse { error?: { message?: string }; data?: { is_silhouette?: boolean } }
-    const json = await response.json() as FbPictureResponse | null;
+    interface FbPictureResponse {
+      error?: { message?: string };
+      data?: { is_silhouette?: boolean };
+    }
+    const json = (await response.json()) as FbPictureResponse | null;
 
     if (!json) return true;
 
-    if (json.error && json.error.message) {
+    if (json.error?.message) {
       throw new Error(json.error.message);
     }
 
@@ -869,11 +855,10 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
       _warnings.push(warning);
     }
     return true;
-
   } catch (e) {
     if (userid) {
       target.identities!.facebook = userid;
-      return fetchFacebookLogo(qid, userid, restriction);   // retry with just the numeric id
+      return fetchFacebookLogo(qid, userid, restriction); // retry with just the numeric id
     } else {
       // suppress warning if Wikidata notes that access to the profile is restricted in some way, see NSI#10233.
       // or if the profile is set up as a personal account
@@ -883,10 +868,10 @@ async function fetchFacebookLogo(qid: ItemId, username: string, restriction: Ite
         console.warn(styleText('yellow', warning.qid.padEnd(12)) + styleText('red', warning.msg));
         _warnings.push(warning);
       }
+      return undefined;
     }
   }
 }
-
 
 /**
  * Enqueues P8253 (NSI identifier) edits for all QIDs that need them.
@@ -900,13 +885,12 @@ function syncAllNsiIdentifiers(): void {
   console.log('');
   console.log('🏗   ' + styleText('yellow', `Syncing NSI identifiers (P8253) on Wikidata…`));
 
-  for (const qid of (Object.keys(_qidIdItems) as ItemId[])) {
+  for (const qid of Object.keys(_qidIdItems) as ItemId[]) {
     const entity = _entityCache[qid];
     if (!entity) continue;
     syncNsiIdentifiers(qid, entity);
   }
 }
-
 
 /**
  * Finds all items in Wikidata with NSI identifier claims (P8253)
@@ -928,7 +912,7 @@ async function removeOldNsiClaims(): Promise<void> {
   try {
     const response = await fetch(wbk.sparqlQuery(query), FETCH_OPTS);
     if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-    const json = await response.json() as Parameters<typeof wbk.simplify.sparqlResults>[0];
+    const json = (await response.json()) as Parameters<typeof wbk.simplify.sparqlResults>[0];
     const results = wbk.simplify.sparqlResults(json);
     for (const item of results) {
       if (!_qidIdItems[item.qid as ItemId]) {
@@ -941,7 +925,6 @@ async function removeOldNsiClaims(): Promise<void> {
     console.warn(styleText('red', msg));
   }
 }
-
 
 /**
  * Drains the module-level edit queue, sending all enqueued edits to Wikidata
@@ -965,7 +948,7 @@ async function drainWbEditQueue(): Promise<void> {
     const request = edits[i];
     const qid = request.qid;
     const msg = request.msg;
-    console.log(styleText(['blue','bold'], `  [${i + 1}/${total}]  ${msg}`));
+    console.log(styleText(['blue', 'bold'], `  [${i + 1}/${total}]  ${msg}`));
     delete request.qid;
     delete request.msg;
 
@@ -973,19 +956,18 @@ async function drainWbEditQueue(): Promise<void> {
       try {
         let task;
         if (request.guid && request.snaks) {
-          task = _wbEdit.reference.set(request as SetReferenceParams);  // update reference
+          task = _wbEdit.reference.set(request as SetReferenceParams); // update reference
         } else if (request.guid && request.newValue) {
-          task = _wbEdit.claim.update(request as UpdateClaimParams);    // update claim
+          task = _wbEdit.claim.update(request as UpdateClaimParams); // update claim
         } else if (request.guid && !request.newValue) {
-          task = _wbEdit.claim.remove(request as RemoveClaimParams);    // remove claim
+          task = _wbEdit.claim.remove(request as RemoveClaimParams); // remove claim
         } else if (!request.guid && request.id && request.property && request.value) {
-          task = _wbEdit.claim.create(request as CreateClaimParams);    // create claim
+          task = _wbEdit.claim.create(request as CreateClaimParams); // create claim
         } else if (!request.guid && request.id && request.language && request.value) {
-          task = _wbEdit.label.set(request as TermActionParams);        // set label
+          task = _wbEdit.label.set(request as TermActionParams); // set label
         }
         await task;
         await Bun.sleep(300);
-
       } catch (e) {
         const errorMsg = e instanceof Error ? e.message : String(e);
         const warning: WikidataWarning = { qid: qid!, msg: errorMsg, category: 'edit-error' };
@@ -997,7 +979,6 @@ async function drainWbEditQueue(): Promise<void> {
 
   console.log('👍  ' + styleText('green', `${total} Wikidata edits processed`));
 }
-
 
 /**
  * Picks a value suitable for use as an English label for the given QID.
@@ -1014,21 +995,20 @@ function enLabelForQID(qid: ItemId): string | null {
     if (!item) continue;
 
     if (meta.what === 'flag') {
-      if (looksLatin(item.tags.subject))  return `flag of ${item.tags.subject}`;
-
+      if (looksLatin(item.tags.subject)) return `flag of ${item.tags.subject}`;
     } else {
       // These we know are English..
-      if (item.tags['name:en'])     return item.tags['name:en'];
-      if (item.tags['brand:en'])    return item.tags['brand:en'];
+      if (item.tags['name:en']) return item.tags['name:en'];
+      if (item.tags['brand:en']) return item.tags['brand:en'];
       if (item.tags['operator:en']) return item.tags['operator:en'];
-      if (item.tags['network:en'])  return item.tags['network:en'];
+      if (item.tags['network:en']) return item.tags['network:en'];
 
       // These we're not sure..
-      if (looksLatin(item.tags.name))     return item.tags.name;
-      if (looksLatin(item.tags.brand))    return item.tags.brand;
+      if (looksLatin(item.tags.name)) return item.tags.name;
+      if (looksLatin(item.tags.brand)) return item.tags.brand;
       if (looksLatin(item.tags.operator)) return item.tags.operator;
-      if (looksLatin(item.tags.network))  return item.tags.network;
-      if (looksLatin(item.displayName))   return item.displayName;
+      if (looksLatin(item.tags.network)) return item.tags.network;
+      if (looksLatin(item.displayName)) return item.displayName;
 
       for (const re of LATIN_TAG_PATTERNS) {
         const keylist = [];
@@ -1052,8 +1032,6 @@ function enLabelForQID(qid: ItemId): string | null {
   }
 }
 
-
-
 /**
  * Builds a URL query string from an object of key-value pairs.
  * Keys are sorted using locale-aware comparison.
@@ -1061,11 +1039,13 @@ function enLabelForQID(qid: ItemId): string | null {
  * @returns A URL-encoded query string.
  */
 function utilQsString(obj: Record<string, string | number>): string {
-  return Object.keys(obj).sort(withLocale).map(key => {
-    return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
-  }).join('&');
+  return Object.keys(obj)
+    .sort(withLocale)
+    .map(key => {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+    })
+    .join('&');
 }
-
 
 /**
  * Comparator for sorting warnings — sorts QIDs numerically, then by message.
@@ -1078,7 +1058,7 @@ function sortWarnings(a: WikidataWarning, b: WikidataWarning): number {
   const aMatch = a.qid.match(qid);
   const bMatch = b.qid.match(qid);
   if (aMatch && bMatch) {
-    return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);   // sort QIDs numerically
+    return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10); // sort QIDs numerically
   } else {
     return withLocale(a.msg, b.msg);
   }

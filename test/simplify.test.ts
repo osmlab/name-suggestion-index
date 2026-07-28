@@ -1,10 +1,9 @@
 import { describe, it } from 'bun:test';
 import assert from 'node:assert/strict';
+
 import { simplify } from '../src/nsi.ts';
 
-
 describe('simplify', () => {
-
   it('lowercases', () => {
     assert.equal(simplify('Aldo'), 'aldo');
   });
@@ -18,10 +17,10 @@ describe('simplify', () => {
   });
 
   it('removes various dashes', () => {
-    assert.equal(simplify('PTV - Metropolitan'), 'ptvmetropolitan');  // hypen
-    assert.equal(simplify('PTV – Metropolitan'), 'ptvmetropolitan');  // en dash (U+2013)
-    assert.equal(simplify('PTV — Metropolitan'), 'ptvmetropolitan');  // em dash (U+2014)
-    assert.equal(simplify('PTV ― Metropolitan'), 'ptvmetropolitan');  // horizontal bar (U+2015)
+    assert.equal(simplify('PTV - Metropolitan'), 'ptvmetropolitan'); // hypen
+    assert.equal(simplify('PTV – Metropolitan'), 'ptvmetropolitan'); // en dash (U+2013)
+    assert.equal(simplify('PTV — Metropolitan'), 'ptvmetropolitan'); // em dash (U+2014)
+    assert.equal(simplify('PTV ― Metropolitan'), 'ptvmetropolitan'); // horizontal bar (U+2015)
   });
 
   it('removes unprintable unicode (like RTL/LTR marks, zero width space, zero width nonjoiner)', () => {
@@ -40,7 +39,8 @@ describe('simplify', () => {
     assert.equal(simplify('Beßon'), 'besson');
   });
 
-  it('replaces İ (0130) or i̇ (0069 0307) with i', () => {   // #5017, #8261 for examples
+  it('replaces İ (0130) or i̇ (0069 0307) with i', () => {
+    // #5017, #8261 for examples
     assert.equal(simplify('İnşaat'), 'insaat');
     assert.equal(simplify('i̇nşaat'), 'insaat');
   });
@@ -50,5 +50,4 @@ describe('simplify', () => {
     assert.equal(simplify(null as unknown as string), '');
     assert.equal(simplify({} as unknown as string), '');
   });
-
 });

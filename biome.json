@@ -1,0 +1,153 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.5/schema.json",
+  "root": true,
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  },
+  "files": {
+    "includes": ["**", "!!**/dist"],
+    "maxSize": 2097152
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "preset": "recommended",
+      "source": {
+        "noDuplicateClasses": "on",
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ":BUN:",
+              ":NODE:",
+              ":BLANK_LINE:",
+              ["react", "react/**", "react-*", "react-*/**"],
+              {
+                "type": false,
+                "source": [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:"]
+              },
+              {
+                "type": true,
+                "source": [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:"]
+              },
+              ":BLANK_LINE:",
+              { "type": false, "source": [":ALIAS:", ":PATH:"] },
+              { "type": true, "source": [":ALIAS:", ":PATH:"] },
+              ":BLANK_LINE:",
+              ":STYLE:"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "html": {
+    "assist": { "enabled": true },
+    "linter": { "enabled": true },
+    "formatter": { "enabled": true },
+    "experimentalFullSupportEnabled": true
+  },
+  "json": {
+    "assist": { "enabled": true },
+    "linter": { "enabled": true },
+    "formatter": { "enabled": true }
+  },
+  "css": {
+    "assist": { "enabled": true },
+    "linter": { "enabled": true },
+    "formatter": { "enabled": true }
+  },
+  "javascript": {
+    "assist": { "enabled": true },
+    "linter": { "enabled": true },
+    "formatter": {
+      "enabled": true,
+      "arrowParentheses": "asNeeded",
+      "jsxQuoteStyle": "single",
+      "lineWidth": 160,
+      "quoteProperties": "preserve",
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "none"
+    },
+    "experimentalEmbeddedSnippetsEnabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "useEditorconfig": true
+  },
+  "linter": {
+    "enabled": true,
+    "domains": {
+      "react": "recommended",
+      "test": "recommended",
+      "types": "recommended"
+    },
+    "rules": {
+      "a11y": {
+        "useValidAnchor": "off",
+        "useAltText": "off"
+      },
+      "complexity": {
+        "noUselessStringConcat": "warn",
+        "noVoid": "error",
+        "noImportantStyles": "off",
+        "noUselessEscapeInRegex": "off"
+      },
+      "correctness": {
+        "noUnusedInstantiation": "error",
+        "useExhaustiveDependencies": "off"
+      },
+      "nursery": { "noImpliedEval": "error", "noLoopFunc": "error" },
+      "performance": {},
+      "security": {
+        "noBlankTarget": "off"
+      },
+      "style": {
+        "noCommonJs": "error",
+        "noInferrableTypes": "error",
+        "noMultilineString": "error",
+        "noNamespace": "error",
+        "noProcessEnv": "error",
+        "useAsConstAssertion": "error",
+        "useConsistentArrayType": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useConsistentTypeDefinitions": "error",
+        "useDefaultParameterLast": "error",
+        "useErrorCause": "error",
+        "useForOf": "error",
+        "useGroupedAccessorPairs": "error",
+        "useThrowOnlyError": "error",
+        "noNonNullAssertion": "off",
+        "useTemplate": "off"
+      },
+      "suspicious": {
+        "noConstantBinaryExpressions": "error",
+        "noDuplicateClassMembers": "error",
+        "noEmptyBlockStatements": "error",
+        "noUnassignedVariables": "error",
+        "useAwait": "error",
+        "noImplicitAnyLet": "off",
+        "noExplicitAny": "off",
+        "useIterableCallbackReturn": "off",
+        "noUselessEscapeInString": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/data/**", "**/config/**"],
+      "json": {
+        "formatter": {
+          "enabled": false
+        }
+      }
+    }
+  ]
+}

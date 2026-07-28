@@ -1,11 +1,11 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import diacritics from 'diacritics';
 
 import { Category } from './Category';
-import { Header } from './Header';
-import { Filters } from './Filters'
+import { Filters } from './Filters';
 import { Footer } from './Footer';
+import { Header } from './Header';
 import { Overview } from './Overview';
 import { Warnings } from './Warnings';
 
@@ -17,7 +17,6 @@ const DISSOLVED = `${DIST}/wikidata/dissolved.min.json`;
 
 // We can use iD's taginfo file to pick icons
 const TAGINFO = 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@latest/dist/taginfo.min.json';
-
 
 export const AppContext = createContext(null);
 
@@ -39,16 +38,16 @@ export function AppContextProvider() {
   useEffect(() => {
     let newHash = location.hash;
     let newSearch = location.search;
-    let newParams = stringQs(newSearch);
+    const newParams = stringQs(newSearch);
 
     // if passed an `id` param, lookup that item and override the `t`,`k`,`v` params
-    let itemID = newParams.id;
+    const itemID = newParams.id;
     if (itemID) {
-      if (indexLoading) return;   // wait for index to load, we'll come back to this.
+      if (indexLoading) return; // wait for index to load, we'll come back to this.
 
       const item = index.id[itemID];
       if (item) {
-        const parts = item.tkv.split('/', 3);     // tkv = 'tree/key/value'
+        const parts = item.tkv.split('/', 3); // tkv = 'tree/key/value'
         newParams.t = parts[0];
         newParams.k = parts[1];
         newParams.v = parts[2];
@@ -69,22 +68,21 @@ export function AppContextProvider() {
       setHash(newHash);
       setParams(stringQs(newSearch));
     }
-
   }, [location, indexLoading]);
-
 
   // Update location when params/hash changes
   // Do the update only if something has really changed (to avoid infinite looping)
   useEffect(() => {
-    if (indexLoading) return;  // come back to it later
+    if (indexLoading) return; // come back to it later
 
     // Put params in this order
     const newParams = {};
     ['t', 'k', 'v', 'id', 'tt', 'cc', 'inc', 'dis', 'view'].forEach(k => {
       if (params[k]) {
         newParams[k] = params[k];
-      } else if (k === 't') {       // if no tree specified,
-        newParams[k] = '*';    // default to all
+      } else if (k === 't') {
+        // if no tree specified,
+        newParams[k] = '*'; // default to all
       }
     });
 
@@ -92,20 +90,19 @@ export function AppContextProvider() {
     const newHash = hash;
 
     // Update url ONLY if something has changed (to avoid infinite looping)
-    if (!_didChangeLocation && newSearch !== location.search || newHash !== location.hash) {
+    if ((!_didChangeLocation && newSearch !== location.search) || newHash !== location.hash) {
       const to = location.pathname + newSearch + newHash;
       navigate(to, { replace: true });
       _didChangeLocation = false;
     }
   }, [params, hash, indexLoading]);
 
-
   const appState = {
     index: index,
     icons: icons,
     dissolved: dissolved.dissolved,
     wikidata: wikidata.wikidata,
-    isLoading: () => (indexLoading || iconsLoading || wikidataLoading || dissolvedLoading),
+    isLoading: () => indexLoading || iconsLoading || wikidataLoading || dissolvedLoading,
     params: params,
     setParams: setParams,
     hash: hash,
@@ -114,32 +111,28 @@ export function AppContextProvider() {
 
   return (
     <AppContext.Provider value={appState}>
-      <Header/>
-      <View/>
-      <Footer/>
+      <Header />
+      <View />
+      <Footer />
     </AppContext.Provider>
   );
 }
-
 
 function View() {
   const { params } = useContext(AppContext);
 
   switch (params.view) {
     case 'warnings':
-      return <Warnings/>;
+      return <Warnings />;
     default:
       return (
         <>
-          <Filters/>
-          <div id='content'>
-            { (params.k && params.v) ? <Category/> : <Overview/> }
-          </div>
+          <Filters />
+          <div id='content'>{params.k && params.v ? <Category /> : <Overview />}</div>
         </>
       );
   }
 }
-
 
 // Fetch some data
 function useFetch(url) {
@@ -153,10 +146,11 @@ function useFetch(url) {
     setLoading(false);
   }
 
-  useEffect(() => { fetchUrl(); }, []);
+  useEffect(() => {
+    fetchUrl();
+  }, []);
   return [data, loading];
 }
-
 
 // same as useFetch, but load name-suggestion-index data into a cache
 function useNsi(url) {
@@ -166,16 +160,16 @@ function useNsi(url) {
   async function fetchUrl() {
     const response = await fetch(url);
     const json = await response.json();
-    let index = { path: {}, id: {}, meta: json._meta };
+    const index = { path: {}, id: {}, meta: json._meta };
 
     // populate cache
     for (const [tkv, category] of Object.entries(json.nsi)) {
       const items = category.items;
-      if (!Array.isArray(items)) continue;  // empty category, skip
+      if (!Array.isArray(items)) continue; // empty category, skip
 
       index.path[tkv] = items;
       for (const item of items) {
-        item.tkv = tkv;  // remember the path for later
+        item.tkv = tkv; // remember the path for later
         index.id[item.id] = item;
       }
     }
@@ -184,10 +178,11 @@ function useNsi(url) {
     setLoading(false);
   }
 
-  useEffect(() => { fetchUrl(); }, []);
+  useEffect(() => {
+    fetchUrl();
+  }, []);
   return [data, loading];
 }
-
 
 // same as useFetch, but process taginfo file to retrieve icon urls
 function useTaginfo(url) {
@@ -198,7 +193,7 @@ function useTaginfo(url) {
     const response = await fetch(url);
     const json = await response.json();
     const tags = json.tags;
-    let icons = {};
+    const icons = {};
 
     // populate icons
     for (const tag of tags) {
@@ -215,34 +210,35 @@ function useTaginfo(url) {
     setLoading(false);
   }
 
-  useEffect(() => { fetchUrl(); }, []);
+  useEffect(() => {
+    fetchUrl();
+  }, []);
   return [data, loading];
 }
 
-
 // convert a query string to an object of `k=v` pairs
 export function stringQs(str) {
-  let i = 0;  // advance past any leading '?' or '#' characters
+  let i = 0; // advance past any leading '?' or '#' characters
   while (i < str.length && (str[i] === '?' || str[i] === '#')) i++;
   str = str.slice(i);
 
   return str.split('&').reduce((obj, pair) => {
     const parts = pair.split('=');
     if (parts.length === 2) {
-      obj[parts[0]] = (null === parts[1]) ? '' : decodeURIComponent(parts[1]);
+      obj[parts[0]] = null === parts[1] ? '' : decodeURIComponent(parts[1]);
     }
     return obj;
   }, {});
 }
 
-
 // convert an object of `k=v` pairs to a querystring
 export function qsString(obj) {
-  return Object.keys(obj).map(key => {
-    return encodeURIComponent(key) + '=' + (encodeURIComponent(obj[key]));
-  }).join('&');
+  return Object.keys(obj)
+    .map(key => {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+    })
+    .join('&');
 }
-
 
 // Gets the filtering params from the url params and cleans them up
 export function getFilterParams(params) {
@@ -258,7 +254,6 @@ export function getFilterParams(params) {
   if (dis) result.dis = 'true';
   return result;
 }
-
 
 // Determines if the given item is filtered by the given filtering rules.
 // true if the item is filtered (hidden), false if not filtered (visible)
@@ -282,7 +277,7 @@ export function isItemFiltered(context, filters, item) {
       toCheck.add(stripDiacritics(key));
       toCheck.add(stripDiacritics(val));
     }
-    for (const name of (item.matchNames || [])) {
+    for (const name of item.matchNames || []) {
       toCheck.add(stripDiacritics(name));
     }
 
@@ -303,7 +298,7 @@ export function isItemFiltered(context, filters, item) {
     // check locationset include
     // todo: improve countrycode filters - #4077
     const toCheck = new Set();
-    for (const code of (item.locationSet.include || [])) {
+    for (const code of item.locationSet.include || []) {
       if (typeof code !== 'string') continue;
       toCheck.add(stripDiacritics(code));
     }
@@ -341,16 +336,9 @@ export function isItemFiltered(context, filters, item) {
   return false;
 }
 
-
 //
 export function stripDiacritics(str) {
   if (typeof str !== 'string') return '';
 
-  return diacritics.remove(
-    str
-      .replace(/(İ|i̇)/ig, 'i')
-      .toLowerCase()
-      .replace(/ /g, "_")
-      .trim()
-  );
+  return diacritics.remove(str.replace(/(İ|i̇)/gi, 'i').toLowerCase().replace(/ /g, '_').trim());
 }

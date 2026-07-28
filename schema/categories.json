@@ -5,14 +5,12 @@
   "required": ["properties", "items"],
   "additionalProperties": false,
   "properties": {
-
     "properties": {
       "description": "(required) An Object containing properties for this category",
       "type": "object",
       "required": ["path"],
       "additionalProperties": false,
       "properties": {
-
         "path": {
           "description": "(required) The path for this category in the form tree/key/value",
           "type": "string",
@@ -57,7 +55,6 @@
             }
           }
         }
-
       }
     },
 
@@ -72,7 +69,6 @@
         ]
       }
     }
-
   },
 
   "definitions": {
@@ -82,7 +78,6 @@
       "additionalProperties": false,
       "required": ["include"],
       "properties": {
-
         "include": {
           "description": "(required) locations included",
           "type": "array",
@@ -148,21 +143,21 @@
       "description": "A list of properties that we never want as tags, this is to prevent common mistakes",
       "type": "object",
       "properties": {
-        "displayName":     { "not" : {} },
-        "exclude":         { "not" : {} },
-        "id":              { "not" : {} },
-        "include":         { "not" : {} },
-        "issues":          { "not" : {} },
-        "locationSet":     { "not" : {} },
-        "matchNames":      { "not" : {} },
-        "matchTags":       { "not" : {} },
-        "path":            { "not" : {} },
-        "preserveTags":    { "not" : {} },
-        "note":            { "not" : {} },
-        "skipCollection":  { "not" : {} },
-        "tags":            { "not" : {} },
-        "templateSource":  { "not" : {} },
-        "templateTags":    { "not" : {} }
+        "displayName": { "not": {} },
+        "exclude": { "not": {} },
+        "id": { "not": {} },
+        "include": { "not": {} },
+        "issues": { "not": {} },
+        "locationSet": { "not": {} },
+        "matchNames": { "not": {} },
+        "matchTags": { "not": {} },
+        "path": { "not": {} },
+        "preserveTags": { "not": {} },
+        "note": { "not": {} },
+        "skipCollection": { "not": {} },
+        "tags": { "not": {} },
+        "templateSource": { "not": {} },
+        "templateTags": { "not": {} }
       }
     },
 
@@ -172,7 +167,6 @@
       "additionalProperties": false,
       "required": ["displayName", "locationSet", "tags"],
       "properties": {
-
         "displayName": {
           "description": "(required) A display name for this entry.",
           "type": "string"
@@ -233,9 +227,7 @@
           "$comment": "Exclude properties that should appear elsewhere to avoid common mistakes",
           "description": "(required) OpenStreetMap tags to associate with this item",
           "type": "object",
-          "allOf": [
-            { "$ref": "#/definitions/notTags" }
-          ],
+          "allOf": [{ "$ref": "#/definitions/notTags" }],
           "anyOf": [
             { "required": ["brand"] },
             { "required": ["flag:name", "flag:type"] },
@@ -243,7 +235,6 @@
             { "required": ["network"] }
           ]
         }
-
       }
     },
 
@@ -253,7 +244,6 @@
       "additionalProperties": false,
       "required": ["templateSource", "templateTags"],
       "properties": {
-
         "note": {
           "description": "(optional) An optional note - can contain anything about the item.",
           "type": "string"
@@ -290,12 +280,9 @@
           "$comment": "Exclude properties that should appear elsewhere to avoid common mistakes",
           "description": "(required) OpenStreetMap tags to change from the source tags",
           "type": "object",
-          "allOf": [
-            { "$ref": "#/definitions/notTags" }
-          ]
+          "allOf": [{ "$ref": "#/definitions/notTags" }]
         }
       }
     }
-
   }
 }

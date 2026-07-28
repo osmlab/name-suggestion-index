@@ -1,20 +1,18 @@
 import { LocationConflation } from '@rapideditor/location-conflation';
-import { simplify } from './simplify.ts';
-
 import type { HasLocationSet, HasLocationSetID, LocationSetID, Vec2 } from '@rapideditor/location-conflation';
-import type { MatchHit, MatchIndexBranch, NsiData, NsiMatchGroupsJSON, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
 
 // Imported JSON (will be inlined by bun)
-import matchGroupsJSON from '../config/matchGroups.json' with {type: 'json'};
-import genericWordsJSON from '../config/genericWords.json' with {type: 'json'};
-import treesJSON from '../config/trees.json' with {type: 'json'};
+import genericWordsJSON from '../config/genericWords.json' with { type: 'json' };
+import matchGroupsJSON from '../config/matchGroups.json' with { type: 'json' };
+import treesJSON from '../config/trees.json' with { type: 'json' };
+import { simplify } from './simplify.ts';
+import type { MatchHit, MatchIndexBranch, NsiData, NsiMatchGroupsJSON, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
 
 /** Match-group definitions keyed by group name. */
 const matchGroups: NsiMatchGroupsJSON['matchGroups'] = matchGroupsJSON.matchGroups;
 
 /** Tree configuration keyed by tree name (e.g. `brands`, `operators`). */
 const trees: Record<NsiTree, NsiTreeProperties> = treesJSON.trees;
-
 
 //  This is an unfortunate TypeScript-ism, essentially it does not consider a class instance
 //  with private or protected members to be type-compatible with itself.
@@ -30,7 +28,6 @@ export interface LocationResolver {
   locationSetsAt(loc: Vec2): Map<LocationSetID, number>;
   getLocationSetArea(locationSetID: LocationSetID): number | undefined;
 }
-
 
 /**
  * Matches OpenStreetMap `[key, value, name]` tuples against the
@@ -54,8 +51,7 @@ export class Matcher {
   /** Map of item id → locationSetID, populated by {@link buildLocationIndex}. */
   private itemLocationSetID: Map<string, LocationSetID> | undefined;
   /** Warnings collected during index building (e.g. duplicate cache keys). */
-  private warnings: Array<string> = [];
-
+  private warnings: string[] = [];
 
   /**
    * Creates a new Matcher and initialises the generic-word regex table
@@ -107,7 +103,7 @@ export class Matcher {
     // The `genericWords` structure matches the contents of genericWords.json to instantiated RegExp objects
     // Map (String 'pattern' -> RegExp),
     this.genericWords = new Map();
-    for (const s of (genericWordsJSON.genericWords || [])) {
+    for (const s of genericWordsJSON.genericWords || []) {
       this.genericWords.set(s, new RegExp(s, 'i'));
     }
 
@@ -120,7 +116,6 @@ export class Matcher {
     // Array of match conflict pairs (currently unused)
     this.warnings = [];
   }
-
 
   /**
    * Builds the primary match index from NSI category data.
@@ -138,12 +133,12 @@ export class Matcher {
    * @param data - NSI category data indexed by `tree/key/value` path
    */
   buildMatchIndex(data: NsiData): void {
-    if (this.matchIndex) return;   // it was built already
+    if (this.matchIndex) return; // it was built already
 
     const matchIndex = new Map<string, MatchIndexBranch>();
     this.matchIndex = matchIndex;
 
-    const seenTree = new Map();  // warn if the same [k, v, nsimple] appears in multiple trees - #5625
+    const seenTree = new Map(); // warn if the same [k, v, nsimple] appears in multiple trees - #5625
 
     // For certain categories we do not want to match generic KV pairs like `building/yes` or `amenity/yes`
     const skipGenericKVMatches = (t: string, k: string, v: string): boolean => {
@@ -191,10 +186,11 @@ export class Matcher {
         branch[which].set(nsimple, leaf);
       }
 
-      leaf.add(itemID);   // insert
+      leaf.add(itemID); // insert
 
       // check for duplicates - #5625
-      if (!/yes$/.test(kv)) {  // ignore genericKV like amenity/yes, building/yes, etc
+      if (!/yes$/.test(kv)) {
+        // ignore genericKV like amenity/yes, building/yes, etc
         const kvnsimple = `${kv}/${nsimple}`;
         const existing = seenTree.get(kvnsimple);
         if (existing && existing !== t) {
@@ -208,7 +204,7 @@ export class Matcher {
 
     for (const tkv of Object.keys(data) as NsiPath[]) {
       const category = data[tkv];
-      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
+      const parts = tkv.split('/', 3); // tkv = "tree/key/value"
       const t = parts[0] as NsiTree;
       const k = parts[1];
       const v = parts[2];
@@ -229,15 +225,13 @@ export class Matcher {
       // ADD EXCLUSIONS
       const properties = category.properties || {};
       const exclude = properties.exclude || {};
-      for (const s of (exclude.generic || [])) branch.excludeGeneric.set(s, new RegExp(s, 'i'));
-      for (const s of (exclude.named || []))   branch.excludeNamed.set(s, new RegExp(s, 'i'));
+      for (const s of exclude.generic || []) branch.excludeGeneric.set(s, new RegExp(s, 'i'));
+      for (const s of exclude.named || []) branch.excludeNamed.set(s, new RegExp(s, 'i'));
       const excludeRegexes = [...branch.excludeGeneric.values(), ...branch.excludeNamed.values()];
-
 
       // ADD ITEMS
       const items = category.items;
       if (!Array.isArray(items) || !items.length) continue;
-
 
       // Primary name patterns, match tags to take first
       //  e.g. `name`, `name:ru`
@@ -266,10 +260,10 @@ export class Matcher {
         if (!inGroup) continue;
 
         for (const otherkv of matchGroup) {
-          if (otherkv === thiskv) continue;   // skip self
+          if (otherkv === thiskv) continue; // skip self
           matchGroupKV.add(otherkv);
 
-          const otherk = otherkv.split('/', 2)[0];   // we might pick up a `shop/yes`
+          const otherk = otherkv.split('/', 2)[0]; // we might pick up a `shop/yes`
           genericKV.add(`${otherk}/yes`);
         }
       }
@@ -282,26 +276,23 @@ export class Matcher {
         // (i.e. This kv is already covered by matchGroups, so it doesn't need to be in `item.matchTags`
         //  or this kv is the primary kv, so it doesn't need to be duplicated in `item.matchTags`)
         if (Array.isArray(item.matchTags) && item.matchTags.length) {
-          item.matchTags = item.matchTags
-            .filter(matchTag => !matchGroupKV.has(matchTag) && (matchTag !== thiskv) && !genericKV.has(matchTag));
+          item.matchTags = item.matchTags.filter(matchTag => !matchGroupKV.has(matchTag) && matchTag !== thiskv && !genericKV.has(matchTag));
 
           if (!item.matchTags.length) delete item.matchTags;
         }
 
         // key/value tagpairs to insert into the match index..
-        let kvTags = [`${thiskv}`]
-          .concat(item.matchTags || []);
+        let kvTags = [`${thiskv}`].concat(item.matchTags || []);
 
         if (!skipGenericKV) {
-          kvTags = kvTags
-            .concat(Array.from(genericKV));  // #3454 - match some generic tags
+          kvTags = kvTags.concat(Array.from(genericKV)); // #3454 - match some generic tags
         }
 
         // Index all the namelike tag values
         for (const osmkey of Object.keys(item.tags)) {
-          if (notName.test(osmkey)) continue;   // osmkey is not a namelike tag, skip
+          if (notName.test(osmkey)) continue; // osmkey is not a namelike tag, skip
           const osmvalue = item.tags[osmkey];
-          if (!osmvalue || excludeRegexes.some(regex => regex.test(osmvalue))) continue;   // osmvalue missing or excluded
+          if (!osmvalue || excludeRegexes.some(regex => regex.test(osmvalue))) continue; // osmvalue missing or excluded
 
           if (primaryName.test(osmkey)) {
             for (const kv of kvTags) insertName('primary', t, kv, simplify(osmvalue), item.id);
@@ -312,15 +303,15 @@ export class Matcher {
 
         // Index `matchNames` after indexing all other names..
         const keepMatchNames = new Set<string>();
-        for (const matchName of (item.matchNames || [])) {
+        for (const matchName of item.matchNames || []) {
           // If this matchname isn't already indexed, add it to the alternate index
           const nsimple = simplify(matchName);
           for (const kv of kvTags) {
             const branch = matchIndex.get(kv);
-            const primaryLeaf = branch && branch.primary.get(nsimple);
-            const alternateLeaf = branch && branch.alternate.get(nsimple);
-            const inPrimary = primaryLeaf && primaryLeaf.has(item.id);
-            const inAlternate = alternateLeaf && alternateLeaf.has(item.id);
+            const primaryLeaf = branch?.primary.get(nsimple);
+            const alternateLeaf = branch?.alternate.get(nsimple);
+            const inPrimary = primaryLeaf?.has(item.id);
+            const inAlternate = alternateLeaf?.has(item.id);
 
             if (!inPrimary && !inAlternate) {
               insertName('alternate', t, kv, nsimple, item.id);
@@ -336,11 +327,9 @@ export class Matcher {
         } else {
           delete item.matchNames;
         }
-
-      }   // each item
-    }   // each tkv
+      } // each item
+    } // each tkv
   }
-
 
   /**
    * Registers every item's `locationSet` with the supplied {@link LocationConflation}
@@ -380,7 +369,6 @@ export class Matcher {
     }
   }
 
-
   /**
    * Matches a `[key, value, name]` tuple against the index and returns results.
    *
@@ -412,7 +400,7 @@ export class Matcher {
    * @returns An array of {@link Hit} results, or `null` if nothing matched.
    * @throws  {Error} If the match index has not been built yet.
    */
-  match(k: string, v: string, n: string, loc?: Vec2): Array<MatchHit> | null {
+  match(k: string, v: string, n: string, loc?: Vec2): MatchHit[] | null {
     if (!this.matchIndex) {
       throw new Error('match:  matchIndex not built.');
     }
@@ -430,7 +418,7 @@ export class Matcher {
     const nsimple = simplify(n);
 
     const seen = new Set();
-    const results: Array<MatchHit> = [];
+    const results: MatchHit[] = [];
 
     // Sort smaller (more local) locations first.
     const byAreaAscending = (hitA: MatchHit, hitB: MatchHit): number => {
@@ -451,7 +439,8 @@ export class Matcher {
       const branch = matchIndex.get(kv);
       if (!branch) return false;
 
-      if (which === 'exclude') {  // Test name `n` against named and generic exclude patterns
+      if (which === 'exclude') {
+        // Test name `n` against named and generic exclude patterns
         let regex = [...branch.excludeNamed.values()].find(regex => regex.test(n));
         if (regex) {
           results.push({ match: 'excludeNamed', pattern: String(regex), kv: kv });
@@ -466,12 +455,12 @@ export class Matcher {
       }
 
       const leaf = branch[which].get(nsimple);
-      if (!leaf || !leaf.size) return false;
+      if (!leaf?.size) return false;
       if (!(which === 'primary' || which === 'alternate')) return false;
 
       // If we get here, we matched something..
       // Prepare the results, calculate areas (if location index was set up)
-      let hits: Array<MatchHit> = [];
+      let hits: MatchHit[] = [];
       for (const itemID of [...leaf]) {
         let area = Infinity;
         if (loco && itemLocationSetID) {
@@ -515,7 +504,7 @@ export class Matcher {
         if (!inGroup) continue;
 
         for (const otherkv of matchGroup) {
-          if (otherkv === kv) continue;  // skip self
+          if (otherkv === kv) continue; // skip self
           didMatch = tryMatch(which, otherkv);
           if (didMatch) return;
         }
@@ -525,7 +514,7 @@ export class Matcher {
       if (which === 'exclude') {
         const regex = [...this.genericWords.values()].find(regex => regex.test(n));
         if (regex) {
-          results.push({ match: 'excludeGeneric', pattern: String(regex) });  // note no `branch`, no `kv`
+          results.push({ match: 'excludeGeneric', pattern: String(regex) }); // note no `branch`, no `kv`
           return;
         }
       }
@@ -539,14 +528,13 @@ export class Matcher {
     return results.length ? results : null;
   }
 
-
   /**
    * Returns any warnings discovered while building the match index
    * (e.g. duplicate cache keys across trees).
    *
    * @returns An array of warning message strings (may be empty).
    */
-  getWarnings(): Array<string> {
+  getWarnings(): string[] {
     return this.warnings;
   }
 }

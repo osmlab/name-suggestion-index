@@ -4,7 +4,6 @@ import { styleText } from 'node:util';
 const CDNRoot = 'https://cdn.jsdelivr.net/npm/name-suggestion-index';
 const packageJSON = await Bun.file('./package.json').json();
 
-
 prepublish();
 
 async function prepublish() {
@@ -17,7 +16,7 @@ async function prepublish() {
 
   const glob = new Glob('./dist/**/*.json');
   for (const filepath of glob.scanSync()) {
-    if (/\.min\.json$/.test(filepath)) continue;  // skip any existing `.min.json`
+    if (/\.min\.json$/.test(filepath)) continue; // skip any existing `.min.json`
 
     await metadataJSON(filepath);
     await minifyJSON(filepath);
@@ -25,7 +24,6 @@ async function prepublish() {
 
   console.timeEnd(END);
 }
-
 
 /**
  * metadataJSON
@@ -38,7 +36,6 @@ async function metadataJSON(filepath: string) {
 
   if (contents[0] !== '{') {
     throw new Error(`No JSON: ${filepath}`);
-
   } else {
     // If it exists already, remove it.
     contents = contents.replaceAll(/\s+\"_meta[^}]+\},/gm, '');
@@ -53,14 +50,14 @@ async function metadataJSON(filepath: string) {
     const now = new Date();
 
     const metadata = {
-      version:    version,
-      generated:  now,
-      url:        `${CDNRoot}@${version}${path}`,
-      hash:       hash
+      version: version,
+      generated: now,
+      url: `${CDNRoot}@${version}${path}`,
+      hash: hash
     };
 
     // Stick metadata at the beginning of the file in the most hacky way possible
-    const re = /\r?\n?[{}]\r?\n?/g;  // match curlies and their newline neighbors
+    const re = /\r?\n?[{}]\r?\n?/g; // match curlies and their newline neighbors
     const strProps = JSON.stringify(metadata, null, 4).replace(re, '');
     const block = `
   "_meta": {
@@ -71,7 +68,6 @@ ${strProps}
     await Bun.write(file, contents.replace(/^\{/, '{' + block));
   }
 }
-
 
 /**
  * minifyJSON
