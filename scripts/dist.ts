@@ -132,7 +132,7 @@ async function updateVersion() {
  * Build iD editor presets from NSI data and write to `./dist/presets/nsi-id-presets.json`.
  * @see https://github.com/openstreetmap/id-tagging-schema
  */
-async function writeIDPresets() {
+function writeIDPresets() {
   const result = buildIDPresets(_nsi.path, {
     sourcePresets: presetsJSON,
     wikidata: wikidata,
@@ -145,9 +145,9 @@ async function writeIDPresets() {
       console.log(`* no iD source preset found for ${tkv}`);
     }
   }
-
-  const output = { presets: result.presets };
-  await Bun.write('./dist/presets/nsi-id-presets.json', stringify(output) + '\n');
+  // These files have grown too big - see NSI#12465
+  // const output = { presets: result.presets };
+  // await Bun.write('./dist/presets/nsi-id-presets.json', stringify(output) + '\n');
 }
 
 

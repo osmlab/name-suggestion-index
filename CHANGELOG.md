@@ -18,8 +18,10 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 # 8.0.YYYYMMDD
 ##### 2026-Jul-28
   * ⚠️  Bump to [`openstreetmap/id-tagging-schema`](https://github.com/openstreetmap/id-tagging-schema) v7 — downstream consumers must upgrade simultaneously ([#12449])
+  * ⚠️  With the id-tagging-schema v7 release, our generated `nsi-id-presets.json` and `nsi-id-presets.min.json` files have grown too big.  Downstream consumers that need iD presets will need to generate them using the `buildIDPresets()` function. ([#12465])
 
 [#12449]: https://github.com/osmlab/name-suggestion-index/pull/12449
+[#12465]: https://github.com/osmlab/name-suggestion-index/pull/12465
 
 
 # 7.2.YYYYMMDD
@@ -32,19 +34,22 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 
 # 7.1.YYYYMMDD
 ##### 2026-Apr-27
-* ⚠️  Bump to [`@rapideditor/location-conflation`](https://github.com/rapideditor/location-conflation) v3 — downstream consumers must upgrade simultaneously
+* ⚠️  Bump to [`@rapideditor/location-conflation`](https://github.com/rapideditor/location-conflation) v3 — downstream consumers must upgrade simultaneously ([#12119])
 * ⚠️ `Matcher.buildLocationIndex(data: NsiData, loco?: LocationConflation)` now expects a `LocationConflation` v3 instance.
   * Consumers who call `matcher.buildLocationIndex(data, loco)` should now pass in their own configured `LocationConflation` instance so indexing and lookups share the same cache
   * This eliminates the need for downstream apps (e.g. Rapid) to monkey-patch the matcher to use a shared `LocationConflation` cache!
   * Removed the `which-polygon` dependency — location lookups are now handled inside `LocationConflation` v3.
   * Note that the `loco` param is optional — if omitted, the `Matcher` can create its own local `LocationConflation` resolver.
-* New: Preset generating functions are now exported from `name-suggestion-index` as pure, in-memory functions
+* New: Preset generating functions are now exported from `name-suggestion-index` as pure, in-memory functions ([#12131])
   * `buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): BuildIDPresetsResult` - Generates iD presets JSON
   * `buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): XMLBuilder` - Generated JOSM presets XML
   * These accept NSI data, source iD presets, wikidata, dissolutions) as arguments — no file I/O, no console output, no input mutation
   * Suitable for downstream apps (e.g. Rapid) that fetch NSI data on-the-fly and want to generate presets in the browser
   * `dist.ts` now wraps these functions for the file-writing CLI behavior (we still provide the presets under `dist/presets/` as before)
 * New: Project now provides a complete set of TypeScript types to cover all data structures and file shapes.
+
+[#12119]: https://github.com/osmlab/name-suggestion-index/pull/12119
+[#12131]: https://github.com/osmlab/name-suggestion-index/pull/12131
 
 
 # 7.0.YYYYMMDD
