@@ -33,10 +33,10 @@ async function postpublish() {
   console.log(styleText('blueBright', 'Purging JSDelivr caches…'));
 
   const promises: Promise<void>[] = [];
-  const glob = new Glob('./dist/**/*');
+  const glob = new Glob('./{dist,docs}/**/*');
   for (const filepath of glob.scanSync()) {
     // Keep just the end part of the path with extension, e.g. `dist/json/file.json`
-    const path = filepath.replace(/(.*)(\/dist.*)/i, '$2');
+    const path = filepath.replace(/(.*)(\/(dist|docs).*)/i, '$2');
     const paths = new Set([path]);
 
     // JSDelivr also serves a `.min.` variant (e.g. `file.js` -> `file.min.js`).
