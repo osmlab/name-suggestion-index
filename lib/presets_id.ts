@@ -370,6 +370,7 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
       if (logoURL)             targetPreset.imageURL = logoURL;
       if (terms.size)          targetPreset.terms = Array.from(terms).sort(withLocale);
       if (preset.reference)    targetPreset.reference = preset.reference;
+      if (preset.relation)     targetPreset.relation = preset.relation;
       if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
       if (preserveTags.length) targetPreset.preserveTags = preserveTags; // see NSI#10083
 
