@@ -269,8 +269,8 @@ input:focus {
 
 /* Overview Page */
 div.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+  column-width: 300px;
+  column-rule: 1px solid #ccc;
 }
 div.category {
   display: flex;
@@ -279,6 +279,7 @@ div.category {
   align-items: center;
   white-space: nowrap;
   padding: 2px 5px;
+  break-inside: avoid;
 }
 
 
