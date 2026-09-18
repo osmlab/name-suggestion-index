@@ -831,9 +831,6 @@ function checkItems(t: NsiTree) {
         case 'amenity/training':
           if (!tags.training) { warnMissingTag.push([display(item), 'training']); }
           break;
-        case 'amenity/vending_machine':
-          if (!tags.vending) { warnMissingTag.push([display(item), 'vending']); }
-          break;
         case 'man_made/flagpole':
           if (!tags['flag:type']) { warnMissingTag.push([display(item), 'flag:type']); }
           if (!/^wiphala/.test(item.id)) {
