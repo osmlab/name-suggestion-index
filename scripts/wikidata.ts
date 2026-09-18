@@ -151,6 +151,12 @@ if (_secrets && _secrets.wikibase) {
     credentials: _secrets.wikibase,
     summary: 'Updated name-suggestion-index related claims, see https://nsi.guide for project details.',
     userAgent: `${packageJSON.name}/${packageJSON.version} (${packageJSON.homepage})`,
+    // Wikidata folds the Query Service (WDQS) update lag into `maxlag`, scaled down by ~60x, so a
+    // ~20min WDQS backlog reads as ~20s of "lag". The library default of maxlag=5 then rejects every
+    // edit while WDQS is chronically behind (common since the 2024 graph split). Raise the threshold
+    // so we tolerate WDQS update lag but still back off on genuine core-DB replication lag. See NSI#12061
+    // and https://phabricator.wikimedia.org/T221774
+    maxlag: 30,
   });
 }
 
