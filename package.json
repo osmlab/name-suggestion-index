@@ -85,12 +85,14 @@
   ],
   "type": "module",
   "exports": {
-    "types": "./dist/ts/src/nsi.d.ts",
-    "bun": "./src/nsi.ts",
-    "dist/*": "./dist/*",
-    "import": "./dist/js/nsi.mjs",
-    "require": "./dist/js/nsi.cjs",
-    "browser": "./dist/js/nsi.iife.js"
+    ".": {
+      "types": "./dist/ts/src/nsi.d.ts",
+      "bun": "./src/nsi.ts",
+      "import": "./dist/js/nsi.mjs",
+      "require": "./dist/js/nsi.cjs",
+      "browser": "./dist/js/nsi.iife.js"
+    },
+    "./dist/*": "./dist/*"
   },
   "scripts": {
     "all": "bun run --sequential clean check build test",
