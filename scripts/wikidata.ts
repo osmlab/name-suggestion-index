@@ -778,6 +778,14 @@ async function finish(): Promise<void> {
   for (const qid of (Object.keys(_wikidata) as ItemId[])) {
     const target = _wikidata[qid];
 
+    // P749 - Parent organization, use its logos if we have none (and their parent is in NSI) - see NSI#10259
+    if (target.logos && !Object.keys(target.logos).length) {
+      const parentQID = getClaimValue(_entityCache[qid], 'P749')?.id as ItemId;
+      if (_wikidata[parentQID]?.logos) {
+        target.logos = { ..._wikidata[parentQID].logos };
+      }
+    }
+
     // sort the properties that we are keeping..
     for (const prop of (['identities', 'logos', 'dissolutions'] as const)) {
       if (target[prop] && Object.keys(target[prop]).length) {
