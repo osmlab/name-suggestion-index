@@ -308,7 +308,7 @@ export function isItemFiltered(context, filters, item) {
       toCheck.add(stripDiacritics(code));
     }
     for (const haystack of toCheck) {
-      if (haystack.includes(needle)) {
+      if (haystack.startsWith(needle)) {
         match = true;
         break;
       }
