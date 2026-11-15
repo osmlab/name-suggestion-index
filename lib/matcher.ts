@@ -2,7 +2,7 @@ import { LocationConflation } from '@rapideditor/location-conflation';
 import { simplify } from './simplify.ts';
 
 import type { HasLocationSet, HasLocationSetID, LocationSetID, Vec2 } from '@rapideditor/location-conflation';
-import type { MatchHit, MatchIndexBranch, NsiData, NsiMatchGroupsJSON, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
+import type { MatchHit, MatchIndexBranch, NsiData, NsiMatchGroupsJSON, NsiTree, NsiTreeProperties } from './types.ts';
 
 // Imported JSON (will be inlined by bun)
 import matchGroupsJSON from '../config/matchGroups.json' with {type: 'json'};
@@ -206,12 +206,8 @@ export class Matcher {
       }
     };
 
-    for (const tkv of Object.keys(data) as NsiPath[]) {
-      const category = data[tkv];
-      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const t = parts[0] as NsiTree;
-      const k = parts[1];
-      const v = parts[2];
+    for (const [tkv, category] of Object.entries(data)) {
+      const [t, k, v] = tkv.split('/', 3) as [NsiTree, string, string];     // tkv = "tree/key/value"
       const thiskv = `${k}/${v}`;
       const tree = trees[t];
 
@@ -370,8 +366,8 @@ export class Matcher {
     const itemLocationSetID = new Map<string, LocationSetID>();
     this.itemLocationSetID = itemLocationSetID;
 
-    for (const tkv of Object.keys(data) as NsiPath[]) {
-      const items = data[tkv].items;
+    for (const category of Object.values(data)) {
+      const items = category.items;
       if (!Array.isArray(items) || !items.length) continue;
       const registered = loco.registerLocationSets(items);
       for (const item of registered) {

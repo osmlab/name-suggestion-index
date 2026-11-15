@@ -1,6 +1,6 @@
 import XMLBuilder from 'fast-xml-builder';
 
-import type { DissolvedMap, NsiData, NsiPath, NsiTree, NsiTreeProperties } from './types.ts';
+import type { DissolvedMap, NsiData, NsiTree, NsiTreeProperties } from './types.ts';
 import type { XmlBuilderOptions } from 'fast-xml-builder';
 
 
@@ -124,15 +124,15 @@ export function buildJOSMPresets(data: NsiData, opts: BuildJOSMPresetsOptions): 
   let kGroup: JOSMBranchGroupXML | undefined;
   let vGroup: JOSMLeafGroupXML | undefined;
 
-  const paths = Object.keys(data).sort(withLocale) as NsiPath[];
-  for (const tkv of paths) {
-    const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+  const categories = Object.entries(data).sort(([a], [b]) => withLocale(a, b));
+  for (const [tkv, category] of categories) {
+    const [t, k, v] = tkv.split('/', 3) as [NsiTree, string, string];     // tkv = "tree/key/value"
 
     // Which wikidata tag is considered the "main" tag for this tree?
-    const wdTag = trees[t as NsiTree].mainTag;
+    const wdTag = trees[t].mainTag;
 
     // Include only items that have a wikidata tag and are not dissolved..
-    const items = (data[tkv].items || [])
+    const items = (category.items || [])
       .filter(item => {
         const qid = item.tags[wdTag];
         if (!qid || !/^Q\d+$/.test(qid)) return false;   // wikidata tag missing or looks wrong..

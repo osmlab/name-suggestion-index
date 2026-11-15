@@ -6,7 +6,7 @@ import * as sample from './matcher.sample.ts';
 
 
 // Minimal stand-in for the `@openstreetmap/id-tagging-schema` presets dictionary.
-const sourcePresets: Presets = {
+const sourcePresets = {
   'amenity': {
     name: 'Amenity',
     icon: 'maki-marker',
@@ -28,7 +28,7 @@ const sourcePresets: Presets = {
     tags: { amenity: 'fast_food' },
     fields: ['e', 'f'],
   }
-};
+} satisfies Presets;
 
 
 describe('buildIDPresets', () => {
@@ -42,6 +42,7 @@ describe('buildIDPresets', () => {
   it('populates name, icon, geometry, locationSet, and matchScore', () => {
     const result = buildIDPresets(sample.data, { sourcePresets });
     const preset = result.presets['amenity/post_office/theupsstore-d4e3fc'];
+    assert.ok(preset);
     assert.equal(preset.name, 'The UPS Store');
     assert.equal(preset.icon, 'maki-post');
     assert.deepEqual(preset.geometry, ['point', 'area']);
@@ -52,6 +53,7 @@ describe('buildIDPresets', () => {
   it('adds the *:wikidata tag to `tags` and carries through source tags', () => {
     const result = buildIDPresets(sample.data, { sourcePresets });
     const preset = result.presets['amenity/post_office/theupsstore-d4e3fc'];
+    assert.ok(preset);
     assert.equal(preset.tags['brand:wikidata'], 'Q7771029');
     assert.equal(preset.tags.amenity, 'post_office');
   });
@@ -59,6 +61,7 @@ describe('buildIDPresets', () => {
   it('collects lowercased brand/short_name values into `terms`', () => {
     const result = buildIDPresets(sample.data, { sourcePresets });
     const preset = result.presets['amenity/post_office/theupsstore-d4e3fc'];
+    assert.ok(preset);
     assert.ok(preset.terms);
     assert.ok(preset.terms.includes('the ups store'));
     assert.ok(preset.terms.includes('ups'));
@@ -67,6 +70,7 @@ describe('buildIDPresets', () => {
   it('includes matchNames in `terms`', () => {
     const result = buildIDPresets(sample.data, { sourcePresets });
     const preset = result.presets['amenity/fast_food/honeybakedham-4d2ff4'];
+    assert.ok(preset);
     assert.ok(preset.terms);
     assert.ok(preset.terms.includes('honey baked ham company'));
   });
@@ -75,6 +79,7 @@ describe('buildIDPresets', () => {
     const dissolved = { 'theupsstore-d4e3fc': [{ date: '2099-01-01' }] };
     const result = buildIDPresets(sample.data, { sourcePresets, dissolved });
     const preset = result.presets['amenity/post_office/theupsstore-d4e3fc'];
+    assert.ok(preset);
     assert.equal(preset.searchable, false);
   });
 
@@ -84,6 +89,7 @@ describe('buildIDPresets', () => {
     };
     const result = buildIDPresets(sample.data, { sourcePresets, wikidata });
     const preset = result.presets['amenity/post_office/theupsstore-d4e3fc'];
+    assert.ok(preset);
     assert.equal(preset.imageURL, 'https://fb/ups.png');
   });
 
@@ -109,6 +115,7 @@ describe('buildIDPresets', () => {
     };
     const result = buildIDPresets(mcdata, { sourcePresets, wikidata });
     const preset = result.presets['amenity/fast_food/mcdonalds-abc123'];
+    assert.ok(preset);
     assert.equal(preset.imageURL, 'https://commons/mcd.svg');
   });
 
@@ -326,6 +333,7 @@ describe('buildIDPresets', () => {
     };
     const result = buildIDPresets(preserved, { sourcePresets });
     const preset = result.presets['amenity/post_office/localpost-444444'];
+    assert.ok(preset);
     assert.deepEqual(preset.fields, ['name', 'brand', 'c', 'd']);
     assert.deepEqual(preset.preserveTags, ['^name']);
   });
@@ -345,6 +353,7 @@ describe('buildIDPresets', () => {
     };
     const result = buildIDPresets(preserved, { sourcePresets });
     const preset = result.presets['amenity/post_office/localop-555555'];
+    assert.ok(preset);
     assert.deepEqual(preset.fields, ['name', 'operator', 'c', 'd']);
   });
 
@@ -354,6 +363,7 @@ describe('buildIDPresets', () => {
     };
     const result = buildIDPresets(sample.data, { sourcePresets, wikidata });
     const preset = result.presets['amenity/post_office/theupsstore-d4e3fc'];
+    assert.ok(preset);
     assert.equal(preset.imageURL, 'https://commons/ups.svg');
   });
 
@@ -361,6 +371,7 @@ describe('buildIDPresets', () => {
     const wikidata = { Q7771029: {} };
     const result = buildIDPresets(sample.data, { sourcePresets, wikidata });
     const preset = result.presets['amenity/post_office/theupsstore-d4e3fc'];
+    assert.ok(preset);
     assert.equal(preset.imageURL, undefined);
   });
 });
@@ -520,6 +531,7 @@ describe('buildJOSMPresets', () => {
       }
     });
     const preset = result.presets['amenity/post_office/localop-555555'];
+    assert.ok(preset);
     assert.deepEqual(preset.fields, ['name', 'operator', 'e', 'f']);
   });
 });

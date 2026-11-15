@@ -24,8 +24,7 @@ import type { NsiItem, NsiPath, NsiTree } from './types.ts';
 export function idgen(item: NsiItem, tkv: NsiPath, locationID: string): string | null {
   let name;
 
-  const parts = tkv.split('/', 3);   // tkv = "tree/key/value"
-  const t = parts[0] as NsiTree;
+  const t = tkv.split('/', 1)[0] as NsiTree;   // tkv = "tree/key/value"
 
   // Run through the list of OSM keys looking for a suitable name
   let osmkeys;
@@ -75,14 +74,11 @@ export function idgen(item: NsiItem, tkv: NsiPath, locationID: string): string |
   if (!name) {
     for (const osmkey of osmkeys) {
       if (osmkey.includes('[a-z]')) {
-        const keylist = [];
         const re = new RegExp(`^${osmkey}$`);
-        for (const key of Object.keys(item.tags)) {
-          if (re.test(key)) keylist.push(key);
-        }
+        const key = Object.keys(item.tags).find(key => re.test(key));
 
-        if (keylist.length > 0) {
-          const message = simplify(item.tags[keylist[0]]);
+        if (key) {
+          const message = simplify(item.tags[key]);
           name = new Bun.CryptoHasher('md5').update(message).digest('hex').slice(0, 6);
         }
 
