@@ -2,6 +2,7 @@
 
 ## November 2026
 
+- **TypeScript 7.** No config or code changes were needed beyond the version bump (`types: ["bun"]` and `strict` were already set). The generated `.d.ts` files are identical, and type-checking takes well under a second.
 - **ESLint → oxlint.** This was the blocker for TypeScript 7. Lint now takes well under a second, and the lockfile dropped from about 280 packages to about 80. See `decisions.md` for what carried over.
 
 ## May 2026
@@ -16,5 +17,5 @@
 - **`scripts/` is type-checked.** `tsconfig.json` includes `lib/`, `scripts/`, `src/` and `test/`, and the scripts got a full typing pass.
 - **LocationConflation v3 matcher refactor.** The matcher now asks LC at match time (`locationSetsAt()`, `getLocationSetArea()`) instead of keeping its own polygon index, so Rapid no longer has to monkey-patch it to share an LC cache. The public `itemLocation`, `locationSets` and `locationIndex` fields were removed, `which-polygon` was dropped, and the cjs/mjs builds shrank from ~800 KB to ~22 KB.
 - **Typing work aligned with [#12067](https://github.com/osmlab/name-suggestion-index/pull/12067)** (k-yle), so it could merge cleanly: two tsconfigs, a generic `sortObject`, a typed `file_tree.ts`, and `NsiDissolved` / `NsiPresets` types for downstream consumers.
-- **Stricter TypeScript.** `noImplicitAny`, `noUnusedLocals` and `noUnusedParameters` are on. Ambient declarations live in `lib/ambient.d.ts`. `locale-compare` was replaced with `Intl.Collator`, and `eslint-plugin-import` enforces `import/no-duplicates`.
+- **Stricter TypeScript.** `noImplicitAny`, `noUnusedLocals` and `noUnusedParameters` are on. `locale-compare` was replaced with `Intl.Collator`, and `eslint-plugin-import` enforces `import/no-duplicates`.
 - **`scripts/wikidata.ts` overhaul.** It now has full types, retry logic and parallel writes, and it deduplicates P8253 edits through a module-level edit queue.
