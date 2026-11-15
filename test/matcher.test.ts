@@ -1,4 +1,4 @@
-import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from 'bun:test';
+import { afterAll, beforeAll, beforeEach, describe, it } from 'bun:test';
 import assert from 'node:assert/strict';
 import LocationConflation from '@rapideditor/location-conflation';
 import { Matcher } from '../src/nsi.ts';
@@ -29,10 +29,6 @@ describe('index building', () => {
 
   beforeEach(() => {
     _matcher = new Matcher();
-  });
-
-  afterEach(() => {
-    _matcher = null as unknown as Matcher;
   });
 
   it('buildMatchIndex does not throw', () => {

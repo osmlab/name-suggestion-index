@@ -5,7 +5,8 @@ import { sortObject } from '../lib/sort_object.ts';
 
 describe('sortObject', () => {
   it('returns null for a falsy input', () => {
-    assert.equal(sortObject(null as unknown as object), null);
+    // @ts-expect-error -- testing invalid input
+    assert.equal(sortObject(null), null);
   });
 
   it('sorts keys with locale collation', () => {

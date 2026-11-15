@@ -18,7 +18,7 @@ Since LC v3, the matcher registers locationSets with LC (`registerLocationSets()
 
 ## Two tsconfigs
 
-`tsconfig.json` is broad and `noEmit`: it's used for type-checking (`bun run check:types`). `tsconfig.build.json` extends it, narrows `include` to the public API (`src/nsi.ts`), and only emits `.d.ts` files (`bun run build:ts`).
+`tsconfig.json` is broad and `noEmit`: it's used for type-checking (`bun run check:types`). `tsconfig.build.json` extends it, narrows `include` to the public API (`src/nsi.ts`), and only emits `.d.ts` files (`bun run build:ts`). The build config also sets `isolatedDeclarations`, so everything reachable from the public API needs explicit types, and the published types can't change by accident.
 
 ## Type naming in `lib/types.ts`
 
