@@ -236,7 +236,7 @@ write: async (cache: NsiCache) => {
           // clean templateTags
           const cleaned: OsmTags = {};
           for (const k of Object.keys(item.templateTags)) {
-            const osmkey = _trim(k) as string;
+            const osmkey = _trim(k);
             const osmval = _trim(item.templateTags[k]);
             cleaned[osmkey] = osmval;
           }
@@ -275,7 +275,7 @@ write: async (cache: NsiCache) => {
           // clean OSM tags
           const cleanedTags: OsmTags = {};
           for (const k of Object.keys(item.tags)) {
-            const osmkey = _trim(k) as string;
+            const osmkey = _trim(k);
             const osmval = _trim(item.tags[k]);
             cleanedTags[osmkey] = osmval;
           }
@@ -288,14 +288,13 @@ write: async (cache: NsiCache) => {
       const properties = category.properties || {};
       properties.exclude = properties.exclude || {};
 
-      const cleanedProps = {} as NsiCategoryProperties;
-      cleanedProps.path = tkv;
+      const cleanedProps: NsiCategoryProperties = { path: tkv };
 
       if (properties.skipCollection) {
         cleanedProps.skipCollection = properties.skipCollection;
       }
       if (Array.isArray(properties.preserveTags)) {
-        cleanedProps.preserveTags = (properties.preserveTags.map(_cleanString) as string[]).sort(withLocale);
+        cleanedProps.preserveTags = properties.preserveTags.map(_cleanString).sort(withLocale);
       }
 
       cleanedProps.exclude = {};

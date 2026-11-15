@@ -47,8 +47,10 @@ describe('simplify', () => {
 
   it('returns empty string if no input', () => {
     assert.equal(simplify(), '');
-    assert.equal(simplify(null as unknown as string), '');
-    assert.equal(simplify({} as unknown as string), '');
+    // @ts-expect-error -- testing invalid input
+    assert.equal(simplify(null), '');
+    // @ts-expect-error -- testing invalid input
+    assert.equal(simplify({}), '');
   });
 
 });

@@ -374,8 +374,7 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
       if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
       if (preserveTags.length) targetPreset.preserveTags = preserveTags; // see NSI#10083
 
-      targetPreset.tags = sortObject(targetTags) as OsmTags;
-      targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags)) as OsmTags;
+      targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
 
       targetPresets[targetID] = targetPreset;
     }

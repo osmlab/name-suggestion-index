@@ -5,25 +5,20 @@
     "target": "ESNext",
 
     // Modules
-    "module": "ESNext",
+    "module": "Preserve",
     "moduleDetection": "force",
     "types": ["bun"],
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
 
     // Emit — disabled here; see tsconfig.build.json for declaration emit
     "noEmit": true,
 
-    // Interop
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-
     // Type Checking
     "strict": true,
-    "noImplicitAny": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
@@ -31,6 +26,8 @@
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true,
     "erasableSyntaxOnly": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
 
     // Some stricter flags (disabled by default)
     "noUnusedLocals": true,
