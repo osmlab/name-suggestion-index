@@ -21,6 +21,7 @@ for (const f of files) {
 // Remove these specific folders
 // (skip `./dist/wikidata`, as these take a while to generate)
 const folders = [
+  './build',
   './coverage',
   './dist/javascript',
   './dist/js',

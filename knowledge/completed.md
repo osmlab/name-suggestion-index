@@ -2,6 +2,8 @@
 
 ## November 2026
 
+- **ESM-only package and package checks (v9).** Dropped the CommonJS build, stopped the published types depending on `@openstreetmap/id-tagging-schema`, moved unused `@types/*` packages to devDependencies, and added publint + arethetypeswrong to `bun run all`. Verified with a scratch project: `import` and `require()` on Node 22, Bun loading the TS source, and types resolving under `bundler` and `nodenext` (ESM and CJS) with `types: []` and `skipLibCheck: false`.
+
 - **TypeScript 7.** No config or code changes were needed beyond the version bump (`types: ["bun"]` and `strict` were already set). The generated `.d.ts` files are identical, and type-checking takes well under a second. Afterwards, the tsconfig was tightened (`module: "Preserve"`, `allowUnreachableCode`/`allowUnusedLabels: false`, `isolatedDeclarations` for the build), options TypeScript 7 makes meaningless were removed, and the tests' `as unknown as` casts became `@ts-expect-error`.
 - **`noUncheckedIndexedAccess` turned on.** It flagged 380 spots, mostly in tests and `wikidata.ts`. One was a real bug: a template item pointing at a missing source path crashed with a `TypeError` instead of reaching its error message (`file_tree.ts`, `expandTemplates`). The data build and `dist` output were verified identical before and after.
 - **ESLint → oxlint.** This was the blocker for TypeScript 7. Lint now takes well under a second, and the lockfile dropped from about 280 packages to about 80. See `decisions.md` for what carried over.

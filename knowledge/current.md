@@ -16,4 +16,9 @@ Collecting general tool lessons during the current round of upgrades; send them 
 - **TypeScript 7 playbook, additions from doing it here:**
   - The per-file verify command needs the project's other module options too, e.g. `--allowImportingTsExtensions` for `.ts` import specifiers and `--resolveJsonModule` for JSON imports. In a loop under zsh, put the flags in an array (`O=(…)`, then `tsc $O file`); zsh doesn't word-split a plain string variable.
   - TypeScript silently ignores a file listed in `include` that doesn't exist. NSI's `tsconfig.build.json` still listed a deleted `lib/ambient.d.ts`. Worth a check during the upgrade.
+- **ESM-only / package-checks playbooks, additions from doing it here:**
+  - `bun run build` doesn't clean, so a stale `.cjs` from an earlier build gets packed. Run the checks after `clean` (as `bun run all` does), or the pack step tests leftovers.
+  - A wildcard export like `"./dist/*": "./dist/*"` makes publint warn about every browser script under `dist/` (IIFE bundles) being "CJS interpreted as ESM". The playbooks don't cover wildcard exports. NSI fixed it with a more specific `"./dist/js/*": null` entry, which blocks subpath imports of the scripts but leaves CDN URLs working.
+  - Step 4's dependency rule has a third option for a huge types-only need: copy the few types into the project (NSI did this for id-tagging-schema's `Preset`, a 72 MB package) and let the tests pass the upstream type in, to catch drift.
+  - In the scratch-project check, `import x = require('pkg')` in a `.cts` file tests the CJS side under `nodenext` without needing `@types/node`.
 - **zsh `!` history expansion:** a `!` inside double quotes in a shell command triggers history expansion and can hang an agent's terminal. Use single quotes, `set +H`, or a file-edit tool instead of `sed` with `!` in the pattern.
