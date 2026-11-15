@@ -20,16 +20,6 @@ await Promise.all([
     entrypoints: ['./src/nsi.ts'],
     outdir: './dist/js',
     target: 'node',
-    format: 'cjs',
-    packages: 'external',
-    sourcemap: 'linked',
-    naming: 'nsi.c[ext]'  // .cjs
-  }),
-
-  Bun.build({
-    entrypoints: ['./src/nsi.ts'],
-    outdir: './dist/js',
-    target: 'node',
     format: 'esm',
     packages: 'external',
     sourcemap: 'linked',

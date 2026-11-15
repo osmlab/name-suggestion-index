@@ -1,7 +1,6 @@
 import { sortObject } from './sort_object.ts';
 
-import type { Preset, Presets } from '@openstreetmap/id-tagging-schema';
-import type { DissolvedMap, NsiData, NsiPath, NsiTree, NsiTreeProperties, OsmTags, IDPreset, WikidataMap } from './types.ts';
+import type { DissolvedMap, NsiData, NsiPath, NsiTree, NsiTreeProperties, OsmTags, IDPreset, Preset, Presets, WikidataMap } from './types.ts';
 
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 

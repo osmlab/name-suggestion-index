@@ -27,6 +27,12 @@ Since LC v3, the matcher registers locationSets with LC (`registerLocationSets()
 - `IDPreset.locationSet` and `IDPreset.matchScore` are optional. They're NSI extensions that `buildIDPresets()` writes, and the source iD presets passed in don't have them.
 - `NsiCategory.templates` is optional. It's present only in data loaded with `fileTree.read()`, not in the published `nsi.json`. Consumers guard with `category.templates || []`.
 
+## ESM-only package, with its own `Preset` types
+
+Since v9 the package ships only an ES module (`dist/js/nsi.mjs`); the `require` export condition points at it too, which works on Node 20.19+ / 22.12+. There's deliberately no `engines.node` (Yarn 1 fails installs on a mismatch); the README states the minimum. The IIFE (`dist/js/nsi.iife.js`) and the nsi.guide bundle (`dist/js/nsiguide.js`) stay at their paths, because CDN users and nsi.guide load them by URL. `exports` maps `"./dist/js/*"` to `null`, so those scripts can't be imported by subpath (they aren't ES modules), while `"./dist/*"` keeps the JSON and other data files importable.
+
+`lib/types.ts` declares `Preset` / `Presets` / `RelationSchema` itself, mirroring id-tagging-schema v7, so the published `.d.ts` files don't import from that 72 MB package. `scripts/dist.ts` and the tests pass the upstream type to `buildIDPresets()`, which catches drift. `bun run package` (publint + arethetypeswrong on the packed tarball) runs as part of `bun run all`.
+
 ## `noUncheckedIndexedAccess` conventions
 
 The flag is on, so every index into a record or array may be `undefined`. The patterns used across the codebase:

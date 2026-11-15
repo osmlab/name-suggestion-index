@@ -1,6 +1,6 @@
 {
   "name": "name-suggestion-index",
-  "version": "8.0.20261101",
+  "version": "9.0.0",
   "license": "BSD-3-Clause",
   "description": "Canonical common brand names for OpenStreetMap",
   "homepage": "https://nsi.guide",
@@ -89,13 +89,15 @@
       "types": "./dist/ts/src/nsi.d.ts",
       "bun": "./src/nsi.ts",
       "import": "./dist/js/nsi.mjs",
-      "require": "./dist/js/nsi.cjs",
-      "browser": "./dist/js/nsi.iife.js"
+      "require": "./dist/js/nsi.mjs",
+      "browser": "./dist/js/nsi.iife.js",
+      "default": "./dist/js/nsi.mjs"
     },
+    "./dist/js/*": null,
     "./dist/*": "./dist/*"
   },
   "scripts": {
-    "all": "bun run --sequential clean check build test",
+    "all": "bun run --sequential clean check build test package",
     "build": "bun run --parallel 'build:*'",
     "build:js": "bun ./scripts/build_js.ts",
     "build:json": "bun ./scripts/build_json.ts",
@@ -105,6 +107,10 @@
     "check:types": "tsc --noEmit",
     "clean": "bun ./scripts/clean.ts",
     "dist": "bun ./scripts/dist.ts",
+    "package": "bun run --sequential package:pack package:publint package:attw",
+    "package:pack": "bun pm pack --quiet --ignore-scripts --destination ./build",
+    "package:publint": "publint --level warning ./build/*.tgz",
+    "package:attw": "attw --profile esm-only --no-summary ./build/*.tgz",
     "prepublishOnly": "bun ./scripts/prepublish.ts",
     "postpublish": "bun ./scripts/postpublish.ts",
     "start": "bun ./scripts/server.ts",
@@ -113,12 +119,11 @@
   },
   "dependencies": {
     "@rapideditor/location-conflation": "^4.0.0",
-    "@types/diacritics": "^1.3.3",
-    "@types/geojson": "^7946.0.16",
     "diacritics": "^1.3.0",
     "fast-xml-builder": "^1.3.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@fortawesome/free-brands-svg-icons": "^7.3.1",
     "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "@fortawesome/react-fontawesome": "^3.5.0",
@@ -127,6 +132,8 @@
     "@mapbox/geojson-rewind": "^0.6.0",
     "@openstreetmap/id-tagging-schema": "^7.3.0",
     "@types/bun": "^1.4.4",
+    "@types/diacritics": "^1.3.3",
+    "@types/geojson": "^7946.0.16",
     "@types/geojson-precision": "^1.0.0",
     "@types/mapbox__geojson-rewind": "^0.5.0",
     "@types/safe-regex": "^1.1.6",
@@ -136,6 +143,7 @@
     "json5": "^2.2.3",
     "jsonschema": "^1.5.0",
     "oxlint": "^1.93.0",
+    "publint": "^0.3.25",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.5",
