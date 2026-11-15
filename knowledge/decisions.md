@@ -31,6 +31,12 @@ Since LC v3, the matcher registers locationSets with LC (`registerLocationSets()
 
 `bun:assert` has no type declarations (only `bun:test`, `bun:ffi` and `bun:bundle` are declared in `bun-types`). `node:assert/strict` is typed through `@types/node` and has the same strict-equality semantics.
 
-## ESLint `no-undef` is off for TypeScript
+## Linting with oxlint
 
-TypeScript already checks for undefined variables, and ESLint's version doesn't understand TS type globals like `GeoJSON` or `RequestInit`.
+ESLint and typescript-eslint were replaced with oxlint (`.oxlintrc.json`) in November 2026. typescript-eslint doesn't support TypeScript 7 yet, and oxlint has a much smaller dependency tree and runs in milliseconds. The config keeps the old ESLint rules wherever oxlint has them. Formatting rules were dropped (`.editorconfig` covers whitespace), as were rules oxlint lacks (`dot-notation`, which oxlint only has as type-aware, `no-undef-init`, `require-atomic-updates`) and deprecated ones. None of them flagged anything at the time.
+
+`"plugins"` is set explicitly, which replaces oxlint's default plugin list, so oxlint's own `oxc` and `unicorn` rules are not on.
+
+## `no-undef` is off
+
+TypeScript already checks for undefined variables, and the linter's version doesn't understand TS type globals like `GeoJSON` or `RequestInit`.

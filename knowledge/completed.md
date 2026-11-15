@@ -1,5 +1,9 @@
 # Completed work
 
+## November 2026
+
+- **ESLint → oxlint.** This was the blocker for TypeScript 7. Lint now takes well under a second, and the lockfile dropped from about 280 packages to about 80. See `decisions.md` for what carried over.
+
 ## May 2026
 
 - **JOSM presets and sitemap XML now use `fast-xml-builder`.** `xmlbuilder2` is no longer a dependency. `buildJOSMPresets()` still returns an object with `.end()`, so call sites didn't change.
