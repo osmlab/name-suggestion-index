@@ -19,7 +19,7 @@ jobs:
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: latest
-    - run: bun install
+    - run: bun install --frozen-lockfile
     - run: |
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
