@@ -27,6 +27,13 @@ Since LC v3, the matcher registers locationSets with LC (`registerLocationSets()
 - `IDPreset.locationSet` and `IDPreset.matchScore` are optional. They're NSI extensions that `buildIDPresets()` writes, and the source iD presets passed in don't have them.
 - `NsiCategory.templates` is optional. It's present only in data loaded with `fileTree.read()`, not in the published `nsi.json`. Consumers guard with `category.templates || []`.
 
+## `noUncheckedIndexedAccess` conventions
+
+The flag is on, so every index into a record or array may be `undefined`. The patterns used across the codebase:
+- Iterate with `Object.entries()` / `Object.values()` instead of `Object.keys()` followed by `obj[key]`.
+- Split paths with a tuple cast: `const [t, k, v] = tkv.split('/', 3) as [NsiTree, string, string];`. Paths come from validated data, so the cast documents the assumption once instead of guarding every use.
+- In tests, `assert.ok(x)` narrows a lookup, and `result[0]!` is fine right after a length assertion. Prefer `!` over `?.` there, so a missing element fails loudly instead of passing an `undefined` comparison.
+
 ## Tests use `node:assert/strict`
 
 `bun:assert` has no type declarations (only `bun:test`, `bun:ffi` and `bun:bundle` are declared in `bun-types`). `node:assert/strict` is typed through `@types/node` and has the same strict-equality semantics.

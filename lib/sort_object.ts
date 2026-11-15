@@ -33,10 +33,10 @@ export function sortObject<T extends Record<string, unknown>>(obj: T): T | null 
    */
   function keyCompare(a: string, b: string): number {
     const qid = /^Q(\d+)$/;
-    const aMatch = a.match(qid);
-    const bMatch = b.match(qid);
-    if (aMatch && bMatch) {
-      return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);   // sort QIDs numerically
+    const aNum = a.match(qid)?.[1];
+    const bNum = b.match(qid)?.[1];
+    if (aNum && bNum) {
+      return parseInt(aNum, 10) - parseInt(bNum, 10);   // sort QIDs numerically
     } else {
       return withLocale(a, b);
     }

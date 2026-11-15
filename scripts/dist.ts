@@ -87,10 +87,9 @@ async function distAll() {
   // Write `nsi.json` as a single file containing everything by path
   // Reverse sort the paths, we want 'brands' to override 'operators'
   // see: https://github.com/osmlab/name-suggestion-index/issues/5693#issuecomment-2819259226
-  const sorted: NsiData = {};
-  Object.keys(_nsi.path).sort((a, b) => withLocale(b, a)).forEach(tkv => {
-    sorted[tkv] = _nsi.path[tkv];
-  });
+  const sorted: NsiData = Object.fromEntries(
+    Object.entries(_nsi.path).sort(([a], [b]) => withLocale(b, a))
+  );
 
   const output: NsiJSON = { nsi: sorted };
   await Bun.write('./dist/json/nsi.json', stringify(output, { maxLength: 800 }) + '\n');
@@ -215,7 +214,7 @@ async function buildTaginfo() {
     }
   }
 
-  taginfo.tags = Object.keys(tagPairs).sort(withLocale).map(kv => tagPairs[kv]);
+  taginfo.tags = Object.entries(tagPairs).sort(([a], [b]) => withLocale(a, b)).map(([, pair]) => pair);
   await Bun.write('./dist/json/taginfo.json', stringify(taginfo, { maxLength: 9999 }) + '\n');
 }
 

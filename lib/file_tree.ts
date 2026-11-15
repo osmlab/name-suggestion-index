@@ -91,9 +91,7 @@ read: async (cache: NsiCache, loco: LocationConflation) => {
 
       const properties = input.properties || {};
       const tkv = properties.path as NsiPath;
-      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const k = parts[1];
-      const v = parts[2];
+      const [, k, v] = tkv.split('/', 3) as [NsiTree, string, string];     // tkv = "tree/key/value"
       const kv = `${k}/${v}`;
       const seenkv: Record<string, string> = {};
 
@@ -205,12 +203,10 @@ write: async (cache: NsiCache) => {
     let itemCount = 0;
     let fileCount = 0;
 
-    for (const tkv of Object.keys(cache.path) as NsiPath[]) {
+    for (const [tkv, category] of Object.entries(cache.path)) {
       if (tkv.split('/')[0] !== t) continue;
 
-      const category = cache.path[tkv];
-      const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-      const v = parts[2];
+      const [, , v] = tkv.split('/', 3) as [NsiTree, string, string];     // tkv = "tree/key/value"
 
       const file = `./data/${tkv}.json`;
       fileCount++;
@@ -235,9 +231,9 @@ write: async (cache: NsiCache) => {
 
           // clean templateTags
           const cleaned: OsmTags = {};
-          for (const k of Object.keys(item.templateTags)) {
+          for (const [k, val] of Object.entries(item.templateTags)) {
             const osmkey = _trim(k);
-            const osmval = _trim(item.templateTags[k]);
+            const osmval = _trim(val);
             cleaned[osmkey] = osmval;
           }
           item.templateTags = sortObject(cleaned);
@@ -274,9 +270,9 @@ write: async (cache: NsiCache) => {
 
           // clean OSM tags
           const cleanedTags: OsmTags = {};
-          for (const k of Object.keys(item.tags)) {
+          for (const [k, val] of Object.entries(item.tags)) {
             const osmkey = _trim(k);
-            const osmval = _trim(item.tags[k]);
+            const osmval = _trim(val);
             cleanedTags[osmkey] = osmval;
           }
           item.tags = sortObject(cleanedTags);
@@ -399,9 +395,9 @@ expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
   cache.id = cache.id || new Map();
   cache.path = cache.path || {};
 
-  for (const tkv of Object.keys(cache.path)) {
+  for (const [tkv, category] of Object.entries(cache.path)) {
     const file = `./data/${tkv}.json`;
-    const templateItems = cache.path[tkv].templates || [];
+    const templateItems = category.templates || [];
 
     // expand each template item into real items..
     for (const templateItem of templateItems) {
@@ -410,7 +406,7 @@ expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
       const templateSource = templateItem.templateSource;
       const templateTags = templateItem.templateTags;
 
-      const sourceItems = cache.path[templateSource].items;
+      const sourceItems = cache.path[templateSource]?.items;
       if (!Array.isArray(sourceItems)) {
         console.error(styleText('red', `Error - template item references invalid source path '${templateSource}' in:`));
         console.error('  ' + styleText('yellow', file));
@@ -494,7 +490,7 @@ expandTemplates: (cache: NsiCache, loco: LocationConflation) => {
           // destination category, and there may be duplicates when we do this.
           // For example `route/railway` and `route/tracks` for NSI#8124
         } else {
-          cache.path[tkv].items.push(item);
+          category.items.push(item);
           cache.id.set(item.id, item);
         }
       }
