@@ -20,7 +20,4 @@ jobs:
       with:
         bun-version: latest
     - run: bun install --frozen-lockfile
-    - run: |
-        echo "::remove-matcher owner=eslint-compact::"
-        echo "::remove-matcher owner=eslint-stylish::"
     - run: bun run all
