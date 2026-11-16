@@ -33,11 +33,11 @@ This project has reusable agent skills in `.claude/skills/`: one folder per skil
 
 ## Shared playbooks and lessons
 
-[agent-practices](https://github.com/rapideditor/agent-practices) also keeps knowledge that applies across projects. It isn't synced here; fetch it when it's relevant:
-- **Playbooks** for one-time upgrades (e.g. ESLint → oxlint, TypeScript 7): `https://raw.githubusercontent.com/rapideditor/agent-practices/main/playbooks/README.md`
-- **Lessons**, gotchas with the tools we use (Bun, TypeScript, packaging, git): `https://raw.githubusercontent.com/rapideditor/agent-practices/main/lessons/README.md`
+[agent-practices](https://github.com/rapideditor/agent-practices) also keeps knowledge that applies across projects. It's written for agents, and isn't synced here, so fetch it:
+- **Lessons**, gotchas with the tools we use (Bun, TypeScript, packaging, git): `https://raw.githubusercontent.com/rapideditor/agent-practices/main/lessons/README.md`. **At session start**, read the index, then the lesson files for the tools this project uses. They're short, and they apply to everyday work, not just upgrades.
+- **Playbooks** for one-time upgrades (e.g. ESLint → oxlint, TypeScript 7): `https://raw.githubusercontent.com/rapideditor/agent-practices/main/playbooks/README.md`. Read the index before an upgrade, a tooling change or packaging work, then only the playbooks that apply.
 
-Before an upgrade, a tooling change, or packaging work, read the index and then only the entries that apply. This project's own conventions win where they differ. If you learn something that would help other projects, say so; `/reflect` can draft it for agent-practices.
+Fetch the raw files with `curl -fsSL` (or `gh api`), so you get the exact text. A web-fetch tool that summarizes pages can drop the details that matter. This project's own conventions win where they differ. If you learn something that would help other projects, say so; `/reflect` can draft it for agent-practices.
 
 ## General Guidelines
 
