@@ -50,6 +50,8 @@ ESLint and typescript-eslint were replaced with oxlint (`.oxlintrc.json`) in Nov
 
 `"plugins"` is set explicitly, which replaces oxlint's default plugin list, so oxlint's own `oxc` and `unicorn` rules are not on.
 
+`.oxlintrc.json` lists only what differs from oxlint's defaults. It doesn't repeat rules the `correctness` category already turns on, set `"off"` on rules no category turns on, or give options that match a rule's defaults. Option names are oxlint's (`preferInline`), which aren't always ESLint's (`prefer-inline`).
+
 ## `no-undef` is off
 
-TypeScript already checks for undefined variables, and the linter's version doesn't understand TS type globals like `GeoJSON` or `RequestInit`.
+TypeScript already checks for undefined variables, and the linter's version doesn't understand TS type globals like `GeoJSON` or `RequestInit`. In oxlint it's a `nursery` rule, which no enabled category turns on, so `.oxlintrc.json` doesn't need to mention it. Don't turn it on.
