@@ -18,7 +18,7 @@ jobs:
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: latest
-    - run: bun install
+    - run: bun install --frozen-lockfile
     - run: bun run all
     - name: Open PR
       uses: peter-evans/create-pull-request@v8
