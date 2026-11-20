@@ -1,5 +1,4 @@
 import type { HasLocationSet, LocationSet } from '@rapideditor/location-conflation';
-import type { Preset } from '@openstreetmap/id-tagging-schema';
 
 
 /** Tags must always consist of key,value string pairs (no undefined) */
@@ -242,6 +241,70 @@ export interface NsiWikidataJSON {
 export interface NsiWarningsJSON {
   warnings: WikidataWarning[];
 }
+
+
+//
+// Source iD/Rapid Preset types
+//
+// These mirror the types published by `@openstreetmap/id-tagging-schema` v7 (`dist/presets.d.json.ts`).
+// They're copied here so that NSI's published types don't depend on that package, which is a 72 MB
+// install that most NSI consumers don't need. The tests pass the upstream `Presets` type to
+// `buildIDPresets`, so a drift between the two shows up as a type error.
+//
+
+type PresetGeometry = 'point' | 'vertex' | 'line' | 'area' | 'relation';
+
+/** A relation member schema, used by relation presets. */
+export interface RelationSchema {
+  reference: string;
+  allowDuplicateMembers: boolean;
+  role_labels: Record<string, string>;
+  members: {
+    role: string;
+    geometry?: PresetGeometry[];
+    matchTags?: Record<string, string>[];
+    min?: number;
+    max?: number;
+  }[];
+}
+
+/**
+ * Properties that define an id-tagging-schema preset.
+ * @see https://github.com/openstreetmap/id-tagging-schema/blob/main/schemas/preset.json
+ */
+export interface Preset {
+  name: string;
+  geometry: PresetGeometry[];
+  tags: Record<string, string>;
+  addTags?: Record<string, string>;
+  removeTags?: Record<string, string>;
+  fields?: string[];
+  moreFields?: string[];
+  icon?: string;
+  imageURL?: string;
+  terms?: string[];
+  aliases?: string[];
+  searchable?: boolean;
+  matchScore?: number;
+  reference?: {
+    key: string;
+    value?: string;
+  };
+  replacement?: string;
+  locationSet?: {
+    include?: string[];
+    exclude?: string[];
+  };
+  locationSetCrossReference?: string;
+  related?: {
+    expectedVertices?: string[];
+  };
+  relation?: RelationSchema;
+  relationCrossReference?: string;
+}
+
+/** The id-tagging-schema presets dictionary, keyed by preset ID. */
+export type Presets = Record<string, Preset>;
 
 
 //

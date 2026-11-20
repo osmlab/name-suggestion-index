@@ -1,5 +1,7 @@
 ---
+name: release
 description: Prepare a new release (not automated for this project)
+disable-model-invocation: true
 ---
 
 Do NOT perform any release steps. Simply tell the user:
