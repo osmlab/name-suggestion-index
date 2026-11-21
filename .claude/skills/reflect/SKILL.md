@@ -22,6 +22,17 @@ If the user provided additional context with the prompt, treat it as a focus are
 - Agent instructions and skills (`AGENTS.md`, `.claude/skills/`, `copilot-instructions`, etc.)
 - Project knowledge in `knowledge/` (or whatever convention this project uses, see `AGENTS.md`)
 - Design docs in `design/`, if the project has them
+- The GitHub wiki, see below
+
+## Project wiki
+
+This project also keeps user and maintainer docs in the [GitHub wiki](https://github.com/osmlab/name-suggestion-index/wiki). Pages there go stale when commands, file paths, scripts or behavior change, so check them too.
+
+- The wiki is its own git repo, not something `gh` edits. Clone it into a scratch directory: `git clone https://github.com/osmlab/name-suggestion-index.wiki.git`. Its branch is `master`.
+- Grep the pages for whatever this work changed (commands, paths, script names, removed files), then read the pages that cover the changed systems. `Info-for-Maintainers.md`, `Distributed-Files.md`, `API-Reference.md` and `Glossary.md` are the most technical, and the most likely to be stale.
+- Check every claim against the code before changing it. Keep each page's voice. Many pages are written for contributors who don't code.
+- Wiki links look like `[[label|Page Name#anchor]]`, and `_Sidebar.md` is the navigation.
+- Edit the clone, but don't commit or push. Show the user `git diff --stat` and the path to the clone, and push only once they approve. Pushing publishes the change immediately, and there's no review step.
 
 ## Pruning project knowledge
 
