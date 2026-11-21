@@ -18,6 +18,10 @@ If this project has a `design/` folder, it holds design docs for the larger syst
 - **Before changing one of those systems, read its design doc.** If your change alters the design, update the doc in the same change.
 - When you make a substantial change to a system that has no design doc yet, suggest starting one.
 
+### Project wiki
+
+The [GitHub wiki](https://github.com/osmlab/name-suggestion-index/wiki) holds the contributor and maintainer docs (`/reflect` covers how to edit it). Its branch is `master`. `Info-for-Maintainers.md`, `Distributed-Files.md`, `API-Reference.md` and `Glossary.md` are the most technical pages, and the most likely to go stale.
+
 ### Private notes
 
 Files named `PRIVATE.*` (e.g. `PRIVATE.md`, `PRIVATE.json`) are gitignored, and can be in any folder. They hold notes that shouldn't be public, such as personal context or unreleased plans.
