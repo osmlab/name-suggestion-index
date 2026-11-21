@@ -2,6 +2,7 @@
 
 ## November 2026
 
+- **Wikidata script stops managing P8253 references.** After a bulk Wikidata edit stripped them, the script queued ~41,000 edits per run (NSI#13076). It now leaves references alone and matches identifier claims by value, so a normal run makes only the real changes.
 - **ESM-only package and package checks (v9).** Dropped the CommonJS build, stopped the published types depending on `@openstreetmap/id-tagging-schema`, moved unused `@types/*` packages to devDependencies, and added publint + arethetypeswrong to `bun run all`. Verified with a scratch project: `import` and `require()` on Node 22, Bun loading the TS source, and types resolving under `bundler` and `nodenext` (ESM and CJS) with `types: []` and `skipLibCheck: false`.
 
 - **TypeScript 7.** No config or code changes were needed beyond the version bump (`types: ["bun"]` and `strict` were already set). The generated `.d.ts` files are identical, and type-checking takes well under a second. Afterwards, the tsconfig was tightened (`module: "Preserve"`, `allowUnreachableCode`/`allowUnusedLabels: false`, `isolatedDeclarations` for the build), options TypeScript 7 makes meaningless were removed, and the tests' `as unknown as` casts became `@ts-expect-error`.

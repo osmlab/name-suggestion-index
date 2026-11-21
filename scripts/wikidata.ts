@@ -35,12 +35,9 @@ interface WbEditRequest {
   newValue?: string;
   rank?: string;
   language?: string;
-  snaks?: Record<string, string>;
-  references?: Record<string, string>[];
 }
 
 // Derive wikibase-edit param types from the exported API (they aren't re-exported directly)
-type SetReferenceParams = Parameters<WikibaseEditAPI['reference']['set']>[0];
 type UpdateClaimParams = Parameters<WikibaseEditAPI['claim']['update']>[0];
 type RemoveClaimParams = Parameters<WikibaseEditAPI['claim']['remove']>[0];
 type CreateClaimParams = Parameters<WikibaseEditAPI['claim']['create']>[0];
@@ -638,40 +635,44 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity): void {
   const nsiClaims = (wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true }) as CustomSimplifiedClaim[])
     .sort((a, b) => withLocale(String(a.value), String(b.value)));
 
-  // Include this reference on all our claims - NSI#4648
-  const reference = { P248: 'Q62108705' };   // 'stated in': 'name suggestion index'
-  const references = [reference];
+  // We no longer add a 'stated in': 'name suggestion index' reference to these claims (previously NSI#4648).
+  // Wikidata editors removed them as redundant on an external identifier, see NSI#13076
 
-  // Make the nsiClaims match the nsiIds..
-  let msg;
-  for (const [i, claim] of nsiClaims.entries()) {
+  // Keep existing claims whose value already matches an id, so that adding or removing one id
+  // doesn't shift every claim after it and cause a cascade of updates.
+  const unmatchedIds = new Set(nsiIds);
+  const unmatchedClaims: CustomSimplifiedClaim[] = [];
+  for (const claim of nsiClaims) {
+    const value = String(claim.value);
+    if (unmatchedIds.has(value)) {
+      unmatchedIds.delete(value);
+      if (claim.rank !== 'normal') {   // force all ranks to 'normal'
+        const msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
+        enqueueWbEdit({ qid: qid, guid: claim.id as string, newValue: value, rank: 'normal', msg: msg });
+      }
+    } else {
+      unmatchedClaims.push(claim);
+    }
+  }
+
+  // Reuse leftover claims for leftover ids, then remove or add whatever remains
+  const leftoverIds = Array.from(unmatchedIds);
+  for (const [i, claim] of unmatchedClaims.entries()) {
     const claimID = claim.id as string;
-    const nsiId = nsiIds[i];
+    const nsiId = leftoverIds[i];
 
-    if (nsiId !== undefined) {   // match existing claims to ids, and force all ranks to 'normal'
-      let msg;
-      if (claim.value !== nsiId || claim.rank !== 'normal') {
-        if (claim.value !== nsiId) {
-          msg = `Updating NSI identifier for ${qid}: value ${claim.value} -> ${nsiId}`;
-        } else if (claim.rank !== 'normal') {
-          msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
-        }
-        enqueueWbEdit({ qid: qid, guid: claimID, newValue: nsiId, rank: 'normal', references: references, msg: msg! });
-      }
-      if (!claim.references || !claim.references.length) {
-        msg = `Updating NSI identifier reference for ${qid}`;
-        enqueueWbEdit({ qid: qid, guid: claimID, snaks: reference, msg: msg });
-      }
-
+    if (nsiId !== undefined) {   // update existing claim to a new id
+      const msg = `Updating NSI identifier for ${qid}: value ${claim.value} -> ${nsiId}`;
+      enqueueWbEdit({ qid: qid, guid: claimID, newValue: nsiId, rank: 'normal', msg: msg });
     } else {  // remove extra existing claims
-      msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
+      const msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
       enqueueWbEdit({ qid: qid, guid: claimID, msg: msg });
     }
   }
 
-  for (const nsiId of nsiIds.slice(nsiClaims.length)) {   // add new claims
-    msg = `Adding NSI identifier for ${qid}: ${nsiId}`;
-    enqueueWbEdit({ qid: qid, id: qid, property: 'P8253', value: nsiId, rank: 'normal', references: references, msg: msg });
+  for (const nsiId of leftoverIds.slice(unmatchedClaims.length)) {   // add new claims
+    const msg = `Adding NSI identifier for ${qid}: ${nsiId}`;
+    enqueueWbEdit({ qid: qid, id: qid, property: 'P8253', value: nsiId, rank: 'normal', msg: msg });
   }
 }
 
@@ -975,9 +976,7 @@ async function drainWbEditQueue(): Promise<void> {
     if (!DRYRUN) {
       try {
         let task;
-        if (request.guid && request.snaks) {
-          task = _wbEdit.reference.set(request as SetReferenceParams);  // update reference
-        } else if (request.guid && request.newValue) {
+        if (request.guid && request.newValue) {
           task = _wbEdit.claim.update(request as UpdateClaimParams);    // update claim
         } else if (request.guid && !request.newValue) {
           task = _wbEdit.claim.remove(request as RemoveClaimParams);    // remove claim

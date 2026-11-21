@@ -55,3 +55,9 @@ ESLint and typescript-eslint were replaced with oxlint (`.oxlintrc.json`) in Nov
 ## `no-undef` is off
 
 TypeScript already checks for undefined variables, and the linter's version doesn't understand TS type globals like `GeoJSON` or `RequestInit`. In oxlint it's a `nursery` rule, which no enabled category turns on, so `.oxlintrc.json` doesn't need to mention it. Don't turn it on.
+
+## No reference on NSI identifier (P8253) claims
+
+`scripts/wikidata.ts` used to add `stated in` (P248) = `name suggestion index` (Q62108705) to every P8253 claim it managed (NSI#4648). In November 2026 a Wikidata editor removed those references in bulk as redundant on an external identifier, which is the usual Wikidata convention. Re-adding them meant about 36,000 edits per run (NSI#13076) and an edit war, so the script no longer adds or checks references.
+
+The script also matches existing claims to NSI ids by value, not by sorted position, so adding or removing one id is one edit instead of an update to every claim after it.
