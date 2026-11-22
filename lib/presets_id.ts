@@ -1,7 +1,6 @@
 import { sortObject } from './sort_object.ts';
 
-import type { Preset, Presets } from '@openstreetmap/id-tagging-schema';
-import type { DissolvedMap, NsiData, NsiPath, NsiTree, NsiTreeProperties, OsmTags, IDPreset, WikidataMap } from './types.ts';
+import type { DissolvedMap, NsiData, NsiPath, NsiTree, NsiTreeProperties, OsmTags, IDPreset, Preset, Presets, WikidataMap } from './types.ts';
 
 const withLocale = new Intl.Collator('en-US').compare;  // specify 'en-US' for stable sorting
 
@@ -180,11 +179,11 @@ function collectTerms(
   notName: RegExp
 ): Set<string> {
   const terms = new Set(item.matchNames || []);
-  for (const osmkey of Object.keys(item.tags)) {
+  for (const [osmkey, osmval] of Object.entries(item.tags)) {
     if (osmkey === 'name') continue;      // Can exclude the `name` tag, as iD prioritizes it above `preset.terms` already
     if (notName.test(osmkey)) continue;   // osmkey is not a namelike tag, skip
     if (primaryName.test(osmkey) || alternateName.test(osmkey)) {
-      terms.add(item.tags[osmkey].toLowerCase());
+      terms.add(osmval.toLowerCase());
     }
   }
   return terms;
@@ -290,13 +289,15 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
     paths.push('transit/route/ferry');   // add a duplicate tkv
   }
 
-  for (const tkv of paths.sort(withLocale) as NsiPath[]) {
-    const properties = data[tkv].properties || {};
-    const items = data[tkv].items;
+  for (const tkv of paths.sort(withLocale)) {
+    const category = data[tkv];
+    if (!category) continue;
+    const properties = category.properties || {};
+    const items = category.items;
     if (!Array.isArray(items) || !items.length) continue;
 
-    const [t, k, v] = tkv.split('/', 3);   // tkv = "tree/key/value"
-    const tree = trees[t as NsiTree];
+    const [t, k, v] = tkv.split('/', 3) as [NsiTree, string, string];   // tkv = "tree/key/value"
+    const tree = trees[t];
     const kv = `${k}/${v}`;
 
     // Ferry hack! ⛴ - duplicated tkv generates `type/route/ferry` then `route/ferry`
@@ -318,9 +319,9 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
 
     // Look for iD presets that would fit this NSI presetPath.
     const childPresets = new Map<string, Preset>();
-    for (const checkPath in sourcePresets) {
+    for (const [checkPath, checkPreset] of Object.entries(sourcePresets)) {
       if (checkPath.startsWith(presetPath)) {
-        childPresets.set(checkPath, sourcePresets[checkPath]);
+        childPresets.set(checkPath, checkPreset);
       }
     }
 
@@ -347,9 +348,9 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
       const targetID = `${presetID}/${item.id}`;
 
       const targetTags: OsmTags = {};
-      targetTags[wdTag] = tags[wdTag]; // add the `*:wikidata` tag
-      for (const presetKey in preset.tags) {  // prioritize NSI tags over iD preset tags (for `vending`, `cuisine`, etc)
-        targetTags[presetKey] = tags[presetKey] || preset.tags[presetKey];
+      targetTags[wdTag] = qid; // add the `*:wikidata` tag
+      for (const [presetKey, presetValue] of Object.entries(preset.tags)) {  // prioritize NSI tags over iD preset tags (for `vending`, `cuisine`, etc)
+        targetTags[presetKey] = tags[presetKey] || presetValue;
       }
 
       const logoURL = pickLogoURL(qid, wikidata);
@@ -374,8 +375,7 @@ export function buildIDPresets(data: NsiData, opts: BuildIDPresetsOptions): Buil
       if (dissolved[item.id])  targetPreset.searchable = false;  // dissolved/closed businesses
       if (preserveTags.length) targetPreset.preserveTags = preserveTags; // see NSI#10083
 
-      targetPreset.tags = sortObject(targetTags) as OsmTags;
-      targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags)) as OsmTags;
+      targetPreset.addTags = sortObject(Object.assign({}, item.tags, targetTags));
 
       targetPresets[targetID] = targetPreset;
     }

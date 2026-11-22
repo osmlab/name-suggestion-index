@@ -1238,23 +1238,6 @@
       "tags": {"network": "ATI", "route": "bus"}
     },
     {
-      "displayName": "ATM (Barcelona)",
-      "id": "autoritatdeltransportmetropolitadelareadebarcelona-b0a08c",
-      "locationSet": {
-        "include": ["es-b.geojson"]
-      },
-      "matchNames": [
-        "amt (barcelona)",
-        "atm (autoritat del transport metropolità de l'àrea de barcelona)"
-      ],
-      "tags": {
-        "network": "Autoritat del Transport Metropolità de l'Àrea de Barcelona",
-        "network:short": "ATM Barcelona",
-        "network:wikidata": "Q1845633",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "ATM (Milano)",
       "id": "atm-176f0c",
       "locationSet": {
@@ -1267,15 +1250,47 @@
       }
     },
     {
-      "displayName": "ATM Lleida",
+      "displayName": "ATM Àrea de Barcelona",
+      "id": "autoritatdeltransportmetropolitadelareadebarcelona-b0a08c",
+      "locationSet": {
+        "include": ["es-b.geojson"]
+      },
+      "matchNames": [
+        "atm (autoritat del transport metropolità de l'àrea de barcelona)",
+        "atm (barcelona)"
+      ],
+      "tags": {
+        "network": "Autoritat del Transport Metropolità de l'Àrea de Barcelona",
+        "network:short": "ATM Àrea de Barcelona",
+        "network:wikidata": "Q1845633",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "ATM Àrea de Lleida",
       "id": "autoritatterritorialdelamobilitatdelareadelleida-b81807",
       "locationSet": {
         "include": ["es-l.geojson"]
       },
+      "matchNames": ["atm lleida"],
       "tags": {
         "network": "Autoritat Territorial de la Mobilitat de l'Àrea de Lleida",
-        "network:short": "ATM Lleida",
+        "network:short": "ATM Àrea de Lleida",
         "network:wikidata": "Q4826953",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "ATM Camp de Tarragona",
+      "id": "autoritatterritorialdelamobilitatdelcampdetarragona-305dee",
+      "locationSet": {
+        "include": ["es-t.geojson"]
+      },
+      "matchNames": ["atm tarragona"],
+      "tags": {
+        "network": "Autoritat Territorial de la Mobilitat del Camp de Tarragona",
+        "network:short": "ATM Camp de Tarragona",
+        "network:wikidata": "Q4826954",
         "route": "bus"
       }
     },
@@ -4646,7 +4661,6 @@
       },
       "tags": {
         "network": "Consorcio de Transportes del Área de Zaragoza",
-        "network:guid": "ES-AR-Z-CTAZ",
         "network:short": "CTAZ",
         "network:wikidata": "Q5784328",
         "route": "bus"
@@ -7017,7 +7031,7 @@
         "network": "Gooi- en Vechtstreek",
         "network:wikidata": "Q108723753",
         "operator": "Transdev",
-        "operator:wikidata": "Q442637",
+        "operator:wikidata": "Q131179812",
         "route": "bus"
       }
     },
@@ -7831,15 +7845,30 @@
       }
     },
     {
-      "displayName": "Ideska",
-      "id": "integrovanydopravnisystemjihoceskehokraje-f0f35e",
+      "displayName": "IDESKA",
+      "id": "ideska-f0f35e",
       "locationSet": {
         "include": ["cz-31.geojson"]
       },
+      "matchNames": [
+        "integrovany dopravni system jihoceskeho kraje"
+      ],
       "tags": {
-        "network": "Integrovaný dopravní systém Jihočeského kraje",
-        "network:short": "Ideska",
+        "network": "IDESKA",
         "network:wikidata": "Q138862649",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "IDOK",
+      "id": "integrovanadopravakarlovarskehokraje-1fa2ec",
+      "locationSet": {
+        "include": ["cz-41.geojson"]
+      },
+      "tags": {
+        "network": "Integrovaná doprava Karlovarského kraje",
+        "network:short": "IDOK",
+        "network:wikidata": "Q12021681",
         "route": "bus"
       }
     },
@@ -10353,6 +10382,21 @@
       "tags": {"network": "Macau", "route": "bus"}
     },
     {
+      "displayName": "MAD Piešťany",
+      "id": "mestskaautobusovadopravapiestany-51c51c",
+      "locationSet": {"include": ["sk"]},
+      "matchNames": ["mhd piestany"],
+      "note": "ISO 3166-2 SK-TA",
+      "tags": {
+        "network": "Mestská autobusová doprava Piešťany",
+        "network:short": "MAD Piešťany",
+        "network:wikidata": "Q110521796",
+        "operator": "Arriva Trnava",
+        "operator:wikidata": "Q131698585",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "MAD Třebíč",
       "id": "madtrebic-a45453",
       "locationSet": {"include": ["001"]},
@@ -11358,17 +11402,16 @@
     },
     {
       "displayName": "MHD Bratislava",
-      "id": "mhdbratislava-ce8ad1",
+      "id": "mhdbratislava-55fe1b",
       "locationSet": {
-        "include": [
-          "at-3.geojson",
-          "hu",
-          "sk-bl.geojson"
-        ]
+        "include": ["sk-bl.geojson"]
       },
       "tags": {
         "network": "MHD Bratislava",
         "network:wikidata": "Q7258005",
+        "operator": "Dopravný podnik Bratislava",
+        "operator:short": "DPB",
+        "operator:wikidata": "Q685601",
         "route": "bus"
       }
     },
@@ -11605,19 +11648,6 @@
         "operator": "Dopravní podnik města Pardubic",
         "operator:short": "DPMP",
         "operator:wikidata": "Q11822119",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "MHD Piešťany",
-      "id": "mhdpiestany-51c51c",
-      "locationSet": {"include": ["sk"]},
-      "note": "ISO 3166-2 SK-TA",
-      "tags": {
-        "network": "MHD Piešťany",
-        "network:wikidata": "Q110521796",
-        "operator": "Arriva Trnava",
-        "operator:wikidata": "Q131698585",
         "route": "bus"
       }
     },
@@ -12522,18 +12552,19 @@
       }
     },
     {
-      "displayName": "Münchner Verkehrs- und Tarifverbund",
-      "id": "munchnerverkehrsundtarifverbund-bfc089",
+      "displayName": "Münchner VerkehrsVerbund",
+      "id": "munchnerverkehrsverbund-bfc089",
       "locationSet": {
         "include": ["de-by.geojson"]
       },
       "matchNames": [
+        "münchner verkehrs- und tarifverbund",
         "rosenheimer verkehrsgesellschaft",
         "rovg",
         "stadtverkehr rosenheim"
       ],
       "tags": {
-        "network": "Münchner Verkehrs- und Tarifverbund",
+        "network": "Münchner VerkehrsVerbund",
         "network:guid": "DE-BY-MVV",
         "network:short": "MVV",
         "network:wikidata": "Q259000",
@@ -12659,13 +12690,14 @@
       }
     },
     {
-      "displayName": "MUV",
-      "id": "muv-fdc094",
+      "displayName": "MUV - Mobilidade Urbana de Viseu",
+      "id": "mobilidadeurbanadeviseu-fdc094",
       "locationSet": {
         "include": ["pt-18.geojson"]
       },
       "tags": {
-        "network": "MUV",
+        "network": "Mobilidade Urbana de Viseu",
+        "network:short": "MUV",
         "network:wikidata": "Q63247817",
         "route": "bus"
       }
@@ -16396,6 +16428,25 @@
       }
     },
     {
+      "displayName": "Rzeszowski Transport Miejski",
+      "id": "rzeszowskitransportmiejski-a6ea4e",
+      "locationSet": {
+        "include": ["pl-18.geojson"]
+      },
+      "tags": {
+        "network": "Rzeszowski Transport Miejski",
+        "network:short": "RTM",
+        "network:wikidata": "Q141627938",
+        "operator": "Miejskie Przedsiębiorstwo Komunikacyjne w Rzeszowie",
+        "operator:short": "MPK Rzeszów",
+        "operator:wikidata": "Q11780307",
+        "owner": "Zarząd Transportu Miejskiego w Rzeszowie",
+        "owner:short": "ZTM Rzeszów",
+        "owner:wikidata": "Q141755570",
+        "route": "bus"
+      }
+    },
+    {
       "displayName": "S.T.P.T.",
       "id": "stpt-9c403a",
       "locationSet": {"include": ["ro"]},
@@ -17659,25 +17710,25 @@
       }
     },
     {
-      "displayName": "SN'go",
-      "id": "sngo-6efcc0",
-      "locationSet": {
-        "include": ["fr-nor.geojson"]
-      },
-      "matchNames": ["transcape"],
-      "tags": {
-        "network": "SN'go",
-        "network:wikidata": "Q86669125",
-        "route": "bus"
-      }
-    },
-    {
       "displayName": "SNG",
       "id": "sng-d9bf75",
       "locationSet": {
         "include": ["de-th.geojson"]
       },
       "tags": {"network": "SNG", "route": "bus"}
+    },
+    {
+      "displayName": "SNgo!",
+      "id": "sngo-6efcc0",
+      "locationSet": {
+        "include": ["fr-nor.geojson"]
+      },
+      "matchNames": ["transcape"],
+      "tags": {
+        "network": "SNgo!",
+        "network:wikidata": "Q86669125",
+        "route": "bus"
+      }
     },
     {
       "displayName": "Sochaczew",
@@ -18517,6 +18568,19 @@
       "tags": {
         "network": "STTR",
         "network:wikidata": "Q3488031",
+        "route": "bus"
+      }
+    },
+    {
+      "displayName": "STUV - Serviço de Trasportes Urbanos de Viseu",
+      "id": "servicodetrasportesurbanosdeviseu-fdc094",
+      "locationSet": {
+        "include": ["pt-18.geojson"]
+      },
+      "tags": {
+        "network": "Serviço de Trasportes Urbanos de Viseu",
+        "network:short": "STUV",
+        "network:wikidata": "Q10370644",
         "route": "bus"
       }
     },
@@ -20741,6 +20805,8 @@
       },
       "tags": {
         "network": "Transportes Urbanos de Santander",
+        "network:short": "TUS",
+        "network:wikidata": "Q142211971",
         "route": "bus"
       }
     },
@@ -21335,18 +21401,6 @@
       "tags": {
         "network": "Tursib",
         "network:wikidata": "Q1477885",
-        "route": "bus"
-      }
-    },
-    {
-      "displayName": "TUS (España)",
-      "id": "transporteurbanodesantander-00c3a9",
-      "locationSet": {
-        "include": ["es-s.geojson"]
-      },
-      "tags": {
-        "network": "Transporte Urbano de Santander",
-        "network:short": "TUS",
         "route": "bus"
       }
     },
@@ -27972,7 +28026,7 @@
       "tags": {
         "network": "龍運機場巴士 Long Win Bus",
         "network:en": "Long Win Bus",
-        "network:short": "LBW",
+        "network:short": "LWB",
         "network:wikidata": "Q6673423",
         "network:yue": "龍運機場巴士",
         "route": "bus"

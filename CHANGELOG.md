@@ -15,6 +15,18 @@ _Breaking changes, which may affect downstream projects, are marked with a_ ⚠�
 [#xxxxx]: https://github.com/osmlab/name-suggestion-index/issues/xxxxx
 -->
 
+# 9.0.YYYYMMDD
+##### 2026-Nov-21
+  * ⚠️  The package is now ESM-only. The CommonJS build (`dist/js/nsi.cjs`) has been removed. `require('name-suggestion-index')` still works, and loads the ES module, on Node 20.19+ or 22.12+.
+  * ⚠️  Files under `dist/js/` can no longer be imported by subpath (e.g. `name-suggestion-index/dist/js/nsi.iife.js`). Import the package itself instead. Loading these files from a CDN by URL still works, and files elsewhere under `dist/` (e.g. `dist/json/`) can still be imported.
+  * The published TypeScript types no longer import from `@openstreetmap/id-tagging-schema`. NSI now exports its own `Preset`, `Presets` and `RelationSchema` types, which mirror id-tagging-schema v7.
+  * `@types/geojson` and `@types/diacritics` are no longer installed as dependencies, since the published types don't use them.
+  * Internal: switched from ESLint to oxlint ([#13109]), upgraded to TypeScript 7 with stricter checks ([#13110]), and added publint and arethetypeswrong checks of the packed tarball.
+
+[#13109]: https://github.com/osmlab/name-suggestion-index/pull/13109
+[#13110]: https://github.com/osmlab/name-suggestion-index/pull/13110
+
+
 # 8.0.YYYYMMDD
 ##### 2026-Jul-28
   * ⚠️  Bump to [`openstreetmap/id-tagging-schema`](https://github.com/openstreetmap/id-tagging-schema) v7 — downstream consumers must upgrade simultaneously ([#12449])

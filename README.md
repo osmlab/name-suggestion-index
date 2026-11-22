@@ -52,6 +52,8 @@ Currently used in:
 - [Every Door](https://github.com/Zverik/every_door)
 - [All The Places](https://github.com/alltheplaces/alltheplaces)
 
+The `name-suggestion-index` npm package is an ES module. Loading it with `require()` needs Node 20.19+ or 22.12+.
+
 
 ## About the index
 

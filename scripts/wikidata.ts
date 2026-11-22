@@ -35,12 +35,9 @@ interface WbEditRequest {
   newValue?: string;
   rank?: string;
   language?: string;
-  snaks?: Record<string, string>;
-  references?: Record<string, string>[];
 }
 
 // Derive wikibase-edit param types from the exported API (they aren't re-exported directly)
-type SetReferenceParams = Parameters<WikibaseEditAPI['reference']['set']>[0];
 type UpdateClaimParams = Parameters<WikibaseEditAPI['claim']['update']>[0];
 type RemoveClaimParams = Parameters<WikibaseEditAPI['claim']['remove']>[0];
 type CreateClaimParams = Parameters<WikibaseEditAPI['claim']['create']>[0];
@@ -182,11 +179,10 @@ const _qidItems: Record<ItemId, Set<string>> = {};       // any item referenced 
 const _qidIdItems: Record<ItemId, Set<string>> = {};     // items where we actually want to update the NSI-identifier on wikidata
 const _qidMetadata: Record<ItemId, QidMetadata> = {};
 
-for (const tkv of Object.keys(_nsi.path)) {
-  const parts = tkv.split('/', 3);     // tkv = "tree/key/value"
-  const t = parts[0] as NsiTree;
+for (const [tkv, category] of Object.entries(_nsi.path)) {
+  const t = tkv.split('/', 1)[0] as NsiTree;     // tkv = "tree/key/value"
 
-  const items = _nsi.path[tkv].items;
+  const items = category.items;
   if (!Array.isArray(items) || !items.length) continue;
 
   for (const item of items) {
@@ -274,8 +270,7 @@ function enqueueWbEdit(request: WbEditRequest): void {
  * @returns Resolves when all batches have been fetched and processed.
  */
 async function fetchWikidata() {
-  for (let index = 0; index < _urls.length; index++) {
-    const currURL = _urls[index];
+  for (const [index, currURL] of _urls.entries()) {
     console.log(styleText(['yellow','bold'], `\nBatch ${index+1}/${_urls.length}`));
 
     let retries = 0;
@@ -320,10 +315,10 @@ async function fetchWikidata() {
 async function processEntities(result: WdApiResult): Promise<void> {
   const facebookQueue: FacebookQueueItem[] = [];
 
-  for (const qid of (Object.keys(result.entities) as ItemId[])) {
+  for (const [qid, entity] of (Object.entries(result.entities) as [ItemId, WdEntity][])) {
     const meta = _qidMetadata[qid];
     const target = _wikidata[qid];
-    const entity = result.entities[qid];
+    if (!meta || !target) continue;
     _entityCache[qid] = entity;
     const labelEn = entity.labels && entity.labels.en && entity.labels.en.value;
     const labelMul =  entity.labels && entity.labels.mul && entity.labels.mul.value;
@@ -635,45 +630,49 @@ function syncNsiIdentifiers(qid: ItemId, entity: WdEntity): void {
 
   // P8253 - name-suggestion-index identifier
   // sort ids so claim order is deterministic, to avoid unnecessary updating
-  const nsiIds = Array.from(_qidIdItems[qid])
+  const nsiIds = Array.from(_qidIdItems[qid] ?? [])
     .sort(withLocale);
   const nsiClaims = (wbk.simplify.propertyClaims(entity.claims.P8253, { keepAll: true, keepNonTruthy: true }) as CustomSimplifiedClaim[])
     .sort((a, b) => withLocale(String(a.value), String(b.value)));
 
-  // Include this reference on all our claims - NSI#4648
-  const references = [{ P248: 'Q62108705' }];   // 'stated in': 'name suggestion index'
+  // We no longer add a 'stated in': 'name suggestion index' reference to these claims (previously NSI#4648).
+  // Wikidata editors removed them as redundant on an external identifier, see NSI#13076
 
-  // Make the nsiClaims match the nsiIds..
-  let i = 0;
-  let msg;
-  for (i; i < nsiClaims.length; i++) {
-    const claim = nsiClaims[i];
+  // Keep existing claims whose value already matches an id, so that adding or removing one id
+  // doesn't shift every claim after it and cause a cascade of updates.
+  const unmatchedIds = new Set(nsiIds);
+  const unmatchedClaims: CustomSimplifiedClaim[] = [];
+  for (const claim of nsiClaims) {
+    const value = String(claim.value);
+    if (unmatchedIds.has(value)) {
+      unmatchedIds.delete(value);
+      if (claim.rank !== 'normal') {   // force all ranks to 'normal'
+        const msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
+        enqueueWbEdit({ qid: qid, guid: claim.id as string, newValue: value, rank: 'normal', msg: msg });
+      }
+    } else {
+      unmatchedClaims.push(claim);
+    }
+  }
+
+  // Reuse leftover claims for leftover ids, then remove or add whatever remains
+  const leftoverIds = Array.from(unmatchedIds);
+  for (const [i, claim] of unmatchedClaims.entries()) {
     const claimID = claim.id as string;
+    const nsiId = leftoverIds[i];
 
-    if (i < nsiIds.length) {   // match existing claims to ids, and force all ranks to 'normal'
-      let msg;
-      if (claim.value !== nsiIds[i] || claim.rank !== 'normal') {
-        if (claim.value !== nsiIds[i]) {
-          msg = `Updating NSI identifier for ${qid}: value ${claim.value} -> ${nsiIds[i]}`;
-        } else if (claim.rank !== 'normal') {
-          msg = `Updating NSI identifier for ${qid}: rank '${claim.rank}' -> 'normal'`;
-        }
-        enqueueWbEdit({ qid: qid, guid: claimID, newValue: nsiIds[i], rank: 'normal', references: references, msg: msg! });
-      }
-      if (!claim.references || !claim.references.length) {
-        msg = `Updating NSI identifier reference for ${qid}`;
-        enqueueWbEdit({ qid: qid, guid: claimID, snaks: references[0], msg: msg });
-      }
-
+    if (nsiId !== undefined) {   // update existing claim to a new id
+      const msg = `Updating NSI identifier for ${qid}: value ${claim.value} -> ${nsiId}`;
+      enqueueWbEdit({ qid: qid, guid: claimID, newValue: nsiId, rank: 'normal', msg: msg });
     } else {  // remove extra existing claims
-      msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
+      const msg = `Removing NSI identifier for ${qid}: ${claim.value}`;
       enqueueWbEdit({ qid: qid, guid: claimID, msg: msg });
     }
   }
 
-  for (i; i < nsiIds.length; i++) {   // add new claims
-    msg = `Adding NSI identifier for ${qid}: ${nsiIds[i]}`;
-    enqueueWbEdit({ qid: qid, id: qid, property: 'P8253', value: nsiIds[i], rank: 'normal', references: references, msg: msg });
+  for (const nsiId of leftoverIds.slice(unmatchedClaims.length)) {   // add new claims
+    const msg = `Adding NSI identifier for ${qid}: ${nsiId}`;
+    enqueueWbEdit({ qid: qid, id: qid, property: 'P8253', value: nsiId, rank: 'normal', msg: msg });
   }
 }
 
@@ -775,8 +774,16 @@ async function finish(): Promise<void> {
 
   const dissolved: Record<string, WikidataDissolution[]> = {};
 
-  for (const qid of (Object.keys(_wikidata) as ItemId[])) {
-    const target = _wikidata[qid];
+  for (const [qid, target] of (Object.entries(_wikidata) as [ItemId, WikidataEntry][])) {
+
+    // P749 - Parent organization, use its logos if we have none (and their parent is in NSI) - see NSI#10259
+    if (target.logos && !Object.keys(target.logos).length) {
+      const entity = _entityCache[qid];
+      const parentQID = entity ? getClaimValue(entity, 'P749')?.id as ItemId : undefined;
+      if (parentQID && _wikidata[parentQID]?.logos) {
+        target.logos = { ..._wikidata[parentQID].logos };
+      }
+    }
 
     // sort the properties that we are keeping..
     for (const prop of (['identities', 'logos', 'dissolutions'] as const)) {
@@ -790,7 +797,7 @@ async function finish(): Promise<void> {
     }
 
     if (target.dissolutions) {
-      for (const itemID of _qidItems[qid]) {
+      for (const itemID of _qidItems[qid] ?? []) {
         dissolved[itemID] = target.dissolutions!;
       }
     }
@@ -834,6 +841,7 @@ async function finish(): Promise<void> {
  */
 async function fetchFacebookLogo(qid: ItemId, username: string, restriction: ItemId | undefined): Promise<true | void> {
   const target = _wikidata[qid];
+  if (!target) return;
   const logoURL = `https://graph.facebook.com/${username}/picture?type=large`;
   let userid;
 
@@ -967,8 +975,7 @@ async function drainWbEditQueue(): Promise<void> {
   console.log('');
   console.log('🏗   ' + styleText('yellow', `Applying ${total} Wikidata edits…`));
 
-  for (let i = 0; i < total; i++) {
-    const request = edits[i];
+  for (const [i, request] of edits.entries()) {
     const qid = request.qid;
     const msg = request.msg;
     console.log(styleText(['blue','bold'], `  [${i + 1}/${total}]  ${msg}`));
@@ -978,9 +985,7 @@ async function drainWbEditQueue(): Promise<void> {
     if (!DRYRUN) {
       try {
         let task;
-        if (request.guid && request.snaks) {
-          task = _wbEdit.reference.set(request as SetReferenceParams);  // update reference
-        } else if (request.guid && request.newValue) {
+        if (request.guid && request.newValue) {
           task = _wbEdit.claim.update(request as UpdateClaimParams);    // update claim
         } else if (request.guid && !request.newValue) {
           task = _wbEdit.claim.remove(request as RemoveClaimParams);    // remove claim
@@ -1015,11 +1020,11 @@ async function drainWbEditQueue(): Promise<void> {
 function enLabelForQID(qid: ItemId): string | null {
   const meta = _qidMetadata[qid];
 
-  for (const id of Array.from(_qidItems[qid])) {
+  for (const id of Array.from(_qidItems[qid] ?? [])) {
     const item = _nsi.id.get(id);
     if (!item) continue;
 
-    if (meta.what === 'flag') {
+    if (meta?.what === 'flag') {
       if (looksLatin(item.tags.subject))  return `flag of ${item.tags.subject}`;
 
     } else {
@@ -1037,13 +1042,8 @@ function enLabelForQID(qid: ItemId): string | null {
       if (looksLatin(item.displayName))   return item.displayName;
 
       for (const re of LATIN_TAG_PATTERNS) {
-        const keylist = [];
-        for (const key of Object.keys(item.tags)) {
-          if (re.test(key)) keylist.push(key);
-        }
-
-        for (const key of keylist) {
-          if (looksLatin(item.tags[key])) return item.tags[key];
+        for (const [key, val] of Object.entries(item.tags)) {
+          if (re.test(key) && looksLatin(val)) return val;
         }
       }
     }
@@ -1051,7 +1051,7 @@ function enLabelForQID(qid: ItemId): string | null {
 
   return null;
 
-  function looksLatin(str: string | undefined): boolean {
+  function looksLatin(str: string | undefined): str is string {
     if (!str) return false;
     // nothing outside the latin unicode ranges
     return !/[^\u0020-\u024F\u1E02-\u1EF3]/.test(str);
@@ -1067,8 +1067,8 @@ function enLabelForQID(qid: ItemId): string | null {
  * @returns A URL-encoded query string.
  */
 function utilQsString(obj: Record<string, string | number>): string {
-  return Object.keys(obj).sort(withLocale).map(key => {
-    return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+  return Object.entries(obj).sort(([a], [b]) => withLocale(a, b)).map(([key, val]) => {
+    return encodeURIComponent(key) + '=' + encodeURIComponent(val);
   }).join('&');
 }
 
@@ -1081,10 +1081,10 @@ function utilQsString(obj: Record<string, string | number>): string {
  */
 function sortWarnings(a: WikidataWarning, b: WikidataWarning): number {
   const qid = /^Q(\d+)$/;
-  const aMatch = a.qid.match(qid);
-  const bMatch = b.qid.match(qid);
-  if (aMatch && bMatch) {
-    return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);   // sort QIDs numerically
+  const aNum = a.qid.match(qid)?.[1];
+  const bNum = b.qid.match(qid)?.[1];
+  if (aNum && bNum) {
+    return parseInt(aNum, 10) - parseInt(bNum, 10);   // sort QIDs numerically
   } else {
     return withLocale(a.msg, b.msg);
   }

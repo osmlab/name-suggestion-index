@@ -13,8 +13,10 @@ describe('stemmer', () => {
 
   it('returns empty string if no input', () => {
     assert.equal(stemmer(), '');
-    assert.equal(stemmer(null as unknown as string), '');
-    assert.equal(stemmer({} as unknown as string), '');
+    // @ts-expect-error -- testing invalid input
+    assert.equal(stemmer(null), '');
+    // @ts-expect-error -- testing invalid input
+    assert.equal(stemmer({}), '');
   });
 
 });

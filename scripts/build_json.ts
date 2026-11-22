@@ -150,7 +150,7 @@ async function loadFeatures(): Promise<GeoJSON.Feature[]> {
     const fc = (feature as GeoJSON.FeatureCollection).features;
 
     // A FeatureCollection with a single feature inside (geojson.io likes to make these).
-    if (feature.type === 'FeatureCollection' && Array.isArray(fc) && fc.length === 1) {
+    if (feature.type === 'FeatureCollection' && Array.isArray(fc) && fc.length === 1 && fc[0]) {
       feature = fc[0];
     }
 
@@ -399,8 +399,8 @@ async function filterCollected() {
     //
     for (const tag of tree.sourceTags as CollectedTag[]) {
       const collected = _collected[tag];
-      for (const kvn in collected) {
-        discard[kvn] = Math.max((discard[kvn] || 0), collected[kvn]);
+      for (const [kvn, count] of Object.entries(collected)) {
+        discard[kvn] = Math.max((discard[kvn] || 0), count);
       }
     }
 
@@ -408,8 +408,8 @@ async function filterCollected() {
     // STEP 2:  Move "names" that aren't excluded from `discard` -> `keep`
     //
     const categoryRegex: Record<NsiPath, RegExp[]> = {};  // regex cache
-    for (const kvn in discard) {
-      const [kv, n] = kvn.split('|', 2);  // kvn = "key/value|name"
+    for (const [kvn, count] of Object.entries(discard)) {
+      const [kv, n] = kvn.split('|', 2) as [string, string];  // kvn = "key/value|name"
       const tkv: NsiPath = `${t}/${kv}`;
       const file = `./data/${tkv}.json`;
       const category = _nsi.path[tkv];
@@ -418,17 +418,18 @@ async function filterCollected() {
       const categoryProps = category.properties || {};
       if (categoryProps.skipCollection) continue;   // not a category where we want to collect new names, skip
 
-      if (!categoryRegex[tkv]) {
+      let regexes = categoryRegex[tkv];
+      if (!regexes) {
         const exclude = categoryProps.exclude || {};
         const excludePatterns = (exclude.generic || []).concat((exclude.named || []));
-        categoryRegex[tkv] = excludePatterns.map((s: string) => {
+        regexes = categoryRegex[tkv] = excludePatterns.map((s: string) => {
           checkRegex(file, s);
           return new RegExp(s, 'i');
         });
       }
-      const isExcluded = categoryRegex[tkv].some(re => re.test(n)) || genericRegex.some(re => re.test(n));
+      const isExcluded = regexes.some(re => re.test(n)) || genericRegex.some(re => re.test(n));
       if (!isExcluded) {
-        keep[kvn] = discard[kvn];
+        keep[kvn] = count;
         delete discard[kvn];
       }
     }
@@ -528,10 +529,9 @@ function mergeItems() {
     const keeping: CollectedCounts = _keep[t] || {};
 
     // Find new items, keeping only the most popular spelling..
-    for (const kvn of Object.keys(keeping)) {
-      const count = keeping[kvn];
-      const [kv, n] = kvn.split('|', 2);     // kvn = "key/value|name"
-      const [k, v] = kv.split('/', 2);
+    for (const [kvn, count] of Object.entries(keeping)) {
+      const [kv, n] = kvn.split('|', 2) as [string, string];     // kvn = "key/value|name"
+      const [k, v] = kv.split('/', 2) as [string, string];
 
       const matched = matcher.match(k, v, n);
       if (matched) continue;     // already in the index (or generic)
@@ -550,8 +550,8 @@ function mergeItems() {
 
     // Add the new items
     for (const newItem of Object.values(newItems)) {
-      const [kv, n] = newItem.kvn.split('|', 2);     // kvn = "key/value|name"
-      const [k, v] = kv.split('/', 2);
+      const [kv, n] = newItem.kvn.split('|', 2) as [string, string];     // kvn = "key/value|name"
+      const [k, v] = kv.split('/', 2) as [string, string];
       const tkv: NsiPath = `${t}/${k}/${v}`;
 
       const tags: OsmTags = {};
@@ -588,12 +588,12 @@ function mergeItems() {
     //
     // UPDATE - Check all items in the tree for expected tags..
     //
-    const paths = Object.keys(_nsi.path).filter(tkv => tkv.split('/')[0] === t);
-    paths.forEach(tkv => {
-      const items = _nsi.path[tkv].items;
+    const categories = Object.entries(_nsi.path).filter(([tkv]) => tkv.split('/')[0] === t);
+    categories.forEach(([tkv, category]) => {
+      const items = category.items;
       if (!Array.isArray(items) || !items.length) return;
 
-      const [t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+      const [t, k, v] = tkv.split('/', 3) as [NsiTree, string, string];     // tkv = "tree/key/value"
       const kv = `${k}/${v}`;
 
       items.forEach(item => {
@@ -602,7 +602,7 @@ function mergeItems() {
 
         item.tags[k] = v;   // Make sure the category k=v pair is present - #11916
 
-        let name = '';   // which "name" we use for the locales check below
+        let name: string | undefined;   // which "name" we use for the locales check below
 
         // assign some default companion tags if missing
         if (kv === 'amenity/cafe') {
@@ -643,12 +643,12 @@ function mergeItems() {
           name = tags.operator || tags.name || tags.brand;
 
           // Seed missing operator tags (for a file that we copied over from the 'brand' tree)
-          Object.keys(tags).forEach(osmkey => {
+          Object.entries(tags).forEach(([osmkey, osmval]) => {
             if (/brand/.test(osmkey)) {
               const brandkey = osmkey;
               const operatorkey = brandkey.replace('brand', 'operator');   // `brand`->`operator`, `brand:ru`->`operator:ru`, etc.
               if (!tags[operatorkey]) {
-                tags[operatorkey] = tags[brandkey];
+                tags[operatorkey] = osmval;
               }
             }
           });
@@ -656,6 +656,7 @@ function mergeItems() {
         } else if (t === 'transit') {
           name = tags.network;
         }
+        name ??= '';
 
         // If the name can only be reasonably read in one country,
         // assign `locationSet`, and localize tags like `name:xx`
@@ -710,7 +711,7 @@ function mergeItems() {
           // anything ending in `wikidata`
           if (/wikidata$/.test(osmkey)) {
             const wd = tags[osmkey];
-            const replace = _replacements[wd];    // If it matches a QID in the replacement list...
+            const replace = wd && _replacements[wd];    // If it matches a QID in the replacement list...
 
             if (replace && replace.wikidata !== undefined) {   // replace or delete `*:wikidata` tag
               if (replace.wikidata) {
@@ -787,14 +788,14 @@ function checkItems(t: NsiTree) {
   let total = 0;      // total items
   let totalWd = 0;    // total items with wikidata
 
-  const paths = Object.keys(_nsi.path).filter(tkv => tkv.split('/')[0] === t);
+  const categories = Object.entries(_nsi.path).filter(([tkv]) => tkv.split('/')[0] === t);
   const display = (val: NsiItem): string => `${val.displayName} (${val.id})`;
 
-  paths.forEach(tkv => {
-    const items = _nsi.path[tkv].items;
+  categories.forEach(([tkv, category]) => {
+    const items = category.items;
     if (!Array.isArray(items) || !items.length) return;
 
-    const [_t, k, v] = tkv.split('/', 3);     // tkv = "tree/key/value"
+    const [, k, v] = tkv.split('/', 3) as [NsiTree, string, string];     // tkv = "tree/key/value"
     const kv = `${k}/${v}`;
 
     items.forEach(item => {
@@ -804,9 +805,8 @@ function checkItems(t: NsiTree) {
       if (tags[tree.mainTag]) totalWd++;
 
       // check tags
-      Object.keys(tags).forEach(osmkey => {
+      Object.entries(tags).forEach(([osmkey, wd]) => {
         if (/:wikidata$/.test(osmkey)) {       // Check '*:wikidata' tags
-          const wd = tags[osmkey];
           if (!/^Q\d+$/.test(wd)) {
             warnFormatWikidata.push([display(item), wd]);
           }

@@ -1,5 +1,6 @@
 ---
-description: Review the codebase and suggest improvements
+name: suggest
+description: Review the codebase and suggest improvements, without making edits. Use when asked for a review, an audit, or ideas for what to improve.
 argument-hint: additional optional context
 ---
 
@@ -32,6 +33,8 @@ Skip categories where things look fine. Don't invent problems.
 **Testing** — coverage gaps, tests that don't actually verify what they claim
 
 **Runtime / tooling** (Bun-specific entries apply if used) — `node:*` APIs where Bun-native equivalents exist, `npm`/`yarn` artifacts in scripts, dependencies Bun now handles natively
+
+**Data / Schema** — `data/` category files that drift from the JSON schemas in `schema/`, validation gaps in the build scripts, `config/` files that disagree with each other
 
 **Developer Experience** — missing or misleading `package.json` scripts, incomplete `.gitignore`/`.gitattributes`, missing docs or source comments
 

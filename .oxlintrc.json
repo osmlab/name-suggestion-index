@@ -1,0 +1,105 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "import", "node"],
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "accessor-pairs": "error",
+    "array-callback-return": "warn",
+    "block-scoped-var": "error",
+    "complexity": ["warn", 50],
+    "curly": ["warn", "multi-line"],
+    "default-case-last": "error",
+    "default-param-last": "error",
+    "eqeqeq": ["error", "smart"],
+    "grouped-accessor-pairs": "error",
+    "no-constructor-return": "error",
+    "no-div-regex": "error",
+    "no-eq-null": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-extra-label": "error",
+    "no-implied-eval": "error",
+    "no-labels": "error",
+    "no-label-var": "error",
+    "no-lone-blocks": "error",
+    "no-loop-func": "error",
+    "no-multi-str": "error",
+    "no-new": "error",
+    "no-new-func": "error",
+    "no-new-wrappers": "error",
+    "node/no-process-env": "error",
+    "no-promise-executor-return": "error",
+    "no-proto": "error",
+    "no-script-url": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-template-curly-in-string": "warn",
+    "no-throw-literal": "error",
+    "no-unexpected-multiline": "error",
+    "no-unneeded-ternary": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-unreachable": "warn",
+    "no-unreachable-loop": "warn",
+    "no-unused-vars": ["warn", { "args": "none", "caughtErrors": "none", "destructuredArrayIgnorePattern": "^_" }],
+    "no-useless-backreference": "warn",
+    "no-useless-call": "warn",
+    "no-useless-computed-key": "warn",
+    "no-useless-concat": "warn",
+    "no-useless-escape": "off",
+    "no-useless-rename": "warn",
+    "no-void": "error",
+    "no-warning-comments": "warn",
+    "radix": "error",
+    "require-await": "error",
+
+    // previously enabled by the `@eslint/js` and `typescript-eslint` recommended/stylistic configs
+    "no-array-constructor": "error",
+    "no-case-declarations": "error",
+    "no-empty": "error",
+    "no-fallthrough": "error",
+    "no-regex-spaces": "error",
+    "no-useless-assignment": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "preserve-caught-error": "error",
+    "typescript/adjacent-overload-signatures": "error",
+    "typescript/ban-ts-comment": "error",
+    "typescript/ban-tslint-comment": "error",
+    "typescript/class-literal-property-style": "error",
+    "typescript/consistent-generic-constructors": "error",
+    "typescript/consistent-indexed-object-style": "error",
+    "typescript/consistent-type-assertions": "error",
+    "typescript/consistent-type-definitions": "error",
+    "typescript/no-confusing-non-null-assertion": "error",
+    "typescript/no-empty-object-type": "error",
+    "typescript/no-namespace": "error",
+    "typescript/no-require-imports": "error",
+    "typescript/no-unnecessary-type-constraint": "error",
+    "typescript/no-unsafe-function-type": "error",
+    "typescript/prefer-for-of": "error",
+    "typescript/prefer-function-type": "error",
+
+    "typescript/no-explicit-any": "warn",
+    "typescript/no-inferrable-types": ["warn", { "ignoreParameters": true }],
+
+    "import/no-duplicates": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["lib/**", "scripts/**", "test/**"],
+      "env": {
+        "node": true
+      },
+      "globals": {
+        "Bun": "readonly"
+      }
+    }
+  ]
+}

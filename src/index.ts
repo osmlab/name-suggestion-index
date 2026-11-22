@@ -1,7 +1,7 @@
 import * as nsi from './nsi.ts';
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
+  // eslint-disable-next-line @typescript-eslint/no-namespace, no-shadow-restricted-names
   namespace globalThis {
     // eslint-disable-next-line no-var
     var nsi: typeof import('./nsi');
