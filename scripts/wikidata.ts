@@ -778,8 +778,9 @@ async function finish(): Promise<void> {
 
     // P749 - Parent organization, use its logos if we have none (and their parent is in NSI) - see NSI#10259
     if (target.logos && !Object.keys(target.logos).length) {
-      const parentQID = getClaimValue(_entityCache[qid], 'P749')?.id as ItemId;
-      if (_wikidata[parentQID]?.logos) {
+      const entity = _entityCache[qid];
+      const parentQID = entity ? getClaimValue(entity, 'P749')?.id as ItemId : undefined;
+      if (parentQID && _wikidata[parentQID]?.logos) {
         target.logos = { ..._wikidata[parentQID].logos };
       }
     }
